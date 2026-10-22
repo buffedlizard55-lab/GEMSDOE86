@@ -145,6 +145,10 @@ See <a href="evidence.html">Evidence</a> and <a href="hypotheses.html">Hypothese
 <tr><td class="mono">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</td><td>PASS 15/15</td>
 <td><b>FAIL</b>: 82 % of dots within 3 px of the 58GEMSDOE proximity lane</td>
 <td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span><br><span class="muted">kept only as the ablation control</span></td></tr>
+<tr><td class="mono">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</td><td>its own receipt</td>
+<td>not audited here</td>
+<td><span class="badge warn">PARALLEL LANE — NOT AUDITED BY THIS PIPELINE</span><br>
+<span class="muted">produced by a concurrent session; its own evidence is under <a href="../docs/evidence/">docs/evidence/</a> and <a href="../research/">research/</a>. Run <code>scripts/audit_uniqueness.py --candidate &lt;path&gt;</code> before treating it as submittable.</span></td></tr>
 </table>
 
 <h3>Everything is checkable</h3>
