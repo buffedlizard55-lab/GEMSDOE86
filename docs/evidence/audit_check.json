@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "shared_template_hashes_match": true,
+    "grid_inputs_present": true,
+    "candidate_tif_present": true,
+    "sample_mirror_sha_matches": true,
+    "fault_mirror_sha_matches": true,
+    "candidate_sha_matches_card": true,
+    "candidate_validator_all_pass": true,
+    "candidate_dots_match_card": true,
+    "no_nan_no_inf_allfinite": true,
+    "values_in_0_1": true,
+    "verdict_consistent_with_gates": true,
+    "note_le_140_chars": true,
+    "holdout_labelled": true
+  },
+  "all_checks_passed": true,
+  "submission_ready": false,
+  "verdict": "negative",
+  "raster_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+  "meaning": "all_checks_passed means the card honestly describes the bytes on disk. submission_ready is the separate scientific gate verdict and is False for this negative candidate: format-valid is NOT submittable."
+}

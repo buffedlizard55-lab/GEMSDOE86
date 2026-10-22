@@ -1,4 +1,11 @@
-"""Reproducible preflight. Missing evidence is a negative result, never a PASS."""
+"""Automated inspection: re-verify the run card against bytes on disk.
+
+No human inspector and no optimistic defaults. This recomputes, from the
+serialized candidate TIFF, the SHA256 and every local format/range check via
+the unmodified shared validator, confirms the shared template pins, and
+checks that the run card's verdict is consistent with its own gates
+(fail-closed: inconsistency, missing files or hash drift raise).
+"""
 from pathlib import Path
 import hashlib
 import json
@@ -18,47 +25,58 @@ def run():
     import numpy as np
     import rasterio
     from gems57 import grid
+    from gems57.validate import validate
+
     checks = {'shared_template_hashes_match': check_pins()}
-    details = {}
+    card_path = ROOT / 'docs/evidence/run-card.json'
+    card = json.loads(card_path.read_text())
+    raster = card.get('raster') or {}
+    tif = ROOT / (raster.get('path') or '')
     sample = ROOT / 'data/sample_submission.tif'
     faults = ROOT / 'data/existing_faults.tif'
     checks['grid_inputs_present'] = sample.is_file() and faults.is_file()
+    checks['candidate_tif_present'] = tif.is_file()
     if checks['grid_inputs_present']:
         with sample.open('rb') as stream:
             checks['sample_mirror_sha_matches'] = hashlib.file_digest(stream, 'sha256').hexdigest() == grid.SHA256_SAMPLE_SUBMISSION
         with faults.open('rb') as stream:
             checks['fault_mirror_sha_matches'] = hashlib.file_digest(stream, 'sha256').hexdigest() == grid.SHA256_EXISTING_FAULTS
-        with rasterio.open(sample) as s, rasterio.open(faults) as f:
-            foot = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
-            checks['input_grids_match'] = (s.count == f.count == 1 and s.shape == f.shape == grid.SHAPE
-                and s.crs == f.crs == rasterio.crs.CRS.from_epsg(grid.EPSG)
-                and s.transform == f.transform == grid.TRANSFORM)
-            details = dict(shape=list(s.shape), crs=str(s.crs), transform=list(s.transform)[:6],
-                           footprint_pixels=int(foot.sum()), organizer_authenticated=False)
-    # Explicit blockers: existence alone must never turn these into a science PASS.
-    blockers = [
-        'No single method paragraph/lane was specified in the supplied prompt.',
-        'Shared cached feature stack referenced upstream is not present; no replacement stack was built.',
-        'No complete, pinned cross-lane raster registry was supplied or reconstructed.',
-        'No feature-alone leakage canary or buffered segment hide-and-recover experiment was run.',
-        'No comparable current-best pooled HOLDOUT-DTI with paired spatial CI was established.',
-        'No candidate surface or final dots exist; uniqueness and raster validation are untested.'
-    ]
-    card = dict(hypothesis='H86 provisional: radiometric mixing-residual boundary (not lane-authorized)',
-        mechanism='Residual K/Th variation after local lithologic mixing regression, gated by magnetic edge persistence.',
-        non_fault_mimic='Lithologic contacts and weathering fronts',
-        holdout_dti=dict(evidence_class='HOLDOUT-DTI', status='NOT_RUN', evaluator_version='gems57-pooled-hide-v2',
-                         withheld_positives=None, value=None, ci95=None),
-        correlation_overlap_vs_registry=dict(status='NOT_RUN', surface=None, final_dots=None, complete=False),
-        raster_sha256=None,
-        validator=dict(status='NOT_RUN_NO_CANDIDATE', no_nan_inside_footprint=None, values_in_0_1=None,
-                       crs_shape_transform_match=None),
-        submission_name=None, note='No candidate generated: lane, cached features, complete registry and comparable holdout baseline are missing.',
-        verdict='negative', submission_ready=False, experiments_run=0,
-        preflight_checks=checks, input_grid=details, blockers=blockers)
-    (ROOT / 'docs/evidence/run-card.json').write_text(json.dumps(card, indent=2, allow_nan=False)+'\n')
-    return card
+    if checks['candidate_tif_present']:
+        checks['candidate_sha_matches_card'] = (
+            hashlib.sha256(tif.read_bytes()).hexdigest() == card.get('raster_sha256'))
+    if checks['candidate_tif_present'] and checks['grid_inputs_present']:
+        with rasterio.open(sample) as s:
+            foot = np.isfinite(s.read(1))
+        with rasterio.open(faults) as f:
+            cat = (f.read(1) > 0) & foot
+        val = validate(tif, footprint=foot, catalogue=cat)
+        checks['candidate_validator_all_pass'] = bool(val['all_checks_passed'])
+        checks['candidate_dots_match_card'] = val['emitted_positive_pixels'] == raster.get('dots')
+        checks['no_nan_no_inf_allfinite'] = val['n_nan'] == 0 and val['n_infinite'] == 0
+        checks['values_in_0_1'] = val['min'] >= 0.0 and val['max'] <= 1.0
+    gates = card.get('gates') or {}
+    science_ready = bool(gates.get('canary_no_leakage_block')
+                         and gates.get('beats_best_comparable_control_ci')
+                         and gates.get('surface_rho_le_0p90_accessible')
+                         and gates.get('dot_overlap_le_0p70_dotfields')
+                         and gates.get('validator_all_checks_passed'))
+    checks['verdict_consistent_with_gates'] = (
+        card.get('submission_ready') == science_ready
+        and card.get('verdict') == ('promote' if science_ready else 'negative'))
+    checks['note_le_140_chars'] = len(card.get('note') or '') <= 140
+    checks['holdout_labelled'] = (card.get('holdout_dti') or {}).get('evidence_class') == 'HOLDOUT-DTI'
+    audit = dict(checks=checks, all_checks_passed=bool(all(checks.values())),
+                 submission_ready=card.get('submission_ready'), verdict=card.get('verdict'),
+                 raster_sha256=card.get('raster_sha256'),
+                 meaning=('all_checks_passed means the card honestly describes the bytes on disk. '
+                          'submission_ready is the separate scientific gate verdict and is False '
+                          'for this negative candidate: format-valid is NOT submittable.'))
+    (ROOT / 'docs/evidence/audit_check.json').write_text(json.dumps(audit, indent=2) + '\n')
+    # Back-compatible return shape for tests/callers: card fields + audit.
+    return {**card, 'preflight_checks': checks, 'audit': audit}
 
 
 if __name__ == '__main__':
-    print(json.dumps(run(), indent=2))
+    out = run()
+    print(json.dumps(out['audit'], indent=2))
+    raise SystemExit(0 if out['audit']['all_checks_passed'] else 1)
