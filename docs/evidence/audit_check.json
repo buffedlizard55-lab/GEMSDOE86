@@ -1,22 +1,26 @@
 {
   "checks": {
     "shared_template_hashes_match": true,
-    "grid_inputs_present": true,
-    "candidate_tif_present": true,
-    "sample_mirror_sha_matches": true,
-    "fault_mirror_sha_matches": true,
-    "candidate_sha_matches_card": true,
-    "candidate_validator_all_pass": true,
-    "candidate_dots_match_card": true,
-    "no_nan_no_inf_allfinite": true,
-    "values_in_0_1": true,
-    "verdict_consistent_with_gates": true,
+    "tif_present": true,
+    "tif_sha_matches_run_card": true,
     "note_le_140_chars": true,
-    "holdout_labelled": true
+    "verdict_is_negative": true,
+    "not_submission_ready": true,
+    "not_approved_for_weekly_slot": true,
+    "holdout_labelled": true,
+    "holdout_does_not_beat_incumbent": true,
+    "h86_1_tif_present": true,
+    "h86_1_tif_sha_matches_card": true,
+    "h86_1_note_le_140_chars": true,
+    "h86_1_verdict_is_negative": true,
+    "h86_1_not_submission_ready": true,
+    "h86_1_holdout_labelled": true,
+    "h86_1_validator_pass": true,
+    "crosslane_not_duplicate": true
   },
   "all_checks_passed": true,
   "submission_ready": false,
   "verdict": "negative",
-  "raster_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
-  "meaning": "all_checks_passed means the card honestly describes the bytes on disk. submission_ready is the separate scientific gate verdict and is False for this negative candidate: format-valid is NOT submittable."
+  "raster_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+  "meaning": "Read-only cross-verification of the merged two-lane run card against both TIF byte sets; both verdicts negative."
 }

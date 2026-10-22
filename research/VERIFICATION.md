@@ -16,41 +16,61 @@ Eight tests pass. Python compilation and Git whitespace checks pass. Local HTML 
 
 Local format tests prove serialization and rejection behavior only; they do not prove a useful or unique prediction. The next scientific task must start by resolving the recorded blockers, not by uploading a template.
 
+## Follow-up review in this checkout — 2026-10-22
+
+The current branch was re-reviewed against the full user brief and the run-card protocol. A fresh Python 3.11 virtual environment was created and the pinned dependencies in `requirements.txt` installed. `scripts/restore_data.py` completed from the hash-pinned owner mirror for `existing_faults.tif` and `sample_submission.tif`; the receipts record the expected hashes and explicitly say `organizer_authenticated: false`. The files remain under ignored `data/` and are not committed. The 419 MB mirrored feature raster was deliberately not downloaded: the request requires the template's cached feature stack, and substituting or rebuilding one is not authorized or equivalent.
+
+Fresh checks: `scripts/audit.py` reports the grid inputs present, mirror hashes matching, and matching raster grids (EPSG:32611; 3730 x 3292; 100 m transform). The audit still correctly returns `verdict: negative`, no candidate SHA, no holdout score, and no submission readiness. `python -m unittest discover -s tests -v` passes all eight tests; `compileall` and `git diff --check` pass. One Rasterio `PendingDeprecationWarning` arises in the synthetic round-trip test and does not fail the test. No model experiments were run, so no number is labeled HOLDOUT-DTI, and no result is ORGANIZER-CONFIRMED.
+
+**Decision:** do not create or expose a downloadable TIFF. The prompt's highest-priority demand for a unique submission conflicts with its own stop conditions: it supplies no identifiable authorized method paragraph, complete registry, shared feature cache, feature canary, or benchmark holdout. A new TIFF under these conditions would be unvalidated, not demonstrably unique, and would misleadingly appear eligible for competition upload. The website therefore remains an explicit NOT READY status; `docs/evidence/run-card.json` is a negative preflight, not a submission artifact. No slot was selected or spent.
+
+This is a repo review and a negative preflight, not completion of the scientific submission goal. Existing limitations remain: no current authenticated quota/receipt, no organizer-authenticated inputs, no fresh official leaderboard capture in this rerun, no complete sibling-site registry, and no documented feature-layer validation. The reported historical scores remain unverified in this evidence set.
+
+## Superseding review — this session (branch arena/00e02bfc-gemsdoe86)
+
+The "do not create or expose a downloadable TIFF" decision above is superseded
+by the executed lane H86-RMRB (see REVIEW.md addendum): a candidate TIF now
+exists and is downloadable FOR INSPECTION ONLY. Independent re-validation
+this session (scripts/validate_download.py, no data/ needed): SHA-256
+cf4ab340…5962 matches the run card; single-band float32; EPSG:32611;
+3730×3292; pinned transform; all finite; values in [0,1]; 60,000 dots;
+ZIP contains only that TIF; note 118/140 chars.
+
+Irregularities found and fixed in this session:
+1. scripts/audit.py previously overwrote docs/evidence/run-card.json with a
+   stale "no candidate / NOT_RUN" preflight — it is now read-only w.r.t. the
+   run card and writes docs/evidence/preflight-audit.json instead; a test
+   asserts the run card bytes are unchanged by run().
+2. Dashboard/README called the candidate "unique": the shared uniqueness
+   checker in fact returns unique=false, duplicate_count=1,
+   stop_required=true (literal >0.70 3-px dot-overlap vs the saturating
+   13GEMSDOE lattice raster, 206,895 dots; Spearman ρ=0.0003, Jaccard=0.009).
+   Wording now reports the checker verbatim: byte/pixel-distinct, NOT
+   uniqueness-cleared. Per protocol this is logged as a duplicate-gate
+   firing and stopped — no re-emission was attempted (budget: 3 experiments
+   already run).
+3. Root index.html still said "No candidate TIF is available" — corrected.
+4. Dashboard linked research/REVIEW.md via a stale branch URL — now relative.
+
+No new experiment was run and no score is claimed: HOLDOUT-DTI 0.0420
+[0.0369–0.0467] (gems57-pooled-hide-v2, 22,641 withheld) vs incumbent
+0.1011 [0.0856–0.1167] remains a negative result. Historical brief numbers
+(0.2778 / 0.4413 / 0.3195) remain owner-reported without receipts.
+
 ---
 
-# Session 2 (2026-10-22) — H86-1 lane, three passes
+# Parallel session (2026-10-22, PR #9) — H86-1 lane, three passes
 
-## Pass 1 — implement and exercise
-Restored hash-pinned rasters incl. the 419 MB 19-band feature raster and a
-14-raster registry (`scripts/restore_data.py --include-features`,
-`scripts/fetch_registry.py`, all SHA-verified). Preregistered 5 ranked
-hypotheses and one lane paragraph (`research/h86-hypotheses.md`). Built the
-H86-1 surface/emission/holdout pipeline (`scripts/run_h86.py`) on the
-unmodified vendor metric/evaluator/writer/validator/uniqueness code.
-Ran E1 canaries (no AUC > 0.90), E2/E3 pipeline hide-and-recover
-(candidate ≈ spaced random on HOLDOUT-DTI at both budgets; far below fixed
-incumbents), an auxiliary SGMC-proxy screen (candidate below random),
-surface+dot uniqueness vs 14 rasters, and serialized a 38,000-dot candidate
-through the shared writer (validator: all checks pass).
-
-## Pass 2 — bugs, assumptions, edge cases
-Caught and documented, not hidden: fixed-incumbent arms in hide-and-recover
-are not pipeline like-for-like (B2's 0.0039 is structural); the literal
-dot-overlap gate fires only against a lattice raster covering 99.87% of
-allowed cells (saturation certificate added); feature-raster finite mask
-differs from sample footprint (3,061/1,540 cells); SGMC derived raster is a
-~1 px dilation (proxy kept auxiliary/approximate). Rewrote `scripts/audit.py`
-to re-verify the run card against TIF bytes (a concurrent-tool race with the
-old audit briefly clobbered the card during editing; regenerated and
-re-verified). All 8 unit tests pass; shared vendor bytes unchanged (pin check).
-
-## Pass 3 — requirements and claim review
-Every number labelled HOLDOUT-DTI / AUXILIARY-PROXY / REGISTRY-MEASUREMENT /
-OWNER-REPORT; none presented as an organizer score. Site banner, run card
-(`verdict: negative`, `submission_ready: false`) and README agree: the TIF is
-downloadable for inspection and must not be submitted. Local doc links all
-resolve; evidence JSON parses without NaN/Inf literals; card SHA matches TIF
-bytes. Remaining unfulfilled by design of the result: no organizer-confirmed
-score, no slot use, registry limited to 14 accessible rasters, raw SGMC
-unavailable in the manifest, no live quota verification. Full record:
+Pass 1: restored the 419 MB 19-band feature raster + 14-raster registry
+(SHA-verified), preregistered 5 hypotheses, ran E1 canaries (max AUC 0.603),
+E2/E3 pipeline hide-and-recover (candidate = spaced random on HOLDOUT-DTI at
+38k/44,090 budgets), SGMC auxiliary proxy (below random), uniqueness vs 14
+rasters, wrote a 38,000-dot candidate via the shared writer (validator PASS).
+Pass 2: documented fixed-incumbent holdout handicap (B2 0.0039 structural),
+lattice saturation certificate (99.87%), feature/footprint mask mismatch
+(3,061/1,540), SGMC dilation caveat; tests pass with and without `data/`.
+Pass 3 / merge: main had advanced with the H86-RMRB lane (PR #7); both lanes
+preserved, run cards combined (`parallel_lane_h86_1`), cross-lane uniqueness
+measured (ρ 0.013, overlaps 0.31/0.17 — distinct), audit verifies both TIF
+byte sets read-only. Both verdicts negative; no slot used. Full record:
 `research/H86_RESULTS.md`.

@@ -1,0 +1,13 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "note": "Cross-lane check added at merge with origin/main (PR #7 H86-RMRB candidate was not in the 14-raster registry used during the H86-1 session).",
+  "h86_1_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+  "h86_rmrb_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+  "spearman_full_footprint": 0.012554219248873283,
+  "jaccard_dot_sets": 0.010673954519672046,
+  "my_dots_within_3px_of_theirs": 0.3076315789473684,
+  "their_dots_within_3px_of_mine": 0.17231666666666667,
+  "rho_limit": 0.9,
+  "overlap_limit": 0.7,
+  "duplicate_by_literal_gates": false
+}

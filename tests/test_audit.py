@@ -18,24 +18,32 @@ class SafetyTests(unittest.TestCase):
     def test_shared_bytes_unmodified(self):
         self.assertTrue(check_pins())
 
-    def test_candidate_is_format_valid_but_not_ready(self):
-        # H86-1 generated a real candidate TIF; automated gates rejected it on
-        # science (holdout ~ random), so it must never read as submittable.
-        card = run()
-        self.assertFalse(card['submission_ready'])
-        self.assertEqual(card['verdict'], 'negative')
+    def test_current_run_card_is_negative_and_consistent(self):
+        # audit.run() is read-only: it must never overwrite the lane run card.
+        before = (ROOT / 'docs/evidence/run-card.json').read_bytes()
+        result = run()
+        self.assertEqual((ROOT / 'docs/evidence/run-card.json').read_bytes(), before)
+        self.assertTrue(result['all_audit_checks_passed'])
+        self.assertFalse(result['submission_ready'])
+        self.assertEqual(result['verdict'], 'negative')
+        card = result['run_card']
+        self.assertFalse(card['holdout_dti']['beats_incumbent'])
         self.assertIsNotNone(card['raster_sha256'])
-        self.assertEqual(card['holdout_dti']['status'], 'RUN')
-        self.assertEqual(card['holdout_dti']['evidence_class'], 'HOLDOUT-DTI')
-        self.assertTrue(card['validator']['checks']['range_0_1_guaranteed'])
         self.assertLessEqual(len(card['note']), 140)
-        self.assertTrue(card['audit']['checks']['candidate_sha_matches_card'])
-        self.assertTrue(card['audit']['checks']['verdict_consistent_with_gates'])
-        # Full byte-level revalidation needs the (gitignored, hash-pinned) grid
-        # inputs under data/; CI checkouts without them still verify the card
-        # and the committed TIF's SHA above.
-        if (ROOT / 'data/sample_submission.tif').is_file():
-            self.assertTrue(card['audit']['all_checks_passed'])
+
+    def test_h86_1_lane_card_is_negative_and_consistent(self):
+        # H86-1 (PR #9) generated a real candidate TIF; automated gates
+        # rejected it on science (holdout ~ random), so it must never read
+        # as submittable, and the merged audit must verify its bytes too.
+        result = run()
+        self.assertTrue(result['all_audit_checks_passed'])
+        h86 = result['run_card']['parallel_lane_h86_1']
+        self.assertFalse(h86['submission_ready'])
+        self.assertEqual(h86['verdict'], 'negative')
+        self.assertIsNotNone(h86['raster_sha256'])
+        self.assertEqual(h86['holdout_dti']['status'], 'RUN')
+        self.assertTrue(h86['validator']['checks']['range_0_1_guaranteed'])
+        self.assertLessEqual(len(h86['note']), 140)
 
     def test_writer_rejects_invalid_values_before_writing(self):
         for bad in [np.nan, np.inf, -0.01, 1.01, -9999]:
