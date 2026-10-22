@@ -1,6 +1,32 @@
 # Scientific review and proposed experiments
 
 Reviewed 2026-10-22. **No model experiment was run; no score improvement demonstrated.**
+
+## Current session: measured stop before placement
+
+The previous audit's first tasks were lane/cache/registry resolution. We retrieved the pinned shared template's historical registry inventory, verified its SHA256, and restored one immutable historical prediction by Git blob ID. The shared `saturation_certificate` and an independent direct-support count show that it is positive at every allowed pixel. See [automated certificate](../docs/evidence/protocol-preflight.json), [source pin](registry_witness_pin.json) and [reproduction script](../scripts/protocol_preflight.py).
+
+This is a **REGISTRY-MEASUREMENT**, not a performance result: 5,167,373 footprint cells; 60,988 catalogue cells; 5,106,385 allowed cells; zero allowed cells uncovered even before 3px dilation. The finite in-footprint probability range is recorded in the certificate. For any nonempty candidate dot set inside the allowed domain, literal forward overlap with this historical surface must be 1, which exceeds 0.70. Therefore the protocol cannot admit a nonempty unique candidate as currently written. No representation-aware exemption is authorized or implemented. The stop is logged as `UNIVERSAL_LITERAL_BLOCKER`, not a fabricated measured candidate correlation or an assertion of scientific duplication.
+
+Only one historical witness was measured. That suffices for failure, never for clearance. The inventory snapshot contains 655 entries and lists repositories only through the earlier sibling series; it is not a current complete registry. Missing later repositories cannot invalidate a demonstrated counterexample, but would block a positive uniqueness claim. No surface was built, no dots were placed, no features were tested, no model experiment or competition slot was used.
+
+A new candidate TIFF was **not** generated. The unique-TIFF, verified-holdout-improvement and live-feed requirements remain unmet. The unmodified shared writer's ephemeral unit fixture is not a deliverable. No historical raster was copied into a release directory or offered as our prediction.
+
+### Decision-theoretic explanation, not causal leaderboard attribution
+
+Let T be weighted recovered truth mass, F weighted false-positive mass, and N the fixed number of truth pixels in one evaluation domain. The official formula reduces to `T / (0.2T + 0.2F + 0.8N + epsilon)`. If pruning loses coverage mass a and removes false-positive mass b, the ratio improves exactly when `T*b > a*(F + 4*N + 5*epsilon)` (positive denominators). Redundant nearby emissions can contribute b with little a, explaining why thinning/pruning may help. A true parallel fault can instead make a large a, so this does not prove why a private leaderboard result occurred. Only a rerunnable, visible-fault-only control evaluated on identical withheld segments could establish improvement.
+
+### Official sources retrieved again
+
+The [official problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [USGS GeoDAWN metadata](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) were fetched. All seven parsed chunks of the [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) were read. Sections 3.2–3.5 state registration requirements, three submissions per week, one final selected submission, reproducible assets and AI-use disclosure. The PDF is not a record of our remaining account quota or eligibility. It also contains narrative/finalist requirements; a TIFF alone is not proof of prize eligibility or final-delivery compliance.
+
+The DrivenData data URL again redirects to login. The public leaderboard was fetched, but is not a submission-page receipt for our file; no numeric public-score claim is adopted. The GEMSDOE32 homepage still explicitly labels the file UNSCORED and the estimate as a model, not a score. Its statement that no organizer score exists is the site's own claim; a later receipt could exist elsewhere. Neither a high score nor a causal explanation is authenticated by that page. No comprehensive peer-reviewed literature review or external raster acquisition is claimed.
+
+The actual shared cache was not present in the pinned template tree; its receipt points to an ephemeral `/tmp/.../feature_stack.npy`. No substitute stack was rebuilt. The missing lane was not invented. The hypotheses below remain provisional rather than viable authorized experiments.
+
+---
+
+## Earlier audit context (retained with current corrections above)
 The competition target is fault prediction relevant to geothermal exploration, not direct identification of geothermal vents. Fault likelihood alone does not establish fluid, heat, permeability or an economic resource.
 
 ## What the cited best file actually does
@@ -15,7 +41,7 @@ A higher result is possible in principle, but cannot be promised or inferred fro
 
 ## Ranked candidate hypotheses — preregistration, NOT experimental results
 
-No experiment is authorized until the missing lane is resolved. Rank is a qualitative scientific prior, not a projected score. The empty starting repo implements none of these. Uniqueness across all other repos is **not established**; only selected shared/32 methods were inspected. All layer names below require confirmation against actual band descriptions and the cached-stack manifest. No new external layer is assumed obtainable.
+No experiment is authorized until the missing lane is resolved. Rank is a qualitative scientific prior, not a projected score. The current checkout implements none of these geological models. Uniqueness across all other repos is **not established**; only selected shared/32 methods were inspected. All layer names below require confirmation against actual band descriptions and the cached-stack manifest. No new external layer is assumed obtainable.
 
 | Rank / hypothesis | Specific proposed layers and transform | Physical prediction and reason it might reveal unmapped faults | Non-fault mimic / discriminant | Difference from inspected methods; cost |
 |---|---|---|---|---|
@@ -45,13 +71,13 @@ These are hypotheses rather than literature-established discoveries in this stud
 - **Official GDR metadata, fetched:** [INGENIOUS compilation (GDR 1391)](https://gdr.openei.org/submissions/1391). The page displays CC BY 4.0 and a list of resources. A resource listing is not verification that a specific file was downloaded, spatially matched, or suitable for submission; none was obtained here.
 - **Owner mirror, restored and hash-verified:** [pinned data manifest](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/registry/data_manifest.json). The local `sample_submission.tif` and `existing_faults.tif` hashes match this manifest. Hash identity verifies mirror bytes, NOT organizer authenticity. The “labels” and `existing_faults` are byte-identical here; no private truth was recovered.
 - **Shared tools, present and hash-verified:** [pinned template](https://github.com/buffedlizard55-lab/60GEMSDOE/tree/b99591eede63c6d45c8a896255b8cd34824fa00b/src/gems57). `research/template_pin.json` records hashes; the audit confirms they match. Shared evaluator/writer code is vendored without modification. No shared-tool defect was established.
-- **Not fetched:** [user-linked NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf). No claim is made about its full text or any unreviewed rule details.
+- **Now fetched:** [user-linked NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), all seven parsed chunks. Key operational requirements are summarized above; no eligibility or legal compliance determination is implied.
 
 ## Irregularities
 
 - Missing lane paragraph; assigning a novel method autonomously would not establish parallel-lane authorization.
-- Starting checkout had only an eleven-byte README; claims of a previously working train→inference pipeline do not describe this checkout.
-- No cached stack or complete registry here. Some empty sibling repos also have no reusable assets. A scan of selected repos is not a complete registry scan.
+- An earlier session reported an initially minimal checkout. This session started with the audit/site/shared tools, not a trained train→inference pipeline. The owner-quoted `download_competition_data.sh` and `prepare_data.py` scripts do not exist here.
+- No cached stack or current complete registry here. The archived historical registry was recovered and one witness was measured. That is not a complete contemporary registry scan; no claim is made about assets in uninspected siblings.
 - The upstream best audit's catalogue-hidden scalar does not agree with its listed quadrant values. No relabelling as a comparable current benchmark is justified.
 - Upstream footprint receipts disagree (feature-cache valid subset versus sample-defined footprint); use the sample-defined footprint consistently and investigate feature coverage before model fitting.
 - Upstream “zero” ZIP is recorded at a suspiciously small size in its tree. Not downloaded, not verified, not offered here.

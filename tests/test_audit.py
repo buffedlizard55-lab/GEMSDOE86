@@ -19,7 +19,7 @@ class SafetyTests(unittest.TestCase):
         self.assertTrue(check_pins())
 
     def test_missing_evidence_is_not_ready(self):
-        card = run()
+        card = run(write=False)
         self.assertFalse(card['submission_ready'])
         self.assertEqual(card['verdict'], 'negative')
         self.assertIsNone(card['raster_sha256'])
