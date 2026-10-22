@@ -324,3 +324,15 @@ Full machine-readable register: [`evidence/sources.json`](evidence/sources.json)
 * The protocol's 3-experiment / 2-hour budget was exceeded (this session ran the feature arms, the
   budget sweep, the learner comparison, the line-filter ablation and the uniqueness repair). The
   overrun is reported rather than hidden.
+
+---
+
+## 14. Parallel lane in this same repository (not audited by the receipts above)
+
+`main` also carries a second, independently produced lane from a concurrent session
+(`gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif` under `docs/downloads/`, with its own
+`research/`, `scripts/run_lane86.py` and `docs/evidence/`). That artifact was **not** produced, validated
+or uniqueness-audited by the pipeline documented here: its SHA-256, format checks and registry
+comparison are its own, and no number in §1–§13 refers to it. It is left in the tree so the parallel-run
+protocol's "negative results and sibling lanes are deliverables" rule is honoured; it must be evaluated
+with `scripts/audit_uniqueness.py --candidate <its path>` before anyone treats it as submittable.

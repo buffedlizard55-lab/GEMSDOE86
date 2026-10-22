@@ -1,0 +1,75 @@
+# Scientific review and proposed experiments
+
+Reviewed 2026-10-22. **No model experiment was run; no score improvement demonstrated.**
+The competition target is fault prediction relevant to geothermal exploration, not direct identification of geothermal vents. Fault likelihood alone does not establish fluid, heat, permeability or an economic resource.
+
+## What the cited best file actually does
+
+[The pinned upstream audit](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json) describes deleting all emitted dots within two pixels of the catalogue from an earlier dotted raster, leaving 37,654 dots. These are file properties, not performance estimates. Its grid uses 100 m cells. The audit's own note says UNSCORED and includes a projected leaderboard estimate; that is NOT an organizer score.
+
+**Why pruning could help:** under a precision/recall tradeoff, removing mass that cannot contribute useful recovery can lower the false-positive penalty. Known faults are masked by the required evaluation protocol. Dots adjacent to them may be redundant or may reflect mapping-location bias. Spaced dots can reduce redundant prediction mass while retaining distance-tolerant coverage. These are plausible explanations, not a causal attribution of a private leaderboard outcome. Removing adjacent dots can also destroy genuine parallel faults. The effect must be tested with all catalogue-dependent operations recomputed inside each training fold.
+
+The linked page's H33-2-B2 section describes the file as unscored and labels its approximate score as a model projection, not a score. The value supplied in the request is **unverified** and is not substantiated by that page or by an organizer receipt available here. On 2026-10-22, the public [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) displayed xiaofanhu in first place, above the historical maximum quoted in the request. To comply with the run-card evidence rule, this report does not reproduce leaderboard or user-reported score values without a submission-page receipt. The public leaderboard is not such a receipt, and it cannot confirm any GEMSDOE86 file. Historical upstream projections are not HOLDOUT-DTI results and are not training targets.
+
+A higher result is possible in principle, but cannot be promised or inferred from these historical scalar values. Many related submissions are transformations of the same base; treating them as independent geological evidence would be pseudoreplication.
+
+## Ranked candidate hypotheses — preregistration, NOT experimental results
+
+No experiment is authorized until the missing lane is resolved. Rank is a qualitative scientific prior, not a projected score. The checked-in project contains shared H57 tools, but none of these four hypotheses has been implemented or evaluated here. Uniqueness across all other repos is **not established**; only selected shared/32 methods were inspected. All layer names below require confirmation against actual band descriptions and the cached-stack manifest. No new external layer is assumed obtainable.
+
+| Rank / hypothesis | Specific proposed layers and transform | Physical prediction and reason it might reveal unmapped faults | Non-fault mimic / discriminant | Difference from inspected methods; cost |
+|---|---|---|---|---|
+| First: radiometric mixing-residual boundary | GeoDAWN K, Th, U plus RTP magnetics; spatially cross-fitted robust K~Th+U regression, transverse residual gradient and magnetic edge persistence | Hydrothermal redistribution could produce narrow residual anomalies crossing a broad lithologic mixing trend, even without a visible surface trace | Weathering or compositional contacts; reject broad co-located Th steps, test residual and magnetic features separately | Tests residuals rather than raw radiometric consensus. Moderate cost; provisional preferred hypothesis, not assigned lane |
+| Second: curvature-conditioned magnetic contact offset | RTP/TMI and gravity; local phase-symmetry ridges, detect displaced paired ridge endpoints, require transverse gravity-gradient change | A concealed cross-fault could offset an older magnetic contact; the contact itself need not be a fault | Intrusive geometry, survey seams; require offset consistency across scales and exclude survey margins | Targets displaced contacts rather than catalogue-tip continuation or generic worms. Higher cost |
+| Third: radiometric–topographic discordance ribbon | GeoDAWN radiometrics and DEM; oriented K/Th residual ribbons after local elevation/slope/curvature regression | A buried alteration corridor need not form a mapped scarp or follow drainage | Alluvial sorting, shoreline benches; stratify by relief and reject drainage-aligned ribbons | Conditional removal of geomorphic transport signatures, rather than adding scarp evidence. Moderate cost |
+| Fourth: depth-decoupled conductivity edge | Supplied conductivity/depth bands only if resolved depth slices are confirmed; gradient direction persistence with lateral edge migration across depths | A dipping buried boundary could yield a coherent depth-dependent lateral shift away from mapped surface traces | Sedimentary basin edge or inversion regularization; require uncertainty/resolution information | Explicit edge migration rather than scalar conductivity edge magnitude. High cost; NOT VIABLE until depth slices and resolution metadata are verified |
+
+These are hypotheses rather than literature-established discoveries in this study area. Candidate one requires GeoDAWN radiometric K/Th/U data in addition to the competition magnetics; those radiometric grids are not confirmed members of the required cached stack. The specific official source is the [USGS GeoDAWN release, DOI 10.5066/P93LGLVQ](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and); its fetched page describes downloadable GeoTIFF products and records CC0 1.0, but no grid bytes, coverage, CRS alignment, or template match were verified in this checkout. Therefore this candidate is **not yet viable to validate** until an official product is actually obtained and audited. The remaining candidates likewise require the missing cached stack and exact layer/metadata verification. No external raster is represented as acquired. The GDR 1391 metadata page was reachable and showed CC BY 4.0/resource listings, but no GDR data product was downloaded or used.
+
+## Required single-lane experimental plan
+
+1. Resolve the absent method paragraph and pin a complete registry inventory. Reuse the template's actual cached stack; the upstream feature receipt names an ephemeral `/tmp/gems32/work/feature_stack.npy`, not an obtainable committed cache. Do not silently substitute a rebuilt stack.
+2. Freeze spatial folds, whole withheld segments, buffers, footprint and evaluator hashes. Derive all catalogue-based features and tuning targets from visible segments only. Mask visible faults pixel-exactly. Use pooled DTI with alpha=0.2, beta=0.8 and 300 m triangular tolerance via the shared evaluator.
+3. Run each individual feature's AUC leakage canary. AUC above 0.90 blocks it pending investigation. Include shuffled and constant controls; discrimination is not fault discovery evidence by itself.
+4. Check full-footprint surface rank correlation against EVERY pinned registry raster before placement. A correlation exceeding 0.90 or more than 70% dots within 3 pixels of any reference triggers duplicate/stop, with no “dense raster” exemptions. Undefined correlation and missing registry entries do not count as clearance. Repeat checks on final dots.
+5. Compare candidate and incumbent on identical folds and pooled terms. Report HOLDOUT-DTI with evaluator version, withheld positive count, spatial cluster bootstrap 95% CI and paired difference CI. A conditional holdout CI is not a guarantee about private labels. At most three experiments or two hours; an unpromising candidate ends as a negative deliverable.
+6. Use unmodified shared submission_writer.py; verify serialized values, metadata and SHA. Local validation is not organizer acceptance. A separate selector must authorize any weekly slot using the authenticated submission page's current remaining cap. No automatic portal submission is implemented.
+
+## Source classification and limits (rechecked 2026-10-22)
+
+- **Official competition description, fetched:** [DrivenData problem and format page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). It describes fault prediction, supplied feature families, the distance-weighted Tversky method and the GeoTIFF format. The page specifies EPSG:32611, 100 m, matching grid geometry, one float32 layer and `[0,1]` values, with null/NaN outside bounds. The retrieval is direct; no local template was authenticated by it.
+- **Competition data page, fetched but login-walled:** [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) resolved to the login form. No authenticated data download was obtained from DrivenData.
+- **Current public leaderboard, fetched:** [official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), read 2026-10-22. It showed xiaofanhu in first place, above the historical maximum quoted in the request. The numeric score is omitted here because there is no submission-page receipt; a public leaderboard observation is not accepted as this project's ORGANIZER-CONFIRMED score.
+- **Official, fetched:** [DrivenData reference repository](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b). Its README explicitly supports CPU-only use: a GPU is not an absolute training prerequisite. Local snapshot: `research/upstream/official-reference-README.md`.
+- **USGS primary source, fetched:** [GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), which describes airborne magnetic/radiometric and coordinated lidar work and links DOI 10.5066/P93LGLVQ. No USGS product file was downloaded in this session.
+- **Official GDR metadata, fetched:** [INGENIOUS compilation (GDR 1391)](https://gdr.openei.org/submissions/1391). The page displays CC BY 4.0 and a list of resources. A resource listing is not verification that a specific file was downloaded, spatially matched, or suitable for submission; none was obtained here.
+- **Owner mirror, restored and hash-verified:** [pinned data manifest](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/registry/data_manifest.json). The local `sample_submission.tif` and `existing_faults.tif` hashes match this manifest. Hash identity verifies mirror bytes, NOT organizer authenticity. The “labels” and `existing_faults` are byte-identical here; no private truth was recovered.
+- **Shared tools, present and hash-verified:** [pinned template](https://github.com/buffedlizard55-lab/60GEMSDOE/tree/b99591eede63c6d45c8a896255b8cd34824fa00b/src/gems57). `research/template_pin.json` records hashes; the audit confirms they match. Shared evaluator/writer code is vendored without modification. No shared-tool defect was established.
+- **Not fetched:** [user-linked NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf). No claim is made about its full text or any unreviewed rule details.
+
+## Irregularities
+
+- Missing lane paragraph; assigning a novel method autonomously would not establish parallel-lane authorization.
+- Starting checkout had only an eleven-byte README; claims of a previously working train→inference pipeline do not describe this checkout.
+- No cached stack or complete registry here. Some empty sibling repos also have no reusable assets. A scan of selected repos is not a complete registry scan.
+- The upstream best audit's catalogue-hidden scalar does not agree with its listed quadrant values. No relabelling as a comparable current benchmark is justified.
+- Upstream footprint receipts disagree (feature-cache valid subset versus sample-defined footprint); use the sample-defined footprint consistently and investigate feature coverage before model fitting.
+- Upstream “zero” ZIP is recorded at a suspiciously small size in its tree. Not downloaded, not verified, not offered here.
+- The reported portal range error cannot be attributed to NaN, sentinel values or another cause without the actual rejected file. The shared writer rejects all nonfinite or out-of-range values; it never silently clips invalid output.
+- No organizer receipt, authenticated quota, direct official data hash, private labels, or comprehensive literature review was obtained. No line-by-line scientific verification claim is made for untested hypotheses.
+
+## Addendum 2026-10-22 (lane H86-RMRB, executed)
+
+The rank-1 preregistered hypothesis above was declared this session's lane (the
+prompt's referenced method paragraph was absent — irregularity logged) and run
+end-to-end with the shared tools. Mixing coefficients (Huber, 200k px):
+K ~ -0.960*Th -0.608*U +2.110*TC +48.32 (uint8 units). Canary AUCs 0.488–0.524
+(no leakage; near-chance). HOLDOUT-DTI (gems57-pooled-hide-v2, 22,641 withheld):
+candidate 0.0309@37,654 / 0.0420@60,000 [0.0369–0.0467]; mag-only 0.0135;
+resid-only 0.0260; incumbent benchmark 0.1011 [0.0856–0.1167] on the identical
+instrument. **Negative result.** DTI rising with budget indicates the surface
+localises weakly at regional scale but its boundaries are not precise at
+300 m tolerance. Evidence: `docs/evidence/lane86_results.json`, run card in
+`docs/evidence/run-card.json`. Next: contact-offset (rank 2), then
+radiometric–topographic discordance (rank 3); seismicity remains data-blocked
+from this sandbox (earthquake.usgs.gov unreachable).
