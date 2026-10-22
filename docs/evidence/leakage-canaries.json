@@ -1,0 +1,189 @@
+{
+  "caveat": "Feature-alone AUC is a leakage diagnostic, not DTI or an organizer score.",
+  "evidence_class": "HOLDOUT-FEATURE-CANARY",
+  "features": [
+    {
+      "auc": 0.5217912960491629,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rtp",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5217912960491629,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5128695711115389,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "tmi_hg",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5128695711115389,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5404116034383577,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "iso_grav_anom_slope",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5404116034383577,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4368083742175397,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "tc",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5631916257824603,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5060227458163274,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "iso_grav_anom_vg",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5060227458163274,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.511828744771206,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "det_elev",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.511828744771206,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5101574439329397,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "depth_to_base_surf",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5101574439329397,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.49190450211473047,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "cond_surf",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5080954978852695,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4797611632065324,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "iso_grav_anom_hg",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5202388367934676,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5694332906851247,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "det_elev_slope",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5694332906851247,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.41965979414251064,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rad_K",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5803402058574894,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4524388982648218,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rad_Th",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5475611017351782,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4640509179258294,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rad_U",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5359490820741706,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4432496561468058,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "mix_residual",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5567503438531942,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4881214129632077,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "residual_edge_s1p5",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5118785870367923,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.48027313544140326,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "residual_edge_s3",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5197268645585967,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5318728875711125,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rtp_edge_persistence",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5318728875711125,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4994105846126822,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "cross_gradient_alignment",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5005894153873178,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5173608157271147,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "rmrb_joint",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5173608157271147,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4910871437722656,
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "feature": "residual_line_coherence",
+      "negative_sample": 18569,
+      "passed": true,
+      "symmetric_auc": 0.5089128562277344,
+      "withheld_sample": 18569
+    }
+  ],
+  "max_symmetric_auc": 0.5803402058574894,
+  "passed": true,
+  "threshold": 0.9
+}

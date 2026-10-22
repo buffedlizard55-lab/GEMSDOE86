@@ -1,0 +1,212 @@
+{
+  "blockers": [
+    "RMRB candidate did not clear every preregistered holdout promotion condition.",
+    "Binding registry rule fired: >70% 3-pixel overlap with a hash-pinned dense prior.",
+    "No authenticated organizer submission receipt or current weekly quota was available.",
+    "Input hashes establish owner-mirror integrity, not independent organizer authentication."
+  ],
+  "byte_unique_among_1143_indexed_public_rasters": true,
+  "correlation_overlap_vs_registry": {
+    "complete": false,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "final_dots": [
+      {
+        "candidate_dots_within_3px": 1.0,
+        "decoded_equal": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false,
+        "path": "data/registry/dense_17gemdoe.tif",
+        "phase": "final_dots",
+        "registry_name": "17GEMSDOE dense continuous witness",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "spearman_full_footprint": 0.0959880249776675,
+        "spearman_on_dot_union": null,
+        "stop_required": true
+      },
+      {
+        "candidate_dots_within_3px": 0.45636585754501513,
+        "decoded_equal": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "path": "data/registry/h33_education.tif",
+        "phase": "final_dots",
+        "registry_name": "GEMSDOE32 H33-2-B2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_full_footprint": 0.03022021134688923,
+        "spearman_on_dot_union": -0.962713124767621,
+        "stop_required": false
+      }
+    ],
+    "parallel_main_delta": {
+      "any_stop_required": false,
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "measured_after_parallel_main_merge": true,
+      "rows": [
+        {
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "final_overlap": 0.48366707388325275,
+          "final_rho": 0.023911808847937362,
+          "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+          "stop_required": false,
+          "submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+          "surface_overlap": 0.1656644028933799,
+          "surface_rho": 0.0926190638567438
+        },
+        {
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "final_overlap": 0.18731077707547672,
+          "final_rho": 0.0004342196557903201,
+          "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+          "stop_required": false,
+          "submission": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+          "surface_overlap": 0.19635088657313393,
+          "surface_rho": 0.0299476248775114
+        },
+        {
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "final_overlap": 0.18133531630105698,
+          "final_rho": -0.00034434413410923506,
+          "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+          "stop_required": false,
+          "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+          "surface_overlap": 0.21994601903214694,
+          "surface_rho": 0.0009807217590631614
+        },
+        {
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "final_overlap": 0.1587613533754714,
+          "final_rho": 0.007219731625196774,
+          "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+          "stop_required": false,
+          "submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+          "surface_overlap": 0.114161212875232,
+          "surface_rho": 0.013237588072893502
+        }
+      ],
+      "scope": "Four candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
+      "source_commit": "801251e7ecf9f85069b9edf63c591039ba7367fb"
+    },
+    "stop_required": true,
+    "surface": [
+      {
+        "candidate_dots_within_3px": 1.0,
+        "decoded_equal": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false,
+        "path": "data/registry/dense_17gemdoe.tif",
+        "phase": "surface_before_placement",
+        "registry_name": "17GEMSDOE dense continuous witness",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "spearman_full_footprint": 0.4392670919715825,
+        "spearman_on_dot_union": null,
+        "stop_required": true
+      },
+      {
+        "candidate_dots_within_3px": 0.15368597471634288,
+        "decoded_equal": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "path": "data/registry/h33_education.tif",
+        "phase": "surface_before_placement",
+        "registry_name": "GEMSDOE32 H33-2-B2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_full_footprint": 0.08819766564642105,
+        "spearman_on_dot_union": null,
+        "stop_required": false
+      }
+    ]
+  },
+  "decoded_unique_vs_stopping_witnesses": true,
+  "download_file": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+  "experiments_run": 2,
+  "holdout_dti": {
+    "ci95": [
+      0.05887883153427838,
+      0.087443273517476
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "matched_best_control": "raw_radiometric",
+    "matched_control_value": 0.07115798023251489,
+    "paired_delta": {
+      "ci95": [
+        -0.002853083236943039,
+        0.006201553976292535
+      ],
+      "delta": 0.0016688019021457584,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "scientific_promotion_gate_passed": false,
+    "value": 0.07282678213466065,
+    "withheld_positives": 22893
+  },
+  "hypothesis": "A narrow K residual from the broad K~Th+U mixing relation, when line-coherent and aligned with a persistent RTP magnetic edge, may identify an unmapped fault-related alteration/contact boundary.",
+  "input_receipts": {
+    "dense_registry_witness": {
+      "bytes": 25065181,
+      "organizer_authenticated": false,
+      "path": "data/registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    "existing_faults": {
+      "bytes": 425830,
+      "organizer_authenticated": false,
+      "path": "data/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "h33_education": {
+      "bytes": 219065,
+      "organizer_authenticated": false,
+      "path": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "radiometrics": {
+      "bytes": 26612970,
+      "organizer_authenticated": false,
+      "path": "data/external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+    },
+    "sample_submission": {
+      "bytes": 1599597,
+      "organizer_authenticated": false,
+      "path": "data/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "training_features": {
+      "bytes": 418912844,
+      "organizer_authenticated": false,
+      "path": "data/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    }
+  },
+  "mechanism": "Hydrothermal redistribution and fault juxtaposition can create a narrow radiometric mixing residual; an RTP edge supplies independent structural persistence.",
+  "non_fault_mimic": "Weathering or transported sediment at an unfaulted lithologic contact; survey gridding edges can also mimic a lineament.",
+  "note": "RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.",
+  "raster_sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+  "runtime_seconds": 247.30019206700013,
+  "safe_to_download": true,
+  "safe_to_submit": false,
+  "submission_name": "RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots",
+  "submission_ready": false,
+  "submission_slots_used": 0,
+  "validator_output": {
+    "all_checks_passed": true,
+    "crs_shape_transform_match": true,
+    "local_validation_is_not_organizer_acceptance": true,
+    "no_nan_inside_footprint": true,
+    "positive_on_catalogue": 0,
+    "positive_outside_footprint": 0,
+    "single_band_float32": true,
+    "status": "PASS_LOCAL_FORMAT_ONLY",
+    "values_in_0_1": true
+  },
+  "validator_scope": "automated local bytes/grid/range checks; not organizer acceptance",
+  "verdict": "negative",
+  "zip_file": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip"
+}

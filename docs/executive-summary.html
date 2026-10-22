@@ -1,45 +1,40 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html" style=color:#e8eefc>How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
-<h1>Executive summary — how to make a submission</h1>
-<div class="card">
-<p><b>1. Download</b> <a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a> (or the ZIP next to it — it contains exactly this one GeoTIFF).</p>
-<p><b>2. Go to</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the submission page</a>
-and choose <i>File to submit</i>.</p>
-<p><b>3. Paste the note</b> (107 characters, limit 140):</p>
-<p class="mono">GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</p>
-<p><b>4. Submit.</b> The file is already in the required format: single-band float32 GeoTIFF,
-3730 × 3292, EPSG:32611, 100 m, values 0.0/1.0 with no NaN anywhere. If the form returns
-<i>"Predicted values must be in range [0, 1]"</i>, you have uploaded the wrong file — this one has
-min 0.0 and max 1.0 in every one of the 12,279,160 cells.</p>
-</div>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" style="color:#e8eefc">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
+<h1>Executive summary — submission procedure and current stop</h1>
+<div class="card hero"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY REPOSITORY FILE</span>
+<h2>New RMRB-86 research candidate</h2><p>The technical file is easy to download; the decision is equally explicit. It is locally valid and unique by bytes in the indexed snapshot, but the scientific and literal-overlap promotion gates fail.</p>
+<a class="btn danger" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download TIFF for audit — DO NOT SUBMIT</a>
+<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Open validation receipt</a></div>
 
-<h3>Why this file passes the form</h3>
-<table>
-<tr><th>Requirement (official problem description)</th><th>This file</th></tr>
-<tr><td>same projected CRS as training data (EPSG:32611)</td><td>EPSG:32611</td></tr>
-<tr><td>100 m resolution, same bounds</td><td>transform (100, 0, 243350, 0, −100, 4508550); bounds (243350, 4135550) – (572550, 4508550)</td></tr>
-<tr><td>single layer, float32, values in [0, 1]</td><td>1 band, float32, min 0.0 / max 1.0</td></tr>
-<tr><td>outside the bounds null/NaN <i>(spec)</i> — but the upload form rejects non-[0,1] values</td>
-<td>0.0 outside the footprint (documented deviation; this is what fixed the upload error)</td></tr>
-<tr><td>no NaN anywhere</td><td>0 NaN, 0 Inf, 0 sentinel values</td></tr>
-</table>
+<h2>Identity</h2><table>
+<tr><th>File</th><td class="mono">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</td></tr>
+<tr><th>SHA-256</th><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td></tr>
+<tr><th>Submission name</th><td>RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</td></tr>
+<tr><th>Note (107 chars)</th><td>RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</td></tr>
+<tr><th>Verdict</th><td><b>negative / not authorized</b></td></tr></table>
 
-<h3>What you are submitting, in one paragraph</h3>
-<p>90,568 binary dots (one per 3 × 3 px tile) placed where a logistic posterior over 44 features is
-highest after an 8-orientation line filter, with the posterior suppressed within 1 km of every mapped
-fault so the arrangement is not a copy of the fleet's proximity lanes. Median distance from a dot to the
-nearest mapped trace: 13 px = 1.3 km. No positive cell lies on a mapped fault.</p>
+<h2>Automated gate result</h2><ol>
+<li><b>Format — PASS locally:</b> one float32 band; every value finite in [0,1]; exact EPSG:32611, dimensions and affine; zero outside the sample-defined footprint and on mapped catalogue pixels.</li>
+<li><b>Leakage — PASS:</b> all 20 feature-alone symmetric AUCs are ≤0.58034, below the 0.90 stop.</li>
+<li><b>Holdout point result:</b> <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22,893 withheld positives; physical-block 95% CI) = 0.07283 [0.05888, 0.08744].</li>
+<li><b>Paired scientific gate — FAIL:</b> delta from the strongest matched raw-radiometric control is <b>HOLDOUT-DTI delta</b> (same evaluator, positives and CI method) = 0.00167 [−0.00285, 0.00620].</li>
+<li><b>H33 comparison — PASS:</b> final rank correlation 0.03022 and forward three-pixel overlap 0.45637; bytes and decoded pixels differ.</li>
+<li><b>Parallel-lane delta — PASS:</b> the new raster stays below both thresholds against all four files newly merged from parallel sessions (eight surface/final comparisons).</li>
+<li><b>Literal registry rule — STOP:</b> a continuous prior is positive throughout the footprint, giving any nonempty sparse field overlap 1.0. No exemption is authorized.</li>
+<li><b>Selector/quota — NOT RUN:</b> no authenticated weekly quota or organizer receipt was available. No slot was spent.</li></ol>
 
-<h3>Before you spend a weekly slot</h3>
-<div class="card"><span class="badge warn">read this</span>
-<p>Format validity is not expected score. This repo makes <b>no</b> live-score claim. The validated
-holdout value is 0.12324 [0.10926, 0.13665] for the catalogue-following configuration; the shipped
-off-catalogue arrangement is deliberately different and cannot be scored by that instrument (its truth
-is catalogue-derived). If the slot budget is tight, spend it on a candidate whose evaluation instrument
-matches the prize — see <a href="evidence.html">Evidence §5</a>.</p></div>
-</main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (leaderboard / receipt) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<h2>Exact portal procedure—for a future promoted file only</h2><p>These steps satisfy the process requirement; they do not authorize any current file.</p><ol>
+<li>Open that future file's canonical run card. Continue only if <code>verdict</code> is <code>promote</code>, <code>safe_to_submit</code> is true, every validator field is true, all literal registry gates pass and a separate selector has confirmed the live quota.</li>
+<li>Download the promoted <code>.tif</code> or its ZIP containing exactly one TIFF. Compute SHA-256 locally and compare it with the run card.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, sign in, review current rules/quota and choose <b>New submission</b>.</li>
+<li>Select the promoted TIFF—not JSON evidence, a sample, an old raster or anything named <code>DO-NOT-SUBMIT</code>.</li>
+<li>Paste its ≤140-character run-card note, submit once and retain the organizer receipt bound to the exact SHA-256.</li>
+<li>Only that receipt's result may be called <b>ORGANIZER-CONFIRMED</b>.</li></ol>
+
+<h2>Why the prior range error should not recur</h2><p>The rejected bytes were not supplied, so its cause is unknown. This writer does not guess or clip: it rejects NaN, infinity, sentinels, negatives and values above one before serialization, then reopens the output and validates it again. RMRB-86 passes those local checks. A format pass still cannot override its negative scientific/registry verdict.</p>
+
+<h2>Next action</h2><p>Preserve every current raster as a research artifact and spend no slot. A future preregistered lane must produce a positive paired result on a target-appropriate instrument and clear a registry rule that is satisfiable without an unauthorized exception. Any schema change separating continuous surfaces from sparse dot fields requires explicit owner approval.</p>
+<p><a href="evidence/rmrb86-run-card.json">Canonical RMRB decision</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Registry evidence</a></p>
+</main><footer>No organizer score is claimed. No current file is authorized for upload.</footer></body></html>

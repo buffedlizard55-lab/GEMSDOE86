@@ -1,79 +1,44 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Validated submission · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html" style=color:#e8eefc>Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
+<title>Submission decision · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html" style="color:#e8eefc">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Fleet evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
 <div class="card hero">
-  <span class="badge ok">VALIDATED · 15/15 format checks</span>
-  <span class="badge ok">ARRANGEMENT-UNIQUE · worst ρ = 0.036 (limit 0.90)</span>
-  <span class="badge bad">no live score claimed</span>
-  <h1>One unique GeoTIFF, ready to hand to the competition form</h1>
-  <p class="muted">Single band · float32 · 3730 × 3292 · EPSG:32611 · 100 m · values exactly in [0, 1] ·
-  0 NaN · 0 Inf · 0 positive cells outside the footprint · 0 positive cells on the mapped catalogue.</p>
-  <a class="btn" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">⬇ Download the submission GeoTIFF (191 KB)</a>
-  <a class="btn alt" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip">⬇ Download the ZIP (single GeoTIFF inside)</a>
-  <a class="btn ghost" href="executive-summary.html">How to submit in 4 steps →</a>
-  <p class="mono">sha256 0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</p>
-  <p class="mono">name gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros<br>note GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</p>
+<span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED FOR A WEEKLY SLOT</span>
+<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT · LOCAL FORMAT PASS</span>
+<h1>A unique RMRB-86 TIFF exists. Download it for audit—do not submit it.</h1>
+<p class="muted">Single float32 band · 3,730 × 3,292 · EPSG:32611 · exact 100 m transform · all finite in [0,1] · 0 positive pixels outside the footprint · 0 on mapped catalogue pixels.</p>
+<a class="btn danger" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download research TIFF — DO NOT SUBMIT</a>
+<a class="btn alt" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip" download>Download one-TIFF ZIP — DO NOT SUBMIT</a>
+<a class="btn ghost" href="executive-summary.html">Read the automated decision →</a>
+<p class="mono">sha256 9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</p>
+<p class="mono">name RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots<br>note RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</p>
 </div>
 <div class="kpi">
-  <div><span class="muted">HOLDOUT-DTI (lane)</span><b>0.12324</b><span class="muted">95% CI [0.10926, 0.13665] · n = 11,321 withheld positives</span></div>
-  <div><span class="muted">Line-filter ablation</span><b>+0.0439</b><span class="muted">same 90,568-dot budget</span></div>
-  <div><span class="muted">Cross-gradient (GMC) ablation</span><b>+0.0001</b><span class="muted">null → reported as a negative result</span></div>
-  <div><span class="muted">Public leaderboard today</span><b>0.4413</b><span class="muted">rank 23 = 0.3167 (organizer-published)</span></div>
+<div><span class="muted">HOLDOUT-DTI</span><b>0.07283</b><span class="muted">gems57-pooled-hide-v2 · 22,893 withheld positives · 95% CI [0.05888, 0.08744]</span></div>
+<div><span class="muted">Paired delta vs strongest control</span><b>+0.00167</b><span class="muted">95% CI [−0.00285, 0.00620] · crosses zero</span></div>
+<div><span class="muted">H33 comparison</span><b>ρ 0.030</b><span class="muted">3 px overlap 0.456 · passes lane thresholds</span></div>
+<div><span class="muted">Literal dense-prior overlap</span><b>1.000</b><span class="muted">limit 0.70 · binding duplicate stop</span></div>
 </div>
 
-<h2>What this repository is</h2>
-<p>A DOE GEMS / GeoDAWN fault-prediction workbench that produces <b>one</b> competition-ready GeoTIFF,
-with every stage re-derivable from hash-pinned inputs. The lane: a logistic fault posterior over 44
-competition, public-USGS and catalogue-geometry features, sharpened by an <b>8-orientation matched line
-filter</b> and emitted as 90,568 dots on a 3 px tile grid — all through the fleet's shared, SHA-256-pinned
-instrument (<code>vendor/template66/gems57</code>).</p>
+<h2>Automated verdict</h2>
+<div class="card"><p>The new file is byte-unique in the 1,143-raster public hash snapshot and is not a renamed H33 raster. Its format receipt passes. It still fails promotion for two independent reasons:</p><ol><li>The engineered RMRB transform does not beat raw K/Th/U with a wholly positive paired interval.</li><li>A public continuous positive-support raster makes the prompt's literal three-pixel overlap 1.0. The prompt authorizes no “carpet prior” exemption.</li></ol><p><a href="evidence/rmrb86-run-card.json">Canonical RMRB run card</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Surface/final comparisons</a> · <a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Writer receipt</a></p></div>
 
-<h3>The answer to the question that was asked</h3>
-<div class="card">
-<p><b>Why did <code>h33-h33-2-b2-…-zeros</code> report 0.2778?</b> It was not scored. Its own audit file
-says <code>"UNSCORED"</code> and <code>"predicted_leaderboard_dti": 0.27467</code>. The number is a
-projection of a 0.2708 owner-reported base after (i) thinning to 37,654 dots at ~2.8 px spacing,
-(ii) deleting every dot within 2 px of the mapped catalogue, and (iii) writing zeros outside the
-footprint so the upload form's [0,1] check passes. That recipe is a correct reading of the official
-metric: with α = 0.2 and β = 0.8, a missed truth pixel costs four times a stray dot, so
-coverage-maximising, thinned dot fields win.</p>
-<p><b>Can we beat 0.2778?</b> Not on the evidence in this checkout. The leaderboard leader is
-<b>0.4413</b>; ranks 1–23 are all above 0.3167. This repo's best validated value is
-<b>HOLDOUT-DTI 0.12324 [0.10926, 0.13665]</b>, which is at the fleet's ceiling but says nothing
-directly about the live prize, because the fleet's holdout scores <i>catalogue recovery</i> while the
-prize scores <i>expert-mapped faults that are absent from the catalogue</i>. The same instrument gives
-the fleet's best reported artifact 0.0037 — proof that the two quantities are not interchangeable.
-See <a href="evidence.html">Evidence</a> and <a href="hypotheses.html">Hypotheses</a>.</p>
-</div>
+<h2>Repository-wide traffic light</h2>
+<table><tr><th>File</th><th>Measured state</th><th>Binding decision</th></tr>
+<tr><td class="mono"><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a></td><td>format pass; distinct from H33 and merged parallel rasters; paired RMRB delta uncertain; dense-prior overlap 1.0</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
+<tr><td class="mono"><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a></td><td>own run card: negative; HOLDOUT-DTI below incumbent; lattice overlap 0.995</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
+<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a></td><td>format pass; 82% of dots within 3 px of a prior proximity lane</td><td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span></td></tr>
+<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a></td><td>format pass and low rank correlation, but its audit records literal overlap failures against saturated priors; its report records an experiment-budget overrun</td><td><span class="badge bad">DO NOT SUBMIT under the supplied literal rule</span></td></tr>
+<tr><td class="mono"><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a></td><td>format pass; HOLDOUT-DTI (gems57-pooled-hide-v2, 22,893 withheld positives, 95% CI) 0.04634 [0.03716, 0.05603], below its 0.10303 [0.09200, 0.11389] fixed control; literal lattice overlap 0.971; incomplete registry</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr></table>
+<p class="muted">A previous page exempted continuous/carpet priors and called the off-catalogue GMC artifact ready. This integration removes that unauthorized exception and fails closed. No competition slot was used here.</p>
 
-<h3>Download status — every file this repo produces</h3>
-<table>
-<tr><th>File</th><th>Format</th><th>Uniqueness</th><th>Verdict</th></tr>
-<tr><td class="mono">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</td><td>PASS 15/15</td><td>worst ρ = 0.036 vs 808 priors</td>
-<td><span class="badge ok">OK TO DOWNLOAD AND SUBMIT</span><br><span class="muted">format 15/15 · worst rank-correlation vs 808 priors 0.036 · the literal 3 px-dot rule is blocked only by 41 priors that cover &gt;70 % of the domain (unsatisfiable for any candidate — see Evidence §4)</span></td></tr>
-<tr><td class="mono">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</td><td>PASS 15/15</td>
-<td><b>FAIL</b>: 82 % of dots within 3 px of the 58GEMSDOE proximity lane</td>
-<td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span><br><span class="muted">kept only as the ablation control</span></td></tr>
-<tr><td class="mono">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</td><td>its own receipt</td>
-<td>not audited here</td>
-<td><span class="badge warn">PARALLEL LANE — NOT AUDITED BY THIS PIPELINE</span><br>
-<span class="muted">produced by a concurrent session; its own evidence is under <a href="../docs/evidence/">docs/evidence/</a> and <a href="../research/">research/</a>. Run <code>scripts/audit_uniqueness.py --candidate &lt;path&gt;</code> before treating it as submittable.</span></td></tr>
-<tr><td class="mono">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</td><td>PASS (own receipt)</td>
-<td>worst rho 0.070 vs 14 pinned rasters; vs this site's shipped candidate rho -0.0001, 19 % of dots within 3 px</td>
-<td><span class="badge bad">DO NOT SUBMIT — parallel lane H86-1, holdout-negative</span><br>
-<span class="muted">straight-edge 2-of-5 lane (PR #9): HOLDOUT-DTI 0.0463 vs spaced-random 0.0458 on the same evaluator version — no skill beyond coverage. Evidence: <a href="evidence/h86_run_card.json">run card</a>, <a href="evidence/h86_holdout_e2_b38000.json">holdout</a>, <a href="evidence/h86_crosslane_vs_gmc.json">cross-lane uniqueness</a>. Kept as a negative deliverable.</span></td></tr>
-</table>
+<h2>What explains the historical H33 result claim?</h2>
+<div class="card"><p>The pinned builder describes thinning an earlier prediction and deleting dots in a mapped-fault collar. Under distance-weighted Tversky, redundant prediction mass can add false-positive cost without increasing maximum truth coverage; kernel-scale sparse placement and collar pruning can therefore help. That is a plausible metric mechanism, not proof of a new geological discovery.</p><p>The historical scalar supplied by the owner has no authenticated submission-page receipt in this checkout and is not labelled ORGANIZER-CONFIRMED. A higher result is possible in principle, but this RMRB experiment does not demonstrate it.</p><p><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/RMRB86_REVIEW.md">RMRB scientific review and five ranked hypotheses</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></p></div>
 
-<h3>Everything is checkable</h3>
-<ul>
-<li><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.json">Validation receipt</a> (all 15 checks, byte count, SHA-256)</li>
-<li><a href="../evidence/run_card.json">Run card</a> · <a href="../evidence/holdout_sweep_logit.json">holdout sweep</a> ·
-<a href="../evidence/uniqueness_audit.json">uniqueness audit</a> · <a href="../evidence/saturation_certificate.json">saturation certificate</a></li>
-<li><a href="../registry/prior_scores.csv">prior_scores.csv</a> — every number the fleet has published, with its evidence class</li>
-<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE86">source</a> · <a href="../PROMPT.md">standing prompt</a></li>
+<h2>Everything is machine-checkable</h2><ul>
+<li><a href="evidence/rmrb86-run-card.json">RMRB run card</a>: hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry measurements, SHA, validator, name/note and negative verdict.</li>
+<li><a href="evidence/leakage-canaries.json">All 20 feature-alone leakage canaries</a>; maximum symmetric AUC 0.58034.</li>
+<li><a href="evidence/feature-cache.json">Feature-cache receipt</a> with source, builder and cache hashes.</li>
+<li><a href="../PROMPT.md">Standing prompt</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">source repository</a>.</li>
 </ul>
-</main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (leaderboard / receipt) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+</main><footer>Local format pass ≠ organizer acceptance. Current selector decision: no file is safe to submit under the supplied literal protocol.</footer></body></html>

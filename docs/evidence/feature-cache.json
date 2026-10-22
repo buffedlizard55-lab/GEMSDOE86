@@ -1,0 +1,292 @@
+{
+  "schema": "gems86.feature-cache.v1",
+  "source": {
+    "core_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "radiometric_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "builder_sha256": "4bec6ebd46e4dcf4b84fe00bfb77358ef95aae1b0c31c86210c08469d2e142a7"
+  },
+  "cache_file": "/home/user/GEMSDOE86/data/cache/rmrb86-20channel.f32",
+  "cache_bytes": 982332800,
+  "cache_sha256": "873b419b3de7e4e91efe26c7fc7141f0c3b7fd9ce933c015ca87b258003a22f4",
+  "shape": [
+    20,
+    3730,
+    3292
+  ],
+  "dtype": "float32",
+  "names": [
+    "rtp",
+    "tmi_hg",
+    "iso_grav_anom_slope",
+    "tc",
+    "iso_grav_anom_vg",
+    "det_elev",
+    "depth_to_base_surf",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "det_elev_slope",
+    "rad_K",
+    "rad_Th",
+    "rad_U",
+    "mix_residual",
+    "residual_edge_s1p5",
+    "residual_edge_s3",
+    "rtp_edge_persistence",
+    "cross_gradient_alignment",
+    "rmrb_joint",
+    "residual_line_coherence"
+  ],
+  "base_columns": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "raw_radiometric_columns": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "joint_columns": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "mixing_model": {
+    "formula": "K = intercept + b_Th*Th + b_U*U; Huber epsilon=1.5",
+    "fit_pixels": 180000,
+    "coefficients": [
+      0.7661307228141997,
+      0.09988589242355467
+    ],
+    "intercept": 0.06058955148120806,
+    "spatial_crossfit": [
+      {
+        "quadrant": 0,
+        "test_pixels": 46196,
+        "mae": 0.11672204740483813,
+        "coefficients": [
+          0.8550939049330591,
+          0.14750437741507608
+        ],
+        "intercept": -0.033866331063743475
+      },
+      {
+        "quadrant": 1,
+        "test_pixels": 25781,
+        "mae": 0.13172508018459717,
+        "coefficients": [
+          0.8229051799789753,
+          0.0481183573643861
+        ],
+        "intercept": 0.08261545422184179
+      },
+      {
+        "quadrant": 2,
+        "test_pixels": 10637,
+        "mae": 0.1088511937258169,
+        "coefficients": [
+          0.771483492181214,
+          0.09829074759286664
+        ],
+        "intercept": 0.058009568036731005
+      },
+      {
+        "quadrant": 3,
+        "test_pixels": 14861,
+        "mae": 0.12004115160915982,
+        "coefficients": [
+          0.7013287079793169,
+          0.10169512285163344
+        ],
+        "intercept": 0.08244662248378691
+      }
+    ],
+    "uses_fault_catalogue": false
+  },
+  "transforms": {
+    "mix_residual": "Huber K~Th+U residual minus 20 px normalized-Gaussian background",
+    "residual_edges": {
+      "sigma_px": [
+        1.5,
+        3.0
+      ],
+      "persistence": "geometric mean"
+    },
+    "rtp_edges": {
+      "sigma_px": [
+        2.0,
+        4.0
+      ],
+      "persistence": "geometric mean"
+    },
+    "joint": "sqrt(residual_edge*RTP_edge)*(0.25+0.75*abs_gradient_alignment)*(0.35+0.65*line_coherence)"
+  },
+  "normalization": {
+    "residual": {
+      "p01": -0.18187516093254089,
+      "p99.5": 0.2129824379086498
+    },
+    "residual_edge_s1p5": {
+      "p01": 0.0012790022208355367,
+      "p99.5": 0.046675821710378027
+    },
+    "residual_edge_s3_persistence": {
+      "p01": 0.0006558271968970075,
+      "p99.5": 0.026733529465273062
+    },
+    "rtp_edge_s2": {
+      "p01": 0.00030747510259971023,
+      "p99.5": 0.08422757469117607
+    },
+    "rtp_edge_s4": {
+      "p01": 0.0003228216798743233,
+      "p99.5": 0.05180055744945999
+    },
+    "joint": {
+      "p01": 0.0,
+      "p99.5": 0.39279613852501133
+    }
+  },
+  "layers": {
+    "rtp": {
+      "band": 2,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": -456.95214080810547,
+      "median": -137.66592407226562,
+      "p99": 394.2400665283203
+    },
+    "tmi_hg": {
+      "band": 3,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": 0.6567494422197342,
+      "median": 13.22112512588501,
+      "p99": 188.10172271728516
+    },
+    "iso_grav_anom_slope": {
+      "band": 5,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": 0.015731818974018097,
+      "median": 0.10227125138044357,
+      "p99": 0.3695497214794159
+    },
+    "tc": {
+      "band": 6,
+      "valid_pixels": 5164300,
+      "missing_inside_footprint": 3073,
+      "p01": 7.5998663902282715,
+      "median": 18.491180419921875,
+      "p99": 29.09543466567993
+    },
+    "iso_grav_anom_vg": {
+      "band": 11,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": -4.341660857200623,
+      "median": -0.0714832991361618,
+      "p99": 4.22578227519989
+    },
+    "det_elev": {
+      "band": 12,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": -466.50728607177734,
+      "median": -75.66023254394531,
+      "p99": 707.8995971679688
+    },
+    "depth_to_base_surf": {
+      "band": 15,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": 1.228629469871521,
+      "median": 317.8168487548828,
+      "p99": 3404.5101318359375
+    },
+    "cond_surf": {
+      "band": 17,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": 1.1678259372711182,
+      "median": 2.8870304822921753,
+      "p99": 4.496308088302612
+    },
+    "iso_grav_anom_hg": {
+      "band": 18,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": -5.109581470489502,
+      "median": 0.04004929028451443,
+      "p99": 5.450014352798462
+    },
+    "det_elev_slope": {
+      "band": 19,
+      "valid_pixels": 5164312,
+      "missing_inside_footprint": 3061,
+      "p01": 0.06762947700917721,
+      "median": 3.757378101348877,
+      "p99": 32.687209129333496
+    },
+    "rad_K": {
+      "band": 1,
+      "valid_pixels": 5166085,
+      "missing_inside_footprint": 1288,
+      "p01": 1.0,
+      "median": 126.0,
+      "p99": 255.0
+    },
+    "rad_Th": {
+      "band": 2,
+      "valid_pixels": 5166085,
+      "missing_inside_footprint": 1288,
+      "p01": 1.0,
+      "median": 126.0,
+      "p99": 255.0
+    },
+    "rad_U": {
+      "band": 3,
+      "valid_pixels": 5166085,
+      "missing_inside_footprint": 1288,
+      "p01": 1.0,
+      "median": 114.0,
+      "p99": 254.0
+    }
+  },
+  "catalogue_free": true,
+  "reused": false
+}

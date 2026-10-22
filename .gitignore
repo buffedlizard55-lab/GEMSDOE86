@@ -8,12 +8,13 @@ __pycache__/
 
 # --- large local artifacts ---
 data/raw/
+data/cache/
+data/external/
+data/registry/
+data/training_features.tif
+data/existing_faults.tif
+data/sample_submission.tif
 *.npy
 *.npz
-# H86-1 local lane inputs (rebuilt by restore_data.py / fetch_registry.py; never commit)
-data/training_features.tif
-data/sample_submission.tif
-data/existing_faults.tif
-data/registry/
-data/external/
+# H86-1 scratch outputs (rebuilt by lane scripts; never commit)
 data/work/
