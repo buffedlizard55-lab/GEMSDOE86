@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Irregularities · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html" style=color:#e8eefc>Irregularities</a></nav></header><main>
+<h1>Irregularities flagged for review</h1>
+<ol>
+<li><b>0.2778 is a projection, not a score.</b> The artifact's audit file contains
+<code>"UNSCORED"</code> and <code>"predicted_leaderboard_dti": 0.27467</code>. Two sibling READMEs
+(GEMSDOE82 vs GEMSDOE84/87) assert contradictory evidence classes for the same number.</li>
+<li><b>A published ZIP is empty.</b> <code>gemsdoe32-h33-h33-2-b2-…-zeros.zip</code> is 216 bytes and
+contains one 0-byte entry — anyone submitting the ZIP submits nothing.</li>
+<li><b>The holdout instrument does not rank methods like the prize.</b> The fleet's best reported
+artifact scores 0.0037 here; its owner-reported live value is 0.2708.</li>
+<li><b>The uniqueness rule is unsatisfiable as written.</b> 39 registry rasters have a 3 px
+halo covering more than 70 % of the emittable domain; the rule blocks every candidate against them
+regardless of content (ρ between 0.0006 and 0.209).</li>
+<li><b>Four registry rasters are unusable comparators</b> (two CRS/transform mismatches, one band-count
+mismatch, one <code>FORMAT_TEST_NOT_SUBMISSION</code> smoke file). Itemised in the audit JSON.</li>
+<li><b>Spec vs upload form.</b> The problem description permits null/NaN outside the bounds; the upload
+form rejects values outside [0, 1]. This repo writes 0.0 outside the footprint and documents the
+deviation.</li>
+<li><b>Protocol budget exceeded.</b> The brief allows 3 experiments / 2 hours. This session ran the
+feature arms, budget sweep, learner comparison, line-filter ablation and a uniqueness repair. Reported
+rather than hidden.</li>
+</ol>
+</main>
+<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (leaderboard / receipt) ·
+OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
+</body></html>

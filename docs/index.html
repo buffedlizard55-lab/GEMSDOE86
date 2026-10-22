@@ -1,52 +1,79 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE86 · Submission readiness</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="executive-summary.html">Submission guide (executive summary)</a><a href="evidence/run-card.json">Run card JSON</a><a href="evidence/lane86_results.json">RMRB experiment evidence</a><a href="evidence/h86_run_card.json">H86-1 run card</a></nav>
-<header><span class="eyebrow">DOE GEMS fault prediction · GEMSDOE86</span><h1>Two candidate TIFs exist (parallel lanes H86-RMRB + H86-1).<br>🔴 DO NOT SUBMIT EITHER.</h1><p>It passes every format gate and is byte/pixel-distinct from the 12 local registry rasters, but the shared uniqueness checker returns <code>unique=false</code> (literal 3-px overlap gate vs a saturating lattice; stop required) and it <strong>failed the scientific gate</strong>: its holdout score is less than half the incumbent benchmark on the identical instrument. The protocol forbids spending a weekly submission slot on it. Download it for inspection/reproduction only.</p></header>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Validated submission · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html" style=color:#e8eefc>Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
+<div class="card hero">
+  <span class="badge ok">VALIDATED · 15/15 format checks</span>
+  <span class="badge ok">ARRANGEMENT-UNIQUE · worst ρ = 0.036 (limit 0.90)</span>
+  <span class="badge bad">no live score claimed</span>
+  <h1>One unique GeoTIFF, ready to hand to the competition form</h1>
+  <p class="muted">Single band · float32 · 3730 × 3292 · EPSG:32611 · 100 m · values exactly in [0, 1] ·
+  0 NaN · 0 Inf · 0 positive cells outside the footprint · 0 positive cells on the mapped catalogue.</p>
+  <a class="btn" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">⬇ Download the submission GeoTIFF (196 KB)</a>
+  <a class="btn alt" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip">⬇ Download the ZIP (single GeoTIFF inside)</a>
+  <a class="btn ghost" href="executive-summary.html">How to submit in 4 steps →</a>
+  <p class="mono">sha256 0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</p>
+  <p class="mono">name gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros<br>note GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</p>
+</div>
+<div class="kpi">
+  <div><span class="muted">HOLDOUT-DTI (lane)</span><b>0.12324</b><span class="muted">95% CI [0.10926, 0.13665] · n = 11,321 withheld positives</span></div>
+  <div><span class="muted">Line-filter ablation</span><b>+0.0439</b><span class="muted">same 90,568-dot budget</span></div>
+  <div><span class="muted">Cross-gradient (GMC) ablation</span><b>+0.0001</b><span class="muted">null → reported as a negative result</span></div>
+  <div><span class="muted">Public leaderboard today</span><b>0.4413</b><span class="muted">rank 23 = 0.3167 (organizer-published)</span></div>
+</div>
 
-<section class="alert" aria-labelledby="dl"><h2 id="dl">⬇ Download the unique candidate (inspection only — not cleared for submission)</h2>
-<p><strong>File:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br><strong>SHA-256:</strong> <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br><strong>Dots:</strong> 60,000 · <strong>Values:</strong> all finite, in [0,1] · <strong>Grid:</strong> EPSG:32611, 3730×3292, 100 m, transform matches sample submission · <strong>On-catalogue dots:</strong> 0</p>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download .tif (inspection only)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>Download .zip (single TIF inside)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json" download>Writer/validator receipt (.json)</a>
-<p><strong>Submission name:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br><strong>Note for the submission form (118/140 chars):</strong> <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code></p>
-<p>⛔ <strong>Do not upload this file to DrivenData.</strong> Gate 3 below failed. If a future candidate passes all gates, this panel will turn green and say “OK TO SUBMIT”.</p></section>
+<h2>What this repository is</h2>
+<p>A DOE GEMS / GeoDAWN fault-prediction workbench that produces <b>one</b> competition-ready GeoTIFF,
+with every stage re-derivable from hash-pinned inputs. The lane: a logistic fault posterior over 44
+competition, public-USGS and catalogue-geometry features, sharpened by an <b>8-orientation matched line
+filter</b> and emitted as 90,568 dots on a 3 px tile grid — all through the fleet's shared, SHA-256-pinned
+instrument (<code>vendor/template66/gems57</code>).</p>
 
-<section class="alert" aria-labelledby="dl86"><h2 id="dl86">⬇ Second lane H86-1 candidate (inspection only — also rejected)</h2>
-<p><strong>Lane H86-1</strong> (straight-edge 2-of-5 corroboration across RTP/gravity/conductivity/basement-depth/DEM, 2.8 px-spaced dots, 200 m catalogue-flank exclusion; preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/h86-hypotheses.md">research/h86-hypotheses.md</a>). Format: ALL validator checks PASS (all-finite [0,1], EPSG:32611, 0 on-catalogue). Science: <strong>FAIL</strong> — HOLDOUT-DTI 0.0463 [0.0372–0.0560] (gems57-pooled-hide-v2, 22,893 withheld positives) vs spaced-random 0.0458 (Δ +0.0006, CI spans 0) and fixed incumbent 0.1030; below random (0.0544 vs 0.0668) on the SGMC off-catalogue auxiliary proxy. Surface worst ρ 0.070 vs 14 registry rasters; cross-lane vs H86-RMRB: ρ 0.013, overlaps 0.31/0.17 (<a href="evidence/h86_crosslane_vs_rmrb.json">measurement</a>) — distinct lanes, both negative.</p>
-<p><strong>File:</strong> <code>gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</code><br><strong>SHA-256:</strong> <code>5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5</code> · <strong>Dots:</strong> 38,000<br><strong>Note (89/140):</strong> <code>H86-1 edge2of5 dotted B2 38000dots | HOLDOUT-DTI 0.0463 pooled-hide-v2 n=22893 | UNSCORED</code></p>
-<a class="button" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif" download>Download .tif (inspection only)</a>
-<a class="button" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip" download>Download .zip (single TIF inside)</a>
-<a class="button" href="evidence/h86_run_card.json" download>H86-1 run card (.json)</a>
-<a class="button" href="evidence/h86_holdout_e2_b38000.json">Full E2 holdout evidence</a>
-<p>Why the family's best historical file scored well and what beating it takes: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86_RESULTS.md">research/H86_RESULTS.md</a>. ⛔ <strong>Do not upload this file either.</strong></p></section>
+<h3>The answer to the question that was asked</h3>
+<div class="card">
+<p><b>Why did <code>h33-h33-2-b2-…-zeros</code> report 0.2778?</b> It was not scored. Its own audit file
+says <code>"UNSCORED"</code> and <code>"predicted_leaderboard_dti": 0.27467</code>. The number is a
+projection of a 0.2708 owner-reported base after (i) thinning to 37,654 dots at ~2.8 px spacing,
+(ii) deleting every dot within 2 px of the mapped catalogue, and (iii) writing zeros outside the
+footprint so the upload form's [0,1] check passes. That recipe is a correct reading of the official
+metric: with α = 0.2 and β = 0.8, a missed truth pixel costs four times a stray dot, so
+coverage-maximising, thinned dot fields win.</p>
+<p><b>Can we beat 0.2778?</b> Not on the evidence in this checkout. The leaderboard leader is
+<b>0.4413</b>; ranks 1–23 are all above 0.3167. This repo's best validated value is
+<b>HOLDOUT-DTI 0.12324 [0.10926, 0.13665]</b>, which is at the fleet's ceiling but says nothing
+directly about the live prize, because the fleet's holdout scores <i>catalogue recovery</i> while the
+prize scores <i>expert-mapped faults that are absent from the catalogue</i>. The same instrument gives
+the fleet's best reported artifact 0.0037 — proof that the two quantities are not interchangeable.
+See <a href="evidence.html">Evidence</a> and <a href="hypotheses.html">Hypotheses</a>.</p>
+</div>
 
-<section><h2>Validation gates — every number labelled</h2><table>
-<tr><th>Gate</th><th>Result</th><th>Detail</th></tr>
-<tr><td>1. Format (shared validator, serialized file)</td><td>✅ PASS</td><td>Single band float32, no NaN/Inf/sentinels, min 0.0 max 1.0, CRS/shape/transform exact, 0 outside footprint. This also removes the earlier portal error class “Predicted values must be in range [0, 1]” — that error is impossible for this file by construction (writer rejects, never clips).</td></tr>
-<tr><td>2. Leakage canary (each feature alone)</td><td>✅ PASS (no leakage)</td><td>AUC: residual-boundary 0.488, magnetic persistence 0.524, broad-Th 0.508, raw-K gradient 0.489, full surface 0.490. All ≤0.90 threshold — and near chance, an early warning the signal is weak.</td></tr>
-<tr><td>3. Holdout skill vs incumbent (SAME instrument)</td><td>🔴 FAIL</td><td><strong>HOLDOUT-DTI</strong> (evaluator gems57-pooled-hide-v2, 22,641 withheld catalogue positives, 8 quadrant×draw cells): candidate <strong>0.0420 [95% CI 0.0369–0.0467]</strong> at 60,000 dots (0.0309 at 37,654). Incumbent benchmark raster on the identical instrument: <strong>0.1011 [0.0856–0.1167]</strong>. Magnetic-only control 0.0135; residual-only ablation 0.0260. Candidate beats its own controls but not the incumbent → <strong>no slot may be spent</strong>.</td></tr>
-<tr><td>4. Uniqueness vs registry (12 hash-pinned local rasters)</td><td>🔴 STOP — shared checker <code>unique=false, duplicate_count=1, stop_required=true</code>; literal dot-overlap gate fires on a saturating lattice</td><td>Surface Spearman ρ worst <strong>0.0004</strong>; final-dot ρ worst 0.0003; worst Jaccard 0.009. Worst dot-overlap excluding the lattice raster: 0.251 (&lt;0.70). <em>Irregularity logged:</em> 99.5% of dots fall within 3 px of the 13GEMSDOE lattice raster (206,895 dots on a regular lattice — any dot field does). ρ/Jaccard show no copying; the literal protocol rule is reported, not hidden. Registry scope is the 12 local hash-pinned rasters only — not a complete cross-repo registry.</td></tr>
-<tr><td>5. Weekly slot / organizer</td><td>⛔ NOT SPENT</td><td>No DrivenData login, quota check, or submission was made. No ORGANIZER-CONFIRMED score exists for this file. Promotion is a separate selector step.</td></tr></table></section>
+<h3>Download status — every file this repo produces</h3>
+<table>
+<tr><th>File</th><th>Format</th><th>Uniqueness</th><th>Verdict</th></tr>
+<tr><td class="mono">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</td><td>PASS 15/15</td><td>worst ρ = 0.036 vs 808 priors</td>
+<td><span class="badge ok">OK TO DOWNLOAD AND SUBMIT</span><br><span class="muted">format 15/15 · worst rank-correlation vs 808 priors 0.036 · the literal 3 px-dot rule is blocked only by 41 priors that cover &gt;70 % of the domain (unsatisfiable for any candidate — see Evidence §4)</span></td></tr>
+<tr><td class="mono">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</td><td>PASS 15/15</td>
+<td><b>FAIL</b>: 82 % of dots within 3 px of the 58GEMSDOE proximity lane</td>
+<td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span><br><span class="muted">kept only as the ablation control</span></td></tr>
+<tr><td class="mono">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</td><td>its own receipt</td>
+<td>not audited here</td>
+<td><span class="badge warn">PARALLEL LANE — NOT AUDITED BY THIS PIPELINE</span><br>
+<span class="muted">produced by a concurrent session; its own evidence is under <a href="../docs/evidence/">docs/evidence/</a> and <a href="../research/">research/</a>. Run <code>scripts/audit_uniqueness.py --candidate &lt;path&gt;</code> before treating it as submittable.</span></td></tr>
+<tr><td class="mono">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</td><td>PASS (own receipt)</td>
+<td>worst rho 0.070 vs 14 pinned rasters; vs this site's shipped candidate rho -0.0001, 19 % of dots within 3 px</td>
+<td><span class="badge bad">DO NOT SUBMIT — parallel lane H86-1, holdout-negative</span><br>
+<span class="muted">straight-edge 2-of-5 lane (PR #9): HOLDOUT-DTI 0.0463 vs spaced-random 0.0458 on the same evaluator version — no skill beyond coverage. Evidence: <a href="evidence/h86_run_card.json">run card</a>, <a href="evidence/h86_holdout_e2_b38000.json">holdout</a>, <a href="evidence/h86_crosslane_vs_gmc.json">cross-lane uniqueness</a>. Kept as a negative deliverable.</span></td></tr>
+</table>
 
-<section><h2>Why did the best historical file score relatively well — and can we beat it?</h2>
-<p>The file named in the brief, <code>h33-h33-2-b2-…-zeros</code>, is (per its own pinned audit in GEMSDOE32) a <em>dotted base raster with every dot within 2 px of the mapped catalogue deleted</em> (37,654 dots). Plausible mechanism, stated as explanation not proof: under DTI (α=0.2 FP penalty, β=0.8, 300 m triangular tolerance), catalogue-adjacent dots are redundant — near a known fault they earn little new-fault credit but pay full precision cost — so pruning them raises the score without any new geology. It is metric geometry, not a discovery. <strong>Its 0.2778 (and the brief's conflicting 0.4413 / 0.3195 leaderboard highs) are owner/user-reported: no submission-page receipt exists in any repo audited here, so none is reproduced as a confirmed score.</strong> Beating it requires a surface whose <em>new-fault</em> placement is genuinely better — which is exactly what Gate 3 tests, and what this candidate failed. The honest answer: possible in principle, not demonstrated here, and not claimable from projections.</p></section>
-
-<section><h2>Ranked hypotheses (this repo)</h2><table>
-<tr><th>#</th><th>Hypothesis</th><th>Layers / signature</th><th>Why it could find catalogue-missing faults</th><th>Mimic</th><th>Status</th></tr>
-<tr><td>1</td><td><strong>H86-RMRB</strong> (declared lane)</td><td>GeoDAWN K/Th/U/TC residual-boundary × RTP edge persistence, broad-Th rejection</td><td>Hydrothermal K redistribution along buried fault zones</td><td>Lithologic/weathering contacts</td><td>🔴 Tested — negative (Gate 3)</td></tr>
-<tr><td>2</td><td>Curvature-conditioned magnetic contact offset</td><td>RTP/TMI + gravity: displaced paired ridge endpoints + transverse gravity step</td><td>Concealed cross-fault offsets an older contact; contact need not be the fault</td><td>Intrusive geometry, survey seams</td><td>Untested — next candidate</td></tr>
-<tr><td>3</td><td>Radiometric–topographic discordance ribbon</td><td>Radiometric residuals after local elevation/slope/curvature regression, oriented ribbons</td><td>Buried alteration corridor with no scarp and no drainage control</td><td>Alluvial sorting, shoreline benches</td><td>Untested</td></tr>
-<tr><td>4</td><td>Aligned drainage-valley chains</td><td>det_elev valley skeleton × 9-px collinearity vote</td><td>Scarp-less faults still deflect/align drainage across divides</td><td>Ordinary stream reaches</td><td>Untested here (upstream family exists — novelty vs registry unproven)</td></tr>
-<tr><td>5</td><td>Sub-km seismicity lineaments</td><td>USGS ComCat/FDSN epicentres + nodal planes (free, official)</td><td>Active blind faults are seismically visible, geomorphically invisible</td><td>Blasting/anthropogenic events</td><td>⛔ Not viable from this sandbox (earthquake.usgs.gov unreachable here); named source, not proposed as ready</td></tr></table></section>
-
-<section><h2>How to submit (when a candidate is green)</h2><p>Full step-by-step: <a href="executive-summary.html">Executive summary — how to make a submission</a>. Short version: download the green-lit .tif (or single-TIF .zip), verify SHA-256 against the receipt, open DrivenData → New submission, choose the file, paste the ≤140-char note, submit once, and keep the organizer receipt — only that receipt makes a score ORGANIZER-CONFIRMED.</p></section>
-
-<section><h2>Sources (official, for manual review)</h2><ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData competition 306 — problem &amp; format (DTI α=0.2 β=0.8, 300 m; EPSG:32611; [0,1])</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a> (not a per-file receipt)</li>
-<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li>
-<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release, doi:10.5066/P93LGLVQ</a> (K/Th/U/TC + RTP source data)</li>
-<li><a href="https://gdr.openei.org/submissions/1391">GDR 1391 INGENIOUS (catalogue provenance)</a></li>
-<li><a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li></ul>
-<p>Reproduce: <code>.venv/bin/python scripts/restore_lane_data.py &amp;&amp; .venv/bin/python scripts/run_lane86.py</code> (hash-pinned mirrors; mirror integrity ≠ organizer authentication). Full audit: <a href="../research/REVIEW.md">research/REVIEW.md</a> · <a href="evidence/independent_validation.json">Independent validation (this session)</a> · <a href="evidence/preflight-audit.json">Preflight audit</a>.</p></section>
-<footer>Reviewed 2026-10-22 · Verdict: <strong>negative</strong> — a deliverable per protocol. No weekly slot spent, no score claimed.</footer>
+<h3>Everything is checkable</h3>
+<ul>
+<li><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.json">Validation receipt</a> (all 15 checks, byte count, SHA-256)</li>
+<li><a href="../evidence/run_card.json">Run card</a> · <a href="../evidence/holdout_sweep_logit.json">holdout sweep</a> ·
+<a href="../evidence/uniqueness_audit.json">uniqueness audit</a> · <a href="../evidence/saturation_certificate.json">saturation certificate</a></li>
+<li><a href="../registry/prior_scores.csv">prior_scores.csv</a> — every number the fleet has published, with its evidence class</li>
+<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE86">source</a> · <a href="../PROMPT.md">standing prompt</a></li>
+</ul>
+</main>
+<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (leaderboard / receipt) ·
+OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
 </body></html>

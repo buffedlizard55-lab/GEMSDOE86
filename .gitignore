@@ -1,4 +1,19 @@
+# --- data & caches (never committed; rebuilt by scripts/restore_data.py) ---
+.cache/
 .venv/
 __pycache__/
-data/
 *.pyc
+.pytest_cache/
+/tmp/
+
+# --- large local artifacts ---
+data/raw/
+*.npy
+*.npz
+# H86-1 local lane inputs (rebuilt by restore_data.py / fetch_registry.py; never commit)
+data/training_features.tif
+data/sample_submission.tif
+data/existing_faults.tif
+data/registry/
+data/external/
+data/work/
