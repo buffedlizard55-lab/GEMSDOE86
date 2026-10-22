@@ -1,6 +1,8 @@
-# GEMSDOE86 — RMRB fault-prediction experiment
+# GEMSDOE86 — audited parallel fault-prediction lanes
 
-## UNIQUE TIFF GENERATED — SAFE TO DOWNLOAD, **NOT SAFE TO SUBMIT**
+**Read [`PROMPT.md`](PROMPT.md) first: it is the standing project brief, archived verbatim.**
+
+## NEW UNIQUE TIFF GENERATED — SAFE TO DOWNLOAD, **NOT SAFE TO SUBMIT**
 
 A new single-band competition-grid GeoTIFF was generated from the RMRB-86 model. It is not a copied or renamed prior raster.
 
@@ -14,7 +16,22 @@ The automated format validator passes: one float32 band, all values finite and i
 
 **Do not upload it.** The specific engineered transform did not beat its strongest matched raw-radiometric control with a wholly positive paired 95% interval, and the prompt's literal overlap gate is triggered by a continuous registry raster. The negative status is machine-readable in [`docs/evidence/rmrb86-run-card.json`](docs/evidence/rmrb86-run-card.json). No weekly submission slot was used.
 
-[Open the GitHub Pages readiness dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/index.html) · [Submission guide](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/executive-summary.html) · [Scientific review](research/REVIEW.md)
+### Repository-wide traffic light
+
+Concurrent sessions produced other distinct rasters on `main`. None overrides the literal protocol or authorizes a weekly slot:
+
+| Artifact | Automated evidence | Binding verdict |
+|---|---|---|
+| **This run: `gems86-rmrb-kthu-rtp-37654-…-DO-NOT-SUBMIT.tif`** | Local format pass; byte-unique in the 1,143-hash index; RMRB versus H33 overlap 0.456; transform delta CI crosses zero; dense-prior overlap 1.0 | **DO NOT SUBMIT** |
+| `gems86-h86-rmrb-60000dots-…-zeros.tif` | Own run card is negative; HOLDOUT screen misses incumbent; literal lattice overlap 0.995 | **DO NOT SUBMIT** |
+| `gems86-gmc-linepost-…-zeros.tif` | Format pass, but 82% overlap with a prior proximity lane | **DO NOT SUBMIT — duplicate lane** |
+| `gems86-gmc-linepost-offcat-…-zeros.tif` | Format pass and low rank correlation, but its audit records literal overlap failures against saturated priors; its own report also records experiment-budget overrun | **DO NOT SUBMIT under the supplied literal rule** |
+
+The earlier site called the last file “OK TO SUBMIT” by exempting continuous/carpet priors. The prompt authorizes no such exemption. This integration corrects the repository-wide decision to fail closed. A future selector may reconsider only after an explicit protocol change and an authenticated quota check.
+
+This run was also checked against the three newly merged parallel rasters on both its continuous surface and final dots. Worst final overlap is 0.484 and worst surface Spearman is 0.093—below the lane thresholds. Those measurements are appended to [`docs/evidence/uniqueness.json`](docs/evidence/uniqueness.json).
+
+[Open the GitHub Pages readiness dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/) · [Submission guide](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html) · [Scientific review](research/RMRB86_REVIEW.md)
 
 ## Persistent project prompt — read before every session
 
@@ -52,9 +69,9 @@ All values below are **HOLDOUT-DTI (`gems57-pooled-hide-v2`, 22,893 withheld pos
 
 | Arm | DTI | 95% CI |
 |---|---:|---:|
-| Ten-layer core control | 0.06406 | [0.05114, 0.07763] |
-| Core + raw K/Th/U | 0.07116 | [0.05738, 0.08596] |
-| Full RMRB-86 | 0.07283 | [0.05985, 0.08904] |
+| Ten-layer core control | 0.06406 | [0.05114, 0.07767] |
+| Core + raw K/Th/U | 0.07116 | [0.05723, 0.08591] |
+| Full RMRB-86 | 0.07283 | [0.05888, 0.08744] |
 
 The RMRB-minus-core paired difference is **HOLDOUT-DTI delta (`gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI)** = `0.00877 [0.00296, 0.01434]`. The RMRB-minus-raw-radiometrics paired difference is `0.00167 [-0.00285, 0.00620]` under the same evidence label. Because the stronger interval crosses zero, the preregistered scientific promotion gate fails.
 
@@ -66,7 +83,7 @@ The hash-pinned H33 source describes pruning catalogue-adjacent dots from an ear
 
 The historical scalar supplied by the owner has no authenticated submission-page receipt here and is not labelled ORGANIZER-CONFIRMED. RMRB-86 does not copy H33: final full-footprint Spearman correlation is 0.03022, forward three-pixel overlap is 0.45637, and file/decoded hashes differ.
 
-See [`research/REVIEW.md`](research/REVIEW.md) for the five ranked hypotheses, source ledger, exact method, caveats and full interpretation.
+See [`research/RMRB86_REVIEW.md`](research/RMRB86_REVIEW.md) for the five ranked hypotheses, source ledger, exact method, caveats and full interpretation.
 
 ## Reproduce
 

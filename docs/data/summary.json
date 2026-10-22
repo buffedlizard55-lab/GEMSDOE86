@@ -1,0 +1,18 @@
+{
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "decision": "No candidate authorized under the supplied literal overlap and scientific promotion gates.",
+  "featured_research_artifact": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+  "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+  "dots": 37654,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "value": 0.07282678213466065,
+    "ci95": [0.05887883153427838, 0.087443273517476]
+  },
+  "validator_passed_local_format": true,
+  "registry_stop_required": true,
+  "submission_slots_used": 0
+}

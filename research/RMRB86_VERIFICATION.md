@@ -68,15 +68,22 @@ Additional review actions:
 - No authenticated portal, current weekly quota, private truth or submission-page receipt is available. Therefore no value is ORGANIZER-CONFIRMED.
 - The USGS, DrivenData, GDR, EPSG and NLR hosts are outside this sandbox's outbound allowlist. Their official links are preserved for manual review, but no fresh retrieval is claimed.
 
+### Parallel-integration check
+
+Before merge completion, the RMRB surface and final dots were automatically compared with all three raster candidates added by the parallel `main` work. All six comparisons remain below the preregistered 0.90 rank/0.70 overlap limits. The integrated site preserves all four downloads but removes the parallel page's unsupported “OK TO SUBMIT” conclusion: its own evidence records literal overlap failures, and the user supplied no continuous-prior exemption. This is a selector-level correction, not a rewrite of that lane's historical run card.
+
 ### Final commands
 
 ```text
-python -m unittest discover -s tests -v     -> 13 tests passed
+python -m pytest -q                         -> 40 passed, 10 subtests passed
 python -m compileall -q scripts src vendor tests -> passed
 git diff --check                            -> passed
-python scripts/audit_rmrb86.py                     -> hash/grid/range/ZIP passed; verdict negative
+python scripts/audit_rmrb86.py              -> hash/grid/range/ZIP passed; verdict negative
+python scripts/audit.py                     -> parallel RMRB artifact audit passed; verdict negative
+python scripts/build_site.py                -> 4 candidates listed; none authorized
 local HTML target scan                      -> 0 broken local links
 JSON parse scan                             -> all parsed
+git diff --exit-code -- vendor/gems57       -> passed
 ```
 
 The final result satisfies the requirement to produce a unique, downloadable, machine-validated TIFF while refusing the incompatible request to treat a failed scientific/registry candidate as safe to submit. The failure is a deliverable, not a hidden success claim.

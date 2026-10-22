@@ -32,6 +32,48 @@
   "indexed_public_hashes": 1143,
   "literal_dense_witness_is_binding": true,
   "packaging_after_stop_reason": "Required research TIFF deliverable only; never approval for a slot.",
+  "parallel_main_delta": {
+    "any_stop_required": false,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "measured_after_parallel_main_merge": true,
+    "rows": [
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.48366707388325275,
+        "final_rho": 0.023911808847937362,
+        "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+        "stop_required": false,
+        "submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+        "surface_overlap": 0.1656644028933799,
+        "surface_rho": 0.0926190638567438
+      },
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.18731077707547672,
+        "final_rho": 0.0004342196557903201,
+        "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+        "stop_required": false,
+        "submission": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+        "surface_overlap": 0.19635088657313393,
+        "surface_rho": 0.0299476248775114
+      },
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.18133531630105698,
+        "final_rho": -0.00034434413410923506,
+        "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+        "stop_required": false,
+        "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+        "surface_overlap": 0.21994601903214694,
+        "surface_rho": 0.0009807217590631614
+      }
+    ],
+    "scope": "Three candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
+    "source_commit": "e8f072ec3e2e89d7e0f69a3e67d3b7c7d0de7bfb"
+  },
   "scope": "Two hash-pinned stopping witnesses checked. The inherited protocol stops at the first duplicate; full 1,143-raster decode was not continued.",
   "stop_required": true,
   "surface_before_placement": [
