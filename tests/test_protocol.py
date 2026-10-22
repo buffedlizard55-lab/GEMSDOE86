@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import rasterio
@@ -12,7 +13,7 @@ from affine import Affine
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'vendor')]
-from scripts.audit import run
+from scripts.session_preflight import run
 from scripts.protocol_preflight import verify_file
 from gems57.uniqueness import saturation_certificate, dot_overlap
 
@@ -76,7 +77,7 @@ class ProtocolTests(unittest.TestCase):
                 verify_file(p, digest, 4)
 
     def test_nonwriting_audit_preserves_published_evidence(self):
-        path = ROOT / 'docs/evidence/run-card.json'
+        path = ROOT / 'docs/evidence/protocol-run-card.json'
         before = path.read_bytes()
         run(write=False)
         self.assertEqual(before, path.read_bytes())
@@ -97,8 +98,42 @@ class ProtocolTests(unittest.TestCase):
         archive = readme.split('<!-- OWNER_PROMPT_ARCHIVE_START -->', 1)[1].split('<!-- OWNER_PROMPT_ARCHIVE_END -->', 1)[0]
         self.assertEqual(archive.strip(), (ROOT / 'research/OWNER_PROMPT.md').read_text().strip())
 
+    def test_model_entrypoint_stops_before_surface_or_any_experiment(self):
+        from scripts.run_lane86 import main
+        with patch('scripts.protocol_preflight.measure', return_value={'universal_overlap_blocker': True}), patch('scripts.run_lane86.build_surface') as build:
+            with self.assertRaisesRegex(RuntimeError, 'STOP_LITERAL_OVERLAP_UNSATISFIABLE'):
+                main()
+            build.assert_not_called()
+
+    def test_protocol_run_never_overwrites_concurrent_model_card(self):
+        path = ROOT / 'docs/evidence/run-card.json'
+        before = path.read_bytes()
+        run(write=False)
+        self.assertEqual(before, path.read_bytes())
+
+    def test_inherited_registry_measurement_is_negative_and_incomplete(self):
+        result = json.loads((ROOT / 'docs/evidence/inherited-registry-check.json').read_text())
+        model = json.loads((ROOT / 'docs/evidence/run-card.json').read_text())
+        self.assertEqual(result['candidate_file_sha256'], model['raster_sha256'])
+        self.assertFalse(result['unique'])
+        self.assertFalse(result['complete_accessible_scan'])
+        self.assertTrue(result['stop_required'])
+        self.assertEqual(result['worst_dot_overlap'], 1)
+        self.assertTrue(result['rows'][0]['duplicate_by_overlap'])
+
+    def test_pruning_inequality_against_shared_component_formula(self):
+        # Synthetic arithmetic identity only, not an experiment or score claim.
+        from gems57.metric import dti_from_components, EPS
+        rng = np.random.default_rng(86)
+        for _ in range(200):
+            N = rng.uniform(1, 1000); T = rng.uniform(.1, .9) * N
+            F = rng.uniform(.1, 1000); a = rng.uniform(0, T); b = rng.uniform(0, F)
+            before = dti_from_components(T, F, N - T)
+            after = dti_from_components(T - a, F - b, N - T + a)
+            self.assertEqual(after > before, T * b > a * (F + 4 * N + 5 * EPS))
+
     def test_snapshot_proves_negative_not_fake_candidate_clearance(self):
-        card = json.loads((ROOT / 'docs/evidence/run-card.json').read_text())
+        card = json.loads((ROOT / 'docs/evidence/protocol-run-card.json').read_text())
         cert = card['correlation_overlap_vs_registry']['universal_witness']
         self.assertTrue(cert['universal_overlap_blocker'])
         self.assertEqual(cert['direct_support_uncovered_allowed_pixels'], 0)

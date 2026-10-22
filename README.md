@@ -1,67 +1,73 @@
 # GEMSDOE86 — evidence-gated fault prediction
 
-## NOT OK TO SUBMIT — no candidate TIFF generated
+## DO NOT SUBMIT — downloadable candidate is negative, not uniqueness-cleared
 
-[Submission readiness site](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/index.html) · [Executive summary](docs/executive-summary.html) · [Scientific review](docs/research.html) · [Run card](docs/evidence/run-card.json)
+[Download candidate TIFF — NOT APPROVED](docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip) · [Readiness site](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/index.html) · [Executive summary](docs/executive-summary.html) · [Model run card](docs/evidence/run-card.json)
 
-**New finding:** the requested literal registry-overlap gate is unsatisfiable for any nonempty prediction inside the allowed domain. A hash-verified historical registry surface is positive at **every** allowed cell. Any new dot set would have forward overlap 1, exceeding the 0.70 stop threshold. We stopped before placement, with no dense-surface exemption, no copied submission and no competition-slot use. This is a protocol failure, not evidence that all geological mechanisms are duplicates.
+**Concurrent work preserved:** while this session was auditing, other sessions merged a radiometric mixing-residual candidate and its negative model results into `main`. Those files and their run card are retained, not overwritten. The serialized candidate is locally format-valid and has SHA256 `cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962`. It is **not uniqueness-cleared or approved for a weekly slot**. A different byte hash is not proof of scientific novelty. No new model experiment or prediction was generated in this session.
 
-[Automated proof](docs/evidence/protocol-preflight.json) · [Immutable source pins](research/registry_witness_pin.json) · [Three-pass review](research/VERIFICATION.md)
+**New finding:** the requested literal registry-overlap gate cannot admit any nonempty prediction in the allowed domain. A hash-verified historical registry surface is positive at **every** allowed cell. Any dot set would have forward overlap 1, exceeding the 0.70 stop threshold. The runner now stops before building a surface or placing dots. No dense-surface exemption was added. This is a protocol failure, not scientific evidence that all mechanisms are duplicates.
 
-The counts above are measured raster geometry, **not performance scores**. No candidate HOLDOUT-DTI, organizer score, SHA256 or validator result is invented. Candidate checks remain null. This does **not** fulfill the requested unique-TIFF deliverable; producing a meaningless or copied TIFF would not resolve the blocker.
+[Automated blocker proof](docs/evidence/protocol-preflight.json) · [This session's separate protocol run card](docs/evidence/protocol-run-card.json) · [Immutable source pins](research/registry_witness_pin.json) · [Three-pass review](research/VERIFICATION.md)
+
+The proof reports measured raster geometry, **not performance scores**. The inherited model results are preserved with their original HOLDOUT-DTI labels, but code review found protocol deviations; they are not validated as a compliant current-best holdout or a prospective improvement. No candidate in this repository is approved for competition submission. See [current reconciliation and limitations](research/REVIEW.md).
 
 ## Read first, every session
 
-Read this status, the full owner request below, `research/REVIEW.md` and `research/VERIFICATION.md` before work. Preserve the Core Values: **Maximize P(Win)** through evidence, and **Own the Outcome** end to end. An honest negative result is preferable to spending a slot on unsupported claims.
+Read this status, the full owner request below, `research/REVIEW.md` and `research/VERIFICATION.md` before work. Preserve the Core Values: **Maximize P(Win)** through evidence, and **Own the Outcome** end to end. An honest negative is preferable to spending a slot on unsupported claims.
 
-- Stay in the assigned single-method lane. No such paragraph was present; the radiometric hypothesis is provisional, not authorization.
-- Use the shared cached feature stack and pinned evaluator/writer. The repository has the tools, but only a receipt naming an ephemeral cache path—not the cached bytes. Do not privately rebuild or fork them.
+- Stay in the assigned single-method lane. The supplied request contains no lane paragraph. A concurrent session declared H86-RMRB itself; this is an irregularity, not evidence of an externally assigned lane.
+- Reuse the actual shared cached feature stack and pinned evaluator/writer. A temporary cache path or locally rebuilt component cache is not that shared stack. No shared evaluator/writer bytes were changed here.
 - Whole-segment buffered hide-and-recover; catalogue features only from visible faults; exact masking; pooled DTI alpha 0.2, beta 0.8, triangular 300 m support. Feature-alone AUC above 0.90 blocks pending leakage investigation.
-- Registry rank correlation >0.90 or forward 3px overlap >0.70 means stop, both before placement and on final dots. The saturation proof is enough to block; it is not a complete registry clearance.
-- At most three model experiments or two hours. Real-slot promotion belongs to a separate selector after same-fold improvement, uncertainty and uniqueness checks. This run used no model experiments or competition slots.
+- Registry rank correlation >0.90 or forward 3px overlap >0.70 means stop, before placement and on final dots. A single counterexample suffices to block; it is not complete registry clearance.
+- At most three model experiments or two hours per session. Real-slot promotion is a separate selector step after same-fold improvement, uncertainty and uniqueness gates. This session ran no new model experiment; the inherited card records its earlier session's budget separately.
 - Score claims must be HOLDOUT-DTI with evaluator/version, positive count and 95% CI, or ORGANIZER-CONFIRMED with submission-page receipt. Historical values in the archived prompt are unverified owner claims, not our results.
-- Never call a file approved based on range checks alone. No NaN inside footprint; finite [0,1] export; exact sample CRS/shape/transform; serialized validation; unique name and ≤140-character note. Tests are not geological experiments.
+- Do not confuse a valid TIFF with a good submission. Require finite [0,1] values, exact grid, serialized validation, uniqueness, supported holdout improvement, a unique name and ≤140-character note. Tests are not geological experiments.
 
-## Reproduce the measured preflight
+## Reproduce both audits without overwriting model evidence
 
-Python 3.11+; `gh` must be available for public owner mirrors. No passwords/tokens belong in chat or tracked files.
+Python 3.11+; `gh` for the public owner mirrors. No credentials belong in chat or tracked files.
 
 ```sh
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/restore_data.py --include-registry
+.venv/bin/python scripts/session_preflight.py
+.venv/bin/python scripts/check_registry_candidate.py
 .venv/bin/python scripts/audit.py
+.venv/bin/python scripts/validate_download.py
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python scripts/check_site.py
 .venv/bin/python -m compileall -q scripts vendor tests
 ```
 
-Restoration verifies size and SHA **before** publishing input files. It restores mirrored template/catalogue rasters and an immutable historical witness into ignored `data/`, never into the public site's downloads. Mirror integrity does not authenticate organizer origin. `--include-features` optionally restores the raw mirrored feature TIFF; it is not the required cached stack and does not unblock this protocol.
+`session_preflight.py` writes only `protocol-run-card.json` and `protocol-preflight.json`. `audit.py` reads the model card and writes a separate consistency audit. `validate_download.py` re-reads the actual TIFF and ZIP; local format validity is not organizer acceptance or science clearance. The historical runner `run_lane86.py` now refuses further model runs under the certified protocol conflict. Do not rerun it to seek a different answer by bypassing the gate.
 
-`audit.run(write=False)` allows testing without overwriting published evidence when data is absent. CI runs safety tests and restores the small pinned inputs in a separate integration job, recomputes the proof, and checks for evidence drift. No GPU is needed. The official reference supports CPU training; a GPU is an accelerator, not a universal prerequisite.
+Restoration verifies size and SHA **before** publishing ignored input files. Owner-mirror integrity does not authenticate organizer origin. `--include-features` can recover the raw mirrored feature TIFF, not the mandated shared cache. No GPU is needed for these audits; the official reference supports CPU training.
 
 ### Project inventory
 
 | Path | Actual purpose |
 |---|---|
-| `vendor/gems57/` | Byte-identical shared tools pinned in `research/template_pin.json`; no private evaluator/writer changes |
-| `scripts/protocol_preflight.py` | Hash-bound saturation measurement plus independent direct-support count |
-| `scripts/restore_data.py` | Integrity-pinned owner-mirror restoration; optional historical witness, never a candidate |
-| `scripts/audit.py` | Negative run card; no missing scientific evidence promoted to PASS |
-| `scripts/check_site.py` | Broken-local-link and negative-state raster/ZIP publication checks, not scientific clearance |
-| `research/` | Owner request archive, source snapshots, scoped review and pinned historical inventory |
-| `docs/` | Pages readiness dashboard, executive submission guide, research table and JSON evidence |
-| `tests/` | Safety, metric arithmetic, synthetic writer roundtrip, protocol geometry and site tests |
+| `vendor/gems57/` | Byte-identical shared tools pinned in `research/template_pin.json` |
+| `scripts/protocol_preflight.py` | Hash-bound shared saturation measurement plus independent direct-support count |
+| `scripts/session_preflight.py` | Separate negative protocol run card; never replaces model evidence |
+| `scripts/audit.py`, `scripts/validate_download.py` | Model-card consistency and actual TIFF/ZIP validation |
+| `scripts/check_site.py` | Local links and registered-download integrity; unknown/modified rasters fail |
+| `scripts/run_lane86.py` | Historical concurrent model runner, now stopped before experiments by protocol preflight |
+| `research/` | Owner prompt archive, source snapshots, scoped scientific review and pinned historical inventory |
+| `docs/` | Pages readiness dashboard, executive guide, research table, negative candidate and JSON evidence |
+| `tests/` | Safety, arithmetic, writer roundtrip, protocol geometry, restoration and publication tests |
 
 ## Next session — ordered blockers
 
-1. Resolve the **certified protocol conflict** explicitly. A representation-aware distinction between continuous surfaces and dots may be scientifically sensible, but changing the supplied rule requires an explicit protocol decision; no exemption is implemented here.
-2. Supply the actual single-method lane, shared cached-stack bytes + manifest/layer identities, and an updated complete registry. The archived inventory is historical and incomplete for today's sibling repositories.
-3. Establish a reproducible same-fold best baseline and rerunnable control, not a full-catalogue historical TIFF masquerading as out-of-fold recovery.
-4. Run individual-feature leakage canaries, then one preregistered authorized hypothesis. Record pooled HOLDOUT-DTI and paired spatial uncertainty; promote only after supported improvement and both registry phases pass.
-5. Export via the shared writer, validate actual bytes, and publish one named TIFF/ZIP with a short note and explicit readiness. The separate selector must check the live weekly quota, eligibility and current rules.
+1. Explicitly resolve the **certified dense-surface protocol conflict**. A representation-aware distinction between surfaces and dots may be sensible, but changing the supplied rule requires an explicit protocol decision; no exemption is implemented.
+2. Obtain the actual assigned method, shared cache + manifest/layer identities, and updated complete registry. The historical snapshot is not current; the concurrent model's local registry is also incomplete.
+3. Repair the experimental orchestration: use the buffered whole-component draw and actual pooled shared evaluator, independently rerunnable visible-only baseline, proper paired spatial uncertainty, and pre-placement registry gates. The inherited negative metrics do not establish a compliant current-best benchmark.
+4. Run one authorized preregistered hypothesis after feature canaries. A globally fit mixing model, an after-the-fact budget choice and a full-catalogue historical baseline do not prove spatially cross-fitted new-fault recovery.
+5. Only after improvement and complete uniqueness checks, export a new authorized TIFF/ZIP with a short note. The separate selector must check the live weekly quota, eligibility and current rules.
 
-**Access limitations:** DrivenData data fetch redirects to login; no authenticated organizer file/score receipt, private labels, account quota or eligibility certification was accessed. Official problem text, USGS release metadata and the rules PDF were retrieved; raster acquisition and comprehensive literature review are not implied. There is no live official-source/leaderboard feed. Fault predictions do not prove geothermal vents. See the source ledger and irregularities in `research/REVIEW.md`.
+**Limitations:** official data fetch redirects to login. No authenticated organizer file/score receipt, private labels, account quota, eligibility certification, actual shared cache or comprehensive literature review was obtained. Public metadata access does not prove raster suitability. There is no live organizer feed. Fault predictions do not prove geothermal vents.
 
 ## Complete starting request archive
 

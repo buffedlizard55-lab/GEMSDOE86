@@ -92,6 +92,14 @@ def measure(data_dir=None):
     return certificate
 
 
+def require_feasible():
+    """Mandatory early stop for model entrypoints; never an authorization gate."""
+    certificate = measure()  # Missing/untrusted inputs raise; they never pass.
+    if certificate['universal_overlap_blocker']:
+        raise RuntimeError('STOP_LITERAL_OVERLAP_UNSATISFIABLE: no new model experiment or TIFF placement is permitted by the current rule')
+    return certificate
+
+
 if __name__ == '__main__':
     result = measure()
     output = ROOT / 'docs/evidence/protocol-preflight.json'
