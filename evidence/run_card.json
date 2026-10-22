@@ -110,7 +110,14 @@
   },
   "submission_note": "GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]",
   "submission_note_chars": 107,
-  "verdict": "promote H2 (line-matched emission); negative H1 (cross-gradient); candidate is format-clean and unique by arrangement, NOT a claim of a live score",
+  "verdict": "negative",
   "live_score": null,
-  "live_score_note": "No organizer receipt exists; nothing in this repo is an ORGANIZER-CONFIRMED score."
+  "live_score_note": "No organizer receipt exists; nothing in this repo is an ORGANIZER-CONFIRMED score.",
+  "previous_verdict_before_literal_protocol_review": "promote H2 (line-matched emission); negative H1 (cross-gradient); candidate is format-clean and unique by arrangement, NOT a claim of a live score",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "download_status": "DO NOT SUBMIT: shared literal registry checker unique=false and stop_required=true; no saturation exemption authorized.",
+  "holdout_dti_for_shipped_offcatalogue_file": null,
+  "holdout_scope": "Existing HOLDOUT-DTI and CI are for the catalogue-following configuration, NOT the shipped off-catalogue raster. Not re-evaluated in the protocol audit.",
+  "protocol_proof": "docs/evidence/protocol-preflight.json"
 }

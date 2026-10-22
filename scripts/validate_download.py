@@ -26,7 +26,13 @@ def validate() -> dict:
     # Shared uniqueness checker verdict must be reported verbatim, never paraphrased.
     lane = json.loads((ROOT / "docs/evidence/lane86_results.json").read_text())
     uniq = lane["final_uniqueness"]
-    checks["uniqueness_checker_verbatim"] = True  # recorded below
+    recorded = card['correlation_overlap_vs_registry']
+    checks['uniqueness_checker_verbatim'] = bool(
+        recorded['rasters_checked'] == uniq['registry_rasters_checked']
+        and recorded['final_worst_dot_overlap_literal'] == uniq['worst_dot_overlap']
+        and recorded['final_worst_spearman'] == uniq['worst_spearman_full_footprint'])
+    checks['readiness_respects_shared_stop'] = bool(not uniq['stop_required'] or (
+        card['verdict'] == 'negative' and not card['submission_ready'] and not card['approved_for_weekly_slot']))
     with rasterio.open(tif) as ds:
         a = ds.read(1)
         checks["single_band_float32"] = ds.count == 1 and ds.dtypes == ("float32",)
@@ -40,6 +46,8 @@ def validate() -> dict:
     zpath = tif.with_suffix(".zip")
     with zipfile.ZipFile(zpath) as z:
         checks["zip_contains_only_this_tif"] = z.namelist() == [tif.name]
+        checks['zip_tif_bytes_equal_registered_tif'] = bool(
+            checks['zip_contains_only_this_tif'] and z.read(tif.name) == tif.read_bytes())
     return {
         "file": str(tif.relative_to(ROOT)), "sha256": sha,
         "checks": checks, "all_format_checks_passed": all(checks.values()),

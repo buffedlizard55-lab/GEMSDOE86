@@ -47,6 +47,8 @@ COLLAR_PX = 3
 
 
 def main() -> None:
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # STOP before training/placement; missing evidence is not a pass.
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", default="docs/downloads")
     ap.add_argument("--note", default=None)

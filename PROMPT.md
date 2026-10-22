@@ -1,4 +1,4 @@
-# Standing project prompt (archived verbatim, read at the start of every session)
+# Standing project prompt (condensed archive; full request is in README and research/OWNER_PROMPT.md)
 
 Review the repo.
 

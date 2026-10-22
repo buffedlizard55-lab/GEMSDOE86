@@ -6,6 +6,7 @@
     "note_le_140_chars": true,
     "experiments_within_budget_3": true,
     "uniqueness_checker_verbatim": true,
+    "readiness_respects_shared_stop": true,
     "single_band_float32": true,
     "crs_epsg_32611": true,
     "shape_3730x3292": true,
@@ -14,7 +15,8 @@
     "values_in_0_1": true,
     "no_sentinels": true,
     "dots_match_run_card": true,
-    "zip_contains_only_this_tif": true
+    "zip_contains_only_this_tif": true,
+    "zip_tif_bytes_equal_registered_tif": true
   },
   "all_format_checks_passed": true,
   "dots": 60000,
@@ -55,6 +57,6 @@
   "verdict": "negative",
   "submission_ready": false,
   "approved_for_weekly_slot": false,
-  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
+  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and byte/pixel-distinct vs 12-raster local registry, but shared uniqueness checker unique=false (literal >0.70 3px-overlap gate fires vs saturating lattice raster; stop_required=true) and HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
   "validation_class": "independent local format/consistency preflight; NOT organizer acceptance"
 }

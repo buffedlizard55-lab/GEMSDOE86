@@ -108,6 +108,11 @@ def pooled_ci(per_cell, draws=2000, seed=86):
     return [float(np.percentile(vals,2.5)),float(np.percentile(vals,97.5))]
 
 def main():
+    # Preserve this historical runner for audit, but do not repeat its bypass of
+    # the literal pre-placement gate. A missing/untrusted witness also stops.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0=time.time(); ev={}
     comps=build_surface(); surface,fp,cat=comps["surface"],comps["footprint"],comps["catalogue"]
     print("surface built", time.time()-t0, flush=True)

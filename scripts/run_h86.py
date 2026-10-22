@@ -501,12 +501,14 @@ def stage_card(holdout_tag_main: str, holdout_tag_sens: str | None):
                    'Literal dot-overlap failure is solely vs the r13-lattice-s5 calibration raster (0.971; it covers 99.87% of allowed cells within 3px, rho=-0.0003, Jaccard=0.04): a degenerate witness, reported not waived. Worst geological dot-field overlap is 0.292.'])
         + (['Accessible-registry scope only (14 rasters); organizer receipt still required to confirm any leaderboard claim.'] if ready else []),
     )
-    (EV / 'run-card.json').write_text(json.dumps(card, indent=2, allow_nan=False) + '\n')
+    (EV / 'h86_run_card.json').write_text(json.dumps(card, indent=2, allow_nan=False) + '\n')
     log('CARD verdict', card['verdict'], 'ready', ready, json.dumps(gates))
     return card
 
 
 if __name__ == '__main__':
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # All further stages stop under the certified literal conflict.
     stage = sys.argv[1]
     if stage == 'surface':
         build_surface()

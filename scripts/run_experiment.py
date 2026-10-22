@@ -19,7 +19,7 @@ import numpy as np
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "vendor"), str(ROOT / "src")]
+sys.path[:0] = [str(ROOT), str(ROOT / "vendor"), str(ROOT / "src")]
 from gems57 import evaluate_holdout, grid, holdout, submission_writer, uniqueness  # noqa: E402
 from gems86_rmrb import features, model  # noqa: E402
 
@@ -118,6 +118,8 @@ def compare_representation(candidate, footprint, registry_arrays, phase):
 
 
 def run():
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.monotonic()
     prereg = json.loads((REGISTRY / "preregistration.json").read_text())
     inputs = checked_inputs()

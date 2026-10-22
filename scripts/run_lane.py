@@ -170,6 +170,8 @@ def _dilate(mask: np.ndarray, px: int) -> np.ndarray:
 
 
 if __name__ == "__main__":
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # No model experiments under an unsatisfiable protocol.
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", default="holdout", choices=["holdout"])
     ap.add_argument("--model", default="logit", choices=["logit", "hgb"])
