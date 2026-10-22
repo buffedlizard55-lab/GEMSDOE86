@@ -1,43 +1,100 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE86 · Submission readiness</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="executive-summary.html">Submission guide (executive summary)</a><a href="evidence/run-card.json">Run card JSON</a><a href="evidence/lane86_results.json">Full experiment evidence</a></nav>
-<header><span class="eyebrow">DOE GEMS fault prediction · GEMSDOE86</span><h1>A unique candidate TIF exists.<br>🔴 DO NOT SUBMIT IT.</h1><p>It passes every format gate and is unique against the local registry, but it <strong>failed the scientific gate</strong>: its holdout score is less than half the incumbent benchmark on the identical instrument. The protocol forbids spending a weekly submission slot on it. Download it for inspection/reproduction only.</p></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEMSDOE86 · Submission readiness</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <strong>GEMS / 86</strong>
+  <a href="executive-summary.html">Submission guide</a>
+  <a href="evidence/run-card.json">Run card</a>
+  <a href="evidence/preflight.json">Automated preflight</a>
+  <a href="evidence/source_review_2026-10-22.json">Verified source review</a>
+</nav>
+<header>
+  <span class="eyebrow">DOE GEMS fault prediction · reviewed 2026-10-22</span>
+  <h1>A TIF exists.<br><span style="color:#ff8585">DO NOT SUBMIT IT.</span></h1>
+  <p>The file passes the local GeoTIFF and [0,1] checks, but it is <strong>not cleared for competition use</strong>. The literal registry-overlap stop rule fired, the required pre-placement dot-overlap receipt is missing, and the previous holdout run does not conform to the requested evaluator protocol. No weekly slot was spent.</p>
+</header>
 
-<section class="alert" aria-labelledby="dl"><h2 id="dl">⬇ Download the unique candidate (inspection only — not cleared for submission)</h2>
-<p><strong>File:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br><strong>SHA-256:</strong> <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br><strong>Dots:</strong> 60,000 · <strong>Values:</strong> all finite, in [0,1] · <strong>Grid:</strong> EPSG:32611, 3730×3292, 100 m, transform matches sample submission · <strong>On-catalogue dots:</strong> 0</p>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download .tif (inspection only)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>Download .zip (single TIF inside)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json" download>Writer/validator receipt (.json)</a>
-<p><strong>Submission name:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br><strong>Note for the submission form (118/140 chars):</strong> <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code></p>
-<p>⛔ <strong>Do not upload this file to DrivenData.</strong> Gate 3 below failed. If a future candidate passes all gates, this panel will turn green and say “OK TO SUBMIT”.</p></section>
+<section class="alert danger" aria-labelledby="download-title">
+  <h2 id="download-title">⬇ Download for audit/research only — not eligible for submission</h2>
+  <p><strong>File:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br>
+  <strong>SHA-256:</strong> <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br>
+  <strong>Submission name:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br>
+  <strong>Note (118/140 characters):</strong> <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code></p>
+  <p><strong>Local format validation:</strong> PASS — one float32 band, EPSG:32611, 3730×3292, transform matches the hash-pinned sample mirror, all cells finite, values in [0,1], 60,000 positive pixels, zero positive pixels outside the footprint or on the mapped catalogue. The single-TIF ZIP round-trips byte-identically. These are local checks, not organizer acceptance.</p>
+  <p><strong>Uniqueness stop:</strong> the final candidate has a forward 3-pixel overlap of <strong>0.995</strong> with the pinned 13GEMSDOE lattice raster, above the strict <strong>0.70</strong> stop threshold. Spearman correlation and exact-dot Jaccard are low, so this is not evidence of copying; however, the protocol is explicitly an OR rule, so the literal overlap trigger still requires STOP. The registry inventory is incomplete. The candidate's pre-placement dot-overlap was not recorded.</p>
+  <a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download .tif — audit only</a>
+  <a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>Download .zip — audit only</a>
+  <a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json" download>Download local receipt</a>
+  <p class="danger-note"><strong>Do not upload this file to DrivenData.</strong> A valid TIFF is not a scientifically cleared submission.</p>
+</section>
 
-<section><h2>Validation gates — every number labelled</h2><table>
-<tr><th>Gate</th><th>Result</th><th>Detail</th></tr>
-<tr><td>1. Format (shared validator, serialized file)</td><td>✅ PASS</td><td>Single band float32, no NaN/Inf/sentinels, min 0.0 max 1.0, CRS/shape/transform exact, 0 outside footprint. This also removes the earlier portal error class “Predicted values must be in range [0, 1]” — that error is impossible for this file by construction (writer rejects, never clips).</td></tr>
-<tr><td>2. Leakage canary (each feature alone)</td><td>✅ PASS (no leakage)</td><td>AUC: residual-boundary 0.488, magnetic persistence 0.524, broad-Th 0.508, raw-K gradient 0.489, full surface 0.490. All ≤0.90 threshold — and near chance, an early warning the signal is weak.</td></tr>
-<tr><td>3. Holdout skill vs incumbent (SAME instrument)</td><td>🔴 FAIL</td><td><strong>HOLDOUT-DTI</strong> (evaluator gems57-pooled-hide-v2, 22,641 withheld catalogue positives, 8 quadrant×draw cells): candidate <strong>0.0420 [95% CI 0.0369–0.0467]</strong> at 60,000 dots (0.0309 at 37,654). Incumbent benchmark raster on the identical instrument: <strong>0.1011 [0.0856–0.1167]</strong>. Magnetic-only control 0.0135; residual-only ablation 0.0260. Candidate beats its own controls but not the incumbent → <strong>no slot may be spent</strong>.</td></tr>
-<tr><td>4. Uniqueness vs registry (12 hash-pinned local rasters)</td><td>⚠️ UNIQUE on content; literal dot-overlap gate fires on a saturating lattice</td><td>Surface Spearman ρ worst <strong>0.0004</strong>; final-dot ρ worst 0.0003; worst Jaccard 0.009. Worst dot-overlap excluding the lattice raster: 0.251 (&lt;0.70). <em>Irregularity logged:</em> 99.5% of dots fall within 3 px of the 13GEMSDOE lattice raster (206,895 dots on a regular lattice — any dot field does). ρ/Jaccard show no copying; the literal protocol rule is reported, not hidden. Registry scope is the 12 local hash-pinned rasters only — not a complete cross-repo registry.</td></tr>
-<tr><td>5. Weekly slot / organizer</td><td>⛔ NOT SPENT</td><td>No DrivenData login, quota check, or submission was made. No ORGANIZER-CONFIRMED score exists for this file. Promotion is a separate selector step.</td></tr></table></section>
+<section class="grid" aria-label="Gate status">
+  <article class="card">
+    <span class="pill red">FORMAT · PASS</span>
+    <h2>Numerical/GeoTIFF preflight</h2>
+    <p>The actual checked-in file was reopened and checked against owner-mirrored grid inputs. It satisfies finite-value, range, CRS, shape, transform, footprint, catalogue-mask, and ZIP-content checks. Mirror hashes do not prove organizer authenticity.</p>
+  </article>
+  <article class="card">
+    <span class="pill red">HOLDOUT · NOT ESTABLISHED</span>
+    <h2>No admissible HOLDOUT-DTI</h2>
+    <p>The historical runner imported but did not score with the shared pooled evaluator; its holdout did not buffer whole withheld segments/components, its interval was not the shared spatial-cluster interval, and it did not establish the best comparable registry baseline. Its raw metrics are retained as diagnostics, not used as scores or a slot gate.</p>
+  </article>
+  <article class="card">
+    <span class="pill red">UNIQUENESS · STOP</span>
+    <h2>Literal overlap gate fired</h2>
+    <p>The final-dot overlap rule is an OR condition. Low rank correlation, low Jaccard, and different file bytes cannot override an overlap above threshold. No complete registry scan or pre-placement dot receipt exists.</p>
+  </article>
+  <article class="card">
+    <span class="pill">SLOT · NOT SPENT</span>
+    <h2>No organizer result</h2>
+    <p>No DrivenData upload, quota check, or submission-page receipt exists for this file. No ORGANIZER-CONFIRMED score is claimed. Promotion remains a separate selector step.</p>
+  </article>
+</section>
 
-<section><h2>Why did the best historical file score relatively well — and can we beat it?</h2>
-<p>The file named in the brief, <code>h33-h33-2-b2-…-zeros</code>, is (per its own pinned audit in GEMSDOE32) a <em>dotted base raster with every dot within 2 px of the mapped catalogue deleted</em> (37,654 dots). Plausible mechanism, stated as explanation not proof: under DTI (α=0.2 FP penalty, β=0.8, 300 m triangular tolerance), catalogue-adjacent dots are redundant — near a known fault they earn little new-fault credit but pay full precision cost — so pruning them raises the score without any new geology. It is metric geometry, not a discovery. <strong>Its 0.2778 (and the brief's conflicting 0.4413 / 0.3195 leaderboard highs) are owner/user-reported: no submission-page receipt exists in any repo audited here, so none is reproduced as a confirmed score.</strong> Beating it requires a surface whose <em>new-fault</em> placement is genuinely better — which is exactly what Gate 3 tests, and what this candidate failed. The honest answer: possible in principle, not demonstrated here, and not claimable from projections.</p></section>
+<section>
+  <h2>What the H33-2-B2 page actually establishes</h2>
+  <p>The linked <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 page</a> describes H33-2-B2 as a sparse dotted raster with catalogue-flank pixels pruned. The page labels that artifact <strong>UNSCORED</strong>, calls its modeled result a projection, and says no organizer score exists for it. Therefore the value supplied in the prompt cannot be attributed to that page as an organizer-confirmed competition score.</p>
+  <p>If a future submission-page receipt establishes a high score for a similar pruning strategy, a plausible explanation is metric geometry: removing weak or redundant predicted mass can reduce false-positive cost under the distance-weighted Tversky objective. That is a hypothesis, not proof that the unscored artifact performed well or that the pruning found new geology. The official leaderboard page was fetched during this review and now shows a current lead above the maximum quoted in the prompt; no leaderboard value is copied into this project's score card because a public leaderboard is not the required per-file receipt.</p>
+</section>
 
-<section><h2>Ranked hypotheses (this repo)</h2><table>
-<tr><th>#</th><th>Hypothesis</th><th>Layers / signature</th><th>Why it could find catalogue-missing faults</th><th>Mimic</th><th>Status</th></tr>
-<tr><td>1</td><td><strong>H86-RMRB</strong> (declared lane)</td><td>GeoDAWN K/Th/U/TC residual-boundary × RTP edge persistence, broad-Th rejection</td><td>Hydrothermal K redistribution along buried fault zones</td><td>Lithologic/weathering contacts</td><td>🔴 Tested — negative (Gate 3)</td></tr>
-<tr><td>2</td><td>Curvature-conditioned magnetic contact offset</td><td>RTP/TMI + gravity: displaced paired ridge endpoints + transverse gravity step</td><td>Concealed cross-fault offsets an older contact; contact need not be the fault</td><td>Intrusive geometry, survey seams</td><td>Untested — next candidate</td></tr>
-<tr><td>3</td><td>Radiometric–topographic discordance ribbon</td><td>Radiometric residuals after local elevation/slope/curvature regression, oriented ribbons</td><td>Buried alteration corridor with no scarp and no drainage control</td><td>Alluvial sorting, shoreline benches</td><td>Untested</td></tr>
-<tr><td>4</td><td>Aligned drainage-valley chains</td><td>det_elev valley skeleton × 9-px collinearity vote</td><td>Scarp-less faults still deflect/align drainage across divides</td><td>Ordinary stream reaches</td><td>Untested here (upstream family exists — novelty vs registry unproven)</td></tr>
-<tr><td>5</td><td>Sub-km seismicity lineaments</td><td>USGS ComCat/FDSN epicentres + nodal planes (free, official)</td><td>Active blind faults are seismically visible, geomorphically invisible</td><td>Blasting/anthropogenic events</td><td>⛔ Not viable from this sandbox (earthquake.usgs.gov unreachable here); named source, not proposed as ready</td></tr></table></section>
+<section>
+  <h2>Ranked next hypotheses (not authorized or tested)</h2>
+  <p>Four candidate mechanisms, named mimics, novelty checks, costs, and external-data availability results are documented in <a href="../research/NEXT_CANDIDATES.md">research/NEXT_CANDIDATES.md</a>. These are qualitative scientific priors, not projected DTI scores. The current lane's three-experiment cap is consumed; do not start another experiment until the missing lane paragraph is resolved and the shared feature cache and complete registry are available.</p>
+  <ul>
+    <li>Displaced magnetic-contact pairs, cross-checked by gravity.</li>
+    <li>Depth-decoupled MT conductance-edge migration (USGS ScienceBase lists depth-interval products; grid compatibility is not verified).</li>
+    <li>Raw USGS ComCat lineaments with event-type filtering and focal-mechanism support where available.</li>
+    <li>Topography-conditioned radiometric discordance (related to, not independent of, the failed H86 residual family).</li>
+  </ul>
+</section>
 
-<section><h2>How to submit (when a candidate is green)</h2><p>Full step-by-step: <a href="executive-summary.html">Executive summary — how to make a submission</a>. Short version: download the green-lit .tif (or single-TIF .zip), verify SHA-256 against the receipt, open DrivenData → New submission, choose the file, paste the ≤140-char note, submit once, and keep the organizer receipt — only that receipt makes a score ORGANIZER-CONFIRMED.</p></section>
+<section>
+  <h2>Competition submission guide</h2>
+  <p>Automated local checks should run before an upload; they are not an organizer acceptance check. The current TIF is explicitly not approved. The step-by-step portal procedure, name/note instructions, and required receipt are on the <a href="executive-summary.html">executive summary</a>.</p>
+</section>
 
-<section><h2>Sources (official, for manual review)</h2><ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData competition 306 — problem &amp; format (DTI α=0.2 β=0.8, 300 m; EPSG:32611; [0,1])</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a> (not a per-file receipt)</li>
-<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li>
-<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release, doi:10.5066/P93LGLVQ</a> (K/Th/U/TC + RTP source data)</li>
-<li><a href="https://gdr.openei.org/submissions/1391">GDR 1391 INGENIOUS (catalogue provenance)</a></li>
-<li><a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li></ul>
-<p>Reproduce: <code>.venv/bin/python scripts/restore_lane_data.py &amp;&amp; .venv/bin/python scripts/run_lane86.py</code> (hash-pinned mirrors; mirror integrity ≠ organizer authentication). Full audit: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/arena/d8a21439-gemsdoe86/research/REVIEW.md">research/REVIEW.md</a>.</p></section>
-<footer>Reviewed 2026-10-22 · Verdict: <strong>negative</strong> — a deliverable per protocol. No weekly slot spent, no score claimed.</footer>
-</body></html>
+<section>
+  <h2>Official sources and audit records</h2>
+  <ul>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description, DTI and GeoTIFF format</a></li>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a> — live page; not a submission-page receipt</li>
+    <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li>
+    <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release, DOI 10.5066/P93LGLVQ</a></li>
+    <li><a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b">USGS Great Basin conductance maps, DOI 10.5066/P9TWT2LU</a></li>
+    <li><a href="https://earthquake.usgs.gov/fdsnws/event/1/query">USGS ComCat/FDSN event query endpoint</a></li>
+    <li><a href="https://gdr.openei.org/submissions/1391">GDR INGENIOUS compilation 1391</a></li>
+  </ul>
+  <p>Evidence: <a href="evidence/run-card.json">run card</a> · <a href="evidence/lane86_results.json">raw historical diagnostics and protocol correction</a> · <a href="evidence/source_review_2026-10-22.json">dated source review</a> · <a href="../research/REVIEW.md">scientific review</a>.</p>
+  <p>Revalidation: <code>.venv/bin/python scripts/restore_data.py</code>, then <code>.venv/bin/python scripts/audit.py</code>. A negative report intentionally exits 1 while status is DO NOT SUBMIT; it is not a test pass. This verifies local artifacts only; it does not run an experiment or authorize a submission.</p>
+</section>
+<footer>
+  <strong>Final verdict: negative.</strong> Artifact retained for audit; no submission slot spent; no organizer-confirmed score. The project did not demonstrate a score above any historical or current leaderboard result.
+</footer>
+</body>
+</html>

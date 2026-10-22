@@ -1,30 +1,104 @@
 import sys
 import unittest
 import tempfile
+import json
 import zipfile
 import rasterio
 from pathlib import Path
 import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'vendor')]
-from scripts.audit import check_pins, run
+from scripts.audit import check_pins, run, RUN_CARD
+from scripts.check_docs import check_local_links
+from scripts.uniqueness_gate import assert_experiment_budget_open, classify_registry_result
 from gems57.submission_writer import write_submission
 from gems57.uniqueness import dot_overlap, surface_rho
 from gems57.evaluate_holdout import evaluate
-from gems57 import grid, metric
+from gems57 import grid, metric, validate
 
 
 class SafetyTests(unittest.TestCase):
     def test_shared_bytes_unmodified(self):
         self.assertTrue(check_pins())
 
-    def test_missing_evidence_is_not_ready(self):
-        card = run()
-        self.assertFalse(card['submission_ready'])
-        self.assertEqual(card['verdict'], 'negative')
-        self.assertIsNone(card['raster_sha256'])
-        self.assertEqual(card['holdout_dti']['status'], 'NOT_RUN')
-        self.assertLessEqual(len(card['note']), 140)
+    def test_github_pages_local_links_resolve(self):
+        self.assertEqual(check_local_links(), [])
+
+    def test_read_only_preflight_preserves_scientific_run_card(self):
+        before = RUN_CARD.read_bytes()
+        report = run()
+        after = RUN_CARD.read_bytes()
+        self.assertEqual(before, after)
+        self.assertFalse(report['submission_ready'])
+        self.assertEqual(report['verdict'], 'negative')
+        self.assertTrue(report['run_card_unchanged_by_design'])
+        self.assertFalse(report['checks']['literal_uniqueness_gate_clear'])
+        self.assertFalse(report['checks']['holdout_protocol_conformant'])
+
+    def test_checked_in_candidate_is_format_valid_but_not_ready(self):
+        path = ROOT / 'docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif'
+        receipt_path = path.with_suffix('.json')
+        receipt = json.loads(receipt_path.read_text())
+        local = validate.validate(path)
+        self.assertTrue(local['all_checks_passed'])
+        self.assertEqual(local['sha256'], receipt['sha256'])
+        self.assertEqual(local['emitted_positive_pixels'], 60000)
+        self.assertFalse(receipt['submission_ready'])
+        self.assertEqual(receipt['uniqueness_gate']['status'], 'FAIL_STOP_DUPLICATE_THRESHOLD')
+        self.assertLessEqual(receipt['note_chars'], 140)
+
+    def test_exact_registry_identity_also_stops_promotion(self):
+        result = {'complete_accessible_scan': True, 'registry_rasters_checked': 1,
+                  'rows': [{'submission': 'same-raster', 'spearman_full_footprint': 0.2,
+                            'my_dots_within_3px_of_theirs': 0.2, 'identical_bytes': True}]}
+        gate = classify_registry_result(result, stage='unit-test', require_complete=True)
+        self.assertFalse(gate['passed'])
+        self.assertEqual(gate['status'], 'STOP_DUPLICATE_THRESHOLD')
+        self.assertEqual(gate['violations'][0]['checks'][0]['metric'], 'identity')
+
+    def test_literal_overlap_gate_is_not_overridden_by_low_rho_or_jaccard(self):
+        result = {
+            'complete_accessible_scan': True,
+            'registry_rasters_checked': 1,
+            'worst_spearman_full_footprint': 0.0003,
+            'worst_dot_overlap': 0.995,
+            'rows': [{
+                'submission': 'saturating-lattice',
+                'spearman_full_footprint': 0.0003,
+                'my_dots_within_3px_of_theirs': 0.995,
+                'jaccard_dot_sets': 0.009,
+                'duplicate_by_rho': False,
+                'duplicate_by_overlap': True,
+            }],
+        }
+        gate = classify_registry_result(result, stage='unit-test', check_rho=True,
+                                         check_overlap=True, require_complete=True)
+        self.assertFalse(gate['passed'])
+        self.assertEqual(gate['status'], 'STOP_DUPLICATE_THRESHOLD')
+        self.assertEqual(gate['violations'][0]['checks'][0]['metric'], 'my_dots_within_3px_of_theirs')
+
+    def test_incomplete_registry_cannot_clear_uniqueness(self):
+        result = {'complete_accessible_scan': False, 'registry_rasters_checked': 1,
+                  'rows': [{'submission': 'one', 'spearman_full_footprint': 0.1,
+                            'my_dots_within_3px_of_theirs': 0.1}]}
+        gate = classify_registry_result(result, stage='unit-test', require_complete=True)
+        self.assertFalse(gate['passed'])
+        self.assertEqual(gate['status'], 'STOP_INCOMPLETE_REGISTRY')
+
+    def test_missing_or_nonfinite_comparison_metrics_block_clearance(self):
+        for rho, overlap in [(None, 0.1), (float('nan'), 0.1), (0.1, float('inf'))]:
+            with self.subTest(rho=rho, overlap=overlap):
+                result = {'complete_accessible_scan': True, 'registry_rasters_checked': 1,
+                          'rows': [{'submission': 'uncertain', 'spearman_full_footprint': rho,
+                                    'my_dots_within_3px_of_theirs': overlap}]}
+                gate = classify_registry_result(result, stage='unit-test', require_complete=True)
+                self.assertFalse(gate['passed'])
+                self.assertEqual(gate['status'], 'STOP_UNVERIFIED_REGISTRY_ROWS')
+
+    def test_experiment_budget_fails_closed(self):
+        assert_experiment_budget_open(2, limit=3)
+        with self.assertRaises(RuntimeError):
+            assert_experiment_budget_open(3, limit=3)
 
     def test_writer_rejects_invalid_values_before_writing(self):
         for bad in [np.nan, np.inf, -0.01, 1.01, -9999]:

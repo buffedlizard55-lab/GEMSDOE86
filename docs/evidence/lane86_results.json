@@ -1180,5 +1180,43 @@
   "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
   "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
   "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
-  "elapsed_s": 53.54714250564575
+  "elapsed_s": 53.54714250564575,
+  "evidence_class": "HISTORICAL_DIAGNOSTIC_ONLY_NOT_PROTOCOL_CONFORMANT_HOLDOUT_DTI",
+  "experiments_run": 3,
+  "experiment_budget_cap": 3,
+  "protocol_review_2026-10-22": {
+    "review_status": "NONCONFORMANT; do not treat recorded DTI-like values as an accepted HOLDOUT-DTI gate or competition score.",
+    "lane_authorized": false,
+    "lane_irregularity": "The referenced single method paragraph was absent; the earlier agent selected H86-RMRB from a ranked hypothesis list.",
+    "cached_template_feature_stack_used": false,
+    "holdout_builder_called": "gems57.holdout.build_holdout",
+    "holdout_builder_requirement": "whole fault segments/components withheld with a context buffer",
+    "observed_holdout_design": "network traces were chunked to <=12 px and quadrant domains were eroded; no per-withheld-segment context buffer was applied.",
+    "shared_evaluator_module_imported": true,
+    "shared_evaluator_scoring_call_used": false,
+    "actual_scoring_call": "gems57.holdout.evaluate",
+    "reported_evaluator_version_string": "gems57-pooled-hide-v2 (imported metadata only; not used to compute the stored per-arm values)",
+    "confidence_interval_method": "custom bootstrap over 8 quadrant/draw cells; not evaluate_holdout.pooled_summary physical spatial-cluster bootstrap",
+    "incumbent_comparison": "Only one selected raster was evaluated as the incumbent; this does not establish the current best holdout among the full registry.",
+    "feature_canaries": "computed by the historical runner but are not admissible under the required buffered holdout.",
+    "submission_slot_spent": false,
+    "new_experiments_after_cap": 0
+  },
+  "preplacement_uniqueness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "NOT_RECORDED",
+    "reason": "The historical runner recorded continuous-surface Spearman correlation, but did not record the required pre-placement dot-overlap check. The feature surface/cache is not present in this checkout, so the exact pre-placement dots were not reconstructed.",
+    "stop_rule": "More than 70% within 3 px of any registry raster is a stop condition."
+  },
+  "verified_recheck_2026-10-22": {
+    "tif_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+    "tif_format": "PASS: single-band float32, EPSG:32611, shape 3730x3292, pinned transform, all finite, [0,1], 60000 positive pixels, zero positives outside footprint and on mapped catalogue; ZIP contains only byte-identical TIFF.",
+    "grid_inputs": "sample_submission and existing_faults restored from owner mirrors; SHA256 matched pinned manifest, organizer_authenticated=false.",
+    "registry_lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "final_forward_3px_dot_overlap": 0.9950333333333333,
+    "final_spearman_full_footprint": 0.00033794822338496317,
+    "literal_overlap_threshold": 0.7,
+    "protocol_action": "STOP and record as a lane-collision trigger. Low rho/Jaccard does not override the literal OR gate.",
+    "scope": "One collision independently rechecked; full 12-raster inventory and all sibling repositories were not re-fetched in this review."
+  }
 }

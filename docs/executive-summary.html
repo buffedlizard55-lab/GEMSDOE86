@@ -1,19 +1,77 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary · How to submit · GEMSDOE86</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="index.html">Readiness dashboard</a><a href="evidence/run-card.json">Run card JSON</a></nav>
-<header><span class="eyebrow">Executive summary</span><h1>Exactly how to make a submission.</h1><p><strong>Current file status: 🔴 DO NOT SUBMIT.</strong> A unique, format-valid candidate TIF is downloadable from the <a href="index.html">dashboard</a> for inspection only; it failed the holdout gate (HOLDOUT-DTI 0.0420 vs incumbent 0.1011 on the identical instrument), so no weekly slot may be spent on it. The steps below are the exact procedure to use when a future candidate turns green.</p></header>
-<section class="alert"><h2>The candidate on file (inspection only)</h2><p><code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br>SHA-256 <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br>Submission name: <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br>Note (118/140): <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code><br>Validator: PASS — single-band float32, all values finite in [0,1] (min 0.0, max 1.0), no NaN/Inf/sentinels, EPSG:32611, 3730×3292, transform identical to sample submission, 0 dots on the mapped catalogue, 0 mass outside the footprint. The portal error <em>“Predicted values must be in range [0, 1]”</em> cannot occur with this file: the shared writer rejects out-of-range/non-finite arrays before writing (it never clips) and re-validates the serialized bytes.</p></section>
-<section id="gates"><h2>Gates a file must pass before anyone submits it</h2><ol>
-<li><strong>Lane &amp; provenance:</strong> single declared method; data hash-pinned; catalogue never used as a predictor.</li>
-<li><strong>Leakage canary:</strong> every feature alone on the buffered whole-segment holdout; AUC &gt;0.90 = leakage until proven otherwise.</li>
-<li><strong>Holdout skill:</strong> pooled HOLDOUT-DTI (α=0.2, β=0.8, 300 m triangular) must beat the incumbent benchmark on the <em>identical</em> evaluator, with withheld-positive count and 95% CI reported. <em>This candidate failed here.</em></li>
-<li><strong>Uniqueness:</strong> surface (pre-placement) and final dots vs registry: stop on Spearman ρ &gt;0.90 or &gt;70% dots within 3 px of one raster; literal firings (e.g. saturating lattices) are logged, not hidden; incomplete registry = stated scope limit, never “clearance”.</li>
-<li><strong>Format:</strong> shared submission_writer only; serialized file re-validated; SHA-256 recorded.</li>
-<li><strong>Selector step:</strong> a separate human/selector checks the live weekly quota on the authenticated submission page and authorizes the slot. Local PASS ≠ organizer acceptance.</li></ol></section>
-<section><h2>Portal steps (green-lit files only)</h2><ol>
-<li>Download the .tif (or the .zip containing only that TIF) from the dashboard; verify SHA-256 against the adjacent receipt.</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition</a>, sign in, re-read the rules, confirm remaining weekly quota.</li>
-<li>Click <strong>New submission</strong> → <strong>File to submit</strong> → choose the verified .tif/.zip (single-band GeoTIFF matching the format CRS/shape/geotransform).</li>
-<li>Paste the release note (≤140 chars) into <strong>Note</strong> so the team can tell submissions apart.</li>
-<li>Submit once. Save the organizer's receipt/score page. Only that evidence may be labelled ORGANIZER-CONFIRMED; projections and holdout numbers may never be written as scores.</li></ol></section>
-<section><h2>Limitations &amp; next steps</h2><p>No DrivenData auth in this environment (data page is login-walled; mirrors are hash-pinned owner copies, not organizer-authenticated). Registry comparison covers 12 local hash-pinned rasters, not every GEMSDOE site. The radiometric-residual signal is real but weak (canary AUC ≈0.49–0.52; holdout DTI rises with dot budget, suggesting placement density, not boundary precision, is limiting). Next experiments, in order: (2) magnetic contact-offset, (3) radiometric–topographic discordance — each must pass Gates 2–4 before any slot is discussed. Historical scores quoted in the brief (0.2778 / 0.4413 / 0.3195) conflict with each other and have no receipts here; they are treated as unverified owner reports, not targets of record.</p></section>
-<footer>No competition submission was made by this project. Verdict: negative (deliverable).</footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive summary · How to submit · GEMSDOE86</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <strong>GEMS / 86</strong>
+  <a href="index.html">Readiness dashboard</a>
+  <a href="evidence/run-card.json">Run card JSON</a>
+</nav>
+<header>
+  <span class="eyebrow">Executive summary · submission instructions</span>
+  <h1>Exactly how to submit a cleared GeoTIFF.</h1>
+  <p><strong style="color:#ff8585">Current status: DO NOT SUBMIT.</strong> The only checked-in TIF is available for audit/research only. It passes local format checks, but the literal registry-overlap stop gate fires, the required holdout has not been established, and the feature-cache/lane provenance is unresolved. No file is currently marked “OK TO SUBMIT.”</p>
+</header>
+
+<section class="alert danger">
+  <h2>Current file — not submission-ready</h2>
+  <p><strong>File:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br>
+  <strong>SHA-256:</strong> <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br>
+  <strong>Name:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br>
+  <strong>Note (118/140 characters):</strong> <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code></p>
+  <p><strong>Local numerical/grid validation:</strong> PASS on a fresh re-read — single-band float32; all values finite and in [0,1]; EPSG:32611; 3730×3292; transform matches the owner-mirrored sample grid; no positive pixels outside the footprint or on the mapped catalogue. The ZIP contains exactly one byte-identical TIF. The mirror is hash-pinned but not organizer-authenticated.</p>
+  <p><strong>Why not submit:</strong> the final-dot 3-pixel overlap with a registered lattice raster is above the strict 70% stop threshold. Rank correlation and Jaccard do not cancel the rule. The holdout's stored output is excluded because the runner did not use the required buffered holdout/shared pooled evaluator. The pre-placement dot-overlap receipt is missing, and the local registry is incomplete.</p>
+  <p><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download .tif for audit only</a> · <a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>Download .zip for audit only</a> · <a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json">Local writer/validator receipt</a></p>
+  <p class="danger-note"><strong>Do not upload this file.</strong> A format PASS is not an authorization to spend a weekly slot.</p>
+</section>
+
+<section id="gates">
+  <h2>Automated gates required before the file can turn green</h2>
+  <ol>
+    <li><strong>Lane and provenance:</strong> only the explicitly assigned method paragraph is in scope. The paragraph referenced in the prompt was absent; the earlier agent's self-selected lane is not authorization. Pin the actual shared feature-cache bytes and their provenance.</li>
+    <li><strong>Leakage canaries:</strong> test each feature alone on the same buffered spatial holdout. AUC above 0.90 is suspected leakage until investigated. A low AUC is not proof of geological validity.</li>
+    <li><strong>Holdout skill:</strong> withhold whole fault segments/components with a buffer, derive catalogue-based features from visible faults only, mask visible faults pixel-exactly, then use the shared pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel) and spatial-cluster 95% CI. Compare against the best available incumbent on identical folds and report withheld positives. No admissible result currently exists.</li>
+    <li><strong>Uniqueness:</strong> check continuous-surface Spearman correlation before placement and dot overlap both before and after the final catalogue mask against every hash-pinned registry raster. Stop if rho &gt;0.90 or if more than 70% of candidate dots fall within 3 px of any reference. A complete registry is not currently available.</li>
+    <li><strong>Serialized format:</strong> use the shared writer, then reopen the exact TIFF and validate one float32 band, [0,1], CRS, shape, transform, footprint behavior, NaN/Inf/sentinels, and checksum. Local PASS is not portal acceptance.</li>
+    <li><strong>Separate selector:</strong> only after every scientific/provenance gate passes may a selector check the authenticated weekly quota and decide whether to use a slot. This project does not upload automatically.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Portal steps — only for a future green-lit file</h2>
+  <ol>
+    <li>On the dashboard, choose a file explicitly marked <strong>OK TO SUBMIT</strong>. Download the single-band <code>.tif</code> or its ZIP containing exactly that TIF. Do not use the current red-status file.</li>
+    <li>Verify the downloaded file's SHA-256 against its adjacent writer/validator receipt.</li>
+    <li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official DrivenData competition</a>, sign in, and review the current rules and remaining weekly quota.</li>
+    <li>Choose <strong>New submission</strong> → <strong>File to submit</strong> and select the verified file. The competition page requires a single-band float32 GeoTIFF matching EPSG:32611, 100 m resolution, and the template bounds; prediction values must be in [0,1].</li>
+    <li>Paste the short release note (no more than 140 characters) into <strong>Note</strong>. Use the exact submission name shown on the dashboard.</li>
+    <li>Submit once only if the separate selector authorized the slot. Save the organizer's submission-page receipt. A public leaderboard entry, projection, local validation report, or holdout measurement is not that receipt.</li>
+  </ol>
+  <p><strong>Previous range-error report:</strong> the exact rejected file is not present, so its cause cannot be determined. The current TIF's stored values were independently re-read and satisfy the local range/finite checks; this does not prove why the earlier file was rejected or guarantee acceptance by the portal.</p>
+</section>
+
+<section>
+  <h2>Why a claimed historical high cannot be explained as a confirmed result</h2>
+  <p>The <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">linked GEMSDOE32 page</a> describes H33-2-B2 as a catalogue-flank pruning of a dotted raster, but marks it <strong>UNSCORED</strong> and labels the modeled result a projection. Its contents do not verify the user-supplied value as an organizer-confirmed score. If a similar pruning later has an actual submission receipt, a plausible metric-geometric mechanism is that dropping low-credit/redundant predicted mass can reduce false-positive cost; that explanation is not evidence of new fault discovery and is not proven for an unscored raster.</p>
+  <p>The official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> was fetched during the latest review and its current lead is above the maximum quoted in the brief. No number is copied into this project's score card because the leaderboard is not a per-submission receipt. See the dated <a href="evidence/source_review_2026-10-22.json">source review</a>.</p>
+</section>
+
+<section>
+  <h2>Limitations and next steps</h2>
+  <ul>
+    <li>DrivenData's data page is login-walled in this environment. Current grid inputs were restored from an owner mirror and are not organizer-authenticated.</li>
+    <li>The shared feature-stack receipt points to an ephemeral path and has no cache hash; the required cache is not in this checkout. The next run must not silently rebuild it.</li>
+    <li>The 12-raster local inventory is not a complete registry of the sibling sites listed by the owner.</li>
+    <li>The H86 lane was not assigned, the three-experiment cap is consumed, and its holdout is nonconformant. No new experiment is authorized here.</li>
+    <li>There is no authenticated quota check, no organizer receipt for this artifact, and no automatic submission integration.</li>
+  </ul>
+  <p>Next scientific hypotheses and source checks are in <a href="../research/NEXT_CANDIDATES.md">NEXT_CANDIDATES.md</a>. The complete audit is in <a href="../research/REVIEW.md">research/REVIEW.md</a>.</p>
+</section>
+<footer>No competition upload was made. Verdict: <strong>negative</strong>. The file is available for audit download, but is not cleared for submission.</footer>
+</body>
+</html>

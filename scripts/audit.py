@@ -1,64 +1,205 @@
-"""Reproducible preflight. Missing evidence is a negative result, never a PASS."""
-from pathlib import Path
+"""Read-only preflight for the checked-in negative candidate.
+
+This command deliberately writes to ``docs/evidence/preflight.json`` rather than
+``run-card.json``.  The scientific run card is evidence, not a cache that a unit
+test or routine audit may overwrite.
+"""
+from __future__ import annotations
+
+import argparse
 import hashlib
 import json
+import math
 import sys
+import zipfile
+from datetime import datetime, timezone
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'vendor'))
+sys.path.insert(0, str(ROOT / "vendor"))
+
+CANDIDATE_RECEIPT = ROOT / "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json"
+RUN_CARD = ROOT / "docs/evidence/run-card.json"
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
-def check_pins():
-    pin = json.loads((ROOT / 'research/template_pin.json').read_text())
-    return all((ROOT / p).is_file() and hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == h
-               for p, h in pin['files'].items())
+def check_pins() -> bool:
+    """Return whether every vendored shared-tool byte matches its upstream pin."""
+    pin_path = ROOT / "research/template_pin.json"
+    if not pin_path.is_file():
+        return False
+    pin = json.loads(pin_path.read_text(encoding="utf-8"))
+    files = pin.get("files")
+    if not isinstance(files, dict) or not files:
+        return False
+    return all(
+        isinstance(relative, str)
+        and isinstance(expected, str)
+        and (ROOT / relative).is_file()
+        and sha256(ROOT / relative) == expected
+        for relative, expected in files.items()
+    )
 
 
-def run():
-    import numpy as np
-    import rasterio
-    from gems57 import grid
-    checks = {'shared_template_hashes_match': check_pins()}
-    details = {}
-    sample = ROOT / 'data/sample_submission.tif'
-    faults = ROOT / 'data/existing_faults.tif'
-    checks['grid_inputs_present'] = sample.is_file() and faults.is_file()
-    if checks['grid_inputs_present']:
-        with sample.open('rb') as stream:
-            checks['sample_mirror_sha_matches'] = hashlib.file_digest(stream, 'sha256').hexdigest() == grid.SHA256_SAMPLE_SUBMISSION
-        with faults.open('rb') as stream:
-            checks['fault_mirror_sha_matches'] = hashlib.file_digest(stream, 'sha256').hexdigest() == grid.SHA256_EXISTING_FAULTS
-        with rasterio.open(sample) as s, rasterio.open(faults) as f:
-            foot = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
-            checks['input_grids_match'] = (s.count == f.count == 1 and s.shape == f.shape == grid.SHAPE
-                and s.crs == f.crs == rasterio.crs.CRS.from_epsg(grid.EPSG)
-                and s.transform == f.transform == grid.TRANSFORM)
-            details = dict(shape=list(s.shape), crs=str(s.crs), transform=list(s.transform)[:6],
-                           footprint_pixels=int(foot.sum()), organizer_authenticated=False)
-    # Explicit blockers: existence alone must never turn these into a science PASS.
-    blockers = [
-        'No single method paragraph/lane was specified in the supplied prompt.',
-        'Shared cached feature stack referenced upstream is not present; no replacement stack was built.',
-        'No complete, pinned cross-lane raster registry was supplied or reconstructed.',
-        'No feature-alone leakage canary or buffered segment hide-and-recover experiment was run.',
-        'No comparable current-best pooled HOLDOUT-DTI with paired spatial CI was established.',
-        'No candidate surface or final dots exist; uniqueness and raster validation are untested.'
-    ]
-    card = dict(hypothesis='H86 provisional: radiometric mixing-residual boundary (not lane-authorized)',
-        mechanism='Residual K/Th variation after local lithologic mixing regression, gated by magnetic edge persistence.',
-        non_fault_mimic='Lithologic contacts and weathering fronts',
-        holdout_dti=dict(evidence_class='HOLDOUT-DTI', status='NOT_RUN', evaluator_version='gems57-pooled-hide-v2',
-                         withheld_positives=None, value=None, ci95=None),
-        correlation_overlap_vs_registry=dict(status='NOT_RUN', surface=None, final_dots=None, complete=False),
-        raster_sha256=None,
-        validator=dict(status='NOT_RUN_NO_CANDIDATE', no_nan_inside_footprint=None, values_in_0_1=None,
-                       crs_shape_transform_match=None),
-        submission_name=None, note='No candidate generated: lane, cached features, complete registry and comparable holdout baseline are missing.',
-        verdict='negative', submission_ready=False, experiments_run=0,
-        preflight_checks=checks, input_grid=details, blockers=blockers)
-    (ROOT / 'docs/evidence/run-card.json').write_text(json.dumps(card, indent=2, allow_nan=False)+'\n')
-    return card
+def _validate_artifact() -> dict:
+    """Validate the checked-in TIFF bytes; never infer scientific readiness."""
+    from gems57 import grid, validate
+
+    if not CANDIDATE_RECEIPT.is_file():
+        return {"present": False, "checks": {"receipt_present": False}}
+    receipt = json.loads(CANDIDATE_RECEIPT.read_text(encoding="utf-8"))
+    filename = receipt.get("file")
+    zip_filename = receipt.get("zip_file")
+    if (not filename or Path(filename).name != filename
+            or not zip_filename or Path(zip_filename).name != zip_filename):
+        return {"present": False, "checks": {"receipt_path_safe": False}}
+    tif = CANDIDATE_RECEIPT.parent / filename
+    zip_path = CANDIDATE_RECEIPT.parent / zip_filename
+    checks = {"receipt_path_safe": True, "tif_present": tif.is_file()}
+    if not tif.is_file():
+        return {"present": False, "checks": checks}
+
+    data_dir = ROOT / "data"
+    full_grid = None
+    input_grid_error = None
+    if (data_dir / "sample_submission.tif").is_file() and (data_dir / "existing_faults.tif").is_file():
+        try:
+            full_grid = grid.load_grid(data_dir)
+        except (OSError, ValueError, RuntimeError) as exc:
+            input_grid_error = type(exc).__name__
+    if full_grid is None:
+        report = validate.validate(tif)
+        checks["footprint_and_catalogue_rechecked"] = False
+        checks["input_mirror_hashes_match"] = False
+    else:
+        report = validate.validate(tif, footprint=full_grid.footprint, catalogue=full_grid.catalogue)
+        checks["footprint_and_catalogue_rechecked"] = True
+        checks["input_mirror_hashes_match"] = (
+            sha256(data_dir / "sample_submission.tif") == grid.SHA256_SAMPLE_SUBMISSION
+            and sha256(data_dir / "existing_faults.tif") == grid.SHA256_EXISTING_FAULTS
+        )
+
+    checks["sha256_matches_writer_receipt"] = report["sha256"] == receipt.get("sha256")
+    checks["writer_checks_match"] = bool(report["all_checks_passed"])
+    checks["single_band_float32"] = report["meta"]["count"] == 1 and report["meta"]["dtype"] == "float32"
+    checks["crs_shape_transform_match_pinned_grid"] = (
+        report["meta"]["crs"] == f"EPSG:{grid.EPSG}"
+        and tuple(report["meta"]["shape"]) == grid.SHAPE
+        and report["meta"]["transform"] == list(tuple(grid.TRANSFORM)[:6])
+    )
+    checks["finite_range_0_1"] = (
+        report["n_nan"] == 0 and report["n_infinite"] == 0
+        and report["min"] is not None and report["min"] >= 0
+        and report["max"] is not None and report["max"] <= 1
+    )
+    checks["sha256_matches_run_card"] = True
+    if RUN_CARD.is_file():
+        card = json.loads(RUN_CARD.read_text(encoding="utf-8"))
+        checks["sha256_matches_run_card"] = report["sha256"] == card.get("raster_sha256")
+
+    zip_ok = False
+    if zip_path.is_file():
+        try:
+            with zipfile.ZipFile(zip_path) as archive:
+                names = archive.namelist()
+                zip_ok = names == [filename] and archive.read(filename) == tif.read_bytes()
+        except (OSError, zipfile.BadZipFile, KeyError):
+            zip_ok = False
+    checks["zip_contains_only_byte_identical_tif"] = zip_ok
+    checks["zip_sha256_matches_receipt"] = zip_path.is_file() and sha256(zip_path) == receipt.get("zip_sha256")
+
+    return {
+        "present": True,
+        "file": str(tif.relative_to(ROOT)),
+        "bytes": report["bytes"],
+        "sha256": report["sha256"],
+        "positive_pixels": report["emitted_positive_pixels"],
+        "min": report["min"],
+        "max": report["max"],
+        "meta": report["meta"],
+        "checks": checks,
+        "input_grid_error_type": input_grid_error,
+        "all_local_format_checks_pass": bool(all(checks.values())),
+        "validation_scope": "local format/range audit; not scientific clearance, registry uniqueness, or organizer acceptance",
+    }
 
 
-if __name__ == '__main__':
-    print(json.dumps(run(), indent=2))
+def _finite_metric(value, lower: float, upper: float) -> float | None:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) and lower <= number <= upper else None
+
+
+def run() -> dict:
+    """Build a read-only preflight report; do not mutate any evidence file."""
+    pin_ok = check_pins()
+    artifact = _validate_artifact()
+    run_card = json.loads(RUN_CARD.read_text(encoding="utf-8")) if RUN_CARD.is_file() else {}
+    uniqueness = run_card.get("correlation_overlap_vs_registry", {})
+    holdout = run_card.get("holdout_dti", {})
+    protocol = run_card.get("protocol_conformance", {})
+
+    surface_rho = _finite_metric(uniqueness.get("surface_worst_spearman_recorded"), -1.0, 1.0)
+    pre_dot_overlap = _finite_metric(uniqueness.get("preplacement_dot_overlap"), 0.0, 1.0)
+    final_dot_overlap = _finite_metric(uniqueness.get("final_worst_dot_overlap_verified"), 0.0, 1.0)
+    literal_unique = (
+        uniqueness.get("duplicate_gate_fired") is False
+        and surface_rho is not None and surface_rho <= 0.90
+        and pre_dot_overlap is not None and pre_dot_overlap <= 0.70
+        and final_dot_overlap is not None and final_dot_overlap <= 0.70
+    )
+    checks = {
+        "shared_template_hashes_match": pin_ok,
+        "shared_feature_stack_available": bool(protocol.get("template_cached_feature_stack_available", False)),
+        "shared_feature_stack_used": bool(protocol.get("template_cached_feature_stack_used", False)),
+        "lane_authorized": bool(protocol.get("lane_authorized", False)),
+        "candidate_tif_present": bool(artifact.get("present")),
+        "candidate_local_format_checks_pass": bool(artifact.get("all_local_format_checks_pass")),
+        "literal_uniqueness_gate_clear": literal_unique,
+        "complete_registry_available": bool(uniqueness.get("complete_accessible_scan", False)),
+        "holdout_protocol_conformant": bool(protocol.get("holdout_conformant", False)),
+        "holdout_comparison_beats_best": bool(protocol.get("beats_current_holdout_best", False)),
+    }
+    ready = bool(all(checks.values()))
+    decision = (
+        "OK TO SUBMIT to the separate slot selector; this preflight does not authorize or spend a weekly slot."
+        if ready else
+        "DO NOT SUBMIT; at least one scientific/provenance gate is not satisfied."
+    )
+    return {
+        "schema": "gemsdoe86-preflight-v1",
+        "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "evidence_class": "LOCAL-PREFLIGHT (not a competition score)",
+        "checks": checks,
+        "artifact": artifact,
+        "holdout_dti": holdout,
+        "registry": uniqueness,
+        "submission_ready": ready,
+        "approved_for_weekly_slot": False,
+        "verdict": "promote" if ready else "negative",
+        "submission_decision": decision,
+        "run_card_unchanged_by_design": True,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", type=Path, default=ROOT / "docs/evidence/preflight.json")
+    args = parser.parse_args()
+    report = run()
+    output = args.out if args.out.is_absolute() else ROOT / args.out
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    print(json.dumps(report, indent=2, allow_nan=False))
+    return 0 if report["verdict"] == "promote" else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

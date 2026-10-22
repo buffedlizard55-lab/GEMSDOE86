@@ -1,27 +1,50 @@
-# Three-pass verification record
+# Three-pass verification and current review record
 
-## Pass 1 — implement and exercise
+**Reviewed:** 2026-10-22. This file replaces earlier pass summaries where they conflict with the current evidence. It is a dated snapshot, not a live dashboard.
 
-Inspected the empty checkout, selected related GitHub trees and the official reference solution. Recovered small hash-pinned grid inputs from owner mirrors. Located the shared template; vendored its Python package byte-for-byte with a commit/hash pin. Added a reproducible negative preflight, research report, homepage, executive summary and CI.
+## Pass 1 — implementation and safe local audit
 
-## Pass 2 — bugs, assumptions, edge cases
+Inspected the checkout and selected upstream trees; installed the pinned Python dependencies; restored the small grid rasters from the owner mirror; verified their SHA-256 hashes against the checked-in manifest. The mirror is not organizer-authenticated. The shared `gems57` tool bytes are unchanged and still match their pin. The 419 MB mirrored feature raster and ephemeral feature cache were not restored or substituted.
 
-Fixed a test that had mistaken the shared `surface_rho` return object for a scalar. Closed a file handle in mirror restoration. Kept shared metric/writer source unchanged. Tested NaN, Inf, negative/over-one and sentinel values, catalogue support, outside-footprint support, empty truth and duplicates. Added a complete ephemeral full-grid TIFF/ZIP roundtrip and overwrite rejection test. No test fixture was offered as a submission. Added current input hashes to preflight checks.
+An existing candidate TIF was already in the checkout. It was not created during this review. A fresh local read confirms the expected single-band float32 GeoTIFF grid, finite values in [0,1], 60,000 positive pixels, and a ZIP containing exactly that byte-identical TIFF. This is a file-format result only—not scientific validation, registry clearance, or organizer acceptance.
+
+## Pass 2 — protocol, failure-mode, and evidence review
+
+Re-read the historical runner and its JSON evidence. The earlier H86 run consumed all three experiments before this review. It was not authorized by the missing single-method paragraph; it used a locally assembled stack rather than the required cached template stack; and its stored DTI-like numbers came from a different hide/evaluation path and cell bootstrap. The holdout was not whole-segment buffered, its confidence interval was not the shared spatial-cluster interval, and it did not establish the best comparable incumbent. Those values remain raw diagnostics and are excluded from admissible HOLDOUT-DTI claims.
+
+Independently rechecked the final-dot comparison against the hash-pinned 13GEMSDOE lattice raster. The candidate's forward 3-pixel dot overlap is 0.9950333333, above the literal 0.70 stop threshold; Spearman correlation is 0.0003379482 and Jaccard is 0.0092227062. The OR rule fires on overlap. Low correlation/Jaccard and non-identical file bytes do not override the stop. The full registry and the required pre-placement dot comparison remain unavailable/not recorded.
+
+Changed `scripts/audit.py` to write a separate local preflight report instead of overwriting the run card; it fails readiness closed. Added a gate-interpreter module that treats missing/nonfinite registry metrics, identity, incomplete inventory, and threshold violations as non-clearance. Added a local HTML-link checker. Hardened the historical runner against a consumed budget and nonconformant protocol. **The runner was compiled but not executed.** No new geological experiment, candidate generation, submission, or weekly-slot selection occurred during this review.
 
 ## Pass 3 — requirements and claim review
 
-Eight tests pass. Python compilation and Git whitespace checks pass. Local HTML links are checked for missing targets. Machine JSON uses null rather than inventing scores or validation results. Unfetched official sources, owner-reported scores, mirrored data authenticity and provisional hypotheses are labelled. The UI uses explicit NOT READY language rather than an actionable TIF download.
+The current run card and audit receipt say **negative / DO NOT SUBMIT**. Its admissible HOLDOUT-DTI value, evaluator, withheld-positive count, and CI are null. The separate preflight records the local TIF checks as passing but keeps registry, holdout, and complete-inventory gates false. No ORGANIZER-CONFIRMED score exists for the file. The exact past portal-rejected file was not available, so its reported range-error cause remains unknown.
 
-**Not fully satisfied:** no unique candidate TIF, no assigned lane, no cached feature stack, no complete registry, no feature canaries, no geological experiment, no comparable best holdout/CI, no confirmed leaderboard score or authenticated quota, no live official-source feed, and no verbatim archive of the entire user prompt (README retains a condensed starting brief). These are not hidden behind an overall success claim. Research novelty across every sibling repository remains unverified. Four hypotheses are provisional, not discoveries. Three model experiments / two-hour budget was not consumed; zero model experiments ran.
+The GEMSDOE32 H33-2-B2 page was fetched and says **UNSCORED**; it calls its modeled result a projection and says no organizer score exists. The official DrivenData public leaderboard and task page were also fetched on 2026-10-22. A public leaderboard observation is not a per-file submission receipt; the numeric observation is intentionally not copied into this project's run card. Dated source claims and access limits are in `docs/evidence/source_review_2026-10-22.json`.
 
-Local format tests prove serialization and rejection behavior only; they do not prove a useful or unique prediction. The next scientific task must start by resolving the recorded blockers, not by uploading a template.
+The README now contains a detailed persistent project directive, protocol, evidence rules, safety commands, and explicit “read at the start of every session” checklist. It is an operational record, not a verbatim archive of the entire original conversation. The clean Pages site makes audit-only status prominent, provides a future portal guide, and labels all score/slot claims. Its local HTML links are checked automatically in CI.
 
-## Follow-up review in this checkout — 2026-10-22
+## Safe verification commands and outcome
 
-The current branch was re-reviewed against the full user brief and the run-card protocol. A fresh Python 3.11 virtual environment was created and the pinned dependencies in `requirements.txt` installed. `scripts/restore_data.py` completed from the hash-pinned owner mirror for `existing_faults.tif` and `sample_submission.tif`; the receipts record the expected hashes and explicitly say `organizer_authenticated: false`. The files remain under ignored `data/` and are not committed. The 419 MB mirrored feature raster was deliberately not downloaded: the request requires the template's cached feature stack, and substituting or rebuilding one is not authorized or equivalent.
+- `python scripts/check_docs.py` — all local HTML links resolve.
+- `PYTHONPATH=vendor .venv/bin/python -m unittest discover -s tests -v` — 15 unit/safety tests pass. One Rasterio `PendingDeprecationWarning` from the synthetic affine-transform test remains non-fatal.
+- `PYTHONPATH=vendor .venv/bin/python -m compileall -q scripts vendor tests` — passes, including the disabled legacy runner.
+- `git diff --check` — passes.
+- `.venv/bin/python scripts/audit.py` — writes `docs/evidence/preflight.json` and intentionally exits 1 because the scientific/provenance readiness gates are negative. It does not overwrite `docs/evidence/run-card.json`.
 
-Fresh checks: `scripts/audit.py` reports the grid inputs present, mirror hashes matching, and matching raster grids (EPSG:32611; 3730 x 3292; 100 m transform). The audit still correctly returns `verdict: negative`, no candidate SHA, no holdout score, and no submission readiness. `python -m unittest discover -s tests -v` passes all eight tests; `compileall` and `git diff --check` pass. One Rasterio `PendingDeprecationWarning` arises in the synthetic round-trip test and does not fail the test. No model experiments were run, so no number is labeled HOLDOUT-DTI, and no result is ORGANIZER-CONFIRMED.
+The tests include a synthetic full-grid writer/ZIP roundtrip, rejection of invalid values/catalogue/out-of-footprint support, metric-oracle arithmetic, fail-closed registry gate behavior, experiment-cap logic, candidate byte/format checks, shared-tool hash pins, read-only preflight behavior, and local Pages links. They do not constitute geological experiments or competition scores.
 
-**Decision:** do not create or expose a downloadable TIFF. The prompt's highest-priority demand for a unique submission conflicts with its own stop conditions: it supplies no identifiable authorized method paragraph, complete registry, shared feature cache, feature canary, or benchmark holdout. A new TIFF under these conditions would be unvalidated, not demonstrably unique, and would misleadingly appear eligible for competition upload. The website therefore remains an explicit NOT READY status; `docs/evidence/run-card.json` is a negative preflight, not a submission artifact. No slot was selected or spent.
+## Outstanding limitations and handoff
 
-This is a repo review and a negative preflight, not completion of the scientific submission goal. Existing limitations remain: no current authenticated quota/receipt, no organizer-authenticated inputs, no fresh official leaderboard capture in this rerun, no complete sibling-site registry, and no documented feature-layer validation. The reported historical scores remain unverified in this evidence set.
+1. The assigned method paragraph is absent; no new lane is authorized. The historical H86 runner's selection was not authorization.
+2. The three-experiment cap is consumed. Zero experiments were run **in this current review**; do not run another, submit the candidate, or spend a slot.
+3. The shared cached feature stack and its verifiable hash/receipt are unavailable. Do not privately rebuild it or substitute a mirror raster.
+4. The complete cross-repository/organizer registry is unavailable, and pre-placement dot overlap was not recorded. The known final-dot overlap gate already fails.
+5. No admissible holdout result, paired spatial-cluster CI, feature-alone leakage canary under the required folds, or best-comparable holdout baseline exists.
+6. Only small owner-mirrored grid inputs were hash-checked; no official competition download/authentication, private labels, authenticated weekly quota, upload, or submission-page receipt was obtained.
+7. Four next-candidate hypotheses are documented with named layers, mechanisms, mimics, qualitative potential tiers, relative novelty limits, cost, and source availability. They remain untested and unauthorized.
+8. The user-provided historical score claims have not been systematically verified across every sibling GEMSDOE site. GEMSDOE32's H33-2-B2 page explicitly marks its artifact unscored. Broader sibling-site novelty, score receipts, and complete historical comparisons remain outstanding.
+9. The source review is a dated snapshot, not a live official-source feed. The full original user prompt is not archived verbatim; README records its persistent operational requirements.
+10. GitHub PR review and merge status is repository metadata and is not evidence that scientific or submission gates passed.
+
+**Current deliverable status:** repository review and negative preflight, not a scientifically cleared competition submission. The audit TIF is downloadable for inspection only; do not upload it.

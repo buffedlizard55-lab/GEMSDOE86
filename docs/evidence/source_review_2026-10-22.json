@@ -1,0 +1,86 @@
+{
+  "schema": "gemsdoe86-source-review-v1",
+  "retrieved_utc": "2026-10-22",
+  "retrieval_method": "Arena web-page fetches; an FDSN query was retrieved as GeoJSON. This is a dated snapshot, not an automated live feed.",
+  "sources": [
+    {
+      "id": "drivendata_problem_description",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "status": "FETCHED",
+      "verified_facts": [
+        "Competition target is faults indicative of geothermal resources; it is not direct geothermal-vent detection.",
+        "The problem description says the existing public fault labels are incomplete and that expert-identified faults make up the initial test labels.",
+        "The metric uses a 300 m triangular distance kernel and alpha 0.2 / beta 0.8.",
+        "Submission format is a single float32 GeoTIFF on EPSG:32611, 100 m, matching bounds, with confidence values in [0,1]."
+      ]
+    },
+    {
+      "id": "drivendata_public_leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "status": "FETCHED",
+      "interpretation": "The page's current top entry is above the maximum quoted in the user's brief. The live page is not a per-submission receipt for a GEMSDOE86 file; no numeric leaderboard value is recorded as this project's score or in the run card."
+    },
+    {
+      "id": "gemsdoe32_h33_page",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "status": "FETCHED; owner-maintained research site, not organizer evidence",
+      "verified_facts": [
+        "The page describes H33-2-B2 as a catalogue-flank pruning of a dotted field and gives a submission artifact.",
+        "The same page labels the artifact UNSCORED, calls its modeled value a projection, and states that no organizer score exists for it.",
+        "Therefore the user-provided reported value cannot be attributed to that page as an organizer-confirmed result."
+      ]
+    },
+    {
+      "id": "usgs_geodawn",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "status": "FETCHED",
+      "verified_facts": [
+        "The USGS page links DOI 10.5066/P93LGLVQ and describes airborne magnetic and radiometric surveys plus coordinated lidar.",
+        "The page lists GeoTIFF products and states CC0 1.0 rights."
+      ],
+      "limitation": "No direct USGS raster bytes, footprint, CRS alignment, or match to the competition cache was verified in this review."
+    },
+    {
+      "id": "usgs_great_basin_conductance",
+      "url": "https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b",
+      "status": "FETCHED",
+      "verified_facts": [
+        "USGS ScienceBase lists five interval conductance rasters spanning 2 to 200 km depth and shows individual TIFF products.",
+        "The release describes conductance as an interval-integrated subsurface property estimated from a 3-D MT model."
+      ],
+      "limitation": "No TIFF bytes, competition-footprint overlap, CRS match, uncertainty, or license/redistribution analysis was completed."
+    },
+    {
+      "id": "usgs_comcat_fdsn_query",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-10-01&endtime=2026-10-02&minlatitude=38&maxlatitude=42&minlongitude=-120&maxlongitude=-116",
+      "status": "QUERY RETURNED GEOJSON THROUGH THE REVIEW BROWSER TOOL",
+      "verified_facts": [
+        "The sample query returned events in the broad Nevada bounding window.",
+        "The response included an event identified as an explosion as well as earthquake events, demonstrating that event-type filtering and quality control are necessary."
+      ],
+      "limitation": "This confirms browser-tool reachability only, not local-shell access, complete temporal coverage, mechanism availability, or overlap with the exact competition footprint."
+    },
+    {
+      "id": "gdr_ingenious_1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "status": "FETCHED",
+      "verified_facts": [
+        "The metadata describes a public INGENIOUS dataset compilation and displays a CC BY 4.0 license.",
+        "The listing includes faults, volcanics, wells/springs, seismicity and geophysical datasets."
+      ],
+      "limitation": "A listing is not evidence that a particular resource was downloaded, spatially matched, or approved for a specific feature use."
+    },
+    {
+      "id": "owner_mirror_historical_annotations",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "status": "LOCAL owner-mirror manifest and historical audit snapshots reviewed; owner-maintained, not organizer evidence",
+      "verified_facts": [
+        "The checked-in owner manifest and historical artifacts attach numerical annotations to selected rasters, including owner-reported and projected values.",
+        "These annotations are provenance claims, not per-submission receipts and not ORGANIZER-CONFIRMED results.",
+        "They are not copied into this project run card as competition scores."
+      ],
+      "limitation": "Only the owner artifacts already present in this checkout and the linked H33 page were reviewed; a complete audit of all sibling sites, historical submissions, and receipts was not performed."
+    }
+  ],
+  "score_evidence_policy": "No score for a GEMSDOE86 artifact is ORGANIZER-CONFIRMED without its submission-page receipt. Public leaderboard observations, user-reported values, modeled projections, and holdout metrics are kept distinct."
+}

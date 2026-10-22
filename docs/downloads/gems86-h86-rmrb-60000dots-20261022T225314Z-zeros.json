@@ -115,9 +115,35 @@
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "DO NOT SUBMIT: local format PASS only; the literal 3-pixel registry-overlap stop gate fired, and no protocol-conformant HOLDOUT-DTI or complete registry clearance exists.",
   "metadata": {
     "lane": "H86-RMRB",
     "budget": 60000
+  },
+  "download_status": "Download for audit/research inspection only. Not cleared for a competition slot.",
+  "submission_ready": false,
+  "protocol_conformance": {
+    "lane_authorized": false,
+    "cached_template_feature_stack_used": false,
+    "holdout_conformant": false,
+    "three_experiment_cap_consumed": true,
+    "slot_spent": false
+  },
+  "uniqueness_gate": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "FAIL_STOP_DUPLICATE_THRESHOLD",
+    "registry_raster": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "registry_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "forward_overlap_within_3px": 0.9950333333333333,
+    "overlap_threshold": 0.7,
+    "spearman_full_footprint": 0.00033794822338496317,
+    "jaccard_dot_sets": 0.009222706234685542,
+    "interpretation": "The literal OR threshold fires despite low rank correlation and Jaccard. Record as a protocol-defined collision; do not submit.",
+    "scope": "One registry collision independently rechecked; the local 12-raster inventory is incomplete."
+  },
+  "scientific_gate": {
+    "status": "NOT_ESTABLISHED",
+    "reason": "The historical hide design, evaluator call, CI method, feature-cache provenance, and incumbent selection do not match the requested protocol.",
+    "raw_historical_diagnostics": "docs/evidence/lane86_results.json"
   }
 }

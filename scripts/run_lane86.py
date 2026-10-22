@@ -1,19 +1,18 @@
-"""Lane H86-RMRB: radiometric mixing-residual boundary (declared lane for GEMSDOE86).
+"""Historical H86-RMRB implementation; intentionally fail-closed and not authorized.
 
-IRREGULARITY LOGGED: the supplied prompt says the lane is 'the single method
-paragraph below' but contains no such paragraph. This session therefore
-declares, before any experiment, the preregistered-but-never-implemented
-rank-1 hypothesis of research/REVIEW.md as its lane and stays inside it:
-  surface = boundary strength of the residual of a robust global
-  K ~ Th + U + TC mixing regression (GeoDAWN radiometrics, USGS
-  doi:10.5066/P93LGLVQ via hash-pinned owner mirror), gated by multi-scale
-  RTP magnetic-edge persistence, down-weighted where a broad (sigma=5 px)
-  Th step is co-located (lithologic-contact mimic rejection).
-No catalogue/label bytes enter the surface. The catalogue is used only
-(a) by the shared hide-and-recover evaluator as withheld truth, and
-(b) to zero final dots on/near mapped faults (visible-fault masking).
-Shared tools are reused unmodified: vendor/gems57 {grid,holdout,metric,
-evaluate_holdout,uniqueness,validate,submission_writer}.
+The original prompt referenced a single method paragraph that was not present.
+An earlier agent self-selected the rank-1 hypothesis below; that did not
+establish lane authorization. The saved runner also assembled components from
+mirrored rasters instead of the required verified template feature stack, and
+its stored holdout diagnostics did not use the required shared evaluator and
+buffered whole-segment design. The three-experiment cap is consumed.
+
+Historical method (for audit only): a K~Th+U+TC radiometric residual boundary,
+gated by multi-scale RTP magnetic-edge persistence and down-weighted at broad
+Th steps. No catalogue labels were intended as model-surface inputs; the
+catalogue mask was applied to the final output. Those design claims do not make
+the old measurements protocol-conformant. `main()` refuses to run after the
+budget is exhausted or while the protocol is nonconformant.
 """
 from __future__ import annotations
 import hashlib, json, sys, time
@@ -21,11 +20,49 @@ from pathlib import Path
 import numpy as np, rasterio
 from scipy import ndimage as ndi
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT/"vendor"))
 from gems57 import grid as G, holdout as H, evaluate_holdout as EH, uniqueness as U, validate as V
 from gems57.submission_writer import write_submission
+from scripts.uniqueness_gate import assert_experiment_budget_open, classify_registry_result
 
 BUDGET_MAIN = 37654
+PREPLACEMENT_BUDGETS = (20000, BUDGET_MAIN, 60000)
+
+
+def _recorded_experiment_count():
+    """Read the lane budget from evidence; never infer a fresh budget by rerunning."""
+    card_path = ROOT / "docs/evidence/run-card.json"
+    if card_path.is_file():
+        card = json.loads(card_path.read_text(encoding="utf-8"))
+        if isinstance(card.get("experiments_run"), int):
+            return card["experiments_run"]
+    result_path = ROOT / "docs/evidence/lane86_results.json"
+    if result_path.is_file():
+        results = json.loads(result_path.read_text(encoding="utf-8"))
+        return int(results.get("experiments_run", sum(k in results for k in (
+            "experiment1", "experiment2_budget_sweep", "experiment3_ablation_resid_only"))))
+    return 0
+
+
+def _write_gate_stop(stage, gate, extra=None):
+    """Persist a blocked uniqueness receipt without producing a submission TIFF."""
+    out = ROOT / "docs/evidence/uniqueness_gate_stop.json"
+    payload = dict(stage=stage, gate=gate, submission_written=False,
+                   submission_ready=False, verdict="negative", details=extra or {})
+    out.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    return payload
+
+
+def _registry_records():
+    manifest = json.loads((ROOT / "research/upstream/data_manifest.json").read_text(encoding="utf-8"))
+    records = []
+    for item in manifest["files"]:
+        if item["group"] == "scored":
+            records.append(dict(repo=item["repo"], submission=Path(item["dest"]).name,
+                                file=str(ROOT / "data" / item["dest"]), sha256=item["sha256"]))
+    return records
+
 
 def robust_unit(a, valid, pct=99.0):
     out = np.zeros(a.shape, np.float32); v = valid & np.isfinite(a)
@@ -108,9 +145,55 @@ def pooled_ci(per_cell, draws=2000, seed=86):
     return [float(np.percentile(vals,2.5)),float(np.percentile(vals,97.5))]
 
 def main():
+    # This runner is a historical experiment record. Stop before data access if
+    # its cap is consumed or the current evidence does not certify protocol
+    # conformance; never bypass this guard to repeat a negative result.
+    used = _recorded_experiment_count()
+    assert_experiment_budget_open(used, limit=3)
+    card_path = ROOT / "docs/evidence/run-card.json"
+    card = json.loads(card_path.read_text(encoding="utf-8")) if card_path.is_file() else {}
+    if not card.get("protocol_conformance", {}).get("holdout_conformant", False):
+        raise RuntimeError(
+            "H86 runner disabled: its recorded holdout/evaluator is not protocol-conformant. "
+            "Do not reuse it as a competition candidate; see research/REVIEW.md."
+        )
+
     t0=time.time(); ev={}
     comps=build_surface(); surface,fp,cat=comps["surface"],comps["footprint"],comps["catalogue"]
     print("surface built", time.time()-t0, flush=True)
+
+    # Run uniqueness gates before any holdout work. The continuous surface is
+    # checked by rank correlation; each budget under consideration gets its own
+    # unmasked pre-placement dot-overlap check. Final masked dots are rechecked
+    # after the holdout selects a budget.
+    records = _registry_records()
+    surface_registry = U.compare_array_to_registry(surface, records, fp)
+    surface_gate = classify_registry_result(
+        surface_registry, stage="surface-before-placement",
+        check_rho=True, check_overlap=False, require_complete=True)
+    if not surface_gate["passed"]:
+        stop = _write_gate_stop("surface-before-placement", {
+            "surface": surface_gate,
+        }, extra={"candidate_tiff_written": False})
+        print(json.dumps(stop, indent=2, allow_nan=False), flush=True)
+        return 2
+
+    preplacement_by_budget = {}
+    for budget in PREPLACEMENT_BUDGETS:
+        pre_dots = emit(surface, fp, budget)
+        pre_prediction = np.where(pre_dots, 1.0, 0.0).astype(np.float32)
+        pre_registry = U.compare_array_to_registry(pre_prediction, records, fp)
+        pre_gate = classify_registry_result(
+            pre_registry, stage=f"dots-before-catalogue-mask-{budget}",
+            check_rho=False, check_overlap=True, require_complete=True)
+        preplacement_by_budget[str(budget)] = pre_gate
+    if any(not gate["passed"] for gate in preplacement_by_budget.values()):
+        stop = _write_gate_stop("dots-before-catalogue-mask", {
+            "preplacement_by_budget": preplacement_by_budget,
+        }, extra={"candidate_tiff_written": False})
+        print(json.dumps(stop, indent=2, allow_nan=False), flush=True)
+        return 2
+
     g=G.load_grid(ROOT/"data"); ctx=H.build_holdout(g, seeds=(20,21), modes=("all",))
     ev["evaluator"]=dict(version=EH.VERSION, hashes=EH.implementation_hashes(),
                          withheld_positives=int(sum(c.n_truth for c in ctx.cells)), cells=[c.key for c in ctx.cells])
@@ -160,28 +243,27 @@ def main():
     best_budget=max(cand_by_budget, key=lambda b: cand_by_budget[b]["pooled_dti"])
     ev["chosen_budget"]=best_budget
     print("chosen budget",best_budget,flush=True)
-    # ---- uniqueness: surface (pre-placement) Spearman vs registry, then final dots
-    man=json.loads((ROOT/"research/upstream/data_manifest.json").read_text())
-    records=[]
-    for e in man["files"]:
-        if e["group"]=="scored":
-            records.append(dict(repo=e["repo"], submission=Path(e["dest"]).name, file=str(ROOT/"data"/e["dest"]), sha256=e["sha256"]))
-    surf_rows=[]
-    for rec in records:
-        with rasterio.open(rec["file"]) as ds: theirs=ds.read(1)
-        theirs=np.where(np.isfinite(theirs),theirs,0)
-        r=U.surface_rho(surface, theirs, fp); surf_rows.append(dict(submission=rec["submission"], **r))
-    ev["surface_uniqueness"]=[dict(submission=r["submission"],spearman_full_footprint=r["spearman_full_footprint"]) for r in surf_rows]
-    print("surface worst rho", max(r["spearman_full_footprint"] for r in surf_rows), flush=True)
+    # ---- uniqueness after selection, before writing final dots
+    ev["surface_uniqueness"] = surface_registry
+    ev["preplacement_uniqueness_by_budget"] = preplacement_by_budget
+    ev["preplacement_uniqueness_gate"] = preplacement_by_budget[str(best_budget)]
+    print("surface worst rho", surface_gate.get("worst_spearman_full_footprint"), flush=True)
     # final dots: zero on catalogue dilated 2px (visible-fault masking for live submission)
     near_cat=ndi.binary_dilation(cat, iterations=2)
     dots_final=emit(surface, fp & ~near_cat, best_budget)
     ev["final_dots"]=int(dots_final.sum()); ev["dots_on_catalogue"]=int((dots_final&cat).sum())
     pred=np.where(dots_final,1.0,0.0).astype(np.float32)
-    # surface+final rho/overlap via shared checker (list registry = diagnostic scope, not complete)
     uniq=U.compare_array_to_registry(pred, records, fp)
+    final_gate = classify_registry_result(
+        uniq, stage="final-dots",
+        check_rho=False, check_overlap=True, require_complete=True)
     ev["final_uniqueness"]=uniq
-    print("final uniqueness summary:", {k:uniq.get(k) for k in ("unique","worst_rho","worst_overlap","registry_rasters_checked")}, flush=True)
+    ev["final_uniqueness_gate"]=final_gate
+    print("final uniqueness summary:", {k:uniq.get(k) for k in ("unique","worst_spearman_full_footprint","worst_dot_overlap","registry_rasters_checked")}, flush=True)
+    if not final_gate["passed"]:
+        stop = _write_gate_stop("final-dots", final_gate, extra={"candidate_tiff_written": False})
+        print(json.dumps(stop, indent=2, allow_nan=False), flush=True)
+        return 2
     # ---- write submission through shared writer
     ts=time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     stem=f"gems86-h86-rmrb-{best_budget}dots-{ts}"
@@ -197,4 +279,5 @@ def main():
     (ROOT/"docs/evidence/lane86_results.json").write_text(json.dumps(ev,indent=2,default=str)+"\n")
     print(json.dumps(dict(submission=str(out), sha=val["sha256"], dots=int(dots_final.sum()),
                           cand_dti=cand["pooled_dti"], best_budget=best_budget, validator=val["all_checks_passed"]),indent=2))
-if __name__=="__main__": main()
+if __name__=="__main__":
+    raise SystemExit(main())

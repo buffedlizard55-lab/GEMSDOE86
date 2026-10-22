@@ -1,0 +1,96 @@
+{
+  "schema": "gemsdoe86-preflight-v1",
+  "generated_utc": "2026-10-22T23:16:19Z",
+  "evidence_class": "LOCAL-PREFLIGHT (not a competition score)",
+  "checks": {
+    "shared_template_hashes_match": true,
+    "shared_feature_stack_available": false,
+    "shared_feature_stack_used": false,
+    "lane_authorized": false,
+    "candidate_tif_present": true,
+    "candidate_local_format_checks_pass": true,
+    "literal_uniqueness_gate_clear": false,
+    "complete_registry_available": false,
+    "holdout_protocol_conformant": false,
+    "holdout_comparison_beats_best": false
+  },
+  "artifact": {
+    "present": true,
+    "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+    "bytes": 188877,
+    "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+    "positive_pixels": 60000,
+    "min": 0.0,
+    "max": 1.0,
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "checks": {
+      "receipt_path_safe": true,
+      "tif_present": true,
+      "footprint_and_catalogue_rechecked": true,
+      "input_mirror_hashes_match": true,
+      "sha256_matches_writer_receipt": true,
+      "writer_checks_match": true,
+      "single_band_float32": true,
+      "crs_shape_transform_match_pinned_grid": true,
+      "finite_range_0_1": true,
+      "sha256_matches_run_card": true,
+      "zip_contains_only_byte_identical_tif": true,
+      "zip_sha256_matches_receipt": true
+    },
+    "input_grid_error_type": null,
+    "all_local_format_checks_pass": true,
+    "validation_scope": "local format/range audit; not scientific clearance, registry uniqueness, or organizer acceptance"
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT ESTABLISHED under the required protocol; prior run values are retained only as nonconformant diagnostics.",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "diagnostic_reference": "docs/evidence/lane86_results.json",
+    "diagnostic_exclusion_reason": "The prior code recorded a shared evaluator version string but did not call that evaluator for scoring, used a different hide design, and used a cell bootstrap rather than the required shared spatial-cluster procedure. Do not compare those raw diagnostics with a submission score or use them to authorize a slot."
+  },
+  "registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked_in_historical_audit": 12,
+    "scope": "Twelve hash-pinned rasters in the local owner-mirror manifest only; not a complete cross-repository, public, private, or organizer registry.",
+    "surface_worst_spearman_recorded": 0.0004393368563555449,
+    "surface_spearman_source": "Historical lane86_results.json; not independently recomputed in this review because the feature surface/cache is absent.",
+    "preplacement_dot_overlap": null,
+    "preplacement_dot_overlap_status": "NOT RECORDED by the historical runner. The surface-rank check does not substitute for the required pre-placement dot-overlap check.",
+    "final_worst_spearman_recorded": 0.0003379482233849768,
+    "final_worst_dot_overlap_verified": 0.9950333333333333,
+    "overlap_rule": "Stop if more than 70% of candidate dots fall within 3 px of any registry raster's dots.",
+    "final_worst_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "final_worst_registry_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "duplicate_gate_fired": true,
+    "duplicate_gate_action": "STOP. This is a protocol-defined lane collision even though Spearman rho and exact-pixel/Jaccard overlap are low; the literal overlap rule is an OR condition and has no lattice exception.",
+    "exact_byte_or_pixel_copy_detected": false,
+    "jaccard_diagnostic_only": 0.009222706234685542,
+    "complete_accessible_scan": false
+  },
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "submission_decision": "DO NOT SUBMIT; at least one scientific/provenance gate is not satisfied.",
+  "run_card_unchanged_by_design": true
+}

@@ -1,96 +1,96 @@
 {
-  "hypothesis": "H86-RMRB (declared lane, this session): boundaries of the residual of a robust global K~Th+U+TC radiometric mixing regression mark hydrothermally redistributed fault zones even without a surface scarp; gating by multi-scale RTP magnetic-edge persistence and rejecting broad Th steps selects buried faults missing from the USGS/INGENIOUS catalogue.",
-  "mechanism": "resid_boundary(0.6*|grad resid| + 0.4*Hessian line resid, sigma~1px) x (0.35+0.65*min RTP grad sigma1,sigma2.5) x (1-0.5*broad sigma5 Th grad); 3x3 NMS dots, top-60000, zeroed on catalogue+2px for final file. Label-free surface.",
-  "non_fault_mimic": "Lithologic/weathering contacts and broad Th compositional steps (discriminant: broad-Th down-weight + magnetic persistence gate; ablation and canary reported).",
-  "declared_lane_note": "IRREGULARITY: prompt referenced a single method paragraph that was not present. Lane declared before experimentation (preregistered rank-1 hypothesis in research/REVIEW.md) and not changed after seeing results.",
+  "hypothesis": "Historical H86-RMRB candidate: boundaries of a robust K~Th+U+TC radiometric-mixing residual, gated by multi-scale RTP magnetic-edge persistence and down-weighted at broad Th steps. This lane was self-declared after the referenced method paragraph was found missing; it was not authorized by the prompt.",
+  "mechanism": "Legacy surface: residual boundary (0.6 gradient + 0.4 Hessian line response) x RTP edge persistence x broad-Th rejection; local-maximum dots and a catalogue+2 px mask. The prior runner assembled its own components from mirrored rasters rather than consuming a verified template feature-stack cache.",
+  "non_fault_mimic": "Lithologic/weathering contacts and broad Th compositional steps; down-weighting broad Th and requiring magnetic persistence were intended discriminants, but the hypothesis did not pass the required validation gates.",
+  "protocol_conformance": {
+    "lane_authorized": false,
+    "lane_irregularity": "The user prompt refers to a single method paragraph that is not present. The prior H86 lane was selected by the earlier agent from a ranked hypothesis list, not assigned by the user.",
+    "template_cached_feature_stack_available": false,
+    "template_cached_feature_stack_used": false,
+    "holdout_conformant": false,
+    "holdout_reasons": [
+      "The historical runner called gems57.holdout.build_holdout/evaluate; it imported but did not use gems57.evaluate_holdout.evaluate or pooled_summary for the reported values.",
+      "The historical builder subdivides traces into short chunks and erodes quadrant boundaries; it did not withhold whole components/segments with a per-withheld-segment context buffer as required by this prompt.",
+      "The reported interval resampled eight quadrant/draw cells, not the shared evaluator's spatially aligned cluster terms or a paired candidate-versus-best comparison."
+    ],
+    "three_experiment_cap_consumed": true,
+    "experiments_run": 3,
+    "further_experiments_allowed_in_this_lane": 0,
+    "runner_guarded": true
+  },
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
-    "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positives": 22641,
-    "candidate_at_final_budget_60000": 0.04202939033542524,
-    "ci95_cell_bootstrap": [
-      0.0368715778609519,
-      0.0466660650893612
-    ],
-    "candidate_at_37654": 0.030937497799594416,
-    "ci95_37654": [
-      0.026365302800838833,
-      0.03445069578894742
-    ],
-    "mag_only_control_37654": 0.013464033369212173,
-    "resid_only_ablation_37654": 0.026011662044997545,
-    "registry_incumbent_benchmark_only": 0.10106964768349222,
-    "incumbent_ci95": [
-      0.08560393780206166,
-      0.11669019029309867
-    ],
-    "beats_incumbent": false
+    "status": "NOT ESTABLISHED under the required protocol; prior run values are retained only as nonconformant diagnostics.",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "diagnostic_reference": "docs/evidence/lane86_results.json",
+    "diagnostic_exclusion_reason": "The prior code recorded a shared evaluator version string but did not call that evaluator for scoring, used a different hide design, and used a cell bootstrap rather than the required shared spatial-cluster procedure. Do not compare those raw diagnostics with a submission score or use them to authorize a slot."
   },
-  "leakage_canary_auc": {
-    "resid_boundary": {
-      "auc": 0.48775367323108515,
-      "leakage_flag": false
-    },
-    "mag_persist": {
-      "auc": 0.5244236976061128,
-      "leakage_flag": false
-    },
-    "broad_th": {
-      "auc": 0.508301654907027,
-      "leakage_flag": false
-    },
-    "rawk_grad": {
-      "auc": 0.4887042994456959,
-      "leakage_flag": false
-    },
-    "surface": {
-      "auc": 0.48980843767943116,
-      "leakage_flag": false
-    }
+  "leakage_canary": {
+    "status": "NOT ADMISSIBLE as a gate because it used the same nonconformant holdout design.",
+    "raw_diagnostics_reference": "docs/evidence/lane86_results.json",
+    "threshold_auc": 0.9,
+    "action": "Run feature-alone AUC canaries only after an authorized lane, the shared feature cache, and a protocol-conformant buffered holdout are available."
   },
   "correlation_overlap_vs_registry": {
-    "rasters_checked": 12,
-    "scope": "hash-pinned local registry only (12 rasters); NOT a complete cross-repo registry",
-    "surface_worst_spearman": 0.0004393368563555449,
-    "final_worst_spearman": 0.0003379482233849768,
-    "final_worst_dot_overlap_literal": 0.9950333333333333,
-    "literal_firing_vs": "13gems lattice raster (206895 dots, saturating lattice; rho=0.0003, jaccard=0.0092 - literal >0.70 gate fires on saturation, not copying; logged per protocol)",
-    "final_worst_dot_overlap_excl_lattice": 0.25078333333333336,
-    "final_worst_jaccard": 0.009222706234685542
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked_in_historical_audit": 12,
+    "scope": "Twelve hash-pinned rasters in the local owner-mirror manifest only; not a complete cross-repository, public, private, or organizer registry.",
+    "surface_worst_spearman_recorded": 0.0004393368563555449,
+    "surface_spearman_source": "Historical lane86_results.json; not independently recomputed in this review because the feature surface/cache is absent.",
+    "preplacement_dot_overlap": null,
+    "preplacement_dot_overlap_status": "NOT RECORDED by the historical runner. The surface-rank check does not substitute for the required pre-placement dot-overlap check.",
+    "final_worst_spearman_recorded": 0.0003379482233849768,
+    "final_worst_dot_overlap_verified": 0.9950333333333333,
+    "overlap_rule": "Stop if more than 70% of candidate dots fall within 3 px of any registry raster's dots.",
+    "final_worst_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "final_worst_registry_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "duplicate_gate_fired": true,
+    "duplicate_gate_action": "STOP. This is a protocol-defined lane collision even though Spearman rho and exact-pixel/Jaccard overlap are low; the literal overlap rule is an OR condition and has no lattice exception.",
+    "exact_byte_or_pixel_copy_detected": false,
+    "jaccard_diagnostic_only": 0.009222706234685542,
+    "complete_accessible_scan": false
   },
   "raster_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
   "validator": {
-    "status": "PASS (local preflight, not organizer acceptance)",
+    "evidence_class": "LOCAL-FORMAT-PREFLIGHT",
+    "status": "PASS on independent local re-read using hash-pinned owner-mirror grid inputs; not organizer acceptance.",
+    "rechecked_utc": "2026-10-22",
     "no_nan_inside_footprint": true,
     "values_in_0_1": true,
     "crs_shape_transform_match": true,
     "checks": {
-      "single_band": true,
-      "dtype_float32": true,
+      "single_band_float32": true,
       "dimensions_3730x3292": true,
       "crs_epsg_32611": true,
       "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
+      "all_grid_cells_finite": true,
+      "no_nan": true,
+      "no_inf": true,
       "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
+      "range_0_1": true,
       "in_footprint_all_finite": true,
       "in_footprint_range_0_1": true,
       "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
+      "zero_positive_dots_on_mapped_catalogue": true,
+      "zip_has_one_byte_identical_tif": true
     },
     "dots": 60000,
     "min": 0.0,
-    "max": 1.0
+    "max": 1.0,
+    "input_provenance": "sample_submission.tif and existing_faults.tif restored from an owner mirror and SHA-256 matched to the repository manifest; organizer_authenticated=false"
   },
   "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
   "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
+  "note_chars": 118,
+  "note_limit_chars": 140,
   "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
-  "scores_labelled": "No ORGANIZER-CONFIRMED score exists for this file. Historical numbers in the brief (0.2778, 0.4413, 0.3195) are owner/user-reported without a submission-page receipt and are NOT reproduced as scores.",
+  "download_status": "DOWNLOAD FOR AUDIT ONLY — DO NOT SUBMIT. The numerical file-format checks pass, but the literal registry overlap stop gate fired and no protocol-conformant HOLDOUT-DTI result or complete registry clearance exists.",
+  "score_status": "No score for this artifact is ORGANIZER-CONFIRMED. The raw historical holdout diagnostics are excluded as nonconformant; the user-supplied historical site values have no submission-page receipt in this repository.",
   "experiments_run": 3,
+  "experiment_budget_cap": 3,
   "verdict": "negative",
   "submission_ready": false,
   "approved_for_weekly_slot": false
