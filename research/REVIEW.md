@@ -15,7 +15,7 @@ A higher result is possible in principle, but cannot be promised or inferred fro
 
 ## Ranked candidate hypotheses — preregistration, NOT experimental results
 
-No experiment is authorized until the missing lane is resolved. Rank is a qualitative scientific prior, not a projected score. The empty starting repo implements none of these. Uniqueness across all other repos is **not established**; only selected shared/32 methods were inspected. All layer names below require confirmation against actual band descriptions and the cached-stack manifest. No new external layer is assumed obtainable.
+No experiment is authorized until the missing lane is resolved. Rank is a qualitative scientific prior, not a projected score. The checked-in project contains shared H57 tools, but none of these four hypotheses has been implemented or evaluated here. Uniqueness across all other repos is **not established**; only selected shared/32 methods were inspected. All layer names below require confirmation against actual band descriptions and the cached-stack manifest. No new external layer is assumed obtainable.
 
 | Rank / hypothesis | Specific proposed layers and transform | Physical prediction and reason it might reveal unmapped faults | Non-fault mimic / discriminant | Difference from inspected methods; cost |
 |---|---|---|---|---|
