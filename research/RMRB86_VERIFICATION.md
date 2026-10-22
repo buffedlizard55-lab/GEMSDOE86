@@ -70,17 +70,17 @@ Additional review actions:
 
 ### Parallel-integration check
 
-Before merge completion, the RMRB surface and final dots were automatically compared with all three raster candidates added by the parallel `main` work. All six comparisons remain below the preregistered 0.90 rank/0.70 overlap limits. The integrated site preserves all four downloads but removes the parallel page's unsupported “OK TO SUBMIT” conclusion: its own evidence records literal overlap failures, and the user supplied no continuous-prior exemption. This is a selector-level correction, not a rewrite of that lane's historical run card.
+Before merge completion, the RMRB surface and final dots were automatically compared with all four raster candidates added by the parallel `main` work. All eight comparisons remain below the preregistered 0.90 rank/0.70 overlap limits. The integrated site preserves all five downloads but removes the parallel page's unsupported “OK TO SUBMIT” conclusion: its own evidence records literal overlap failures, and the user supplied no continuous-prior exemption. This is a selector-level correction, not a rewrite of that lane's historical run card.
 
 ### Final commands
 
 ```text
-python -m pytest -q                         -> 40 passed, 10 subtests passed
+python -m pytest -q                         -> 41 passed, 10 subtests passed
 python -m compileall -q scripts src vendor tests -> passed
 git diff --check                            -> passed
 python scripts/audit_rmrb86.py              -> hash/grid/range/ZIP passed; verdict negative
 python scripts/audit.py                     -> parallel RMRB artifact audit passed; verdict negative
-python scripts/build_site.py                -> 4 candidates listed; none authorized
+python scripts/build_site.py                -> 5 candidates listed; none authorized
 local HTML target scan                      -> 0 broken local links
 JSON parse scan                             -> all parsed
 git diff --exit-code -- vendor/gems57       -> passed

@@ -19,6 +19,7 @@ CANDIDATES = (
     "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
     "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
     "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+    "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
 )
 
 
@@ -50,7 +51,7 @@ def main() -> int:
     for name in CANDIDATES:
         if name not in index or not (DOCS / "downloads" / name).is_file():
             raise SystemExit(f"candidate missing from dashboard or disk: {name}")
-    print("Static site integrity: PASS; four candidates listed; none authorized.")
+    print("Static site integrity: PASS; five candidates listed; none authorized.")
     return 0
 
 

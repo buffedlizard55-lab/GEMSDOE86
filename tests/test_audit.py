@@ -31,6 +31,20 @@ class SafetyTests(unittest.TestCase):
         self.assertIsNotNone(card['raster_sha256'])
         self.assertLessEqual(len(card['note']), 140)
 
+    def test_h86_1_lane_card_is_negative_and_consistent(self):
+        # H86-1 (PR #9) generated a real candidate TIF; automated gates
+        # rejected it on science (holdout ~ random), so it must never read
+        # as submittable, and the merged audit must verify its bytes too.
+        result = run()
+        self.assertTrue(result['all_audit_checks_passed'])
+        h86 = result['run_card']['parallel_lane_h86_1']
+        self.assertFalse(h86['submission_ready'])
+        self.assertEqual(h86['verdict'], 'negative')
+        self.assertIsNotNone(h86['raster_sha256'])
+        self.assertEqual(h86['holdout_dti']['status'], 'RUN')
+        self.assertTrue(h86['validator']['checks']['range_0_1_guaranteed'])
+        self.assertLessEqual(len(h86['note']), 140)
+
     def test_writer_rejects_invalid_values_before_writing(self):
         for bad in [np.nan, np.inf, -0.01, 1.01, -9999]:
             with self.subTest(value=bad), self.assertRaises(ValueError):

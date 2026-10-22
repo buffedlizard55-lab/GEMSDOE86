@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "shared_template_hashes_match": true,
+    "tif_present": true,
+    "tif_sha_matches_run_card": true,
+    "note_le_140_chars": true,
+    "verdict_is_negative": true,
+    "not_submission_ready": true,
+    "not_approved_for_weekly_slot": true,
+    "holdout_labelled": true,
+    "holdout_does_not_beat_incumbent": true,
+    "h86_1_tif_present": true,
+    "h86_1_tif_sha_matches_card": true,
+    "h86_1_note_le_140_chars": true,
+    "h86_1_verdict_is_negative": true,
+    "h86_1_not_submission_ready": true,
+    "h86_1_holdout_labelled": true,
+    "h86_1_validator_pass": true,
+    "crosslane_not_duplicate": true
+  },
+  "all_checks_passed": true,
+  "submission_ready": false,
+  "verdict": "negative",
+  "raster_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+  "meaning": "Read-only cross-verification of the merged two-lane run card against both TIF byte sets; both verdicts negative."
+}

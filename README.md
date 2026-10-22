@@ -26,10 +26,11 @@ Concurrent sessions produced other distinct rasters on `main`. None overrides th
 | `gems86-h86-rmrb-60000dots-…-zeros.tif` | Own run card is negative; HOLDOUT screen misses incumbent; literal lattice overlap 0.995 | **DO NOT SUBMIT** |
 | `gems86-gmc-linepost-…-zeros.tif` | Format pass, but 82% overlap with a prior proximity lane | **DO NOT SUBMIT — duplicate lane** |
 | `gems86-gmc-linepost-offcat-…-zeros.tif` | Format pass and low rank correlation, but its audit records literal overlap failures against saturated priors; its own report also records experiment-budget overrun | **DO NOT SUBMIT under the supplied literal rule** |
+| `gems86-h86-edge2of5-dotted38000-…-zeros.tif` | Format pass; **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI) 0.04634 [0.03716, 0.05603], below its fixed comparable control 0.10303 [0.09200, 0.11389]; literal lattice overlap 0.971; incomplete registry | **DO NOT SUBMIT** |
 
-The earlier site called the last file “OK TO SUBMIT” by exempting continuous/carpet priors. The prompt authorizes no such exemption. This integration corrects the repository-wide decision to fail closed. A future selector may reconsider only after an explicit protocol change and an authenticated quota check.
+The earlier site called the GMC off-catalogue file “OK TO SUBMIT” by exempting continuous/carpet priors. The prompt authorizes no such exemption. This integration corrects the repository-wide decision to fail closed. A future selector may reconsider only after an explicit protocol change and an authenticated quota check.
 
-This run was also checked against the three newly merged parallel rasters on both its continuous surface and final dots. Worst final overlap is 0.484 and worst surface Spearman is 0.093—below the lane thresholds. Those measurements are appended to [`docs/evidence/uniqueness.json`](docs/evidence/uniqueness.json).
+This run was also checked against the four newly merged parallel rasters on both its continuous surface and final dots. All eight measurements pass the lane thresholds; worst final overlap is 0.484 and worst surface Spearman is 0.093. Those measurements are appended to [`docs/evidence/uniqueness.json`](docs/evidence/uniqueness.json).
 
 [Open the GitHub Pages readiness dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/) · [Submission guide](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html) · [Scientific review](research/RMRB86_REVIEW.md)
 

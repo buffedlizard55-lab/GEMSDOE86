@@ -1362,10 +1362,21 @@
             "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
             "surface_overlap": 0.21994601903214694,
             "surface_rho": 0.0009807217590631614
+          },
+          {
+            "duplicate_by_overlap": false,
+            "duplicate_by_rho": false,
+            "final_overlap": 0.1587613533754714,
+            "final_rho": 0.007219731625196774,
+            "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+            "stop_required": false,
+            "submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+            "surface_overlap": 0.114161212875232,
+            "surface_rho": 0.013237588072893502
           }
         ],
-        "scope": "Three candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
-        "source_commit": "e8f072ec3e2e89d7e0f69a3e67d3b7c7d0de7bfb"
+        "scope": "Four candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
+        "source_commit": "801251e7ecf9f85069b9edf63c591039ba7367fb"
       },
       "stop_required": true,
       "surface": [
@@ -1558,10 +1569,21 @@
           "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
           "surface_overlap": 0.21994601903214694,
           "surface_rho": 0.0009807217590631614
+        },
+        {
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "final_overlap": 0.1587613533754714,
+          "final_rho": 0.007219731625196774,
+          "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+          "stop_required": false,
+          "submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+          "surface_overlap": 0.114161212875232,
+          "surface_rho": 0.013237588072893502
         }
       ],
-      "scope": "Three candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
-      "source_commit": "e8f072ec3e2e89d7e0f69a3e67d3b7c7d0de7bfb"
+      "scope": "Four candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
+      "source_commit": "801251e7ecf9f85069b9edf63c591039ba7367fb"
     },
     "scope": "Two hash-pinned stopping witnesses checked. The inherited protocol stops at the first duplicate; full 1,143-raster decode was not continued.",
     "stop_required": true,

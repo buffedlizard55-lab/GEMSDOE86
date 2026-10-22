@@ -16,3 +16,5 @@ data/existing_faults.tif
 data/sample_submission.tif
 *.npy
 *.npz
+# H86-1 scratch outputs (rebuilt by lane scripts; never commit)
+data/work/

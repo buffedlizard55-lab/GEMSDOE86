@@ -1,0 +1,51 @@
+{
+  "evidence_class": "AUXILIARY-PROXY (not HOLDOUT-DTI, not ORGANIZER-CONFIRMED, never a score)",
+  "derivation": "proxy = (derived_sgmc_faults_100m_u8>0) & ~catalogue & footprint; derived file is a ~1px dilation of raw SGMC per vendor IR-57-SGMC-01, raw sgmc_faults_100m.tif is not in the accessible manifest, so this proxy is approximate; catalogue pixels removed pixel-exactly here",
+  "sgmc_sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+  "derived_pixels": 83593,
+  "on_catalogue_pixels_removed": 3978,
+  "proxy_pixels": 79615,
+  "metric": "gems57.metric.dti_exact alpha0.2 beta0.8 300m triangular, known=catalogue masked",
+  "rows": {
+    "h86_candidate_final": {
+      "auxiliary_proxy_dti": 0.054389467441059845,
+      "tp": 3901.032172590551,
+      "fp": 36259.152591856415,
+      "fn": 75713.96782740945,
+      "n_proxy_truth": 79615,
+      "n_emitted_active": 38000
+    },
+    "spaced_random_full": {
+      "auxiliary_proxy_dti": 0.06679560644996761,
+      "tp": 4803.092418441528,
+      "fp": 36273.46048636834,
+      "fn": 74811.90758155847,
+      "n_proxy_truth": 79615,
+      "n_emitted_active": 38000
+    },
+    "incumbent_d28_fixed": {
+      "auxiliary_proxy_dti": 0.13107556112229748,
+      "tp": 9642.744276897674,
+      "fp": 39728.764294738445,
+      "fn": 69972.25572310232,
+      "n_proxy_truth": 79615,
+      "n_emitted_active": 44090
+    },
+    "incumbent_h33b2_fixed": {
+      "auxiliary_proxy_dti": 0.0928930494744682,
+      "tp": 6687.851208796859,
+      "fp": 34828.016018762755,
+      "fn": 72927.14879120314,
+      "n_proxy_truth": 79615,
+      "n_emitted_active": 37654
+    },
+    "incumbent_h32d_fixed": {
+      "auxiliary_proxy_dti": 0.13383489612165742,
+      "tp": 9903.424951291907,
+      "fp": 41623.224206696854,
+      "fn": 69711.5750487081,
+      "n_proxy_truth": 79615,
+      "n_emitted_active": 46090
+    }
+  }
+}
