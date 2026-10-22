@@ -57,3 +57,19 @@ These are hypotheses rather than literature-established discoveries in this stud
 - Upstream “zero” ZIP is recorded at a suspiciously small size in its tree. Not downloaded, not verified, not offered here.
 - The reported portal range error cannot be attributed to NaN, sentinel values or another cause without the actual rejected file. The shared writer rejects all nonfinite or out-of-range values; it never silently clips invalid output.
 - No organizer receipt, authenticated quota, direct official data hash, private labels, or comprehensive literature review was obtained. No line-by-line scientific verification claim is made for untested hypotheses.
+
+## Addendum 2026-10-22 (lane H86-RMRB, executed)
+
+The rank-1 preregistered hypothesis above was declared this session's lane (the
+prompt's referenced method paragraph was absent — irregularity logged) and run
+end-to-end with the shared tools. Mixing coefficients (Huber, 200k px):
+K ~ -0.960*Th -0.608*U +2.110*TC +48.32 (uint8 units). Canary AUCs 0.488–0.524
+(no leakage; near-chance). HOLDOUT-DTI (gems57-pooled-hide-v2, 22,641 withheld):
+candidate 0.0309@37,654 / 0.0420@60,000 [0.0369–0.0467]; mag-only 0.0135;
+resid-only 0.0260; incumbent benchmark 0.1011 [0.0856–0.1167] on the identical
+instrument. **Negative result.** DTI rising with budget indicates the surface
+localises weakly at regional scale but its boundaries are not precise at
+300 m tolerance. Evidence: `docs/evidence/lane86_results.json`, run card in
+`docs/evidence/run-card.json`. Next: contact-offset (rank 2), then
+radiometric–topographic discordance (rank 3); seismicity remains data-blocked
+from this sandbox (earthquake.usgs.gov unreachable).
