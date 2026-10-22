@@ -46,3 +46,9 @@ All 54 pytest tests pass locally, as do 35 unittest cases, link/download integri
 ## Third concurrent-main integration
 
 Preserved PR #9's H86-1 artifact, dedicated scientific evidence, embedded run-card fields and read-only audit additions. There are now four inherited artifact pairs; all remain DO NOT SUBMIT. Isolated the protocol restoration receipt from generic data_restore.json, prevented H86-1 card assembly from overwriting the radiometric model card, and added the same early CLI stop. No new scientific experiment was run.
+
+## Final concurrent integration (PR #15)
+
+Integrated main bd54ff4 after the prior green head became conflicting. Preserved the fifth negative RMRB-86 artifact and all separately produced model evidence; no rerun or slot was used in this integration. Local checks now pass **68 pytest tests (13 subtests) and 49 unittest cases**, with three inherited Rasterio/Affine pending-deprecation warnings. Both independent serialized audits pass; all five TIFF/ZIP pairs are bound to the negative inventory. The newest model entrypoint was actually invoked and stopped before training with STOP_LITERAL_OVERLAP_UNSATISFIABLE.
+
+Main replaced the older generator with a read-only fail-closed static-site checker. That change and the Pages workflow are preserved; CI checks the static site and its unchanged tracked bytes, not a claim of generating it anew. Fixed two repository-relative links that existed on disk but would be outside the deployed docs artifact, with a regression test rejecting that class of broken Pages link. The existing proof-reproduction job and strict rho-only cross-CPU tolerance are retained unchanged.

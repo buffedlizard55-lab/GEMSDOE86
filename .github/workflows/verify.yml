@@ -20,7 +20,7 @@ jobs:
       - run: python scripts/check_site.py
       - run: python scripts/audit.py
       - run: python scripts/validate_download.py
-      - run: python -m compileall -q scripts vendor tests
+      - run: python -m compileall -q scripts src vendor tests
       - run: git diff --exit-code -- docs/evidence
   reproduce-proof:
     runs-on: ubuntu-24.04

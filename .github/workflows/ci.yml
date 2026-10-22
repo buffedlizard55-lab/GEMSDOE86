@@ -11,7 +11,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: unit tests (bridge rasters tracked; feature stack not needed)
         run: python -m pytest -q
-      - name: site build is reproducible
+      - name: static site integrity (read-only)
         run: |
           python scripts/build_site.py
           git diff --exit-code docs/

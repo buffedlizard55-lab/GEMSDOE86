@@ -19,5 +19,26 @@
     "bytes": 1599597,
     "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)",
     "organizer_authenticated": false
+  },
+  {
+    "id": "radiometrics",
+    "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "bytes": 26612970,
+    "provenance": "owner-derived mirror of USGS GeoDAWN K/Th/U/TC grids (DOI 10.5066/P93LGLVQ); not organizer-authenticated",
+    "organizer_authenticated": false
+  },
+  {
+    "id": "dense_registry_witness",
+    "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "bytes": 25065181,
+    "provenance": "public owner-repository registry witness; continuous positive support",
+    "organizer_authenticated": false
+  },
+  {
+    "id": "h33_education",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "bytes": 219065,
+    "provenance": "H33-2-B2 historical raster downloaded only for education and uniqueness measurement; never reused as output",
+    "organizer_authenticated": false
   }
 ]

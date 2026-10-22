@@ -26,6 +26,13 @@ class SiteTests(unittest.TestCase):
             (root / 'docs/index.html').write_text('<a href="missing.tif">Download</a>')
             self.assertTrue(check(root))
 
+    def test_docs_must_not_link_unpublished_repository_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            (root / 'PROMPT.md').write_text('Exists in Git, not in the Pages artifact')
+            (root / 'docs/index.html').write_text('<a href="../PROMPT.md">Brief</a>')
+            self.assertTrue(check(root))
+
     def test_unlinked_tif_and_zip_fail_in_negative_state(self):
         for suffix in ('.tif', '.tiff', '.zip'):
             with self.subTest(suffix=suffix), tempfile.TemporaryDirectory() as tmp:

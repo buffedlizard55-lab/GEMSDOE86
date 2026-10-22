@@ -2,7 +2,7 @@
 
 ## DO NOT SUBMIT — literal uniqueness protocol failed
 
-All four inherited TIFFs remain downloadable for reproducibility, but **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. This session ran no new model experiment or weekly submission. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
+All five inherited TIFFs remain downloadable for reproducibility, but **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. This session ran no new model experiment or weekly submission. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
 
 
 **Read [`PROMPT.md`](PROMPT.md) first: it is the condensed standing project brief; full original request is archived below.**
@@ -11,7 +11,7 @@ All four inherited TIFFs remain downloadable for reproducibility, but **none is 
 
 <p align="center">
   <a href="docs/index.html"><b>▶ Open the project site (download page)</b></a> ·
-  <a href="docs/executive-summary.html">Executive summary: how to submit in 4 steps</a> ·
+  <a href="docs/executive-summary.html">Executive summary: submission is blocked</a> ·
   <a href="evidence/run_card.json">Run card (JSON)</a>
 </p>
 
@@ -1146,3 +1146,7 @@ Go ahead and create a pull request and then merge the pull request onto the main
 <!-- OWNER_PROMPT_ARCHIVE_END -->
 
 </details>
+
+## Latest concurrent integration: PR #15
+
+Preserved the separately run RMRB-86 residual-boundary model, 37,654-dot TIFF/ZIP, full input/feature provenance and paired holdout evidence from main. It is byte-distinct in its historical public-hash snapshot, **not cleared by the literal overlap protocol**, and its paired transform-versus-raw-radiometrics interval crosses zero. See [its negative card](docs/evidence/rmrb86-run-card.json) and [scientific review](research/RMRB86_REVIEW.md). This integration itself ran no new scientific experiment. There are five negative artifact pairs. The fail-closed static dashboard and Pages deployment workflow from main are preserved; protocol proof reproduction and hash-bound inventory checks remain additional gates. All model CLI entrypoints, including the new run_experiment entrypoint, now stop before training under the independently established universal blocker.

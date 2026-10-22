@@ -32,7 +32,8 @@ def check(root=ROOT):
             if parts.scheme or parts.netloc or not parts.path:
                 continue
             target = (path.parent / unquote(parts.path)).resolve()
-            if not target.is_relative_to(root) or not target.is_file():
+            if (not target.is_relative_to(root) or not target.is_file()
+                    or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
                 errors.append(f'{path.relative_to(root)}: broken or escaping local link {url}')
     inventory_file = root / 'docs/evidence/download-inventory.json'
     if inventory_file.is_file():
@@ -44,7 +45,8 @@ def check(root=ROOT):
         entries = []
     registered = {(root / e['file']).resolve(): e for e in entries}
     for target, entry in registered.items():
-        if not target.is_relative_to(root) or not target.is_file():
+        if (not target.is_relative_to(root) or not target.is_file()
+                    or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
             errors.append('Missing or escaping registered artifact')
         if entry.get('approved_for_weekly_slot') is not False or 'DO NOT SUBMIT' not in entry.get('status', ''):
             errors.append('Negative artifact inventory lacks explicit DO NOT SUBMIT status')

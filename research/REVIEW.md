@@ -114,3 +114,7 @@ These are hypotheses rather than literature-established discoveries in this stud
 ### Third concurrent-main integration
 
 PR #9 added a fourth artifact (H86-1 straight-edge corroboration) and embedded its negative record in the radiometric model card. Its artifact and scientific evidence are preserved, not recomputed or promoted. The read-only audit now verifies both embedded lanes. H86-1's card stage has been changed to write its dedicated `h86_run_card.json`, not overwrite another lane's `run-card.json`; its CLI is stopped before further stages by the same protocol preflight. The proof restorer now writes `protocol-data-restore.json` so it cannot erase a different session's restoration receipt. All four artifact pairs are hash-bound in the negative download inventory; none is approved.
+
+### Latest concurrent RMRB-86 integration
+
+PR #15's distinct residual-boundary method, full provenance, 37,654-dot artifact and paired controls are retained in its own evidence namespace. Its card remains negative: the transform-versus-raw-radiometrics paired interval crosses zero and the literal dense-support stop applies independently. This session did not rerun or certify that model. The fifth inherited artifact is now included in the same exact hash/ZIP inventory. Main's static, fail-closed dashboard is preserved, with no evidence of organizer acceptance or authorized weekly slot added.
