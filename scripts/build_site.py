@@ -97,7 +97,7 @@ hero = f"""
   <h1>One unique GeoTIFF, ready to hand to the competition form</h1>
   <p class="muted">Single band · float32 · 3730 × 3292 · EPSG:32611 · 100 m · values exactly in [0, 1] ·
   0 NaN · 0 Inf · 0 positive cells outside the footprint · 0 positive cells on the mapped catalogue.</p>
-  <a class="btn" href="downloads/{SUB}">⬇ Download the submission GeoTIFF (196 KB)</a>
+  <a class="btn" href="downloads/{SUB}">⬇ Download the submission GeoTIFF (191 KB)</a>
   <a class="btn alt" href="downloads/{STEM}.zip">⬇ Download the ZIP (single GeoTIFF inside)</a>
   <a class="btn ghost" href="executive-summary.html">How to submit in 4 steps →</a>
   <p class="mono">sha256 {CARD['raster_sha256']}</p>
