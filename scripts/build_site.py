@@ -149,6 +149,10 @@ See <a href="evidence.html">Evidence</a> and <a href="hypotheses.html">Hypothese
 <td>not audited here</td>
 <td><span class="badge warn">PARALLEL LANE — NOT AUDITED BY THIS PIPELINE</span><br>
 <span class="muted">produced by a concurrent session; its own evidence is under <a href="../docs/evidence/">docs/evidence/</a> and <a href="../research/">research/</a>. Run <code>scripts/audit_uniqueness.py --candidate &lt;path&gt;</code> before treating it as submittable.</span></td></tr>
+<tr><td class="mono">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</td><td>PASS (own receipt)</td>
+<td>worst rho 0.070 vs 14 pinned rasters; vs this site's shipped candidate rho -0.0001, 19 % of dots within 3 px</td>
+<td><span class="badge bad">DO NOT SUBMIT — parallel lane H86-1, holdout-negative</span><br>
+<span class="muted">straight-edge 2-of-5 lane (PR #9): HOLDOUT-DTI 0.0463 vs spaced-random 0.0458 on the same evaluator version — no skill beyond coverage. Evidence: <a href="evidence/h86_run_card.json">run card</a>, <a href="evidence/h86_holdout_e2_b38000.json">holdout</a>, <a href="evidence/h86_crosslane_vs_gmc.json">cross-lane uniqueness</a>. Kept as a negative deliverable.</span></td></tr>
 </table>
 
 <h3>Everything is checkable</h3>

@@ -56,3 +56,21 @@ No new experiment was run and no score is claimed: HOLDOUT-DTI 0.0420
 [0.0369–0.0467] (gems57-pooled-hide-v2, 22,641 withheld) vs incumbent
 0.1011 [0.0856–0.1167] remains a negative result. Historical brief numbers
 (0.2778 / 0.4413 / 0.3195) remain owner-reported without receipts.
+
+---
+
+# Parallel session (2026-10-22, PR #9) — H86-1 lane, three passes
+
+Pass 1: restored the 419 MB 19-band feature raster + 14-raster registry
+(SHA-verified), preregistered 5 hypotheses, ran E1 canaries (max AUC 0.603),
+E2/E3 pipeline hide-and-recover (candidate = spaced random on HOLDOUT-DTI at
+38k/44,090 budgets), SGMC auxiliary proxy (below random), uniqueness vs 14
+rasters, wrote a 38,000-dot candidate via the shared writer (validator PASS).
+Pass 2: documented fixed-incumbent holdout handicap (B2 0.0039 structural),
+lattice saturation certificate (99.87%), feature/footprint mask mismatch
+(3,061/1,540), SGMC dilation caveat; tests pass with and without `data/`.
+Pass 3 / merge: main had advanced with the H86-RMRB lane (PR #7); both lanes
+preserved, run cards combined (`parallel_lane_h86_1`), cross-lane uniqueness
+measured (ρ 0.013, overlaps 0.31/0.17 — distinct), audit verifies both TIF
+byte sets read-only. Both verdicts negative; no slot used. Full record:
+`research/H86_RESULTS.md`.

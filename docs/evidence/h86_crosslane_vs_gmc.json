@@ -1,0 +1,11 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "note": "Cross-lane check at second merge: H86-1 vs GMC linepost shipped candidate (PRs #10/#12).",
+  "h86_1_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+  "gmc_sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+  "spearman_full_footprint": -0.00012120565098591746,
+  "jaccard_dot_sets": 0.00515210032132219,
+  "my_dots_within_3px_of_theirs": 0.19405263157894737,
+  "their_dots_within_3px_of_mine": 0.11574728380885081,
+  "duplicate_by_literal_gates": false
+}

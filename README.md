@@ -338,3 +338,12 @@ or uniqueness-audited by the pipeline documented here: its SHA-256, format check
 comparison are its own, and no number in §1–§13 refers to it. It is left in the tree so the parallel-run
 protocol's "negative results and sibling lanes are deliverables" rule is honoured; it must be evaluated
 with `scripts/audit_uniqueness.py --candidate <its path>` before anyone treats it as submittable.
+
+A third lane, **H86-1** (PR #9, `gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif`,
+straight-edge 2-of-5 corroboration with dotted emission), is likewise present with its own pipeline
+(`scripts/run_h86.py`), preregistration (`research/h86-hypotheses.md`), results
+(`research/H86_RESULTS.md`) and evidence (`docs/evidence/h86_*.json`). Its verdict is **negative**:
+HOLDOUT-DTI 0.0463 [0.0372–0.0560] vs spaced-random 0.0458 (same evaluator version,
+22,893 withheld positives), and below random on an SGMC off-catalogue auxiliary proxy. **Do not
+submit it.** It is distinct from both other lanes (vs the shipped GMC candidate: ρ −0.0001,
+19 % of dots within 3 px; `docs/evidence/h86_crosslane_vs_gmc.json`).

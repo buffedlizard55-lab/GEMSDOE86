@@ -1,0 +1,118 @@
+{
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+    20,
+    21
+  ],
+  "folds": [
+    "seed20_foldNW",
+    "seed20_foldNE",
+    "seed20_foldSW",
+    "seed20_foldSE",
+    "seed21_foldNW",
+    "seed21_foldNE",
+    "seed21_foldSW",
+    "seed21_foldSE"
+  ],
+  "withheld_positive_pixels": 22893,
+  "negatives_per_fold": 60000,
+  "features": {
+    "rtp_mag": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.5471341839390498,
+      "per_fold_auc": [
+        0.5601366614664587,
+        0.47759393747359524,
+        0.5312631887507714,
+        0.5168352923076923,
+        0.5267428397636427,
+        0.5035132288578286,
+        0.5539280269254305,
+        0.5847716379310345
+      ],
+      "leakage_block_gt_0p90": false
+    },
+    "det_elev": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.602554871121449,
+      "per_fold_auc": [
+        0.6734821719535449,
+        0.5843069497253908,
+        0.5842422507273208,
+        0.5811065589743589,
+        0.682622540841154,
+        0.6106783919243258,
+        0.5678105428796223,
+        0.6196283237547894
+      ],
+      "leakage_block_gt_0p90": false
+    },
+    "iso_grav": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.5315302341327043,
+      "per_fold_auc": [
+        0.5232727942451031,
+        0.5244746373750176,
+        0.49944936083928415,
+        0.5600489794871795,
+        0.5696376433785193,
+        0.5882848086968799,
+        0.47376581431943354,
+        0.5782157614942528
+      ],
+      "leakage_block_gt_0p90": false
+    },
+    "depth_base": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.5324349235210181,
+      "per_fold_auc": [
+        0.5340705581556595,
+        0.5062724405013379,
+        0.4969836154456493,
+        0.5960695948717949,
+        0.5572045968022246,
+        0.559122561061697,
+        0.4790825902613865,
+        0.5271049377394637
+      ],
+      "leakage_block_gt_0p90": false
+    },
+    "cond_surf": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.5211085335400922,
+      "per_fold_auc": [
+        0.5257233315999307,
+        0.5034462118011548,
+        0.535113770607423,
+        0.5238336717948718,
+        0.48707072471324286,
+        0.4640474022306932,
+        0.4984306582743247,
+        0.45971170977011494
+      ],
+      "leakage_block_gt_0p90": false
+    },
+    "h86_2of5_surface": {
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "feature-alone AUC canary (not a DTI score)",
+      "pooled_auc": 0.5706286171901164,
+      "per_fold_auc": [
+        0.5953529901196049,
+        0.5176847943951556,
+        0.553723287490082,
+        0.5920329794871795,
+        0.6105250955856796,
+        0.5736109028660172,
+        0.5296971304309818,
+        0.5951640062260537
+      ],
+      "leakage_block_gt_0p90": false
+    }
+  },
+  "any_blocked": false
+}
