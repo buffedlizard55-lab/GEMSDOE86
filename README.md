@@ -4,7 +4,7 @@
 
 [Executive summary and submission instructions](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/executive-summary.html) · [Research and source review](research/REVIEW.md) · [Machine-readable run card](docs/evidence/run-card.json)
 
-This session began with only a README. It recovered integrity-pinned mirrored grid inputs and unmodified shared evaluator/writer code, not a trained model or proven winning submission. **Do not submit the sample TIFF or any upstream historical raster as a new submission.** No weekly slot was used. A downloadable candidate is deliberately absent rather than misrepresented as validated or unique.
+The assigned branch initially contained only a README; during this session it was reconciled with the then-current `main`, which supplied the shared evaluator/writer, research audit, and Pages site. The pinned sample-submission and fault rasters were restored from owner mirrors and verified against their manifest hashes; this proves mirror integrity, not organizer authentication. No feature cache, validated new candidate, or winning model was obtained. **Do not submit the sample TIFF or any upstream historical raster as a new submission.** No weekly slot was used. A downloadable candidate is deliberately absent rather than misrepresented as validated or unique.
 
 ## Starting brief — read at the beginning of every session
 
