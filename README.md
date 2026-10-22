@@ -1,50 +1,111 @@
-# GEMSDOE86 — audited fault-prediction research
+# GEMSDOE86 — RMRB fault-prediction experiment
 
-## NOT READY TO SUBMIT — no candidate TIF generated
+## UNIQUE TIFF GENERATED — SAFE TO DOWNLOAD, **NOT SAFE TO SUBMIT**
 
-[Executive summary and submission instructions](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/executive-summary.html) · [Research and source review](research/REVIEW.md) · [Machine-readable run card](docs/evidence/run-card.json)
+A new single-band competition-grid GeoTIFF was generated from the RMRB-86 model. It is not a copied or renamed prior raster.
 
-The assigned branch initially contained only a README; during this session it was reconciled with the then-current `main`, which supplied the shared evaluator/writer, research audit, and Pages site. The pinned sample-submission and fault rasters were restored from owner mirrors and verified against their manifest hashes; this proves mirror integrity, not organizer authentication. No feature cache, validated new candidate, or winning model was obtained. **Do not submit the sample TIFF or any upstream historical raster as a new submission.** No weekly slot was used. A downloadable candidate is deliberately absent rather than misrepresented as validated or unique.
+- **Research TIFF:** [`gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif`](docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif)
+- **One-TIFF ZIP:** [`gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip`](docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip)
+- **SHA-256:** `9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd`
+- **Submission name:** `RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots`
+- **Portal note (107 characters):** `RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.`
 
-## Starting brief — read at the beginning of every session
+The automated format validator passes: one float32 band, all values finite and in `[0,1]`, EPSG:32611, exact shape/transform, zero outside the footprint, and zero on mapped catalogue pixels. The bytes are absent from 1,143 indexed public raster hashes and differ from the decoded stopping witnesses.
 
-The following is a **condensed operational record** of the owner's long request, not a verbatim transcript. The original conversation remains the complete prompt. Read this AND research/REVIEW.md before work. Unfulfilled requirements remain explicit blockers rather than completed checkboxes.
+**Do not upload it.** The specific engineered transform did not beat its strongest matched raw-radiometric control with a wholly positive paired 95% interval, and the prompt's literal overlap gate is triggered by a continuous registry raster. The negative status is machine-readable in [`docs/evidence/rmrb86-run-card.json`](docs/evidence/rmrb86-run-card.json). No weekly submission slot was used.
 
-- Review previous work first; maximize probability of winning through evidence, and own the outcome end to end. Do not trade scientific integrity for an optimistic claim.
-- Generate a UNIQUE competition-format single-band GeoTIFF, never copy an earlier submission except for education. Make download and readiness status obvious at the beginning of the site. Supply a distinct name and note of at most 140 characters.
-- Work autonomously through implementation, bug/edge-case review and final requirements review. Research official free data, preserve provenance and links, flag irregularities, distinguish verified facts from hypotheses. Explain access limits and next steps honestly.
-- Parallel-run lane is the single assigned method paragraph. **None was present in the supplied request.** Do not guess authorization or drift into another lane. Surface and final-dot checks must stop on rank correlation >0.90 or >70% dots within 3 px of any registered raster.
-- Reuse cached features, evaluate_holdout.py and submission_writer.py; do not privately fork shared tools. Hide complete fault segments with buffers. Derive catalogue features from visible faults only and mask visible faults exactly. Pool distance-tolerant Tversky components: alpha 0.2, beta 0.8, 300 m triangular kernel.
-- Test each feature alone; holdout AUC >0.90 means suspected leakage until disproven. Generate/rank three to five untested geological hypotheses with named layers, signatures, missing-fault mechanism, mimics, novelty and cost before experiments. Confirm external data availability before treating an external-data idea as viable.
-- Benchmark against the best comparable spatial holdout before touching a weekly slot. Stop after three experiments or two hours. Selection/promotion into a real slot is separate and must respect the authenticated weekly cap.
-- Report scores ONLY as HOLDOUT-DTI (version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (actual submission receipt). User-reported values and projections are not confirmed scores. The request contains conflicting leaderboard highs; resolve against official evidence, not repetition.
-- End with one JSON run card: hypothesis, mechanism, named non-fault mimic, holdout result+CI, registry comparisons, SHA256, serialized raster validation, submission name, short note, promote/negative. Negative results are deliverables.
-- Build a clean GitHub Pages site with an executive summary explaining exactly how to submit. Reject NaN/Inf/sentinels and values outside [0,1], and match the template's CRS/shape/transform. Automated inspection must replace unsupported “human inspected” claims.
-- Preserve source knowledge for future projects. Target fault prediction relevant to geothermal exploration; do not pretend a prediction proves a geothermal vent. Open and merge a PR, then list remaining limitations.
+[Open the GitHub Pages readiness dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/index.html) · [Submission guide](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/executive-summary.html) · [Scientific review](research/REVIEW.md)
 
-## Reproduce the audit
+## Persistent project prompt — read before every session
 
-Python 3.11+ and authenticated `gh` are needed for mirror restoration. No credentials belong in chat or Git.
+This section is the repository's standing operational prompt. The original conversation remains the verbatim request and source of truth; this persistent version retains every binding requirement needed to continue safely.
 
-```sh
+1. **Outcome:** maximize the probability of a top DOE GEMS result and own the end-to-end outcome. Predict missing faults relevant to geothermal exploration without pretending that a fault prediction proves a geothermal vent.
+2. **Unique deliverable:** generate a genuinely new competition-format TIFF, never rename/copy an older submission. Put an obvious download and an equally obvious **safe/not-safe to submit** decision at the beginning of the site. Include a unique name and note no longer than 140 characters.
+3. **Parallel lane:** stay within one preregistered method. Stop promotion if full-footprint rank correlation with any registry raster exceeds 0.90 or if more than 70% of candidate dots are within three pixels of one registry raster's positive support. Check the surface before placement and final dots. Log negative results.
+4. **Shared infrastructure:** reuse the template's cached data where obtainable and use the unmodified `evaluate_holdout.py` and `submission_writer.py`. Catalogue-derived operations must use fold-visible faults only. Mask visible/known faults pixel-exactly. Score pooled distance-tolerant Tversky terms with alpha 0.2, beta 0.8 and a 300 m triangular kernel.
+5. **Leakage:** test each feature alone. Symmetric AUC above 0.90 is a stop pending a leakage explanation.
+6. **Evidence labels:** performance values may be called only **HOLDOUT-DTI** with evaluator version, withheld-positive count and 95% CI, or **ORGANIZER-CONFIRMED** when bound to an authenticated submission-page receipt. A projection, user report or public-page observation is not a receipt.
+7. **Scientific sequence:** before experiments, rank three to five untried hypotheses by expected DTI benefit and cost. Name layers, transform/signature, missing-fault mechanism, non-fault mimic, novelty and data viability. Check any external source before calling it viable. Validate the top candidate on spatially blocked hide-and-recover folds before a weekly slot.
+8. **Budget and selection:** stop after three experiments or two hours. Promotion to a real slot is separate and must check the authenticated weekly quota. Never auto-upload from this repository.
+9. **Run card:** record hypothesis, mechanism, mimic, HOLDOUT-DTI and CI, registry comparisons, raster SHA-256, validator output, name, note and `promote`/`negative` verdict. Missing evidence is never a pass.
+10. **Automation and quality:** no human inspection is accepted as file validation. Reject NaN, Inf, sentinels and values outside `[0,1]`; require exact CRS, shape and transform. Work through implementation, bug/edge-case review and final requirement review. Preserve official/manual-review links, provenance, limitations and irregularities; do not hallucinate.
+11. **Project site:** maintain a clean GitHub Pages dashboard, executive submission guide, current evidence and official links. A static site must not claim to be a live feed unless it actually refreshes from an authenticated source.
+12. **Repository workflow:** work only on the Arena-assigned branch, open a pull request, merge only through the explicit PR operation, and report remaining work and blockers honestly.
+
+### Core values carried forward
+
+- **Maximize P(Win):** weigh tradeoffs and risk, then choose the evidence-grounded path that maximizes the probability of success rather than the most optimistic narrative.
+- **Own the Outcome:** own the end-to-end result; act on failures when possible, and use both failures and successes as signals for improvement.
+
+Here that means a valid TIFF is not called submission-ready merely because creating a download would feel like progress. The scientific and uniqueness outcomes remain binding.
+
+### Current lane
+
+`RMRB-86`: robust K~Th+U mixing residual, broad-background removal, multiscale residual-edge persistence, RTP-edge persistence, absolute cross-gradient alignment and line coherence; fold-proper positive/unlabelled HGB; fixed 37,654-dot placement with two-pixel inhibition/collar.
+
+The prompt referred to a separate single-method paragraph but supplied none. The autonomous lane selection was frozen before execution in [`registry/preregistration.json`](registry/preregistration.json); this is recorded as an irregularity rather than hidden.
+
+## What was measured
+
+All values below are **HOLDOUT-DTI (`gems57-pooled-hide-v2`, 22,893 withheld positive pixels, paired physical-block bootstrap 95% CI)**:
+
+| Arm | DTI | 95% CI |
+|---|---:|---:|
+| Ten-layer core control | 0.06406 | [0.05114, 0.07763] |
+| Core + raw K/Th/U | 0.07116 | [0.05738, 0.08596] |
+| Full RMRB-86 | 0.07283 | [0.05985, 0.08904] |
+
+The RMRB-minus-core paired difference is **HOLDOUT-DTI delta (`gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI)** = `0.00877 [0.00296, 0.01434]`. The RMRB-minus-raw-radiometrics paired difference is `0.00167 [-0.00285, 0.00620]` under the same evidence label. Because the stronger interval crosses zero, the preregistered scientific promotion gate fails.
+
+Twenty feature-alone canaries passed; maximum symmetric AUC was 0.58034. This is a leakage diagnostic, not a score.
+
+## Why H33 may have helped—and why that is not enough
+
+The hash-pinned H33 source describes pruning catalogue-adjacent dots from an earlier sparse raster. Under the distance-weighted Tversky objective, redundant prediction mass can increase weighted false positives without improving maximum truth coverage; kernel-scale sparse placement and collar pruning can therefore help. But an unmapped branch or continuation can also lie next to a mapped trace, so pruning is not guaranteed to help.
+
+The historical scalar supplied by the owner has no authenticated submission-page receipt here and is not labelled ORGANIZER-CONFIRMED. RMRB-86 does not copy H33: final full-footprint Spearman correlation is 0.03022, forward three-pixel overlap is 0.45637, and file/decoded hashes differ.
+
+See [`research/REVIEW.md`](research/REVIEW.md) for the five ranked hypotheses, source ledger, exact method, caveats and full interpretation.
+
+## Reproduce
+
+Python 3.11+ and authenticated GitHub CLI access to public owner mirrors are required. No credential belongs in chat or the repository.
+
+```bash
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/restore_data.py
-.venv/bin/python scripts/audit.py
+.venv/bin/python scripts/restore_rmrb86_data.py --experiment
+.venv/bin/python scripts/run_experiment.py
+.venv/bin/python scripts/audit_rmrb86.py
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-`restore_data.py --include-features` can also recover the hash-pinned raw mirrored feature TIFF. This is NOT the required shared cached stack; the option does not unblock experimentation. Large inputs are ignored in Git. No GPU is required for the audit. Official reference training supports CPU; GPU improves speed.
+The shared writer refuses to overwrite an existing candidate. Run model regeneration in a fresh checkout/output name; use `scripts/audit_rmrb86.py` to verify the already published artifact.
 
-### What exists
+### Main artifacts
 
-- `vendor/gems57/`: shared upstream tools, byte-identical to the pin in `research/template_pin.json`.
-- `research/upstream/`: owner-repository audit snapshots and official reference README; historical metrics are not fresh evaluations.
-- `scripts/restore_data.py`: pinned mirror restoration with SHA and byte-length verification.
-- `scripts/audit.py`: negative run card with real grid checks, separate from unrun candidate validation.
-- `tests/`: safety tests, not geological validation or score estimates.
-- `docs/`: Pages site, executive summary and downloadable evidence, not a fake submission button.
+- `src/gems86_rmrb/`: label-blind RMRB features and fold-proper learner/emitter.
+- `vendor/gems57/`: shared evaluator/writer, byte-identical to `research/template_pin.json`.
+- `docs/evidence/feature-cache.json`: source, builder and cache hashes plus transform receipt.
+- `docs/evidence/leakage-canaries.json`: every feature-alone canary.
+- `docs/evidence/holdout.json`: pooled components, folds, scores and paired CIs.
+- `docs/evidence/uniqueness.json`: surface/final stopping-witness measurements.
+- `docs/evidence/rmrb86-run-card.json`: canonical final decision.
+- `docs/downloads/`: locally valid negative-research TIFF, ZIP and writer receipt.
 
-### Next session, in order
+## Official/manual-review links and access limits
 
-Resolve the lane, obtain/pin the shared feature cache and complete registry, validate layer identities, establish a comparable current-best holdout, run leakage canaries, then test only the authorized hypothesis. After improvement and uniqueness checks, export through the shared writer, validate the serialized file, and have the separate selector verify the live weekly quota. Until then this is a **negative preflight**, not a successful submission generator.
+- [DrivenData problem and format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) — authenticated originals were not downloaded here
+- [DrivenData public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+- [Official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b)
+- [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) and [DOI 10.5066/P93LGLVQ](https://doi.org/10.5066/P93LGLVQ)
+- [INGENIOUS GDR 1391](https://gdr.openei.org/submissions/1391)
+- [EPSG:32611](https://epsg.io/32611)
+
+This sandbox could fetch GitHub sources only. USGS, DrivenData, GDR and EPSG hosts were not freshly reachable. Owner-mirror hashes establish reproducibility, not organizer authentication. No GPU is required for this CPU experiment; no private truth or portal authentication is available.
+
+## Next work
+
+Do not spend a weekly slot on this raster. A future lane should either (a) test raw-radiometric generalization on a genuinely comparable frozen instrument, because that signal was stronger than core, or (b) repair the registry schema so continuous probability surfaces are used for the correlation test and sparse emissions for the dot-overlap test—but only if the owner explicitly changes the current literal rule. The RMRB transform itself is a negative result unless an independently preregistered experiment produces a positive paired interval.

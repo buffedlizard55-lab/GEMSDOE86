@@ -1,0 +1,1678 @@
+{
+  "canaries": {
+    "caveat": "Feature-alone AUC is a leakage diagnostic, not DTI or an organizer score.",
+    "evidence_class": "HOLDOUT-FEATURE-CANARY",
+    "features": [
+      {
+        "auc": 0.5217912960491629,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rtp",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5217912960491629,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5128695711115389,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "tmi_hg",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5128695711115389,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5404116034383577,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "iso_grav_anom_slope",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5404116034383577,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4368083742175397,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "tc",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5631916257824603,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5060227458163274,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "iso_grav_anom_vg",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5060227458163274,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.511828744771206,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "det_elev",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.511828744771206,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5101574439329397,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "depth_to_base_surf",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5101574439329397,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.49190450211473047,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "cond_surf",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5080954978852695,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4797611632065324,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "iso_grav_anom_hg",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5202388367934676,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5694332906851247,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "det_elev_slope",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5694332906851247,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.41965979414251064,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rad_K",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5803402058574894,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4524388982648218,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rad_Th",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5475611017351782,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4640509179258294,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rad_U",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5359490820741706,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4432496561468058,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "mix_residual",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5567503438531942,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4881214129632077,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "residual_edge_s1p5",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5118785870367923,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.48027313544140326,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "residual_edge_s3",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5197268645585967,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5318728875711125,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rtp_edge_persistence",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5318728875711125,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4994105846126822,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "cross_gradient_alignment",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5005894153873178,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5173608157271147,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "rmrb_joint",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5173608157271147,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4910871437722656,
+        "evidence_class": "HOLDOUT-FEATURE-CANARY",
+        "feature": "residual_line_coherence",
+        "negative_sample": 18569,
+        "passed": true,
+        "symmetric_auc": 0.5089128562277344,
+        "withheld_sample": 18569
+      }
+    ],
+    "max_symmetric_auc": 0.5803402058574894,
+    "passed": true,
+    "threshold": 0.9
+  },
+  "holdout": {
+    "alpha": 0.2,
+    "best_comparable_control": "raw_radiometric",
+    "beta": 0.8,
+    "bootstrap": {
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval.",
+      "clusters": 155,
+      "confidence": 0.95,
+      "draws": 1200,
+      "method": "paired physical spatial-cluster percentile",
+      "seed": 86022
+    },
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "experiment_definition": {
+      "experiment_1": "add raw K, Th and U to the ten-layer core control",
+      "experiment_2": "add the preregistered K~Th+U residual/RTP boundary transforms"
+    },
+    "experiments_run": 2,
+    "folds": [
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1823.9877794028278,
+            "fold_dti_diagnostic": 0.03148785917268387,
+            "fpw": 7931.273002760709,
+            "tpw": 99.01222059717233,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40283,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1780.5627080183513,
+            "fold_dti_diagnostic": 0.04524783475206145,
+            "fpw": 7905.243154844537,
+            "tpw": 142.43729198164885,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40283,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1765.904073530302,
+            "fold_dti_diagnostic": 0.04987482157240737,
+            "fpw": 7899.925475203789,
+            "tpw": 157.0959264696981,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40283,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 8000,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "NW",
+        "seed": 20,
+        "withheld_positive_pixels": 1923
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 2081.0862869508674,
+            "fold_dti_diagnostic": 0.07333409345746066,
+            "fpw": 9740.001024915415,
+            "tpw": 285.9137130491324,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38391,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 2062.6473387129436,
+            "fold_dti_diagnostic": 0.07803784082738216,
+            "fpw": 9727.97295383838,
+            "tpw": 304.35266128705643,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38391,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 2079.872131404852,
+            "fold_dti_diagnostic": 0.07364984147524709,
+            "fpw": 9737.641079974044,
+            "tpw": 287.1278685951481,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38391,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 9919,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "NE",
+        "seed": 20,
+        "withheld_positive_pixels": 2367
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3562.311814476404,
+            "fold_dti_diagnostic": 0.04374279968356465,
+            "fpw": 9654.361283827506,
+            "tpw": 218.6881855235963,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32233,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3545.5512154559683,
+            "fold_dti_diagnostic": 0.0470891821153397,
+            "fpw": 9640.856377618918,
+            "tpw": 235.44878454403178,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32233,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3545.749403338678,
+            "fold_dti_diagnostic": 0.0470273279041137,
+            "fpw": 9652.865458601882,
+            "tpw": 235.25059666132196,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32233,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 9793,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "SW",
+        "seed": 20,
+        "withheld_positive_pixels": 3781
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 2924.803668560262,
+            "fold_dti_diagnostic": 0.07737958862923282,
+            "fpw": 7687.860031390543,
+            "tpw": 325.1963314397382,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34113,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 2873.150978840391,
+            "fold_dti_diagnostic": 0.08951772815720872,
+            "fpw": 7671.999565446418,
+            "tpw": 376.84902115960915,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34113,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 2879.220904553398,
+            "fold_dti_diagnostic": 0.08807626738922048,
+            "fpw": 7677.972539774311,
+            "tpw": 370.7790954466019,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34113,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 7891,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "SE",
+        "seed": 20,
+        "withheld_positive_pixels": 3250
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1733.6942064961893,
+            "fold_dti_diagnostic": 0.05856615061843422,
+            "fpw": 7878.533491443039,
+            "tpw": 184.30579350381066,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40211,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1698.408979738889,
+            "fold_dti_diagnostic": 0.06975070232250766,
+            "fpw": 7849.542255055865,
+            "tpw": 219.59102026111094,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40211,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 8000,
+              "positive_candidates": 240000,
+              "ranked_pool": 240000,
+              "requested": 8000,
+              "separation_radius_px": 2
+            },
+            "fnw": 1711.6399378751864,
+            "fold_dti_diagnostic": 0.0655521813752513,
+            "fpw": 7861.776863564366,
+            "tpw": 206.36006212481357,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 40211,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 8000,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "NW",
+        "seed": 21,
+        "withheld_positive_pixels": 1918
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 1990.014267028583,
+            "fold_dti_diagnostic": 0.0951598965373096,
+            "fpw": 9677.770484242606,
+            "tpw": 370.98573297141706,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38240,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 1915.8748330660565,
+            "fold_dti_diagnostic": 0.11395443106756065,
+            "fpw": 9641.715484187393,
+            "tpw": 445.12516693394366,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38240,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 9919,
+              "positive_candidates": 297570,
+              "ranked_pool": 297570,
+              "requested": 9919,
+              "separation_radius_px": 2
+            },
+            "fnw": 1911.1866714313935,
+            "fold_dti_diagnostic": 0.11509928531778264,
+            "fpw": 9646.417843445062,
+            "tpw": 449.8133285686065,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 38240,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 9919,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "NE",
+        "seed": 21,
+        "withheld_positive_pixels": 2361
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3587.5781444341446,
+            "fold_dti_diagnostic": 0.044850319646871875,
+            "fpw": 9653.040685248761,
+            "tpw": 225.42185556585514,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32033,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3600.3161962828167,
+            "fold_dti_diagnostic": 0.04232897977562382,
+            "fpw": 9658.034112539142,
+            "tpw": 212.68380371718325,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32033,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 9793,
+              "positive_candidates": 293790,
+              "ranked_pool": 293790,
+              "requested": 9793,
+              "separation_radius_px": 2
+            },
+            "fnw": 3543.095154056461,
+            "fold_dti_diagnostic": 0.05365030234487865,
+            "fpw": 9632.179487870428,
+            "tpw": 269.90484594353904,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 32033,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 9793,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "SW",
+        "seed": 21,
+        "withheld_positive_pixels": 3813
+      },
+      {
+        "arms": {
+          "core_control": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 3094.2492862017343,
+            "fold_dti_diagnostic": 0.08780738576146684,
+            "fpw": 7659.982034821345,
+            "tpw": 385.75071379826556,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34236,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "raw_radiometric": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 3087.4110500592333,
+            "fold_dti_diagnostic": 0.08934054240588792,
+            "fpw": 7658.900105787957,
+            "tpw": 392.58894994076695,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34236,
+              "positive_unlabelled_assumption": true
+            }
+          },
+          "rmrb_candidate": {
+            "emission": {
+              "emitted": 7891,
+              "positive_candidates": 236730,
+              "ranked_pool": 236730,
+              "requested": 7891,
+              "separation_radius_px": 2
+            },
+            "fnw": 3071.64858090515,
+            "fold_dti_diagnostic": 0.09286690916357197,
+            "fpw": 7657.489542597788,
+            "tpw": 408.3514190948501,
+            "training": {
+              "columns": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+              ],
+              "hidden_truth_used": false,
+              "n_positive_sample": 20000,
+              "n_unlabelled_sample": 60000,
+              "n_visible_training": 34236,
+              "positive_unlabelled_assumption": true
+            }
+          }
+        },
+        "boundary_buffer_px": 12,
+        "budget": 7891,
+        "catalogue_collar_px": 2,
+        "feature_context_buffer_px": 3,
+        "quadrant": "SE",
+        "seed": 21,
+        "withheld_positive_pixels": 3480
+      }
+    ],
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "paired_differences": {
+      "core_control": {
+        "ci95": [
+          0.002963271466187055,
+          0.014342337291247646
+        ],
+        "delta": 0.008770734776756217,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "withheld_positive_pixels": 22893
+      },
+      "raw_radiometric": {
+        "ci95": [
+          -0.002853083236943039,
+          0.006201553976292535
+        ],
+        "delta": 0.0016688019021457584,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "withheld_positive_pixels": 22893
+      }
+    },
+    "pooled": true,
+    "published_shared_v2_best_context": {
+      "comparable": false,
+      "local_snapshot": "research/upstream/gems84-run-card.json",
+      "reason": "same evaluator formula/version but a different fold draw; matched controls below are binding",
+      "snapshot_sha256": "9092b6f017c93a36ab8120e35f3fdf27d2c9e8daee0e88926bc9e3435c5517fa",
+      "source": "GEMSDOE84 evidence/run-card.json step_control",
+      "source_commit": "e80df44eb4a915ee7d22eece33030eff76ee88eb",
+      "value": 0.04436352673339927
+    },
+    "scores": {
+      "core_control": {
+        "ci95": [
+          0.05113710777246448,
+          0.07766885603715874
+        ],
+        "dti": 0.06405604735790443,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "fnw": 20797.725453551015,
+        "fpw": 69882.8220386499,
+        "tpw": 2095.274546448988,
+        "withheld_positive_pixels": 22893
+      },
+      "raw_radiometric": {
+        "ci95": [
+          0.0572254123197364,
+          0.08590517504327373
+        ],
+        "dti": 0.07115798023251489,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "fnw": 20563.923300174654,
+        "fpw": 69754.2640093186,
+        "tpw": 2329.0766998253516,
+        "withheld_positive_pixels": 22893
+      },
+      "rmrb_candidate": {
+        "ci95": [
+          0.05887883153427838,
+          0.087443273517476
+        ],
+        "dti": 0.07282678213466065,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "fnw": 20508.316857095408,
+        "fpw": 69766.26829103168,
+        "tpw": 2384.6831429045797,
+        "withheld_positive_pixels": 22893
+      }
+    },
+    "split_version": "buffered-whole-components-loqo-v2",
+    "triangular_radius_m": 300.0
+  },
+  "preregistration": {
+    "date_utc": "2026-10-22",
+    "emission": "Fixed 37,654-dot budget; deterministic probability ranking; 2 px dot inhibition and 2 px collar derived only from fold-visible faults (full catalogue in production).",
+    "experiment_limit": 3,
+    "experiments": [
+      "Experiment 1: ten-layer core control versus core plus raw K/Th/U.",
+      "Experiment 2: raw-radiometric arm versus full RMRB transform arm."
+    ],
+    "external_data_obtainability": "The official USGS GeoDAWN source is named at DOI 10.5066/P93LGLVQ. This sandbox cannot reach usgs.gov; a hash-pinned owner-derived mirror is obtainable from GitHub and is not mislabelled organizer-authenticated.",
+    "external_data_required": true,
+    "holdout": "Unmodified vendor gems57 buffered_component_draw and evaluate_holdout; seeds 20/21; whole 8-connected components; 3 px feature buffer; 12 px label-blind quadrant erosion; visible faults masked pixel-exactly; pooled DTI alpha 0.2 beta 0.8 triangular 300 m; paired 20 km block bootstrap.",
+    "hypothesis": "A narrow K residual from the broad K~Th+U mixing relation, when line-coherent and aligned with a persistent RTP magnetic edge, may identify an unmapped fault-related alteration/contact boundary.",
+    "lane": "RMRB-86 radiometric mixing-residual boundary",
+    "lane_resolution": "The supplied prompt did not contain a separate method paragraph. To satisfy the autonomous/no-manual-input instruction, this run selects exactly one lane before experimentation and records the missing assignment as an irregularity.",
+    "leakage_stop": "Every model channel alone; symmetric AUC above 0.90 stops the run.",
+    "learning": "Fold-proper HGB positive/unlabelled learner: visible faults only, training quadrants exclude the tested quadrant; no catalogue-derived model feature.",
+    "mechanism": "Hydrothermal redistribution and fault juxtaposition can create a narrow radiometric mixing residual; an RTP edge supplies independent structural persistence.",
+    "non_fault_mimic": "Weathering or transported sediment at an unfaulted lithologic contact; survey gridding edges can also mimic a lineament.",
+    "official_sources": [
+      "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "https://doi.org/10.5066/P93LGLVQ",
+      "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b"
+    ],
+    "promotion_gate": "Candidate must exceed the matched best control, paired 95% delta CI must be wholly positive, and candidate must exceed the best located shared-v2 context value. Any registry rho >0.90 or forward 3 px overlap >0.70 blocks promotion. Local format validation cannot override a scientific or registry failure.",
+    "schema": "gems86.preregistration.v1",
+    "source_layers": [
+      "owner-mirrored USGS GeoDAWN radiometric K, Th and U uint8 grids",
+      "owner-mirrored competition training_features.tif band 2 rtp",
+      "ten owner-mirrored competition core geophysics/topography control bands"
+    ],
+    "submission_slots_used": 0,
+    "time_limit_hours": 2,
+    "transform": "Robust Huber K~Th+U residual, 20 px background removal, residual gradient persistence at 1.5/3 px, RTP gradient persistence at 2/4 px, absolute cross-gradient alignment and residual structure-tensor coherence."
+  },
+  "run_card": {
+    "blockers": [
+      "RMRB candidate did not clear every preregistered holdout promotion condition.",
+      "Binding registry rule fired: >70% 3-pixel overlap with a hash-pinned dense prior.",
+      "No authenticated organizer submission receipt or current weekly quota was available.",
+      "Input hashes establish owner-mirror integrity, not independent organizer authentication."
+    ],
+    "byte_unique_among_1143_indexed_public_rasters": true,
+    "correlation_overlap_vs_registry": {
+      "complete": false,
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "final_dots": [
+        {
+          "candidate_dots_within_3px": 1.0,
+          "decoded_equal": false,
+          "duplicate_by_overlap": true,
+          "duplicate_by_rho": false,
+          "path": "data/registry/dense_17gemdoe.tif",
+          "phase": "final_dots",
+          "registry_name": "17GEMSDOE dense continuous witness",
+          "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+          "spearman_full_footprint": 0.0959880249776675,
+          "spearman_on_dot_union": null,
+          "stop_required": true
+        },
+        {
+          "candidate_dots_within_3px": 0.45636585754501513,
+          "decoded_equal": false,
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "path": "data/registry/h33_education.tif",
+          "phase": "final_dots",
+          "registry_name": "GEMSDOE32 H33-2-B2",
+          "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "spearman_full_footprint": 0.03022021134688923,
+          "spearman_on_dot_union": -0.962713124767621,
+          "stop_required": false
+        }
+      ],
+      "stop_required": true,
+      "surface": [
+        {
+          "candidate_dots_within_3px": 1.0,
+          "decoded_equal": false,
+          "duplicate_by_overlap": true,
+          "duplicate_by_rho": false,
+          "path": "data/registry/dense_17gemdoe.tif",
+          "phase": "surface_before_placement",
+          "registry_name": "17GEMSDOE dense continuous witness",
+          "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+          "spearman_full_footprint": 0.4392670919715825,
+          "spearman_on_dot_union": null,
+          "stop_required": true
+        },
+        {
+          "candidate_dots_within_3px": 0.15368597471634288,
+          "decoded_equal": false,
+          "duplicate_by_overlap": false,
+          "duplicate_by_rho": false,
+          "path": "data/registry/h33_education.tif",
+          "phase": "surface_before_placement",
+          "registry_name": "GEMSDOE32 H33-2-B2",
+          "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "spearman_full_footprint": 0.08819766564642105,
+          "spearman_on_dot_union": null,
+          "stop_required": false
+        }
+      ]
+    },
+    "decoded_unique_vs_stopping_witnesses": true,
+    "download_file": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+    "experiments_run": 2,
+    "holdout_dti": {
+      "ci95": [
+        0.05887883153427838,
+        0.087443273517476
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "matched_best_control": "raw_radiometric",
+      "matched_control_value": 0.07115798023251489,
+      "paired_delta": {
+        "ci95": [
+          -0.002853083236943039,
+          0.006201553976292535
+        ],
+        "delta": 0.0016688019021457584,
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "evidence_class": "HOLDOUT-DTI",
+        "withheld_positive_pixels": 22893
+      },
+      "scientific_promotion_gate_passed": false,
+      "value": 0.07282678213466065,
+      "withheld_positives": 22893
+    },
+    "hypothesis": "A narrow K residual from the broad K~Th+U mixing relation, when line-coherent and aligned with a persistent RTP magnetic edge, may identify an unmapped fault-related alteration/contact boundary.",
+    "input_receipts": {
+      "dense_registry_witness": {
+        "bytes": 25065181,
+        "organizer_authenticated": false,
+        "path": "data/registry/dense_17gemdoe.tif",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+      },
+      "existing_faults": {
+        "bytes": 425830,
+        "organizer_authenticated": false,
+        "path": "data/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+      },
+      "h33_education": {
+        "bytes": 219065,
+        "organizer_authenticated": false,
+        "path": "data/registry/h33_education.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      },
+      "radiometrics": {
+        "bytes": 26612970,
+        "organizer_authenticated": false,
+        "path": "data/external/geodawn_rad_u8.tif",
+        "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+      },
+      "sample_submission": {
+        "bytes": 1599597,
+        "organizer_authenticated": false,
+        "path": "data/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+      },
+      "training_features": {
+        "bytes": 418912844,
+        "organizer_authenticated": false,
+        "path": "data/training_features.tif",
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+      }
+    },
+    "mechanism": "Hydrothermal redistribution and fault juxtaposition can create a narrow radiometric mixing residual; an RTP edge supplies independent structural persistence.",
+    "non_fault_mimic": "Weathering or transported sediment at an unfaulted lithologic contact; survey gridding edges can also mimic a lineament.",
+    "note": "RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.",
+    "raster_sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+    "runtime_seconds": 247.30019206700013,
+    "safe_to_download": true,
+    "safe_to_submit": false,
+    "submission_name": "RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots",
+    "submission_ready": false,
+    "submission_slots_used": 0,
+    "validator_output": {
+      "all_checks_passed": true,
+      "crs_shape_transform_match": true,
+      "local_validation_is_not_organizer_acceptance": true,
+      "no_nan_inside_footprint": true,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "single_band_float32": true,
+      "status": "PASS_LOCAL_FORMAT_ONLY",
+      "values_in_0_1": true
+    },
+    "validator_scope": "automated local bytes/grid/range checks; not organizer acceptance",
+    "verdict": "negative",
+    "zip_file": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip"
+  },
+  "uniqueness": {
+    "complete_spatial_scan": false,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "final_dots": [
+      {
+        "candidate_dots_within_3px": 1.0,
+        "decoded_equal": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false,
+        "path": "data/registry/dense_17gemdoe.tif",
+        "phase": "final_dots",
+        "registry_name": "17GEMSDOE dense continuous witness",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "spearman_full_footprint": 0.0959880249776675,
+        "spearman_on_dot_union": null,
+        "stop_required": true
+      },
+      {
+        "candidate_dots_within_3px": 0.45636585754501513,
+        "decoded_equal": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "path": "data/registry/h33_education.tif",
+        "phase": "final_dots",
+        "registry_name": "GEMSDOE32 H33-2-B2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_full_footprint": 0.03022021134688923,
+        "spearman_on_dot_union": -0.962713124767621,
+        "stop_required": false
+      }
+    ],
+    "indexed_public_hashes": 1143,
+    "literal_dense_witness_is_binding": true,
+    "packaging_after_stop_reason": "Required research TIFF deliverable only; never approval for a slot.",
+    "scope": "Two hash-pinned stopping witnesses checked. The inherited protocol stops at the first duplicate; full 1,143-raster decode was not continued.",
+    "stop_required": true,
+    "surface_before_placement": [
+      {
+        "candidate_dots_within_3px": 1.0,
+        "decoded_equal": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false,
+        "path": "data/registry/dense_17gemdoe.tif",
+        "phase": "surface_before_placement",
+        "registry_name": "17GEMSDOE dense continuous witness",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "spearman_full_footprint": 0.4392670919715825,
+        "spearman_on_dot_union": null,
+        "stop_required": true
+      },
+      {
+        "candidate_dots_within_3px": 0.15368597471634288,
+        "decoded_equal": false,
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "path": "data/registry/h33_education.tif",
+        "phase": "surface_before_placement",
+        "registry_name": "GEMSDOE32 H33-2-B2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_full_footprint": 0.08819766564642105,
+        "spearman_on_dot_union": null,
+        "stop_required": false
+      }
+    ],
+    "thresholds": {
+      "forward_dot_overlap_3px": 0.7,
+      "spearman_rank_correlation": 0.9
+    }
+  },
+  "writer_receipt": {
+    "approved_for_weekly_slot": false,
+    "bytes": 133010,
+    "file": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+    "metadata": {
+      "duplicate_stop": true,
+      "hypothesis": "A narrow K residual from the broad K~Th+U mixing relation, when line-coherent and aligned with a persistent RTP magnetic edge, may identify an unmapped fault-related alteration/contact boundary.",
+      "production_emission": {
+        "emitted": 37654,
+        "positive_candidates": 1129620,
+        "ranked_pool": 1129620,
+        "requested": 37654,
+        "separation_radius_px": 2
+      },
+      "production_fit": {
+        "columns": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "hidden_truth_used": false,
+        "n_positive_sample": 20000,
+        "n_unlabelled_sample": 60000,
+        "n_visible_training": 60988,
+        "positive_unlabelled_assumption": true
+      },
+      "scientific_pass": false,
+      "submission_authorized": false
+    },
+    "note": "RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.",
+    "note_chars": 107,
+    "promoted": false,
+    "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+    "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+    "submission_name": "RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots",
+    "submission_slots_used": 0,
+    "template_report": {
+      "bands": 1,
+      "blocksize": [
+        256,
+        256
+      ],
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "bytes": 133010,
+      "crs": "EPSG:32611",
+      "dtype": "float32",
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "height": 3730,
+      "infinity_pixels": 0,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "min": 0.0,
+      "n_nan": 0,
+      "n_nonzero": 37654,
+      "nan_pixels": 0,
+      "nodata": null,
+      "ok": true,
+      "path": "/home/user/GEMSDOE86/docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+      "problems": [],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance",
+      "width": 3292
+    },
+    "validator": {
+      "all_checks_passed": true,
+      "band_description": [
+        null
+      ],
+      "bytes": 133010,
+      "checks": {
+        "crs_epsg_32611": true,
+        "dimensions_3730x3292": true,
+        "dtype_float32": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "max_le_1": true,
+        "min_ge_0": true,
+        "no_inf_anywhere": true,
+        "no_nan_anywhere": true,
+        "no_sentinel_values": true,
+        "outside_footprint_zero": true,
+        "range_0_1_guaranteed": true,
+        "single_band": true,
+        "transform_matches_sample_submission": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "emitted_positive_pixels": 37654,
+      "file": "/home/user/GEMSDOE86/docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+      "footprint_fraction": 0.007286874781441169,
+      "in_footprint_positive_pixels": 37654,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "meta": {
+        "count": 1,
+        "crs": "EPSG:32611",
+        "dtype": "float32",
+        "nodata": null,
+        "profile_compress": "deflate",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ]
+      },
+      "min": 0.0,
+      "n_finite": 12279160,
+      "n_infinite": 0,
+      "n_nan": 0,
+      "on_catalogue_positive_pixels": 0,
+      "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+    },
+    "zip_file": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "1f115bd8a7afe0ac65cc85224a988d9f4a5bfc3ec34e8732d07c9e6dee9c1ca9"
+  }
+}
