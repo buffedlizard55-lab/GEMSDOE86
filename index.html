@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable research and validation status for GEMSDOE86, a DOE GEMS fault-discovery workbench.">
+  <title>GEMSDOE86 — Submission readiness</title>
+  <style>
+    :root { color-scheme: light; --ink:#172b3a; --muted:#536676; --line:#d7e1e7; --paper:#f3f7f8; --white:#fff; --navy:#10354b; --teal:#087f78; --red:#8f2d25; --redbg:#fff2ef; --gold:#76500a; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { background:var(--navy); color:white; padding:3rem max(1.25rem,calc((100% - 1080px)/2)); }
+    header p { color:#d4e7ed; max-width:720px; margin:.5rem 0 0; }
+    main { max-width:1080px; margin:2rem auto; padding:0 1.25rem 3rem; }
+    h1 { font-size:clamp(2rem,5vw,3.4rem); line-height:1.1; margin:0; letter-spacing:-.03em; }
+    h2 { font-size:1.35rem; margin-top:0; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.13em; font-weight:700; font-size:.78rem; }
+    .alert { background:var(--redbg); border:2px solid #d28c7d; border-left:8px solid var(--red); border-radius:12px; padding:1.2rem 1.4rem; margin:1.5rem 0; }
+    .alert strong { color:var(--red); font-size:1.12rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:1rem; margin:1rem 0 1.5rem; }
+    .card { background:var(--white); border:1px solid var(--line); border-radius:12px; padding:1.25rem; box-shadow:0 2px 8px #15374b0d; }
+    .card p:last-child { margin-bottom:0; }
+    .status { display:inline-block; padding:.15rem .65rem; border-radius:999px; font-weight:700; font-size:.84rem; background:#fff0d1; color:var(--gold); }
+    a { color:#075e7d; text-underline-offset:3px; }
+    .actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+    .button { display:inline-block; border-radius:8px; padding:.65rem 1rem; background:var(--teal); color:white; font-weight:700; text-decoration:none; }
+    .button.secondary { background:white; color:var(--navy); border:1px solid var(--line); }
+    .disabled { display:inline-block; border-radius:8px; padding:.65rem 1rem; background:#dce4e8; color:#465966; font-weight:700; }
+    footer { border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; padding:1.25rem; text-align:center; }
+    @media (prefers-reduced-motion: no-preference) { a, .button { transition:filter .15s ease; } a:hover,.button:hover { filter:brightness(.9); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">DOE GEMS · Nevada / GeoDAWN</div>
+    <h1>GEMSDOE86</h1>
+    <p>An evidence-first workbench for identifying potentially unmapped faults. This page distinguishes what is verified from what remains untested—and will never label a projection as a competition score.</p>
+  </header>
+  <main>
+    <section class="alert" aria-labelledby="readiness">
+      <span class="status">NOT SUBMISSION-READY</span>
+      <h2 id="readiness">No TIF is available to download or submit</h2>
+      <p>This checkout contains no competition rasters, cached feature stack, registry rasters, shared holdout evaluator, or submission writer. The DrivenData data page requires login from this environment. Without the actual data and the required holdout and duplicate checks, generating a placeholder would be misleading and could repeat an existing raster.</p>
+      <p><strong>Do not submit a file from this project yet.</strong> A download will appear here only after a real GeoTIFF passes the competition format checks and the registered validation gates.</p>
+      <div class="actions"><span class="disabled" aria-disabled="true">No validated download</span><a class="button secondary" href="docs/research-and-run-card.md">Read the research review &amp; run card</a></div>
+    </section>
+
+    <section class="grid" aria-label="Project status">
+      <article class="card">
+        <h2>What must be validated</h2>
+        <p>Spatially blocked hide-and-recover evaluation; feature-level leakage canaries; pooled distance-weighted Tversky; registry correlation and dot-overlap; and a byte-level GeoTIFF audit against the official template.</p>
+        <p><a href="README.md">Read the experiment charter</a></p>
+      </article>
+      <article class="card">
+        <h2>Submission format</h2>
+        <p>Official requirements include a single float32 layer, EPSG:32611, 100 m pixels, matching bounds/transform, predictions in [0,1], and null/NaN outside the footprint. A valid-looking filename alone is not validation.</p>
+        <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Open the official problem and format page</a></p>
+      </article>
+      <article class="card">
+        <h2>Evidence &amp; next steps</h2>
+        <p>Official links, hypothesis shortlist, known source conflicts, and the exact blocking conditions are recorded with their evidence status. The live public leaderboard is linked, not mirrored as a stale score.</p>
+        <p><a href="docs/research-and-run-card.md">Review research and limitations</a></p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Executive summary: how to submit when a candidate is ready</h2>
+      <ol>
+        <li>Use a candidate that passed the pre-registered holdout and uniqueness gates; do not promote from projected or owner-reported scores.</li>
+        <li>Download only the artifact displayed as <strong>validated</strong> on this page, then use its exact name and the short note recorded with it.</li>
+        <li>On DrivenData, open the GEMS competition's submission form, choose the single-band GeoTIFF, enter the note, and submit. Check the receipt and keep it with the file's SHA-256; only that receipt supports an organizer-confirmed score claim.</li>
+      </ol>
+      <p>At present these steps stop before file selection: there is no validated artifact in this repository.</p>
+    </section>
+  </main>
+  <footer>GEMSDOE86 · Evidence before claims · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Repository</a></footer>
+</body>
+</html>
