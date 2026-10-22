@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "fetched_on_utc_date": "2026-10-22",
+  "evidence_class": "ORGANIZER-CONFIRMED",
+  "evidence_scope": "official public leaderboard snapshot; entries are not GEMSDOE86 results or artifact receipts",
+  "row_count": 3,
+  "rows": [
+    {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "score": 0.4413,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "evidence_scope": "official public leaderboard listing; not a GEMSDOE86 result or artifact receipt"
+    },
+    {
+      "rank": 2,
+      "participant": "cfld__",
+      "score": 0.3904,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "evidence_scope": "official public leaderboard listing; not a GEMSDOE86 result or artifact receipt"
+    },
+    {
+      "rank": 3,
+      "participant": "Batik Shirt Brothers",
+      "score": 0.3894,
+      "evidence_class": "ORGANIZER-CONFIRMED",
+      "evidence_scope": "official public leaderboard listing; not a GEMSDOE86 result or artifact receipt"
+    }
+  ],
+  "notice": "Snapshot fetched 2026-10-22 UTC. A board entry does not establish that GEMSDOE86 produced or submitted an artifact."
+}

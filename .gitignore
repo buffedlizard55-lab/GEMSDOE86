@@ -1,0 +1,17 @@
+# Local competition data, cached feature stacks, and working intermediates
+/data/
+/.cache/
+/work/
+/outputs/
+*.npy
+*.npz
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local tool outputs
+*.log

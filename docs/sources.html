@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Verified official sources, source links, and coverage limitations for GEMSDOE86."><title>Sources | GEMSDOE86</title><link rel="stylesheet" href="site.css"></head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="research.html">Research</a><a href="sources.html" aria-current="page">Sources</a><a href="prior-art.html">Audit</a></nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+  <main>
+    <section class="page-title"><div class="eyebrow">Source register · reviewed 2026-10-22 UTC</div><h1>Verified sources, honest limits.</h1><p class="hero-copy">A reachable metadata page is not the same as downloaded data. Each entry says what was checked and what remains unverified.</p></section>
+    <section class="section"><div class="section-heading"><div><div class="eyebrow">Competition authority</div><h2>Official task, rules, and evaluation</h2></div></div>
+      <div class="source-list">
+        <article class="source-row"><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData task / metric page</a></h3><p>Official task and DTI configuration: α=0.2, β=0.8, 300 m triangular kernel; expected 100 m EPSG:32611 float32 raster. No candidate was evaluated against it here.</p></article>
+        <article class="source-row"><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">Official competition rules</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE rules PDF</a></h3><p>Participation and final-evaluation requirements. Read them again before any submission; this site does not override them.</p></article>
+        <article class="source-row"><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></h3><p>Snapshot fetched on 2026-10-22 UTC. Current top listing shown as ORGANIZER-CONFIRMED public-board context only—not a GEMSDOE86 score or artifact receipt.</p></article>
+        <article class="source-row"><h3><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Organizer clarification: known-fault masking</a></h3><p>Staff reply states known USGS/INGENIOUS fault pixels are excluded from scoring. Preserve pixel-exact visible masking and use the shared evaluator as written.</p></article>
+        <article class="source-row"><h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Competition data page</a></h3><p>Redirects to login in this session. No authorized training files or sample raster were downloaded. This is the principal immediate blocker.</p></article>
+      </div>
+    </section>
+    <section class="section"><div class="section-heading"><div><div class="eyebrow">Candidate source lead</div><h2>USGS depth-banded conductance</h2></div></div>
+      <article class="card"><div class="card-kicker">Official record and world file checked · GeoTIFF not fetched</div><h3><a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b">Electrical Conductance Maps of the Great Basin, USA</a></h3><p>USGS ScienceBase DOI 10.5066/P9TWT2LU lists five conductance layers spanning depth intervals from 2 km to 200 km, estimated from a 3-D MT model using over 800 publicly available transfer functions. The catalog bounding box contains the coarse screening window. However, an associated surface-layer world file reports 1000/−1000 map-unit pixels and a projected-looking origin, while the raster facet declares EPSG:4269. The internal GeoTIFF CRS/resolution, exact-footprint valid pixels, and a reproducible reprojection remain unchecked.</p><p class="muted">Evidence status: source page reachable; download links advertised; candidate coverage and novelty not cleared; no experiment or DTI result.</p><a class="card-link" href="research.html">See H86-A and its falsifiers →</a></article>
+    </section>
+    <section class="section"><div class="section-heading"><div><div class="eyebrow">Other official research pages</div><h2>Relevant context—not GEMSDOE86 validation</h2></div></div>
+      <div class="source-list">
+        <article class="source-row"><h3><a href="https://gdr.openei.org/submissions/1391">GDR 1391 · INGENIOUS regional compilation</a></h3><p>Public listing, CC BY 4.0, with fault, geophysics, heat-flow, seismicity, temperature, and geochemistry resources. Files were not downloaded; many concepts already appear in predecessor methods.</p></article>
+        <article class="source-row"><h3><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a></h3><p>Official source metadata for GeoDAWN and 3DEP. These products have been used in prior GEMSDOE methods; exact coverage and re-download were not tested in this work.</p></article>
+        <article class="source-row"><h3><a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS FDSN earthquake catalog</a></h3><p>API docs were reachable and moment-tensor records were returned for a broad query. This is not a GEMS-AOI inventory or model result; ComCat moment-tensor hypotheses are already prior art.</p></article>
+        <article class="source-row"><h3><a href="https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-1">Copernicus Sentinel-1</a> · <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2">USGS Landsat Collection 2</a></h3><p>Official archive descriptions were reviewed as future research leads. No exact AOI scene inventory, coverage mask, or downloaded imagery was checked.</p></article>
+      </div>
+    </section>
+    <section class="section"><article class="card prose"><p><strong>Full machine-readable source record:</strong> <a href="sources.md">docs/sources.md</a>. <strong>Prior-art and score irregularities:</strong> <a href="prior-art.html">audit page</a>.</p></article></section>
+  </main>
+  <footer><div class="footer-inner"><p>Source register · no data files included</p><p><a href="data/run-card.json">Run card</a> · <a href="index.html">Overview</a></p></div></footer>
+</body>
+</html>

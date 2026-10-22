@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Full preregistered hypothesis descriptions for GEMSDOE86."><title>Hypothesis Dossier | GEMSDOE86</title><link rel="stylesheet" href="site.css"></head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Sources</a><a href="prior-art.html">Audit</a></nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+  <main>
+    <section class="page-title"><div class="eyebrow">GEMSDOE86 · preregistration</div><h1>Three leads. One possible experiment.</h1><p class="hero-copy">The ranked candidates share a new, depth-resolved USGS MT data source. None has been implemented. H86-A is the sole top conditional lead; source bytes, exact coverage, and complete registry novelty must be cleared first.</p><p><span class="status-pill">NO EXPERIMENT · NO RESULT</span></p></section>
+    <section class="section callout"><strong>Novelty is provisional, not guaranteed.</strong><p>Prior-art review is limited to accessible owner-published GEMSDOE32/GEMSDOE83 materials. This is not a full organizer registry. No hypothesis is called viable until the raster files and exact target-footprint valid mask are checked.</p></section>
+    <section class="section prose">
+      <h2>Rank 1 · H86-A — Cross-depth coherent MT-conductance corridors</h2>
+      <p><strong>Physical hypothesis.</strong> A conductive boundary whose strike and line support persist from the shallow crust into the middle crust may indicate a broad fault-controlled fluid corridor concealed beneath alluvium or without a surface scarp. Use the orientation and persistence of edges across the 2–12 km, 12–20 km, and 20–50 km MT-conductance layers only as a regional prior for higher-resolution local lineament evidence; do not emit fault dots by upsampling a coarse conductance grid or simply select the highest-conductance pixels.</p>
+      <p><strong>Data.</strong> Official USGS ScienceBase record <a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b">Electrical Conductance Maps of the Great Basin</a>, DOI 10.5066/P9TWT2LU. The record describes five depth bands modeled from publicly available MT transfer functions; its published bounding box contains the coarse source-screen window, but not proof of exact GEMS valid-pixel coverage. An associated world file reports 1000/−1000 map-unit pixel spacing and a projected-looking origin, while the ScienceBase raster facet declares EPSG:4269. The internal GeoTIFF CRS, transform, true ground resolution, nodata pattern, and exact footprint coverage must be reconciled before any reprojection; no GeoTIFF was fetched.</p>
+      <p><strong>Novelty boundary.</strong> The inspected predecessors use surface conductivity and other geophysical layers; no match for the named `gb_conductance_*` depth rasters was found in the searched methods/manifests. This does not prove absence from all sibling repositories or the organizer registry. A complete hash-verified registry search remains mandatory.</p>
+      <p><strong>Mimics.</strong> Basin fill, graphite or sulfide-rich lithologies, inversion smoothing, MT station geometry, survey/model boundaries, and non-fault fluid bodies can create conductive edges. Require orientation persistence at independently meaningful depths and a label-blind negative/control analysis.</p>
+      <p><strong>Falsifier.</strong> Do not proceed if source coverage is incomplete or if a source-band-alone canary is leaky (AUC &gt;0.90) and the cause cannot be resolved. On the blocked holdout, reject the candidate if the pooled paired 95% CI does not support a positive gain over the frozen comparator, if a quadrant reveals a severe failure, or if uniqueness is over threshold. These are preregistered decision conditions, not measured results.</p>
+
+      <h2>Rank 2 · H86-B — Repeat-pass Sentinel-1 deformation discontinuities</h2>
+      <p><strong>Physical hypothesis.</strong> A persistent line-shaped line-of-sight phase or velocity break across multiple Sentinel-1 acquisitions may identify an actively slipping fault strand. Require time-series consistency and line geometry; never treat a one-scene edge as a fault.</p>
+      <p><strong>Source gate.</strong> The official Copernicus page lists SLC products outside Europe from February 2021 onward. No acquisition inventory, orbit-pair coverage, usable coherence, download, or exact-GEMS-AOI check was made. This is a research lead, not a viable input yet.</p>
+      <p><strong>Mimics and falsifier.</strong> Atmospheric delay, temporal decorrelation, groundwater/anthropogenic subsidence, and acquisition geometry can create false discontinuities. Drop the idea if the exact footprint has insufficient repeat coverage or if spatially blocked validation shows no signal beyond those controls.</p>
+
+      <h2>Rank 3 · H86-C — Deep-background-conditioned shallow anomaly</h2>
+      <p><strong>Physical hypothesis.</strong> A localized shallow conductor may be more fault-relevant when contrasted against broad deep regional conductance, rather than ranked by absolute amplitude. The 50–90 km and 90–200 km layers would act as background controls, not direct fault predictors.</p>
+      <p><strong>Mimics and falsifier.</strong> Deep regional layers may remove true signal or create edge/boundary artifacts; their broad scale may not identify individual faults at the competition grid. Use only if registration and source-resolution checks justify this scale separation. No DTI gain is forecast.</p>
+
+      <h2>Pre-implementation gates</h2>
+      <ol>
+        <li>Obtain official competition rasters and the approved shared cache/tools, or explicitly resolve data provenance; do not rely on an owner mirror as organizer-authenticated truth.</li>
+        <li>Download the USGS conductance source and save original URLs, checksums, file sizes, CRS, transform, resolution, nodata, layer metadata, and the exact valid-pixel intersection with the sample grid.</li>
+        <li>Verify a complete, hash-verified registry inventory and search for candidate-surface/final-raster duplicates before spending the holdout budget.</li>
+        <li>Freeze the transform, comparator, seeds/draws, leakage canaries, and falsifier before opening hidden labels. Compute every catalogue-derived feature from visible faults only.</li>
+        <li>Use the unchanged shared `buffered_component_draw`, `gems57-pooled-hide-v2`, metric, uniqueness gate, and writer. If the split/evaluator interface is incompatible, stop rather than fork it.</li>
+      </ol>
+      <p><a href="research/hypotheses.md">Open the Markdown preregistration and full protocol detail</a> · <a href="prior-art.html">Prior-art/irregularity audit</a>.</p>
+    </section>
+  </main>
+  <footer><div class="footer-inner"><p>H86-A is a conditional research lead, not a result or submission.</p><p><a href="data/run-card.json">Run card</a> · <a href="executive-summary.html">Submission status</a></p></div></footer>
+</body>
+</html>

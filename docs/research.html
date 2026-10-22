@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ranked conditional hypotheses for geothermal-indicative blind-fault prediction.">
+  <title>Research | GEMSDOE86</title><link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Sources</a><a href="prior-art.html">Audit</a></nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+  <main>
+    <section class="page-title"><div class="eyebrow">Research before implementation</div><h1>Ranked ideas, not claimed results.</h1><p class="hero-copy">Three conditional geophysical hypotheses were screened against the accessible predecessor methods. Only the top candidate would be tested, and only after exact-footprint coverage, data provenance, shared tools, and registry completeness are established.</p><p><span class="status-pill">NO EXPERIMENT RUN</span></p></section>
+    <section class="section">
+      <div class="table-wrap"><table>
+        <thead><tr><th>Rank</th><th>Hypothesis</th><th>Distinct signature</th><th>Key risk / evidence gate</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>H86-A · Depth-coherent MT context</strong></td><td>Depth-persistent conductive corridors condition higher-resolution local lineament evidence.</td><td>GeoTIFF CRS conflicts with its world-file metadata; exact footprint and full registry novelty not checked.</td><td>Top conditional lead; not viable yet.</td></tr>
+          <tr><td>2</td><td><strong>H86-B · Sentinel-1 repeat-pass deformation</strong></td><td>Persistent line-shaped LOS-phase/velocity discontinuity across usable acquisitions.</td><td>Exact AOI scene inventory not checked; active slip may be sparse and atmospheric/groundwater effects mimic faults.</td><td>Not viable until coverage/access verified.</td></tr>
+          <tr><td>3</td><td><strong>H86-C · Deep-background-conditioned shallow anomaly</strong></td><td>Localized shallow conductance departure after accounting for deeper regional conductance.</td><td>Deep regional layers may remove true signal or introduce boundary effects; per-feature leakage test required.</td><td>Lower priority; not implemented.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="score-note">No projected holdout values are provided. All three are ideas only; there is no HOLDOUT-DTI result or candidate TIFF.</p>
+    </section>
+    <section class="section grid-2">
+      <article class="card"><div class="card-kicker">Why this source</div><h3>Depth-resolved MT, not another surface-conductivity transform</h3><p>The official USGS ScienceBase record describes five depth-banded Great Basin conductance GeoTIFFs derived from a 3-D MT model. The inspected predecessor work used surface conductivity and related geophysical bands, but the named depth-banded rasters did not appear in the searched methods/manifests. A fetched world file reports 1000/−1000 map-unit pixels and a projected-looking origin, while the raster facet declares EPSG:4269; internal GeoTIFF tags must resolve this before use. Novelty remains provisional until a complete registry inventory is checked.</p><a class="card-link" href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b">View the official USGS record ↗</a></article>
+      <article class="card"><div class="card-kicker">Availability caveat</div><h3>Bounding-box overlap is not grid validation</h3><p>The catalog bounding box contains the coarse geographic screening window. The GeoTIFF bytes/internal tags, CRS, nodata pattern, and exact competition-footprint intersection were not inspected. The world-file/raster-facet CRS discrepancy is unresolved; the source is a lead, not a validated input.</p><a class="card-link" href="sources.html">Open source register →</a></article>
+    </section>
+    <section class="section callout"><strong>Prior art removed from the shortlist.</strong><p>ComCat moment-tensor ideas, multi-physics lineaments, drainage chains, LiDAR scarplets, thermal/geochemical proxies, SGMC priors, relay geometry, and catalogue-flank pruning already occur in the inspected predecessor material. See the full audit to avoid relabeling old work.</p><a class="card-link" href="prior-art.html">Read prior-art and irregularities →</a></section>
+    <section class="section"><div class="section-heading"><div><div class="eyebrow">Full preregistration</div><h2>Research plan and falsifiers</h2></div></div><article class="card prose"><p>The full dossier records a source-specific hypothesis, mimics, ranking, prior-art boundary, and fail-closed validation plan. It requires whole-component buffered holdouts, visible-only catalogue features, exact visible-pixel masking, feature-alone AUC canaries, pooled DTI with the official parameters, complete-registry uniqueness, and use of the shared writer.</p><a class="button" href="hypotheses.html">Open the full hypothesis dossier</a></article></section>
+  </main>
+  <footer><div class="footer-inner"><p>Research status: preregistered conditional leads only</p><p><a href="data/run-card.json">Current run card</a> · <a href="index.html#submission">Download status</a></p></div></footer>
+</body>
+</html>

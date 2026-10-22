@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "project": "GEMSDOE86",
+  "run_date_utc": "2026-10-22",
+  "run_status": "BLOCKED_NO_EXPERIMENT",
+  "decision": "NO_CANDIDATE_PROMOTED_NO_SUBMISSION",
+  "experiment_budget": {
+    "policy": "maximum 3 experiments or 2 wall-clock hours",
+    "experiments_started": 0,
+    "wall_clock_hours_used": 0,
+    "evidence_scope": "GEMSDOE86 work in this session; no weekly-slot decision implied"
+  },
+  "research": {
+    "hypothesis_dossier": "docs/research/hypotheses.md",
+    "top_conditional_hypothesis": "H86-A",
+    "novelty_status": "provisional relative to inspected GEMSDOE32/GEMSDOE83 materials; complete registry search not performed",
+    "source_coverage_status": "USGS ScienceBase catalog bounding box contains the coarse screening window, but its world-file pixel/origin values conflict with raster-facet EPSG:4269; internal GeoTIFF tags and exact GEMS footprint coverage are not checked",
+    "implementation_status": "NOT_IMPLEMENTED"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evaluator_status": "inspected read-only; not executed",
+    "split_protocol": "shared buffered_component_draw: whole 8-connected components, label-blind quadrant selection, buffered visible-feature context",
+    "visible_fault_features": "must be derived from the fold-visible mask only and masked pixel-exactly",
+    "metric": {
+      "name": "official DTI",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "kernel_radius_m": 300,
+      "specification_source": "official DrivenData task page and shared metric.py"
+    },
+    "withheld_positive_pixels": null,
+    "pooled_dti": null,
+    "ci95": null
+  },
+  "leakage": {
+    "status": "NOT_RUN",
+    "feature_alone_auc": null,
+    "alarm_threshold_auc": 0.9,
+    "alarm_action": "quarantine and investigate before any candidate result is accepted"
+  },
+  "uniqueness": {
+    "status": "NOT_RUN",
+    "registry_index_complete_and_hash_verified": false,
+    "registry_index_sha256": null,
+    "surface_max_spearman_rank_correlation": null,
+    "final_raster_max_spearman_rank_correlation": null,
+    "max_3px_dot_overlap_fraction": null,
+    "stop_thresholds": {
+      "rank_correlation_strictly_greater_than": 0.9,
+      "3px_dot_overlap_strictly_greater_than": 0.7
+    }
+  },
+  "validator": {
+    "status": "NOT_RUN",
+    "shared_submission_writer_used": false,
+    "checks": {
+      "source_data_provenance_authorized": null,
+      "template_grid_and_dimensions_match": null,
+      "crs_epsg_32611": null,
+      "pixel_size_100m": null,
+      "single_band_float32": null,
+      "values_finite_and_within_0_to_1": null,
+      "footprint_and_catalogue_support": null,
+      "visible_fault_pixels_masked_exactly": null,
+      "surface_uniqueness_passed": null,
+      "final_raster_uniqueness_passed": null,
+      "on_disk_tiff_validated_by_shared_writer": null,
+      "one_tiff_zip_and_receipt_written_atomically": null,
+      "organizer_receipt_received": null
+    },
+    "shared_writer_contract": {
+      "pre_write_rejections_that_must_pass": [
+        "submission name and note are each 1..140 non-whitespace characters",
+        "prediction is numeric, 2-D, and shape-matched to the footprint",
+        "prediction is already finite and in [0,1]; writer performs no silent repair",
+        "no positive prediction mass outside the footprint",
+        "zero positive prediction mass on the mapped catalogue when catalogue is supplied",
+        "sample grid exists and destination TIFF/ZIP/receipt do not already exist"
+      ],
+      "template_gate_format_report": {
+        "ok": null,
+        "single_band": null,
+        "dtype_float32": null,
+        "shape_matches_sample": null,
+        "crs_transform_bounds_match_sample": null,
+        "pinned_epsg_32611_100m_grid_match_when_reference_shape_matches": null,
+        "all_finite_local_export_policy": null,
+        "range_0_to_1": null,
+        "nodata_null_or_within_0_to_1": null,
+        "positive_mass_outside_footprint_zero": null,
+        "serialized_nonzero_count_matches_input": null
+      },
+      "validate_receipt_exact_checks": {
+        "single_band": null,
+        "dtype_float32": null,
+        "dimensions_3730x3292_in_inspected_shared_grid": null,
+        "crs_epsg_32611": null,
+        "transform_matches_sample_submission": null,
+        "no_nan_anywhere": null,
+        "no_inf_anywhere": null,
+        "no_sentinel_values": null,
+        "range_0_1_guaranteed": null,
+        "min_ge_0": null,
+        "max_le_1": null,
+        "in_footprint_all_finite": null,
+        "in_footprint_range_0_1": null,
+        "outside_footprint_zero": null,
+        "zero_dots_on_mapped_catalogue": null
+      },
+      "zip_and_receipt": {
+        "zip_contains_only_the_named_tiff": null,
+        "zip_roundtrip_bytes_equal_tiff": null,
+        "tiff_and_zip_hashes_recorded": null,
+        "tiff_zip_and_json_receipt_written_atomically": null,
+        "writer_slot_approval_remains_false_until_separate_selector": null
+      },
+      "limitations": "Local format validation is not organizer acceptance or registry-uniqueness clearance."
+    }
+  },
+  "artifact": {
+    "tiff_path": null,
+    "tiff_sha256": null,
+    "zip_path": null,
+    "zip_sha256": null,
+    "writer_receipt_path": null,
+    "writer_receipt_sha256": null,
+    "download_available": false,
+    "submission_safe": false
+  },
+  "organizer_confirmation": {
+    "evidence_class": "ORGANIZER-CONFIRMED",
+    "receipt": null,
+    "score": null,
+    "status": "NO_RECEIPT"
+  },
+  "weekly_slot_selector": {
+    "decision": "NOT_MADE",
+    "reason": "No candidate was evaluated; holdout evidence and uniqueness are absent. Promotion is a separate selector decision."
+  },
+  "blockers": [
+    "DrivenData competition data page redirects to login in this session; no authorized inputs were downloaded.",
+    "No cached feature stack, complete hash-verified registry index, or validated local shared-tool checkout is available in GEMSDOE86.",
+    "No candidate was evaluated, so no HOLDOUT-DTI, withheld-positive count, or 95% confidence interval exists.",
+    "No uniqueness audit, shared-writer validation, submission TIFF, ZIP, or organizer receipt exists."
+  ]
+}

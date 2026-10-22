@@ -1,0 +1,85 @@
+{
+  "blockers": [
+    "Missing required competition inputs: training_features.tif, labels.tif, existing_faults.tif, sample_submission.tif",
+    "GEMS_FEATURE_STACK is unset or its cached feature file is missing",
+    "GEMS_SHARED_TEMPLATE is unset or required shared tools are missing: vendor/gems57/evaluate_holdout.py, vendor/gems57/submission_writer.py, vendor/gems57/holdout.py, vendor/gems57/metric.py, vendor/gems57/uniqueness.py, vendor/gems57/gates.py",
+    "GEMS_REGISTRY_INDEX is unset or the registry index is missing"
+  ],
+  "cached_feature_stack": {
+    "bytes": null,
+    "exists": false,
+    "path": null
+  },
+  "checked_at_utc": "2026-10-22T22:21:54+00:00",
+  "competition_data_access": "not_assessed_by_file_presence_check; session observation is recorded in docs/sources.md",
+  "data_dir": "data/raw",
+  "data_files": {
+    "existing_faults.tif": {
+      "bytes": null,
+      "exists": false,
+      "path": "data/raw/existing_faults.tif"
+    },
+    "labels.tif": {
+      "bytes": null,
+      "exists": false,
+      "path": "data/raw/labels.tif"
+    },
+    "sample_submission.tif": {
+      "bytes": null,
+      "exists": false,
+      "path": "data/raw/sample_submission.tif"
+    },
+    "training_features.tif": {
+      "bytes": null,
+      "exists": false,
+      "path": "data/raw/training_features.tif"
+    }
+  },
+  "input_provenance_status": "NOT_AUTHENTICATED_BY_FILE_PRESENCE",
+  "limitations": [
+    "This inventory checks file existence only; it does not authenticate provenance or inspect raster metadata.",
+    "It does not run the shared hide-and-recover evaluator, per-feature leakage tests, or uniqueness gate.",
+    "It does not call the submission writer and cannot authorize a download or submission."
+  ],
+  "ready_for_shared_run": false,
+  "registry_index": {
+    "bytes": null,
+    "exists": false,
+    "path": null
+  },
+  "schema_version": 1,
+  "shared_tools": {
+    "vendor/gems57/evaluate_holdout.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    },
+    "vendor/gems57/gates.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    },
+    "vendor/gems57/holdout.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    },
+    "vendor/gems57/metric.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    },
+    "vendor/gems57/submission_writer.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    },
+    "vendor/gems57/uniqueness.py": {
+      "bytes": null,
+      "exists": false,
+      "path": null
+    }
+  },
+  "status": "BLOCKED",
+  "submission_status": "NO_TIF_GENERATED"
+}

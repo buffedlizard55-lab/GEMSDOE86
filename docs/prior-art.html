@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Prior-art, score-claim, holdout-protocol, and data-provenance audit for GEMSDOE86."><title>Audit | GEMSDOE86</title><link rel="stylesheet" href="site.css"></head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="prior-art.html" aria-current="page">Audit</a></nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+  <main>
+    <section class="page-title"><div class="eyebrow">Audit trail</div><h1>Claims stay in their evidence lane.</h1><p class="hero-copy">This page records the prior-art boundary, score inconsistencies, tool protocol, and data provenance risks that materially affect whether an experiment or submission is safe.</p></section>
+
+    <section class="section" id="score-audit">
+      <div class="section-heading"><div><div class="eyebrow">Score-claim review</div><h2>Official board, owner claim, project result</h2></div></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Value / statement</th><th>Evidence label</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>xiaofanhu · 0.4413</td><td><span class="score-label">ORGANIZER-CONFIRMED</span></td><td>Official public-board listing fetched 2026-10-22 UTC. It is not a GEMSDOE86 result or artifact receipt.</td></tr>
+          <tr><td>H33 · 0.2778</td><td><span class="score-label">OWNER-REPORTED · UNVERIFIED</span></td><td>One owner article says confirmed; a GEMSDOE32 index says no organizer score exists for artifacts in that repository. No receipt found.</td></tr>
+          <tr><td>H33-2-B2 projected live value · 0.2747</td><td><span class="score-label">OWNER-PROJECTED · NOT A SCORE</span></td><td>Model projection in an owner-side validation manifest; not an organizer evaluation.</td></tr>
+          <tr><td>GEMSDOE86</td><td><span class="score-label">NO RESULT</span></td><td>No holdout, official score, submission, or receipt exists for this project.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout" style="margin-top:1rem"><strong>Irregularity: H33 confirmation is internally inconsistent across owner-controlled pages.</strong><p>Until an organizer receipt is available, keep 0.2778 owner-reported and unverified; do not use it as a confirmed benchmark.</p><p><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 index</a> · <a href="https://buffedlizard55-lab.github.io/GEMSDOE83/research/why-h33-scored-02778.md">GEMSDOE83 H33 article</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/registry/submission_build.json">GEMSDOE32 build manifest</a></p></div>
+      <article class="card prose" style="margin-top:1rem">
+        <h3>Why H33 may have improved—and what that does not prove</h3>
+        <p>The inspected owner-side H33-2-B2 build is primarily a <em>selection/pruning</em> change: it removes a buffer of dots near the published fault catalogue from a prior emission. Under official DTI, a prediction can gain triangular-kernel true-positive coverage near withheld faults, while uncovered prediction mass contributes false-positive weight; the official weights are α=0.2 and β=0.8. Pruning could therefore help if the removed dots carry little marginal hidden-fault coverage but meaningful false-positive cost. Conversely, pruning can remove useful kernel support. Known catalogue pixels being masked does not automatically make neighboring pixels harmless.
+        </p>
+        <p>This is a plausible metric mechanism, not an established explanation of a confirmed H33 organizer score. The owner's manifest labels 0.2747 a projection and says no organizer score exists for artifacts in that repository; the separate 0.2778 claim conflicts with that statement. We did not reproduce H33, and its older holdout is not a substitute for this project's required shared evaluator.</p>
+        <p><strong>Could a future result exceed 0.2778?</strong> The official public leaderboard snapshot lists 0.4413 for xiaofanhu (**ORGANIZER-CONFIRMED public-board entry**, not a GEMSDOE86 result), so 0.2778 is not the current board ceiling. That does not show how to reproduce or beat the entry. With the current data and registry blockers, GEMSDOE86 cannot produce or validate a better TIFF in this run.</p>
+        <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official DTI task page ↗</a></p>
+      </article>
+    </section>
+
+    <section class="section" id="protocol">
+      <div class="section-heading"><div><div class="eyebrow">Holdout contract</div><h2>Use the whole-component, buffered split</h2></div></div>
+      <article class="card prose">
+        <p>The inspected shared `holdout.py` contains more than one split. The selected function is `buffered_component_draw`, not the short-segment `build_holdout` alternative. Its code describes whole 8-connected catalogue components, label-blind quadrant selection, a boundary buffer, and a separate feature-context collar. If the exact shared evaluator entry point cannot consume this fold unchanged, stop and resolve the protocol mismatch; do not silently edit or fork the evaluator.</p>
+        <ul>
+          <li>Build every catalogue-derived feature from the fold-visible fault mask only.</li>
+          <li>Mask the visible fault pixels exactly from scoring; preserve withheld truth.</li>
+          <li>Use the shared evaluator version <code>gems57-pooled-hide-v2</code> and official pooled DTI: α=0.2, β=0.8, 300 m triangular kernel.</li>
+          <li>Record the evaluator version, actual withheld-positive pixel count, and pooled 95% CI in every reported HOLDOUT-DTI result.</li>
+          <li>Test each candidate feature alone. AUC above 0.90 is a leakage alarm, not a model win, until resolved.</li>
+          <li>Check both continuous surface and final raster against a complete, hash-verified registry; stop if rank correlation is above 0.90 or more than 70% of dots lie within 3 px of one registry raster.</li>
+        </ul>
+        <p><strong>Status in GEMSDOE86:</strong> the shared tools were inspected read-only and not executed. No holdout result or validator receipt exists.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow">Prior-art boundary</div><h2>Ideas not to relabel as new</h2></div></div>
+      <div class="grid-2">
+        <article class="card"><h3>Already in inspected predecessor hypotheses</h3><p>ComCat/moment-tensor lineaments, multi-physics oriented lineaments, drainage/valley chains, LiDAR scarplet chains, scalar conductivity/basement boundaries, thermal/geochemical proxies, SGMC fault priors, and relay/continuation geometry.</p></article>
+        <article class="card"><h3>Already in inspected emitter/selection work</h3><p>Poisson-disk and submodular/Dinkelbach selection, catalogue-distance/flank pruning, fault-network continuation and tip/relay geometry, registry-overlap constraints, and cross-contact magnetic phase displacement.</p></article>
+      </div>
+      <p class="score-note">This is a bounded review of accessible GEMSDOE32 and GEMSDOE83 materials, not a complete owner-repository or organizer-registry inventory. See <a href="research/hypotheses.md">the full hypothesis dossier</a> and <a href="research/prior-art-and-irregularities.md">the detailed irregularity register</a>.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow">Data and code provenance</div><h2>Important limitations</h2></div></div>
+      <div class="source-list">
+        <article class="source-row"><h3>Competition inputs</h3><p>The official data page redirected to login. Owner-mirrored files are not organizer-authenticated. No training raster or label is used by GEMSDOE86.</p></article>
+        <article class="source-row"><h3>Prior mirror manifest flag</h3><p>The inspected GEMSDOE83 manifest records identical hashes/byte counts for `labels.tif` and `existing_faults.tif`. This may be intentional but was not checked against the organizer release; treat it as an audit question, not a competition-data fact.</p></article>
+        <article class="source-row"><h3>Shared-tool pin</h3><p>A cloned template pin notes a local amendment to `uniqueness.py`. The upstream commit and all hashes were not independently reconciled here. Use a separately prepared pinned checkout and verify it before a run.</p></article>
+        <article class="source-row"><h3>Registry completeness</h3><p>The local project has no complete registry index. Partial lists and a few downloaded peer TIFFs cannot clear the duplicate gate. No peer submission TIFF has been copied into this repository.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-inner"><p>Audit status: blockers preserved; no result claimed</p><p><a href="data/run-card.json">Run card</a> · <a href="index.html#submission">Download status</a></p></div></footer>
+</body>
+</html>

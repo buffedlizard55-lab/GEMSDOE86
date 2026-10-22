@@ -1,0 +1,27 @@
+name: Validate project site and workflow scaffolding
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run standard-library tests
+        run: python -m unittest discover -s tests -v
+      - name: Generate a fail-closed prerequisite report
+        run: python scripts/preflight.py --output docs/data/preflight.json
+      - name: Validate links, evidence labels, and download gate
+        run: python scripts/check_site.py

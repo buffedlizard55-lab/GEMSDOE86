@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GEMSDOE86: an auditable DOE GEMS fault-prediction workflow. Current submission status is blocked; no unvalidated TIFF is offered.">
+  <title>GEMSDOE86 | Evidence before submission</title>
+  <link rel="stylesheet" href="site.css">
+  <script defer src="site.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="GEMSDOE86 home">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="executive-summary.html">Submit</a>
+      <a href="research.html">Research</a>
+      <a href="sources.html">Sources</a>
+      <a href="prior-art.html">Audit</a>
+    </nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+
+  <main>
+    <section class="blocked-banner" aria-labelledby="blocked-title">
+      <span class="status-pill" id="readiness-pill">Not ready</span>
+      <div>
+        <h2 id="blocked-title">No safe submission file — do not upload a TIFF from this project.</h2>
+        <p id="blocked-copy">Competition inputs, the cached stack, a complete registry index, and validator evidence are missing. No experiment or submission raster has been produced.</p>
+      </div>
+      <a href="executive-summary.html">Submission steps &amp; requirements →</a>
+    </section>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">An evidence-first research workspace</div>
+        <h1>Find the signal.<br>Prove it holds.</h1>
+        <p class="hero-copy">A transparent workflow for discovering geothermal-indicative faults that are absent from known maps—without confusing a promising hypothesis, a holdout result, and an organizer score.</p>
+        <div class="hero-actions">
+          <a class="button" href="#submission">Check submission status <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="research.html">Review ranked hypotheses</a>
+        </div>
+      </div>
+      <aside class="hero-panel" aria-label="Evidence status summary">
+        <div class="eyebrow">Evidence at a glance</div>
+        <h2>Nothing is promoted by assumption.</h2>
+        <div class="stat-list">
+          <div class="stat-row"><span>Holdout-DTI</span><strong id="holdout-status">Not run</strong></div>
+          <div class="stat-row"><span>Leakage canaries</span><strong id="leakage-status">Not run</strong></div>
+          <div class="stat-row"><span>Registry uniqueness</span><strong id="uniqueness-status">Not checked</strong></div>
+          <div class="stat-row"><span>Validated TIFF</span><strong id="tiff-status">None</strong></div>
+          <div class="stat-row"><span>Weekly slot</span><strong id="slot-status">No selector decision</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="submission">
+      <div class="section-heading">
+        <div><div class="eyebrow">Download / submission desk</div><h2>One file, only after every gate passes.</h2></div>
+        <p>The download remains locked unless the run card records a successful holdout, registry uniqueness, and shared-writer validation.</p>
+      </div>
+      <div class="submission-grid">
+        <article class="card download-card">
+          <div>
+            <div class="card-kicker">Current artifact</div>
+            <div class="file-status">
+              <span class="file-icon" aria-hidden="true">TIFF</span>
+              <div>
+                <h3>Submission GeoTIFF unavailable</h3>
+                <p id="download-status" role="status">BLOCKED — no validated candidate exists. There is no downloadable TIFF or ZIP.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a id="submission-download" class="button disabled" aria-disabled="true">Download locked — validation required</a>
+            <p class="download-footnote">We do not copy a peer/registry raster or offer a placeholder. A future download will point only to the unique file named in the run card and written by the shared submission tool.</p>
+            <p class="download-footnote" id="archive-downloads" hidden>Also available: <a id="zip-download">writer ZIP</a> · <a id="receipt-download">writer receipt</a></p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-kicker">Release gate</div>
+          <h3>What is still missing</h3>
+          <ul class="checklist">
+            <li>Authorized training rasters and a verified cached feature stack</li>
+            <li>Feature-alone leakage tests and buffered whole-component holdout</li>
+            <li>Complete hash-verified registry index; surface and raster duplicate checks</li>
+            <li>Shared writer receipt and all validator checks</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div><div class="eyebrow">Current work</div><h2>From source check to decision</h2></div>
+        <p>The best present contribution is a well-defined next experiment—not a made-up score or an unsafe file.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="step-number">01</span>
+          <h3>Ranked, conditional research</h3>
+          <p>The top lead is a depth-resolved USGS magnetotelluric conductance hypothesis. Its public source is documented; exact target-raster coverage and novelty against the complete registry are not yet cleared.</p>
+          <a class="card-link" href="research.html">Read the hypothesis dossier →</a>
+        </article>
+        <article class="card">
+          <span class="step-number">02</span>
+          <h3>Shared tools, unchanged</h3>
+          <p>The inspected evaluator is <code>gems57-pooled-hide-v2</code>. It was not run because this checkout has no authorized inputs or cached stack.</p>
+          <a class="card-link" href="prior-art.html#protocol">Review protocol and blockers →</a>
+        </article>
+        <article class="card">
+          <span class="step-number">03</span>
+          <h3>Separate evidence types</h3>
+          <p>Holdout-DTI, owner-reported statements, and official leaderboard receipts are kept distinct. No GEMSDOE86 score is claimed.</p>
+          <a class="card-link" href="prior-art.html#score-audit">Open the score audit →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="leaderboard-title">
+      <div class="section-heading">
+        <div><div class="eyebrow">Public competition context</div><h2 id="leaderboard-title">Official leaderboard snapshot</h2></div>
+        <p>These are other participants’ public-board entries. They are not GEMSDOE86 holdout results, not a model projection, and not an artifact receipt for this project.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rank</th><th>Participant</th><th>Public score</th><th>Evidence label</th></tr></thead>
+          <tbody id="leaderboard-body">
+            <tr><td>1</td><td>xiaofanhu</td><td>0.4413</td><td><span class="score-label">ORGANIZER-CONFIRMED</span></td></tr>
+            <tr><td>2</td><td>cfld__</td><td>0.3904</td><td><span class="score-label">ORGANIZER-CONFIRMED</span></td></tr>
+            <tr><td>3</td><td>Batik Shirt Brothers</td><td>0.3894</td><td><span class="score-label">ORGANIZER-CONFIRMED</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="score-note" id="leaderboard-updated">Official public leaderboard snapshot fetched 2026-10-22 UTC. Not a GEMSDOE86 result or receipt. <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open the official board ↗</a></p>
+    </section>
+
+    <section class="section notice" aria-label="Unverified predecessor score warning">
+      <strong>Prior-art irregularity: H33’s 0.2778 claim is not organizer-confirmed.</strong>
+      <p>One owner page calls it confirmed, while another owner-controlled project index says no organizer score exists for artifacts in that repository. We keep it owner-reported and unverified unless an organizer receipt is produced. <a href="prior-art.html#score-audit">See evidence and links →</a></p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div><div class="eyebrow">Project principles</div><h2>Maximize P(Win). Own the Outcome.</h2></div>
+        <p>Move quickly on hypotheses, slowly on claims. The weekly-slot selector remains independent of the research run.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card"><h3>Scientific gates</h3><p>Whole fault components are withheld with a feature-context buffer. Catalogue features come from visible faults only; visible fault pixels are masked exactly. Each feature is tested alone for leakage before a candidate is judged.</p></article>
+        <article class="card"><h3>Artifact gates</h3><p>Check both surface and final-raster uniqueness against a complete registry index. A passing holdout is not a submission; the shared writer and validator receipt must pass before any download is enabled.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><p>GEMSDOE86 · Evidence-first DOE GEMS workflow</p><p>Current status: blocked; no experiment or safe submission file. <a href="data/run-card.json">View the run card</a>.</p></div></footer>
+</body>
+</html>

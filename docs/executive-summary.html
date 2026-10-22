@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Executive submission instructions and current file readiness for GEMSDOE86.">
+  <title>Submit | GEMSDOE86</title><link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span><span class="brand-name">GEMSDOE86</span><span class="brand-tag">DOE GEMS · FAULT PREDICTION</span></span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">Submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="prior-art.html">Audit</a></nav>
+    <a class="header-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official challenge ↗</a>
+  </header>
+  <main>
+    <section class="page-title">
+      <div class="eyebrow">Executive submission instructions</div>
+      <h1>Do not upload a file yet.</h1>
+      <p class="hero-copy">There is currently no validated GEMSDOE86 TIFF or ZIP to download. No holdout was run, no uniqueness audit passed, and no shared-writer receipt exists. This page shows exactly what must change before submitting.</p>
+      <p><span class="status-pill">BLOCKED · NOT SAFE TO SUBMIT</span></p>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow">Current decision</div><h2>Submission file: none</h2></div></div>
+      <div class="submission-grid">
+        <article class="card download-card">
+          <div>
+            <div class="card-kicker">Download</div>
+            <div class="file-status"><span class="file-icon" aria-hidden="true">TIFF</span><div><h3>No approved artifact exists</h3><p>Do not use a TIFF copied from a sibling repository, a public registry, or an old owner-generated site. No GEMSDOE86 file is available.</p></div></div>
+          </div>
+          <div><a class="button disabled" aria-disabled="true">Download locked — validation required</a><p class="download-footnote">The button on the overview page will unlock only when the run card records a successful holdout, uniqueness, and shared-writer validation, and points to the exact generated file.</p></div>
+        </article>
+        <article class="card">
+          <div class="card-kicker">Why blocked</div><h3>Required inputs and evidence are missing</h3>
+          <ul class="checklist">
+            <li>DrivenData data page requires login; files were not obtained in this run</li>
+            <li>Cached feature stack and shared evaluator/writer are not mounted here</li>
+            <li>Registry index completeness and duplicate checks are unverified</li>
+            <li>Holdout-DTI, 95% CI, validator output, and organizer receipt do not exist</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow">When the status turns green</div><h2>Upload only the approved artifact</h2></div><p>These are conditional steps. Do not proceed until the download is enabled and the run card/receipt agree on the file hash.</p></div>
+      <div class="grid-3">
+        <article class="card"><span class="step-number">1</span><h3>Download from this page</h3><p>Use the one active download control. Confirm its TIFF path and SHA-256 match the run card and shared-writer receipt. Do not rename or rewrite the raster.</p></article>
+        <article class="card"><span class="step-number">2</span><h3>Upload to DrivenData</h3><p>Open the official competition page, choose the submission workflow, and upload the exact file or one-TIFF ZIP specified by the receipt. Use the submission note printed in that receipt.</p><a class="card-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Open the official competition ↗</a></article>
+        <article class="card"><span class="step-number">3</span><h3>Save the organizer evidence</h3><p>Record the submission identifier, timestamp, and official receipt/score. The public board entry is not a substitute for the per-artifact receipt. A weekly-slot promotion still requires a separate selector decision.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow">Official output contract</div><h2>What the validated raster must satisfy</h2></div></div>
+      <div class="card prose">
+        <ul>
+          <li>Single-band float32 GeoTIFF on the official sample-submission grid, EPSG:32611, 100 m cells.</li>
+          <li>Finite prediction values in the official range `[0, 1]`; valid footprint/grid alignment, and the shared writer’s catalogue-support checks pass.</li>
+          <li>Use the shared submission writer unchanged; retain its on-disk validation, single-TIFF ZIP (if produced), hashes, and atomic receipt.</li>
+          <li>Before writing, report a compliant **HOLDOUT-DTI** with evaluator version, withheld-positive count, and pooled 95% CI; clear per-feature leakage and both surface/raster uniqueness checks against a complete registry index.</li>
+          <li>After uploading, label the result **ORGANIZER-CONFIRMED** only when an organizer receipt exists. Keep owner-reported and projected values separate.</li>
+        </ul>
+        <p><strong>Current status:</strong> none of these validation checks has run in GEMSDOE86.</p>
+      </div>
+    </section>
+    <section class="section callout"><strong>Do not treat the public leaderboard as a project result.</strong><p>The public board snapshot is shown for context only. The H33 0.2778 statement is owner-reported and disputed by another owner-controlled page; it is not accepted as organizer-confirmed here.</p></section>
+  </main>
+  <footer><div class="footer-inner"><p>GEMSDOE86 · submission instructions</p><p><a href="data/run-card.json">Run card</a> · <a href="index.html#submission">Current download status</a></p></div></footer>
+</body>
+</html>
