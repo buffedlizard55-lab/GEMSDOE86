@@ -1,0 +1,23 @@
+{
+  "scope": "Existing artifacts merged from concurrent sessions; all negative, no competition clearance.",
+  "artifacts": [
+    {
+      "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+      "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+      "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    }
+  ]
+}

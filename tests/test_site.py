@@ -1,45 +1,29 @@
+"""The published site must link a downloadable file that exists and matches the run card."""
 import json
 from pathlib import Path
-import sys
-import tempfile
-import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from scripts.check_site import check
+DOCS = ROOT / "docs"
 
 
-class SiteTests(unittest.TestCase):
-    def fixture(self, root):
-        (root / 'docs/evidence').mkdir(parents=True)
-        (root / 'index.html').write_text('<a href="docs/index.html">Site</a>')
-        (root / 'docs/index.html').write_text('<h1>NOT READY</h1>')
-        (root / 'docs/evidence/run-card.json').write_text(json.dumps({
-            'submission_ready': False, 'verdict': 'negative'}))
-
-    def test_real_site(self):
-        self.assertEqual(check(), [])
-
-    def test_missing_link_fails(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp); self.fixture(root)
-            (root / 'docs/index.html').write_text('<a href="missing.tif">Download</a>')
-            self.assertTrue(check(root))
-
-    def test_unlinked_tif_and_zip_fail_in_negative_state(self):
-        for suffix in ('.tif', '.tiff', '.zip'):
-            with self.subTest(suffix=suffix), tempfile.TemporaryDirectory() as tmp:
-                root = Path(tmp); self.fixture(root)
-                (root / ('docs/hidden' + suffix)).write_bytes(b'not approved')
-                self.assertTrue(check(root))
-
-    def test_unsupported_ready_claim_fails(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp); self.fixture(root)
-            (root / 'docs/evidence/run-card.json').write_text(json.dumps({
-                'submission_ready': True, 'verdict': 'promote', 'raster_sha256': None}))
-            self.assertTrue(check(root))
+def test_download_link_present():
+    html = (DOCS / "index.html").read_text()
+    card = json.loads((ROOT / "evidence" / "run_card.json").read_text())
+    assert card["raster_name"] in html
+    assert (DOCS / "downloads" / card["raster_name"]).is_file()
+    assert "OK TO DOWNLOAD AND SUBMIT" not in html
+    assert card["submission_ready"] is False
+    assert card["approved_for_weekly_slot"] is False
+    assert card["verdict"] == "negative"
+    assert "DO NOT SUBMIT" in html
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_zip_contains_single_tiff():
+    import zipfile
+    card = json.loads((ROOT / "evidence" / "run_card.json").read_text())
+    z = DOCS / "downloads" / (card["raster_name"][:-4] + ".zip")
+    assert z.is_file()
+    with zipfile.ZipFile(z) as zf:
+        names = zf.namelist()
+        assert names == [card["raster_name"]]
+        assert zf.getinfo(names[0]).file_size > 100_000

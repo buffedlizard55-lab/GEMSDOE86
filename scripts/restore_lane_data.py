@@ -3,7 +3,7 @@ import hashlib, json, sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.restore_data import write_path
+from scripts.restore_protocol_data import write_path
 from scripts.protocol_preflight import verify_file
 WANT={'training_features','existing_faults','sample_submission','ext_geodawn_rad_u8','ext_geodawn_extensions_u8','ext_derived_sgmc_faults_100m_u8'}
 WANT |= {e['id'] for e in json.loads((ROOT/'research/upstream/data_manifest.json').read_text())['files'] if e['group']=='scored'}

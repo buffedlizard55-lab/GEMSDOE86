@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: unit tests (bridge rasters tracked; feature stack not needed)
+        run: python -m pytest -q
+      - name: site build is reproducible
+        run: |
+          python scripts/build_site.py
+          git diff --exit-code docs/

@@ -105,6 +105,22 @@ class ProtocolTests(unittest.TestCase):
                 main()
             build.assert_not_called()
 
+    def test_concurrent_primary_model_entrypoints_also_stop(self):
+        from scripts.build_submission import main as build
+        from scripts.experiment import main as experiment
+        with patch('scripts.protocol_preflight.measure', return_value={'universal_overlap_blocker': True}):
+            for entrypoint in (build, experiment):
+                with self.assertRaisesRegex(RuntimeError, 'STOP_LITERAL_OVERLAP_UNSATISFIABLE'):
+                    entrypoint()
+
+    def test_registry_reproduction_tolerates_only_last_bit_rho(self):
+        from scripts.check_registry_reproduction import differences
+        base = {'spearman_full_footprint': .1, 'stop_required': True, 'worst_dot_overlap': 1.0}
+        self.assertEqual(differences(base, {**base, 'spearman_full_footprint': .1 + 1e-15}), [])
+        self.assertTrue(differences(base, {**base, 'spearman_full_footprint': .1 + 1e-5}))
+        self.assertTrue(differences(base, {**base, 'stop_required': False}))
+        self.assertTrue(differences(base, {**base, 'worst_dot_overlap': 1.0 - 1e-15}))
+
     def test_protocol_run_never_overwrites_concurrent_model_card(self):
         path = ROOT / 'docs/evidence/run-card.json'
         before = path.read_bytes()

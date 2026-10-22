@@ -36,7 +36,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! python scripts/restore_data.py --include-registry 2>restore-error.log; then
+          if ! python scripts/restore_protocol_data.py --include-registry 2>restore-error.log; then
             while IFS= read -r line; do
               printf '::error::%s\n' "$line"
             done <restore-error.log
@@ -44,10 +44,17 @@ jobs:
           fi
       - name: Recompute negative preflight without changing any thresholds
         run: |
-          python scripts/session_preflight.py
-          python scripts/check_registry_candidate.py
-      - name: Require byte-reproducible evidence snapshot
-        run: git diff --exit-code -- docs/evidence
+          if ! (python scripts/session_preflight.py && python scripts/check_registry_candidate.py) >proof-output.log 2>&1; then
+            while IFS= read -r line; do printf '::error::%s\n' "$line"; done <proof-output.log
+            exit 1
+          fi
+      - name: Require reproducible evidence (only last-bit rho tolerance)
+        run: |
+          if ! git diff --exit-code -- docs/evidence ':!docs/evidence/inherited-registry-check.json' >proof-diff.log; then
+            while IFS= read -r line; do printf '::error::%s\n' "$line"; done <proof-diff.log
+            exit 1
+          fi
+          python scripts/check_registry_reproduction.py
       - uses: actions/upload-artifact@v4
         with:
           name: protocol-proof-not-a-submission

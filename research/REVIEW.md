@@ -45,6 +45,14 @@ Code review of `scripts/run_lane86.py` found these requirements gaps; no new eva
 
 No inherited metric is promoted to a current-best compliant holdout. The artifact is preserved for reproducibility rather than deleted. Fixing these runner/orchestration issues does not require changing or privately forking the shared metric or writer. Their pinned bytes remain unchanged. Separate audits must remain separate when further sessions merge.
 
+### Second concurrent-main integration
+
+Main subsequently advanced through PRs 9–13 and added a separate GMC/line-matched pipeline, two further TIFFs, a generated site, tracked bridge rasters and another template pin. These scientific inputs, artifact bytes and historical measurements are preserved. No new model was run here. The GMC publisher had labelled its off-catalogue file OK TO DOWNLOAD AND SUBMIT even though the literal shared audit says unique=false / stop_required=true. That is an unauthorized representation-based exemption. The primary card is now negative with submission_ready=false and approved_for_weekly_slot=false; its prior verdict is retained explicitly as history. Its historical HOLDOUT-DTI belongs to the catalogue-following configuration, not the shipped off-catalogue raster; the shipped-file holdout field is null.
+
+The generated Pages source now displays DO NOT SUBMIT on every page and retains all three negative artifacts. Domain halo coverage greater than 70% is not by itself a universal impossibility proof, because a candidate could concentrate in the uncovered domain. The independent 100%-support witness does prove blockage. The source generator and README now make that distinction. Further model/publisher entrypoints enforce the hard preflight stop. We did not change either shared template package.
+
+The new main's `restore_data.py` remains intact for its full codeload-based workflow. Our small-input, size/hash/object-verified restorer is named `restore_protocol_data.py`; the earlier radiometric lane restorer reuses its Git blob helper. Separate model cards, caches and hypothesis claims are not blended into a fresh score or an invented unique submission. The new PROMPT.md was a condensed archive despite its original 'verbatim' heading; the complete owner request is retained in the README and research/OWNER_PROMPT.md.
+
 ## Earlier audit context (retained with current corrections above)
 The competition target is fault prediction relevant to geothermal exploration, not direct identification of geothermal vents. Fault likelihood alone does not establish fluid, heat, permeability or an economic resource.
 

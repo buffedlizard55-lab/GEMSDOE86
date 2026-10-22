@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts import restore_data
+from scripts import restore_protocol_data as restore_data
 
 
 class RestoreTests(unittest.TestCase):
