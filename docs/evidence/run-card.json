@@ -1,32 +1,44 @@
 {
-  "hypothesis": "H86 provisional: radiometric mixing-residual boundary (not lane-authorized)",
-  "mechanism": "Residual K/Th variation after local lithologic mixing regression, gated by magnetic edge persistence.",
-  "non_fault_mimic": "Lithologic contacts and weathering fronts",
+  "schema_version": 2,
+  "generated_utc": "2026-10-22T23:04:11Z",
+  "hypothesis": "Not selected: the required lane/method paragraph is absent.",
+  "mechanism": "None evaluated; ranked ideas in research/REVIEW.md are preregistration only.",
+  "non_fault_mimic": "Not applicable until an authorized method is selected; candidate-specific mimics are documented per hypothesis.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positives": null,
+    "withheld_positive_pixels": null,
     "value": null,
-    "ci95": null
+    "ci95": null,
+    "paired_difference_vs_best": null
   },
   "correlation_overlap_vs_registry": {
-    "status": "NOT_RUN",
-    "surface": null,
-    "final_dots": null,
-    "complete": false
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "complete_registry_scan": false,
+    "surface_rank_correlation_max": null,
+    "surface_dots_within_3px_max": null,
+    "final_dots_within_3px_max": null,
+    "duplicate_stop_triggered": null
   },
   "raster_sha256": null,
   "validator": {
+    "evidence_class": "SERIALIZED-RASTER-VALIDATION",
     "status": "NOT_RUN_NO_CANDIDATE",
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
+    "single_band_float32": null,
+    "crs_matches_sample": null,
+    "shape_matches_sample": null,
+    "transform_matches_sample": null,
     "crs_shape_transform_match": null
   },
   "submission_name": null,
-  "note": "No candidate generated: lane, cached features, complete registry and comparable holdout baseline are missing.",
+  "note": "No candidate generated; lane, feature cache, complete registry and comparable baseline are absent.",
   "verdict": "negative",
   "submission_ready": false,
+  "downloadable_submission_tif": false,
   "experiments_run": 0,
   "preflight_checks": {
     "shared_template_hashes_match": true,
@@ -54,10 +66,11 @@
   },
   "blockers": [
     "No single method paragraph/lane was specified in the supplied prompt.",
-    "Shared cached feature stack referenced upstream is not present; no replacement stack was built.",
+    "The shared cached feature stack is not present in this checkout or in the pinned upstream trees; no replacement stack was built.",
     "No complete, pinned cross-lane raster registry was supplied or reconstructed.",
     "No feature-alone leakage canary or buffered segment hide-and-recover experiment was run.",
     "No comparable current-best pooled HOLDOUT-DTI with paired spatial CI was established.",
-    "No candidate surface or final dots exist; uniqueness and raster validation are untested."
+    "No candidate surface or final dots exist; uniqueness and serialized-raster validation are untested.",
+    "No organizer submission receipt or authenticated weekly-slot quota was obtained."
   ]
 }
