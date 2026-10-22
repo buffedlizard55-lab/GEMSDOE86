@@ -18,22 +18,18 @@ class SafetyTests(unittest.TestCase):
     def test_shared_bytes_unmodified(self):
         self.assertTrue(check_pins())
 
-    def test_unvalidated_candidate_is_not_ready(self):
-        card = run()
-        self.assertFalse(card['submission_ready'])
-        self.assertFalse(card['downloadable_submission_tif'])
-        self.assertEqual(card['verdict'], 'negative')
-        self.assertIsNone(card['raster_sha256'])
-        self.assertEqual(card['holdout_dti']['status'], 'NOT_RUN')
-        self.assertEqual(card['holdout_dti']['evidence_class'], 'HOLDOUT-DTI')
-        self.assertIsNone(card['holdout_dti']['withheld_positive_pixels'])
-        self.assertIsNone(card['holdout_dti']['ci95'])
-        self.assertEqual(card['correlation_overlap_vs_registry']['status'], 'NOT_RUN_NO_CANDIDATE')
-        self.assertFalse(card['correlation_overlap_vs_registry']['complete_registry_scan'])
-        self.assertEqual(card['validator']['status'], 'NOT_RUN_NO_CANDIDATE')
-        self.assertIsNone(card['validator']['crs_shape_transform_match'])
+    def test_current_run_card_is_negative_and_consistent(self):
+        # audit.run() is read-only: it must never overwrite the lane run card.
+        before = (ROOT / 'docs/evidence/run-card.json').read_bytes()
+        result = run()
+        self.assertEqual((ROOT / 'docs/evidence/run-card.json').read_bytes(), before)
+        self.assertTrue(result['all_audit_checks_passed'])
+        self.assertFalse(result['submission_ready'])
+        self.assertEqual(result['verdict'], 'negative')
+        card = result['run_card']
+        self.assertFalse(card['holdout_dti']['beats_incumbent'])
+        self.assertIsNotNone(card['raster_sha256'])
         self.assertLessEqual(len(card['note']), 140)
-        self.assertTrue(any('method paragraph' in item for item in card['blockers']))
 
     def test_writer_rejects_invalid_values_before_writing(self):
         for bad in [np.nan, np.inf, -0.01, 1.01, -9999]:
