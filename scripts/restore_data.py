@@ -1,5 +1,6 @@
 """Restore integrity-pinned owner mirrors; never describe these as authenticated official data."""
 import argparse
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -8,6 +9,32 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+
+
+def write_blob(repo, blob, stream):
+    """Decode the JSON Git Data API, avoiding gh's binary stdout transformer.
+
+    Raw TIFF streaming works in some gh builds but fails with "transform:
+    short source buffer" on the hosted runner. JSON/base64 is portable; Git
+    object identity plus the final SHA256/size pins still authenticate bytes.
+    """
+    response = subprocess.run(['gh', 'api', f'repos/{repo}/git/blobs/{blob}',
+                               '-H', 'Accept: application/vnd.github+json'],
+                              capture_output=True, check=True)
+    obj = json.loads(response.stdout)
+    if obj.get('encoding') != 'base64' or obj.get('sha') != blob:
+        raise ValueError('Unexpected Git blob identity or encoding')
+    raw = base64.b64decode(''.join(obj['content'].split()), validate=True)
+    identity = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+    if identity != blob or obj.get('size') != len(raw):
+        raise ValueError('Git object identity/size mismatch')
+    stream.write(raw)
+
+
+def write_path(repo, ref, path, stream):
+    blob = subprocess.check_output(['gh', 'api',
+        f'repos/{repo}/contents/{path}?ref={ref}', '--jq', '.sha']).decode().strip()
+    write_blob(repo, blob, stream)
 
 
 def restore(include_features=False, include_registry=False):
@@ -23,8 +50,7 @@ def restore(include_features=False, include_registry=False):
             try:
                 with tmp.open('wb') as f:
                     for part in item.get('parts', [item.get('path')]):
-                        subprocess.run(['gh', 'api', f"repos/{item['repo']}/contents/{part}?ref={item['ref']}",
-                                        '-H', 'Accept: application/vnd.github.raw+json'], stdout=f, check=True)
+                        write_path(item['repo'], item['ref'], part, f)
                 with tmp.open('rb') as stream:
                     digest = hashlib.file_digest(stream, 'sha256').hexdigest()
                 if digest != item['sha256'] or tmp.stat().st_size != item['bytes']:
@@ -55,9 +81,7 @@ def restore_registry_witness():
     tmp = dest.with_suffix('.partial')
     try:
         with tmp.open('wb') as stream:
-            subprocess.run(['gh', 'api', f"repos/{pin['repo']}/git/blobs/{pin['blob']}",
-                            '-H', 'Accept: application/vnd.github.raw+json'],
-                           stdout=stream, check=True)
+            write_blob(pin['repo'], pin['blob'], stream)
         verify_file(tmp, pin['sha256'], pin['bytes'])
         tmp.replace(dest)
     finally:
