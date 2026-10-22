@@ -1,10 +1,10 @@
 # GEMSDOE86 — audited fault-prediction research
 
-## NOT READY TO SUBMIT — no candidate TIF generated
+## 🔴 CANDIDATE GENERATED — DO NOT SUBMIT (failed the holdout gate)
 
-[Executive summary and submission instructions](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/executive-summary.html) · [Research and source review](research/REVIEW.md) · [Machine-readable run card](docs/evidence/run-card.json)
+**Download (inspection only):** [`docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif`](docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif) · SHA-256 `cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962` · [Site / readiness dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/docs/) · [Executive summary: exactly how to submit](docs/executive-summary.html) · [Run card](docs/evidence/run-card.json)
 
-The assigned branch initially contained only a README; during this session it was reconciled with the then-current `main`, which supplied the shared evaluator/writer, research audit, and Pages site. The pinned sample-submission and fault rasters were restored from owner mirrors and verified against their manifest hashes; this proves mirror integrity, not organizer authentication. No feature cache, validated new candidate, or winning model was obtained. **Do not submit the sample TIFF or any upstream historical raster as a new submission.** No weekly slot was used. A downloadable candidate is deliberately absent rather than misrepresented as validated or unique.
+Lane **H86-RMRB** (declared this session — see irregularity note in the run card): GeoDAWN radiometric mixing-residual boundaries × RTP magnetic-edge persistence. The file is **unique and format-valid** (shared writer + validator PASS: finite [0,1], EPSG:32611, 3730×3292, 0 on-catalogue dots; surface ρ ≤0.0004 vs the 12-raster local registry) but **HOLDOUT-DTI 0.0420 [0.0369–0.0467]** (gems57-pooled-hide-v2, 22,641 withheld positives) **does not beat the same-instrument incumbent benchmark 0.1011 [0.0856–0.1167]**. Per protocol, **no weekly slot may be spent on it**; verdict **negative** (a deliverable). No ORGANIZER-CONFIRMED score exists. Historical numbers in the brief (0.2778/0.4413/0.3195) are unverified owner reports without receipts — see `research/REVIEW.md`. Reproduce: `.venv/bin/python scripts/restore_lane_data.py && .venv/bin/python scripts/run_lane86.py`.
 
 ## Starting brief — read at the beginning of every session
 
