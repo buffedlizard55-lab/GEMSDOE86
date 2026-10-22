@@ -35,7 +35,13 @@ jobs:
       - name: Restore immutable mirrored inputs and historical witness
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/restore_data.py --include-registry
+        run: |
+          if ! python scripts/restore_data.py --include-registry 2>restore-error.log; then
+            while IFS= read -r line; do
+              printf '::error::%s\n' "$line"
+            done <restore-error.log
+            exit 1
+          fi
       - name: Recompute negative preflight without changing any thresholds
         run: |
           python scripts/session_preflight.py
