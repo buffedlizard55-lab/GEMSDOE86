@@ -2,6 +2,8 @@
 
 **Read [`PROMPT.md`](PROMPT.md) first: it is the standing project brief, archived verbatim.**
 
+**Published site (GitHub Pages, source = `main` / `docs`): <https://buffedlizard55-lab.github.io/GEMSDOE86/>**
+
 <p align="center">
   <a href="docs/index.html"><b>▶ Open the project site (download page)</b></a> ·
   <a href="docs/executive-summary.html">Executive summary: how to submit in 4 steps</a> ·
