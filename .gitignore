@@ -15,3 +15,6 @@ data/raw/
 /data/*.tif
 /data/registry/
 /data/restoration_backup/
+
+/data/external/
+/data/work/

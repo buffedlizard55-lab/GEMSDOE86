@@ -2,7 +2,7 @@
 
 ## DO NOT SUBMIT — literal uniqueness protocol failed
 
-All three inherited TIFFs remain downloadable for reproducibility, but **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. This session ran no new model experiment or weekly submission. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
+All four inherited TIFFs remain downloadable for reproducibility, but **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. This session ran no new model experiment or weekly submission. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
 
 
 **Read [`PROMPT.md`](PROMPT.md) first: it is the condensed standing project brief; full original request is archived below.**
@@ -337,6 +337,8 @@ with `scripts/audit_uniqueness.py --candidate <its path>` before anyone treats i
 ## Protocol audit added by this session
 
 Read `research/VERIFICATION.md`. Reproduce the small-input proof with `python scripts/restore_protocol_data.py --include-registry`, then `python scripts/session_preflight.py` and `python scripts/check_registry_candidate.py`. The existing main downloader and model code from concurrent work are preserved. The archived metrics are not a compliant prospective improvement claim for the off-catalogue file. Both scientific run cards now remain negative; any prior promotion wording is historical, not authorization.
+
+A further concurrent merge (PR #9) added the H86-1 straight-edge corroboration lane. Its negative file and dedicated model card are preserved. It does not create a new submission approval, and its CLI now observes the universal preflight stop. [H86-1 model card](docs/evidence/h86_run_card.json). No new model was rerun by this protocol session.
 
 ## Complete starting request archive
 

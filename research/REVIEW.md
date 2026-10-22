@@ -110,3 +110,7 @@ These are hypotheses rather than literature-established discoveries in this stud
 - Upstream “zero” ZIP is recorded at a suspiciously small size in its tree. Not downloaded, not verified, not offered here.
 - The reported portal range error cannot be attributed to NaN, sentinel values or another cause without the actual rejected file. The shared writer rejects all nonfinite or out-of-range values; it never silently clips invalid output.
 - No organizer receipt, authenticated quota, direct official data hash, private labels, or comprehensive literature review was obtained. No line-by-line scientific verification claim is made for untested hypotheses.
+
+### Third concurrent-main integration
+
+PR #9 added a fourth artifact (H86-1 straight-edge corroboration) and embedded its negative record in the radiometric model card. Its artifact and scientific evidence are preserved, not recomputed or promoted. The read-only audit now verifies both embedded lanes. H86-1's card stage has been changed to write its dedicated `h86_run_card.json`, not overwrite another lane's `run-card.json`; its CLI is stopped before further stages by the same protocol preflight. The proof restorer now writes `protocol-data-restore.json` so it cannot erase a different session's restoration receipt. All four artifact pairs are hash-bound in the negative download inventory; none is approved.

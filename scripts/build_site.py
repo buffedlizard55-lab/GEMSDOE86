@@ -147,6 +147,7 @@ See <a href="evidence.html">Evidence</a> and <a href="hypotheses.html">Hypothese
 <td>not audited here</td>
 <td><span class="badge warn">DO NOT SUBMIT — PARALLEL NEGATIVE ARTIFACT</span><br>
 <span class="muted">produced by a concurrent session; its preserved <a href="evidence/run-card.json">model card</a>, <a href="evidence/independent_validation.json">serialized validation</a>, and <a href="evidence/inherited-registry-check.json">literal registry failure</a> are separate. It is not submission-ready.</span></td></tr>
+<tr><td class="mono">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</td><td>its own local receipt</td><td>partial-registry diagnostics only</td><td><span class="badge bad">DO NOT SUBMIT — H86-1 negative</span><br><a href="evidence/h86_run_card.json">Preserved model card</a> · <a href="evidence/h86_validator.json">Serialized validation</a>. No promotion or complete uniqueness clearance.</td></tr>
 </table>
 
 <h3>Everything is checkable</h3>

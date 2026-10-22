@@ -66,7 +66,7 @@ def restore(include_features=False, include_registry=False):
                              provenance=item['provenance'], organizer_authenticated=False))
     if include_registry:
         restore_registry_witness()
-    (ROOT / 'docs/evidence/data_restore.json').write_text(json.dumps(receipts, indent=2) + '\n')
+    (ROOT / 'docs/evidence/protocol-data-restore.json').write_text(json.dumps(receipts, indent=2) + '\n')
     return receipts
 
 
