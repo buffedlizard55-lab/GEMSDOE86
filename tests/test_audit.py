@@ -18,12 +18,17 @@ class SafetyTests(unittest.TestCase):
     def test_shared_bytes_unmodified(self):
         self.assertTrue(check_pins())
 
-    def test_missing_evidence_is_not_ready(self):
-        card = run()
-        self.assertFalse(card['submission_ready'])
-        self.assertEqual(card['verdict'], 'negative')
-        self.assertIsNone(card['raster_sha256'])
-        self.assertEqual(card['holdout_dti']['status'], 'NOT_RUN')
+    def test_current_run_card_is_negative_and_consistent(self):
+        # audit.run() is read-only: it must never overwrite the lane run card.
+        before = (ROOT / 'docs/evidence/run-card.json').read_bytes()
+        result = run()
+        self.assertEqual((ROOT / 'docs/evidence/run-card.json').read_bytes(), before)
+        self.assertTrue(result['all_audit_checks_passed'])
+        self.assertFalse(result['submission_ready'])
+        self.assertEqual(result['verdict'], 'negative')
+        card = result['run_card']
+        self.assertFalse(card['holdout_dti']['beats_incumbent'])
+        self.assertIsNotNone(card['raster_sha256'])
         self.assertLessEqual(len(card['note']), 140)
 
     def test_writer_rejects_invalid_values_before_writing(self):

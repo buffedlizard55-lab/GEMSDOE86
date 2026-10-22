@@ -88,7 +88,7 @@
   "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
   "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
   "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
+  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and byte/pixel-distinct vs 12-raster local registry, but shared uniqueness checker unique=false (literal >0.70 3px-overlap gate fires vs saturating lattice raster; stop_required=true) and HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
   "scores_labelled": "No ORGANIZER-CONFIRMED score exists for this file. Historical numbers in the brief (0.2778, 0.4413, 0.3195) are owner/user-reported without a submission-page receipt and are NOT reproduced as scores.",
   "experiments_run": 3,
   "verdict": "negative",
