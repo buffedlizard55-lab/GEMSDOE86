@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html" style=color:#e8eefc>How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
+<h1>Executive summary — how to make a submission</h1>
+<div class="card">
+<p><b>1. Download</b> <a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a> (or the ZIP next to it — it contains exactly this one GeoTIFF).</p>
+<p><b>2. Go to</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the submission page</a>
+and choose <i>File to submit</i>.</p>
+<p><b>3. Paste the note</b> (107 characters, limit 140):</p>
+<p class="mono">GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</p>
+<p><b>4. Submit.</b> The file is already in the required format: single-band float32 GeoTIFF,
+3730 × 3292, EPSG:32611, 100 m, values 0.0/1.0 with no NaN anywhere. If the form returns
+<i>"Predicted values must be in range [0, 1]"</i>, you have uploaded the wrong file — this one has
+min 0.0 and max 1.0 in every one of the 12,279,160 cells.</p>
+</div>
+
+<h3>Why this file passes the form</h3>
+<table>
+<tr><th>Requirement (official problem description)</th><th>This file</th></tr>
+<tr><td>same projected CRS as training data (EPSG:32611)</td><td>EPSG:32611</td></tr>
+<tr><td>100 m resolution, same bounds</td><td>transform (100, 0, 243350, 0, −100, 4508550); bounds (243350, 4135550) – (572550, 4508550)</td></tr>
+<tr><td>single layer, float32, values in [0, 1]</td><td>1 band, float32, min 0.0 / max 1.0</td></tr>
+<tr><td>outside the bounds null/NaN <i>(spec)</i> — but the upload form rejects non-[0,1] values</td>
+<td>0.0 outside the footprint (documented deviation; this is what fixed the upload error)</td></tr>
+<tr><td>no NaN anywhere</td><td>0 NaN, 0 Inf, 0 sentinel values</td></tr>
+</table>
+
+<h3>What you are submitting, in one paragraph</h3>
+<p>90,568 binary dots (one per 3 × 3 px tile) placed where a logistic posterior over 44 features is
+highest after an 8-orientation line filter, with the posterior suppressed within 1 km of every mapped
+fault so the arrangement is not a copy of the fleet's proximity lanes. Median distance from a dot to the
+nearest mapped trace: 13 px = 1.3 km. No positive cell lies on a mapped fault.</p>
+
+<h3>Before you spend a weekly slot</h3>
+<div class="card"><span class="badge warn">read this</span>
+<p>Format validity is not expected score. This repo makes <b>no</b> live-score claim. The validated
+holdout value is 0.12324 [0.10926, 0.13665] for the catalogue-following configuration; the shipped
+off-catalogue arrangement is deliberately different and cannot be scored by that instrument (its truth
+is catalogue-derived). If the slot budget is tight, spend it on a candidate whose evaluation instrument
+matches the prize — see <a href="evidence.html">Evidence §5</a>.</p></div>
+</main>
+<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (leaderboard / receipt) ·
+OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
+</body></html>
