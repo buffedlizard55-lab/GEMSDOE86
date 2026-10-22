@@ -1,4 +1,12 @@
+# --- data & caches (never committed; rebuilt by scripts/restore_data.py) ---
+.cache/
 .venv/
 __pycache__/
-data/
 *.pyc
+.pytest_cache/
+/tmp/
+
+# --- large local artifacts ---
+data/raw/
+*.npy
+*.npz

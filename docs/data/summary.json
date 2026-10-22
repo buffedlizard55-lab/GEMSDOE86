@@ -1,0 +1,18 @@
+{
+  "submission": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+  "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+  "dots": 90568,
+  "holdout_dti": 0.12324436995403142,
+  "holdout_ci95": [
+    0.10926423604369893,
+    0.13665328131007318
+  ],
+  "withheld_positives": 11321,
+  "evaluator": "gems57-pooled-hide-v2",
+  "validator": true,
+  "uniqueness": {
+    "worst_rho_informative": 0.036179371899376665,
+    "saturated_blockers": 39
+  },
+  "leaderboard_top": 0.4413
+}

@@ -1,0 +1,95 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "n_withheld_positives": 11321,
+  "folds": [
+    "NW",
+    "NE",
+    "SW",
+    "SE"
+  ],
+  "results": {
+    "lane": {
+      "features": [
+        "tc",
+        "iso_grav_anom_slope",
+        "iso_grav_anom_hg",
+        "tmi_hg",
+        "tmi_vg",
+        "iso_grav_anom_vg",
+        "geod_2ndinv",
+        "det_elev_slope",
+        "depth_to_base_surf",
+        "cond_surf",
+        "ieq_n100a15",
+        "geod_shearrate",
+        "gmc4_contact",
+        "gmc4_oppose",
+        "gmc4_strike_coh",
+        "gmc4_aligned",
+        "d_vis",
+        "log_d_vis",
+        "d_tip",
+        "log_d_tip",
+        "tip_continuation",
+        "tip_along",
+        "tip_cross",
+        "along",
+        "cross",
+        "trace_coh",
+        "density",
+        "trace_continuation"
+      ],
+      "curve": [
+        {
+          "ratio": 6.0,
+          "dti": 0.08554798549236103,
+          "ci95": [
+            0.07049517087048675,
+            0.10144002516363074
+          ],
+          "dots": 67926,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 8.0,
+          "dti": 0.07934160787477725,
+          "ci95": [
+            0.06466550553437748,
+            0.09471956839970118
+          ],
+          "dots": 90568,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 10.0,
+          "dti": 0.07563020973522283,
+          "ci95": [
+            0.06121220204769147,
+            0.09120922822119754
+          ],
+          "dots": 113210,
+          "n_truth": 11321
+        }
+      ],
+      "best": {
+        "ratio": 6.0,
+        "dti": 0.08554798549236103,
+        "ci95": [
+          0.07049517087048675,
+          0.10144002516363074
+        ],
+        "dots": 67926,
+        "n_truth": 11321
+      },
+      "elapsed_s": 87.2
+    }
+  },
+  "elapsed_s": 87.3
+}
