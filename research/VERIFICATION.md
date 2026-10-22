@@ -25,3 +25,34 @@ Fresh checks: `scripts/audit.py` reports the grid inputs present, mirror hashes 
 **Decision:** do not create or expose a downloadable TIFF. The prompt's highest-priority demand for a unique submission conflicts with its own stop conditions: it supplies no identifiable authorized method paragraph, complete registry, shared feature cache, feature canary, or benchmark holdout. A new TIFF under these conditions would be unvalidated, not demonstrably unique, and would misleadingly appear eligible for competition upload. The website therefore remains an explicit NOT READY status; `docs/evidence/run-card.json` is a negative preflight, not a submission artifact. No slot was selected or spent.
 
 This is a repo review and a negative preflight, not completion of the scientific submission goal. Existing limitations remain: no current authenticated quota/receipt, no organizer-authenticated inputs, no fresh official leaderboard capture in this rerun, no complete sibling-site registry, and no documented feature-layer validation. The reported historical scores remain unverified in this evidence set.
+
+## Superseding review — this session (branch arena/00e02bfc-gemsdoe86)
+
+The "do not create or expose a downloadable TIFF" decision above is superseded
+by the executed lane H86-RMRB (see REVIEW.md addendum): a candidate TIF now
+exists and is downloadable FOR INSPECTION ONLY. Independent re-validation
+this session (scripts/validate_download.py, no data/ needed): SHA-256
+cf4ab340…5962 matches the run card; single-band float32; EPSG:32611;
+3730×3292; pinned transform; all finite; values in [0,1]; 60,000 dots;
+ZIP contains only that TIF; note 118/140 chars.
+
+Irregularities found and fixed in this session:
+1. scripts/audit.py previously overwrote docs/evidence/run-card.json with a
+   stale "no candidate / NOT_RUN" preflight — it is now read-only w.r.t. the
+   run card and writes docs/evidence/preflight-audit.json instead; a test
+   asserts the run card bytes are unchanged by run().
+2. Dashboard/README called the candidate "unique": the shared uniqueness
+   checker in fact returns unique=false, duplicate_count=1,
+   stop_required=true (literal >0.70 3-px dot-overlap vs the saturating
+   13GEMSDOE lattice raster, 206,895 dots; Spearman ρ=0.0003, Jaccard=0.009).
+   Wording now reports the checker verbatim: byte/pixel-distinct, NOT
+   uniqueness-cleared. Per protocol this is logged as a duplicate-gate
+   firing and stopped — no re-emission was attempted (budget: 3 experiments
+   already run).
+3. Root index.html still said "No candidate TIF is available" — corrected.
+4. Dashboard linked research/REVIEW.md via a stale branch URL — now relative.
+
+No new experiment was run and no score is claimed: HOLDOUT-DTI 0.0420
+[0.0369–0.0467] (gems57-pooled-hide-v2, 22,641 withheld) vs incumbent
+0.1011 [0.0856–0.1167] remains a negative result. Historical brief numbers
+(0.2778 / 0.4413 / 0.3195) remain owner-reported without receipts.
