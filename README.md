@@ -1,5 +1,20 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## CURRENT STATE (2026-10-23, PRUNE ladder)
+
+| field | value |
+|---|---|
+| Parent | `h33-h33-2-b2-20261004-e5eb6e7e` (GEMSDOE32), 37,654 dots, sha256 `c55bafc4…` — **CLAIM 0.2778, no receipt** |
+| Parent rebuild | reproduced **pixel-exactly** (0 of 12,279,160 cells differ) from the pinned 0.2708 field by deleting dots ≤ 2.0 px from the catalogue; file bytes not reproducible (IR-86-PRUNE-01) |
+| Best **receipt** | **none in `ledger/submissions.csv`** — all 105 scored rows are CLAIMs |
+| `TOP_PUBLIC` | **blank — the human fills it from the leaderboard, with the date** |
+| Slots left this week | **blank — the human fills it** (quota: 3 scored/week, one blind final, deadline 2026-12-03) |
+| Built this session | 3 PRUNE rungs (≤2.236 px, ≤2.828 px, ≤3.000 px; 2.5 %, 4.3 %, 5.8 % of dots) + 1 mass-matched control, in `releases/`; gates re-checked on the bytes by `tests/test_prune_ladder.py` |
+| Predicted (MODEL, never a score) | +0.001 / +0.003 / +0.004 live; all bands cross zero and stay under the 0.01 evidence floor |
+| Next 3 slots | 1) `…-PRUNE-le3p000-20261023-27c5eab6-zeros.tif`; 2) a **new prediction surface** after restoring `training_features.tif` (SNAP first); 3) a second value on whichever axis moved — details and falsifiers in [SLOT_PLAN.md](SLOT_PLAN.md) |
+| Upload procedure | [docs/SUBMIT.md](docs/SUBMIT.md); note ≤ 140 chars is inside each receipt |
+| Open blockers | IR-86-PRUNE-03 (standing literal-overlap stop vs. any submittable file), IR-86-PRUNE-05 (SNAP/RELIEF/MASS/CONCENTRATION need the absent 419 MB feature stack) |
+
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 
 **Read this README, [PROMPT.md](PROMPT.md), and the current request archive below at the start of every session.**
