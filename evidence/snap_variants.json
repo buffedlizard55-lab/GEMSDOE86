@@ -1,0 +1,531 @@
+{
+  "schema": "gems86.snap-variants.v1",
+  "version": "gems86-snap-v1",
+  "generated_utc": "2026-10-23T16:00:18+00:00",
+  "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82",
+  "inputs": {
+    "data/bridge/existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "verified": true
+    },
+    "data/bridge/sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "verified": true
+    },
+    "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "verified": true
+    },
+    "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "verified": true
+    },
+    ".cache/bridge/training_features.tif": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "verified": true
+    },
+    ".cache/scored/h19_5.tif": {
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "verified": true
+    },
+    "parent_recipe_reproduction": {
+      "symdiff_px": 0,
+      "dots": 37654
+    }
+  },
+  "variants": {
+    "hg2": {
+      "id": "h33-h33-2-b2-snap-hg2-20261023-718658bc",
+      "parent": "h33-h33-2-b2",
+      "axis": "SNAP",
+      "value": "hg2",
+      "field_label": "tmi_hg horizontal-gradient peak",
+      "files": {
+        "nan_outside": "h33-h33-2-b2-snap-hg2-20261023-718658bc.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif"
+      },
+      "parent_diff": {
+        "n_dots": 37654,
+        "n_moved": 16329,
+        "pct_changed": 43.37,
+        "mean_displacement_px_all": 1.011,
+        "mean_displacement_px_moved": 2.331,
+        "median_displacement_px_moved": 2.236,
+        "max_displacement_px": 2.828,
+        "n_movers_blocked_kept_source": 0,
+        "n_forced_floor_violations": 0,
+        "mean_gain_z_moved": 0.818,
+        "min_spacing_px_after": 2.828,
+        "min_spacing_px_before": 2.828,
+        "seed": 0
+      },
+      "gates": {
+        "h33-h33-2-b2-snap-hg2-20261023-718658bc.tif": {
+          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-718658bc.tif",
+          "bytes": 219708,
+          "sha256": "718658bc70c75cc58679004058e33474b9005942c47099d0b905e6f8e9548a4f",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": "nan"
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "nan_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        },
+        "h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif",
+          "bytes": 148044,
+          "sha256": "905e654d06abe8e4a3557bab250b06b8ef04ca65fa429681170d239a960fa069",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": null
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "zeros_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        }
+      },
+      "mechanism_card": {
+        "hypothesis": "A dot's 100 m position is uncertain by about the kernel radius, so moving it up to 2 px onto the local maximum of the horizontal magnetic gradient recovers true-trace credit the kernel currently only half-credits.",
+        "mechanism": "Faults and their damage zones truncate or offset magnetised units, so the horizontal gradient of TMI peaks along the structure. The grader gives a triangular credit max(1-d/3px,0), so a dot displaced 2 px from truth keeps only 0.33 of its unit credit; the same dot re-centred earns ~1.0.",
+        "confounder": "Magnetic contacts with no Quaternary slip (intrusive contacts, remanence boundaries, survey seams between flight-line blocks) produce the same gradient peak; so do shallow alluvial magnetic contrasts.",
+        "predicted": "MODEL: live change in [-0.005, +0.015], central +0.004. Below the 0.01 evidence floor this is a mechanism probe, not a score play.",
+        "falsifier": "Live change <= -0.02 kills the positional-correction reading (the dots were already on true traces and the gradient peak is a mimicking contact); |change| < 0.01 is no evidence in either direction."
+      },
+      "rule": {
+        "smooth_sigma_px": 1.0,
+        "cap_px": 2,
+        "gain_gate_z": 0.25,
+        "spacing_floor_px": 2.828,
+        "window": "25 cells, max(|dy|,|dx|) <= 2"
+      }
+    },
+    "vg2": {
+      "id": "h33-h33-2-b2-snap-vg2-20261023-b5776416",
+      "parent": "h33-h33-2-b2",
+      "axis": "SNAP",
+      "value": "vg2",
+      "field_label": "|tmi_vg| vertical-gradient flank peak",
+      "files": {
+        "nan_outside": "h33-h33-2-b2-snap-vg2-20261023-b5776416.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif"
+      },
+      "parent_diff": {
+        "n_dots": 37654,
+        "n_moved": 18179,
+        "pct_changed": 48.28,
+        "mean_displacement_px_all": 1.114,
+        "mean_displacement_px_moved": 2.307,
+        "median_displacement_px_moved": 2.236,
+        "max_displacement_px": 2.828,
+        "n_movers_blocked_kept_source": 0,
+        "n_forced_floor_violations": 0,
+        "mean_gain_z_moved": 0.991,
+        "min_spacing_px_after": 2.828,
+        "min_spacing_px_before": 2.828,
+        "seed": 0
+      },
+      "gates": {
+        "h33-h33-2-b2-snap-vg2-20261023-b5776416.tif": {
+          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-b5776416.tif",
+          "bytes": 219758,
+          "sha256": "b5776416ad139e4c87347d4078348768b1a0dbfb719812ec2307c7a91ab465a3",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": "nan"
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "nan_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        },
+        "h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif",
+          "bytes": 147979,
+          "sha256": "27511d13b362e1aa81308a58adc4e01d301eb8bcb3fe589464eff4f6611a52b5",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": null
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "zeros_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        }
+      },
+      "mechanism_card": {
+        "hypothesis": "If sharpness is what the kernel rewards, the vertical gradient should snap better than the horizontal one, because it localises a contact more tightly.",
+        "mechanism": "The vertical derivative of a potential field is a shorter-wavelength enhancement of the same source edge; at a given flight-line spacing it discriminates neighbouring contacts that the horizontal gradient smears into one 2 px-wide maximum.",
+        "confounder": "Short-wavelength enhancement amplifies interpolation noise between the 400 m GeoDAWN lines, so the 'peak' can be an artifact of the survey geometry rather than the geology.",
+        "predicted": "MODEL: live change in [-0.008, +0.015], central +0.003.",
+        "falsifier": "vg2 weaker than hg2 by more than 0.01 argues that the extra sharpening is noise; vg2 beating hg2 by >= 0.01 would say kernel-scale sharpness, not edge existence, is the binding constraint."
+      },
+      "rule": {
+        "smooth_sigma_px": 1.0,
+        "cap_px": 2,
+        "gain_gate_z": 0.25,
+        "spacing_floor_px": 2.828,
+        "window": "25 cells, max(|dy|,|dx|) <= 2"
+      }
+    },
+    "cons2": {
+      "id": "h33-h33-2-b2-snap-cons2-20261023-43829550",
+      "parent": "h33-h33-2-b2",
+      "axis": "SNAP",
+      "value": "cons2",
+      "field_label": "tmi_hg + |tmi_vg| consensus",
+      "files": {
+        "nan_outside": "h33-h33-2-b2-snap-cons2-20261023-43829550.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif"
+      },
+      "parent_diff": {
+        "n_dots": 37654,
+        "n_moved": 20589,
+        "pct_changed": 54.68,
+        "mean_displacement_px_all": 1.288,
+        "mean_displacement_px_moved": 2.356,
+        "median_displacement_px_moved": 2.236,
+        "max_displacement_px": 2.828,
+        "n_movers_blocked_kept_source": 0,
+        "n_forced_floor_violations": 0,
+        "mean_gain_z_moved": 1.148,
+        "min_spacing_px_after": 2.828,
+        "min_spacing_px_before": 2.828,
+        "seed": 0
+      },
+      "gates": {
+        "h33-h33-2-b2-snap-cons2-20261023-43829550.tif": {
+          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-43829550.tif",
+          "bytes": 219715,
+          "sha256": "438295503dc95a102663c3f9ae0560336ff380821b0ca08e56bfb06d6492b6d5",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": "nan"
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "nan_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        },
+        "h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif",
+          "bytes": 147918,
+          "sha256": "483e680fcc282925f0f07e53519862cb863c5aa28fb61d0630e6ed5164d755b3",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": null
+          },
+          "checks": {
+            "crs_matches_sample": true,
+            "shape_matches_sample": true,
+            "transform_matches_sample": true,
+            "dtype_float32": true,
+            "single_band": true,
+            "values_in_0_1": true,
+            "no_nan_inside_footprint": true,
+            "zero_mass_on_catalogue": true,
+            "dot_count_matches_parent": true,
+            "no_positive_mass_outside_footprint": true,
+            "zeros_outside_footprint": true
+          },
+          "all_checks_passed": true,
+          "on_catalogue_positive_pixels": 0,
+          "emitted_positive_pixels": 37654
+        }
+      },
+      "mechanism_card": {
+        "hypothesis": "The two magnetic derivatives disagree where one of them is artefact-dominated, so their consensus peak should be the more reliable positional estimate even though it is broader.",
+        "mechanism": "Averaging two edge measures that are sensitive to the same source but to different noise keeps the shared (geological) peak and suppresses the band-specific seam and interpolation artefacts.",
+        "confounder": "Where both bands share one artefact (a flight-line seam distorts every derivative at once) consensus adds no robustness at all.",
+        "predicted": "MODEL: live change in [-0.005, +0.015], central +0.005; expected to be the most stable of the three if any of them works.",
+        "falsifier": "cons2 outside the hg2/vg2 spread, i.e. worse than both, would mean the consensus peak lands on a compromise neither band supports."
+      },
+      "rule": {
+        "smooth_sigma_px": 1.0,
+        "cap_px": 2,
+        "gain_gate_z": 0.25,
+        "spacing_floor_px": 2.828,
+        "window": "25 cells, max(|dy|,|dx|) <= 2"
+      }
+    }
+  },
+  "rule_constants": {
+    "smooth_sigma_px": 1.0,
+    "cap_px": 2,
+    "gain_gate_z": 0.25,
+    "spacing_floor_px": 2.828,
+    "seed": 0
+  },
+  "leakage_canary": {
+    "catalogue_auc": {
+      "hg": 0.5273,
+      "vg": 0.5253,
+      "cons": 0.5284
+    },
+    "leakage_stop_threshold": 0.9,
+    "verdict": "clear",
+    "note": "report-only; catalogue AUC is not a prediction of new-fault performance"
+  },
+  "holdout_proxy": {
+    "parent": {
+      "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
+      "n_withheld_positive_px": 45260,
+      "pooled_dti": 0.0047,
+      "pooled_coverage": 0.0067,
+      "coverage_wilson95": [
+        0.006,
+        0.0075
+      ],
+      "mean_fold_dti": 0.0048,
+      "fold_dti_spread_95": [
+        0.0032,
+        0.006
+      ],
+      "per_quadrant_dti": {
+        "foldNE": 0.0057,
+        "foldNW": 0.0047,
+        "foldSE": 0.0043,
+        "foldSW": 0.0044
+      },
+      "per_draw_dti": {
+        "draw20": 0.0047,
+        "draw21": 0.0049
+      },
+      "folds": 16
+    },
+    "hg2": {
+      "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
+      "n_withheld_positive_px": 45260,
+      "pooled_dti": 0.015,
+      "pooled_coverage": 0.0215,
+      "coverage_wilson95": [
+        0.0202,
+        0.0228
+      ],
+      "mean_fold_dti": 0.0147,
+      "fold_dti_spread_95": [
+        0.0094,
+        0.0215
+      ],
+      "per_quadrant_dti": {
+        "foldNE": 0.0118,
+        "foldNW": 0.0135,
+        "foldSE": 0.0143,
+        "foldSW": 0.0191
+      },
+      "per_draw_dti": {
+        "draw20": 0.0143,
+        "draw21": 0.0151
+      },
+      "folds": 16
+    },
+    "vg2": {
+      "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
+      "n_withheld_positive_px": 45260,
+      "pooled_dti": 0.0169,
+      "pooled_coverage": 0.0242,
+      "coverage_wilson95": [
+        0.0228,
+        0.0256
+      ],
+      "mean_fold_dti": 0.0164,
+      "fold_dti_spread_95": [
+        0.0096,
+        0.0248
+      ],
+      "per_quadrant_dti": {
+        "foldNE": 0.0108,
+        "foldNW": 0.0134,
+        "foldSE": 0.0208,
+        "foldSW": 0.0208
+      },
+      "per_draw_dti": {
+        "draw20": 0.0156,
+        "draw21": 0.0173
+      },
+      "folds": 16
+    },
+    "cons2": {
+      "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
+      "n_withheld_positive_px": 45260,
+      "pooled_dti": 0.019,
+      "pooled_coverage": 0.0271,
+      "coverage_wilson95": [
+        0.0256,
+        0.0286
+      ],
+      "mean_fold_dti": 0.0185,
+      "fold_dti_spread_95": [
+        0.011,
+        0.0256
+      ],
+      "per_quadrant_dti": {
+        "foldNE": 0.0121,
+        "foldNW": 0.0174,
+        "foldSE": 0.0212,
+        "foldSW": 0.0235
+      },
+      "per_draw_dti": {
+        "draw20": 0.0178,
+        "draw21": 0.0192
+      },
+      "folds": 16
+    }
+  },
+  "h19_rank_readout": {
+    "parent_mean_rank_pct": 0.9883,
+    "hg2": 0.7505,
+    "hg2_delta_pct_points": -23.783,
+    "vg2": 0.7272,
+    "vg2_delta_pct_points": -26.113,
+    "cons2": 0.6965,
+    "cons2_delta_pct_points": -29.183,
+    "evidence_class": "PROXY readout on the parent lineage's ranking field (H19-5)"
+  }
+}

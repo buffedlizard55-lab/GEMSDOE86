@@ -1,5 +1,17 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## CURRENT STATE (2026-10-23, SNAP session)
+
+| Field | Value |
+|---|---|
+| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots, sha `c55bafc4…` — dot set reproduced from its recorded recipe at symdiff 0 px |
+| Best receipt | **none yet.** 0.2778 is a CLAIM (owner-reported); `ledger/submissions.csv` has no `RECEIPT` row |
+| TOP_PUBLIC | **not supplied.** The brief requires the human to fill it from the leaderboard with a date; no other target number is used here |
+| Slots left this week | **not supplied** (human fills from the submission page). Session rule applied: 3 scored submissions per rolling week, 1 final file |
+| Built this session (3) | `snap-hg2` / `snap-vg2` / `snap-cons2` of R0 — 43.4 / 48.3 / 54.7 % of dots moved ≤ 2 px onto a magnetic-edge peak, mean displacement 2.31–2.36 px, count and 2.828 px spacing floor held, all format gates pass. Predicted live change +0.003…+0.005 central, i.e. **below the 0.01 evidence floor** |
+| Next 3 slots | 1) `snap-cons2`, 2) `snap-hg2`, 3) held for the week's best MASS/CONCENTRATION variant or a collar-respecting re-cut of `snap-cons2` — see `SLOT_PLAN.md` |
+| Why SNAP is not a score play | the free holdout PROXY collapsed to 0.0000 for every candidate once a fixed ≥ 3 px collar was applied, and the variants put 502–686 dots back inside the catalogue halo whose removal is the only edit with a live-claimed gain (`IRREGULARITIES.md` IR-86-SNAP-01/03) |
+
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 
 **Read this README, [PROMPT.md](PROMPT.md), and the current request archive below at the start of every session.**

@@ -1,0 +1,44 @@
+{
+  "schema": "gems86.preregistration.snap.v1",
+  "written_before_any_variant_was_scored": true,
+  "session": "SNAP (human-assigned axis), response family: magnetic edges (tmi_hg / tc)",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "site": "GEMSDOE32",
+    "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "score": 0.2778,
+    "evidence_class": "CLAIM (owner-reported; no submission-page receipt in ledger/)"
+  },
+  "fixed_rule": {
+    "window": "25 cells with max(|dy|,|dx|) <= 2 (brief: 'move each dot <= 2 px')",
+    "smoothing_sigma_px": 1.0,
+    "gain_gate_z": 0.25,
+    "spacing_floor_px": 2.828,
+    "spacing_floor_justification": "identical to R0's own measured nearest-neighbour floor (the d2.8 rung), so SNAP can neither tighten nor loosen the emission spacing",
+    "destination_constraints": [
+      "inside the footprint",
+      "not on the catalogue",
+      "not within the spacing floor of another dot's source",
+      "not within the spacing floor of an already-placed dot"
+    ],
+    "determinism": "no random draws; seed 0 recorded only to satisfy the reproducibility rule",
+    "count": "unchanged by construction (every dot ends at either a permitted destination or its own source)"
+  },
+  "axis_values": {
+    "hg2": "response = z(smooth(tmi_hg, 1 px))",
+    "vg2": "response = z(smooth(|tmi_vg|, 1 px))",
+    "cons2": "response = z(smooth(tmi_hg)) + z(smooth(|tmi_vg|))"
+  },
+  "why_smoothing_was_fixed_in_advance": "A diagnostic run made before this file was written showed that snapping to the raw 100 m bands moves 99 % of dots with a per-dot gain barely above a random-offset null (mean gain 0.000 sigma against a null p90 of +0.288, 43 % of dots beating that null). That is interpolation jitter between the 400 m GeoDAWN flight lines, not an edge. Smoothing at one cell and gating on a 0.25 sigma gain are therefore part of the rule, not a result.",
+  "analysis_plan": {
+    "gate": ["format vs sample_submission.tif", "zero catalogue mass", "sha256 absent from the ledger",
+             "parent-diff statistics recorded", "file re-read from disk after writing"],
+    "report_only": ["catalogue hide-and-recover PROXY with n withheld positives and 95% CI",
+                    "leakage canary (single-feature catalogue AUC; > 0.90 stops the session)",
+                    "SGMC control", "H19-5 rank readout of the parent lineage"],
+    "evidence_floor": "a live change under 0.01 is treated as no evidence",
+    "no_label_probing": "no region-isolated or patterned raster is built; nothing is submitted or scraped"
+  }
+}
