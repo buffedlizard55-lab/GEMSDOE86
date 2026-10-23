@@ -2,7 +2,25 @@
 
 ## DO NOT SUBMIT — literal uniqueness protocol failed
 
-All five inherited TIFFs remain downloadable for reproducibility, but **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. This session ran no new model experiment or weekly submission. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
+All six research TIFFs remain downloadable for reproducibility, and **none is approved to spend a weekly DrivenData slot automatically**.
+
+### Latest Lane: `H86B-GFCO` (Highest Spatial Holdout Across All 6 Lanes — Format-Valid `15/15`, Fail-Closed `DO NOT SUBMIT`)
+
+- **GeoTIFF Download:** [`docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif) (`158,348` B · SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`) · **Single-TIF ZIP:** [`…-zeros.zip`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip) · **Receipt:** [`…-zeros.json`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json)
+- **Canonical Run Card:** [`docs/evidence/h86b-gfco-run-card.json`](docs/evidence/h86b-gfco-run-card.json) · **Full Experiment Evidence:** [`docs/evidence/lane86b_results.json`](docs/evidence/lane86b_results.json) · **Cross-Lane Uniqueness:** [`docs/evidence/h86b_crosslane_uniqueness.json`](docs/evidence/h86b_crosslane_uniqueness.json) · **PhD Scientific Review:** [`research/H86B_GFCO_REVIEW.md`](research/H86B_GFCO_REVIEW.md) · **3-Pass Verification Log:** [`research/H86B_GFCO_VERIFICATION.md`](research/H86B_GFCO_VERIFICATION.md)
+- **Submission Name / Note (`92/140` chars):** `gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b` · `H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros`
+- **Automated Gate Summary (`3/3` experiments run; `0` slots spent):**
+  - **Format (`15/15` PASS):** Single-band `float32`, `[0, 1]` guaranteed (`min=0.0, max=1.0`), `0 NaN/Inf/sentinels`, `EPSG:32611`, `3730×3292` (`100 m`), `0` on-catalogue dots (`44,090` binary dots, `min_nn >= 2.828 px`). Eliminates `"Predicted values must be in range [0, 1]"` by construction.
+  - **Leakage Canaries (`42/42` PASS):** `38` label-free GDR-1391 geothermometer-disequilibrium, 3D MT, TMI-vs-150m contact-offset, basement/strain, 1 m LiDAR scarplet, and Huber topo-deconfounded radiometric planes (`max disc AUC = 0.6486`) + `4` strictly visible-only kinematic fields (`max disc AUC = 0.8485 <= 0.90`).
+  - **Spatial Holdout (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`):**
+    - `segment_all` (`22,641` pos): **`0.1396 [0.1286, 0.1513]`** vs `d2.8 = 0.1011` (`Δ = +0.0385 [+0.0269, +0.0524]`, **+38.1%**).
+    - `segment_detached` (`22,619` pos): **`0.1521 [0.1378, 0.1662]`** vs `d2.8 = 0.1035` (`Δ = +0.0486 [+0.0343, +0.0627]`, **+47.0%**).
+    - `buffered_whole_components` (`11,321` pos, whole 8-connected components + 3-px buffer): **`0.1078 [0.0908, 0.1254]`** vs `H33-2-B2 = 0.0961` (**+12.1%**) & `d2.8 = 0.0919` (**+17.3%**), paired `Δ vs d2.8 = +0.0159 [-0.0007, +0.0343]`.
+  - **Uniqueness & Binding Stop (`verdict: "negative"`, `approved_for_weekly_slot: false`):** Pre-placement surface `|ρ| <= 0.1366`, final dots `|ρ| <= 0.0570`, **`0.3012`** 3-px overlap vs `GEMSDOE32 H33-2-B2`, and **`<= 0.6342`** across all `25` comparable/modern candidates across `16` repos (`GEMSDOE32..86`), **but** literal `> 0.70` forward 3-px overlap fires against dense legacy `13gems` (`0.9988`), `gems10-h25` (`0.7656`), `gems10-h28` (`0.7170`), and the dense `100%`-footprint witness, and whole-component paired CI narrowly straddles zero (`[-0.0007, +0.0343]`). Reproduce: `.venv/bin/python scripts/restore_h86b_data.py && .venv/bin/python scripts/h86b_features.py && .venv/bin/python scripts/run_lane86b.py && .venv/bin/python scripts/audit_h86b.py`.
+
+---
+
+All five earlier inherited TIFFs also remain downloadable for reproducibility, and **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
 
 
 **Read [`PROMPT.md`](PROMPT.md) first: it is the condensed standing project brief; full original request is archived below.**

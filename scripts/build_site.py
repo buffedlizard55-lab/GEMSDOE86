@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 PAGES = (DOCS / "index.html", DOCS / "executive-summary.html")
 CANDIDATES = (
+    "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
     "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
     "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
     "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -51,7 +52,7 @@ def main() -> int:
     for name in CANDIDATES:
         if name not in index or not (DOCS / "downloads" / name).is_file():
             raise SystemExit(f"candidate missing from dashboard or disk: {name}")
-    print("Static site integrity: PASS; five candidates listed; none authorized.")
+    print("Static site integrity: PASS; six candidates listed; none authorized.")
     return 0
 
 
