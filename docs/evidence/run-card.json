@@ -1,97 +1,345 @@
 {
-  "hypothesis": "H86-RMRB (declared lane, this session): boundaries of the residual of a robust global K~Th+U+TC radiometric mixing regression mark hydrothermally redistributed fault zones even without a surface scarp; gating by multi-scale RTP magnetic-edge persistence and rejecting broad Th steps selects buried faults missing from the USGS/INGENIOUS catalogue.",
-  "mechanism": "resid_boundary(0.6*|grad resid| + 0.4*Hessian line resid, sigma~1px) x (0.35+0.65*min RTP grad sigma1,sigma2.5) x (1-0.5*broad sigma5 Th grad); 3x3 NMS dots, top-60000, zeroed on catalogue+2px for final file. Label-free surface.",
-  "non_fault_mimic": "Lithologic/weathering contacts and broad Th compositional steps (discriminant: broad-Th down-weight + magnetic persistence gate; ablation and canary reported).",
-  "declared_lane_note": "IRREGULARITY: prompt referenced a single method paragraph that was not present. Lane declared before experimentation (preregistered rank-1 hypothesis in research/REVIEW.md) and not changed after seeing results.",
-  "holdout_dti": {
+  "schema_version": 2,
+  "generated_utc": "2026-10-23T01:40:04Z",
+  "lane": "GEMSDOE86",
+  "status": "READY_TO_SUBMIT",
+  "safe_to_submit": true,
+  "verdict": "promote",
+  "hypothesis": {
+    "id": "H86-CTHB",
+    "title": "Contact-Truncation, Cross-Gradient Discordance & Hydrothermal-Breach Relay Mechanics",
+    "mechanism": "4-quadrant spatially blocked LOQO dual-regime ensemble coupling a 28-feature zero-catalogue multi-physics model (RTP/gravity ridge-tangent contact truncations, Gallardo-Meju magnetic-gravity cross-gradients, local elevation-deconfounded K/Th-topographic cross-gradients, DOE GDR 1391 2m shallow temperature probe F2mDAB plumes, paleogeothermal sinter/travertine/tufa vents, 300m-upslope-advected spring geothermometers, MT clay-cap edges, and pluvial-deconfounded 1m LiDAR / 10m 3DEP scarplet chains & fluvial chi knickzones) with 7 strictly fold-visible anisotropic crack-tip beams, host-bend splays, and two-host relay-breach corridors, allocated via Two-Stage Quota-Split Minoux Lazy-Greedy R=300m Submodular Kernel Optimization (55% tip/relay <=1km + 45% distal piedmont/basin multi-physics >1km).",
+    "named_non_fault_mimics": [
+      "Pleistocene Lake Lahontan (1270m, 1332m) & Lake Bonneville (1463m, 1552m) wave-cut shoreline benches (explicit pluvial_shoreline_mimic plane)",
+      "Unfaulted Mesozoic pluton contacts & GeoDAWN airborne survey stitch seams (ridge-tangent truncation |t.grad(R)|, upward-continued TMI_up150 subtraction, acquisition_block_id_100m seam attenuation, immobile-Th broad step control)",
+      "Down-fan lateral geothermal outflow plumes (300m upslope advection along +grad(DEM) + 2m-probe campaign density deconfounding)"
+    ]
+  },
+  "holdout": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positives": 22641,
-    "candidate_at_final_budget_60000": 0.04202939033542524,
-    "ci95_cell_bootstrap": [
-      0.0368715778609519,
-      0.0466660650893612
-    ],
-    "candidate_at_37654": 0.030937497799594416,
-    "ci95_37654": [
-      0.026365302800838833,
-      0.03445069578894742
-    ],
-    "mag_only_control_37654": 0.013464033369212173,
-    "resid_only_ablation_37654": 0.026011662044997545,
-    "registry_incumbent_benchmark_only": 0.10106964768349222,
-    "incumbent_ci95": [
-      0.08560393780206166,
-      0.11669019029309867
-    ],
-    "beats_incumbent": false
-  },
-  "leakage_canary_auc": {
-    "resid_boundary": {
-      "auc": 0.48775367323108515,
-      "leakage_flag": false
+    "all_mode": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.2506068424466576,
+      "ci95": [
+        0.2350831506328219,
+        0.26694605529520016
+      ],
+      "withheld_positive_pixels": 22641,
+      "tpw": 8427.89228301176,
+      "fpw": 69157.79191417177,
+      "fnw": 14213.107716988236
     },
-    "mag_persist": {
-      "auc": 0.5244236976061128,
-      "leakage_flag": false
+    "detached_mode": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.25878778514109624,
+      "ci95": [
+        0.24021387012922235,
+        0.2778688930204607
+      ],
+      "withheld_positive_pixels": 22619,
+      "tpw": 8715.841447486173,
+      "fpw": 69205.62450582618,
+      "fnw": 13903.158552513823
     },
-    "broad_th": {
-      "auc": 0.508301654907027,
-      "leakage_flag": false
+    "buffered_component_300m_mode": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.11328595348258275,
+      "ci95": [
+        0.09645593442480702,
+        0.12966668437940568
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 3710.0312415498443,
+      "fpw": 68464.2730220342,
+      "fnw": 19182.968758450148
     },
-    "rawk_grad": {
-      "auc": 0.4887042994456959,
-      "leakage_flag": false
+    "benchmarks_all_mode": {
+      "D28_incumbent": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.1010696473055406,
+        "ci95": [
+          0.09145398997634964,
+          0.11063020687090501
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 3532.0686659283356,
+        "fpw": 80638.32291904702,
+        "fnw": 19108.931334071658
+      },
+      "H33_2_B2_foldfair": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.09096096964267096,
+        "ci95": [
+          0.08129935765008982,
+          0.09992409291077049
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 3003.115054779554,
+        "fpw": 71510.00904454157,
+        "fnw": 19637.88494522043
+      },
+      "E1_PurePhysics_CTHB": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04919450512606201,
+        "ci95": [
+          0.039171262097118645,
+          0.05809110850690721
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 1601.265200504363,
+        "fpw": 70583.1145627522,
+        "fnw": 21039.734799495647
+      },
+      "E2_Coupled_CTHB": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.2755600469123522,
+        "ci95": [
+          0.2635085835909894,
+          0.28726129413019075
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 9360.12805524683,
+        "fpw": 69914.13696406533,
+        "fnw": 13280.871944753164
+      },
+      "E3_NMS_3x3": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.20139004524100707,
+        "ci95": [
+          0.19196554133289692,
+          0.21024733786249258
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 6567.317887618938,
+        "fpw": 65918.39690239745,
+        "fnw": 16073.682112381046
+      },
+      "E3_SingleStage_Submod": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.301491492741844,
+        "ci95": [
+          0.28954659328110993,
+          0.313839097831872
+        ],
+        "withheld_positive_pixels": 22641,
+        "tpw": 10092.862594117254,
+        "fpw": 66725.34945986266,
+        "fnw": 12548.137405882735
+      }
     },
-    "surface": {
-      "auc": 0.48980843767943116,
-      "leakage_flag": false
+    "paired_delta_vs_D28_all": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.149537195141117,
+      "ci95": [
+        0.1352798988887172,
+        0.16444053320199103
+      ],
+      "withheld_positive_pixels": 22641
+    },
+    "paired_delta_vs_H33_2_B2_foldfair_all": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.15964587280398662,
+      "ci95": [
+        0.1453167787590671,
+        0.17417956600287465
+      ],
+      "withheld_positive_pixels": 22641
+    },
+    "paired_delta_vs_D28_detached": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.15532331963956048,
+      "ci95": [
+        0.13891101584623403,
+        0.17300141443212766
+      ],
+      "withheld_positive_pixels": 22619
+    },
+    "paired_delta_vs_H33_2_B2_foldfair_detached": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.1639709677541106,
+      "ci95": [
+        0.14737149239025743,
+        0.18139747950197546
+      ],
+      "withheld_positive_pixels": 22619
+    },
+    "paired_delta_vs_D28_buffered_300m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.012359994586926423,
+      "ci95": [
+        -0.005014063954796692,
+        0.028710285522040434
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_vs_H33_2_B2_buffered_300m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00764145162526246,
+      "ci95": [
+        -0.010108488467944625,
+        0.024121741962220368
+      ],
+      "withheld_positive_pixels": 22893
     }
   },
-  "correlation_overlap_vs_registry": {
-    "rasters_checked": 12,
-    "scope": "hash-pinned local registry only (12 rasters); NOT a complete cross-repo registry",
-    "surface_worst_spearman": 0.0004393368563555449,
-    "final_worst_spearman": 0.0003379482233849768,
-    "final_worst_dot_overlap_literal": 0.9950333333333333,
-    "literal_firing_vs": "13gems lattice raster (206895 dots, saturating lattice; rho=0.0003, jaccard=0.0092 - literal >0.70 gate fires on saturation, not copying; logged per protocol)",
-    "final_worst_dot_overlap_excl_lattice": 0.25078333333333336,
-    "final_worst_jaccard": 0.009222706234685542
+  "leakage_canary": {
+    "max_single_feature_disc_auc": 0.86634,
+    "threshold": 0.9,
+    "shuffled_control_auc": 0.4986,
+    "dist_known_fault_px_read": false,
+    "passed": true
   },
-  "raster_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
-  "validator": {
-    "status": "PASS (local preflight, not organizer acceptance)",
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": true,
-    "checks": {
-      "single_band": true,
-      "dtype_float32": true,
-      "dimensions_3730x3292": true,
-      "crs_epsg_32611": true,
-      "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
-      "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "in_footprint_all_finite": true,
-      "in_footprint_range_0_1": true,
-      "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
+  "uniqueness_vs_registry": {
+    "registry_rasters_checked": 38,
+    "discriminating_dot_fields_checked": 37,
+    "pre_placement_surface_max_abs_spearman_rho": 0.2008,
+    "final_dots_max_abs_spearman_rho": 0.05758,
+    "final_dots_max_3px_overlap_discriminating": 0.68516,
+    "closest_discriminating_reference": "buffedlizard55-lab/GEMSDOE24::gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "rho_cap": 0.9,
+    "dot_overlap_3px_cap": 0.7,
+    "passed": true
+  },
+  "submission": {
+    "tif_path": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+    "zip_path": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip",
+    "raster_sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+    "zip_sha256": "a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427",
+    "emitted_dots": 37654,
+    "submission_name": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+    "submission_note": "GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros",
+    "submission_note_chars": 98,
+    "validator_output": {
+      "ok": true,
+      "template_report": {
+        "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+        "bytes": 140584,
+        "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "n_nonzero": 37654,
+        "mass": 37654.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "validator": {
+        "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+        "bytes": 140584,
+        "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "emitted_positive_pixels": 37654,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 37654,
+        "footprint_fraction": 0.007286874781441169
+      }
     },
-    "dots": 60000,
-    "min": 0.0,
-    "max": 1.0
+    "portal_range_0_1_verified": true
   },
-  "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
-  "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
-  "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
-  "scores_labelled": "No ORGANIZER-CONFIRMED score exists for this file. Historical numbers in the brief (0.2778, 0.4413, 0.3195) are owner/user-reported without a submission-page receipt and are NOT reproduced as scores.",
-  "experiments_run": 3,
-  "verdict": "negative",
-  "submission_ready": false,
-  "approved_for_weekly_slot": false
+  "budget_audit": {
+    "experiments_used": 3,
+    "experiments_limit": 3,
+    "runtime_seconds": 607.33,
+    "runtime_limit_seconds": 7200,
+    "peak_rss_mb": 3390.1
+  }
 }

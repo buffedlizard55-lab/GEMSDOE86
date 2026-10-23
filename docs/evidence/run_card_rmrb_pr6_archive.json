@@ -1,0 +1,97 @@
+{
+  "hypothesis": "H86-RMRB (declared lane, this session): boundaries of the residual of a robust global K~Th+U+TC radiometric mixing regression mark hydrothermally redistributed fault zones even without a surface scarp; gating by multi-scale RTP magnetic-edge persistence and rejecting broad Th steps selects buried faults missing from the USGS/INGENIOUS catalogue.",
+  "mechanism": "resid_boundary(0.6*|grad resid| + 0.4*Hessian line resid, sigma~1px) x (0.35+0.65*min RTP grad sigma1,sigma2.5) x (1-0.5*broad sigma5 Th grad); 3x3 NMS dots, top-60000, zeroed on catalogue+2px for final file. Label-free surface.",
+  "non_fault_mimic": "Lithologic/weathering contacts and broad Th compositional steps (discriminant: broad-Th down-weight + magnetic persistence gate; ablation and canary reported).",
+  "declared_lane_note": "IRREGULARITY: prompt referenced a single method paragraph that was not present. Lane declared before experimentation (preregistered rank-1 hypothesis in research/REVIEW.md) and not changed after seeing results.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22641,
+    "candidate_at_final_budget_60000": 0.04202939033542524,
+    "ci95_cell_bootstrap": [
+      0.0368715778609519,
+      0.0466660650893612
+    ],
+    "candidate_at_37654": 0.030937497799594416,
+    "ci95_37654": [
+      0.026365302800838833,
+      0.03445069578894742
+    ],
+    "mag_only_control_37654": 0.013464033369212173,
+    "resid_only_ablation_37654": 0.026011662044997545,
+    "registry_incumbent_benchmark_only": 0.10106964768349222,
+    "incumbent_ci95": [
+      0.08560393780206166,
+      0.11669019029309867
+    ],
+    "beats_incumbent": false
+  },
+  "leakage_canary_auc": {
+    "resid_boundary": {
+      "auc": 0.48775367323108515,
+      "leakage_flag": false
+    },
+    "mag_persist": {
+      "auc": 0.5244236976061128,
+      "leakage_flag": false
+    },
+    "broad_th": {
+      "auc": 0.508301654907027,
+      "leakage_flag": false
+    },
+    "rawk_grad": {
+      "auc": 0.4887042994456959,
+      "leakage_flag": false
+    },
+    "surface": {
+      "auc": 0.48980843767943116,
+      "leakage_flag": false
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 12,
+    "scope": "hash-pinned local registry only (12 rasters); NOT a complete cross-repo registry",
+    "surface_worst_spearman": 0.0004393368563555449,
+    "final_worst_spearman": 0.0003379482233849768,
+    "final_worst_dot_overlap_literal": 0.9950333333333333,
+    "literal_firing_vs": "13gems lattice raster (206895 dots, saturating lattice; rho=0.0003, jaccard=0.0092 - literal >0.70 gate fires on saturation, not copying; logged per protocol)",
+    "final_worst_dot_overlap_excl_lattice": 0.25078333333333336,
+    "final_worst_jaccard": 0.009222706234685542
+  },
+  "raster_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+  "validator": {
+    "status": "PASS (local preflight, not organizer acceptance)",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "dots": 60000,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
+  "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
+  "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
+  "scores_labelled": "No ORGANIZER-CONFIRMED score exists for this file. Historical numbers in the brief (0.2778, 0.4413, 0.3195) are owner/user-reported without a submission-page receipt and are NOT reproduced as scores.",
+  "experiments_run": 3,
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false
+}

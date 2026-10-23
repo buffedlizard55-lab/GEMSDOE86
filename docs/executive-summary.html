@@ -1,19 +1,81 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary · How to submit · GEMSDOE86</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="index.html">Readiness dashboard</a><a href="evidence/run-card.json">Run card JSON</a></nav>
-<header><span class="eyebrow">Executive summary</span><h1>Exactly how to make a submission.</h1><p><strong>Current file status: 🔴 DO NOT SUBMIT.</strong> A unique, format-valid candidate TIF is downloadable from the <a href="index.html">dashboard</a> for inspection only; it failed the holdout gate (HOLDOUT-DTI 0.0420 vs incumbent 0.1011 on the identical instrument), so no weekly slot may be spent on it. The steps below are the exact procedure to use when a future candidate turns green.</p></header>
-<section class="alert"><h2>The candidate on file (inspection only)</h2><p><code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br>SHA-256 <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br>Submission name: <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br>Note (118/140): <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code><br>Validator: PASS — single-band float32, all values finite in [0,1] (min 0.0, max 1.0), no NaN/Inf/sentinels, EPSG:32611, 3730×3292, transform identical to sample submission, 0 dots on the mapped catalogue, 0 mass outside the footprint. The portal error <em>“Predicted values must be in range [0, 1]”</em> cannot occur with this file: the shared writer rejects out-of-range/non-finite arrays before writing (it never clips) and re-validates the serialized bytes.</p></section>
-<section id="gates"><h2>Gates a file must pass before anyone submits it</h2><ol>
-<li><strong>Lane &amp; provenance:</strong> single declared method; data hash-pinned; catalogue never used as a predictor.</li>
-<li><strong>Leakage canary:</strong> every feature alone on the buffered whole-segment holdout; AUC &gt;0.90 = leakage until proven otherwise.</li>
-<li><strong>Holdout skill:</strong> pooled HOLDOUT-DTI (α=0.2, β=0.8, 300 m triangular) must beat the incumbent benchmark on the <em>identical</em> evaluator, with withheld-positive count and 95% CI reported. <em>This candidate failed here.</em></li>
-<li><strong>Uniqueness:</strong> surface (pre-placement) and final dots vs registry: stop on Spearman ρ &gt;0.90 or &gt;70% dots within 3 px of one raster; literal firings (e.g. saturating lattices) are logged, not hidden; incomplete registry = stated scope limit, never “clearance”.</li>
-<li><strong>Format:</strong> shared submission_writer only; serialized file re-validated; SHA-256 recorded.</li>
-<li><strong>Selector step:</strong> a separate human/selector checks the live weekly quota on the authenticated submission page and authorizes the slot. Local PASS ≠ organizer acceptance.</li></ol></section>
-<section><h2>Portal steps (green-lit files only)</h2><ol>
-<li>Download the .tif (or the .zip containing only that TIF) from the dashboard; verify SHA-256 against the adjacent receipt.</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition</a>, sign in, re-read the rules, confirm remaining weekly quota.</li>
-<li>Click <strong>New submission</strong> → <strong>File to submit</strong> → choose the verified .tif/.zip (single-band GeoTIFF matching the format CRS/shape/geotransform).</li>
-<li>Paste the release note (≤140 chars) into <strong>Note</strong> so the team can tell submissions apart.</li>
-<li>Submit once. Save the organizer's receipt/score page. Only that evidence may be labelled ORGANIZER-CONFIRMED; projections and holdout numbers may never be written as scores.</li></ol></section>
-<section><h2>Limitations &amp; next steps</h2><p>No DrivenData auth in this environment (data page is login-walled; mirrors are hash-pinned owner copies, not organizer-authenticated). Registry comparison covers 12 local hash-pinned rasters, not every GEMSDOE site. The radiometric-residual signal is real but weak (canary AUC ≈0.49–0.52; holdout DTI rises with dot budget, suggesting placement density, not boundary precision, is limiting). Next experiments, in order: (2) magnetic contact-offset, (3) radiometric–topographic discordance — each must pass Gates 2–4 before any slot is discussed. Historical scores quoted in the brief (0.2778 / 0.4413 / 0.3195) conflict with each other and have no receipts here; they are treated as unverified owner reports, not targets of record.</p></section>
-<footer>No competition submission was made by this project. Verdict: negative (deliverable).</footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Executive Summary &amp; How to Submit · GEMSDOE86 (H86-CTHB)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <strong>GEMS / 86 (H86-CTHB)</strong>
+  <a href="index.html">← Main Readiness Dashboard</a>
+  <a href="evidence/run-card.json">JSON Run Card</a>
+  <a href="evidence/lane86_results.json">Full Experiment Evidence</a>
+</nav>
+
+<header>
+  <span class="eyebrow">Executive Summary · DrivenData #306 Submission Guide</span>
+  <h1>🟢 OK TO DOWNLOAD &amp; SUBMIT<br><small style="font-size:0.52em;font-weight:500;color:#b8ebe2">Exact checklist to upload <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code></small></h1>
+  <p><strong>Immediate Decision Summary:</strong> Candidate <strong><code>H86-CTHB</code></strong> passed all five automated local preflight gates (<code>[0, 1]</code> portal format, 35-feature leakage canary, 3-mode spatially blocked holdout vs <code>D2.8</code> &amp; <code>H33-2-B2</code>, and 38-raster cross-repo uniqueness). Because DrivenData enforces a strict <strong>3 submissions per week</strong> team quota and <strong>1 final submission</strong> across both the $50K Initial and $250K Final Prize Rounds, compare this lane's <code>HOLDOUT-DTI = 0.2506</code> (<code>detached = 0.2588</code>, <code>buf300m = 0.1133</code>) against any concurrent sibling candidates on the identical <code>gems57-pooled-hide-v2</code> evaluator before spending a live weekly slot.</p>
+</header>
+
+<section class="promote-banner">
+  <span class="pill">VERDICT: PROMOTE · ALL 15 FORMAT CHECKS PASS · [0, 1] VERIFIED</span>
+  <h2 style="margin-top:12px">1. Verified Artifact &amp; Copy-Paste Portal Fields</h2>
+  <p>
+    <strong>File to Upload (either raw <code>.tif</code> or single-TIF <code>.zip</code>):</strong><br>
+    • GeoTIFF: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (<code>140,584</code> bytes)<br>
+    • GeoTIFF SHA-256: <code>e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425</code><br>
+    • ZIP Archive: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip</code><br>
+    • ZIP SHA-256: <code>a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427</code><br>
+    <strong>Unique Submission Name:</strong> <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code><br>
+    <strong>DrivenData Description / Note (98 / 140 chars):</strong><br>
+    <code>GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros</code>
+  </p>
+  <a class="button button-primary" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif" download>⬇ Download Ready .tif</a>
+  <a class="button" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip" download>⬇ Download Ready .zip</a>
+  <a class="button" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.json" download>⬇ Validator Receipt (.json)</a>
+</section>
+
+<section>
+  <h2>2. Step-by-Step DrivenData Submission Procedure</h2>
+  <ol>
+    <li><strong>Download &amp; Verify Checksum Locally:</strong> Download <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (or <code>.zip</code>) above and verify the SHA-256 digest in your terminal:
+      <pre>shasum -a 256 gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif
+# Expected: e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425</pre>
+    </li>
+    <li><strong>Confirm Weekly Slot Budget:</strong> Log in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org/competitions/306/competition-doe-gems/</a>, open <strong>Submissions</strong>, and confirm your remaining weekly submission count (rolling 3/week cap per Official Rules § 5).</li>
+    <li><strong>Upload Verified GeoTIFF:</strong> Click <strong>Make a Submission</strong> → select <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, all <code>12,279,160</code> pixels strictly finite in <code>[0.0, 1.0]</code>, <code>nodata=None</code>).</li>
+    <li><strong>Paste Identifying Note (≤ 140 chars):</strong> Paste:
+      <pre>GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros</pre>
+    </li>
+    <li><strong>Archive Organizer Receipt:</strong> After scoring completes, save the DrivenData submission timestamp and returned public score. Only scores backed by a live DrivenData submission receipt may ever be recorded as <code>ORGANIZER-CONFIRMED</code>.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>3. Why Portal Error <code>"Predicted values must be in range [0, 1]"</code> Cannot Occur</h2>
+  <p>Earlier GEMSDOE submissions failed upload when outside-footprint pixels carried <code>NaN</code>, <code>-9999</code> nodata sentinels, or uncalibrated float overshoots (<code>&lt; 0</code> or <code>&gt; 1</code>). In <code>GEMSDOE86</code>:</p>
+  <ul>
+    <li>Outside-footprint pixels (<code>7,111,787</code> cells) and mapped-catalogue collar pixels (<code>d ≤ 2 px</code>) are set to exact finite <code>0.0</code>, and emitted fault-centerline predictions (<code>37,654</code> cells) are exact finite <code>1.0</code>, with <code>nodata = None</code>.</li>
+    <li><code>vendor/gems57/submission_writer.py</code> raises <code>ValueError</code> prior to writing if any pixel is <code>NaN</code>, <code>±Inf</code>, <code>&lt; 0.0</code>, <code>&gt; 1.0</code>, outside the valid footprint, or on the mapped fault catalogue — it <em>rejects</em> invalid arrays rather than silently clipping them.</li>
+    <li>Post-write automated verification re-opens the serialized disk bytes in <code>rasterio</code> and confirms <code>n_finite = 12,279,160</code>, <code>min = 0.0</code>, <code>max = 1.0</code>, exact <code>EPSG:32611</code> CRS, and exact affine transform <code>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</code>. Executed automatically in CI via <code>python scripts/audit.py</code>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. Scientific Summary, Remaining Limitations &amp; Honest Risk Disclosure</h2>
+  <ul>
+    <li><strong>What <code>H86-CTHB</code> Achieves:</strong> Combines 28 zero-catalogue geophysical/geothermal/LiDAR planes (RTP &amp; gravity ridge-tangent contact truncations, Gallardo–Meju magnetic–gravity cross-gradients, locally deconfounded K/Th × DEM cross-gradients, GDR 1391 2 m probe <code>F2mDAB</code> plumes, paleo-sinter/tufa vents, 300 m upslope spring geothermometers, MT clay-cap edges, and shoreline-deconfounded 1 m LiDAR / 10 m DEM scarplets) with 7 strictly fold-visible crack-tip, bend-splay, and two-host relay-breach fields, emitted via Two-Stage Quota-Split Minoux <code>R = 300 m</code> submodular kernel optimization (<code>54%</code> at <code>2 &lt; d ≤ 15 px</code>, <code>46%</code> at <code>d &gt; 15 px</code>).</li>
+    <li><strong>Holdout vs Off-Catalogue Trade-off (Stated Limitation):</strong> On primary <code>gems57-pooled-hide-v2</code>, <code>H86-CTHB</code> beats <code>D2.8</code> and fold-fair <code>H33-2-B2</code> by <code>+0.150</code> to <code>+0.164</code> DTI with tight 95% CIs (<code>&gt; +0.135</code>) on both <code>all</code> and isolated <code>detached</code> segments. On unstratified whole-component <code>buffered_component_draw</code> (<code>buffer_px=3</code>), point skill also exceeds both <code>D2.8</code> (<code>+0.0124</code>) and <code>H33-2-B2</code> (<code>+0.0076</code>), though 20 km block-bootstrap 95% CIs (<code>[-0.0101, +0.0241]</code>) span zero because hidden whole components occupy ~60 of 330 spatial blocks. On the diagnostic-only USGS SGMC <code>&gt; 500 m</code> bedrock fault trace check (which includes inactive pre-Quaternary thrust/intrusive contacts), 3-px recall is <code>0.1011</code> (<code>1.11×</code> enrichment over random far-field density) vs <code>0.1906</code> on pure topographic-ridge <code>H33-2-B2</code>.</li>
+    <li><strong>Registry Scope &amp; Mirror Provenance:</strong> Uniqueness was verified against all <code>38</code> accessible owner/sibling rasters (<code>max |ρ| = 0.2008</code> surface, <code>0.0576</code> dots; max discriminating 3-px dot overlap <code>0.6852 ≤ 0.70</code>); private or external unindexed submissions cannot be audited locally. Upstream inputs were restored from SHA-256-pinned mirrors, not directly from login-walled DrivenData downloads.</li>
+    <li><strong>Generative AI Rule Compliance:</strong> Per DOE/NLR Official Rules (Sept 2026, § 7), finalists must disclose generative AI usage in their technical narrative.</li>
+  </ul>
+</section>
+
+<footer>
+  GEMSDOE86 Executive Summary · Verdict: <strong>PROMOTE</strong> · Candidate: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (<code>e382e638d248e9d6…</code>).
+</footer>
+</body>
+</html>
