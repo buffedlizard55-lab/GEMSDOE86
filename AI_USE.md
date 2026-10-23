@@ -465,3 +465,38 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+
+## 2026-10-23 — CONCENTRATION dose ladder & ordering control (branch `arena/60ecf1c8-gemsdoe86`, self-assigned axis)
+
+* **AI wrote:** `scripts/run_concentration_dose.py`, one new additive function in
+  `src/gems86/concentration_5km.py` (`relocate_cvband_down_shuffled`, the matched ordering control —
+  no existing function was modified or forked), `tests/test_concentration_dose.py`,
+  `evidence/concentration-dose-mechanism.md` (pre-registration written **before** the builds, results
+  appended after), `evidence/concentration_dose_20261023.json`,
+  `ledger/variants_concentration_dose.json`, the one-line registration of that file in
+  `scripts/build_ledger.py`, regenerated `ledger/submissions.csv`, `SLOT_PLAN.md`, the `CURRENT STATE`
+  block of `README.md`, the leading section of `docs/SUBMIT.md`, and `IRREGULARITIES.md`
+  (`IR-86-CONC-12/13/14`). Local gitignored twins and their tracked JSON receipts:
+  `releases/…-conc{3,5dose,6,6rand}-20261023-*`.
+* **AI decided (mechanism, not measurement):** `AXIS = CONCENTRATION` at the dose/scale level of
+  PR #47's only two-instrument-positive arm; three builds at 3 % / 5 % / 6 % of R0 plus one matched
+  ordering control; the 8 % and 2 km arms were pre-registered but are geometrically infeasible and
+  were replaced by the 3 % arm with the infeasibility logged (`IR-86-CONC-12`). The pre-registered
+  inverted-U was falsified by the measurement and that is reported as such (`IR-86-CONC-13`).
+* **AI did not decide:** no submission, no slot approval, no `TOP_PUBLIC`, no score comparison, no
+  contact with DrivenData/Dropbox, no credential access. `conc6` is flagged as the CONCENTRATION
+  candidate of record but explicitly *not* recommended before the two larger predicted levers.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_data.py                 # 418,912,844 B, sha256 4371c82e…
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 \
+      scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 \
+      ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16
+  .venv/bin/python scripts/run_concentration_dose.py
+  .venv/bin/python scripts/build_ledger.py --check
+  .venv/bin/python -m pytest -q
+  ```
+* **Human must supply:** `TOP_PUBLIC` + date, rolling-week slots left, R0's `0.2778` portal receipt,
+  verified 2026-12-03 deadline, portal encoding preference (`.tif` NaN vs `-zeros`), and the
+  uniqueness-rule decision (`IR-86-PRUNE-01`).
