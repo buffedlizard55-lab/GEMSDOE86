@@ -1,0 +1,149 @@
+[
+  {
+    "site": "GEMSDOE86",
+    "id": "h33-h33-2-b2-trackbs20-20261023-6b75b6a0",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "s20",
+    "encoding": "nan",
+    "n_dots": 20603,
+    "pct_changed": 118.3911,
+    "sha256": "99ec73dabfc4f0915bff4aea48ebdac67ec0ce8edb8fa56e697c28b57f189603",
+    "sha8": "6b75b6a0",
+    "sha256_zeros": "4812a1c2ff073a72fc7b72d7196f342461e8a3048db220907c5a329723e4022c",
+    "files": [
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0.tif",
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0-zeros.tif",
+      "releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0.geojson"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "-0.069 (MODEL, SGMC surrogate on the raster rendering; expected negative on mass alone). Phase-2 trace product: 1327 traces >=1 km, 18.1627% of R0 dots strike-chained. Not a slot candidate unless the human decides.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/821a630a-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 20603,
+      "retained": 6839,
+      "removed": 30815,
+      "added": 13764,
+      "pct_of_parent_changed": 118.3911,
+      "jaccard": 0.133008,
+      "axis_note": "turning-angle ceiling 20.0 deg, step <=4.5 px, >=1 km"
+    },
+    "trackb": {
+      "n_traces": 1327,
+      "n_traced_dots": 6839,
+      "pct_parent_dots_traced": 18.1627,
+      "total_length_km": 1830.947,
+      "median_length_km": 1.249,
+      "max_length_km": 4.467,
+      "geojson": "releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0.geojson",
+      "geojson_sha256": "260a2036fe12f91acdb6b42013b8cfb50d4085df7bab5bd7f34b6fe4c91b7b91"
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (raster rendering)",
+      "delta": -0.068558,
+      "evidence_class": "MODEL"
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "h33-h33-2-b2-trackbs30-20261023-72d8ca8b",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "s30",
+    "encoding": "nan",
+    "n_dots": 30570,
+    "pct_changed": 126.855,
+    "sha256": "6fb48f757dddcc003e33e7dd01e688854cd64fbfa07c48e7ab3dcd16a4c3687a",
+    "sha8": "72d8ca8b",
+    "sha256_zeros": "8f13b261cfa43921edc2aabb798812af9cc29eaa6dea8c27455e843577f04d2b",
+    "files": [
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b.tif",
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b-zeros.tif",
+      "releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b.geojson"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "-0.059 (MODEL, SGMC surrogate on the raster rendering; expected negative on mass alone). Phase-2 trace product: 1830 traces >=1 km, 27.1658% of R0 dots strike-chained. Not a slot candidate unless the human decides.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/821a630a-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 30570,
+      "retained": 10229,
+      "removed": 27425,
+      "added": 20341,
+      "pct_of_parent_changed": 126.855,
+      "jaccard": 0.176377,
+      "axis_note": "turning-angle ceiling 30.0 deg, step <=4.5 px, >=1 km"
+    },
+    "trackb": {
+      "n_traces": 1830,
+      "n_traced_dots": 10229,
+      "pct_parent_dots_traced": 27.1658,
+      "total_length_km": 2753.741,
+      "median_length_km": 1.312,
+      "max_length_km": 13.991,
+      "geojson": "releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b.geojson",
+      "geojson_sha256": "b178a046a9677d810658ac7dd0cc691e2fe05fb86989b5f0979c1f772d075c4c"
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (raster rendering)",
+      "delta": -0.05864,
+      "evidence_class": "MODEL"
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "h33-h33-2-b2-trackbs40-20261023-5488ec6c",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "s40",
+    "encoding": "nan",
+    "n_dots": 38681,
+    "pct_changed": 135.1543,
+    "sha256": "f65da39c6bbc95426bbed109f413f9296eb68c8233eff25ea4109e87f6cb489a",
+    "sha8": "5488ec6c",
+    "sha256_zeros": "62523c6a32007a4f1f5258472be5a3a0112fffc4858a4245080d69b58931e21a",
+    "files": [
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c.tif",
+      "/home/user/GEMSDOE86/releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c-zeros.tif",
+      "releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c.geojson"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "-0.051 (MODEL, SGMC surrogate on the raster rendering; expected negative on mass alone). Phase-2 trace product: 2137 traces >=1 km, 33.7866% of R0 dots strike-chained. Not a slot candidate unless the human decides.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/821a630a-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 38681,
+      "retained": 12722,
+      "removed": 24932,
+      "added": 25959,
+      "pct_of_parent_changed": 135.1543,
+      "jaccard": 0.199991,
+      "axis_note": "turning-angle ceiling 40.0 deg, step <=4.5 px, >=1 km"
+    },
+    "trackb": {
+      "n_traces": 2137,
+      "n_traced_dots": 12722,
+      "pct_parent_dots_traced": 33.7866,
+      "total_length_km": 3478.412,
+      "median_length_km": 1.396,
+      "max_length_km": 15.115,
+      "geojson": "releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c.geojson",
+      "geojson_sha256": "b87fcff7fc8cddfcdf375221ab057b526a64b217503bea72a5c49b91e1394646"
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (raster rendering)",
+      "delta": -0.051259,
+      "evidence_class": "MODEL"
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  }
+]

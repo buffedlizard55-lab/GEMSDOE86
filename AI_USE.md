@@ -272,3 +272,11 @@ was submitted — the human submits from their own registered account, one file 
 .venv/bin/python scripts/emit_spacing_entries.py
 .venv/bin/python scripts/build_ledger.py
 ```
+
+## Addendum — TRACKB session (branch `arena/821a630a-gemsdoe86`), 2026-10-23
+
+**AI wrote.** `src/gems86/trackb.py` (greedy two-sided strike chaining, trace statistics, clearance-clipped rasterizer, per-trace evidence paragraphs), `scripts/build_trackb.py` (pin verification, byte-exact R0 rebuild, gates, SGMC surrogate + canary, GeoJSON/raster receipts, run card), `scripts/emit_trackb_entries.py`, `tests/test_trackb_axis.py` (5 synthetic tests), `evidence/trackb-mechanism.md`, `evidence/trackb_traces.md`, and the TRACKB text in `README.md` (CURRENT STATE only), `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-86-TRACKB-01..03) and this file. One one-line additive edit to `scripts/build_ledger.py`'s variants list. No shared validator/gate/writer/metric touched.
+
+**AI decided (human can veto).** (1) Took TRACKB because the brief said pick my own axis and it is the only §5 axis never built; it costs no weekly slot. (2) Defined "top-ranked" as chain support after IR-86-MASS-01 showed the stored ranking is a geographic traversal (IR-86-TRACKB-02). (3) Variants differ only in turning-angle ceiling (20/30/40°). (4) Skipped the hide-and-recover PROXY with the reason recorded in the run card (IR-86-SNAP-06: it measures collar recovery for this lineage). (5) Marked every arm `slot_candidate=false`; predicted changes are MODEL raster-surrogate numbers expected negative on mass alone.
+
+**Not done.** No slot used, nothing submitted, no DrivenData/dropbox contact, no credential read. `TOP_PUBLIC`, quota and R0's receipt remain UNSUPPLIED (0.2778 stays CLAIM). Expert review of the traces — the only instrument that can score TRACKB — is the human's Phase-2 act.

@@ -219,3 +219,15 @@ stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:
 `.venv/bin/python -c "from gems86_axis import gates, grid_io; ..."` or
 `pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
 rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.
+
+## TRACKB — Phase-2 trace products (built 2026-10-23; NOT slot candidates)
+
+Do not upload these in a Phase-1 weekly slot unless the human explicitly decides otherwise. The deliverable for expert review is the GeoJSON; the TIFF is its rendering (≥3 px new-mass clearance gaps, IR-86-TRACKB-03).
+
+| Arm | GeoJSON | Raster (zeros twin sha256 in ledger) | Traces / dots chained |
+|---|---|---|---|
+| s20 (turn ≤20°) | `releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0.geojson` | `releases/trackb/h33-h33-2-b2-trackbs20-20261023-6b75b6a0-zeros.tif` | 1,327 / 6,839 (18.2 %) |
+| s30 (turn ≤30°, base) | `releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b.geojson` | `releases/trackb/h33-h33-2-b2-trackbs30-20261023-72d8ca8b-zeros.tif` | 1,830 / 10,229 (27.2 %) |
+| s40 (turn ≤40°) | `releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c.geojson` | `releases/trackb/h33-h33-2-b2-trackbs40-20261023-5488ec6c-zeros.tif` | 2,137 / 12,722 (33.8 %) |
+
+Form note (≤140 ch, stored in each receipt): parent; TRACKB arm + trace count; "Phase2 review, not a slot". Full hashes: `ledger/submissions.csv` (axis TRACKB) and each `-zeros.json` receipt.

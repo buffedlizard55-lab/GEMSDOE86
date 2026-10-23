@@ -1,0 +1,21 @@
+{
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 20603,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "name": "h33-h33-2-b2-trackbs20-20261023-6b75b6a0",
+  "note": "h33-h33-2-b2 TRACKB/s20: 1327 strike-consistent traces >=1km (turn<=20deg) from R0 dots; Phase2 review, not a slot",
+  "note_chars": 114,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+  "file": "h33-h33-2-b2-trackbs20-20261023-6b75b6a0-zeros.tif",
+  "sha256": "4812a1c2ff073a72fc7b72d7196f342461e8a3048db220907c5a329723e4022c",
+  "mode": "zeros",
+  "nan_outside_count": 0
+}

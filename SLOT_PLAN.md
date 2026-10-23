@@ -225,3 +225,16 @@ any submission-page receipt (R0's 0.2778 included) · which fill form the portal
 confirmation of the governing uniqueness rule (IR-86-PRUNE-01) · and, if slot 3 is to be spent on
 SPACING, whether the human accepts a **predicted +0.002** probe whose real purpose is a law-vs-chance
 test rather than a score improvement.
+
+---
+
+# Addendum — TRACKB session (branch `arena/821a630a-gemsdoe86`), 2026-10-23
+
+**AXIS: TRACKB**, self-assigned per the brief ("pick your own") because it is the only §5 axis no session had built. **No slot used or requested** — TRACKB is Phase 2 (expert-expanded labels), and nothing here changes slots 1–3 above.
+
+**Built (all gates pass, `slot_candidate=false`):** three trace sets differing only in turning-angle ceiling — `trackbs20` (1,327 traces, 18.2 % of R0 dots chained), `trackbs30` (1,830, 27.2 %), `trackbs40` (2,137, 33.8 %) — GeoJSON + raster pairs in `releases/trackb/`, one measured evidence paragraph per trace in the GeoJSON, longest-30 printed in `evidence/trackb_traces.md`. Headline: **≥66 % of R0's dots lie on no ≥1 km strike-consistent chain**, so a Phase-2 submission built only from chained dots would discard most of the incumbent's mass; the traces are a review layer over R0, not a replacement raster. Raster surrogate deltas (−0.051…−0.069 MODEL) are mass effects and argue nothing about trace quality.
+
+**Decision rule for the human.** If experts will review traces for Phase 2, send the `s30` GeoJSON first (base set; `s20` subset = highest-confidence strands, `s40`-only = the marginal population whose acceptance rate falsifies the coherence premise). Do not spend a Phase-1 weekly slot on any TRACKB raster unless you explicitly decide to test "traces-only" as a score hypothesis — its predicted sign is negative.
+
+## Better axis proposed (not built)
+- **TRACE-RANKED RESELECTION** — hold R0's count and catalogue rules, but re-decide which dots survive by chain support (traced dots first, fill from untraced by the parent's field order). *Mechanism:* if collinearity is evidence, concentration on chained dots raises T per dot. *Confounder:* chaining is easier where dots are dense, so this may just be CONCENTRATION in disguise. *Falsifier:* SGMC surrogate and, ultimately, a live receipt ≤ R0 while `conc15` is flat-to-positive.
