@@ -1,0 +1,44 @@
+{
+  "schema": "gems86.ui-smoke.v1",
+  "observed_utc": "2026-10-23T00:43:00.245Z",
+  "scope": "One-time local Chromium UI checks at the recorded page hashes, not organizer acceptance, external link verification, scientific clearance, or a continuously refreshed browser test.",
+  "origin": "http://127.0.0.1:8000",
+  "browser_version": "153.0.8010.0",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "pages_checked": 8,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 6,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "pages_checked": 8,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 6,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    }
+  ],
+  "page_sha256": {
+    "index.html": "85443e9703b837f82218294a1ce0f9cab272b440b8b7ac1f7f428631e4fffb48",
+    "executive-summary.html": "54de00b1d03bdfb1ae8ad5e79b94d7a12d9c2c86161e9cf2b19fd965755a677e",
+    "evidence.html": "f7fc8d67f1fa892374eb1441e93293712ffbfca0c6c7652a761423b20afc0549",
+    "hypotheses.html": "e52a2512ddb04c08d9b2ba06e9663d674196ef64efc5dd56962f264fd529015c",
+    "fleet.html": "577f21682d7c24d60a6410f29be0c3029a8722073b8cef09a69f535fd1fa7d37",
+    "sources.html": "6320597f2b0800d4bfd63499f51820b103d9206811fb02bfccad9691052fe374",
+    "irregularities.html": "5fec5f7969f799fb10e33724f1e57649a7a44bae97c4c3d6a1c02a37c31dfe1a",
+    "research.html": "9e0e5811b7eae0c2da6116de120e2730af401c150ae51cb1fc8cbd0dac9d1f55"
+  },
+  "asset_sha256": {
+    "site.css": "5043b15828bd317b4e6dec9c94230fcc038883e2fc5de6126d90cdef68902530",
+    "site.js": "05b68ad10b23c27d941c687db96fbcf188c2b484c7395ae4d89dbab81f6ddd6c"
+  },
+  "without_javascript_decision_and_downloads_work": true,
+  "errors": [],
+  "passed": true
+}

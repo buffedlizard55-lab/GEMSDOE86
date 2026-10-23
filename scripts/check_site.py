@@ -44,9 +44,12 @@ def check(root=ROOT):
     else:
         entries = []
     registered = {(root / e['file']).resolve(): e for e in entries}
+    if len(registered) != len(entries):
+        errors.append('Duplicate artifact paths in download inventory')
     for target, entry in registered.items():
-        if (not target.is_relative_to(root) or not target.is_file()
-                    or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
+        # Do not accidentally reuse `path` from the HTML traversal above: an
+        # empty HTML tree and an out-of-docs inventory must also fail closed.
+        if (not target.is_relative_to(root / 'docs' / 'downloads') or not target.is_file()):
             errors.append('Missing or escaping registered artifact')
         if entry.get('approved_for_weekly_slot') is not False or 'DO NOT SUBMIT' not in entry.get('status', ''):
             errors.append('Negative artifact inventory lacks explicit DO NOT SUBMIT status')

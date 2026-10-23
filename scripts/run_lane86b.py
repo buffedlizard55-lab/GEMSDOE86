@@ -344,12 +344,13 @@ def collect_registry_records() -> list[dict]:
     return records
 
 
-def main(skip_literal_preflight: bool = False):
-    if not skip_literal_preflight:
-        if str(ROOT) not in sys.path:
-            sys.path.insert(0, str(ROOT))
-        from scripts.protocol_preflight import require_feasible
-        require_feasible()
+def main():
+    # The literal stop is mandatory, including for imported callers. A previous
+    # boolean parameter could bypass it and start fitting/placement after STOP.
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t_start = time.time()
     plane_man = F.build_physical_planes()
     g = G.load_grid(ROOT / "data")

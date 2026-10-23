@@ -1,47 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Submission decision · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html" style="color:#e8eefc">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Fleet evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
-<div class="card hero">
-<span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED FOR A WEEKLY SLOT</span>
-<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT · LOCAL FORMAT PASS (15/15)</span>
-<h1>Six byte-distinct GEMSDOE86 research TIFFs exist (led on holdout by H86B-GFCO). Download for audit—do not submit.</h1>
-<p class="muted">Single float32 band · 3,730 × 3,292 · EPSG:32611 · exact 100 m transform · all finite in [0,1] · 0 positive pixels outside the footprint · 0 on mapped catalogue pixels.</p>
-<a class="btn danger" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF (highest holdout) — DO NOT SUBMIT</a>
-<a class="btn alt" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download H86B-GFCO one-TIFF ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip" download>Download RMRB-86 ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="executive-summary.html">Read the automated decision →</a>
-<p class="mono">H86B-GFCO sha256 897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116 · 44,090 dots · note (92/140): H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d&gt;2px, zeros</p>
-<p class="mono">RMRB-86 sha256 9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd · 37,654 dots · note: RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</p>
-</div>
-<div class="kpi">
-<div><span class="muted">H86B-GFCO HOLDOUT-DTI (all / detached)</span><b>0.1396 / 0.1521</b><span class="muted">gems57-pooled-hide-v2 · 22,641 / 22,619 pos · paired Δ vs d2.8 +0.0385 / +0.0486 (CIs &gt; 0)</span></div>
-<div><span class="muted">H86B-GFCO Whole-Component LOQO</span><b>0.1078</b><span class="muted">11,321 buffered whole-comp pos · vs H33-2-B2 0.0961 &amp; d2.8 0.0919 · paired CI [−0.0007, +0.0343]</span></div>
-<div><span class="muted">H86B-GFCO vs H33-2-B2 &amp; 25 Modern Rasters</span><b>0.3012 / ≤0.6342</b><span class="muted">42/42 leakage canaries ≤0.8485 · |ρ| ≤0.053 · distinct vs all 25 comparable rasters</span></div>
-<div><span class="muted">Literal dense/legacy overlap</span><b>0.9988 / 1.000</b><span class="muted">limit 0.70 · binding duplicate stop across all 6 lanes</span></div>
-</div>
-
-<h2>Automated verdict</h2>
-<div class="card"><p>The new file is byte-unique in the 1,143-raster public hash snapshot and is not a renamed H33 raster. Its format receipt passes. It still fails promotion for two independent reasons:</p><ol><li>The engineered RMRB transform does not beat raw K/Th/U with a wholly positive paired interval.</li><li>A public continuous positive-support raster makes the prompt's literal three-pixel overlap 1.0. The prompt authorizes no “carpet prior” exemption.</li></ol><p><a href="evidence/rmrb86-run-card.json">Canonical RMRB run card</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Surface/final comparisons</a> · <a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Writer receipt</a></p></div>
-
-<h2>Repository-wide traffic light</h2>
-<table><tr><th>File</th><th>Measured state</th><th>Binding decision</th></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a></td><td>format pass (15/15); 42/42 leakage canaries ≤0.8485; beats d2.8 &amp; H33-2-B2 point estimates across all 3 holdouts (0.1078 buffered whole-comp, 0.1396 segment-all, 0.1521 detached); ≤0.6342 overlap vs all 25 comparable rasters (0.3012 vs H33-2-B2); blocked by literal &gt;0.70 overlap on 3 dense legacy GEMSDOE24 rasters (0.9988, 0.7656, 0.7170) &amp; whole-comp paired CI [−0.0007, +0.0343] · <a href="evidence/h86b-gfco-run-card.json">run card</a> · <a href="evidence/lane86b_results.json">evidence</a> · <a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json">receipt</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a></td><td>format pass; distinct from H33 and merged parallel rasters; paired RMRB delta uncertain; dense-prior overlap 1.0</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a></td><td>own run card: negative; HOLDOUT-DTI below incumbent; lattice overlap 0.995</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a></td><td>format pass; 82% of dots within 3 px of a prior proximity lane</td><td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a></td><td>format pass and low rank correlation, but its audit records literal overlap failures against saturated priors; its report records an experiment-budget overrun</td><td><span class="badge bad">DO NOT SUBMIT under the supplied literal rule</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a></td><td>format pass; HOLDOUT-DTI (gems57-pooled-hide-v2, 22,893 withheld positives, 95% CI) 0.04634 [0.03716, 0.05603], below its 0.10303 [0.09200, 0.11389] fixed control; literal lattice overlap 0.971; incomplete registry</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr></table>
-<p class="muted">A previous page exempted continuous/carpet priors and called the off-catalogue GMC artifact ready. This integration removes that unauthorized exception and fails closed. No competition slot was used here.</p>
-
-<h2>What explains the historical H33 result claim?</h2>
-<div class="card"><p>The pinned builder describes thinning an earlier prediction and deleting dots in a mapped-fault collar. Under distance-weighted Tversky, redundant prediction mass can add false-positive cost without increasing maximum truth coverage; kernel-scale sparse placement and collar pruning can therefore help. That is a plausible metric mechanism, not proof of a new geological discovery.</p><p>The historical scalar supplied by the owner has no authenticated submission-page receipt in this checkout and is not labelled ORGANIZER-CONFIRMED. A higher result is possible in principle, but this RMRB experiment does not demonstrate it.</p><p><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/RMRB86_REVIEW.md">RMRB scientific review and five ranked hypotheses</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></p></div>
-
-<h2>Everything is machine-checkable</h2><ul>
-<li><a href="evidence/rmrb86-run-card.json">RMRB run card</a>: hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry measurements, SHA, validator, name/note and negative verdict.</li>
-<li><a href="evidence/leakage-canaries.json">All 20 feature-alone leakage canaries</a>; maximum symmetric AUC 0.58034.</li>
-<li><a href="evidence/feature-cache.json">Feature-cache receipt</a> with source, builder and cache hashes.</li>
-<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/PROMPT.md">Standing prompt</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">source repository</a>.</li>
-</ul>
-</main><footer>Local format pass ≠ organizer acceptance. Current selector decision: no file is safe to submit under the supplied literal protocol.</footer></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download decision · GEMSDOE86</title><meta name="description" content="Machine-checked fault-prediction research downloads. Local format validity is not submission approval.">
+<link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html" aria-current="page">Downloads</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main">
+<section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
+<span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED</span>
+<h1>Download the research.<br><span class="subtle">Do not spend a submission slot.</span></h1>
+<p class="lede">The downloadable GeoTIFFs pass automated local format checks, but the mandatory uniqueness rule blocks every nonempty candidate. A new hash is not a unique scientific submission.</p>
+<p><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <strong>DO NOT SUBMIT</strong> any current file.</p>
+<div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Why blocked &amp; how submission works →</a></div></section>
+<div class="kpi"><div><span>Local format &amp; integrity</span><strong>6 / 6</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
+<div><span>Submission-approved files</span><strong>None</strong><small>Every candidate remains negative. No selector or portal operation was run.</small></div>
+<div><span>New experiments / slots used</span><strong>0 / 0</strong><small>This audit stopped before modeling or placement, as required.</small></div></div>
+<section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap 100%, above the 70% stop. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
+<p>All 6 inherited final TIFFs were independently rechecked against this witness. No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/session-20261023-run-card.json">This session's run card</a>.</p></section>
+<section id="downloads"><p class="eyebrow">Immediate downloads · historical research artifacts</p><h2>TIFF + single-TIFF ZIP + identity receipt</h2>
+<p>Files below were generated by earlier lanes, not this audit. They are preserved for reproducibility, not relabeled as new or submission-ready. No file is selected or ranked here.</p>
+<article class="card artifact"><div class="section-head"><h3>GMC catalogue-following control</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</p>
+<p class="muted">FORMAT-VALIDATION · 213,861 bytes · 90,568 positive cells · 30/30 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-0-sha">94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3</code> <button data-copy-target="artifact-0-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-0-name">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros</code> <button data-copy-target="artifact-0-name" type="button">Copy name</button></dd>
+<dt>Note (107 characters; limit from project protocol)</dt><dd><code id="artifact-0-note">GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</code> <button data-copy-target="artifact-0-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-0">Automated checks and scoped historical holdout</a></p></details></article>
+<article class="card artifact"><div class="section-head"><h3>GMC off-catalogue variant</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</p>
+<p class="muted">FORMAT-VALIDATION · 195,987 bytes · 90,568 positive cells · 33/33 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-1-sha">0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</code> <button data-copy-target="artifact-1-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-1-name">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros</code> <button data-copy-target="artifact-1-name" type="button">Copy name</button></dd>
+<dt>Note (107 characters; limit from project protocol)</dt><dd><code id="artifact-1-note">GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]</code> <button data-copy-target="artifact-1-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-1">Automated checks and scoped historical holdout</a></p></details></article>
+<article class="card artifact"><div class="section-head"><h3>H86-1 edge corroboration</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</p>
+<p class="muted">FORMAT-VALIDATION · 134,369 bytes · 38,000 positive cells · 33/33 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-2-sha">5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5</code> <button data-copy-target="artifact-2-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-2-name">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros</code> <button data-copy-target="artifact-2-name" type="button">Copy name</button></dd>
+<dt>Note (89 characters; limit from project protocol)</dt><dd><code id="artifact-2-note">H86-1 edge2of5 dotted B2 38000dots | HOLDOUT-DTI 0.0463 pooled-hide-v2 n=22893 | UNSCORED</code> <button data-copy-target="artifact-2-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-2">Automated checks and scoped historical holdout</a></p></details></article>
+<article class="card artifact"><div class="section-head"><h3>H86-RMRB unsupervised boundary</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</p>
+<p class="muted">FORMAT-VALIDATION · 188,877 bytes · 60,000 positive cells · 33/33 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-3-sha">cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code> <button data-copy-target="artifact-3-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-3-name">gems86-h86-rmrb-60000dots-20261022T225314Z</code> <button data-copy-target="artifact-3-name" type="button">Copy name</button></dd>
+<dt>Note (118 characters; limit from project protocol)</dt><dd><code id="artifact-3-note">H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code> <button data-copy-target="artifact-3-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-3">Automated checks and scoped historical holdout</a></p></details></article>
+<article class="card artifact"><div class="section-head"><h3>RMRB-86 supervised residual</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</p>
+<p class="muted">FORMAT-VALIDATION · 133,010 bytes · 37,654 positive cells · 33/33 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-4-sha">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</code> <button data-copy-target="artifact-4-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-4-name">RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</code> <button data-copy-target="artifact-4-name" type="button">Copy name</button></dd>
+<dt>Note (107 characters; limit from project protocol)</dt><dd><code id="artifact-4-note">RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</code> <button data-copy-target="artifact-4-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-4">Automated checks and scoped historical holdout</a></p></details></article>
+<article class="card artifact"><div class="section-head"><h3>H86B-GFCO multi-physics</h3><span class="badge bad">DO NOT SUBMIT</span></div>
+<p class="filename">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</p>
+<p class="muted">FORMAT-VALIDATION · 145,410 bytes · 44,090 positive cells · 33/33 local checks pass</p>
+<div class="actions"><a class="btn" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download TIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json">Writer receipt</a></div>
+<details><summary>File identity, short note &amp; validation</summary>
+<dl><dt>SHA-256</dt><dd><code id="artifact-5-sha">897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</code> <button data-copy-target="artifact-5-sha" type="button">Copy hash</button></dd>
+<dt>Submission name (identity only, not approval)</dt><dd><code id="artifact-5-name">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b</code> <button data-copy-target="artifact-5-name" type="button">Copy name</button></dd>
+<dt>Note (91 characters; limit from project protocol)</dt><dd><code id="artifact-5-note">H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d&gt;2px, zeros</code> <button data-copy-target="artifact-5-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence.html#artifact-5">Automated checks and scoped historical holdout</a></p></details></article></section>
+<section class="card"><h2>Can we beat the owner's reported H33 result?</h2><p>The available H33 page describes kernel-scale thinning and mapped-fault-collar pruning. Those operations can reduce redundant false-positive cost, but can also remove true coverage. They do not establish a new fault or a causal explanation of a private score. The reported result lacks a submission-page receipt here; its archived projection remains a projection.</p>
+<p>No validated improvement over that competition result is demonstrated. The next research direction is <strong>displaced magnetic markers rather than another unsigned edge detector</strong>, with explicit non-fault controls and buffered whole-component validation. It remains untested under the mandatory stop. <a href="hypotheses.html">Three ranked, scoped hypotheses →</a></p></section>
+<section class="card"><h2>An auditable, refreshable project feed</h2><p>88 / 88 named repositories snapshotted. Last GitHub inventory refresh: <time>2026-10-23T00:35:33+00:00</time>. Final-artifact registry measurement: <time>2026-10-23T00:40:54+00:00</time>.</p>
+<p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section></main>
+<footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Source code</a> ·
+<a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>

@@ -1,5 +1,11 @@
 # Three-Pass Autonomous Verification Log (`GEMSDOE86` — Session 2, Lane `H86B-GFCO`)
 
+**Current-review correction (2026-10-23):** This is a historical execution log, not a new run.
+The current all-file audit is `docs/evidence/release-readiness.json`; all six artifacts fail
+the literal registry gate. Its measured GFCO TIFF and ZIP payload are each **145,410 bytes**;
+the ZIP archive is **109,484 bytes**. The two different historical byte counts below were
+incorrect and have been corrected. No model evidence or TIFF bytes were changed.
+
 **Date:** 2026-10-22 (UTC)
 **Branch:** `arena/27952692-gemsdoe86` (branched from `main` at `62ed67084ce2279aaa6cb897bda8e3aa3a12fcf0`)
 
@@ -51,7 +57,7 @@
 Executed automated Pass-3 verification + `scripts/audit.py` + `tests/test_audit.py`:
 - **`vendor/gems57` pin check:** `21 / 21` files SHA-256 identical (`pins_clean = true`).
 - **Strict JSON integrity:** `15 / 15` JSON files in `docs/` and `research/` parsed with `parse_constant` rejecting `NaN`/`Infinity` (`0` non-finite tokens).
-- **Standalone `.tif` vs `.zip` byte parity:** `docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif` (`158,348` bytes) and the sole `.tif` inside `.zip` (`158,528` bytes, `testzip() == None`) share exact SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`.
+- **Standalone `.tif` vs `.zip` byte parity (remeasured/corrected 2026-10-23):** `docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif` and the sole TIFF payload in its ZIP are both **145,410 bytes**, with exact SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`. The compressed ZIP file is **109,484 bytes** and `testzip() is None`. Byte equality was rechecked; differing payload lengths cannot imply byte parity.
 - **Direct GeoTIFF array verification:** `shape = (3730, 3292)`, `crs = EPSG:32611`, `dtype = float32`, `nodata = None`, `0` NaN, `0` Inf, `min = 0.0`, `max = 1.0`, `arr[~footprint].max() = 0.0`, `arr[catalogue].max() = 0.0`, `(arr > 0).sum() = 44,090`.
 - **Link & cross-document number consistency:** Every local link in `README.md`, `docs/index.html`, and `docs/executive-summary.html` resolves on disk; all headline SHA-256, `HOLDOUT-DTI`, leakage canary (`0.8485`), and uniqueness (`0.3012`, `0.6342`, `0.7170`, `0.7656`, `0.9988`) numbers match across `run-card.json`, `lane86b_results.json`, `README.md`, `REVIEW.md`, and `docs/*.html`.
 - **Automated unit & integration test suite:** `13 / 13` tests PASS (`2.29s`).

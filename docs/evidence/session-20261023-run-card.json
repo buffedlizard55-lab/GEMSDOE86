@@ -1,0 +1,80 @@
+{
+  "schema": "gems86.session-negative.v1",
+  "date_utc": "2026-10-23",
+  "hypothesis": "H86C-MMT: Cross-fault magnetic marker translation (provisional, NOT RUN; no method lane was assigned)",
+  "mechanism": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse magnetic markers, consistent in adjacent windows, and a weaker zero-shift match. Keep both signed slip directions rather than assuming one regional sense of slip.",
+  "named_non_fault_process": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "UNIVERSAL_LITERAL_BLOCKER",
+    "preplacement_surface": null,
+    "new_final_dots": null,
+    "inherited_final_artifacts_remeasured": true,
+    "registry_complete": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "universal_forward_overlap": 1.0,
+    "allowed_overlap_limit": 0.7,
+    "evidence": "docs/evidence/all-artifacts-registry.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "inherited_artifacts": {
+    "checked": 6,
+    "local_format_pass": 6,
+    "files": [
+      {
+        "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+        "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+        "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+        "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+        "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+        "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+        "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+        "verdict": "negative"
+      }
+    ],
+    "evidence": "docs/evidence/release-readiness.json",
+    "submission_authorized": false
+  },
+  "submission_name": null,
+  "note": "Protocol STOP: every nonempty allowed candidate overlaps a full-support prior. No new TIF, model experiment or slot used.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission."
+}
