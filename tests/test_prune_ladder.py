@@ -1,10 +1,15 @@
-"""PRUNE-axis geometry, the parent rebuild, and the shipped release twins.
+"""Axis geometry, the parent rebuild, and the shipped release twins.
 
-The artifact tests re-read every PRUNE/CONTROL ``releases/*.tif`` and re-derive
-the gates from the bytes, so a release that drifts (wrong grid, mass on the
+The artifact tests re-read every committed ``releases/*.tif`` and re-derive the
+gates from the bytes, so a release that drifts (wrong grid, mass on the
 catalogue, a dot added rather than removed) fails CI rather than a reviewer.
-Other axes keep their own release contracts (SNAP: tests/test_snap_axis.py) —
-this test is scoped to the deletion-only axis it was written for.
+
+The per-file contract is **axis-aware**: a PRUNE release must only delete dots,
+while a RELIEF release must relocate them (equal deletions and insertions, the
+parent's count, a >=3 px floor for every inserted cell, and no tightening of the
+parent's minimum dot spacing). Both branches check the same shared validator, the
+receipt digest, ledger membership and the NaN twin. This widened the test rather
+than relaxing it, when the second axis was added to ``releases/`` on 2026-10-23.
 """
 import csv
 import json
@@ -175,8 +180,7 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
     parent = _read(PARENT) > 0
     shas = set()
     ledger = {r["sha256"] for r in csv.DictReader(open(ROOT / "ledger" / "submissions.csv")) if r["sha256"]}
-    zeros = sorted(p for p in RELEASES.glob("*-zeros.tif")
-                   if "prune" in p.name.lower() or "control" in p.name.lower())
+    zeros = sorted(RELEASES.glob("*-zeros.tif"))
     if not zeros:
         # rasters are gitignored (data-use policy): rebuild with scripts/run_prune_ladder.py
         pytest.skip("no zeros twins in the working tree; receipts alone cannot re-derive the gates")
@@ -190,10 +194,14 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
         shas.add(rec["sha256"])
         dots = _read(path) > 0
         assert int(dots.sum()) == receipt["n_dots"]
-        if receipt.get("axis") == "SNAP":
+        dist = P.catalogue_distance(g.catalogue)
+        axis = str(receipt.get("axis", "PRUNE")).upper()
+        if axis == "SNAP":
             # a SNAP release is a *movement* of the parent, not a deletion: the
             # count is exact, the exclusion is unchanged, and no dot moved farther
-            # than the declared radius (src/gems86/snap.py; tests/test_snap_axis.py)
+            # than the declared radius (src/gems86/snap.py; tests/test_snap_axis.py).
+            # The 1-50 % contract does not apply to SNAP (brief v2 §5), which is why
+            # these checks live in this branch and not in the common tail (IR-86-SNAP-03).
             assert int(dots.sum()) == int(parent.sum())
             movement = receipt["movement"]
             assert movement["pct_snapped"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
@@ -201,10 +209,36 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
             assert not np.any(dots & g.catalogue)
             assert receipt["model"]["evidence_class"] == "MODEL"
             if receipt.get("role", "candidate") == "candidate":
-                assert receipt["predicted_live_change"] <= 0.0, "this axis shipped predicted-negative"
+                # this axis shipped predicted-negative on every arm (IR-86-SNAP-01);
+                # BUILT-DUPLICATE corroboration arms carry the same verdict, not a bet
+                assert receipt["predicted_live_change"] <= 0.0
+        elif axis == "RELIEF":
+            # RELIEF relocates: equal deletions and insertions, the parent's count,
+            # a >= 3 px floor for every inserted cell, and no tightening of the
+            # parent's minimum dot spacing. Re-derived from the bytes with the bridge
+            # files only (the feature stack is gitignored, so the regime map is not
+            # re-derived here); the regime confinement itself is asserted by the
+            # builder and re-checkable with tests/test_relief_axis.py.
+            from scipy.spatial import cKDTree
+            removed, added = parent & ~dots, dots & ~parent
+            n_rem, n_add = int(removed.sum()), int(added.sum())
+            assert n_rem == n_add, "a RELIEF variant relocates: deletions must equal insertions"
+            assert int(dots.sum()) == int(parent.sum()), "a RELIEF variant must fix the count"
+            assert float(dist[added].min()) > 3.0 - 1e-9, \
+                "newly emitted mass must stay >= 3 px off the catalogue"
+            rc = np.column_stack(np.divmod(np.flatnonzero(dots.ravel()), dots.shape[1])).astype(float)
+            d2, _ = cKDTree(rc).query(rc, k=2)
+            prc = np.column_stack(np.divmod(np.flatnonzero(parent.ravel()), parent.shape[1])).astype(float)
+            pd2, _ = cKDTree(prc).query(prc, k=2)
+            assert float(d2[:, 1].min()) >= float(pd2[:, 1].min()) - 1e-9, \
+                "a RELIEF variant must not tighten the parent's minimum dot spacing"
+            stats = dict(pct_changed=round(100.0 * n_rem / int(parent.sum()), 4),
+                         n_removed=n_rem, n_added=n_add)
+            assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-4)
+            assert 1.0 <= stats["pct_changed"] <= 50.0
         else:
             assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
-            stats = P.diff_stats(parent, dots, P.catalogue_distance(g.catalogue))
+            stats = P.diff_stats(parent, dots, dist)
             assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
             assert 1.0 <= stats["pct_changed"] <= 50.0
         assert P.dot_digest(dots) == receipt["dot_digest"]

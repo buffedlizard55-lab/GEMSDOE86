@@ -197,25 +197,71 @@ fractions 33.9 / 39.6 / 45.9 %, mean displacement of moved dots 1.72–1.74 px, 
 file left this branch; it is recorded here because it happened after the pre-registration was
 written, and the pre-registration text was amended in the same commit rather than quietly.
 
+## IR-86-RELIEF-01 — the report-only instruments caught two defects in my own first build
+The first RELIEF pass built the same three doses with two faults: (a) sources were selected as the
+dots *nearest* a legal destination, which moved every dot only 3–4 px (300–400 m) — a class-label
+flip, not a change of terrain setting; and (b) eligibility was tested against the *parent* dot set
+only, so two relocated dots could be placed 1 px apart. The children therefore had minimum
+nearest-neighbour 1.0 px against the parent's 2.828 px, i.e. each variant silently contained a
+clustering edit — precisely the confound IR-86-LADDER-01 records for PR #28's refill. The parent-diff
+statistics (`nn_dist_px`) and the surrogate instrument are what exposed it: the first pass read
+−0.003 / −0.002 / −0.010, and after fixing selection ("deepest-in-regime" first) and blocking the
+spacing disc around every accepted cell, the same three doses read +0.0017 / +0.0010 / −0.0089 —
+the sign of the axis flipped because the clustering cost disappeared.
+**Decision:** the defective files were never released and never entered the ledger (their local
+rasters were deleted, `ledger/` reverted, and the build re-run once); both fixes are unit-tested
+(`tests/test_relief_axis.py::test_relocation_preserves_the_parents_min_spacing`,
+`test_deepest_selection_picks_dots_further_inside_the_regime`), and the gate now refuses a child
+whose spacing contract is broken. **Cost:** ~25 min of one session, and a rule for future axes:
+*report-only* statistics have to be read before a file is called a variant, because they are the
+only thing here that can see a self-inflicted confound.
+Related trap, same session: bands 12/19 of the pinned stack carry `-3.4028234663852886e+38`
+nodata **inside** the footprint (3,061 cells). A reader that scrubs only non-finite values lets
+those spikes dominate the standardisation, and the regime classification then puts 100 % of R0's
+dots in "basin". `src/gems86/io.read_band` is the only sanctioned reader; the driver now asserts
+`max|band| < 1e6` on the inputs it classifies with.
+
+## IR-86-RELIEF-02 — brief §4.4's ">=3 px from the catalogue" contradicts the parent's own geometry
+R0 keeps 2,171 dots at 2–3 px from a mapped fault (its rule was "off the trace, >2 px"). Brief §4.4
+demands ≥3 px for every emitted mass, but §5's axis contracts demand that a variant change *only*
+its own axis, and clearing that band **is** `(PRUNE, 3.0)` — already built, already slot-1, spent
+three times over (IR-86-PRUNE-08).
+**Decision:** the ≥3 px rule binds **newly emitted** mass — every cell any RELIEF variant inserted
+is ≥3 px from the catalogue — while the parent's inherited 2–3 px dots are left exactly as they
+are; relocation shrinks that band incidentally (2,171 → 1,925–2,039), which is reported per variant
+rather than optimised away. **Cost:** the variants are not fully §4.4-compliant, and the residual
+difference (1,925–2,039 dots) is a known, quantified gap that any reader must attribute to PRUNE,
+not RELIEF.
+
+## IR-86-RELIEF-03 — MASS: this session declined it, a concurrent session built it, and both said the same thing
+Brief v2 §5 MASS allows "rebuild the ranking from the recorded recipe if it is not stored", and PR
+#28 had reconstructed one: `scripts/build_r0_prune.py::original_visit_rank`, the deterministic
+FIFO-BFS visitation order of the `gems27.thinning` recipe. So when the human assigned RELIEF, this
+session left MASS unbuilt on the grounds that a traversal order is not a quality ranking
+(IR-86-PRUNE-02 had gone further and called MASS unavailable).
+**Update during merge:** the concurrent `arena/7cf7f98a` session *did* build MASS ±10 % and reached
+the same conclusion independently — the reconstructed order reproduces the pinned `d2.8` set
+exactly, but it is geographic, so its dropped 10 % is 100 % southern-half dots and its added 10 % is
+100 % northern-strip cells, 98.6 % of them within 2.8 px of an existing dot (IR-86-MASS-01).
+**Decision:** no conflict to resolve — the two sessions agree that a MASS receipt cannot be
+attributed to mass alone. This item stays as the record that the axis was *available*, so nobody has
+to re-derive it a third time. **Cost:** none to this branch; the MASS files exist and are
+`-0.003 / -0.006 MODEL`.
+
 ## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
-R0 carries 2,171 dots at 2-3 px from the catalogue, so a variant-wide >=3 px rule inside
-SNAP would silently re-run PRUNE. All three SNAP builds keep the parent's >2 px exclusion
-(min distance 2.236 px, zero catalogue mass); the gated session is the one that wrote the
-conflict down. **Decision:** unchanged — the >=3 px file is slot 1 (`le3p000`). **Cost:**
-under the strict reading no SNAP file is slottable until the human picks the reading.
+The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
+enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the
+parent's >2 px exclusion (min 2.236 px, zero catalogue mass). No new decision; recorded
+so the SNAP files' 2-3 px dots are not mistaken for an oversight.
 
-## IR-86-SNAP-09 — a third SNAP build landed while two were already merged
-This session (gain-gated, absolute-gravity edge) built SNAP concurrently with PR #31 and
-PR #34. Its `snapr1`/`snapr2` duplicate PR #31's (SNAP, 1)/(SNAP, 2) pairs (near-identical:
-36,483 vs 36,494 and 37,055 vs 37,066 dots moved) and are **withdrawn with no raster
-written**; its novel gated pair `snapr2g10` is released as `BUILT-DUPLICATE` corroboration
-only, following PR #34's convention. **Cost:** SNAP has now consumed three sessions and
-three builders to reach one thrice-measured negative; the next session needs an explicit
-human AXIS assignment, not another reading of the slot plan.
+## IR-86-SNAP-09 — a third SNAP build (gain-gated) landed after two were already merged
+Its `snapr1`/`snapr2` duplicate PR #31's pairs (36,483 vs 36,494; 37,055 vs 37,066 dots
+moved) and are **withdrawn, no raster written**; its novel gated pair `snapr2g10` stands
+as `BUILT-DUPLICATE` corroboration (PR #34's convention), not a candidate. **Cost:** SNAP
+consumed three sessions/builders for one thrice-measured negative; the next session needs
+an explicit human AXIS assignment instead of another slot-plan reading.
 
-## IR-86-SNAP-10 — the three SNAP builds treat the signed gravity band three ways
-`iso_grav_anom_hg` is signed (a directional derivative), yet PR #31 ranks it as-is (calling
-it a magnitude), PR #34 uses magnetic bands only, and the gated build ranks its absolute
-value. **Decision:** nothing is re-run; all three readings and their dot-set differences
-stand as the record. **Cost:** cross-build gravity comparisons are not like-for-like; any
-future SNAP-adjacent proposal must state its treatment of this band in advance.
+## IR-86-SNAP-10 — the SNAP builds treat the signed gravity band differently
+`iso_grav_anom_hg` is signed: PR #31 ranks it as-is, PR #34 uses magnetic bands only, the
+gated build ranks `|iso_grav_anom_hg|`. Nothing is re-run; cross-build gravity comparisons
+are not like-for-like, and any future SNAP-adjacent proposal must state its treatment first.

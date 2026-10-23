@@ -1,6 +1,6 @@
 # Manual submission card — no automatic submission
 
-**Status: BUILT; not slot-approved.** TOP_PUBLIC, remaining quota and R0's submission receipt
+**Status: BUILT; not slot-approved.** `TOP_PUBLIC`, remaining quota and R0's submission receipt
 were not supplied. The human alone submits, from one registered entity, one file per slot.
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
@@ -15,30 +15,56 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Slot 2 — CONCENTRATION on 5 km blocks (not built yet)
+## Slot 2 — `RELIEF front+15pct`, count-fixed relocation (built this session; AXIS assigned by the human)
+
+- File: `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+- SHA-256: `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` (214,315 bytes);
+  spec form (NaN outside) `b9a28caa5656ea0cf9e9789b0cda60562e4202e37c3cfa8e0ebfe3dbe0185f45`.
+- Submission name (64 ch): `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f`
+- Note (124 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front+15pct: 5648 dots moved piedmont->range-front, count fixed; pred +0.002 MODEL`
+- What it is: 5,648 dots (15.00 % of the mass) moved from the deep middle relief tercile onto the
+  basin-margin range front — front share 16.05 % → 31.05 %, count fixed at 37,654, mean
+  displacement 6.1 km. Regimes are terciles of `z(smoothed det_elev) + z(smoothed |det_elev_slope|)`
+  from the pinned stack, with the top class split by 5 km basin proximity.
+- Prediction: **+0.0017 (MODEL)** on a USGS SGMC hide-and-recover surrogate, quadrant range
+  −0.0022…+0.0112, 3/4 quadrants — below the 0.01 evidence floor. The in-regime displacement control
+  costs −0.0010, so the regime effect is only ~1.7× the cost of moving at all. Receipts:
+  `releases/…-e0e2888f-zeros.json`, `evidence/relief_axis_20261023.json`; cards:
+  `ledger/variant-cards.md` §"RELIEF".
+- Two more RELIEF files are built and gated: `…-frontp10-20261023-b20ef72e-zeros.tif`
+  (`b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad`, 10.00 %, +0.0010 MODEL, a
+  strict prefix of the 15 % dose — the designated fallback if a smaller first edit is preferred) and
+  `…-frontm10-20261023-1b26223e-zeros.tif` (`1b26223ec7888a78b4c7b6ef78c9680ae29491691ab3e5ed0c53083f10450669`,
+  10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
+  Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
+
+## CONCENTRATION on 5 km blocks (not built yet — the slot-2 candidate if the human prefers to wait for it)
 
 Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
 target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
 built (section below) but is not the slot-2 recommendation.
 
-## Slot 3 — SNAP, built and gated, predicted **negative**
+## Slot 3 — a sign flip or a deliberate probe, both predicted non-positive
+
+**Option A (recommended if slots 1–2 both land inside ±0.01): `RELIEF front−10pct`**
+(`…-frontm10-20261023-1b26223e-zeros.tif`, digested in the bullet above). Its value is the *paired* read against
+slot 2: a 25 %-of-mass swing with a predicted separation of ~0.011, i.e. the only RELIEF comparison
+that can clear the evidence floor.
+
+**Option B: SNAP, built and gated, predicted negative**
 
 | Variant | Primary file (NaN outside) | sha256 (NaN twin) | Fallback (`-zeros`) | sha256 (zeros twin) | Prediction |
 |---|---|---|---|---|---|
 | `SNAP ≤ 1.0 px` mixed | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7.tif` | `b8f215b3d858ad1efd6737ae19521deb6b700cd974f769d778251edc3b80c3d0` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7-zeros.tif` | `0e09c2b7800c302a7c840f0c38b3b3808f82eca242d7292d547f68a5098404be` | **−0.004 MODEL** (−0.012…+0.004) |
 | `SNAP ≤ 2.0 px` mixed | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403.tif` | `c9f4042f71add006089f79634468488ed2b08183e0505a4174a688f9ee1e916b` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403-zeros.tif` | `e74734031f478edafc55017d0002e72fe1930dd32c237c9341833732028f5743` | **−0.006 MODEL** (−0.020…+0.006) |
 | `SNAP ≤ 2.0 px` gravity-only | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15.tif` | `a9cc8fdadbcb31d7c8f19a2adeed56bf7034ac2633bdf64af7767f8023c23218` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15-zeros.tif` | `17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823` | **−0.004 MODEL** (−0.016…+0.006) |
-| `snapr2g10` gain-gated ≤ 2 px (second session; the cheapest SNAP probe) | `releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif` | `32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52` | `releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif` | `8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e` | **−0.001 MODEL** (−0.007…+0.008) |
 
 Why they are predicted to lose: 97–99 % of dots move, but the random-response **null control**
 scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing makes it worse. Uploading one
 of these buys a test of an unmeasured *live* hypothesis — "new faults sit at potential-field
 edges, not where the field put its dots" — not an expected gain. If the human does not want to
 spend a weekly slot on a predicted-negative probe, skip slot 3 and go to slot 2.
-Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt as `note`
-(r2g10: 91 chars, `R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL`).
-The second session's `snapr1`/`snapr2` duplicate PR #31's pairs and are **withdrawn — no
-raster was written** (IR-86-SNAP-05); there is nothing to upload by those names.
+Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt as `note`.
 
 ## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
 
@@ -92,6 +118,8 @@ Common to every file above — re-read from disk after writing:
 | Dots on mapped catalogue | **0** in every file |
 | Exact-hash duplicate of any file on disk or in the ledger | none |
 | SNAP parent-diff | count exact 37,654 → 37,654; only positions changed; catalogue exclusion unchanged (min distance 2.236 px) |
+| RELIEF parent-diff | count fixed 37,654 → 37,654; deletions == insertions (5,648 / 3,765 / 3,765); every *inserted* cell ≥ 3 px off the catalogue; min dot spacing 2.8284 px → 2.8284 px (not tightened); mass on catalogue pixels 0 |
+| RELIEF re-read | the dot set in the written bytes is compared cell-by-cell with the in-memory set; a mismatch aborts the build |
 
 The `-zeros` twins additionally pass `vendor/gems57/validate.py` (`all_checks_passed = True`)
 and `gems57.gates.format_report` (`ok = True`). The `-nan` twins fail that vendored validator
@@ -103,9 +131,10 @@ twin within the same slot attempt: the twins carry identical dots.
 Release TIFFs are gitignored (public repo, unchecked data-use terms), so the digests above are
 the authority. Re-run the checks any time: `python scripts/prune_collar.py --measure` (deterministic, seed
 20261023), `python scripts/run_snap_axis.py` (deterministic; rebuilds R0 byte-exactly, then the
-three SNAP rasters — the sha8 values are reproducible), `python scripts/build_r0_snap.py --build`
-(gain-gated session; releases only `snapr2g10`, identical sha256) and
-`python scripts/build_ledger.py --check`.
+three SNAP rasters — the sha8 values are reproducible),
+`.venv/bin/python scripts/run_relief_axis.py --no-write` (parent gate + RELIEF measurements, writes
+nothing; without `--no-write` it rebuilds the three RELIEF rasters) and
+`.venv/bin/python scripts/build_ledger.py --check`.
 
 ## After the score comes back
 
@@ -125,9 +154,7 @@ proxy is catalogue-collar recovery). Ledger status: `BUILT-DUPLICATE`.
 
 `releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869[-zeros].tif` (37,654 dots, 17.5 % moved
 ≤2 px, mean displacement 0.34 px; zeros sha256 `8ca1d8690aa835c8…82d2e`, NaN twin
-`32c1e4e99444abaf…3f52`; prediction **−0.001 MODEL**; 91-char note in its receipt) is
-gate-clean but **must not be uploaded**: SNAP was already spent by PR #31 and corroborated
-by PR #34, and this build's own SGMC control is negative with dose (IR-86-SNAP-09).
-Ledger status: `BUILT-DUPLICATE`. Its unconditional `snapr1`/`snapr2` arms are withdrawn
-duplicate pairs — **no raster exists** under those names. Rebuild/measure:
-`python scripts/build_r0_snap.py --build` (releases only this file, identical sha256).
+`32c1e4e99444abaf…3f52`; **−0.001 MODEL**) is gate-clean but **must not be uploaded**:
+SNAP was spent by PR #31, corroborated by PR #34, and this build's SGMC control is negative
+with dose (IR-86-SNAP-09). Status `BUILT-DUPLICATE`; its `snapr1`/`snapr2` arms are
+withdrawn duplicate pairs with **no raster**. Rebuild: `python scripts/build_r0_snap.py --build`.

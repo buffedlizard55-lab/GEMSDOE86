@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS, four axes reconciled)
+# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF, five axes reconciled)
 
 **No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
 ([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
@@ -39,19 +39,25 @@ come back flat and the mass question becomes the binding one; then take `massmin
 | # | file (upload the `-zeros` twin) | why this one | decision rule |
 |---|---|---|---|
 | 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest collar rung, unchanged from the last plan; it is the only prediction that is positive *and* has a monotone ladder behind it. Prediction **+0.004 MODEL** (−0.004…+0.013), 35,483 dots, 5.77 % removed | ≥ +0.010 → the collar is not exhausted; next week a 4 px rung. Flat or ≤ −0.010 → PRUNE is finished for Phase 1 |
-| 2 | **CONCENTRATION on 5 km blocks** — not built yet | the only remaining axis that changes *where* mass is without needing R0's ranking or a new physical field; the best files reportedly sit at block-density CV 0.51–0.59 | preregister block size, direction and CV target before writing; ≥ +0.010 → the win is spatial allocation, and the final file is a PRUNE+CONCENTRATION combination |
-| 3 | `…-SNAP-r2p000-…-e7473403-zeros.tif` **or** a RELIEF variant | SNAP is the one built artifact that tests an unmeasured live hypothesis (faults at geophysical edges); RELIEF is the cheap alternative if the human prefers not to spend a slot on a predicted-negative file | SNAP ≥ +0.010 → positions *are* the binding error and SNAP becomes the main lineage. SNAP within ±0.010 → the axis is retired in one slot, as PRUNE was |
+| 2 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | the only *built* positive prediction outside the collar lineage, and the only one that moves mass instead of deleting it: 5,648 dots (15.00 %) piedmont → range-front, count fixed at 37,654, mean displacement 6.1 km | ≥ +0.010 → the win is spatial allocation, not pruning: build RELIEF-ADD (same selection, count raised 43,302–49,000) and then the combination | ≤ −0.005 → sign confirmed, RELIEF closes for Phase 1 (brief §9 stop rule) | otherwise the axis is alive but below the evidence floor: do not multiply variants, spend slot 3 on the sign flip instead |
+| 2b | **CONCENTRATION on 5 km blocks** — not built yet (the slot-2 alternative if the human prefers to wait for a stronger cut) | the only remaining axis that changes *where* mass is without needing R0's ranking or a new physical field; the best files reportedly sit at block-density CV 0.51–0.59 | preregister block size, direction and CV target before writing; ≥ +0.010 → the win is spatial allocation, and the final file is a PRUNE+CONCENTRATION combination |
+| 3 | `…-RELIEF-frontm10-20261023-1b26223e-zeros.tif` **or** `…-SNAP-r2p000-…-e7473403-zeros.tif` | the RELIEF rung is the **sign flip**: paired with slot 2 it is a 25 %-of-mass swing with a predicted separation of ~0.011, the only RELIEF comparison that can clear the floor. SNAP instead if the human would rather test an unmeasured *live* hypothesis (faults at potential-field edges) than a surrogate-measured one | RELIEF pair straddles 0 (slot 2 up, slot 3 down, or the reverse) → relocation is the axis; build RELIEF-ADD, then combine with `le3p000`. Both inside ±0.010 → RELIEF closes, take SNAP next. SNAP ≥ +0.010 → positions are the binding error and SNAP becomes the main lineage |
 
 **Do not spend a slot on:** `SNAP-r1p000` or `SNAP-r2p000-grav` (same axis, weaker dose /
 single band; they are the arms that read out *why* slot 3 went the way it did);
 `…-prune4-…-de4c2a98` (−0.008) and `…-prune3r-…-8c20bd7e` (−0.003) — rehearsals, not bets;
-`…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08).
+`…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08);
+`RELIEF-frontp10` (a strict 10 % prefix of the 15 % dose, +0.0010 — the fallback, not a third bet);
+the other two MASS rungs (−0.003 / −0.006, both predicted negative and never both).
 
 ## Calendar to the deadline
 
 - **wk 1 (slot 1).** PRUNE `le3p000`. Single decisive read on the collar.
-- **wk 2.** CONCENTRATION at 5 km blocks, preregistered; record block-density CV before/after.
-- **wk 3.** SNAP `r2p000` (only if the human accepts a predicted-negative probe) or RELIEF.
+- **wk 2.** RELIEF `frontp15` (built; upload inside 24 h of any change to the regime map, and
+  re-read the `-zeros` bytes through the validator before upload). CONCENTRATION at 5 km blocks only
+  if it is built and preregistered first.
+- **wk 3.** `RELIEF front−10pct` (paired with week 2) or SNAP `r2p000`, only if the human accepts
+  a predicted-negative probe.
 - **wk 4.** The better of CONCENTRATION / SNAP / RELIEF, re-cut at a second value on that axis.
 - **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as **one attributable edit**.
 - **wk 6.** Confirm both finalists, re-validate both formats, choose the final file and a
