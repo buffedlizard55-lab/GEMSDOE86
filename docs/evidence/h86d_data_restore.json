@@ -1,0 +1,559 @@
+{
+  "generated_utc": "2026-10-23T01:29:04Z",
+  "base_manifest_sha256": "f08f96e534cf91dbb02d7655a4e6d661837235ebb88b2e5eabdc0b3cc7bcee21",
+  "extended_manifest_sha256": "45e445d638329d629b9b7620895bb9dd0f43c7f562261fa9310cd8f4b1156757",
+  "restored_count": 55,
+  "files": [
+    {
+      "id": "training_features",
+      "group": "core",
+      "dest": "training_features.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+      "bytes": 418912844,
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "status": "cached_verified"
+    },
+    {
+      "id": "labels",
+      "group": "core",
+      "dest": "labels.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "status": "downloaded_verified"
+    },
+    {
+      "id": "existing_faults",
+      "group": "core",
+      "dest": "existing_faults.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "status": "cached_verified"
+    },
+    {
+      "id": "sample_submission",
+      "group": "core",
+      "dest": "sample_submission.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1599597,
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_lidar_scarp_features_u8",
+      "group": "external",
+      "dest": "external/lidar_scarp_features_u8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 36943606,
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_geodawn_rad_u8",
+      "group": "external",
+      "dest": "external/geodawn_rad_u8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 26612970,
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_geodawn_extensions_u8",
+      "group": "external",
+      "dest": "external/geodawn_extensions_u8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 27132925,
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_derived_sgmc_faults_100m_u8",
+      "group": "external",
+      "dest": "external/derived_sgmc_faults_100m_u8.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 198602,
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_gdr_wellspring_in_footprint",
+      "group": "external",
+      "dest": "external/gdr_wellspring_in_footprint.csv",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 2146771,
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_gdr_qfaults_traces",
+      "group": "external",
+      "dest": "external/gdr_qfaults_traces.csv",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 126177,
+      "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+      "status": "downloaded_verified"
+    },
+    {
+      "id": "ext_gdr_volcanic_vents_in_footprint",
+      "group": "external",
+      "dest": "external/gdr_volcanic_vents_in_footprint.csv",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 672,
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_h19_5",
+      "group": "scored",
+      "dest": "scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1712322,
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_h19_4",
+      "group": "scored",
+      "dest": "scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1716768,
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_h16_1",
+      "group": "scored",
+      "dest": "scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1718028,
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_d15_scored",
+      "group": "scored",
+      "dest": "scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1632732,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_d28_unscored",
+      "group": "scored",
+      "dest": "scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1603424,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+      "group": "scored",
+      "dest": "scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1706456,
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_8GEMSDOE_Hedge-v2_submission",
+      "group": "scored",
+      "dest": "scored/8GEMSDOE_Hedge-v2_submission.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 736494,
+      "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_gems10-h25-ctx-ridge-20260927T2329477041",
+      "group": "scored",
+      "dest": "scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1772935,
+      "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+      "group": "scored",
+      "dest": "scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 1620739,
+      "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_gemsdoe-ens12-adopted-7f00890a",
+      "group": "scored",
+      "dest": "scored/gemsdoe-ens12-adopted-7f00890a.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 570890,
+      "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+      "status": "cached_verified"
+    },
+    {
+      "id": "calib_gemsdoe9-PLACEHOLDER-2314b599",
+      "group": "scored",
+      "dest": "scored/gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 439456,
+      "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
+      "status": "cached_verified"
+    },
+    {
+      "id": "scored_gems27_tgc_v2_d15",
+      "group": "scored",
+      "dest": "scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "ref": "main",
+      "bytes": 1635084,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_2m_temp_probes_zip",
+      "group": "external_h86",
+      "dest": "external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 1080530,
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_paleo_geothermal_zip",
+      "group": "external_h86",
+      "dest": "external/paleo_geothermal_regional.zip",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 84008,
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_topo_10m_u8",
+      "group": "external_h86",
+      "dest": "external/topo_10m_derived_100m_u8.tif",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 32523329,
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_topo_10m_manifest",
+      "group": "external_h86",
+      "dest": "external/topo_10m_derived_100m_u8.manifest.json",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 2720,
+      "sha256": "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_dem10_chi_u8",
+      "group": "external_h86",
+      "dest": "external/dem10_chi_100m_u8.tif",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 2061484,
+      "sha256": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_trace_segments_utm11",
+      "group": "external_h86",
+      "dest": "external/trace_segments_utm11.csv",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "bytes": 5283577,
+      "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+      "status": "cached_verified"
+    },
+    {
+      "id": "ext_acquisition_block_100m",
+      "group": "external_h86",
+      "dest": "external/acquisition_block_id_100m.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "bytes": 85031,
+      "sha256": "2c0785c4b3ec46c734d1be7a7aedbb3e816201100ab358033a3af074418c894a",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_00_gemsdoe32-h33-h33-2-b2-20261004T",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "HEAD",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_01_gemsdoe32-h32d-submodular-multip",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "HEAD",
+      "bytes": 250577,
+      "sha256": "f81e26d7712d1a4a9d3d5393037b09849400c3976d1ebd40e2760a586f2adc2f",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_02_gemsdoe36-anderson-geothermal-pi",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "c9ad59ec6f969ed931d089a03044c1567a633e84",
+      "bytes": 318190,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_03_gems28-h36-1-rung30-blind-r1-202",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "94b027bed628422b7b39b485cb918a3fc15e5364",
+      "bytes": 1590848,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_04_gems28-h27-4-r1-solo-d2-8-202610",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "94b027bed628422b7b39b485cb918a3fc15e5364",
+      "bytes": 1595850,
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_05_gems28-h38-1-hf-euler-r30-r1-202",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "94b027bed628422b7b39b485cb918a3fc15e5364",
+      "bytes": 1591212,
+      "sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_06_GEMSDOE33-h33d-analog-tip-stepov",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "ref": "f52533110fe62cd03e77f1228e9e5ecac412c463",
+      "bytes": 917544,
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_07_gems49-gate_ortho_w0.25-40k-2026",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE49",
+      "ref": "8ab48f22d02d8be3b8e01d843ed7dc7967b87c44",
+      "bytes": 377092,
+      "sha256": "c58fe0551e120678fff190239146985d0b2f7255255535fb5fb637a05cb40af3",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_08_gemsdoe63-cvarlw-thin-s3p17-5486",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE63",
+      "ref": "4195d91809a0c33871fe7013c90dde74d6571294",
+      "bytes": 384580,
+      "sha256": "886e470530d8b23a4967a7f8d9f55df5fb39441ff7b544490cab457d076731f7",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_09_gems66-lidar03-cvretrain-reliefd",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE66",
+      "ref": "2734d5d46a240245e610d4e39ebc98e6fc557722",
+      "bytes": 307902,
+      "sha256": "7c7d30c22c17571e24927c8c2c435725e5c8396bd6724446ecc60663d5972b7e",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_10_gems70-p5-multiphysics-submodula",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "ref": "158aec19800d4c7b8ca9fb94b06567e2b7d61e8d",
+      "bytes": 138252,
+      "sha256": "f19a78d511f9d822b47ad4d9ce56cf2ccfa415e3d1ca49709a342158de6e7a84",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_11_gems73-h73-mcsc-seamfree-blakely",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE73",
+      "ref": "eadf59cebba634cc68271408685bcd1346e422df",
+      "bytes": 147617,
+      "sha256": "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_12_gems75-trlt-radon-loco-ridge-202",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE75",
+      "ref": "c1b2d329e1926aac016d6286256878f5497f53fc",
+      "bytes": 144737,
+      "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_13_gems76_h76_3_geotherm_tilt_axial",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE76",
+      "ref": "97f3dd5a818d909bb2d2e362bdd2282bfbf2cae1",
+      "bytes": 140199,
+      "sha256": "d706807d42d1b21f6417483cd7aeb04a410d62accd5a66c6b2a6ab0dc16662af",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_14_gems76-ptcf-tiltworm-submod39k-2",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE76",
+      "ref": "97f3dd5a818d909bb2d2e362bdd2282bfbf2cae1",
+      "bytes": 137028,
+      "sha256": "54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_15_gems78-h78gsc-oof-submod40k-2026",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE78",
+      "ref": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
+      "bytes": 147599,
+      "sha256": "e2f21d496925fb1bd2f36c5b28a0e2356286eca719132545474456f81bc5a8eb",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_16_gems78-h78-gfv-136b-dink-2026102",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE78",
+      "ref": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
+      "bytes": 147086,
+      "sha256": "0338383df9c36c0a2581ddc584e6aafa5ce364ba52cd9e56749628bc4301dd07",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_17_gemsdoe80-h80g-choquet-tworegime",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE80",
+      "ref": "02f8fd64be24de6b90d03c56b675d8a3ac2bbc3c",
+      "bytes": 162346,
+      "sha256": "a3c14d76d1f58802c8bd3f13378cbeb037ad3618d5fbd9dbf5f5a0dae4a35ede",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_18_gems80-adpt-kkt-lagrangian-36500",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE80",
+      "ref": "02f8fd64be24de6b90d03c56b675d8a3ac2bbc3c",
+      "bytes": 141719,
+      "sha256": "f538f414fb11169342bb613a9c9c1eb9e075278c511e694d55c96ba0760851f9",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_19_gems81-cont-poisson44090-buf2-20",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE81",
+      "ref": "15bf850cfd68dc54f14b96a558f750798a0c4ac8",
+      "bytes": 155982,
+      "sha256": "9798fe7f4a68c7b8efbb9f3f03945ab800177b993abe671e4d174282e0675508",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_20_gemsdoe82-h82-submodular-punoisy",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE82",
+      "ref": "4fb7df6f650f98690c547b4e23bf17deeaa9b141",
+      "bytes": 137930,
+      "sha256": "120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_21_gems83-h83-gvcd-dink300-37654dot",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE83",
+      "ref": "da9ec5a3b474e32fe8b124ac079e665315474bbf",
+      "bytes": 144047,
+      "sha256": "79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_22_gems88-mgc-crossgradient-37654-2",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE88",
+      "ref": "cc18a75b1846818a4a76e99c9d0d4270c7d7da30",
+      "bytes": 119914,
+      "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_23_gems85-geopb-crest-90000dots-sep",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE85",
+      "ref": "2a20a014db0cceeba57e7d7fc507aa68f59e8692",
+      "bytes": 438042,
+      "sha256": "ba33ea18936e6324037457e1ff5070d8e879b7b29a25b4ae2c0003bc509a567f",
+      "status": "cached_verified"
+    },
+    {
+      "id": "fleet_24_gems85-h85a-foldproper-hgb-maxco",
+      "group": "scored_fleet",
+      "dest": "scored_fleet/GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+      "repo": "buffedlizard55-lab/GEMSDOE85",
+      "ref": "2a20a014db0cceeba57e7d7fc507aa68f59e8692",
+      "bytes": 191404,
+      "sha256": "ccc8a7a4e53c406de00c5ba40612f5d3df2b0f4afc869dd1b997d5b836a0209b",
+      "status": "cached_verified"
+    }
+  ],
+  "provenance_warning": "Upstream blobs are restored from commit-pinned public/sibling mirrors and verified against SHA-256 digests. Mirror hash verification proves byte reproducibility, not DrivenData organizer authentication."
+}

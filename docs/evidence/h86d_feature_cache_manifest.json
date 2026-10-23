@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "hypothesis": "H86-CTHB",
+  "static_feature_count": 28,
+  "accessed_csv_columns": {
+    "gdr_wellspring_in_footprint.csv": [
+      "row",
+      "col",
+      "temp_c",
+      "geothermquartz_c",
+      "geothermchalc_c"
+    ],
+    "gdr_volcanic_vents_in_footprint.csv": [
+      "row",
+      "col"
+    ]
+  },
+  "banned_csv_columns_verified_unread": [
+    "dist_known_fault_px"
+  ],
+  "planes": [
+    {
+      "index": 0,
+      "name": "mag_ridge_s15",
+      "path": "data/cache/h86_cthb_planes/00_mag_ridge_s15.npy",
+      "sha256": "401331d09ae6c6d0a3c1dba8bc55766b7098f54d687e3b6d0262924c439c5940",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.27942681312561035
+    },
+    {
+      "index": 1,
+      "name": "mag_ridge_trunc_s15",
+      "path": "data/cache/h86_cthb_planes/01_mag_ridge_trunc_s15.npy",
+      "sha256": "eb37755dc3e138b78f115b61dd0b2a4244594f7ff15efe3894ff9cfa3cafe288",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.127450630068779
+    },
+    {
+      "index": 2,
+      "name": "mag_ridge_trunc_s35",
+      "path": "data/cache/h86_cthb_planes/02_mag_ridge_trunc_s35.npy",
+      "sha256": "3b4b89ddb525ec2d35103db8b46d2935a5648a36a7e33aa782f7e79613d55d12",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.16537518799304962
+    },
+    {
+      "index": 3,
+      "name": "grav_ridge_trunc_s25",
+      "path": "data/cache/h86_cthb_planes/03_grav_ridge_trunc_s25.npy",
+      "sha256": "8a161ec799b973d67e4196a535f2232f33714f8fe469ee51098caac5867e0770",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.22577209770679474
+    },
+    {
+      "index": 4,
+      "name": "mag_grav_crossgrad_s2",
+      "path": "data/cache/h86_cthb_planes/04_mag_grav_crossgrad_s2.npy",
+      "sha256": "90e44f826f2978e54af9bc8ce2dfa6a22c6332dcff11411ab89cd577a0a115b3",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.4755564332008362
+    },
+    {
+      "index": 5,
+      "name": "mag_grav_crossgrad_s5",
+      "path": "data/cache/h86_cthb_planes/05_mag_grav_crossgrad_s5.npy",
+      "sha256": "ac0b6c39cb31d860d92812b437a7e35c1e0c2f7a811035fcfd2522a73da0aae4",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.5006018280982971
+    },
+    {
+      "index": 6,
+      "name": "shallow_brittle_mag_excess",
+      "path": "data/cache/h86_cthb_planes/06_shallow_brittle_mag_excess.npy",
+      "sha256": "cd39107918ebb947ce0a8dd11fed6d70c4d887000fda7b96de30472218c8f35e",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.2082533836364746
+    },
+    {
+      "index": 7,
+      "name": "tilt_strike_dispersion",
+      "path": "data/cache/h86_cthb_planes/07_tilt_strike_dispersion.npy",
+      "sha256": "4406065d12c9c7db7898e9586d7e68633c53fcc2eda79cb1544ae6e266e34116",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.8718900680541992
+    },
+    {
+      "index": 8,
+      "name": "basement_hinge_flexure",
+      "path": "data/cache/h86_cthb_planes/08_basement_hinge_flexure.npy",
+      "sha256": "711d7c5cd37cdd4b4e12967d939106417b9f27bb301b8a9b2913aa6c5a6c44b3",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.3057940900325775
+    },
+    {
+      "index": 9,
+      "name": "rad_kth_local_anom",
+      "path": "data/cache/h86_cthb_planes/09_rad_kth_local_anom.npy",
+      "sha256": "ee2884ccd9d6ab9b9f0a2e54072226974e4fac50b14aa1f1823c3ad9a2779076",
+      "finite_count": 5166085,
+      "p50": 0.0,
+      "p95": 1.558485507965088
+    },
+    {
+      "index": 10,
+      "name": "rad_topo_crossgrad",
+      "path": "data/cache/h86_cthb_planes/10_rad_topo_crossgrad.npy",
+      "sha256": "67f21638cb9d63cc850c2fc04996572b0faeaf7388bb8e0825d6636e45f209dc",
+      "finite_count": 5166085,
+      "p50": 0.18969441950321198,
+      "p95": 0.7044620513916016
+    },
+    {
+      "index": 11,
+      "name": "rad_uth_redox_grad",
+      "path": "data/cache/h86_cthb_planes/11_rad_uth_redox_grad.npy",
+      "sha256": "74f5fbef643ce5e91317251f2017af1384301b72e37e0a7532dd5a990615e8c0",
+      "finite_count": 5166085,
+      "p50": 0.2235633283853531,
+      "p95": 0.6710579991340637
+    },
+    {
+      "index": 12,
+      "name": "rad_broad_th_mimic",
+      "path": "data/cache/h86_cthb_planes/12_rad_broad_th_mimic.npy",
+      "sha256": "adbbb1b070a425344741de145806ce3df7c318e7678daf42b53680a414981134",
+      "finite_count": 5166085,
+      "p50": 0.17404736578464508,
+      "p95": 0.6530845165252686
+    },
+    {
+      "index": 13,
+      "name": "rad_valid",
+      "path": "data/cache/h86_cthb_planes/13_rad_valid.npy",
+      "sha256": "73d6c38ada65b836c607a56a7934ce3643098c550c08dd98cdcceab204791665",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 1.0
+    },
+    {
+      "index": 14,
+      "name": "t2m_dab_plume",
+      "path": "data/cache/h86_cthb_planes/14_t2m_dab_plume.npy",
+      "sha256": "c823262e5aa45ea712f07b2f8f4fef98cbb6c0176243c92f65491613facfd12d",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.007114443928003311
+    },
+    {
+      "index": 15,
+      "name": "t2m_survey_density",
+      "path": "data/cache/h86_cthb_planes/15_t2m_survey_density.npy",
+      "sha256": "683f26bbc73939cb7f86379863318b1760233300f79bee29213401424c548fcb",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.06469741463661194
+    },
+    {
+      "index": 16,
+      "name": "paleo_sinter_vent",
+      "path": "data/cache/h86_cthb_planes/16_paleo_sinter_vent.npy",
+      "sha256": "cec812f0f86b84756d784ea9817e5343ebc6147c9ebc3e0bc33b5cec8efc415f",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.037505172193050385
+    },
+    {
+      "index": 17,
+      "name": "upslope_geotherm_breach",
+      "path": "data/cache/h86_cthb_planes/17_upslope_geotherm_breach.npy",
+      "sha256": "fea88155e7431a1836d6a3c69e3816e29967e1d972e6cc8b8a5a42c164fb0f7c",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.023638281971216202
+    },
+    {
+      "index": 18,
+      "name": "claycap_margin_grad",
+      "path": "data/cache/h86_cthb_planes/18_claycap_margin_grad.npy",
+      "sha256": "5ade34e06f9deda3923611d43ac5e14232aa460b9b47f9f97428a33eaf001e26",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.2154299020767212
+    },
+    {
+      "index": 19,
+      "name": "geod_transtension_valve",
+      "path": "data/cache/h86_cthb_planes/19_geod_transtension_valve.npy",
+      "sha256": "a530b9fad088f1da57871ef7167406cd2e081dc168ca1d7a2a905d15cbaf3cd6",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.5468227863311768
+    },
+    {
+      "index": 20,
+      "name": "piedmont_inflection",
+      "path": "data/cache/h86_cthb_planes/20_piedmont_inflection.npy",
+      "sha256": "8d0edf35ac56803924173193bfebec0bda05fc6cb5aa636abf5b7ecdf97c5f89",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.5451813340187073
+    },
+    {
+      "index": 21,
+      "name": "volcanic_vent_halo",
+      "path": "data/cache/h86_cthb_planes/21_volcanic_vent_halo.npy",
+      "sha256": "706595946240daeb06f3fa4b450dcd02af2b462167629cc80f8de69539279bf1",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.006585491355508566
+    },
+    {
+      "index": 22,
+      "name": "lidar_scarplet_raw",
+      "path": "data/cache/h86_cthb_planes/22_lidar_scarplet_raw.npy",
+      "sha256": "c52e0b4cd656edf12171ef100226d3c044a0ade5ea81ca782fd3e71be42a12a6",
+      "finite_count": 3894460,
+      "p50": 0.2549019753932953,
+      "p95": 0.5941176414489746
+    },
+    {
+      "index": 23,
+      "name": "lidar_chain_collinearity",
+      "path": "data/cache/h86_cthb_planes/23_lidar_chain_collinearity.npy",
+      "sha256": "9df94abd4cdb2ad25b129b2b88e7d8ad4ed2e1df23c78d3e07a7fc7a9b213e13",
+      "finite_count": 3894460,
+      "p50": 0.30971676111221313,
+      "p95": 0.6058169603347778
+    },
+    {
+      "index": 24,
+      "name": "dem10_curv_lineament",
+      "path": "data/cache/h86_cthb_planes/24_dem10_curv_lineament.npy",
+      "sha256": "5383b42bed563f915eb8b227c85993fdfbae5c956f89651d5df189cc0dfe1dd2",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.5656160116195679
+    },
+    {
+      "index": 25,
+      "name": "dem10_chi_knickzone",
+      "path": "data/cache/h86_cthb_planes/25_dem10_chi_knickzone.npy",
+      "sha256": "83105f6faefa6ca6c2c507a2c5cd2ec5590c1c731bbbe8dfc3224247aad4f813",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.11344356089830399
+    },
+    {
+      "index": 26,
+      "name": "pluvial_shoreline_mimic",
+      "path": "data/cache/h86_cthb_planes/26_pluvial_shoreline_mimic.npy",
+      "sha256": "5c514a55814e72fee06c1d5d579c062a4e68ba1f19900cab8b6f6e057cb4ef82",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.5831068754196167
+    },
+    {
+      "index": 27,
+      "name": "det_elev_scarp_multiscale",
+      "path": "data/cache/h86_cthb_planes/27_det_elev_scarp_multiscale.npy",
+      "sha256": "18fd3b959e59789896d523f9501cd967b0404f2b108e3ab587ba0a5f68c6fc95",
+      "finite_count": 12279160,
+      "p50": 0.0,
+      "p95": 0.43398070335388184
+    }
+  ]
+}

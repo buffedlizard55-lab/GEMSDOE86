@@ -122,6 +122,14 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "paired_delta_ci95": w["paired_delta_vs_d28_ci95"],
                 "design": "buffered whole components; LOQO; physical-block interval",
                 "caveat": "Concurrent Session-3 archive; paired whole-component delta interval is positive vs d2.8 and H33-2-B2 and 0/37 non-lattice dot-field rasters exceed 0.70, but literal overlap fails on saturated witnesses and catalogue-recovery holdout is not a private-test score."}
+    if kind == "cthb_submod":
+        w = h["segment_hide_detached"]
+        return {**base, "withheld_positives": w["withheld_positives"],
+                "value": w["candidate_dti"], "ci95": w["ci95"],
+                "paired_delta": w["paired_delta_vs_d28"],
+                "paired_delta_ci95": w["paired_delta_vs_d28_ci95"],
+                "design": "detached isolated segments + buffered whole components (two seeds, LOQO, physical-block interval)",
+                "caveat": "Concurrent H86D-CTHB archive; paired detached (+0.1553 [+0.1389, +0.1730]) and all (+0.1495 [+0.1353, +0.1644]) intervals are positive vs d2.8 and H33-2-B2 (buffered whole-component point DTI 0.1133 vs d2.8 0.1009, CI [-0.0050, +0.0287]) and 0/45 non-lattice dot-field rasters exceed 0.70, but literal overlap fails on saturated witnesses."}
     if kind == "pooled":
         return {**base, "withheld_positives": h["withheld_positives"],
                 "value": h["value"], "ci95": h["ci95"],

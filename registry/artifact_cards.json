@@ -64,6 +64,13 @@
       "context": "docs/evidence/h86c-kslb-run-card.json",
       "holdout_kind": "kslb_whole_components",
       "stem": "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros"
+    },
+    {
+      "lane": "H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular",
+      "card": "docs/evidence/h86d-cthb-run-card.json",
+      "context": "docs/evidence/h86d-cthb-run-card.json",
+      "holdout_kind": "cthb_submod",
+      "stem": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros"
     }
   ]
 }
