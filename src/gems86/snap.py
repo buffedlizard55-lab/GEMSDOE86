@@ -1,189 +1,284 @@
-"""Pure geometry for the SNAP axis: local relocation of a dot field to an edge crest.
+"""Pure geometry for the SNAP axis: reposition dots inside a fixed window.
 
-The contract is deliberately narrow: a SNAP variant *moves* dots of its parent
-by at most a stated Euclidean radius to the strongest edge response inside that
-window. It never adds or deletes a dot (count is preserved exactly), never
-re-weights a dot, and never places a dot on a cell its caller marks ineligible
-(the R0 caller requires: inside the footprint, off the mapped catalogue,
-Euclidean catalogue distance > 2 px -- the parent's own exclusion -- and a
-valid edge value).
+The AXIS contract
+-----------------
+A SNAP variant differs from its parent **only** by moving dots.  The number of
+dots, their mass (unit per dot), the footprint, and the catalogue exclusion are
+carried through unchanged; no dot is created, deleted or re-weighted.  Each dot
+may move at most ``radius`` pixels (Euclidean) to the cell inside its window
+that carries the strongest potential-field edge response.
 
-Determinism / collision rule
------------------------------
-Independent per-dot argmax choices can collide (two dots wanting one cell).
-Collisions are resolved by a gain-ordered greedy placement:
+Why a *movement* axis can pay at all
+------------------------------------
+The DTI at ``alpha=0.2`` credits a dot with ``k = max(1 - d/3, 0)`` against the
+nearest truth cell, so a dot 1 px off the trace earns 0.667 and a dot 2 px off
+earns 0.333.  Moving a dot *towards* truth therefore raises ``T`` and lowers
+``FP_w`` twice over: ``dD = alpha*(dT - dk)`` with ``dk`` the change in the
+dot's own self-credit, and ``DTI = T/D``.  When the dot is the unique cover of
+one truth cell ``dT == dk`` and the denominator is unchanged while the numerator
+grows; when the move is only a redundancy reduction ``dT == 0`` the denominator
+shrinks.  Both directions are strictly positive.  The symmetric risk is a move
+*away* from truth, which is why the falsifier is a measured mean displacement
+and not an argument.
 
-* every dot's *ideal* gain (best eligible window cell minus its origin) is
-  computed first, ignoring occupancy;
-* dots are placed in decreasing ideal-gain order, ties by ascending origin
-  flat index (row-major);
-* while a dot is unplaced its origin cell stays *reserved*, so an already
-  placed dot can never steal it -- which guarantees every dot can always fall
-  back to staying put, hence the count is preserved exactly;
-* at its turn a dot takes the best still-free eligible cell in its window
-  (ties: higher edge, then smaller displacement, then lower destination flat
-  index), but only if the realised gain clears ``min_gain`` (and is strictly
-  positive); otherwise it stays.
+Why rank-normalised bands and not raw gradients
+-----------------------------------------------
+``tmi_hg`` and ``iso_grav_anom_hg`` are horizontal-gradient magnitudes in
+different units and with different heavy tails.  Rank-normalising each over the
+scored footprint and averaging puts them on one scale without letting a single
+high-amplitude body dominate the search.  The transform is monotone per band,
+so it cannot invent an edge that is not in the data.
 
-A dot whose origin has no valid edge value cannot be evaluated and stays.
+Nothing here reads a truth raster, the network, a portal, or a credential.
 """
+
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import numpy as np
+from scipy.spatial import cKDTree
+
+#: The two pinned gradient bands this axis is allowed to use (manifest band
+#: descriptions 3 and 18 of ``data/bridge/training_features.tif``).
+SNAP_BANDS = ("tmi_hg", "iso_grav_anom_hg")
 
 
-def window_offsets(radius: float) -> tuple[tuple[int, int, float], ...]:
-    """Lattice offsets (dy, dx, Euclidean distance) with distance <= radius."""
-    if radius < 0:
-        raise ValueError("radius must be non-negative")
-    lim = int(np.ceil(radius))
-    out = []
-    for dy in range(-lim, lim + 1):
-        for dx in range(-lim, lim + 1):
-            d = float(np.hypot(dy, dx))
-            if d <= radius + 1e-9:
-                out.append((dy, dx, d))
-    return tuple(out)
+def rank01(values: np.ndarray, valid: np.ndarray) -> np.ndarray:
+    """Rank-normalise ``values`` to ``[0, 1]`` over ``valid``; 0 elsewhere.
 
-
-def percentile_ranks(values: np.ndarray, valid: np.ndarray) -> np.ndarray:
-    """Percentile rank in [0, 1] over ``valid`` cells; NaN elsewhere.
-
-    Row-major extraction with a stable sort, so equal values receive
-    consecutive ranks in row-major order -- fully deterministic.
+    Ties share their mean rank, so a constant band maps to 0.5 and contributes
+    nothing to an arg-max search.
     """
-    values = np.asarray(values, dtype=np.float64)
-    valid = np.asarray(valid, dtype=bool)
-    if values.shape != valid.shape:
-        raise ValueError("values and valid must share a shape")
-    out = np.full(values.shape, np.nan, dtype=np.float32)
-    v = values[valid]
-    if v.size == 0:
+    v = np.asarray(values, np.float64)
+    m = np.asarray(valid, bool) & np.isfinite(v)
+    out = np.zeros(v.shape, np.float64)
+    n = int(m.sum())
+    if n < 2:
         return out
-    order = np.argsort(v, kind="mergesort")
-    ranks = np.empty(v.size, dtype=np.float32)
-    ranks[order] = np.linspace(0.0, 1.0, v.size, dtype=np.float32)
-    out[valid] = ranks
+    vals = v[m]
+    order = np.argsort(vals, kind="stable")
+    ranks = np.empty(n, np.float64)
+    ranks[order] = np.arange(n, dtype=np.float64)
+    uniq, inv, cnt = np.unique(vals[order], return_inverse=True, return_counts=True)
+    if (cnt > 1).any():
+        sums = np.bincount(inv, weights=ranks[order])
+        means = (sums / cnt).astype(np.float64)
+        ranks[order] = means[inv]
+    out[m] = ranks / max(n - 1, 1)
     return out
 
 
-def _best_in_window(edge, eligible, blocked, y, x, offsets):
-    """Best (edge, -dist, -flat, ny, nx, dist) candidate for one dot, or None."""
-    height, width = edge.shape
-    best = None
-    for dy, dx, dist in offsets:
-        ny, nx = y + dy, x + dx
-        if not (0 <= ny < height and 0 <= nx < width):
-            continue
-        if blocked is not None and blocked[ny, nx]:
-            continue
-        if not eligible[ny, nx]:
-            continue
-        e = float(edge[ny, nx])
-        if not np.isfinite(e):
-            continue
-        key = (e, -dist, -(ny * width + nx))
-        if best is None or key > best[0]:
-            best = (key, ny, nx, dist, e)
-    return best
+def edge_response(bands: dict[str, np.ndarray], valid: np.ndarray,
+                  weights: dict[str, float] | None = None) -> np.ndarray:
+    """Weighted mean of the rank-normalised bands; ``weights`` must sum to 1."""
+    if not bands:
+        raise ValueError("edge_response needs at least one band")
+    keys = sorted(bands)
+    w = dict(weights or {k: 1.0 / len(keys) for k in keys})
+    if set(w) != set(keys):
+        raise ValueError("weights must name exactly the supplied bands")
+    total = float(sum(w.values()))
+    if abs(total - 1.0) > 1e-9:
+        raise ValueError(f"weights must sum to 1, got {total}")
+    out = np.zeros(np.asarray(valid).shape, np.float64)
+    for k in keys:
+        out += w[k] * rank01(bands[k], valid)
+    return out
 
 
-def snap_dots(dots: np.ndarray, edge: np.ndarray, eligible: np.ndarray,
-              radius: float, min_gain: float = 0.0) -> tuple[np.ndarray, dict]:
-    """Snap every dot to the strongest eligible edge cell within ``radius`` px.
+def window_offsets(radius: float) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """All integer offsets with ``0 < hypot(dy,dx) <= radius``, row-major."""
+    if radius <= 0:
+        raise ValueError("radius must be positive")
+    r = int(np.ceil(radius))
+    dy, dx = [], []
+    for j in range(-r, r + 1):
+        for i in range(-r, r + 1):
+            d = float(np.hypot(j, i))
+            if 0.0 < d <= radius + 1e-12:
+                dy.append(j)
+                dx.append(i)
+    return np.array(dy, np.int64), np.array(dx, np.int64), np.hypot(np.array(dy), np.array(dx))
 
-    ``eligible`` must already encode every destination rule except occupancy
-    (footprint, catalogue exclusion, valid edge, ...). An origin cell is
-    always allowed as the "stay" fallback even when it is not itself
-    eligible (e.g. its edge value is missing), so the parent is never
-    worsened by construction and the count is exact.
+
+@dataclass
+class SnapResult:
+    dots: np.ndarray            # bool, same count as the parent
+    displacement: np.ndarray    # float, one entry per *moved* dot
+    gain: np.ndarray            # response gain of each moved dot
+    src_y: np.ndarray           # parent row of each moved dot
+    src_x: np.ndarray
+    n_parent: int
+    n_snapped: int
+
+
+def snap_dots(dots: np.ndarray, response: np.ndarray, allowed: np.ndarray,
+              radius: float = 2.0, *, min_gain: float = 0.0) -> SnapResult:
+    """Move every dot at most ``radius`` px to the best free cell in its window.
+
+    ``allowed`` marks where a dot may land (footprint, off-catalogue, and any
+    other exclusion the caller wants to preserve).  A dot's own cell is always
+    allowed to keep.  Count is preserved exactly: the search is a single greedy
+    pass over dots ordered by their best available gain, so a cell can be taken
+    by at most one dot and the vacated cell is released for later dots.  The
+    pass is deterministic (stable sort on gain, then row-major index).
     """
-    dots = np.asarray(dots, dtype=bool)
-    edge = np.asarray(edge, dtype=np.float64)
-    eligible = np.asarray(eligible, dtype=bool)
-    if not (dots.shape == edge.shape == eligible.shape):
-        raise ValueError("dots, edge and eligible must share a shape")
-    if min_gain < 0:
-        raise ValueError("min_gain must be non-negative")
-    offsets = window_offsets(radius)
-    coords = np.argwhere(dots)                      # row-major
-    n = int(coords.shape[0])
-    width = dots.shape[1]
-    flat = coords[:, 0] * width + coords[:, 1]
+    dots = np.asarray(dots, bool)
+    response = np.asarray(response, np.float64)
+    allowed = np.asarray(allowed, bool) & np.isfinite(response)
+    if dots.shape != response.shape or dots.shape != allowed.shape:
+        raise ValueError("dots, response and allowed must share a shape")
+    if np.any(dots & ~allowed):
+        raise ValueError("a parent dot sits outside the landing mask; a SNAP variant "
+                         "cannot preserve the parent's exclusions")
+    dy, dx, dist = window_offsets(radius)
+    pad = int(np.ceil(radius))
+    resp_p = np.pad(response, pad, constant_values=-np.inf)
+    allow_p = np.pad(allowed, pad, constant_values=False)
+    occ = np.pad(dots, pad, constant_values=False)
+    ys, xs = np.nonzero(dots)
+    ys = ys + pad
+    xs = xs + pad
+    base = resp_p[ys, xs]
 
-    # Ideal (occupancy-free) gain per dot -> placement order.
-    ideal_gain = np.full(n, -np.inf)
-    origin_edge = np.full(n, np.nan)
-    for i, (y, x) in enumerate(coords):
-        e0 = float(edge[y, x])
-        origin_edge[i] = e0
-        if not np.isfinite(e0):
+    best_gain = np.full(ys.size, -np.inf, np.float64)
+    for j, i in zip(dy, dx):
+        cand = resp_p[ys + j, xs + i]
+        ok = allow_p[ys + j, xs + i]
+        best_gain = np.maximum(best_gain, np.where(ok, cand - base, -np.inf))
+
+    order = np.argsort(-best_gain, kind="stable")
+    moved_y, moved_x, moved_d, moved_g = [], [], [], []
+    for idx in order:
+        gain = best_gain[idx]
+        if not np.isfinite(gain) or gain <= min_gain:
+            break
+        y, x = int(ys[idx]), int(xs[idx])
+        best, by, bx = -np.inf, y, x
+        for j, i in zip(dy, dx):
+            yy, xx = y + j, x + i
+            if not allow_p[yy, xx] or occ[yy, xx]:
+                continue
+            r = resp_p[yy, xx]
+            if r > best:
+                best, by, bx = r, yy, xx
+        if not np.isfinite(best) or best - resp_p[y, x] <= min_gain:
             continue
-        best = _best_in_window(edge, eligible, None, int(y), int(x), offsets)
-        if best is not None:
-            ideal_gain[i] = best[4] - e0
-    order = sorted(range(n), key=lambda i: (-ideal_gain[i], int(flat[i])))
+        occ[y, x] = False
+        occ[by, bx] = True
+        moved_y.append(y)
+        moved_x.append(x)
+        moved_d.append(float(np.hypot(by - y, bx - x)))
+        moved_g.append(float(best - resp_p[y, x]))
 
-    reserved = dots.copy()         # origins of not-yet-placed dots
-    final = np.zeros_like(dots)    # cells already taken by placed dots
-    dest = coords.copy()
-    realised_gain = np.zeros(n)
-    displacement = np.zeros(n)
-    for i in order:
-        y, x = int(coords[i, 0]), int(coords[i, 1])
-        reserved[y, x] = False     # release own origin; it stays available
-        e0 = origin_edge[i]
-        if np.isfinite(e0):
-            blocked = reserved | final
-            blocked[y, x] = True   # origin handled as the stay fallback below
-            best = _best_in_window(edge, eligible, blocked, y, x, offsets)
-            if best is not None:
-                _, ny, nx, dist, e = best
-                gain = e - e0
-                if gain > 0.0 and gain >= min_gain - 1e-12:
-                    dest[i] = (ny, nx)
-                    realised_gain[i] = gain
-                    displacement[i] = dist
-        final[dest[i, 0], dest[i, 1]] = True
-
-    moved = displacement > 0
-    if int(final.sum()) != n:
-        raise AssertionError("SNAP must preserve the dot count exactly")
-    stats = {
-        "n_dots": n,
-        "n_moved": int(moved.sum()),
-        "n_stayed": int((~moved).sum()),
-        "mean_displacement_px": float(displacement.mean()) if n else 0.0,
-        "mean_displacement_moved_px": float(displacement[moved].mean()) if moved.any() else 0.0,
-        "max_displacement_px": float(displacement.max()) if n else 0.0,
-        "mean_realised_gain": float(realised_gain.mean()) if n else 0.0,
-        "mean_realised_gain_moved": float(realised_gain[moved].mean()) if moved.any() else 0.0,
-        "n_origin_edge_invalid": int((~np.isfinite(origin_edge)).sum()),
-        "radius_px": float(radius),
-        "min_gain": float(min_gain),
-        "displacement_px": displacement,
-        "realised_gain": realised_gain,
-    }
-    return final, stats
+    out = occ[pad:pad + dots.shape[0], pad:pad + dots.shape[1]].copy()
+    if int(out.sum()) != int(dots.sum()):
+        raise AssertionError(f"snap changed the dot count: {int(out.sum())} != {int(dots.sum())}")
+    if np.any(out & ~allowed):
+        raise AssertionError("a dot landed outside the allowed mask")
+    return SnapResult(dots=out,
+                      displacement=np.asarray(moved_d, np.float64),
+                      gain=np.asarray(moved_g, np.float64),
+                      src_y=np.asarray(moved_y, np.int64),
+                      src_x=np.asarray(moved_x, np.int64),
+                      n_parent=int(dots.sum()), n_snapped=len(moved_d))
 
 
-def snap_diff_stats(parent: np.ndarray, candidate: np.ndarray) -> dict:
-    """Parent-difference statistics for a same-count relocation."""
-    p = np.asarray(parent, dtype=bool)
-    c = np.asarray(candidate, dtype=bool)
+def nearest_neighbour(dots: np.ndarray) -> np.ndarray:
+    """Euclidean distance from each dot to its nearest other dot (px)."""
+    ys, xs = np.nonzero(np.asarray(dots, bool))
+    if ys.size < 2:
+        return np.zeros(ys.size, np.float64)
+    pts = np.column_stack([ys, xs]).astype(np.float64)
+    d, _ = cKDTree(pts).query(pts, k=2)
+    return d[:, 1]
+
+
+def movement_stats(parent: np.ndarray, result: SnapResult, response: np.ndarray,
+                   catalogue_distance: np.ndarray) -> dict:
+    """Everything the brief asks a SNAP variant to report, plus its confounder.
+
+    Displacements come from :class:`SnapResult`, i.e. from the algorithm that
+    produced the moves -- never re-derived by matching the deleted and added
+    cells (both sets are unordered, so a rematch would be arbitrary).
+    """
+    p = np.asarray(parent, bool)
+    c = np.asarray(result.dots, bool)
     if p.shape != c.shape:
-        raise ValueError("parent and candidate must share a shape")
-    n0, n1 = int(p.sum()), int(c.sum())
-    removed = int((p & ~c).sum())
-    added = int((c & ~p).sum())
+        raise ValueError("parent and child must share a shape")
+    if int(p.sum()) != int(c.sum()):
+        raise ValueError("SNAP must preserve the dot count")
+    if np.any(c & ~np.isfinite(response)):
+        raise ValueError("a dot landed on a non-finite response cell")
+    disp = np.asarray(result.displacement, np.float64)
+    n = int(p.sum())
+    nn_before = nearest_neighbour(p)
+    nn_after = nearest_neighbour(c)
+    cat_before = np.asarray(catalogue_distance, np.float64)[p]
+    cat_after = np.asarray(catalogue_distance, np.float64)[c]
+    moved = int(result.n_snapped)
     return {
-        "n_parent": n0,
-        "n_candidate": n1,
+        "n_parent": n,
+        "n_candidate": int(c.sum()),
+        "n_snapped": moved,
+        "pct_snapped": round(100.0 * moved / float(n), 4),
+        "mean_displacement_px_moved": round(float(disp.mean()), 4) if disp.size else 0.0,
+        "median_displacement_px_moved": round(float(np.median(disp)), 4) if disp.size else 0.0,
+        "max_displacement_px": round(float(disp.max()), 4) if disp.size else 0.0,
+        "mean_displacement_px_all_dots": round(float(disp.sum()) / float(n), 4),
+        "mean_response_gain_moved": round(float(np.asarray(result.gain).mean()), 6) if moved else 0.0,
+        "mean_response_before_dots": round(float(np.asarray(response)[p].mean()), 6),
+        "mean_response_after_dots": round(float(np.asarray(response)[c].mean()), 6),
+        "nn_distance_before_mean_px": round(float(nn_before.mean()), 4),
+        "nn_distance_after_mean_px": round(float(nn_after.mean()), 4),
+        "nn_distance_before_median_px": round(float(np.median(nn_before)), 4),
+        "nn_distance_after_median_px": round(float(np.median(nn_after)), 4),
+        "nn_lt_2px_before": int((nn_before < 2.0).sum()),
+        "nn_lt_2px_after": int((nn_after < 2.0).sum()),
+        "catalogue_distance_before_mean_px": round(float(cat_before.mean()), 4),
+        "catalogue_distance_after_mean_px": round(float(cat_after.mean()), 4),
+        "catalogue_distance_before_min_px": round(float(cat_before.min()), 4),
+        "catalogue_distance_after_min_px": round(float(cat_after.min()), 4),
+        "dots_moved_closer_to_catalogue": int((cat_after < cat_before).sum()),
+        "dots_moved_farther_from_catalogue": int((cat_after > cat_before).sum()),
+        "dots_on_catalogue": int((c & (np.asarray(catalogue_distance) == 0.0)).sum()),
+    }
+
+
+def move_diff(parent: np.ndarray, child: np.ndarray, catalogue_distance: np.ndarray) -> dict:
+    """Parent-difference statistics for a *movement* axis.
+
+    ``gems86.prune.diff_stats`` refuses any variant that adds a dot -- correct
+    for PRUNE, wrong here: a SNAP move necessarily adds a cell and deletes one.
+    The same keys are returned so the ledger's columns mean the same thing.
+    """
+    p = np.asarray(parent, bool)
+    c = np.asarray(child, bool)
+    d = np.asarray(catalogue_distance, np.float64)
+    if p.shape != c.shape:
+        raise ValueError("parent and child must share a shape")
+    n_parent = int(p.sum())
+    n_child = int(c.sum())
+    if n_parent != n_child:
+        raise ValueError("SNAP must preserve the dot count")
+    removed = p & ~c
+    added = c & ~p
+    if int(removed.sum()) != int(added.sum()):
+        raise ValueError("SNAP is not a bijection")
+    changed = int(removed.sum() + added.sum())
+    return {
+        "n_parent": n_parent,
+        "n_candidate": n_child,
         "retained": int((p & c).sum()),
-        "removed": removed,
-        "added": added,
-        # house/ledger convention: changed grid cells over the parent dot count
-        "pct_of_parent_changed": round(100.0 * (removed + added) / n0, 4) if n0 else 0.0,
-        "pct_dots_moved": round(100.0 * removed / n0, 4) if n0 else 0.0,
-        "kept_fraction": round(float((p & c).sum()) / n0, 6) if n0 else 0.0,
+        "removed": int(removed.sum()),
+        "added": int(added.sum()),
+        "pct_of_parent_changed": round(100.0 * changed / n_parent, 4),
+        "pct_changed": round(100.0 * changed / n_parent, 4),
+        "pct_removed": round(100.0 * int(removed.sum()) / n_parent, 4),
+        "pct_added": round(100.0 * int(added.sum()) / n_parent, 4),
+        "kept_fraction": round(float((p & c).sum()) / n_parent, 6),
+        "kept_distance_min_px": round(float(d[c].min()), 4),
+        "count_exact": True,
+        "axis_note": "positions changed only; no dot created, deleted or re-weighted",
     }

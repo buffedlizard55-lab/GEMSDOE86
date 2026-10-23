@@ -1,1160 +1,452 @@
 {
-  "schema": "gems86.snap-axis.v1",
-  "generated_utc": "2026-10-23T15:50:05Z",
-  "elapsed_s": 327.4,
-  "axis": "SNAP",
-  "axis_assignment": "human left AXIS blank and skipped the assignment prompt; SNAP taken from SLOT_PLAN.md's preregistered slot-2 axis (PRUNE spent, MASS blocked by IR-86-PRUNE-02)",
+  "generated_utc": "2026-10-23T15:44:34Z",
+  "elapsed_seconds": 129.9,
   "parent": {
-    "id": "h33-h33-2-b2",
-    "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
     "n_dots": 37654,
-    "live_score_0p2778": "CLAIM (no receipt in ledger/)",
-    "rebuild": {
-      "base_dots": 40199,
-      "rebuilt_dots": 37654,
-      "differing_px": 0,
-      "rebuilt_bytes": 219065,
-      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "byte_identical_to_published_parent": true,
-      "recipe": "pinned solo-d2.8 base, delete dots with d(catalogue) <= 2.0 px; catalogue-profile deflate/predictor=3/zlevel=9/tiled-256 writer"
-    },
-    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
-    "nearest_neighbour": {
-      "mean_px": 3.7351,
-      "median_px": 3.0,
-      "min_px": 2.8284,
-      "frac_lt_2p8px": 0.0
-    }
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
   },
-  "inputs_verified": {
-    "sample_submission": {
-      "path": "data/bridge/sample_submission.tif",
-      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "bytes": 1599597,
-      "verified": true,
-      "in_data_manifest": true,
-      "pin_source": "registry/data_manifest.json",
-      "organizer_authenticated": false
-    },
-    "existing_faults": {
-      "path": "data/bridge/existing_faults.tif",
+  "axis": "SNAP",
+  "axis_assignment": "UNASSIGNED BY HUMAN this session; SNAP chosen because SLOT_PLAN.md's slot 2 pre-registered SNAP (with PRUNE declared crowded after three sessions) and because its two bands restore from a verified pin",
+  "input_pins": {
+    "existing_faults.tif": {
       "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "bytes": 425830,
-      "verified": true,
-      "in_data_manifest": true,
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
       "pin_source": "registry/data_manifest.json",
-      "organizer_authenticated": false
+      "path": "data/bridge/existing_faults.tif"
     },
-    "training_features": {
-      "path": "data/bridge/training_features.tif",
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "training_features.tif": {
       "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-      "bytes": 418912844,
-      "verified": true,
-      "in_data_manifest": true,
+      "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
       "pin_source": "registry/data_manifest.json",
-      "organizer_authenticated": false
+      "path": "data/bridge/training_features.tif"
     },
-    "parent_R0": {
-      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
       "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "bytes": 219065,
-      "verified": true,
-      "in_data_manifest": true,
-      "pin_source": "registry/data_manifest.json",
-      "organizer_authenticated": false
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin_source": "data/restore_receipt.json",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
     },
-    "base_solo_d28": {
-      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
       "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
-      "bytes": 1595850,
-      "verified": true,
-      "in_data_manifest": false,
-      "pin_source": "scripts/build_r0_prune.py PINS + ledger row",
-      "organizer_authenticated": false
+      "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin_source": "PINS in scripts/build_r0_prune.py + scripts/run_prune_ladder.py",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "matches_expected": true
     }
   },
-  "seed": 20261023,
-  "git_sha": "6c27868c8348fd2f58712c3379dfd7b1ae2b6b4a",
-  "edge": {
-    "bands": [
-      "tmi_hg (magnitude)",
-      "|iso_grav_anom_hg| (signed band)"
-    ],
-    "combination": "mean of footprint percentiles",
-    "detail": {
-      "tmi_hg": {
-        "valid_in_footprint": 5164312,
-        "parent_dots_invalid": 16,
-        "parent_mean_percentile": 0.5739
-      },
-      "iso_grav_anom_hg": {
-        "valid_in_footprint": 5164312,
-        "parent_dots_invalid": 16,
-        "parent_mean_percentile": 0.5163
-      },
-      "combined_parent_mean_percentile": 0.5451,
-      "parent_dots_edge_valid": 37638
-    },
-    "leakage_canary_report_only": {
-      "evidence_class": "REPORT-ONLY (leakage canary)",
-      "design": "all 60,988 catalogue px vs 300,000 seeded non-catalogue footprint px",
-      "auc": {
-        "tmi_hg": 0.527,
-        "iso_grav_anom_hg": 0.5285,
-        "combined_edge": 0.5409
-      },
-      "threshold": 0.9,
-      "status": "PASS"
-    }
+  "parent_rebuild": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
   },
-  "destination_rule": "footprint & off-catalogue & d(catalogue)>2.0 px (parent's own exclusion; see IR-86-SNAP-01) & valid edge; gain-ordered greedy with origin reservation (src/gems86/snap.py)",
-  "proxy": {
-    "evidence_class": "PROXY",
-    "design": "catalogue hide-and-recover, 20% of 8-connected catalogue components withheld per draw, visible catalogue pixel-exactly masked as known, exact alpha=0.2/beta=0.8/R=3px DTI (gems57.metric.dti_exact)",
-    "draws": 6,
-    "withheld_positive_px_mean": 11771.166666666666,
-    "candidates": {
-      "R0": {
-        "proxy_dti_mean": 0.0043589754580666005,
-        "proxy_dti_sd": 0.0006291320836759678,
-        "per_draw": [
-          0.004932,
-          0.004152,
-          0.004291,
-          0.003338,
-          0.005107,
-          0.004334
-        ],
-        "delta_vs_R0_mean": 0.0,
-        "delta_vs_R0_ci95": [
-          0.0,
-          0.0
-        ],
-        "folds_improved": 0
+  "diagnostics": {
+    "lag1_autocorr_raw": 0.977583,
+    "seed_null": 86,
+    "arms": {
+      "NULL-random-r2": {
+        "pct_snapped": 91.2625,
+        "mean_displacement_px": 1.4537,
+        "nn_distance_after_mean_px": 3.5214,
+        "nn_lt_2px_after": 4875,
+        "mean_response_gain_moved": 0.46407,
+        "is_control": true,
+        "writes_no_raster": true,
+        "proxy_mean": 0.00316,
+        "proxy_paired_delta_vs_R0": -0.001196,
+        "proxy_paired_ci95": [
+          -0.001273,
+          -0.001118
+        ]
       },
-      "snapr1": {
-        "proxy_dti_mean": 0.003368638366955098,
-        "proxy_dti_sd": 0.00042111346434617054,
-        "per_draw": [
-          0.003855,
-          0.003224,
-          0.003201,
-          0.002776,
-          0.003863,
-          0.003294
-        ],
-        "delta_vs_R0_mean": -0.0009903370911115022,
-        "delta_vs_R0_ci95": [
-          -0.0012349704063357887,
-          -0.0007457037758872157
-        ],
-        "folds_improved": 0
+      "smooth1-r2": {
+        "pct_snapped": 98.9138,
+        "mean_displacement_px": 1.8264,
+        "nn_distance_after_mean_px": 3.3397,
+        "nn_lt_2px_after": 7882,
+        "mean_response_gain_moved": 0.043041,
+        "is_control": false,
+        "writes_no_raster": true,
+        "proxy_mean": 0.002563,
+        "proxy_paired_delta_vs_R0": -0.001792,
+        "proxy_paired_ci95": [
+          -0.001999,
+          -0.00161
+        ]
       },
-      "snapr2": {
-        "proxy_dti_mean": 0.004409882288896882,
-        "proxy_dti_sd": 0.0003833292354942667,
-        "per_draw": [
-          0.004676,
-          0.00427,
-          0.004523,
-          0.003779,
-          0.004886,
-          0.004326
-        ],
-        "delta_vs_R0_mean": 5.0906830830280384e-05,
-        "delta_vs_R0_ci95": [
-          -0.00023136251720480238,
-          0.00033317617886536314
-        ],
-        "folds_improved": 3
-      },
-      "snapr2g10": {
-        "proxy_dti_mean": 0.0043686272147172404,
-        "proxy_dti_sd": 0.0005759534209864478,
-        "per_draw": [
-          0.004811,
-          0.004041,
-          0.004338,
-          0.003459,
-          0.005086,
-          0.004477
-        ],
-        "delta_vs_R0_mean": 9.651756650639413e-06,
-        "delta_vs_R0_ci95": [
-          -0.00010951266849079954,
-          0.00012881618179207837
-        ],
-        "folds_improved": 3
-      }
-    }
-  },
-  "proxy_verdict": "REPORT ONLY, structurally floored for a catalogue-avoiding parent exactly as in IR-86-PRUNE-03: candidates (and R0) keep every dot >2 px from the *full* catalogue, so withheld catalogue pixels earn almost no credit. Never a gate. The MODEL prediction centres were set from dose + the SGMC control's dose-response, not from this floored instrument.",
-  "sgmc_control": {
-    "evidence_class": "PROXY",
-    "status": "MEASURED",
-    "sgmc_sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
-    "truth": "derived SGMC faults, off-catalogue, Euclidean d(catalogue) > 3 px",
-    "n_truth_px": 62122,
-    "candidates": {
-      "R0": {
-        "dti": 0.09538611460482532,
-        "tp": 5517.63670255971,
-        "fp": 35220.77352594685,
-        "fn": 56604.363297440286,
-        "n_truth": 62122,
-        "n_emitted": 37654
-      },
-      "snapr1": {
-        "dti": 0.09221116464911741,
-        "tp": 5331.52514968578,
-        "fp": 35273.72998776626,
-        "fn": 56790.47485031422,
-        "n_truth": 62122,
-        "n_emitted": 37654
-      },
-      "snapr2": {
-        "dti": 0.08650530913060533,
-        "tp": 4997.162351812571,
-        "fp": 35350.42485289166,
-        "fn": 57124.83764818743,
-        "n_truth": 62122,
-        "n_emitted": 37654
-      },
-      "snapr2g10": {
-        "dti": 0.09329020489412475,
-        "tp": 5394.773811438492,
-        "fp": 35256.574610029355,
-        "fn": 56727.22618856151,
-        "n_truth": 62122,
-        "n_emitted": 37654
+      "smooth2-r2": {
+        "pct_snapped": 99.5512,
+        "mean_displacement_px": 1.8843,
+        "nn_distance_after_mean_px": 3.3856,
+        "nn_lt_2px_after": 6172,
+        "mean_response_gain_moved": 0.030314,
+        "is_control": false,
+        "writes_no_raster": true,
+        "proxy_mean": 0.001199,
+        "proxy_paired_delta_vs_R0": -0.003156,
+        "proxy_paired_ci95": [
+          -0.00337,
+          -0.002959
+        ]
       }
     },
-    "delta_vs_R0": {
-      "snapr1": -0.003174949955707912,
-      "snapr2": -0.008880805474219988,
-      "snapr2g10": -0.0020959097107005747
+    "verdict": "no positional information detectable: every arm's paired proxy delta is within +/-0.003 of the random control's"
+  },
+  "response": {
+    "bands": {
+      "tmi_hg": 3,
+      "iso_grav_anom_hg": 18
     },
-    "note": "independent-map control, not hidden competition truth; never a gate"
-  },
-  "coverage_control": {
-    "evidence_class": "PROXY-CONTROL",
-    "design": "whole catalogue as truth, no masking; report-only, never a gate",
-    "candidates": {
-      "R0": {
-        "dti": 0.006709118968955278,
-        "tp": 377.9998967710639,
-        "fp": 37376.06204680242,
-        "n_truth": 60988
+    "stack_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "transform": "rank-normalise each band over footprint&~catalogue, then weighted mean",
+    "weights": {
+      "r1p000": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
       },
-      "snapr1": {
-        "dti": 0.005430743146029307,
-        "tp": 305.9506616008498,
-        "fp": 37426.02275974011,
-        "n_truth": 60988
+      "r2p000": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
       },
-      "snapr2": {
-        "dti": 0.006867160538440476,
-        "tp": 386.8964842921313,
-        "fp": 37361.583740679416,
-        "n_truth": 60988
-      },
-      "snapr2g10": {
-        "dti": 0.006635557327029356,
-        "tp": 373.85210986036094,
-        "fp": 37377.7723449442,
-        "n_truth": 60988
+      "r2p000-grav": {
+        "tmi_hg": 0.0,
+        "iso_grav_anom_hg": 1.0
       }
-    }
+    },
+    "landing_mask": "footprint & ~catalogue & catalogue_distance > 2.0 px"
   },
-  "variants": [
-    {
-      "id": "h33-h33-2-b2-snapr1-20261023-adefae6a",
-      "parent": "h33-h33-2-b2",
-      "axis": "snap",
-      "value": "r1",
-      "rule": "each dot to max mean-percentile(tmi_hg,|iso_grav_anom_hg|) within Euclidean 1.0 px, min realised gain 0.0; destinations: footprint, off-catalogue, d(catalogue)>2 px, valid edge",
-      "n_dots": 37654,
-      "pct_changed": 193.7802,
-      "pct_dots_moved": 96.8901,
-      "sha256": "ca91076ae31e2ca266d4f5bfe8f34981bd790133295bf1051de2b6eecf34a5aa",
-      "sha256_zeros": "adefae6a6ab19370141b25ecbd5fa2ac575138e5195ce0b49e4506ab44c59e04",
-      "sha8": "adefae6a",
-      "files": [
-        "releases/h33-h33-2-b2-snapr1-20261023-adefae6a.tif",
-        "releases/h33-h33-2-b2-snapr1-20261023-adefae6a-zeros.tif"
-      ],
-      "status": "BUILT",
-      "diff": {
+  "catalogue_as_truth_decomposition": {
+    "tp": 377.9998967710639,
+    "fp": 37376.06204680242,
+    "fn": 60610.00010322894,
+    "n_truth": 60988,
+    "n_emitted": 37654,
+    "dti": 0.006709118968955278
+  },
+  "variants": {
+    "r1p000": {
+      "spec": {
+        "radius": 1.0,
+        "tag": "SNAP-r1p000",
+        "predicted": -0.004,
+        "band": [
+          -0.012,
+          0.004
+        ],
+        "mechanism": "one-pixel re-centring: the smallest move the grid allows, so the coverage cost of convergence is also the smallest"
+      },
+      "weights": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "stats": {
         "n_parent": 37654,
         "n_candidate": 37654,
-        "retained": 1171,
-        "removed": 36483,
-        "added": 36483,
-        "pct_of_parent_changed": 193.7802,
-        "pct_dots_moved": 96.8901,
-        "kept_fraction": 0.031099
-      },
-      "validation_nan": {
-        "file": "releases/h33-h33-2-b2-snapr1-20261023-adefae6a.tif",
-        "bytes": 355937,
-        "sha256": "ca91076ae31e2ca266d4f5bfe8f34981bd790133295bf1051de2b6eecf34a5aa",
-        "mode": "nan",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": NaN
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.00805480787318,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "nan_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "validation_zeros": {
-        "file": "releases/h33-h33-2-b2-snapr1-20261023-adefae6a-zeros.tif",
-        "bytes": 219647,
-        "sha256": "adefae6a6ab19370141b25ecbd5fa2ac575138e5195ce0b49e4506ab44c59e04",
-        "mode": "zeros",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": null
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.00805480787318,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "zeros_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "vendored_validate_zeros_pass": true,
-      "gate_all_pass": true,
-      "exact_hash_duplicate": {
-        "sha256": "ca91076ae31e2ca266d4f5bfe8f34981bd790133295bf1051de2b6eecf34a5aa",
-        "sha8": "ca91076a",
-        "exact_hash_duplicates": [],
-        "duplicate": false
-      },
-      "snap_stats": {
-        "n_moved": 36483,
-        "n_stayed": 1171,
-        "mean_displacement_px": 0.9689,
-        "mean_displacement_moved_px": 1.0,
-        "median_displacement_moved_px": 1.0,
+        "n_snapped": 36494,
+        "pct_snapped": 96.9193,
+        "mean_displacement_px_moved": 1.0,
+        "median_displacement_px_moved": 1.0,
         "max_displacement_px": 1.0,
-        "mean_realised_gain": 0.0359,
-        "mean_realised_gain_moved": 0.037,
-        "median_realised_gain_moved": 0.0246,
-        "n_origin_edge_invalid_stayed": 16,
-        "mean_edge_parent": 0.5451,
-        "mean_edge_candidate": 0.581
+        "mean_displacement_px_all_dots": 0.9692,
+        "mean_response_gain_moved": 0.034651,
+        "mean_response_before_dots": 0.530794,
+        "mean_response_after_dots": 0.564378,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.522,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 3.0,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 3448,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 28.9993,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18519,
+        "dots_moved_farther_from_catalogue": 18710,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 1160,
+          "removed": 36494,
+          "added": 36494,
+          "pct_of_parent_changed": 193.8386,
+          "pct_changed": 193.8386,
+          "pct_removed": 96.9193,
+          "pct_added": 96.9193,
+          "kept_fraction": 0.030807,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
       },
-      "nearest_neighbour": {
-        "mean_px": 3.5236,
-        "median_px": 3.0,
-        "min_px": 1.0,
-        "frac_lt_2p8px": 0.2842
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.0,
+        "n_snapped": 36494,
+        "dk_per_moved_dot": 0.33333,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0,
+          0.0864
+        ],
+        "midpoint": 0.0238,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
       },
       "proxy": {
-        "proxy_dti_mean": 0.003368638366955098,
-        "delta_vs_R0_mean": -0.0009903370911115022,
-        "delta_vs_R0_ci95": [
-          -0.0012349704063357887,
-          -0.0007457037758872157
-        ],
-        "folds_improved": 0,
-        "draws": 6,
-        "evidence_class": "PROXY"
-      },
-      "coverage_control_dti": 0.005430743146029307,
-      "sgmc_delta_vs_R0": -0.003174949955707912,
-      "ring_table": {
-        "evidence_class": "MEASUREMENT (label-free)",
-        "note": "distance to the mapped catalogue; enrichment > 1 = hugging the traces",
-        "rows": [
-          {
-            "ring_px": [
-              0.0,
-              2.0
-            ],
-            "footprint_px": 243560,
-            "dots": 0,
-            "footprint_share": 0.047134,
-            "dot_share": 0.0,
-            "enrichment": 0.0
-          },
-          {
-            "ring_px": [
-              2.0,
-              3.0
-            ],
-            "footprint_px": 140246,
-            "dots": 1962,
-            "footprint_share": 0.027141,
-            "dot_share": 0.052106,
-            "enrichment": 1.9198
-          },
-          {
-            "ring_px": [
-              3.0,
-              4.0
-            ],
-            "footprint_px": 119588,
-            "dots": 1794,
-            "footprint_share": 0.023143,
-            "dot_share": 0.047644,
-            "enrichment": 2.0587
-          },
-          {
-            "ring_px": [
-              4.0,
-              5.0
-            ],
-            "footprint_px": 149596,
-            "dots": 1851,
-            "footprint_share": 0.02895,
-            "dot_share": 0.049158,
-            "enrichment": 1.698
-          },
-          {
-            "ring_px": [
-              5.0,
-              6.0
-            ],
-            "footprint_px": 113774,
-            "dots": 1206,
-            "footprint_share": 0.022018,
-            "dot_share": 0.032028,
-            "enrichment": 1.4547
-          },
-          {
-            "ring_px": [
-              6.0,
-              8.0
-            ],
-            "footprint_px": 235340,
-            "dots": 2334,
-            "footprint_share": 0.045543,
-            "dot_share": 0.061985,
-            "enrichment": 1.361
-          },
-          {
-            "ring_px": [
-              8.0,
-              10.0
-            ],
-            "footprint_px": 246066,
-            "dots": 2248,
-            "footprint_share": 0.047619,
-            "dot_share": 0.059701,
-            "enrichment": 1.2537
-          },
-          {
-            "ring_px": [
-              10.0,
-              15.0
-            ],
-            "footprint_px": 535508,
-            "dots": 4296,
-            "footprint_share": 0.103633,
-            "dot_share": 0.114091,
-            "enrichment": 1.1009
-          },
-          {
-            "ring_px": [
-              15.0,
-              20.0
-            ],
-            "footprint_px": 473662,
-            "dots": 3412,
-            "footprint_share": 0.091664,
-            "dot_share": 0.090615,
-            "enrichment": 0.9886
-          },
-          {
-            "ring_px": [
-              20.0,
-              30.0
-            ],
-            "footprint_px": 765981,
-            "dots": 5048,
-            "footprint_share": 0.148234,
-            "dot_share": 0.134063,
-            "enrichment": 0.9044
-          },
-          {
-            "ring_px": [
-              30.0,
-              50.0
-            ],
-            "footprint_px": 1016593,
-            "dots": 6007,
-            "footprint_share": 0.196733,
-            "dot_share": 0.159532,
-            "enrichment": 0.8109
-          },
-          {
-            "ring_px": [
-              50.0,
-              null
-            ],
-            "footprint_px": 1066471,
-            "dots": 7496,
-            "footprint_share": 0.206386,
-            "dot_share": 0.199076,
-            "enrichment": 0.9646
-          }
+        "mean": 0.003533,
+        "paired_delta_vs_R0": -0.000822,
+        "paired_ci95": [
+          -0.000972,
+          -0.000675
         ]
-      },
-      "predicted_change": "-0.002 (MODEL, band -0.008..+0.003). One-pixel hill-climb: 96.9% of dots step 1 px for a median edge-percentile gain of only 0.025, and 28.4% of dots end with a neighbour closer than the parent's 2.8 px floor. Mostly swapping near-equal cells; the SGMC control moves the same way (-0.0032).",
-      "form_note_140": "R0 h33-h33-2-b2 SNAP r1: dots <=1px to strongest tmi/grav edge, 37654 dots; pred -0.002 MODEL",
-      "form_note_chars": 93,
-      "receipt_score": "",
-      "receipt_date": ""
+      }
     },
-    {
-      "id": "h33-h33-2-b2-snapr2-20261023-4d3834c9",
-      "parent": "h33-h33-2-b2",
-      "axis": "snap",
-      "value": "r2",
-      "rule": "each dot to max mean-percentile(tmi_hg,|iso_grav_anom_hg|) within Euclidean 2.0 px, min realised gain 0.0; destinations: footprint, off-catalogue, d(catalogue)>2 px, valid edge",
-      "n_dots": 37654,
-      "pct_changed": 196.8184,
-      "pct_dots_moved": 98.4092,
-      "sha256": "771d0ba35f1df5857b70593119645a986261a49fe96cbd19308f1d687cf880fe",
-      "sha256_zeros": "4d3834c9b86c3b896a9fd88d0be03428b0917f36ab64ec42e72d75804035fe7d",
-      "sha8": "4d3834c9",
-      "files": [
-        "releases/h33-h33-2-b2-snapr2-20261023-4d3834c9.tif",
-        "releases/h33-h33-2-b2-snapr2-20261023-4d3834c9-zeros.tif"
-      ],
-      "status": "BUILT",
-      "diff": {
+    "r2p000": {
+      "spec": {
+        "radius": 2.0,
+        "tag": "SNAP-r2p000",
+        "predicted": -0.006,
+        "band": [
+          -0.02,
+          0.006
+        ],
+        "mechanism": "two-pixel re-centring: the full positional uncertainty the GeoDAWN 400 m line spacing implies (2 px off earns k=0.33, centred 1.0)"
+      },
+      "weights": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "stats": {
         "n_parent": 37654,
         "n_candidate": 37654,
-        "retained": 599,
-        "removed": 37055,
-        "added": 37055,
-        "pct_of_parent_changed": 196.8184,
-        "pct_dots_moved": 98.4092,
-        "kept_fraction": 0.015908
-      },
-      "validation_nan": {
-        "file": "releases/h33-h33-2-b2-snapr2-20261023-4d3834c9.tif",
-        "bytes": 355103,
-        "sha256": "771d0ba35f1df5857b70593119645a986261a49fe96cbd19308f1d687cf880fe",
-        "mode": "nan",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": NaN
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.018650686019495,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "nan_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "validation_zeros": {
-        "file": "releases/h33-h33-2-b2-snapr2-20261023-4d3834c9-zeros.tif",
-        "bytes": 219239,
-        "sha256": "4d3834c9b86c3b896a9fd88d0be03428b0917f36ab64ec42e72d75804035fe7d",
-        "mode": "zeros",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": null
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.018650686019495,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "zeros_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "vendored_validate_zeros_pass": true,
-      "gate_all_pass": true,
-      "exact_hash_duplicate": {
-        "sha256": "771d0ba35f1df5857b70593119645a986261a49fe96cbd19308f1d687cf880fe",
-        "sha8": "771d0ba3",
-        "exact_hash_duplicates": [],
-        "duplicate": false
-      },
-      "snap_stats": {
-        "n_moved": 37055,
-        "n_stayed": 599,
-        "mean_displacement_px": 1.7675,
-        "mean_displacement_moved_px": 1.7961,
-        "median_displacement_moved_px": 2.0,
+        "n_snapped": 37066,
+        "pct_snapped": 98.4384,
+        "mean_displacement_px_moved": 1.7895,
+        "median_displacement_px_moved": 2.0,
         "max_displacement_px": 2.0,
-        "mean_realised_gain": 0.0594,
-        "mean_realised_gain_moved": 0.0604,
-        "median_realised_gain_moved": 0.0424,
-        "n_origin_edge_invalid_stayed": 16,
-        "mean_edge_parent": 0.5451,
-        "mean_edge_candidate": 0.6045
+        "mean_displacement_px_all_dots": 1.7615,
+        "mean_response_gain_moved": 0.055584,
+        "mean_response_before_dots": 0.530794,
+        "mean_response_after_dots": 0.58551,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.345,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 2.8284,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 8341,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 29.0003,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18583,
+        "dots_moved_farther_from_catalogue": 18781,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 588,
+          "removed": 37066,
+          "added": 37066,
+          "pct_of_parent_changed": 196.8768,
+          "pct_changed": 196.8768,
+          "pct_removed": 98.4384,
+          "pct_added": 98.4384,
+          "kept_fraction": 0.015616,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
       },
-      "nearest_neighbour": {
-        "mean_px": 3.34,
-        "median_px": 2.8284,
-        "min_px": 1.0,
-        "frac_lt_2p8px": 0.4007
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.7895,
+        "n_snapped": 37066,
+        "dk_per_moved_dot": 0.5965,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0001,
+          0.157
+        ],
+        "midpoint": 0.0432,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
       },
       "proxy": {
-        "proxy_dti_mean": 0.004409882288896882,
-        "delta_vs_R0_mean": 5.0906830830280384e-05,
-        "delta_vs_R0_ci95": [
-          -0.00023136251720480238,
-          0.00033317617886536314
-        ],
-        "folds_improved": 3,
-        "draws": 6,
-        "evidence_class": "PROXY"
-      },
-      "coverage_control_dti": 0.006867160538440476,
-      "sgmc_delta_vs_R0": -0.008880805474219988,
-      "ring_table": {
-        "evidence_class": "MEASUREMENT (label-free)",
-        "note": "distance to the mapped catalogue; enrichment > 1 = hugging the traces",
-        "rows": [
-          {
-            "ring_px": [
-              0.0,
-              2.0
-            ],
-            "footprint_px": 243560,
-            "dots": 0,
-            "footprint_share": 0.047134,
-            "dot_share": 0.0,
-            "enrichment": 0.0
-          },
-          {
-            "ring_px": [
-              2.0,
-              3.0
-            ],
-            "footprint_px": 140246,
-            "dots": 2089,
-            "footprint_share": 0.027141,
-            "dot_share": 0.055479,
-            "enrichment": 2.0441
-          },
-          {
-            "ring_px": [
-              3.0,
-              4.0
-            ],
-            "footprint_px": 119588,
-            "dots": 1485,
-            "footprint_share": 0.023143,
-            "dot_share": 0.039438,
-            "enrichment": 1.7041
-          },
-          {
-            "ring_px": [
-              4.0,
-              5.0
-            ],
-            "footprint_px": 149596,
-            "dots": 1952,
-            "footprint_share": 0.02895,
-            "dot_share": 0.05184,
-            "enrichment": 1.7907
-          },
-          {
-            "ring_px": [
-              5.0,
-              6.0
-            ],
-            "footprint_px": 113774,
-            "dots": 1284,
-            "footprint_share": 0.022018,
-            "dot_share": 0.0341,
-            "enrichment": 1.5487
-          },
-          {
-            "ring_px": [
-              6.0,
-              8.0
-            ],
-            "footprint_px": 235340,
-            "dots": 2347,
-            "footprint_share": 0.045543,
-            "dot_share": 0.062331,
-            "enrichment": 1.3686
-          },
-          {
-            "ring_px": [
-              8.0,
-              10.0
-            ],
-            "footprint_px": 246066,
-            "dots": 2232,
-            "footprint_share": 0.047619,
-            "dot_share": 0.059277,
-            "enrichment": 1.2448
-          },
-          {
-            "ring_px": [
-              10.0,
-              15.0
-            ],
-            "footprint_px": 535508,
-            "dots": 4329,
-            "footprint_share": 0.103633,
-            "dot_share": 0.114968,
-            "enrichment": 1.1094
-          },
-          {
-            "ring_px": [
-              15.0,
-              20.0
-            ],
-            "footprint_px": 473662,
-            "dots": 3387,
-            "footprint_share": 0.091664,
-            "dot_share": 0.089951,
-            "enrichment": 0.9813
-          },
-          {
-            "ring_px": [
-              20.0,
-              30.0
-            ],
-            "footprint_px": 765981,
-            "dots": 5051,
-            "footprint_share": 0.148234,
-            "dot_share": 0.134142,
-            "enrichment": 0.9049
-          },
-          {
-            "ring_px": [
-              30.0,
-              50.0
-            ],
-            "footprint_px": 1016593,
-            "dots": 6011,
-            "footprint_share": 0.196733,
-            "dot_share": 0.159638,
-            "enrichment": 0.8114
-          },
-          {
-            "ring_px": [
-              50.0,
-              null
-            ],
-            "footprint_px": 1066471,
-            "dots": 7487,
-            "footprint_share": 0.206386,
-            "dot_share": 0.198837,
-            "enrichment": 0.9634
-          }
+        "mean": 0.004495,
+        "paired_delta_vs_R0": 0.000139,
+        "paired_ci95": [
+          1.7e-05,
+          0.000258
         ]
-      },
-      "predicted_change": "-0.006 (MODEL, band -0.018..+0.006). Strongest dose: 98.4% of dots move (mean 1.77 px, median gain 0.042), 40.1% acquire a sub-2.8 px neighbour, and the SGMC control is worst here (-0.0089). Unconditional window-argmax mostly chases gradient noise and clusters onto crests, redundant under the max-kernel. A dose-escalation instrument, not a slot candidate.",
-      "form_note_140": "R0 h33-h33-2-b2 SNAP r2: dots <=2px to strongest tmi/grav edge, 37654 dots; pred -0.006 MODEL",
-      "form_note_chars": 93,
-      "receipt_score": "",
-      "receipt_date": ""
+      }
     },
-    {
-      "id": "h33-h33-2-b2-snapr2g10-20261023-8ca1d869",
-      "parent": "h33-h33-2-b2",
-      "axis": "snap",
-      "value": "r2g10",
-      "rule": "each dot to max mean-percentile(tmi_hg,|iso_grav_anom_hg|) within Euclidean 2.0 px, min realised gain 0.1; destinations: footprint, off-catalogue, d(catalogue)>2 px, valid edge",
-      "n_dots": 37654,
-      "pct_changed": 34.9445,
-      "pct_dots_moved": 17.4722,
-      "sha256": "32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52",
-      "sha256_zeros": "8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e",
-      "sha8": "8ca1d869",
-      "files": [
-        "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif",
-        "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif"
-      ],
-      "status": "BUILT",
-      "diff": {
+    "r2p000-grav": {
+      "spec": {
+        "radius": 2.0,
+        "tag": "SNAP-r2p000-grav",
+        "predicted": -0.004,
+        "band": [
+          -0.016,
+          0.006
+        ],
+        "mechanism": "band decomposition of r2p000: gravity-only response. If magnetic relief is what carries positional information, this arm loses r2p000's (hypothetical) gain"
+      },
+      "weights": {
+        "tmi_hg": 0.0,
+        "iso_grav_anom_hg": 1.0
+      },
+      "stats": {
         "n_parent": 37654,
         "n_candidate": 37654,
-        "retained": 31075,
-        "removed": 6579,
-        "added": 6579,
-        "pct_of_parent_changed": 34.9445,
-        "pct_dots_moved": 17.4722,
-        "kept_fraction": 0.825278
-      },
-      "validation_nan": {
-        "file": "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif",
-        "bytes": 355791,
-        "sha256": "32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52",
-        "mode": "nan",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": NaN
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.00226680775865,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "nan_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "validation_zeros": {
-        "file": "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif",
-        "bytes": 219532,
-        "sha256": "8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e",
-        "mode": "zeros",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": null
-        },
-        "n_dots": 37654,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 2.23606797749979,
-        "mean_catalogue_distance_px": 29.00226680775865,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "zeros_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "vendored_validate_zeros_pass": true,
-      "gate_all_pass": true,
-      "exact_hash_duplicate": {
-        "sha256": "32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52",
-        "sha8": "32c1e4e9",
-        "exact_hash_duplicates": [],
-        "duplicate": false
-      },
-      "snap_stats": {
-        "n_moved": 6579,
-        "n_stayed": 31075,
-        "mean_displacement_px": 0.3401,
-        "mean_displacement_moved_px": 1.9464,
-        "median_displacement_moved_px": 2.0,
+        "n_snapped": 37571,
+        "pct_snapped": 99.7796,
+        "mean_displacement_px_moved": 1.9467,
+        "median_displacement_px_moved": 2.0,
         "max_displacement_px": 2.0,
-        "mean_realised_gain": 0.028,
-        "mean_realised_gain_moved": 0.1604,
-        "median_realised_gain_moved": 0.1418,
-        "n_origin_edge_invalid_stayed": 16,
-        "mean_edge_parent": 0.5451,
-        "mean_edge_candidate": 0.5732
+        "mean_displacement_px_all_dots": 1.9425,
+        "mean_response_gain_moved": 0.024132,
+        "mean_response_before_dots": 0.487335,
+        "mean_response_after_dots": 0.511414,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.615,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 3.0,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 2085,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 28.9718,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18799,
+        "dots_moved_farther_from_catalogue": 18599,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 83,
+          "removed": 37571,
+          "added": 37571,
+          "pct_of_parent_changed": 199.5591,
+          "pct_changed": 199.5591,
+          "pct_removed": 99.7796,
+          "pct_added": 99.7796,
+          "kept_fraction": 0.002204,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
       },
-      "nearest_neighbour": {
-        "mean_px": 3.6277,
-        "median_px": 3.0,
-        "min_px": 1.0,
-        "frac_lt_2p8px": 0.1304
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.9467,
+        "n_snapped": 37571,
+        "dk_per_moved_dot": 0.6489,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0001,
+          0.1731
+        ],
+        "midpoint": 0.0477,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
       },
       "proxy": {
-        "proxy_dti_mean": 0.0043686272147172404,
-        "delta_vs_R0_mean": 9.651756650639413e-06,
-        "delta_vs_R0_ci95": [
-          -0.00010951266849079954,
-          0.00012881618179207837
-        ],
-        "folds_improved": 3,
-        "draws": 6,
-        "evidence_class": "PROXY"
-      },
-      "coverage_control_dti": 0.006635557327029356,
-      "sgmc_delta_vs_R0": -0.0020959097107005747,
-      "ring_table": {
-        "evidence_class": "MEASUREMENT (label-free)",
-        "note": "distance to the mapped catalogue; enrichment > 1 = hugging the traces",
-        "rows": [
-          {
-            "ring_px": [
-              0.0,
-              2.0
-            ],
-            "footprint_px": 243560,
-            "dots": 0,
-            "footprint_share": 0.047134,
-            "dot_share": 0.0,
-            "enrichment": 0.0
-          },
-          {
-            "ring_px": [
-              2.0,
-              3.0
-            ],
-            "footprint_px": 140246,
-            "dots": 2144,
-            "footprint_share": 0.027141,
-            "dot_share": 0.05694,
-            "enrichment": 2.0979
-          },
-          {
-            "ring_px": [
-              3.0,
-              4.0
-            ],
-            "footprint_px": 119588,
-            "dots": 1623,
-            "footprint_share": 0.023143,
-            "dot_share": 0.043103,
-            "enrichment": 1.8625
-          },
-          {
-            "ring_px": [
-              4.0,
-              5.0
-            ],
-            "footprint_px": 149596,
-            "dots": 1835,
-            "footprint_share": 0.02895,
-            "dot_share": 0.048733,
-            "enrichment": 1.6834
-          },
-          {
-            "ring_px": [
-              5.0,
-              6.0
-            ],
-            "footprint_px": 113774,
-            "dots": 1195,
-            "footprint_share": 0.022018,
-            "dot_share": 0.031736,
-            "enrichment": 1.4414
-          },
-          {
-            "ring_px": [
-              6.0,
-              8.0
-            ],
-            "footprint_px": 235340,
-            "dots": 2373,
-            "footprint_share": 0.045543,
-            "dot_share": 0.063021,
-            "enrichment": 1.3838
-          },
-          {
-            "ring_px": [
-              8.0,
-              10.0
-            ],
-            "footprint_px": 246066,
-            "dots": 2193,
-            "footprint_share": 0.047619,
-            "dot_share": 0.058241,
-            "enrichment": 1.2231
-          },
-          {
-            "ring_px": [
-              10.0,
-              15.0
-            ],
-            "footprint_px": 535508,
-            "dots": 4313,
-            "footprint_share": 0.103633,
-            "dot_share": 0.114543,
-            "enrichment": 1.1053
-          },
-          {
-            "ring_px": [
-              15.0,
-              20.0
-            ],
-            "footprint_px": 473662,
-            "dots": 3455,
-            "footprint_share": 0.091664,
-            "dot_share": 0.091757,
-            "enrichment": 1.001
-          },
-          {
-            "ring_px": [
-              20.0,
-              30.0
-            ],
-            "footprint_px": 765981,
-            "dots": 5020,
-            "footprint_share": 0.148234,
-            "dot_share": 0.133319,
-            "enrichment": 0.8994
-          },
-          {
-            "ring_px": [
-              30.0,
-              50.0
-            ],
-            "footprint_px": 1016593,
-            "dots": 5992,
-            "footprint_share": 0.196733,
-            "dot_share": 0.159133,
-            "enrichment": 0.8089
-          },
-          {
-            "ring_px": [
-              50.0,
-              null
-            ],
-            "footprint_px": 1066471,
-            "dots": 7511,
-            "footprint_share": 0.206386,
-            "dot_share": 0.199474,
-            "enrichment": 0.9665
-          }
+        "mean": 0.004511,
+        "paired_delta_vs_R0": 0.000156,
+        "paired_ci95": [
+          -7e-06,
+          0.000289
         ]
-      },
-      "predicted_change": "-0.001 (MODEL, band -0.007..+0.008). Only the 17.5% of dots whose window holds a decisively stronger edge (>=0.10 percentile, median realised gain 0.142) move, mean 1.95 px; 82.5% of the parent is untouched. This is the only SNAP form worth a live test if the crest hypothesis must be settled, but the SGMC control is still slightly negative (-0.0021), so the centre is ~zero, not positive.",
-      "form_note_140": "R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL",
-      "form_note_chars": 91,
-      "receipt_score": "",
-      "receipt_date": ""
+      }
     }
-  ]
+  },
+  "proxy": {
+    "available": true,
+    "class_": "PROXY",
+    "n_draws": 10,
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels_mean": 12343.2,
+    "hide_frac": 0.2,
+    "seed": 306,
+    "contamination": "catalogue-avoiding parent; absolute value is at the floor, use only the paired sign",
+    "r1p000": {
+      "mean": 0.003533,
+      "paired_delta_vs_R0": -0.000822,
+      "paired_ci95": [
+        -0.000972,
+        -0.000675
+      ]
+    },
+    "r2p000": {
+      "mean": 0.004495,
+      "paired_delta_vs_R0": 0.000139,
+      "paired_ci95": [
+        1.7e-05,
+        0.000258
+      ]
+    },
+    "r2p000-grav": {
+      "mean": 0.004511,
+      "paired_delta_vs_R0": 0.000156,
+      "paired_ci95": [
+        -7e-06,
+        0.000289
+      ]
+    },
+    "R0": {
+      "mean": 0.004356,
+      "paired_delta_vs_R0": 0.0,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "gates": {
+    "format": "passed for every zeros twin (shared validator + shared format_report); nan twin passes every check except the repo's all-finite policy",
+    "zero_catalogue_mass": "asserted in memory and on disk",
+    "sha_novel": "checked against every sha256 already in ledger/submissions.csv and on disk",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes"
+  },
+  "not_a_score": "Every number above is a MODEL projection or a PROXY measurement. No submission was made."
 }

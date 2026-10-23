@@ -1,4 +1,11 @@
-# Mechanism cards — SNAP axis on R0 (built 2026-10-23)
+# Mechanism cards — SNAP axis on R0, gain-gated build (2026-10-23)
+
+> **Reconciliation note.** A concurrent session (PR #31) built and merged the same axis
+> first (`SNAP-r1p000/r2p000/r2p000-grav`, `evidence/snap_axis_20261023.json`, cards in
+> `ledger/variant-cards.md`). Cards 1–2 below describe this session's independent
+> replications of those same two values — they are **WITHDRAWN duplicate pairs with no
+> raster released** (IR-86-SNAP-05) and are kept because their SGMC dose-response is
+> evidence. Card 3 (`snapr2g10`) is the one released file from this build.
 
 Parent **R0** = `h33-h33-2-b2` (GEMSDOE32): 37,654 unit-mass dots, sha256
 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, live 0.2778 =
@@ -12,7 +19,7 @@ footprint-percentiles of two provided gradient bands of the pinned 19-band stack
 already a magnitude ≥ 0) and `|iso_grav_anom_hg|` (a signed band, taken absolute).
 Each dot may move to the highest-edge cell inside its Euclidean window. Count is
 preserved exactly (37,654); destinations must lie in the footprint, off the
-catalogue, > 2 px from it (R0's own exclusion; see IR-86-SNAP-01) and on a valid
+catalogue, > 2 px from it (R0's own exclusion; see IR-86-SNAP-04) and on a valid
 edge cell. Collisions are resolved gain-first with origin reservation
 (`src/gems86/snap.py`). 16 dots sit on missing edge values and stay.
 
@@ -114,6 +121,6 @@ value, nothing more.
   is no evidence, and SNAP must not consume another slot on that outcome.
 
 **Reproduction.** `.venv/bin/python scripts/build_r0_snap.py --build`
-(regenerates identical sha256s; inputs pinned in `registry/data_manifest.json`,
-seed 20261023). Full receipts: `evidence/snap_axis_20261023.json`,
-`ledger/variants_snap.json`, `releases/*-snap*-zeros.json`.
+(releases only `snapr2g10`, identical sha256; inputs pinned in `registry/data_manifest.json`,
+seed 20261023). Full receipts: `evidence/snap_gated_axis_20261023.json`,
+`ledger/variants_snap_gated.json`, `releases/*-snapr2g10*-zeros.json`.

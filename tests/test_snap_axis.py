@@ -1,157 +1,138 @@
-"""Unit tests for the SNAP axis (src/gems86/snap.py) and its release contract.
+"""SNAP axis geometry: pure functions, synthetic fixtures, no experiment.
 
-Synthetic checks on the rules -- count preservation, radius bound, eligibility,
-gain gate, collision handling, determinism -- plus, when the gitignored release
-TIFFs are present in the working tree, a re-derivation of every brief section-6
-gate from the bytes on disk.
+Nothing here reads a competition raster, fits a model, or claims a score. The
+tests pin the three properties the axis contract depends on: the dot count is
+preserved, no dot moves farther than the stated radius, and no dot lands on an
+excluded cell.
 """
-from __future__ import annotations
-
-import csv
-import hashlib
-import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pytest
 
-from src.gems86.snap import percentile_ranks, snap_diff_stats, snap_dots, window_offsets
-
 ROOT = Path(__file__).resolve().parents[1]
-RELEASES = ROOT / "releases"
+sys.path[:0] = [str(ROOT), str(ROOT / "vendor"), str(ROOT / "vendor" / "template66")]
+
+from src.gems86 import snap as S  # noqa: E402
 
 
-def _field():
-    """One ridge of high edge values at column 12; dots scattered around it."""
-    h = w = 30
-    edge = np.zeros((h, w))
-    edge[:, 12] = 1.0
-    edge[:, 11] = edge[:, 13] = 0.5
-    eligible = np.ones((h, w), bool)
-    dots = np.zeros((h, w), bool)
-    for y, x in [(5, 10), (8, 14), (11, 12), (15, 20), (20, 11), (25, 25)]:
-        dots[y, x] = True
-    return dots, edge, eligible
+def test_rank01_is_monotone_masked_and_tie_averaged():
+    v = np.array([[3.0, 1.0], [2.0, np.nan]])
+    valid = np.array([[True, True], [True, False]])
+    out = S.rank01(v, valid)
+    assert out[0, 1] == 0.0 and out[1, 0] == 0.5 and out[0, 0] == 1.0
+    assert out[0, 1] < out[1, 0] < out[0, 0]
+    assert out[~valid].sum() == 0.0
+    tie = S.rank01(np.array([[5.0, 5.0], [5.0, 5.0]]), np.ones((2, 2), bool))
+    assert np.allclose(tie, 0.5)
 
 
-def test_window_offsets_are_euclidean():
-    assert len(window_offsets(1.0)) == 5
-    assert len(window_offsets(2.0)) == 13
-    assert all(d <= 2.0 + 1e-9 for _, _, d in window_offsets(2.0))
-    assert (2, 1) not in [(dy, dx) for dy, dx, _ in window_offsets(2.0)]  # sqrt5 > 2
+def test_edge_response_requires_normalised_weights_and_combines_bands():
+    valid = np.ones((4, 4), bool)
+    a = np.arange(16, dtype=float).reshape(4, 4)
+    b = a[::-1].copy()
+    with pytest.raises(ValueError):
+        S.edge_response({"a": a}, valid, {"a": 0.5})
+    with pytest.raises(ValueError):
+        S.edge_response({"a": a, "b": b}, valid, {"a": 0.5, "b": 0.6})
+    mixed = S.edge_response({"a": a, "b": b}, valid, {"a": 0.5, "b": 0.5})
+    assert mixed.shape == a.shape
+    # two mirrored rank fields average to 0.5 +/- 0.1, never outside [0, 1]
+    assert mixed.min() >= 0.0 and mixed.max() <= 1.0
+    only_b = S.edge_response({"a": a, "b": b}, valid, {"a": 0.0, "b": 1.0})
+    assert np.allclose(only_b, S.rank01(b, valid))
 
 
-def test_snap_preserves_count_and_respects_radius_and_eligibility():
-    dots, edge, eligible = _field()
-    eligible[:, 12] = False  # the crest itself is forbidden (e.g. catalogue)
-    out, stats = snap_dots(dots, edge, eligible, radius=2.0)
-    assert int(out.sum()) == int(dots.sum())
-    assert not (out & ~eligible & ~dots).any()
-    assert stats["max_displacement_px"] <= 2.0
-    # dots at x=10/x=14 can reach the allowed 0.5 shoulders; far dots cannot gain
-    assert out[5, 11] and out[8, 13]
-    assert out[15, 20] and out[25, 25]
-    # a dot already on the (ineligible) crest keeps its own cell as the fallback
-    assert out[11, 12]
+def test_window_offsets_are_within_the_radius_and_symmetric():
+    for radius, expected in ((1.0, 4), (1.5, 8), (2.0, 12)):
+        dy, dx, d = S.window_offsets(radius)
+        assert len(d) == expected
+        assert (d <= radius + 1e-12).all() and (d > 0).all()
+        assert set(zip(dy.tolist(), dx.tolist())) == {(-j, -i) for j, i in zip(dy.tolist(), dx.tolist())}
 
 
-def test_snap_moves_toward_crest_and_gain_gate_filters_weak_moves():
-    dots, edge, eligible = _field()
-    out, _ = snap_dots(dots, edge, eligible, radius=2.0)
-    assert out[5, 12] and out[8, 12] and out[20, 12]  # may collide-resolve below
-    gated, st = snap_dots(dots, edge, eligible, radius=2.0, min_gain=0.75)
-    # only gains of +1.0 (from a 0.0 cell to the crest) clear a 0.75 gate
-    assert gated[5, 12] and gated[8, 12]
-    assert gated[20, 11]  # +0.5 gain stays
-    assert st["n_moved"] == 2
+def test_snap_preserves_count_and_respects_radius_and_exclusions():
+    rng = np.random.default_rng(7)
+    shape = (60, 60)
+    dots = np.zeros(shape, bool)
+    dots[rng.choice(60, 80), rng.choice(60, 80)] = True          # collisions are fine
+    response = rng.random(shape)
+    allowed = np.ones(shape, bool)
+    allowed[:5, :] = False                                        # a masked strip
+    dots[:5, :] = False                                           # the parent must obey it
+    for radius in (1.0, 2.0):
+        result = S.snap_dots(dots, response, allowed, radius=radius)
+        assert result.dots.sum() == dots.sum()
+        assert not np.any(result.dots & ~allowed)
+        assert result.displacement.size <= dots.sum()
+        if result.displacement.size:
+            assert result.displacement.max() <= radius + 1e-12
+            assert (result.gain > 0).all()
+        # deterministic
+        again = S.snap_dots(dots, response, allowed, radius=radius)
+        assert np.array_equal(result.dots, again.dots)
 
 
-def test_snap_collisions_never_lose_a_dot():
-    edge = np.zeros((9, 9))
-    edge[4, 4] = 1.0
-    eligible = np.ones((9, 9), bool)
+def test_snap_moves_a_dot_onto_the_local_maximum_and_is_a_bijection():
     dots = np.zeros((9, 9), bool)
-    dots[4, 3] = dots[4, 5] = dots[3, 4] = True  # all want (4,4)
-    out, stats = snap_dots(dots, edge, eligible, radius=1.0)
-    assert int(out.sum()) == 3
-    assert out[4, 4]
-    assert stats["n_moved"] == 1  # the two losers keep their reserved origins
+    dots[4, 4] = True
+    response = np.zeros((9, 9))
+    response[4, 6] = 1.0                    # exactly 2 px away
+    allowed = np.ones((9, 9), bool)
+    allowed[4, 5] = False                   # a hole in between must be skipped
+    res = S.snap_dots(dots, response, allowed, radius=2.0)
+    assert res.dots[4, 6] and not res.dots[4, 4]
+    assert res.n_snapped == 1 and res.displacement[0] == pytest.approx(2.0)
+    diff = S.move_diff(dots, res.dots, np.ones((9, 9)))
+    assert diff["removed"] == diff["added"] == 1
+    assert diff["n_parent"] == diff["n_candidate"] == 1
+    assert diff["pct_of_parent_changed"] == 200.0
 
 
-def test_snap_invalid_origin_stays_and_is_deterministic():
-    dots, edge, eligible = _field()
-    edge[5, 10] = np.nan
-    a, sta = snap_dots(dots, edge, eligible, radius=2.0)
-    b, _ = snap_dots(dots, edge, eligible, radius=2.0)
-    assert np.array_equal(a, b)
-    assert a[5, 10]
-    assert sta["n_origin_edge_invalid"] == 1
+def test_no_gain_means_no_move():
+    dots = np.zeros((7, 7), bool)
+    dots[3, 3] = True
+    response = np.zeros((7, 7))
+    response[3, 3] = 1.0                    # the dot already sits on the maximum
+    res = S.snap_dots(dots, response, np.ones((7, 7), bool), radius=2.0)
+    assert res.n_snapped == 0 and res.dots[3, 3]
 
 
-def test_percentile_ranks_cover_unit_interval():
-    vals = np.arange(100, dtype=float).reshape(10, 10)
-    valid = np.ones((10, 10), bool)
-    valid[0, 0] = False
-    r = percentile_ranks(vals, valid)
-    assert np.isnan(r[0, 0])
-    assert np.nanmin(r) == 0.0 and np.nanmax(r) == pytest.approx(1.0)
+def test_snap_never_takes_an_occupied_cell():
+    dots = np.zeros((5, 5), bool)
+    dots[2, 2] = True
+    dots[2, 3] = True                       # neighbour occupies the best target
+    response = np.zeros((5, 5))
+    response[2, 3] = 1.0
+    response[2, 1] = 0.5
+    res = S.snap_dots(dots, response, np.ones((5, 5), bool), radius=1.0)
+    assert res.dots.sum() == 2
+    assert res.dots[2, 3]
+    # the only free improving cell for (2,2) is (2,1); it must not be skipped in
+    # favour of the higher-valued but occupied (2,3)
+    assert res.dots[2, 1] and not res.dots[2, 2]
 
 
-def test_snap_diff_stats_counts_relocations():
-    p = np.zeros((5, 5), bool)
-    p[1, 1] = p[3, 3] = True
-    c = np.zeros((5, 5), bool)
-    c[1, 2] = c[3, 3] = True
-    d = snap_diff_stats(p, c)
-    assert d["removed"] == d["added"] == 1
-    assert d["pct_dots_moved"] == 50.0
-    assert d["pct_of_parent_changed"] == 100.0  # changed cells over parent count
+def test_snap_rejects_a_parent_dot_outside_the_landing_mask():
+    dots = np.zeros((6, 6), bool)
+    dots[0, 0] = True
+    allowed = np.ones((6, 6), bool)
+    allowed[0, 0] = False
+    with pytest.raises(ValueError):
+        S.snap_dots(dots, np.random.default_rng(1).random((6, 6)), allowed, radius=1.0)
 
 
-# -------------------------------------------------------------------- releases
-def _snap_zeros() -> list[Path]:
-    return sorted(RELEASES.glob("*-snap*-zeros.tif")) if RELEASES.is_dir() else []
+def test_move_diff_rejects_count_change():
+    a = np.zeros((4, 4), bool)
+    b = np.zeros((4, 4), bool)
+    a[0, 0] = True
+    with pytest.raises(ValueError):
+        S.move_diff(a, b, np.ones((4, 4)))
 
 
-@pytest.mark.skipif(not _snap_zeros(), reason="SNAP release TIFFs are gitignored / not built here")
-def test_snap_releases_pass_brief_gates_and_match_receipts_and_ledger():
-    import rasterio
-    from scipy import ndimage as ndi
-
-    with rasterio.open(ROOT / "data" / "bridge" / "sample_submission.tif") as s:
-        footprint = np.isfinite(s.read(1))
-        template = (str(s.crs), tuple(s.transform)[:6], (s.height, s.width))
-    with rasterio.open(ROOT / "data" / "bridge" / "existing_faults.tif") as s:
-        catalogue = (s.read(1) > 0) & footprint
-    distance = ndi.distance_transform_edt(~catalogue)
-    parent_path = (ROOT / "data" / "scored_fleet" /
-                   "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif")
-    with rasterio.open(parent_path) as s:
-        parent = s.read(1) > 0
-    ledger = {r["sha256"]: r for r in csv.DictReader(open(ROOT / "ledger" / "submissions.csv"))
-              if r["sha256"]}
-
-    seen = set()
-    for zeros in _snap_zeros():
-        receipt = json.loads(zeros.with_suffix(".json").read_text())
-        digest = hashlib.sha256(zeros.read_bytes()).hexdigest()
-        assert digest == receipt["zeros"]["sha256"] == digest  # file names embed this digest
-        assert zeros.stem.endswith(digest[:8] + "-zeros")
-        assert digest in ledger and ledger[digest]["axis"] == "SNAP"
-        seen.add(digest)
-        with rasterio.open(zeros) as s:
-            a = s.read(1)
-            assert (str(s.crs), tuple(s.transform)[:6], (s.height, s.width)) == template
-            assert s.count == 1 and s.dtypes == ("float32",)
-        dots = a > 0
-        assert int(dots.sum()) == receipt["n_dots"] == int(parent.sum())  # count preserved
-        assert not (dots & catalogue).any()
-        assert distance[dots].min() > 2.0  # the parent's exclusion, kept (IR-86-SNAP-01)
-        assert a[footprint].min() >= 0.0 and a[footprint].max() <= 1.0
-        assert np.isfinite(a[footprint]).all() and (a[~footprint] == 0).all()
-        # NaN twin: identical dots, NaN only outside the footprint
-        with rasterio.open(RELEASES / zeros.name.replace("-zeros.tif", ".tif")) as s:
-            nan = s.read(1)
-        assert np.array_equal(np.nan_to_num(nan) > 0, dots)
-        assert np.isnan(nan[~footprint]).all() and np.isfinite(nan[footprint]).all()
-    assert len(seen) == len(_snap_zeros())
+def test_nearest_neighbour_matches_bruteforce():
+    dots = np.zeros((10, 10), bool)
+    dots[1, 1] = dots[1, 4] = dots[8, 8] = True
+    nn = S.nearest_neighbour(dots)
+    assert np.allclose(sorted(nn), [3.0, 3.0, np.hypot(7, 4)])

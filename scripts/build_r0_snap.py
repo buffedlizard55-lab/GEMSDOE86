@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-"""SNAP axis on R0: relocate each dot <=2 px to the strongest local edge crest.
+"""Second SNAP build on R0 (gain-gated): the ``r2g10`` variant + replication arms.
+
+A concurrent session (PR #31, ``scripts/run_snap_axis.py``) merged its own SNAP
+build -- unconditional ``r1p000`` / ``r2p000`` / ``r2p000-grav`` -- while this
+script was being written, so the (SNAP, 1) and (SNAP, 2) pairs already exist on
+main. This builder therefore *releases only* the one pair PR #31 did not build,
+the gain-gated ``r2g10``; its own ``r1``/``r2`` are still computed (they are the
+arms of the SGMC dose-response in the evidence file, an independent replication
+with an absolute-gravity edge) but are recorded WITHDRAWN with no raster
+written (IR-86-SNAP-05). Pure geometry lives in ``src/gems86/snap_gated.py``
+(main's ``src/gems86/snap.py`` belongs to PR #31's build).
 
 Parent R0 = ``h33-h33-2-b2`` (GEMSDOE32), 37,654 unit-mass dots, live 0.2778
 **CLAIM** (no receipt in ``ledger/``). This script, in order:
@@ -17,11 +27,11 @@ Parent R0 = ``h33-h33-2-b2`` (GEMSDOE32), 37,654 unit-mass dots, live 0.2778
    unconditional) and ``r2g10`` (radius 2.0, move only when the realised
    edge-percentile gain is >= 0.10). Count is preserved exactly (37,654);
    destinations keep the parent's exclusion (footprint, off catalogue,
-   catalogue distance > 2.0 px, valid edge). See ``src/gems86/snap.py`` for
-   the deterministic collision rule and IR-86-SNAP-01 for why the parent's
+   catalogue distance > 2.0 px, valid edge). See ``src/gems86/snap_gated.py``
+   for the deterministic collision rule and IR-86-SNAP-04 for why the parent's
    ">2 px" exclusion is kept instead of a variant-wide ">=3 px" (that would
    confound SNAP with the already-spent PRUNE axis);
-5. writes each variant twice (NaN outside footprint per brief, zeros twin
+5. writes the released variant (r2g10) twice (NaN outside footprint, zeros twin
    for the portal/all-finite validator), re-reads both from disk, runs the
    brief section-6 gates plus the vendored ``gems57.validate`` on the zeros
    twins, and records parent-diff statistics and mean displacement;
@@ -63,7 +73,7 @@ from gems57.validate import validate as vendored_validate  # noqa: E402
 from scripts import prune_collar as PC  # noqa: E402  (shared gates/proxy harness)
 from scripts.run_prune_ladder import write_with_profile  # noqa: E402  (R0 byte-exact writer)
 from src.gems86.prune import dot_digest  # noqa: E402
-from src.gems86.snap import percentile_ranks, snap_diff_stats, snap_dots  # noqa: E402
+from src.gems86.snap_gated import percentile_ranks, snap_diff_stats, snap_dots  # noqa: E402
 
 AXIS = "SNAP"
 PARENT_SHORT = "h33-h33-2-b2"
@@ -97,7 +107,7 @@ EDGE_BANDS = (("tmi_hg", False), ("iso_grav_anom_hg", True))  # (band, take |.|)
 
 # Predicted LIVE change vs R0, MODEL class only -- never a score. Set from the
 # measured dose plus the report-only local controls in
-# evidence/snap_axis_20261023.json (SGMC off-catalogue control is negative with
+# evidence/snap_gated_axis_20261023.json (SGMC control is negative with
 # a clean dose-response: r2g10 -0.0021, r1 -0.0032, r2 -0.0089 SGMC-DTI; the
 # floored hide-and-recover PROXY is ~flat). Controls informed the MODEL; they
 # gated nothing.
@@ -127,6 +137,18 @@ VARIANTS = {
                    "the centre is ~zero, not positive."),
         note="R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL"),
 }
+
+# (SNAP, value) pairs PR #31 already built on main (ledger ids snap-r1p000 /
+# snap-r2p000). Computed here only as replication arms; no raster is written,
+# so the duplicate can never be uploaded (cf. the withdrawn PRUNE rung,
+# IR-86-PRUNE-08). IR-86-SNAP-05.
+WITHDRAWN = {
+    "snapr1": "duplicate (SNAP,1) pair: PR #31's SNAP-r1p000 (0e09c2b7) is on main; "
+              "near-identical independent build (36,483 vs 36,494 dots moved)",
+    "snapr2": "duplicate (SNAP,2) pair: PR #31's SNAP-r2p000 (e7473403) is on main; "
+              "near-identical independent build (37,055 vs 37,066 dots moved)",
+}
+PREDICTED_NUMERIC = {"snapr1": -0.002, "snapr2": -0.006, "snapr2g10": -0.001}
 
 
 def sha256_file(path: Path) -> str:
@@ -324,12 +346,65 @@ def main() -> int:
     if led.is_file():
         import csv as _csv
         ledger_existing = {r.get("sha256") for r in _csv.DictReader(led.open()) if r.get("sha256")}
+    # A rerun must not flag this builder's own previous outputs as duplicates.
+    own = ROOT / "ledger" / "variants_snap_gated.json"
+    if own.is_file():
+        for v in json.loads(own.read_text()):
+            ledger_existing.discard(v.get("sha256"))
+            ledger_existing.discard(v.get("sha256_zeros"))
     rows = []
     for key, cfg in VARIANTS.items():
         dots, st = built[key]
         diff = snap_diff_stats(g.parent, dots)
         displaced = st["displacement_px"]
         gains = st["realised_gain"]
+        snap_stats_common = {
+            "n_moved": st["n_moved"], "n_stayed": st["n_stayed"],
+            "mean_displacement_px": round(st["mean_displacement_px"], 4),
+            "mean_displacement_moved_px": round(st["mean_displacement_moved_px"], 4),
+            "median_displacement_moved_px": round(float(np.median(displaced[displaced > 0])), 4)
+            if (displaced > 0).any() else 0.0,
+            "max_displacement_px": st["max_displacement_px"],
+            "mean_realised_gain": round(st["mean_realised_gain"], 4),
+            "mean_realised_gain_moved": round(st["mean_realised_gain_moved"], 4),
+            "median_realised_gain_moved": round(float(np.median(gains[gains > 0])), 4)
+            if (gains > 0).any() else 0.0,
+            "n_origin_edge_invalid_stayed": st["n_origin_edge_invalid"],
+            "mean_edge_parent": round(float(np.nanmean(edge[g.parent])), 4),
+            "mean_edge_candidate": round(float(np.nanmean(edge[dots])), 4),
+        }
+        rel = proxy["candidates"][key]
+        proxy_row = {"proxy_dti_mean": rel["proxy_dti_mean"],
+                     "delta_vs_R0_mean": rel["delta_vs_R0_mean"],
+                     "delta_vs_R0_ci95": rel["delta_vs_R0_ci95"],
+                     "folds_improved": rel["folds_improved"], "draws": proxy["draws"],
+                     "evidence_class": "PROXY"}
+        if key in WITHDRAWN:
+            rows.append({
+                "id": f"{PARENT_SHORT}-{key}-{DATE_TAG}-withdrawn", "parent": PARENT_SHORT,
+                "axis": "snap", "value": key.removeprefix("snap"), "status": "WITHDRAWN",
+                "withdrawn_because": WITHDRAWN[key],
+                "rule": (f"each dot to max mean-percentile(tmi_hg,|iso_grav_anom_hg|) within "
+                         f"Euclidean {cfg['radius']} px, min realised gain {cfg['min_gain']}"),
+                "n_dots": diff["n_candidate"],
+                # ledger pct_changed = % of parent dots moved (PR #31's SNAP
+                # convention, IR-86-SNAP-03); the cell-level figure is kept too.
+                "pct_changed": diff["pct_dots_moved"],
+                "pct_cells_changed": diff["pct_of_parent_changed"],
+                "pct_dots_moved": diff["pct_dots_moved"],
+                "sha256": "", "sha256_zeros": "", "sha8": "", "files": [],
+                "dot_digest": dot_digest(dots), "diff": diff, "gate_all_pass": None,
+                "snap_stats": snap_stats_common, "nearest_neighbour": nn_stats(dots),
+                "proxy": proxy_row,
+                "coverage_control_dti": coverage["candidates"][key]["dti"],
+                "sgmc_delta_vs_R0": (sgmc.get("delta_vs_R0") or {}).get(key),
+                "ring_table": PC.ring_table(g, dots),
+                "predicted_change": cfg["predicted"],
+                "receipt_score": "", "receipt_date": "",
+            })
+            print(f"[6/6] {key}: WITHDRAWN (duplicate pair, measurement kept) — "
+                  f"{WITHDRAWN[key][:80]}...")
+            continue
         base = f"{PARENT_SHORT}-{key}-{DATE_TAG}"
         scratch = RELEASES / f".{base}-zeros.tmp.tif"
         scratch.unlink(missing_ok=True)
@@ -362,7 +437,8 @@ def main() -> int:
             "rule": (f"each dot to max mean-percentile(tmi_hg,|iso_grav_anom_hg|) within "
                      f"Euclidean {cfg['radius']} px, min realised gain {cfg['min_gain']}; "
                      f"destinations: footprint, off-catalogue, d(catalogue)>2 px, valid edge"),
-            "n_dots": diff["n_candidate"], "pct_changed": diff["pct_of_parent_changed"],
+            "n_dots": diff["n_candidate"], "pct_changed": diff["pct_dots_moved"],
+            "pct_cells_changed": diff["pct_of_parent_changed"],
             "pct_dots_moved": diff["pct_dots_moved"],
             "sha256": nan_digest, "sha256_zeros": zeros_digest, "sha8": sha8,
             "files": [str(final_nan.relative_to(ROOT)), str(final_zeros.relative_to(ROOT))],
@@ -370,27 +446,9 @@ def main() -> int:
             "validation_nan": v_nan, "validation_zeros": v_zeros,
             "vendored_validate_zeros_pass": bool(vendored["all_checks_passed"]),
             "gate_all_pass": gate, "exact_hash_duplicate": dup,
-            "snap_stats": {
-                "n_moved": st["n_moved"], "n_stayed": st["n_stayed"],
-                "mean_displacement_px": round(st["mean_displacement_px"], 4),
-                "mean_displacement_moved_px": round(st["mean_displacement_moved_px"], 4),
-                "median_displacement_moved_px": round(float(np.median(displaced[displaced > 0])), 4)
-                if (displaced > 0).any() else 0.0,
-                "max_displacement_px": st["max_displacement_px"],
-                "mean_realised_gain": round(st["mean_realised_gain"], 4),
-                "mean_realised_gain_moved": round(st["mean_realised_gain_moved"], 4),
-                "median_realised_gain_moved": round(float(np.median(gains[gains > 0])), 4)
-                if (gains > 0).any() else 0.0,
-                "n_origin_edge_invalid_stayed": st["n_origin_edge_invalid"],
-                "mean_edge_parent": round(float(np.nanmean(edge[g.parent])), 4),
-                "mean_edge_candidate": round(float(np.nanmean(edge[dots])), 4),
-            },
+            "snap_stats": snap_stats_common,
             "nearest_neighbour": nn_stats(dots),
-            "proxy": {"proxy_dti_mean": rel["proxy_dti_mean"],
-                      "delta_vs_R0_mean": rel["delta_vs_R0_mean"],
-                      "delta_vs_R0_ci95": rel["delta_vs_R0_ci95"],
-                      "folds_improved": rel["folds_improved"], "draws": proxy["draws"],
-                      "evidence_class": "PROXY"},
+            "proxy": proxy_row,
             "coverage_control_dti": coverage["candidates"][key]["dti"],
             "sgmc_delta_vs_R0": (sgmc.get("delta_vs_R0") or {}).get(key),
             "ring_table": PC.ring_table(g, dots),
@@ -399,9 +457,17 @@ def main() -> int:
             "receipt_score": "", "receipt_date": "",
         }
         receipt = {
-            "id": final_nan.stem, "parent": PARENT_FILE.stem, "axis": "snap",
+            # axis/pct_changed/movement/predicted fields follow PR #31's SNAP
+            # receipt contract (tests/test_prune_ladder.py per-axis branch).
+            "id": final_nan.stem, "parent": PARENT_FILE.stem, "axis": "SNAP",
             "value": row["value"], "role": "candidate", "n_dots": diff["n_candidate"],
-            "pct_changed": diff["pct_of_parent_changed"], "pct_dots_moved": diff["pct_dots_moved"],
+            "radius_px": cfg["radius"],
+            "movement": {"pct_snapped": diff["pct_dots_moved"],
+                         "max_displacement_px": st["max_displacement_px"]},
+            "model": {"evidence_class": "MODEL"},
+            "pct_changed": diff["pct_dots_moved"],
+            "pct_cells_changed": diff["pct_of_parent_changed"],
+            "pct_dots_moved": diff["pct_dots_moved"],
             "dot_digest": dot_digest(dots),
             "zeros": {"file": final_zeros.name, "sha256": zeros_digest,
                       "bytes": final_zeros.stat().st_size,
@@ -415,7 +481,8 @@ def main() -> int:
                                   ("checks", "all_checks_passed", "on_catalogue_dots",
                                    "min_catalogue_distance_px")}},
             "submission_name": final_nan.stem, "note": row["form_note_140"],
-            "predicted_live_change": cfg["predicted"], "evidence_class": "MODEL",
+            "predicted_live_change": PREDICTED_NUMERIC[key],
+            "predicted_change_text": cfg["predicted"], "evidence_class": "MODEL",
             "approved_for_weekly_slot": False, "submission_slots_used": 0,
             "mean_displacement_px": row["snap_stats"]["mean_displacement_px"],
             "diff": diff, "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -426,12 +493,15 @@ def main() -> int:
               f"zeros sha {zeros_digest[:12]}..., nan sha {nan_digest[:12]}...")
 
     evidence = {
-        "schema": "gems86.snap-axis.v1",
+        "schema": "gems86.snap-gated-axis.v1",
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "elapsed_s": round(time.time() - t0, 1),
         "axis": AXIS, "axis_assignment": "human left AXIS blank and skipped the assignment "
         "prompt; SNAP taken from SLOT_PLAN.md's preregistered slot-2 axis (PRUNE spent, "
-        "MASS blocked by IR-86-PRUNE-02)",
+        "MASS blocked by IR-86-PRUNE-02); a concurrent session (PR #31) built the same "
+        "axis and merged first, so snapr1/snapr2 are WITHDRAWN duplicates here and only "
+        "the novel gain-gated snapr2g10 is released (IR-86-SNAP-05)",
+        "concurrent_build_on_main": "PR #31 scripts/run_snap_axis.py (SNAP r1p000/r2p000/r2p000-grav)",
         "parent": {"id": PARENT_SHORT, "file": str(PARENT_FILE.relative_to(ROOT)),
                    "sha256": PINS["parent_R0"][1], "n_dots": int(g.parent.sum()),
                    "live_score_0p2778": "CLAIM (no receipt in ledger/)",
@@ -444,8 +514,8 @@ def main() -> int:
                  "combination": "mean of footprint percentiles",
                  "detail": edge_detail, "leakage_canary_report_only": canary},
         "destination_rule": "footprint & off-catalogue & d(catalogue)>2.0 px (parent's own "
-                            "exclusion; see IR-86-SNAP-01) & valid edge; gain-ordered greedy "
-                            "with origin reservation (src/gems86/snap.py)",
+                            "exclusion; see IR-86-SNAP-04) & valid edge; gain-ordered greedy "
+                            "with origin reservation (src/gems86/snap_gated.py)",
         "proxy": proxy,
         "proxy_verdict": "REPORT ONLY, structurally floored for a catalogue-avoiding parent "
                          "exactly as in IR-86-PRUNE-03: candidates (and R0) keep every dot "
@@ -455,10 +525,10 @@ def main() -> int:
                          "floored instrument.",
         "sgmc_control": sgmc, "coverage_control": coverage, "variants": rows,
     }
-    out = ROOT / "evidence" / "snap_axis_20261023.json"
+    out = ROOT / "evidence" / "snap_gated_axis_20261023.json"
     out.write_text(json.dumps(evidence, indent=2) + "\n")
-    (ROOT / "ledger" / "variants_snap.json").write_text(json.dumps(rows, indent=2) + "\n")
-    print(f"wrote {out.relative_to(ROOT)} and ledger/variants_snap.json")
+    (ROOT / "ledger" / "variants_snap_gated.json").write_text(json.dumps(rows, indent=2) + "\n")
+    print(f"wrote {out.relative_to(ROOT)} and ledger/variants_snap_gated.json")
     return 0
 
 
