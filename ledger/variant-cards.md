@@ -66,3 +66,117 @@ Both inputs to the rate are CLAIMs, so the whole prediction is a MODEL.
 catalogue. It answers the one question that would otherwise be unresolvable: does deleting
 5.8 % of the mass move the live score by itself? Predicted 0.000 (band ±0.004). It is a
 measuring instrument, never a slot: it is labelled `BUILT-CONTROL` in the ledger.
+
+---
+
+# Variant cards — SNAP axis on R0 (built 2026-10-23, PR #31)
+
+Parent **R0** = `h33-h33-2-b2`, 37,654 dots, sha256 `c55bafc4…b6fa9`, dot-set digest
+`905cee9d…`. Re-verified this session: the base raster's 40,199 dots minus every dot at
+Euclidean distance ≤ 2.0 px from a mapped-fault cell reproduces R0 with **0 differing pixels**
+and, re-encoded with the catalogue's own writer profile (`deflate/predictor=3/zlevel=9/tiled 256`),
+**byte-identical** files (219,065 B, `c55bafc4…`). R0's 0.2778 remains a **CLAIM**.
+
+## The rule, fixed before any raster was written
+
+Response surface (identical construction for every variant): rank-normalise the band over the
+footprint → Gaussian smooth σ = 1 px (100 m) by normalised convolution → rank-normalise again, so
+`0.75` is the 75th percentile of every surface. `combo` is the equal-weight mean of the two
+smoothed rank surfaces, ranked a third time for the same reason.
+
+A dot may move at most **2 px**, only if the target cell
+
+1. lies inside the footprint and **≥ 3.0 px** from the catalogue (no new collar mass),
+2. is not held by another dot,
+3. has response **≥ 0.75** (a decisive crest), and
+4. beats the dot's own cell by **> 0.02** rank units.
+
+Count preserved exactly, greedy service by descending gain, ties by row-major index.
+
+**Why the gates exist (measured, not aesthetic).** Without them this rule moves **97–99 % of the
+dots by a mean 1.8 px**: with a smooth surface the argmax over a 5×5 window sits at the window
+boundary for almost every dot, so "snap to the strongest edge" degenerates into "climb 2 px up the
+gradient", i.e. a re-labelling of the whole field rather than a correction of individual dots.
+The gate turns it back into a local edit. The ungated numbers are kept in
+`evidence/snap_axis.json` (`stats` of a measure-only run) so nobody has to take this on trust.
+
+## Measured pre-test (before any slot)
+
+| variant | surface | dots moved | mean disp. | cells changed | NN spacing | dot percentile before → after | predicted Δ live (MODEL) |
+|---|---|---:|---:|---:|---|---|---|
+| `…-SNAP-tmihg-…-ede24e24` | `tmi_hg` | 12,809 (34.0 %) | 1.87 px | 68.04 % | 3.735 → 3.544 px | 0.581 → 0.610 | **−0.006** [−0.022, +0.012] |
+| `…-SNAP-gravhg-…-701aada8` | `iso_grav_anom_hg` | 2,915 (7.7 %) | 1.97 px | 15.48 % | 3.735 → 3.705 px | 0.487 → 0.491 | **−0.002** [−0.014, +0.010] |
+| `…-SNAP-combo-…-dba98049` | mean of both | 8,770 (23.3 %) | 1.90 px | 46.58 % | 3.735 → 3.599 px | 0.548 → 0.564 | **−0.004** [−0.018, +0.011] |
+
+Surface separation of catalogue pixels from background (single-feature AUC, leakage canary):
+`tmi_hg` 0.527, `iso_grav_anom_hg` 0.500, `combo` 0.519; worst spatial quadrant 0.578 → **PASS**
+(threshold 0.90). Block-density CV on 5 km blocks: 0.9036 before, 0.903–0.904 after — unchanged.
+
+The single most important measurement: for **20,235 / 27,480 / 23,081** dots (tmihg / gravhg /
+combo) the strongest in-window edge lies **inside the masked 3 px collar**, i.e. the strongest
+magnetic or gravity edge near an R0 dot is usually the *known* fault trace itself, where the
+organizer scores nothing. That is the structural reason this axis cannot pay, and it is why the
+predicted sign is negative for all three.
+
+## Mechanism cards (for a structural geologist)
+
+### `SNAP-tmihg` — move dots onto TMI horizontal-gradient crests
+- **Hypothesis.** A magnetisation contrast across a fault produces a TMI horizontal-gradient
+  maximum along the trace; a dot sitting 1–2 px off that crest would collect more kernel credit if
+  it climbed onto it.
+- **Mechanism.** R0's dots come from a smooth 19-band model sampled on a 2.8 px lattice, so each
+  dot's sub-kernel position is a model average. Snapping replaces it with the local maximum of the
+  delivered magnetic edge.
+- **Mimic.** Pixel-scale dither in the delivered gradient (0 % of horizontal neighbour differences
+  are zero) and 400 m flight-line smearing at 150–200 m clearance both put a 100 m crest where no
+  100 m fault boundary exists. R0's dots already sit at the 62nd percentile of this surface
+  (background 50th), so the parent already used this field.
+- **Predicted sign and size.** −0.006 live (95 % range −0.022 … +0.012): the biggest edit of the
+  three (34 % of dots, nearest-neighbour spacing down 0.19 px), the smallest expected gain.
+- **Falsifier.** A live change ≥ +0.010 means the magnetic edge carries sub-kernel position
+  information the parent's model missed; it would license a *selective* magnetic snap next.
+  Inside ±0.010 the magnetic-snap form is closed for Phase 1.
+
+### `SNAP-gravhg` — move dots onto isostatic-gravity horizontal-gradient crests
+- **Hypothesis.** A density contrast across a fault produces a gravity-gradient crest; gravity is
+  not blanked over magnetically quiet volcanic cover, so it is the independent test.
+- **Mechanism.** Same rule, different surface. Agreement with the magnetic variant would be
+  evidence that the edge geometry is physical rather than a processing artefact.
+- **Mimic.** Isostatic correction low-passes the field, displacing a 100 m crest off the trace.
+  Measured: R0's dots sit at the **48th** percentile here (background 50th) and catalogue pixels
+  separate at AUC **0.500** — chance. This variant is the honest null control of the trio.
+- **Predicted sign and size.** −0.002 live (95 % range −0.014 … +0.010): the smallest edit (7.7 %
+  of dots), so the smallest expected loss; no mechanism for a gain.
+- **Falsifier.** A gain ≥ +0.010 would mean gravity edges localise faults better than the parent's
+  model despite chance-level catalogue AUC, which needs an independent explanation before a slot.
+
+### `SNAP-combo` — move dots onto shared magnetic + gravity crests
+- **Hypothesis.** Where both horizontal gradients are strong, two independent contrasts share one
+  boundary (the cross-gradient argument of Gallardo & Meju 2003); snapping to that conjunction
+  should be cleaner than snapping to either field.
+- **Mechanism.** Equal-weight mean of the two rank surfaces, ranked again; a cell scores high only
+  if both fields are high there, so dots climb the shared boundary rather than one field's
+  artefacts.
+- **Mimic.** Equal weights are a declared choice, not fitted. A mean is a *soft* conjunction: one
+  strong field can carry a cell, and half of any local noise is inherited.
+- **Predicted sign and size.** −0.004 live (95 % range −0.018 … +0.011).
+- **Falsifier.** The conjunction mechanism requires the combo to beat **both** single-field
+  variants by ≥ 0.005 live. Between them = no conjunction, and ±0.010 overall = no evidence.
+
+## Report-only instruments
+
+- **Catalogue hide-and-recover PROXY** (never a gate, never a score): R0 0.00436
+  [0.00410, 0.00458]; tmihg 0.00366; gravhg 0.00418; combo 0.00386. All at the floor and
+  contaminated by construction — the dot field was emitted from a catalogue-trained surface
+  (IR-86-PRUNE-03). This instrument cannot order these files.
+- **SGMC control** not computed this session: `derived_sgmc_faults_100m_u8.tif` is pinned in the
+  manifest but is not part of the restored external subset used here (five rasters). REPORT ONLY,
+  so nothing depends on it.
+
+## Files
+
+`releases/snap/<id>-zeros.tif` (upload-form fallback) and `<id>.tif` (NaN outside the footprint,
+brief §6 form); receipts `<id>-zeros.json`. All three pass `gems57.validate`
+(`all_checks_passed=True`) and `gems57.gates.format_report` (`ok=True`) on the `-zeros` twin, carry
+zero catalogue mass, preserve the 37,654-dot count, were re-read from disk after writing, and
+reproduce the same sha256 on a second build (byte-deterministic).

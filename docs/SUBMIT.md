@@ -17,9 +17,25 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 
 ## Slot 2 — a new prediction surface (not a prune rung)
 
-Nothing is built yet. The 419 MB feature stack restores in ~22 s and verifies against its pin,
-so SNAP or RELIEF can be built and gated next session. Build one axis, preregister its
+**SNAP is now built** (three files, `releases/snap/`); **CONCENTRATION** is the recommended next
+build. The 419 MB feature stack restores and verifies against its pin `4371c82e…`, so RELIEF and
+CONCENTRATION can be built and gated next session. Build one axis, preregister its
 mechanism/confounder/falsifier in `SLOT_PLAN.md` before writing the raster.
+
+### SNAP files, if the human wants the axis closed (none is predicted to beat R0)
+
+| Variant | Primary file (NaN outside) | zeros sha256 | Fallback (zeros) | Dots moved |
+|---|---|---|---|---|
+| SNAP combo (23.3 %) | `releases/snap/h33-h33-2-b2-SNAP-combo-20261023-dba98049.tif` | `dba98049de46d8092d7a499a09add51c1e9a56ba9b52f012d3bcf9197763e6d7` | same name `-zeros.tif` | 8,770 |
+| SNAP gravity (7.7 %) | `releases/snap/h33-h33-2-b2-SNAP-gravhg-20261023-701aada8.tif` | `701aada83513a213bc44bf488b318f01149585b466e0bb2ba3a4eb87d447560c` | same name `-zeros.tif` | 2,915 |
+| SNAP magnetic (34.0 %) | `releases/snap/h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24.tif` | `ede24e246056cfef5428682e52bd1df9ba0edd9601aeafa377db2ccd3e25b1c4` | same name `-zeros.tif` | 12,809 |
+
+Submission names are the file names without `.tif`; notes are in each `-zeros.json`
+(`note`, ≤ 140 chars). Predictions: **−0.004 / −0.002 / −0.006 MODEL**, bands inside ±0.03 —
+upload one only to *measure* the axis, never expecting a gain. Full cards:
+[`ledger/variant-cards.md`](../ledger/variant-cards.md); measurements: `evidence/snap_axis.json`.
+Truth for all three: 37,654 dots (count preserved), zero catalogue mass, ≥ 3 px collar respected for
+every *moved* dot, `gems57.validate` + `format_report` PASS on the `-zeros` twin.
 
 ## Cheap defaults, already built and gated (only if slot 2 is not ready)
 

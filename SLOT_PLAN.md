@@ -1,81 +1,77 @@
-# SLOT PLAN — 2026-10-23, reconciled across three PRUNE sessions
+# SLOT PLAN — 2026-10-23 (SNAP session, branch `arena/1f6f5dc8-gemsdoe86`)
 
-**No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
-([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
-`TOP_PUBLIC` are **UNSUPPLIED by the human** — I did not guess them. A live `|Δ| < 0.01`
-is no evidence. R0 = `h33-h33-2-b2` (**0.2778 CLAIM**, no receipt in `ledger/`).
+**No slot is used or authorised here.** One entity, ≤ 3 scored submissions per rolling week
+([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)), one blind final choice. `TOP_PUBLIC`
+(+date) and the remaining rolling-week quota are **UNSUPPLIED by the human** and were not guessed.
+A live `|Δ| < 0.01` is **no evidence**. R0 = `h33-h33-2-b2`, **0.2778 CLAIM**, no receipt in
+`ledger/`. Deadline 2026-12-03 is user-supplied and **UNVERIFIED** (DrivenData is not contacted
+from this sandbox): 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots including the final pick.
 
-Deadline arithmetic: 2026-10-23 → **2026-12-03** is 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots,
-one of which is the blind final pick. The date is user-supplied and **UNVERIFIED**
-(DrivenData is not contacted from this sandbox).
+## What this session added (three files, one axis)
 
-Seven gate-clean PRUNE artifacts now exist, from three sessions on one parent. The axis is
-**crowded**: everything left in the collar ladder is 2,171 dots = 5.8 % of the mass, and the
-best available per-dot rate puts the whole ladder inside ±0.01. So PRUNE gets **one slot**,
-not three.
+SNAP on R0: three variants, identical rule and exclusions, different physical surface. Full cards:
+[ledger/variant-cards.md](ledger/variant-cards.md); measurements: `evidence/snap_axis.json`;
+rerun: `python scripts/run_snap.py --build`.
+
+| id (upload the `-zeros` twin in `releases/snap/`) | change | predicted Δ live |
+|---|---|---|
+| `…-SNAP-combo-20261023-dba98049` | 23.3 % of dots (8,770) moved ≤ 2 px onto shared magnetic + gravity crests | **−0.004** MODEL [−0.018, +0.011] |
+| `…-SNAP-gravhg-20261023-701aada8` | 7.7 % (2,915) moved onto isostatic-gravity crests | **−0.002** MODEL [−0.014, +0.010] |
+| `…-SNAP-tmihg-20261023-ede24e24` | 34.0 % (12,809) moved onto TMI-gradient crests | **−0.006** MODEL [−0.022, +0.012] |
+
+All three keep the dot count at 37,654, add no collar mass, and pass every format gate. **None is
+predicted to beat R0.** The axis is worth at most **one** slot, and only to close the hypothesis.
+
+Why the prior is negative, in one line: for 54–73 % of dots the strongest edge inside their own
+2 px window is the **masked catalogue trace itself** (20,235 / 27,480 / 23,081 dots), and the
+surfaces separate catalogue from background at AUC 0.500–0.527 — the edge is where the *known*
+fault is, which pays nothing, and it barely marks the rest.
 
 ## Next three slots, in order
 
-| # | file (upload the `-zeros` twin) | why this one | decision rule |
+| # | file | why this one | decision rule |
 |---|---|---|---|
-| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest rung of the nested ladder (941 + 670 + 560 = 2,171 dots removed; 35,483 dots; 5.77 % changed). Prediction **+0.004 MODEL** (band −0.004…+0.013). One slot buys a monotone read: R0 → r2.236 → r2.828 → r3.000. | ≥ +0.010 → the collar is not exhausted; next week build a single 4 px rung. Flat or ≤ −0.010 → the prune lineage is finished for Phase 1. |
-| 2 | **a new prediction surface, not another prune rung** — the 19-band stack is proven restorable (below) | the prune ladder cannot move the score by more than ~±0.01; beating 0.2778 needs a different axis | SNAP or RELIEF, preregistered with mechanism/confounder/falsifier before building; one axis only |
-| 3 | the better of (1) and (2), re-cut at a different value on the axis that moved | one more point on the winning axis | keep the loser as the fallback file |
+| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | still the only built file whose sign comes from a **live** datum (+2.75 × 10⁻⁶ per pruned collar dot), prediction **+0.004** [−0.004, +0.013] | ≥ +0.010 → collar not exhausted, build a single 4 px rung; flat/≤ −0.010 → PRUNE is finished for Phase 1 |
+| 2 | **CONCENTRATION**, to be built next session (5 km blocks, dots moved from the lowest-prior to the highest-prior blocks, 10–20 % of mass, block CV before/after recorded) | the only untried axis with a mechanism the ledger actually supports: R0's dot field is strongly clumped at km scale (CV 0.904 on 5 km blocks) while the brief reports best files at 0.51–0.59 | this is the first file since R0 that can plausibly clear ±0.01; preregister mechanism/confounder/falsifier before writing |
+| 3 | `…-SNAP-combo-…-dba98049` **or** the better of slots 1–2 re-cut | closes SNAP with the moderate edit if the human wants the question answered; otherwise a second point on the winning axis | SNAP ≥ +0.010 → magnetic/gravity edges carry sub-kernel information, licence a *selective* snap; ≤ −0.010 → SNAP closed for Phase 1 |
 
-**Do not spend a slot on:** `…-prune3-…-01d57649` (same `(PRUNE, 3)` pair as slot 1, different
-refill; only interesting *after* a rung shows ≥ +0.01, when mass versus proximity decides the
-next edit); `…-CONTROL-massctl2171…` (a control, not a candidate); `…-prune3-…-3eb29af5`
-(**withdrawn** — its dot set is identical to `le3p000`, IR-86-PRUNE-08).
-
-**Cheap defaults if slot 2 is not ready in time** (both built, gated, and unlike anything on
-main): `releases/h33-h33-2-b2-prune4-20261023-de4c2a98[-zeros].tif` (PRUNE ≤ 4 px, 33,829 dots,
-−0.008 MODEL) and `releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e[-zeros].tif`
-(equal count, collar relocated past 3 px, mean move 1.14 px, −0.003 MODEL). The refill design
-sits in `releases/refill/` because a PRUNE release in `releases/` may only delete dots. Neither is predicted to help; they are rehearsals, not bets.
-
-## Why the feature stack is no longer the blocker
-
-PR #29's plan called restoring `training_features.tif` (419 MB) the gate for every remaining
-axis. It is **open**: this session ran
-
-```
-python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
-python scripts/restore_data.py --with-external        # 22 s, sha256-verified
-```
-
-and the stack verified against its pin `4371c82e…3bc5`; five external rasters verified too.
-Needs ~420 MB of disk (gitignored; the pytest suite copies the tree into `/tmp`, so clear
-`/tmp/pytest-of-user` if the disk fills). With the stack present, this session measured
-label-free band response per dot set — the collar is **not** evidence-poor (`tmi_hg` percentile
-0.528 at the collar vs 0.542 elsewhere; `iso_grav_anom_hg` 0.557 vs 0.514).
+**Do not spend a slot on:** `SNAP-tmihg` (largest edit, worst prediction, same information as
+`combo`), `SNAP-gravhg` alone (a chance-level surface — it is the control, not a bet),
+`…-prune3-…-3eb29af5` (withdrawn, same dot set as `le3p000`, IR-86-PRUNE-08), or any PRUNE twin
+already in the ledger.
 
 ## Calendar to the deadline
 
-- **wk 1 (slot 1).** The deepest collar rung. Single decisive read on PRUNE.
-- **wk 2–3 (slots 2–3).** SNAP (preregistered: move each dot ≤ 2 px to the strongest
-  `tmi_hg`/`iso_grav_anom_hg` edge, same count, report mean displacement; falsifier: mean
-  displacement < 0.5 px makes it a no-op) **or** RELIEF (shift 10–15 % of mass between basin /
-  piedmont / range-front terciles, count fixed).
-- **wk 4.** CONCENTRATION on 5–10 km blocks, only at blocks > 3 px clear of the catalogue
-  (the collar result already argues against stacking mass next to mapped traces); record the
-  block-density CV.
-- **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as one attributable edit.
-- **wk 6.** Confirm both finalists, revalidate both formats, choose the final file and a
-  fallback blind, never multiply accounts.
+- **wk 1.** Slot 1 = `le3p000`. One decisive read on the collar.
+- **wk 2.** Build **CONCENTRATION** (5 km and 10 km blocks, two values) and spend slot 2 on the
+  better one; keep the loser as the fallback.
+- **wk 3.** Slot 3 = `SNAP-combo` *or* a second CONCENTRATION point, whichever the wk-1/2 receipts
+  make informative. Then stop spending and re-read this file.
+- **wk 4–5.** Combine the two axes with receipt-level effects ≥ 0.01 as one attributable edit
+  (e.g. prune the collar *and* concentrate km-scale mass), re-validating format each time.
+- **wk 6.** Confirm both finalists, re-run `scripts/run_snap.py`/`prune_collar.py` to prove
+  reproducibility, choose the final file and a fallback **blind**, never multiply accounts.
 
-## Better axes (proposals only; not built this session)
+## Better axes (proposals only — not built this session)
 
-- **Collar fill inward (PRUNE, 2.5).** If slot 1 is negative, the annulus is short of dots.
-  *Confounder:* added mass can never earn credit on masked pixels. *Falsifier:* a live drop
-  > 0.01 versus R0 kills the direction.
-- **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the shared
-  two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no replicated positive sign
-  on untouched spatial folds, then no live receipt.
-- **Annulus-conditional RELIEF.** Test the 200–300 m annulus per relief tercile.
-  *Confounder:* relief controls both catalogue completeness and lineament visibility.
-  *Falsifier:* no consistent sign in two relief regimes on held-out physical blocks.
+- **CONCENTRATION at 5 km vs 10 km.** *Mechanism:* geothermal systems and fault step-overs cluster
+  at km scale; the metric's max-cover term rewards clustering where truth is dense. *Confounder:*
+  the catalogue's own completeness varies by block, so "prior" and "known faults" are entangled.
+  *Falsifier:* block CV drops toward 0.55 with no live gain, or CV falls below 0.45 and the score
+  drops — then clustering is not the axis.
+- **RELIEF terciles (basin / piedmont / range-front).** *Mechanism:* range-front faults are better
+  imaged than basin-floor ones. *Confounder:* relief also controls catalogue completeness and
+  lineament visibility. *Falsifier:* no consistent sign in two relief regimes on held-out blocks.
+- **Selective magnetic snap.** Only if `SNAP-combo` returns ≥ +0.010: move only dots whose own
+  surface percentile is below 0.4, and only onto a crest ≥ 0.90. *Falsifier:* the moved fraction
+  collapses below 1 % (measured: a 0.85/0.05 gate already leaves 12 % on `tmi_hg`, 6 % on `combo`).
+- **Exact-marginal PRUNE.** Remove the dots with the most negative exact ΔDTI under the shared
+  two-sided metric. *Confounder:* proxy-truth shift; *falsifier:* no replicated positive sign on
+  untouched spatial folds.
 
 ## Human inputs still missing
 
-`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
-submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time.
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any submission-page
+receipt (R0's 0.2778 included) · which fill form the portal accepted last time · confirmation that
+the data-use terms permit keeping competition rasters out of this public repo (release TIFFs stay
+gitignored, IR-86-PRUNE-04).

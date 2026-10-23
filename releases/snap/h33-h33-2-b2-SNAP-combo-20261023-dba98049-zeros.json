@@ -1,0 +1,197 @@
+{
+  "id": "h33-h33-2-b2-SNAP-combo-20261023-dba98049",
+  "parent": "h33-h33-2-b2",
+  "axis": "SNAP",
+  "value": "combo",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 46.582,
+  "dot_digest": "48f3bed2f49e1e082e7ce28fd875a85db1f7beb3dd154552d8a5d1b08fe204ce",
+  "card": {
+    "axis": "SNAP",
+    "value": "combo",
+    "bands": [
+      "tmi_hg",
+      "iso_grav_anom_hg"
+    ],
+    "sigma_px": 1.0,
+    "radius_px": 2.0,
+    "min_catalogue_px": 3.0,
+    "stats": {
+      "n_dots": 37654,
+      "n_moved": 8770,
+      "fraction_moved": 0.23291,
+      "mean_displacement_px": 1.9035,
+      "median_displacement_px": 2.0,
+      "max_displacement_px": 2.0,
+      "displacement_histogram": {
+        "1.0000": 61,
+        "1.4142": 1340,
+        "2.0000": 7369
+      },
+      "blocked_by_collar": 23081,
+      "blocked_by_occupancy": 33
+    },
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 28884,
+      "removed": 8770,
+      "added": 8770,
+      "pct_of_parent_changed": 46.582,
+      "kept_fraction": 0.76709,
+      "min_catalogue_distance_px": 2.2361,
+      "dots_inside_3px_inherited": 1398
+    },
+    "nn_spacing_px_before": {
+      "n": 37654,
+      "mean": 3.7351,
+      "median": 3.0,
+      "min": 2.8284
+    },
+    "nn_spacing_px_after": {
+      "n": 37654,
+      "mean": 3.599,
+      "median": 3.0,
+      "min": 1.0
+    },
+    "block_density_cv_50px_before": 0.9036,
+    "block_density_cv_50px_after": 0.9044,
+    "surface_percentile_on_dots_before": 0.5481,
+    "surface_percentile_on_dots_after": 0.5644,
+    "surface_percentile_footprint": 0.5,
+    "dots_already_on_crest": 11866,
+    "crest_min": 0.75,
+    "min_gain": 0.02,
+    "predicted": -0.004,
+    "band": [
+      -0.018,
+      0.011
+    ],
+    "hypothesis": "Where the magnetic and the gravity horizontal gradients are both strong, two independent contrasts share one boundary -- the classical cross-gradient structural argument (Gallardo & Meju 2003). Snapping to that conjunction should be cleaner than snapping to either field alone.",
+    "mechanism": "The two rank surfaces are averaged with equal weight, so a cell scores high only if both fields are high there. Dots then climb the shared boundary rather than one field's processing artefacts.",
+    "confounder": "Equal weights are a declared choice, not a fitted one; if one field is noisy over part of the footprint the average inherits half of that noise. The mean also allows one strong field to carry a cell, so it is a soft conjunction rather than the strict minimum. The averaged surface is ranked again so that the 0.75 gate is the same percentile on all three variants.",
+    "falsifier": "The combo must beat **both** single-field variants by >= 0.005 live to support the conjunction mechanism. If it lands between them, the average is an average and the mechanism is unsupported; inside +/-0.010 nothing is learned."
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-SNAP-combo-20261023-dba98049-zeros.tif",
+    "sha256": "dba98049de46d8092d7a499a09add51c1e9a56ba9b52f012d3bcf9197763e6d7",
+    "bytes": 219805,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/snap/h33-h33-2-b2-SNAP-combo-20261023-dba98049-zeros.tif",
+      "bytes": 219805,
+      "sha256": "dba98049de46d8092d7a499a09add51c1e9a56ba9b52f012d3bcf9197763e6d7",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-SNAP-combo-20261023-dba98049.tif",
+    "sha256": "586540dd1de5cd16eddbb729441627216adfef75ea815f357c4137164499dfde",
+    "bytes": 356026,
+    "in_footprint_checks_pass": false,
+    "policy_note": "NaN outside the footprint is the public spec; the repo's all-finite policy prefers the -zeros twin"
+  },
+  "submission_name": "h33-h33-2-b2-SNAP-combo-20261023-dba98049",
+  "note": "SNAP combo: R0 h33-h33-2-b2; 8770 dots (23%) moved <=2px onto tmi_hg+iso_grav_anom_hg crest (sigma 1px); predicted -0.004 MODEL",
+  "predicted_live_change": -0.004,
+  "predicted_band": [
+    -0.018,
+    0.011
+  ],
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "generated_utc": "2026-10-23T16:04:47Z",
+  "provenance": {
+    "input_pins": {
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "path": "data/bridge/sample_submission.tif"
+      },
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "path": "data/bridge/existing_faults.tif"
+      },
+      "training_features.tif": {
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "path": "data/bridge/training_features.tif"
+      },
+      "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      },
+      "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin": null,
+        "pin_source": "MEASURED-LOCAL (no upstream pin in this checkout)",
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete base dots at Euclidean distance <= 2.0 px from the catalogue",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "byte_identical_sha": true,
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+    }
+  }
+}

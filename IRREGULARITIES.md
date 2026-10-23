@@ -105,3 +105,52 @@ Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, 
 other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
+
+## IR-86-SNAP-01 — the axis was unassigned for a fourth session
+Brief v2 §1 says the human assigns the AXIS; nothing arrived again, and the clarification question
+was skipped. **Decision:** SNAP was chosen because it is named in `SLOT_PLAN.md` slot 2, every input
+it needs is pinned **and** restored (the 419 MB stack verifies against `4371c82e…`), and PRUNE is
+already exhausted (7 builds). PRUNE, MASS (no ranking) and RELIEF were rejected for the reasons in
+IR-86-PRUNE-02/08 and because CONCENTRATION's "prior" definition is not pinned in this repo.
+**Cost:** a fourth axis was picked by the agent, so the three weekly slots are again aimed at a
+question the human did not choose. **This is the single thing that most needs a human decision.**
+
+## IR-86-SNAP-02 — the literal SNAP rule is degenerate; the built files add two gates
+Brief §5 defines SNAP as "move each dot <= 2 px to the strongest edge/scarp response in its
+window". Measured on R0 with the pinned bands: that rule moves **97–99 % of dots by a mean 1.8 px**,
+because the argmax of a smooth surface over a 5×5 window sits at the window boundary for almost
+every dot. Every dot lands on the window edge, so the result is a re-labelling of the parent field,
+not a correction of individual dots — and it destroys the parent's calibrated spacing (mean
+nearest-neighbour 3.735 → 3.30 px). **Decision:** the built variants add two *declared* gates to the
+rule — target response ≥ 0.75 rank (top quartile) and gain > 0.02 — applied identically to all three
+surfaces, which brings the moved fraction to 34 % / 7.7 % / 23.3 %. The rule is fixed in
+`scripts/run_snap.py`, written into the mechanism cards before the rasters, and the ungated numbers
+are recorded. **Cost:** these are not the literal brief form; if the human wants the ungated form,
+`snap_dots(..., min_gain=0.0, min_response=-inf)` reproduces it in one run and it is predicted worse.
+
+## IR-86-SNAP-03 — the strongest in-window edge is usually the masked catalogue, so SNAP cannot pay
+For **20,235 / 27,480 / 23,081** of R0's 37,654 dots (tmihg / gravhg / combo) the highest-response
+cell inside the 2 px window lies **inside the 3 px masked collar**, i.e. it is the mapped fault
+trace itself. Those cells score nothing (organizer: known pixels are masked pixel-exactly), so the
+rule must be forced outward, away from the very feature the geophysics is detecting. **Decision:**
+the collar exclusion is kept (constraint 4), the effect is reported per variant, and the predicted
+sign is negative for all three. **Cost:** this closes the "snap onto the mapped trace" idea by
+construction — it can only be revisited under AXIS=PRUNE, where collar mass is the manipulated
+variable rather than an accident.
+
+## IR-86-SNAP-04 — the report-only instruments cannot order these files
+Catalogue hide-and-recover PROXY: R0 0.00436 [0.00410, 0.00458] vs 0.00366 / 0.00418 / 0.00386 for
+the variants — all at the floor, because a catalogue-avoiding field earns almost nothing on
+withheld catalogue pixels (IR-86-PRUNE-03). The SGMC control was not computed: the pinned
+`derived_sgmc_faults_100m_u8.tif` is not in the restored external subset. **Decision:** neither is
+used for a prediction or a gate; predictions come from the algebra plus the measured AUC/percentile
+evidence. **Cost:** the live slot is the only measurement that can settle SNAP.
+
+## IR-86-SNAP-05 — the brief's block-density CV band cannot be compared with a local CV
+Brief §1 quotes CONCENTRATION's best files at block-density CV 0.51–0.59 without stating block size,
+minimum-footprint rule or definition. Measured here on 5 km blocks (≥ 25 % footprint), R0 sits at
+**0.904** and no SNAP variant moves it (0.903–0.904) — the statistic is dominated by the footprint
+shape, not by the dots. **Decision:** the 0.51–0.59 band is treated as **unusable as a target** until
+the human supplies the definition; CONCENTRATION's next-session gate must therefore be a *relative*
+CV change with the block definition frozen in the script, not an absolute attempt to hit 0.55.
+**Cost:** one of the few quantitative targets in the brief is unavailable.

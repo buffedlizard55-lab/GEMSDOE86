@@ -35,3 +35,5 @@ registry/submissions/
 /data/bridge/training_features.tif
 /releases/refill/*.tif
 /releases/refill/*.zip
+/releases/snap/*.tif
+/releases/snap/*.zip

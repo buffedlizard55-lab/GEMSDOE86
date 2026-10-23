@@ -1,0 +1,196 @@
+{
+  "id": "h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24",
+  "parent": "h33-h33-2-b2",
+  "axis": "SNAP",
+  "value": "tmihg",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 68.0353,
+  "dot_digest": "14582c1bd0d0089b91ac36fb4fdf0bc8b1e7d47671ec9dca42f88faffbb96408",
+  "card": {
+    "axis": "SNAP",
+    "value": "tmihg",
+    "bands": [
+      "tmi_hg"
+    ],
+    "sigma_px": 1.0,
+    "radius_px": 2.0,
+    "min_catalogue_px": 3.0,
+    "stats": {
+      "n_dots": 37654,
+      "n_moved": 12809,
+      "fraction_moved": 0.340176,
+      "mean_displacement_px": 1.8675,
+      "median_displacement_px": 2.0,
+      "max_displacement_px": 2.0,
+      "displacement_histogram": {
+        "1.0000": 209,
+        "1.4142": 2541,
+        "2.0000": 10059
+      },
+      "blocked_by_collar": 20235,
+      "blocked_by_occupancy": 67
+    },
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 24845,
+      "removed": 12809,
+      "added": 12809,
+      "pct_of_parent_changed": 68.0353,
+      "kept_fraction": 0.659824,
+      "min_catalogue_distance_px": 2.2361,
+      "dots_inside_3px_inherited": 1342
+    },
+    "nn_spacing_px_before": {
+      "n": 37654,
+      "mean": 3.7351,
+      "median": 3.0,
+      "min": 2.8284
+    },
+    "nn_spacing_px_after": {
+      "n": 37654,
+      "mean": 3.544,
+      "median": 3.0,
+      "min": 1.0
+    },
+    "block_density_cv_50px_before": 0.9036,
+    "block_density_cv_50px_after": 0.9034,
+    "surface_percentile_on_dots_before": 0.5806,
+    "surface_percentile_on_dots_after": 0.6097,
+    "surface_percentile_footprint": 0.5,
+    "dots_already_on_crest": 13012,
+    "crest_min": 0.75,
+    "min_gain": 0.02,
+    "predicted": -0.006,
+    "band": [
+      -0.022,
+      0.012
+    ],
+    "hypothesis": "Where the total-magnetic-intensity horizontal gradient is strongest, a magnetisation contrast marks a fault; a dot sitting 1-2 px off that crest would earn more kernel credit if it climbed onto it.",
+    "mechanism": "Lineaments in aeromagnetics are the surface expression of the fault plane. R0's dots come from a smooth model over the 19-band stack at 2.8 px spacing, so each dot's sub-kernel position is a model average, not an edge measurement. Snapping replaces that average with the local maximum of the TMI horizontal gradient.",
+    "confounder": "Pixel-scale dither in the delivered gradient band (0 % of horizontal neighbour differences are zero), so a 100 m crest can be a resampling artefact; 400 m flight lines at 150-200 m clearance also make a 100 m peak position not a 100 m fault position. Measured pre-test: R0's dots already sit at the 62nd percentile of this surface (background 50th), so the parent has partly used this field already and the remaining headroom is small.",
+    "falsifier": "A live change of +0.010 or more would falsify the pre-test claim that the magnetic edge adds nothing at 100 m beyond the parent's own field (catalogue AUC 0.527, dots already at the 62nd percentile). Inside +/-0.010 it is no evidence and closes the magnetic-snap form for Phase 1."
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24-zeros.tif",
+    "sha256": "ede24e246056cfef5428682e52bd1df9ba0edd9601aeafa377db2ccd3e25b1c4",
+    "bytes": 219594,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/snap/h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24-zeros.tif",
+      "bytes": 219594,
+      "sha256": "ede24e246056cfef5428682e52bd1df9ba0edd9601aeafa377db2ccd3e25b1c4",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24.tif",
+    "sha256": "401752f7a5f7dc9ead002ed569e53664e23e86846121c241df775946199dcd16",
+    "bytes": 355735,
+    "in_footprint_checks_pass": false,
+    "policy_note": "NaN outside the footprint is the public spec; the repo's all-finite policy prefers the -zeros twin"
+  },
+  "submission_name": "h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24",
+  "note": "SNAP tmihg: R0 h33-h33-2-b2; 12809 dots (34%) moved <=2px onto tmi_hg crest (sigma 1px); predicted -0.006 MODEL",
+  "predicted_live_change": -0.006,
+  "predicted_band": [
+    -0.022,
+    0.012
+  ],
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "generated_utc": "2026-10-23T16:04:33Z",
+  "provenance": {
+    "input_pins": {
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "path": "data/bridge/sample_submission.tif"
+      },
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "path": "data/bridge/existing_faults.tif"
+      },
+      "training_features.tif": {
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "path": "data/bridge/training_features.tif"
+      },
+      "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      },
+      "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin": null,
+        "pin_source": "MEASURED-LOCAL (no upstream pin in this checkout)",
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete base dots at Euclidean distance <= 2.0 px from the catalogue",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "byte_identical_sha": true,
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+    }
+  }
+}

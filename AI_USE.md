@@ -44,3 +44,35 @@ missing rungs instead.
 **AI corrected itself:** an earlier claim that the parent's file bytes were not reproducible was
 falsified (byte-exact rebuild, `c55bafc4…`) and retracted in `IRREGULARITIES.md` rather than
 deleted. No truth raster, no portal, no login, no slot.
+
+---
+
+## Addendum — SNAP axis (branch `arena/1f6f5dc8-gemsdoe86`, 2026-10-23)
+
+**AI wrote:** `src/gems86/snap.py`, `scripts/run_snap.py`, `tests/test_snap_axis.py`, the SNAP rows in
+`ledger/variants_snap.json`, the SNAP section of `ledger/variant-cards.md`, the rewritten
+`SLOT_PLAN.md`, `IR-86-SNAP-01…05`, and the edits to the `README.md` CURRENT_STATE block,
+`docs/SUBMIT.md`, `scripts/build_ledger.py` (one extra variants file) and `.gitignore`
+(`/releases/snap/*`).
+
+**AI decided (the human can veto any of it):**
+- The AXIS again, because none was assigned (IR-86-SNAP-01). SNAP was taken from `SLOT_PLAN.md`
+  slot 2 once the pinned feature stack restored and verified.
+- That the *literal* SNAP rule is degenerate at 98 % moved, and that two declared gates
+  (crest ≥ 0.75 rank, gain > 0.02) restore a local, attributable edit (IR-86-SNAP-02). The
+  ungated numbers are in the record, not hidden.
+- Three surfaces rather than one: magnetic, gravity, and their average — so a single slot on one of
+  them can be read against the other two.
+- Predicted changes are **negative** for all three (−0.006 / −0.002 / −0.004 MODEL, bands inside
+  ±0.03): the honest consequence of IR-86-SNAP-03 and the 0.500–0.527 catalogue AUC.
+- SNAP releases live in `releases/snap/` because they add dot cells, which
+  `tests/test_prune_ladder.py` correctly forbids inside `releases/`.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. No PROXY or MODEL number is called a score or a receipt. No gate
+was relaxed: the new files pass the same `gems57.validate` and `gems57.gates.format_report` used by
+the PRUNE releases.
+
+**What only the human can supply:** the AXIS for the next session, `TOP_PUBLIC` + date, the
+rolling-week quota, any submission-page receipt, the decision to spend a slot on a file predicted to
+lose, and the data-use ruling on committed competition rasters.

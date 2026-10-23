@@ -121,13 +121,14 @@ def fleet_index() -> dict[str, Path]:
 def variant_rows() -> list[dict]:
     """Rows for rasters built by this repository, from ``ledger/variants.json``.
 
-    The file is written by ``scripts/prune_collar.py``; a concurrent session's
-    candidate (PR #28) is carried in the same file with its provenance so one
-    generator reproduces the whole ledger.
+    ``variants.json`` is written by ``scripts/prune_collar.py``, ``variants_snap.json``
+    by ``scripts/run_snap.py``, and ``variants_external.json`` carries a concurrent
+    session's candidate (PR #28) with its provenance, so one generator reproduces
+    the whole ledger.
     """
     out = []
     entries = []
-    for name in ("variants.json", "variants_external.json"):
+    for name in ("variants.json", "variants_external.json", "variants_snap.json"):
         src = LEDGER / name
         if src.is_file():
             entries += json.loads(src.read_text(encoding="utf-8"))

@@ -1,0 +1,375 @@
+{
+  "generated_utc": "2026-10-23T16:04:47Z",
+  "elapsed_seconds": 84.5,
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "axis": "SNAP",
+  "axis_assignment": "UNASSIGNED BY THE HUMAN this session. SNAP was chosen because SLOT_PLAN's slot 2 names it, its inputs are all pinned and restored (the 419 MB stack verified against 4371c82e\u2026), and PRUNE is exhausted (7 builds)",
+  "input_pins": {
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "path": "data/bridge/existing_faults.tif"
+    },
+    "training_features.tif": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "path": "data/bridge/training_features.tif"
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin": null,
+      "pin_source": "MEASURED-LOCAL (no upstream pin in this checkout)",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+    }
+  },
+  "parent_rebuild": {
+    "rule": "delete base dots at Euclidean distance <= 2.0 px from the catalogue",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "byte_identical_sha": true,
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "surface_recipe": {
+    "sigma_px": 1.0,
+    "steps": [
+      "rank over footprint",
+      "gaussian smooth",
+      "rank again"
+    ]
+  },
+  "rule": {
+    "radius_px": 2.0,
+    "min_catalogue_px": 3.0,
+    "crest_min": 0.75,
+    "min_gain": 0.02,
+    "move_if": "target is a decisive crest (response >= crest_min) and beats the dot's own cell by more than min_gain",
+    "count": "preserved exactly",
+    "conflicts": "greedy by descending gain, ties by row-major dot index"
+  },
+  "variants": {
+    "tmihg": {
+      "axis": "SNAP",
+      "value": "tmihg",
+      "bands": [
+        "tmi_hg"
+      ],
+      "sigma_px": 1.0,
+      "radius_px": 2.0,
+      "min_catalogue_px": 3.0,
+      "stats": {
+        "n_dots": 37654,
+        "n_moved": 12809,
+        "fraction_moved": 0.340176,
+        "mean_displacement_px": 1.8675,
+        "median_displacement_px": 2.0,
+        "max_displacement_px": 2.0,
+        "displacement_histogram": {
+          "1.0000": 209,
+          "1.4142": 2541,
+          "2.0000": 10059
+        },
+        "blocked_by_collar": 20235,
+        "blocked_by_occupancy": 67
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 24845,
+        "removed": 12809,
+        "added": 12809,
+        "pct_of_parent_changed": 68.0353,
+        "kept_fraction": 0.659824,
+        "min_catalogue_distance_px": 2.2361,
+        "dots_inside_3px_inherited": 1342
+      },
+      "nn_spacing_px_before": {
+        "n": 37654,
+        "mean": 3.7351,
+        "median": 3.0,
+        "min": 2.8284
+      },
+      "nn_spacing_px_after": {
+        "n": 37654,
+        "mean": 3.544,
+        "median": 3.0,
+        "min": 1.0
+      },
+      "block_density_cv_50px_before": 0.9036,
+      "block_density_cv_50px_after": 0.9034,
+      "surface_percentile_on_dots_before": 0.5806,
+      "surface_percentile_on_dots_after": 0.6097,
+      "surface_percentile_footprint": 0.5,
+      "dots_already_on_crest": 13012,
+      "crest_min": 0.75,
+      "min_gain": 0.02,
+      "predicted": -0.006,
+      "band": [
+        -0.022,
+        0.012
+      ],
+      "hypothesis": "Where the total-magnetic-intensity horizontal gradient is strongest, a magnetisation contrast marks a fault; a dot sitting 1-2 px off that crest would earn more kernel credit if it climbed onto it.",
+      "mechanism": "Lineaments in aeromagnetics are the surface expression of the fault plane. R0's dots come from a smooth model over the 19-band stack at 2.8 px spacing, so each dot's sub-kernel position is a model average, not an edge measurement. Snapping replaces that average with the local maximum of the TMI horizontal gradient.",
+      "confounder": "Pixel-scale dither in the delivered gradient band (0 % of horizontal neighbour differences are zero), so a 100 m crest can be a resampling artefact; 400 m flight lines at 150-200 m clearance also make a 100 m peak position not a 100 m fault position. Measured pre-test: R0's dots already sit at the 62nd percentile of this surface (background 50th), so the parent has partly used this field already and the remaining headroom is small.",
+      "falsifier": "A live change of +0.010 or more would falsify the pre-test claim that the magnetic edge adds nothing at 100 m beyond the parent's own field (catalogue AUC 0.527, dots already at the 62nd percentile). Inside +/-0.010 it is no evidence and closes the magnetic-snap form for Phase 1."
+    },
+    "gravhg": {
+      "axis": "SNAP",
+      "value": "gravhg",
+      "bands": [
+        "iso_grav_anom_hg"
+      ],
+      "sigma_px": 1.0,
+      "radius_px": 2.0,
+      "min_catalogue_px": 3.0,
+      "stats": {
+        "n_dots": 37654,
+        "n_moved": 2915,
+        "fraction_moved": 0.077415,
+        "mean_displacement_px": 1.9727,
+        "median_displacement_px": 2.0,
+        "max_displacement_px": 2.0,
+        "displacement_histogram": {
+          "1.0000": 4,
+          "1.4142": 129,
+          "2.0000": 2782
+        },
+        "blocked_by_collar": 27480,
+        "blocked_by_occupancy": 1
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 34739,
+        "removed": 2915,
+        "added": 2915,
+        "pct_of_parent_changed": 15.4831,
+        "kept_fraction": 0.922585,
+        "min_catalogue_distance_px": 2.2361,
+        "dots_inside_3px_inherited": 1528
+      },
+      "nn_spacing_px_before": {
+        "n": 37654,
+        "mean": 3.7351,
+        "median": 3.0,
+        "min": 2.8284
+      },
+      "nn_spacing_px_after": {
+        "n": 37654,
+        "mean": 3.7051,
+        "median": 3.0,
+        "min": 1.0
+      },
+      "block_density_cv_50px_before": 0.9036,
+      "block_density_cv_50px_after": 0.904,
+      "surface_percentile_on_dots_before": 0.4873,
+      "surface_percentile_on_dots_after": 0.4907,
+      "surface_percentile_footprint": 0.5,
+      "dots_already_on_crest": 9364,
+      "crest_min": 0.75,
+      "min_gain": 0.02,
+      "predicted": -0.002,
+      "band": [
+        -0.014,
+        0.01
+      ],
+      "hypothesis": "A density contrast across a fault produces an isostatic-gravity horizontal gradient crest; gravity is not masked by the magnetic blanking that removes signal over some volcanic rocks, so it is the independent test of the snap idea.",
+      "mechanism": "Same relocation rule as ``tmihg`` with the gravity edge substituted. Because the two fields are independent measurements, agreement between the variants is evidence that the edge geometry is physical rather than processing noise.",
+      "confounder": "R0's dots sit at the 48th percentile of this surface -- indistinguishable from background -- and catalogue pixels separate at AUC 0.499, i.e. chance. This variant is therefore the honest null control of the trio: whatever it does live is a floor for the axis. Isostatic correction also low-passes the field, moving a 100 m crest off the fault trace.",
+      "falsifier": "A gain of +0.010 or more would mean the gravity edge localises faults better than the parent's model despite a chance-level catalogue AUC, which would need an independent explanation before any slot. Inside +/-0.010 it is a no-op."
+    },
+    "combo": {
+      "axis": "SNAP",
+      "value": "combo",
+      "bands": [
+        "tmi_hg",
+        "iso_grav_anom_hg"
+      ],
+      "sigma_px": 1.0,
+      "radius_px": 2.0,
+      "min_catalogue_px": 3.0,
+      "stats": {
+        "n_dots": 37654,
+        "n_moved": 8770,
+        "fraction_moved": 0.23291,
+        "mean_displacement_px": 1.9035,
+        "median_displacement_px": 2.0,
+        "max_displacement_px": 2.0,
+        "displacement_histogram": {
+          "1.0000": 61,
+          "1.4142": 1340,
+          "2.0000": 7369
+        },
+        "blocked_by_collar": 23081,
+        "blocked_by_occupancy": 33
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 28884,
+        "removed": 8770,
+        "added": 8770,
+        "pct_of_parent_changed": 46.582,
+        "kept_fraction": 0.76709,
+        "min_catalogue_distance_px": 2.2361,
+        "dots_inside_3px_inherited": 1398
+      },
+      "nn_spacing_px_before": {
+        "n": 37654,
+        "mean": 3.7351,
+        "median": 3.0,
+        "min": 2.8284
+      },
+      "nn_spacing_px_after": {
+        "n": 37654,
+        "mean": 3.599,
+        "median": 3.0,
+        "min": 1.0
+      },
+      "block_density_cv_50px_before": 0.9036,
+      "block_density_cv_50px_after": 0.9044,
+      "surface_percentile_on_dots_before": 0.5481,
+      "surface_percentile_on_dots_after": 0.5644,
+      "surface_percentile_footprint": 0.5,
+      "dots_already_on_crest": 11866,
+      "crest_min": 0.75,
+      "min_gain": 0.02,
+      "predicted": -0.004,
+      "band": [
+        -0.018,
+        0.011
+      ],
+      "hypothesis": "Where the magnetic and the gravity horizontal gradients are both strong, two independent contrasts share one boundary -- the classical cross-gradient structural argument (Gallardo & Meju 2003). Snapping to that conjunction should be cleaner than snapping to either field alone.",
+      "mechanism": "The two rank surfaces are averaged with equal weight, so a cell scores high only if both fields are high there. Dots then climb the shared boundary rather than one field's processing artefacts.",
+      "confounder": "Equal weights are a declared choice, not a fitted one; if one field is noisy over part of the footprint the average inherits half of that noise. The mean also allows one strong field to carry a cell, so it is a soft conjunction rather than the strict minimum. The averaged surface is ranked again so that the 0.75 gate is the same percentile on all three variants.",
+      "falsifier": "The combo must beat **both** single-field variants by >= 0.005 live to support the conjunction mechanism. If it lands between them, the average is an average and the mechanism is unsupported; inside +/-0.010 nothing is learned."
+    }
+  },
+  "proxy": {
+    "R0": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.004356,
+      "ci95": [
+        0.0041,
+        0.004577
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "tmihg": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.003658,
+      "ci95": [
+        0.003405,
+        0.003886
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "gravhg": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.004183,
+      "ci95": [
+        0.003907,
+        0.004426
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "combo": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.003856,
+      "ci95": [
+        0.003596,
+        0.00408
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_auc": 0.5778,
+    "status": "PASS",
+    "rows": [
+      {
+        "surface": "tmihg",
+        "auc_pooled": 0.5271,
+        "auc_quadrants": [
+          0.5323,
+          0.4664,
+          0.5376,
+          0.4979
+        ],
+        "auc_quadrant_max": 0.5376
+      },
+      {
+        "surface": "gravhg",
+        "auc_pooled": 0.4997,
+        "auc_quadrants": [
+          0.4867,
+          0.5778,
+          0.4914,
+          0.4578
+        ],
+        "auc_quadrant_max": 0.5778
+      },
+      {
+        "surface": "combo",
+        "auc_pooled": 0.5194,
+        "auc_quadrants": [
+          0.5123,
+          0.5341,
+          0.52,
+          0.467
+        ],
+        "auc_quadrant_max": 0.5341
+      }
+    ],
+    "note": "Catalogue pixels are the only measured fault pixels available; a surface that reproduced them above 0.90 AUC would be a copy of the labels, not a physical feature. Values near 0.50 mean the surface cannot localise a mapped trace."
+  },
+  "written": [
+    "h33-h33-2-b2-SNAP-tmihg-20261023-ede24e24",
+    "h33-h33-2-b2-SNAP-gravhg-20261023-701aada8",
+    "h33-h33-2-b2-SNAP-combo-20261023-dba98049"
+  ],
+  "gates": {
+    "format": "zeros twin passes the shared validator and format_report",
+    "zero_catalogue_mass": "asserted in memory and after re-read",
+    "sha_novel": "checked against the ledger and every local raster",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes"
+  },
+  "not_a_score": "Every number here is a MODEL projection or a PROXY measurement. No submission was made."
+}
