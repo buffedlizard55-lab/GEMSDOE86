@@ -110,8 +110,10 @@ class ProtocolTests(unittest.TestCase):
         from scripts.experiment import main as experiment
         from scripts.run_experiment import run as rmrb86
         from scripts.run_lane86b import main as h86b
+        from scripts.run_h86_wvb import main as h86_wvb
+        from scripts.run_lane86c import main as h86c
         with patch('scripts.protocol_preflight.measure', return_value={'universal_overlap_blocker': True}):
-            for entrypoint in (build, experiment, rmrb86, h86b):
+            for entrypoint in (build, experiment, rmrb86, h86b, h86_wvb, h86c):
                 with self.assertRaisesRegex(RuntimeError, 'STOP_LITERAL_OVERLAP_UNSATISFIABLE'):
                     entrypoint()
 

@@ -1,5 +1,5 @@
 site,submission,score,evidence_class,source_url
-GEMSDOE32,h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros,0.2778,OWNER-PROJECTED (artifact audit says UNSCORED),https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+GEMSDOE32,h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros,0.2778,OWNER-REPORTED (no submission-page receipt located),https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
 GEMSDOE,gems-submission-20260925T001403Z-7f00890a,0.1563,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html
 6GEMSDOE,gems6_hgb88-topk03_33cec71ff0,0.0286,OWNER-REPORTED,https://buffedlizard55-lab.github.io/6GEMSDOE/
 GEMSDOE3,pindrop-v4-nodes-20260925T152420Z-f347b70daa,0.1193,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html
@@ -102,3 +102,15 @@ GEMSDOE74,gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros,0.0669
 GEMSDOE75,gems75-trlt-radon-loco-ridge-20261021-zeros,0.1627,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE75/
 GEMSDOE76,gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros,0.1555,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE76/
 GEMSDOE77,gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros,0.0964,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE77/
+GEMSDOE76,gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros,,NO SCORE SUPPLIED,https://buffedlizard55-lab.github.io/GEMSDOE76/
+GEMSDOE78,gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros,,NO SCORE SUPPLIED,https://buffedlizard55-lab.github.io/GEMSDOE78/
+GEMSDOE79,gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros,,NO SCORE SUPPLIED,https://buffedlizard55-lab.github.io/GEMSDOE79/
+GEMSDOE80,gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros,0.0943,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE80/
+GEMSDOE81,gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros,0.0041,OWNER-REPORTED,https://buffedlizard55-lab.github.io/GEMSDOE81/
+GEMSDOE82,gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros,,NO SCORE SUPPLIED,https://buffedlizard55-lab.github.io/GEMSDOE82/
+GEMSDOE83,gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros,,NO SCORE SUPPLIED,https://buffedlizard55-lab.github.io/GEMSDOE83/
+GEMSDOE84,,,NO ARTIFACT OR SCORE SPECIFIED IN PROMPT,https://buffedlizard55-lab.github.io/GEMSDOE84/
+GEMSDOE85,,,NO ARTIFACT OR SCORE SPECIFIED IN PROMPT,https://buffedlizard55-lab.github.io/GEMSDOE85/
+GEMSDOE86,,,NO ARTIFACT OR SCORE SPECIFIED IN PROMPT,https://buffedlizard55-lab.github.io/GEMSDOE86/
+GEMSDOE87,,,NO ARTIFACT OR SCORE SPECIFIED IN PROMPT,https://buffedlizard55-lab.github.io/GEMSDOE87/
+GEMSDOE88,,,NO ARTIFACT OR SCORE SPECIFIED IN PROMPT,https://buffedlizard55-lab.github.io/GEMSDOE88/

@@ -1,0 +1,46 @@
+{
+  "schema": "gems86.ui-smoke.v1",
+  "observed_utc": "2026-10-23T01:01:48.923Z",
+  "scope": "One-time local Chromium UI checks at the recorded page hashes, not organizer acceptance, external link verification, scientific clearance, or a continuously refreshed browser test.",
+  "origin": "http://127.0.0.1:8000",
+  "browser_version": "153.0.8010.0",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "pages_checked": 10,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 8,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "pages_checked": 10,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 8,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    }
+  ],
+  "page_sha256": {
+    "index.html": "8ae83937a7b00f2be466863ce979d3ad37e9b03cdae97c39efaed73415e92efe",
+    "executive-summary.html": "ae45783259ac6477c5a8c81d37825bd10ed2f1fa61457d1514158e1c4e8e973f",
+    "evidence.html": "790a0808812257d220aa2d7c62e17f340c2560760100d174b09cfac74b9ddd44",
+    "hypotheses.html": "58b8a1f469ceb8573713719b18e72af61206f04405da5e387ed8b25d0153ca56",
+    "fleet.html": "f80373193328a7dc1828bc606282ebd84f472426073b24ee2ca831ad37270b6f",
+    "sources.html": "701a73deb47b484fd9268628573bab8065e3410f9e8938f4a9c7aea22fd9b346",
+    "irregularities.html": "33b09e976d57faaa1df0f3b700947c47d5226f2b2379221283f44e38e4b75c95",
+    "research.html": "15494c861bcf06ec4df5666853dd21d88a3491be4c15102e4ccc66a94d56fc2a",
+    "download-status.html": "33a2b0a22bc8aa35ae41dabad833110a9746bbbd64630fc9f860b2266838980f",
+    "h86-fvmb-forensics.html": "6b596ec8e0ca724481dd07b258bd79b27ad01d42c626da5d81c79ba6f8426540"
+  },
+  "asset_sha256": {
+    "site.css": "7affbdb588dba72bf0a460b6d79314de9d861c0af6ee80fc6c6cac7d8aaba9f6",
+    "site.js": "05b68ad10b23c27d941c687db96fbcf188c2b484c7395ae4d89dbab81f6ddd6c"
+  },
+  "without_javascript_decision_and_downloads_work": true,
+  "errors": [],
+  "passed": true
+}

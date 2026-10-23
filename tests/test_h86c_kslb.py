@@ -130,10 +130,14 @@ class H86CKslbTests(unittest.TestCase):
         )
         self.assertLess(float(s_bg[5, 5]), 0.03)
 
-    def test_run_lane86c_default_enforces_protocol_preflight_early_stop(self):
-        with mock.patch("scripts.protocol_preflight.require_feasible", side_effect=RuntimeError("STOP_LITERAL")):
-            with self.assertRaisesRegex(RuntimeError, "STOP_LITERAL"):
-                R.main(skip_literal_preflight=False)
+    def test_run_lane86c_and_features_have_no_preflight_bypass(self):
+        with self.assertRaises(TypeError):
+            R.main(skip_literal_preflight=True)  # type: ignore[call-arg]
+        with mock.patch("scripts.protocol_preflight.measure", return_value={"universal_overlap_blocker": True}):
+            with self.assertRaisesRegex(RuntimeError, "STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+                R.main()
+            with self.assertRaisesRegex(RuntimeError, "STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+                F.main()
 
     def test_audit_h86c_passes_without_mutating_any_prior_cards(self):
         watched = [
@@ -152,9 +156,11 @@ class H86CKslbTests(unittest.TestCase):
             self.assertEqual(p.read_bytes(), raw, f"Mutated {p}")
 
     def test_build_site_is_idempotent_and_preserves_owner_prompt_archive(self):
+        rc_check = build_site.main(["--check"])
+        self.assertEqual(rc_check, 0)
         html_paths = sorted((ROOT / "docs").glob("*.html"))
         before = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in html_paths}
-        rc = build_site.main()
+        rc = build_site.main([])
         self.assertEqual(rc, 0)
         after = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in html_paths}
         self.assertEqual(before, after, "scripts/build_site.py must be byte-for-byte deterministic")

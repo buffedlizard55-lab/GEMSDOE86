@@ -1,0 +1,94 @@
+{
+  "schema_version": "gems-parallel-run-card-v1",
+  "lane_id": "H86-FVMB",
+  "repository": "buffedlizard55-lab/GEMSDOE86",
+  "hypothesis": "Blind and under-mapped Quaternary faults in the NW Great Basin act as episodically breaching Sibson hydrothermal fault-valves and asymmetric Mode-II/III (\u00b122 deg) wing-crack / step-over relays whose subsurface geometry is jointly resolved by dual Magnetic-Gravity Source Parameter Imaging (iSPI) local-wavenumber ridges projected up-dip via cot(60 deg) basement-depth pullback.",
+  "mechanism": "60-channel label-free multi-physics stack (dual B9/B3 magnetic & B11/B18 gravity iSPI local wavenumber ridges with cot(60) up-dip projection, high-pass RTP magnetite-destruction troughs x GeoDAWN K/Th metasomatism x MT clay-cap B17 x INGENIOUS 2m temperature probe F2mDAB x paleo-sinter seals x GDR 1391 geothermometers, 1m/3m/10m scarps, and fluvial chi/ksn knickzones) coupled with 12 fold-strict \u00b122-deg wing-crack / relay-bridge / antithetic-twin FFT channels in a counterfactual component-withheld 3-family SAR-PU LOQO ensemble (LightGBM + HistGradientBoosting + MLP) with 8-stratum (Quadrant x 1m-LiDAR-Seam) Bayes calibration and exact 25-cell 300 m Three-Regime Dinkelbach-Minoux submodular expected-DTI allocation.",
+  "non_fault_mimic": "Pleistocene Lake Lahontan (~1,332 m ASL) and Lake Bonneville (~1,463 / 1,552 m ASL) wave-cut paleoshoreline benches, flat basalt flow rims, and US Census TIGER highway/railroad embankments \u2014 explicitly rejected via along-scarp elevation climb variance sigma_9(z_ASL)/(|grad z_ASL|+3m), subsurface iSPI silence gating, and road-proximity x scarp interaction decontamination.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dual_seed_segment_all": {
+      "withheld_positives": 22641,
+      "candidate_dti": 0.14576375853286033,
+      "ci95": [
+        0.13450039640648082,
+        0.1559892864870121
+      ],
+      "h33_b2_foldfair_dti": 0.09080047790197548,
+      "h33_b2_foldfair_ci95": [
+        0.08046407437559254,
+        0.10005167672670927
+      ],
+      "d28_incumbent_dti": 0.09801116205359436,
+      "paired_delta_vs_h33_foldfair": "HOLDOUT-DTI",
+      "paired_delta_vs_h33_foldfair_ci95": [
+        0.04702376096629935,
+        0.0634632712424492
+      ],
+      "paired_delta_vs_d28": "HOLDOUT-DTI",
+      "paired_delta_vs_d28_ci95": [
+        0.03960466105545995,
+        0.05609943401417121
+      ]
+    },
+    "detached_blind_splay_seed20": {
+      "withheld_positives": 11307,
+      "candidate_dti": 0.15379755374451018,
+      "ci95": [
+        0.13941453280075197,
+        0.16814947938854963
+      ],
+      "h33_b2_foldfair_dti": 0.09256459909269278,
+      "point_delta_vs_h33_foldfair": 0.0612329546518174
+    },
+    "experiment_ablation": {
+      "EXP86_1_Phys_3Fam_D28": 0.09807972589645038,
+      "EXP86_2_WingCrack_3Fam_D28": 0.14856050688977962,
+      "EXP86_3a_SingleRegime_Dink": 0.1485410110593884,
+      "EXP86_3b_TriRegime_Dink": 0.14576375853286033
+    }
+  },
+  "leakage_canary": {
+    "passed": true,
+    "channels_tested": 72,
+    "max_symmetric_auc": 0.733445,
+    "threshold": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "modern_and_concurrent_rasters_checked": 38,
+    "modern_31_and_concurrent_6_all_pass": true,
+    "surface_max_abs_spearman_vs_37": 0.143302,
+    "dots_max_abs_spearman_vs_37": 0.048042,
+    "dots_max_3px_overlap_vs_31_modern": 0.683099,
+    "dots_max_3px_overlap_vs_6_concurrent_gems86": 0.5167447916666666,
+    "dots_3px_overlap_vs_gems32_h33_2_b2": 0.305208,
+    "dots_3px_overlap_vs_h86b_gfco": 0.360625,
+    "literal_808_archive_dense_witness_overlap": 1.0,
+    "literal_808_archive_stop_required": true
+  },
+  "raster_sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+  "zip_sha256": "5c14d8f91dc49a5810fe228190c2bdc7ca22fc97faa2f76d44474d02787ebe12",
+  "submission_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+  "zip_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip",
+  "submission_name": "GEMS86-H86-FVMB-TRIDINK-38400",
+  "note": "H86-FVMB iSPI dip-pullback + Sibson fault-valve + \u00b122deg wingcrack SAR-PU + TriRegime Dinkelbach; 38400d; HOLDOUT-DTI 0.1458",
+  "note_chars": 124,
+  "validator": {
+    "status": "PASS (15/15 shared validator + template format check; fixes DrivenData [0,1] error by construction)",
+    "all_checks_passed": true,
+    "emitted_dots": 38400,
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "nw_ne_dot_fraction": 0.499766,
+    "non_lidar_24pct_dot_fraction": 0.249661
+  },
+  "experiments_run": 3,
+  "weekly_submission_slots_used": 0,
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "selector_note": "FORMAT-VALID & MODERN-UNIQUE CHAMPION OF GEMSDOE86 (15/15 format checks PASS; 72/72 leakage canaries <= 0.7334; passes literal <= 0.70 uniqueness across ALL 37 modern/concurrent rasters: max 0.6831 vs 31 GEMSDOE28..85 priors including 201k-dot H85 skeleton, 0.3052 vs GEMSDOE32 H33-2-B2, 0.3606 vs H86B-GFCO; achieves #1 HOLDOUT-DTI in GEMSDOE86 at 0.1458 [0.1345, 0.1560] dual-seed all (+60.5% vs H33-2-B2, paired CI [+0.0470, +0.0635] > 0) and 0.1538 detached (+66.2%)). FAIL-CLOSED ('negative') under the repository's literal 808-raster gate SOLELY because historical 17GEMSDOE_E-proba-multiscale has p > 0 on 100.0% of all 5,106,385 allowed pixels (overlap = 1.000 without an owner carpet-prior waiver)."
+}

@@ -672,6 +672,16 @@ def compute_kinematic_components(
     )
 
 
-if __name__ == "__main__":
+def main():
+    # Direct feature-building must not get around the model entrypoint's STOP.
+    # Pure transformation functions remain importable for synthetic unit tests.
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     man = build_physical_planes()
     print(f"Built {man['n_features']} physical planes in {man['elapsed_s']}s")
+
+
+if __name__ == "__main__":
+    main()

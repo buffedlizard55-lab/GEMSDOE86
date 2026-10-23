@@ -1,6 +1,6 @@
 {
-  "rasters_checked": 38,
-  "discriminating_dot_rasters_checked": 35,
+  "rasters_checked": 40,
+  "discriminating_dot_rasters_checked": 37,
   "pre_placement_surface_worst_abs_spearman": 0.39075302090292985,
   "final_dots_worst_all_abs_spearman": 0.09268941629291658,
   "final_dots_worst_rho_vs": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
@@ -46,8 +46,8 @@
   },
   "two_phase_summary": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "rasters_checked": 38,
-    "rasters_expected": 38,
+    "rasters_checked": 40,
+    "rasters_expected": 40,
     "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
     "footprint_cells": 5167373,
     "dense_support_fraction": 0.2,
@@ -67,12 +67,12 @@
       "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
     },
     "like_for_like_reading": {
-      "dot_field_rasters": 36,
+      "dot_field_rasters": 38,
       "continuous_surface_rasters": 2,
       "worst_forward_overlap_dot_fields": 0.9981401678385121,
       "worst_forward_overlap_dot_field_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
-      "worst_reverse_overlap": 0.5528691313222953,
-      "worst_reverse_overlap_submission": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+      "worst_reverse_overlap": null,
+      "worst_reverse_overlap_submission": null,
       "worst_jaccard": 0.05287037921482472,
       "worst_jaccard_submission": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
       "forward_overlap_firings": 1,
@@ -110,7 +110,8 @@
       "their_dots": 121131,
       "spearman_full_footprint": 0.01598487674897296,
       "my_dots_within_3px_of_theirs": 0.37711499206169197,
-      "jaccard_dot_sets": 0.013389516554422895
+      "jaccard_dot_sets": 0.013389516554422895,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -118,7 +119,8 @@
       "their_dots": 123779,
       "spearman_full_footprint": 0.01662081617673067,
       "my_dots_within_3px_of_theirs": 0.38607393966885917,
-      "jaccard_dot_sets": 0.013671084810241237
+      "jaccard_dot_sets": 0.013671084810241237,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -126,7 +128,8 @@
       "their_dots": 123939,
       "spearman_full_footprint": 0.016866609437356708,
       "my_dots_within_3px_of_theirs": 0.392628713994103,
-      "jaccard_dot_sets": 0.013780204531056744
+      "jaccard_dot_sets": 0.013780204531056744,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -134,7 +137,8 @@
       "their_dots": 60069,
       "spearman_full_footprint": 0.00972569063755635,
       "my_dots_within_3px_of_theirs": 0.34889997731912,
-      "jaccard_dot_sets": 0.009772081705460926
+      "jaccard_dot_sets": 0.009772081705460926,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -142,7 +146,8 @@
       "their_dots": 44090,
       "spearman_full_footprint": 0.008413984131731302,
       "my_dots_within_3px_of_theirs": 0.333703787706963,
-      "jaccard_dot_sets": 0.008509080927764307
+      "jaccard_dot_sets": 0.008509080927764307,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -150,7 +155,8 @@
       "their_dots": 206895,
       "spearman_full_footprint": -0.000529174377164951,
       "my_dots_within_3px_of_theirs": 0.9981401678385121,
-      "jaccard_dot_sets": 0.006884129193762562
+      "jaccard_dot_sets": 0.006884129193762562,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -158,7 +164,8 @@
       "their_dots": 227507,
       "spearman_full_footprint": 0.007238801473336423,
       "my_dots_within_3px_of_theirs": 0.44318439555454753,
-      "jaccard_dot_sets": 0.009841978062836959
+      "jaccard_dot_sets": 0.009841978062836959,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -166,7 +173,8 @@
       "their_dots": 174232,
       "spearman_full_footprint": 0.024879845736372818,
       "my_dots_within_3px_of_theirs": 0.5885234747108188,
-      "jaccard_dot_sets": 0.016865315019492223
+      "jaccard_dot_sets": 0.016865315019492223,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -174,7 +182,8 @@
       "their_dots": 69281,
       "spearman_full_footprint": 0.012931622909391982,
       "my_dots_within_3px_of_theirs": 0.5574279882059424,
-      "jaccard_dot_sets": 0.011581736903625316
+      "jaccard_dot_sets": 0.011581736903625316,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -182,7 +191,8 @@
       "their_dots": 172974,
       "spearman_full_footprint": 0.01369918937528108,
       "my_dots_within_3px_of_theirs": 0.4168972556135178,
-      "jaccard_dot_sets": 0.012345103233418992
+      "jaccard_dot_sets": 0.012345103233418992,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
@@ -190,7 +200,8 @@
       "their_dots": 147684,
       "spearman_full_footprint": 0.003875454078314759,
       "my_dots_within_3px_of_theirs": 0.08142435926513948,
-      "jaccard_dot_sets": 0.008238392908778331
+      "jaccard_dot_sets": 0.008238392908778331,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE27",
@@ -198,7 +209,8 @@
       "their_dots": 61328,
       "spearman_full_footprint": 0.010894432846225386,
       "my_dots_within_3px_of_theirs": 0.3706055794964845,
-      "jaccard_dot_sets": 0.010389709969904347
+      "jaccard_dot_sets": 0.010389709969904347,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -206,7 +218,8 @@
       "their_dots": 90568,
       "spearman_full_footprint": 0.04263834790238428,
       "my_dots_within_3px_of_theirs": 0.5914719891131776,
-      "jaccard_dot_sets": 0.026153353756115404
+      "jaccard_dot_sets": 0.026153353756115404,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -214,7 +227,8 @@
       "their_dots": 90568,
       "spearman_full_footprint": -0.0007337299538337124,
       "my_dots_within_3px_of_theirs": 0.17754592878203673,
-      "jaccard_dot_sets": 0.005428168235882656
+      "jaccard_dot_sets": 0.005428168235882656,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -222,7 +236,8 @@
       "their_dots": 38000,
       "spearman_full_footprint": -0.00027656757081079714,
       "my_dots_within_3px_of_theirs": 0.1184622363347698,
-      "jaccard_dot_sets": 0.0038274820548565
+      "jaccard_dot_sets": 0.0038274820548565,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -230,7 +245,8 @@
       "their_dots": 60000,
       "spearman_full_footprint": 0.00045285124258265686,
       "my_dots_within_3px_of_theirs": 0.20997958720798368,
-      "jaccard_dot_sets": 0.005166336729274299
+      "jaccard_dot_sets": 0.005166336729274299,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -238,7 +254,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.021292957630347158,
       "my_dots_within_3px_of_theirs": 0.29231118167384895,
-      "jaccard_dot_sets": 0.01467192969390035
+      "jaccard_dot_sets": 0.01467192969390035,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE86",
@@ -246,7 +263,8 @@
       "their_dots": 44090,
       "spearman_full_footprint": 0.09268941629291658,
       "my_dots_within_3px_of_theirs": 0.5460195055568156,
-      "jaccard_dot_sets": 0.05287037921482472
+      "jaccard_dot_sets": 0.05287037921482472,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE32",
@@ -254,7 +272,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.010457497642706981,
       "my_dots_within_3px_of_theirs": 0.30675890224540714,
-      "jaccard_dot_sets": 0.009185185185185185
+      "jaccard_dot_sets": 0.009185185185185185,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE36",
@@ -262,7 +281,8 @@
       "their_dots": 38854,
       "spearman_full_footprint": 0.010777255091473972,
       "my_dots_within_3px_of_theirs": 0.3146745293717396,
-      "jaccard_dot_sets": 0.009419496166484118
+      "jaccard_dot_sets": 0.009419496166484118,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE49",
@@ -270,7 +290,8 @@
       "their_dots": 40000,
       "spearman_full_footprint": 0.012260777510176388,
       "my_dots_within_3px_of_theirs": 0.2752551599002041,
-      "jaccard_dot_sets": 0.010235709651841706
+      "jaccard_dot_sets": 0.010235709651841706,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/60GEMSDOE",
@@ -278,7 +299,8 @@
       "their_dots": 12000,
       "spearman_full_footprint": 0.00549077988714032,
       "my_dots_within_3px_of_theirs": 0.11660240417328192,
-      "jaccard_dot_sets": 0.0040814865203537285
+      "jaccard_dot_sets": 0.0040814865203537285,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE70",
@@ -286,7 +308,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.016369997498976392,
       "my_dots_within_3px_of_theirs": 0.2635291449308233,
-      "jaccard_dot_sets": 0.012171716546352818
+      "jaccard_dot_sets": 0.012171716546352818,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE70",
@@ -294,7 +317,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.017087413799527912,
       "my_dots_within_3px_of_theirs": 0.35379904740303925,
-      "jaccard_dot_sets": 0.012535301986820591
+      "jaccard_dot_sets": 0.012535301986820591,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE73",
@@ -302,7 +326,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.01812643051067149,
       "my_dots_within_3px_of_theirs": 0.36298480381038783,
-      "jaccard_dot_sets": 0.013062337340438716
+      "jaccard_dot_sets": 0.013062337340438716,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE75",
@@ -310,7 +335,8 @@
       "their_dots": 29953,
       "spearman_full_footprint": 0.026563976756991035,
       "my_dots_within_3px_of_theirs": 0.4359491948287594,
-      "jaccard_dot_sets": 0.0166691839789095
+      "jaccard_dot_sets": 0.0166691839789095,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE76",
@@ -318,7 +344,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.026413825706697654,
       "my_dots_within_3px_of_theirs": 0.3340213200272171,
-      "jaccard_dot_sets": 0.017285794287847676
+      "jaccard_dot_sets": 0.017285794287847676,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE78",
@@ -326,7 +353,8 @@
       "their_dots": 40000,
       "spearman_full_footprint": 0.027913710757987042,
       "my_dots_within_3px_of_theirs": 0.4954865048763892,
-      "jaccard_dot_sets": 0.018211319109776476
+      "jaccard_dot_sets": 0.018211319109776476,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE78",
@@ -334,7 +362,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.020427110371060844,
       "my_dots_within_3px_of_theirs": 0.44588342027670674,
-      "jaccard_dot_sets": 0.014231298931722024
+      "jaccard_dot_sets": 0.014231298931722024,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE80",
@@ -342,7 +371,8 @@
       "their_dots": 51667,
       "spearman_full_footprint": 0.03337463310536254,
       "my_dots_within_3px_of_theirs": 0.44318439555454753,
-      "jaccard_dot_sets": 0.021538756960890994
+      "jaccard_dot_sets": 0.021538756960890994,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE81",
@@ -350,7 +380,8 @@
       "their_dots": 44090,
       "spearman_full_footprint": 0.01358397535551737,
       "my_dots_within_3px_of_theirs": 0.4073032433658426,
-      "jaccard_dot_sets": 0.011122577686045179
+      "jaccard_dot_sets": 0.011122577686045179,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE82",
@@ -358,7 +389,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.027131242007249173,
       "my_dots_within_3px_of_theirs": 0.35983216148786573,
-      "jaccard_dot_sets": 0.017653063765156986
+      "jaccard_dot_sets": 0.017653063765156986,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE83",
@@ -366,7 +398,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.02475634666749242,
       "my_dots_within_3px_of_theirs": 0.5455432070764346,
-      "jaccard_dot_sets": 0.016438288030638383
+      "jaccard_dot_sets": 0.016438288030638383,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE84",
@@ -374,7 +407,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.025696409406146134,
       "my_dots_within_3px_of_theirs": 0.49190292583352235,
-      "jaccard_dot_sets": 0.016918789808917197
+      "jaccard_dot_sets": 0.016918789808917197,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE85",
@@ -382,7 +416,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.015405196267200213,
       "my_dots_within_3px_of_theirs": 0.3992968927194375,
-      "jaccard_dot_sets": 0.011683168316831683
+      "jaccard_dot_sets": 0.011683168316831683,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE87",
@@ -390,7 +425,8 @@
       "their_dots": 4532408,
       "spearman_full_footprint": 0.004459066260784566,
       "my_dots_within_3px_of_theirs": 0.8749376275799501,
-      "jaccard_dot_sets": 0.008348374655841614
+      "jaccard_dot_sets": 0.008348374655841614,
+      "representation": "continuous_surface"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE88",
@@ -398,7 +434,8 @@
       "their_dots": 37654,
       "spearman_full_footprint": 0.005806660935683342,
       "my_dots_within_3px_of_theirs": 0.11730551145384441,
-      "jaccard_dot_sets": 0.006848302704833226
+      "jaccard_dot_sets": 0.006848302704833226,
+      "representation": "dot_field"
     },
     {
       "repo": "buffedlizard55-lab/17GEMSDOE",
@@ -406,7 +443,26 @@
       "their_dots": 5167373,
       "spearman_full_footprint": 0.07458316912497973,
       "my_dots_within_3px_of_theirs": 1.0,
-      "jaccard_dot_sets": 0.00853238192791579
+      "jaccard_dot_sets": 0.00853238192791579,
+      "representation": "continuous_surface"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE86",
+      "submission": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+      "their_dots": 37654,
+      "spearman_full_footprint": 0.029555614333250855,
+      "my_dots_within_3px_of_theirs": 0.4236334769789068,
+      "jaccard_dot_sets": 0.018896145983945754,
+      "representation": "dot_field"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE86",
+      "submission": "gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+      "their_dots": 38400,
+      "spearman_full_footprint": 0.01069021042786513,
+      "my_dots_within_3px_of_theirs": 0.42590156498072124,
+      "jaccard_dot_sets": 0.009348310207277978,
+      "representation": "dot_field"
     }
   ]
 }

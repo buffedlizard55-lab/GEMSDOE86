@@ -940,6 +940,14 @@ def compute_kslb_kinematics(
     )
 
 
-if __name__ == "__main__":
+def main():
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     man = build_physical_planes()
     print(f"Built {man['n_features']} H86C-KSLB physical planes in {man['elapsed_s']}s")
+
+
+if __name__ == "__main__":
+    main()

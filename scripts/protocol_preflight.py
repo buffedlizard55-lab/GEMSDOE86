@@ -13,7 +13,7 @@ import numpy as np
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'vendor'))
+sys.path[:0] = [str(ROOT), str(ROOT / 'vendor')]
 from gems57 import grid
 from gems57.uniqueness import saturation_certificate
 
@@ -32,6 +32,11 @@ def verify_file(path, sha256, size=None):
 
 
 def measure(data_dir=None):
+    # Direct callers must not rely on another CLI having checked shared bytes.
+    # Use the same two-import-path guard as the release audit, not a private copy.
+    from scripts.audit_release import verify_shared_pins
+    if not all(verify_shared_pins(ROOT).values()):
+        raise ValueError('Shared tool SHA drift; protocol measurement cannot proceed')
     data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data'
     pin = json.loads((ROOT / 'research/registry_witness_pin.json').read_text())
     inventory = ROOT / 'research/upstream/registry_inventory.json'

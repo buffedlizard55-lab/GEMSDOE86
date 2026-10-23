@@ -427,12 +427,11 @@ def collect_registry_records(data_dir: Path) -> list[dict]:
     return records
 
 
-def main(skip_literal_preflight: bool = False, data_dir: Path | None = None):
-    if not skip_literal_preflight:
-        if str(ROOT) not in sys.path:
-            sys.path.insert(0, str(ROOT))
-        from scripts.protocol_preflight import require_feasible
-        require_feasible()
+def main(data_dir: Path | None = None):
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
 
     d = Path(data_dir) if data_dir is not None else F.DEFAULT_DATA_DIR
     t_start = time.time()
@@ -980,7 +979,6 @@ def main(skip_literal_preflight: bool = False, data_dir: Path | None = None):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--research-negative-artifact", action="store_true", help="Run the 3 research experiments and record fail-closed negative artifact")
     ap.add_argument("--data-dir", type=Path, default=F.DEFAULT_DATA_DIR)
     args = ap.parse_args()
-    main(skip_literal_preflight=args.research_negative_artifact, data_dir=args.data_dir)
+    main(data_dir=args.data_dir)

@@ -93,8 +93,8 @@
     "any_leakage_flag": false
   },
   "correlation_overlap_vs_registry": {
-    "rasters_checked": 38,
-    "scope": "38 hash-verified rasters across 20+ buffedlizard55-lab repositories (12 GEMSDOE24 + 6 prior GEMSDOE86 lanes + 19 cross-repo primary champions GEMSDOE32..88 + 1 pinned 100%-support dense witness); not an organizer-complete registry.",
+    "rasters_checked": 40,
+    "scope": "40 hash-verified rasters across 21 buffedlizard55-lab repositories (12 GEMSDOE24 + 8 prior GEMSDOE86 lanes + 19 cross-repo primary champions GEMSDOE32..88 + 1 pinned 100%-support dense witness); not an organizer-complete registry.",
     "surface_worst_abs_spearman": 0.39075302090292985,
     "final_worst_all_abs_spearman": 0.09268941629291658,
     "final_worst_nonlattice_dot_overlap_3px": 0.5914719891131776,
