@@ -1,7 +1,12 @@
-"""Fail closed on broken local links and unsafe publication of candidate files."""
+"""Fail closed on broken Pages links and unsafe publication of research files.
+
+This is deliberately a negative-state publication guard, not a slot selector.
+An inventory entry cannot authorize a submission by changing a boolean.
+"""
 from html.parser import HTMLParser
 import hashlib
 import json
+import re
 import zipfile
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -20,9 +25,40 @@ class Links(HTMLParser):
                 self.urls.append(value)
 
 
+def load_inventory(root):
+    """Return unique, contained TIFF paths or reject the entire inventory.
+
+    Resolve symlinks before containment tests; do not let dictionary construction
+    silently discard duplicate rows or allow repo-only files into the Pages set.
+    """
+    root = Path(root).resolve()
+    downloads = root / 'docs/downloads'
+    document = json.loads((root / 'docs/evidence/download-inventory.json').read_text())
+    entries = document['artifacts']
+    if not isinstance(entries, list):
+        raise ValueError('Inventory artifacts must be a list')
+    registered = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or not isinstance(entry.get('file'), str):
+            raise ValueError('Inventory entry needs a file path')
+        relative = Path(entry['file'])
+        target = (root / relative).resolve()
+        if (relative.is_absolute() or '..' in relative.parts or
+                not target.is_relative_to(downloads) or target.suffix.lower() not in {'.tif', '.tiff'} or
+                not target.is_file()):
+            raise ValueError(f'Missing or escaping registered artifact: {relative}')
+        if target in registered:
+            raise ValueError(f'Duplicate inventory path: {relative}')
+        if not isinstance(entry.get('sha256'), str) or not re.fullmatch('[0-9a-f]{64}', entry['sha256']):
+            raise ValueError(f'Invalid SHA256: {relative}')
+        if entry.get('approved_for_weekly_slot') is not False or entry.get('status') != 'DO NOT SUBMIT':
+            raise ValueError('Negative inventory requires exact DO NOT SUBMIT status and false slot approval')
+        registered[target] = entry
+    return registered
+
+
 def check(root=ROOT):
     root = Path(root).resolve()
-    card = json.loads((root / 'docs/evidence/run-card.json').read_text())
     errors = []
     htmls = [root / 'index.html', *sorted((root / 'docs').rglob('*.html'))]
     for path in htmls:
@@ -35,50 +71,47 @@ def check(root=ROOT):
             if (not target.is_relative_to(root) or not target.is_file()
                     or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
                 errors.append(f'{path.relative_to(root)}: broken or escaping local link {url}')
-    inventory_file = root / 'docs/evidence/download-inventory.json'
-    if inventory_file.is_file():
-        entries = json.loads(inventory_file.read_text())['artifacts']
-    elif card.get('submission_file'):
-        entries = [dict(file=card['submission_file'], sha256=card['raster_sha256'],
-                        status=card.get('download_status', ''), approved_for_weekly_slot=card.get('approved_for_weekly_slot'))]
-    else:
-        entries = []
-    registered = {(root / e['file']).resolve(): e for e in entries}
+    try:
+        registered = load_inventory(root)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(f'Invalid download inventory: {exc}')
+        registered = {}
     for target, entry in registered.items():
-        if (not target.is_relative_to(root) or not target.is_file()
-                    or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
-            errors.append('Missing or escaping registered artifact')
-        if entry.get('approved_for_weekly_slot') is not False or 'DO NOT SUBMIT' not in entry.get('status', ''):
-            errors.append('Negative artifact inventory lacks explicit DO NOT SUBMIT status')
+        if hashlib.sha256(target.read_bytes()).hexdigest() != entry['sha256']:
+            errors.append(f'Published raster SHA differs from inventory: {target.name}')
+        archive = target.with_suffix('.zip')
+        try:
+            with zipfile.ZipFile(archive) as z:
+                if (z.namelist() != [target.name] or z.getinfo(target.name).file_size != target.stat().st_size
+                        or z.read(target.name) != target.read_bytes()):
+                    errors.append(f'ZIP must contain exactly the registered TIFF bytes: {archive.name}')
+        except (OSError, zipfile.BadZipFile, KeyError, RuntimeError, NotImplementedError):
+            errors.append(f'Missing or invalid candidate ZIP: {archive.name}')
     for artifact in (root / 'docs').rglob('*'):
-        if artifact.suffix.lower() not in {'.tif', '.tiff', '.zip'}:
+        suffix = artifact.suffix.lower()
+        if suffix not in {'.tif', '.tiff', '.zip'}:
             continue
-        target = artifact.resolve() if artifact.suffix.lower() in {'.tif', '.tiff'} else artifact.with_suffix('.tif').resolve()
-        entry = registered.get(target)
-        if entry is None:
+        # Match ZIPs to actual registered .tif OR .tiff partners, not guessed stems.
+        allowed = (artifact.resolve() in registered if suffix != '.zip' else
+                   any(artifact.resolve() == p.with_suffix('.zip') for p in registered))
+        if not allowed:
             errors.append(f'Unregistered downloadable raster/archive: {artifact.relative_to(root)}')
+    for card_file in (root / 'docs/evidence/run-card.json', root / 'evidence/run_card.json'):
+        if not card_file.is_file():
+            if card_file == root / 'docs/evidence/run-card.json':
+                errors.append('Missing canonical run card')
             continue
-        if artifact.suffix.lower() in {'.tif', '.tiff'}:
-            if hashlib.sha256(artifact.read_bytes()).hexdigest() != entry['sha256']:
-                errors.append(f'Published raster SHA differs from inventory: {artifact.name}')
-        else:
-            try:
-                with zipfile.ZipFile(artifact) as z:
-                    if z.namelist() != [target.name] or z.read(target.name) != target.read_bytes():
-                        errors.append('ZIP must contain exactly the registered TIFF bytes')
-            except (OSError, zipfile.BadZipFile, KeyError):
-                errors.append('Invalid candidate ZIP')
-    primary_card = root / 'evidence/run_card.json'
-    if primary_card.is_file():
-        primary = json.loads(primary_card.read_text())
-        if primary.get('submission_ready') is not False or primary.get('approved_for_weekly_slot') is not False or primary.get('verdict') != 'negative':
-            errors.append('Primary pipeline contradicts the mandatory literal stop')
-    if card.get('submission_ready'):
-        # This repo has no full scientific clearance yet. Do not let a UI boolean
-        # invent a release authorization while the negative proof still applies.
-        witness = card.get('correlation_overlap_vs_registry', {}).get('universal_witness', {})
-        if witness.get('universal_overlap_blocker') or not card.get('raster_sha256'):
-            errors.append('Submission readiness contradicts evidence')
+        card = json.loads(card_file.read_text())
+        if card.get('submission_ready') is not False or card.get('verdict') != 'negative':
+            errors.append(f'Run card contradicts negative publication state: {card_file.name}')
+        for key in ('approved_for_weekly_slot', 'safe_to_submit'):
+            if key in card and card[key] is not False:
+                errors.append(f'{card_file.name}: {key} must be false')
+    summary_path = root / 'docs/data/summary.json'
+    if summary_path.is_file():
+        summary = json.loads(summary_path.read_text())
+        if any(summary.get(key) is not False for key in ('submission_ready', 'safe_to_submit')):
+            errors.append('Summary contradicts negative publication state')
     return errors
 
 
@@ -86,4 +119,4 @@ if __name__ == '__main__':
     errors = check()
     if errors:
         raise SystemExit('\n'.join(errors))
-    print('PASS: local HTML links and registered-download integrity and negative-state safety (not scientific clearance)')
+    print('PASS: Pages links, registered TIFF/ZIP integrity and negative-state safety; not scientific clearance')

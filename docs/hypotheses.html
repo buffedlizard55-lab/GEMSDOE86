@@ -1,121 +1,34 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Candidate Geological Hypotheses · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Decision Dashboard</a><a href="executive-summary.html">How to Submit</a><a href="hypotheses.html" style="color:#e8eefc">Hypotheses</a><a href="research.html">PhD Research</a><a href="evidence.html">Fleet Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
-
-<div class="card hero">
-<span class="badge bad">PROTOCOL RULE: DO NOT SUBMIT AUTOMATICALLY TO A WEEKLY SLOT</span>
-<span class="badge ok">STATUS: RANK-1 TOP HYPOTHESIS VALIDATED ON SPATIALLY-BLOCKED HOLDOUT</span>
-<h1>Five Preregistered Candidate Geological Hypotheses</h1>
-<p class="muted">Formulated, audited for data obtainability, and ranked by expected DTI improvement and implementation cost before spending submission slots. The top-ranked hypothesis (H86B-GFCO) was fully implemented and validated across three independent spatial holdout instruments.</p>
-</div>
-
-<h2>Comparative Hypothesis Ranking Matrix</h2>
-<table>
-<tr><th>Rank &amp; Hypothesis</th><th>Key Layers Involved</th><th>Targeted Physical Signature</th><th>Why It Catches Missing Faults</th><th>Expected DTI Gain</th><th>Cost (CPU)</th><th>Holdout Status</th></tr>
-<tr>
-<td><b>Rank 1 (Top / Executed):<br>H86B-GFCO</b></td>
-<td>GDR-1391 Geothermometry CSV (27,092 wells/springs: Quartz, Chalcedony, Na-K-Ca), TMI &amp; TMI_up150m, 3D MT, CBA gravity &amp; basement depth, 1 m LiDAR scarplets, visible fracture network</td>
-<td>Geochemical thermal disequilibrium (&Delta;T &ge; 50&deg;C) + shallow upward-continued magnetic attenuation ratio + crack-tip stress cones &amp; two-host relay stepovers</td>
-<td>Existing catalogues are biased toward bedrock mountain fronts. Rapid ascending hydrothermal plumes and shallow magnetic basement offsets detect blind, concealed faults buried under 100&ndash;1,000 m of valley fill and playa sediments.</td>
-<td><b>High (+0.03 to +0.06 DTI)</b></td>
-<td>Moderate (~16.6 min CPU)</td>
-<td><span class="badge ok">VALIDATED</span><br>Whole-comp: 0.1078 (+12.1% vs H33); All: 0.1396 (+38.1% vs d2.8); Detached: 0.1521 (+47.0% vs d2.8)</td>
-</tr>
-<tr>
-<td><b>Rank 2:<br>H86C-TDPL</b></td>
-<td>1 m bare-earth LiDAR (<code class="mono">lidar_scarp_features_u8.tif</code>: step_max, face_asym, relief), 100 m NED DEM (det_elev, det_slope)</td>
-<td>Multi-scale (5, 9, 17 px) steerable Radon collinearity tensor with contour-orthogonality pluvial shoreline suppression</td>
-<td>Low-slip Holocene intrabasin faults produce subtle (0.3&ndash;1.5 m) linear scarplets across alluvial fans that vanish in 100 m DEM slope but align over 0.5&ndash;2 km in 1 m LiDAR coherence.</td>
-<td><b>Moderate (+0.02 to +0.035 DTI)</b></td>
-<td>Low-Moderate (~8 min CPU)</td>
-<td><span class="badge ok">VIABLE</span><br>Inputs verified locally; partial component integrated into H86B-GFCO Block 4</td>
-</tr>
-<tr>
-<td><b>Rank 3:<br>H86D-PFCO</b></td>
-<td>GeoDAWN TMI_RTP, TMI_up150m, CBA Bouguer gravity anomaly (<code class="mono">training_features.tif</code> bands 1&ndash;4, 21, 22)</td>
-<td>1D magnetic phase-symmetry ridge extraction + truncated conjugate ridge-tip graph matching (300 m&ndash;2.5 km lateral offsets)</td>
-<td>Pre-Cenozoic volcanic/plutonic marker horizons displaced laterally or vertically by a concealed Basin-and-Range cross-fault reveal the fault along the truncation corridor.</td>
-<td><b>Moderate (+0.02 to +0.03 DTI)</b></td>
-<td>Moderate (~12 min CPU)</td>
-<td><span class="badge ok">VIABLE</span><br>Data present in cache; conjugate graph algorithm ready for execution</td>
-</tr>
-<tr>
-<td><b>Rank 4:<br>H86E-MTDA</b></td>
-<td>INGENIOUS 3D Magnetotelluric resistivity inversion slices (500 m, 1 km, 2 km, 4 km, 6 km, 10 km depth)</td>
-<td>Lateral migration vector of conductive alteration halo (&Delta;x/&Delta;z &approx; 0.6&ndash;2.0, 50&deg;&ndash;65&deg; Andersonian dip) projected updip to z = 0 surface trace</td>
-<td>Deep hydrothermal conduits imaged at 2&ndash;6 km depth project 1.2&ndash;3.5 km updip to the concealed surface rupture, uncovering faults where surface signatures are masked.</td>
-<td><b>Moderate-High (+0.02 to +0.04 DTI)</b></td>
-<td>Low-Moderate (~6 min CPU)</td>
-<td><span class="badge ok">VIABLE</span><br>6 MT depth slices verified in local feature stack; limited by coarse MT station spacing</td>
-</tr>
-<tr>
-<td><b>Rank 5:<br>H86F-RLSL</b></td>
-<td>USGS ComCat FDSN API + UNR Nevada Seismological Laboratory relocated catalog (M &ge; 1.0, 1980&ndash;2026)</td>
-<td>3D RANSAC planar hypocenter clustering and focal-mechanism nodal plane alignment projected updip to z = 0</td>
-<td>Seismogenic blind faults and accommodation-zone swarms illuminate active fault planes lacking surface geomorphic expression.</td>
-<td><b>Low-Moderate (+0.01 to +0.025 DTI)</b></td>
-<td>Moderate</td>
-<td><span class="badge warn">EXTERNAL GATED</span><br>USGS ComCat requires external API access (gated in offline sandbox)</td>
-</tr>
-</table>
-
-<h2>Detailed Geological Justifications</h2>
-
-<div class="card">
-<h3>Rank 1: H86B-GFCO &mdash; Cover-Adaptive Geothermometer Disequilibrium &amp; Contact-Offsets (Validated Top Candidate)</h3>
-<p><b>Specific Layers:</b> GDR-1391 Geothermometry CSV (<code class="mono">gdr_wellspring_in_footprint.csv</code>: <code class="mono">temp_c</code>, <code class="mono">geothermquartz_c</code>, <code class="mono">geothermchalc_c</code>, <code class="mono">geothermcat_c</code> &mdash; with <code class="mono">dist_known_fault_px</code> strictly excluded), <code class="mono">gdr_volcanic_vents_in_footprint.csv</code>, <code class="mono">training_features.tif</code> (MT 500m&ndash;10km, TMI, TMI_up150m, TMI_RTP, CBA gravity, basement depth, geodetic strain, elevation, slope), 1 m LiDAR scarp features, and GeoDAWN radiometrics.</p>
-<p><b>Physical Signature:</b> High chemical geothermometer disequilibrium (&Delta;T = max(T_quartz, T_chalc, T_NaKCa) &minus; T_meas &ge; 50&deg;C) indicates rapid ascending convective flow along permeable fault conduits without conductive re-equilibration (Fournier &amp; Potter, 1982; Giggenbach, 1988). Combined with the magnetic attenuation ratio (|&nabla;TMI| / |&nabla;TMI_up150m|) across basement steps (Grauch &amp; Hudson, 2007) and strictly visible crack-tip &amp; relay-ramp envelopes.</p>
-<p><b>Why It Catches Missing Faults:</b> Conventional catalogues are heavily biased toward visible bedrock scarps. This hypothesis directly images concealed hydrothermal upflow conduits and blind fault offsets beneath alluvial cover where surface topography is flat.</p>
-<p><b>Difference from Prior Repo Work:</b> Unlike PR #6 H86-RMRB (which relied on single-layer label-free radiometric residuals) or GEMSDOE73 (which lacked geothermometer disequilibrium and cover-blind dual LOQO heads), H86B-GFCO employs a 4-quadrant LOQO ensemble with cover-adaptive weighting and fracture-mechanics gating.</p>
-<p><b>Holdout Validation Results:</b></p>
-<ul>
-<li><b>Whole-Component 3-px Buffered LOQO (11,321 positives):</b> <b>0.1078 [0.0908, 0.1254]</b> vs H33-2-B2 = 0.0961 (+12.1%) and d2.8 = 0.0919 (+17.3%).</li>
-<li><b>Segment-All LOQO (22,641 positives):</b> <b>0.1396 [0.1286, 0.1513]</b> vs d2.8 = 0.1011 (&Delta; = +0.0385 [+0.0269, +0.0524], +38.1%).</li>
-<li><b>Segment-Detached LOQO (22,619 positives):</b> <b>0.1521 [0.1378, 0.1662]</b> vs d2.8 = 0.1035 (&Delta; = +0.0486 [+0.0343, +0.0627], +47.0%).</li>
-</ul>
-<p><b>Leakage Canary Results:</b> 42/42 PASS (maximum physical plane AUC = 0.6486 &le; 0.90; maximum visible kinematic AUC = 0.8485 &le; 0.90).</p>
-</div>
-
-<div class="card">
-<h3>Rank 2: H86C-TDPL &mdash; Topographically-Deconfounded 1 m LiDAR Piedmont Scarplets</h3>
-<p><b>Specific Layers:</b> <code class="mono">lidar_scarp_features_u8.tif</code> (step_max, downfacing, upfacing, relief, coherence) + <code class="mono">det_elev</code> / <code class="mono">det_slope</code>.</p>
-<p><b>Physical Signature:</b> Multi-scale (5, 9, 17 px) steerable Radon collinearity tensor coupled with contour-orthogonality suppression: rejects horizontal benches parallel to topographic contours (|&nabla;z &middot; t_scarp| &approx; 0) to eliminate pluvial Lake Lahontan shoreline terraces while enhancing cross-contour tectonic scarps.</p>
-<p><b>Why It Catches Missing Faults:</b> Subtle 0.3&ndash;1.5 m Holocene fault scarps in piedmont alluvium are completely invisible in 100 m DEM grids but appear as sharp, linear phase-congruence steps in 1 m LiDAR.</p>
-</div>
-
-<div class="card">
-<h3>Rank 3: H86D-PFCO &mdash; Paired Potential-Field Ridge Dislocation Detector</h3>
-<p><b>Specific Layers:</b> GeoDAWN TMI_RTP, TMI_up150m, CBA Bouguer gravity (<code class="mono">training_features.tif</code> bands 1&ndash;4, 21, 22).</p>
-<p><b>Physical Signature:</b> Extraction of 1D magnetic phase-symmetry ridges followed by graph matching of truncated conjugate ridge tips across 300 m&ndash;2.5 km lateral offsets, scoring transverse bridge likelihood where horizontal gravity gradient peaks.</p>
-<p><b>Why It Catches Missing Faults:</b> Unmapped cross-faults in sedimentary basins displace older volcanic/plutonic units. The fault itself may have low magnetization, but the lateral offset between conjugate marker beds definitively pinpoints the cutting fault trace.</p>
-</div>
-
-<div class="card">
-<h3>Rank 4: H86E-MTDA &mdash; 3D Magnetotelluric Dipping-Conductor Vector</h3>
-<p><b>Specific Layers:</b> INGENIOUS 3D MT resistivity inversion depth slices (500 m, 1 km, 2 km, 4 km, 6 km, 10 km).</p>
-<p><b>Physical Signature:</b> Tracking the lateral migration vector &vec;v_z = argmax |&nabla; log &rho;(z)| across consecutive depth slices to establish the 3D strike and 50&deg;&ndash;65&deg; normal dip of conductive smectite/illite alteration zones, projecting the plane updip to the surface.</p>
-<p><b>Why It Catches Missing Faults:</b> Normal faults dip at ~60&deg;. A deep conductive geothermal reservoir at 3 km depth sits ~1.7 km laterally down-dip from its surface fault trace. Projecting deep MT gradients updip locates blind faults that have no surface expression.</p>
-</div>
-
-<div class="card">
-<h3>Rank 5: H86F-RLSL &mdash; Relocated Microseismicity Planar Clustering</h3>
-<p><b>Specific Layers:</b> USGS ComCat FDSN API + UNR Nevada Seismological Laboratory catalog (M &ge; 1.0, 1980&ndash;2026).</p>
-<p><b>Physical Signature:</b> 3D RANSAC planar fitting of hypocenters with daytime quarry-blast filtering, projected updip along focal mechanism nodal planes.</p>
-<p><b>Why It Catches Missing Faults:</b> Active fault strands produce micro-earthquakes at 2&ndash;10 km depth, revealing seismogenic structures that have not ruptured the surface in recorded history.</p>
-<p><b>Obtainability Note:</b> Requires live HTTPS access to external earthquake APIs; validated conceptually but gated in restricted sandboxes.</p>
-</div>
-
-<h2>Free Official Data Sources &amp; Literature Links</h2>
-<ul>
-<li><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository (GDR-1391): INGENIOUS Project Data</a></li>
-<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN Airborne Geophysics Compilation</a></li>
-<li><a href="https://www.usgs.gov/programs/earthquake-hazards/faults">USGS Quaternary Fault and Fold Database</a></li>
-<li><a href="https://pubs.usgs.gov/ds/1052/">USGS State Geologic Map Compilation (SGMC, DS-1052)</a></li>
-<li><a href="https://doi.org/10.1016/0016-7037(88)90143-3">Giggenbach (1988) Geothermal Solute Equilibria (Geochimica et Cosmochimica Acta)</a></li>
-<li><a href="https://doi.org/10.1190/1.2750381">Grauch &amp; Hudson (2007) Aeromagnetic Expression of Faults in Sedimentary Basins (Geophysics)</a></li>
-<li><a href="https://doi.org/10.1016/0191-8141(91)90033-F">Peacock &amp; Sanderson (1991) Displacements, Segment Linkage and Relay Ramps (JSG)</a></li>
-</ul>
-
-</main>
-<footer>Automated protocol compliance: Rank-1 candidate validated on spatial holdouts before spending slots. No organizer score claimed.</footer></body></html>
+<title>Deferred geological hypotheses · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
+<div class="card hero"><span class="badge bad">DO NOT SUBMIT — NO NEW EXPERIMENT AUTHORIZED</span>
+<h1>Deferred hypotheses, not promised leaderboard gains</h1>
+<p>No method lane was assigned in the supplied prompt. A pinned historical registry surface proves a literal overlap stop before placement. These proposals remain conditional on resolving that stop, verifying raw physical layer identities and units in the reusable shared cache, and freezing a comparable buffered holdout baseline. No new surface, feature canary or TIFF was produced in this review.</p>
+<p><a href="evidence/session-review-run-card.json">Current negative run card</a> · <a href="evidence/protocol-preflight.json">Measured blocker proof</a> · <a href="download-status.html">Validated research downloads</a></p></div>
+<p>The order is a qualitative expectation of possible benefit relative to cost, not a numerical DTI prediction. Novelty is relative only to inspected local feature builders, not every sibling project or the literature. Each hypothesis could fail or identify a non-fault boundary.</p>
+<section class="card"><h2>First: basement mass-balance residual</h2>
+<p><b>Layers and signature:</b> <code>iso_grav_anom</code> and <code>depth_to_base_surf</code>; model the basement-interface gravity response, fit density contrast on training spatial blocks only, then find persistent transverse gradients in observed-minus-predicted gravity.</p>
+<p><b>Missing-fault rationale:</b> a concealed density discontinuity inside a sedimentary basin could remain after broad sediment-thickness gravity is removed, without a mapped scarp.</p>
+<p><b>Non-fault mimic:</b> lateral sediment-density change or basement-model error. Compare against raw gravity/basement gradients and reject edge ringing.</p>
+<p><b>Difference / cost:</b> physical forward-model residual, not gravity–magnetic gradient-angle agreement or radiometric regression. Moderate-to-high cost; units and datum must be verified first.</p></section>
+<section class="card"><h2>Second: cross-strike magnetic roughness transition</h2>
+<p><b>Layers and signature:</b> <code>rtp</code> and <code>tmi</code>; directional variograms on both sides of label-free magnetic ridges, testing a persistent change in roughness exponent and width rather than edge amplitude alone.</p>
+<p><b>Missing-fault rationale:</b> fractured or altered rock might leave a texture boundary away from existing traces.</p>
+<p><b>Non-fault mimic:</b> volcanic facies and flight-line noise. Require cross-field persistence and reject acquisition-direction periodicity.</p>
+<p><b>Difference / cost:</b> damage-zone texture contrast, rather than generic worms, Euler clusters or contact offsets. Moderate cost.</p></section>
+<section class="card"><h2>Third: gravity source-shape consistency</h2>
+<p><b>Layers and signature:</b> <code>iso_grav_anom</code>, <code>iso_grav_anom_hg</code> and <code>iso_grav_anom_vg</code>; compare scale-dependent horizontal/vertical derivative ratios to extended step-source and compact-source responses.</p>
+<p><b>Missing-fault rationale:</b> an extended buried basement step may be distinguishable from isolated density bodies even without a catalogue trace.</p>
+<p><b>Non-fault mimic:</b> elongate intrusive contacts or basin-margin facies. Include both source-shape controls and bandwidth sensitivity.</p>
+<p><b>Difference / cost:</b> source-shape likelihood, not generic gradient rank or magnetic concordance. Moderate cost; derivative conventions and units are prerequisites.</p></section>
+<section class="card"><h2>Fourth: cross-drainage knickzone synchrony</h2>
+<p><b>Layers and signature:</b> <code>det_elev</code> and <code>det_elev_slope</code>; derive drainage profiles, identify aligned slope changes across independent channels and reject constant-elevation contour-parallel chains.</p>
+<p><b>Missing-fault rationale:</b> a concealed active structure could perturb multiple streams along a corridor absent from the public catalogue.</p>
+<p><b>Non-fault mimic:</b> lake shorelines, resistant bedding and roads. Compare straightness, elevation constancy and topographic controls.</p>
+<p><b>Difference / cost:</b> multi-channel profile synchrony, not a scarp vote or posterior line filter. High cost; coarse elevation resolution could make the result negative.</p></section>
+<h2>Obtainability and validation requirements</h2>
+<p>These proposals use existing layer names, not promised new external products. The raw quantities, units and accessible shared-cache identity remain unverified here; no candidate is currently declared viable to run. The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">official data page</a> is the authoritative input route but was not fetched in this session's restricted network. Owner mirrors are not independent organizer authentication.</p>
+<p>After prerequisites are resolved, test the first hypothesis against raw-feature controls on identical whole-segment buffered spatial folds. Derive catalogue features only from visible faults, run every feature-alone leakage canary, and report pooled HOLDOUT-DTI with evaluator version, withheld positives, spatial confidence interval and paired delta interval. Both pre-placement surfaces and final dots must clear the complete pinned registry. No weekly slot is authorized by this plan.</p>
+<p><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/SESSION_20261023.md">Current review and experimental plan</a> · <a href="evidence/h86b-gfco-run-card.json">Inherited H86B negative evidence</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/7d8145755a534a1ac102416bddb1286251a9524d/docs/hypotheses.html">Earlier concurrent shortlist, preserved as history, not current clearance</a></p>
+</main><footer>Negative results are deliverables. No numerical expected gain or new geological discovery is claimed.</footer></body></html>
