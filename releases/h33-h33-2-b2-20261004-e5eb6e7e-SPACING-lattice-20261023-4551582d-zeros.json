@@ -1,0 +1,210 @@
+{
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "SPACING",
+  "value": "lattice",
+  "role": "candidate",
+  "n_dots": 37654,
+  "n_moved": 3086,
+  "pct_changed": 8.1957,
+  "pct_cells_changed": 16.3914,
+  "movement": {
+    "n_parent": 37654,
+    "n_child": 37654,
+    "n_clusters": 4841,
+    "n_crowded_pool": 6574,
+    "n_moved": 3086,
+    "n_stayed": 3488,
+    "pct_dots_changed": 8.1957,
+    "pct_cells_changed": 16.3914,
+    "displacement_mean_px": 2.2064544283911016,
+    "displacement_median_px": 1.0,
+    "displacement_max_px": 16.0
+  },
+  "spacing": {
+    "min_nn_px": 2.8284271247461903,
+    "mean_nn_px": 3.789377152771933,
+    "median_nn_px": 3.1622776601683795,
+    "n_within_3px": 7454,
+    "fraction_within_3px": 0.19796
+  },
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_child": 37654,
+    "n_removed": 2964,
+    "n_added": 2964,
+    "pct_dots_changed": 7.8717,
+    "pct_cells_changed": 15.7433,
+    "min_catalogue_distance_added_px": 3.0,
+    "kept_fraction": 0.921283
+  },
+  "dot_digest": "ff081d7e56c809424edbe2c17c96378a711ac2bd966df3a65ce7577a04dab1c1",
+  "zeros": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d-zeros.tif",
+    "sha256": "4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e",
+    "bytes": 218702,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d-zeros.tif",
+      "bytes": 218702,
+      "sha256": "4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d.tif",
+    "mode": "nan",
+    "sha256": "9d1f81f78265855bc4b4eabc0369d1ca7096f35213ee75bc37af02e35d1ce6b2",
+    "bytes": 354895,
+    "in_footprint_checks_pass": false,
+    "failed_checks": [
+      "no_nan_anywhere",
+      "outside_footprint_zero"
+    ],
+    "policy_note": "public spec permits NaN outside the footprint; repo all-finite policy rejects it"
+  },
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d",
+  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING lattice: 3086 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL",
+  "predicted_live_change": 0.0,
+  "predicted_band": [
+    -0.004,
+    0.004
+  ],
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "provenance": {
+    "input_pins": {
+      "sample": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "verified": true
+      },
+      "catalogue": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "verified": true
+      },
+      "parent": {
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "verified": true
+      },
+      "base": {
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "bytes": 1595850,
+        "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "verified": true
+      },
+      "h19": {
+        "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "bytes": 1712322,
+        "pin": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "verified": true
+      },
+      "d28": {
+        "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "bytes": 1603424,
+        "pin": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "verified": true
+      },
+      "sgmc": {
+        "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "pin": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "verified": true
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+    },
+    "ranking": {
+      "recipe": "FIFO-BFS visit rank of the H19-5 field (original_visit_rank)",
+      "validation": "greedy_thin(h19, rank, 2.8) reproduces the pinned d2.8 set exactly",
+      "differing_cells": 0,
+      "n_dots": 44090
+    },
+    "moved_set": {
+      "criterion": "pair distance < 3.0 px (DTI kernel radius); keep the earliest visit-rank member of each crowded cluster",
+      "n_crowded_dots": 11415,
+      "n_clusters": 4841,
+      "n_moved": 6574,
+      "pct_dots_changed": 17.459
+    },
+    "seed": 20261023,
+    "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396"
+  },
+  "generated_utc": "2026-10-23T21:56:55Z"
+}

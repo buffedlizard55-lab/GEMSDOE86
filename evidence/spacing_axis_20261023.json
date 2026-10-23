@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "session_date": "20261023",
+  "seed": 20261023,
+  "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
+  "status": "BUILT",
+  "submission_ready": false,
+  "submission_slots_used": 0,
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "claim": 0.2778,
+    "evidence_class": "CLAIM"
+  },
+  "axis": "SPACING",
+  "axis_choice_note": "SPACING is the only listed weekly axis with no (AXIS, value) pair in the ledger; its three brief-named values (lattice, Poisson-disk, along-strike) fit the up-to-3-variants budget exactly. TRACKB stays Phase 2 (human decision).",
+  "parent_gate": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+  },
+  "input_pins": {
+    "sample": {
+      "path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "verified": true
+    },
+    "catalogue": {
+      "path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "verified": true
+    },
+    "parent": {
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "verified": true
+    },
+    "base": {
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "bytes": 1595850,
+      "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "verified": true
+    },
+    "h19": {
+      "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "pin": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "verified": true
+    },
+    "d28": {
+      "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "pin": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "verified": true
+    },
+    "sgmc": {
+      "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "pin": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "verified": true
+    }
+  },
+  "ranking": {
+    "recipe": "FIFO-BFS visit rank of the H19-5 field (original_visit_rank)",
+    "validation": "greedy_thin(h19, rank, 2.8) reproduces the pinned d2.8 set exactly",
+    "differing_cells": 0,
+    "n_dots": 44090
+  },
+  "moved_set": {
+    "criterion": "pair distance < 3.0 px (DTI kernel radius); keep the earliest visit-rank member of each crowded cluster",
+    "n_crowded_dots": 11415,
+    "n_clusters": 4841,
+    "n_moved": 6574,
+    "pct_dots_changed": 17.459
+  },
+  "interpretation": "SPACING values are realised as the destination geometry of the kernel-crowded pool (dots with a neighbour inside the 3.0 px kernel radius). A global re-patterning would change ~100% of R0's dots and is barred by the brief's 1-50% contract (same tension as IR-86-SNAP-03). Each moved dot breaks its crowded pair at >=3.0 px from its cluster's kept dot and keeps the parent's own 2.828 px floor elsewhere; a fully kernel-disjoint set at matched count is locally infeasible on this support (IR-86-SPACING-01).",
+  "spacing_parent": {
+    "min_nn_px": 2.8284271247461903,
+    "mean_nn_px": 3.7350977393055036,
+    "median_nn_px": 3.0,
+    "n_within_3px": 11415,
+    "fraction_within_3px": 0.303155
+  },
+  "variants": {
+    "lattice": {
+      "axis": "SPACING",
+      "value": "lattice",
+      "rule": "lattice",
+      "mechanism": "break the crowded pair at the kernel radius and snap the freed dot to the nearest 3 px lattice site: regularity without lineament knowledge; if truth is area-like this is the best of the three, if line-like it leaves coverage on the table",
+      "movement": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_clusters": 4841,
+        "n_crowded_pool": 6574,
+        "n_moved": 3086,
+        "n_stayed": 3488,
+        "pct_dots_changed": 8.1957,
+        "pct_cells_changed": 16.3914,
+        "displacement_mean_px": 2.2064544283911016,
+        "displacement_median_px": 1.0,
+        "displacement_max_px": 16.0
+      },
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_removed": 2964,
+        "n_added": 2964,
+        "pct_dots_changed": 7.8717,
+        "pct_cells_changed": 15.7433,
+        "min_catalogue_distance_added_px": 3.0,
+        "kept_fraction": 0.921283
+      },
+      "spacing": {
+        "min_nn_px": 2.8284271247461903,
+        "mean_nn_px": 3.789377152771933,
+        "median_nn_px": 3.1622776601683795,
+        "n_within_3px": 7454,
+        "fraction_within_3px": 0.19796
+      },
+      "predicted_live_change": 0.0,
+      "predicted_band": [
+        -0.004,
+        0.004
+      ],
+      "evidence_class": "MODEL"
+    },
+    "poisson-disk": {
+      "axis": "SPACING",
+      "value": "poisson-disk",
+      "rule": "poissondisk",
+      "mechanism": "the neutral arm: same pair-breaking at fixed count, destination drawn at random from the legal cells; any effect shared with the other two arms is de-crowding itself",
+      "movement": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_clusters": 4841,
+        "n_crowded_pool": 6574,
+        "n_moved": 3056,
+        "n_stayed": 3518,
+        "pct_dots_changed": 8.116,
+        "pct_cells_changed": 16.232,
+        "displacement_mean_px": 2.1715916677152793,
+        "displacement_median_px": 1.0,
+        "displacement_max_px": 16.0
+      },
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_removed": 2952,
+        "n_added": 2952,
+        "pct_dots_changed": 7.8398,
+        "pct_cells_changed": 15.6796,
+        "min_catalogue_distance_added_px": 3.0,
+        "kept_fraction": 0.921602
+      },
+      "spacing": {
+        "min_nn_px": 2.8284271247461903,
+        "mean_nn_px": 3.7905137750002336,
+        "median_nn_px": 3.1622776601683795,
+        "n_within_3px": 7485,
+        "fraction_within_3px": 0.198784
+      },
+      "predicted_live_change": 0.0,
+      "predicted_band": [
+        -0.004,
+        0.004
+      ],
+      "evidence_class": "MODEL"
+    },
+    "along-strike": {
+      "axis": "SPACING",
+      "value": "along-strike",
+      "rule": "alongstrike",
+      "mechanism": "the freed dot slides along its own lineament past the kernel radius: it keeps its self-credit on the same trace and extends trace coverage where line-like truth is densest; predicted best of the three if fault truth follows the ridges",
+      "movement": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_clusters": 4841,
+        "n_crowded_pool": 6574,
+        "n_moved": 3036,
+        "n_stayed": 3538,
+        "pct_dots_changed": 8.0629,
+        "pct_cells_changed": 16.1258,
+        "displacement_mean_px": 2.0500877736011787,
+        "displacement_median_px": 1.0,
+        "displacement_max_px": 16.0
+      },
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "n_removed": 2939,
+        "n_added": 2939,
+        "pct_dots_changed": 7.8053,
+        "pct_cells_changed": 15.6106,
+        "min_catalogue_distance_added_px": 3.0,
+        "kept_fraction": 0.921947
+      },
+      "spacing": {
+        "min_nn_px": 2.8284271247461903,
+        "mean_nn_px": 3.7889120541632586,
+        "median_nn_px": 3.1622776601683795,
+        "n_within_3px": 7613,
+        "fraction_within_3px": 0.202183
+      },
+      "predicted_live_change": 0.002,
+      "predicted_band": [
+        -0.003,
+        0.006
+      ],
+      "evidence_class": "MODEL"
+    }
+  },
+  "instruments": {
+    "proxy_free": {
+      "R0": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004356,
+        "ci95": [
+          0.0041,
+          0.004577
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "lattice": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004252,
+        "ci95": [
+          0.003991,
+          0.00448
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "poisson-disk": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004243,
+        "ci95": [
+          0.003981,
+          0.004473
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "along-strike": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004254,
+        "ci95": [
+          0.003993,
+          0.004483
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "proxy_fixed_collar_d3": {
+      "R0": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "lattice": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "poisson-disk": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "along-strike": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "leakage_canary": {
+      "status": "PASS",
+      "threshold": 0.9,
+      "max_auc": 0.7937064538232387,
+      "rows": [
+        {
+          "fold": "NW",
+          "feature": "h19_5_binary",
+          "auc": 0.4881185917255561,
+          "withheld_positives": 1923
+        },
+        {
+          "fold": "NW",
+          "feature": "negative_distance_to_visible_catalogue",
+          "auc": 0.7937064538232387,
+          "withheld_positives": 1923
+        },
+        {
+          "fold": "NE",
+          "feature": "h19_5_binary",
+          "auc": 0.48827771264778375,
+          "withheld_positives": 2367
+        },
+        {
+          "fold": "NE",
+          "feature": "negative_distance_to_visible_catalogue",
+          "auc": 0.7741892108449462,
+          "withheld_positives": 2367
+        },
+        {
+          "fold": "SW",
+          "feature": "h19_5_binary",
+          "auc": 0.48818418661377627,
+          "withheld_positives": 3781
+        },
+        {
+          "fold": "SW",
+          "feature": "negative_distance_to_visible_catalogue",
+          "auc": 0.747157580252555,
+          "withheld_positives": 3781
+        },
+        {
+          "fold": "SE",
+          "feature": "h19_5_binary",
+          "auc": 0.4886120319191222,
+          "withheld_positives": 3250
+        },
+        {
+          "fold": "SE",
+          "feature": "negative_distance_to_visible_catalogue",
+          "auc": 0.7072219144261994,
+          "withheld_positives": 3250
+        }
+      ],
+      "note": "single-feature diagnostics only; catalogue-derived distance is not an independent physical feature (see build_r0_prune.leakage_canaries)"
+    },
+    "sgmc_control": {
+      "evidence_class": "PROXY",
+      "instrument": "official-kernel DTI vs USGS SGMC off-catalogue faults (d_cat > 3 px)",
+      "scores": {
+        "R0": {
+          "dti": 0.09538611460482532,
+          "tp": 5517.63670255971,
+          "fp": 35220.77352594685,
+          "fn": 56604.363297440286,
+          "n_truth": 62122,
+          "n_emitted": 37654
+        },
+        "lattice": {
+          "dti": 0.09614429416228,
+          "tp": 5562.465540349106,
+          "fp": 35226.47953557673,
+          "fn": 56559.534459650895,
+          "n_truth": 62122,
+          "n_emitted": 37654
+        },
+        "poisson-disk": {
+          "dti": 0.0962111449130412,
+          "tp": 5566.329977434994,
+          "fp": 35222.44676532314,
+          "fn": 56555.670022565006,
+          "n_truth": 62122,
+          "n_emitted": 37654
+        },
+        "along-strike": {
+          "dti": 0.096081595054831,
+          "tp": 5558.793760441818,
+          "fp": 35227.84605322772,
+          "fn": 56563.20623955818,
+          "n_truth": 62122,
+          "n_emitted": 37654
+        },
+        "delta_vs_R0": {
+          "lattice": 0.000758,
+          "poisson-disk": 0.000825,
+          "along-strike": 0.000695
+        }
+      },
+      "note": "SGMC is an independent-map control, never hidden competition truth; report only. With a fixed >=3 px collar this control also collapses (IR-86-SNAP-06); the free reading is shown for continuity."
+    },
+    "note": "report only; IR-86-SNAP-06: free-proxy numbers may not rank arms, and with the fixed >=3 px collar this lineage's proxy reads 0.0000"
+  },
+  "written": [
+    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d",
+    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5",
+    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a"
+  ],
+  "gates": {
+    "format": "shared validate + format_report against sample_submission.tif",
+    "zero_catalogue_mass": "asserted in memory and re-read from disk",
+    "sha_novel": "checked against ledger/submissions.csv, data/scored_fleet and docs/downloads",
+    "parent_diff": "recorded per variant (move-aware diff + spacing stats)",
+    "reread_from_disk": "yes (validate() and format_report() open the written file)"
+  },
+  "not_a_score": "Every number above is a MODEL projection or a PROXY measurement. No submission was made and no receipt exists. Live |delta| < 0.01 is no evidence (public chunks only; the private score may differ)."
+}

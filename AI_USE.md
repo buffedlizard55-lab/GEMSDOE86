@@ -218,3 +218,32 @@ skipped; withdrew its duplicate r1/r2 pairs (no raster), demoted its one novel f
 (`snapr2g10`) to `BUILT-DUPLICATE` corroboration, and revised its MODEL centres downward
 after measuring the SGMC control (stated on the cards). No DrivenData access of any kind;
 inputs only from the sha256-pinned mirrors in `registry/data_manifest.json`.
+
+## SPACING session — 2026-10-23 (`arena/ee238b91`)
+
+**What the AI wrote:** `scripts/run_spacing_axis.py` (the axis builder), `tests/test_spacing_axis.py`
+and the SPACING branch of `tests/test_prune_ladder.py`, `ledger/variants_spacing.json`,
+`evidence/spacing-mechanism.md`, `evidence/spacing_axis_20261023.json`, and edits to
+`SLOT_PLAN.md`, `README.md` (CURRENT STATE block only), `docs/SUBMIT.md`, `IRREGULARITIES.md`
+(IR-86-SPACING-01) and `scripts/build_ledger.py` (one line: the new variants file).
+
+**What the AI decided (and the human can veto):**
+- **AXIS = SPACING, self-chosen** (the human said "pick your own session"): it is the only
+  listed weekly axis with no built (AXIS, value) pair, and its three brief-named values
+  (lattice / Poisson-disk / along-strike) fit the three-variant budget. TRACKB stayed Phase 2.
+- The brief's 1-50 % change rule bars a global re-patterning, so the three values are realised
+  as the destination geometry of the kernel-crowded pool (pairs closer than the 3 px kernel
+  radius); the selection keeps the parent's own visit-rank priority. The first design pass
+  (fully kernel-disjoint at matched count) was measured infeasible and **abandoned before any
+  file was written** (IR-86-SPACING-01); the shipped design breaks each crowded pair at >= 3 px
+  from its kept partner and holds the parent's 2.828 px floor elsewhere.
+- Predictions were pre-registered in the builder before the instruments ran: +0.000 / +0.000 /
+  +0.002 MODEL. The instruments (report only) did not confirm the along-strike ordering.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. Every instrument number is labelled PROXY or MODEL; no
+receipt exists and no slot was requested.
+
+**What only the human can supply:** `TOP_PUBLIC` + date, the rolling-week quota, any
+submission-page receipt (R0's 0.2778 included), and the decision to spend (or not spend) a
+throwaway probe slot on `SPACING-alongstrike`.

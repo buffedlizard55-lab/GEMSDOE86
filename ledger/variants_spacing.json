@@ -1,0 +1,500 @@
+[
+ {
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "SPACING",
+  "value": "lattice",
+  "rule": "R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING lattice: 3086 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL",
+  "n_dots": 37654,
+  "pct_changed": 8.1957,
+  "sha256": "9d1f81f78265855bc4b4eabc0369d1ca7096f35213ee75bc37af02e35d1ce6b2",
+  "sha256_zeros": "4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e",
+  "sha8": "4551582d",
+  "encoding": "nan",
+  "status": "BUILT",
+  "files": [
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d.tif",
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d-zeros.tif"
+  ],
+  "diff": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_removed": 2964,
+   "n_added": 2964,
+   "pct_dots_changed": 7.8717,
+   "pct_cells_changed": 15.7433,
+   "min_catalogue_distance_added_px": 3.0,
+   "kept_fraction": 0.921283
+  },
+  "movement": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_clusters": 4841,
+   "n_crowded_pool": 6574,
+   "n_moved": 3086,
+   "n_stayed": 3488,
+   "pct_dots_changed": 8.1957,
+   "pct_cells_changed": 16.3914,
+   "displacement_mean_px": 2.2064544283911016,
+   "displacement_median_px": 1.0,
+   "displacement_max_px": 16.0
+  },
+  "spacing": {
+   "min_nn_px": 2.8284271247461903,
+   "mean_nn_px": 3.789377152771933,
+   "median_nn_px": 3.1622776601683795,
+   "n_within_3px": 7454,
+   "fraction_within_3px": 0.19796
+  },
+  "validation_nan": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d.tif",
+   "mode": "nan",
+   "sha256": "9d1f81f78265855bc4b4eabc0369d1ca7096f35213ee75bc37af02e35d1ce6b2",
+   "bytes": 354895,
+   "in_footprint_checks_pass": false,
+   "failed_checks": [
+    "no_nan_anywhere",
+    "outside_footprint_zero"
+   ],
+   "policy_note": "public spec permits NaN outside the footprint; repo all-finite policy rejects it"
+  },
+  "validation_zeros": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d-zeros.tif",
+   "sha256": "4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e",
+   "bytes": 218702,
+   "validator": {
+    "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d-zeros.tif",
+    "bytes": 218702,
+    "sha256": "4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e",
+    "meta": {
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "dtype": "float32",
+     "count": 1,
+     "nodata": null,
+     "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+     ],
+     "profile_compress": "deflate"
+    },
+    "band_description": [
+     null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+   },
+   "format_report_ok": true
+  },
+  "predicted_change": "+0.000 (95% band -0.004..+0.004). MODEL. break the crowded pair at the kernel radius and snap the freed dot to the nearest 3 px lattice site: regularity without lineament knowledge; if truth is area-like this is the best of the three, if line-like it leaves coverage on the table",
+  "proxy": {
+   "evidence_class": "PROXY",
+   "hide_recover_free": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.004252,
+    "ci95": [
+     0.003991,
+     0.00448
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "hide_recover_fixed_collar_d3": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "sgmc_control": {
+    "dti": 0.09614429416228,
+    "tp": 5562.465540349106,
+    "fp": 35226.47953557673,
+    "fn": 56559.534459650895,
+    "n_truth": 62122,
+    "n_emitted": 37654
+   }
+  },
+  "extra": {
+   "run_card": "evidence/spacing_axis_20261023.json",
+   "mechanism_card": "evidence/spacing-mechanism.md",
+   "crowded_pool": 6574,
+   "n_stayed": 3488
+  }
+ },
+ {
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "SPACING",
+  "value": "poisson-disk",
+  "rule": "R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING poisson-disk: 3056 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL",
+  "n_dots": 37654,
+  "pct_changed": 8.116,
+  "sha256": "39d3ddeecb4136584e135db147a16f6d12e4ef434c29c24bc432ae0657cc08de",
+  "sha256_zeros": "d2cf39d533893f4006d4e057546c22be5a988ff06d861df7fa01f88b52a276a3",
+  "sha8": "d2cf39d5",
+  "encoding": "nan",
+  "status": "BUILT",
+  "files": [
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5.tif",
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5-zeros.tif"
+  ],
+  "diff": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_removed": 2952,
+   "n_added": 2952,
+   "pct_dots_changed": 7.8398,
+   "pct_cells_changed": 15.6796,
+   "min_catalogue_distance_added_px": 3.0,
+   "kept_fraction": 0.921602
+  },
+  "movement": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_clusters": 4841,
+   "n_crowded_pool": 6574,
+   "n_moved": 3056,
+   "n_stayed": 3518,
+   "pct_dots_changed": 8.116,
+   "pct_cells_changed": 16.232,
+   "displacement_mean_px": 2.1715916677152793,
+   "displacement_median_px": 1.0,
+   "displacement_max_px": 16.0
+  },
+  "spacing": {
+   "min_nn_px": 2.8284271247461903,
+   "mean_nn_px": 3.7905137750002336,
+   "median_nn_px": 3.1622776601683795,
+   "n_within_3px": 7485,
+   "fraction_within_3px": 0.198784
+  },
+  "validation_nan": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5.tif",
+   "mode": "nan",
+   "sha256": "39d3ddeecb4136584e135db147a16f6d12e4ef434c29c24bc432ae0657cc08de",
+   "bytes": 354866,
+   "in_footprint_checks_pass": false,
+   "failed_checks": [
+    "no_nan_anywhere",
+    "outside_footprint_zero"
+   ],
+   "policy_note": "public spec permits NaN outside the footprint; repo all-finite policy rejects it"
+  },
+  "validation_zeros": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5-zeros.tif",
+   "sha256": "d2cf39d533893f4006d4e057546c22be5a988ff06d861df7fa01f88b52a276a3",
+   "bytes": 218695,
+   "validator": {
+    "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5-zeros.tif",
+    "bytes": 218695,
+    "sha256": "d2cf39d533893f4006d4e057546c22be5a988ff06d861df7fa01f88b52a276a3",
+    "meta": {
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "dtype": "float32",
+     "count": 1,
+     "nodata": null,
+     "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+     ],
+     "profile_compress": "deflate"
+    },
+    "band_description": [
+     null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+   },
+   "format_report_ok": true
+  },
+  "predicted_change": "+0.000 (95% band -0.004..+0.004). MODEL. the neutral arm: same pair-breaking at fixed count, destination drawn at random from the legal cells; any effect shared with the other two arms is de-crowding itself",
+  "proxy": {
+   "evidence_class": "PROXY",
+   "hide_recover_free": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.004243,
+    "ci95": [
+     0.003981,
+     0.004473
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "hide_recover_fixed_collar_d3": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "sgmc_control": {
+    "dti": 0.0962111449130412,
+    "tp": 5566.329977434994,
+    "fp": 35222.44676532314,
+    "fn": 56555.670022565006,
+    "n_truth": 62122,
+    "n_emitted": 37654
+   }
+  },
+  "extra": {
+   "run_card": "evidence/spacing_axis_20261023.json",
+   "mechanism_card": "evidence/spacing-mechanism.md",
+   "crowded_pool": 6574,
+   "n_stayed": 3518
+  }
+ },
+ {
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "SPACING",
+  "value": "along-strike",
+  "rule": "R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING along-strike: 3036 crowded dots re-spaced at 3.0px, count fixed; pred +0.002 MODEL",
+  "n_dots": 37654,
+  "pct_changed": 8.0629,
+  "sha256": "a1d1739eca0d714eff4656b690fe140bd3ce207c749b8768b8f483467d343187",
+  "sha256_zeros": "4d631f4a9b1dcec957815e6e77025a616b929192e1ea8418ddac2c6ea7e5faf6",
+  "sha8": "4d631f4a",
+  "encoding": "nan",
+  "status": "BUILT",
+  "files": [
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a.tif",
+   "releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a-zeros.tif"
+  ],
+  "diff": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_removed": 2939,
+   "n_added": 2939,
+   "pct_dots_changed": 7.8053,
+   "pct_cells_changed": 15.6106,
+   "min_catalogue_distance_added_px": 3.0,
+   "kept_fraction": 0.921947
+  },
+  "movement": {
+   "n_parent": 37654,
+   "n_child": 37654,
+   "n_clusters": 4841,
+   "n_crowded_pool": 6574,
+   "n_moved": 3036,
+   "n_stayed": 3538,
+   "pct_dots_changed": 8.0629,
+   "pct_cells_changed": 16.1258,
+   "displacement_mean_px": 2.0500877736011787,
+   "displacement_median_px": 1.0,
+   "displacement_max_px": 16.0
+  },
+  "spacing": {
+   "min_nn_px": 2.8284271247461903,
+   "mean_nn_px": 3.7889120541632586,
+   "median_nn_px": 3.1622776601683795,
+   "n_within_3px": 7613,
+   "fraction_within_3px": 0.202183
+  },
+  "validation_nan": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a.tif",
+   "mode": "nan",
+   "sha256": "a1d1739eca0d714eff4656b690fe140bd3ce207c749b8768b8f483467d343187",
+   "bytes": 354872,
+   "in_footprint_checks_pass": false,
+   "failed_checks": [
+    "no_nan_anywhere",
+    "outside_footprint_zero"
+   ],
+   "policy_note": "public spec permits NaN outside the footprint; repo all-finite policy rejects it"
+  },
+  "validation_zeros": {
+   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a-zeros.tif",
+   "sha256": "4d631f4a9b1dcec957815e6e77025a616b929192e1ea8418ddac2c6ea7e5faf6",
+   "bytes": 218732,
+   "validator": {
+    "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a-zeros.tif",
+    "bytes": 218732,
+    "sha256": "4d631f4a9b1dcec957815e6e77025a616b929192e1ea8418ddac2c6ea7e5faf6",
+    "meta": {
+     "crs": "EPSG:32611",
+     "shape": [
+      3730,
+      3292
+     ],
+     "dtype": "float32",
+     "count": 1,
+     "nodata": null,
+     "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+     ],
+     "profile_compress": "deflate"
+    },
+    "band_description": [
+     null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+   },
+   "format_report_ok": true
+  },
+  "predicted_change": "+0.002 (95% band -0.003..+0.006). MODEL. the freed dot slides along its own lineament past the kernel radius: it keeps its self-credit on the same trace and extends trace coverage where line-like truth is densest; predicted best of the three if fault truth follows the ridges",
+  "proxy": {
+   "evidence_class": "PROXY",
+   "hide_recover_free": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.004254,
+    "ci95": [
+     0.003993,
+     0.004483
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "hide_recover_fixed_collar_d3": {
+    "available": true,
+    "class_": "PROXY",
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels": 11548,
+    "n_draws": 10,
+    "mean": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+   },
+   "sgmc_control": {
+    "dti": 0.096081595054831,
+    "tp": 5558.793760441818,
+    "fp": 35227.84605322772,
+    "fn": 56563.20623955818,
+    "n_truth": 62122,
+    "n_emitted": 37654
+   }
+  },
+  "extra": {
+   "run_card": "evidence/spacing_axis_20261023.json",
+   "mechanism_card": "evidence/spacing-mechanism.md",
+   "crowded_pool": 6574,
+   "n_stayed": 3538
+  }
+ }
+]

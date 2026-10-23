@@ -192,3 +192,27 @@ the JSON receipts next to them carry the digests. Rebuild with the commands in `
 SNAP was spent by PR #31, corroborated by PR #34, and this build's SGMC control is negative
 with dose (IR-86-SNAP-09). Status `BUILT-DUPLICATE`; its `snapr1`/`snapr2` arms are
 withdrawn duplicate pairs with **no raster**. Rebuild: `python scripts/build_r0_snap.py --build`.
+
+## SPACING candidates (built 2026-10-23, `arena/ee238b91`) — mechanism probes, predictions inside ±0.002
+
+Three arms at matched count 37,654, differing only in where ~3,050 kernel-crowded dots
+(8.1 % of R0) are re-placed. Upload the `-zeros` twin only if the human decides to probe;
+none is a default bet (see [SLOT_PLAN.md](../SLOT_PLAN.md)).
+
+- **along-strike** (the only one worth a throwaway probe): `releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a-zeros.tif`
+  - SHA-256: `4d631f4a9b1dcec957815e6e77025a616b929192e1ea8418ddac2c6ea7e5faf6`
+  - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a`
+  - Note (125 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING along-strike: 3036 crowded dots re-spaced at 3.0px, count fixed; pred +0.002 MODEL`
+  - 3,036 dots moved (8.06 %), mean displacement 2.05 px, prediction **+0.002 MODEL** (−0.003…+0.006).
+- **lattice**: `…-SPACING-lattice-20261023-4551582d-zeros.tif`
+  - SHA-256: `4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e`
+  - Note (120 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING lattice: 3086 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL`
+- **poisson-disk** (the neutral arm): `…-SPACING-poissondisk-20261023-d2cf39d5-zeros.tif`
+  - SHA-256: `d2cf39d533893f4006d4e057546c22be5a988ff06d861df7fa01f88b52a276a3`
+  - Note (125 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING poisson-disk: 3056 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL`
+
+Format receipt: all three pass the shared validator and `format_report` against
+`sample_submission.tif` (EPSG:32611, 3730x3292, float32, values in [0,1], zero catalogue
+mass, new cells >= 3 px off the catalogue, parent 2.828 px spacing floor never tightened);
+each has a spec-form twin (NaN outside the footprint) and a `-zeros` twin (upload form).
+Full receipts: `releases/…-zeros.json`; cards: `evidence/spacing-mechanism.md`.

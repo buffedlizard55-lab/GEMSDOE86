@@ -327,3 +327,22 @@ an explicit human AXIS assignment instead of another slot-plan reading.
 `iso_grav_anom_hg` is signed: PR #31 ranks it as-is, PR #34 uses magnetic bands only, the
 gated build ranks `|iso_grav_anom_hg|`. Nothing is re-run; cross-build gravity comparisons
 are not like-for-like, and any future SNAP-adjacent proposal must state its treatment first.
+
+## IR-86-SPACING-01 — kernel-disjoint re-spacing at matched count is locally infeasible on R0's support
+Measured this session before any file was written, and it changed the build. The natural
+strong form of SPACING — re-space the crowded pool so **every** final pair is >= 3.0 px (the
+DTI kernel radius) at the parent's count — has almost no legal destinations: R0 is a saturated
+2.828 px packing of the H19-5 support, so cells >= 3 px from all 37,654 dots number in the
+hundreds, and the fallback displaces dots by kilometres (a CONCENTRATION-scale relocation,
+the confound IR-86-RELIEF-01 warns about). 64 % of the pool could not be placed within 24 px
+in the first design pass.
+**Decision:** the shipped design breaks each crowded pair at >= 3.0 px from its cluster's kept
+dot (the kernel-overlap waste the axis targets) while holding the parent's own 2.828 px floor
+everywhere else, with destinations <= 16 px away; pool members with no legal cell stay put and
+are counted as residual crowding (3,488–3,538 of 6,574). The strong form is recorded as
+geometrically impossible at matched count on this support — this also retires the
+KERNEL-BUDGET proposal in SLOT_PLAN.md as literally stated ("re-spacing at >= 3.0 px at
+constant count"): at 37,654 dots the support cannot host it. **Cost:** the arms are a partial
+repair (~8 % of R0's dots moved), so the experiment can only speak about the crowded pool, not
+about the whole field's spacing; the three geometries additionally share ~78 % of destinations
+because the legal sets are small (Jaccard 0.64).

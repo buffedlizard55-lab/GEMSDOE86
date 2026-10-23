@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF, five axes reconciled)
+# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF + SPACING, six axes reconciled)
 
 **No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
 ([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
@@ -43,6 +43,19 @@ mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`; run card:
 come back flat and the mass question becomes the binding one; then take `massminus10`
 (its falsifier is the sharper of the two) and never both.
 
+**SPACING is now built (2026-10-23, this session, `arena/ee238b91`).** Three gate-clean arms
+at matched count 37,654, differing only in where the kernel-crowded pool (~3,050 dots,
+8.1 % changed) is re-placed: `…-SPACING-lattice-…-4551582d` (**+0.000 MODEL**),
+`…-SPACING-poissondisk-…-d2cf39d5` (**+0.000 MODEL**, the neutral arm) and
+`…-SPACING-alongstrike-…-4d631f4a` (**+0.002 MODEL**). Every instrument is flat at the
+±0.001 scale (SGMC: +0.0007/+0.0008/+0.0007; fixed-collar proxy 0.0000 for all arms per
+IR-86-SNAP-06) and the pre-registered along-strike ordering is *not* resolved. The design
+limit is recorded as IR-86-SPACING-01: a fully kernel-disjoint re-spacing at matched count
+is geometrically impossible on R0's support, which also retires the KERNEL-BUDGET proposal
+below as literally stated. **No slot for SPACING by default** — all three predictions are
+inside ±0.01; take `alongstrike` only as a throwaway probe if a week would otherwise go
+unused. Cards: `evidence/spacing-mechanism.md`; run card: `evidence/spacing_axis_20261023.json`.
+
 ## Next three slots, in order
 
 | # | file (upload the `-zeros` twin) | why this one | decision rule |
@@ -57,7 +70,9 @@ single band; they are the arms that read out *why* slot 3 went the way it did);
 `…-prune4-…-de4c2a98` (−0.008) and `…-prune3r-…-8c20bd7e` (−0.003) — rehearsals, not bets;
 `…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08);
 `RELIEF-frontp10` (a strict 10 % prefix of the 15 % dose, +0.0010 — the fallback, not a third bet);
-the other two MASS rungs (−0.003 / −0.006, both predicted negative and never both).
+the other two MASS rungs (−0.003 / −0.006, both predicted negative and never both);
+the three SPACING arms (`…-4551582d` / `…-d2cf39d5` / `…-4d631f4a`) — predictions inside
+±0.002, instruments flat; they are mechanism probes, not bets.
 
 ## Calendar to the deadline
 
@@ -85,6 +100,23 @@ the other two MASS rungs (−0.003 / −0.006, both predicted negative and never
 - **Collar-conditional CONCENTRATION.** Only reallocate mass in blocks > 3 px clear of the
   catalogue, so the two axes do not interact. *Confounder:* relief controls both catalogue
   completeness and lineament visibility. *Falsifier:* opposite signs in two relief regimes.
+- **Spread-to-band (CONCENTRATION second value; this session's SPACING finding motivates
+  it).** Move the minimum mass between 1 km blocks until the block-density CV lands *inside*
+  the reported 0.51–0.59 band (incumbent 0.6235), instead of piling into the top fifth.
+  *Mechanism:* the band is claimed as the live distribution's signature; matching it while
+  holding count and support tests the claim directly (IR-86-CONC-02). *Confounder:* many
+  distinct configurations share one CV, and only some sit near faults — the CV can be matched
+  with worse geometry. *Falsifier:* no live improvement despite an in-band CV, then the band
+  is descriptive, not causal, and the catalogue-density prior is retired.
+- **Strand-hedge PRUNE (crowded-pair audit).** For each 2.828 px pair, ask whether it covers
+  one trace twice or two strands once (the SGMC control separates the two at 300 m scale);
+  delete only the single-trace duplicates and refill to hold the count from the top-ranked
+  uncovered support cells. *Mechanism:* the SPACING session measured that blindly breaking
+  pairs is invisible (±0.001); the pairs worth touching are the duplicated ones, and the
+  en-echelon pairs are worth keeping. *Confounder:* SGMC is an incomplete independent map,
+  and "one trace vs two" at 280 m is exactly where map generalisation bites.
+  *Falsifier:* the duplicate/strand classification is unstable under SGMC resampling, or the
+  deleted set has the same sign as the mass-matched random control.
 
 ## Human inputs still missing
 
