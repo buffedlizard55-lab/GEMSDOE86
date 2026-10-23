@@ -1,5 +1,21 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+<!-- CURRENT_STATE_START -->
+
+## CURRENT STATE — 2026-10-23 (PRUNE axis session)
+
+| Field | Value |
+|---|---|
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue. Live **0.2778** = **CLAIM** (no receipt in `ledger/`). |
+| Best receipt | **none** — `ledger/submissions.csv` holds 0 receipts; every historic score is `CLAIM`. |
+| TOP_PUBLIC | **unset** — the human must supply a dated leaderboard number. 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
+| Slots left this week | **unknown** — the human must supply the authenticated quota (quota is 3 scored / rolling week, 1 final file). |
+| Built this session | AXIS **PRUNE**, 3 variants, 6 rasters in `releases/`, all brief §6 gates PASS, **no slot authorised**. Predictions are MODEL: `prune3` −0.003, `prune4` −0.008, `prune3r` −0.003. |
+| Next 3 slots | 1. `prune3` (`…-3eb29af5-nan`, fallback `…-4bd30478-zeros`). 2. `prune4` only if slot 1 gains ≥ 0.01; otherwise hold R0. 3. `prune3r` only if slots 1–2 land within ±0.01. Full decision tree and the weeks to the deadline: [SLOT_PLAN.md](SLOT_PLAN.md). |
+| Blockers | parent recipe (`gems32`) absent ⇒ MASS unavailable (IR-86-PRUNE-02); hide-and-recover proxy at floor for this lineage (IR-86-PRUNE-03); repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01). |
+
+<!-- CURRENT_STATE_END -->
+
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 
 **Read this README, [PROMPT.md](PROMPT.md), and the current request archive below at the start of every session.**

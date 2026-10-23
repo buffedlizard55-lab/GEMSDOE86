@@ -26,3 +26,6 @@ data/raw/
 
 data/processed/
 registry/submissions/
+
+# Restored (not committed) competition feature stack: 418 MB, login-walled upstream.
+/data/bridge/training_features.tif
