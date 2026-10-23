@@ -7,8 +7,9 @@ Checks:
   3. GeoTIFF + single-TIF ZIP + receipt in `docs/downloads/` (`15/15` shared validator
      checks, `[0, 1]` range, zero NaN/Inf, zero on-catalogue mass, exact EPSG:32611
      `3730 x 3292` grid, matching SHA-256).
-  4. Protocol gates: all 42 leakage canaries <= 0.90, 3-instrument HOLDOUT-DTI vs
-     incumbents, AND literal/like-for-like uniqueness (`|rho| <= 0.90`, `3-px overlap <= 0.70`).
+  4. Protocol gates: leakage canary <= 0.90, spatial HOLDOUT-DTI, AND both
+     pre-placement surface and final dots clear the literal all-raster uniqueness
+     rule. Like-for-like/comparable subsets are diagnostic only and never clear a gate.
 
 Never mutates `docs/evidence/run-card.json` during read-only verification or unit tests.
 """
@@ -22,12 +23,15 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 if str(ROOT / "vendor") not in sys.path:
     sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems57 import gates as GT  # noqa: E402
 from gems57 import grid as G  # noqa: E402
 from gems57 import validate as V  # noqa: E402
+from scripts.strict_uniqueness import two_phase_status  # noqa: E402
 
 PINS = ROOT / "research" / "template_pin.json"
 RESULTS = ROOT / "docs" / "evidence" / "lane86b_results.json"
@@ -83,7 +87,7 @@ def run(
             leakage_canary_pass=False,
             beats_incumbent_all_views=False,
             literal_uniqueness_pass=False,
-            modern_comparable_uniqueness_pass=False,
+            modern_comparable_uniqueness_diagnostic_only=False,
             verdict="negative",
             submission_ready=False,
             approved_for_weekly_slot=False,
@@ -152,10 +156,16 @@ def run(
     )
 
     uq = res["uniqueness"]
-    tp = uq["two_phase_summary"]
-    literal_unique = (not tp["like_for_like_reading"]["duplicate"]) and (
-        uq["pre_placement_surface_worst_abs_spearman"] <= 0.90
+    tp = uq.get("two_phase_summary", {})
+    # Strict protocol uses literal measurements at both phases across a
+    # complete accessible inventory. Historical cards without retained
+    # pre-placement/final comparison rows fail closed. The like-for-like and
+    # <=62k subsets below remain diagnostics, never clearance criteria.
+    strict_two_phase = two_phase_status(
+        uq.get("pre_placement_surface_audit"),
+        uq.get("final_dots_audit"),
     )
+    literal_unique = strict_two_phase["clear_under_literal_rule"]
     comparable_rows = [
         r for r in uq["per_raster_rows"] if r["their_dots"] <= 62_000
     ]
@@ -197,8 +207,10 @@ def run(
         leakage_canary_pass=leak_pass,
         point_beats_incumbent_all_3_holdouts=point_beats_all_three,
         ci95_beats_incumbent_all_3_holdouts=ci_beats_all_three,
-        modern_comparable_uniqueness_pass=modern_comparable_unique,
+        modern_comparable_uniqueness_diagnostic_only=modern_comparable_unique,
         literal_uniqueness_pass=literal_unique,
+        historical_literal_reading_duplicate=tp.get("literal_reading", {}).get("duplicate"),
+        strict_two_phase_literal_status=strict_two_phase,
         verdict="promote" if strict_ready else "negative",
         submission_ready=strict_ready,
         approved_for_weekly_slot=False,

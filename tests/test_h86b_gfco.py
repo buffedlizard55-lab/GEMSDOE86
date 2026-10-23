@@ -212,8 +212,10 @@ class H86BGfcoTests(unittest.TestCase):
         self.assertTrue(summary["run_card_consistent"])
         self.assertTrue(summary["leakage_canary_pass"])
         self.assertTrue(summary["point_beats_incumbent_all_3_holdouts"])
-        self.assertTrue(summary["modern_comparable_uniqueness_pass"])
+        self.assertTrue(summary["modern_comparable_uniqueness_diagnostic_only"])
         self.assertFalse(summary["literal_uniqueness_pass"])
+        self.assertTrue(summary["historical_literal_reading_duplicate"])
+        self.assertFalse(summary["strict_two_phase_literal_status"]["clear_under_literal_rule"])
         self.assertEqual(summary["verdict"], "negative")
         self.assertFalse(summary["approved_for_weekly_slot"])
 

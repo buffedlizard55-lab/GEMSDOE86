@@ -112,6 +112,27 @@ def check(root=ROOT):
         summary = json.loads(summary_path.read_text())
         if any(summary.get(key) is not False for key in ('submission_ready', 'safe_to_submit')):
             errors.append('Summary contradicts negative publication state')
+
+    review_path = root / 'docs/evidence/review-20261023-run-card.json'
+    if not review_path.is_file():
+        if root == ROOT:
+            errors.append('Current literal-protocol review card is missing')
+    else:
+        review = json.loads(review_path.read_text())
+        uniqueness = review.get('correlation_overlap_vs_registry', {})
+        surface = uniqueness.get('pre_placement_surface', {})
+        final_dots = uniqueness.get('final_dots', {})
+        if (review.get('candidate_generated_this_review') is not False
+                or review.get('experiments_run_this_review') != 0
+                or review.get('submission_ready') is not False
+                or review.get('safe_to_submit') is not False
+                or review.get('approved_for_weekly_slot') is not False
+                or review.get('verdict') != 'negative'
+                or surface.get('stop_required') is not True
+                or surface.get('forward_3px_overlap_lower_bound') != 1.0
+                or final_dots.get('stop_required') is not True
+                or final_dots.get('complete_accessible_scan') is not False):
+            errors.append('Current review card contradicts the negative literal-protocol decision')
     return errors
 
 

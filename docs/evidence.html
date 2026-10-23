@@ -1,76 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Evidence · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html" style=color:#e8eefc>Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
-<h1>Evidence</h1>
-<p class="muted">Every number below is produced by a script in <code>scripts/</code> and written to
-<code>evidence/</code>. Nothing is typed by hand.</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence and audit · GEMSDOE86</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header><nav aria-label="Main navigation">
+  <b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a><a href="evidence.html" aria-current="page">Evidence</a>
+  <a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+  <a href="download-status.html">Downloads</a>
+</nav></header>
+<main>
+  <section class="card hero">
+    <span class="badge bad">NEGATIVE · DO NOT SUBMIT</span>
+    <h1>Evidence ledger</h1>
+    <p>Review date: 2026-10-23 UTC. This is a reproducible audit of existing files and records, not a new model experiment. No candidate TIFF was generated.</p>
+    <p><a class="btn alt" href="evidence/review-20261023-run-card.json">Open current JSON run card</a>
+      <a class="btn ghost" href="evidence/protocol-preflight.json">Open universal-blocker certificate</a></p>
+  </section>
 
-<h2>1. Instrument</h2>
-<div class="card">
-<p>Evaluator <code>gems57-pooled-hide-v2</code> (shared template, 11 modules verified against
-<code>TEMPLATE_SHA256.txt</code>). Whole 8-connected catalogue components withheld per label-blind
-eroded quadrant, 20 % of each quadrant, 3 px feature buffer, 12 px domain erosion, visible catalogue
-masked pixel-exactly. Pooled DTI with α = 0.2, β = 0.8, 300 m triangular kernel; 95 % CI from 1,000
-paired 20 km block-bootstrap draws.</p>
-<p><b>Reproduced size: 11,321 withheld positive pixels</b> — the same number the sibling GEMSDOE82
-reports for the same evaluator.</p>
-</div>
+  <h2>1 · Universal literal-overlap blocker</h2>
+  <div class="card">
+    <p><b>Evidence class: REGISTRY-MEASUREMENT.</b> Witness SHA-256: <span class="mono">ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</span>.</p>
+    <table><tr><th>Measurement</th><th>Value</th></tr>
+      <tr><td>Positive witness support / scored footprint</td><td>5,167,373 / 5,167,373 pixels</td></tr>
+      <tr><td>Allowed domain</td><td>5,106,385 pixels</td></tr>
+      <tr><td>Allowed cells uncovered by witness support</td><td>0</td></tr>
+      <tr><td>Forward overlap for any nonempty allowed support</td><td>1.0; stop threshold is &gt;0.70</td></tr>
+    </table>
+    <p>The implication is exact: every candidate support in the allowed domain is a subset of the witness's positive support. Therefore its forward overlap is 1.0, whatever its rank correlation or geological mechanism. This proves a stop; it cannot clear uniqueness.</p>
+    <p><a href="evidence/protocol-preflight.json">Stored certificate and source/hash scope</a> · <a href="evidence/review-20261023-run-card.json">Review run card</a></p>
+  </div>
 
-<h2>2. Lane result and ablations</h2>
-<table>
-<tr><th>Configuration</th><th>Dots</th><th>HOLDOUT-DTI</th><th>95 % CI</th></tr>
-<tr><td><b>Lane</b> (44 features + line filter, 8 × K)</td><td>90,568</td><td><b>0.12324</b></td>
-<td>[0.10926, 0.13665]</td></tr>
-<tr><td>Ablation: cross-gradient (GMC) features removed</td><td>90,568</td><td>0.12313</td>
-<td>[0.10913, 0.13653]</td></tr>
-<tr><td>Ablation: line filter removed</td><td>90,568</td><td>0.07934</td>
-<td>[0.06467, 0.09472]</td></tr>
-<tr><td>Histogram-gradient-boosting learner (best ratio)</td><td>271,704</td><td>0.06218</td>
-<td>[0.05099, 0.07428]</td></tr>
-</table>
-<p><b>Read-out.</b> The line filter is the entire effect (+0.0439 at a
-fixed budget, disjoint CIs). The headline cross-gradient hypothesis is a null (+0.0001) and is reported
-as a negative result. A nonlinear learner is worse.</p>
+  <h2>2 · Direct H86B final-dot comparison</h2>
+  <p class="muted">Evidence class: REGISTRY-MEASUREMENT. The retained candidate SHA-256 is <span class="mono">897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</span>. The audit rechecked five hash-pinned cross-lane prior rows plus the dense witness. This is an incomplete local subset, not an organizer-complete registry.</p>
+  <table>
+    <thead><tr><th>Prior raster</th><th>Candidate dots within 3 px</th><th>Full-footprint Spearman</th><th>Decision</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">Earlier GMC linepost</td><td>0.8099569063</td><td>0.0570048476</td><td><span class="badge bad">STOP · overlap</span></td></tr>
+      <tr><td class="mono">17GEMSDOE dense witness</td><td>1.0000000000</td><td>0.1184194736</td><td><span class="badge bad">STOP · overlap</span></td></tr>
+      <tr><td class="mono">Prior RMRB 37,654-dot raster</td><td>0.3889997732</td><td>0.0364576539</td><td>Below these two thresholds in this row only</td></tr>
+      <tr><td class="mono">Prior H86 RMRB 60,000-dot raster</td><td>0.2036062599</td><td>−0.0004898898</td><td>Below these two thresholds in this row only</td></tr>
+      <tr><td class="mono">Prior GMC off-catalogue raster</td><td>0.0998865956</td><td>−0.0062013376</td><td>Below these two thresholds in this row only</td></tr>
+      <tr><td class="mono">Prior H86 edge raster</td><td>0.1412338399</td><td>0.0019398121</td><td>Below these two thresholds in this row only</td></tr>
+    </tbody>
+  </table>
+  <p>Any one literal overlap above 0.70 is enough to stop. The low rank correlations do not cancel an overlap stop. Other rows below threshold do not establish registry-wide uniqueness.</p>
 
-<h3>Budget sweep (lane)</h3>
-<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>4 × K</td><td>45,284</td><td>0.09568</td><td>[0.08380, 0.10694]</td></tr><tr><td>6 × K</td><td>67,926</td><td>0.11656</td><td>[0.10313, 0.13011]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.12324</td><td>[0.10926, 0.13665]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.11794</td><td>[0.10447, 0.13058]</td></tr><tr><td>12 × K</td><td>135,852</td><td>0.10577</td><td>[0.09326, 0.11802]</td></tr></table>
-<h3>Budget sweep (no line filter)</h3>
-<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>6 × K</td><td>67,926</td><td>0.08555</td><td>[0.07050, 0.10144]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.07934</td><td>[0.06467, 0.09472]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.07563</td><td>[0.06121, 0.09121]</td></tr></table>
+  <h2>3 · Pre-placement surface evidence</h2>
+  <div class="card">
+    <p>The original H86B pre-placement surface raster was not retained. The historical run card reports maximum absolute Spearman <b>0.1365611917</b> over <b>28</b> hash-verified owner-repository rasters, but that scan is incomplete and cannot clear uniqueness.</p>
+    <p>The witness-based support bound is separate from that historical correlation summary. Because the witness is positive on every footprint pixel and H86B zeroed its surface outside the footprint, any nonempty pre-placement surface has forward overlap <b>1.0</b> before placement. The current review labels this as a logical support bound—not a direct replay measurement.</p>
+  </div>
 
-<h2>3. The diagnostic that matters most</h2>
-<div class="card">
-<p>The fleet's best reported artifact (<code>h33-h33-2-b2-…-zeros</code>, 37,654 dots) scored on this
-same instrument:</p>
-<p class="kpi"><span></span></p>
-<div class="kpi">
-<div><span class="muted">HOLDOUT-DTI of that file</span><b>0.00370</b><span class="muted">95 % CI [0.00304, 0.00440]</span></div>
-<div><span class="muted">Its dots within 3 px of the catalogue</span><b>5.77 %</b><span class="muted">0 % within 1 px</span></div>
-<div><span class="muted">Its owner-reported live value</span><b>0.2708</b><span class="muted">base of the 0.2778 projection</span></div>
-</div>
-<p>Two orders of magnitude apart, in opposite directions. The instrument measures catalogue recovery;
-the prize measures new-fault discovery. <b>Any holdout number in this fleet, including this repo's
-0.1232, must be treated as a screening value only.</b></p>
-</div>
+  <h2>4 · Historical spatial holdouts (not leaderboard scores)</h2>
+  <p>Every metric in this table is <b>HOLDOUT-DTI</b>, evaluator <code>gems57-pooled-hide-v2</code>, with withheld-positive count and 95% CI. These values belong to the retained H86B artifact; none was generated in this review.</p>
+  <table>
+    <thead><tr><th>Spatial view</th><th>Withheld positives</th><th>H86B HOLDOUT-DTI (95% CI)</th><th>Paired HOLDOUT-DTI delta vs d2.8 (95% CI)</th></tr></thead>
+    <tbody>
+      <tr><td>Buffered whole components</td><td>11,321</td><td>0.1077592263 [0.0907896119, 0.1253646274]</td><td>+0.0158709017 [−0.0007078800, +0.0342983678]</td></tr>
+      <tr><td>Segment hide-all</td><td>22,641</td><td>0.1396068533 [0.1285628414, 0.1512981293]</td><td>+0.0385372060 [+0.0268900062, +0.0524095046]</td></tr>
+      <tr><td>Segment hide-detached</td><td>22,619</td><td>0.1520847099 [0.1378471906, 0.1662345818]</td><td>+0.0486202444 [+0.0342960940, +0.0627301001]</td></tr>
+    </tbody>
+  </table>
+  <p>The primary buffered whole-component paired interval crosses zero. Its paired HOLDOUT-DTI delta versus the H33-B2 fold-fair <i>control</i> is +0.0116730322 [−0.0051976036, +0.0302519062] (95% CI; 11,321 withheld positives; same evaluator). That control is not the historical H33 artifact. No holdout number is represented as a public score.</p>
+  <p>The historical feature-alone canary result is maximum discriminative AUC 0.8485475169 across 42 features, below the 0.90 canary threshold. This is a HOLDOUT-FEATURE-CANARY diagnostic, not DTI.</p>
 
-<h2>4. Uniqueness</h2>
-<p>Registry: 812 unique git blobs from 68 owner repositories (index <span class="mono">73216d76…7c67</span>,
-built 2026-10-21T02:30Z), fetched object-by-object with blobless clones and hash-verified. 808 compared;
-4 unusable comparators are itemised in the audit JSON.</p>
-<p>Candidate: <b>90,568 dots</b>. <b>Worst Spearman against any prior: 0.0362</b>
-(limit 0.90) — rank correlation alone does not clear the lane. The literal overlap gate fails. Coverage above 70% of the allowed domain does not by itself prove impossibility for every candidate, because dots could be placed in the uncovered subset. Our separately hash-verified dense witness covers 100% and does prove the universal blocker. See <a href="evidence/protocol-preflight.json">the exact certificate</a>. Historical coverage diagnostics:</p>
-<table><tr><th>Blocking prior</th><th>Its positive cells</th><th>Halo coverage of domain</th><th>ρ vs this candidate</th></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif</td><td>5,167,373</td><td>1.000</td><td>0.005</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>-0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h48-1-unassigned_yager_mTheta_inc</td><td>5,167,373</td><td>1.000</td><td>-0.014</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-plausibility-20261007-5b59e10</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-unassigned-mTheta-20261007-5b</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h54-unassigned-mtheta-dedc43dc016</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-mtheta-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-plausibility-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.034</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-mtheta-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-plausibility-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>0.042</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-mtheta-126ca59c2801.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr></table>
-<p class="muted">Full list: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/evidence/saturation_certificate.json">saturation_certificate.json</a>.
-This is a recorded protocol conflict, not permission to ignore the gate. The artifact remains negative and not approved.</p>
+  <h2>5 · H33 and leaderboard evidence class</h2>
+  <div class="card">
+    <p>The H33-2-B2 <code>0.2778</code> value and the owner-brief values <code>0.3195</code> / <code>0.4413</code> are <b>unverified user/owner claims</b> in this checkout. No authenticated submission-page receipt was found, and the official leaderboard was not freshly retrieved for this review.</p>
+    <p>The archived H33-B2 record marks the artifact <code>UNSCORED</code> and stores <code>predicted_leaderboard_dti = 0.274673...</code>, a projection rather than a receipt. It describes a 37,654-dot field made by pruning a 0.2708 base around the mapped catalogue. An archived audit flags a zero-byte member in one ZIP bundle. These explain the provenance concern, not an authenticated score.</p>
+    <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard (not freshly checked)</a> · <a href="sources.html">Full source/access ledger</a></p>
+  </div>
 
-<h2>5. What a valid next experiment looks like</h2>
-<ol>
-<li>Build a <b>new-fault-like</b> holdout: faults added to the public catalogue after a fixed date, or the
-Qfaults ↔ INGENIOUS disagreement set (both layers are already restored in this repo).</li>
-<li>Re-rank every fleet artifact on that instrument and check that the ranking tracks the leaderboard.</li>
-<li>Then compare candidates and the visible-only incumbent on identical folds; never equate a catalogue-recovery score with a private new-fault score.</li>
-</ol>
+  <h2>6 · Local validator</h2>
+  <p>Retained H86B file: shared local validator <b>15/15 PASS</b>; template-format report <b>PASS</b>; no NaN inside footprint; values in [0,1]; CRS, shape and transform match. Validation is local format evidence only; it is not organizer acceptance or uniqueness clearance.</p>
+
+  <h2>Machine-readable records</h2>
+  <ul>
+    <li><a href="evidence/review-20261023-run-card.json">Current review run card</a> — decision, hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry comparisons, raster hash, validator, and negative verdict.</li>
+    <li><a href="evidence/protocol-preflight.json">Universal support certificate</a>.</li>
+    <li><a href="evidence/h86b_crosslane_uniqueness.json">Historical H86B cross-lane comparison</a> — retained as prior evidence; direct values above are recomputed in the review card.</li>
+    <li><a href="evidence/h86b-gfco-run-card.json">Archived H86B run card</a>.</li>
+    <li><a href="evidence/download-inventory.json">Audit-only download inventory</a>.</li>
+  </ul>
 </main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<footer>Evidence classes: HOLDOUT-DTI · REGISTRY-MEASUREMENT · LOCAL-FORMAT-VALIDATION · ORGANIZER-CONFIRMED only from a submission-page receipt. No current organizer-confirmed score exists here.</footer>
+</body>
+</html>

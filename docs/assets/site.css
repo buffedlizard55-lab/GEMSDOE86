@@ -31,3 +31,7 @@ code{background:#0a1526;padding:.1rem .35rem;border-radius:6px;font-size:.88em}
 .kpi b{display:block;font-size:1.5rem}.muted{color:var(--muted)}
 ul{padding-left:1.2rem}li{margin:.25rem 0}
 footer{border-top:1px solid var(--line);color:var(--muted);padding:1.5rem 1rem;text-align:center;font-size:.9rem}
+nav a[aria-current="page"]{color:var(--ink);font-weight:700}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.card{box-shadow:0 12px 28px rgba(0,0,0,.12)}
+@media(max-width:640px){main{padding:1.25rem .85rem 3rem}h1{font-size:1.65rem}table{display:block;overflow-x:auto;white-space:normal}nav{gap:.65rem}.btn{max-width:100%}}

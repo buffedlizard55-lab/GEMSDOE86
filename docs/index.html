@@ -1,48 +1,80 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Submission decision · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html" style="color:#e8eefc">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Fleet evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
-<div class="card hero">
-<span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED FOR A WEEKLY SLOT</span>
-<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT · LOCAL FORMAT PASS (15/15)</span>
-<h1>Six byte-distinct GEMSDOE86 research TIFFs exist. Download for audit—do not submit.</h1>
-<p class="muted">Single float32 band · 3,730 × 3,292 · EPSG:32611 · exact 100 m transform · all finite in [0,1] · 0 positive pixels outside the footprint · 0 on mapped catalogue pixels.</p>
-<a class="btn danger" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF — DO NOT SUBMIT</a>
-<a class="btn alt" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download H86B-GFCO one-TIFF ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip" download>Download RMRB-86 ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="executive-summary.html">Read the automated decision →</a>
-<p class="mono">H86B-GFCO sha256 897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116 · 44,090 dots · recorded note: H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d&gt;2px, zeros</p>
-<p class="mono">RMRB-86 sha256 9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd · 37,654 dots · note: RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</p>
-</div>
-<div class="kpi">
-<div><span class="muted">H86B-GFCO HOLDOUT-DTI (all / detached)</span><b>0.1396 / 0.1521</b><span class="muted">gems57-pooled-hide-v2 · 22,641 / 22,619 pos · paired Δ vs d2.8 +0.0385 / +0.0486 (CIs &gt; 0)</span></div>
-<div><span class="muted">H86B-GFCO Whole-Component LOQO</span><b>0.1078</b><span class="muted">11,321 buffered whole-comp pos · vs H33-2-B2 0.0961 &amp; d2.8 0.0919 · paired CI [−0.0007, +0.0343]</span></div>
-<div><span class="muted">H86B-GFCO vs H33-2-B2 &amp; 25 Modern Rasters</span><b>0.3012 / ≤0.6342</b><span class="muted">42/42 leakage canaries ≤0.8485 · |ρ| ≤0.053 · distinct vs all 25 comparable rasters</span></div>
-<div><span class="muted">Literal dense/legacy overlap</span><b>0.9988 / 1.000</b><span class="muted">limit 0.70 · binding duplicate stop across all 6 lanes</span></div>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GEMSDOE86 automated submission decision: do not submit existing research TIFFs because the literal uniqueness gate is blocked.">
+  <title>Submission decision · GEMSDOE86</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header><nav aria-label="Main navigation">
+  <b>GEMSDOE86</b><a href="index.html" aria-current="page">Decision</a>
+  <a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a>
+  <a href="evidence.html">Evidence</a><a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+  <a href="download-status.html">Downloads</a>
+</nav></header>
+<main>
+  <section class="card hero">
+    <span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED · DO NOT SUBMIT</span>
+    <h1>No current GeoTIFF is safe to submit.</h1>
+    <p>The literal uniqueness protocol is unsatisfiable for any nonempty candidate under the pinned witness. This review ran no experiment, created no candidate TIFF, and used no weekly slot.</p>
+    <p><a class="btn danger" href="executive-summary.html">Open the submission guide — current stop</a>
+      <a class="btn alt" href="evidence/review-20261023-run-card.json">Read the 2026-10-23 JSON run card</a></p>
+    <p class="muted">Existing rasters can be downloaded for audit only. Downloading is not submission approval.</p>
+    <p><a class="btn alt" href="download-status.html">Browse all six files, hashes, sizes and local checks</a></p>
+    <a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download retained H86B TIFF — SAFE TO DOWNLOAD FOR AUDIT ONLY · DO NOT SUBMIT</a>
+  </section>
 
-<p class="card"><a href="download-status.html"><b>Open the generated byte-verified download status for every TIFF</b></a> — exact sizes, names, short notes, SHA-256 and automated checks. All are research downloads; none is authorized.</p>
-<h2>Automated verdict</h2>
-<div class="card"><p>The RMRB-86 file is byte-unique in the 1,143-raster public hash snapshot and is not a renamed H33 raster. Its format receipt passes. It still fails promotion for two independent reasons:</p><ol><li>The engineered RMRB transform does not beat raw K/Th/U with a wholly positive paired interval.</li><li>A public continuous positive-support raster makes the prompt's literal three-pixel overlap 1.0. The prompt authorizes no “carpet prior” exemption.</li></ol><p><a href="evidence/rmrb86-run-card.json">Canonical RMRB run card</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Surface/final comparisons</a> · <a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Writer receipt</a></p></div>
+  <section class="kpi" aria-label="Current decision metrics">
+    <div><span class="muted">Current review</span><b>0 experiments</b><span class="muted">0 new TIFFs · 0 slots used</span></div>
+    <div><span class="muted">Dense witness support</span><b>5,167,373 px</b><span class="muted">REGISTRY-MEASUREMENT · all footprint cells positive</span></div>
+    <div><span class="muted">Allowed pixels uncovered</span><b>0</b><span class="muted">REGISTRY-MEASUREMENT · any nonempty support has 1.0 forward overlap</span></div>
+    <div><span class="muted">Organizer-confirmed score</span><b>None</b><span class="muted">No authenticated submission-page receipt in this checkout</span></div>
+  </section>
 
-<h2>Repository-wide traffic light</h2>
-<table><tr><th>File</th><th>Measured state</th><th>Binding decision</th></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a></td><td>format pass (15/15); 42/42 leakage canaries ≤0.8485; beats d2.8 &amp; H33-2-B2 point estimates across all 3 holdouts (0.1078 buffered whole-comp, 0.1396 segment-all, 0.1521 detached); ≤0.6342 overlap vs all 25 comparable rasters (0.3012 vs H33-2-B2); blocked by literal &gt;0.70 overlap on 3 dense legacy GEMSDOE24 rasters (0.9988, 0.7656, 0.7170) &amp; whole-comp paired CI [−0.0007, +0.0343] · <a href="evidence/h86b-gfco-run-card.json">run card</a> · <a href="evidence/lane86b_results.json">evidence</a> · <a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json">receipt</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a></td><td>format pass; distinct from H33 and merged parallel rasters; paired RMRB delta uncertain; dense-prior overlap 1.0</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a></td><td>own run card: negative; HOLDOUT-DTI below incumbent; lattice overlap 0.995</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a></td><td>format pass; 82% of dots within 3 px of a prior proximity lane</td><td><span class="badge bad">DO NOT SUBMIT — duplicate lane</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a></td><td>format pass and low rank correlation, but its audit records literal overlap failures against saturated priors; its report records an experiment-budget overrun</td><td><span class="badge bad">DO NOT SUBMIT under the supplied literal rule</span></td></tr>
-<tr><td class="mono"><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a></td><td>format pass; HOLDOUT-DTI (gems57-pooled-hide-v2, 22,893 withheld positives, 95% CI) 0.04634 [0.03716, 0.05603], below its 0.10303 [0.09200, 0.11389] fixed control; literal lattice overlap 0.971; incomplete registry</td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr></table>
-<p class="muted">A previous page exempted continuous/carpet priors and called the off-catalogue GMC artifact ready. This integration removes that unauthorized exception and fails closed. No competition slot was used here.</p>
+  <h2>Why the automated gate stops</h2>
+  <div class="card">
+    <p>The hash-pinned registry witness (<span class="mono">ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</span>) is positive on every scored-footprint pixel. Its support covers every allowed pixel, so every nonempty candidate is within the literal 3-pixel threshold for <b>100% of its positive pixels</b>. The protocol's stop is <b>more than 70%</b>. No density or raster-type exemption is authorized.</p>
+    <p>The retained H86B final dots were remeasured as well. The forward overlap is <b>0.8099569063</b> against an earlier GMC-linepost raster and <b>1.0</b> against the dense witness; both exceed the stop threshold. These are direct REGISTRY-MEASUREMENTS from six available priors, not a complete registry clearance.</p>
+    <p><a href="evidence/protocol-preflight.json">Universal blocker certificate</a> · <a href="evidence/review-20261023-run-card.json">Current review run card</a> · <a href="evidence/download-inventory.json">Audit-only artifact inventory</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/REVIEW_20261023.md">Three-pass review</a></p>
+  </div>
 
-<h2>What explains the historical H33 result claim?</h2>
-<div class="card"><p>The pinned builder describes thinning an earlier prediction and deleting dots in a mapped-fault collar. Under distance-weighted Tversky, redundant prediction mass can add false-positive cost without increasing maximum truth coverage; kernel-scale sparse placement and collar pruning can therefore help. That is a plausible metric mechanism, not proof of a new geological discovery.</p><p>The historical scalar supplied by the owner has no authenticated submission-page receipt in this checkout and is not labelled ORGANIZER-CONFIRMED. A higher result is possible in principle, but this RMRB experiment does not demonstrate it.</p><p><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/RMRB86_REVIEW.md">RMRB scientific review and five ranked hypotheses</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></p></div>
+  <h2>Retained H86B spatial holdouts — historical, not public scores</h2>
+  <p class="muted">Every score below is HOLDOUT-DTI, evaluator <code>gems57-pooled-hide-v2</code>, with withheld-positive count and 95% CI. These are archived local holdout results; this review ran no holdout experiment.</p>
+  <div class="kpi">
+    <div><span class="muted">Buffered whole components · n = 11,321</span><b>0.107759</b><span class="muted">HOLDOUT-DTI · 95% CI [0.090790, 0.125365]</span></div>
+    <div><span class="muted">Segment hide-all · n = 22,641</span><b>0.139607</b><span class="muted">HOLDOUT-DTI · 95% CI [0.128563, 0.151298]</span></div>
+    <div><span class="muted">Segment hide-detached · n = 22,619</span><b>0.152085</b><span class="muted">HOLDOUT-DTI · 95% CI [0.137847, 0.166234]</span></div>
+  </div>
+  <p>For the primary whole-component view, the paired HOLDOUT-DTI delta vs the d2.8 control has 95% CI [−0.000708, +0.034298], which crosses zero. The H33-B2 fold-fair comparison is also inconclusive. Holdout values are not leaderboard projections.</p>
 
-<h2>Everything is machine-checkable</h2><ul>
-<li><a href="evidence/rmrb86-run-card.json">RMRB run card</a>: hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry measurements, SHA, validator, name/note and negative verdict.</li>
-<li><a href="evidence/leakage-canaries.json">All 20 feature-alone leakage canaries</a>; maximum symmetric AUC 0.58034.</li>
-<li><a href="evidence/feature-cache.json">Feature-cache receipt</a> with source, builder and cache hashes.</li>
-<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/PROMPT.md">Standing prompt</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">source repository</a>.</li>
-</ul>
-</main><footer>Local format pass ≠ organizer acceptance. Current selector decision: no file is safe to submit under the supplied literal protocol.</footer></body></html>
+  <h2>Retained research TIFFs — all audit-only</h2>
+  <p class="muted">Every file below is registered in the download inventory and explicitly marked DO NOT SUBMIT. These are historical artifacts, not a newly generated candidate.</p>
+  <div class="card"><ul>
+    <li><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a> — DO NOT SUBMIT</li>
+    <li><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a> — DO NOT SUBMIT</li>
+    <li><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a> — DO NOT SUBMIT</li>
+    <li><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a> — DO NOT SUBMIT</li>
+    <li><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a> — DO NOT SUBMIT</li>
+    <li><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a> — DO NOT SUBMIT</li>
+  </ul></div>
+
+  <h2>H33 and leaderboard claims</h2>
+  <div class="card">
+    <p>The reported H33 <code>0.2778</code> and other figures such as <code>0.3195</code> and <code>0.4413</code> are unverified owner/user claims here: there is no authenticated submission receipt, and the official leaderboard was not freshly retrieved during this review. The archived H33 audit says <code>UNSCORED</code> and stores a projected leaderboard value; a projection is not a score.</p>
+    <p><a href="hypotheses.html">Read ranked, genuinely untried hypotheses</a> · <a href="sources.html">Review official source links and access status</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard (not freshly checked)</a></p>
+  </div>
+
+  <h2>What is safe to do now?</h2>
+  <ol>
+    <li>Preserve the negative decision and existing artifacts as audit-only.</li>
+    <li>Do not call the lane runner to generate a candidate: it now enforces protocol preflight before feature construction.</li>
+    <li>Do not spend a weekly slot. Slot selection is separate and no selector approval exists.</li>
+    <li>Read the <a href="executive-summary.html">submission procedure</a> for a future artifact only after every required gate is satisfiable and passed.</li>
+  </ol>
+</main>
+<footer>Local format PASS is not organizer acceptance. Current automated decision: DO NOT SUBMIT any existing TIFF.</footer>
+</body>
+</html>

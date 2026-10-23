@@ -1,0 +1,272 @@
+{
+  "review_date_utc": "2026-10-23",
+  "evidence_class": "AUDIT-ONLY-NEGATIVE-RUN-CARD",
+  "hypothesis": "H86B-GFCO (Session-2 declared lane, advancing PR #6 roadmap): Blind hydrothermal upflow plumes (GDR-1391 geothermometer thermal disequilibrium dT_chem - T_meas & silica-cation lag + MT clay-cap edges), multi-depth potential-field contact-offsets (TMI vs 150m upward-continued attenuation + magnetic director disruption x gravity/basement steps), and relief-deconfounded 1m LiDAR/100m DEM scarplet chains localize concealed faults missed by single-layer mapping, especially along crack-tip propagation cones and two-host en-echelon relay stepovers.",
+  "mechanism": "Cover-adaptive 4-quadrant LOQO GBDT ensemble (38-feature full + 28-feature cover-blind subsurface/geothermal specialist gated by basement depth) coupled with strictly visible-only tip-cone/two-host-relay/bend-splay mechanics (S = P_phys^0.65 * (0.12 + 0.88*M_kin)); 300m triangular expected-credit priority disc thinning (r=2.8px, d_cat>2px collar, 44090 binary dots, all-finite zeros outside footprint).",
+  "named_non_fault_mimic": "Playa evaporite conductivity, deep plutonic magnetic contacts, and steep bedrock cliffs / alluvial fan sorting (discriminants: TMI-vs-TMI_up150 shallow attenuation + gravity cross-step, relief-normalized LiDAR scarplet collinearity, topographic residualization of K & U/Th, and PU d>4px negative training).",
+  "candidate_generated_this_review": false,
+  "experiments_run_this_review": 0,
+  "historical_experiments_in_lane": 3,
+  "competition_slots_used_this_review": 0,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "candidate_dti": 0.10775922634537677,
+    "ci95": [
+      0.0907896118927902,
+      0.1253646273576898
+    ],
+    "paired_delta_vs_d28_incumbent": 0.01587090167319405,
+    "paired_delta_vs_d28_incumbent_ci95": [
+      -0.0007078800302750258,
+      0.03429836783193628
+    ],
+    "paired_delta_vs_h33_b2_foldfair": 0.011673032177341308,
+    "paired_delta_vs_h33_b2_foldfair_ci95": [
+      -0.005197603627730072,
+      0.030251906163723148
+    ],
+    "point_estimate_beats_incumbents": true,
+    "95_percent_ci_beats_incumbents": false,
+    "scope_note": "This is a historical HOLDOUT-DTI measurement for the retained H86B artifact, not an organizer score and not a new experiment in this review."
+  },
+  "additional_holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "segment_hide_all": {
+      "withheld_positives": 22641,
+      "candidate_dti": 0.13960685331490388,
+      "ci95": [
+        0.1285628413882666,
+        0.15129812934659334
+      ],
+      "d28_incumbent_dti": 0.1010696473055406,
+      "d28_incumbent_ci95": [
+        0.09068229120623145,
+        0.11025375325721426
+      ],
+      "h33_b2_foldfair_dti": 0.09096096964267096,
+      "paired_delta_vs_d28": 0.03853720600936328,
+      "paired_delta_vs_d28_ci95": [
+        0.026890006172317783,
+        0.05240950463240834
+      ]
+    },
+    "segment_hide_detached": {
+      "withheld_positives": 22619,
+      "candidate_dti": 0.15208470990262074,
+      "ci95": [
+        0.1378471906477318,
+        0.1662345818297221
+      ],
+      "d28_incumbent_dti": 0.10346446550153578,
+      "d28_incumbent_ci95": [
+        0.09210940220826873,
+        0.11375608124966502
+      ],
+      "h33_b2_foldfair_dti": 0.09481681738698564,
+      "paired_delta_vs_d28": 0.048620244401084964,
+      "paired_delta_vs_d28_ci95": [
+        0.03429609397541206,
+        0.06273010007263594
+      ]
+    },
+    "scope_note": "Each view is a separately reported spatial holdout; do not combine the estimates or treat them as leaderboard scores."
+  },
+  "leakage_canary": {
+    "evidence_class": "HOLDOUT-FEATURE-CANARY",
+    "features_checked": 42,
+    "max_discriminative_auc": 0.848547516900676,
+    "threshold": 0.9,
+    "any_leakage_flag": false
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "pre_placement_surface": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "direct_surface_raster_retained": false,
+      "direct_surface_remeasurement_performed": false,
+      "historical_surface_registry_rasters_checked": 28,
+      "historical_surface_max_abs_spearman": 0.1365611917007443,
+      "historical_surface_scope": "28 hash-verified rasters across 16 buffedlizard55-lab repositories (12 pinned local + PR #6 H86-RMRB + 15 cross-repo primary champions GEMSDOE32..83); not an organizer-complete registry.",
+      "dense_witness_positive_pixels": 5167373,
+      "footprint_pixels": 5167373,
+      "allowed_pixels": 60988,
+      "uncovered_allowed_pixels": 0,
+      "forward_3px_overlap_lower_bound": 1.0,
+      "bound_is_direct_surface_measurement": false,
+      "stop_required": true,
+      "basis": "Exact support implication, not a replayed surface statistic: the hash-pinned witness is positive at every scored-footprint pixel; the lane's surface is zero outside the footprint. Therefore every nonempty in-footprint surface support is a subset of the witness support and has forward 3-pixel overlap 1.0 (>0.70) before any placement. The surface file itself was not retained."
+    },
+    "final_dots": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "raster_sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+      "candidate_positive_pixels": 44090,
+      "rasters_checked": 6,
+      "complete_accessible_scan": false,
+      "scope": "Directly remeasured against the five hash-pinned prior rows in the existing cross-lane audit plus the pinned dense witness. This is not a complete organizer registry.",
+      "rows": [
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE86",
+          "submission": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+          "registry_sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+          "candidate_dots_within_3px_of_registry": 0.3889997731911998,
+          "spearman_full_footprint": 0.036457653914418915,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": []
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE86",
+          "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+          "registry_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+          "candidate_dots_within_3px_of_registry": 0.203606259922885,
+          "spearman_full_footprint": -0.0004898897968968848,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": []
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE86",
+          "submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+          "registry_sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+          "candidate_dots_within_3px_of_registry": 0.8099569063279656,
+          "spearman_full_footprint": 0.057004847628510456,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": [
+            "forward 3-px overlap 0.809956906328 > 0.7"
+          ]
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE86",
+          "submission": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+          "registry_sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+          "candidate_dots_within_3px_of_registry": 0.09988659559990927,
+          "spearman_full_footprint": -0.006201337550495573,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": []
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE86",
+          "submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+          "registry_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+          "candidate_dots_within_3px_of_registry": 0.14123383987298707,
+          "spearman_full_footprint": 0.0019398121079215876,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": []
+        },
+        {
+          "repo": "buffedlizard55-lab/17GEMSDOE",
+          "submission": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+          "registry_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+          "candidate_dots_within_3px_of_registry": 1.0,
+          "spearman_full_footprint": 0.11841947361997884,
+          "identical_bytes": false,
+          "identical_decoded_predictions": false,
+          "literal_blocker": [
+            "forward 3-px overlap 1 > 0.7"
+          ]
+        }
+      ],
+      "phase_status": {
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "rows_checked": 6,
+        "registry_rasters_expected": 6,
+        "reported_rasters_checked": 6,
+        "missing_or_invalid": 0,
+        "source_errors": [
+          "Legacy list has no complete-inventory certificate; diagnostic only"
+        ],
+        "complete_accessible_scan": false,
+        "blockers": [
+          {
+            "submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+            "repo": "buffedlizard55-lab/GEMSDOE86",
+            "reasons": [
+              "forward 3-px overlap 0.809956906328 > 0.7"
+            ],
+            "spearman_full_footprint": 0.057004847628510456,
+            "my_dots_within_3px_of_theirs": 0.8099569063279656
+          },
+          {
+            "submission": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+            "repo": "buffedlizard55-lab/17GEMSDOE",
+            "reasons": [
+              "forward 3-px overlap 1 > 0.7"
+            ],
+            "spearman_full_footprint": 0.11841947361997884,
+            "my_dots_within_3px_of_theirs": 1.0
+          }
+        ],
+        "clear_under_literal_rule": false,
+        "scope_note": "A partial scan can establish a collision when one is found, but cannot clear uniqueness."
+      },
+      "stop_required": true
+    },
+    "complete_registry_clearance": false,
+    "decision": "negative; the surface is blocked by an exact universal bound and the final dots trigger literal overlap against prior rasters"
+  },
+  "raster_sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "status": "PASS",
+    "shared_validator_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "shared_validator_all_checks_passed": true,
+    "template_format_ok": true,
+    "template_format_problems": [],
+    "emitted_positive_pixels": 44090,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "organizer_acceptance": "not verified; no organizer receipt"
+  },
+  "submission_name": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b",
+  "submission_note": "H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros",
+  "submission_note_characters": 91,
+  "existing_artifact_path": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+  "safe_to_download_for_audit": true,
+  "safe_to_submit": false,
+  "organizer_confirmed_score": null,
+  "leaderboard_claims": {
+    "evidence_class": "UNVERIFIED-OWNER-OR-USER-REPORTED",
+    "values": [
+      0.2778,
+      0.3195,
+      0.4413
+    ],
+    "status": "No authenticated submission-page receipt in this checkout; none is treated as an ORGANIZER-CONFIRMED score or compared to HOLDOUT-DTI."
+  },
+  "untried_hypotheses": "See research/NEXT_HYPOTHESES_20261023.md; four distinct concepts are ranked, and previously implemented H86B features are explicitly excluded from the novelty claims.",
+  "limitations": [
+    "No new candidate TIFF, model fit, holdout experiment, or competition submission was created in this review.",
+    "The H86B pre-placement surface raster was not retained; the stated 1.0 overlap is an exact support bound from the pinned universal witness, not a direct replayed surface measurement.",
+    "The cross-lane registry subset is incomplete and not organizer-authenticated; no uniqueness clearance can be granted.",
+    "The repository's restored bridge/sample/fault rasters are owner-supplied mirrors, not independently organizer-authenticated source receipts.",
+    "No fresh official competition leaderboard or submission receipt was obtained; user/owner leaderboard values remain unverified.",
+    "The H86B holdout metrics are historical local HOLDOUT-DTI, not public leaderboard or organizer-confirmed scores."
+  ],
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "decision": "STOP: do not generate or submit a nonempty candidate while the universal literal-overlap blocker stands."
+}

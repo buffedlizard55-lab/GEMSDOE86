@@ -1,44 +1,73 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" style="color:#e8eefc">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
-<h1>Executive summary — submission procedure and current stop</h1>
-<div class="card hero"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY REPOSITORY FILE</span>
-<h2>Latest H86B-GFCO &amp; RMRB-86 research candidates</h2><p>All technical files are easy to download; the fail-closed decision is equally explicit. H86B-GFCO passes 15/15 format checks, passes 42/42 leakage canaries, is distinct from all 25 modern/comparable rasters across 16 repos (0.3012 vs H33-2-B2), and beats both d2.8 and H33-2-B2 in point estimate across all 3 holdout instruments (0.1078 whole-comp, 0.1396 segment-all, 0.1521 detached), while automatic slot approval remains blocked by literal &gt;0.70 3-px overlap on 3 dense legacy GEMSDOE24 rasters and whole-component paired CI [−0.0007, +0.0343].</p>
-<a class="btn danger" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download H86B-GFCO ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="evidence/h86b-gfco-run-card.json">H86B-GFCO Run Card</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Open RMRB-86 receipt</a></div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Executive submission guide for GEMSDOE86, including the current automated do-not-submit decision and future portal steps.">
+  <title>How to submit · GEMSDOE86</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header><nav aria-label="Main navigation">
+  <b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" aria-current="page">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+  <a href="download-status.html">Downloads</a>
+</nav></header>
+<main>
+  <h1>Executive submission guide</h1>
+  <section class="card hero">
+    <span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span>
+    <h2>No candidate is authorized.</h2>
+    <p>The literal uniqueness gate has a universal blocker: the pinned dense prior is positive on every allowed pixel. The existing H86B final dots also exceed the overlap threshold against known prior rasters. No file is safe to submit under the current protocol.</p>
+    <a class="btn danger" href="index.html">Return to current decision</a>
+    <a class="btn alt" href="evidence/review-20261023-run-card.json">Open the machine-readable negative run card</a>
+    <a class="btn ghost" href="download-status.html">Audit all six retained downloads (none approved)</a>
+    <p class="muted">The link below is intentionally marked audit-only. Do not upload it.</p>
+    <a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download retained H86B TIFF — AUDIT ONLY / DO NOT SUBMIT</a>
+  </section>
 
-<p class="card"><a href="download-status.html"><b>Generated identity and validation for all downloadable TIFFs</b></a>. This is the canonical byte/size/note-length view; the older scientific reports retain their historical evidence.</p>
-<h2>RMRB-86 identity (not the H86B-GFCO download above)</h2><table>
-<tr><th>File</th><td class="mono">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</td></tr>
-<tr><th>SHA-256</th><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td></tr>
-<tr><th>Submission name</th><td>RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</td></tr>
-<tr><th>Note (107 chars)</th><td>RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</td></tr>
-<tr><th>Verdict</th><td><b>negative / not authorized</b></td></tr></table>
+  <h2>Audit artifact identity (not an approved submission)</h2>
+  <table>
+    <tr><th>Archived name</th><td class="mono">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b</td></tr>
+    <tr><th>SHA-256</th><td class="mono">897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</td></tr>
+    <tr><th>Archived note</th><td>H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d&gt;2px, zeros</td></tr>
+    <tr><th>Note length</th><td>91 characters (maximum 140; this does not authorize reuse)</td></tr>
+    <tr><th>Local format checks</th><td>PASS: 15/15 shared validation checks and template-format check; not organizer acceptance</td></tr>
+    <tr><th>Current verdict</th><td><strong>negative — audit/download only, not safe to submit</strong></td></tr>
+  </table>
 
-<h2>Automated gate result</h2><ol>
-<li><b>Format — PASS locally:</b> one float32 band; every value finite in [0,1]; exact EPSG:32611, dimensions and affine; zero outside the sample-defined footprint and on mapped catalogue pixels.</li>
-<li><b>Leakage — PASS:</b> all 20 feature-alone symmetric AUCs are ≤0.58034, below the 0.90 stop.</li>
-<li><b>Holdout point result:</b> <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22,893 withheld positives; physical-block 95% CI) = 0.07283 [0.05888, 0.08744].</li>
-<li><b>Paired scientific gate — FAIL:</b> delta from the strongest matched raw-radiometric control is <b>HOLDOUT-DTI delta</b> (same evaluator, positives and CI method) = 0.00167 [−0.00285, 0.00620].</li>
-<li><b>H33 comparison — PASS:</b> final rank correlation 0.03022 and forward three-pixel overlap 0.45637; bytes and decoded pixels differ.</li>
-<li><b>Parallel-lane delta — PASS:</b> the new raster stays below both thresholds against all four files newly merged from parallel sessions (eight surface/final comparisons).</li>
-<li><b>Literal registry rule — STOP:</b> a continuous prior is positive throughout the footprint, giving any nonempty sparse field overlap 1.0. No exemption is authorized.</li>
-<li><b>Selector/quota — NOT RUN:</b> no authenticated weekly quota or organizer receipt was available. No slot was spent.</li></ol>
+  <h2>Automated stop explained</h2>
+  <ol>
+    <li><b>Universal pre-placement stop.</b> The pinned witness has 5,167,373 positive cells and leaves 0 of the 5,106,385 allowed cells uncovered. Any nonempty support therefore has 1.0 forward 3-pixel overlap, exceeding the 0.70 limit.</li>
+    <li><b>Independent final-dot stop.</b> Existing H86B final dots have forward overlap 0.8099569063 against the prior GMC-linepost TIFF and 1.0 against the dense witness. Rank correlations are diagnostic and cannot cancel either overlap.</li>
+    <li><b>No experiment or export.</b> This review ran zero model/holdout experiments and wrote no candidate TIFF. The lane runner's preflight has no bypass and runs before feature construction.</li>
+    <li><b>No score receipt.</b> There is no authenticated organizer submission-page receipt in this checkout. The H33 0.2778, 0.3195 and 0.4413 values remain unverified user/owner claims.</li>
+  </ol>
+  <p><a href="evidence/protocol-preflight.json">Preflight certificate</a> · <a href="evidence/review-20261023-run-card.json">Current negative run card</a> · <a href="evidence/download-inventory.json">Audit-only download inventory</a></p>
 
-<h2>Exact portal procedure—for a future promoted file only</h2><p>These steps satisfy the process requirement; they do not authorize any current file.</p><ol>
-<li>Open that future file's canonical run card. Continue only if <code>verdict</code> is <code>promote</code>, <code>safe_to_submit</code> is true, every validator field is true, all literal registry gates pass and a separate selector has confirmed the live quota.</li>
-<li>Download the promoted <code>.tif</code> or its ZIP containing exactly one TIFF. Compute SHA-256 locally and compare it with the run card.</li>
-<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, sign in, review current rules/quota and choose <b>New submission</b>.</li>
-<li>Select the promoted TIFF—not JSON evidence, a sample, an old raster or anything named <code>DO-NOT-SUBMIT</code>.</li>
-<li>Paste its ≤140-character run-card note, submit once and retain the organizer receipt bound to the exact SHA-256.</li>
-<li>Only that receipt's result may be called <b>ORGANIZER-CONFIRMED</b>.</li></ol>
+  <h2>Portal procedure — for a future promoted artifact only</h2>
+  <p>These are instructions, not permission to upload any current file. Continue only after a future run has a negative-free, complete literal registry audit and an explicit separate selector decision.</p>
+  <ol>
+    <li>Open the artifact's canonical JSON run card. Verify its <code>raster_sha256</code>, note length (at most 140 characters), local validator fields, HOLDOUT-DTI labels/CI, and literal pre-placement plus final-dot registry rows.</li>
+    <li>Confirm the card verdict is <code>promote</code>, every required gate is complete, and a separate selector has confirmed that a weekly slot is available. A format PASS alone is insufficient.</li>
+    <li>Download the specific promoted <code>.tif</code> (or a ZIP containing exactly that one TIFF). Recompute SHA-256 and compare it with the run card. Never substitute a JSON file, sample raster, old candidate, or file labelled <code>DO-NOT-SUBMIT</code>.</li>
+    <li>Sign in at the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official DrivenData submission page</a>, review the current competition instructions, select <b>New submission</b>, and choose that exact TIFF.</li>
+    <li>Paste the run-card note, submit once, and retain the organizer receipt with the file hash and submission identity.</li>
+    <li>Call a result <b>ORGANIZER-CONFIRMED</b> only when copied from that authenticated submission-page receipt. A local prediction, projection, or HOLDOUT-DTI value is not a leaderboard score.</li>
+  </ol>
 
-<h2>Why the prior range error should not recur</h2><p>The rejected bytes were not supplied, so its cause is unknown. This writer does not guess or clip: it rejects NaN, infinity, sentinels, negatives and values above one before serialization, then reopens the output and validates it again. RMRB-86 passes those local checks. A format pass still cannot override its negative scientific/registry verdict.</p>
+  <h2>About the earlier range error</h2>
+  <p>The bytes rejected by the portal were not supplied in this checkout, so the cause of “Predicted values must be in range [0, 1]” has not been established. The retained H86B TIFF passes local checks for finite values, the [0,1] range, exact grid metadata, zero outside-footprint mass, and zero mapped-catalogue mass. That local validation neither diagnoses the earlier file nor proves organizer acceptance.</p>
 
-<h2>Next action</h2><p>Preserve every current raster as a research artifact and spend no slot. A future preregistered lane must produce a positive paired result on a target-appropriate instrument and clear a registry rule that is satisfiable without an unauthorized exception. Any schema change separating continuous surfaces from sparse dot fields requires explicit owner approval.</p>
-<p><a href="evidence/rmrb86-run-card.json">Canonical RMRB decision</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Registry evidence</a></p>
-</main><footer>No organizer score is claimed. No current file is authorized for upload.</footer></body></html>
+  <h2>What blocks future work</h2>
+  <ul>
+    <li>The universal witness makes the current literal overlap rule fail for every nonempty candidate. No exception has been authorized.</li>
+    <li>The available cross-lane scan is not a complete organizer registry and cannot clear uniqueness.</li>
+    <li>The shared cached feature stack required by the prompt is absent; the old H86B builder is not being rerun.</li>
+    <li>The spatial HOLDOUT-DTI measures withheld mapped-fault recovery, while the competition target is unmapped faults; it is a screening metric, not a public-score projection.</li>
+  </ul>
+  <p><a href="hypotheses.html">Review the ranked untried research hypotheses</a> · <a href="sources.html">Review official-source links and availability status</a></p>
+</main>
+<footer>Current state: DO NOT SUBMIT. No candidate is authorized; no weekly slot was selected or spent.</footer>
+</body>
+</html>

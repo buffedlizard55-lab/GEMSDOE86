@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Fail-closed integrity check for the hand-audited static Pages dashboard.
+"""Fail-closed integrity check for the static Pages dashboard.
 
-The parallel integration made the submit/no-submit decision depend on several
-independent run cards. Keeping the final HTML explicit is safer than generating
-an optimistic page from one lane's receipt. CI calls this script and fails if a
-linked local artifact disappears or forbidden readiness language returns.
+The site is intentionally hand-audited, not generated from a single model
+receipt. CI checks that all retained downloadable rasters are explicitly
+listed, and that the current literal-protocol run card remains negative.
 """
 from __future__ import annotations
 
@@ -13,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-PAGES = (DOCS / "index.html", DOCS / "executive-summary.html")
+PAGES = (DOCS / "index.html", DOCS / "executive-summary.html", DOCS / "download-status.html")
 CANDIDATES = (
     "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
     "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
@@ -51,8 +50,15 @@ def main() -> int:
     index = (DOCS / "index.html").read_text(encoding="utf-8")
     for name in CANDIDATES:
         if name not in index or not (DOCS / "downloads" / name).is_file():
-            raise SystemExit(f"candidate missing from dashboard or disk: {name}")
-    print("Static site integrity: PASS; six candidates listed; none authorized.")
+            raise SystemExit(f"audit-only raster missing from dashboard or disk: {name}")
+    import json
+    review = json.loads((DOCS / "evidence" / "review-20261023-run-card.json").read_text())
+    if (review.get("verdict") != "negative" or review.get("submission_ready") is not False
+            or review.get("safe_to_submit") is not False
+            or review.get("candidate_generated_this_review") is not False
+            or review.get("experiments_run_this_review") != 0):
+        raise SystemExit("current review card contradicts the negative no-candidate decision")
+    print("Static site integrity: PASS; six retained audit-only rasters listed; none authorized.")
     return 0
 
 

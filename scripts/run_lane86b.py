@@ -40,6 +40,7 @@ from gems57 import metric as M
 from gems57 import uniqueness as U
 from gems57 import validate as V
 from gems57.submission_writer import write_submission
+from strict_uniqueness import phase_status, two_phase_status
 
 import h86b_features as F
 
@@ -132,6 +133,23 @@ def emit_ek_poisson(
         ok = (ny >= 0) & (ny < H_h) & (nx >= 0) & (nx < W_w)
         blocked[ny[ok], nx[ok]] = True
     return dots
+
+
+def record_uniqueness_stop(phase: str, comparison: dict, status: dict, candidate_sha256: str) -> Path:
+    """Persist the literal comparison and stop reason without writing a TIFF."""
+    out = ROOT / "docs" / "evidence" / f"lane86b-{phase}-uniqueness-stop.json"
+    payload = {
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "lane": "H86B-GFCO",
+        "phase": phase,
+        "candidate_surface_or_dot_array_sha256": candidate_sha256,
+        "phase_status": status,
+        "comparison": comparison,
+        "candidate_tiff_written": False,
+        "decision": "STOP; no candidate TIFF or competition submission is authorized by this audit.",
+    }
+    out.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")
+    return out
 
 
 def fit_and_predict_p_phys(
@@ -341,6 +359,15 @@ def collect_registry_records() -> list[dict]:
             if p.is_file() and e["sha256"] not in seen_sha:
                 seen_sha.add(e["sha256"])
                 records.append(dict(repo=e["repo"], submission=p.name, file=str(p), sha256=e["sha256"]))
+
+    # Include every already-published local GeoTIFF as a literal prior. This
+    # broadens the diagnostic scan; it does not certify a complete inventory.
+    for p in sorted((ROOT / "docs" / "downloads").glob("*.tif")):
+        sha = hashlib.sha256(p.read_bytes()).hexdigest()
+        if sha not in seen_sha:
+            seen_sha.add(sha)
+            records.append(dict(repo="buffedlizard55-lab/GEMSDOE86", submission=p.name,
+                                file=str(p), sha256=sha))
     return records
 
 
@@ -500,8 +527,9 @@ def main():
         )
     print("Off-catalogue SGMC diagnostic:", {k: v["proxy_dti"] for k, v in sgmc_diag.items()}, flush=True)
 
-    # ---- Step 4/5: Pre-placement surface AND final-dot uniqueness check across 28 registry rasters
-    print("Step 4/5: Running pre-placement surface & final-dot uniqueness checks vs 28 rasters...", flush=True)
+    # ---- Step 4/5: Literal surface check before placement; final dots before writer.
+    # The collected list is diagnostic only unless compare_array_to_registry certifies a complete scan.
+    print("Step 4/5: Running literal pre-placement surface check; incomplete inventories stop before placement...", flush=True)
     if winner_arm == "E1_phys_38k":
         chosen_surface = np.where(allow_full, p_full, 0.0).astype(np.float32)
         chosen_budget = BUDGET_38K
@@ -518,34 +546,56 @@ def main():
 
     records = collect_registry_records()
     surf_check = U.compare_array_to_registry(chosen_surface_01, records, fp)
+    surf_status = phase_status(surf_check)
     surf_rhos = [abs(r["spearman_full_footprint"]) for r in surf_check["rows"] if r.get("spearman_full_footprint") is not None]
     worst_surf_abs_rho = float(max(surf_rhos)) if surf_rhos else 0.0
-    print(f"Pre-placement surface checked vs {len(records)} rasters | worst |rho|={worst_surf_abs_rho:.4f}", flush=True)
-    if worst_surf_abs_rho > 0.90:
-        raise RuntimeError(f"STOP: Pre-placement surface |rho|={worst_surf_abs_rho:.4f} > 0.90!")
+    print(
+        f"Pre-placement surface checked vs {len(surf_check['rows'])} rasters | "
+        f"worst |rho|={worst_surf_abs_rho:.4f} | literal blockers={len(surf_status['blockers'])} | "
+        f"complete={surf_status['complete_accessible_scan']}",
+        flush=True,
+    )
+    if not surf_status["clear_under_literal_rule"]:
+        surface_digest = hashlib.sha256(np.ascontiguousarray(chosen_surface_01).tobytes()).hexdigest()
+        stop_path = record_uniqueness_stop("surface", surf_check, surf_status, surface_digest)
+        print(json.dumps({"phase": "surface_before_placement", "status": surf_status,
+                          "audit_file": str(stop_path.relative_to(ROOT))}, indent=2), flush=True)
+        raise RuntimeError(
+            "STOP: pre-placement surface did not clear the literal all-raster rho/overlap gate "
+            "and complete-inventory requirement; no point placement or TIFF write occurred."
+        )
 
     final_dots = emit_ek_poisson(chosen_surface_01, allow_full, chosen_budget)
     pred = np.where(final_dots, 1.0, 0.0).astype(np.float32)
 
     dot_check = U.compare_array_to_registry(pred, records, fp)
+    final_status = phase_status(dot_check)
     two_phase = U.two_phase_summary(dot_check["rows"], int(fp.sum()), expected_rasters=len(records))
+    strict_two_phase = two_phase_status(surf_check, dot_check)
+    if not final_status["clear_under_literal_rule"]:
+        dots_digest = hashlib.sha256(np.ascontiguousarray(pred).tobytes()).hexdigest()
+        stop_path = record_uniqueness_stop("final-dots", dot_check, final_status, dots_digest)
+        print(json.dumps({"phase": "final_dots", "status": final_status,
+                          "audit_file": str(stop_path.relative_to(ROOT))}, indent=2), flush=True)
+        raise RuntimeError(
+            "STOP: final dots triggered a literal all-raster rho/overlap gate or the registry scan was incomplete; "
+            "the shared writer was not called and no TIFF was created."
+        )
+
     lat_path = ROOT / "data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
     lat_cert = U.saturation_certificate(lat_path, fp, cat)
 
-    non_lattice_rows = [
-        r for r in dot_check["rows"]
-        if "13gems_20261001_r13-lattice-s5" not in r["submission"]
-    ]
-    worst_disc_overlap_row = max(non_lattice_rows, key=lambda r: r["my_dots_within_3px_of_theirs"])
+    all_registry_rows = dot_check["rows"]
+    worst_disc_overlap_row = max(all_registry_rows, key=lambda r: r["my_dots_within_3px_of_theirs"])
     worst_disc_rho_row = max(
-        non_lattice_rows,
+        all_registry_rows,
         key=lambda r: abs(r["spearman_full_footprint"]) if r["spearman_full_footprint"] is not None else 0.0,
     )
     worst_disc_overlap = float(worst_disc_overlap_row["my_dots_within_3px_of_theirs"])
     worst_disc_abs_rho = abs(float(worst_disc_rho_row["spearman_full_footprint"]))
     print(
-        f"Final dots checked vs {len(records)} rasters | "
-        f"discriminating worst overlap={worst_disc_overlap:.4f} ({worst_disc_overlap_row['submission']}) | "
+        f"Final dots checked vs {len(all_registry_rows)} rasters | "
+        f"literal worst overlap={worst_disc_overlap:.4f} ({worst_disc_overlap_row['submission']}) | "
         f"worst |rho|={worst_disc_abs_rho:.4f}",
         flush=True,
     )
@@ -601,7 +651,9 @@ def main():
         summary_det["paired_differences"]["d28_incumbent"]["ci95"][0] > 0.0
         and summary_det["paired_differences"]["h33_b2_foldfair"]["ci95"][0] > 0.0
     )
-    disc_unique = (worst_surf_abs_rho <= 0.90) and (worst_disc_abs_rho <= 0.90) and (worst_disc_overlap <= 0.70)
+    # The literal all-raster decision requires both full phase reports to be
+    # complete and clear. No lattice, density, or like-for-like exemption applies.
+    disc_unique = strict_two_phase["clear_under_literal_rule"]
     all_gates_green = bool(
         val_receipt["all_checks_passed"]
         and fmt_report["ok"]
@@ -635,14 +687,17 @@ def main():
         off_catalogue_sgmc_diagnostic=sgmc_diag,
         uniqueness=dict(
             rasters_checked=len(records),
-            discriminating_rasters_checked=len(non_lattice_rows),
+            final_rasters_checked=len(all_registry_rows),
             pre_placement_surface_worst_abs_spearman=worst_surf_abs_rho,
-            final_dots_worst_discriminating_abs_spearman=worst_disc_abs_rho,
-            final_dots_worst_discriminating_rho_vs=worst_disc_rho_row["submission"],
-            final_dots_worst_discriminating_overlap_3px=worst_disc_overlap,
-            final_dots_worst_discriminating_overlap_vs=worst_disc_overlap_row["submission"],
+            final_dots_worst_all_registry_abs_spearman=worst_disc_abs_rho,
+            final_dots_worst_all_registry_rho_vs=worst_disc_rho_row["submission"],
+            final_dots_worst_all_registry_overlap_3px=worst_disc_overlap,
+            final_dots_worst_all_registry_overlap_vs=worst_disc_overlap_row["submission"],
             final_dots_worst_jaccard=dot_check["worst_jaccard_dot_sets"],
-            discriminating_lane_unique=disc_unique,
+            literal_two_phase_unique=disc_unique,
+            pre_placement_surface_audit=surf_check,
+            final_dots_audit=dot_check,
+            strict_two_phase_literal_status=strict_two_phase,
             literal_stride5_lattice_witness=dict(
                 submission="13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
                 covered_allowed_fraction=lat_cert["covered_allowed_fraction"],
@@ -662,9 +717,8 @@ def main():
                     if "13gems_20261001_r13-lattice-s5" in r["submission"]
                 ),
                 note=(
-                    "Regular 5-px calibration lattice covers 99.8724% of all allowed pixels within "
-                    "sqrt(2^2+2^2)=2.828<=3.0 px; reported literally per protocol alongside "
-                    "0/27 discriminating duplicates across 16 repositories."
+                    "Stride-5 lattice is reported under the same literal 3-px overlap rule as every other raster; "
+                    "it is not filtered or treated as an exemption. A >0.70 overlap stops the run."
                 ),
             ),
             two_phase_summary=two_phase,
@@ -701,7 +755,7 @@ def main():
             beats_incumbent_buffered_whole_components=beats_comp,
             beats_incumbent_segment_all=beats_all,
             beats_incumbent_segment_detached=beats_det,
-            discriminating_registry_unique=disc_unique,
+            literal_all_registry_unique=disc_unique,
             all_gates_passed=all_gates_green,
         ),
         verdict="promote" if all_gates_green else "negative",
@@ -789,37 +843,19 @@ def main():
             any_leakage_flag=any_leak,
         ),
         correlation_overlap_vs_registry=dict(
-            rasters_checked=len(records),
-            scope=(
-                "28 hash-verified rasters across 16 buffedlizard55-lab repositories (12 pinned local + "
-                "PR #6 H86-RMRB + 15 cross-repo primary champions GEMSDOE32..83); not an organizer-complete registry."
-            ),
+            evidence_class="REGISTRY-MEASUREMENT",
+            rasters_checked=len(all_registry_rows),
+            complete_accessible_scan=dot_check["complete_accessible_scan"],
+            scope=dot_check["scope"],
             surface_worst_abs_spearman=worst_surf_abs_rho,
-            final_worst_discriminating_abs_spearman=worst_disc_abs_rho,
-            final_worst_discriminating_dot_overlap_3px=worst_disc_overlap,
-            final_worst_discriminating_overlap_vs=worst_disc_overlap_row["submission"],
-            worst_modern_comparable_le_62k_overlap_3px=max(
-                r["my_dots_within_3px_of_theirs"] for r in non_lattice_rows if r["their_dots"] <= 62_000
-            ),
-            overlap_3px_vs_gems32_h33_2_b2=next(
-                r["my_dots_within_3px_of_theirs"]
-                for r in non_lattice_rows
-                if "h33-h33-2-b2" in r["submission"]
-            ),
-            overlap_3px_vs_d28_incumbent=next(
-                r["my_dots_within_3px_of_theirs"]
-                for r in non_lattice_rows
-                if "gems24-h25-1-dotted-h19-5-d2-8" in r["submission"]
-            ),
-            final_worst_jaccard=dot_check["worst_jaccard_dot_sets"],
-            literal_firings_over_0_70=[f["submission"] for f in two_phase["literal_firings"]],
-            discriminating_duplicates=0 if disc_unique else len(two_phase["literal_firings"]) - 1,
-            literal_stride5_lattice_note=(
-                f"13gems stride-5 calibration lattice covers {lat_cert['covered_allowed_fraction']:.6f} of all "
-                f"allowed footprint pixels within sqrt(8)=2.828<=3px (rho=-0.0004, jaccard=0.0069); dense legacy "
-                f"gems10-h25 (174,232 dots, 25.6% area) = 0.7656 and gems10-h28 (69,281 dots, 26.5% area) = 0.7170 "
-                f"also exceed 0.70 literally, whereas all 25 modern/comparable rasters (<=61,328 dots) are <=0.6342."
-            ),
+            pre_placement_surface_status=surf_status,
+            final_worst_all_registry_abs_spearman=worst_disc_abs_rho,
+            final_worst_all_registry_dot_overlap_3px=worst_disc_overlap,
+            final_worst_all_registry_overlap_vs=worst_disc_overlap_row["submission"],
+            final_worst_jaccard_diagnostic_only=dot_check["worst_jaccard_dot_sets"],
+            final_literal_firings=[f["submission"] for f in two_phase["literal_firings"]],
+            strict_two_phase_literal_status=strict_two_phase,
+            decision="negative unless both phase reports are complete and clear under the literal thresholds",
         ),
         raster_sha256=val_receipt["sha256"],
         validator=dict(
@@ -850,17 +886,12 @@ def main():
         submission_ready=all_gates_green,
         approved_for_weekly_slot=False,
         selector_note=(
-            "Cleared all automated format, leakage-canary, 3-instrument HOLDOUT-DTI, and 27-raster cross-repo "
-            "discriminating uniqueness gates. Final upload to a weekly DrivenData slot remains the human selector's "
-            "decision after verifying live weekly quota and the disclosed 13gems stride-5 lattice witness."
+            "Automated gates cleared; this only makes the artifact eligible for a separate selector review. "
+            "No weekly slot was selected or spent, and no organizer score is implied."
             if all_gates_green
             else (
-                "FORMAT-VALID ARTIFACT (15/15 checks PASS; 0.3012 overlap vs GEMSDOE32 H33-2-B2; <=0.6342 vs all 25 "
-                "modern/comparable rasters; beats d2.8 and H33-2-B2 in point estimate across all 3 holdouts: "
-                "0.1078 vs 0.0961 whole-component LOQO, 0.1396 vs 0.1011 holdout-all, 0.1521 vs 0.1035 detached), "
-                "BUT DO NOT SPEND A WEEKLY SLOT AUTOMATICALLY: literal 3-px overlap exceeds 0.70 against 3 dense "
-                "legacy GEMSDOE24 rasters (13gems lattice 0.9988, gems10-h25 174k-dot 0.7656, gems10-h28 69k-dot "
-                "0.7170) and whole-component LOQO paired 95% CI narrowly straddles zero ([-0.0007, +0.0343])."
+                "Negative: at least one format, leakage, HOLDOUT-DTI, literal-uniqueness, or complete-inventory "
+                "gate did not clear. Do not submit or spend a weekly slot; inspect the paired evidence and blocker."
             )
         ),
     )
