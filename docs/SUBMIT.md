@@ -50,9 +50,9 @@ the two score identically (brief §3). Predictions are **MODEL**, not scores.
 
 | arm | upload (fallback twin) | zeros-twin sha256 | name (≤ 64 ch) | note (≤ 140 ch) | prediction |
 |---|---|---|---|---|---|
-| `b1km-move20` (dose high — **slot 3b candidate**) | `releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif` | `ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03` | `gems86-h33-2b2-conc20-20261023-fd743565-zeros` | `R0 h33-h33-2-b2; CONC b1km-move20: 7531 dots to highest-prior 1km blocks, count fixed, pred +0.008 MODEL` | **+0.008** MODEL |
-| `b1km-move10` (dose low — shape probe) | `releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636-zeros.tif` | `d115cb06c70d2631c897c1930b547dcb71c7ae381d8721ba790294d674640e1e` | `gems86-h33-2b2-conc10-20261023-cbe73636-zeros` | `R0 h33-h33-2-b2; CONC b1km-move10: 3765 dots to highest-prior 1km blocks, count fixed, pred +0.004 MODEL` | **+0.004** MODEL |
-| `b5km-move15` (block scale — shape probe) | `releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif` | `48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca` | `gems86-h33-2b2-conc15b5km-20261023-73802181-zeros` | `R0 h33-h33-2-b2; CONC b5km-move15: 5648 dots to highest-prior 5km blocks, count fixed, pred +0.003 MODEL` | **+0.003** MODEL |
+| `b1km-move20` (dose high — **slot 3b candidate**) | `releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif` | `468a369dbdbb917fa47f4b0e441a9c8601e424477d9dc3d442fe0b975c10be9d` | `gems86-h33-2b2-conc20-20261023-fd743565-zeros` | `R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL` | **+0.008** MODEL |
+| `b1km-move10` (dose low — shape probe) | `releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636-zeros.tif` | `190df33b0a210c0fa54dda2846463ac9cc55941fb49f1a5a4b2f28e92a7960b0` | `gems86-h33-2b2-conc10-20261023-cbe73636-zeros` | `R0 h33-2b2 b1km-move10: 3765 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.004 MODEL` | **+0.004** MODEL |
+| `b5km-move15` (block scale — shape probe) | `releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif` | `db3da1eb44c3eb9e3387b55dac746d48be4e8cc61b23ed7632821ade00cfc45a` | `gems86-h33-2b2-conc15b5km-20261023-73802181-zeros` | `R0 h33-2b2 b5km-move15: 5648 dots to highest-prior 5km blocks, count 37654 fixed, pred +0.003 MODEL` | **+0.003** MODEL |
 
 - **Dot counts / change:** 37,654 → 37,654 in all three (count exact). Dots moved 3,765 / 7,531 /
   5,648; cells changed 19.998 % / 40.001 % / 29.999 % vs R0; Jaccard 0.818 / 0.667 / 0.739.
@@ -90,7 +90,7 @@ scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing makes it wo
 of these buys a test of an unmeasured *live* hypothesis — "new faults sit at potential-field
 edges, not where the field put its dots" — not an expected gain. If the human does not want to
 spend a weekly slot on a predicted-negative probe, skip slot 3 and go to slot 2.
-Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt as `note`.
+Notes are 99 chars each (parent; change; predicted change) and are stored inside each `-zeros.json` receipt as `note` and in the TIFF `GEMS_NOTE` tag.
 
 ## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
 

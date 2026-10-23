@@ -1,6 +1,6 @@
 {
   "file": "gems86-h33-2b2-conc20-20261023-fd743565.tif",
-  "sha256": "42ff2c770b6fc837e17f4aa0d1f2f2ccf1da3eb16435842029ca6540fa27c899",
+  "sha256": "0cc2f9af0e863df4aee9362dfdf46f43e2d7a4e8d183fc8bcb27741e85e18377",
   "shape_hw": [
     3730,
     3292
@@ -13,8 +13,8 @@
   "nan_inside": 0,
   "nan_outside_count": 7111787,
   "name": "gems86-h33-2b2-conc20-20261023-fd743565",
-  "note": "GEMSDOE86 h33-2b2 b1km-move20 | 37654 dots, 40.001% changed vs R0 | token fd743565 | UNSCORED",
-  "note_chars": 93,
+  "note": "R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL",
+  "note_chars": 99,
   "reference": "sample_submission.tif",
   "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt"
 }

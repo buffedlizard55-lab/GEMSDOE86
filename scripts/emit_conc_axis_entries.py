@@ -72,13 +72,19 @@ def main() -> int:
     card = json.loads(RUN_CARD.read_text())
     existing = json.loads(LEDGER_VARIANTS.read_text()) if LEDGER_VARIANTS.is_file() else []
     have = {(e.get("axis", "").lower(), e.get("value", "")) for e in existing}
+    by_id = {e.get("id"): i for i, e in enumerate(existing)}
     fresh = []
     for v in card["variants"]:
+        e = entry_for(v)
+        if e["id"] in by_id:                       # refresh an entry this session already wrote
+            existing[by_id[e["id"]]] = e
+            print(f"  refreshed {e['id']}")
+            continue
         key = (v["axis"].lower(), v["value"])
         if key in have:
             print(f"  skip duplicate (axis, value) = {key}")
             continue
-        fresh.append(entry_for(v))
+        fresh.append(e)
         have.add(key)
     out = existing + fresh
     LEDGER_VARIANTS.write_text(json.dumps(out, indent=2) + "\n")

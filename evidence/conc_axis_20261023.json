@@ -2,8 +2,8 @@
   "schema_version": 1,
   "session": "concentration",
   "axis": "CONCENTRATION",
-  "generated_utc": "2026-10-23T21:35:46Z",
-  "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b",
+  "generated_utc": "2026-10-23T21:58:51Z",
+  "git_sha": "68468e90fb329944ffcb5d552b93a5d844ea0f07",
   "parent": {
     "id": "h33-h33-2-b2",
     "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -64,7 +64,7 @@
       "axis": "CONCENTRATION",
       "value": "b1km-move10",
       "token": "cbe73636",
-      "generated_utc": "2026-10-23T21:35:28Z",
+      "generated_utc": "2026-10-23T21:58:34Z",
       "parent": {
         "id": "h33-h33-2-b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -127,12 +127,12 @@
         "jaccard": 0.818199,
         "count_delta": 0
       },
-      "note": "GEMSDOE86 h33-2b2 b1km-move10 | 37654 dots, 19.998% changed vs R0 | token cbe73636 | UNSCORED",
-      "note_chars": 93,
+      "note": "R0 h33-2b2 b1km-move10: 3765 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.004 MODEL",
+      "note_chars": 99,
       "gates": {
         "nan": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636.tif",
-          "sha256": "f21fe8a91a1ee3ead4ee2eb44d807585adf942d5a83fc1378cad0b2c879e3572",
+          "sha256": "0b9beb9e90d2b8a2834a5092718a44c1c0d848f303e19957d716ed3099f525f2",
           "format": {
             "gate": "format",
             "passed": true,
@@ -233,14 +233,14 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "f21fe8a91a1ee3ead4ee2eb44d807585adf942d5a83fc1378cad0b2c879e3572",
-            "sha8": "f21fe8a9"
+            "sha256": "0b9beb9e90d2b8a2834a5092718a44c1c0d848f303e19957d716ed3099f525f2",
+            "sha8": "0b9beb9e"
           },
           "passed": true
         },
         "zeros": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636-zeros.tif",
-          "sha256": "d115cb06c70d2631c897c1930b547dcb71c7ae381d8721ba790294d674640e1e",
+          "sha256": "190df33b0a210c0fa54dda2846463ac9cc55941fb49f1a5a4b2f28e92a7960b0",
           "format": {
             "gate": "format",
             "passed": true,
@@ -341,8 +341,8 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "d115cb06c70d2631c897c1930b547dcb71c7ae381d8721ba790294d674640e1e",
-            "sha8": "d115cb06"
+            "sha256": "190df33b0a210c0fa54dda2846463ac9cc55941fb49f1a5a4b2f28e92a7960b0",
+            "sha8": "190df33b"
           },
           "passed": true
         }
@@ -351,7 +351,7 @@
         "nan": {
           "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636.tif",
           "file": "gems86-h33-2b2-conc10-20261023-cbe73636.tif",
-          "sha256": "f21fe8a91a1ee3ead4ee2eb44d807585adf942d5a83fc1378cad0b2c879e3572",
+          "sha256": "0b9beb9e90d2b8a2834a5092718a44c1c0d848f303e19957d716ed3099f525f2",
           "shape_hw": [
             3730,
             3292
@@ -364,8 +364,8 @@
           "nan_inside": 0,
           "nan_outside_count": 7111787,
           "name": "gems86-h33-2b2-conc10-20261023-cbe73636",
-          "note": "GEMSDOE86 h33-2b2 b1km-move10 | 37654 dots, 19.998% changed vs R0 | token cbe73636 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b1km-move10: 3765 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.004 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "mode": "nan"
@@ -383,12 +383,12 @@
           "max_inside": 1.0,
           "nan_inside": 0,
           "name": "gems86-h33-2b2-conc10-20261023-cbe73636",
-          "note": "GEMSDOE86 h33-2b2 b1km-move10 | 37654 dots, 19.998% changed vs R0 | token cbe73636 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b1km-move10: 3765 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.004 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "file": "gems86-h33-2b2-conc10-20261023-cbe73636-zeros.tif",
-          "sha256": "d115cb06c70d2631c897c1930b547dcb71c7ae381d8721ba790294d674640e1e",
+          "sha256": "190df33b0a210c0fa54dda2846463ac9cc55941fb49f1a5a4b2f28e92a7960b0",
           "mode": "zeros",
           "nan_outside_count": 0
         }
@@ -405,14 +405,14 @@
         "section_4_4_literal_gap": "1599 newly emitted dots sit in the 2-3 px band; clearing it is (PRUNE,3), a different axis (IR-86-CONC-05)",
         "inherited_2_to_3px_dots": 2171
       },
-      "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b"
+      "git_sha": "68468e90fb329944ffcb5d552b93a5d844ea0f07"
     },
     {
       "id": "gems86-h33-2b2-conc20-20261023-fd743565",
       "axis": "CONCENTRATION",
       "value": "b1km-move20",
       "token": "fd743565",
-      "generated_utc": "2026-10-23T21:35:37Z",
+      "generated_utc": "2026-10-23T21:58:42Z",
       "parent": {
         "id": "h33-h33-2-b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -475,12 +475,12 @@
         "jaccard": 0.666659,
         "count_delta": 0
       },
-      "note": "GEMSDOE86 h33-2b2 b1km-move20 | 37654 dots, 40.001% changed vs R0 | token fd743565 | UNSCORED",
-      "note_chars": 93,
+      "note": "R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL",
+      "note_chars": 99,
       "gates": {
         "nan": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565.tif",
-          "sha256": "42ff2c770b6fc837e17f4aa0d1f2f2ccf1da3eb16435842029ca6540fa27c899",
+          "sha256": "0cc2f9af0e863df4aee9362dfdf46f43e2d7a4e8d183fc8bcb27741e85e18377",
           "format": {
             "gate": "format",
             "passed": true,
@@ -581,14 +581,14 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "42ff2c770b6fc837e17f4aa0d1f2f2ccf1da3eb16435842029ca6540fa27c899",
-            "sha8": "42ff2c77"
+            "sha256": "0cc2f9af0e863df4aee9362dfdf46f43e2d7a4e8d183fc8bcb27741e85e18377",
+            "sha8": "0cc2f9af"
           },
           "passed": true
         },
         "zeros": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif",
-          "sha256": "ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03",
+          "sha256": "468a369dbdbb917fa47f4b0e441a9c8601e424477d9dc3d442fe0b975c10be9d",
           "format": {
             "gate": "format",
             "passed": true,
@@ -689,8 +689,8 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03",
-            "sha8": "ef0bb9a0"
+            "sha256": "468a369dbdbb917fa47f4b0e441a9c8601e424477d9dc3d442fe0b975c10be9d",
+            "sha8": "468a369d"
           },
           "passed": true
         }
@@ -699,7 +699,7 @@
         "nan": {
           "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565.tif",
           "file": "gems86-h33-2b2-conc20-20261023-fd743565.tif",
-          "sha256": "42ff2c770b6fc837e17f4aa0d1f2f2ccf1da3eb16435842029ca6540fa27c899",
+          "sha256": "0cc2f9af0e863df4aee9362dfdf46f43e2d7a4e8d183fc8bcb27741e85e18377",
           "shape_hw": [
             3730,
             3292
@@ -712,8 +712,8 @@
           "nan_inside": 0,
           "nan_outside_count": 7111787,
           "name": "gems86-h33-2b2-conc20-20261023-fd743565",
-          "note": "GEMSDOE86 h33-2b2 b1km-move20 | 37654 dots, 40.001% changed vs R0 | token fd743565 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "mode": "nan"
@@ -731,12 +731,12 @@
           "max_inside": 1.0,
           "nan_inside": 0,
           "name": "gems86-h33-2b2-conc20-20261023-fd743565",
-          "note": "GEMSDOE86 h33-2b2 b1km-move20 | 37654 dots, 40.001% changed vs R0 | token fd743565 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "file": "gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif",
-          "sha256": "ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03",
+          "sha256": "468a369dbdbb917fa47f4b0e441a9c8601e424477d9dc3d442fe0b975c10be9d",
           "mode": "zeros",
           "nan_outside_count": 0
         }
@@ -753,14 +753,14 @@
         "section_4_4_literal_gap": "2899 newly emitted dots sit in the 2-3 px band; clearing it is (PRUNE,3), a different axis (IR-86-CONC-05)",
         "inherited_2_to_3px_dots": 2171
       },
-      "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b"
+      "git_sha": "68468e90fb329944ffcb5d552b93a5d844ea0f07"
     },
     {
       "id": "gems86-h33-2b2-conc15b5km-20261023-73802181",
       "axis": "CONCENTRATION",
       "value": "b5km-move15",
       "token": "73802181",
-      "generated_utc": "2026-10-23T21:35:46Z",
+      "generated_utc": "2026-10-23T21:58:51Z",
       "parent": {
         "id": "h33-h33-2-b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -823,12 +823,12 @@
         "jaccard": 0.739134,
         "count_delta": 0
       },
-      "note": "GEMSDOE86 h33-2b2 b5km-move15 | 37654 dots, 29.999% changed vs R0 | token 73802181 | UNSCORED",
-      "note_chars": 93,
+      "note": "R0 h33-2b2 b5km-move15: 5648 dots to highest-prior 5km blocks, count 37654 fixed, pred +0.003 MODEL",
+      "note_chars": 99,
       "gates": {
         "nan": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181.tif",
-          "sha256": "b651ef210abeb490ee0fbff5fdd5daf35946a89da7c643d303a2c25b36874d47",
+          "sha256": "1e6dfdb4833f22fe52976d84c8f43d0a979269bd3e92260d11814d26dab5ea14",
           "format": {
             "gate": "format",
             "passed": true,
@@ -929,14 +929,14 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "b651ef210abeb490ee0fbff5fdd5daf35946a89da7c643d303a2c25b36874d47",
-            "sha8": "b651ef21"
+            "sha256": "1e6dfdb4833f22fe52976d84c8f43d0a979269bd3e92260d11814d26dab5ea14",
+            "sha8": "1e6dfdb4"
           },
           "passed": true
         },
         "zeros": {
           "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif",
-          "sha256": "48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca",
+          "sha256": "db3da1eb44c3eb9e3387b55dac746d48be4e8cc61b23ed7632821ade00cfc45a",
           "format": {
             "gate": "format",
             "passed": true,
@@ -1037,8 +1037,8 @@
           "ledger_hash": {
             "gate": "sha256_not_in_ledger",
             "passed": true,
-            "sha256": "48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca",
-            "sha8": "48f2cb99"
+            "sha256": "db3da1eb44c3eb9e3387b55dac746d48be4e8cc61b23ed7632821ade00cfc45a",
+            "sha8": "db3da1eb"
           },
           "passed": true
         }
@@ -1047,7 +1047,7 @@
         "nan": {
           "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181.tif",
           "file": "gems86-h33-2b2-conc15b5km-20261023-73802181.tif",
-          "sha256": "b651ef210abeb490ee0fbff5fdd5daf35946a89da7c643d303a2c25b36874d47",
+          "sha256": "1e6dfdb4833f22fe52976d84c8f43d0a979269bd3e92260d11814d26dab5ea14",
           "shape_hw": [
             3730,
             3292
@@ -1060,8 +1060,8 @@
           "nan_inside": 0,
           "nan_outside_count": 7111787,
           "name": "gems86-h33-2b2-conc15b5km-20261023-73802181",
-          "note": "GEMSDOE86 h33-2b2 b5km-move15 | 37654 dots, 29.999% changed vs R0 | token 73802181 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b5km-move15: 5648 dots to highest-prior 5km blocks, count 37654 fixed, pred +0.003 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "mode": "nan"
@@ -1079,12 +1079,12 @@
           "max_inside": 1.0,
           "nan_inside": 0,
           "name": "gems86-h33-2b2-conc15b5km-20261023-73802181",
-          "note": "GEMSDOE86 h33-2b2 b5km-move15 | 37654 dots, 29.999% changed vs R0 | token 73802181 | UNSCORED",
-          "note_chars": 93,
+          "note": "R0 h33-2b2 b5km-move15: 5648 dots to highest-prior 5km blocks, count 37654 fixed, pred +0.003 MODEL",
+          "note_chars": 99,
           "reference": "sample_submission.tif",
           "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
           "file": "gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif",
-          "sha256": "48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca",
+          "sha256": "db3da1eb44c3eb9e3387b55dac746d48be4e8cc61b23ed7632821ade00cfc45a",
           "mode": "zeros",
           "nan_outside_count": 0
         }
@@ -1101,8 +1101,8 @@
         "section_4_4_literal_gap": "991 newly emitted dots sit in the 2-3 px band; clearing it is (PRUNE,3), a different axis (IR-86-CONC-05)",
         "inherited_2_to_3px_dots": 2171
       },
-      "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b"
+      "git_sha": "68468e90fb329944ffcb5d552b93a5d844ea0f07"
     }
   ],
-  "elapsed_s": 32.1
+  "elapsed_s": 30.4
 }

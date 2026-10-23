@@ -10,12 +10,12 @@
   "max_inside": 1.0,
   "nan_inside": 0,
   "name": "gems86-h33-2b2-conc20-20261023-fd743565",
-  "note": "GEMSDOE86 h33-2b2 b1km-move20 | 37654 dots, 40.001% changed vs R0 | token fd743565 | UNSCORED",
-  "note_chars": 93,
+  "note": "R0 h33-2b2 b1km-move20: 7531 dots to highest-prior 1km blocks, count 37654 fixed, pred +0.008 MODEL",
+  "note_chars": 99,
   "reference": "sample_submission.tif",
   "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
   "file": "gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif",
-  "sha256": "ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03",
+  "sha256": "468a369dbdbb917fa47f4b0e441a9c8601e424477d9dc3d442fe0b975c10be9d",
   "mode": "zeros",
   "nan_outside_count": 0
 }

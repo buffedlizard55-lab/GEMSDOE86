@@ -220,8 +220,12 @@ def main() -> int:
         ident = dot8(mask)
         stem = f"gems86-{R0_ID}-{token}-{DATE_TAG}-{ident}"
         diff = variants.parent_diff(r0, mask, foot)
-        note = (f"GEMSDOE86 {R0_ID} {value} | {diff['variant_dots']} dots, "
-                f"{diff['pct_changed_of_parent']}% changed vs R0 | token {ident} | UNSCORED")
+        # Brief 7 form note: parent; change; predicted change. <= 140 chars (checked below).
+        note = (f"R0 {R0_ID} {value}: {st['moved_placed']} dots to highest-prior "
+                f"{block_px // 10}km blocks, count {diff['variant_dots']} fixed, "
+                f"pred {pred:+.3f} MODEL")
+        if len(note) > 140:
+            raise SystemExit(f"note too long ({len(note)}): {note}")
         pair = grid_io.write_pair(mask, ctx, out_dir, stem, name=stem, note=note)
         gate = {}
         for mode in ("nan", "zeros"):
@@ -254,7 +258,8 @@ def main() -> int:
     for card in cards:
         receipt = {
             "id": card["id"], "parent": PARENT_LABEL, "axis": AXIS.lower(),
-            "value": card["value"], "generated_utc": card["generated_utc"],
+            "value": card["value"], "note": card["note"], "note_chars": len(card["note"]),
+            "generated_utc": card["generated_utc"],
             "role": "candidate", "slot_candidate": True,
             "n_dots": card["parent_diff"]["variant_dots"],
             "pct_changed": card["parent_diff"]["pct_changed_of_parent"],

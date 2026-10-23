@@ -3,7 +3,9 @@
   "parent": "h33-h33-2-b2",
   "axis": "concentration",
   "value": "b5km-move15",
-  "generated_utc": "2026-10-23T21:35:46Z",
+  "note": "R0 h33-2b2 b5km-move15: 5648 dots to highest-prior 5km blocks, count 37654 fixed, pred +0.003 MODEL",
+  "note_chars": 99,
+  "generated_utc": "2026-10-23T21:58:51Z",
   "role": "candidate",
   "slot_candidate": true,
   "n_dots": 37654,
@@ -96,7 +98,7 @@
         "violations": 0,
         "min_cat_edt_px": 2.2361
       },
-      "ledger_hash_sha8": "b651ef21"
+      "ledger_hash_sha8": "1e6dfdb4"
     },
     "zeros": {
       "passed": true,
@@ -114,21 +116,21 @@
         "violations": 0,
         "min_cat_edt_px": 2.2361
       },
-      "ledger_hash_sha8": "48f2cb99"
+      "ledger_hash_sha8": "db3da1eb"
     }
   },
   "nan": {
     "file": "gems86-h33-2b2-conc15b5km-20261023-73802181.tif",
-    "sha256": "b651ef210abeb490ee0fbff5fdd5daf35946a89da7c643d303a2c25b36874d47",
-    "bytes": 364650,
+    "sha256": "1e6dfdb4833f22fe52976d84c8f43d0a979269bd3e92260d11814d26dab5ea14",
+    "bytes": 364656,
     "validator": {
       "all_checks_passed": true
     }
   },
   "zeros": {
     "file": "gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif",
-    "sha256": "48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca",
-    "bytes": 311949,
+    "sha256": "db3da1eb44c3eb9e3387b55dac746d48be4e8cc61b23ed7632821ade00cfc45a",
+    "bytes": 311955,
     "validator": {
       "all_checks_passed": true
     }
