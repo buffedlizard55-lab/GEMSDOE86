@@ -401,3 +401,28 @@ All three arms below hold `n_dots = 37,654` fixed, place **100.0 %** of added do
 1. Verify local SHA-256 before opening the portal: `sha256sum releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif` must print `8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863` (or `2daf174f...` if the portal prefers NaN-outside `.tif`; upload **one**, never both).
 2. Confirm rolling-week quota has at least 1 slot remaining and record `TOP_PUBLIC` + date first.
 3. Paste the exact 62-char form name and 126-char form note above (`≤ 140` chars), submit manually, and log the live score + portal timestamp as `RECEIPT` in `ledger/submissions.csv` before any subsequent upload.
+
+## RELIEF source factorial (built 2026-10-23, session `arena/ada3049e-gemsdoe86`) — **not slot-recommended**
+
+All three are count-fixed at 37,654 dots and differ from R0 only in which relief regime the mass
+sits in. Every one is **negative on the SGMC-extra surrogate (MODEL) and slightly below R0 on the
+catalogue PROXY**; they exist to test a mechanism, not to be uploaded. `IR-86-RELIEF-04` explains
+why the whole RELIEF family's MODEL numbers are instrument-shaped, which is why the shipped
+`front+15pct` row is now Slot 3 rather than Slot 1.
+
+| Arm | Upload path (`-zeros` twin; spec `.tif` with NaN outside is adjacent) | `-zeros` SHA-256 | Submission name | Note (≤ 140 ch) |
+|---|---|---|---|---|
+| `int2front-15pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front15-20261023-c543e779-zeros.tif` | `c543e77929280ae92f9ad5efcdd0e1b1013d2d079d13fe981adb80f69674c15c` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front15-20261023-c543e779` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2front-15pct: 5648 dots moved range-interior->range-front, count fixed; pred -0.006 MODEL` |
+| `int2front-10pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front10-20261023-4471a74b-zeros.tif` | `4471a74bcc684ee13df5f01b2d4d70c633ef3100e765a43193a063f5014a9814` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front10-20261023-4471a74b` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2front-10pct: 3765 dots moved range-interior->range-front, count fixed; pred -0.004 MODEL` |
+| `int2pied-15pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2pied15-20261023-295eaf92-zeros.tif` | `295eaf92bdf6c0108599b43b694baec7bf0ddce92dfa23d1d58a35564e90ace9` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2pied15-20261023-295eaf92` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2pied-15pct: 5648 dots moved range-interior->piedmont, count fixed; pred -0.012 MODEL` |
+
+**Format receipt (both encodings, re-read from disk after writing):** CRS `EPSG:32611`, `3730×3292`,
+`float32`, one band, values in `[0, 1]`, **0 NaN inside the footprint**, zeros (or NaN) outside,
+**0 catalogue pixels carrying mass**, every newly occupied cell at `≥ 3.1623 px` from the
+catalogue, `37,654` dots, `14.9997 / 9.9989 / 14.9997 %` of cells changed, shared validator and
+`format_report` both `True`, `sha256` matches the ledger row. Parent-difference statistics and the
+per-arm mechanism card are in `releases/<id>-zeros.json` and
+`evidence/relief-source-mechanism.md`.
+
+**Upload order (unchanged by this session):** Slot 1 `PRUNE-le3p000` → Slot 2 `concb5kmdown4` →
+Slot 3 `RELIEF-frontp15`. See [SLOT_PLAN.md](../SLOT_PLAN.md).

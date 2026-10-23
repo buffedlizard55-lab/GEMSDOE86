@@ -1,0 +1,1024 @@
+{
+  "generated_utc": "2026-10-23T23:48:39Z",
+  "elapsed_seconds": 214.8,
+  "axis": "RELIEF",
+  "axis_assignment": "agent-chosen this session (brief v2 \u00a71 forbids prompting the human); RELIEF family chosen because it is the thinnest evidence base (3 ledger rows), count-fixed (immune to the MASS confound IR-86-MASS-03) and its only published instrument is relief-biased",
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "parent_rebuild": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+  },
+  "input_pins": {
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/existing_faults.tif"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin_source": "data/restore_receipt.json",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin": null,
+      "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "matches_expected": true
+    }
+  },
+  "manifest_pins": {
+    "training_features": {
+      "path": "data/bridge/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; 19 float32 bands, nodata -3.4028234663852886e+38"
+    },
+    "existing_faults": {
+      "path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated (byte-identical to labels.tif)"
+    },
+    "sample_submission": {
+      "path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)"
+    },
+    "ext_derived_sgmc_faults_100m_u8": {
+      "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+    }
+  },
+  "regime_cuts": {
+    "quantile_lower": -1.280323115639509,
+    "quantile_upper": 0.5836247567559614,
+    "front_proximity_px": 50,
+    "smooth_window_px": 31,
+    "area_px": {
+      "piedmont": 1722457,
+      "range-front": 688855,
+      "basin": 1722458,
+      "range-interior": 1033603
+    }
+  },
+  "regime_census": {
+    "piedmont": {
+      "area_px": 1722457,
+      "area_share_of_footprint": 0.333333,
+      "dots": 20280,
+      "dot_share_pct": 53.8588,
+      "dots_per_Mpx": 11773.9,
+      "eligible_free_cells": 1213774,
+      "median_dot_catalogue_px": 17.72
+    },
+    "range-front": {
+      "area_px": 688855,
+      "area_share_of_footprint": 0.133309,
+      "dots": 6045,
+      "dot_share_pct": 16.0541,
+      "dots_per_Mpx": 8775.4,
+      "eligible_free_cells": 530891,
+      "median_dot_catalogue_px": 18.111
+    },
+    "basin": {
+      "area_px": 1722458,
+      "area_share_of_footprint": 0.333333,
+      "dots": 2014,
+      "dot_share_pct": 5.3487,
+      "dots_per_Mpx": 1169.3,
+      "eligible_free_cells": 1585139,
+      "median_dot_catalogue_px": 23.738
+    },
+    "range-interior": {
+      "area_px": 1033603,
+      "area_share_of_footprint": 0.200025,
+      "dots": 9315,
+      "dot_share_pct": 24.7384,
+      "dots_per_Mpx": 9012.2,
+      "eligible_free_cells": 806221,
+      "median_dot_catalogue_px": 24.207
+    }
+  },
+  "sgmc_info": {
+    "sgmc_pixels": 83593,
+    "catalogue_pixels": 60988,
+    "sgmc_pixels_not_in_catalogue": 79615,
+    "overlap_fraction": 0.0476,
+    "note": "surrogate for 'new-fault' truth only in the weak sense that both are mappings of faults the training catalogue lacks; its density is itself relief-dependent, which is the confounder named on the mechanism cards"
+  },
+  "variants": {
+    "int2front15": {
+      "value": "int2front-15pct",
+      "hypothesis": "at fixed dose and identical destination, interior mass is weaker mass than piedmont mass",
+      "pre_registered": {
+        "prior": 0.001,
+        "band": [
+          -0.005,
+          0.006
+        ]
+      },
+      "relief_stats": {
+        "source": "range-interior",
+        "destination": "range-front",
+        "n_move": 5648,
+        "n_source_available": 9315,
+        "n_destination_free": 530891,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 20.8087,
+          "min": 9.2195
+        },
+        "source_regime_area_px": 1033603,
+        "displacement_px": {
+          "mean": 42.907,
+          "median": 37.5899,
+          "p90": 70.214,
+          "max": 194.1778
+        },
+        "source_shift_px_median": 32.249
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 5648,
+        "n_added": 5648,
+        "pct_changed": 14.9997,
+        "expected_pct_changed": 14.9997,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 53.8588,
+          "range-front": 31.0538,
+          "basin": 5.3487,
+          "range-interior": 9.7387
+        },
+        "removed_from_regime": {
+          "piedmont": 0,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 5648
+        },
+        "added_in_regime": {
+          "piedmont": 0,
+          "range-front": 5648,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1909
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.5949,
+            "min": 2.8284
+          }
+        }
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.087201,
+          "delta": -0.005692,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.078782
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.086723,
+          "delta": -0.009055,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.080147
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.095435,
+          "delta": -0.004374,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.083571
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.104556,
+          "delta": 0.005402,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.111407
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.067325,
+          "delta": -0.004212,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.058817
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 1,
+          "quadrant_range": [
+            -0.009055,
+            0.005402
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.003748,
+        "ci95": [
+          0.003465,
+          0.003996
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "int2front10": {
+      "value": "int2front-10pct",
+      "hypothesis": "nested prefix of int2front15: source-specific dose slope",
+      "pre_registered": {
+        "prior": 0.0005,
+        "band": [
+          -0.0045,
+          0.0045
+        ]
+      },
+      "relief_stats": {
+        "source": "range-interior",
+        "destination": "range-front",
+        "n_move": 3765,
+        "n_source_available": 9315,
+        "n_destination_free": 530891,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 26.4764,
+          "min": 16.0
+        },
+        "source_regime_area_px": 1033603,
+        "displacement_px": {
+          "mean": 43.441,
+          "median": 39.0128,
+          "p90": 66.6078,
+          "max": 189.1719
+        },
+        "source_shift_px_median": 34.7851
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 3765,
+        "n_added": 3765,
+        "pct_changed": 9.9989,
+        "expected_pct_changed": 9.9989,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 53.8588,
+          "range-front": 26.053,
+          "basin": 5.3487,
+          "range-interior": 14.7395
+        },
+        "removed_from_regime": {
+          "piedmont": 0,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 3765
+        },
+        "added_in_regime": {
+          "piedmont": 0,
+          "range-front": 3765,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 2027
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.6404,
+            "min": 2.8284
+          }
+        }
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.089101,
+          "delta": -0.003792,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.080524
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.089939,
+          "delta": -0.005839,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.083172
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.097261,
+          "delta": -0.002548,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.085198
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.10635,
+          "delta": 0.007196,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.113165
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.0664,
+          "delta": -0.005137,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.058013
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 1,
+          "quadrant_range": [
+            -0.005839,
+            0.007196
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004051,
+        "ci95": [
+          0.00379,
+          0.004276
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "int2pied15": {
+      "value": "int2pied-15pct",
+      "hypothesis": "destination control at fixed source: leaving the interior vs reaching the basin-margin scarp",
+      "pre_registered": {
+        "prior": -0.002,
+        "band": [
+          -0.008,
+          0.003
+        ]
+      },
+      "relief_stats": {
+        "source": "range-interior",
+        "destination": "piedmont",
+        "n_move": 5648,
+        "n_source_available": 9315,
+        "n_destination_free": 1213774,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 20.8087,
+          "min": 9.2195
+        },
+        "source_regime_area_px": 1033603,
+        "displacement_px": {
+          "mean": 37.6584,
+          "median": 36.0139,
+          "p90": 59.8239,
+          "max": 101.951
+        },
+        "source_shift_px_median": 29.7153
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 5648,
+        "n_added": 5648,
+        "pct_changed": 14.9997,
+        "expected_pct_changed": 14.9997,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 68.8586,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 9.7387
+        },
+        "removed_from_regime": {
+          "piedmont": 0,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 5648
+        },
+        "added_in_regime": {
+          "piedmont": 5648,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1909
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.5856,
+            "min": 2.8284
+          }
+        }
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.081099,
+          "delta": -0.011794,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.073223
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.083658,
+          "delta": -0.012121,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.077327
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.087974,
+          "delta": -0.011836,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.07696
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.101396,
+          "delta": 0.002243,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.107598
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.056447,
+          "delta": -0.01509,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.049286
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 1,
+          "quadrant_range": [
+            -0.01509,
+            0.002243
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.003748,
+        "ci95": [
+          0.003465,
+          0.003996
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    }
+  },
+  "ladder_nesting": {
+    "int2front10_is_prefix_of_int2front15": true
+  },
+  "controls": {
+    "null_interior_source": {
+      "role": "displacement-matched random null for int2front15, measured, never written",
+      "relief_stats": {
+        "wanted_px": {
+          "mean": 42.7922,
+          "median": 37.5899
+        },
+        "realised_px": {
+          "mean": 42.4549,
+          "median": 37.3631,
+          "p90": 70.0286
+        },
+        "requested_px": {
+          "mean": 42.907,
+          "median": 37.5899,
+          "p90": 70.214
+        },
+        "seed": 8612,
+        "rule": "same source dots, same displacement multiset, random azimuth, any regime; spacing-blocked like every arm"
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 5648,
+        "n_added": 5648,
+        "pct_changed": 14.9997,
+        "expected_pct_changed": 14.9997,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 56.5571,
+          "range-front": 17.8148,
+          "basin": 5.5426,
+          "range-interior": 20.0855
+        },
+        "removed_from_regime": {
+          "piedmont": 0,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 5648
+        },
+        "added_in_regime": {
+          "piedmont": 1016,
+          "range-front": 663,
+          "basin": 73,
+          "range-interior": 3896
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1909
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 4.0903,
+            "min": 2.8284
+          }
+        }
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.089913,
+          "delta": -0.00298,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.081287
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.090578,
+          "delta": -0.0052,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.083787
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.097441,
+          "delta": -0.002368,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.085378
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.100375,
+          "delta": 0.001222,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.1065
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.070955,
+          "delta": -0.000581,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.062094
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 1,
+          "quadrant_range": [
+            -0.0052,
+            0.001222
+          ]
+        }
+      }
+    },
+    "null_piedmont_source": {
+      "role": "displacement-matched random null for the shipped front+15pct, measured, never written: same piedmont dots, same distances, random azimuth/regime",
+      "relief_stats": {
+        "wanted_px": {
+          "mean": 60.1244,
+          "median": 45.7493
+        },
+        "realised_px": {
+          "mean": 58.6151,
+          "median": 44.4072,
+          "p90": 119.8307
+        },
+        "requested_px": {
+          "mean": 61.0516,
+          "median": 45.5412,
+          "p90": 124.5484
+        },
+        "seed": 8613,
+        "rule": "same source dots, same displacement multiset, random azimuth, any regime; spacing-blocked like every arm"
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 5648,
+        "n_added": 5648,
+        "pct_changed": 14.9997,
+        "expected_pct_changed": 14.9997,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 47.9152,
+          "range-front": 17.1748,
+          "basin": 8.4347,
+          "range-interior": 26.4753
+        },
+        "removed_from_regime": {
+          "piedmont": 5648,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "added_in_regime": {
+          "piedmont": 3410,
+          "range-front": 422,
+          "basin": 1162,
+          "range-interior": 654
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1946
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 4.3345,
+            "min": 2.8284
+          }
+        }
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.090337,
+          "delta": -0.002556,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.081672
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.091713,
+          "delta": -0.004066,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.084876
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.09723,
+          "delta": -0.002579,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.085156
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.097986,
+          "delta": -0.001168,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.103937
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.071786,
+          "delta": 0.00025,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.062822
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 1,
+          "quadrant_range": [
+            -0.004066,
+            0.00025
+          ]
+        }
+      }
+    },
+    "reference_frontp15": {
+      "role": "deterministic reconstruction of the ledger's front+15pct dot set by the same plan_moves call; used only to give the null a matched comparator, not written",
+      "relief_stats": {
+        "source": "piedmont",
+        "destination": "range-front",
+        "n_move": 5648,
+        "n_source_available": 20280,
+        "n_destination_free": 530891,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 17.0,
+          "min": 11.7047
+        },
+        "source_regime_area_px": 1722457,
+        "displacement_px": {
+          "mean": 61.0516,
+          "median": 45.5412,
+          "p90": 124.5484,
+          "max": 249.994
+        },
+        "source_shift_px_median": 32.2645
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.094604,
+          "delta": 0.001711,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.085557
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.097433,
+          "delta": 0.001655,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.090203
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.097634,
+          "delta": -0.002175,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.085484
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.11039,
+          "delta": 0.011236,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.118225
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.077749,
+          "delta": 0.006212,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.067947
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 3,
+          "quadrant_range": [
+            -0.002175,
+            0.011236
+          ]
+        }
+      }
+    }
+  },
+  "instrument_diagnostic": {
+    "claim": "the SGMC-extra surrogate may be a monotone function of the relief index, in which case every RELIEF MODEL delta measures that gradient rather than geology",
+    "per_arm": {
+      "frontp10-reconstruction": {
+        "delta_mean_relief_index": 0.136985,
+        "surrogate_delta": 0.001004,
+        "n_moved": 7530
+      },
+      "frontp15-reconstruction": {
+        "delta_mean_relief_index": 0.205823,
+        "surrogate_delta": 0.001711,
+        "n_moved": 11296
+      },
+      "frontm10-reconstruction": {
+        "delta_mean_relief_index": -0.11629,
+        "surrogate_delta": -0.008853,
+        "n_moved": 7530
+      },
+      "int2front15": {
+        "delta_mean_relief_index": -0.058711,
+        "surrogate_delta": -0.005692,
+        "n_moved": 11296
+      },
+      "int2front10": {
+        "delta_mean_relief_index": -0.056461,
+        "surrogate_delta": -0.003792,
+        "n_moved": 7530
+      },
+      "int2pied15": {
+        "delta_mean_relief_index": -0.298728,
+        "surrogate_delta": -0.011794,
+        "n_moved": 11296
+      },
+      "null-interior-src": {
+        "delta_mean_relief_index": -0.067742,
+        "surrogate_delta": -0.00298,
+        "n_moved": 11296
+      },
+      "null-piedmont-src": {
+        "delta_mean_relief_index": 0.016985,
+        "surrogate_delta": -0.002556,
+        "n_moved": 11296
+      }
+    },
+    "n_arms": 8,
+    "pearson_r": 0.9558,
+    "r_squared": 0.9135,
+    "slope_per_index_unit": 0.0283,
+    "limitations": "n=8 deterministic rebuilds of one parent, not independent experiments; the reconstruction rows are the same recipe as the shipped rows, so this prices the instrument, it does not re-score the competition",
+    "report_only": true
+  },
+  "instruments": {
+    "surrogate_class": "MODEL",
+    "proxy_class": "PROXY",
+    "canaries": {
+      "catalogue": {
+        "n_sampled_cells": 400000,
+        "n_positive": 4653,
+        "auc_per_feature": {
+          "relief_index": 0.5186,
+          "det_elev": 0.4808,
+          "det_elev_slope": 0.5578,
+          "tmi_hg": 0.5201
+        },
+        "max_auc": 0.5578,
+        "threshold": 0.9
+      },
+      "sgmc_extra": {
+        "n_sampled_cells": 400000,
+        "n_positive": 6123,
+        "auc_per_feature": {
+          "relief_index": 0.7281,
+          "det_elev": 0.6629,
+          "det_elev_slope": 0.7328,
+          "tmi_hg": 0.4908
+        },
+        "max_auc": 0.7328,
+        "threshold": 0.9
+      }
+    },
+    "worst_single_feature_auc": 0.7328,
+    "note": "both instruments are REPORT ONLY (brief v2 \u00a76); the surrogate is relief-weighted (relief_index AUC 0.7281 on SGMC-extra), which is why the control above is displacement-matched rather than regime-matched"
+  },
+  "gates": {
+    "format": "shared validator + shared format_report on the written bytes, both twins",
+    "zero_catalogue_mass": "asserted in memory and after re-read",
+    "count_fixed": "asserted for every variant",
+    "pct_changed_contract": "10-15% enforced",
+    "sha_novel": "checked against every sha256 in ledger/submissions.csv, data/scored_fleet and docs/downloads",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes",
+    "uniqueness_thresholds": "NOT applied, by brief v2 \u00a76 (IR-86-PRUNE-01)"
+  },
+  "written": [
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front15-20261023-c543e779",
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front10-20261023-4471a74b",
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2pied15-20261023-295eaf92"
+  ],
+  "no_slot_authorized": true,
+  "not_a_score": "Every number here is a MODEL projection or a PROXY measurement. No submission was made."
+}
