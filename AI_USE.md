@@ -313,3 +313,49 @@ MODEL and the recovery instrument is PROXY. Slots used: 0.
 .venv/bin/python scripts/build_concentration5_axis.py  # exact R0 rebuild, 3 arms, gates, instruments
 .venv/bin/python scripts/build_ledger.py --check
 ```
+## Session addendum — MASS, kernel-budget ranking (2026-10-23, branch `arena/c6b14099-gemsdoe86`)
+
+**What the AI wrote.** `src/gems86/mass_econ.py`, `scripts/build_mass_econ.py`,
+`scripts/audit_mass_instrument.py`, `scripts/emit_mass_econ_entries.py`,
+`tests/test_mass_econ.py`, the run card, the mechanism card, the SLOT_PLAN/README/SUBMIT/
+IRREGULARITIES text, and the choice of the session axis. All numbers in those files were produced by
+the scripts in this repository on SHA-256-pinned inputs; none was supplied by the assistant.
+
+**What the human decided / must decide.**
+1. The axis was **self-assigned** by the assistant (MASS with a metric-economic ranking) because the
+   brief forbids asking and because the literal MASS arms were already spent. The deviation from
+   §5's literal ranking function is IR-86-MASS-02 and the human may reject it.
+2. `TOP_PUBLIC`, the rolling-week quota and any submission receipt are still **unsupplied**; nothing
+   here is a score, and 0.2778 stays CLAIM.
+3. Slot use is the human's alone: the plan now says spend slots 1–2 on the RELIEF ±pair (one
+   experiment) and slot 3 on PRUNE, and spend nothing on this session's three files.
+4. The human decides whether the repository's internal 70 %-overlap rule or brief v2 §6 governs
+   uploads (IR-86-PRUNE-01); this session did not touch that gate.
+
+**Reproduction.**
+
+```
+.venv/bin/python -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/restore_data.py --with-external          # 419 MB stack + 5 externals, hash-pinned
+.venv/bin/python scripts/build_mass_econ.py                        # rebuild R0 byte-exact -> 3 arms + control
+.venv/bin/python scripts/audit_mass_instrument.py                  # the monotone-in-count audit
+.venv/bin/python scripts/emit_mass_econ_entries.py && .venv/bin/python scripts/build_ledger.py
+.venv/bin/python -m pytest -q tests/test_mass_econ.py              # 6 passed
+```
+
+**Not done.** No submission, no leaderboard access, no DrivenData or dropbox.com request, no
+credential handling. The hide-and-recover PROXY was deliberately not re-run (IR-86-SNAP-06: without
+a collar pinned identically across arms it measures the collar, not the arm). `TRACKB` was not
+started. The `data/external/derived_sgmc_faults_100m_u8.tif` and `data/scored/gems19-h19-5…` inputs
+were restored from their pinned codeload mirrors and hash-verified; both are read-only here.
+## 2026-10-23 — TRACKB session (self-assigned axis)
+
+* **AI wrote:** `src/gems86/trackb.py`, `scripts/run_trackb_axis.py`, `tests/test_trackb_axis.py`,
+  `evidence/trackb-mechanism.md`, the SLOT_PLAN/README/IRREGULARITIES/SUBMIT/AI_USE edits, and every
+  raster in `releases/…-TRACKB-*`. The axis was chosen by the agent because brief v2 §1 forbids asking
+  the human to pick one; TRACKB was the only brief-listed axis with no existing build.
+* **AI decided:** the substitute ranking (trace support) necessitated by IR-86-TRACKB-01; the three
+  corridor doses; that the axis earns **no slot** in Phase 1; that the GeoJSON stays out of Git.
+* **Human decided / supplied:** nothing this session — no `TOP_PUBLIC`, no slots-used count, no
+  receipt, no deadline confirmation. The 0.2778 parent score remains a CLAIM.
+* **Not AI-decided:** which file, if any, is uploaded, and the final blind choice.

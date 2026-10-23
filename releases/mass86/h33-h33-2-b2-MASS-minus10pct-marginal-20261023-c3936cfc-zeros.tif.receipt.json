@@ -1,0 +1,21 @@
+{
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 33889,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "name": "h33-h33-2-b2-MASS-minus10pct-marginal-20261023-c3936cfc",
+  "note": "h33-h33-2-b2; MASS minus10pct-marginal; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)",
+  "note_chars": 116,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+  "file": "h33-h33-2-b2-MASS-minus10pct-marginal-20261023-c3936cfc-zeros.tif",
+  "sha256": "c69123fd3f8b79ac113a99ae194b3d9b560b4202301414c450e242ce75e0ade4",
+  "mode": "zeros",
+  "nan_outside_count": 0
+}

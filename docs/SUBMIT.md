@@ -5,7 +5,38 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Slot 1 — PRUNE ≤ 3.000 px, pure deletion (nested ladder, PR #29)
+## Current slot order after MASS-econ, TRACKB and 5 km CONCENTRATION — **supersedes older headings below**
+
+The session's instrument audit (evidence/mass_instrument_monotonicity.json) shows the SGMC MODEL
+surrogate is monotone in dot count, so no mass-changing artefact may be ranked on it. The count-fixed
+pair is therefore the only above-floor comparison this repository has built:
+
+1. **RELIEF front +15 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+   (card below; count fixed, +0.0017 MODEL).
+2. **RELIEF front −10 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e-zeros.tif`
+   (−0.0089 MODEL). Slots 1 + 2 are **one experiment**: the pair's predicted separation (~0.011) is
+   the only one that clears the 0.01 evidence floor.
+3. **CONCENTRATION `b1km-move15`** — `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
+   (count fixed, +0.006 MODEL). PRUNE is demoted because its mass-changing read is confounded by the
+   instrument audit. The 5 km arms below are not substitutes: their SGMC reads are negative.
+
+**The MASS-econ session's three files are NOT for upload** (mass-changing on an instrument that
+cannot rank mass). If one is ever used, it must be `plus10pct-extend`, never the control:
+
+| file (`releases/mass86/`) | name (≤ 64 ch) | note (≤ 140 ch) | zeros sha256 | bytes |
+|---|---|---|---|---|
+| `…-MASS-plus10pct-extend-20261023-3b708da1-zeros.tif` | `h33-h33-2-b2-MASS-plus10pct-extend-20261023-3b708da1` | `h33-h33-2-b2; MASS plus10pct-extend; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)` | `cb42bd88…060a9b` | 325,286 |
+| `…-MASS-minus10pct-marginal-20261023-c3936cfc-zeros.tif` | `h33-h33-2-b2-MASS-minus10pct-marginal-20261023-c3936cfc` | `h33-h33-2-b2; MASS minus10pct-marginal; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)` | `c69123fd…` | 325,196 |
+| `…-MASS-plus10pct-extend-rand-20261023-37fab392-zeros.tif` | **CONTROL — never upload** | `…extend-rand…` | `9070f274…` | — |
+
+Format receipt for all three: `tools`-free local validation of the written bytes, both encodings —
+CRS EPSG:32611, 3,730 × 3,292, single float32 band, transform `(100, 0, 243350, 0, -100, 4508550)`,
+values in {0, 1} inside the 5,167,373-cell footprint, NaN (spec form) or 0 (fallback twin) outside,
+0 dots on catalogue pixels, 0 dots outside the footprint. Full per-file receipt:
+`evidence/mass_econ_axis_20261023.json` (`gates.*.read_back`), plus the `*.receipt.json` beside each
+TIFF. Hashes above are the authority because the TIFFs are gitignored.
+
+## PRUNE ≤ 3.000 px — demoted by the mass-instrument audit (nested ladder, PR #29)
 
 - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros`
 - Upload: `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
@@ -15,7 +46,7 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Alternative slot 2 — `RELIEF front+15pct`, count-fixed relocation
+## Slots 1–2 — RELIEF paired experiment (`front+15pct` card; `front−10pct` below)
 
 - File: `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
 - SHA-256: `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` (214,315 bytes);
@@ -59,9 +90,9 @@ not silently pruned. Full SHA-256 values and both gate reports are in each adjac
 receipt and `evidence/concentration5_axis_20261023.json`; predictions and falsifiers are in
 `evidence/concentration5-mechanism.md`. **Slots used: 0.**
 
-## Slot 3 — SPACING `strike16`; predicted-negative alternatives below
+## SPACING `strike16` — later below-floor probe, not in the current next three
 
-The current plan's slot-3 proposal is
+The SPACING proposal is
 `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif`, with exact name, note
 and format receipt in the SPACING section below: **+0.0020 MODEL**, band +0.0020…+0.0050,
 3/4 quadrants positive. Read it against `random16` (+0.0002), not against zero. It is below the
@@ -182,7 +213,7 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
 *negative* against a random-response null. Both are `BUILT-DUPLICATE` in
 `ledger/submissions.csv`; they exist for audit only.
 
-### Slot 2 — CONCENTRATION, 1 km blocks
+### Slot 3 — CONCENTRATION, 1 km blocks
 
 - **File:** `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
   (nan-outside twin: `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif`)
@@ -200,8 +231,8 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
   highest-prior fifth (10,462 blocks), count fixed at 37,654, all placements at the parent's
   2.828 px spacing, placement geometric only. Block-density CV 0.6235 → 0.7644.
 - **Prediction:** +0.006 MODEL (+0.003…+0.010). Not a score.
-- **Where it sits in the plan:** recommended **slot 2** in the current `SLOT_PLAN.md`; RELIEF
-  `frontp15` is the alternative. Neither is auto-approved, and neither has a receipt.
+- **Where it sits in the plan:** **slot 3** in the current `SLOT_PLAN.md`, after the two-file
+  RELIEF paired experiment. It is not auto-approved and has no receipt.
 
 Release TIFFs are gitignored (data-use terms unchecked), so they exist only in this working copy;
 the JSON receipts next to them carry the digests. Rebuild with the commands in `AI_USE.md`.
@@ -215,7 +246,7 @@ SNAP was spent by PR #31, corroborated by PR #34, and this build's SGMC control 
 with dose (IR-86-SNAP-09). Status `BUILT-DUPLICATE`; its `snapr1`/`snapr2` arms are
 withdrawn duplicate pairs with **no raster**. Rebuild: `python scripts/build_r0_snap.py --build`.
 
-## SPACING arms (built 2026-10-23, session `arena/c8365759-gemsdoe86`) — proposed for slot 3, **not approved**
+## SPACING arms (built 2026-10-23, session `arena/c8365759-gemsdoe86`) — later probe, **not approved**
 
 All four files are gated in both encodings and live in `releases/axis86/` (gitignored; the receipts
 and the ledger are the authority). Count fixed at **37,654** dots, 19.20 % of R0's dots relocated,
@@ -241,3 +272,17 @@ stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:
 `.venv/bin/python -c "from gems86_axis import gates, grid_io; ..."` or
 `pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
 rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.
+
+## TRACKB (built this session, self-assigned axis — **no slot requested**)
+
+- Files (local, gitignored): `releases/h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c15len1km-20261023-73f10581-zeros.tif`
+  and the `.tif` spec twin; the two companion rungs are `…-TRACKB-c10len1km-…-b1e1caf1` and
+  `…-TRACKB-c25len1km-…-831ce9cd` (same parent, same rules, corridor 1.0 / 2.5 px).
+- Submission name / note: read both from the adjacent `-zeros.json` (`submission_name`, `note`);
+  the note is `R0 h33-h33-2-b2-20261004-e5eb6e7e; TRACKB corridor 1.5 px, traces >=1 km, 1246 dots extended along strike; pred +0.001 MODEL`
+  (135 characters, under the 140 limit).
+- Prediction: **+0.0008 (MODEL)**, quadrant range +0.0004 … +0.0020 (4/4). Below the 0.01 evidence
+  floor, so a slot buys a *Phase-2 probe*, not a Phase-1 bet. The `c25len1km` rung reads **−0.0007**.
+- Trace geometry for a geologist: `releases/trackb/…-73f10581-traces.geojson` (300 strands, one
+  `evidence_paragraph` property each). Local-only; the receipt records the 12 strongest.
+- Do **not** upload two TRACKB files in one week, and only after slots 1–3 in `SLOT_PLAN.md`.

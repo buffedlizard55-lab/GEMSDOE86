@@ -1,0 +1,21 @@
+{
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 41419,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "name": "h33-h33-2-b2-MASS-plus10pct-extend-20261023-3b708da1",
+  "note": "h33-h33-2-b2; MASS plus10pct-extend; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)",
+  "note_chars": 113,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+  "file": "h33-h33-2-b2-MASS-plus10pct-extend-20261023-3b708da1-zeros.tif",
+  "sha256": "cb42bd883385241bd501bcd2ceac0840426e99b129d368192893e2c964060a9b",
+  "mode": "zeros",
+  "nan_outside_count": 0
+}
