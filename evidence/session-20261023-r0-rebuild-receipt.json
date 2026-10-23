@@ -4,7 +4,7 @@
   "branch": "arena/9018b889-gemsdoe86",
   "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b",
   "evidence_class": "DATA-MEASUREMENT",
-  "gate": "brief v2 §5 session start: verify manifest hashes; rebuild R0 and match its sha256",
+  "gate": "brief v2 section 5 session start: verify manifest hashes; rebuild R0 and match its sha256",
   "manifest_hash_verification": {
     "data/bridge/existing_faults.tif": {
       "present": true,
@@ -40,11 +40,11 @@
     "serialized_encoding": "GTiff float32 one-band, deflate/predictor=3/zlevel=9, tiled 256x256, interleave=band, EPSG:32611, zeros outside footprint",
     "serialized_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
     "sha256_match": true,
-    "gate_result": "PASS — R0 rebuilt byte-exactly; parent not approximated"
+    "gate_result": "PASS \u2014 R0 rebuilt byte-exactly; parent not approximated"
   },
   "axis_decision": {
     "session_axis": "PRUNE (self-assigned; plan slot 1)",
-    "reason": "All six weekly axes (PRUNE, SNAP, MASS, RELIEF, CONCENTRATION, SPACING) and every brief-§5 specified value are already BUILT in ledger/submissions.csv (24 R0-variant rows). PRUNE's three remaining rungs (<=√5, <=√8, <=3.0) plus refills and <=4 are all present. PRUNE<=1/<=2 on R0 is degenerate (R0's min catalogue distance is 2.236 px; no dots at d<=2 in the base field). Per brief §6 dedupe ("Dedupe only on exact hash and on repeated (parent, axis, value)") and the gate "sha256 not already in the ledger", no new variant was constructed this session — rebuilding any ledgered value would be an exact-hash duplicate. TRACKB (the 7th axis) is Phase 2, not a weekly-slot candidate, and requires unavailable data (ranking, Faulds inventory).",
+    "reason": "All six weekly axes (PRUNE, SNAP, MASS, RELIEF, CONCENTRATION, SPACING) and every brief-\u00a75 specified value are already BUILT in ledger/submissions.csv (24 R0-variant rows). PRUNE's three remaining rungs (<=\u221a5, <=\u221a8, <=3.0) plus refills and <=4 are all present. PRUNE<=1/<=2 on R0 is degenerate (R0's min catalogue distance is 2.236 px; no dots at d<=2 in the base field). Per brief \u00a76 dedupe (Dedupe only on exact hash and on repeated (parent, axis, value)) and the gate \"sha256 not already in the ledger\", no new variant was constructed this session \u2014 rebuilding any ledgered value would be an exact-hash duplicate. TRACKB (the 7th axis) is Phase 2, not a weekly-slot candidate, and requires unavailable data (ranking, Faulds inventory).",
     "variants_built": 0,
     "recommendation": "Spend slot 1 on the already-built, gate-clean PRUNE le3p000 (releases/...-PRUNE-le3p000-20261023-a438e92b-zeros.tif, +0.004 MODEL, monotone ladder behind it), per SLOT_PLAN.md."
   }
