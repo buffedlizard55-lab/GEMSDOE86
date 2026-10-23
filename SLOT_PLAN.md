@@ -1,4 +1,35 @@
-# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF, five axes reconciled)
+# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF + CONCENTRATION + SPACING, six sessions reconciled)
+
+## CONCENTRATION dose / block-scale session — 2026-10-23 (no slot used)
+
+**AXIS: CONCENTRATION.** Every brief-§5 axis was already built, so this session builds three **new**
+`(CONCENTRATION, value)` pairs around the one built arm (`b1km-move15`, PR #37, +0.006 MODEL): the
+dose-response rungs at 1 km and the block-scale cut the plan below names as the axis's next
+experiment.  R0 was rebuilt **byte-for-byte** (`c55bafc4…`, 40,199 → 37,654, 0 differing cells)
+before anything was derived from it.  Count held at 37,654 in all three; placement geometric only;
+all MUST gates pass; none is a slot candidate on prediction alone.  Cards:
+[research/CONC_DOSE_BLOCK_CARDS.md](research/CONC_DOSE_BLOCK_CARDS.md); run card:
+`evidence/conc_axis_20261023.json`.  New irregularity: **IR-86-CONC-05** (brief §4.4's ≥3 px vs the
+parent's 2–3 px band).
+
+| variant | block | dose | moved | %chg | block-CV (occ) | predicted |
+|---|---|---|---:|---:|---|---|
+| `gems86-h33-2b2-conc10-20261023-cbe73636` | 1 km | 10 % | 3,765 | 19.998 % | 0.6235 → 0.7289 | **+0.004** MODEL |
+| `gems86-h33-2b2-conc20-20261023-fd743565` | 1 km | 20 % | 7,531 | 40.001 % | 0.6235 → 0.7914 | **+0.008** MODEL |
+| `gems86-h33-2b2-conc15b5km-20261023-73802181` | 5 km | 15 % | 5,648 | 29.999 % | 0.7442 → 1.0313 | **+0.003** MODEL |
+
+### Next three slots (this session's revision)
+
+The built-arm table further down is unchanged; this session only adds **slot 3b**.  Slots 1–2 stay
+as they were (PRUNE `le3p000`, then RELIEF `frontp15` or CONCENTRATION `conc15`).  The new option is
+the dose-upper rung, which is the highest-prediction arm the repo now holds:
+
+| # | file | why | decision rule |
+|---|---|---|---|
+| 3b | `releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif` (+0.008 MODEL) | the only built arm this session predicts near the 0.01 floor; paired with slot 2's `conc15` (+0.006) it reads the dose-response directly | ≥ +0.010 → CONCENTRATION is the binding axis: spend the remaining weeks on block size (`b5km`, then `b10km`) and combine with the best PRUNE rung. Inside ±0.010 → the dose is below noise; take `b1km-move10` only as a shape check, never as a score play. ≤ 0 while `conc15` is positive → the dose-response turns over and the prior's high-prior blocks are not systematically richer |
+
+`b1km-move10` and `b5km-move15` are **shape probes, not slot candidates**: they exist to make the
+dose-response and the block-scale dependence measurable, and neither is predicted to clear 0.01.
 
 **No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
 ([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and

@@ -1,0 +1,20 @@
+{
+  "file": "gems86-h33-2b2-conc10-20261023-cbe73636.tif",
+  "sha256": "f21fe8a91a1ee3ead4ee2eb44d807585adf942d5a83fc1378cad0b2c879e3572",
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 37654,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "nan_outside_count": 7111787,
+  "name": "gems86-h33-2b2-conc10-20261023-cbe73636",
+  "note": "GEMSDOE86 h33-2b2 b1km-move10 | 37654 dots, 19.998% changed vs R0 | token cbe73636 | UNSCORED",
+  "note_chars": 93,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt"
+}

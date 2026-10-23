@@ -272,3 +272,37 @@ was submitted — the human submits from their own registered account, one file 
 .venv/bin/python scripts/emit_spacing_entries.py
 .venv/bin/python scripts/build_ledger.py
 ```
+
+## Addendum — CONCENTRATION dose / block-scale session (branch `arena/0bcc88da-gemsdoe86`), 2026-10-23
+
+**What the AI wrote.** `scripts/build_conc_axis.py` (pins → byte-exact R0 rebuild → three
+CONCENTRATION variants → gates → receipts → run card) and `scripts/emit_conc_axis_entries.py`
+(appends this session's entries to `ledger/variants_concentration.json` without dropping PR #37's).
+`research/CONC_DOSE_BLOCK_CARDS.md` (one mechanism card per variant, written for a structural
+geologist). The `README.md` CURRENT STATE block, `SLOT_PLAN.md`, `docs/SUBMIT.md` and
+`IRREGULARITIES.md` (IR-86-CONC-05) were updated. Nothing was submitted, no leaderboard or
+DrivenData/dropbox.com page was contacted, and no credential was read, printed or stored.
+
+**What the AI decided.** AXIS = **CONCENTRATION**, self-assigned: every brief-§5 axis was already
+built, and the one open question on this axis is its dose-response and block-scale dependence, which
+the plan below names as the next cut. Three **new** `(CONCENTRATION, value)` pairs were built around
+the single built arm (`b1km-move15`, PR #37): `b1km-move10` (+0.004 MODEL), `b1km-move20` (+0.008
+MODEL) and `b5km-move15` (+0.003 MODEL). The AI kept the parent's own >2 px catalogue exclusion
+rather than enforcing brief §4.4's literal ≥3 px on new mass, because the builder uses one parameter
+for both the catalogue clearance and the placement spacing and tightening it would make the edit
+two-variable; the residual is quantified and logged (IR-86-CONC-05). R0 was rebuilt **byte-for-byte**
+before any derivation, and all three variants pass every MUST gate.
+
+**What the human must decide.** Whether to spend **slot 3b** on `b1km-move20` (the highest-prediction
+built arm; paired with slot 2's `conc15` it reads the dose-response); `b1km-move10` and
+`b5km-move15` are shape probes, not slot candidates. Still unsupplied: `TOP_PUBLIC` + date, the
+rolling-week quota, the deadline confirmation, and any submission-page receipt (R0's 0.2778
+included). No slot was used.
+
+```
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_geodawn_extensions_u8 ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16
+.venv/bin/python scripts/build_conc_axis.py
+.venv/bin/python scripts/emit_conc_axis_entries.py
+.venv/bin/python scripts/build_ledger.py
+.venv/bin/python -m pytest -q tests/test_axis_releases.py
+```

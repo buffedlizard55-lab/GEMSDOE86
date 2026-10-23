@@ -408,3 +408,23 @@ the parent's dot set from the visible catalogue — or hold the collar fixed acr
 exactly what IR-86-SNAP-06 concluded.
 **Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
 predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
+
+## IR-86-CONC-05 — brief §4.4's ">= 3 px" cannot bind the CONCENTRATION placement rule on R0
+
+**Observed.** Brief §4.4 says "emit zero mass on catalogue pixels and keep >= 3 px from them unless
+AXIS=PRUNE". R0 itself keeps 2,171 dots at 2–3 px from a mapped trace (its rule is "off the trace,
+>2 px"), so the rule cannot bind the inherited dots: clearing that band **is** `(PRUNE, 3.0)`, a
+different axis and a different slot, already spent three times over (IR-86-PRUNE-08). The merged
+`(CONCENTRATION, b1km-move15)` arm (PR #37) resolved the same conflict the way the SNAP arm did
+(IR-86-SNAP-08): it kept the parent's own >2 px floor, so its newly placed dots sit at 2.236 px.
+
+**Decision.** This session's three CONCENTRATION variants (`b1km-move10`, `b1km-move20`,
+`b5km-move15`) follow that same rule — the parent's >2 px catalogue exclusion — so that the only
+change against R0 is the block relocation and the axis stays single-variable. The residual is
+reported, not hidden. Newly emitted dots inside the 2–3 px band: **1,599** (`b1km-move10`), **2,899**
+(`b1km-move20`), **991** (`b5km-move15`); the inherited band is 2,171 in all three. Enforcing the
+literal ≥3 px on new mass would *also* tighten the placement spacing floor from the parent's 2.828 px
+to 3.0 px (the builder uses one parameter for both), which is a second edit, so it was not done.
+**Cost.** The variants are not literally §4.4-compliant for newly emitted mass. The gap is quantified
+above and must be attributed to PRUNE, not CONCENTRATION, by any reader; it is a known, logged gap
+(IR-86-RELIEF-02, IR-86-SNAP-08), not an oversight.

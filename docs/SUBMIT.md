@@ -38,11 +38,37 @@ gitignored (unchecked data-use terms); hashes below are the authority.
   10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
   Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
 
-## CONCENTRATION on 5 km blocks (not built yet — the slot-2 candidate if the human prefers to wait for it)
+## CONCENTRATION dose / block-scale arms — built 2026-10-23 (second session on this axis)
 
-Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
-target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
-built (section below) but is not the slot-2 recommendation.
+Three new `(CONCENTRATION, value)` pairs around the built `b1km-move15` (PR #37, slot 2b): a
+dose-response at 1 km (10 % / 15 % / 20 %) and the block-scale cut the plan named. All three:
+count fixed at **37,654**, placement geometric only (highest-prior destination block, then the
+largest remaining kernel gap — no pixel-scale response term, so the axis cannot inherit SNAP),
+gated in both encodings. Files live in `releases/axis86/` (gitignored; the JSON receipts beside
+them are the authority). Upload **one** encoding per slot — the `-zeros` twin is the fallback and
+the two score identically (brief §3). Predictions are **MODEL**, not scores.
+
+| arm | upload (fallback twin) | zeros-twin sha256 | name (≤ 64 ch) | note (≤ 140 ch) | prediction |
+|---|---|---|---|---|---|
+| `b1km-move20` (dose high — **slot 3b candidate**) | `releases/axis86/gems86-h33-2b2-conc20-20261023-fd743565-zeros.tif` | `ef0bb9a00edc60573ac71d98005d6367e8f96983394cdee5da1c88988ad89a03` | `gems86-h33-2b2-conc20-20261023-fd743565-zeros` | `R0 h33-h33-2-b2; CONC b1km-move20: 7531 dots to highest-prior 1km blocks, count fixed, pred +0.008 MODEL` | **+0.008** MODEL |
+| `b1km-move10` (dose low — shape probe) | `releases/axis86/gems86-h33-2b2-conc10-20261023-cbe73636-zeros.tif` | `d115cb06c70d2631c897c1930b547dcb71c7ae381d8721ba790294d674640e1e` | `gems86-h33-2b2-conc10-20261023-cbe73636-zeros` | `R0 h33-h33-2-b2; CONC b1km-move10: 3765 dots to highest-prior 1km blocks, count fixed, pred +0.004 MODEL` | **+0.004** MODEL |
+| `b5km-move15` (block scale — shape probe) | `releases/axis86/gems86-h33-2b2-conc15b5km-20261023-73802181-zeros.tif` | `48f2cb992de491a74cd326c83b1bb9f390ee986cb804d367900a7e145028f1ca` | `gems86-h33-2b2-conc15b5km-20261023-73802181-zeros` | `R0 h33-h33-2-b2; CONC b5km-move15: 5648 dots to highest-prior 5km blocks, count fixed, pred +0.003 MODEL` | **+0.003** MODEL |
+
+- **Dot counts / change:** 37,654 → 37,654 in all three (count exact). Dots moved 3,765 / 7,531 /
+  5,648; cells changed 19.998 % / 40.001 % / 29.999 % vs R0; Jaccard 0.818 / 0.667 / 0.739.
+- **Block-density CV (occupied 1 km blocks, except the 5 km row which is 5 km blocks):**
+  parent 0.6235 → 0.7289 (`b1km-move10`), → 0.7914 (`b1km-move20`); the 5 km row reads parent
+  0.7442 → 1.0313. The built `b1km-move15` reads 0.6235 → 0.7644.
+- **Format receipt (re-read from disk after writing).** CRS `EPSG:32611`, shape `[3730, 3292]`,
+  transform `(100, 0, 243350, 0, −100, 4508550)`, `float32`, single band, values in `[0,1]`, NaN
+  outside the footprint in the `.tif` and 0 outside in the `-zeros.tif`, **0 dots on catalogue
+  pixels**, minimum catalogue clearance 2.236 px (the parent's own floor — see IR-86-CONC-05),
+  `sha256` absent from the ledger before the build. Re-verify with
+  `pytest tests/test_axis_releases.py -q` (it re-derives every gate from the bytes on disk).
+- **Where they sit in the plan:** `b1km-move20` is **slot 3b**; `b1km-move10` and `b5km-move15` are
+  shape probes, not slot candidates. Cards:
+  [research/CONC_DOSE_BLOCK_CARDS.md](../research/CONC_DOSE_BLOCK_CARDS.md); run card:
+  `evidence/conc_axis_20261023.json`; rebuild with `.venv/bin/python scripts/build_conc_axis.py`.
 
 ## Slot 3 — a sign flip or a deliberate probe, both predicted non-positive
 
