@@ -190,6 +190,9 @@ def main() -> int:
                    "rebuild": rebuilt},
         "candidate_id": candidate_id, "n_dots": int(candidate.sum()),
         "pct_changed": diff["pct_changed_vs_parent_dots"],
+        "prune_mode": "fixed_count_refill", "prune_buffer_px": BUFFER_PX,
+        "dot_digest": hashlib.sha256(np.flatnonzero(candidate.ravel()).astype("<u4").tobytes()).hexdigest(),
+        "evidence_class": "MODEL",
         "parent_diff": {"removed": source_removed, "added": source_added,
                         "symmetric_difference_cells": diff["changed_grid_cells"],
                         "removed_pct_parent": diff["pct_parent_dots_removed"],
@@ -199,6 +202,8 @@ def main() -> int:
         "inputs": pins, "outputs": {"nan": nan_report, "zeros": zeros_report,
                                     "sample_format_report_zeros": zeros_format,
                                     "disk_reread_dot_mask_matches": True},
+        "nan": {"file": nan_path.name, "sha256": nan_report["sha256"]},
+        "zeros": {"file": zeros_path.name, "sha256": zeros_report["sha256"]},
         "report_only": {"catalogue_hide_recover_proxy": proxy,
                          "leakage_canary": canary, "sgmc_control": sgmc_report},
         "predicted_live_change": {"delta": PREDICTED_DELTA, "band": PREDICTED_BAND,
@@ -234,8 +239,8 @@ def main() -> int:
         "id": candidate_id, "site": "GEMSDOE86", "axis": AXIS, "value": VALUE,
         "status": "BUILT", "n_dots": int(candidate.sum()),
         "pct_changed": round(float(diff["pct_changed_vs_parent_dots"]), 4),
-        "sha8": primary_sha[:8], "parent": PARENT_LABEL, "encoding": "nan",
-        "sha256": primary_sha, "sha256_nan": primary_sha,
+        "sha8": primary_sha[:8], "parent": PARENT_LABEL, "encoding": "zeros",
+        "sha256_nan": primary_sha,
         "sha256_zeros": candidate_zeros_sha,
         "predicted_change": "-0.002 MODEL", "source_url": nan_path.relative_to(ROOT).as_posix(),
         "receipt_score": "", "receipt_date": "",
@@ -245,10 +250,9 @@ def main() -> int:
     }
     if variant_path.exists():
         prior_variants = json.loads(variant_path.read_text(encoding="utf-8"))
-        if not any(v.get("id") == candidate_id and v.get("sha256") == primary_sha for v in prior_variants):
+        if not any(v.get("id") == candidate_id and v.get("sha256_nan", v.get("sha256")) == primary_sha for v in prior_variants):
             raise ValueError("ledger/variants_prune375.json already has a different artifact")
-    else:
-        variant_path.write_text(json.dumps([variant], indent=2) + "\n", encoding="utf-8")
+    variant_path.write_text(json.dumps([variant], indent=2) + "\n", encoding="utf-8")
     subprocess.run([sys.executable, str(ROOT / "scripts/build_ledger.py")], cwd=ROOT, check=True)
 
     mechanism = """# Mechanism card — PRUNE <=3.75 px, R0 parent\n\n- **Hypothesis:** At fixed unit mass, removing R0 dots within 375 m of mapped traces and refilling with the recorded H19-5 traversal order modestly reduces near-trace false-positive mass.\n- **Mechanism:** Remove the measured <=3.75 px catalogue collar, then replace those dots with the first eligible cells in the original deterministic FIFO-BFS H19-5 order, all farther than 3.75 px from the catalogue. The count remains 37,654 and no other ranking or physical layer changes.\n- **Non-fault mimic / confounder:** New-fault truth may occur within 300 m of known traces; roads, pipelines, alluvial channels, and map generalization can mimic near-trace responses. The H19-5 traversal is spatially/content-blind and refilling may disrupt spacing.\n- **Predicted live change:** -0.002 DTI (**MODEL**, pre-registered band -0.010..+0.006). Treat |delta| <0.01 as no evidence; 0.2778 for R0 is a **CLAIM**, not a receipt.\n- **Falsifier:** A same-entity public-chunk receipt >= +0.010 versus R0 falsifies the predicted small-negative direction.\n- **Report only:** catalogue hide/recover is **PROXY**; leakage canary and SGMC control are diagnostics, never gates or scores.\n- **Sources:** [FIFO-BFS ranking recipe](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/94b027bed628422b7b39b485cb918a3fc15e5364/src/gems27/thinning.py); [organizer note on new faults near known traces](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516); [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf).\n"""

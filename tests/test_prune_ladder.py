@@ -292,6 +292,17 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
             assert 1.0 <= receipt["pct_changed"] <= 50.0
             assert movement["displacement_max_px"] <= 16.0 + 16e-9
             assert receipt["predicted_live_change"] is not None
+        elif axis == "PRUNE" and receipt.get("prune_mode") == "fixed_count_refill":
+            # PRUNE with a fixed-count refill removes the configured collar and
+            # replaces it using the parent's recorded ranking. Unlike pure PRUNE,
+            # it can add cells but must preserve mass and clear the collar.
+            removed, added = parent & ~dots, dots & ~parent
+            assert removed.sum() == added.sum()
+            assert int(dots.sum()) == int(parent.sum())
+            assert float(dist[dots].min()) > receipt["prune_buffer_px"]
+            pct = round(100.0 * (removed.sum() + added.sum()) / int(parent.sum()), 4)
+            assert pct == pytest.approx(receipt["pct_changed"], abs=1e-4)
+            assert 1.0 <= pct <= 50.0
         elif axis == "CONCENTRATION":
             # CONCENTRATION relocates across km blocks on ancestor ridges: equal
             # deletions and insertions, exact parent count, >= 3 px catalogue floor
