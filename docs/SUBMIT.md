@@ -5,7 +5,40 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Current slot order after CONCENTRATION sign + 5 km arms — **supersedes older headings below**
+## Slot order after the 2026-10-23 sessions (latest) — **supersedes everything below**
+
+**Status: BUILT; not slot-approved.** No `RECEIPT` row exists for any file. Ordering logic, in one
+line each: `PRUNE-le3p000` has the largest predicted lever and its Δrelief-index is ≈ 0, so the
+instrument bias documented in `IR-86-RELIEF-04` cannot manufacture it; `conc6` is `+0.0022 MODEL`
+with `+0.0013 PROXY` and `+0.0007` above its own random-ordering control, but two-thirds of its gain
+is generic dispersal; `RELIEF-frontp15`'s `+0.0017` is the SGMC surrogate's own relief gradient
+(residual `−0.0008`), so its unbiased prior is `0 ± 0.005`. One file per slot; log the receipt in
+`ledger/submissions.csv` before the next upload.
+
+| # | File (`releases/`) | Submission name (≤ 64 ch) | Note (≤ 140 ch) | zeros SHA-256 | bytes |
+|---:|---|---|---|---|---:|
+| 1 | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b` | `R0 h33-h33-2-b2; PRUNE <=3.0px collar, 2171 dots removed (5.77%); pred +0.004 MODEL` | `a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22` | 210,325 |
+| 2 | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f` | `R0 h33-h33-2-b2; CONC cvband-down6: 2259 ridge dots moved (12.00% chg, 1km CV 0.484); pred +0.002 MODEL` | `1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85` | 220,435 |
+| 3 | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f` | `R0 h33-h33-2-b2; RELIEF front+15pct: 5648 dots piedmont->range-front, count fixed; pred +0.002 MODEL` | `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` | 214,315 |
+
+**The PRUNE and RELIEF TIFFs are not in this checkout** (gitignored, built by earlier sessions).
+Rebuild them from their pinned recipes (`scripts/run_prune_ladder.py`, `scripts/run_relief_axis.py`)
+and confirm the digests above before upload; only `conc6`'s twins are currently on disk here.
+
+Format receipt for `conc6` (written and re-read from disk by `scripts/run_concentration_dose.py`):
+CRS EPSG:32611 · 3,730 × 3,292 · single float32 band · transform `(100, 0, 243350, 0, -100, 4508550)`
+· one band · values `{0,1}` inside the 5,167,373-cell footprint, `0` outside (fallback twin) or NaN
+outside (spec twin `…-1ed78e0f.tif`, 356,859 B) · 0 dots on catalogue pixels · 0 dots outside the
+footprint · 37,654 dots · shared validator `all_checks_passed = True` · format report `ok = True`.
+Full per-file receipt: `releases/…-1ed78e0f-zeros.json` and
+`evidence/concentration_dose_20261023.json`.
+
+Also built this session, **do not upload**: `conc5dose` (10.00 % chg, +0.0018 MODEL),
+`conc3` (6.00 % chg, +0.0013 MODEL), `conc6rand` (`CONTROL`, random dot + random destination).
+
+---
+
+## Superseded: current slot order after CONCENTRATION sign + 5 km arms
 
 The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models
 are uncalibrated and every number remains MODEL. The MASS instrument audit separately shows that
