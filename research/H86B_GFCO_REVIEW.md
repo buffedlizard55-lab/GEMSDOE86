@@ -1,5 +1,12 @@
 # Scientific Review, Provenance Audit, Preregistered Hypotheses, and Experimental Results (`GEMSDOE86`)
 
+**Current-review correction (2026-10-23):** The experiments below are archived, not rerun.
+All current downloads are **DO NOT SUBMIT**; the current review is
+[SESSION_20261023_REVIEW.md](SESSION_20261023_REVIEW.md). Historical canaries and mirror
+hashes are not independent organizer authentication, cache input binding, or proof of
+universal non-leakage. The upload-cause and catalogue-collar explanations below have been
+corrected; no historical metric, card or TIFF was altered.
+
 **Updated:** 2026-10-22 (Session 2 — advancing PR #6 roadmap end-to-end)
 **Competition target:** Predict fault locations across the Great Basin / INGENIOUS study area (`EPSG:32611`, `3730 × 3292` pixels at `100 m`, `5,167,373` in-footprint cells, `60,988` mapped catalogue cells, `5,106,385` allowed off-catalogue cells) relevant to geothermal exploration. Predicting fault probability does **not** by itself establish geothermal heat, fluid saturation, open permeability, or an economic vent.
 
@@ -17,18 +24,18 @@ Per Protocol Rule 3, every quantitative claim in this repository is strictly cla
 ### Resolving Irregularities in the Starting Prompt
 - **Missing assigned method paragraph:** The starting prompt instructed *"Stay inside a single method lane — the paragraph in this prompt"* while containing no separate method paragraph. Session 1 logged this irregularity and executed Rank-1 hypothesis `H86-RMRB` (`HOLDOUT-DTI = 0.0420 [0.0369, 0.0467]`, negative result, PR #6), queueing multi-depth magnetic contact-offsets and radiometric–topographic discordance next. Session 2 executes that exact queued next-step synthesis (`H86B-GFCO`) within a single declared 3-experiment budget.
 - **Conflicting historical highs in the prompt (`0.2778` vs `0.4413` vs `0.3195`):** None of these three figures has an organizer receipt in this repository. Public inspection of the [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) in Session 1 confirmed external competitors above those figures, while the pinned upstream audit `research/upstream/h33-best-audit.json` explicitly labels `H33-2-B2` as `"UNSCORED"` at file-creation time (`leaderboard_hat = 0.2774` was a regression projection). All live figures from earlier runs are therefore treated strictly as unverified owner reports.
-- **DrivenData portal error `"Predicted values must be in range [0, 1]"`:** Caused whenever a submitted GeoTIFF contains `NaN` outside the study footprint, `±Inf`, GDAL nodata sentinels (`-9999`, `-3.4e38`), or float overshoot (`< 0.0` or `> 1.0`). Unmodified `vendor/gems57/submission_writer.py` + `vendor/gems57/validate.py` eliminate this failure class by construction: any non-finite or out-of-`[0, 1]` value raises `ValueError` *before* writing (never silently clipping), outside-footprint cells are written as finite `0.0` (`nodata = None`), and the serialized bytes on disk are re-verified across all 15 checks.
+- **DrivenData portal error `"Predicted values must be in range [0, 1]"` (corrected 2026-10-23):** The rejected bytes were not supplied, so its cause is unknown. Out-of-range finite values, infinities and nodata sentinels are numerical risks; the public specification explicitly describes null/NaN outside bounds, so NaN outside is **not** an established cause. The unchanged shared writer rejects nonfinite/out-of-range inputs, exports finite zeros outside the footprint and revalidates serialized output. That local policy prevents those invalid numerical exports but is not organizer-confirmed acceptance.
 
 ---
 
-## 2. Why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` Scored Well — and How to Surpass It
+## 2. Archived H33 construction and plausible metric efficiency — not a confirmed score explanation
 
 ### 2.1 Exact Physical & Metric Decomposition of `H33-2-B2`
 Direct byte inspection of `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`sha256: c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`) and `research/upstream/h33.py` establishes its exact construction:
 1. **Base multi-lineament corridor (`H19-5`, `121,131` pixels):** Combines topographic slope/curvature ridges, gravity/magnetic gradients, openness, and thermal spring proximity. Emitting dense 1-px-adjacent ridges wastes precision mass under the official Distance-Tolerant Tversky Index:
    $$\text{DTI} = \frac{\text{TP}}{\text{TP} + 0.2\,\text{FP} + 0.8\,\text{FN}}, \qquad k(d) = \max\!\left(0,\,1 - \frac{d}{300\text{ m}}\right).$$
-2. **Non-redundant 2.8 px (`~283 m`) dot thinning (`d2.8`, `44,090` binary `{0, 1}` dots):** Because a single binary dot at pixel $x$ covers a `300 m` (`3 px`) radius triangular cone, placing dots closer than $\sqrt{8} \approx 2.828\text{ px}$ creates overlapping kernels that pay full `alpha = 0.2` FP penalty per extra dot while adding negligible marginal recall (`beta = 0.8`). Thinning `H19-5` to `2.83 px` minimum nearest-neighbor spacing cut the FP denominator by `~64%` while preserving tolerance-cone coverage.
-3. **Strict `d_cat > 2.0 px` (`> 200 m`) catalogue-flank collar (`H33-2-B2`, `37,654` binary `{0, 1}` dots):** Pruning the `6,436` dots at $0 < d_{\text{cat}} \le 2.0\text{ px}$ (`min d_cat = 2.2361 px`, `median d_cat = 12.04 px`) removes predictions sitting in the immediate digitizing halo of already-mapped faults (`existing_faults.tif`), which are masked out of private test truth by the competition scoring protocol and therefore contribute near-zero TP credit on genuinely unmapped fault strands while incurring full `0.2 * FP` cost.
+2. **Archived 2.8 px dot thinning (`d2.8`, `44,090` binary `{0, 1}` dots):** The physical grid makes the corresponding minimum separation about 283 m. This reduces emitted positive mass relative to the archived `121,131`-cell base. It does not by itself prove a proportional reduction in the metric's false-positive term or preservation of truth coverage: both are geometry-dependent. Nearby predictions may be redundant under the maximum triangular-kernel credit, but do not universally pay a full false-positive penalty. The exact tradeoff must be measured on matched folds.
+3. **Strict `d_cat > 2.0 px` (`> 200 m`) catalogue-flank collar (`H33-2-B2`, `37,654` binary `{0, 1}` dots):** The archived construction prunes `6,436` dots near the catalogue. This may remove redundant mapped-looking mass, but the official description does **not** establish that a two-pixel collar is masked from private truth or receives near-zero TP credit. Parallel and branching unmapped faults can occur in that collar. The tradeoff depends on lost truth coverage and removed false-positive mass; it cannot be inferred from distance alone.
 
 ### 2.2 Two Critical Quantitative Discoveries Established in Session 2
 

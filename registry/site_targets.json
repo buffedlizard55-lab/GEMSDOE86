@@ -1,0 +1,358 @@
+{
+  "schema": "gems86.site-targets.v1",
+  "scope": "Named owner projects in the standing request; API availability is not score verification or raster uniqueness.",
+  "sites": [
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/6GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/6GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE3",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE2",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE4",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE4/"
+    },
+    {
+      "repository": "buffedlizard55-lab/5GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/7GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/7GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/8GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/8GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE9",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/11GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/12GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/15GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/14GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/17GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/17GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/18GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/18GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/19GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE10",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/"
+    },
+    {
+      "repository": "buffedlizard55-lab/13GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/13GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/16GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE21",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE21/"
+    },
+    {
+      "repository": "buffedlizard55-lab/20GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE22",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE22/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE23",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE23/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE24",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE25",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE26",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE26/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE27",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE30",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE31",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE33",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE34",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE34/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE35",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE35/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE36",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE37",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE37/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE38",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE38/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE42",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE42/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE43",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE43/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE45",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE45/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE49",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE28",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE29",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE46",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE46/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE39",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE39/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE40",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE40/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE41",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE44",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE44/docs/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE47",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE47/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE48",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE48/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE50",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE50/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE51",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE51/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE52",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE52/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE53",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE53/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE54",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE54/docs/"
+    },
+    {
+      "repository": "buffedlizard55-lab/55GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/55GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/56GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/56GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/57GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/57GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/58GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/58GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/59GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/59GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/60GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/60GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/61GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/61GEMSDOE/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/62GEMSDOE",
+      "site_url": "https://buffedlizard55-lab.github.io/62GEMSDOE/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE63",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE63/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE64",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE64/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE65",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE65/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE66",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE66/docs/index.html"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE67",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE67/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE68",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE68/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE69",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE69/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE70",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE70/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE71",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE71/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE72",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE72/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE73",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE73/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE74",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE74/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE75",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE75/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE76",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE76/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE77",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE77/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE78",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE78/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE79",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE79/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE80",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE80/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE81",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE81/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE82",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE82/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE83",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE83/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE84",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE84/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE85",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE85/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE86",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE86/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE87",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE87/"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE88",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE88/"
+    }
+  ]
+}

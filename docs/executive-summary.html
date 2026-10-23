@@ -1,51 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" style="color:#e8eefc">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
-<h1>Executive summary — submission procedure and current stop</h1>
-<div class="card hero"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY REPOSITORY FILE</span>
-<h2>Latest H86-FVMB, H86-WVB, H86B-GFCO &amp; RMRB-86 research candidates</h2><p>All 8 technical files pass 15/15 format checks (eliminating DrivenData's <code>"Predicted values must be in range [0, 1]"</code> error by construction). <b>H86-FVMB</b> (<code>38,400</code> dots, sha256 <code>413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233</code>) passes 72/72 leakage canaries (<code>≤0.7334</code>), achieves dual-seed segment-all HOLDOUT-DTI <code>0.1458 [0.1345, 0.1560]</code> (+60.5% vs H33-2-B2, paired CI <code>[+0.0470, +0.0635]</code>) and the <b>highest detached blind-splay HOLDOUT-DTI <code>0.1538</code> (+66.2%)</b>, and clears <code>≤0.70</code> literal 3-px overlap across all 38 modern &amp; concurrent rasters (<code>≤0.6831</code> vs 31 GEMSDOE28..85 priors incl. 201k-dot H85 skeleton; <code>0.3591</code> vs H86-WVB; <code>0.3606</code> vs H86B-GFCO; <code>0.3052</code> vs H33-2-B2), while failing closed automatically (<code>verdict: negative</code>) solely because <code>17GEMSDOE_E-proba-multiscale</code> has <code>p&gt;0</code> across 100% of the footprint. H86-WVB (sha256 <code>d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3</code>, <code>0.15792</code> buffered whole-comp) and H86B-GFCO similarly pass 15/15 format checks and remain blocked on legacy carpet priors.</p>
-<a class="btn danger" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download>Download H86-FVMB TIFF (38,400d) — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip" download>Download H86-FVMB ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="evidence/h86-fvmb-run-card.json">H86-FVMB Run Card</a>
-<a class="btn ghost" href="h86-fvmb-forensics.html">H86-FVMB PhD Forensics &amp; Figures</a>
-<a class="btn ghost" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif" download>Download H86-WVB TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.zip" download>Download H86-WVB ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="evidence/h86-wvb-run-card.json">H86-WVB Run Card</a>
-<a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download H86B-GFCO ZIP — DO NOT SUBMIT</a>
-<a class="btn ghost" href="evidence/h86b-gfco-run-card.json">H86B-GFCO Run Card</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a>
-<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Open RMRB-86 receipt</a></div>
-
-<p class="card"><a href="download-status.html"><b>Generated identity and validation for all downloadable TIFFs</b></a>. This is the canonical byte/size/note-length view; the older scientific reports retain their historical evidence.</p>
-<h2>RMRB-86 identity (not the H86B-GFCO download above)</h2><table>
-<tr><th>File</th><td class="mono">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</td></tr>
-<tr><th>SHA-256</th><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td></tr>
-<tr><th>Submission name</th><td>RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</td></tr>
-<tr><th>Note (107 chars)</th><td>RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</td></tr>
-<tr><th>Verdict</th><td><b>negative / not authorized</b></td></tr></table>
-
-<h2>Automated gate result</h2><ol>
-<li><b>Format — PASS locally:</b> one float32 band; every value finite in [0,1]; exact EPSG:32611, dimensions and affine; zero outside the sample-defined footprint and on mapped catalogue pixels.</li>
-<li><b>Leakage — PASS:</b> all 20 feature-alone symmetric AUCs are ≤0.58034, below the 0.90 stop.</li>
-<li><b>Holdout point result:</b> <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22,893 withheld positives; physical-block 95% CI) = 0.07283 [0.05888, 0.08744].</li>
-<li><b>Paired scientific gate — FAIL:</b> delta from the strongest matched raw-radiometric control is <b>HOLDOUT-DTI delta</b> (same evaluator, positives and CI method) = 0.00167 [−0.00285, 0.00620].</li>
-<li><b>H33 comparison — PASS:</b> final rank correlation 0.03022 and forward three-pixel overlap 0.45637; bytes and decoded pixels differ.</li>
-<li><b>Parallel-lane delta — PASS:</b> the new raster stays below both thresholds against all four files newly merged from parallel sessions (eight surface/final comparisons).</li>
-<li><b>Literal registry rule — STOP:</b> a continuous prior is positive throughout the footprint, giving any nonempty sparse field overlap 1.0. No exemption is authorized.</li>
-<li><b>Selector/quota — NOT RUN:</b> no authenticated weekly quota or organizer receipt was available. No slot was spent.</li></ol>
-
-<h2>Exact portal procedure—for a future promoted file only</h2><p>These steps satisfy the process requirement; they do not authorize any current file.</p><ol>
-<li>Open that future file's canonical run card. Continue only if <code>verdict</code> is <code>promote</code>, <code>safe_to_submit</code> is true, every validator field is true, all literal registry gates pass and a separate selector has confirmed the live quota.</li>
-<li>Download the promoted <code>.tif</code> or its ZIP containing exactly one TIFF. Compute SHA-256 locally and compare it with the run card.</li>
-<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, sign in, review current rules/quota and choose <b>New submission</b>.</li>
-<li>Select the promoted TIFF—not JSON evidence, a sample, an old raster or anything named <code>DO-NOT-SUBMIT</code>.</li>
-<li>Paste its ≤140-character run-card note, submit once and retain the organizer receipt bound to the exact SHA-256.</li>
-<li>Only that receipt's result may be called <b>ORGANIZER-CONFIRMED</b>.</li></ol>
-
-<h2>Why the prior range error should not recur</h2><p>The rejected bytes were not supplied, so its cause is unknown. This writer does not guess or clip: it rejects NaN, infinity, sentinels, negatives and values above one before serialization, then reopens the output and validates it again. RMRB-86 passes those local checks. A format pass still cannot override its negative scientific/registry verdict.</p>
-
-<h2>Next action</h2><p>Preserve every current raster as a research artifact and spend no slot. A future preregistered lane must produce a positive paired result on a target-appropriate instrument and clear a registry rule that is satisfiable without an unauthorized exception. Any schema change separating continuous surfaces from sparse dot fields requires explicit owner approval.</p>
-<p><a href="evidence/rmrb86-run-card.json">Canonical RMRB decision</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Registry evidence</a></p>
-</main><footer>No organizer score is claimed. No current file is authorized for upload.</footer></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · GEMSDOE86</title><meta name="description" content="Machine-checked fault-prediction research downloads. Local format validity is not submission approval.">
+<link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main">
+<p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
+<a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<h2>Current downloads — audit only, no submission authorized</h2>
+<div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody><tr><th scope="row">GMC catalogue-following control</th><td><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif" download>gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a><br><code>94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3</code></td><td>213,861 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">GMC off-catalogue variant</th><td><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif" download>gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a><br><code>0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</code></td><td>195,987 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-1 edge corroboration</th><td><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif" download>gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a><br><code>5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5</code></td><td>134,369 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-RMRB unsupervised boundary</th><td><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a><br><code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code></td><td>188,877 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">RMRB-86 supervised residual</th><td><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a><br><code>9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</code></td><td>133,010 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86B-GFCO multi-physics</th><td><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a><br><code>897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</code></td><td>145,410 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-WVB wavenumber / fault-valve bridge</th><td><a href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif" download>gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif</a><br><code>d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3</code></td><td>136,026 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-FVMB dip-projected / fault-valve model</th><td><a href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download>gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif</a><br><code>413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233</code></td><td>146,282 bytes<br><strong>DO NOT SUBMIT</strong></td></tr></tbody></table></div>
+<p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
+<h2>What is checked without intervention?</h2><ul><li>Every published TIFF is decoded and checked by the pinned shared validator and template-format checker.</li>
+<li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
+<li>The SHA matches the inventory, writer receipt and applicable scientific card. ZIP bytes must contain exactly the corresponding TIFF; empty or mismatched ZIPs fail.</li>
+<li>Names and notes are verified against the project length cap. Stored model evidence is not rewritten or upgraded by a format pass.</li>
+<li>All final artifacts are bound to the negative registry measurement. Unknown/missing/stale evidence fails closed.</li></ul>
+<h2>Future submission steps — only after scientific clearance</h2><ol class="steps"><li><strong>Resolve the protocol conflict first.</strong> A new lane must be authorized, the actual shared cached features and a complete accessible registry recovered, and the uniqueness rule made satisfiable through an explicit protocol revision. This project does not grant that revision itself.</li>
+<li><strong>Validate a new method.</strong> Freeze whole-segment buffered folds, derive catalogue features only from visible faults, run each feature's leakage canary, and beat the strongest rerunnable matched control with a positive paired physical-block confidence interval. Use the shared evaluator and writer unchanged.</li>
+<li><strong>Run all release checks.</strong> A format pass alone is insufficient: both pre-placement surface and final-dot uniqueness must pass the literal thresholds. Promotion is separate from slot selection.</li>
+<li><strong>Use the separate selector.</strong> It must inspect the authenticated submission page's actual remaining weekly quota and bind its decision to the exact raster SHA. The public rules list 3 submissions per week; that is not our current account balance. No account credentials or automatic upload are implemented here.</li>
+<li><strong>Download only the authorized TIFF or one-TIFF ZIP.</strong> Choose <em>New submission</em> on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, select the file (not JSON, a sample or an audit-only artifact), and paste its short identity note.</li>
+<li><strong>Retain the organizer receipt.</strong> Bind the result and submission ID to the exact SHA before classifying any score as ORGANIZER-CONFIRMED. Follow the rules for one final selection, reproducible assets, eligibility and generative-AI disclosure.</li></ol>
+<h2>The reported “[0,1]” rejection</h2><p>The rejected file was not supplied, so the cause is unknown. The shared writer rejects nonfinite and out-of-range predictions instead of silently clipping them, then validates the serialized output and ZIP. The current audit rechecks those bytes. This prevents us publishing that class of invalid numerical output, but it does not prove portal acceptance.</p>
+<p>The public specification describes null/NaN outside bounds. The project's all-finite, zero-outside policy is a conservative local choice. It must not be described as organizer-confirmed acceptance or a complete diagnosis of the earlier error.</p>
+<h2>Reproduce the checks</h2><pre><code>python scripts/restore_protocol_data.py --include-registry
+python scripts/audit_release.py --measure-registry
+python scripts/refresh_fleet.py
+python scripts/build_site.py
+python -m pytest -q</code></pre>
+<p>The first command restores pinned small mirror inputs and one historical witness for comparison, not a new submission. Shared cached features are not regenerated. No GPU is needed for these audits; the official reference also has CPU-only training options.</p>
+<p><a href="sources.html">Official sources and exact observation limits</a> · <a href="irregularities.html">Remaining blockers</a></p></main>
+<footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Source code</a> ·
+<a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>

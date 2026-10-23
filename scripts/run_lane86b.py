@@ -345,10 +345,12 @@ def collect_registry_records() -> list[dict]:
 
 
 def main():
+    # The literal stop is mandatory, including for imported callers. A previous
+    # boolean parameter could bypass it and start fitting/placement after STOP.
     if str(ROOT) not in sys.path:
         sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
-    require_feasible()  # No caller-controlled bypass of the mandatory stop.
+    require_feasible()
     t_start = time.time()
     plane_man = F.build_physical_planes()
     g = G.load_grid(ROOT / "data")

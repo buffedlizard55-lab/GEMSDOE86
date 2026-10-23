@@ -40,6 +40,20 @@ class SiteTests(unittest.TestCase):
                 (root / ('docs/hidden' + suffix)).write_bytes(b'not approved')
                 self.assertTrue(check(root))
 
+    def test_inventory_cannot_escape_downloads_even_without_docs_html(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            (root / 'docs/index.html').unlink()
+            (root / 'index.html').write_text('<h1>Audit</h1>')
+            artifact = root / 'outside.tif'
+            artifact.write_bytes(b'not a public download')
+            (root / 'docs/evidence/download-inventory.json').write_text(json.dumps({
+                'artifacts': [{'file': 'outside.tif',
+                    'sha256': hashlib.sha256(artifact.read_bytes()).hexdigest(),
+                    'status': 'DO NOT SUBMIT', 'approved_for_weekly_slot': False}]}))
+            self.assertTrue(check(root))
+
     def test_unsupported_ready_claim_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)

@@ -1,0 +1,101 @@
+{
+  "schema": "gems86.source-observations.v1",
+  "observed_date_utc": "2026-10-23",
+  "retrieval_method": "fetch_page tool, parsed page/PDF excerpts; not raw HTTP byte snapshots",
+  "scope": "Exact observation scopes are recorded per source. Excerpt reachability is not verification of all links, datasets, scientific hypotheses, or portal acceptance.",
+  "weekly_limit_in_public_rules": 3,
+  "authenticated_remaining_quota": null,
+  "sources": [
+    {
+      "id": "DD-PROBLEM",
+      "kind": "OFFICIAL",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "status": "FETCHED_BOTH_PARSED_CHUNKS",
+      "claim": "The initial test faults are expert-mapped and absent from the public catalogue. Predictions target faults, not confirmed geothermal vents. The metric is distance-weighted Tversky; the file is a single float32 GeoTIFF in [0,1] on the supplied grid.",
+      "observed_excerpt": "For this competition, you will submit a GeoTIFF file containing your predictions for all faults in the region.",
+      "caveat": "The public format describes null/NaN outside bounds. Our zero-outside policy is not proof of organizer upload acceptance."
+    },
+    {
+      "id": "DD-ABOUT",
+      "kind": "OFFICIAL",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+      "status": "FETCHED",
+      "claim": "Faults involve measurable displacement; gravity/magnetic anomalies and surface lineaments are evidence to interpret, not sufficient proof of a fault.",
+      "observed_excerpt": "A geological fault is a fracture or discontinuity in Earth’s crust where two blocks of rock have undergone measurable displacement, whether vertical, horizontal, or a combination of both.",
+      "caveat": "The proposed image transforms are our untested hypotheses, not endorsed or validated by this page."
+    },
+    {
+      "id": "NLR-RULES",
+      "kind": "OFFICIAL",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "status": "ALL_SEVEN_PARSED_CHUNKS_READ",
+      "claim": "Registration, weekly limits, one final selection across both rounds, reproducible code assets/documentation, and disclosure of generative-AI use are required.",
+      "observed_excerpt": "You can make multiple submissions, subject to the limits specified on the competition website (three submissions per week).",
+      "caveat": "This public rule is not the authenticated account’s remaining quota, eligibility determination, or an organizer receipt."
+    },
+    {
+      "id": "DD-DATA",
+      "kind": "OFFICIAL",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "resolved_url": "https://www.drivendata.org/accounts/login/?next=/competitions/306/competition-doe-gems/data/",
+      "status": "LOGIN_REQUIRED",
+      "claim": "The official data tab requires authentication; no authenticated official data was downloaded in this audit.",
+      "observed_excerpt": "Email or username",
+      "caveat": "Hash-verified GitHub mirrors are not independent organizer authentication. Never request credentials in chat."
+    },
+    {
+      "id": "USGS-GEODAWN",
+      "kind": "OFFICIAL",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "status": "METADATA_FETCHED",
+      "claim": "Magnetics, radiometrics, flight-line data and coordinated lidar products are described. Variable terrain clearance and different acquisition specifications are documented confounders.",
+      "observed_excerpt": "variable terrain clearance should be considered when modeling and interpreting these data.",
+      "caveat": "CC0 metadata was observed. Native grid/DEM bytes and complete coverage were not obtained from USGS here; metadata access is not data obtainability."
+    },
+    {
+      "id": "GDR-1391",
+      "kind": "OFFICIAL",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "status": "RESOURCE_METADATA_FETCHED",
+      "claim": "The INGENIOUS compilation lists temperature probes, earthquakes, geodetics, geophysics, MT and well/spring chemistry. The page states attribution and fitness-for-use limitations.",
+      "observed_excerpt": "These datasets may be redistributed with attribution",
+      "caveat": "Only the resource-listing chunk was read in this audit. A listed resource is not verification of its downloaded bytes or suitability."
+    },
+    {
+      "id": "USGS-MAGNETIC-OFFSETS",
+      "kind": "OFFICIAL_SCIENTIFIC_REPORT",
+      "url": "https://pubs.usgs.gov/pp/1658/pdf/ch5.pdf",
+      "status": "ABSTRACT_AND_INTRODUCTION_FETCHED",
+      "claim": "The report discusses offset pairs of magnetic rock bodies and concealed faults, motivating the marker-translation hypothesis.",
+      "observed_excerpt": "positions, shapes, and offset histories of various fault segments concealed beneath water or young alluvium.",
+      "caveat": "This Bay Area study motivates a mechanism; it does not validate automated transfer to the GeoDAWN region or predict competition performance."
+    },
+    {
+      "id": "USGS-BASEMENT-OFFSETS",
+      "kind": "OFFICIAL_SCIENTIFIC_REPORT",
+      "url": "https://pubs.usgs.gov/of/1999/0383/",
+      "status": "ABSTRACT_FETCHED",
+      "claim": "Basement-offset interpretations can indicate faults that do not reach the present surface and may be inactive.",
+      "observed_excerpt": "they are interpreted to be inactive faults, older than the alluvial basin fill.",
+      "caveat": "This is an explicit falsification risk for any basement-edge detector of surface faults, not support for interpreting every edge as an active geothermal conduit."
+    },
+    {
+      "id": "DD-REFERENCE",
+      "kind": "OFFICIAL_CODE",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "status": "REPOSITORY_README_FETCHED",
+      "claim": "The reference solution supports both GPU and CPU-only environments.",
+      "observed_excerpt": "Training is much faster on a GPU, so use one if you have it.",
+      "caveat": "A GPU is not an absolute training prerequisite. At initial inspection, the owner-quoted downloader/preparer commands were absent. Concurrent main later added a downloader wrapper and prepare_h86_fvmb_data.py, not the quoted prepare_data.py; these do not resolve the literal stop or restore the actual template cache."
+    },
+    {
+      "id": "H33-SITE",
+      "kind": "OWNER_SITE_NOT_OFFICIAL_SCORE_RECEIPT",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "status": "PRIMARY_DOWNLOAD_AND_STATUS_FETCHED",
+      "claim": "The page labels the H33-2-B2 result as a projection/model, not a score, and the listed note contains UNSCORED.",
+      "observed_excerpt": "projected live DTI 0.2747 (a MODEL, not a score).",
+      "caveat": "This does not disprove that the owner subsequently obtained 0.2778; no corresponding submission-page receipt is available here, so that supplied result remains OWNER-REPORTED."
+    }
+  ]
+}

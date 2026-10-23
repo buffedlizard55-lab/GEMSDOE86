@@ -1,4 +1,15 @@
-# Standing project prompt (condensed archive; full request is in README and research/OWNER_PROMPT.md)
+# Standing project prompt (condensed historical archive)
+
+**Read the current README decision and its complete 2026-10-23 request archive first.**
+The current request is also in `research/REQUEST_20261023.md`; the earlier request remains in
+`research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
+verified results. A pinned full-positive registry witness currently makes the literal overlap
+rule unsatisfiable for every nonempty candidate. Scientific CLIs must stop before fitting or
+placement; do not bypass that gate, relabel an old TIFF as new, or claim the unmet unique-TIFF
+requirement has been completed. `scripts/audit_release.py` checks all historical downloads;
+`docs/evidence/session-20261023-run-card.json` records the current negative outcome.
+
+---
 
 Review the repo.
 
