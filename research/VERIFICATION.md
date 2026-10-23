@@ -1,58 +1,58 @@
-# Three-Pass Autonomous Verification Log (`GEMSDOE86` — Session 2, Lane `H86B-GFCO`)
+# Three-pass review — 2026-10-22
 
-**Date:** 2026-10-22 (UTC)
-**Branch:** `arena/27952692-gemsdoe86` (branched from `main` at `62ed67084ce2279aaa6cb897bda8e3aa3a12fcf0`)
+## Scope and concurrent-main reconciliation
 
----
+This session began at `a8c5bbe` with the negative audit, shared tools and site, not a trained model. During work, main advanced through PRs 5–7 and acquired a negative model artifact. We fetched and merged main into the fixed session branch; we did not switch branches, discard that artifact, rerun its model, or overwrite its model card. The new protocol card is stored separately.
 
-## Pass 1 — End-to-End Implementation, Data Restoration & 3-Experiment Execution
+This is **not full completion of the owner's scientific goal**. A downloadable candidate exists from concurrent work, but it remains negative and is not uniqueness-cleared or approved to submit. There is no demonstrated compliant holdout improvement, leaderboard improvement, authenticated organizer score, current complete registry, actual shared feature cache, externally assigned lane, eligibility certification or live official-source feed.
 
-1. **Prior-Session Audit & Cross-Repository Survey:**
-   - Inspected all files in `GEMSDOE86` (`main` after PR #6) and surveyed `GEMSDOE32`, `GEMSDOE36`, `GEMSDOE49`, `60GEMSDOE`, `GEMSDOE63`, `GEMSDOE70`, `GEMSDOE73`, `GEMSDOE75`–`GEMSDOE85`, `GEMSDOE87`, and `GEMSDOE88`.
-   - Restored and SHA-256-verified all `23` competition, GDR-1391, external proxy, and scored baseline files from `research/upstream/data_manifest.json` plus `15` sibling repository primary candidate GeoTIFFs (`research/upstream/cross_repo_champions_manifest.json`).
-   - Verified `vendor/gems57/` SHA-256 pins (`21 / 21` exact matches against `research/template_pin.json`).
-2. **Label-Free Multi-Physics + Geothermal Feature Builder (`scripts/h86b_features.py`):**
-   - Built `38` `float32` physical, hydrothermal, potential-field contact-offset, basement/strain, 1 m LiDAR scarplet, 100 m DEM hinge/valley, and topographically-deconfounded radiometric planes into `data/cache/h86b_planes/*.npy` (`98.59s`, `catalogue_used = false`, `sgmc_used = false`).
-   - Verified all `42` single-feature Leakage Canaries (`38` physical planes + `4` strictly visible-only kinematic components `tip_cone`, `relay_bridge`, `bend_splay`, `m_kin`): `42 / 42 PASS`, `max_disc = 0.8485 <= 0.90`.
-3. **3-Experiment LOQO Execution (`scripts/run_lane86b.py`):**
-   - Executed strictly within the 3-experiment / 2-hour cap (`16.6 min` CPU, `< 1.8 GB` peak RAM on a `3.8 GB` 0-swap VM):
-     - `E1_phys_38k`: `0.0472` (`buffered_comp`), `0.0454` (`all`), `0.0514` (`detached`)
-     - `E2_gfco_38k`: `0.0992` (`buffered_comp`), `0.1343` (`all`), `0.1450` (`detached`)
-     - `E3_gfco_44k` (**selected**): **`0.1078 [0.0908, 0.1254]`** (`buffered_comp` vs `0.0919` `d2.8` / `0.0961` `H33-2-B2`), **`0.1396 [0.1286, 0.1513]`** (`all` vs `0.1011` `d2.8`, `+38.1%`), **`0.1521 [0.1378, 0.1662]`** (`detached` vs `0.1035` `d2.8`, `+47.0%`).
-   - Serialized `docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.{tif,zip,json}` via unmodified `gems57.submission_writer.write_submission` and verified `15 / 15` format checks via `gems57.validate` and `gems57.gates.format_report`.
+## Pass 1 — implement and verify the concrete blocker
 
----
+- Read the README, prior review, shared evaluator/writer and source pins. Retrieved the historical registry inventory at the template's immutable commit and bound the witness to its registry record, Git blob ID, byte length and SHA256.
+- Restored the pinned sample and catalogue mirrors plus one historical dense probability raster into ignored `data/`. No historical prediction was offered as a new submission.
+- Reused the unmodified shared `saturation_certificate`. Independently counted direct positive support to avoid depending solely on a dilation implementation.
+- Measured that every allowed cell is already positive in the witness. Any nonempty candidate dot set therefore necessarily violates the literal forward overlap threshold. This is a REGISTRY-MEASUREMENT, not a score or claim of scientific duplication.
+- Added machine proof, separate session run card, source pin, research table and clear DO NOT SUBMIT download/status messaging. Read the official problem page, USGS GeoDAWN metadata, current public leaderboard, GEMSDOE32 page and all seven parsed chunks of the rules PDF. No organizer receipt was accessed.
 
-## Pass 2 — Bug Hunt, Hidden Assumptions & Edge Cases Found and Fixed
+## Pass 2 — bugs, assumptions and edge cases
 
-1. **Bug 1 Caught & Fixed (Pre-Experiment Synthetic Test — `allocate_patient` `1.0 px` Clumping):**
-   - *Finding:* Before touching real data, unit-testing `gems57.emit.allocate_patient` on a synthetic 19-ridge grid revealed `min_nn_px = 1.0, skipped = 0` (`DTI = 0.1636`) whenever $k_{\text{self}} = \min(E[k](x), 1.0)$ saturates at `1.0` (`emit.py` line 325 sets marginal FP cost `1 - k_self = 0`), while `emit_decimated(tile_px=3)` left `1.0 px` adjacent pairs across $3 \times 3$ tile seams (`DTI = 0.2361`).
-   - *Fix:* Used `gems57.emit.expected_credit` followed by seam-free priority disc thinning at $r_{\text{suppress}} = 2.8\text{ px}$ (`min_nn >= sqrt(8) = 2.828 px`), raising synthetic DTI to `0.2822 (+72.5%)` while keeping `vendor/gems57/emit.py` 100% unmodified.
-2. **Bug 2 Caught & Fixed (Holdout Calibration Paradox — Unbuffered Cut Ends vs Buffered Whole Components):**
-   - *Finding:* Scoring `d2.8` (`0.1011`) vs `H33-2-B2` (`0.0910`) on unbuffered 12-px cut-branch holdouts inverted their owner-reported live ordering (`0.2600 < 0.2778`) because cut ends sit at `d_vis = 1–2 px`.
-   - *Fix:* Added primary evaluation on `gems57.holdout.buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3)` (whole 8-connected components + 3-px buffer, matching Protocol Rule 2), which restored monotonic ordering `H19-5 (0.0654) < d2.8 (0.0919) < H33-2-B2 (0.0961) < H86B-GFCO (0.1078)`, and reported all three holdout instruments side by side.
-3. **Bug 3 Caught & Fixed (`scripts/audit.py` Clobbering `docs/evidence/run-card.json` During `unittest`):**
-   - *Finding:* Running `python -m unittest` in Session 1 invoked `audit.run()`, which unconditionally overwrote `docs/evidence/run-card.json` with a `"NOT_RUN"` stub whenever `data/` was absent or mocked.
-   - *Fix:* Parameterized `audit.run(..., run_card_out=None)` to be strictly read-only by default and added a byte-equality assertion in `tests/test_audit.py::test_missing_evidence_is_not_ready_and_never_clobbers_runcard`.
-4. **Bug 4 Caught & Fixed (`scripts/restore_lane_data.py` Incomplete File Restoration):**
-   - *Finding:* `restore_data.py` only restored `existing_faults.tif` and `sample_submission.tif`, skipping `labels.tif`, the GDR-1391 CSVs/rasters, and the `12` scored baselines on a fresh clone.
-   - *Fix:* Updated `scripts/restore_lane_data.py` to restore and SHA-256-verify all `22` non-qfaults core manifest files (`ext_gdr_qfaults_traces` excluded by default to prevent label leakage) plus all `15` cross-repo champion rasters via `codeload.github.com` tar streaming with `gh api` fallback.
-5. **Bug 5 Caught & Fixed (Stale Temporary Branch Link in `docs/index.html`):**
-   - *Finding:* `docs/index.html` line 41 from PR #6 pointed to `blob/arena/d8a21439-gemsdoe86/research/REVIEW.md`.
-   - *Fix:* Replaced with `blob/main/research/REVIEW.md` and added an automated link-scanner assertion against stale `arena/` branch URLs.
-6. **Bug 6 Caught & Prevented (Low-RAM OOM Hazard on `3.8 GiB` / `0 B` Swap VM):**
-   - *Finding:* Keeping `38` `49 MB` `.npy` memmaps open simultaneously with full-grid `two_host_frame` pushed `ru_maxrss` to `3,638 MB` (`95%` of total VM RAM).
-   - *Fix:* `gather_lowmem` opens and closes one `.npy` plane at a time (`49 MB` transient) and caches kinematic maps to `data/cache/h86b_kin/*.npz` with immediate `gc.collect()`.
+- Found concurrent main changes and reconciled them rather than restoring a stale no-candidate model card. Preserved the actual TIFF/ZIP, original lane results and original model card. The session-specific wrapper writes only `protocol-run-card.json` and `protocol-preflight.json`.
+- CI found the hosted GitHub CLI fails raw binary TIFF streaming with `transform: short source buffer`; restoration now decodes JSON/base64 Git blobs, verifies Git object identity, and shares this path with the inherited lane restorer. A new regression test rejects a mismatched Git object; a fresh real JSON/base64 restore passed locally.
+- Corrected mirror restoration to verify both byte count and SHA **before** atomic publication. Tested success, corrupt existing data, wrong size and network failure, including partial-file cleanup. Forced a fresh real restore of all three pinned inputs and recomputed their hashes successfully.
+- Added tests for dense and sparse witnesses, empty allowed domains, wrong transforms, integrity failures and missing/corrupt input behavior. The witness must also have valid mask coverage and finite probability values inside the footprint.
+- Reviewed inherited model code: global rather than cross-fitted mixing, rebuilt components rather than shared cache, legacy chunk holdout/evaluation path, full-catalogue benchmark, non-paired bootstrap and retrospective budget selection, partial/late uniqueness checks, and export despite a stop verdict. These records remain negative historical diagnostics, not certified protocol-compliant metrics. See `REVIEW.md`.
+- Added an early hard stop to the historical runner before surface construction; a real CLI invocation exited with STOP_LITERAL_OVERLAP_UNSATISFIABLE and placed no dots. Missing/untrusted preflight input is not a pass. Unit tests verify no surface builder is reached after the universal blocker.
+- Fixed an inherited validation placeholder that unconditionally marked uniqueness consistency true. It now checks the actual recorded diagnostics. ZIP validation now checks TIFF payload equality, not just the member name. Regression tests alter the record/payload and require failure.
+- Publication checks now permit only the registered, hash-matching, explicitly DO NOT SUBMIT negative artifact, and reject unknown/modified TIFFs/ZIPs and broken local HTML links. They are integrity guards, not scientific release authorization.
 
----
+## Pass 3 — original-request and claim review
 
-## Pass 3 — Full Independent Accuracy, Completeness & Protocol Audit
+- The full owner request, including repetitions, links and conflicting historical claims, is archived in `research/OWNER_PROMPT.md` and embedded in the README. A synchronization test prevents divergence. Archived numbers are explicitly user-supplied, not adopted results.
+- Site, README, executive summary and research review distinguish the inherited candidate from this session's no-new-experiment protocol stop. Download name, recorded short note, SHA, local validation and negative submission status are visible. No copied file is relabelled unique.
+- The model card and actual artifact are unchanged from merged main; model evidence is not overwritten by the session preflight. Shared evaluator/writer source hashes remain unchanged.
+- 35 unittest cases and 54 total pytest tests, Python compilation, whitespace validation, HTML links and serialized TIFF/ZIP checks pass. CI exercises both data-free safety and a separate real pinned-input reproduction; regenerated evidence must match the committed snapshot. The two observed library warnings are inherited Rasterio/Affine pending deprecations during synthetic writer roundtrips, not a failed validation.
+- No new model experiments or competition slots used in this session. No manual scientific inspection is represented as automation. No high-score, complete-registry or hallucination-free guarantee is made.
 
-Executed automated Pass-3 verification + `scripts/audit.py` + `tests/test_audit.py`:
-- **`vendor/gems57` pin check:** `21 / 21` files SHA-256 identical (`pins_clean = true`).
-- **Strict JSON integrity:** `15 / 15` JSON files in `docs/` and `research/` parsed with `parse_constant` rejecting `NaN`/`Infinity` (`0` non-finite tokens).
-- **Standalone `.tif` vs `.zip` byte parity:** `docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif` (`158,348` bytes) and the sole `.tif` inside `.zip` (`158,528` bytes, `testzip() == None`) share exact SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`.
-- **Direct GeoTIFF array verification:** `shape = (3730, 3292)`, `crs = EPSG:32611`, `dtype = float32`, `nodata = None`, `0` NaN, `0` Inf, `min = 0.0`, `max = 1.0`, `arr[~footprint].max() = 0.0`, `arr[catalogue].max() = 0.0`, `(arr > 0).sum() = 44,090`.
-- **Link & cross-document number consistency:** Every local link in `README.md`, `docs/index.html`, and `docs/executive-summary.html` resolves on disk; all headline SHA-256, `HOLDOUT-DTI`, leakage canary (`0.8485`), and uniqueness (`0.3012`, `0.6342`, `0.7170`, `0.7656`, `0.9988`) numbers match across `run-card.json`, `lane86b_results.json`, `README.md`, `REVIEW.md`, and `docs/*.html`.
-- **Automated unit & integration test suite:** `13 / 13` tests PASS (`2.29s`).
-- **Fail-closed protocol compliance:** `experiments_run = 3`, `verdict = "negative"`, `submission_ready = false`, `approved_for_weekly_slot = false` — honoring Protocol Rules 1, 5, and 6 without post-hoc hyperparameter gaming.
+## Next session, in order
+
+Resolve the literal surface/dot protocol conflict explicitly; obtain an assigned method, actual shared cache with band identities and current complete registry; repair model orchestration and establish a visible-only, same-fold baseline with buffered whole-component recovery and paired spatial uncertainty; then test one authorized hypothesis. Only after supported improvement and complete two-phase uniqueness checks should a new file be authorized by the separate slot selector. Do not rerun the historical model to bypass the current stop.
+
+## Second concurrent-main integration
+
+Main advanced again through PRs 9–13. Preserved the full GMC pipeline, both additional artifact pairs and all raw experimental evidence; no new model experiment was run. Corrected the false green submission status because the stored shared audit has unique=false / stop_required=true. The primary card now explicitly says negative/not ready/not approved and retains its previous verdict as history. Its recorded holdout is for the catalogue-following configuration, not the shipped off-catalogue file. Changed the generated site source, regenerated Pages, and corrected the mathematically invalid inference from >70% domain coverage to universal blockage. All three downloads are bound to a negative artifact inventory, hashes and exact ZIP bytes. The full-data restorer is retained; the small proof restorer is renamed restore_protocol_data.py. Additional model/publisher entrypoints stop before experiments.
+
+All 54 pytest tests pass locally, as do 35 unittest cases, link/download integrity and compilation. CI checks deterministic site regeneration. Registry diagnostic reproduction requires exact hashes/counts/overlap/verdicts, allowing only 2e-14 absolute last-bit drift in Spearman fields across CPU/BLAS builds; no threshold or scientific gate is weakened. All other proof evidence remains byte-exact.
+
+## Third concurrent-main integration
+
+Preserved PR #9's H86-1 artifact, dedicated scientific evidence, embedded run-card fields and read-only audit additions. There are now four inherited artifact pairs; all remain DO NOT SUBMIT. Isolated the protocol restoration receipt from generic data_restore.json, prevented H86-1 card assembly from overwriting the radiometric model card, and added the same early CLI stop. No new scientific experiment was run.
+
+## Final concurrent integration (PR #15)
+
+Integrated main bd54ff4 after the prior green head became conflicting. Preserved the fifth negative RMRB-86 artifact and all separately produced model evidence; no rerun or slot was used in this integration. Local checks now pass **68 pytest tests (13 subtests) and 49 unittest cases**, with three inherited Rasterio/Affine pending-deprecation warnings. Both independent serialized audits pass; all five TIFF/ZIP pairs are bound to the negative inventory. The newest model entrypoint was actually invoked and stopped before training with STOP_LITERAL_OVERLAP_UNSATISFIABLE.
+
+Main replaced the older generator with a read-only fail-closed static-site checker. That change and the Pages workflow are preserved; CI checks the static site and its unchanged tracked bytes, not a claim of generating it anew. Fixed two repository-relative links that existed on disk but would be outside the deployed docs artifact, with a regression test rejecting that class of broken Pages link. The existing proof-reproduction job and strict rho-only cross-CPU tolerance are retained unchanged.
+
+## Sixth concurrent integration — Lane H86B-GFCO (`research/H86B_GFCO_VERIFICATION.md`)
+
+Integrated `origin/main` (`4eebb0e`) cleanly while preserving all five existing negative artifacts and adding the sixth negative artifact (`gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.{tif,zip,json}`) in `docs/evidence/download-inventory.json`, `scripts/build_site.py`, `docs/index.html`, `docs/executive-summary.html`, and isolated evidence files (`docs/evidence/h86b-gfco-run-card.json`, `docs/evidence/lane86b_results.json`, `docs/evidence/h86b_crosslane_uniqueness.json`). Full 3-pass lane verification log is archived in `research/H86B_GFCO_VERIFICATION.md`. All `unittest`, `pytest`, `check_site.py`, `build_site.py`, `audit.py`, `audit_h86b.py`, `validate_download.py`, and `compileall` checks pass with zero diffs on `docs/` or `docs/evidence/`.

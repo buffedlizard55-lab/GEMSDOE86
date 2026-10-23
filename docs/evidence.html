@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evidence · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html" style=color:#e8eefc>Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
+<h1>Evidence</h1>
+<p class="muted">Every number below is produced by a script in <code>scripts/</code> and written to
+<code>evidence/</code>. Nothing is typed by hand.</p>
+
+<h2>1. Instrument</h2>
+<div class="card">
+<p>Evaluator <code>gems57-pooled-hide-v2</code> (shared template, 11 modules verified against
+<code>TEMPLATE_SHA256.txt</code>). Whole 8-connected catalogue components withheld per label-blind
+eroded quadrant, 20 % of each quadrant, 3 px feature buffer, 12 px domain erosion, visible catalogue
+masked pixel-exactly. Pooled DTI with α = 0.2, β = 0.8, 300 m triangular kernel; 95 % CI from 1,000
+paired 20 km block-bootstrap draws.</p>
+<p><b>Reproduced size: 11,321 withheld positive pixels</b> — the same number the sibling GEMSDOE82
+reports for the same evaluator.</p>
+</div>
+
+<h2>2. Lane result and ablations</h2>
+<table>
+<tr><th>Configuration</th><th>Dots</th><th>HOLDOUT-DTI</th><th>95 % CI</th></tr>
+<tr><td><b>Lane</b> (44 features + line filter, 8 × K)</td><td>90,568</td><td><b>0.12324</b></td>
+<td>[0.10926, 0.13665]</td></tr>
+<tr><td>Ablation: cross-gradient (GMC) features removed</td><td>90,568</td><td>0.12313</td>
+<td>[0.10913, 0.13653]</td></tr>
+<tr><td>Ablation: line filter removed</td><td>90,568</td><td>0.07934</td>
+<td>[0.06467, 0.09472]</td></tr>
+<tr><td>Histogram-gradient-boosting learner (best ratio)</td><td>271,704</td><td>0.06218</td>
+<td>[0.05099, 0.07428]</td></tr>
+</table>
+<p><b>Read-out.</b> The line filter is the entire effect (+0.0439 at a
+fixed budget, disjoint CIs). The headline cross-gradient hypothesis is a null (+0.0001) and is reported
+as a negative result. A nonlinear learner is worse.</p>
+
+<h3>Budget sweep (lane)</h3>
+<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>4 × K</td><td>45,284</td><td>0.09568</td><td>[0.08380, 0.10694]</td></tr><tr><td>6 × K</td><td>67,926</td><td>0.11656</td><td>[0.10313, 0.13011]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.12324</td><td>[0.10926, 0.13665]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.11794</td><td>[0.10447, 0.13058]</td></tr><tr><td>12 × K</td><td>135,852</td><td>0.10577</td><td>[0.09326, 0.11802]</td></tr></table>
+<h3>Budget sweep (no line filter)</h3>
+<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>6 × K</td><td>67,926</td><td>0.08555</td><td>[0.07050, 0.10144]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.07934</td><td>[0.06467, 0.09472]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.07563</td><td>[0.06121, 0.09121]</td></tr></table>
+
+<h2>3. The diagnostic that matters most</h2>
+<div class="card">
+<p>The fleet's best reported artifact (<code>h33-h33-2-b2-…-zeros</code>, 37,654 dots) scored on this
+same instrument:</p>
+<p class="kpi"><span></span></p>
+<div class="kpi">
+<div><span class="muted">HOLDOUT-DTI of that file</span><b>0.00370</b><span class="muted">95 % CI [0.00304, 0.00440]</span></div>
+<div><span class="muted">Its dots within 3 px of the catalogue</span><b>5.77 %</b><span class="muted">0 % within 1 px</span></div>
+<div><span class="muted">Its owner-reported live value</span><b>0.2708</b><span class="muted">base of the 0.2778 projection</span></div>
+</div>
+<p>Two orders of magnitude apart, in opposite directions. The instrument measures catalogue recovery;
+the prize measures new-fault discovery. <b>Any holdout number in this fleet, including this repo's
+0.1232, must be treated as a screening value only.</b></p>
+</div>
+
+<h2>4. Uniqueness</h2>
+<p>Registry: 812 unique git blobs from 68 owner repositories (index <span class="mono">73216d76…7c67</span>,
+built 2026-10-21T02:30Z), fetched object-by-object with blobless clones and hash-verified. 808 compared;
+4 unusable comparators are itemised in the audit JSON.</p>
+<p>Candidate: <b>90,568 dots</b>. <b>Worst Spearman against any prior: 0.0362</b>
+(limit 0.90) — rank correlation alone does not clear the lane. The literal overlap gate fails. Coverage above 70% of the allowed domain does not by itself prove impossibility for every candidate, because dots could be placed in the uncovered subset. Our separately hash-verified dense witness covers 100% and does prove the universal blocker. See <a href="evidence/protocol-preflight.json">the exact certificate</a>. Historical coverage diagnostics:</p>
+<table><tr><th>Blocking prior</th><th>Its positive cells</th><th>Halo coverage of domain</th><th>ρ vs this candidate</th></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif</td><td>5,167,373</td><td>1.000</td><td>0.005</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>-0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h48-1-unassigned_yager_mTheta_inc</td><td>5,167,373</td><td>1.000</td><td>-0.014</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-plausibility-20261007-5b59e10</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-unassigned-mTheta-20261007-5b</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h54-unassigned-mtheta-dedc43dc016</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-mtheta-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-plausibility-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.034</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-mtheta-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-plausibility-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>0.042</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-mtheta-126ca59c2801.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr></table>
+<p class="muted">Full list: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/evidence/saturation_certificate.json">saturation_certificate.json</a>.
+This is a recorded protocol conflict, not permission to ignore the gate. The artifact remains negative and not approved.</p>
+
+<h2>5. What a valid next experiment looks like</h2>
+<ol>
+<li>Build a <b>new-fault-like</b> holdout: faults added to the public catalogue after a fixed date, or the
+Qfaults ↔ INGENIOUS disagreement set (both layers are already restored in this repo).</li>
+<li>Re-rank every fleet artifact on that instrument and check that the ranking tracks the leaderboard.</li>
+<li>Then compare candidates and the visible-only incumbent on identical folds; never equate a catalogue-recovery score with a private new-fault score.</li>
+</ol>
+</main>
+<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
+OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
+</body></html>

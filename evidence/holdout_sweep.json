@@ -1,0 +1,226 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "n_withheld_positives": 11321,
+  "folds": [
+    "NW",
+    "NE",
+    "SW",
+    "SE"
+  ],
+  "results": {
+    "lane": {
+      "features": [
+        "tc",
+        "iso_grav_anom_slope",
+        "iso_grav_anom_hg",
+        "tmi_hg",
+        "tmi_vg",
+        "iso_grav_anom_vg",
+        "geod_2ndinv",
+        "det_elev_slope",
+        "depth_to_base_surf",
+        "cond_surf",
+        "ieq_n100a15",
+        "geod_shearrate",
+        "gmc4_contact",
+        "gmc4_oppose",
+        "gmc4_strike_coh",
+        "gmc4_aligned",
+        "d_vis",
+        "log_d_vis",
+        "d_tip",
+        "log_d_tip",
+        "tip_continuation",
+        "tip_along",
+        "tip_cross",
+        "along",
+        "cross",
+        "trace_coh",
+        "density",
+        "trace_continuation"
+      ],
+      "curve": [
+        {
+          "ratio": 0.5,
+          "dti": 0.007013233261891232,
+          "ci95": [
+            0.004845839186672617,
+            0.009110116059624798
+          ],
+          "dots": 5661,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 1.0,
+          "dti": 0.023031243909583797,
+          "ci95": [
+            0.017932238363850557,
+            0.028562729851162136
+          ],
+          "dots": 11321,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 2.0,
+          "dti": 0.05258362174570626,
+          "ci95": [
+            0.04262101000676156,
+            0.06335298848180448
+          ],
+          "dots": 22642,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 4.0,
+          "dti": 0.08072472604142611,
+          "ci95": [
+            0.06888786879367,
+            0.09224699341351325
+          ],
+          "dots": 45284,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 8.0,
+          "dti": 0.0866127974466696,
+          "ci95": [
+            0.0744760369004978,
+            0.09897945317188973
+          ],
+          "dots": 90568,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 16.0,
+          "dti": 0.08804817073203507,
+          "ci95": [
+            0.07449796001031016,
+            0.10159530920153045
+          ],
+          "dots": 181136,
+          "n_truth": 11321
+        }
+      ],
+      "best": {
+        "ratio": 16.0,
+        "dti": 0.08804817073203507,
+        "ci95": [
+          0.07449796001031016,
+          0.10159530920153045
+        ],
+        "dots": 181136,
+        "n_truth": 11321
+      },
+      "elapsed_s": 112.7
+    },
+    "no_gmc": {
+      "features": [
+        "tc",
+        "iso_grav_anom_slope",
+        "iso_grav_anom_hg",
+        "tmi_hg",
+        "tmi_vg",
+        "iso_grav_anom_vg",
+        "geod_2ndinv",
+        "det_elev_slope",
+        "depth_to_base_surf",
+        "cond_surf",
+        "ieq_n100a15",
+        "geod_shearrate",
+        "d_vis",
+        "log_d_vis",
+        "d_tip",
+        "log_d_tip",
+        "tip_continuation",
+        "tip_along",
+        "tip_cross",
+        "along",
+        "cross",
+        "trace_coh",
+        "density",
+        "trace_continuation"
+      ],
+      "curve": [
+        {
+          "ratio": 0.5,
+          "dti": 0.006979005785846884,
+          "ci95": [
+            0.004793784321146754,
+            0.00914504910690201
+          ],
+          "dots": 5661,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 1.0,
+          "dti": 0.022929762715226364,
+          "ci95": [
+            0.017815103262015897,
+            0.028528582117108264
+          ],
+          "dots": 11321,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 2.0,
+          "dti": 0.052606938237284226,
+          "ci95": [
+            0.04261930478480539,
+            0.06335950126506966
+          ],
+          "dots": 22642,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 4.0,
+          "dti": 0.08176589968995114,
+          "ci95": [
+            0.06963785872296735,
+            0.09365065729606659
+          ],
+          "dots": 45284,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 8.0,
+          "dti": 0.08713305085684037,
+          "ci95": [
+            0.07452167294757296,
+            0.1006028392623059
+          ],
+          "dots": 90568,
+          "n_truth": 11321
+        },
+        {
+          "ratio": 16.0,
+          "dti": 0.08737451713945843,
+          "ci95": [
+            0.07381924902462363,
+            0.10073837954009478
+          ],
+          "dots": 181136,
+          "n_truth": 11321
+        }
+      ],
+      "best": {
+        "ratio": 16.0,
+        "dti": 0.08737451713945843,
+        "ci95": [
+          0.07381924902462363,
+          0.10073837954009478
+        ],
+        "dots": 181136,
+        "n_truth": 11321
+      },
+      "elapsed_s": 218.5
+    }
+  },
+  "elapsed_s": 218.5
+}

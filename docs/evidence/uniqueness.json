@@ -1,0 +1,122 @@
+{
+  "complete_spatial_scan": false,
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "final_dots": [
+    {
+      "candidate_dots_within_3px": 1.0,
+      "decoded_equal": false,
+      "duplicate_by_overlap": true,
+      "duplicate_by_rho": false,
+      "path": "data/registry/dense_17gemdoe.tif",
+      "phase": "final_dots",
+      "registry_name": "17GEMSDOE dense continuous witness",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.0959880249776675,
+      "spearman_on_dot_union": null,
+      "stop_required": true
+    },
+    {
+      "candidate_dots_within_3px": 0.45636585754501513,
+      "decoded_equal": false,
+      "duplicate_by_overlap": false,
+      "duplicate_by_rho": false,
+      "path": "data/registry/h33_education.tif",
+      "phase": "final_dots",
+      "registry_name": "GEMSDOE32 H33-2-B2",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.03022021134688923,
+      "spearman_on_dot_union": -0.962713124767621,
+      "stop_required": false
+    }
+  ],
+  "indexed_public_hashes": 1143,
+  "literal_dense_witness_is_binding": true,
+  "packaging_after_stop_reason": "Required research TIFF deliverable only; never approval for a slot.",
+  "parallel_main_delta": {
+    "any_stop_required": false,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "measured_after_parallel_main_merge": true,
+    "rows": [
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.48366707388325275,
+        "final_rho": 0.023911808847937362,
+        "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+        "stop_required": false,
+        "submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+        "surface_overlap": 0.1656644028933799,
+        "surface_rho": 0.0926190638567438
+      },
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.18731077707547672,
+        "final_rho": 0.0004342196557903201,
+        "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+        "stop_required": false,
+        "submission": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+        "surface_overlap": 0.19635088657313393,
+        "surface_rho": 0.0299476248775114
+      },
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.18133531630105698,
+        "final_rho": -0.00034434413410923506,
+        "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+        "stop_required": false,
+        "submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+        "surface_overlap": 0.21994601903214694,
+        "surface_rho": 0.0009807217590631614
+      },
+      {
+        "duplicate_by_overlap": false,
+        "duplicate_by_rho": false,
+        "final_overlap": 0.1587613533754714,
+        "final_rho": 0.007219731625196774,
+        "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+        "stop_required": false,
+        "submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+        "surface_overlap": 0.114161212875232,
+        "surface_rho": 0.013237588072893502
+      }
+    ],
+    "scope": "Four candidate rasters newly present on origin/main; exact full-footprint surface and final-dot measurements.",
+    "source_commit": "801251e7ecf9f85069b9edf63c591039ba7367fb"
+  },
+  "scope": "Two hash-pinned stopping witnesses checked. The inherited protocol stops at the first duplicate; full 1,143-raster decode was not continued.",
+  "stop_required": true,
+  "surface_before_placement": [
+    {
+      "candidate_dots_within_3px": 1.0,
+      "decoded_equal": false,
+      "duplicate_by_overlap": true,
+      "duplicate_by_rho": false,
+      "path": "data/registry/dense_17gemdoe.tif",
+      "phase": "surface_before_placement",
+      "registry_name": "17GEMSDOE dense continuous witness",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "spearman_full_footprint": 0.4392670919715825,
+      "spearman_on_dot_union": null,
+      "stop_required": true
+    },
+    {
+      "candidate_dots_within_3px": 0.15368597471634288,
+      "decoded_equal": false,
+      "duplicate_by_overlap": false,
+      "duplicate_by_rho": false,
+      "path": "data/registry/h33_education.tif",
+      "phase": "surface_before_placement",
+      "registry_name": "GEMSDOE32 H33-2-B2",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "spearman_full_footprint": 0.08819766564642105,
+      "spearman_on_dot_union": null,
+      "stop_required": false
+    }
+  ],
+  "thresholds": {
+    "forward_dot_overlap_3px": 0.7,
+    "spearman_rank_correlation": 0.9
+  }
+}

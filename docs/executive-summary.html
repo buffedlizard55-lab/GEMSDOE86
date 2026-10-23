@@ -1,87 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Executive Summary &amp; Submission Guide · GEMSDOE86</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<nav>
-  <strong>GEMS / 86</strong>
-  <a href="index.html">Readiness dashboard</a>
-  <a href="evidence/run-card.json">Run card JSON</a>
-  <a href="evidence/lane86b_results.json">Full H86B-GFCO evidence</a>
-  <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/REVIEW.md">Scientific review (REVIEW.md)</a>
-</nav>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" style="color:#e8eefc">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
+<h1>Executive summary — submission procedure and current stop</h1>
+<div class="card hero"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY REPOSITORY FILE</span>
+<h2>Latest H86B-GFCO &amp; RMRB-86 research candidates</h2><p>All technical files are easy to download; the fail-closed decision is equally explicit. H86B-GFCO passes 15/15 format checks, passes 42/42 leakage canaries, is distinct from all 25 modern/comparable rasters across 16 repos (0.3012 vs H33-2-B2), and beats both d2.8 and H33-2-B2 in point estimate across all 3 holdout instruments (0.1078 whole-comp, 0.1396 segment-all, 0.1521 detached), while automatic slot approval remains blocked by literal &gt;0.70 3-px overlap on 3 dense legacy GEMSDOE24 rasters and whole-component paired CI [−0.0007, +0.0343].</p>
+<a class="btn danger" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF — DO NOT SUBMIT</a>
+<a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download H86B-GFCO ZIP — DO NOT SUBMIT</a>
+<a class="btn ghost" href="evidence/h86b-gfco-run-card.json">H86B-GFCO Run Card</a>
+<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a>
+<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.json">Open RMRB-86 receipt</a></div>
 
-<header>
-  <span class="eyebrow">Executive Summary · GEMSDOE86 · Lane H86B-GFCO</span>
-  <h1>Submission Readiness &amp; Step-by-Step DrivenData Guide</h1>
-  <p>
-    <strong>Current Automated Gate Decision: 🔴 DO NOT SPEND A WEEKLY SLOT AUTOMATICALLY (<code>verdict: "negative"</code>, <code>approved_for_weekly_slot: false</code>).</strong><br>
-    A brand-new, technically valid, competition-formatted GeoTIFF and single-TIF ZIP have been generated and machine-verified across all 15 format checks (eliminating the portal range error <em>"Predicted values must be in range [0, 1]"</em> by construction), and the candidate beats both <code>d2.8</code> and <code>H33-2-B2</code> in point estimate across all 3 spatial holdout instruments with <code>0.3012</code> overlap vs <code>GEMSDOE32 H33-2-B2</code> (<code>&le; 0.6342</code> vs all 25 comparable/modern candidates across 16 repos). However, our fail-closed gate withholds automatic slot approval because literal 3-px overlap exceeds <code>0.70</code> against 3 dense legacy <code>GEMSDOE24</code> rasters (<code>13gems</code> lattice <code>0.9988</code>; <code>gems10-h25</code> <code>0.7656</code>; <code>gems10-h28</code> <code>0.7170</code>) and the 4-quadrant whole-component paired 95% CI narrowly straddles zero (<code>[-0.0007, +0.0343]</code>).
-  </p>
-</header>
+<h2>Identity</h2><table>
+<tr><th>File</th><td class="mono">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</td></tr>
+<tr><th>SHA-256</th><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td></tr>
+<tr><th>Submission name</th><td>RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</td></tr>
+<tr><th>Note (107 chars)</th><td>RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</td></tr>
+<tr><th>Verdict</th><td><b>negative / not authorized</b></td></tr></table>
 
-<section class="alert">
-  <h2>Primary Artifact on File (Format-Verified 15/15)</h2>
-  <p>
-    <strong>GeoTIFF:</strong> <code>gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</code><br>
-    <strong>Single-TIF ZIP:</strong> <code>gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip</code><br>
-    <strong>SHA-256 (TIF):</strong> <code>897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</code><br>
-    <strong>Unique Submission Name:</strong> <code>gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b</code><br>
-    <strong>Submission Note (92 / 140 chars):</strong> <code>H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d&gt;2px, zeros</code>
-  </p>
-  <a class="button" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download .tif</a>
-  <a class="button" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip" download>Download .zip</a>
-  <a class="button" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json" download>Download Validator Receipt (.json)</a>
-</section>
+<h2>Automated gate result</h2><ol>
+<li><b>Format — PASS locally:</b> one float32 band; every value finite in [0,1]; exact EPSG:32611, dimensions and affine; zero outside the sample-defined footprint and on mapped catalogue pixels.</li>
+<li><b>Leakage — PASS:</b> all 20 feature-alone symmetric AUCs are ≤0.58034, below the 0.90 stop.</li>
+<li><b>Holdout point result:</b> <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22,893 withheld positives; physical-block 95% CI) = 0.07283 [0.05888, 0.08744].</li>
+<li><b>Paired scientific gate — FAIL:</b> delta from the strongest matched raw-radiometric control is <b>HOLDOUT-DTI delta</b> (same evaluator, positives and CI method) = 0.00167 [−0.00285, 0.00620].</li>
+<li><b>H33 comparison — PASS:</b> final rank correlation 0.03022 and forward three-pixel overlap 0.45637; bytes and decoded pixels differ.</li>
+<li><b>Parallel-lane delta — PASS:</b> the new raster stays below both thresholds against all four files newly merged from parallel sessions (eight surface/final comparisons).</li>
+<li><b>Literal registry rule — STOP:</b> a continuous prior is positive throughout the footprint, giving any nonempty sparse field overlap 1.0. No exemption is authorized.</li>
+<li><b>Selector/quota — NOT RUN:</b> no authenticated weekly quota or organizer receipt was available. No slot was spent.</li></ol>
 
-<section>
-  <h2>How We Eliminated the Portal Error <em>"Predicted values must be in range [0, 1]"</em></h2>
-  <p>
-    DrivenData's GeoTIFF ingestion validator checks the entire raster array on upload and rejects files containing <code>NaN</code> outside the study polygon, <code>&plusmn;Inf</code>, GDAL nodata sentinels (such as <code>-9999</code> or <code>-3.4e38</code>), or unclipped floating-point overshoot (<code>&lt; 0.0</code> or <code>&gt; 1.0</code>). Every submission generated in <code>GEMSDOE86</code> passes through unmodified <code>vendor/gems57/submission_writer.py</code> and <code>vendor/gems57/validate.py</code>:
-  </p>
-  <ol>
-    <li><strong>Pre-write fail-fast rejection:</strong> Any <code>NaN</code>, <code>Inf</code>, negative value, value <code>&gt; 1.0</code>, non-zero cell outside the study footprint, or non-zero cell on the mapped fault catalogue raises <code>ValueError</code> before a single byte is written (unit-tested in <code>tests/test_audit.py</code>).</li>
-    <li><strong>All-finite zero serialization:</strong> Outside-footprint cells are explicitly set to finite <code>0.0</code> (<code>float32</code>) with <code>nodata = None</code>, exact <code>EPSG:32611</code> CRS, <code>3730 &times; 3292</code> shape, and exact affine transform <code>Affine(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code> matching <code>sample_submission.tif</code>.</li>
-    <li><strong>Post-write disk re-validation &amp; single-TIF ZIP check:</strong> Both <code>validate.assert_submittable</code> (15/15 checks) and <code>zipfile.ZipFile.testzip()</code> (verifying the <code>.zip</code> contains solely that single <code>.tif</code> at archive root) run automatically without human intervention.</li>
-  </ol>
-</section>
+<h2>Exact portal procedure—for a future promoted file only</h2><p>These steps satisfy the process requirement; they do not authorize any current file.</p><ol>
+<li>Open that future file's canonical run card. Continue only if <code>verdict</code> is <code>promote</code>, <code>safe_to_submit</code> is true, every validator field is true, all literal registry gates pass and a separate selector has confirmed the live quota.</li>
+<li>Download the promoted <code>.tif</code> or its ZIP containing exactly one TIFF. Compute SHA-256 locally and compare it with the run card.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, sign in, review current rules/quota and choose <b>New submission</b>.</li>
+<li>Select the promoted TIFF—not JSON evidence, a sample, an old raster or anything named <code>DO-NOT-SUBMIT</code>.</li>
+<li>Paste its ≤140-character run-card note, submit once and retain the organizer receipt bound to the exact SHA-256.</li>
+<li>Only that receipt's result may be called <b>ORGANIZER-CONFIRMED</b>.</li></ol>
 
-<section id="gates">
-  <h2>6-Gate Checklist Required Before Spending Any Live Weekly Slot</h2>
-  <ol>
-    <li><strong>Single Declared Lane &amp; Zero-Catalogue Physical Planes:</strong> Confirmed (<code>H86B-GFCO</code>; AST-verified zero access to <code>existing_faults.tif</code>, <code>labels.tif</code>, <code>gdr_qfaults_traces.csv</code>, or <code>dist_known_fault_px</code> in <code>build_physical_planes</code>).</li>
-    <li><strong>Single-Feature Leakage Canaries (&le; 0.90):</strong> Passed <code>42 / 42</code> features (physical max <code>0.6486</code>; visible-only kinematics max <code>0.8485</code>).</li>
-    <li><strong>Spatial Holdout Improvement over Incumbent (<code>HOLDOUT-DTI</code>):</strong> Point estimate beats both <code>d2.8</code> and <code>H33-2-B2</code> on all 3 instruments (<code>0.1078</code> vs <code>0.0961</code> whole-component LOQO; <code>0.1396</code> vs <code>0.1011</code> segment-all, paired CI <code>[+0.0269, +0.0524]</code>; <code>0.1521</code> vs <code>0.1035</code> detached, paired CI <code>[+0.0343, +0.0627]</code>); whole-component paired CI <code>[-0.0007, +0.0343]</code> narrowly straddles zero.</li>
-    <li><strong>Registry Uniqueness (<code>|&rho;| &le; 0.90</code> &amp; 3-px Overlap <code>&le; 0.70</code>):</strong> Passed against all 25 comparable/modern candidates across 16 repos (<code>&le; 0.6342</code>; <code>0.3012</code> vs <code>H33-2-B2</code>), <em>failed literal <code>&le; 0.70</code></em> on 3 dense legacy <code>GEMSDOE24</code> rasters (<code>13gems = 0.9988</code>, <code>gems10-h25 = 0.7656</code>, <code>gems10-h28 = 0.7170</code>) &rarr; automatic approval withheld.</li>
-    <li><strong>Automated Format &amp; SHA-256 Receipt:</strong> Passed <code>15 / 15</code> checks; receipt written alongside artifact.</li>
-    <li><strong>Human Selector Quota Check:</strong> Promotion to a real weekly DrivenData slot is always a separate human selector step after checking remaining weekly submissions on the authenticated portal.</li>
-  </ol>
-</section>
+<h2>Why the prior range error should not recur</h2><p>The rejected bytes were not supplied, so its cause is unknown. This writer does not guess or clip: it rejects NaN, infinity, sentinels, negatives and values above one before serialization, then reopens the output and validates it again. RMRB-86 passes those local checks. A format pass still cannot override its negative scientific/registry verdict.</p>
 
-<section>
-  <h2>Exact DrivenData Portal Steps (For Any Selector-Approved Green Candidate)</h2>
-  <ol>
-    <li>Download the verified <code>.zip</code> (single <code>.tif</code> inside) or <code>.tif</code> and verify <code>sha256sum</code> matches the adjacent <code>.json</code> receipt and <code>docs/evidence/run-card.json</code>.</li>
-    <li>Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData Competition 306 (DOE GEMS)</a> and check remaining weekly submission slots on the submission page before uploading.</li>
-    <li>Navigate to <strong>Submissions &rarr; Make a submission</strong>, choose the verified single-TIF <code>.zip</code> (or <code>.tif</code>), and paste the exact <code>&le; 140</code>-character note so cross-lane audit logs stay traceable.</li>
-    <li>Click <strong>Submit</strong> once and archive the organizer submission receipt screenshot/JSON. Only a score backed by that receipt may ever be labelled <code>ORGANIZER-CONFIRMED</code>.</li>
-  </ol>
-</section>
-
-<section>
-  <h2>Remaining Limitations &amp; Concrete Next Steps for Session 3</h2>
-  <ul>
-    <li><strong>Why literal legacy overlap fired (<code>0.7170</code> / <code>0.7656</code>):</strong> Multiplicative coupling <code>P_phys^0.65 &times; (0.12 + 0.88 M_kin)</code> placed <code>~72%</code> of dots within the broad <code>26.5%</code>-area corridor of legacy <code>gems10-h28</code> (<code>69,281</code> dots). In Session 3 (fresh 3-experiment budget), test <strong>Rank-3 <code>H86D-PFCO</code></strong> (explicit bipartite graph matching of truncated conjugate RTP magnetic phase-symmetry ridges across transverse CBA gravity steps) or increase the off-corridor cover-blind intrabasin floor (<code>&eta; &ge; 0.28</code> gated on deep basin sediment thickness <code>base_depth_z &gt; 0.5</code>) so intrabasin off-catalogue fault bridges bring legacy <code>gems10-h25/h28</code> overlap strictly below <code>0.65</code> while tightening the whole-component paired CI above zero.</li>
-    <li><strong>External microseismicity (Rank 5 <code>H86F-RLSL</code>):</strong> Live egress to <code>earthquake.usgs.gov</code> is blocked in this sandbox; mirror an official USGS ComCat / UNR NSL hypocenter CSV with SHA-256 provenance into <code>research/upstream/</code> if microseismicity plane fitting is authorized in a future lane.</li>
-  </ul>
-</section>
-
-<footer>
-  Updated 2026-10-22 · Automated format checks: <strong>15/15 PASS</strong> · Fail-closed weekly-slot verdict: <strong>negative</strong> (<code>approved_for_weekly_slot = false</code>).
-</footer>
-</body>
-</html>
+<h2>Next action</h2><p>Preserve every current raster as a research artifact and spend no slot. A future preregistered lane must produce a positive paired result on a target-appropriate instrument and clear a registry rule that is satisfiable without an unauthorized exception. Any schema change separating continuous surfaces from sparse dot fields requires explicit owner approval.</p>
+<p><a href="evidence/rmrb86-run-card.json">Canonical RMRB decision</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Registry evidence</a></p>
+</main><footer>No organizer score is claimed. No current file is authorized for upload.</footer></body></html>
