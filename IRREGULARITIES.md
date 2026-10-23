@@ -309,3 +309,21 @@ mask alone and cannot be circular with the file's own tags. The ledger records t
 `sha8` and the zeros twin's file digest in `sha256`, per house convention, and
 `tests/test_axis_releases.py` re-derives both from disk. **Cost:** none, but any tool that parses
 `e5eb6e7e` as a content digest is wrong.
+
+## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
+The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
+enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the
+parent's >2 px exclusion (min 2.236 px, zero catalogue mass). No new decision; recorded
+so the SNAP files' 2-3 px dots are not mistaken for an oversight.
+
+## IR-86-SNAP-09 — a third SNAP build (gain-gated) landed after two were already merged
+Its `snapr1`/`snapr2` duplicate PR #31's pairs (36,483 vs 36,494; 37,055 vs 37,066 dots
+moved) and are **withdrawn, no raster written**; its novel gated pair `snapr2g10` stands
+as `BUILT-DUPLICATE` corroboration (PR #34's convention), not a candidate. **Cost:** SNAP
+consumed three sessions/builders for one thrice-measured negative; the next session needs
+an explicit human AXIS assignment instead of another slot-plan reading.
+
+## IR-86-SNAP-10 — the SNAP builds treat the signed gravity band differently
+`iso_grav_anom_hg` is signed: PR #31 ranks it as-is, PR #34 uses magnetic bands only, the
+gated build ranks `|iso_grav_anom_hg|`. Nothing is re-run; cross-build gravity comparisons
+are not like-for-like, and any future SNAP-adjacent proposal must state its treatment first.

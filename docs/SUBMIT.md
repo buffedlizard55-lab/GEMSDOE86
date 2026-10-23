@@ -183,3 +183,12 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
 
 Release TIFFs are gitignored (data-use terms unchecked), so they exist only in this working copy;
 the JSON receipts next to them carry the digests. Rebuild with the commands in `AI_USE.md`.
+
+## Also not a slot candidate: the gain-gated SNAP build (2026-10-23, third session)
+
+`releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869[-zeros].tif` (37,654 dots, 17.5 % moved
+≤2 px, mean displacement 0.34 px; zeros sha256 `8ca1d8690aa835c8…82d2e`, NaN twin
+`32c1e4e99444abaf…3f52`; **−0.001 MODEL**) is gate-clean but **must not be uploaded**:
+SNAP was spent by PR #31, corroborated by PR #34, and this build's SGMC control is negative
+with dose (IR-86-SNAP-09). Status `BUILT-DUPLICATE`; its `snapr1`/`snapr2` arms are
+withdrawn duplicate pairs with **no raster**. Rebuild: `python scripts/build_r0_snap.py --build`.
