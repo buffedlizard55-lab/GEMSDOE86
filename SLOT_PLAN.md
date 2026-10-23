@@ -228,6 +228,72 @@ test rather than a score improvement.
 
 ---
 
+# Addendum — MASS (kernel-budget) session, branch `arena/c6b14099-gemsdoe86`, 2026-10-23
+
+**AXIS: MASS**, self-assigned because the brief's literal MASS arms are already spent and both lost.
+No slot was used or requested. Three arms + one control were built on R0, all at the brief's 10 %
+dose (9.9989 % of R0's dots changed each), all gate-clean in both encodings:
+
+| file (`releases/mass86/…`) | n | change | MODEL | verdict |
+|---|---|---|---|---|
+| `…-MASS-minus10pct-marginal-20261023-c3936cfc-zeros.tif` | 33,889 | −3,765 dots by lowest unique kernel credit | −0.0051 | **no slot**: the metric's removal bar (0.0588 × FP charge) is below every dot's unique credit |
+| `…-MASS-plus10pct-extend-20261023-3b708da1-zeros.tif` | 41,419 | +3,765 at 3–6 px along the local trace | +0.0066 | **no slot** by itself: equals the instrument's price of generic mass |
+| `…-MASS-plus10pct-extend-rand-20261023-37fab392-zeros.tif` | 41,419 | same window, uniform draw | +0.0071 | **CONTROL**, never a slot |
+
+## The result that changes the plan
+
+**The MODEL instrument is monotone in dot count.** A symmetric random add/delete ladder reads
+−0.0127 / −0.0068 / −0.0030 / +0.0018 / +0.0040 / +0.0081 for −20/−10/−5/+5/+10/+20 %
+(`evidence/mass_instrument_monotonicity.json`). Every MODEL delta published in this repo for a
+**mass-changing** artefact is therefore partly a mass reading, and none of them — including this
+session's +0.0066 — may be promoted on that instrument. The count-fixed axes (CONCENTRATION,
+RELIEF, SPACING) are unaffected: their reads are computed at constant `n`, so the instrument's mass
+bias cancels in the comparison.
+
+Cause: the SGMC surrogate credits only 8.4 % of its own truth inventory, while the incumbent's
+0.2778 implies 23–48 % coverage for plausible new-fault truth sizes. A map covering a tenth of the
+truth has a large marginal appetite for dots; the live one does not.
+
+**MASS is closed in both directions**, and for the second time on stronger grounds:
+
+* *drop* — the metric's own two-sided test forbids it: removal pays only if a dot's unique truth
+  credit is under `0.2·DTI/(1 − 0.2·DTI)` = 0.0588 kernel units times its false-positive charge.
+  R0's dots have unique credit 1.49–9.38 (mean 6.79; overlap write-off 27.6 %).
+* *add* — unimplementable as specified. Only **733 of 121,131** cells of the parent's own field
+  support are ≥ 3 px from every dot (99.4 % saturated), so a field-ranked 10 % add is either
+  redundant (measured −0.006) or unranked. Non-redundant additions can only come from the parent's
+  geometry, and they read like noise (+0.0066 vs +0.0071 for a random twin).
+
+## Slots, revised (one entity, 3 per rolling week; slots left: UNSUPPLIED)
+
+| # | file | why | decision rule |
+|---|---|---|---|
+| 1 | **`releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`** (+0.0017 MODEL, count fixed) | after this session's audit, the *only* built artefacts whose predictions survive an instrument that cannot be explained by mass are the count-fixed relocation pair. This is the positive half | ≥ +0.010 → spatial allocation, not pruning, is the lever: next build RELIEF-ADD and the PRUNE combination |
+| 2 | **`…-RELIEF-frontm10-20261023-1b26223e-zeros.tif`** (−0.0089 MODEL, count fixed) | the sign flip, and the only built comparison whose predicted separation (~0.011) clears the floor. Slot 1 and 2 together are one experiment with power; either alone is not | the pair straddles 0 → relocation is a real axis; build the 5 km dose. Both inside ±0.010 → RELIEF closes and so does the arrangement family for Phase 1 |
+| 3 | **`releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`** (+0.004 MODEL) | the deepest collar rung. Kept third now, not first: its own prediction was measured on a catalogue-truth surrogate while the edit deletes catalogue-adjacent dots, so part of its +0.004 is structural, not geological | ≥ +0.010 → the collar is not exhausted (4 px rung). Flat or worse → PRUNE closed for Phase 1 |
+
+**Do not spend a slot on any of this session's three files**, nor on `massminus10` / `massplus10`
+(both now explained by the mass curve), nor on the SNAP builds (three independent negatives), nor on
+the SPACING arms (law-vs-chance separation +0.0016, below floor). If the human wants a *single*
+informative slot rather than a pair, spend it on slot 1 and expect a reading, not a gain.
+
+## New axis proposals (mechanism / confounder / falsifier) — not built
+
+1. **FRESH-TERRITORY ADD (count up, prior from the trace, judged only by the *difference* against
+   its random twin)** — the one surviving question from this session: +3,765 non-redundant dots are
+   neutral-to-mildly-positive on an instrument that over-prices mass, and → 0 live if the parent's
+   field is exhausted. *Mechanism:* T rises where the map has no mass at all. *Confounder:* the
+   instrument's mass monotonicity, which only a paired read can cancel. *Falsifier:* the trace arm
+   performing worse than its own random twin on a live pair (would also close the halo question).
+2. **COVERAGE-MATCHED PRUNE (count down, *coverage* held)** — delete dots whose disc is covered by
+   others *and* whose removal leaves no cell more than R from the retained set. Difference from
+   this session's drop arm: it protects `M` as well as `T`, so it is the only deletion rule the
+   metric's FP charge cannot punish. *Confounder:* it selects dots at the field's fringe, which is
+   where PRUNE already operates. *Falsifier:* live ≤ −0.005 with PRUNE flat.
+3. **AMPLITUDE (values below 1 on the least-supported dots) — proposed and analytically dead.** A
+   fractional value `v` scales a dot's numerator and denominator contributions alike, so the sign of
+   its marginal effect does not depend on `v`; and the max operator makes two half-dots strictly
+   worse than one. Do not build it without a new argument.
 # Addendum — CONCENTRATION sign experiment (branch `arena/c1df93fc-gemsdoe86`), 2026-10-23
 
 **AXIS: CONCENTRATION**, self-assigned: it is the only brief-§5 axis whose built arm (`conc15`,

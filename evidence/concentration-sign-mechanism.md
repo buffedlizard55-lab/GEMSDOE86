@@ -116,7 +116,7 @@ set, against R0's 0.2778).
   (IR-86-SNAP-06). It is not run as a gate and does not rank these files.
 * The SGMC off-catalogue control raster (`ext_derived_sgmc_faults_100m_u8`) is **absent from
   this checkout**; the 419 MB feature stack is absent too, so `variants.block_prior()` cannot be
-  called and the prior is catalogue-only (IR-86-CONC-03).
+  called and the prior is catalogue-only (IR-86-CONC-06).
 * What replaces them is a **five-truth-model panel** (exact DTI, collar-masked): `annulus_2_4px`,
   `annulus_3_8px`, `uniform_far_0p8pct`, `uniform_all_0p8pct`, `catalogue_shift_6px` (600 m
   translation, the brief's flight-line uncertainty). The panel's job is to expose that the sign

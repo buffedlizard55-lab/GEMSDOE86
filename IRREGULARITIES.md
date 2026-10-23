@@ -409,7 +409,81 @@ exactly what IR-86-SNAP-06 concluded.
 **Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
 predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
 
-## IR-86-CONC-03 — the CONCENTRATION prior is band-free this session, so `dens15` is not a replication of `conc15`
+## IR-86-MASS-02 — brief §5's MASS ranking is a traversal; the axis was re-ranked, and the brief's own §2 requires it
+
+**Decision changed:** yes — the ranking function this session used, and the rejection of all three
+artefacts for slots.
+
+Brief §5 defines MASS as "drop the lowest-ranked 10 % / add the next-ranked 10 %, **by the parent's
+own ranking**". That pair was built by an earlier session and both arms lost (IR-86-MASS-01: the
+recorded ranking is the FIFO-BFS traversal of the thinning recipe). Brief §2 then says, in the same
+document, "rank dots by exact marginal gain from the metric code, not the shortcut". The two
+sentences cannot both govern a MASS experiment, because the recorded ranking *is* the shortcut.
+
+Resolution taken: the axis (MASS), the dose (±10 %) and the change rule (1–50 % of dots) stay
+exactly as §5 specifies; the **ranking function** is the metric's own marginal credit
+(`gems86.mass_econ.marginal_credit`), which is computable from the parent's dot mask alone with no
+label, no band and no surrogate. Both predictions (preregistered, then revised) are in the run card.
+If the human reads §5 as binding on the ranking function, this session's arms are off-brief and
+should be treated as instrument audit only — which is exactly how SLOT_PLAN now treats them.
+
+## IR-86-MASS-03 — the SGMC MODEL instrument is monotone in dot count, so it cannot rank mass
+
+**Decision changed:** yes — it demotes every mass-changing artefact in the ledger, including this
+session's own, and it re-orders the slot plan.
+
+`evidence/mass_instrument_monotonicity.json`: a symmetric random add/delete ladder on the SGMC
+off-catalogue surrogate reads −0.0127 / −0.0068 / −0.0030 / +0.0018 / +0.0040 / +0.0081 for
+−20 / −10 / −5 / +5 / +10 / +20 % of R0's dots. Any arm that changes the dot count therefore has a
+MODEL delta that is at least partly the instrument's mass response, so no such delta may be used to
+promote an arm. Count-fixed arms (CONCENTRATION, RELIEF, SPACING, PRUNE-with-refill) are unaffected
+at constant `n`; their *card* numbers are not withdrawn.
+
+Numbers already published elsewhere in this repository that this affects: `massminus10` (−0.003) and
+`massplus10` (−0.006) — their "selection is bad" reading is not separable from "fewer/more dots" —
+and any future count-changing arm. It does **not** affect `le3p000` (+0.004) as a *number*, but see
+IR-86-MASS-04.
+
+## IR-86-MASS-04 — PRUNE's positive prediction shares a structural bias with its own edit
+
+**Decision changed:** yes — PRUNE moves from slot 1 to slot 3 in SLOT_PLAN.md.
+
+The PRUNE ladder's predictions were computed against a catalogue-derived truth (the
+hide-and-recover construction), while the edit deletes dots near the catalogue. Any instrument whose
+truth is (or contains) the catalogue will reward that deletion by construction, so part of
+`le3p000`'s +0.004 is structural rather than geological. This is not a claim that PRUNE is wrong —
+it is the only axis with a monotone ladder behind it — but it is no longer the best use of slot 1
+when a count-fixed pair with an above-floor predicted separation exists.
+
+## IR-86-MASS-05 — a re-run of the same pinned recipe reproduces the same sha256; the §6 hash gate needed a self-exemption
+
+**Decision changed:** no — the gate is unchanged in substance; its implementation now says what it
+means.
+
+Brief §6 requires "sha256 not already in the ledger". This session's script rewrites its own rows
+through `scripts/build_ledger.py`, so a second identical run reproduces the same bytes and would trip
+its own gate. The check now passes only when every matching ledger row is one of *this run's own ids*
+and carries no receipt; any other match (a prior session's artefact, or anything with a
+`receipt_score`) fails. Recorded so that "reproducible" is never mistaken for "repeat submission"
+(the ledger's real target: 8 slots on exact repeats).
+
+## IR-86-MASS-06 — `src/gems86/mass_econ.py` had three bugs; the unit tests caught all three before any artefact was written
+
+**Decision changed:** no (caught pre-release), but the numbers in the first two drafts of the run
+card were wrong and are superseded.
+
+1. the kernel offset set excluded the dot's own cell, so every dot lost its `k = 1` self-credit
+   (disc weight 8.3803 instead of 9.3803);
+2. the second-best surface was updated as `max(second, where(v >= best, v, second))`, which discards
+   `v` whenever `v < best` — the asymmetry showed up as two symmetrical dots receiving 7.91 and 5.23
+   units of unique credit instead of 5.23 each;
+3. the docstring asserted `sum_x u_x = sum_g best`, which is false: with a max operator the marginals
+   sum to `sum_g (best − second)`. Corrected in the module and asserted against brute force in
+   `tests/test_mass_econ.py` (6 tests).
+
+The stale artefacts from the first two drafts were deleted from `releases/mass86/`; only the three
+hashes in `ledger/variants_mass_econ.json` exist on disk.
+## IR-86-CONC-06 — the CONCENTRATION prior is band-free this session, so `dens15` is not a replication of `conc15`
 `variants.block_prior()` needs two terms: catalogue fault-interaction density **and** the mean Sobel
 gradient of upward-continued TMI. The second comes from `training_features.tif` (419 MB), which is
 absent from this checkout (`.cache/gems_data` does not exist), so this session's prior is the
@@ -421,7 +495,7 @@ the prior's sign from the missing band. The absent SGMC raster also means no SGM
 this session. **Cost to the next session:** if `dens15` and `conc15` disagree, the TMI term is the
 first suspect and cannot be tested until the feature stack is restored.
 
-## IR-86-CONC-04 — this axis's sign is not measurable with any instrument in this repo, only with a live receipt
+## IR-86-CONC-07 — this axis's sign is not measurable with any instrument in this repo, only with a live receipt
 The five-truth-model panel puts `spr15`/`dens15` at −0.064/+0.047 under catalogue-adjacent truth
 and +0.011/−0.011 under uniform far-field truth. Hide-and-recover, the SGMC off-catalogue DTI and
 the H19-5 support surface are *all* built from the mapped-fault record that the organiser masks at
@@ -430,7 +504,7 @@ arms. **Decision:** the plan treats one live slot as the only admissible test an
 one slot per direction; no local instrument is reported as evidence for either sign. **Cost:**
 every prediction for this axis is MODEL-class and its band crosses zero from either side.
 
-## IR-86-CONC-05 — the block-density CV band is not reachable at the doses brief §5 allows
+## IR-86-CONC-08 — the block-density CV band is not reachable at the doses brief §5 allows
 CV is non-monotone in dose (0.5970 at 5 %, 0.6136 at 15 %, 0.6722 at 30 %; parent 0.6235) and
 *every* arm — spread included — reduces the number of occupied 1 km blocks (15,976 → 13,297), because
 destinations are confined to a fixed prior fifth of the occupied blocks. **Decision:** the
