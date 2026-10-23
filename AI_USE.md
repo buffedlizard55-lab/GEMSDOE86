@@ -413,6 +413,7 @@ receipt exists and no slot was requested.
 **What only the human can supply:** `TOP_PUBLIC` + date, the rolling-week quota, any
 submission-page receipt (R0's 0.2778 included), and the decision to spend (or not spend) a
 throwaway probe slot on `SPACING-alongstrike`.
+
 ## 2026-10-23 — TRACKB hybrid & 120-trace geologist dossier session (branch `arena/ac0bd04f-gemsdoe86`)
 
 * **Axis assignment:** Branched from `e7868ef` (prior to PR #44's merge) when `TRACKB` had `0` rows in
@@ -435,4 +436,32 @@ throwaway probe slot on `SPACING-alongstrike`.
   `PROXY` numbers labelled as scores; zero weekly Phase 1 slots requested (`slot_candidate: false`).
 * **Human must supply:** `TOP_PUBLIC`, remaining rolling-week slots, live receipts for R0 and any
   uploaded slot, verified final deadline, and the single blind final submission decision.
+
+## 2026-10-23 — CONCENTRATION 5 km ridge & CV-band session (branch `arena/69392a35-gemsdoe86`, self-assigned axis)
+
+* **AI wrote:** `src/gems86/concentration_5km.py`, `scripts/run_concentration_5km.py`,
+  `tests/test_concentration_5km.py`, `evidence/concentration-5km-mechanism.md`,
+  `evidence/concentration_5km_axis_20261023.json`, `ledger/variants_concentration_5km.json`,
+  regenerated `ledger/submissions.csv` via `scripts/build_ledger.py`, updated
+  `ledger/variant-cards.md`, `IRREGULARITIES.md` (`IR-86-CONC-10`, `IR-86-CONC-11`), `SLOT_PLAN.md`,
+  `README.md` (`CURRENT STATE` block only), `docs/SUBMIT.md`, and local gitignored twins + tracked JSON
+  receipts in `releases/h33-h33-2-b2-20261004-e5eb6e7e-conc{b5kmup8,b5kmup4,b5kmdown4}-20261023-*`.
+* **AI audited & decided:** self-assigned `AXIS = CONCENTRATION` at 5 km Faulds structural-domain
+  scale with fresh `(parent, axis, value)` keys (`b5km-ridge-up8`, `b5km-ridge-up4`,
+  `b5km-cvband-down4`), restored all 15 SHA-256-pinned manifest inputs, proved all prior off-ridge
+  `CONCENTRATION` builds lose on SGMC (`conc15 = −0.0071`, `dens15 = −0.0006`, `spr15 = −0.0013`,
+  `b5km-move10..20 = −0.0066..−0.0150`, `IR-86-CONC-10`), rehabilitated symmetric fold-fair `d28`
+  `PROXY` (`IR-86-CONC-11`), and identified `concb5kmdown4` (`+0.0015 MODEL` in 4/4 quadrants,
+  `+0.0008 PROXY`, `1 km CV = 0.5162`) as the sole count-fixed `CONCENTRATION` candidate for Slot 2.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_axis_inputs.py
+  .venv/bin/python scripts/run_concentration_5km.py
+  .venv/bin/python scripts/build_ledger.py --json && .venv/bin/python scripts/build_ledger.py --check
+  .venv/bin/python -m pytest -q
+  ```
+* **Human decided / must supply:** nothing supplied in-session (`TOP_PUBLIC`, rolling-week quota
+  remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
+  human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
