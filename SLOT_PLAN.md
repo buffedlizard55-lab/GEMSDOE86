@@ -1,66 +1,81 @@
-# Slot plan — 2026-10-23 (two PRUNE sessions, one plan)
+# SLOT PLAN — 2026-10-23, reconciled across three PRUNE sessions
 
-**No automatic slot use.** One entity, at most 3 scored submissions per rolling week under the
-[official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf); actual slots remaining and
-TOP_PUBLIC are UNSUPPLIED. A live `|Δ| < 0.01` is no evidence. R0 = `h33-h33-2-b2`
-(**0.2778 CLAIM**, no receipt). Deadline **2026-12-03 is user-supplied and UNVERIFIED**
-(DrivenData is not contacted from this sandbox): 41 days ≈ 5 weeks 6 days.
+**No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
+([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
+`TOP_PUBLIC` are **UNSUPPLIED by the human** — I did not guess them. A live `|Δ| < 0.01`
+is no evidence. R0 = `h33-h33-2-b2` (**0.2778 CLAIM**, no receipt in `ledger/`).
 
-Four PRUNE artifacts are built and gate-clean. **Only one `(PRUNE, 3)` may be spent** — two
-exist (IR-86-PRUNE-08), so the plan spends the pair once and uses the other as a local control.
+Deadline arithmetic: 2026-10-23 → **2026-12-03** is 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots,
+one of which is the blind final pick. The date is user-supplied and **UNVERIFIED**
+(DrivenData is not contacted from this sandbox).
+
+Seven gate-clean PRUNE artifacts now exist, from three sessions on one parent. The axis is
+**crowded**: everything left in the collar ladder is 2,171 dots = 5.8 % of the mass, and the
+best available per-dot rate puts the whole ladder inside ±0.01. So PRUNE gets **one slot**,
+not three.
 
 ## Next three slots, in order
 
-1. **PRUNE≤3 + fixed-count H19-5 refill** — `releases/h33-h33-2-b2-prune3-20261023-01d57649.tif`
-   (zeros twin `…-01d57649-zeros.tif`). 37,654 dots, 11.53 % changed, **−0.004 MODEL**.
-   *Teaches:* does deleting the 200–300 m annulus help when mass is held? *Caveat:* the required
-   refill pushes mean nearest-neighbour spacing 3.735 → 3.550 px, so PRUNE and SPACING are not
-   separated in this design. *Decision:* Δ ≥ +0.01 → push the collar to 4 px (slot 2);
-   Δ ≤ −0.01 → the annulus is load-bearing, stop widening and switch axis; `|Δ| < 0.01` → slot 3.
-2. **PRUNE≤4 (pure deletion)** — `releases/h33-h33-2-b2-prune4-20261023-e198b768-nan.tif`
-   (zeros twin `…-de4c2a98-zeros.tif`). 33,829 dots, 10.16 % changed, **−0.008 MODEL**.
-   *Teaches:* is the collar effect monotone in width? This is a genuinely new value (4 px was
-   never built). *Decision:* Δ ≥ +0.01 → continue to 5–6 px; Δ ≤ −0.01 → the collar curve is
-   closed permanently.
-3. **PRUNE≤3, equal count, collar relocated just past 3 px** —
-   `releases/h33-h33-2-b2-prune3r-20261023-9542efac-nan.tif` (zeros twin `…-8c20bd7e-zeros.tif`).
-   37,654 dots, 11.53 % changed, mean move 1.14 px, **−0.003 MODEL**.
-   *Teaches:* mass versus collar position, with spacing nearly preserved. Only worth a slot if
-   slots 1–2 land within ±0.01 of each other; otherwise the answer is already known.
+| # | file (upload the `-zeros` twin) | why this one | decision rule |
+|---|---|---|---|
+| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest rung of the nested ladder (941 + 670 + 560 = 2,171 dots removed; 35,483 dots; 5.77 % changed). Prediction **+0.004 MODEL** (band −0.004…+0.013). One slot buys a monotone read: R0 → r2.236 → r2.828 → r3.000. | ≥ +0.010 → the collar is not exhausted; next week build a single 4 px rung. Flat or ≤ −0.010 → the prune lineage is finished for Phase 1. |
+| 2 | **a new prediction surface, not another prune rung** — the 19-band stack is proven restorable (below) | the prune ladder cannot move the score by more than ~±0.01; beating 0.2778 needs a different axis | SNAP or RELIEF, preregistered with mechanism/confounder/falsifier before building; one axis only |
+| 3 | the better of (1) and (2), re-cut at a different value on the axis that moved | one more point on the winning axis | keep the loser as the fallback file |
 
-**Not recommended for a slot:** `releases/h33-h33-2-b2-prune3-20261023-3eb29af5-nan.tif`
-(pure deletion, 35,483 dots, −0.003 MODEL). It duplicates the `(PRUNE, 3)` pair already spent
-on slot 1. It stays useful as the local *deletion-side* control for slot 3: `prune3` and
-`prune3r` share the identical 2,171 deletions and differ only in whether the count is held.
+**Do not spend a slot on:** `…-prune3-…-01d57649` (same `(PRUNE, 3)` pair as slot 1, different
+refill; only interesting *after* a rung shows ≥ +0.01, when mass versus proximity decides the
+next edit); `…-CONTROL-massctl2171…` (a control, not a candidate); `…-prune3-…-3eb29af5`
+(**withdrawn** — its dot set is identical to `le3p000`, IR-86-PRUNE-08).
 
-Do **not** re-submit R0 or any `-zeros`/`-nan` twin of an already-scored file: at least 8
-historical slots went to exact repeats (brief §3), and twins score identically.
+**Cheap defaults if slot 2 is not ready in time** (both built, gated, and unlike anything on
+main): `releases/h33-h33-2-b2-prune4-20261023-de4c2a98[-zeros].tif` (PRUNE ≤ 4 px, 33,829 dots,
+−0.008 MODEL) and `releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e[-zeros].tif`
+(equal count, collar relocated past 3 px, mean move 1.14 px, −0.003 MODEL). The refill design
+sits in `releases/refill/` because a PRUNE release in `releases/` may only delete dots. Neither is predicted to help; they are rehearsals, not bets.
+
+## Why the feature stack is no longer the blocker
+
+PR #29's plan called restoring `training_features.tif` (419 MB) the gate for every remaining
+axis. It is **open**: this session ran
+
+```
+python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+python scripts/restore_data.py --with-external        # 22 s, sha256-verified
+```
+
+and the stack verified against its pin `4371c82e…3bc5`; five external rasters verified too.
+Needs ~420 MB of disk (gitignored; the pytest suite copies the tree into `/tmp`, so clear
+`/tmp/pytest-of-user` if the disk fills). With the stack present, this session measured
+label-free band response per dot set — the collar is **not** evidence-poor (`tmi_hg` percentile
+0.528 at the collar vs 0.542 elsewhere; `iso_grav_anom_hg` 0.557 vs 0.514).
 
 ## Calendar to the deadline
 
-- **wk 1–2 (slots 1–3).** PRUNE collar sweep above. Exit test: any variant ≥ R0 + 0.01.
-- **wk 2–3. MASS** (±10 % by the parent's own rank, count held). Blocked today: R0's ranking is
-  not stored and `gems32` is absent from this checkout (IR-86-PRUNE-02). Recover the ranking
-  first; never substitute an invented ordering.
-- **wk 4. CONCENTRATION** on 5 km blocks: move 10–20 % of dots from the lowest-prior to the
-  highest-prior blocks; record the block-density CV (best files reportedly 0.51–0.59).
-- **wk 5. Combine** the two axes with receipt-level effects ≥ 0.01 and a coherent mechanism,
-  each as a single attributable edit; add one SNAP probe (dots to the strongest
-  `tmi_hg`/`iso_grav_anom_hg` edge within 2 px, same count, report mean displacement).
-- **wk 6. Confirm and freeze.** Re-validate both finalists' formats, choose the final file and a
-  fallback blind, keep one final-submission choice, and never multiply accounts.
+- **wk 1 (slot 1).** The deepest collar rung. Single decisive read on PRUNE.
+- **wk 2–3 (slots 2–3).** SNAP (preregistered: move each dot ≤ 2 px to the strongest
+  `tmi_hg`/`iso_grav_anom_hg` edge, same count, report mean displacement; falsifier: mean
+  displacement < 0.5 px makes it a no-op) **or** RELIEF (shift 10–15 % of mass between basin /
+  piedmont / range-front terciles, count fixed).
+- **wk 4.** CONCENTRATION on 5–10 km blocks, only at blocks > 3 px clear of the catalogue
+  (the collar result already argues against stacking mass next to mapped traces); record the
+  block-density CV.
+- **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as one attributable edit.
+- **wk 6.** Confirm both finalists, revalidate both formats, choose the final file and a
+  fallback blind, never multiply accounts.
 
-## Better future axes (proposals only; not built)
+## Better axes (proposals only; not built this session)
 
 - **Collar fill inward (PRUNE, 2.5).** If slot 1 is negative, the annulus is short of dots.
   *Confounder:* added mass can never earn credit on masked pixels. *Falsifier:* a live drop
   > 0.01 versus R0 kills the direction.
-- **Spacing-matched collar test.** Equal-count collar sets with preregistered nearest-neighbour
-  matching. *Confounder:* eligible cells shift geography and relief. *Falsifier:* the collar
-  effect disappears after spacing and block-density matching.
 - **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the shared
-  two-sided metric. *Confounder:* proxy-truth shift and tuning on SGMC. *Falsifier:* no
-  replicated positive sign on untouched spatial folds, then no live receipt.
-- **Annulus-conditional RELIEF.** Test the 200–300 m annulus separately per relief tercile.
+  two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no replicated positive sign
+  on untouched spatial folds, then no live receipt.
+- **Annulus-conditional RELIEF.** Test the 200–300 m annulus per relief tercile.
   *Confounder:* relief controls both catalogue completeness and lineament visibility.
   *Falsifier:* no consistent sign in two relief regimes on held-out physical blocks.
+
+## Human inputs still missing
+
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
+submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time.

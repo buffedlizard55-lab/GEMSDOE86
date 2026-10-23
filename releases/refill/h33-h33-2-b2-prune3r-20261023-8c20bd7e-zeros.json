@@ -1,0 +1,72 @@
+{
+  "id": "h33-h33-2-b2-prune3r-20261023-8c20bd7e",
+  "parent": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "axis": "prune",
+  "value": "3r",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 11.5313,
+  "dot_digest": "78d1667b91082004aa19c775906e8d9793873c1a97315e43d13693af07e2338a",
+  "zeros": {
+    "file": "h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif",
+    "sha256": "8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e",
+    "bytes": 329550,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 3.1622776601683795
+    }
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-prune3r-20261023-8c20bd7e.tif",
+    "sha256": "9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682",
+    "bytes": 370817,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 3.1622776601683795
+    }
+  },
+  "submission_name": "h33-h33-2-b2-prune3r-20261023-8c20bd7e",
+  "note": "-0.003 (95% range -0.012..+0.006). MODEL. Mechanism: identical count to R0, identical deletions to prune3, collar pushed just past 3 px (mea",
+  "predicted_live_change": "-0.003 (95% range -0.012..+0.006). MODEL. Mechanism: identical count to R0, identical deletions to prune3, collar pushed just past 3 px (mean move 1.14 px). Reads out whether any prune3 effect is mass or collar position.",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "retained": 35483,
+    "removed": 2171,
+    "added": 2171,
+    "pct_of_parent_changed": 11.5313,
+    "pct_removed": 5.766,
+    "pct_added": 5.766,
+    "kept_fraction": 0.942343
+  },
+  "generated_utc": "2026-10-23T04:16:19Z"
+}

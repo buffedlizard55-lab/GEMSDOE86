@@ -146,9 +146,9 @@ never used as a gate or as a prediction.
 
 | id | dots | Δ vs R0 | min catalogue distance | sha256 (nan) | sha256 (zeros) |
 |---|---:|---:|---:|---|---|
-| `h33-h33-2-b2-prune3-20261023-3eb29af5-nan` | 35,483 | 5.766 % | 3.16 px | `3eb29af5…f0501` | `4bd30478…e4838b` |
-| `h33-h33-2-b2-prune4-20261023-e198b768-nan` | 33,829 | 10.158 % | 4.12 px | `e198b768…715cd` | `de4c2a98…4ebc5` |
-| `h33-h33-2-b2-prune3r-20261023-9542efac-nan` | 37,654 | 11.531 % | 3.16 px | `9542efac…06682` | `8c20bd7e…52c2e` |
+| `h33-h33-2-b2-prune3-…-3eb29af5` **withdrawn** | 35,483 | 5.766 % | 3.16 px | — (same dot set as PR #29 `le3p000`) | — |
+| `h33-h33-2-b2-prune4-20261023-de4c2a98` | 33,829 | 10.158 % | 4.12 px | `e198b768…715cd` (nan twin) | `de4c2a98…4ebc5` |
+| `h33-h33-2-b2-prune3r-20261023-8c20bd7e` (in `releases/refill/`) | 37,654 | 11.531 % | 3.16 px | `9542efac…06682` (nan twin) | `8c20bd7e…52c2e` |
 
 All six rasters pass every MUST gate in brief §6 (single band, float32, EPSG:32611, 3730×3292,
 template transform, values in [0,1], no NaN inside the footprint, NaN outside for `-nan` /

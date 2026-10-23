@@ -166,63 +166,91 @@ def test_ledger_is_reproducible():
 
 # -------------------------------------------------------------------- releases
 def _releases() -> list[Path]:
-    d = ROOT / "releases"
-    return sorted(d.glob("*.tif")) if d.is_dir() else []
+    """Our twins: releases/ holds pure-deletion PRUNE files, releases/refill/ the refill design."""
+    out = []
+    for d in (ROOT / "releases", ROOT / "releases" / "refill"):
+        if d.is_dir():
+            out += sorted(p for p in d.glob("*prune*.tif"))
+    return out
 
 
-@pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")
+def _ours() -> list[Path]:
+    """Only the files this branch built (the other session's ladder lives in releases/ too)."""
+    return [p for p in _releases() if "prune4" in p.name or "prune3r" in p.name]
+
+
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
 def test_every_release_passes_the_brief_gates():
     g = prune.load_grids()
-    for path in _releases():
-        mode = "nan" if path.stem.endswith("-nan") else "zeros"
+    for path in _ours():
+        mode = "zeros" if path.stem.endswith("-zeros") else "nan"
         rep = prune.validate(path, g, mode)
         assert rep["all_checks_passed"], (path.name, rep["checks"])
-        # every file embeds its OWN digest and nothing else claims it
-        assert path.stem.split("-")[-2] == rep["sha256"][:8]
+        # house naming: <parent>-<tag>-<date>-<zeros8>[-zeros].tif.  The NaN twin
+        # carries the ZEROS digest in its name (the pair is named once), so only
+        # the zeros file embeds its own digest.
+        if mode == "zeros":
+            assert path.stem.split("-")[6] == rep["sha256"][:8]
         assert rep["n_dots"] > 0
 
 
-@pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
 def test_nan_and_zeros_twins_carry_the_same_dots():
     import rasterio
     pairs = {}
-    for path in _releases():
-        parts = path.stem.split("-")
-        key, mode = "-".join(parts[:-2]), parts[-1]   # twins differ only by fill+digest
-        pairs.setdefault(key, {})[mode] = path
-    for stem, d in pairs.items():
-        assert set(d) == {"nan", "zeros"}, stem
+    for path in _ours():
+        stem = path.stem.replace("-zeros", "")
+        key = "-".join(stem.split("-")[:-1])          # parent-tag-date
+        pairs.setdefault(key, {})["zeros" if path.stem.endswith("-zeros") else "nan"] = path
+    for key, d in pairs.items():
+        assert set(d) == {"nan", "zeros"}, (key, list(d))
         a = rasterio.open(d["nan"]).read(1)
         b = rasterio.open(d["zeros"]).read(1)
         assert np.array_equal(np.isfinite(a) & (a > 0), b > 0)
 
 
-@pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
 def test_no_release_duplicates_a_known_digest():
-    for path in _releases():
+    for path in _ours():
         rep = prune.uniqueness_vs_disk(path)
         assert not rep["duplicate"], (path.name, rep["exact_hash_duplicates"])
 
 
-@pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
 def test_release_names_follow_the_brief_convention():
-    for path in _releases():
+    for path in _ours():
         parts = path.stem.split("-")
-        # <parent>-<axis><value>-<yyyymmdd>-<sha8>-<fill>, parent = h33-h33-2-b2
+        # <parent>-<axis><value>-<yyyymmdd>-<sha8>[-zeros], parent = h33-h33-2-b2
         assert parts[:4] == ["h33", "h33", "2", "b2"]
         assert parts[4].startswith("prune")
-        assert len(parts) == 8
+        assert len(parts) in (7, 8)
         assert parts[5] == prune.DATE_TAG
         assert len(parts[6]) == 8
-        assert parts[7] in {"nan", "zeros"}
+        assert len(parts) == 7 or parts[7] == "zeros"
 
 
-@pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
 def test_evidence_card_matches_releases():
     card = json.loads((ROOT / "evidence" / "prune_axis_20261023.json").read_text(encoding="utf-8"))
-    on_disk = {p.stat().st_size for p in _releases()}
-    for v in card["variants"]:
+    on_disk = {p.stat().st_size for p in _ours()}
+    built = [v for v in card["variants"] if v.get("status") != "WITHDRAWN"]
+    assert built
+    for v in built:
         assert v["gate_all_pass"]
         assert v["validation_nan"]["bytes"] in on_disk
+        assert v["validation_zeros"]["bytes"] in on_disk
         assert v["proxy"]["evidence_class"] == "PROXY"
         assert v["pct_changed"] == pytest.approx(v["diff"]["pct_of_parent_changed"], abs=1e-9)
+
+
+@pytest.mark.skipif(not _ours(), reason="no releases built in this checkout")
+def test_refill_variant_only_lives_in_the_refill_directory():
+    """A PRUNE release in releases/ may only delete dots; the refill design is elsewhere."""
+    import rasterio
+    parent = prune.load_grids().parent
+    for path in (ROOT / "releases").glob("*prune*.tif"):
+        dots = rasterio.open(path).read(1) > 0
+        assert np.all(dots <= parent), path.name
+    for path in (ROOT / "releases" / "refill").glob("*.tif"):
+        dots = rasterio.open(path).read(1) > 0
+        assert (dots & ~parent).any(), "the refill variant must add dots, else it is a plain prune"

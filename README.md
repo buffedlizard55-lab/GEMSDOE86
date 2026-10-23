@@ -2,19 +2,32 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE axis, two sessions reconciled)
+## CURRENT STATE — 2026-10-23 (PRUNE axis; three sessions reconciled)
 
 | Field | Value |
 |---|---|
-| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue, min catalogue distance 2.236 px. Live **0.2778 is CLAIM**, not RECEIPT. |
-| Best receipt | **none** — `ledger/submissions.csv` holds 0 receipts (108 historic rows, all `CLAIM`). |
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** from the pinned base `gems28-h27-4-r1-solo-d2-8` by PR #29 (40,199 → 37,654, 0 differing pixels). Live **0.2778 is CLAIM**, not RECEIPT. |
+| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 7 built rows, all `MODEL`). |
 | TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
 | Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
-| Built (4, gate-clean, none slot-approved) | `…-prune3-…-01d57649` PRUNE≤3 + fixed-count H19-5 refill, 37,654 dots, −0.004 MODEL (PR #28) · `…-prune3-…-3eb29af5` PRUNE≤3 pure deletion, 35,483 dots, −0.003 MODEL · `…-prune4-…-e198b768` PRUNE≤4, 33,829 dots, −0.008 MODEL · `…-prune3r-…-9542efac` PRUNE≤3 with equal-count relocation, 37,654 dots, −0.003 MODEL. Two builds share the `(PRUNE, 3)` pair: only one may be scored (IR-86-PRUNE-08). |
-| Next 3 slots | 1. PRUNE≤3+refill `01d57649`; 2. PRUNE≤4 `e198b768` (only if slot 1 gains ≥ 0.01); 3. PRUNE≤3r `9542efac` (only if slots 1–2 land within ±0.01). Decision tree, calendar and proposed axes: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
-| Blockers | parent recipe (`gems32`) absent ⇒ MASS unavailable (IR-86-PRUNE-02); hide-and-recover proxy at its floor for this lineage (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs gitignored pending data-use review (IR-86-PRUNE-04). |
+| Built (6 gate-clean + 1 withdrawn, none slot-approved) | Nested ladder from PR #29: `…-PRUNE-le2p236` (36,713 dots), `…-le2p828` (36,043), `…-le3p000` (35,483, **+0.004 MODEL**), plus mass control `…-CONTROL-massctl2171`. From PR #28: `…-prune3-…-01d57649` (37,654, refill, −0.004). From this session: `…-prune4-…-de4c2a98` (33,829, −0.008), `…-prune3r-…-8c20bd7e` (37,654, −0.003), and `…-prune3-…-3eb29af5` **withdrawn** — same dot set as `le3p000`, its local rasters deleted (IR-86-PRUNE-08). |
+| Next 3 slots | 1. `le3p000` (the deepest collar rung). 2. A **new axis** (SNAP or RELIEF) — the feature stack is proven restorable and verified, so that blocker is gone. 3. The better of the two, re-cut. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is structurally invalid for catalogue-avoiding fields (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
 
 <!-- CURRENT_STATE_END -->
+
+## CURRENT STATE (2026-10-23, PRUNE ladder — second session)
+
+| field | value |
+|---|---|
+| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots — **CLAIM 0.2778, no receipt** |
+| Parent rebuild | **byte-identical**: `deflate/predictor=3/zlevel=9/tiled 256` re-encodes the rebuilt dot set to 219,065 B = sha256 `c55bafc4…`; dot set also exact (0 of 12,279,160 cells differ) |
+| Best **receipt** | none — every scored row in `ledger/submissions.csv` is a CLAIM |
+| `TOP_PUBLIC` / slots left | **blank — human fills from the leaderboard** (3/week, one blind final, 2026-12-03) |
+| Built | `(PRUNE, √5)`, `(PRUNE, √8)`, `(PRUNE, 3.0 no-refill)` + mass-matched control; `(PRUNE,3)+refill` came from the earlier session — see [SLOT_PLAN.md](SLOT_PLAN.md), [ledger/variant-cards.md](ledger/variant-cards.md) |
+| Predicted (MODEL) | +0.001 / +0.003 / +0.004 live; every band crosses zero and stays under the 0.01 evidence floor. PRUNE is a **one-slot axis** |
+| Upload | [docs/SUBMIT.md](docs/SUBMIT.md); verify by rebuilding — rasters are gitignored, hashes are not |
+| Open | IR-86-PRUNE-03 (literal-overlap stop), IR-86-PRUNE-06 (two sessions built `(PRUNE,3)`; one belongs in a slot), IR-86-PRUNE-05 (SNAP/RELIEF/MASS/CONCENTRATION need the absent 419 MB feature stack) |
 
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 

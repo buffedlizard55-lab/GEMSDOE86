@@ -63,6 +63,12 @@ from gems57.metric import dti_exact  # noqa: E402
 
 GRID = ROOT / "data" / "bridge"
 RELEASES = ROOT / "releases"
+# House convention (src/gems86/prune.py, tests/test_prune_ladder.py): a pure-deletion
+# PRUNE release lives in releases/ and is named <parent>-<tag>-<zeros8>-zeros.tif with a
+# sibling .json receipt.  Variants that also ADD dots are a different design (the brief's
+# "refill to hold the count"), so they live in releases/refill/ with the same naming and
+# their own contract in tests/test_prune_axis.py.
+REFILL_DIR = RELEASES / "refill"
 LEDGER = ROOT / "ledger"
 FLEET = ROOT / "data" / "scored_fleet"
 DOWNLOADS = ROOT / "docs" / "downloads"
@@ -97,12 +103,26 @@ PREDICTIONS = {
                 "whether any prune3 effect is mass or collar position."),
 }
 
+# Variants whose dot set a concurrent session already built.  The set is still
+# computed and reported (it is the deletion-side control for prune3r) but no
+# raster is written, so the wrong file cannot be uploaded by accident.
+WITHDRAWN = {
+    "prune3": ("same dot set as PR #29's ladder rung le3p000 "
+               "(h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b); "
+               "IR-86-PRUNE-08"),
+}
+
 # (axis, value, description)
 VARIANTS = (
     ("prune", "3", "drop dots with 2 < d(catalogue) <= 3 px"),
     ("prune", "4", "drop dots with 2 < d(catalogue) <= 4 px"),
     ("prune", "3r", "drop 2 < d <= 3 px, relocate the same count to 3 < d <= 5 px"),
 )
+
+
+def dot_digest(dots: np.ndarray) -> str:
+    """Stable identity of a dot *set*: sha256 over sorted flat indices (uint32 LE)."""
+    return hashlib.sha256(np.flatnonzero(dots).astype("<u4").tobytes()).hexdigest()
 
 
 def sha256_file(path: Path) -> str:
@@ -311,7 +331,8 @@ def diff_stats(parent: np.ndarray, cand: np.ndarray) -> dict:
         "n_parent": n0, "n_candidate": n1,
         "retained": int((parent & cand).sum()),
         "removed": removed, "added": added,
-        "pct_of_parent_changed": round(100.0 * (removed + added) / n0, 3),
+        # 4 dp: matches src/gems86/prune.py:diff_stats, so both receipts agree
+        "pct_of_parent_changed": round(100.0 * (removed + added) / n0, 4),
         "pct_removed": round(100.0 * removed / n0, 3),
         "pct_added": round(100.0 * added / n0, 3),
         "kept_fraction": round(float((parent & cand).sum()) / n0, 6),
@@ -328,11 +349,11 @@ def uniqueness_vs_disk(path: Path) -> dict:
         with ledger.open(newline="", encoding="utf-8") as fh:
             for row in csv.DictReader(fh):
                 # the ledger's own row for this build is not a duplicate
-                if row.get("id") == path.stem:
+                if row.get("id") == path.stem.removesuffix("-zeros"):
                     continue
                 if (row.get("sha256") or "") == digest:
                     hits.append(f"ledger:{row.get('id', '')}")
-    for folder in (FLEET, DOWNLOADS, RELEASES):
+    for folder in (FLEET, DOWNLOADS, RELEASES, REFILL_DIR):
         if not folder.is_dir():
             continue
         for other in sorted(folder.glob("*.tif")):
@@ -553,23 +574,34 @@ def main() -> int:
     rows = []
     for key, v in variants.items():
         dots = v["dots"]
+        if key in WITHDRAWN:
+            rows.append({"id": f"{PARENT_SHORT}-{key}-{DATE_TAG}-withdrawn", "axis": key.rstrip("0123456789r"),
+                         "value": key[len(key.rstrip("0123456789r")):], "status": "WITHDRAWN",
+                         "withdrawn_because": WITHDRAWN[key], "n_dots": int(dots.sum()),
+                         "pct_changed": diff_stats(g.parent, dots)["pct_of_parent_changed"],
+                         "diff": diff_stats(g.parent, dots), "files": [],
+                         "gate_all_pass": None, "proxy": None,
+                         "predicted_change": PREDICTIONS.get(key, "")})
+            print(f"[4/5] {key}: WITHDRAWN — {WITHDRAWN[key]}")
+            continue
+        out_dir = REFILL_DIR if v["added"].any() else RELEASES
+        out_dir.mkdir(parents=True, exist_ok=True)
         base = f"{PARENT_SHORT}-{key}-{DATE_TAG}"
-        written = {}
-        for mode in ("nan", "zeros"):
-            # The digest is content-derived, so write to a scratch name first and
-            # rename to <...>-<sha8>-<mode>.tif.  Each twin carries ITS OWN digest,
-            # because the out-of-footprint fill changes the bytes.
-            scratch = RELEASES / f".{base}-{mode}.tmp.tif"
-            scratch.unlink(missing_ok=True)
-            write_tiff(scratch, dots, g.footprint, mode)
-            digest = sha256_file(scratch)
-            final = RELEASES / f"{base}-{digest[:8]}-{mode}.tif"
-            final.unlink(missing_ok=True)
-            scratch.replace(final)
-            written[mode] = (final, digest)
-        final_nan, digest = written["nan"]
-        final_zeros = written["zeros"][0]
-        sha8 = digest[:8]
+        # The zeros twin is written first: its digest names BOTH twins, which is the
+        # convention tests/test_prune_ladder.py enforces for releases/*-zeros.tif.
+        scratch_z = out_dir / f".{base}-zeros.tmp.tif"
+        scratch_z.unlink(missing_ok=True)
+        write_tiff(scratch_z, dots, g.footprint, "zeros")
+        zeros_digest = sha256_file(scratch_z)
+        sha8 = zeros_digest[:8]
+        final_zeros = out_dir / f"{base}-{sha8}-zeros.tif"
+        final_nan = out_dir / f"{base}-{sha8}.tif"
+        for pth in (final_zeros, final_nan):
+            pth.unlink(missing_ok=True)
+        scratch_z.replace(final_zeros)
+        write_tiff(final_nan, dots, g.footprint, "nan")
+        digest = sha256_file(final_nan)
+        written = {"nan": (final_nan, digest), "zeros": (final_zeros, zeros_digest)}
 
         v_nan = validate(final_nan, g, "nan")
         v_zeros = validate(final_zeros, g, "zeros")
@@ -612,6 +644,36 @@ def main() -> int:
             "receipt_score": "",
             "receipt_date": "",
         }
+        receipt = {
+            "id": final_nan.stem,
+            "parent": PARENT_FILE.stem,
+            "axis": key.rstrip("0123456789r"),
+            "value": key[len(key.rstrip("0123456789r")):],
+            "role": "candidate",
+            "n_dots": diff["n_candidate"],
+            "pct_changed": diff["pct_of_parent_changed"],
+            "dot_digest": dot_digest(dots),
+            "zeros": {"file": final_zeros.name, "sha256": zeros_digest,
+                      "bytes": final_zeros.stat().st_size,
+                      "validator": {k: v_zeros[k] for k in
+                                    ("checks", "all_checks_passed", "on_catalogue_dots",
+                                     "min_catalogue_distance_px")}},
+            "nan": {"file": final_nan.name, "sha256": digest,
+                    "bytes": final_nan.stat().st_size,
+                    "validator": {k: v_nan[k] for k in
+                                  ("checks", "all_checks_passed", "on_catalogue_dots",
+                                   "min_catalogue_distance_px")}},
+            "submission_name": final_nan.stem,
+            "note": PREDICTIONS.get(key, "")[:140],
+            "predicted_live_change": PREDICTIONS.get(key, ""),
+            "evidence_class": "MODEL",
+            "approved_for_weekly_slot": False,
+            "submission_slots_used": 0,
+            "diff": diff,
+            "generated_utc": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ", __import__("time").gmtime()),
+        }
+        # House convention: the receipt sits beside the zeros twin and is named after it.
+        final_zeros.with_suffix(".json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
         rows.append(row)
         print(f"[4/5] {row['id']}: {row['n_dots']:,} dots ({row['pct_changed']:+.3f}% vs R0), "
               f"gates {'PASS' if row['gate_all_pass'] else 'FAIL'}, "

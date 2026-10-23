@@ -145,7 +145,8 @@ def variant_rows() -> list[dict]:
             "axis": str(v.get("axis", "")).upper(),
             "value": str(v.get("value", "")),
             "pct_changed": str(v.get("pct_changed", "")),
-            "sha256": v.get("sha256", ""),
+            # house convention: the ledger's sha256 is the zeros twin's digest
+            "sha256": v.get("sha256_zeros") or v.get("sha256", ""),
             "status": v.get("status", "BUILT"),
             "predicted_change": v.get("predicted_change", ""),
             "receipt_score": v.get("receipt_score", ""),

@@ -1,6 +1,6 @@
 {
   "schema": "gems86.prune-axis.v1",
-  "generated_utc": "2026-10-23T04:02:00Z",
+  "generated_utc": "2026-10-23T04:16:19Z",
   "axis": "PRUNE",
   "parent": {
     "id": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
@@ -13,7 +13,7 @@
     "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
   "seed": 20261023,
-  "git_sha": "357e9781258ee4d8650598561214ddd355d6480f",
+  "git_sha": "becbda977949af7c7e43512fcbf87e3bb9c4d821",
   "proxy": {
     "evidence_class": "PROXY",
     "design": "catalogue hide-and-recover, 20% of 8-connected catalogue components withheld per draw, visible catalogue pixel-exactly masked as known, exact alpha=0.2/beta=0.8/R=3px DTI (gems57.metric.dti_exact)",
@@ -310,292 +310,41 @@
   },
   "variants": [
     {
-      "id": "h33-h33-2-b2-prune3-20261023-3eb29af5-nan",
-      "parent": "h33-h33-2-b2",
+      "id": "h33-h33-2-b2-prune3-20261023-withdrawn",
       "axis": "prune",
       "value": "3",
-      "rule": "2 < d <= 3 dropped",
+      "status": "WITHDRAWN",
+      "withdrawn_because": "same dot set as PR #29's ladder rung le3p000 (h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b); IR-86-PRUNE-08",
       "n_dots": 35483,
-      "pct_changed": 5.766,
-      "sha256": "3eb29af50244daada65c70d433be9c0507fd4422b358c54c7e7eebc4485f0501",
-      "sha8": "3eb29af5",
-      "files": [
-        "releases/h33-h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
-        "releases/h33-h33-2-b2-prune3-20261023-4bd30478-zeros.tif"
-      ],
-      "sha256_zeros": "4bd3047844fcff384245af58b76906caf9acd48ba356ff37f145225359e4838b",
-      "status": "BUILT",
+      "pct_changed": 5.7657,
       "diff": {
         "n_parent": 37654,
         "n_candidate": 35483,
         "retained": 35483,
         "removed": 2171,
         "added": 0,
-        "pct_of_parent_changed": 5.766,
+        "pct_of_parent_changed": 5.7657,
         "pct_removed": 5.766,
         "pct_added": 0.0,
         "kept_fraction": 0.942343
       },
-      "validation_nan": {
-        "file": "releases/h33-h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
-        "bytes": 364549,
-        "sha256": "3eb29af50244daada65c70d433be9c0507fd4422b358c54c7e7eebc4485f0501",
-        "mode": "nan",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": NaN
-        },
-        "n_dots": 35483,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 3.1622776601683795,
-        "mean_catalogue_distance_px": 30.610674457884603,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "nan_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "validation_zeros": {
-        "file": "releases/h33-h33-2-b2-prune3-20261023-4bd30478-zeros.tif",
-        "bytes": 323470,
-        "sha256": "4bd3047844fcff384245af58b76906caf9acd48ba356ff37f145225359e4838b",
-        "mode": "zeros",
-        "meta": {
-          "bands": 1,
-          "dtype": "float32",
-          "crs": "EPSG:32611",
-          "shape": [
-            3730,
-            3292
-          ],
-          "transform": [
-            100.0,
-            0.0,
-            243350.0,
-            0.0,
-            -100.0,
-            4508550.0
-          ],
-          "nodata": null
-        },
-        "n_dots": 35483,
-        "on_catalogue_dots": 0,
-        "min_catalogue_distance_px": 3.1622776601683795,
-        "mean_catalogue_distance_px": 30.610674457884603,
-        "checks": {
-          "single_band": true,
-          "dtype_float32": true,
-          "crs_epsg_32611": true,
-          "shape_matches_template": true,
-          "transform_matches_template": true,
-          "values_in_0_1": true,
-          "no_nan_inside_footprint": true,
-          "zero_on_catalogue": true,
-          "unit_mass_where_emitted": true,
-          "zeros_outside_footprint": true
-        },
-        "all_checks_passed": true,
-        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
-      },
-      "gate_all_pass": true,
-      "exact_hash_duplicate": {
-        "sha256": "3eb29af50244daada65c70d433be9c0507fd4422b358c54c7e7eebc4485f0501",
-        "sha8": "3eb29af5",
-        "exact_hash_duplicates": [],
-        "duplicate": false
-      },
-      "proxy": {
-        "proxy_dti_mean": 0.0,
-        "delta_vs_R0_mean": -0.0043589754580666005,
-        "delta_vs_R0_ci95": [
-          -0.005019209088878184,
-          -0.0036987418272550173
-        ],
-        "folds_improved": 0,
-        "draws": 6,
-        "evidence_class": "PROXY"
-      },
-      "coverage_control_dti": 0.0,
-      "ring_table": {
-        "evidence_class": "MEASUREMENT (label-free)",
-        "note": "distance to the mapped catalogue; enrichment > 1 = hugging the traces",
-        "rows": [
-          {
-            "ring_px": [
-              0.0,
-              2.0
-            ],
-            "footprint_px": 243560,
-            "dots": 0,
-            "footprint_share": 0.047134,
-            "dot_share": 0.0,
-            "enrichment": 0.0
-          },
-          {
-            "ring_px": [
-              2.0,
-              3.0
-            ],
-            "footprint_px": 140246,
-            "dots": 0,
-            "footprint_share": 0.027141,
-            "dot_share": 0.0,
-            "enrichment": 0.0
-          },
-          {
-            "ring_px": [
-              3.0,
-              4.0
-            ],
-            "footprint_px": 119588,
-            "dots": 1654,
-            "footprint_share": 0.023143,
-            "dot_share": 0.046614,
-            "enrichment": 2.0142
-          },
-          {
-            "ring_px": [
-              4.0,
-              5.0
-            ],
-            "footprint_px": 149596,
-            "dots": 1812,
-            "footprint_share": 0.02895,
-            "dot_share": 0.051067,
-            "enrichment": 1.764
-          },
-          {
-            "ring_px": [
-              5.0,
-              6.0
-            ],
-            "footprint_px": 113774,
-            "dots": 1164,
-            "footprint_share": 0.022018,
-            "dot_share": 0.032804,
-            "enrichment": 1.4899
-          },
-          {
-            "ring_px": [
-              6.0,
-              8.0
-            ],
-            "footprint_px": 235340,
-            "dots": 2363,
-            "footprint_share": 0.045543,
-            "dot_share": 0.066595,
-            "enrichment": 1.4622
-          },
-          {
-            "ring_px": [
-              8.0,
-              10.0
-            ],
-            "footprint_px": 246066,
-            "dots": 2196,
-            "footprint_share": 0.047619,
-            "dot_share": 0.061889,
-            "enrichment": 1.2997
-          },
-          {
-            "ring_px": [
-              10.0,
-              15.0
-            ],
-            "footprint_px": 535508,
-            "dots": 4305,
-            "footprint_share": 0.103633,
-            "dot_share": 0.121326,
-            "enrichment": 1.1707
-          },
-          {
-            "ring_px": [
-              15.0,
-              20.0
-            ],
-            "footprint_px": 473662,
-            "dots": 3465,
-            "footprint_share": 0.091664,
-            "dot_share": 0.097652,
-            "enrichment": 1.0653
-          },
-          {
-            "ring_px": [
-              20.0,
-              30.0
-            ],
-            "footprint_px": 765981,
-            "dots": 5037,
-            "footprint_share": 0.148234,
-            "dot_share": 0.141955,
-            "enrichment": 0.9576
-          },
-          {
-            "ring_px": [
-              30.0,
-              50.0
-            ],
-            "footprint_px": 1016593,
-            "dots": 5986,
-            "footprint_share": 0.196733,
-            "dot_share": 0.168701,
-            "enrichment": 0.8575
-          },
-          {
-            "ring_px": [
-              50.0,
-              null
-            ],
-            "footprint_px": 1066471,
-            "dots": 7501,
-            "footprint_share": 0.206386,
-            "dot_share": 0.211397,
-            "enrichment": 1.0243
-          }
-        ]
-      },
-      "mean_relocation_px": null,
-      "max_relocation_px": null,
-      "relocation_shortfall": null,
-      "predicted_change": "-0.003 (95% range -0.010..+0.004). MODEL. Mechanism: the 2-3 px collar holds 5.8% of the dots at 2.1x the background density but is NOT evidence-poor (tmi_hg percentile 0.528 vs 0.542 elsewhere), and the organiser says new truth can sit within 300 m of known traces, so most of these dots still carry new-fault credit; only the masked-sliver redundancy argues for a gain.",
-      "receipt_score": "",
-      "receipt_date": ""
+      "files": [],
+      "gate_all_pass": null,
+      "proxy": null,
+      "predicted_change": "-0.003 (95% range -0.010..+0.004). MODEL. Mechanism: the 2-3 px collar holds 5.8% of the dots at 2.1x the background density but is NOT evidence-poor (tmi_hg percentile 0.528 vs 0.542 elsewhere), and the organiser says new truth can sit within 300 m of known traces, so most of these dots still carry new-fault credit; only the masked-sliver redundancy argues for a gain."
     },
     {
-      "id": "h33-h33-2-b2-prune4-20261023-e198b768-nan",
+      "id": "h33-h33-2-b2-prune4-20261023-de4c2a98",
       "parent": "h33-h33-2-b2",
       "axis": "prune",
       "value": "4",
       "rule": "2 < d <= 4 dropped",
       "n_dots": 33829,
-      "pct_changed": 10.158,
+      "pct_changed": 10.1583,
       "sha256": "e198b768b5a19d7e08e33de14ad1ec03425154db1acd81fad5db3b4b7e9715cd",
-      "sha8": "e198b768",
+      "sha8": "de4c2a98",
       "files": [
-        "releases/h33-h33-2-b2-prune4-20261023-e198b768-nan.tif",
+        "releases/h33-h33-2-b2-prune4-20261023-de4c2a98.tif",
         "releases/h33-h33-2-b2-prune4-20261023-de4c2a98-zeros.tif"
       ],
       "sha256_zeros": "de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5",
@@ -606,13 +355,13 @@
         "retained": 33829,
         "removed": 3825,
         "added": 0,
-        "pct_of_parent_changed": 10.158,
+        "pct_of_parent_changed": 10.1583,
         "pct_removed": 10.158,
         "pct_added": 0.0,
         "kept_fraction": 0.898417
       },
       "validation_nan": {
-        "file": "releases/h33-h33-2-b2-prune4-20261023-e198b768-nan.tif",
+        "file": "releases/h33-h33-2-b2-prune4-20261023-de4c2a98.tif",
         "bytes": 359953,
         "sha256": "e198b768b5a19d7e08e33de14ad1ec03425154db1acd81fad5db3b4b7e9715cd",
         "mode": "nan",
@@ -860,18 +609,18 @@
       "receipt_date": ""
     },
     {
-      "id": "h33-h33-2-b2-prune3r-20261023-9542efac-nan",
+      "id": "h33-h33-2-b2-prune3r-20261023-8c20bd7e",
       "parent": "h33-h33-2-b2",
       "axis": "prune",
       "value": "3r",
       "rule": "2 < d <= 3 dropped, equal count relocated into 3 < d <= 5",
       "n_dots": 37654,
-      "pct_changed": 11.531,
+      "pct_changed": 11.5313,
       "sha256": "9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682",
-      "sha8": "9542efac",
+      "sha8": "8c20bd7e",
       "files": [
-        "releases/h33-h33-2-b2-prune3r-20261023-9542efac-nan.tif",
-        "releases/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif"
+        "releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e.tif",
+        "releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif"
       ],
       "sha256_zeros": "8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e",
       "status": "BUILT",
@@ -881,13 +630,13 @@
         "retained": 35483,
         "removed": 2171,
         "added": 2171,
-        "pct_of_parent_changed": 11.531,
+        "pct_of_parent_changed": 11.5313,
         "pct_removed": 5.766,
         "pct_added": 5.766,
         "kept_fraction": 0.942343
       },
       "validation_nan": {
-        "file": "releases/h33-h33-2-b2-prune3r-20261023-9542efac-nan.tif",
+        "file": "releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e.tif",
         "bytes": 370817,
         "sha256": "9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682",
         "mode": "nan",
@@ -929,7 +678,7 @@
         "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
       },
       "validation_zeros": {
-        "file": "releases/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif",
+        "file": "releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif",
         "bytes": 329550,
         "sha256": "8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e",
         "mode": "zeros",
