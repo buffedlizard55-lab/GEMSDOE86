@@ -310,6 +310,38 @@ mask alone and cannot be circular with the file's own tags. The ledger records t
 `tests/test_axis_releases.py` re-derives both from disk. **Cost:** none, but any tool that parses
 `e5eb6e7e` as a content digest is wrong.
 
+## IR-86-CONC-05 — partial 5 km edge blocks were almost treated as the lowest-prior source
+
+**Observed.** A 50×50 px tiling of the 3,730×3,292 grid leaves 30 rows and 42 columns in
+partial edge blocks. `block_to_pixels` marks those cells `-inf` because they have no complete
+block prior. The first 5 km build therefore put their dots at the front of the ascending-prior
+source draw; `prior_separation` stopped the run before any candidate raster, receipt or ledger
+row was written. This is not evidence that edge-strip geology is low priority.
+
+**Decision.** Unclassified dots are excluded from the low-prior draw (`source_priority=+inf` for
+non-finite block values), and the 5 km builder fails if one is dropped anyway. Density CV remains
+explicitly a **complete-block** measurement; it is not silently extended with a different partial-
+block normalization. The 10/15/20% doses and low→high direction were not changed after the first
+SGMC read. A synthetic 110×110 regression grid now exercises the remainder strips. **Cost:** one
+205 s stopped build, zero releases and zero slots. The same guard also corrects the latent two-
+column remainder issue in the older 1 km implementation; no historical 1 km artifact was rebuilt
+or relabelled here.
+
+## IR-86-CONC-09 — positive catalogue-recovery PROXY conflicts with support and independent control
+
+**Observed.** All three 5 km arms place **0% of their added cells** on pinned `gems19-h19-5`, the
+support surface from which R0's lineage was thinned; all source cells are on it. Meanwhile pooled
+hide-and-recover rises from parent `0.0286 [0.0240,0.0333]` to `0.0408 / 0.0427 / 0.0441` for
+10/15/20% (`n=11,321` withheld positive pixels; the paired 15% Δ is `+0.0141 [0.0072,0.0234]`,
+**PROXY only**). The independent SGMC MODEL read instead changes by `−0.0066 / −0.0109 / −0.0150`,
+and occupied complete-5 km-block CV rises `0.7442 → 0.9006 / 1.0113 / 1.0798`.
+
+**Decision.** None of these three files is slot-recommended. The positive PROXY is not a score or
+a gate and cannot overrule either the support-surface abandonment or the negative independent
+control. Its catalogue-interaction term is also part of the placement prior, so the instrument
+and mechanism are not independent. A future **support-constrained** block-allocation axis is only
+a proposal for a later session; no fourth variant or retuned value was built here.
+
 ## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
 The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
 enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the

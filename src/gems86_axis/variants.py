@@ -197,8 +197,13 @@ def concentration(parent: np.ndarray, ctx: dict, bands: dict, prior: np.ndarray,
 
     dot_rows, dot_cols = np.nonzero(dots)
     dot_prior = prior_px[dot_rows, dot_cols]
+    # Partial edge strips have no complete block and therefore no prior (-inf in
+    # block_to_pixels).  They are UNCLASSIFIED, not low-priority evidence.  Never
+    # let them jump to the front of the low-prior source draw (found before any
+    # 5 km release; the 1 km arm has only a two-column remainder).
+    source_priority = np.where(np.isfinite(dot_prior), dot_prior, np.inf)
 
-    order = np.argsort(dot_prior, kind="stable")  # ascending prior -> lowest first
+    order = np.argsort(source_priority, kind="stable")  # ascending prior -> lowest first
     drop_idx = order[:n_move]
     drop = np.zeros_like(dots)
     drop[dot_rows[drop_idx], dot_cols[drop_idx]] = True
