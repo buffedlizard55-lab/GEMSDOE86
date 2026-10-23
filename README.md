@@ -11,7 +11,7 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 
 ### Outcome of the current review
 
-The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 8 inherited final rasters were remeasured and fail that gate. No exception was granted, no new model or dot placement was run, and no old TIFF was copied into a new release.
+The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 9 final rasters (including concurrent Session-3 `H86C-KSLB`) were remeasured and fail that literal gate. No exception was granted, and no weekly slot was spent.
 
 The existing TIFFs below are safe to download **for audit** under the local numerical/format policy. Every serialized file, ZIP payload, receipt, note, name, validity mask, SHA, grid, finite range and applicable scientific card was checked automatically. **Local format pass is not organizer acceptance, uniqueness clearance, or slot authorization.**
 
@@ -25,8 +25,9 @@ The existing TIFFs below are safe to download **for audit** under the local nume
 | H86B-GFCO multi-physics | [gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif) | 145,410 | 91 | PASS / **DO NOT SUBMIT** |
 | H86-WVB wavenumber / fault-valve bridge | [gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif](docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif) | 136,026 | 94 | PASS / **DO NOT SUBMIT** |
 | H86-FVMB dip-projected / fault-valve model | [gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif](docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif) | 146,282 | 124 | PASS / **DO NOT SUBMIT** |
+| H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR | [gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif](docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif) | 151,572 | 85 | PASS / **DO NOT SUBMIT** |
 
-Adjacent `.zip` files each contain exactly the corresponding TIFF. Each adjacent `.json` records its unique identity name and short note. The dashboard links all three. No candidate is selected or called “highest holdout”: the historical fold designs and intervals are not one comparable benchmark.
+Adjacent `.zip` files each contain exactly the corresponding TIFF. Each adjacent `.json` records its unique identity name and short note. The dashboard links all three. For Session-3 `H86C-KSLB`, see its [canonical run card](docs/evidence/h86c-kslb-run-card.json), [40-raster cross-repo uniqueness ledger](docs/evidence/h86c_crosslane_uniqueness.json), [PhD scientific monograph](research/H86C_KSLB_REVIEW.md), and [three-pass verification log](research/H86C_KSLB_VERIFICATION.md) (`HOLDOUT-DTI` buffered whole-component LOQO `0.1241 [0.1080, 0.1403]`, paired Δ vs `d2.8` `+0.0322 [+0.0191, +0.0469]`, `0/37` non-lattice `dot_field` duplicates `<= 0.5915`, `52/52` leakage canaries `<= 0.8587`; fail-closed `DO NOT SUBMIT` on literal saturated witnesses). No candidate is selected or called “highest holdout” across incompatible fold designs.
 
 ## Scientific answer to the H33 question
 

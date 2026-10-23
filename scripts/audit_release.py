@@ -114,6 +114,14 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "paired_delta_ci95": w["paired_delta_vs_d28_ci95"],
                 "design": "buffered whole components; LOQO; one seed",
                 "caveat": "Paired physical-block delta interval includes zero. Larger cut-segment values are different instruments, not a repository-wide best."}
+    if kind == "kslb_whole_components":
+        w = h["buffered_whole_components_loqo"]
+        return {**base, "withheld_positives": w["withheld_positives"],
+                "value": w["candidate_dti"], "ci95": w["ci95"],
+                "paired_delta": w["paired_delta_vs_d28"],
+                "paired_delta_ci95": w["paired_delta_vs_d28_ci95"],
+                "design": "buffered whole components; LOQO; physical-block interval",
+                "caveat": "Concurrent Session-3 archive; paired whole-component delta interval is positive vs d2.8 and H33-2-B2 and 0/37 non-lattice dot-field rasters exceed 0.70, but literal overlap fails on saturated witnesses and catalogue-recovery holdout is not a private-test score."}
     if kind == "pooled":
         return {**base, "withheld_positives": h["withheld_positives"],
                 "value": h["value"], "ci95": h["ci95"],
