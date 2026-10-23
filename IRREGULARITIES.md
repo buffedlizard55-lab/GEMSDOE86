@@ -105,3 +105,31 @@ Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, 
 other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
+
+## IR-86-SNAP-01 — AXIS was again unassigned; SNAP was taken from the slot plan, not from the human
+Brief v2 §1 says the AXIS is human-assigned. It arrived blank for the fourth session running.
+**Decision:** SNAP was chosen because (a) `SLOT_PLAN.md` (written by the PRUNE sessions) had
+already pre-registered "SNAP or RELIEF" as slot 2 and declared PRUNE crowded, and (b) SNAP's two
+bands restore from a verified pin, so nothing had to be guessed. No other axis was touched.
+**Cost:** if the human wanted MASS, CONCENTRATION or RELIEF, this session's three builds are off-axis.
+
+## IR-86-SNAP-02 — SNAP is a negative axis on the only instrument available
+97–99 % of R0's dots move to a stronger gradient cell, so the edit is large; but the catalogue
+hide-and-recover PROXY cannot separate any arm from a **random-response null control** (real
++0.00013 vs null −0.00120; σ=1 smoothing −0.00179, σ=2 −0.00316), and it costs coverage
+(dots with a neighbour closer than 2 px: 0 → 3,448 / 8,341 / 2,085). The response is smooth
+(lag-1 autocorrelation 0.978), so this is not speckle — the incumbent field simply is not on the
+TMI/gravity ridge, and "on the ridge" is not demonstrably "on a fault".
+**Decision:** all three variants ship as gate-clean artifacts with **negative** MODEL predictions
+and are ranked *below* the PRUNE rung in `SLOT_PLAN.md`. SNAP gets at most one slot, and only as a
+deliberate probe of the live hypothesis, never as an expected gain. **Cost:** the live hypothesis
+("new faults are at potential-field edges") is untestable locally; one slot is the only measurement.
+
+## IR-86-SNAP-03 — a SNAP variant changes ~194 % of R0's cells, which the 1–50 % rule cannot express
+A move deletes one cell and adds another, so % of parent *cells* changed is 2×% of dots moved
+(193.8 / 196.9 / 199.6 %). Brief §5 exempts SNAP from the 1–50 % contract and asks only that the
+exact percentage be recorded.
+**Decision:** the ledger's `pct_changed` column reports **% of parent dots that moved**
+(96.92 / 98.44 / 99.78 %) because a dot is the unit of mass; the cell-level figure and the
+count-preservation proof are in `ledger/variants_snap.json`. **Cost:** anyone comparing the SNAP
+rows to the PRUNE rows in that column compares two different denominators.

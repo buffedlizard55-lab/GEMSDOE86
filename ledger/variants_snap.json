@@ -1,0 +1,314 @@
+[
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "1",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 96.9193,
+    "sha256": "b8f215b3d858ad1efd6737ae19521deb6b700cd974f769d778251edc3b80c3d0",
+    "sha8": "0e09c2b7",
+    "sha256_zeros": "0e09c2b7800c302a7c840f0c38b3b3808f82eca242d7292d547f68a5098404be",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7-zeros.tif"
+    ],
+    "status": "BUILT",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 1160,
+      "removed": 36494,
+      "added": 36494,
+      "pct_of_parent_changed": 193.8386,
+      "pct_changed": 193.8386,
+      "pct_removed": 96.9193,
+      "pct_added": 96.9193,
+      "kept_fraction": 0.030807,
+      "kept_distance_min_px": 2.2361,
+      "count_exact": true,
+      "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+    },
+    "movement": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "n_snapped": 36494,
+      "pct_snapped": 96.9193,
+      "mean_displacement_px_moved": 1.0,
+      "median_displacement_px_moved": 1.0,
+      "max_displacement_px": 1.0,
+      "mean_displacement_px_all_dots": 0.9692,
+      "mean_response_gain_moved": 0.034651,
+      "mean_response_before_dots": 0.530794,
+      "mean_response_after_dots": 0.564378,
+      "nn_distance_before_mean_px": 3.7351,
+      "nn_distance_after_mean_px": 3.522,
+      "nn_distance_before_median_px": 3.0,
+      "nn_distance_after_median_px": 3.0,
+      "nn_lt_2px_before": 0,
+      "nn_lt_2px_after": 3448,
+      "catalogue_distance_before_mean_px": 28.9966,
+      "catalogue_distance_after_mean_px": 28.9993,
+      "catalogue_distance_before_min_px": 2.2361,
+      "catalogue_distance_after_min_px": 2.2361,
+      "dots_moved_closer_to_catalogue": 18519,
+      "dots_moved_farther_from_catalogue": 18710,
+      "dots_on_catalogue": 0,
+      "diff_vs_parent": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 1160,
+        "removed": 36494,
+        "added": 36494,
+        "pct_of_parent_changed": 193.8386,
+        "pct_changed": 193.8386,
+        "pct_removed": 96.9193,
+        "pct_added": 96.9193,
+        "kept_fraction": 0.030807,
+        "kept_distance_min_px": 2.2361,
+        "count_exact": true,
+        "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+      }
+    },
+    "model": {
+      "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+      "alpha": 0.2,
+      "mean_displacement_px": 1.0,
+      "n_snapped": 36494,
+      "dk_per_moved_dot": 0.33333,
+      "D_px": 56341.21,
+      "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+      "hit_rate_h": [
+        0.1,
+        0.4
+      ],
+      "midpoint_h": 0.22,
+      "bracket": [
+        0.0,
+        0.0864
+      ],
+      "midpoint": 0.0238,
+      "evidence_class": "MODEL",
+      "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+    },
+    "predicted_change": "-0.004 (MODEL; band -0.012..+0.004; algebra bracket +0.000..+0.086). n=36494 dots moved 1.00 px mean; nearest-neighbour 3.735->3.522 px; dots closer than 2 px to a neighbour 0->3448",
+    "proxy": {
+      "mean": 0.003533,
+      "paired_delta_vs_R0": -0.000822,
+      "paired_ci95": [
+        -0.000972,
+        -0.000675
+      ]
+    },
+    "gate_all_pass": true
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "2",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 98.4384,
+    "sha256": "c9f4042f71add006089f79634468488ed2b08183e0505a4174a688f9ee1e916b",
+    "sha8": "e7473403",
+    "sha256_zeros": "e74734031f478edafc55017d0002e72fe1930dd32c237c9341833732028f5743",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403-zeros.tif"
+    ],
+    "status": "BUILT",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 588,
+      "removed": 37066,
+      "added": 37066,
+      "pct_of_parent_changed": 196.8768,
+      "pct_changed": 196.8768,
+      "pct_removed": 98.4384,
+      "pct_added": 98.4384,
+      "kept_fraction": 0.015616,
+      "kept_distance_min_px": 2.2361,
+      "count_exact": true,
+      "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+    },
+    "movement": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "n_snapped": 37066,
+      "pct_snapped": 98.4384,
+      "mean_displacement_px_moved": 1.7895,
+      "median_displacement_px_moved": 2.0,
+      "max_displacement_px": 2.0,
+      "mean_displacement_px_all_dots": 1.7615,
+      "mean_response_gain_moved": 0.055584,
+      "mean_response_before_dots": 0.530794,
+      "mean_response_after_dots": 0.58551,
+      "nn_distance_before_mean_px": 3.7351,
+      "nn_distance_after_mean_px": 3.345,
+      "nn_distance_before_median_px": 3.0,
+      "nn_distance_after_median_px": 2.8284,
+      "nn_lt_2px_before": 0,
+      "nn_lt_2px_after": 8341,
+      "catalogue_distance_before_mean_px": 28.9966,
+      "catalogue_distance_after_mean_px": 29.0003,
+      "catalogue_distance_before_min_px": 2.2361,
+      "catalogue_distance_after_min_px": 2.2361,
+      "dots_moved_closer_to_catalogue": 18583,
+      "dots_moved_farther_from_catalogue": 18781,
+      "dots_on_catalogue": 0,
+      "diff_vs_parent": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 588,
+        "removed": 37066,
+        "added": 37066,
+        "pct_of_parent_changed": 196.8768,
+        "pct_changed": 196.8768,
+        "pct_removed": 98.4384,
+        "pct_added": 98.4384,
+        "kept_fraction": 0.015616,
+        "kept_distance_min_px": 2.2361,
+        "count_exact": true,
+        "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+      }
+    },
+    "model": {
+      "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+      "alpha": 0.2,
+      "mean_displacement_px": 1.7895,
+      "n_snapped": 37066,
+      "dk_per_moved_dot": 0.5965,
+      "D_px": 56341.21,
+      "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+      "hit_rate_h": [
+        0.1,
+        0.4
+      ],
+      "midpoint_h": 0.22,
+      "bracket": [
+        0.0001,
+        0.157
+      ],
+      "midpoint": 0.0432,
+      "evidence_class": "MODEL",
+      "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+    },
+    "predicted_change": "-0.006 (MODEL; band -0.020..+0.006; algebra bracket +0.000..+0.157). n=37066 dots moved 1.79 px mean; nearest-neighbour 3.735->3.345 px; dots closer than 2 px to a neighbour 0->8341",
+    "proxy": {
+      "mean": 0.004495,
+      "paired_delta_vs_R0": 0.000139,
+      "paired_ci95": [
+        1.7e-05,
+        0.000258
+      ]
+    },
+    "gate_all_pass": true
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "2-grav",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 99.7796,
+    "sha256": "a9cc8fdadbcb31d7c8f19a2adeed56bf7034ac2633bdf64af7767f8023c23218",
+    "sha8": "17fe2f15",
+    "sha256_zeros": "17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15-zeros.tif"
+    ],
+    "status": "BUILT",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 83,
+      "removed": 37571,
+      "added": 37571,
+      "pct_of_parent_changed": 199.5591,
+      "pct_changed": 199.5591,
+      "pct_removed": 99.7796,
+      "pct_added": 99.7796,
+      "kept_fraction": 0.002204,
+      "kept_distance_min_px": 2.2361,
+      "count_exact": true,
+      "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+    },
+    "movement": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "n_snapped": 37571,
+      "pct_snapped": 99.7796,
+      "mean_displacement_px_moved": 1.9467,
+      "median_displacement_px_moved": 2.0,
+      "max_displacement_px": 2.0,
+      "mean_displacement_px_all_dots": 1.9425,
+      "mean_response_gain_moved": 0.024132,
+      "mean_response_before_dots": 0.487335,
+      "mean_response_after_dots": 0.511414,
+      "nn_distance_before_mean_px": 3.7351,
+      "nn_distance_after_mean_px": 3.615,
+      "nn_distance_before_median_px": 3.0,
+      "nn_distance_after_median_px": 3.0,
+      "nn_lt_2px_before": 0,
+      "nn_lt_2px_after": 2085,
+      "catalogue_distance_before_mean_px": 28.9966,
+      "catalogue_distance_after_mean_px": 28.9718,
+      "catalogue_distance_before_min_px": 2.2361,
+      "catalogue_distance_after_min_px": 2.2361,
+      "dots_moved_closer_to_catalogue": 18799,
+      "dots_moved_farther_from_catalogue": 18599,
+      "dots_on_catalogue": 0,
+      "diff_vs_parent": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "retained": 83,
+        "removed": 37571,
+        "added": 37571,
+        "pct_of_parent_changed": 199.5591,
+        "pct_changed": 199.5591,
+        "pct_removed": 99.7796,
+        "pct_added": 99.7796,
+        "kept_fraction": 0.002204,
+        "kept_distance_min_px": 2.2361,
+        "count_exact": true,
+        "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+      }
+    },
+    "model": {
+      "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+      "alpha": 0.2,
+      "mean_displacement_px": 1.9467,
+      "n_snapped": 37571,
+      "dk_per_moved_dot": 0.6489,
+      "D_px": 56341.21,
+      "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+      "hit_rate_h": [
+        0.1,
+        0.4
+      ],
+      "midpoint_h": 0.22,
+      "bracket": [
+        0.0001,
+        0.1731
+      ],
+      "midpoint": 0.0477,
+      "evidence_class": "MODEL",
+      "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+    },
+    "predicted_change": "-0.004 (MODEL; band -0.016..+0.006; algebra bracket +0.000..+0.173). n=37571 dots moved 1.95 px mean; nearest-neighbour 3.735->3.615 px; dots closer than 2 px to a neighbour 0->2085",
+    "proxy": {
+      "mean": 0.004511,
+      "paired_delta_vs_R0": 0.000156,
+      "paired_ci95": [
+        -7e-06,
+        0.000289
+      ]
+    },
+    "gate_all_pass": true
+  }
+]

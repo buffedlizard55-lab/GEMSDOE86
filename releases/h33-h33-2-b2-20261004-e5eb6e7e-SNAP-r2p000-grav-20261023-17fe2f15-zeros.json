@@ -1,0 +1,226 @@
+{
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15",
+  "parent": "h33-h33-2-b2",
+  "axis": "SNAP",
+  "value": "<=2px iso_grav_anom_hg only",
+  "role": "candidate",
+  "radius_px": 2.0,
+  "weights": {
+    "tmi_hg": 0.0,
+    "iso_grav_anom_hg": 1.0
+  },
+  "rule": "each dot moves <= 2.0 px to the strongest rank-normalised edge response in its window; count, mass and catalogue exclusion unchanged",
+  "n_dots": 37654,
+  "pct_changed": 99.7796,
+  "dot_digest": "f6f448f5249bf9926fe241b7a69cb2f1ee0fd94964361e563ffecd131035cf54",
+  "movement": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "n_snapped": 37571,
+    "pct_snapped": 99.7796,
+    "mean_displacement_px_moved": 1.9467,
+    "median_displacement_px_moved": 2.0,
+    "max_displacement_px": 2.0,
+    "mean_displacement_px_all_dots": 1.9425,
+    "mean_response_gain_moved": 0.024132,
+    "mean_response_before_dots": 0.487335,
+    "mean_response_after_dots": 0.511414,
+    "nn_distance_before_mean_px": 3.7351,
+    "nn_distance_after_mean_px": 3.615,
+    "nn_distance_before_median_px": 3.0,
+    "nn_distance_after_median_px": 3.0,
+    "nn_lt_2px_before": 0,
+    "nn_lt_2px_after": 2085,
+    "catalogue_distance_before_mean_px": 28.9966,
+    "catalogue_distance_after_mean_px": 28.9718,
+    "catalogue_distance_before_min_px": 2.2361,
+    "catalogue_distance_after_min_px": 2.2361,
+    "dots_moved_closer_to_catalogue": 18799,
+    "dots_moved_farther_from_catalogue": 18599,
+    "dots_on_catalogue": 0,
+    "diff_vs_parent": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 83,
+      "removed": 37571,
+      "added": 37571,
+      "pct_of_parent_changed": 199.5591,
+      "pct_changed": 199.5591,
+      "pct_removed": 99.7796,
+      "pct_added": 99.7796,
+      "kept_fraction": 0.002204,
+      "kept_distance_min_px": 2.2361,
+      "count_exact": true,
+      "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+    }
+  },
+  "model": {
+    "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+    "alpha": 0.2,
+    "mean_displacement_px": 1.9467,
+    "n_snapped": 37571,
+    "dk_per_moved_dot": 0.6489,
+    "D_px": 56341.21,
+    "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+    "hit_rate_h": [
+      0.1,
+      0.4
+    ],
+    "midpoint_h": 0.22,
+    "bracket": [
+      0.0001,
+      0.1731
+    ],
+    "midpoint": 0.0477,
+    "evidence_class": "MODEL",
+    "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+  },
+  "proxy": {
+    "class_": "PROXY",
+    "mean": 0.004511,
+    "paired_delta_vs_R0": 0.000156,
+    "paired_ci95": [
+      -7e-06,
+      0.000289
+    ]
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15-zeros.tif",
+    "sha256": "17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823",
+    "bytes": 219429,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15-zeros.tif",
+      "bytes": 219429,
+      "sha256": "17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15.tif",
+    "mode": "nan",
+    "sha256": "a9cc8fdadbcb31d7c8f19a2adeed56bf7034ac2633bdf64af7767f8023c23218",
+    "bytes": 355716,
+    "in_footprint_checks_pass": true,
+    "excluded_policy_checks": [
+      "no_nan_anywhere",
+      "outside_footprint_zero"
+    ],
+    "policy_note": "NaN outside the footprint is the public spec; the repo's all-finite policy rejects it (IR-86-PRUNE-07)"
+  },
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15",
+  "note": "R0 h33-2-b2 (0.2778 CLAIM); SNAP <=2px iso_grav_anom_hg; mean move 1.95px; predicted -0.004 (MODEL)",
+  "predicted_live_change": -0.004,
+  "predicted_band": [
+    -0.016,
+    0.006
+  ],
+  "algebra_bracket": [
+    0.0001,
+    0.1731
+  ],
+  "algebra_midpoint": 0.0477,
+  "predicted_basis": "MODEL judgement fixed before this raster was written; the algebra bracket is the optimistic end and the null control removed the reason to trust it",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "provenance": {
+    "input_pins": {
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/existing_faults.tif"
+      },
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/sample_submission.tif"
+      },
+      "training_features.tif": {
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/training_features.tif"
+      },
+      "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin_source": "data/restore_receipt.json",
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      },
+      "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin_source": "PINS in scripts/build_r0_prune.py + scripts/run_prune_ladder.py",
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "matches_expected": true
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    }
+  },
+  "generated_utc": "2026-10-23T15:44:34Z"
+}
