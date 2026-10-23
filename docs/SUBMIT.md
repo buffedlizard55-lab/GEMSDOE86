@@ -5,6 +5,35 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
+## Slot order as of the MASS (kernel-budget) session, 2026-10-23 — **supersedes the order below**
+
+The session's instrument audit (evidence/mass_instrument_monotonicity.json) shows the SGMC MODEL
+surrogate is monotone in dot count, so no mass-changing artefact may be ranked on it. The count-fixed
+pair is therefore the only above-floor comparison this repository has built:
+
+1. **RELIEF front +15 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+   (card below; count fixed, +0.0017 MODEL).
+2. **RELIEF front −10 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e-zeros.tif`
+   (−0.0089 MODEL). Slots 1 + 2 are **one experiment**: the pair's predicted separation (~0.011) is
+   the only one that clears the 0.01 evidence floor.
+3. **PRUNE ≤ 3 px** — the card immediately below (count down 5.77 %, +0.004 MODEL).
+
+**This session's three files are NOT for upload** (mass-changing on an instrument that cannot rank
+mass). If one is ever used, it must be `plus10pct-extend`, never the control:
+
+| file (`releases/mass86/`) | name (≤ 64 ch) | note (≤ 140 ch) | zeros sha256 | bytes |
+|---|---|---|---|---|
+| `…-MASS-plus10pct-extend-20261023-3b708da1-zeros.tif` | `h33-h33-2-b2-MASS-plus10pct-extend-20261023-3b708da1` | `h33-h33-2-b2; MASS plus10pct-extend; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)` | `cb42bd88…060a9b` | 325,286 |
+| `…-MASS-minus10pct-marginal-20261023-c3936cfc-zeros.tif` | `h33-h33-2-b2-MASS-minus10pct-marginal-20261023-c3936cfc` | `h33-h33-2-b2; MASS minus10pct-marginal; 10.0% of dots changed; predicted 0.000 MODEL (below the 0.01 evidence floor)` | `c69123fd…` | 325,196 |
+| `…-MASS-plus10pct-extend-rand-20261023-37fab392-zeros.tif` | **CONTROL — never upload** | `…extend-rand…` | `9070f274…` | — |
+
+Format receipt for all three: `tools`-free local validation of the written bytes, both encodings —
+CRS EPSG:32611, 3,730 × 3,292, single float32 band, transform `(100, 0, 243350, 0, -100, 4508550)`,
+values in {0, 1} inside the 5,167,373-cell footprint, NaN (spec form) or 0 (fallback twin) outside,
+0 dots on catalogue pixels, 0 dots outside the footprint. Full per-file receipt:
+`evidence/mass_econ_axis_20261023.json` (`gates.*.read_back`), plus the `*.receipt.json` beside each
+TIFF. Hashes above are the authority because the TIFFs are gitignored.
+
 ## Slot 1 — PRUNE ≤ 3.000 px, pure deletion (nested ladder, PR #29)
 
 - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros`
