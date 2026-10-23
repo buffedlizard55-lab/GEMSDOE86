@@ -153,6 +153,7 @@ def main() -> int:
     nan_report = validate_raster(nan_path, candidate, footprint, catalogue, "nan")
     zeros_report = validate_raster(zeros_path, candidate, footprint, catalogue, "zeros")
     zeros_format = format_report(zeros_path, BRIDGE / "sample_submission.tif", footprint=footprint)
+    zeros_format["path"] = zeros_path.relative_to(ROOT).as_posix()
     if not zeros_format["ok"]:
         raise ValueError(f"sample-submission format check failed: {zeros_format}")
     for key, report in (("nan", nan_report), ("zeros", zeros_report)):
