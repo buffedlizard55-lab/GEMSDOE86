@@ -4,7 +4,7 @@
 **Declared Session-3 Lane:** `H86C-KSLB` (*Lahontan-Shoreline-Deconfounded Seamless 10m-3DEP + 1m-LiDAR Tectonic Scarp, Fluvial $k_{sn}/\chi$ Knickzone & Blakely-Miller Zero-Crossing Blind-Filament LOQO Ensemble with Dual-Regime Noisy-OR Discovery Posterior*)  
 **Date (UTC):** 2026-10-23  
 **Evaluator:** `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`, SHA-256-verified against `research/template_pin.json`; zero modifications)  
-**Selector Decision:** **`DO NOT SUBMIT AUTOMATICALLY` (`verdict="negative"`, `approved_for_weekly_slot=false`)** — passes 15/15 format checks, 52/52 leakage canaries ($\le 0.8587$), 3/3 experiment budget, wholly positive 95% paired bootstrap CIs across all 3 holdout instruments vs both `d2.8` and `H33-2-B2` (**`0.1241`** buffered whole-component LOQO, **`0.1789`** segment-all, **`0.1844`** segment-detached), and `0/35` duplicates across all non-lattice `dot_field` rasters in 21 repos (max 3-px overlap **`0.5915` $\le 0.70$**), while remaining fail-closed under the unmodified literal $>0.70$ 3-px overlap rule triggered by 3 saturated/calibration witnesses (`dense-witness` `1.0000`, `GEMSDOE87` `0.9228`, `13gems` stride-5 lattice `0.9988`).
+**Selector Decision:** **`DO NOT SUBMIT AUTOMATICALLY` (`verdict="negative"`, `approved_for_weekly_slot=false`)** — passes 15/15 format checks, 52/52 leakage canaries ($\le 0.8587$), 3/3 experiment budget, wholly positive 95% paired bootstrap CIs across all 3 holdout instruments vs both `d2.8` and `H33-2-B2` (**`0.1241`** buffered whole-component LOQO, **`0.1789`** segment-all, **`0.1844`** segment-detached), and `0/37` duplicates across all non-lattice `dot_field` rasters in 21 repos (`40` rasters total; max 3-px overlap **`0.5915` $\le 0.70$**), while remaining fail-closed under the unmodified literal $>0.70$ 3-px overlap rule triggered by 3 saturated/calibration witnesses (`dense-witness` `1.0000`, `GEMSDOE87` `0.9228`, `13gems` stride-5 lattice `0.9988`).
 
 ---
 
@@ -95,12 +95,12 @@ All values below are **`HOLDOUT-DTI`** (`gems57-pooled-hide-v2`, 1,000 paired 20
 
 ---
 
-## 5. 38-Raster Cross-Repo & Intra-Repo Uniqueness Audit
+## 5. 40-Raster Cross-Repo & Intra-Repo Uniqueness Audit
 
-Checked against `38` SHA-256-verified rasters across `21` `buffedlizard55-lab` repositories (`12` `GEMSDOE24` + `6` prior `GEMSDOE86` lanes + `19` cross-repo primary champions `GEMSDOE32..88` + `1` pinned `100%`-support dense witness; `docs/evidence/h86c_crosslane_uniqueness.json`):
+Checked against `40` SHA-256-verified rasters across `21` `buffedlizard55-lab` repositories (`12` `GEMSDOE24` + `8` prior `GEMSDOE86` lanes + `19` cross-repo primary champions `GEMSDOE32..88` + `1` pinned `100%`-support dense witness; `docs/evidence/h86c_crosslane_uniqueness.json`):
 - **Pre-placement continuous surface max $|\rho_{\text{Spearman}}|$:** **`0.3908 <= 0.90`**
 - **Final binary dots max $|\rho_{\text{Spearman}}|$:** **`0.0927 <= 0.90`**
-- **All 35 non-saturated / non-lattice `dot_field` rasters (`<20%` support, excluding stride-5 lattice):** **Max 3-px overlap = `0.5915 <= 0.70` (`0 / 35` duplicates!)** — `0.5915` vs `gems86-gmc-linepost-90568d`, `0.5885` vs `gems10-h25-ctx-ridge`, `0.5460` vs `gems86-h86b-gfco`, `0.5455` vs `GEMSDOE83`, `0.4955` vs `GEMSDOE78`, **`0.3337` vs `d2.8`**, and **`0.3068` vs `GEMSDOE32` `H33-2-B2`**.
+- **All 37 non-saturated / non-lattice `dot_field` rasters (`<20%` support, excluding stride-5 lattice):** **Max 3-px overlap = `0.5915 <= 0.70` (`0 / 37` duplicates!)** — `0.5915` vs `gems86-gmc-linepost-90568d`, `0.5885` vs `gems10-h25-ctx-ridge`, `0.5460` vs `gems86-h86b-gfco`, `0.5455` vs `GEMSDOE83`, `0.4955` vs `GEMSDOE78`, `0.4259` vs `gems86-h86-fvmb`, `0.4236` vs `gems86-h86-wvb`, **`0.3337` vs `d2.8`**, and **`0.3068` vs `GEMSDOE32` `H33-2-B2`**.
 - **3 Saturated / Calibration Witnesses Firing Literal `>0.70` Stop (`verdict = "negative"`):**
   1. `dense-witness-100pct-support.tif` (`17GEMSDOE`, `5,167,373` positive cells = `100%` of footprint): overlap = **`1.0000`** (`universal_overlap_blocker = true`).
   2. `13gems_20261001_r13-lattice-s5_v2_nan-outside.tif` (`207,068` stride-5 grid cells covering `99.87%` 3-px halo): overlap = **`0.9988`**.
