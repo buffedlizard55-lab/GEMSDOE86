@@ -21,6 +21,22 @@ Nothing is built yet. The 419 MB feature stack restores in ~22 s and verifies ag
 so SNAP or RELIEF can be built and gated next session. Build one axis, preregister its
 mechanism/confounder/falsifier in `SLOT_PLAN.md` before writing the raster.
 
+## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
+
+Upload, if the human overrules the default in [SLOT_PLAN.md](../SLOT_PLAN.md), the `-zeros`
+twin; the `-nan` twin carries identical dots. TIFFs are local-only and gitignored.
+
+| Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |
+|---|---|---|---|---|
+| MASS −10 % (drop traversal-tail) | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif` | `6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde` | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif` | `42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779` |
+| MASS +10 % (add next-ranked cells) | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif` | `45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347` | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif` | `a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481` |
+
+Form notes (≤140 chars): minus (107): `R0 h33-h33-2-b2 MASS-10%: drop 3765 lowest-priority
+traversal-tail dots, 33889 left; predicted -0.003 MODEL`; plus (115): `R0 h33-h33-2-b2
+MASS+10%: add 3765 next-ranked H19-5 cells, d>2px off catalogue, 41419 dots; predicted
+-0.006 MODEL`. Re-verify any time: `.venv/bin/python scripts/build_mass_axis.py --measure`
+(gates re-read from disk) and `.venv/bin/python scripts/build_ledger.py --check`.
+
 ## Cheap defaults, already built and gated (only if slot 2 is not ready)
 
 | Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |

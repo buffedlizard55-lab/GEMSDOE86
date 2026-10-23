@@ -2,7 +2,7 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE axis; three sessions reconciled)
+## CURRENT STATE — 2026-10-23 (MASS axis built; PRUNE reconciled)
 
 | Field | Value |
 |---|---|
@@ -11,8 +11,9 @@
 | TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
 | Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
 | Built (6 gate-clean + 1 withdrawn, none slot-approved) | Nested ladder from PR #29: `…-PRUNE-le2p236` (36,713 dots), `…-le2p828` (36,043), `…-le3p000` (35,483, **+0.004 MODEL**), plus mass control `…-CONTROL-massctl2171`. From PR #28: `…-prune3-…-01d57649` (37,654, refill, −0.004). From this session: `…-prune4-…-de4c2a98` (33,829, −0.008), `…-prune3r-…-8c20bd7e` (37,654, −0.003), and `…-prune3-…-3eb29af5` **withdrawn** — same dot set as `le3p000`, its local rasters deleted (IR-86-PRUNE-08). |
-| Next 3 slots | 1. `le3p000` (the deepest collar rung). 2. A **new axis** (SNAP or RELIEF) — the feature stack is proven restorable and verified, so that blocker is gone. 3. The better of the two, re-cut. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
-| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is structurally invalid for catalogue-avoiding fields (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
+| Built this session (MASS, gate-clean, none slot-approved) | Ranking rebuilt from the recorded FIFO-BFS recipe and validated (greedy 2.8 px thinning reproduces pinned `d2.8` exactly, 44,090 dots, 0 diff). In `releases/mass/`: `h33-h33-2-b2-massminus10-20261023-42b4c5c8` (33,889 dots, 9.9989 % changed, **−0.003 MODEL**) and `h33-h33-2-b2-massplus10-20261023-a5888761` (41,419 dots, 9.9989 % changed, **−0.006 MODEL**). Both predicted to lose; R0's 37,654 looks near a local mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`. |
+| Next 3 slots | 1. `le3p000` (the deepest collar rung). 2. A **new axis** (SNAP or RELIEF) — the feature stack is proven restorable and verified, so that blocker is gone. 3. The better of the two, re-cut. MASS gets no slot by default (both variants predicted negative; see [SLOT_PLAN.md](SLOT_PLAN.md)). Full tree and calendar there; upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | MASS's blocker is resolved: the ranking *is* rebuildable and was validated against `d2.8` (corrects IR-86-PRUNE-02 for MASS; it remains true that a rebuild alone gives no *quality* ranking — the order is a traversal, IR-86-MASS-01); the hide-and-recover proxy is structurally invalid for catalogue-avoiding fields (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
 
 <!-- CURRENT_STATE_END -->
 

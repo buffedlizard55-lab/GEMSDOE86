@@ -105,3 +105,19 @@ Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, 
 other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
+
+## IR-86-MASS-01 — the parent's ranking is a traversal, and it is geographically structured
+Brief v2 §5 (MASS) says to rebuild R0's ranking from the recorded recipe. Done and validated:
+greedy 2.8 px thinning in FIFO-BFS visit order reproduces the pinned `d2.8` set exactly
+(44,090 dots, 0 differing cells; row-major order does not). But the order is seeded
+row-major by connected component, so "lowest-ranked 10 %" is not a random or quality tail:
+the 3,765 dropped dots are **100 % in the southern half** (mean row 3,215 vs parent 1,273)
+and the 3,765 added cells are **100 % in the northern strip** (mean row 60.5), with 98.59 %
+of additions within 2.8 px of an existing dot. **Decision:** built literally as briefed,
+with the quadrant shares and redundancy measured in `evidence/mass_axis_20261023.json` and
+stated on the mechanism cards, and with both variants predicted negative so no slot is
+recommended by default. **Cost:** a MASS receipt cannot be attributed to mass alone
+(minus = mass × geography; plus = mass × kernel redundancy); it can only bracket whether
+*traversal-ranked* mass at 37,654 is near-optimal. This also narrows IR-86-PRUNE-02: a
+rebuild supplies no *quality* ranking, but the recipe's actual priority order is recoverable
+and checkable.

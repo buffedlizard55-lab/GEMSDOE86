@@ -14,6 +14,18 @@ Seven gate-clean PRUNE artifacts now exist, from three sessions on one parent. T
 best available per-dot rate puts the whole ladder inside ±0.01. So PRUNE gets **one slot**,
 not three.
 
+**MASS is now built (2026-10-23, this session).** The parent ranking that blocked it
+(IR-86-PRUNE-02) was rebuilt from the recorded recipe (FIFO-BFS visit order of
+`gems27.thinning`) and *validated*: greedy 2.8 px thinning in that order reproduces the
+pinned `d2.8` set exactly (44,090 dots, 0 differing cells). Two variants, each 9.9989 %
+changed, both gate-clean in `releases/mass/`: `…-massminus10-…-42b4c5c8` (33,889 dots,
+**−0.003 MODEL**) and `…-massplus10-…-a5888761` (41,419 dots, **−0.006 MODEL**). Both are
+predicted to *lose*, so MASS gets **no slot by default** — R0's 37,654 looks near a local
+mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`; run card:
+`evidence/mass_axis_20261023.json`. Spend a MASS slot only if PRUNE and SNAP/RELIEF both
+come back flat and the mass question becomes the binding one; then take `massminus10`
+(its falsifier is the sharper of the two) and never both.
+
 ## Next three slots, in order
 
 | # | file (upload the `-zeros` twin) | why this one | decision rule |
