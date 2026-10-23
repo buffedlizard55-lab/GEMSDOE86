@@ -1,227 +1,50 @@
-# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF, five axes reconciled)
+# SLOT PLAN — current, 2026-10-23
 
-**No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
-([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
-`TOP_PUBLIC` are **UNSUPPLIED by the human** — I did not guess them. A live `|Δ| < 0.01`
-is no evidence. R0 = `h33-h33-2-b2` (**0.2778 CLAIM**, no receipt in `ledger/`).
+**No automatic upload, score claim or final submission.** R0 is `h33-h33-2-b2` / GEMSDOE32
+`h33-h33-2-b2-20261004-e5eb6e7e`, 37,654 dots; `0.2778` is a **CLAIM**, not an authenticated
+receipt. `TOP_PUBLIC`, slots left and deadline confirmation are **UNSUPPLIED**; 2026-12-03 remains
+**UNVERIFIED**. R0 was rebuilt byte-exactly (`evidence/r0_preflight_20261023.json`).
 
-Deadline arithmetic: 2026-10-23 → **2026-12-03** is 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots, one of
-which is the blind final pick. The date is user-supplied and **UNVERIFIED**.
+## Next three slots — ranked proposals, none auto-approved
 
-## What the three axes now say
-
-* **PRUNE** — seven gate-clean artifacts, best predicted +0.004, whole ladder inside ±0.01.
-  One slot, no more (three sessions already spent here).
-* **SNAP** — three gate-clean artifacts this session, **all predicted ≤ 0**. The instrument is
-  decisive and negative: 97–99 % of dots move, but a random-response null control scores the
-  same proxy (+0.0001 vs −0.0012) and smoothing makes it worse. Snapping re-centres the field on
-  local gradient maxima that the catalogue proxy cannot distinguish from chance, at a measured
-  coverage cost (dots < 2 px apart: 0 → 3,448 / 8,341 / 2,085). **Do not spend slot 1 on SNAP.**
-  It is worth one slot only as a deliberate probe of the unmeasurable live hypothesis: "new
-  faults are at potential-field edges rather than at catalogue-adjacent positions".
-* **CONCENTRATION** — **now built** (2026-10-23, PR #37, `arena/95e0ad6b`), on **1 km** blocks
-  rather than the 5 km this plan proposed: `gems86-h33-2b2-conc15-20261023-2b883f2d`, 5,648 dots
-  (15.00 %) moved out of the lowest-prior 1 km blocks into the highest-prior fifth (10,462
-  blocks), count fixed at 37,654, **29.999 % changed**, all placements at the parent's 2.828 px
-  spacing. **Block-density CV 0.6235 → 0.7644**, i.e. *away* from the reported 0.51–0.59 band,
-  and occupied blocks fall 15,976 → 14,339. Prediction **+0.006 MODEL** (+0.003…+0.010). Its
-  placement rule is deliberately geometric (highest-prior block, then largest remaining kernel
-  gap) so the axis cannot smuggle in the pixel-scale edge snapping that SNAP already measured as
-  negative. Falsifier: ≤ 0 live, which would also vindicate the 0.51–0.59 band as a real
-  ceiling and make "spread mass until the CV lands in-band" the next axis.
-  **RELIEF / SPACING** — RELIEF is built (above); SPACING remains unbuilt. MASS is built below.
-
-**MASS is now built (2026-10-23, this session).** The parent ranking that blocked it
-(IR-86-PRUNE-02) was rebuilt from the recorded recipe (FIFO-BFS visit order of
-`gems27.thinning`) and *validated*: greedy 2.8 px thinning in that order reproduces the
-pinned `d2.8` set exactly (44,090 dots, 0 differing cells). Two variants, each 9.9989 %
-changed, both gate-clean in `releases/mass/`: `…-massminus10-…-42b4c5c8` (33,889 dots,
-**−0.003 MODEL**) and `…-massplus10-…-a5888761` (41,419 dots, **−0.006 MODEL**). Both are
-predicted to *lose*, so MASS gets **no slot by default** — R0's 37,654 looks near a local
-mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`; run card:
-`evidence/mass_axis_20261023.json`. Spend a MASS slot only if PRUNE and SNAP/RELIEF both
-come back flat and the mass question becomes the binding one; then take `massminus10`
-(its falsifier is the sharper of the two) and never both.
-
-## Next three slots, in order
-
-| # | file (upload the `-zeros` twin) | why this one | decision rule |
+| Order | Candidate / file | Prediction and read | Decision |
 |---|---|---|---|
-| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest collar rung, unchanged from the last plan; it is the only prediction that is positive *and* has a monotone ladder behind it. Prediction **+0.004 MODEL** (−0.004…+0.013), 35,483 dots, 5.77 % removed | ≥ +0.010 → the collar is not exhausted; next week a 4 px rung. Flat or ≤ −0.010 → PRUNE is finished for Phase 1 |
-| 2 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | the only *built* positive prediction outside the collar lineage, and the only one that moves mass instead of deleting it: 5,648 dots (15.00 %) piedmont → range-front, count fixed at 37,654, mean displacement 6.1 km | ≥ +0.010 → the win is spatial allocation, not pruning: build RELIEF-ADD (same selection, count raised 43,302–49,000) and then the combination | ≤ −0.005 → sign confirmed, RELIEF closes for Phase 1 (brief §9 stop rule) | otherwise the axis is alive but below the evidence floor: do not multiply variants, spend slot 3 on the sign flip instead |
-| 2b | `releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif` — **CONCENTRATION, 1 km blocks, built** (the slot-2 alternative if the human prefers a move-the-mass cut over a second RELIEF rung) | the axis that changes *where* mass is without needing R0's ranking or a new physical field; 15.00 % of dots moved, count fixed, geometric placement only. Prediction **+0.006 MODEL**. It moves block-density CV 0.6235 → **0.7644**, i.e. away from the reported 0.51–0.59 band, so the result tests that band directly | ≥ +0.010 → the win is spatial allocation, and the final file is a PRUNE+CONCENTRATION combination; next cut is the block size (1 km vs 5 km). Inside ±0.010 → the prior is mapping effort, not geology; retire the catalogue-density term and keep only the TMI term. ≤ −0.010 → the region wants *less* clustering: build the spread-to-CV-in-band variant instead |
-| 3 | `…-RELIEF-frontm10-20261023-1b26223e-zeros.tif` **or** `…-SNAP-r2p000-…-e7473403-zeros.tif` | the RELIEF rung is the **sign flip**: paired with slot 2 it is a 25 %-of-mass swing with a predicted separation of ~0.011, the only RELIEF comparison that can clear the floor. SNAP instead if the human would rather test an unmeasured *live* hypothesis (faults at potential-field edges) than a surrogate-measured one | RELIEF pair straddles 0 (slot 2 up, slot 3 down, or the reverse) → relocation is the axis; build RELIEF-ADD, then combine with `le3p000`. Both inside ±0.010 → RELIEF closes, take SNAP next. SNAP ≥ +0.010 → positions are the binding error and SNAP becomes the main lineage |
+| 1 | **PRUNE `le3p000`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | `+0.004` MODEL; band `−0.004…+0.013` | Best conservative collar test on off-support mass; **no evidence** (<0.01) |
+| 2 | **CONCENTRATION `b1km-move15`** — `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif` | `+0.006` MODEL; range `+0.003…+0.010`; 1 km CV `0.6235→0.7644` | Largest positive un-receipted MODEL read; geometry conflicts with the `0.51–0.59` CV CLAIM; **no evidence** |
+| 3 | **SPACING `strike16`** — `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif` | `+0.0020` MODEL; band `+0.0020…+0.0050`, 3/4 quadrants positive | Dose test only against sibling `random16` control (`+0.0002`); **no evidence** |
 
-**Do not spend a slot on:** `SNAP-r1p000` or `SNAP-r2p000-grav` (same axis, weaker dose /
-single band; they are the arms that read out *why* slot 3 went the way it did);
-`…-prune4-…-de4c2a98` (−0.008) and `…-prune3r-…-8c20bd7e` (−0.003) — rehearsals, not bets;
-`…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08);
-`RELIEF-frontp10` (a strict 10 % prefix of the 15 % dose, +0.0010 — the fallback, not a third bet);
-the other two MASS rungs (−0.003 / −0.006, both predicted negative and never both).
+RELIEF `frontp15` (`+0.0017` MODEL) is the alternative to slot 2, not an additional automatic
+pick. Zero ledger rows from this session have a score or receipt; the human decides whether any
+proposal justifies scarce weekly capacity.
 
-## Calendar to the deadline
+## This session — CONCENTRATION at 5 km: built, not slot-recommended
 
-- **wk 1 (slot 1).** PRUNE `le3p000`. Single decisive read on the collar.
-- **wk 2.** RELIEF `frontp15` (built; upload inside 24 h of any change to the regime map, and
-  re-read the `-zeros` bytes through the validator before upload). CONCENTRATION at 5 km blocks only
-  if it is built and preregistered first.
-- **wk 3.** `RELIEF front−10pct` (paired with week 2) or SNAP `r2p000`, only if the human accepts
-  a predicted-negative probe.
-- **wk 4.** The better of CONCENTRATION / SNAP / RELIEF, re-cut at a second value on that axis.
-- **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as **one attributable edit**.
-- **wk 6.** Confirm both finalists, re-validate both formats, choose the final file and a
-  fallback blind, never multiply accounts.
+| Value | Dots moved / parent cells changed | SGMC Δ (MODEL; translation range) | Complete-block CV | Slot |
+|---|---:|---|---:|---|
+| `b5km-move10` | 3,765 / 19.998% | `−0.0066` (`−0.0073…−0.0057`) | `0.7442→0.9006` | **NO** |
+| `b5km-move15` | 5,648 / 29.999% | `−0.0109` (`−0.0111…−0.0090`) | `0.7442→1.0113` | **NO** |
+| `b5km-move20` | 7,531 / 40.001% | `−0.0150` (`−0.0151…−0.0118`) | `0.7442→1.0798` | **NO** |
 
-## Better axes (proposals only; not built this session)
+All 3 have exact R0 parent, fixed count, zero catalogue mass, new-mass clearance 3.162 px,
+unseen hashes and PASS re-read gates; both NaN-outside and zeros-outside twins exist locally.
+The recovery diagnostic is **PROXY only**: parent `0.0286 [0.0240,0.0333]` versus
+`0.0408 / 0.0427 / 0.0441` (`n=11,321` withheld positive pixels; paired 15% Δ
+`+0.0141 [0.0072,0.0234]`). It conflicts with SGMC and with **0% of every arm's added cells on
+H19-5 support**. Do not use that PROXY to promote these files. Leakage canary PASS, max AUC
+0.5409. Full receipts: `evidence/concentration5_axis_20261023.json`.
 
-- **Coherent SNAP (structure-tensor, σ = 2–3 px).** The raw gradient bands are smooth but their
-  local maxima are still not distinguishable from chance by the proxy; a coherence-weighted
-  response is the physically correct "lineament" operator. *Confounder:* coherence peaks on
-  any elongated contact. *Falsifier:* no separation from the random control in two independent
-  hidden-component draws.
-- **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the shared
-  two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no replicated positive sign on
-  untouched spatial folds, then no live receipt.
-- **Collar-conditional CONCENTRATION.** Only reallocate mass in blocks > 3 px clear of the
-  catalogue, so the two axes do not interact. *Confounder:* relief controls both catalogue
-  completeness and lineament visibility. *Falsifier:* opposite signs in two relief regimes.
+## Calendar and better axes (proposals only, not built)
 
-## Human inputs still missing
+- **Wk1–2:** use the ranked tests above only with human quota/receipt confirmation. **Wk3–4:**
+  combine only two axes with ≥0.01 receipt evidence and choose only with a dated receipt.
+- **Wk5–6:** confirm the leading tested format and record the final-fallback choice; do not invent
+  a deadline or claim a combined effect from unpaired single-axis reads.
+- **Better axis 1:** support-constrained block allocation—keep every destination on H19-5;
+  confounder: support is already saturated, falsifier: too few eligible cells or a negative receipt.
+- **Better axis 2:** exact-marginal collar PRUNE—hold dot count rather than rank mass fixed;
+  confounder: replacement placement, falsifier: >1% count drift or any catalogue mass.
+- **Better axis 3:** coherent local SNAP—apply one signed rotation to a contiguous eligible patch;
+  confounder: patch selection, falsifier: unchanged single-cell pixel prior or negative control.
 
-`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
-submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time ·
-confirmation of the governing uniqueness rule (IR-86-PRUNE-01).
-
-## Addendum — second SNAP session (magnetic edges), 2026-10-23: no slot requested
-
-A second session was assigned SNAP and, because its branch predated PR #28–#31, built the axis
-independently before `main` was merged in (IR-86-SNAP-04). It is recorded here so the three files are
-not mistaken for untested candidates.
-
-* **Built:** `snap-hg2` (33.9 % of dots moved), `snap-vg2` (39.6 %), `snap-cons2` (45.9 %); mean
-  displacement 1.72–1.74 px, count fixed at 37,654, 2.828 px spacing floor held, all format and
-  catalogue gates pass. Ledger status **`BUILT-DUPLICATE`**.
-* **Verdict: corroborates PR #31, does not reopen the axis.** Under a different rule the result is
-  the same: the movement carries no measurable signal. **Do not spend a slot on these three.**
-* **What it does add — the proxy is blind (IR-86-SNAP-06).** With one fixed ≥ 3 px collar applied to
-  every arm, the hide-and-recover proxy collapses to 0.0000 for the parent, all three variants *and*
-  the SGMC control. From now on a proxy comparison is only admissible with the collar held fixed
-  across arms; unpinned proxy numbers in earlier cards should be read as collar recovery.
-* **Quantified cost of the edit.** The variants put 502 / 564 / 686 dots back inside the 200 m
-  catalogue halo (parent: 0) and lift the share of dots within 300 m of a mapped fault from 4.28 % to
-  5.4–5.8 %. They also drop the lineage's own ranking evidence from the 98.8th percentile of the
-  restored H19-5 field to 69.7–75.1 — an independent, label-free reason to expect no gain.
-
-### Third SNAP build (gain-gated, absolute-gravity) — same verdict, no slot requested
-
-A third concurrent session built SNAP with an unsmoothed `tmi_hg`+`|iso_grav_anom_hg|`
-percentile edge and a 0.10 gain gate: `snapr2g10` (17.5 % of dots moved, mean disp. 0.34 px,
-**−0.001 MODEL**, status `BUILT-DUPLICATE`); its unconditional r1/r2 arms duplicate PR #31's
-pairs and are withdrawn with no raster (IR-86-SNAP-09). Its one new instrument, the SGMC
-off-catalogue control, degrades monotonically with snap dose (gated −0.0021, r1 −0.0032,
-r2 −0.0089 SGMC-DTI) — a third instrument, same sign. **No slot requested for any of it;**
-the plan above is unchanged. Cards: `evidence/r0-snap-mechanism.md`.
-
-### Two axes this session proposes and did not build (neither is in the plan above)
-
-1. **KERNEL-BUDGET (spacing floor at the kernel radius, count held)** — mechanism: 30.3 % of R0's dots
-   sit within 3 px of another dot, so part of each dot's unit mass buys credit another dot already
-   earns; re-spacing at ≥ 3.0 px at constant count converts wasted α into coverage. Confounder: real
-   parallel strands and en-echelon step-overs are exactly 300 m apart, which is why the 2.828 px
-   floor was chosen in the first place. Falsifier: live Δ ≤ −0.01, i.e. the deleted neighbour was a
-   real second fault.
-2. **RE-RANK (positions fixed, ranking changed)** — mechanism: hold every dot's position and re-decide
-   which pixels inside the same 2 px neighbourhood enter the top 37,654, using a label-free
-   fault-interaction prior (step-over / intersection / tip density from the Faulds inventory). This
-   is the one SNAP-adjacent idea the negative result does *not* kill, because it never moves a dot
-   away from the lineage's own high-value pixels. Confounder: those interaction zones are also where
-   geothermal systems sit, and the target is fault pixels, never vents or heat. Falsifier: live
-   Δ ≤ −0.01, which would say the H19-5 ranking is not separable from local geometry at all.
-
----
-
-# Addendum — SPACING session (branch `arena/c8365759-gemsdoe86`), 2026-10-23
-
-**AXIS: SPACING**, self-assigned from the plan because it is the only brief-§5 axis no earlier
-session had built (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF` were all taken; `TRACKB` is
-Phase 2). No slot was used or requested, and nothing here authorises an upload.
-
-## What the axis says
-
-Dose, preregistered before any surrogate was read: relocate every R0 dot owning ≤ 16 of the 29 cells
-of its radius-3 px kernel disc — **7,228 dots, 19.20 % of the mass, 35.9–37.9 % of cells changed,
-count fixed at 37,654**. R0's mean exclusive credit is 20.73 cells, i.e. **28.5 % of its nominal
-kernel credit is already written off by overlap**, and 11,415 dots sit at exactly the 2.828 px
-thinning floor — *inside* the 300 m kernel radius. Three placement laws, identical selection,
-identical objective (largest gap to the nearest retained dot inside 800 m), identical exclusions:
-
-| value | law | coverage bought | surrogate Δ (MODEL) | vs control |
-|---|---|---|---|---|
-| `pdisk16` | isotropic hard core (Poisson-disk / blue noise) | +113,315 px | **+0.0015** | +0.0013 |
-| `lattice16` | hexagonal covering nodes, a = √3·R = 5.196 px (covering verified after rounding) | +107,851 px | **+0.0019** | +0.0017 |
-| `strike16` | on the local dot ridge only (±1 px across, ≥2 px along) | +75,136 px | **+0.0020** | +0.0018 |
-| `random16` | **null control**, uniform cell in the same window | +74,573 px | +0.0002 | — |
-
-Every band is wide and every number is MODEL; the truth is an independent USGS SGMC off-catalogue
-raster, not competition labels.
-
-**The result that changes the plan.** The three laws beat the random control by ~+0.0016, so
-*de-overlapping by a rule* pays where *moving at random* does not — the only clean law-vs-chance
-separation any axis in this repo has produced. But (a) no arm approaches the 0.01 evidence floor,
-(b) under a ±6 px translation of the truth (the 400 m flight-line uncertainty in brief §2) the
-control itself rises to +0.0033 and the separation shrinks to ~+0.0016 of the laws' +0.0049, and
-(c) 95–98 % of the coverage this axis buys is **off** the H19-5 support surface the lineage was
-thinned from (IR-86-SPACING-02), so the surrogate may be paying for area, not for faults. The fold-fair
-hide-and-recover PROXY in the same run card reads 0.0122–0.0153 for the arms against 0.0037 for R0,
-which looks like corroboration and is not: only the arms got a fold-visible collar, so the instrument
-is measuring the absence of the collar (IR-86-SPACING-05). It orders nothing in this plan.
-
-## Slots, revised (one entity, 3 per rolling week; slots left: UNSUPPLIED)
-
-| # | file | why | decision rule |
-|---|---|---|---|
-| 1 | unchanged: `…-PRUNE-le3p000-…-a438e92b-zeros.tif` (+0.004 MODEL) | the collar is still the only axis with a monotone ladder behind it, and it separates the two things SPACING cannot: mass vs catalogue proximity | as before |
-| 2 | **either** `…-RELIEF-frontp15-…-e0e2888f-zeros.tif` (+0.0017) **or** `gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif` (+0.006) | both move mass between regions; the human picks which spatial prior to test first | as before |
-| 3 | **replace the SNAP probe with `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif`** (+0.0020 MODEL) | SNAP's verdict is already established by three builds; SPACING `strike` is the one arm that (i) keeps its mass on the trace, (ii) is the only arm whose FP term does not jump (+83.7 vs +140), and (iii) arrives with its own control already built, so one slot buys a law-vs-chance read instead of a third measurement of a known negative | ≥ +0.010 → spacing is the binding error: build the global-dose rung (credit ≤ 20, 44 % of the mass) and pair it with `le3p000`; inside ±0.010 → the arrangement is not a lever and **SPACING closes for Phase 1**; ≤ −0.005 → the surrogate was buying off-fault area, close it and stop building arrangement axes |
-| — | `…-sp-random16-…-db4cae83-zeros.tif` | **control, never a slot** — its only job is to make slot 3 interpretable | — |
-
-If the human would rather spend slot 3 on `RELIEF front−10pct` (the sign flip, 25 %-of-mass swing,
-predicted separation ~0.011), that comparison still has more power per slot than any single SPACING
-arm, and it stays the alternative. Do not build `pdisk10`/`pdisk20` dose rungs this week: a
-second dose of a below-floor axis is a repeat, not an experiment.
-
-## What SPACING teaches the *other* axes
-
-`SNAP`'s failure is now explainable without invoking geology: snapping moved 97–99 % of the dots and
-**created** 3,448–8,341 sub-2 px pairs, i.e. it moved mass *into* overlap, while SPACING moves the
-same mass *out* of it at a mean displacement of 6.8 px. Both are arrangement edits at the same scale,
-and the one with a control reads positive-but-tiny. Practical consequence for weeks 4–6: any
-combined finalist must hold **sub-kernel pair count** (currently 11,415) as a reported invariant, not
-just dot count — a `le3p000 + conc15 + strike16` file that re-clusters would undo its own collar gain.
-
-## New axis proposals (mechanism / confounder / falsifier) — not built this session
-
-1. **DE-OVERLAP UNTIL SATURATED (count fixed, law fixed)** — keep relocating the most redundant dot
-   until no dot owns fewer than *k* cells, for k = 20, 24, 29; a dose–response curve on the single
-   quantity the metric's max operator actually charges for. *Mechanism:* T rises with union coverage,
-   (S−M) falls as M → n. *Confounder:* past ~k = 24 the eligible ground is far from any ridge, so the
-   dose and the abandonment of the parent's field are one variable (IR-86-SPACING-02). *Falsifier:* a
-   monotone *decrease* in live score with k, which would say overlap is not waste but redundancy for
-   mapping error — the physically respectable answer.
-2. **PERPENDICULAR-WIDTH** — mirror image of SPACING's along-strike arm: hold the along-trace spacing
-   and *widen across* it (2 → 3–4 px), testing whether the score wants a zone, not a line.
-   *Mechanism:* new-fault truth is mapped as a zone of damage, one pixel wide in the label but wider
-   in the ground. *Confounder:* the catalogue is pixel-exact-masked, so across-trace spreading
-   re-enters the collar and interacts with PRUNE. *Falsifier:* live Δ ≤ −0.005 with
-   `strike16` flat — the metric is line-shaped and the zone hypothesis dies with it.
-3. **Human-supplied lidar DEM SNAP** — brief §5 allows lidar rasters for SNAP only if the human
-   supplies them; none has been. The `lidar03` precedent (PROXY pass, live 0.1152) says do not gate on
-   it. Not built, and unbuildable here: the pinned lidar mirrors are absent from this checkout.
-
-## Human inputs still missing for this session
-
-`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation on the competition page ·
-any submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted ·
-confirmation of the governing uniqueness rule (IR-86-PRUNE-01) · and, if slot 3 is to be spent on
-SPACING, whether the human accepts a **predicted +0.002** probe whose real purpose is a law-vs-chance
-test rather than a score improvement.
+**Human inputs still needed:** current `TOP_PUBLIC`, remaining rolling-week slots, actual receipts
+for any newly tested file, and the verified final deadline. No new axis choice is requested.

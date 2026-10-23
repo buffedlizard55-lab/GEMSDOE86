@@ -272,3 +272,44 @@ was submitted — the human submits from their own registered account, one file 
 .venv/bin/python scripts/emit_spacing_entries.py
 .venv/bin/python scripts/build_ledger.py
 ```
+
+## Addendum — 5 km CONCENTRATION session (branch `arena/146307ee-gemsdoe86`), 2026-10-23
+
+**Required generative-AI disclosure.** Arena.ai Agent Mode wrote `src/gems86/concentration5.py`,
+`scripts/build_concentration5_axis.py`, `tests/test_concentration5_axis.py`, the partial-edge-block
+source-selection correction in `src/gems86_axis/variants.py`, the additive ledger-generator input,
+`evidence/r0_preflight_20261023.json`, `evidence/concentration5_axis_20261023.json`,
+`evidence/concentration5-mechanism.md`, `ledger/variants_concentration5.json`, the three generated
+release receipts, and this session's edits to `ledger/submissions.csv` (through the sole generator),
+`SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`, this file, and only README's marked
+`CURRENT STATE` block. Release TIFFs remain local and gitignored.
+
+**Human decided / constrained:** no portal, Dropbox, credential, leaderboard, scraping or submission
+access; manifest-pinned inputs only; no axis prompt; self-assign one axis, stop after three variants;
+never submit. **AI decided (human can veto):** CONCENTRATION at a new 5 km value, with fixed
+10/15/20% low→high-prior doses preregistered before SGMC was read. Count, spacing, parent and all
+non-axis inputs stayed fixed; the 3 px clearance applies to new mass while R0's inherited 2–3 px
+geometry is documented rather than silently pruned.
+
+**AI corrected itself before release:** the first run exposed partial 5 km edge blocks whose `-inf`
+(unclassified) values were incorrectly selected as the lowest prior. It stopped before writing any
+raster or ledger row. Unclassified dots are now excluded from the source draw, regression-tested,
+and logged as IR-86-CONC-05; doses were not retuned. The completed run's positive catalogue-
+recovery **PROXY** was not promoted because all added cells are off H19-5 support and SGMC is
+negative with dose (IR-86-CONC-06). All three variants are therefore audit artifacts, not slot
+recommendations. No fourth arm was built.
+
+**Not done:** no DrivenData or Dropbox request, login, credential handling, leaderboard read,
+score claim, receipt fabrication or submission. Network use was limited to GitHub mirror restores
+and the earlier pinned PyPI environment install. R0's 0.2778 remains CLAIM; all new predictions are
+MODEL and the recovery instrument is PROXY. Slots used: 0.
+
+```bash
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_geodawn_extensions_u8 \
+  ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 \
+  ext_derived_sgmc_faults_100m_u8 scored_h19_5 \
+  --receipt .cache/concentration5_input_receipt.json
+.venv/bin/python -m pytest -q tests/test_concentration5_axis.py
+.venv/bin/python scripts/build_concentration5_axis.py  # exact R0 rebuild, 3 arms, gates, instruments
+.venv/bin/python scripts/build_ledger.py --check
+```

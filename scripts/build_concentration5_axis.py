@@ -280,13 +280,16 @@ def hide_recover(parent: np.ndarray, base: np.ndarray, arms: dict, tmi_grad: np.
     scores = {name: {k: summary["scores"][name][k]
                      for k in ("dti", "ci95", "withheld_positive_pixels")}
               for name in names}
+    paired = dict(summary["paired_differences"]["parent"])
+    paired["evaluator_evidence_class"] = paired.pop("evidence_class")
+    paired["evidence_class"] = "PROXY"
     return {"evidence_class": "PROXY", "status": "REPORT-ONLY (never a gate)",
             "evaluator_version": summary["evaluator_version"],
             "implementation_sha256": summary["implementation_sha256"],
             "design": "buffered whole-component hide-and-recover; visible-only 2 px parent prune and 3 px placements; 20 km paired block bootstrap",
             "seed": SEED, "hide_fraction": 0.20, "folds": fold_rows,
             "scores": scores,
-            "paired_15pct_minus_parent": summary["paired_differences"]["parent"],
+            "paired_15pct_minus_parent": paired,
             "caveat": "The historical base retains its original 1 px catalogue prune. Absolute values are catalogue-recovery PROXY values, never live scores or slot gates."}
 
 
@@ -299,7 +302,7 @@ def prediction_text(value: str, model: dict, stats: dict) -> str:
             f"{stats['block_density_variant']['density_cv_occupied']:.4f}; not a score.")
 
 
-def mechanism_markdown(model: dict, stats: dict) -> str:
+def mechanism_markdown(model: dict, stats: dict, proxy: dict, support: dict) -> str:
     lines = [
         "# Mechanism cards — CONCENTRATION, 5 km blocks (2026-10-23)", "",
         "All predictions are **MODEL** reads against USGS SGMC off-catalogue faults, not scores. "
@@ -313,7 +316,13 @@ def mechanism_markdown(model: dict, stats: dict) -> str:
         "**Non-fault mimic.** Lithologic/intrusive magnetic contacts and catalogue-mapping effort "
         "can both create the same block prior without a new fault. **Shared falsifier.** A live "
         "change below 0.01 is no evidence; a ≤−0.01 receipt rejects this allocation direction, and "
-        "CV moving farther above the claimed 0.51–0.59 band is the geometric warning, not a gate.", ""
+        "CV moving farther above the claimed 0.51–0.59 band is the geometric warning, not a gate.", "",
+        "**Instrument conflict (decision-changing).** The catalogue hide-and-recover PROXY rises "
+        "with dose, but the independent SGMC MODEL read falls and **0% of every arm's added cells "
+        "land on the parent's H19-5 support surface**. The PROXY is therefore not used to promote "
+        "these files: it rewards recovery by a catalogue-derived prior while the placement rule "
+        "abandons the lineage's rated support. This is a confound and a reason for no 5 km slot, "
+        "not a claim that the PROXY is a live score.", ""
     ]
     for value in VALUES:
         st, arm = stats[value], model["arms"][value]
@@ -330,6 +339,11 @@ def mechanism_markdown(model: dict, stats: dict) -> str:
             f"{st['block_density_variant']['density_cv_occupied']:.4f}; occupied blocks "
             f"{st['block_density_parent']['occupied_blocks']} → "
             f"{st['block_density_variant']['occupied_blocks']}.",
+            f"- **Report-only PROXY:** {proxy['scores'][value]['dti']:.4f} "
+            f"[{proxy['scores'][value]['ci95'][0]:.4f}, {proxy['scores'][value]['ci95'][1]:.4f}], "
+            f"n={proxy['scores'][value]['withheld_positive_pixels']} withheld positive pixels; "
+            f"parent {proxy['scores']['parent']['dti']:.4f}. Added cells on H19-5 support: "
+            f"{support['arms'][value]['destinations_on_support_pct']:.1f}%. Neither is a live score.",
             f"- **Dose-specific falsifier:** if this dose is flat while another dose has a ≥0.01 "
             f"receipt effect, the response is nonlinear in allocation dose; do not interpolate "
             f"between them. If SGMC's sign is positive but the live sign is negative, the prior is "
@@ -449,37 +463,83 @@ def emit_ledger_rows(cards: list[dict]) -> None:
 
 
 def validate_only() -> int:
-    if not RUN_CARD.is_file():
-        raise SystemExit(f"missing {RUN_CARD}")
+    """End-of-session independent re-read; never writes a candidate or ledger row."""
+    if not RUN_CARD.is_file() or not VARIANTS_JSON.is_file():
+        raise SystemExit(f"missing {RUN_CARD} or {VARIANTS_JSON}")
     card = json.loads(RUN_CARD.read_text())
+    source_rows = {e["value"]: e for e in json.loads(VARIANTS_JSON.read_text())}
     own = previous_rows()
-    known = known_hashes(own)
+    with (ROOT / "ledger/submissions.csv").open(newline="", encoding="utf-8") as fh:
+        canonical = list(csv.DictReader(fh))
+    for value in VALUES:
+        matches = [r for r in canonical if (r.get("axis") or "").upper() == C5.AXIS
+                   and r.get("value") == value and r.get("parent") in PARENT_ALIASES]
+        if len(matches) != 1:
+            raise SystemExit(f"expected one canonical (parent, axis, value) row for {value}, got {len(matches)}")
+    if len(card["variants"]) != 3 or set(source_rows) != set(VALUES) or set(own) != set(VALUES):
+        raise SystemExit("expected exactly one ledger source and canonical row for each registered value")
+    verify_core_inputs()
+    verify_external_inputs()
     ctx = grid_io.load_context()
-    parent = grid_io.load_dots(ROOT / "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
-                               ctx["footprint"])
+    foot = ctx["footprint"]
+    rebuild = rebuild_parent(foot, ctx["catalogue"])
+    if not rebuild["byte_exact"]:
+        raise SystemExit("R0 rebuild is no longer byte exact")
+    parent = grid_io.load_dots(ROOT / "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif", foot)
+    tmi_grad, _ = load_tmi_gradient()
+    prior = C5.make_prior(ctx, tmi_grad)["prior"]
+    known = known_hashes(own)
+    for row in source_rows.values():
+        known.update((row["sha256"], row["sha256_zeros"]))
     for v in card["variants"]:
         value = v["value"]
-        if value not in own:
-            raise SystemExit(f"ledger row missing for {value}")
+        source = source_rows[value]
+        own_hashes = {v["artifacts"][m]["sha256"] for m in ("nan", "zeros")}
+        if source["sha256"] != v["artifacts"]["nan"]["sha256"] or \
+                source["sha256_zeros"] != v["artifacts"]["zeros"]["sha256"]:
+            raise SystemExit(f"source-row twin hash mismatch: {value}")
+        if own[value]["sha256"] != v["artifacts"]["zeros"]["sha256"]:
+            raise SystemExit(f"canonical ledger/file hash mismatch: {value}")
+        if len(own_hashes) != 2 or not v["id"].endswith(v["artifacts"]["zeros"]["sha256"][:8]):
+            raise SystemExit(f"name/hash identity failure: {value}")
+        if v["note_chars"] != len(v["note"]) or len(v["note"]) > 140 or v["submission_slots_used"]:
+            raise SystemExit(f"note/slot receipt failure: {value}")
         masks = []
         for mode in ("nan", "zeros"):
             artifact = v["artifacts"][mode]
             path = ROOT / artifact["path"]
             if sha256(path) != artifact["sha256"]:
                 raise SystemExit(f"hash drift: {path}")
-            if mode == "zeros" and own[value]["sha256"] != artifact["sha256"]:
-                raise SystemExit(f"ledger/file hash mismatch: {value}")
-            result = gates.run_all(path, ctx, known, grid_io.PARENT_CAT_CLEARANCE_PX)
+            result = gates.run_all(path, ctx, known - own_hashes, grid_io.PARENT_CAT_CLEARANCE_PX)
             if not result["passed"]:
                 raise SystemExit(f"validation failed: {path}: {result}")
-            masks.append(grid_io.load_dots(path, ctx["footprint"]))
+            with rasterio.open(path) as src:
+                raw = src.read(1)
+            outside = raw[~foot]
+            if mode == "nan" and not np.isnan(outside).all():
+                raise SystemExit(f"primary twin is not NaN-outside: {value}")
+            if mode == "zeros" and not np.all(outside == 0):
+                raise SystemExit(f"fallback twin is not zeros-outside: {value}")
+            masks.append(grid_io.load_dots(path, foot))
         if not np.array_equal(masks[0], masks[1]) or int(masks[0].sum()) != int(own[value]["n_dots"]):
-            raise SystemExit(f" twin/count mismatch: {value}")
-        if not C5.new_mass_clearance(parent, masks[0], ctx["catalogue"])["passed"]:
-            raise SystemExit(f"new-mass clearance failed: {value}")
-        known.update(v["artifacts"][m]["sha256"] for m in ("nan", "zeros"))
-    print(json.dumps({"status": "PASS", "variants": len(card["variants"]),
-                      "checks": "hashes, ledger, format, values, catalogue, twins, new-mass clearance"}, indent=2))
+            raise SystemExit(f"twin/count mismatch: {value}")
+        diff = variants.parent_diff(parent, masks[0], foot)
+        clearance = C5.new_mass_clearance(parent, masks[0], ctx["catalogue"])
+        separation = C5.prior_separation(parent, masks[0], prior, C5.BLOCK_PX)
+        density = C5.density_report(parent, masks[0], foot)
+        if diff != v["parent_diff"] or diff["added"] != v["stats"]["moved_placed"] or \
+                diff["dropped"] != v["stats"]["moved_placed"]:
+            raise SystemExit(f"parent-diff/dose mismatch: {value}")
+        if clearance != v["new_mass_clearance"] or not clearance["passed"]:
+            raise SystemExit(f"new-mass clearance receipt mismatch: {value}")
+        if separation != v["prior_separation"] or not separation["passed"] or density != v["block_density"]:
+            raise SystemExit(f"prior/density receipt mismatch: {value}")
+        known.update(own_hashes)
+    subprocess.run([sys.executable, str(ROOT / "scripts/build_ledger.py"), "--check"], cwd=ROOT, check=True)
+    print(json.dumps({"status": "PASS", "variants": len(card["variants"]), "r0_byte_exact": True,
+                      "checks": "pins, R0, both hashes, ledger, format, encodings, values, catalogue, "
+                                "twins, parent diff, dose, new-mass clearance, prior direction, density, notes, slots"},
+                     indent=2))
     return 0
 
 
@@ -542,7 +602,7 @@ def main() -> int:
         "no_submission": True,
     }
     RUN_CARD.write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
-    MECHANISM_CARD.write_text(mechanism_markdown(model, stats))
+    MECHANISM_CARD.write_text(mechanism_markdown(model, stats, proxy, support))
     emit_ledger_rows(cards)
     subprocess.run([sys.executable, str(ROOT / "scripts/build_ledger.py"), "--check"], cwd=ROOT, check=True)
     print(f"[done] {RUN_CARD.relative_to(ROOT)}; {len(cards)} variants; {out['elapsed_seconds']}s", flush=True)

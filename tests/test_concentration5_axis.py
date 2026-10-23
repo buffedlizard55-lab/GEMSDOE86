@@ -128,6 +128,8 @@ def test_run_card_labels_and_report_only_instruments():
     assert card["instruments"]["leakage_canary"]["max_auc"] <= 0.90
     proxy = card["instruments"]["catalogue_hide_recover_proxy"]
     assert proxy["evidence_class"] == "PROXY" and "REPORT-ONLY" in proxy["status"]
+    assert proxy["paired_15pct_minus_parent"]["evidence_class"] == "PROXY"
+    assert proxy["paired_15pct_minus_parent"]["evaluator_evidence_class"] == "HOLDOUT-DTI"
     for score in proxy["scores"].values():
         assert score["withheld_positive_pixels"] > 0
         assert len(score["ci95"]) == 2

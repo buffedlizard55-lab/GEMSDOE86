@@ -327,6 +327,21 @@ SGMC read. A synthetic 110×110 regression grid now exercises the remainder stri
 column remainder issue in the older 1 km implementation; no historical 1 km artifact was rebuilt
 or relabelled here.
 
+## IR-86-CONC-06 — positive catalogue-recovery PROXY conflicts with support and independent control
+
+**Observed.** All three 5 km arms place **0% of their added cells** on pinned `gems19-h19-5`, the
+support surface from which R0's lineage was thinned; all source cells are on it. Meanwhile pooled
+hide-and-recover rises from parent `0.0286 [0.0240,0.0333]` to `0.0408 / 0.0427 / 0.0441` for
+10/15/20% (`n=11,321` withheld positive pixels; the paired 15% Δ is `+0.0141 [0.0072,0.0234]`,
+**PROXY only**). The independent SGMC MODEL read instead changes by `−0.0066 / −0.0109 / −0.0150`,
+and occupied complete-5 km-block CV rises `0.7442 → 0.9006 / 1.0113 / 1.0798`.
+
+**Decision.** None of these three files is slot-recommended. The positive PROXY is not a score or
+a gate and cannot overrule either the support-surface abandonment or the negative independent
+control. Its catalogue-interaction term is also part of the placement prior, so the instrument
+and mechanism are not independent. A future **support-constrained** block-allocation axis is only
+a proposal for a later session; no fourth variant or retuned value was built here.
+
 ## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
 The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
 enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the

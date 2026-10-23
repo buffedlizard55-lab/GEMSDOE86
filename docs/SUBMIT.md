@@ -15,7 +15,7 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Slot 2 — `RELIEF front+15pct`, count-fixed relocation (built this session; AXIS assigned by the human)
+## Alternative slot 2 — `RELIEF front+15pct`, count-fixed relocation
 
 - File: `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
 - SHA-256: `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` (214,315 bytes);
@@ -38,20 +38,42 @@ gitignored (unchecked data-use terms); hashes below are the authority.
   10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
   Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
 
-## CONCENTRATION on 5 km blocks (not built yet — the slot-2 candidate if the human prefers to wait for it)
+## CONCENTRATION on 5 km blocks — BUILT, negative MODEL; no slot recommended
 
-Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
-target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
-built (section below) but is not the slot-2 recommendation.
+These are audit artifacts, not current upload recommendations. All three passed the mandatory
+re-read gates, but SGMC is negative and dose-monotone and every added cell is off H19-5 support.
+The positive catalogue-recovery result is **PROXY only**, not a score or a reason to upload.
 
-## Slot 3 — a sign flip or a deliberate probe, both predicted non-positive
+| Value | Zeros-outside file | Submission name | Prediction note (exactly as generated) |
+|---|---|---|---|
+| `b5km-move10` | `releases/concentration5/h33-h33-2-b2-CONCENTRATION-b5km-move10-20261023-0d83c158-zeros.tif` | `h33-h33-2-b2-CONCENTRATION-b5km-move10-20261023-0d83c158` | `R0 h33-h33-2-b2; CONCENTRATION b5km-move10: 3765 dots low->high prior, count 37654; pred -0.0066 MODEL` (102 chars) |
+| `b5km-move15` | `releases/concentration5/h33-h33-2-b2-CONCENTRATION-b5km-move15-20261023-c03272dc-zeros.tif` | `h33-h33-2-b2-CONCENTRATION-b5km-move15-20261023-c03272dc` | `R0 h33-h33-2-b2; CONCENTRATION b5km-move15: 5648 dots low->high prior, count 37654; pred -0.0109 MODEL` (102 chars) |
+| `b5km-move20` | `releases/concentration5/h33-h33-2-b2-CONCENTRATION-b5km-move20-20261023-e121a2a4-zeros.tif` | `h33-h33-2-b2-CONCENTRATION-b5km-move20-20261023-e121a2a4` | `R0 h33-h33-2-b2; CONCENTRATION b5km-move20: 7531 dots low->high prior, count 37654; pred -0.0150 MODEL` (102 chars) |
 
-**Option A (recommended if slots 1–2 both land inside ±0.01): `RELIEF front−10pct`**
-(`…-frontm10-20261023-1b26223e-zeros.tif`, digested in the bullet above). Its value is the *paired* read against
-slot 2: a 25 %-of-mass swing with a predicted separation of ~0.011, i.e. the only RELIEF comparison
-that can clear the evidence floor.
+**Format / twins / receipts:** each primary file has the same name without `-zeros` and is NaN-
+outside; the listed twin is zeros-outside. All are one-band float32, 3,730×3,292, CRS `EPSG:32611`,
+transform `(100, 0, 243350, 0, −100, 4508550)`, DEFLATE / predictor 3 / level 9 / 256 px tiles.
+Count is 37,654, catalogue mass is zero, new-mass catalogue clearance is at least 3.162278 px,
+and in-memory versus on-disk dot sets match. The 2,171 inherited R0 dots at 2–3 px are unchanged,
+not silently pruned. Full SHA-256 values and both gate reports are in each adjacent `-zeros.json`
+receipt and `evidence/concentration5_axis_20261023.json`; predictions and falsifiers are in
+`evidence/concentration5-mechanism.md`. **Slots used: 0.**
 
-**Option B: SNAP, built and gated, predicted negative**
+## Slot 3 — SPACING `strike16`; predicted-negative alternatives below
+
+The current plan's slot-3 proposal is
+`releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif`, with exact name, note
+and format receipt in the SPACING section below: **+0.0020 MODEL**, band +0.0020…+0.0050,
+3/4 quadrants positive. Read it against `random16` (+0.0002), not against zero. It is below the
+0.01 evidence floor and is not auto-approved.
+
+### Alternative A: `RELIEF front−10pct`, predicted negative
+
+(`…-frontm10-20261023-1b26223e-zeros.tif`, digested above). Its value is the *paired* read against
+RELIEF slot-2 alternative: a 25 %-of-mass swing with predicted separation ~0.011. It is not the
+current slot-3 recommendation.
+
+### Alternative B: SNAP, built and gated, predicted negative
 
 | Variant | Primary file (NaN outside) | sha256 (NaN twin) | Fallback (`-zeros`) | sha256 (zeros twin) | Prediction |
 |---|---|---|---|---|---|
@@ -160,10 +182,10 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
 *negative* against a random-response null. Both are `BUILT-DUPLICATE` in
 `ledger/submissions.csv`; they exist for audit only.
 
-### CONCENTRATION, 1 km blocks — the one new candidate
+### Slot 2 — CONCENTRATION, 1 km blocks
 
-- **File:** `releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
-  (nan-outside twin: `gems86-h33-2b2-conc15-20261023-2b883f2d.tif`)
+- **File:** `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
+  (nan-outside twin: `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif`)
 - **Name:** `gems86-h33-2b2-conc15-20261023-2b883f2d`
 - **Note (107 chars):**
   `GEMSDOE86 h33-2b2 CONCENTRATION b1km-move15 | 37654 dots, 29.999% changed vs R0 | token 2b883f2d | UNSCORED`
@@ -178,8 +200,8 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
   highest-prior fifth (10,462 blocks), count fixed at 37,654, all placements at the parent's
   2.828 px spacing, placement geometric only. Block-density CV 0.6235 → 0.7644.
 - **Prediction:** +0.006 MODEL (+0.003…+0.010). Not a score.
-- **Where it sits in the plan:** slot **2b** in `SLOT_PLAN.md` — the move-the-mass alternative to a
-  second RELIEF rung, not a replacement for slot 1 (`PRUNE-le3p000`).
+- **Where it sits in the plan:** recommended **slot 2** in the current `SLOT_PLAN.md`; RELIEF
+  `frontp15` is the alternative. Neither is auto-approved, and neither has a receipt.
 
 Release TIFFs are gitignored (data-use terms unchecked), so they exist only in this working copy;
 the JSON receipts next to them carry the digests. Rebuild with the commands in `AI_USE.md`.
