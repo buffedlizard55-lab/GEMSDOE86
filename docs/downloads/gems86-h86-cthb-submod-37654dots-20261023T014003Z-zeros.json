@@ -117,11 +117,9 @@
   "submission_slots_used": 0,
   "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
   "metadata": {
-    "lane": "GEMSDOE86",
-    "hypothesis": "H86-CTHB",
-    "verdict": "promote",
-    "holdout_dti_all": 0.2506068424466576,
-    "holdout_dti_detached": 0.25878778514109624,
-    "holdout_dti_buffered_component": 0.11328595348258275
+    "lane": "H86D-CTHB",
+    "winner_arm": "E3_Submodular_CTHB",
+    "budget": 37654,
+    "content_digest8": "e382e638"
   }
 }

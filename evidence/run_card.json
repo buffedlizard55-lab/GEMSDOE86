@@ -1,0 +1,123 @@
+{
+  "hypothesis": "H2: an oriented matched-filter (8 azimuths, sigma_par=4 px, sigma_perp=1.2 px) applied to the fault posterior before a 3-px-tiled budget allocation raises DTI more than any single new geological layer; H1 (gravity-magnetic cross-gradient structural coherence) tests as a null feature.",
+  "mechanism": "The DTI kernel (alpha=0.2, beta=0.8, R=300 m) gives 4x more weight to missed truth than to a stray dot, and one dot saturates at 3 px. Maximising along-strike linear coherence of the posterior at the kernel scale, then emitting one dot per 3x3 tile in expected-credit order, converts posterior mass into non-redundant, line-following coverage.",
+  "named_non_fault_mimic": "Lithologic/intrusive contacts that carry both a density and a magnetisation contrast (for H1), and survey-line or road/trail lineaments in the 1 m-LiDAR morphological stack (for H2).",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "holdout_dti": 0.12324436995403142,
+  "holdout_ci95": [
+    0.10926423604369893,
+    0.13665328131007318
+  ],
+  "budget_ratio_dots_per_prior_positive": 8.0,
+  "dots": 90568,
+  "ablations": {
+    "no_gmc_same_budget": {
+      "dti": 0.12313133829113136,
+      "ci95": [
+        0.10913133647461991,
+        0.1365342327849808
+      ],
+      "delta": 0.000113
+    },
+    "no_line_filter_same_budget": {
+      "dti": 0.07934160787477725,
+      "ci95": [
+        0.06466550553437748,
+        0.09471956839970118
+      ],
+      "delta": 0.043903
+    },
+    "hist_gradient_boosting_best": {
+      "dti": 0.06217912833815267,
+      "ci95": [
+        0.05099178226784526,
+        0.07428335073253658
+      ],
+      "ratio": 24.0
+    },
+    "budget_sweep": [
+      {
+        "ratio": 4.0,
+        "dti": 0.09568305408529841,
+        "ci95": [
+          0.0837965097542267,
+          0.10694206301423245
+        ],
+        "dots": 45284,
+        "n_truth": 11321
+      },
+      {
+        "ratio": 6.0,
+        "dti": 0.11655939103279865,
+        "ci95": [
+          0.10313142134876539,
+          0.13011157251265998
+        ],
+        "dots": 67926,
+        "n_truth": 11321
+      },
+      {
+        "ratio": 8.0,
+        "dti": 0.12324436995403142,
+        "ci95": [
+          0.10926423604369893,
+          0.13665328131007318
+        ],
+        "dots": 90568,
+        "n_truth": 11321
+      },
+      {
+        "ratio": 10.0,
+        "dti": 0.11794326684787819,
+        "ci95": [
+          0.10447022468523463,
+          0.13058141840399518
+        ],
+        "dots": 113210,
+        "n_truth": 11321
+      },
+      {
+        "ratio": 12.0,
+        "dti": 0.1057658627940238,
+        "ci95": [
+          0.09326189378850606,
+          0.1180150552727584
+        ],
+        "dots": 135852,
+        "n_truth": 11321
+      }
+    ]
+  },
+  "registry_correlation_overlap": "see evidence/uniqueness_audit.json + evidence/saturation_certificate.json",
+  "raster_sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+  "raster_name": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+  "validator_output": {
+    "all_checks_passed": true,
+    "checks": 15,
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "n_inf": 0,
+    "outside_footprint_positive": 0,
+    "on_catalogue_positive": 0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ]
+  },
+  "submission_note": "GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]",
+  "submission_note_chars": 107,
+  "verdict": "negative",
+  "live_score": null,
+  "live_score_note": "No organizer receipt exists; nothing in this repo is an ORGANIZER-CONFIRMED score.",
+  "previous_verdict_before_literal_protocol_review": "promote H2 (line-matched emission); negative H1 (cross-gradient); candidate is format-clean and unique by arrangement, NOT a claim of a live score",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "download_status": "DO NOT SUBMIT: shared literal registry checker unique=false and stop_required=true; no saturation exemption authorized.",
+  "holdout_dti_for_shipped_offcatalogue_file": null,
+  "holdout_scope": "Existing HOLDOUT-DTI and CI are for the catalogue-following configuration, NOT the shipped off-catalogue raster. Not re-evaluated in the protocol audit.",
+  "protocol_proof": "docs/evidence/protocol-preflight.json"
+}

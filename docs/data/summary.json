@@ -1,0 +1,16 @@
+{
+  "schema": "gems86.release-readiness.v1",
+  "audit_ok": true,
+  "decision": "DO NOT SUBMIT",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "artifact_count": 10,
+  "locally_valid_artifacts": 10,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "featured_research_artifact": null,
+  "current_comparable_holdout_best": null,
+  "reason": "No selector decision. Different historical holdout designs cannot be ranked by their maxima.",
+  "release_readiness": "../evidence/release-readiness.json"
+}

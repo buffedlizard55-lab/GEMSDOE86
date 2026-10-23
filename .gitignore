@@ -1,4 +1,28 @@
+# --- data & caches (never committed; rebuilt by scripts/restore_data.py) ---
+.cache/
 .venv/
 __pycache__/
-data/
 *.pyc
+.pytest_cache/
+/tmp/
+
+# --- large local artifacts ---
+data/raw/
+*.npy
+*.npz
+
+# Small protocol-audit mirrors and historical witness (not releases)
+/data/*.tif
+/data/registry/
+/data/restoration_backup/
+
+/data/external/
+/data/work/
+
+/data/cache/
+/data/scored/
+/data/registry_ext/
+/data/scored_ext/
+
+data/processed/
+registry/submissions/

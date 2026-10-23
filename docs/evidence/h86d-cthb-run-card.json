@@ -1,0 +1,150 @@
+{
+  "hypothesis": "H86D-CTHB (Contact-Truncation, Cross-Gradient Discordance & Hydrothermal-Breach Relay Mechanics): 4-quadrant LOQO dual-regime ensemble coupling 28 zero-catalogue physical planes (RTP & gravity ridge-tangent contact truncations |t.grad(R)|, Gallardo-Meju magnetic-gravity cross-gradients, locally elevation-deconfounded K/Th x DEM cross-gradients, GDR-1391 2m-probe F2mDAB plumes, paleo-sinter/travertine/tufa vents, 300m-upslope-advected spring geothermometry, MT clay-cap edges, and Lahontan/Bonneville-deconfounded 1m-LiDAR + 10m-3DEP scarplets & fluvial chi) with 7 strictly fold-visible crack-tip beams, host-bend splays, and two-host relay-breach corridors, allocated via Two-Stage Quota-Split Minoux R=300m Submodular Kernel Optimization (54% <=1.5km / 46% >1.5km, 37654 dots).",
+  "mechanism": "4-quadrant spatially blocked LOQO dual-regime ensemble coupling a 28-feature zero-catalogue multi-physics model (RTP/gravity ridge-tangent contact truncations, Gallardo-Meju magnetic-gravity cross-gradients, local elevation-deconfounded K/Th-topographic cross-gradients, DOE GDR 1391 2m shallow temperature probe F2mDAB plumes, paleogeothermal sinter/travertine/tufa vents, 300m-upslope-advected spring geothermometers, MT clay-cap edges, and pluvial-deconfounded 1m LiDAR / 10m 3DEP scarplet chains & fluvial chi knickzones) with 7 strictly fold-visible anisotropic crack-tip beams, host-bend splays, and two-host relay-breach corridors, allocated via Two-Stage Quota-Split Minoux Lazy-Greedy R=300m Submodular Kernel Optimization (55% tip/relay <=1km + 45% distal piedmont/basin multi-physics >1km).",
+  "non_fault_mimic": "Pleistocene Lake Lahontan (1270m, 1332m) & Lake Bonneville (1463m, 1552m) wave-cut shoreline benches (explicit pluvial_shoreline_mimic plane); Unfaulted Mesozoic pluton contacts & GeoDAWN airborne survey stitch seams (ridge-tangent truncation |t.grad(R)|, upward-continued TMI_up150 subtraction, acquisition_block_id_100m seam attenuation, immobile-Th broad step control); Down-fan lateral geothermal outflow plumes (300m upslope advection along +grad(DEM) + 2m-probe campaign density deconfounding)",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "segment_hide_all": {
+      "withheld_positives": 22641,
+      "candidate_dti": 0.2506068424466576,
+      "ci95": [
+        0.2350831506328219,
+        0.26694605529520016
+      ],
+      "d28_incumbent_dti": 0.1010696473055406,
+      "h33_b2_foldfair_dti": 0.09096096964267096,
+      "paired_delta_vs_d28": 0.149537195141117,
+      "paired_delta_vs_d28_ci95": [
+        0.1352798988887172,
+        0.16444053320199103
+      ],
+      "paired_delta_vs_h33_foldfair": 0.15964587280398662,
+      "paired_delta_vs_h33_foldfair_ci95": [
+        0.1453167787590671,
+        0.17417956600287465
+      ]
+    },
+    "segment_hide_detached": {
+      "withheld_positives": 22619,
+      "candidate_dti": 0.25878778514109624,
+      "ci95": [
+        0.24021387012922235,
+        0.2778688930204607
+      ],
+      "d28_incumbent_dti": 0.10346446550153578,
+      "h33_b2_foldfair_dti": 0.09481681738698564,
+      "paired_delta_vs_d28": 0.15532331963956048,
+      "paired_delta_vs_d28_ci95": [
+        0.13891101584623403,
+        0.17300141443212766
+      ],
+      "paired_delta_vs_h33_foldfair": 0.1639709677541106,
+      "paired_delta_vs_h33_foldfair_ci95": [
+        0.14737149239025743,
+        0.18139747950197546
+      ]
+    },
+    "buffered_whole_components_loqo": {
+      "withheld_positives": 22893,
+      "candidate_dti": 0.11328595348258275,
+      "ci95": [
+        0.09645593442480702,
+        0.12966668437940568
+      ],
+      "d28_incumbent_dti": 0.10092595889565632,
+      "h33_b2_foldfair_dti": 0.10564450185732029,
+      "paired_delta_vs_d28": 0.012359994586926423,
+      "paired_delta_vs_d28_ci95": [
+        -0.005014063954796692,
+        0.028710285522040434
+      ],
+      "paired_delta_vs_h33_foldfair": 0.00764145162526246,
+      "paired_delta_vs_h33_foldfair_ci95": [
+        -0.010108488467944625,
+        0.024121741962220368
+      ]
+    },
+    "experiment_progression": {
+      "all_E1_pure_physics_0cat": 0.04919450512606201,
+      "all_E2_coupled_tile3": 0.2755600469123522,
+      "all_E3_nms_3x3": 0.20139004524100707,
+      "all_E3_single_stage_submod": 0.301491492741844,
+      "all_E3_two_stage_submod_selected": 0.2506068424466576,
+      "buf300m_E1_pure_physics_0cat": 0.06612005265576183,
+      "buf300m_E2_coupled_tile3": 0.1154688516391836,
+      "buf300m_E3_two_stage_submod_selected": 0.11328595348258275
+    },
+    "budget_sensitivity_all": {
+      "37654": 0.2506068424466576,
+      "33000": 0.2533025004102834,
+      "42000": 0.24774473803127717
+    }
+  },
+  "leakage_canary_auc": {
+    "features_checked": 35,
+    "max_discriminative_auc": 0.86634,
+    "shuffled_control_auc": 0.4986,
+    "threshold": 0.9,
+    "any_leakage_flag": false
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 47,
+    "discriminating_dot_fields_checked": 45,
+    "scope": "47 hash-verified rasters (9 prior GEMSDOE86 lanes + 12 GEMSDOE24 rasters + 25 cross-repo sibling rasters GEMSDOE28..88 + 1 pinned 100%-support dense witness); not organizer-complete.",
+    "surface_worst_abs_spearman": 0.2008,
+    "final_worst_all_abs_spearman": 0.082249,
+    "final_worst_nonlattice_dot_overlap_3px": 0.68516,
+    "final_worst_nonlattice_dot_overlap_vs": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "final_worst_gems86_intralane_overlap_3px": 0.491024,
+    "overlap_3px_vs_gems32_h33_2_b2": 0.331598,
+    "overlap_3px_vs_d28_incumbent": 0.368035,
+    "overlap_3px_vs_h86c_kslb": 0.389069,
+    "nonlattice_dot_field_duplicates": 0,
+    "literal_firings_over_0_70": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "dense-witness-100pct-support.tif"
+    ],
+    "discriminating_nonlattice_unique": true,
+    "literal_protocol_unique": false
+  },
+  "raster_sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+  "zip_sha256": "a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427",
+  "validator": {
+    "status": "PASS (automated 15/15 shared validator + template format check; not organizer acceptance)",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "emitted_dots": 37654,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+  "note": "GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros",
+  "submission_file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+  "zip_file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip",
+  "scores_labelled": "Every local metric is strictly labelled HOLDOUT-DTI (gems57-pooled-hide-v2) or OFF-CATALOGUE-PROXY-DIAGNOSTIC. Zero ORGANIZER-CONFIRMED scores exist in GEMSDOE86.",
+  "experiments_run": 3,
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "selector_note": "FORMAT-VALID RESEARCH ARTIFACT (15/15 checks PASS; 35/35 leakage canaries PASS <= 0.8663; 0/45 discriminating non-lattice dot fields exceed 0.70) \u2014 DO NOT SPEND A WEEKLY SLOT AUTOMATICALLY: literal >0.70 3-px overlap fires on saturated registry witnesses (pinned 100%-support dense surface = 1.0000 and 13gems 99.87%-halo stride-5 calibration lattice = 0.9951) under the unmodified literal protocol rule; promotion to a live weekly slot requires explicit human/selector quota and schema authorization."
+}

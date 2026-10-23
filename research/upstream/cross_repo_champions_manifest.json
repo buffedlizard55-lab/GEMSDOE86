@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "note": "Hash-pinned primary candidate GeoTIFFs fetched from sibling buffedlizard55-lab GEMSDOE repositories on 2026-10-22 for cross-lane uniqueness verification.",
+  "files": [
+    {
+      "id": "ext_reg_gems32_h33_2_b2",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "dest": "registry_ext/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "id": "ext_reg_gems36_anderson_pinn",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "dest": "registry_ext/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "bytes": 318190,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    },
+    {
+      "id": "ext_reg_gems49_gate_ortho",
+      "repo": "buffedlizard55-lab/GEMSDOE49",
+      "path": "docs/downloads/gems49-gate_ortho_w0.25-40k-20261006T213721Z-zeros.tif",
+      "dest": "registry_ext/GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-zeros.tif",
+      "bytes": 230827,
+      "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1"
+    },
+    {
+      "id": "ext_reg_60gems_h73b_chi",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "path": "docs/downloads/gems60-h73-chi-coherent-corridor-12000-20261011T195818Z-zeros.tif",
+      "dest": "registry_ext/60GEMSDOE__gems60-h73-chi-coherent-corridor-12000-20261011T195818Z-zeros.tif",
+      "bytes": 88968,
+      "sha256": "7fcf455c549598be9002acdc2c0370f232e11616d1ea21cb84f96d8af82ab971"
+    },
+    {
+      "id": "ext_reg_gems70_p8_oof38k",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "path": "docs/downloads/gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "dest": "registry_ext/GEMSDOE70__gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "bytes": 143907,
+      "sha256": "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8"
+    },
+    {
+      "id": "ext_reg_gems70_p9_piedmont",
+      "repo": "buffedlizard55-lab/GEMSDOE70",
+      "path": "docs/downloads/gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "dest": "registry_ext/GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "bytes": 138252,
+      "sha256": "f19a78d511f9d822b47ad4d9ce56cf2ccfa415e3d1ca49709a342158de6e7a84"
+    },
+    {
+      "id": "ext_reg_gems73_mvh",
+      "repo": "buffedlizard55-lab/GEMSDOE73",
+      "path": "docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+      "dest": "registry_ext/GEMSDOE73__gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+      "bytes": 136750,
+      "sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8"
+    },
+    {
+      "id": "ext_reg_gems75_comcat3d",
+      "repo": "buffedlizard55-lab/GEMSDOE75",
+      "path": "docs/downloads/gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+      "dest": "registry_ext/GEMSDOE75__gemsdoe75-h75-1-cover-multiphysics-comcat3d-v1.tif",
+      "bytes": 128145,
+      "sha256": "64faebf44c5a5e03ef596efdc7ba4123ef0343b223988118a7e8dcd09dc51490"
+    },
+    {
+      "id": "ext_reg_gems76_h76_3",
+      "repo": "buffedlizard55-lab/GEMSDOE76",
+      "path": "docs/downloads/gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+      "dest": "registry_ext/GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+      "bytes": 140199,
+      "sha256": "d706807d42d1b21f6417483cd7aeb04a410d62accd5a66c6b2a6ab0dc16662af"
+    },
+    {
+      "id": "ext_reg_gems78_gsc",
+      "repo": "buffedlizard55-lab/GEMSDOE78",
+      "path": "docs/downloads/gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "dest": "registry_ext/GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "bytes": 147599,
+      "sha256": "e2f21d496925fb1bd2f36c5b28a0e2356286eca719132545474456f81bc5a8eb"
+    },
+    {
+      "id": "ext_reg_gems78_gfv",
+      "repo": "buffedlizard55-lab/GEMSDOE78",
+      "path": "docs/downloads/gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+      "dest": "registry_ext/GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+      "bytes": 147086,
+      "sha256": "0338383df9c36c0a2581ddc584e6aafa5ce364ba52cd9e56749628bc4301dd07"
+    },
+    {
+      "id": "ext_reg_gems80_choquet",
+      "repo": "buffedlizard55-lab/GEMSDOE80",
+      "path": "docs/downloads/gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "dest": "registry_ext/GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "bytes": 162346,
+      "sha256": "a3c14d76d1f58802c8bd3f13378cbeb037ad3618d5fbd9dbf5f5a0dae4a35ede"
+    },
+    {
+      "id": "ext_reg_gems81_cont",
+      "repo": "buffedlizard55-lab/GEMSDOE81",
+      "path": "docs/downloads/gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "dest": "registry_ext/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "bytes": 155982,
+      "sha256": "9798fe7f4a68c7b8efbb9f3f03945ab800177b993abe671e4d174282e0675508"
+    },
+    {
+      "id": "ext_reg_gems82_punoisyor",
+      "repo": "buffedlizard55-lab/GEMSDOE82",
+      "path": "submissions/gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "dest": "registry_ext/GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "bytes": 137930,
+      "sha256": "120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131"
+    },
+    {
+      "id": "ext_reg_gems83_gvcd",
+      "repo": "buffedlizard55-lab/GEMSDOE83",
+      "path": "docs/downloads/gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "dest": "registry_ext/GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "bytes": 144047,
+      "sha256": "79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2"
+    }
+  ]
+}

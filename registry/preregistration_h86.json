@@ -1,0 +1,102 @@
+{
+  "lane_id": "H86-FVMB",
+  "repository": "buffedlizard55-lab/GEMSDOE86",
+  "preregistered_utc": "2026-10-22T21:48:00Z",
+  "protocol_rules": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "metric": "Distance-Weighted Tversky Index (alpha=0.2, beta=0.8, R=300m=3px triangular kernel)",
+    "leakage_canary_auc_max": 0.90,
+    "uniqueness_spearman_abs_max": 0.90,
+    "uniqueness_3px_overlap_max": 0.70,
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "weekly_slots_to_spend": 0
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86-1",
+      "title": "Source-Parameter-Imaging (iSPI) Dip-Projected Potential-Field Contact Dipole & Sibson Hydrothermal Fault-Valve Breaching with Paleoshoreline/Road Decontamination",
+      "layers": [
+        "training_features.tif (Bands 1-19, especially B2 rtp, B3 tmi_hg, B9 tmi_vg, B11 iso_grav_anom_vg, B13 iso_grav_anom, B15 depth_to_base_surf, B17 cond_surf, B18 iso_grav_anom_hg)",
+        "external/geodawn_rad_u8.tif (K, Th, U, TC)",
+        "external/geodawn_extensions_u8.tif (ThK, UK, UTh, TMI_up150)",
+        "external/2m_temperature_probe_INGENIOUS_regional_data.zip (T2m, F2mDAB)",
+        "external/paleo_geothermal_regional.zip (Paleo sinter, travertine, tufa, silicified fault seals)",
+        "external/gdr_wellspring_in_footprint.csv (temp_c, geothermquartz_c, geothermchalc_c, geothermcat_c; dist_known_fault_px STRICTLY EXCLUDED)",
+        "external/lidar_scarp_features_u8.tif (12 bands)",
+        "external/h52_scarp3m_100m.tif (Wallace scarp diffusion stack)",
+        "external/topo_10m_derived_100m_u8.tif (9 bands incl. dem_mean ASL)",
+        "external/tiger_road_distance_m.tif & external/blm_closed_claim_distance_m.tif"
+      ],
+      "physical_signature": "Thurston & Brown (1994) local-wavenumber structural contact ridge kappa_SPI = |grad(atan2(VG, HG))| computed for both shallow magnetics (B9/B3 + TMI-TMI_up150) and deep isostatic gravity (B11/B18), coupled by Andersonian 60-deg normal-fault up-dip pullback (cot 60 = 0.58 * B15 along -grad B15), intersected with Sibson fault-valve hydrothermal alteration (high-pass RTP magnetite-destruction trough x K/Th adularia enrichment x MT smectite clay-cap B17 x 2m temperature probe F2mDAB & paleo-sinter seals), and decontaminated against constant-elevation Lake Lahontan (1332m) / Bonneville (1463/1552m) wave-cut strandlines and TIGER road/rail embankments.",
+      "why_missing_from_catalogue": "~75% of Great Basin geothermal systems are blind (Faulds et al., 2016): opaline/chalcedonic self-sealing and rapid piedmont/playa sedimentation erase discrete Holocene scarps, causing single-dataset photo/DEM mappers to omit active blind conduits.",
+      "novelty_vs_fleet": "First GEMSDOE lane to compute dual Magnetic-Gravity Source Parameter Imaging (iSPI) local-wavenumber contact ridges from exact VG/HG pairs (B9/B3 and B11/B18) with cot(60)-scaled basement-thickness dip pullback coupled to Sibson fault-valve magnetite-destruction + F2mDAB + paleo-sinter + paleoshoreline/road decontamination.",
+      "expected_dti_gain": "+0.025 to +0.045 HOLDOUT-DTI over heuristic multi-physics baseline",
+      "implementation_cost": "Medium (~55s vectorized CPU memmap)",
+      "tested_in": "EXP-86-1, EXP-86-2, EXP-86-3"
+    },
+    {
+      "rank": 2,
+      "id": "H86-2",
+      "title": "Asymmetric Mode-II/III Wing-Crack Dilational Lobes (±22 deg), Step-Over Relay Bridges & Counterfactual Component-Withheld 3-Family SAR-PU Ensemble",
+      "layers": [
+        "existing_faults.tif (strictly visible mask per holdout fold; counterfactual sub-withheld components during training)",
+        "training_features.tif Bands 4, 7, 8 (geodetic strain invariant, shear rate, dilatation rate)",
+        "H86-1 physical feature stack"
+      ],
+      "physical_signature": "Propagating normal/transtensional fault tips concentrate Coulomb tensile/shear stress not only dead-ahead (0 deg) but strongly in asymmetric ±22-deg horsetail wing-crack splays (400m-2.8km), bidirectional en-echelon relay ramps, and 600m-1.8km across-strike antithetic graben twins. A heterogeneous 3-family OOF stack (LightGBM + HistGradientBoosting + Calibrated Ridge-MLP) trained on counterfactual component-withheld positives (>3.0 px off visible catalogue) with dual LiDAR-seam x quadrant Bayes prior calibration predicts off-catalogue fault probability without starving the 24.6% non-LiDAR footprint.",
+      "why_missing_from_catalogue": "Mappers trace the main high-throw master fault segment (~10+ m scarp) and arrest the line where throw drops below ~1 m into distributed horsetail wing-cracks, step-over relay ramps, or antithetic piedmont splays.",
+      "novelty_vs_fleet": "Replaces symmetric collinear-only rays and single-family GBDTs with explicit ±22-deg oblique wing-crack FFT kernels + counterfactual component-withheld 3-family heterogeneous OOF stacking + dual (4-quadrant x 2-LiDAR-regime = 8-stratum) Bayes prior calibration.",
+      "expected_dti_gain": "+0.055 to +0.085 HOLDOUT-DTI over label-free physical baseline",
+      "implementation_cost": "Medium (~75s CPU)",
+      "tested_in": "EXP-86-2, EXP-86-3"
+    },
+    {
+      "rank": 3,
+      "id": "H86-3",
+      "title": "Exact Linear-Fractional Dinkelbach-Minoux 300m Submodular Expected-DTI Allocator with Endogenous Marginal Break-Even Stopping",
+      "layers": [
+        "H86-2 calibrated 8-stratum posterior discovery field",
+        "existing_faults.tif (strict off-catalogue collar d > 3.0 px)"
+      ],
+      "physical_signature": "Maximizes exact expected DW-Tversky DTI = E[TP_w] / (0.8 E[|G|] + 0.2 (E[TP_w] + E[FP_w])) over the 25 strictly positive cells of the 300m triangular kernel k(d) = max(1 - d/3, 0) via Dinkelbach fixed-point iteration and Minoux lazy-greedy priority queue, stopping endogenously when marginal expected coverage gain falls below the exact derivative threshold 0.2*lambda / (1 - 0.2*lambda) * (1 - q_E(x)).",
+      "why_missing_from_catalogue": "Eliminates redundant within-cone dot crowding on wide range-front scarps so emission mass is reallocated to subtle blind intrabasin relays and geothermal wing-crack splays that clear the true metric break-even bar.",
+      "novelty_vs_fleet": "Uses exact derivative break-even stopping (yielding an organic, non-arbitrary dot count rather than hard-coded 44,090 or 37,654) over our unique 8-stratum H86-FVMB posterior.",
+      "expected_dti_gain": "+0.025 to +0.045 HOLDOUT-DTI over isotropic D2.8 Poisson-disk",
+      "implementation_cost": "Low (~15s Minoux heap on CPU)",
+      "tested_in": "EXP-86-3"
+    },
+    {
+      "rank": 4,
+      "id": "H86-4",
+      "title": "Fluvial Steepness Knickzone & Cross-Divide Chi Disequilibrium Lineaments across Eroded Range-Interior Bedrock",
+      "layers": [
+        "external/dem10_chi_100m_i16.tif (ksn_max_m0.9, step_max_x1000, log10_area_m2, zmean_m)",
+        "external/dem10_chi_100m_u8.tif",
+        "training_features.tif Bands 12, 19 (det_elev, det_elev_slope)"
+      ],
+      "physical_signature": "Active fault throw across incised bedrock ranges lacks alluvial scarps (LiDAR scarp = 0) but generates aligned high-ksn channel knickzones at intermediate drainage areas coupled with cross-divide elevation/chi asymmetry.",
+      "why_missing_from_catalogue": "Quaternary fault catalogues systematically under-map bedrock-hosted intrarange faults where erosion removes unconsolidated Quaternary fault scarps.",
+      "novelty_vs_fleet": "Integrated directly as drainage-area-gated ksn knickzone x iSPI subsurface contact channels inside H86-1.",
+      "expected_dti_gain": "+0.003 to +0.008 HOLDOUT-DTI in bedrock subdomains",
+      "implementation_cost": "Low (~6s)",
+      "tested_in": "EXP-86-1, EXP-86-2, EXP-86-3"
+    },
+    {
+      "rank": 5,
+      "id": "H86-5",
+      "title": "Sentinel-1 InSAR Distributed Phase-Gradient Ruptures (2020 Mw 6.5 Monte Cristo) & Double-Difference Relocated Microseismicity Planar Lineaments",
+      "layers": [
+        "External: USGS ComCat FDSN Event Web Service (https://earthquake.usgs.gov/fdsnws/event/1/query)",
+        "External: NASA JPL ARIA / COMET Sentinel-1 LiCSAR unwrapped interferograms"
+      ],
+      "physical_signature": "Sub-5 cm distributed co-seismic surface ruptures (e.g., 2020 Monte Cristo Range earthquake on previously unmapped Candelaria splay faults) and sub-km relocated hypocenter streaks replacing the over-smoothed 100 km-radius B10/B16 bands.",
+      "why_missing_from_catalogue": "Post-compilation ruptures and microseismic blind faults with <5 cm surface offset leave zero 1m LiDAR scarp.",
+      "novelty_vs_fleet": "Explicitly obtainability-tested per prompt: live HTTPS check to earthquake.usgs.gov from sandbox returned SSLZeroReturnError (blocked by sandbox egress allowlist). Documented with ready fetcher script for unrestricted Phase-2 execution; NOT fabricated or claimed locally.",
+      "expected_dti_gain": "+0.015 to +0.030 live DTI on unrestricted Phase-2 machine",
+      "implementation_cost": "External egress required (blocked in current sandbox)",
+      "tested_in": "Obtainability-checked & documented for Phase 2"
+    }
+  ]
+}

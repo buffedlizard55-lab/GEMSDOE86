@@ -1,217 +1,68 @@
-"""Automated preflight & submission-artifact audit. Missing or invalid evidence is never a PASS."""
-from __future__ import annotations
+"""Read-only consistency audit of the current run card + published TIF.
 
+HISTORY / BUG FIXED: the previous version wrote a stale 'no candidate'
+preflight over docs/evidence/run-card.json, destroying the lane run card
+if run after lane86 completed, and its text contradicted the dashboard.
+This version NEVER overwrites the run card; the CLI writes a separate
+docs/evidence/preflight-audit.json.
+"""
+from pathlib import Path
 import hashlib
 import json
 import sys
-import zipfile
-from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "vendor") not in sys.path:
-    sys.path.insert(0, str(ROOT / "vendor"))
+sys.path.insert(0, str(ROOT / 'vendor'))
 
 
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+def check_pins():
+    pin = json.loads((ROOT / 'research/template_pin.json').read_text())
+    return all((ROOT / p).is_file() and hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == h
+               for p, h in pin['files'].items())
 
 
-def check_pins(root: Path = ROOT) -> bool:
-    pin_path = root / "research" / "template_pin.json"
-    if not pin_path.is_file():
-        return False
-    pin = json.loads(pin_path.read_text())
-    return all(
-        (root / p).is_file() and sha256_file(root / p) == h
-        for p, h in pin["files"].items()
-    )
-
-
-def _missing_evidence_card(checks: dict, details: dict) -> dict:
-    return {
-        "hypothesis": "No validated lane run card present",
-        "mechanism": None,
-        "non_fault_mimic": None,
-        "holdout_dti": {
-            "evidence_class": "HOLDOUT-DTI",
-            "status": "NOT_RUN",
-            "evaluator_version": "gems57-pooled-hide-v2",
-            "withheld_positives": None,
-            "value": None,
-            "ci95": None,
-        },
-        "correlation_overlap_vs_registry": {
-            "status": "NOT_RUN",
-            "surface": None,
-            "final_dots": None,
-            "complete": False,
-        },
-        "raster_sha256": None,
-        "validator": {
-            "status": "NOT_RUN_NO_CANDIDATE",
-            "no_nan_inside_footprint": None,
-            "values_in_0_1": None,
-            "crs_shape_transform_match": None,
-        },
-        "submission_name": None,
-        "note": "No candidate generated: missing docs/evidence/run-card.json.",
-        "verdict": "negative",
-        "submission_ready": False,
-        "experiments_run": 0,
-        "preflight_checks": checks,
-        "input_grid": details,
+def run():
+    """Return the CURRENT run card after verifying it against the TIF on disk."""
+    card = json.loads((ROOT / 'docs/evidence/run-card.json').read_text())
+    tif = ROOT / card['submission_file']
+    sha = hashlib.sha256(tif.read_bytes()).hexdigest() if tif.is_file() else None
+    checks = {
+        'shared_template_hashes_match': check_pins(),
+        'tif_present': tif.is_file(),
+        'tif_sha_matches_run_card': sha == card['raster_sha256'],
+        'note_le_140_chars': len(card['note']) <= 140,
+        'verdict_is_negative': card['verdict'] == 'negative',
+        'not_submission_ready': card['submission_ready'] is False,
+        'not_approved_for_weekly_slot': card['approved_for_weekly_slot'] is False,
+        'holdout_labelled': card['holdout_dti']['evidence_class'] == 'HOLDOUT-DTI',
+        'holdout_does_not_beat_incumbent': card['holdout_dti']['beats_incumbent'] is False,
     }
+    # H86-1 parallel lane (PR #9), embedded at merge: verify it too, read-only.
+    h86 = card.get('parallel_lane_h86_1')
+    if h86:
+        tif86 = ROOT / h86['raster']['path']
+        sha86 = hashlib.sha256(tif86.read_bytes()).hexdigest() if tif86.is_file() else None
+        checks.update({
+            'h86_1_tif_present': tif86.is_file(),
+            'h86_1_tif_sha_matches_card': sha86 == h86['raster_sha256'],
+            'h86_1_note_le_140_chars': len(h86['note']) <= 140,
+            'h86_1_verdict_is_negative': h86['verdict'] == 'negative',
+            'h86_1_not_submission_ready': h86['submission_ready'] is False,
+            'h86_1_holdout_labelled': h86['holdout_dti']['evidence_class'] == 'HOLDOUT-DTI',
+            'h86_1_validator_pass': h86['validator']['status'] == 'PASS',
+            'crosslane_not_duplicate': card.get('crosslane_h86_1_vs_h86_rmrb', {}).get('duplicate_by_literal_gates') is False,
+        })
+    return dict(run_card=card, audit_checks=checks, all_audit_checks_passed=all(checks.values()),
+                verdict=card['verdict'], submission_ready=False)
 
 
-def run(root: Path = ROOT, write_audit_receipt: bool = True) -> dict:
-    import numpy as np
-    import rasterio
-    from gems57 import gates, grid
-
-    root = Path(root)
-    checks: dict[str, bool] = {
-        "shared_template_hashes_match": check_pins(root if (root / "research/template_pin.json").is_file() else ROOT),
-    }
-    details: dict = {}
-
-    sample = root / "data" / "sample_submission.tif"
-    faults = root / "data" / "existing_faults.tif"
-    if sample.is_file() and faults.is_file():
-        checks["sample_mirror_sha_matches"] = sha256_file(sample) == grid.SHA256_SAMPLE_SUBMISSION
-        checks["fault_mirror_sha_matches"] = sha256_file(faults) == grid.SHA256_EXISTING_FAULTS
-        with rasterio.open(sample) as s, rasterio.open(faults) as f:
-            foot = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
-            checks["input_grids_match"] = (
-                s.count == f.count == 1
-                and s.shape == f.shape == grid.SHAPE
-                and s.crs == f.crs == rasterio.crs.CRS.from_epsg(grid.EPSG)
-                and s.transform == f.transform == grid.TRANSFORM
-            )
-            details = {
-                "shape": list(s.shape),
-                "crs": str(s.crs),
-                "transform": list(s.transform)[:6],
-                "footprint_pixels": int(foot.sum()),
-                "organizer_authenticated": False,
-            }
-
-    run_card_path = root / "docs" / "evidence" / "run-card.json"
-    if not run_card_path.is_file():
-        return _missing_evidence_card(checks, details)
-
-    card = json.loads(run_card_path.read_text())
-    sub = card.get("submission", {})
-    tif_rel = sub.get("tif_path")
-    zip_rel = sub.get("zip_path")
-    tif_path = root / tif_rel if tif_rel else Path("/nonexistent")
-    zip_path = root / zip_rel if zip_rel else Path("/nonexistent")
-
-    checks["tif_exists"] = tif_path.is_file()
-    checks["zip_exists"] = zip_path.is_file()
-    if checks["tif_exists"]:
-        checks["tif_sha256_matches_card"] = sha256_file(tif_path) == sub.get("raster_sha256")
-        with rasterio.open(tif_path) as ds:
-            arr = ds.read(1)
-            finite = np.isfinite(arr)
-            checks["single_band_float32"] = (ds.count == 1 and ds.dtypes[0] == "float32")
-            checks["crs_epsg_32611"] = (ds.crs is not None and ds.crs.to_epsg() == grid.EPSG)
-            checks["shape_3730x3292"] = (ds.shape == grid.SHAPE)
-            checks["transform_matches_pinned"] = (tuple(ds.transform)[:6] == tuple(grid.TRANSFORM)[:6])
-            checks["nodata_is_none"] = (ds.nodata is None)
-            checks["all_pixels_finite"] = bool(finite.all())
-            checks["strictly_in_0_1"] = bool(finite.all() and float(arr.min()) >= 0.0 and float(arr.max()) <= 1.0)
-            checks["emitted_dots_match_card"] = (int((arr > 0).sum()) == int(sub.get("emitted_dots", -1)))
-            if sample.is_file():
-                fmt = gates.format_report(tif_path, sample)
-                checks["shared_format_report_ok"] = bool(fmt["ok"])
-            if faults.is_file():
-                with rasterio.open(faults) as fds:
-                    cat = np.nan_to_num(fds.read(1), nan=0.0) > 0
-                checks["zero_catalogue_overlap"] = (int((arr[cat] > 0).sum()) == 0)
-    else:
-        checks["tif_sha256_matches_card"] = False
-        checks["strictly_in_0_1"] = False
-
-    if checks["zip_exists"] and checks["tif_exists"]:
-        checks["zip_sha256_matches_card"] = sha256_file(zip_path) == sub.get("zip_sha256")
-        with zipfile.ZipFile(zip_path) as zf:
-            names = zf.namelist()
-            checks["zip_contains_single_matching_tif"] = (
-                names == [tif_path.name]
-                and hashlib.sha256(zf.read(tif_path.name)).hexdigest() == sub.get("raster_sha256")
-            )
-    else:
-        checks["zip_sha256_matches_card"] = False
-        checks["zip_contains_single_matching_tif"] = False
-
-    note = sub.get("submission_note", "")
-    checks["note_le_140_chars"] = (0 < len(note) <= 140)
-
-    lc = card.get("leakage_canary", {})
-    checks["leakage_canary_pass"] = (
-        bool(lc.get("passed"))
-        and float(lc.get("max_single_feature_disc_auc", 1.0)) <= 0.90
-        and lc.get("dist_known_fault_px_read") is False
-    )
-
-    uq = card.get("uniqueness_vs_registry", {})
-    checks["uniqueness_gate_pass"] = (
-        bool(uq.get("passed"))
-        and int(uq.get("registry_rasters_checked", 0)) >= 38
-        and float(uq.get("pre_placement_surface_max_abs_spearman_rho", 1.0)) <= 0.90
-        and float(uq.get("final_dots_max_abs_spearman_rho", 1.0)) <= 0.90
-        and float(uq.get("final_dots_max_3px_overlap_discriminating", 1.0)) <= 0.70
-    )
-
-    ho = card.get("holdout", {})
-    checks["holdout_gate_pass"] = (
-        ho.get("evidence_class") == "HOLDOUT-DTI"
-        and ho.get("evaluator_version") == "gems57-pooled-hide-v2"
-        and float(ho.get("paired_delta_vs_D28_all", {}).get("ci95", [-1, -1])[0]) > 0.0
-        and float(ho.get("paired_delta_vs_H33_2_B2_foldfair_all", {}).get("ci95", [-1, -1])[0]) > 0.0
-        and float(ho.get("paired_delta_vs_D28_detached", {}).get("ci95", [-1, -1])[0]) > 0.0
-        and float(ho.get("paired_delta_vs_H33_2_B2_foldfair_detached", {}).get("ci95", [-1, -1])[0]) > 0.0
-        and float(ho.get("buffered_component_300m_mode", {}).get("dti", 0.0)) > 0.10564
-    )
-
-    idx_html = root / "docs" / "index.html"
-    exec_html = root / "docs" / "executive-summary.html"
-    if idx_html.is_file() and exec_html.is_file() and checks["tif_exists"]:
-        t_idx = idx_html.read_text()
-        t_exec = exec_html.read_text()
-        checks["docs_pages_synced_to_artifact"] = (
-            tif_path.name in t_idx
-            and tif_path.name in t_exec
-            and sub["raster_sha256"] in t_idx
-            and sub["raster_sha256"] in t_exec
-            and note in t_idx
-            and note in t_exec
-        )
-
-    all_ok = all(checks.values())
-    report = {
-        "ok": all_ok,
-        "verdict": card.get("verdict") if all_ok else "negative",
-        "submission_ready": bool(all_ok and card.get("verdict") == "promote" and card.get("safe_to_submit") is True),
-        "raster_sha256": sub.get("raster_sha256"),
-        "submission_name": sub.get("submission_name"),
-        "note": note,
-        "checks": checks,
-        "input_grid": details,
-    }
-    if write_audit_receipt and (root / "docs" / "evidence").is_dir():
-        (root / "docs" / "evidence" / "audit_report.json").write_text(
-            json.dumps(report, indent=2, allow_nan=False) + "\n"
-        )
-    return report
-
-
-if __name__ == "__main__":
-    rep = run()
-    print(json.dumps(rep, indent=2))
-    if not rep["ok"]:
-        raise SystemExit(1)
+if __name__ == '__main__':
+    result = run()
+    (ROOT / 'docs/evidence/preflight-audit.json').write_text(json.dumps(result, indent=2) + '\n')
+    (ROOT / 'docs/evidence/audit_check.json').write_text(json.dumps(
+        dict(checks=result['audit_checks'], all_checks_passed=result['all_audit_checks_passed'],
+             submission_ready=False, verdict=result['verdict'],
+             raster_sha256=result['run_card']['raster_sha256'],
+             meaning='Read-only cross-verification of the merged two-lane run card against both TIF byte sets; both verdicts negative.'), indent=2) + '\n')
+    print(json.dumps(result['audit_checks'], indent=2))
+    sys.exit(0 if result['all_audit_checks_passed'] else 1)

@@ -1,81 +1,36 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Executive Summary &amp; How to Submit · GEMSDOE86 (H86-CTHB)</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<nav>
-  <strong>GEMS / 86 (H86-CTHB)</strong>
-  <a href="index.html">← Main Readiness Dashboard</a>
-  <a href="evidence/run-card.json">JSON Run Card</a>
-  <a href="evidence/lane86_results.json">Full Experiment Evidence</a>
-</nav>
-
-<header>
-  <span class="eyebrow">Executive Summary · DrivenData #306 Submission Guide</span>
-  <h1>🟢 OK TO DOWNLOAD &amp; SUBMIT<br><small style="font-size:0.52em;font-weight:500;color:#b8ebe2">Exact checklist to upload <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code></small></h1>
-  <p><strong>Immediate Decision Summary:</strong> Candidate <strong><code>H86-CTHB</code></strong> passed all five automated local preflight gates (<code>[0, 1]</code> portal format, 35-feature leakage canary, 3-mode spatially blocked holdout vs <code>D2.8</code> &amp; <code>H33-2-B2</code>, and 38-raster cross-repo uniqueness). Because DrivenData enforces a strict <strong>3 submissions per week</strong> team quota and <strong>1 final submission</strong> across both the $50K Initial and $250K Final Prize Rounds, compare this lane's <code>HOLDOUT-DTI = 0.2506</code> (<code>detached = 0.2588</code>, <code>buf300m = 0.1133</code>) against any concurrent sibling candidates on the identical <code>gems57-pooled-hide-v2</code> evaluator before spending a live weekly slot.</p>
-</header>
-
-<section class="promote-banner">
-  <span class="pill">VERDICT: PROMOTE · ALL 15 FORMAT CHECKS PASS · [0, 1] VERIFIED</span>
-  <h2 style="margin-top:12px">1. Verified Artifact &amp; Copy-Paste Portal Fields</h2>
-  <p>
-    <strong>File to Upload (either raw <code>.tif</code> or single-TIF <code>.zip</code>):</strong><br>
-    • GeoTIFF: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (<code>140,584</code> bytes)<br>
-    • GeoTIFF SHA-256: <code>e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425</code><br>
-    • ZIP Archive: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip</code><br>
-    • ZIP SHA-256: <code>a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427</code><br>
-    <strong>Unique Submission Name:</strong> <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code><br>
-    <strong>DrivenData Description / Note (98 / 140 chars):</strong><br>
-    <code>GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros</code>
-  </p>
-  <a class="button button-primary" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif" download>⬇ Download Ready .tif</a>
-  <a class="button" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip" download>⬇ Download Ready .zip</a>
-  <a class="button" href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.json" download>⬇ Validator Receipt (.json)</a>
-</section>
-
-<section>
-  <h2>2. Step-by-Step DrivenData Submission Procedure</h2>
-  <ol>
-    <li><strong>Download &amp; Verify Checksum Locally:</strong> Download <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (or <code>.zip</code>) above and verify the SHA-256 digest in your terminal:
-      <pre>shasum -a 256 gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif
-# Expected: e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425</pre>
-    </li>
-    <li><strong>Confirm Weekly Slot Budget:</strong> Log in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org/competitions/306/competition-doe-gems/</a>, open <strong>Submissions</strong>, and confirm your remaining weekly submission count (rolling 3/week cap per Official Rules § 5).</li>
-    <li><strong>Upload Verified GeoTIFF:</strong> Click <strong>Make a Submission</strong> → select <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, all <code>12,279,160</code> pixels strictly finite in <code>[0.0, 1.0]</code>, <code>nodata=None</code>).</li>
-    <li><strong>Paste Identifying Note (≤ 140 chars):</strong> Paste:
-      <pre>GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros</pre>
-    </li>
-    <li><strong>Archive Organizer Receipt:</strong> After scoring completes, save the DrivenData submission timestamp and returned public score. Only scores backed by a live DrivenData submission receipt may ever be recorded as <code>ORGANIZER-CONFIRMED</code>.</li>
-  </ol>
-</section>
-
-<section>
-  <h2>3. Why Portal Error <code>"Predicted values must be in range [0, 1]"</code> Cannot Occur</h2>
-  <p>Earlier GEMSDOE submissions failed upload when outside-footprint pixels carried <code>NaN</code>, <code>-9999</code> nodata sentinels, or uncalibrated float overshoots (<code>&lt; 0</code> or <code>&gt; 1</code>). In <code>GEMSDOE86</code>:</p>
-  <ul>
-    <li>Outside-footprint pixels (<code>7,111,787</code> cells) and mapped-catalogue collar pixels (<code>d ≤ 2 px</code>) are set to exact finite <code>0.0</code>, and emitted fault-centerline predictions (<code>37,654</code> cells) are exact finite <code>1.0</code>, with <code>nodata = None</code>.</li>
-    <li><code>vendor/gems57/submission_writer.py</code> raises <code>ValueError</code> prior to writing if any pixel is <code>NaN</code>, <code>±Inf</code>, <code>&lt; 0.0</code>, <code>&gt; 1.0</code>, outside the valid footprint, or on the mapped fault catalogue — it <em>rejects</em> invalid arrays rather than silently clipping them.</li>
-    <li>Post-write automated verification re-opens the serialized disk bytes in <code>rasterio</code> and confirms <code>n_finite = 12,279,160</code>, <code>min = 0.0</code>, <code>max = 1.0</code>, exact <code>EPSG:32611</code> CRS, and exact affine transform <code>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</code>. Executed automatically in CI via <code>python scripts/audit.py</code>.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>4. Scientific Summary, Remaining Limitations &amp; Honest Risk Disclosure</h2>
-  <ul>
-    <li><strong>What <code>H86-CTHB</code> Achieves:</strong> Combines 28 zero-catalogue geophysical/geothermal/LiDAR planes (RTP &amp; gravity ridge-tangent contact truncations, Gallardo–Meju magnetic–gravity cross-gradients, locally deconfounded K/Th × DEM cross-gradients, GDR 1391 2 m probe <code>F2mDAB</code> plumes, paleo-sinter/tufa vents, 300 m upslope spring geothermometers, MT clay-cap edges, and shoreline-deconfounded 1 m LiDAR / 10 m DEM scarplets) with 7 strictly fold-visible crack-tip, bend-splay, and two-host relay-breach fields, emitted via Two-Stage Quota-Split Minoux <code>R = 300 m</code> submodular kernel optimization (<code>54%</code> at <code>2 &lt; d ≤ 15 px</code>, <code>46%</code> at <code>d &gt; 15 px</code>).</li>
-    <li><strong>Holdout vs Off-Catalogue Trade-off (Stated Limitation):</strong> On primary <code>gems57-pooled-hide-v2</code>, <code>H86-CTHB</code> beats <code>D2.8</code> and fold-fair <code>H33-2-B2</code> by <code>+0.150</code> to <code>+0.164</code> DTI with tight 95% CIs (<code>&gt; +0.135</code>) on both <code>all</code> and isolated <code>detached</code> segments. On unstratified whole-component <code>buffered_component_draw</code> (<code>buffer_px=3</code>), point skill also exceeds both <code>D2.8</code> (<code>+0.0124</code>) and <code>H33-2-B2</code> (<code>+0.0076</code>), though 20 km block-bootstrap 95% CIs (<code>[-0.0101, +0.0241]</code>) span zero because hidden whole components occupy ~60 of 330 spatial blocks. On the diagnostic-only USGS SGMC <code>&gt; 500 m</code> bedrock fault trace check (which includes inactive pre-Quaternary thrust/intrusive contacts), 3-px recall is <code>0.1011</code> (<code>1.11×</code> enrichment over random far-field density) vs <code>0.1906</code> on pure topographic-ridge <code>H33-2-B2</code>.</li>
-    <li><strong>Registry Scope &amp; Mirror Provenance:</strong> Uniqueness was verified against all <code>38</code> accessible owner/sibling rasters (<code>max |ρ| = 0.2008</code> surface, <code>0.0576</code> dots; max discriminating 3-px dot overlap <code>0.6852 ≤ 0.70</code>); private or external unindexed submissions cannot be audited locally. Upstream inputs were restored from SHA-256-pinned mirrors, not directly from login-walled DrivenData downloads.</li>
-    <li><strong>Generative AI Rule Compliance:</strong> Per DOE/NLR Official Rules (Sept 2026, § 7), finalists must disclose generative AI usage in their technical narrative.</li>
-  </ul>
-</section>
-
-<footer>
-  GEMSDOE86 Executive Summary · Verdict: <strong>PROMOTE</strong> · Candidate: <code>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</code> (<code>e382e638d248e9d6…</code>).
-</footer>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · GEMSDOE86</title><meta name="description" content="Machine-checked fault-prediction research downloads. Local format validity is not submission approval.">
+<link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main">
+<p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
+<a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<h2>Current downloads — audit only, no submission authorized</h2>
+<div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody><tr><th scope="row">GMC catalogue-following control</th><td><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif" download>gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a><br><code>94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3</code></td><td>213,861 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">GMC off-catalogue variant</th><td><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif" download>gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a><br><code>0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</code></td><td>195,987 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-1 edge corroboration</th><td><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif" download>gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a><br><code>5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5</code></td><td>134,369 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-RMRB unsupervised boundary</th><td><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a><br><code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code></td><td>188,877 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">RMRB-86 supervised residual</th><td><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a><br><code>9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</code></td><td>133,010 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86B-GFCO multi-physics</th><td><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a><br><code>897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</code></td><td>145,410 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-WVB wavenumber / fault-valve bridge</th><td><a href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif" download>gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif</a><br><code>d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3</code></td><td>136,026 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86-FVMB dip-projected / fault-valve model</th><td><a href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download>gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif</a><br><code>413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233</code></td><td>146,282 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR</th><td><a href="downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif" download>gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif</a><br><code>bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0</code></td><td>142,387 bytes<br><strong>DO NOT SUBMIT</strong></td></tr><tr><th scope="row">H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular</th><td><a href="downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif" download>gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif</a><br><code>e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425</code></td><td>140,584 bytes<br><strong>DO NOT SUBMIT</strong></td></tr></tbody></table></div>
+<p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
+<h2>What is checked without intervention?</h2><ul><li>Every published TIFF is decoded and checked by the pinned shared validator and template-format checker.</li>
+<li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
+<li>The SHA matches the inventory, writer receipt and applicable scientific card. ZIP bytes must contain exactly the corresponding TIFF; empty or mismatched ZIPs fail.</li>
+<li>Names and notes are verified against the project length cap. Stored model evidence is not rewritten or upgraded by a format pass.</li>
+<li>All final artifacts are bound to the negative registry measurement. Unknown/missing/stale evidence fails closed.</li></ul>
+<h2>Future submission steps — only after scientific clearance</h2><ol class="steps"><li><strong>Resolve the protocol conflict first.</strong> A new lane must be authorized, the actual shared cached features and a complete accessible registry recovered, and the uniqueness rule made satisfiable through an explicit protocol revision. This project does not grant that revision itself.</li>
+<li><strong>Validate a new method.</strong> Freeze whole-segment buffered folds, derive catalogue features only from visible faults, run each feature's leakage canary, and beat the strongest rerunnable matched control with a positive paired physical-block confidence interval. Use the shared evaluator and writer unchanged.</li>
+<li><strong>Run all release checks.</strong> A format pass alone is insufficient: both pre-placement surface and final-dot uniqueness must pass the literal thresholds. Promotion is separate from slot selection.</li>
+<li><strong>Use the separate selector.</strong> It must inspect the authenticated submission page's actual remaining weekly quota and bind its decision to the exact raster SHA. The public rules list 3 submissions per week; that is not our current account balance. No account credentials or automatic upload are implemented here.</li>
+<li><strong>Download only the authorized TIFF or one-TIFF ZIP.</strong> Choose <em>New submission</em> on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, select the file (not JSON, a sample or an audit-only artifact), and paste its short identity note.</li>
+<li><strong>Retain the organizer receipt.</strong> Bind the result and submission ID to the exact SHA before classifying any score as ORGANIZER-CONFIRMED. Follow the rules for one final selection, reproducible assets, eligibility and generative-AI disclosure.</li></ol>
+<h2>The reported “[0,1]” rejection</h2><p>The rejected file was not supplied, so the cause is unknown. The shared writer rejects nonfinite and out-of-range predictions instead of silently clipping them, then validates the serialized output and ZIP. The current audit rechecks those bytes. This prevents us publishing that class of invalid numerical output, but it does not prove portal acceptance.</p>
+<p>The public specification describes null/NaN outside bounds. The project's all-finite, zero-outside policy is a conservative local choice. It must not be described as organizer-confirmed acceptance or a complete diagnosis of the earlier error.</p>
+<h2>Reproduce the checks</h2><pre><code>python scripts/restore_protocol_data.py --include-registry
+python scripts/audit_release.py --measure-registry
+python scripts/refresh_fleet.py
+python scripts/build_site.py
+python -m pytest -q</code></pre>
+<p>The first command restores pinned small mirror inputs and one historical witness for comparison, not a new submission. Shared cached features are not regenerated. No GPU is needed for these audits; the official reference also has CPU-only training options.</p>
+<p><a href="sources.html">Official sources and exact observation limits</a> · <a href="irregularities.html">Remaining blockers</a></p></main>
+<footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Source code</a> ·
+<a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>

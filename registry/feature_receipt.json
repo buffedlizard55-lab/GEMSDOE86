@@ -1,0 +1,16 @@
+{
+  "mmap_path": ".cache/h86_features/static60_fp.f16",
+  "bytes": 620084760,
+  "n_fp": 5167373,
+  "n_channels": 60,
+  "n_nonfinite": 0,
+  "elapsed_seconds": 97.34,
+  "lidar_1m_fraction": 0.753663,
+  "wallace_3m_fraction": 0.737501,
+  "leakage_assertions": {
+    "labels_tif_read": false,
+    "existing_faults_tif_read": false,
+    "sgmc_faults_read": false,
+    "gdr_dist_known_fault_px_stripped": true
+  }
+}

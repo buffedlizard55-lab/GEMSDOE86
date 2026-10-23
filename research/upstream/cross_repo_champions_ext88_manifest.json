@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "note": "Hash-pinned additional external 10m-3DEP rasters (60GEMSDOE) and latest sibling GEMSDOE84..88 primary GeoTIFFs verified on 2026-10-23.",
+  "external_10m": [
+    {
+      "id": "ext_topo_10m_derived_100m_u8",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "32024716f218d06a94e01464157392119c03cb15",
+      "path": "data/external/topo_10m_derived_100m_u8.tif",
+      "dest": "external/topo_10m_derived_100m_u8.tif",
+      "bytes": 32523329,
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "provenance": "USGS 3DEP 10 m DEM derived morphological attributes (9 uint8 bands, 100.00% footprint coverage)"
+    },
+    {
+      "id": "ext_dem10_chi_100m_i16",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "32024716f218d06a94e01464157392119c03cb15",
+      "path": "data/external/dem10_chi_100m_i16.tif",
+      "dest": "external/dem10_chi_100m_i16.tif",
+      "bytes": 12777098,
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+      "provenance": "USGS 3DEP 10 m DEM fluvial chi step, ksn channel steepness, drainage area & true elevation (5 int16 bands)"
+    }
+  ],
+  "files": [
+    {
+      "id": "ext_reg_gems84_thms",
+      "repo": "buffedlizard55-lab/GEMSDOE84",
+      "path": "docs/downloads/gems84-h84-thms-dink300-37654dots-20261022-2f4190b4-zeros.tif",
+      "dest": "registry_ext/GEMSDOE84__gems84-h84-thms-dink300-37654dots-20261022-2f4190b4-zeros.tif",
+      "bytes": 144420,
+      "sha256": "509fa4971a3cdf119a0ae7140b0fac31860d063af9bcc914266d98294f2ba7b5"
+    },
+    {
+      "id": "ext_reg_gems85_ctxfus",
+      "repo": "buffedlizard55-lab/GEMSDOE85",
+      "path": "docs/downloads/gems85-s85-ctxfus50-37654dots-sep2.8-20261022T232600Z-cd1bee11-zeros.tif",
+      "dest": "registry_ext/GEMSDOE85__gems85-s85-ctxfus50-37654dots-sep2.8-20261022T232600Z-cd1bee11-zeros.tif",
+      "bytes": 276806,
+      "sha256": "724fe71743988badd2ec52ba5d5e1f0c5def79df46f8a939ad76ad72cbfaade8"
+    },
+    {
+      "id": "ext_reg_gems87_bmtd",
+      "repo": "buffedlizard55-lab/GEMSDOE87",
+      "path": "docs/downloads/gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "dest": "registry_ext/GEMSDOE87__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "bytes": 16724696,
+      "sha256": "10f022d5f38457332f472591ead1196ac369c38f6275c37d21021ead3d56cc2d"
+    },
+    {
+      "id": "ext_reg_gems88_mgc",
+      "repo": "buffedlizard55-lab/GEMSDOE88",
+      "path": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "dest": "registry_ext/GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "bytes": 119914,
+      "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+    }
+  ]
+}
