@@ -1,0 +1,1214 @@
+{
+  "session": "concentration-sign",
+  "date": "2026-10-23",
+  "git_sha": "e7868ef44b90587feb2b892f7f77b0c2ab10709b",
+  "axis": "CONCENTRATION",
+  "parent": "h33-h33-2-b2",
+  "dose": 0.15,
+  "block_px": 10,
+  "seed": 20261023,
+  "inputs": {
+    "files": {
+      "sample": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "pin_source": "registry/data_manifest.json",
+        "organizer_authenticated": false
+      },
+      "catalogue": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "pin_source": "registry/data_manifest.json",
+        "organizer_authenticated": false
+      },
+      "parent": {
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "pin_source": "committed pin",
+        "organizer_authenticated": false
+      },
+      "base": {
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "bytes": 1595850,
+        "pin_source": "registry/upstream_registry_index.json",
+        "organizer_authenticated": false
+      }
+    },
+    "shared_template_pins_verified": true,
+    "pin_file": "research/template_pin.json",
+    "absent_inputs": [
+      {
+        "manifest_id": "training_features",
+        "why": "419 MB feature stack not restored in this checkout; block_prior()'s TMI term is therefore unavailable"
+      },
+      {
+        "manifest_id": "ext_derived_sgmc_faults_100m_u8",
+        "why": "SGMC control raster absent; no SGMC gate this session"
+      }
+    ],
+    "note": "GitHub mirrors are integrity-pinned, NOT organizer-authenticated; the competition data tab and dropbox.com are never contacted (brief 4.1)"
+  },
+  "r0_rebuild": {
+    "base_dots": 40199,
+    "rebuilt_dots": 37654,
+    "parent_dots": 37654,
+    "differing_cells_vs_parent": 0,
+    "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_exact": true,
+    "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+    "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
+  },
+  "prior": "catalogue-only (TMI term unavailable: feature stack absent)",
+  "truth_models": {
+    "annulus_2_4px": {
+      "n_px": 259834
+    },
+    "annulus_3_8px": {
+      "n_px": 618298
+    },
+    "uniform_far_0p8pct": {
+      "n_px": 29298
+    },
+    "uniform_all_0p8pct": {
+      "n_px": 41419
+    },
+    "catalogue_shift_6px": {
+      "n_px": 60779
+    }
+  },
+  "cv_vs_dose": {
+    "0.05": {
+      "spr_cv": 0.597,
+      "dens_cv": 0.5978
+    },
+    "0.15": {
+      "spr_cv": 0.6136,
+      "dens_cv": 0.6174
+    },
+    "0.30": {
+      "spr_cv": 0.6722,
+      "dens_cv": 0.6875
+    },
+    "0.50": {
+      "spr_cv": 0.7057,
+      "dens_cv": 0.7573
+    }
+  },
+  "arms": {
+    "spr15": {
+      "id": "gems86-h33-2b2-concspr15-20261023-130e3361",
+      "axis": "CONCENTRATION",
+      "value": "spr15",
+      "role": "candidate",
+      "block_size": "1000 m (10x10 px)",
+      "dose_target": 0.15,
+      "moved_target": 5648,
+      "moved_placed": 5648,
+      "moved_shortfall": 0,
+      "placed_at_parent_spacing": 5648,
+      "placed_at_relaxed_spacing": 0,
+      "source_sign": 1,
+      "dest_sign": -1,
+      "source_rule": "highest-prior occupied 1 km blocks first, every dot in a block before the next",
+      "dest_rule": "lowest-prior fifth of the blocks that already hold a parent dot",
+      "placement_rule": "geometric only: largest remaining kernel gap to the nearest retained dot, ties by (row, col); no response, band or probability term",
+      "dest_blocks": 3195,
+      "occupied_blocks": 15976,
+      "dest_dots_parent": 7779,
+      "n_dots_parent": 37654,
+      "n_dots_variant": 37654,
+      "dots_changed": 11296,
+      "pct_changed": 29.999,
+      "mean_disp_to_nearest_dropped_px": 71.975,
+      "median_disp_to_nearest_dropped_px": 66.802,
+      "mean_disp_km": 7.2,
+      "block_density_parent": {
+        "occupied_blocks": 15976,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6235,
+        "count_cv_occupied": 0.6187,
+        "mean_dots_per_occupied_block": 2.3569
+      },
+      "block_density_variant": {
+        "occupied_blocks": 13297,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6136,
+        "count_cv_occupied": 0.6141,
+        "mean_dots_per_occupied_block": 2.8318
+      },
+      "min_cat_edt_variant": 2.2361,
+      "cat_edt_mean_parent": 28.9966,
+      "cat_edt_mean_variant": 35.948,
+      "prior": "catalogue-only: z-scored 3 x 3 km mean mapped-fault density per 1 km block",
+      "truth_models": {
+        "note": "MODEL class: exact DTI of each arm against a stated truth assumption, collar-masked; never a PROXY and never a score",
+        "parent": {
+          "annulus_2_4px": {
+            "dti": 0.10605,
+            "n_truth": 259834,
+            "tp": 23220.04,
+            "fp": 32210.34
+          },
+          "annulus_3_8px": {
+            "dti": 0.106886,
+            "n_truth": 618298,
+            "tp": 54639.36,
+            "fp": 28135.58
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.0504,
+            "n_truth": 29298,
+            "tp": 1559.27,
+            "fp": 35937.64
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.060127,
+            "n_truth": 40959,
+            "tp": 2420.23,
+            "fp": 35002.04
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.071127,
+            "n_truth": 57759,
+            "tp": 3852.81,
+            "fp": 35949.54
+          }
+        },
+        "variant": {
+          "annulus_2_4px": {
+            "dti": 0.04214,
+            "n_truth": 259834,
+            "tp": 9135.28,
+            "fp": 35440.99
+          },
+          "annulus_3_8px": {
+            "dti": 0.056092,
+            "n_truth": 618298,
+            "tp": 28430.88,
+            "fp": 32691.38
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.060996,
+            "n_truth": 29298,
+            "tp": 1886.61,
+            "fp": 35571.85
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.060668,
+            "n_truth": 40959,
+            "tp": 2441.95,
+            "fp": 34976.59
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.024355,
+            "n_truth": 57759,
+            "tp": 1312.09,
+            "fp": 37023.01
+          }
+        },
+        "delta": {
+          "annulus_2_4px": -0.06391,
+          "annulus_3_8px": -0.05079,
+          "uniform_far_0p8pct": 0.0106,
+          "uniform_all_0p8pct": 0.00054,
+          "catalogue_shift_6px": -0.04677
+        }
+      },
+      "parent_diff": {
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 32006,
+        "dropped": 5648,
+        "added": 5648,
+        "dots_changed": 11296,
+        "pct_changed_of_parent": 29.999,
+        "jaccard": 0.739134,
+        "count_delta": 0
+      },
+      "note": "R0 spr15: cluster-spread 15pct of dots at 1km blocks, count 37654, 30.00pct changed",
+      "note_chars": 83,
+      "files": {
+        "nan": "gems86-h33-2b2-concspr15-20261023-6d452f96.tif",
+        "zeros": "gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif"
+      },
+      "sha256": {
+        "nan": "f72eb6a6c927dff74c882858b0f314294f9421875d4d968d8778fe1aaa4d04e3",
+        "zeros": "6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843"
+      },
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96.tif",
+          "sha256": "f72eb6a6c927dff74c882858b0f314294f9421875d4d968d8778fe1aaa4d04e3",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "f72eb6a6c927dff74c882858b0f314294f9421875d4d968d8778fe1aaa4d04e3",
+            "sha8": "f72eb6a6"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif",
+          "sha256": "6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843",
+            "sha8": "6d452f96"
+          },
+          "passed": true
+        },
+        "new_mass": {
+          "gate": "new_mass_clearance",
+          "required_px": 3.0,
+          "n_new": 5648,
+          "on_catalogue": 0,
+          "min_cat_distance_px": 15.0,
+          "passed": true
+        },
+        "re_read_from_disk_matches_mask": true
+      },
+      "gates_passed": true
+    },
+    "dens15": {
+      "id": "gems86-h33-2b2-concdens15-20261023-a1bd26ed",
+      "axis": "CONCENTRATION",
+      "value": "dens15",
+      "role": "candidate",
+      "block_size": "1000 m (10x10 px)",
+      "dose_target": 0.15,
+      "moved_target": 5648,
+      "moved_placed": 5648,
+      "moved_shortfall": 0,
+      "placed_at_parent_spacing": 5648,
+      "placed_at_relaxed_spacing": 0,
+      "source_sign": -1,
+      "dest_sign": 1,
+      "source_rule": "lowest-prior occupied 1 km blocks first, every dot in a block before the next",
+      "dest_rule": "highest-prior fifth of the blocks that already hold a parent dot",
+      "placement_rule": "geometric only: largest remaining kernel gap to the nearest retained dot, ties by (row, col); no response, band or probability term",
+      "dest_blocks": 3195,
+      "occupied_blocks": 15976,
+      "dest_dots_parent": 6813,
+      "n_dots_parent": 37654,
+      "n_dots_variant": 37654,
+      "dots_changed": 11296,
+      "pct_changed": 29.999,
+      "mean_disp_to_nearest_dropped_px": 900.943,
+      "median_disp_to_nearest_dropped_px": 643.772,
+      "mean_disp_km": 90.09,
+      "block_density_parent": {
+        "occupied_blocks": 15976,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6235,
+        "count_cv_occupied": 0.6187,
+        "mean_dots_per_occupied_block": 2.3569
+      },
+      "block_density_variant": {
+        "occupied_blocks": 13623,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6174,
+        "count_cv_occupied": 0.6175,
+        "mean_dots_per_occupied_block": 2.764
+      },
+      "min_cat_edt_variant": 2.2361,
+      "cat_edt_mean_parent": 28.9966,
+      "cat_edt_mean_variant": 21.8685,
+      "prior": "catalogue-only: z-scored 3 x 3 km mean mapped-fault density per 1 km block",
+      "truth_models": {
+        "note": "MODEL class: exact DTI of each arm against a stated truth assumption, collar-masked; never a PROXY and never a score",
+        "parent": {
+          "annulus_2_4px": {
+            "dti": 0.10605,
+            "n_truth": 259834,
+            "tp": 23220.04,
+            "fp": 32210.34
+          },
+          "annulus_3_8px": {
+            "dti": 0.106886,
+            "n_truth": 618298,
+            "tp": 54639.36,
+            "fp": 28135.58
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.0504,
+            "n_truth": 29298,
+            "tp": 1559.27,
+            "fp": 35937.64
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.060127,
+            "n_truth": 40959,
+            "tp": 2420.23,
+            "fp": 35002.04
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.071127,
+            "n_truth": 57759,
+            "tp": 3852.81,
+            "fp": 35949.54
+          }
+        },
+        "variant": {
+          "annulus_2_4px": {
+            "dti": 0.152497,
+            "n_truth": 259834,
+            "tp": 33636.21,
+            "fp": 29875.49
+          },
+          "annulus_3_8px": {
+            "dti": 0.154378,
+            "n_truth": 618298,
+            "tp": 79552.68,
+            "fp": 23812.82
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.03956,
+            "n_truth": 29298,
+            "tp": 1224.18,
+            "fp": 36306.85
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.059392,
+            "n_truth": 40959,
+            "tp": 2390.56,
+            "fp": 35026.46
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.117929,
+            "n_truth": 57759,
+            "tp": 6421.95,
+            "fp": 34822.85
+          }
+        },
+        "delta": {
+          "annulus_2_4px": 0.04645,
+          "annulus_3_8px": 0.04749,
+          "uniform_far_0p8pct": -0.01084,
+          "uniform_all_0p8pct": -0.00073,
+          "catalogue_shift_6px": 0.0468
+        }
+      },
+      "parent_diff": {
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 32006,
+        "dropped": 5648,
+        "added": 5648,
+        "dots_changed": 11296,
+        "pct_changed_of_parent": 29.999,
+        "jaccard": 0.739134,
+        "count_delta": 0
+      },
+      "note": "R0 dens15: cluster-dense 15pct of dots at 1km blocks, count 37654, 30.00pct changed",
+      "note_chars": 83,
+      "files": {
+        "nan": "gems86-h33-2b2-concdens15-20261023-f8e7ae42.tif",
+        "zeros": "gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif"
+      },
+      "sha256": {
+        "nan": "dc45662372ab4b6ab0c5fda791e1d9bb3db3f3bbc75c3beea4e827a53b175d7f",
+        "zeros": "f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b"
+      },
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42.tif",
+          "sha256": "dc45662372ab4b6ab0c5fda791e1d9bb3db3f3bbc75c3beea4e827a53b175d7f",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "dc45662372ab4b6ab0c5fda791e1d9bb3db3f3bbc75c3beea4e827a53b175d7f",
+            "sha8": "dc456623"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif",
+          "sha256": "f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b",
+            "sha8": "f8e7ae42"
+          },
+          "passed": true
+        },
+        "new_mass": {
+          "gate": "new_mass_clearance",
+          "required_px": 3.0,
+          "n_new": 5648,
+          "on_catalogue": 0,
+          "min_cat_distance_px": 3.1623,
+          "passed": true
+        },
+        "re_read_from_disk_matches_mask": true
+      },
+      "gates_passed": true
+    },
+    "rand15": {
+      "id": "gems86-h33-2b2-concrand15-20261023-9aba1c1b",
+      "axis": "CONCENTRATION",
+      "value": "rand15",
+      "role": "control",
+      "block_size": "1000 m (10x10 px)",
+      "dose_target": 0.15,
+      "moved_target": 5648,
+      "moved_placed": 5648,
+      "moved_shortfall": 0,
+      "placed_at_parent_spacing": 5648,
+      "placed_at_relaxed_spacing": 0,
+      "source_sign": 1,
+      "dest_sign": 0,
+      "source_rule": "highest-prior occupied 1 km blocks first, every dot in a block before the next",
+      "dest_rule": "random sample of the same occupied blocks (seed 20261023)",
+      "placement_rule": "geometric only: largest remaining kernel gap to the nearest retained dot, ties by (row, col); no response, band or probability term",
+      "dest_blocks": 3195,
+      "occupied_blocks": 15976,
+      "dest_dots_parent": 7424,
+      "n_dots_parent": 37654,
+      "n_dots_variant": 37654,
+      "dots_changed": 11154,
+      "pct_changed": 29.622,
+      "mean_disp_to_nearest_dropped_px": 23.961,
+      "median_disp_to_nearest_dropped_px": 7.616,
+      "mean_disp_km": 2.4,
+      "block_density_parent": {
+        "occupied_blocks": 15976,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6235,
+        "count_cv_occupied": 0.6187,
+        "mean_dots_per_occupied_block": 2.3569
+      },
+      "block_density_variant": {
+        "occupied_blocks": 13774,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.66,
+        "count_cv_occupied": 0.6593,
+        "mean_dots_per_occupied_block": 2.7337
+      },
+      "min_cat_edt_variant": 2.2361,
+      "cat_edt_mean_parent": 28.9966,
+      "cat_edt_mean_variant": 30.8522,
+      "prior": "catalogue-only: z-scored 3 x 3 km mean mapped-fault density per 1 km block",
+      "truth_models": {
+        "note": "MODEL class: exact DTI of each arm against a stated truth assumption, collar-masked; never a PROXY and never a score",
+        "parent": {
+          "annulus_2_4px": {
+            "dti": 0.10605,
+            "n_truth": 259834,
+            "tp": 23220.04,
+            "fp": 32210.34
+          },
+          "annulus_3_8px": {
+            "dti": 0.106886,
+            "n_truth": 618298,
+            "tp": 54639.36,
+            "fp": 28135.58
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.0504,
+            "n_truth": 29298,
+            "tp": 1559.27,
+            "fp": 35937.64
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.060127,
+            "n_truth": 40959,
+            "tp": 2420.23,
+            "fp": 35002.04
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.071127,
+            "n_truth": 57759,
+            "tp": 3852.81,
+            "fp": 35949.54
+          }
+        },
+        "variant": {
+          "annulus_2_4px": {
+            "dti": 0.073204,
+            "n_truth": 259834,
+            "tp": 15945.52,
+            "fp": 33832.74
+          },
+          "annulus_3_8px": {
+            "dti": 0.086823,
+            "n_truth": 618298,
+            "tp": 44229.83,
+            "fp": 29705.99
+          },
+          "uniform_far_0p8pct": {
+            "dti": 0.054629,
+            "n_truth": 29298,
+            "tp": 1690.02,
+            "fp": 35799.82
+          },
+          "uniform_all_0p8pct": {
+            "dti": 0.059932,
+            "n_truth": 40959,
+            "tp": 2412.17,
+            "fp": 34994.79
+          },
+          "catalogue_shift_6px": {
+            "dti": 0.051278,
+            "n_truth": 57759,
+            "tp": 2770.53,
+            "fp": 36341.54
+          }
+        },
+        "delta": {
+          "annulus_2_4px": -0.03285,
+          "annulus_3_8px": -0.02006,
+          "uniform_far_0p8pct": 0.00423,
+          "uniform_all_0p8pct": -0.0002,
+          "catalogue_shift_6px": -0.01985
+        }
+      },
+      "parent_diff": {
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 32077,
+        "dropped": 5577,
+        "added": 5577,
+        "dots_changed": 11154,
+        "pct_changed_of_parent": 29.622,
+        "jaccard": 0.741991,
+        "count_delta": 0
+      },
+      "note": "R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed",
+      "note_chars": 90,
+      "files": {
+        "nan": "gems86-h33-2b2-concrand15-20261023-fcbae067.tif",
+        "zeros": "gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif"
+      },
+      "sha256": {
+        "nan": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+        "zeros": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c"
+      },
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067.tif",
+          "sha256": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+            "sha8": "f608e4e3"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif",
+          "sha256": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+            "sha8": "fcbae067"
+          },
+          "passed": true
+        },
+        "new_mass": {
+          "gate": "new_mass_clearance",
+          "required_px": 3.0,
+          "n_new": 5577,
+          "on_catalogue": 0,
+          "min_cat_distance_px": 3.1623,
+          "passed": true
+        },
+        "re_read_from_disk_matches_mask": true
+      },
+      "gates_passed": true
+    }
+  },
+  "slots_used": 0,
+  "approved_for_weekly_slot": false,
+  "evidence_class": "MODEL",
+  "note": "No arm here is a score.  The truth-model deltas are MODEL-class projections under stated truth assumptions; the catalogue hide-and-recover PROXY is at its floor for every R0-derived arm (IR-86-SNAP-06) and is therefore not used to rank these files."
+}

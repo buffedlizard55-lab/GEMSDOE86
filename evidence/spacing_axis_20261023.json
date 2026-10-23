@@ -1,457 +1,2352 @@
 {
   "schema_version": 1,
-  "session_date": "20261023",
-  "seed": 20261023,
+  "session_axis": "SPACING",
+  "generated_utc": "2026-10-23T19:47:26Z",
   "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
-  "status": "BUILT",
-  "submission_ready": false,
-  "submission_slots_used": 0,
+  "seed": 20261023,
+  "elapsed_s": 386.9,
   "parent": {
-    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "id": "h33-h33-2-b2",
+    "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-    "n_dots": 37654,
-    "claim": 0.2778,
-    "evidence_class": "CLAIM"
-  },
-  "axis": "SPACING",
-  "axis_choice_note": "SPACING is the only listed weekly axis with no (AXIS, value) pair in the ledger; its three brief-named values (lattice, Poisson-disk, along-strike) fit the up-to-3-variants budget exactly. TRACKB stays Phase 2 (human decision).",
-  "parent_gate": {
-    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
-    "n_base_dots": 40199,
-    "n_rebuilt": 37654,
-    "n_published": 37654,
-    "differing_pixels": 0,
-    "content_identical": true,
-    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
-    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
-    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-    "byte_identical_sha": true,
-    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
-    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
-  },
-  "input_pins": {
-    "sample": {
-      "path": "data/bridge/sample_submission.tif",
-      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "bytes": 1599597,
-      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "verified": true
-    },
-    "catalogue": {
-      "path": "data/bridge/existing_faults.tif",
-      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "bytes": 425830,
-      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "verified": true
-    },
-    "parent": {
-      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
-      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "bytes": 219065,
-      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "verified": true
-    },
-    "base": {
-      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
-      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
-      "bytes": 1595850,
-      "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
-      "verified": true
-    },
-    "h19": {
-      "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
-      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
-      "bytes": 1712322,
-      "pin": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
-      "verified": true
-    },
-    "d28": {
-      "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
-      "bytes": 1603424,
-      "pin": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
-      "verified": true
-    },
-    "sgmc": {
-      "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
-      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
-      "bytes": 198602,
-      "pin": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
-      "verified": true
+    "live_claim": "0.2778 CLAIM (owner-reported, no submission-page receipt in ledger/)",
+    "rebuild": {
+      "base_dots": 40199,
+      "rebuilt_dots": 37654,
+      "parent_dots": 37654,
+      "differing_cells_vs_parent": 0,
+      "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_exact": true,
+      "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+      "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
     }
   },
-  "ranking": {
-    "recipe": "FIFO-BFS visit rank of the H19-5 field (original_visit_rank)",
-    "validation": "greedy_thin(h19, rank, 2.8) reproduces the pinned d2.8 set exactly",
-    "differing_cells": 0,
-    "n_dots": 44090
+  "inputs_verified": {
+    "files": {
+      "sample": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "pin_source": "registry/data_manifest.json",
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "catalogue": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "pin_source": "registry/data_manifest.json",
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "parent": {
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "pin_source": "registry/data_manifest.json",
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "base": {
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "bytes": 1595850,
+        "pin_source": "registry/upstream_registry_index.json",
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "sgmc": {
+        "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "pin_source": "registry/data_manifest.json",
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "h19": {
+        "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "bytes": 1712322,
+        "pin_source": "registry/data_manifest.json",
+        "verified": true,
+        "organizer_authenticated": false
+      }
+    },
+    "shared_template_pins_verified": true,
+    "pin_file": "research/template_pin.json",
+    "note": "GitHub mirrors are integrity-pinned, NOT organizer-authenticated; the competition data tab and dropbox.com are never contacted (brief 4.1)"
   },
-  "moved_set": {
-    "criterion": "pair distance < 3.0 px (DTI kernel radius); keep the earliest visit-rank member of each crowded cluster",
-    "n_crowded_dots": 11415,
-    "n_clusters": 4841,
-    "n_moved": 6574,
-    "pct_dots_changed": 17.459
+  "constants": {
+    "credit_max": 16,
+    "window_px": 8,
+    "floor_px": 3.0,
+    "clearance_px": 3.0,
+    "kernel_radius_px": 3.0,
+    "hex_spacing_px": 5.196152422706632,
+    "parent_floor_px": 2.8284271247461903,
+    "across_trace_tol_px": 1.0,
+    "min_along_trace_px": 2.0,
+    "coherence_min": 0.3,
+    "arms": [
+      "pdisk",
+      "lattice",
+      "strike"
+    ],
+    "control": "random"
   },
-  "interpretation": "SPACING values are realised as the destination geometry of the kernel-crowded pool (dots with a neighbour inside the 3.0 px kernel radius). A global re-patterning would change ~100% of R0's dots and is barred by the brief's 1-50% contract (same tension as IR-86-SNAP-03). Each moved dot breaks its crowded pair at >=3.0 px from its cluster's kept dot and keeps the parent's own 2.828 px floor elsewhere; a fully kernel-disjoint set at matched count is locally infeasible on this support (IR-86-SPACING-01).",
-  "spacing_parent": {
-    "min_nn_px": 2.8284271247461903,
-    "mean_nn_px": 3.7350977393055036,
-    "median_nn_px": 3.0,
-    "n_within_3px": 11415,
-    "fraction_within_3px": 0.303155
-  },
+  "top_public": "UNSUPPLIED (human fills from the leaderboard, with a date)",
+  "slots": "UNSUPPLIED (1 entity, 3 scored per rolling week, one blind final; deadline 2026-12-03 UNVERIFIED)",
   "variants": {
+    "pdisk": {
+      "id": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e",
+      "axis": "SPACING",
+      "value": "pdiskc16",
+      "token": "0d2f135e",
+      "generated_utc": "2026-10-23T19:41:52Z",
+      "role": "candidate",
+      "slot_candidate": true,
+      "rule": "SPACING arm: every R0 dot owning <= 16 of the 29 cells of its radius-3 px kernel disc (mass the metric's max-operator has already written off) is relocated to the largest local gap to the nearest retained dot inside an 800 m window, under one of three admissible-shape laws (isotropic / hexagonal covering lattice / on-trace only); count fixed at 37,654, no band, label or probability field enters a placement",
+      "parent": {
+        "id": "h33-h33-2-b2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "rebuild": {
+          "base_dots": 40199,
+          "rebuilt_dots": 37654,
+          "parent_dots": 37654,
+          "differing_cells_vs_parent": 0,
+          "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_exact": true,
+          "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+          "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
+        }
+      },
+      "stats": {
+        "axis": "SPACING",
+        "law": "pdisk",
+        "n_dots_parent": 37654,
+        "n_dots_variant": 37654,
+        "count_fixed": true,
+        "moved_target": 7228,
+        "moved_placed": 7228,
+        "moved_unplaced": 0,
+        "placed_outside_window": 1,
+        "empty_window_before_widening": 0,
+        "destinations_on_vacated_source_cells": 172,
+        "strike_fallback_isotropic": 0,
+        "strike_coherence_min": 0.3,
+        "pct_relocated_of_parent": 19.1958,
+        "dots_changed": 14112,
+        "pct_changed": 37.4781,
+        "mean_displacement_px": 6.7714,
+        "median_displacement_px": 7.6158,
+        "max_displacement_px": 15.8114,
+        "window_px": 8,
+        "floor_px": 3.0,
+        "clearance_px": 3.0,
+        "across_trace_tol_px": 1.0,
+        "min_along_trace_px": 2.0,
+        "parent_nn": {
+          "nn_mean_px": 3.7351,
+          "nn_median_px": 3.0,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 11415,
+          "fraction_below_parent_floor": 0.0
+        },
+        "variant_nn": {
+          "nn_mean_px": 4.2881,
+          "nn_median_px": 3.605551275463989,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 3754,
+          "fraction_below_parent_floor": 0.0
+        },
+        "exclusive_parent": {
+          "exclusive_cells_mean": 20.7319,
+          "exclusive_cells_median": 21.0,
+          "exclusive_cells_min": 6,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 780640,
+          "redundancy_fraction": 0.285106,
+          "exclusive_cells_total": 780640
+        },
+        "exclusive_variant": {
+          "exclusive_cells_mean": 23.7413,
+          "exclusive_cells_median": 24.0,
+          "exclusive_cells_min": 6,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 893955,
+          "redundancy_fraction": 0.181334,
+          "exclusive_cells_total": 893955
+        },
+        "union_cover_parent_cells": 780640,
+        "union_cover_variant_cells": 893955,
+        "union_cover_gain_cells": 113315,
+        "union_cover_gain_offcatalogue_px": 112952,
+        "eligible_covered_parent": 720156,
+        "eligible_covered_variant": 828528,
+        "destination_gap_px_mean": 6.4775,
+        "cat_edt_min_parent": 2.2361,
+        "cat_edt_min_variant": 2.2361,
+        "cat_edt_mean_parent": 28.9966,
+        "cat_edt_mean_variant": 29.062,
+        "dots_within_300m_of_catalogue_parent": 2171,
+        "dots_within_300m_of_catalogue_variant": 2041,
+        "lattice": {
+          "nominal_covering_spacing_px": 5.196152,
+          "spacing_px": 5.196152,
+          "nodes": 525172,
+          "interior_max_cell_to_node_px": 3.1623,
+          "max_cell_to_node_px": 4.2426,
+          "covers_at_radius": true,
+          "min_node_separation_px": 4.4721
+        },
+        "placement_rule": "largest gap to the nearest retained dot inside an 8 px window, any direction (isotropic hard-core, blue-noise / Poisson-disk form)",
+        "eligibility": "eligible = footprint & ~catalogue & distance-to-catalogue > 3 px, applied to newly emitted mass only; inherited dots keep the parent's own >2 px geometry (brief 4.4 vs R0, IR-86-RELIEF-02)"
+      },
+      "selection": {
+        "credit_threshold": 16,
+        "kernel_disc_cells": 29,
+        "n_selected": 7228,
+        "pct_of_parent_selected": 19.1958,
+        "credit_selected_mean": 14.2222,
+        "credit_selected_max": 16,
+        "credit_kept_min": 17,
+        "dots_at_threshold": 2059,
+        "parent_redundancy_fraction": 0.285106,
+        "selection_rule": "every parent dot owning <= 16 of the 29 cells of its radius-3 px kernel disc, i.e. mass the max-operator has already written off; move order is credit ascending, then congestion descending, then row-major"
+      },
+      "parent_diff": {
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 30598,
+        "dropped": 7056,
+        "added": 7056,
+        "dots_changed": 14112,
+        "pct_changed_of_parent": 37.4781,
+        "pct_relocated": 18.739,
+        "jaccard": 0.684366,
+        "count_delta": 0
+      },
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e.tif",
+          "sha256": "eb320be3e5a1a16f6fe90ee6b2e295426c7f6b7f32ac092414df503a00cc37df",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "eb320be3e5a1a16f6fe90ee6b2e295426c7f6b7f32ac092414df503a00cc37df",
+            "sha8": "eb320be3"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.tif",
+          "sha256": "62df4f8b9a2075786ec4f28254208217e0ab77fd432bb35f58504137321d03df",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "62df4f8b9a2075786ec4f28254208217e0ab77fd432bb35f58504137321d03df",
+            "sha8": "62df4f8b"
+          },
+          "passed": true
+        }
+      },
+      "new_mass_gate": {
+        "gate": "new_mass_clearance",
+        "passed": true,
+        "n_new": 7056,
+        "on_catalogue": 0,
+        "min_cat_distance_px": 3.1623,
+        "required_px": 3.0,
+        "note": "inherited dots keep the parent's own geometry (R0 has 2,171 dots between 2 and 3 px of the catalogue), which brief 4.4 and R0 cannot both satisfy - IR-86-RELIEF-02, IR-86-SNAP-08"
+      },
+      "artifacts": {
+        "nan": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e.tif",
+          "file": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e.tif",
+          "sha256": "eb320be3e5a1a16f6fe90ee6b2e295426c7f6b7f32ac092414df503a00cc37df",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "nan_outside_count": 7111787,
+          "name": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e",
+          "note": "h33-h33-2-b2 SPACING/pdisk: relocate 7228 redundant dots (37.4781% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-pdisk16-20261023-0",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "mode": "nan"
+        },
+        "zeros": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.tif",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "name": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e",
+          "note": "h33-h33-2-b2 SPACING/pdisk: relocate 7228 redundant dots (37.4781% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-pdisk16-20261023-0",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "file": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.tif",
+          "sha256": "62df4f8b9a2075786ec4f28254208217e0ab77fd432bb35f58504137321d03df",
+          "mode": "zeros",
+          "nan_outside_count": 0
+        }
+      },
+      "note": "h33-h33-2-b2 SPACING/pdisk: relocate 7228 redundant dots (37.4781% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-pdisk16-20261023-0",
+      "note_chars": 140,
+      "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
+      "predicted_live_change": 0.00148,
+      "predicted_range_px": [
+        0.00148,
+        0.007175
+      ],
+      "receipt_path": "releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.json"
+    },
     "lattice": {
+      "id": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f",
       "axis": "SPACING",
-      "value": "lattice",
-      "rule": "lattice",
-      "mechanism": "break the crowded pair at the kernel radius and snap the freed dot to the nearest 3 px lattice site: regularity without lineament knowledge; if truth is area-like this is the best of the three, if line-like it leaves coverage on the table",
-      "movement": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_clusters": 4841,
-        "n_crowded_pool": 6574,
-        "n_moved": 3086,
-        "n_stayed": 3488,
-        "pct_dots_changed": 8.1957,
-        "pct_cells_changed": 16.3914,
-        "displacement_mean_px": 2.2064544283911016,
-        "displacement_median_px": 1.0,
-        "displacement_max_px": 16.0
+      "value": "latticec16",
+      "token": "63c4c56f",
+      "generated_utc": "2026-10-23T19:41:56Z",
+      "role": "candidate",
+      "slot_candidate": true,
+      "rule": "SPACING arm: every R0 dot owning <= 16 of the 29 cells of its radius-3 px kernel disc (mass the metric's max-operator has already written off) is relocated to the largest local gap to the nearest retained dot inside an 800 m window, under one of three admissible-shape laws (isotropic / hexagonal covering lattice / on-trace only); count fixed at 37,654, no band, label or probability field enters a placement",
+      "parent": {
+        "id": "h33-h33-2-b2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "rebuild": {
+          "base_dots": 40199,
+          "rebuilt_dots": 37654,
+          "parent_dots": 37654,
+          "differing_cells_vs_parent": 0,
+          "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_exact": true,
+          "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+          "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
+        }
+      },
+      "stats": {
+        "axis": "SPACING",
+        "law": "lattice",
+        "n_dots_parent": 37654,
+        "n_dots_variant": 37654,
+        "count_fixed": true,
+        "moved_target": 7228,
+        "moved_placed": 7220,
+        "moved_unplaced": 8,
+        "placed_outside_window": 480,
+        "empty_window_before_widening": 1,
+        "destinations_on_vacated_source_cells": 87,
+        "strike_fallback_isotropic": 0,
+        "strike_coherence_min": 0.3,
+        "pct_relocated_of_parent": 19.1746,
+        "dots_changed": 14266,
+        "pct_changed": 37.8871,
+        "mean_displacement_px": 6.2911,
+        "median_displacement_px": 6.4031,
+        "max_displacement_px": 16.0,
+        "window_px": 8,
+        "floor_px": 3.0,
+        "clearance_px": 3.0,
+        "across_trace_tol_px": 1.0,
+        "min_along_trace_px": 2.0,
+        "parent_nn": {
+          "nn_mean_px": 3.7351,
+          "nn_median_px": 3.0,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 11415,
+          "fraction_below_parent_floor": 0.0
+        },
+        "variant_nn": {
+          "nn_mean_px": 4.2573,
+          "nn_median_px": 3.605551275463989,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 3760,
+          "fraction_below_parent_floor": 0.0
+        },
+        "exclusive_parent": {
+          "exclusive_cells_mean": 20.7319,
+          "exclusive_cells_median": 21.0,
+          "exclusive_cells_min": 6,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 780640,
+          "redundancy_fraction": 0.285106,
+          "exclusive_cells_total": 780640
+        },
+        "exclusive_variant": {
+          "exclusive_cells_mean": 23.5962,
+          "exclusive_cells_median": 24.0,
+          "exclusive_cells_min": 9,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 888491,
+          "redundancy_fraction": 0.186338,
+          "exclusive_cells_total": 888491
+        },
+        "union_cover_parent_cells": 780640,
+        "union_cover_variant_cells": 888491,
+        "union_cover_gain_cells": 107851,
+        "union_cover_gain_offcatalogue_px": 107754,
+        "eligible_covered_parent": 720156,
+        "eligible_covered_variant": 826286,
+        "destination_gap_px_mean": 5.2664,
+        "cat_edt_min_parent": 2.2361,
+        "cat_edt_min_variant": 2.2361,
+        "cat_edt_mean_parent": 28.9966,
+        "cat_edt_mean_variant": 29.0898,
+        "dots_within_300m_of_catalogue_parent": 2171,
+        "dots_within_300m_of_catalogue_variant": 2041,
+        "lattice": {
+          "nominal_covering_spacing_px": 5.196152,
+          "spacing_px": 5.196152,
+          "nodes": 525172,
+          "interior_max_cell_to_node_px": 3.1623,
+          "max_cell_to_node_px": 4.2426,
+          "covers_at_radius": true,
+          "min_node_separation_px": 4.4721
+        },
+        "placement_rule": "same objective and window, restricted to the nodes of a hexagonal lattice with spacing 5.1962 px = sqrt(3)*R, the thinnest covering of the plane by radius-R discs",
+        "eligibility": "eligible = footprint & ~catalogue & distance-to-catalogue > 3 px, applied to newly emitted mass only; inherited dots keep the parent's own >2 px geometry (brief 4.4 vs R0, IR-86-RELIEF-02)"
+      },
+      "selection": {
+        "credit_threshold": 16,
+        "kernel_disc_cells": 29,
+        "n_selected": 7228,
+        "pct_of_parent_selected": 19.1958,
+        "credit_selected_mean": 14.2222,
+        "credit_selected_max": 16,
+        "credit_kept_min": 17,
+        "dots_at_threshold": 2059,
+        "parent_redundancy_fraction": 0.285106,
+        "selection_rule": "every parent dot owning <= 16 of the 29 cells of its radius-3 px kernel disc, i.e. mass the max-operator has already written off; move order is credit ascending, then congestion descending, then row-major"
       },
       "parent_diff": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_removed": 2964,
-        "n_added": 2964,
-        "pct_dots_changed": 7.8717,
-        "pct_cells_changed": 15.7433,
-        "min_catalogue_distance_added_px": 3.0,
-        "kept_fraction": 0.921283
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 30521,
+        "dropped": 7133,
+        "added": 7133,
+        "dots_changed": 14266,
+        "pct_changed_of_parent": 37.8871,
+        "pct_relocated": 18.9435,
+        "jaccard": 0.68147,
+        "count_delta": 0
       },
-      "spacing": {
-        "min_nn_px": 2.8284271247461903,
-        "mean_nn_px": 3.789377152771933,
-        "median_nn_px": 3.1622776601683795,
-        "n_within_3px": 7454,
-        "fraction_within_3px": 0.19796
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f.tif",
+          "sha256": "daf9dfeb15ad0661468fed75682265aff774f83f72d9f45d41f1b14a615fb357",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "daf9dfeb15ad0661468fed75682265aff774f83f72d9f45d41f1b14a615fb357",
+            "sha8": "daf9dfeb"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.tif",
+          "sha256": "66f8f320d5fdc21559e8dd7f78bac6b38d240b0683d3f9cecef4dc577fe09f72",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "66f8f320d5fdc21559e8dd7f78bac6b38d240b0683d3f9cecef4dc577fe09f72",
+            "sha8": "66f8f320"
+          },
+          "passed": true
+        }
       },
-      "predicted_live_change": 0.0,
-      "predicted_band": [
-        -0.004,
-        0.004
+      "new_mass_gate": {
+        "gate": "new_mass_clearance",
+        "passed": true,
+        "n_new": 7133,
+        "on_catalogue": 0,
+        "min_cat_distance_px": 3.1623,
+        "required_px": 3.0,
+        "note": "inherited dots keep the parent's own geometry (R0 has 2,171 dots between 2 and 3 px of the catalogue), which brief 4.4 and R0 cannot both satisfy - IR-86-RELIEF-02, IR-86-SNAP-08"
+      },
+      "artifacts": {
+        "nan": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f.tif",
+          "file": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f.tif",
+          "sha256": "daf9dfeb15ad0661468fed75682265aff774f83f72d9f45d41f1b14a615fb357",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "nan_outside_count": 7111787,
+          "name": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f",
+          "note": "h33-h33-2-b2 SPACING/lattice: relocate 7220 redundant dots (37.8871% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-lattice16-202610",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "mode": "nan"
+        },
+        "zeros": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.tif",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "name": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f",
+          "note": "h33-h33-2-b2 SPACING/lattice: relocate 7220 redundant dots (37.8871% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-lattice16-202610",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "file": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.tif",
+          "sha256": "66f8f320d5fdc21559e8dd7f78bac6b38d240b0683d3f9cecef4dc577fe09f72",
+          "mode": "zeros",
+          "nan_outside_count": 0
+        }
+      },
+      "note": "h33-h33-2-b2 SPACING/lattice: relocate 7220 redundant dots (37.8871% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-lattice16-202610",
+      "note_chars": 140,
+      "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
+      "predicted_live_change": 0.001861,
+      "predicted_range_px": [
+        0.001861,
+        0.007236
       ],
-      "evidence_class": "MODEL"
+      "receipt_path": "releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.json"
     },
-    "poisson-disk": {
+    "strike": {
+      "id": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0",
       "axis": "SPACING",
-      "value": "poisson-disk",
-      "rule": "poissondisk",
-      "mechanism": "the neutral arm: same pair-breaking at fixed count, destination drawn at random from the legal cells; any effect shared with the other two arms is de-crowding itself",
-      "movement": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_clusters": 4841,
-        "n_crowded_pool": 6574,
-        "n_moved": 3056,
-        "n_stayed": 3518,
-        "pct_dots_changed": 8.116,
-        "pct_cells_changed": 16.232,
-        "displacement_mean_px": 2.1715916677152793,
-        "displacement_median_px": 1.0,
-        "displacement_max_px": 16.0
+      "value": "strikec16",
+      "token": "caffc3f0",
+      "generated_utc": "2026-10-23T19:42:00Z",
+      "role": "candidate",
+      "slot_candidate": true,
+      "rule": "SPACING arm: every R0 dot owning <= 16 of the 29 cells of its radius-3 px kernel disc (mass the metric's max-operator has already written off) is relocated to the largest local gap to the nearest retained dot inside an 800 m window, under one of three admissible-shape laws (isotropic / hexagonal covering lattice / on-trace only); count fixed at 37,654, no band, label or probability field enters a placement",
+      "parent": {
+        "id": "h33-h33-2-b2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "rebuild": {
+          "base_dots": 40199,
+          "rebuilt_dots": 37654,
+          "parent_dots": 37654,
+          "differing_cells_vs_parent": 0,
+          "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_exact": true,
+          "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+          "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
+        }
+      },
+      "stats": {
+        "axis": "SPACING",
+        "law": "strike",
+        "n_dots_parent": 37654,
+        "n_dots_variant": 37654,
+        "count_fixed": true,
+        "moved_target": 7228,
+        "moved_placed": 7027,
+        "moved_unplaced": 201,
+        "placed_outside_window": 1095,
+        "empty_window_before_widening": 3,
+        "destinations_on_vacated_source_cells": 260,
+        "strike_fallback_isotropic": 1808,
+        "strike_coherence_min": 0.3,
+        "pct_relocated_of_parent": 18.662,
+        "dots_changed": 13534,
+        "pct_changed": 35.9431,
+        "mean_displacement_px": 6.8751,
+        "median_displacement_px": 7.0711,
+        "max_displacement_px": 16.0,
+        "window_px": 8,
+        "floor_px": 3.0,
+        "clearance_px": 3.0,
+        "across_trace_tol_px": 1.0,
+        "min_along_trace_px": 2.0,
+        "parent_nn": {
+          "nn_mean_px": 3.7351,
+          "nn_median_px": 3.0,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 11415,
+          "fraction_below_parent_floor": 0.0
+        },
+        "variant_nn": {
+          "nn_mean_px": 4.0945,
+          "nn_median_px": 3.1622776601683795,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 3961,
+          "fraction_below_parent_floor": 0.0
+        },
+        "exclusive_parent": {
+          "exclusive_cells_mean": 20.7319,
+          "exclusive_cells_median": 21.0,
+          "exclusive_cells_min": 6,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 780640,
+          "redundancy_fraction": 0.285106,
+          "exclusive_cells_total": 780640
+        },
+        "exclusive_variant": {
+          "exclusive_cells_mean": 22.7274,
+          "exclusive_cells_median": 23.0,
+          "exclusive_cells_min": 8,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 855776,
+          "redundancy_fraction": 0.216298,
+          "exclusive_cells_total": 855776
+        },
+        "union_cover_parent_cells": 780640,
+        "union_cover_variant_cells": 855776,
+        "union_cover_gain_cells": 75136,
+        "union_cover_gain_offcatalogue_px": 74974,
+        "eligible_covered_parent": 720156,
+        "eligible_covered_variant": 792123,
+        "destination_gap_px_mean": 4.8066,
+        "cat_edt_min_parent": 2.2361,
+        "cat_edt_min_variant": 2.2361,
+        "cat_edt_mean_parent": 28.9966,
+        "cat_edt_mean_variant": 29.0209,
+        "dots_within_300m_of_catalogue_parent": 2171,
+        "dots_within_300m_of_catalogue_variant": 2065,
+        "lattice": {
+          "nominal_covering_spacing_px": 5.196152,
+          "spacing_px": 5.196152,
+          "nodes": 525172,
+          "interior_max_cell_to_node_px": 3.1623,
+          "max_cell_to_node_px": 4.2426,
+          "covers_at_radius": true,
+          "min_node_separation_px": 4.4721
+        },
+        "placement_rule": "same objective and window, restricted to cells within 1 px across the local dot ridge and >= 2 px along it: extend the trace instead of leaving it; falls back to isotropic where the neighbourhood is not line-like (coherence < 0.30)",
+        "eligibility": "eligible = footprint & ~catalogue & distance-to-catalogue > 3 px, applied to newly emitted mass only; inherited dots keep the parent's own >2 px geometry (brief 4.4 vs R0, IR-86-RELIEF-02)"
+      },
+      "selection": {
+        "credit_threshold": 16,
+        "kernel_disc_cells": 29,
+        "n_selected": 7228,
+        "pct_of_parent_selected": 19.1958,
+        "credit_selected_mean": 14.2222,
+        "credit_selected_max": 16,
+        "credit_kept_min": 17,
+        "dots_at_threshold": 2059,
+        "parent_redundancy_fraction": 0.285106,
+        "selection_rule": "every parent dot owning <= 16 of the 29 cells of its radius-3 px kernel disc, i.e. mass the max-operator has already written off; move order is credit ascending, then congestion descending, then row-major"
       },
       "parent_diff": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_removed": 2952,
-        "n_added": 2952,
-        "pct_dots_changed": 7.8398,
-        "pct_cells_changed": 15.6796,
-        "min_catalogue_distance_added_px": 3.0,
-        "kept_fraction": 0.921602
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 30887,
+        "dropped": 6767,
+        "added": 6767,
+        "dots_changed": 13534,
+        "pct_changed_of_parent": 35.9431,
+        "pct_relocated": 17.9715,
+        "jaccard": 0.695324,
+        "count_delta": 0
       },
-      "spacing": {
-        "min_nn_px": 2.8284271247461903,
-        "mean_nn_px": 3.7905137750002336,
-        "median_nn_px": 3.1622776601683795,
-        "n_within_3px": 7485,
-        "fraction_within_3px": 0.198784
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0.tif",
+          "sha256": "cacef9f76cae590873e073a676767be456879e4168a76a9ffa0feb9404b77b9a",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "cacef9f76cae590873e073a676767be456879e4168a76a9ffa0feb9404b77b9a",
+            "sha8": "cacef9f7"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif",
+          "sha256": "5070a2081987d8b4936ed6f3ee93a40486b4b5606528a96d2c282657fb0e25a2",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "5070a2081987d8b4936ed6f3ee93a40486b4b5606528a96d2c282657fb0e25a2",
+            "sha8": "5070a208"
+          },
+          "passed": true
+        }
       },
-      "predicted_live_change": 0.0,
-      "predicted_band": [
-        -0.004,
-        0.004
+      "new_mass_gate": {
+        "gate": "new_mass_clearance",
+        "passed": true,
+        "n_new": 6767,
+        "on_catalogue": 0,
+        "min_cat_distance_px": 3.1623,
+        "required_px": 3.0,
+        "note": "inherited dots keep the parent's own geometry (R0 has 2,171 dots between 2 and 3 px of the catalogue), which brief 4.4 and R0 cannot both satisfy - IR-86-RELIEF-02, IR-86-SNAP-08"
+      },
+      "artifacts": {
+        "nan": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0.tif",
+          "file": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0.tif",
+          "sha256": "cacef9f76cae590873e073a676767be456879e4168a76a9ffa0feb9404b77b9a",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "nan_outside_count": 7111787,
+          "name": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0",
+          "note": "h33-h33-2-b2 SPACING/strike: relocate 7027 redundant dots (35.9431% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-strike16-20261023",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "mode": "nan"
+        },
+        "zeros": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "name": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0",
+          "note": "h33-h33-2-b2 SPACING/strike: relocate 7027 redundant dots (35.9431% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-strike16-20261023",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "file": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif",
+          "sha256": "5070a2081987d8b4936ed6f3ee93a40486b4b5606528a96d2c282657fb0e25a2",
+          "mode": "zeros",
+          "nan_outside_count": 0
+        }
+      },
+      "note": "h33-h33-2-b2 SPACING/strike: relocate 7027 redundant dots (35.9431% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-strike16-20261023",
+      "note_chars": 140,
+      "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
+      "predicted_live_change": 0.001962,
+      "predicted_range_px": [
+        0.001962,
+        0.005008
       ],
-      "evidence_class": "MODEL"
+      "receipt_path": "releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.json"
     },
-    "along-strike": {
+    "random": {
+      "id": "gems86-h33-2b2-sp-random16-20261023-db4cae83",
       "axis": "SPACING",
-      "value": "along-strike",
-      "rule": "alongstrike",
-      "mechanism": "the freed dot slides along its own lineament past the kernel radius: it keeps its self-credit on the same trace and extends trace coverage where line-like truth is densest; predicted best of the three if fault truth follows the ridges",
-      "movement": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_clusters": 4841,
-        "n_crowded_pool": 6574,
-        "n_moved": 3036,
-        "n_stayed": 3538,
-        "pct_dots_changed": 8.0629,
-        "pct_cells_changed": 16.1258,
-        "displacement_mean_px": 2.0500877736011787,
-        "displacement_median_px": 1.0,
-        "displacement_max_px": 16.0
+      "value": "randomc16",
+      "token": "db4cae83",
+      "generated_utc": "2026-10-23T19:42:03Z",
+      "role": "control",
+      "slot_candidate": false,
+      "rule": "null control: uniform random eligible cell in the same 8 px window, same selection, same floor, same exclusions - not a slot candidate",
+      "parent": {
+        "id": "h33-h33-2-b2",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "rebuild": {
+          "base_dots": 40199,
+          "rebuilt_dots": 37654,
+          "parent_dots": 37654,
+          "differing_cells_vs_parent": 0,
+          "rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_exact": true,
+          "recipe": "gems28-h27-4-r1-solo-d2-8 (40,199 dots) AND distance-to-catalogue > 2.0 px",
+          "reencode": "deflate, predictor=3, zlevel=9, tiled 256, interleave=band, float32, no nodata"
+        }
+      },
+      "stats": {
+        "axis": "SPACING",
+        "law": "random",
+        "n_dots_parent": 37654,
+        "n_dots_variant": 37654,
+        "count_fixed": true,
+        "moved_target": 7228,
+        "moved_placed": 7228,
+        "moved_unplaced": 0,
+        "placed_outside_window": 1,
+        "empty_window_before_widening": 0,
+        "destinations_on_vacated_source_cells": 158,
+        "strike_fallback_isotropic": 0,
+        "strike_coherence_min": 0.3,
+        "pct_relocated_of_parent": 19.1958,
+        "dots_changed": 14140,
+        "pct_changed": 37.5525,
+        "mean_displacement_px": 5.5597,
+        "median_displacement_px": 6.0828,
+        "max_displacement_px": 15.8114,
+        "window_px": 8,
+        "floor_px": 3.0,
+        "clearance_px": 3.0,
+        "across_trace_tol_px": 1.0,
+        "min_along_trace_px": 2.0,
+        "parent_nn": {
+          "nn_mean_px": 3.7351,
+          "nn_median_px": 3.0,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 11415,
+          "fraction_below_parent_floor": 0.0
+        },
+        "variant_nn": {
+          "nn_mean_px": 4.0378,
+          "nn_median_px": 3.1622776601683795,
+          "nn_min_px": 2.8284,
+          "dots_below_2px": 0,
+          "dots_below_kernel_radius": 3754,
+          "fraction_below_parent_floor": 0.0
+        },
+        "exclusive_parent": {
+          "exclusive_cells_mean": 20.7319,
+          "exclusive_cells_median": 21.0,
+          "exclusive_cells_min": 6,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 780640,
+          "redundancy_fraction": 0.285106,
+          "exclusive_cells_total": 780640
+        },
+        "exclusive_variant": {
+          "exclusive_cells_mean": 22.7124,
+          "exclusive_cells_median": 23.0,
+          "exclusive_cells_min": 8,
+          "exclusive_cells_max": 29,
+          "disc_cells_max_possible": 29,
+          "union_disc_cells": 855213,
+          "redundancy_fraction": 0.216814,
+          "exclusive_cells_total": 855213
+        },
+        "union_cover_parent_cells": 780640,
+        "union_cover_variant_cells": 855213,
+        "union_cover_gain_cells": 74573,
+        "union_cover_gain_offcatalogue_px": 74468,
+        "eligible_covered_parent": 720156,
+        "eligible_covered_variant": 793262,
+        "destination_gap_px_mean": 4.2639,
+        "cat_edt_min_parent": 2.2361,
+        "cat_edt_min_variant": 2.2361,
+        "cat_edt_mean_parent": 28.9966,
+        "cat_edt_mean_variant": 29.0568,
+        "dots_within_300m_of_catalogue_parent": 2171,
+        "dots_within_300m_of_catalogue_variant": 2041,
+        "lattice": {
+          "nominal_covering_spacing_px": 5.196152,
+          "spacing_px": 5.196152,
+          "nodes": 525172,
+          "interior_max_cell_to_node_px": 3.1623,
+          "max_cell_to_node_px": 4.2426,
+          "covers_at_radius": true,
+          "min_node_separation_px": 4.4721
+        },
+        "placement_rule": "uniform draw from the eligible cells of the window (null control: the cost of moving at all, with no spacing law)",
+        "eligibility": "eligible = footprint & ~catalogue & distance-to-catalogue > 3 px, applied to newly emitted mass only; inherited dots keep the parent's own >2 px geometry (brief 4.4 vs R0, IR-86-RELIEF-02)"
+      },
+      "selection": {
+        "credit_threshold": 16,
+        "kernel_disc_cells": 29,
+        "n_selected": 7228,
+        "pct_of_parent_selected": 19.1958,
+        "credit_selected_mean": 14.2222,
+        "credit_selected_max": 16,
+        "credit_kept_min": 17,
+        "dots_at_threshold": 2059,
+        "parent_redundancy_fraction": 0.285106,
+        "selection_rule": "every parent dot owning <= 16 of the 29 cells of its radius-3 px kernel disc, i.e. mass the max-operator has already written off; move order is credit ascending, then congestion descending, then row-major"
       },
       "parent_diff": {
-        "n_parent": 37654,
-        "n_child": 37654,
-        "n_removed": 2939,
-        "n_added": 2939,
-        "pct_dots_changed": 7.8053,
-        "pct_cells_changed": 15.6106,
-        "min_catalogue_distance_added_px": 3.0,
-        "kept_fraction": 0.921947
+        "parent_dots": 37654,
+        "variant_dots": 37654,
+        "shared_dots": 30584,
+        "dropped": 7070,
+        "added": 7070,
+        "dots_changed": 14140,
+        "pct_changed_of_parent": 37.5525,
+        "pct_relocated": 18.7762,
+        "jaccard": 0.683839,
+        "count_delta": 0
       },
-      "spacing": {
-        "min_nn_px": 2.8284271247461903,
-        "mean_nn_px": 3.7889120541632586,
-        "median_nn_px": 3.1622776601683795,
-        "n_within_3px": 7613,
-        "fraction_within_3px": 0.202183
+      "gates": {
+        "nan": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83.tif",
+          "sha256": "75ffa953d588202eafe120c86f4b9a0970e9513f55a8a95608de5977063ff743",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=5167373"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "nan",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "75ffa953d588202eafe120c86f4b9a0970e9513f55a8a95608de5977063ff743",
+            "sha8": "75ffa953"
+          },
+          "passed": true
+        },
+        "zeros": {
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.tif",
+          "sha256": "cfac3b17e38e9e0c4ff794283f159fa0e50ddb0a7da08f5faa7a86b5feaf2e1d",
+          "format": {
+            "gate": "format",
+            "passed": true,
+            "skipped": [
+              "footprint checks"
+            ],
+            "skipped_covered_elsewhere": {
+              "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+            },
+            "uncovered_skips": [],
+            "failed": [],
+            "checks": [
+              {
+                "check": "single band",
+                "status": "PASS",
+                "detail": "count=1"
+              },
+              {
+                "check": "dtype float32",
+                "status": "PASS",
+                "detail": "dtype=float32"
+              },
+              {
+                "check": "CRS EPSG:32611",
+                "status": "PASS",
+                "detail": "crs=EPSG:32611"
+              },
+              {
+                "check": "shape matches",
+                "status": "PASS",
+                "detail": "file=(3730, 3292) expected=(3730, 3292)"
+              },
+              {
+                "check": "resolution 100 m",
+                "status": "PASS",
+                "detail": "res=(100.0, 100.0)"
+              },
+              {
+                "check": "transform matches reference",
+                "status": "PASS",
+                "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+              },
+              {
+                "check": "CRS matches reference",
+                "status": "PASS",
+                "detail": "file=EPSG:32611 ref=EPSG:32611"
+              },
+              {
+                "check": "nodata tag is none or NaN",
+                "status": "PASS",
+                "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+              },
+              {
+                "check": "no infinities",
+                "status": "PASS",
+                "detail": "inf_count=0"
+              },
+              {
+                "check": "values within [0, 1]",
+                "status": "PASS",
+                "detail": "min=0.0 max=1.0 finite_cells=12279160"
+              },
+              {
+                "check": "footprint checks",
+                "status": "SKIPPED",
+                "detail": "SKIPPED: no features raster supplied"
+              },
+              {
+                "check": "info: emitted cells (value > 0)",
+                "status": "INFO",
+                "detail": "emitted=37654"
+              }
+            ]
+          },
+          "values": {
+            "gate": "values",
+            "passed": true,
+            "checks": {
+              "in_footprint_all_finite": true,
+              "in_footprint_range_0_1": true,
+              "outside_footprint_nan_or_zero": true,
+              "zero_catalogue_mass": true,
+              "single_band": true
+            },
+            "mode": "zeros",
+            "n_dots": 37654,
+            "dots_on_catalogue": 0,
+            "in_footprint_min": 0.0,
+            "in_footprint_max": 1.0
+          },
+          "catalogue_clearance": {
+            "gate": "catalogue_clearance",
+            "passed": true,
+            "clearance_px": 2.0,
+            "violations": 0,
+            "min_cat_edt_px": 2.2361
+          },
+          "ledger_hash": {
+            "gate": "sha256_not_in_ledger",
+            "passed": true,
+            "sha256": "cfac3b17e38e9e0c4ff794283f159fa0e50ddb0a7da08f5faa7a86b5feaf2e1d",
+            "sha8": "cfac3b17"
+          },
+          "passed": true
+        }
       },
-      "predicted_live_change": 0.002,
-      "predicted_band": [
-        -0.003,
-        0.006
+      "new_mass_gate": {
+        "gate": "new_mass_clearance",
+        "passed": true,
+        "n_new": 7070,
+        "on_catalogue": 0,
+        "min_cat_distance_px": 3.1623,
+        "required_px": 3.0,
+        "note": "inherited dots keep the parent's own geometry (R0 has 2,171 dots between 2 and 3 px of the catalogue), which brief 4.4 and R0 cannot both satisfy - IR-86-RELIEF-02, IR-86-SNAP-08"
+      },
+      "artifacts": {
+        "nan": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83.tif",
+          "file": "gems86-h33-2b2-sp-random16-20261023-db4cae83.tif",
+          "sha256": "75ffa953d588202eafe120c86f4b9a0970e9513f55a8a95608de5977063ff743",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "nan_outside_count": 7111787,
+          "name": "gems86-h33-2b2-sp-random16-20261023-db4cae83",
+          "note": "h33-h33-2-b2 SPACING/random: relocate 7228 redundant dots (37.5525% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-random16-20261023",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "mode": "nan"
+        },
+        "zeros": {
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.tif",
+          "shape_hw": [
+            3730,
+            3292
+          ],
+          "crs": "EPSG:32611",
+          "footprint_cells": 5167373,
+          "emitted_cells_gt0": 37654,
+          "min_inside": 0.0,
+          "max_inside": 1.0,
+          "nan_inside": 0,
+          "name": "gems86-h33-2b2-sp-random16-20261023-db4cae83",
+          "note": "h33-h33-2-b2 SPACING/random: relocate 7228 redundant dots (37.5525% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-random16-20261023",
+          "note_chars": 140,
+          "reference": "sample_submission.tif",
+          "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+          "file": "gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.tif",
+          "sha256": "cfac3b17e38e9e0c4ff794283f159fa0e50ddb0a7da08f5faa7a86b5feaf2e1d",
+          "mode": "zeros",
+          "nan_outside_count": 0
+        }
+      },
+      "note": "h33-h33-2-b2 SPACING/random: relocate 7228 redundant dots (37.5525% cells changed), count 37,654 fixed | gems86-h33-2b2-sp-random16-20261023",
+      "note_chars": 140,
+      "git_sha": "7f37d6ac43043e5b841b3f4e27d054b22ed63396",
+      "predicted_live_change": 0.000194,
+      "predicted_range_px": [
+        0.000194,
+        0.005032
       ],
-      "evidence_class": "MODEL"
+      "receipt_path": "releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.json"
     }
   },
   "instruments": {
-    "proxy_free": {
-      "R0": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.004356,
-        "ci95": [
-          0.0041,
-          0.004577
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    "sgmc_offcatalogue_surrogate": {
+      "evidence_class": "MODEL",
+      "instrument": "official-kernel DTI (gems57.metric.dti_binary, alpha 0.2 beta 0.8 R=3 px) vs USGS SGMC derived off-catalogue faults, catalogue masked as known; RELIEF-session convention",
+      "source_url": "https://www.usgs.gov/science-plan/conterminus-synthetic-geologic-map-compiler-sgmc",
+      "truth_pixels": 79615,
+      "arms": {
+        "pdisk": {
+          "dti": 0.094373,
+          "delta": 0.00148,
+          "relative_pct": 1.593,
+          "delta_tp": 111.39,
+          "delta_fp": 143.95,
+          "coverage": 0.085402,
+          "coverage_parent": 0.084002,
+          "quadrant_delta_px": {
+            "q1": 0.003201,
+            "q2": -0.00122,
+            "q3": -0.001759,
+            "q4": 0.003651
+          },
+          "quadrant_sign_agreement": 2,
+          "translated_delta_px": [
+            0.00148,
+            0.003062,
+            0.002078,
+            0.007113,
+            0.005019,
+            0.007175,
+            0.006489,
+            0.005162,
+            0.004356,
+            0.004358,
+            0.005226,
+            0.003519
+          ],
+          "translated_mean": 0.004586,
+          "translated_min": 0.00148,
+          "translated_max": 0.007175,
+          "translated_positive_draws": 12,
+          "translated_shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "lattice": {
+          "dti": 0.094754,
+          "delta": 0.001861,
+          "relative_pct": 2.003,
+          "delta_tp": 139.3,
+          "delta_fp": 140.76,
+          "coverage": 0.085752,
+          "coverage_parent": 0.084002,
+          "quadrant_delta_px": {
+            "q1": 0.002817,
+            "q2": -0.000177,
+            "q3": -0.000609,
+            "q4": 0.004291
+          },
+          "quadrant_sign_agreement": 2,
+          "translated_delta_px": [
+            0.001861,
+            0.003087,
+            0.002491,
+            0.007069,
+            0.005077,
+            0.007236,
+            0.006139,
+            0.006487,
+            0.004883,
+            0.005394,
+            0.005378,
+            0.003786
+          ],
+          "translated_mean": 0.004907,
+          "translated_min": 0.001861,
+          "translated_max": 0.007236,
+          "translated_positive_draws": 12,
+          "translated_shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "strike": {
+          "dti": 0.094855,
+          "delta": 0.001962,
+          "relative_pct": 2.112,
+          "delta_tp": 145.62,
+          "delta_fp": 83.68,
+          "coverage": 0.085832,
+          "coverage_parent": 0.084002,
+          "quadrant_delta_px": {
+            "q1": 0.002666,
+            "q2": -0.000359,
+            "q3": 3.2e-05,
+            "q4": 0.004993
+          },
+          "quadrant_sign_agreement": 3,
+          "translated_delta_px": [
+            0.001962,
+            0.003352,
+            0.002384,
+            0.004752,
+            0.004415,
+            0.004691,
+            0.004775,
+            0.004535,
+            0.005008,
+            0.003692,
+            0.0045,
+            0.004141
+          ],
+          "translated_mean": 0.004017,
+          "translated_min": 0.001962,
+          "translated_max": 0.005008,
+          "translated_positive_draws": 12,
+          "translated_shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "random": {
+          "dti": 0.093087,
+          "delta": 0.000194,
+          "relative_pct": 0.209,
+          "delta_tp": 16.81,
+          "delta_fp": 134.77,
+          "coverage": 0.084214,
+          "coverage_parent": 0.084002,
+          "quadrant_delta_px": {
+            "q1": 0.002263,
+            "q2": -0.002632,
+            "q3": -0.000105,
+            "q4": 0.001208
+          },
+          "quadrant_sign_agreement": 2,
+          "translated_delta_px": [
+            0.000194,
+            0.002853,
+            0.000604,
+            0.004417,
+            0.00319,
+            0.004433,
+            0.003696,
+            0.005032,
+            0.004182,
+            0.003485,
+            0.004821,
+            0.003011
+          ],
+          "translated_mean": 0.003327,
+          "translated_min": 0.000194,
+          "translated_max": 0.005032,
+          "translated_positive_draws": 12,
+          "translated_shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        "control_random": {
+          "dti": 0.093087,
+          "delta": 0.000194,
+          "relative_pct": 0.209,
+          "delta_tp": 16.81,
+          "delta_fp": 134.77,
+          "coverage": 0.084214,
+          "coverage_parent": 0.084002,
+          "quadrant_delta_px": {
+            "q1": 0.002263,
+            "q2": -0.002632,
+            "q3": -0.000105,
+            "q4": 0.001208
+          },
+          "quadrant_sign_agreement": 2,
+          "translated_delta_px": [
+            0.000194,
+            0.002853,
+            0.000604,
+            0.004417,
+            0.00319,
+            0.004433,
+            0.003696,
+            0.005032,
+            0.004182,
+            0.003485,
+            0.004821,
+            0.003011
+          ],
+          "translated_mean": 0.003327,
+          "translated_min": 0.000194,
+          "translated_max": 0.005032,
+          "translated_positive_draws": 12,
+          "translated_shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              3
+            ]
+          ]
+        }
       },
-      "lattice": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.004252,
-        "ci95": [
-          0.003991,
-          0.00448
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      "parent": {
+        "dti": 0.092893,
+        "tp": 6687.851208796859,
+        "fp": 34828.01601876276,
+        "fn": 72927.14879120314,
+        "coverage": 0.084002,
+        "n_truth": 79615.0,
+        "n_emitted": 37654.0
       },
-      "poisson-disk": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.004243,
-        "ci95": [
-          0.003981,
-          0.004473
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
-      },
-      "along-strike": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.004254,
-        "ci95": [
-          0.003993,
-          0.004483
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      "reads": {
+        "law_separation": "the widest gap between the three laws on this surrogate is 0.000482 DTI, i.e. the surrogate cannot rank the laws",
+        "control_separation": "the random control is reported so that any gain shared with it is read as 'moving mass out of overlap pays', not as 'this law pays'"
       }
     },
-    "proxy_fixed_collar_d3": {
-      "R0": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.0,
-        "ci95": [
-          0.0,
-          0.0
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
-      },
-      "lattice": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.0,
-        "ci95": [
-          0.0,
-          0.0
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
-      },
-      "poisson-disk": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.0,
-        "ci95": [
-          0.0,
-          0.0
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
-      },
-      "along-strike": {
-        "available": true,
-        "class_": "PROXY",
-        "n_withheld_components": 640,
-        "n_withheld_positive_pixels": 11548,
-        "n_draws": 10,
-        "mean": 0.0,
-        "ci95": [
-          0.0,
-          0.0
-        ],
-        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    "support_surface_read": {
+      "support_surface": "gems19-h19-5 (pinned, the field the lineage was thinned from)",
+      "support_cells": 121131,
+      "arms": {
+        "pdisk": {
+          "sources_on_support_pct": 100.0,
+          "destinations_on_support_pct": 1.814,
+          "destination_field_value_mean": 0.018141,
+          "parent_field_value_mean": 1.0
+        },
+        "lattice": {
+          "sources_on_support_pct": 100.0,
+          "destinations_on_support_pct": 3.0,
+          "destination_field_value_mean": 0.030001,
+          "parent_field_value_mean": 1.0
+        },
+        "strike": {
+          "sources_on_support_pct": 100.0,
+          "destinations_on_support_pct": 5.246,
+          "destination_field_value_mean": 0.05246,
+          "parent_field_value_mean": 1.0
+        },
+        "random": {
+          "sources_on_support_pct": 100.0,
+          "destinations_on_support_pct": 3.267,
+          "destination_field_value_mean": 0.032673,
+          "parent_field_value_mean": 1.0
+        }
       }
     },
     "leakage_canary": {
       "status": "PASS",
       "threshold": 0.9,
-      "max_auc": 0.7937064538232387,
+      "max_auc": 0.6096,
       "rows": [
         {
-          "fold": "NW",
-          "feature": "h19_5_binary",
-          "auc": 0.4881185917255561,
-          "withheld_positives": 1923
+          "arm": "pdisk",
+          "feature": "gap_to_nearest_dot",
+          "auc": 0.6057
         },
         {
-          "fold": "NW",
-          "feature": "negative_distance_to_visible_catalogue",
-          "auc": 0.7937064538232387,
-          "withheld_positives": 1923
+          "arm": "pdisk",
+          "feature": "is_destination_of_a_moved_dot",
+          "auc": 0.5
         },
         {
-          "fold": "NE",
-          "feature": "h19_5_binary",
-          "auc": 0.48827771264778375,
-          "withheld_positives": 2367
+          "arm": "lattice",
+          "feature": "gap_to_nearest_dot",
+          "auc": 0.6069
         },
         {
-          "fold": "NE",
-          "feature": "negative_distance_to_visible_catalogue",
-          "auc": 0.7741892108449462,
-          "withheld_positives": 2367
+          "arm": "lattice",
+          "feature": "is_destination_of_a_moved_dot",
+          "auc": 0.5
         },
         {
-          "fold": "SW",
-          "feature": "h19_5_binary",
-          "auc": 0.48818418661377627,
-          "withheld_positives": 3781
+          "arm": "strike",
+          "feature": "gap_to_nearest_dot",
+          "auc": 0.6096
         },
         {
-          "fold": "SW",
-          "feature": "negative_distance_to_visible_catalogue",
-          "auc": 0.747157580252555,
-          "withheld_positives": 3781
+          "arm": "strike",
+          "feature": "is_destination_of_a_moved_dot",
+          "auc": 0.5001
         },
         {
-          "fold": "SE",
-          "feature": "h19_5_binary",
-          "auc": 0.4886120319191222,
-          "withheld_positives": 3250
+          "arm": "random",
+          "feature": "gap_to_nearest_dot",
+          "auc": 0.6087
         },
         {
-          "fold": "SE",
-          "feature": "negative_distance_to_visible_catalogue",
-          "auc": 0.7072219144261994,
-          "withheld_positives": 3250
+          "arm": "random",
+          "feature": "is_destination_of_a_moved_dot",
+          "auc": 0.5
         }
       ],
-      "note": "single-feature diagnostics only; catalogue-derived distance is not an independent physical feature (see build_r0_prune.leakage_canaries)"
+      "note": "label used: USGS SGMC off-catalogue faults, an independent map product, not competition truth; no label enters any placement"
     },
-    "sgmc_control": {
+    "catalogue_hide_recover_proxy": {
       "evidence_class": "PROXY",
-      "instrument": "official-kernel DTI vs USGS SGMC off-catalogue faults (d_cat > 3 px)",
+      "status": "REPORT-ONLY (never a gate)",
+      "design": "fold-fair buffered whole-component catalogue hide-and-recover; seed 20, 20 % withheld, 3 px context buffer; each arm's placement re-run per fold on that fold's visible catalogue",
+      "folds": [
+        {
+          "fold": "NW",
+          "withheld_truth_px": 1923
+        },
+        {
+          "fold": "NE",
+          "withheld_truth_px": 2367
+        },
+        {
+          "fold": "SW",
+          "withheld_truth_px": 3781
+        },
+        {
+          "fold": "SE",
+          "withheld_truth_px": 3250
+        }
+      ],
       "scores": {
-        "R0": {
-          "dti": 0.09538611460482532,
-          "tp": 5517.63670255971,
-          "fp": 35220.77352594685,
-          "fn": 56604.363297440286,
-          "n_truth": 62122,
-          "n_emitted": 37654
+        "pdisk": {
+          "dti": 0.015338865662308935,
+          "ci95": [
+            0.012259171319115825,
+            0.01863430061752684
+          ],
+          "withheld_positive_pixels": 11321
         },
         "lattice": {
-          "dti": 0.09614429416228,
-          "tp": 5562.465540349106,
-          "fp": 35226.47953557673,
-          "fn": 56559.534459650895,
-          "n_truth": 62122,
-          "n_emitted": 37654
+          "dti": 0.01358835638560024,
+          "ci95": [
+            0.010885976467007083,
+            0.016729608180375024
+          ],
+          "withheld_positive_pixels": 11321
         },
-        "poisson-disk": {
-          "dti": 0.0962111449130412,
-          "tp": 5566.329977434994,
-          "fp": 35222.44676532314,
-          "fn": 56555.670022565006,
-          "n_truth": 62122,
-          "n_emitted": 37654
+        "strike": {
+          "dti": 0.01216917105072128,
+          "ci95": [
+            0.009770960620548361,
+            0.014829608497255644
+          ],
+          "withheld_positive_pixels": 11321
         },
-        "along-strike": {
-          "dti": 0.096081595054831,
-          "tp": 5558.793760441818,
-          "fp": 35227.84605322772,
-          "fn": 56563.20623955818,
-          "n_truth": 62122,
-          "n_emitted": 37654
-        },
-        "delta_vs_R0": {
-          "lattice": 0.000758,
-          "poisson-disk": 0.000825,
-          "along-strike": 0.000695
+        "parent": {
+          "dti": 0.003698680598708719,
+          "ci95": [
+            0.0029715130325808524,
+            0.004412556536484707
+          ],
+          "withheld_positive_pixels": 11321
         }
       },
-      "note": "SGMC is an independent-map control, never hidden competition truth; report only. With a fixed >=3 px collar this control also collapses (IR-86-SNAP-06); the free reading is shown for continuity."
-    },
-    "note": "report only; IR-86-SNAP-06: free-proxy numbers may not rank arms, and with the fixed >=3 px collar this lineage's proxy reads 0.0000"
+      "caveat": "measured floor for a catalogue-avoiding lineage (R0 0.00436, pruned variants 0.00000 in IR-86-PRUNE-03); with the >= 3 px collar every arm here is far from the withheld trace, so near-zero values are the expected reading of this instrument and not evidence against the axis"
+    }
   },
-  "written": [
-    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-lattice-20261023-4551582d",
-    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-poissondisk-20261023-d2cf39d5",
-    "h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a"
-  ],
-  "gates": {
-    "format": "shared validate + format_report against sample_submission.tif",
-    "zero_catalogue_mass": "asserted in memory and re-read from disk",
-    "sha_novel": "checked against ledger/submissions.csv, data/scored_fleet and docs/downloads",
-    "parent_diff": "recorded per variant (move-aware diff + spacing stats)",
-    "reread_from_disk": "yes (validate() and format_report() open the written file)"
+  "evidence_labels": {
+    "built": "BUILT",
+    "predicted_change": "MODEL",
+    "sgmc_surrogate": "MODEL",
+    "hide_recover": "PROXY",
+    "receipt": "none - only the human can supply it"
   },
-  "not_a_score": "Every number above is a MODEL projection or a PROXY measurement. No submission was made and no receipt exists. Live |delta| < 0.01 is no evidence (public chunks only; the private score may differ)."
+  "dedupe": "exact sha256 + repeated (parent, axis, value) only; no overlap or rank-correlation threshold applied (brief 6 supersedes the repo's 70 % rule, IR-86-PRUNE-01; no gate script was touched)"
 }

@@ -219,26 +219,192 @@ skipped; withdrew its duplicate r1/r2 pairs (no raster), demoted its one novel f
 after measuring the SGMC control (stated on the cards). No DrivenData access of any kind;
 inputs only from the sha256-pinned mirrors in `registry/data_manifest.json`.
 
-## SPACING session — 2026-10-23 (`arena/ee238b91`)
+## Addendum — SPACING session (branch `arena/c8365759-gemsdoe86`), 2026-10-23
 
-**What the AI wrote:** `scripts/run_spacing_axis.py` (the axis builder), `tests/test_spacing_axis.py`
-and the SPACING branch of `tests/test_prune_ladder.py`, `ledger/variants_spacing.json`,
-`evidence/spacing-mechanism.md`, `evidence/spacing_axis_20261023.json`, and edits to
-`SLOT_PLAN.md`, `README.md` (CURRENT STATE block only), `docs/SUBMIT.md`, `IRREGULARITIES.md`
-(IR-86-SPACING-01) and `scripts/build_ledger.py` (one line: the new variants file).
+**Required disclosure (rules §"generative-AI disclosure"): what the AI wrote, what the human decided.**
+
+**AI wrote.** `src/gems86/spacing.py` (exclusive-kernel-discredit measure, redundancy selection,
+local-ridge PCA, verified hexagonal covering lattice, the four placement laws, parent-diff stats),
+`scripts/build_r0_spacing.py` (pin verification, byte-exact parent rebuild, gates, instruments,
+releases, receipts, run card), `scripts/emit_spacing_entries.py`, `tests/test_spacing_axis.py`
+(30 tests, all on synthetic grids), `evidence/spacing-mechanism.md`, and the SPACING text in
+`README.md` (CURRENT STATE block only), `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`
+(IR-86-SPACING-01…04) and this file. One one-line additive edit to `scripts/build_ledger.py`'s list
+of `variants_*.json` inputs, so the session's rows reach the ledger through the repo's single
+generator instead of a hand-edited CSV. No shared validator, gate, writer or metric file was touched,
+and `vendor/**` bytes are unchanged (re-verified against `research/template_pin.json` inside the
+build itself).
+
+**AI decided (the human can veto).**
+1. **Took SPACING** because the brief skipped the AXIS assignment and SPACING is the only brief-§5
+   axis with no row in `ledger/submissions.csv`; the other five were already built on this parent.
+2. **Rewrote the dose rule.** The brief's "drop/add 10 %" style count was replaced by a threshold on
+   the mechanism variable (≤ 16 of 29 disc cells) after measuring that a count-based cut lands
+   inside a 3,411-dot tie class and would have been decided by row-major scan order — the exact
+   defect IR-86-MASS-01 records for the MASS session. Dose, arms, exclusions and the control were
+   fixed before the surrogate was read.
+3. **Reinterpreted §5's "lattice vs Poisson-disk vs along-strike" as local, not global**, because a
+   global re-lattice changes ~100 % of the dots and §5 caps a variant at 50 % (IR-86-SPACING-04).
+4. **Kept every placement label-free and band-free** — deliberately not using the TMI/DEM bands, the
+   H19-5 values or the Faulds prior inside a placement, so that the arm cannot be SNAP or
+   CONCENTRATION in disguise; the 419 MB feature stack was therefore not restored this session.
+5. **Reported the axis's own weaknesses as findings**: the random-move control is in the ledger and in
+   every card so no arm can be read against zero, and the fact that 95–98 % of the coverage bought
+   sits off the parent's support surface is stated as the limit on what a SPACING receipt could prove
+   (IR-86-SPACING-02) rather than omitted.
+6. **Offered slot 3 only, and against the plan's existing SNAP probe**, with `le3p000` and
+   `frontp15`/`conc15` left in slots 1–2 unchanged. No slot was used.
+
+**Not done, and why.** `TOP_PUBLIC`, the rolling-week quota and R0's receipt are still unsupplied, so
+`0.2778` stays CLAIM and no variant is labelled anything better than MODEL; the hide-and-recover
+PROXY is reported but ranked by nothing: re-derived per fold it reads 0.0153/0.0136/0.0122 against a
+parent at 0.0037, which looks like a win and is not one — the arms get a fold-visible collar the
+parent never had, so the instrument measures the absence of the collar (IR-86-SPACING-05); `TRACKB` was not started
+(Phase 2, and it needs decisions the human owes); no lidar DEM was invented for SNAP-adjacent work.
+No DrivenData or dropbox.com request was made, no credential was read, printed or stored, and nothing
+was submitted — the human submits from their own registered account, one file per slot.
+
+```
+.venv/bin/python -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_derived_sgmc_faults_100m_u8 scored_h19_5
+.venv/bin/python -m pytest -q tests/test_spacing_axis.py            # 30 passed
+.venv/bin/python scripts/build_r0_spacing.py                          # rebuild R0 -> 3 arms + control
+.venv/bin/python scripts/emit_spacing_entries.py
+.venv/bin/python scripts/build_ledger.py
+```
+
+## Addendum — 5 km CONCENTRATION session (branch `arena/146307ee-gemsdoe86`), 2026-10-23
+
+**Required generative-AI disclosure.** Arena.ai Agent Mode wrote `src/gems86/concentration5.py`,
+`scripts/build_concentration5_axis.py`, `tests/test_concentration5_axis.py`, the partial-edge-block
+source-selection correction in `src/gems86_axis/variants.py`, the additive ledger-generator input,
+`evidence/r0_preflight_20261023.json`, `evidence/concentration5_axis_20261023.json`,
+`evidence/concentration5-mechanism.md`, `ledger/variants_concentration5.json`, the three generated
+release receipts, and this session's edits to `ledger/submissions.csv` (through the sole generator),
+`SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`, this file, and only README's marked
+`CURRENT STATE` block. Release TIFFs remain local and gitignored.
+
+**Human decided / constrained:** no portal, Dropbox, credential, leaderboard, scraping or submission
+access; manifest-pinned inputs only; no axis prompt; self-assign one axis, stop after three variants;
+never submit. **AI decided (human can veto):** CONCENTRATION at a new 5 km value, with fixed
+10/15/20% low→high-prior doses preregistered before SGMC was read. Count, spacing, parent and all
+non-axis inputs stayed fixed; the 3 px clearance applies to new mass while R0's inherited 2–3 px
+geometry is documented rather than silently pruned.
+
+**AI corrected itself before release:** the first run exposed partial 5 km edge blocks whose `-inf`
+(unclassified) values were incorrectly selected as the lowest prior. It stopped before writing any
+raster or ledger row. Unclassified dots are now excluded from the source draw, regression-tested,
+and logged as IR-86-CONC-05; doses were not retuned. The completed run's positive catalogue-
+recovery **PROXY** was not promoted because all added cells are off H19-5 support and SGMC is
+negative with dose (IR-86-CONC-09). All three variants are therefore audit artifacts, not slot
+recommendations. No fourth arm was built.
+
+**Not done:** no DrivenData or Dropbox request, login, credential handling, leaderboard read,
+score claim, receipt fabrication or submission. Network use was limited to GitHub mirror restores
+and the earlier pinned PyPI environment install. R0's 0.2778 remains CLAIM; all new predictions are
+MODEL and the recovery instrument is PROXY. Slots used: 0.
+
+```bash
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_geodawn_extensions_u8 \
+  ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 \
+  ext_derived_sgmc_faults_100m_u8 scored_h19_5 \
+  --receipt .cache/concentration5_input_receipt.json
+.venv/bin/python -m pytest -q tests/test_concentration5_axis.py
+.venv/bin/python scripts/build_concentration5_axis.py  # exact R0 rebuild, 3 arms, gates, instruments
+.venv/bin/python scripts/build_ledger.py --check
+```
+## Session addendum — MASS, kernel-budget ranking (2026-10-23, branch `arena/c6b14099-gemsdoe86`)
+
+**What the AI wrote.** `src/gems86/mass_econ.py`, `scripts/build_mass_econ.py`,
+`scripts/audit_mass_instrument.py`, `scripts/emit_mass_econ_entries.py`,
+`tests/test_mass_econ.py`, the run card, the mechanism card, the SLOT_PLAN/README/SUBMIT/
+IRREGULARITIES text, and the choice of the session axis. All numbers in those files were produced by
+the scripts in this repository on SHA-256-pinned inputs; none was supplied by the assistant.
+
+**What the human decided / must decide.**
+1. The axis was **self-assigned** by the assistant (MASS with a metric-economic ranking) because the
+   brief forbids asking and because the literal MASS arms were already spent. The deviation from
+   §5's literal ranking function is IR-86-MASS-02 and the human may reject it.
+2. `TOP_PUBLIC`, the rolling-week quota and any submission receipt are still **unsupplied**; nothing
+   here is a score, and 0.2778 stays CLAIM.
+3. Slot use is the human's alone: the plan now says spend slots 1–2 on the RELIEF ±pair (one
+   experiment) and slot 3 on PRUNE, and spend nothing on this session's three files.
+4. The human decides whether the repository's internal 70 %-overlap rule or brief v2 §6 governs
+   uploads (IR-86-PRUNE-01); this session did not touch that gate.
+
+**Reproduction.**
+
+```
+.venv/bin/python -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/restore_data.py --with-external          # 419 MB stack + 5 externals, hash-pinned
+.venv/bin/python scripts/build_mass_econ.py                        # rebuild R0 byte-exact -> 3 arms + control
+.venv/bin/python scripts/audit_mass_instrument.py                  # the monotone-in-count audit
+.venv/bin/python scripts/emit_mass_econ_entries.py && .venv/bin/python scripts/build_ledger.py
+.venv/bin/python -m pytest -q tests/test_mass_econ.py              # 6 passed
+```
+
+**Not done.** No submission, no leaderboard access, no DrivenData or dropbox.com request, no
+credential handling. The hide-and-recover PROXY was deliberately not re-run (IR-86-SNAP-06: without
+a collar pinned identically across arms it measures the collar, not the arm). `TRACKB` was not
+started. The `data/external/derived_sgmc_faults_100m_u8.tif` and `data/scored/gems19-h19-5…` inputs
+were restored from their pinned codeload mirrors and hash-verified; both are read-only here.
+## 2026-10-23 — TRACKB session (self-assigned axis)
+
+* **AI wrote:** `src/gems86/trackb.py`, `scripts/run_trackb_axis.py`, `tests/test_trackb_axis.py`,
+  `evidence/trackb-mechanism.md`, the SLOT_PLAN/README/IRREGULARITIES/SUBMIT/AI_USE edits, and every
+  raster in `releases/…-TRACKB-*`. The axis was chosen by the agent because brief v2 §1 forbids asking
+  the human to pick one; TRACKB was the only brief-listed axis with no existing build.
+* **AI decided:** the substitute ranking (trace support) necessitated by IR-86-TRACKB-01; the three
+  corridor doses; that the axis earns **no slot** in Phase 1; that the GeoJSON stays out of Git.
+* **Human decided / supplied:** nothing this session — no `TOP_PUBLIC`, no slots-used count, no
+  receipt, no deadline confirmation. The 0.2778 parent score remains a CLAIM.
+* **Not AI-decided:** which file, if any, is uploaded, and the final blind choice.
+
+## 2026-10-23 — CONCENTRATION sign experiment (branch `arena/c1df93fc-gemsdoe86`)
+
+* **AI wrote:** `scripts/build_concentration_sign.py` (arm builder, band-free catalogue prior,
+  five-truth-model panel, CV-vs-dose sweep, gates, receipts, ledger rows);
+  `evidence/concentration-sign-mechanism.md`; the SLOT_PLAN addendum; the README CURRENT STATE
+  block; IR-86-CONC-03/04/05; three ledger rows.
+* **AI decided (agent brief §5 delegates the axis):** that this session's axis is CONCENTRATION,
+  that its value is the *sign flip* plus a matched calibration and a random-block control, and
+  that destination blocks are restricted to blocks that already hold parent dots.
+* **AI did not decide and cannot:** which arm to submit, `TOP_PUBLIC`, the rolling-week quota, the
+  governing uniqueness rule, and the governing deadline. No submission was made; no leaderboard,
+  competition page or dropbox.com was contacted; no credentials were read, stored or printed.
+* **Human decisions preserved:** the parent R0 lineage, the 2.828 px spacing floor, the
+  pixel-exact catalogue zero-mass rule, and the standing instruction never to apply
+  overlap/rank-correlation uniqueness gates.
+
+## SPACING crowded-pool session — 2026-10-23 (`arena/ee238b91`)
+
+**Race note.** A parallel session (`arena/c1df93fc` / `arena/146307ee`, PRs #44/#46) landed a
+different SPACING design (`sp-*c16` arms) on main while this branch was building. The
+`(parent, axis, value)` keys differ (`lattice/poisson-disk/along-strike` here vs
+`latticec16/pdiskc16/strikec16/randomc16` there), so both builds stand; the same-named
+artifacts written by this branch were renamed (`evidence/spacing-crowdedpool-mechanism.md`,
+`evidence/spacing_axis_crowdedpool_20261023.json`, `tests/test_spacing_crowdedpool.py`) and
+the two `ledger/variants_spacing.json` entry lists were concatenated. IR-86-SPACING-07.
+
+**What the AI wrote:** `scripts/run_spacing_axis.py` (the crowded-pool builder),
+`tests/test_spacing_crowdedpool.py` and the SPACING branch of `tests/test_prune_ladder.py`,
+`ledger/variants_spacing.json` (3 entries), `evidence/spacing-crowdedpool-mechanism.md`,
+`evidence/spacing_axis_crowdedpool_20261023.json`, and edits to `SLOT_PLAN.md`, `README.md`
+(CURRENT STATE row), `docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-86-SPACING-06/-07).
 
 **What the AI decided (and the human can veto):**
-- **AXIS = SPACING, self-chosen** (the human said "pick your own session"): it is the only
-  listed weekly axis with no built (AXIS, value) pair, and its three brief-named values
-  (lattice / Poisson-disk / along-strike) fit the three-variant budget. TRACKB stayed Phase 2.
-- The brief's 1-50 % change rule bars a global re-patterning, so the three values are realised
-  as the destination geometry of the kernel-crowded pool (pairs closer than the 3 px kernel
-  radius); the selection keeps the parent's own visit-rank priority. The first design pass
-  (fully kernel-disjoint at matched count) was measured infeasible and **abandoned before any
-  file was written** (IR-86-SPACING-01); the shipped design breaks each crowded pair at >= 3 px
-  from its kept partner and holds the parent's 2.828 px floor elsewhere.
+- **AXIS = SPACING, self-chosen** (the human said "pick your own session"); at session start
+  the ledger held no SPACING pair. The three brief-named values (lattice / Poisson-disk /
+  along-strike) were realised as the destination geometry of the kernel-crowded pool (pairs
+  closer than the 3 px kernel radius), keeping the parent's own visit-rank priority, because
+  the 1-50 % change rule bars a global re-patterning (same conclusion as the parallel
+  session's IR-86-SPACING-04).
+- The first design pass (fully kernel-disjoint at matched count) was measured infeasible and
+  **abandoned before any file was written** (IR-86-SPACING-06): the shipped design breaks each
+  crowded pair at >= 3 px from its kept partner and holds the parent's 2.828 px floor
+  elsewhere; ~3,050 dots (8.1 % of R0) move, median displacement 1 px.
 - Predictions were pre-registered in the builder before the instruments ran: +0.000 / +0.000 /
-  +0.002 MODEL. The instruments (report only) did not confirm the along-strike ordering.
+  +0.002 MODEL. The report-only instruments did not confirm the along-strike ordering.
 
 **What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
 submission, no credential handling. Every instrument number is labelled PROXY or MODEL; no

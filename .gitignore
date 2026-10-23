@@ -38,4 +38,15 @@ registry/submissions/
 /releases/mass/*.tif
 /releases/mass/*.zip
 /releases/axis86/*.tif
+# TRACKB trace geometry is candidate fault predictions, published locally only.
+/releases/trackb/*.geojson
 /releases/axis86/*.zip
+/releases/concentration5/*.tif
+/releases/concentration5/*.zip
+/releases/mass86/*.tif
+/releases/mass86/*.zip
+
+tmp_session/
+
+/releases/sign86/*.tif
+/releases/sign86/*.zip

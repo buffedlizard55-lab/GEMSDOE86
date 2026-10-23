@@ -310,6 +310,38 @@ mask alone and cannot be circular with the file's own tags. The ledger records t
 `tests/test_axis_releases.py` re-derives both from disk. **Cost:** none, but any tool that parses
 `e5eb6e7e` as a content digest is wrong.
 
+## IR-86-CONC-05 — partial 5 km edge blocks were almost treated as the lowest-prior source
+
+**Observed.** A 50×50 px tiling of the 3,730×3,292 grid leaves 30 rows and 42 columns in
+partial edge blocks. `block_to_pixels` marks those cells `-inf` because they have no complete
+block prior. The first 5 km build therefore put their dots at the front of the ascending-prior
+source draw; `prior_separation` stopped the run before any candidate raster, receipt or ledger
+row was written. This is not evidence that edge-strip geology is low priority.
+
+**Decision.** Unclassified dots are excluded from the low-prior draw (`source_priority=+inf` for
+non-finite block values), and the 5 km builder fails if one is dropped anyway. Density CV remains
+explicitly a **complete-block** measurement; it is not silently extended with a different partial-
+block normalization. The 10/15/20% doses and low→high direction were not changed after the first
+SGMC read. A synthetic 110×110 regression grid now exercises the remainder strips. **Cost:** one
+205 s stopped build, zero releases and zero slots. The same guard also corrects the latent two-
+column remainder issue in the older 1 km implementation; no historical 1 km artifact was rebuilt
+or relabelled here.
+
+## IR-86-CONC-09 — positive catalogue-recovery PROXY conflicts with support and independent control
+
+**Observed.** All three 5 km arms place **0% of their added cells** on pinned `gems19-h19-5`, the
+support surface from which R0's lineage was thinned; all source cells are on it. Meanwhile pooled
+hide-and-recover rises from parent `0.0286 [0.0240,0.0333]` to `0.0408 / 0.0427 / 0.0441` for
+10/15/20% (`n=11,321` withheld positive pixels; the paired 15% Δ is `+0.0141 [0.0072,0.0234]`,
+**PROXY only**). The independent SGMC MODEL read instead changes by `−0.0066 / −0.0109 / −0.0150`,
+and occupied complete-5 km-block CV rises `0.7442 → 0.9006 / 1.0113 / 1.0798`.
+
+**Decision.** None of these three files is slot-recommended. The positive PROXY is not a score or
+a gate and cannot overrule either the support-surface abandonment or the negative independent
+control. Its catalogue-interaction term is also part of the placement prior, so the instrument
+and mechanism are not independent. A future **support-constrained** block-allocation axis is only
+a proposal for a later session; no fourth variant or retuned value was built here.
+
 ## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
 The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
 enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the
@@ -328,21 +360,273 @@ an explicit human AXIS assignment instead of another slot-plan reading.
 gated build ranks `|iso_grav_anom_hg|`. Nothing is re-run; cross-build gravity comparisons
 are not like-for-like, and any future SNAP-adjacent proposal must state its treatment first.
 
-## IR-86-SPACING-01 — kernel-disjoint re-spacing at matched count is locally infeasible on R0's support
-Measured this session before any file was written, and it changed the build. The natural
-strong form of SPACING — re-space the crowded pool so **every** final pair is >= 3.0 px (the
-DTI kernel radius) at the parent's count — has almost no legal destinations: R0 is a saturated
-2.828 px packing of the H19-5 support, so cells >= 3 px from all 37,654 dots number in the
-hundreds, and the fallback displaces dots by kilometres (a CONCENTRATION-scale relocation,
-the confound IR-86-RELIEF-01 warns about). 64 % of the pool could not be placed within 24 px
-in the first design pass.
-**Decision:** the shipped design breaks each crowded pair at >= 3.0 px from its cluster's kept
-dot (the kernel-overlap waste the axis targets) while holding the parent's own 2.828 px floor
-everywhere else, with destinations <= 16 px away; pool members with no legal cell stay put and
-are counted as residual crowding (3,488–3,538 of 6,574). The strong form is recorded as
-geometrically impossible at matched count on this support — this also retires the
-KERNEL-BUDGET proposal in SLOT_PLAN.md as literally stated ("re-spacing at >= 3.0 px at
-constant count"): at 37,654 dots the support cannot host it. **Cost:** the arms are a partial
-repair (~8 % of R0's dots moved), so the experiment can only speak about the crowded pool, not
-about the whole field's spacing; the three geometries additionally share ~78 % of destinations
-because the legal sets are small (Jaccard 0.64).
+## IR-86-SPACING-01 — the dedupe gate fires on a session's own rebuild, so the scan was scoped to the ledger
+
+**Observed.** The SPACING builder was re-run once after a defect fix. The second pass aborted on
+`sha256_not_in_ledger`, because `known_hashes()` had globbed `releases/**/*.tif` and picked up the
+*first pass's own bytes*: a deterministic rebuild of the same `(parent, axis, value)` collides with
+itself. Brief §6 dedupes on "exact hash and repeated (parent, axis, value)" — an identical rebuild of
+the same key is neither a repeat slot nor a new file, and treating it as one hides nothing but stops
+the session.
+**Decision.** `scripts/build_r0_spacing.py:known_hashes()` now consults `ledger/submissions.csv`
+plus the delivered parents in `data/scored_fleet/`, and no longer scans `releases/`. The gate script
+`src/gems86_axis/gates.py` was **not** modified: the dedupe rule is unchanged, only the set it is
+compared against. Nothing was promoted by this: the tokens (0d2f135e / 63c4c56f / caffc3f0 /
+db4cae83) are identical in both passes, so the rebuild is provably the same experiment.
+**Cost:** ~6 minutes and one aborted run. A reusable rule for this repo's axis builders: never seed
+the duplicate set from the directory you are about to write into.
+
+## IR-86-SPACING-02 — the axis moves mass off its own evidence surface; the surrogate cannot see the difference
+
+**Observed.** 100 % of the relocated dots start on the H19-5 support surface the lineage was thinned
+from; after placement only 1.8 % (pdisk), 3.0 % (lattice) and 5.2 % (strike) of their destinations
+are on it. The SGMC off-catalogue surrogate nevertheless reads +0.0015…+0.0020 for all three arms,
+while the random-move control in the same window reads +0.0002 — and rises to +0.0033 once the truth
+is translated by up to 6 px to represent the ~400 m flight-line position uncertainty in brief 2.
+**Decision.** Reported as MODEL only, with the control printed next to every arm, and no SPACING arm
+is offered as slot 1 or 2 in `SLOT_PLAN.md`. The law-vs-control separation (~+0.0016) is the axis's
+real content; the absolute number is not trustworthy because most of the bought coverage sits on
+ground the parent's own field does not rate. A SPACING slot is a mechanism probe, decided by the
+human, and `strike` is the only arm whose false-positive term barely rises (+83.7 vs +140).
+**Cost:** none this session; it bounds what a SPACING receipt can later be said to have proved.
+
+## IR-86-SPACING-03 — a count-preserving bug found by the axis tests, not by the gates
+
+**Observed.** The first draft of `src/gems86/spacing.py:relocate()` built its output as
+`retained ∪ destinations`, so any dot it could not place *disappeared*: on a 12×12 synthetic grid the
+"fixed count" arm returned 2 dots for 4. The MUST-pass gates would not have caught it (the file is
+valid, the format is valid, the catalogue is clean) — only the axis contract would.
+**Decision.** Placement now runs on a single occupancy set that starts as the whole parent, vacates a
+source when it is processed and re-fills it if the dot cannot be placed, so the count is fixed **by
+construction** and an unplaced dot is reported in `moved_unplaced` (8 lattice, 201 strike, 0 pdisk).
+Two side effects are features, not accidents: a destination can no longer land on a cell another
+selected dot still occupies, and `destinations_on_vacated_source_cells` (87–260 per arm) is now
+reported so `dots_changed = 2·(placed − reuse)` holds as an identity in
+`tests/test_spacing_axis.py`. **Cost:** one rewrite; the rule to keep is that a variant which changes
+the count is a MASS experiment wearing another name.
+
+## IR-86-SPACING-04 — brief §5's SPACING spec, read literally, is impossible on this parent
+
+**Observed.** Brief §5 asks SPACING for "lattice vs Poisson-disk vs along-strike at matched count",
+and §5 also requires a variant to change 1–50 % of the parent's dots. A *global* lattice or
+Poisson-disk re-arrangement of 37,654 dots changes ~100 % of them (and the historic full-lattice file
+`13GEMSDOE r13-lattice-s5` scored 0.0904 CLAIM). The two instructions cannot both hold on this
+parent.
+**Decision.** The three laws were kept, the *scope* was reduced: each arm re-lattices only the mass
+the metric has already written off (credit ≤ 16 of 29 disc cells), so all three sit at 35.9–37.9 %
+changed cells with the count fixed, and every destination stays within 800 m of its source (widened to
+1.6 km for 480 lattice / 1,095 strike dots, reported). The literal global forms stay unbuilt and are
+recorded here as the reason. **Cost:** none; the reading is logged so a later session does not
+"correct" the dose upward.
+
+## IR-86-SPACING-05 — the fold-fair hide-and-recover PROXY is *not* at the floor here, and that is a confound, not a win
+
+**Observed.** The SPACING run card (`evidence/spacing_axis_20261023.json`,
+`instruments.catalogue_hide_recover_proxy`) measures pooled PROXY DTI **0.00370 [0.00297, 0.00441]
+for R0** and **0.01534 / 0.01359 / 0.01217** for `pdisk16` / `lattice16` / `strike16` (11,321
+withheld positives, 4 folds). Unlike the PRUNE and SNAP arms, which read 0.00000 (IR-86-PRUNE-03,
+IR-86-SNAP-06), these arms recover withheld catalogue faults four times better than the parent.
+The reason is structural: the comparison is fold-fair only for the *arms*. Each arm is re-derived
+per fold using that fold's **visible** catalogue for its collar, so its relocated mass is free to sit
+on the withheld trace, while R0 was built against the **full** catalogue and therefore avoids exactly
+those pixels. The instrument is measuring "you did not apply the 2 px collar here", which is
+PRUNE's quantity, not SPACING's.
+**Decision.** The proxy is published in the run card and **ranked by nothing**: no arm ordering, no
+slot argument, and no README/SLOT_PLAN claim uses it. `SLOT_PLAN.md` and `evidence/spacing-mechanism.md`
+carry this entry instead of the earlier "proxy is at the floor" phrasing, and the run card's own
+`caveat` string (written before the measurement) is superseded by this entry. A future session that
+wants a usable proxy for an arrangement axis must build the parent *in the fold too* — i.e. re-derive
+the parent's dot set from the visible catalogue — or hold the collar fixed across every arm, which is
+exactly what IR-86-SNAP-06 concluded.
+**Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
+predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
+
+## IR-86-MASS-02 — brief §5's MASS ranking is a traversal; the axis was re-ranked, and the brief's own §2 requires it
+
+**Decision changed:** yes — the ranking function this session used, and the rejection of all three
+artefacts for slots.
+
+Brief §5 defines MASS as "drop the lowest-ranked 10 % / add the next-ranked 10 %, **by the parent's
+own ranking**". That pair was built by an earlier session and both arms lost (IR-86-MASS-01: the
+recorded ranking is the FIFO-BFS traversal of the thinning recipe). Brief §2 then says, in the same
+document, "rank dots by exact marginal gain from the metric code, not the shortcut". The two
+sentences cannot both govern a MASS experiment, because the recorded ranking *is* the shortcut.
+
+Resolution taken: the axis (MASS), the dose (±10 %) and the change rule (1–50 % of dots) stay
+exactly as §5 specifies; the **ranking function** is the metric's own marginal credit
+(`gems86.mass_econ.marginal_credit`), which is computable from the parent's dot mask alone with no
+label, no band and no surrogate. Both predictions (preregistered, then revised) are in the run card.
+If the human reads §5 as binding on the ranking function, this session's arms are off-brief and
+should be treated as instrument audit only — which is exactly how SLOT_PLAN now treats them.
+
+## IR-86-MASS-03 — the SGMC MODEL instrument is monotone in dot count, so it cannot rank mass
+
+**Decision changed:** yes — it demotes every mass-changing artefact in the ledger, including this
+session's own, and it re-orders the slot plan.
+
+`evidence/mass_instrument_monotonicity.json`: a symmetric random add/delete ladder on the SGMC
+off-catalogue surrogate reads −0.0127 / −0.0068 / −0.0030 / +0.0018 / +0.0040 / +0.0081 for
+−20 / −10 / −5 / +5 / +10 / +20 % of R0's dots. Any arm that changes the dot count therefore has a
+MODEL delta that is at least partly the instrument's mass response, so no such delta may be used to
+promote an arm. Count-fixed arms (CONCENTRATION, RELIEF, SPACING, PRUNE-with-refill) are unaffected
+at constant `n`; their *card* numbers are not withdrawn.
+
+Numbers already published elsewhere in this repository that this affects: `massminus10` (−0.003) and
+`massplus10` (−0.006) — their "selection is bad" reading is not separable from "fewer/more dots" —
+and any future count-changing arm. It does **not** affect `le3p000` (+0.004) as a *number*, but see
+IR-86-MASS-04.
+
+## IR-86-MASS-04 — PRUNE's positive prediction shares a structural bias with its own edit
+
+**Decision changed:** yes — PRUNE moves from slot 1 to slot 3 in SLOT_PLAN.md.
+
+The PRUNE ladder's predictions were computed against a catalogue-derived truth (the
+hide-and-recover construction), while the edit deletes dots near the catalogue. Any instrument whose
+truth is (or contains) the catalogue will reward that deletion by construction, so part of
+`le3p000`'s +0.004 is structural rather than geological. This is not a claim that PRUNE is wrong —
+it is the only axis with a monotone ladder behind it — but it is no longer the best use of slot 1
+when a count-fixed pair with an above-floor predicted separation exists.
+
+## IR-86-MASS-05 — a re-run of the same pinned recipe reproduces the same sha256; the §6 hash gate needed a self-exemption
+
+**Decision changed:** no — the gate is unchanged in substance; its implementation now says what it
+means.
+
+Brief §6 requires "sha256 not already in the ledger". This session's script rewrites its own rows
+through `scripts/build_ledger.py`, so a second identical run reproduces the same bytes and would trip
+its own gate. The check now passes only when every matching ledger row is one of *this run's own ids*
+and carries no receipt; any other match (a prior session's artefact, or anything with a
+`receipt_score`) fails. Recorded so that "reproducible" is never mistaken for "repeat submission"
+(the ledger's real target: 8 slots on exact repeats).
+
+## IR-86-MASS-06 — `src/gems86/mass_econ.py` had three bugs; the unit tests caught all three before any artefact was written
+
+**Decision changed:** no (caught pre-release), but the numbers in the first two drafts of the run
+card were wrong and are superseded.
+
+1. the kernel offset set excluded the dot's own cell, so every dot lost its `k = 1` self-credit
+   (disc weight 8.3803 instead of 9.3803);
+2. the second-best surface was updated as `max(second, where(v >= best, v, second))`, which discards
+   `v` whenever `v < best` — the asymmetry showed up as two symmetrical dots receiving 7.91 and 5.23
+   units of unique credit instead of 5.23 each;
+3. the docstring asserted `sum_x u_x = sum_g best`, which is false: with a max operator the marginals
+   sum to `sum_g (best − second)`. Corrected in the module and asserted against brute force in
+   `tests/test_mass_econ.py` (6 tests).
+
+The stale artefacts from the first two drafts were deleted from `releases/mass86/`; only the three
+hashes in `ledger/variants_mass_econ.json` exist on disk.
+## IR-86-TRACKB-01 — the ranking TRACKB is specified to use does not exist in this checkout
+
+**Observed.** Brief v2 §5 defines TRACKB as traces "built from R0's top-ranked dots". R0's only
+recorded order is the FIFO-BFS *visitation* order of the `gems27.thinning` recipe, which the MASS
+session showed reproduces the d2.8 set but is a geographic traversal (IR-86-MASS-01); the restored
+H19-5 mirror is **binary** (every positive cell is exactly 1.0, measured on the pinned file), so it
+carries no per-dot score either.
+**Decision.** The substitute ranking is the parent's own *trace support* (longest ≥−1 px collinear run
+containing the dot), computed from R0's geometry alone, and it is used only to choose donors. Stated
+on the mechanism card and in the run card; no ranking is invented and no provenance order is implied.
+**Cost:** transport of a MASS confound into TRACKB is impossible (no dot is added or removed for its
+position in the traversal), but TRACKB cannot be described as "top-ranked dots" in any provenance sense.
+
+## IR-86-TRACKB-02 — two build defects, one caught by a gate and one by the tests; both fixed before release
+
+**Observed.** (a) `trace_runs` first stored indices into the dot *list* rather than flat raster cells,
+so the support field landed on empty cells (7,462 cells, of which 46 were dots) while every shape
+check still passed; the 1 km trace count was therefore wrong by construction. (b) `select_donors` used
+`support >= 0` as its dot mask, which is true for every raster cell, so the "donors" were mostly empty
+cells and deletion was short of the addition — the fixed-count gate in `run_trackb_axis.py` fired
+(`37654 -> 38870`) before any file was written.
+**Decision.** Both fixed (`flat[order]` decode; explicit `dots` argument, `ValueError` on over-donation),
+both regression-tested in `tests/test_trackb_axis.py`. The gate, not the test suite, caught (b).
+**Cost:** none released; one re-run.
+
+## IR-86-TRACKB-03 — the 1–50 % change contract binds at the *bottom* for this axis
+
+**Observed.** Every new trace continuation must clear the catalogue (3 px) and the parent's own √8 px
+dot separation, so the relocation budget is capacity-limited: a requested 10 % donation yields 716
+(3.8 % changed), 1,246 (6.6 %) and 2,710 (14.4 %) at corridors 1.0 / 1.5 / 2.5 px. Only the loosest
+corridor clears 10 % changed, and it is the one whose surrogate sign is negative.
+**Decision.** The three variants are reported as *corridor* values with the realised dose measured and
+recorded, never as dose values that were not achieved. A future TRACKB build that wants a larger dose
+must relax the spacing floor, which would fold SPACING into the axis — not permitted this session.
+**Cost:** the axis is confined to ≤ 7.2 % of the dot set; the ≥ 10 % changed rung exists only at the
+loose corridor.
+
+## IR-86-TRACKB-04 — the GeoJSON trace set is a candidate prediction and stays out of Git
+
+**Observed.** The brief asks for TRACKB as "GeoJSON + raster". This repository already keeps candidate
+rasters out of Git because the data-use terms are unchecked (IR-86-PRUNE-04).
+**Decision.** `releases/trackb/*.geojson` is gitignored exactly like `releases/*.tif`; the committed
+record is the per-file `-zeros.json` receipt (trace table, length/azimuth/catalogue-distance statistics
+and the 12 strongest traces) plus `evidence/trackb_axis_20261023.json`.
+**Cost:** the full 300-trace geometry lives only in the workspace; CI cannot regenerate it without the
+pinned parent (which is itself local-only).
+
+## IR-86-CONC-06 — the CONCENTRATION prior is band-free this session, so `dens15` is not a replication of `conc15`
+`variants.block_prior()` needs two terms: catalogue fault-interaction density **and** the mean Sobel
+gradient of upward-continued TMI. The second comes from `training_features.tif` (419 MB), which is
+absent from this checkout (`.cache/gems_data` does not exist), so this session's prior is the
+catalogue term only. **Decision:** build the prior that the data support, add a matched
+same-dose arm in *both* prior directions under that prior (`concdens15`, `concspr15`) plus a
+random-block control, and log that `concdens15` is a **paired calibration**, not a replication of
+`conc15`'s `+0.006 MODEL`; the difference between the two arms is the only quantity that isolates
+the prior's sign from the missing band. The absent SGMC raster also means no SGMC control gate
+this session. **Cost to the next session:** if `dens15` and `conc15` disagree, the TMI term is the
+first suspect and cannot be tested until the feature stack is restored.
+
+## IR-86-CONC-07 — this axis's sign is not measurable with any instrument in this repo, only with a live receipt
+The five-truth-model panel puts `spr15`/`dens15` at −0.064/+0.047 under catalogue-adjacent truth
+and +0.011/−0.011 under uniform far-field truth. Hide-and-recover, the SGMC off-catalogue DTI and
+the H19-5 support surface are *all* built from the mapped-fault record that the organiser masks at
+scoring time, so all three favour "mass near mapped faults" by construction and cannot rank these
+arms. **Decision:** the plan treats one live slot as the only admissible test and spends at most
+one slot per direction; no local instrument is reported as evidence for either sign. **Cost:**
+every prediction for this axis is MODEL-class and its band crosses zero from either side.
+
+## IR-86-CONC-08 — the block-density CV band is not reachable at the doses brief §5 allows
+CV is non-monotone in dose (0.5970 at 5 %, 0.6136 at 15 %, 0.6722 at 30 %; parent 0.6235) and
+*every* arm — spread included — reduces the number of occupied 1 km blocks (15,976 → 13,297), because
+destinations are confined to a fixed prior fifth of the occupied blocks. **Decision:** the
+0.51–0.59 band is recorded as an unverified CLAIM and is not used to choose a dose; the reported CV
+is accompanied by the occupied-block count so the two cannot be read as one variable. **Cost:**
+a future arm that wants to test the band must place mass in *unoccupied* low-prior blocks, which is
+exactly the placement `GEMSDOE81 cont-poisson44090` scores 0.0041 with (CLAIM).
+
+## IR-86-SPACING-06 — kernel-disjoint re-spacing at matched count is locally infeasible on R0's support
+
+**Observed.** The natural strong form of this session's crowded-pool design — re-space the pool
+so *every* final pair is >= 3.0 px (the DTI kernel radius) at the parent's count 37,654 — has
+almost no legal destinations. R0 is a saturated 2.828 px packing of the H19-5 support: cells
+>= 3 px from all 37,654 dots number in the hundreds (7,024 free support cells at the parent's
+own floor before any placement), and the fallback displaced dots by kilometres (up to 3.8 km —
+the CONCENTRATION-scale confound IR-86-RELIEF-01 warns about). 64 % of the pool could not be
+placed within 24 px in the first design pass.
+**Decision.** The shipped arms break each crowded pair at >= 3.0 px from its cluster's kept dot
+(the kernel-overlap waste the axis targets) while holding the parent's own 2.828 px floor
+everywhere else, destinations <= 16 px away; pool members with no legal cell stay put and are
+counted as residual crowding (3,488-3,538 of 6,574). This also retires the KERNEL-BUDGET
+proposal in SLOT_PLAN.md as literally stated ("re-spacing at >= 3.0 px at constant count"): at
+37,654 dots the support cannot host it. Complements IR-86-SPACING-04 (the parallel session's
+1-50 % reading): that entry rules out the global form by dose, this one rules out the strong
+spacing floor by geometry. **Cost:** the arms are a partial repair (~8 % of R0's dots moved),
+so the experiment speaks about the crowded pool only; the three geometries additionally share
+~78 % of destinations (Jaccard 0.64) because legal sets are small.
+
+## IR-86-SPACING-07 — two sessions built SPACING in parallel; distinct value keys both stand
+
+**Observed.** This branch's ledger check (start of session) found no SPACING pair; PRs #44/#46
+(`arena/c1df93fc`, `arena/146307ee`) landed `sp-lattice16 / sp-pdisk16 / sp-strike16 /
+sp-random16` on main while this branch was building `lattice / poisson-disk / along-strike`.
+Both designs answer the same axis with different scopes (their dose ~36-38 % of cells, the
+"written-off mass" selection; this one ~8 % of dots, the kernel-crowded pool). The
+`(parent, axis, value)` keys differ, so brief §6's dedupe does not fire and both builds stand.
+The colliding file names were resolved without deleting either session's evidence: the later
+branch's artifacts were renamed (`evidence/spacing-crowdedpool-mechanism.md`,
+`evidence/spacing_axis_crowdedpool_20261023.json`, `tests/test_spacing_crowdedpool.py`), the
+two `ledger/variants_spacing.json` lists were concatenated, and `tests/test_prune_ladder.py`
+now carries both the TRACKB and the SPACING contract branches.
+**Decision.** No withdrawal and no BUILT-DUPLICATE status (the keys are distinct); every card
+cross-references the other session's arms so a reader cannot mistake the two designs. Slots:
+neither SPACING family is a default bet (all predictions inside +/- 0.01). **Cost:** one merge
+conflict round and a rename; the recurring rule (cf. IR-86-CONC-01) is that a ledger check at
+session start is not a reservation.
