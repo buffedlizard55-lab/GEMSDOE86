@@ -413,3 +413,26 @@ receipt exists and no slot was requested.
 **What only the human can supply:** `TOP_PUBLIC` + date, the rolling-week quota, any
 submission-page receipt (R0's 0.2778 included), and the decision to spend (or not spend) a
 throwaway probe slot on `SPACING-alongstrike`.
+## 2026-10-23 — TRACKB hybrid & 120-trace geologist dossier session (branch `arena/ac0bd04f-gemsdoe86`)
+
+* **Axis assignment:** Branched from `e7868ef` (prior to PR #44's merge) when `TRACKB` had `0` rows in
+  `ledger/submissions.csv`; self-assigned **`TRACKB`** per brief v2 §1/§5 without prompting the user.
+  On merge with `origin/main` (`f35a97d`), all three `(parent, axis, value)` keys (`cull1dot`,
+  `bridge1km`, `rendertop120`) and all six SHA-256 digests are completely distinct from PR #44's
+  `c10len1km` / `c15len1km` / `c25len1km`, so both sessions coexist in `ledger/submissions.csv`.
+* **AI wrote:** `src/gems86/trackb_hybrid.py` (8-connected Bresenham rasteriser, closed-form DTI
+  algebra, 5 km AGC susceptibility normalisation, `H19-5`-supported `>= 1.0 km` trace extractor, three
+  variant builders + random-relocation null control, RFC 7946 `CRS84` GeoJSON + per-trace geologist
+  annotation generator); `scripts/build_r0_trackb.py` and `scripts/emit_trackb_entries.py`;
+  `evidence/trackb-geologist-dossier.md` (3 mechanism cards + 120 geologist evidence paragraphs),
+  `evidence/trackb_hybrid_20261023.json`, `evidence/trackb_input_receipt.json`,
+  `ledger/variants_trackb_hybrid.json`, `tests/test_trackb_hybrid.py`, and reconciled updates to
+  `SLOT_PLAN.md`, `README.md` (`CURRENT STATE` block only), `docs/SUBMIT.md`, and `IRREGULARITIES.md`
+  (`IR-86-TRACKB-05..08`). Candidate GeoTIFFs (`releases/axis86/*`) and GeoJSON
+  (`releases/trackb/gems86-h33-2b2-trackb-top120-20261023.geojson`) remain local/gitignored.
+* **AI did NOT do:** Zero DrivenData or `dropbox.com` requests; zero logins, credentials, scraping, or
+  submissions; zero post-hoc retuning of pre-registered rules on the SGMC surrogate; zero `MODEL` or
+  `PROXY` numbers labelled as scores; zero weekly Phase 1 slots requested (`slot_candidate: false`).
+* **Human must supply:** `TOP_PUBLIC`, remaining rolling-week slots, live receipts for R0 and any
+  uploaded slot, verified final deadline, and the single blind final submission decision.
+

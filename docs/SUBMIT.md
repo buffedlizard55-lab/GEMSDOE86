@@ -326,6 +326,40 @@ new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechani
 - 37,654 dots, 29.999 % of cells changed; gates passed: True.
 - Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).
 
+## TRACKB hybrid & geologist dossier arms (built 2026-10-23, session `arena/ac0bd04f-gemsdoe86`) — Phase 2 (`slot_candidate: false` unless human decides)
+
+Parent R0 `h33-h33-2-b2` (`c55bafc4…`, 37,654 dots). Paired with local RFC 7946 GeoJSON
+`releases/trackb/gems86-h33-2b2-trackb-top120-20261023.geojson` (`sha256: 683111ac95943d25…`, 120
+`>= 1 km` traces) and tracked geologist dossier `evidence/trackb-geologist-dossier.md` + run card
+`evidence/trackb_hybrid_20261023.json`. Rebuild deterministically via `.venv/bin/python scripts/build_r0_trackb.py`.
+
+### `gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c` — Phase 2 singleton-cull arm (not slot-recommended)
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c-zeros.tif`
+- SHA-256 (`-zeros`): `74b7e4bc64e9f5f9982c0178d0e3c78223d9887837a1040b97fb9594b7d42989` (305,508 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c.tif`, `b743412b38871f4d98ba12961183457211579a0f12475fb83952efed76a9d844` (358,117 bytes)
+- Submission name (49 ch): `gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c`
+- Note (89 ch): `R0 TRACKB cull1dot: drop 3349 isolated 1-dot speckles (<550m); keep 100% >=1km traces`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, 34,305 dots (`8.8941 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c-zeros.json`).
+
+### `gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77` — Phase 2 trace gap-bridging arm (not slot-recommended)
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77-zeros.tif`
+- SHA-256 (`-zeros`): `ac908de81372c082f69cb03b4340fd9760542173712e94d9db96c3f627799686` (314,104 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77.tif`, `96d6ef0993f77d8a3f950f415599d7a89fb0706732d645df55d2ba6de59a742b` (366,789 bytes)
+- Submission name (50 ch): `gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77`
+- Note (84 ch): `R0 TRACKB bridge1km: move 3347 1-dot speckles to >=1km trace gaps/tips; S=37654`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, new mass min catalogue distance `3.1623 px > 3.0 px`, 37,654 dots (`17.7777 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77-zeros.json`).
+
+### `gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469` — Phase 2 continuous 120-trace hybrid arm
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469-zeros.tif`
+- SHA-256 (`-zeros`): `0cb962846977ddaa277007c70faaa1d8a8631094e3254a0d5c8478a35bcdfcf8` (314,019 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469.tif`, `f1aef881445fedf7c980cf926296d83534cf9c32145b78b1b12e47de87fd0241` (366,640 bytes)
+- Submission name (53 ch): `gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469`
+- Note (95 ch): `R0 TRACKB rendertop120: render 120 >=1km GeoJSON traces continuously (-1543 1-dot); S=37654`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, new mass min catalogue distance `3.1623 px > 3.0 px`, all 120 GeoJSON traces verified pixel-for-pixel, 37,654 dots (`8.1957 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469-zeros.json`).
+
 ## SPACING crowded-pool candidates (built 2026-10-23, `arena/ee238b91`) — mechanism probes, predictions inside ±0.002
 
 Three arms at matched count 37,654, differing only in where ~3,050 kernel-crowded dots
