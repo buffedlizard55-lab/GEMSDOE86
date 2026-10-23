@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "session_date": "20261023",
+  "seed": 20261023,
+  "git_sha": "e0a5d4a669d6529f80a0b99239dc0d5550b4f002",
+  "tracked_tree_clean_at_build_start": true,
+  "branch": "arena/06524e4a-gemsdoe86",
+  "status": "BUILT",
+  "submission_ready": false,
+  "submission_slots_used": 0,
+  "parent": "h33-h33-2-b2",
+  "axis": "PRUNE",
+  "value": "3",
+  "candidate_id": "h33-h33-2-b2-prune3-20261023-01d57649",
+  "inputs": {
+    "files": {
+      "sample": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "catalogue": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "parent": {
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "base": {
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "bytes": 1595850,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "h19": {
+        "path": "data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "bytes": 1712322,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "d28": {
+        "path": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "bytes": 1603424,
+        "verified": true,
+        "organizer_authenticated": false
+      },
+      "sgmc": {
+        "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "verified": true,
+        "organizer_authenticated": false
+      }
+    },
+    "shared_template_pins_verified": true,
+    "pin_file": "research/template_pin.json"
+  },
+  "r0_rebuild": {
+    "base_dots": 40199,
+    "removed_le_2px": 2545,
+    "rebuilt_dots": 37654,
+    "pixel_mask_matches_parent": true,
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "sha256_match": true,
+    "recipe": "solo-d2.8 (40,199) & d_cat>2",
+    "d28_starting_dots": 44090
+  },
+  "parent_diff": {
+    "parent_dots": 37654,
+    "candidate_dots": 37654,
+    "removed_dots": 2171,
+    "added_dots": 2171,
+    "retained_dots": 35483,
+    "changed_grid_cells": 4342,
+    "pct_parent_dots_removed": 5.76565570722898,
+    "pct_parent_dot_count_added": 5.76565570722898,
+    "pct_changed_vs_parent_dots": 11.53131141445796,
+    "refill_rule": "lowest recovered FIFO-BFS visitation rank in pinned H19-5; d_cat>3; fixed count",
+    "refill_is_geological_probability": false,
+    "parent_min_catalogue_distance_px": 2.23606797749979,
+    "candidate_min_catalogue_distance_px": 3.1622776601683795,
+    "parent_dots_le_1px": 0,
+    "parent_dots_le_2px": 0,
+    "parent_dots_le_3px": 2171,
+    "candidate_dots_le_1px": 0,
+    "candidate_dots_le_2px": 0,
+    "candidate_dots_le_3px": 0,
+    "nearest_neighbour_parent": {
+      "mean_px": 3.7350977393055036,
+      "median_px": 3.0,
+      "p10_px": 2.8284271247461903,
+      "fraction_below_2_8px": 0.0
+    },
+    "nearest_neighbour_candidate": {
+      "mean_px": 3.550421855898306,
+      "median_px": 3.0,
+      "p10_px": 2.8284271247461903,
+      "fraction_below_2_8px": 0.08596696234131831
+    },
+    "spacing_preserving_refills_available": 475,
+    "spacing_confounder": "Fixed-count refill admits cells below the old 2.8 px separation; reported, not used as a gate."
+  },
+  "outputs": {
+    "nan": {
+      "file": "releases/h33-h33-2-b2-prune3-20261023-01d57649.tif",
+      "mode": "nan",
+      "sha256": "01d57649168d52a0bf2f9aced7aa2280a92b6fd7a0224757d5acc5e925785e96",
+      "bytes": 351461,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "n_dots": 37654,
+      "on_catalogue_dots": 0,
+      "re_read_from_disk": true,
+      "checks": {
+        "one_band": true,
+        "float32": true,
+        "shape_matches_sample": true,
+        "crs_matches_sample": true,
+        "transform_matches_sample": true,
+        "bounds_match_sample": true,
+        "finite_inside_footprint": true,
+        "values_in_0_1_inside": true,
+        "binary_unit_mass": true,
+        "zero_catalogue_mass": true,
+        "no_positive_outside_footprint": true,
+        "nan_outside_footprint": true,
+        "nodata_is_nan": true
+      },
+      "all_checks_passed": true
+    },
+    "zeros": {
+      "file": "releases/h33-h33-2-b2-prune3-20261023-01d57649-zeros.tif",
+      "mode": "zeros",
+      "sha256": "4131e37133a3c5a874c42fb7c975ec4ecb7b4be946b794ff9c9852afa575e225",
+      "bytes": 215160,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "n_dots": 37654,
+      "on_catalogue_dots": 0,
+      "re_read_from_disk": true,
+      "checks": {
+        "one_band": true,
+        "float32": true,
+        "shape_matches_sample": true,
+        "crs_matches_sample": true,
+        "transform_matches_sample": true,
+        "bounds_match_sample": true,
+        "finite_inside_footprint": true,
+        "values_in_0_1_inside": true,
+        "binary_unit_mass": true,
+        "zero_catalogue_mass": true,
+        "no_positive_outside_footprint": true,
+        "zero_outside_footprint": true,
+        "all_grid_values_in_0_1": true
+      },
+      "all_checks_passed": true
+    }
+  },
+  "predicted_live_change": {
+    "value": -0.004,
+    "evidence_class": "MODEL",
+    "interpretation": "A live change smaller than 0.01 in absolute value is no evidence."
+  },
+  "hypothesis": "At fixed mass, H19-5 cells beyond 300 m from the catalogue are more efficient than R0 cells in the 200-300 m annulus.",
+  "mechanism": "Replace the complete <=3 px catalogue collar with the next cells in the parent's deterministic H19-5 order, preserving mass and excluding catalogue pixels.",
+  "non_fault_mimic": "Roads, pipelines, alluvial channels and cartographic generalization can make non-fault lineaments beside mapped traces.",
+  "falsifier": "A same-account public-chunk receipt at least +0.01 above R0 would falsify the predicted small-negative direction; |delta|<0.01 is inconclusive.",
+  "catalogue_hide_recover_proxy": {
+    "evidence_class": "PROXY",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "r0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.09608619416803546,
+        "ci95": [
+          0.08297101443736003,
+          0.10888034364501606
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1588.9204532602826,
+        "fpw": 35809.116597847176,
+        "fnw": 9732.079546739715
+      },
+      "prune3": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0918074822096437,
+        "ci95": [
+          0.07884833676338159,
+          0.10474942188162768
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1514.091491488605,
+        "fpw": 35662.04438453704,
+        "fnw": 9806.908508511393
+      }
+    },
+    "best_comparable_control": "r0",
+    "paired_differences": {
+      "r0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.004278711958391759,
+        "ci95": [
+          -0.006043705317212563,
+          -0.0026195532407407053
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 154,
+      "draws": 1000,
+      "seed": 20261023,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "design": "fold-fair buffered whole-component catalogue hide-and-recover; seed 20; 3 px context buffer; collars rebuilt from visible faults only",
+    "fold_fair_counts": [
+      {
+        "fold": "NW",
+        "r0_dots": 38802,
+        "candidate_dots": 38802,
+        "removed": 1908,
+        "added": 1908
+      },
+      {
+        "fold": "NE",
+        "r0_dots": 38802,
+        "candidate_dots": 38802,
+        "removed": 1908,
+        "added": 1908
+      },
+      {
+        "fold": "SW",
+        "r0_dots": 38802,
+        "candidate_dots": 38802,
+        "removed": 1908,
+        "added": 1908
+      },
+      {
+        "fold": "SE",
+        "r0_dots": 38802,
+        "candidate_dots": 38802,
+        "removed": 1908,
+        "added": 1908
+      }
+    ],
+    "caveat": "The historical H19-5 surface is fixed, but all catalogue-distance collars are fold-fair. This is a diagnostic, never a live-score gate."
+  },
+  "leakage_canary": {
+    "status": "PASS",
+    "threshold": 0.9,
+    "max_auc": 0.7937064538232387,
+    "rows": [
+      {
+        "fold": "NW",
+        "feature": "h19_5_binary",
+        "auc": 0.4881185917255561,
+        "withheld_positives": 1923
+      },
+      {
+        "fold": "NW",
+        "feature": "negative_distance_to_visible_catalogue",
+        "auc": 0.7937064538232387,
+        "withheld_positives": 1923
+      },
+      {
+        "fold": "NE",
+        "feature": "h19_5_binary",
+        "auc": 0.48827771264778375,
+        "withheld_positives": 2367
+      },
+      {
+        "fold": "NE",
+        "feature": "negative_distance_to_visible_catalogue",
+        "auc": 0.7741892108449462,
+        "withheld_positives": 2367
+      },
+      {
+        "fold": "SW",
+        "feature": "h19_5_binary",
+        "auc": 0.48818418661377627,
+        "withheld_positives": 3781
+      },
+      {
+        "fold": "SW",
+        "feature": "negative_distance_to_visible_catalogue",
+        "auc": 0.747157580252555,
+        "withheld_positives": 3781
+      },
+      {
+        "fold": "SE",
+        "feature": "h19_5_binary",
+        "auc": 0.4886120319191222,
+        "withheld_positives": 3250
+      },
+      {
+        "fold": "SE",
+        "feature": "negative_distance_to_visible_catalogue",
+        "auc": 0.7072219144261994,
+        "withheld_positives": 3250
+      }
+    ],
+    "note": "Single-feature diagnostics only; catalogue-derived distance is not an independent physical feature."
+  },
+  "sgmc_control": {
+    "evidence_class": "PROXY",
+    "instrument": "official-kernel DTI vs SGMC off-catalogue control (Euclidean d_cat>3 px)",
+    "scores": {
+      "r0": {
+        "dti": 0.09538611460482532,
+        "tp": 5517.63670255971,
+        "fp": 35220.77352594685,
+        "fn": 56604.363297440286,
+        "n_truth": 62122,
+        "n_emitted": 37654
+      },
+      "prune3": {
+        "dti": 0.09369452593483679,
+        "tp": 5417.7364590987945,
+        "fp": 35211.2853222352,
+        "fn": 56704.26354090121,
+        "n_truth": 62122,
+        "n_emitted": 37654
+      },
+      "delta_prune3_minus_r0": -0.0016915886699885307
+    },
+    "note": "SGMC is an independent-map control, not hidden competition truth."
+  },
+  "form_note": "R0 h33-h33-2-b2; PRUNE<=3px + BFS-ranked H19-5 refill, 37654 dots; predicted delta -0.004 MODEL; no receipt",
+  "form_note_characters": 107,
+  "evidence_labels": {
+    "R0_live_0_2778": "CLAIM (no receipt)",
+    "predicted_live_change": "MODEL",
+    "catalogue_hide_recover": "PROXY",
+    "sgmc_control": "PROXY"
+  },
+  "data_use": "Candidate TIFFs are local-only ignored artifacts in a public repository; organizer data-use terms unchecked.",
+  "source_urls": {
+    "r0_recipe": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/scripts/run_h33_validation.py",
+    "parent_ranking_recipe": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/94b027bed628422b7b39b485cb918a3fc15e5364/src/gems27/thinning.py",
+    "catalogue_scoring_clarification": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+    "official_rules": "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  }
+}

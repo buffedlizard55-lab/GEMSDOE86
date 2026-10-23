@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-10-23T03:45:27Z",
-  "elapsed_seconds": 54.4,
+  "generated_utc": "2026-10-23T03:52:50Z",
+  "elapsed_seconds": 76.1,
   "parent": {
     "id": "h33-h33-2-b2-20261004-e5eb6e7e",
     "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -46,9 +46,11 @@
     "content_identical": true,
     "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
     "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
-    "byte_identical_sha": false,
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
     "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-    "note": "Dot-set identity is exact. File bytes are NOT reproducible: the recorded compression/metadata profile of the published raster is not recoverable from its own bytes, and 30 re-encode profiles were tried (see run card)."
+    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
   },
   "shells": {
     "d1": 0,
@@ -238,10 +240,10 @@
     "ctl"
   ],
   "written": [
-    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p236-20261023-444eb3b0",
-    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d",
-    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-27c5eab6",
-    "h33-h33-2-b2-20261004-e5eb6e7e-CONTROL-massctl2171-20261023-99190068"
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p236-20261023-82b3f1f4",
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-6ff38618",
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b",
+    "h33-h33-2-b2-20261004-e5eb6e7e-CONTROL-massctl2171-20261023-a2a8be25"
   ],
   "gates": {
     "format": "passed for every zeros twin (shared validator + shared format_report)",

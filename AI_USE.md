@@ -1,23 +1,25 @@
-# AI_USE — generative-AI disclosure (competition rules require one)
+# Generative-AI use — 2026-10-23
 
-**What the AI wrote in this session (2026-10-23).** `src/gems86/prune.py`,
-`scripts/run_prune_ladder.py`, `scripts/build_ledger.py`, `tests/test_prune_ladder.py`,
-`ledger/submissions.csv`, `ledger/variant-cards.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`,
-`AI_USE.md`, `IRREGULARITIES.md`, and the `CURRENT STATE` block in `README.md`.
+Arena.ai Agent Mode wrote the R0 reconstruction/PRUNE builder, unit tests, ledger seeding logic, validation receipts, mechanism card, slot plan, and submission documentation. It also selected PRUNE≤3 as the only listed axis compatible with the inherited R0 collar and the new ≥3 px constraint; no human axis assignment was present in the request.
 
-**What the AI decided.** (a) The AXIS was unassigned in the brief; PRUNE was selected because it is
-the only listed axis whose inputs are present and pinned. (b) The three rungs are the three
-distance shells that actually exist among R0's dots (√5, √8, 3.0 px) — no threshold was invented
-that does not correspond to a shell. (c) A mass-matched random control was built so that a live
-change cannot be attributed to the collar without evidence. (d) Predictions are central estimates
-from a *halved* linear extrapolation of one claimed live datum; the halving is a judgement call and
-is stated in `ledger/variant-cards.md` so it can be attacked.
+The pinned input bytes, archived R0 recipe, fixed random seed, exact shared metric, and validation rules are recorded in `scripts/build_r0_prune.py` and `evidence/r0-prune3-run-card.json`. AI did not access DrivenData, infer a leaderboard score, submit a file, or represent a PROXY/MODEL as a RECEIPT.
 
-**What the AI did not do.** No submission, no login, no portal or leaderboard access, no contact
-with dropbox.com, no fetch of `drivendata.org` pages. No truth raster (hidden labels) was read or
-inferred. No region-isolated or patterned probe file was built. No slot was authorized.
+The human must decide whether to authorize any slot, supply TOP_PUBLIC/date, remaining quota, R0's receipt if available, and the actual submission receipt score/date. The human alone chooses and uploads the final file from one registered entity.
 
-**What the human must supply or decide.** The submission itself (from their own registered
-account), `TOP_PUBLIC` and the slot counters in `README.md`, `receipt_score`/`receipt_date` in
-`ledger/submissions.csv`, the AXIS for the next session, and a decision on the standing
-literal-overlap stop (IR-86-PRUNE-03).
+---
+
+## Addendum — PRUNE ladder (second session on 2026-10-23, branch `arena/72ecdcd1-gemsdoe86`)
+
+**AI wrote:** `src/gems86/prune.py`, `scripts/run_prune_ladder.py`, `scripts/merge_prune_ledger.py`,
+`tests/test_prune_ladder.py`, `ledger/variant-cards.md`, and the PRUNE-ladder sections appended to
+`IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md` and `README.md`.
+
+**AI decided:** the AXIS (PRUNE — the only listed axis whose inputs are present and pinned, since
+`training_features.tif` is absent); that the rungs must be the three distance shells that actually exist
+among R0's dots (√5, √8, 3.0 px); that a mass-matched control is required before any collar result can be
+attributed to proximity; and that the spec-compliant `(PRUNE,3)` belongs to the earlier session, so this
+one shipped the missing rungs instead (IR-86-PRUNE-06).
+
+**AI corrected itself:** an earlier claim in this branch that the parent's file bytes were not
+reproducible was wrong; it was falsified using the sibling PR's writer profile and is retracted in
+IR-86-PRUNE-01 rather than deleted. No truth raster, no portal, no login, no slot.

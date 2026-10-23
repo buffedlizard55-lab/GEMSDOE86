@@ -1,20 +1,20 @@
 {
-  "id": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d",
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "axis": "PRUNE",
-  "value": "<=2.8284px",
+  "value": "<=3.0000px",
   "role": "candidate",
-  "n_dots": 36043,
-  "pct_changed": 4.2784,
-  "dot_digest": "3654e2620746b77e8236f49cebe9c715577fd5839fb0c25bcca952e02296c3d5",
+  "n_dots": 35483,
+  "pct_changed": 5.7657,
+  "dot_digest": "8dc0d81bc0b929f3dd6aee3d44e4c3a1c97e34d7e4e01f598a3f9f05564803a9",
   "zeros": {
-    "file": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d-zeros.tif",
-    "sha256": "e475963d19198373930b517382312608fde3d719a843ff5dfec73f2e10c359f4",
-    "bytes": 144181,
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif",
+    "sha256": "a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22",
+    "bytes": 210325,
     "validator": {
-      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d-zeros.tif",
-      "bytes": 144181,
-      "sha256": "e475963d19198373930b517382312608fde3d719a843ff5dfec73f2e10c359f4",
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif",
+      "bytes": 210325,
+      "sha256": "a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22",
       "meta": {
         "crs": "EPSG:32611",
         "shape": [
@@ -42,8 +42,8 @@
       "n_infinite": 0,
       "min": 0.0,
       "max": 1.0,
-      "mean": 0.0029352984856814146,
-      "emitted_positive_pixels": 36043,
+      "mean": 0.002889692783355713,
+      "emitted_positive_pixels": 35483,
       "checks": {
         "single_band": true,
         "dtype_float32": true,
@@ -64,17 +64,16 @@
       "all_checks_passed": true,
       "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
       "on_catalogue_positive_pixels": 0,
-      "in_footprint_positive_pixels": 36043,
-      "footprint_fraction": 0.006975110950960962
+      "in_footprint_positive_pixels": 35483,
+      "footprint_fraction": 0.0068667386697263775
     },
     "format_report_ok": true
   },
   "nan": {
-    "file": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d.tif",
-    "path": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d.tif",
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b.tif",
     "mode": "nan",
-    "sha256": "88606a057835b4ed9e6e971ab0a31b1997c8487056b1e6cc53a681c2430bf56c",
-    "bytes": 1587798,
+    "sha256": "fb308615161ad8f62b063d90972a4c36e7c66e7c58beb3316c81497cfe65261e",
+    "bytes": 346839,
     "in_footprint_checks_pass": false,
     "failed_checks": [
       "no_nan_anywhere",
@@ -82,9 +81,9 @@
     ],
     "policy_note": "public spec permits NaN outside the footprint; repo all-finite policy rejects it"
   },
-  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-e475963d",
-  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; PRUNE <=2.8284px; 36043 dots; predicted +0.003 (MODEL)",
-  "predicted_live_change": 0.003,
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b",
+  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; PRUNE <=3.0000px; 35483 dots; predicted +0.004 (MODEL)",
+  "predicted_live_change": 0.004,
   "evidence_class": "MODEL",
   "approved_for_weekly_slot": false,
   "submission_slots_used": 0,
@@ -125,10 +124,12 @@
       "content_identical": true,
       "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
       "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
-      "byte_identical_sha": false,
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
       "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "note": "Dot-set identity is exact. File bytes are NOT reproducible: the recorded compression/metadata profile of the published raster is not recoverable from its own bytes, and 30 re-encode profiles were tried (see run card)."
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
     }
   },
-  "generated_utc": "2026-10-23T03:44:38Z"
+  "generated_utc": "2026-10-23T03:51:59Z"
 }

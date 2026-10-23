@@ -1,50 +1,47 @@
-# IRREGULARITIES — only items that change a decision
+# Decision-changing irregularities — 2026-10-23
 
-## IR-86-PRUNE-01 — the lineage is reproducible as dot sets, not as file bytes (decision: key the ledger on a dot-set digest, not only on sha256)
+1. **Axis and collar conflict.** No explicit AXIS assignment was supplied. R0 has 1,611 dots at `2 < d_cat < 3` px, while the new brief requires ≥3 px except for PRUNE. Any non-PRUNE variant would need a second collar edit. This session therefore builds only PRUNE≤3/refill; no other axis is silently combined.
+2. **Fixed-count confounder.** The ≤3 px prune removes 2,171 dots, but only 475 same-field refills preserve the parent's 2.8 px spacing. The mandated 2,171-dot refill changes spacing as well as collar membership. This is measured in the run card and prevents a clean geological interpretation of a live change.
+3. **No submission authorization inputs.** R0's 0.2778 is CLAIM, not RECEIPT. TOP_PUBLIC, remaining rolling-week quota, and an explicit human axis assignment are absent. No file is called a winner or automatically approved. The 2026-12-03 deadline is user-supplied and UNVERIFIED because DrivenData was not contacted.
+4. **Ledger substitute.** `ledger/submissions.csv` and `ledger/raw_paste.txt` were absent. The builder seeds the ledger from `registry/prior_scores.csv`, collapses repeated `(name, score)` rows, and marks every historical score CLAIM/receipt=N. Missing hashes or dot counts remain blank rather than inferred.
+5. **Public-raster data use.** This GitHub repository is public and already contains competition-derived TIFFs; data-use terms are unchecked. New candidate TIFFs are written locally under `releases/` but gitignored, so the PR contains code and SHA-bound receipts, not new public raster copies. A human must resolve the existing-data terms question before mirroring or releasing more rasters.
 
-**Observed.** R0's support is reproduced exactly: the 0.2708 field (40,199 dots) minus every dot
-at Euclidean distance ≤ 2.0 px from a mapped fault = 37,654 dots, **0 pixels differing**. Its
-file bytes are not reproducible in this environment: the published raster is 219,065 B (tiled
-256, deflate), and 30 re-encode profiles (tiled/striped × deflate/lzw/none × predictor 0–3 ×
-zlevel 1–9 × band description on/off) produced 142,955–51,120,012 B and never the same sha256.
+---
 
-**Decision changed.** "Rebuild R0 and match its sha256" cannot be satisfied literally, and per the
-brief I did not approximate the parent: I reproduce its *dot set* (identity proven by equality of
-all 12,279,160 band-1 cells, and by an identical dot-set digest) and record **both** identities for
-every child. A future session that needs byte identity must record its writer profile *at build
-time*; it cannot be recovered from the bytes afterwards. Consequence: exact-hash dedupe alone would
-have missed a real duplicate of a dot set written by a different GDAL build.
+## IR-86-PRUNE-01 (corrected) — byte identity IS achievable; the collar ladder does not need a dot-set-only ledger
 
-## IR-86-PRUNE-02 — the 0.2708 parent field has no upstream pin in this checkout (decision: variants derive from R0 only)
+My first pass concluded "bytes not reproducible" after a 30-profile sweep (best match 147,697 B vs. the
+published 219,065 B) and I was about to key the ledger on a dot-set digest alone. That conclusion was
+**wrong**, and the correction comes from the sibling session in PR #28: the profile carried by
+`existing_faults.tif`, updated to `deflate / predictor=3 / zlevel=9 / tiled 256 / nodata=None`,
+re-encodes R0 to **219,065 B and sha256 `c55bafc47005…` exactly**. I verified this independently in
+this checkout, and `scripts/run_prune_ladder.py` now refuses to continue unless its rebuild is
+byte-identical.
 
-`data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-…-nan.tif` (sha256 `ab0230015224…`) is
-not in `registry/data_manifest.json`, not in `data/restore_receipt.json`, and not in
-`buffedlizard55-lab/GEMSDOE28`'s `data/manifest.json` (checked via `api.github.com` on 2026-10-23).
-It is used **only** to re-derive and thereby test the prune rule. No release depends on it: every
-candidate is a strict subset of the pinned R0 raster, so the shipped bytes depend only on
-`existing_faults.tif`, `sample_submission.tif` and R0 — all three sha256-verified at run time.
+Decision changed twice: (a) the parent gate in the brief is now fully satisfiable — "dot set + file
+bytes" rather than dot set only; (b) every rung is written with that profile, so all four releases are
+byte-reproducible from pinned inputs. The dot-set digest is kept as a secondary identity because it is
+the only identity that survives a different GDAL build.
 
-## IR-86-PRUNE-03 — the repo's standing literal-overlap stop and the brief's "build variants" instruction conflict (decision: build, do not authorize)
+## IR-86-PRUNE-06 — two sessions built `(PRUNE, 3)` on the same day (decision: one belongs in a slot, and it is not mine)
 
-`PROMPT.md` / `AGENTS.md` / `scripts/protocol_preflight.py` make every nonempty candidate fail a
-literal 70 % overlap gate against a pinned full-positive registry witness, and forbid a format pass
-from authorizing a weekly slot. This session therefore builds and validates rasters but sets
-`approved_for_weekly_slot=False` and uses no slot. That is a *human* decision, and I did not weaken
-or bypass the preflight. **This conflict will block every future variant too**; resolving it (a
-stated registry-completeness policy or an explicit owner exception) is a prerequisite for any
-session that is expected to produce a submittable file.
+PR #28 (branch `arena/06524e4a-gemsdoe86`, merged first) shipped `h33-h33-2-b2-prune3-20261023-01d57649`:
+prune ≤3 px **plus a 2,171-dot refill at fixed count**, 37,654 dots, predicted −0.004 MODEL. The brief's
+PRUNE spec asks for exactly that refill, so that file is the spec-compliant `(PRUNE, 3)` and mine
+(`…-PRUNE-le3p000-…-a438e92b`, 35,483 dots, no refill) is **not a second `(PRUNE,3)` experiment** — it is
+the mass-reduced counterpart of it (same collar edit, 5.8 % less mass). I left both in the ledger with
+distinct ids and labelled mine "no refill" in `SLOT_PLAN.md`, because sending two collar edits to the same
+week's slots without knowing which one differs would waste one. **Do not submit both.**
 
-## IR-86-PRUNE-04 — the catalogue hide-and-recover proxy is structurally invalid on this axis (decision: never rank collar edits by it)
+What is *not* duplicated and is new here: the `(PRUNE, √5)` and `(PRUNE, √8)` rungs (PR #28 built only
+value 3), the mass-matched control, and the byte-identity verification above. The two sessions' R0
+rebuilds agree exactly (40,199 − 2,545 = 37,654, sha `c55bafc4…`), which is the strongest cross-check
+either session has.
 
-Measured on the same 10 draws: R0 `0.004356 [0.0041, 0.004577]`, rung √5 `0.000447`, rungs √8 and
-3.0 px `0.000000`. The proxy rewards collar dots *because* they are near the catalogue, while the
-one live datum on this axis says collar dots cost score. The brief already says a PROXY is never a
-gate; this is the concrete counterexample and it is recorded in `evidence/prune_ladder.json`.
+## IR-86-PRUNE-07 — releases are gitignored (decision: the PR carries code, receipts and hashes, not rasters)
 
-## IR-86-PRUNE-05 — axes that the brief expects are not executable here (decision: PRUNE only, and say so)
-
-`SNAP` and `RELIEF` need bands of `training_features.tif` (absent: 419 MB, pinned, public, fetchable
-— verified HTTP 200, not downloaded this session); `MASS` needs the parent's stored ranking (not
-stored) and `CONCENTRATION` needs a km-scale prior surface (same stack). The human assigned no AXIS
-in this session's brief, so PRUNE was chosen as the only listed axis whose inputs are all present
-and pinned. Everything else is deferred to `SLOT_PLAN.md` rather than approximated.
+PR #28 established that `/releases/*.tif` stays out of the public repository because the data-use terms
+for competition-derived rasters are unchecked. I adopted that: the four rasters exist only in the working
+tree after `scripts/run_prune_ladder.py` runs, and the committed evidence is the adjacent receipt
+(sha256, bytes, validator output) plus the ledger rows. Anyone can rebuild them byte-for-byte from pinned
+inputs and check the hashes.

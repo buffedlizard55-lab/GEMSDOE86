@@ -89,6 +89,34 @@ def read(path: Path) -> np.ndarray:
         return ds.read(1)
 
 
+def serialization_profile(nodata) -> dict:
+    """The encoder profile that reproduces the published parent BYTE for byte.
+
+    ``deflate / predictor=3 / zlevel=9 / tiled 256`` on top of the catalogue's
+    profile writes R0 as 219,065 B with sha256 ``c55bafc4…`` -- verified in this
+    session (see IR-86-PRUNE-01). The profile is not guessable from the parent's
+    own bytes, which is why an earlier 30-profile sweep failed: predictor=3 with
+    zlevel=9 was the missing combination.
+    """
+    import rasterio
+    with rasterio.open(BRIDGE / "existing_faults.tif") as src:
+        prof = src.profile.copy()
+    prof.update(driver="GTiff", dtype="float32", count=1, compress="deflate",
+                predictor=3, zlevel=9, tiled=True, blockxsize=256, blockysize=256,
+                nodata=nodata)
+    return prof
+
+
+def write_with_profile(path: Path, arr: np.ndarray, nodata) -> str:
+    import rasterio
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        path.unlink()
+    with rasterio.open(path, "w", **serialization_profile(nodata)) as dst:
+        dst.write(arr.astype(np.float32), 1)
+    return sha256(path)
+
+
 def verify_pins() -> dict:
     """Every input must match a committed pin; a mismatch aborts the run."""
     manifest = {f["dest"]: f["sha256"] for f in json.loads(MANIFEST.read_text())["files"]}
@@ -122,6 +150,10 @@ def rebuild_parent(grid_ctx, base: np.ndarray) -> dict:
     rebuilt = P.prune_mask(base > 0, dist, R0_PRUNE_PX)
     diff = int((rebuilt != parent_dots).sum())
     digest = P.dot_digest(rebuilt)
+    probe = Path(tempfile.mkdtemp()) / "r0_rebuild.tif"
+    rebuilt_field = np.where(grid_ctx.footprint, rebuilt.astype(np.float32), np.float32(0.0))
+    rebuilt_sha = write_with_profile(probe, rebuilt_field, None)
+    shutil.rmtree(probe.parent, ignore_errors=True)
     return dict(
         rule=f"delete dots at Euclidean distance <= {R0_PRUNE_PX} px from a mapped-fault cell",
         n_base_dots=int((base > 0).sum()),
@@ -131,11 +163,13 @@ def rebuild_parent(grid_ctx, base: np.ndarray) -> dict:
         content_identical=diff == 0,
         dot_digest_rebuilt=digest,
         dot_digest_published=P.dot_digest(parent_dots),
-        byte_identical_sha=False,
+        rebuilt_sha256=rebuilt_sha,
+        byte_identical_sha=rebuilt_sha == PARENT_SHA,
         published_sha256=PARENT_SHA,
-        note=("Dot-set identity is exact. File bytes are NOT reproducible: the recorded "
-              "compression/metadata profile of the published raster is not recoverable "
-              "from its own bytes, and 30 re-encode profiles were tried (see run card)."),
+        profile="deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+        note=("Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with "
+              "the recorded profile reproduces the published sha256. The sibling PR #28 run card "
+              "reached the same profile independently."),
     )
 
 
@@ -200,6 +234,8 @@ def main() -> int:
     rebuild = rebuild_parent(g, base)
     if not rebuild["content_identical"]:
         raise SystemExit(f"parent rebuild mismatch: {rebuild['differing_pixels']} pixels differ")
+    if not rebuild["byte_identical_sha"]:
+        raise SystemExit(f"parent rebuild is not byte identical: {rebuild['rebuilt_sha256']}")
 
     stamp = args.stamp or time.strftime("%Y%m%d")
     shells = P.removed_counts(parent, dist)
@@ -260,7 +296,7 @@ def main() -> int:
             probe_dir = Path(tempfile.mkdtemp())
             probe = probe_dir / "probe.tif"
             zeros_arr = np.where(g.footprint, pred, np.float32(0.0)).astype(np.float32)
-            sha8 = g57grid.write_geotiff(probe, zeros_arr, nodata=None)["sha256"][:8]
+            sha8 = write_with_profile(probe, zeros_arr, None)[:8]
             shutil.rmtree(probe_dir, ignore_errors=True)
             name = f"{PARENT_ID}-{axis}-{tag}-{stamp}-{sha8}"
             zeros_path = out_dir / f"{name}-zeros.tif"
@@ -270,11 +306,11 @@ def main() -> int:
                     p.unlink()
             # spec form: NaN outside the footprint (what the public page describes)
             nan_arr = np.where(g.footprint, pred, np.float32("nan")).astype(np.float32)
-            nan_rec = g57grid.write_submission(nan_path, nan_arr, mode="nan")
+            nan_sha = write_with_profile(nan_path, nan_arr, float("nan"))
             v_all = validate(nan_path, g.footprint, g.catalogue)
             nan_checks = {k: bool(v) for k, v in v_all["checks"].items() if k != "no_nan_anywhere"}
             # shipped form: all-finite zeros outside the footprint (repo policy)
-            zinfo = g57grid.write_geotiff(zeros_path, zeros_arr, nodata=None)
+            zinfo = {"sha256": write_with_profile(zeros_path, zeros_arr, None)}
             if zinfo["sha256"][:8] != sha8:
                 raise SystemExit(f"{key}: probed sha8 {sha8} != written {zinfo['sha256'][:8]}")
             v_zero = validate(zeros_path, g.footprint, g.catalogue)
@@ -289,8 +325,8 @@ def main() -> int:
                 dot_digest=P.dot_digest(dots),
                 zeros=dict(file=zeros_path.name, sha256=zinfo["sha256"], bytes=zeros_path.stat().st_size,
                            validator=v_zero, format_report_ok=rep_zero["ok"]),
-                nan=dict(file=nan_path.name, **{k: nan_rec[k] for k in ("path", "mode")},
-                         sha256=sha256(nan_path), bytes=nan_path.stat().st_size,
+                nan=dict(file=nan_path.name, mode="nan",
+                         sha256=nan_sha, bytes=nan_path.stat().st_size,
                          in_footprint_checks_pass=all(nan_checks.values()),
                          failed_checks=[k for k, v in v_all["checks"].items() if not v],
                          policy_note="public spec permits NaN outside the footprint; repo all-finite policy rejects it"),
