@@ -50,6 +50,13 @@
       "context": "docs/evidence/h86-wvb-run-card.json",
       "holdout_kind": "wvb_whole_components",
       "stem": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros"
+    },
+    {
+      "lane": "H86-FVMB dip-projected / fault-valve model",
+      "card": "docs/evidence/h86-fvmb-run-card.json",
+      "context": "docs/evidence/h86-fvmb-run-card.json",
+      "holdout_kind": "fvmb_segments",
+      "stem": "gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros"
     }
   ]
 }

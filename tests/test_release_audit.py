@@ -36,10 +36,13 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_all_remain_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 7
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 8
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
+    fvmb = next(a["historical_holdout"] for a in report["artifacts"] if "fvmb" in a["file"])
+    assert "cut-segment" in fvmb["design"]
+    assert "paired_delta" not in fvmb  # malformed archived text must not become a numeric gain
     assert report["authenticated_remaining_quota"] is None
     for artifact in report["artifacts"]:
         assert artifact["validator"]["all_checks_passed"]
@@ -149,7 +152,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 7
+    assert len(card["inherited_artifacts"]["files"]) == 8
 
 
 def test_h86b_imported_call_has_no_preflight_bypass(monkeypatch):
@@ -219,3 +222,16 @@ def test_missing_final_dot_measurements_fail_closed(release_copy):
     (release_copy / "docs/evidence/all-artifacts-registry.json").unlink()
     with pytest.raises(FileNotFoundError):
         audit.build_report(release_copy)
+
+
+@pytest.mark.parametrize("name", ["run_h86_fvmb_pipeline", "prepare_h86_fvmb_data"])
+def test_concurrent_fvmb_entrypoints_stop_before_cache_or_fitting(monkeypatch, name):
+    import importlib
+    from scripts import protocol_preflight
+    module = importlib.import_module("scripts." + name)
+    built = []
+    monkeypatch.setattr(module, "build_static60_memmap", lambda *a, **k: built.append(True))
+    monkeypatch.setattr(protocol_preflight, "measure", lambda: {"universal_overlap_blocker": True})
+    with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+        module.main()
+    assert built == []

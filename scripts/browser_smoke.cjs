@@ -13,7 +13,7 @@ const chromium = packageModule.default ?? packageModule;
 const root = path.resolve(__dirname, "..");
 const base = new URL(process.argv[2] || "http://127.0.0.1:8000/");
 const artifactCount = JSON.parse(fs.readFileSync(path.join(root, "docs/evidence/download-inventory.json"), "utf8")).artifacts.length;
-const pages = ["index.html", "executive-summary.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html", "download-status.html"];
+const pages = ["index.html", "executive-summary.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html", "download-status.html", "h86-fvmb-forensics.html"];
 const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
 
 (async () => {

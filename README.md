@@ -11,7 +11,7 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 
 ### Outcome of the current review
 
-The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 7 inherited final rasters were remeasured and fail that gate. No exception was granted, no new model or dot placement was run, and no old TIFF was copied into a new release.
+The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 8 inherited final rasters were remeasured and fail that gate. No exception was granted, no new model or dot placement was run, and no old TIFF was copied into a new release.
 
 The existing TIFFs below are safe to download **for audit** under the local numerical/format policy. Every serialized file, ZIP payload, receipt, note, name, validity mask, SHA, grid, finite range and applicable scientific card was checked automatically. **Local format pass is not organizer acceptance, uniqueness clearance, or slot authorization.**
 
@@ -24,6 +24,7 @@ The existing TIFFs below are safe to download **for audit** under the local nume
 | RMRB-86 supervised residual | [gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif](docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif) | 133,010 | 107 | PASS / **DO NOT SUBMIT** |
 | H86B-GFCO multi-physics | [gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif) | 145,410 | 91 | PASS / **DO NOT SUBMIT** |
 | H86-WVB wavenumber / fault-valve bridge | [gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif](docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif) | 136,026 | 94 | PASS / **DO NOT SUBMIT** |
+| H86-FVMB dip-projected / fault-valve model | [gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif](docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif) | 146,282 | 124 | PASS / **DO NOT SUBMIT** |
 
 Adjacent `.zip` files each contain exactly the corresponding TIFF. Each adjacent `.json` records its unique identity name and short note. The dashboard links all three. No candidate is selected or called “highest holdout”: the historical fold designs and intervals are not one comparable benchmark.
 
@@ -56,7 +57,7 @@ The top candidate **was not validated**: the mandatory pre-placement stop preven
 - A site inventory path check no longer accidentally depends on the last HTML file examined.
 - A commit/tree-pinned feed was refreshed for **88/88** named repositories. It records Git metadata, not decoded raster validity, historical completeness, leaderboard scores or organizer receipts. Missing reported values stay missing.
 - A daily Pages workflow rechecks local artifacts and refreshes the repository feed without training, submitting, selecting slots or committing to another branch. Official research observations remain explicitly dated; the feed is not a live DrivenData/quota service.
-- Concurrent `main` additions through PR #19 were preserved, including the seventh H86-WVB TIFF/card/tests, independent `audit_downloads.py` publication checks and the earlier review. The new all-file audit measures all seven final rasters; none is a new experiment by this review.
+- Concurrent `main` additions through PRs #19 and #21 were preserved, including H86-WVB and the eighth H86-FVMB TIFF/card/tests, the independent `audit_downloads.py` publication checks and the earlier review. The new all-file audit measures all eight final rasters; none is a new experiment by this review.
 - The full current request is preserved below, with the earlier request retained separately. Tests check archive integrity and key ledger traceability.
 
 ## Reproduce without a GPU or competition login
@@ -75,15 +76,15 @@ python3 -m venv .venv
 
 The restorer obtains hash-pinned owner mirrors and a historical comparison witness through GitHub. This is **not** organizer-authenticated data acquisition, not the actual shared feature cache, and not a new prediction. Large data and caches remain ignored. `requirements-lock.txt` records the tested environment; `requirements.txt` is the broader compatibility specification.
 
-`make submission` and every scientific CLI remain blocked by the literal preflight. The old `download_competition_data.sh` / `prepare_data.py` commands quoted in the prompt do not exist in this repository. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
+`make submission` and every scientific CLI remain blocked by the literal preflight. Concurrent FVMB work added a `download_competition_data.sh` mirror-restoration wrapper and `prepare_h86_fvmb_data.py`; the quoted `prepare_data.py` still does not exist. The new cache-builder/pipeline CLIs are also now blocked before construction or fitting; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
 
 ## Verification and deployment scope
 
-Three local passes are recorded in [the dated review](research/SESSION_20261023_REVIEW.md). After concurrent-main integration, **127 tests and 32 subtests passed**, with four dependency deprecation warnings. Both independent all-download audits, read-only site generation, shared-pin checks and registry reproduction pass. A [dated Chromium UI receipt](docs/evidence/ui-smoke-20261023.json) binds its results to exact page/asset hashes; it is not continuously refreshed scientific evidence.
+Three local passes are recorded in [the dated review](research/SESSION_20261023_REVIEW.md). After concurrent-main integration, **133 tests and 32 subtests passed**, with four dependency deprecation warnings. Both independent all-download audits, read-only site generation, shared-pin checks and registry reproduction pass. The FVMB card has malformed paired-delta fields and a separate stale pin manifest; those are preserved and flagged, not coerced into trusted improvements. A [dated Chromium UI receipt](docs/evidence/ui-smoke-20261023.json) binds its results to exact page/asset hashes; it is not continuously refreshed scientific evidence.
 
 The daily Actions job performs local artifact checks and a fresh Git-metadata refresh before deploying. Partial GitHub failures stay explicit; fatal local failures stop deployment. Official-source observations are dated, not claimed continuously revalidated. An attempted Pages setting change was denied with HTTP 403 (integration permission); settings remain legacy `main` `/`, while the existing Actions artifact deploys `docs/`. Public deployment must be checked after merge; a successful source edit alone is not a deployment receipt.
 
-The [independent merged review](research/SESSION_20261023.md), [WVB scientific record](research/H86_WVB_REVIEW.md), [independent generated download page](docs/download-status.html) and [its validator JSON](docs/evidence/download-validation.json) remain available without promoting or rerunning those historical experiments.
+The [independent merged review](research/SESSION_20261023.md), [WVB scientific record](research/H86_WVB_REVIEW.md), [independent generated download page](docs/download-status.html) [FVMB archived figures and caveats](docs/h86-fvmb-forensics.html), and [its validator JSON](docs/evidence/download-validation.json) remain available without promoting or rerunning those historical experiments.
 
 ## Priorities for the next session
 

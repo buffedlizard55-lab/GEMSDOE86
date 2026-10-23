@@ -86,7 +86,7 @@
       "status": "REPOSITORY_README_FETCHED",
       "claim": "The reference solution supports both GPU and CPU-only environments.",
       "observed_excerpt": "Training is much faster on a GPU, so use one if you have it.",
-      "caveat": "A GPU is not an absolute training prerequisite. The owner-quoted downloader/prepare scripts are not present in this repository."
+      "caveat": "A GPU is not an absolute training prerequisite. At initial inspection, the owner-quoted downloader/preparer commands were absent. Concurrent main later added a downloader wrapper and prepare_h86_fvmb_data.py, not the quoted prepare_data.py; these do not resolve the literal stop or restore the actual template cache."
     },
     {
       "id": "H33-SITE",

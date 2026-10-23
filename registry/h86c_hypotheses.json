@@ -3,7 +3,7 @@
   "date_utc": "2026-10-23",
   "scope": "Planning only, not a lane assignment, validation, score projection, or permission to run past a duplicate stop.",
   "ranking_basis": "Qualitative expected information gain for new-fault discrimination per implementation cost; not a numerical prediction of DTI improvement.",
-  "novelty_scope": "Source review of this checkout, including H86-RMRB, GMC, H86-1, RMRB-86, H86B-GFCO and the concurrently merged H86-WVB. Not proof that no inaccessible sibling has tried these ideas.",
+  "novelty_scope": "Source review of this checkout, including H86-RMRB, GMC, H86-1, RMRB-86, H86B-GFCO and the concurrently merged H86-WVB / H86-FVMB. Not proof that no inaccessible sibling has tried these ideas.",
   "experiments_run": 0,
   "hypotheses": [
     {

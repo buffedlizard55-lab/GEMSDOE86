@@ -42,6 +42,12 @@
       "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+      "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

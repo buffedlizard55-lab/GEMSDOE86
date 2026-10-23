@@ -3,6 +3,9 @@
 1. Read `PROMPT.md` and `README.md` before any change. The standing rules are the parallel-run
    protocol (lane, reuse, evidence class, leakage canary, run card, budget).
 2. Never fork `vendor/template66/gems57/*`. If a shared tool is wrong, fix it upstream and report it.
+   The effective pin is `research/template_pin.json`, with both vendored import paths checked.
+   FVMB's separate `registry/template_pin.json` describes an amendment absent from the actual
+   vendored bytes; it is archived context, not an alternate authorization or effective tool pin.
 3. Measured site counts and historical HOLDOUT-DTI come from explicit evidence files in
    `evidence/` or `docs/evidence/`, rendered by `scripts/build_site.py`. Owner score claims are
    separately transcribed in `registry/prior_scores.csv` and must remain unverified claims.

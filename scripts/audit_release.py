@@ -95,6 +95,12 @@ def archived_holdout(config: dict, context: dict) -> dict:
     if h.get("evidence_class") != "HOLDOUT-DTI":
         raise ValueError("Historical performance lacks its evidence class")
     base["evaluator_version"] = h["evaluator_version"]
+    if kind == "fvmb_segments":
+        w = h["dual_seed_segment_all"]
+        return {**base, "withheld_positives": w["withheld_positives"],
+                "value": w["candidate_dti"], "ci95": w["ci95"],
+                "design": "two-seed cut-segment holdout, not buffered whole components",
+                "caveat": "Concurrent archive only, not rerun. Both stored numeric paired-delta fields contain the text HOLDOUT-DTI and are not treated as numeric evidence. Literal overlap fails. Its three-stage/four-ablation budget convention and separate stale pin manifest need reconciliation. No cross-design champion claim is accepted."}
     if kind == "cut_segments":
         return {**base, "withheld_positives": h["withheld_positives"],
                 "value": h["candidate_at_final_budget_60000"], "ci95": h["ci95_cell_bootstrap"],
@@ -304,6 +310,7 @@ def build_report(root: Path = ROOT) -> dict:
                     "All-finite zeros outside the footprint are a local conservative export policy; the public specification describes null/NaN outside bounds. Portal acceptance is not established.",
                     "The rejected upload bytes and an organizer receipt were not supplied; the prior range error's cause and historical scores remain unverified.",
                     "Fault prediction is not confirmation of a geothermal vent, heat supply, permeability, or commercial viability.",
+                    "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements.",
                 ])
 
 
