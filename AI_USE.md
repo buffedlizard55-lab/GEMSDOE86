@@ -500,3 +500,41 @@ throwaway probe slot on `SPACING-alongstrike`.
 * **Human must supply:** `TOP_PUBLIC` + date, rolling-week slots left, R0's `0.2778` portal receipt,
   verified 2026-12-03 deadline, portal encoding preference (`.tif` NaN vs `-zeros`), and the
   uniqueness-rule decision (`IR-86-PRUNE-01`).
+
+## 2026-10-23 — RELIEF source factorial + instrument audit (branch `arena/ada3049e-gemsdoe86`, agent-chosen axis)
+
+* **AI chose the axis.** Brief v2 §1 forbids prompting the human for it, so the agent selected
+  `AXIS = RELIEF`: it had the thinnest evidence base (3 ledger rows), it is count-fixed (immune to the
+  MASS confound `IR-86-MASS-03`), and it is the only axis whose entire published support came from one
+  instrument that the agent could test. **Human can veto:** the choice, the three values, and the
+  re-ranking that follows from it.
+* **AI wrote:** `scripts/run_relief_source.py`, `evidence/relief-source-mechanism.md` (three mechanism
+  cards, pre-registered before the build), `evidence/relief_source_20261023.json`,
+  `ledger/variants_relief_source.json`, this entry, `IRREGULARITIES.md` (`IR-86-RELIEF-04`,
+  `IR-86-RELIEF-05`), a rewritten `SLOT_PLAN.md`, the `README.md` `CURRENT STATE` block only, a new
+  section in `docs/SUBMIT.md`, and one line in `scripts/build_ledger.py` registering the new variants
+  file with the single ledger generator. Local candidate rasters in `releases/` stay gitignored.
+* **AI measured and decided (the human can veto):** three arms built and gated (`int2front-15pct`
+  `c543e779`, `int2front-10pct` `4471a74b`, `int2pied-15pct` `295eaf92`). The **pre-registered sign was
+  falsified** — the agent predicted `+0.0010 / +0.0005 / −0.0020` and measured `−0.0057 / −0.0038 /
+  −0.0118` — and the negative is reported as a negative rather than re-tuned
+  (`evidence/relief-source-mechanism.md`, post-build section). The decisive result is not the arms but
+  the instrument audit: eight RELIEF rebuilds score `≈ 0.0283·Δrelief-index − 0.0033` with
+  `R² = 0.9135` on the SGMC-extra surrogate, so the shipped `front+15pct`'s `+0.0017` is the
+  instrument's own relief gradient (residual `−0.0008`). The agent re-ranked the slot plan on that
+  basis: `PRUNE-le3p000` → Slot 1, `concb5kmdown4` → Slot 2, `RELIEF-frontp15` → Slot 3.
+* **AI did NOT do:** zero DrivenData or `dropbox.com` requests; zero logins, credentials, scraping or
+  submissions; zero `MODEL`/`PROXY` number written as a score or receipt; zero post-hoc change to the
+  pre-registered predictions (the falsification is recorded, not edited away); zero uniqueness or
+  rank-correlation thresholds applied; zero slots requested (`approved_for_weekly_slot: false`).
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_data.py
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h33_2_b2_zeros ext_derived_sgmc_faults_100m_u8 labels
+  .venv/bin/python scripts/run_relief_source.py        # rebuilds R0 gate, 3 arms, 2 nulls, ledger
+  .venv/bin/python scripts/build_ledger.py --check && .venv/bin/python -m pytest -q
+  ```
+* **Human must supply:** `TOP_PUBLIC` + date, remaining rolling-week slots, R0's `0.2778` receipt,
+  verified deadline, accepted outside-footprint encoding, and the single blind final-submission choice.
+

@@ -742,3 +742,61 @@ the canary now reports only features that enter the edit: against the catalogue 
 against the SGMC off-catalogue target 0.5086 / 0.5023 / 0.5467 respectively — worst case 0.5467,
 far below 0.90. **Cost:** none, but the episode is a reminder that a "leakage canary" can pass or
 fail on the choice of feature, so the feature list must be printed with the number.
+
+## IR-86-RELIEF-04 — the only instrument that supports RELIEF is a relief-index meter (R² = 0.9135, n = 8)
+
+**Observed.** Eight deterministic RELIEF rebuilds of R0 (the three shipped ladder arms, this
+session's three arms, and two displacement-matched random nulls) were scored on the SGMC-extra
+surrogate and regressed on the one quantity that varies across all of them, the change in mean
+`relief_index` at the dots (`evidence/relief_source_20261023.json`, `instrument_diagnostic`):
+
+| arm | Δ mean relief index | surrogate Δ (MODEL) | residual vs the fit |
+|---|---:|---:|---:|
+| `front+15pct` (reconstruction of the ledger row) | +0.2058 | **+0.00171** | −0.0008 |
+| `front+10pct` (reconstruction) | +0.1370 | +0.00100 | −0.0009 |
+| `front-10pct` (reconstruction) | −0.1163 | −0.00885 | −0.0023 |
+| `int2front-15pct` (new) | −0.0587 | −0.00569 | −0.0007 |
+| `int2front-10pct` (new) | −0.0565 | −0.00379 | +0.0011 |
+| `int2pied-15pct` (new) | −0.2987 | −0.01179 | +0.0000 |
+| null, random destination (interior source) | −0.0677 | −0.00298 | +0.0020 |
+| null, random destination (piedmont source) | +0.0170 | −0.00256 | −0.0008 |
+
+Pearson **r = +0.9558, R² = 0.9135, slope +0.0283 DTI per index unit**, intercept −0.0033 (the
+"displacement tax": an arm that does not change mean relief index is predicted to lose 0.0033).
+The surrogate's single-feature AUC for `relief_index → SGMC-extra` is `0.7281`, so this is not a
+coincidence of the arms: to first order the instrument is a monotone function of exactly the
+quantity every RELIEF variant manipulates. The reconstruction of `front+15pct` reproduces the
+ledger's delta to three decimals (`+0.001711` vs `+0.0017`), so the regression is on the shipped
+recipe, not a look-alike.
+
+**Decision (changes the slot order).** No RELIEF MODEL number may be cited as *mechanism*
+evidence. `front+15pct`'s `+0.0017` is what the instrument reports for a `+0.206` shift in mean
+relief index, and its residual is **−0.0008** — i.e. after the gradient is removed it is
+indistinguishable from (slightly below) the instrument's own line. `RELIEF-frontp15` is therefore
+**demoted from Slot 1 to Slot 3**; `PRUNE-le3p000` takes Slot 1 (its relief-index change is
+near zero, so this bias cannot manufacture its `+0.0040`), and `CONC-concb5kmdown4`
+(`+0.0015 MODEL` **and** `+0.0008 PROXY`, two differently-biased instruments agreeing, `1 km`
+CV inside `0.51–0.59`) takes Slot 2. **Cost:** the RELIEF family keeps its rows and rasters, but
+its published support is reclassified as instrument-shaped; a live receipt is now the only thing
+that can restore it, and at `+0.0017` a single slot could never clear the §"|Δ| < 0.01 = no
+evidence" floor anyway.
+**Not claimed:** that RELIEF is wrong. `relief_index` tracks real basin-margin structure; the
+claim is that this instrument cannot separate that from its own gradient.
+**Limit:** n = 8 deterministic rebuilds of one parent, not independent experiments, and seven of
+the eight sit on two source classes of a single grid. It prices the instrument; it does not
+re-score the competition.
+
+## IR-86-RELIEF-05 — the basin source cannot be tested inside the axis contract (2,014 dots = 5.35 %)
+
+**Observed.** Regime census of R0 this session: piedmont 20,280 dots (53.86 %), range-front 6,045
+(16.05 %), range-interior 9,315 (24.74 %), **basin 2,014 (5.35 %)**. Brief v2 §5 fixes the RELIEF
+dose at 10–15 % of the parent's dots, i.e. 3,765–5,648 dots. The basin holds fewer dots than the
+*floor* of that window, so "does leaving the alluvium pay?" — the cleanest geological version of the
+question — cannot be asked as a RELIEF variant at any legal dose.
+**Decision:** the source was varied over the range interior (the only remaining class with enough
+mass) and the basin question is recorded as **unbuildable on this parent**; it would need a
+different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and MASS is closed per
+`IR-86-MASS-01..03`). **Cost:** one of the three arms that looked most promising on mechanism
+grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
+rather than the 6-cell design with basin.
+
