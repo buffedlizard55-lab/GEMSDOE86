@@ -124,7 +124,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--data-root", type=Path, default=ROOT / "data")
     ap.add_argument("--include-siblings", action="store_true", help="Also verify/restore research/sibling_champions_manifest.json")
-    ap.add_argument("--receipt", type=Path, default=ROOT / "docs" / "evidence" / "lane_data_restore.json")
+    ap.add_argument("--receipt", type=Path, default=ROOT / "docs" / "evidence" / "h86_wvb_data_restore.json")
     args = ap.parse_args(argv)
 
     t0 = time.time()

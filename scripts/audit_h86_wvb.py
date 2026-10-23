@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "vendor") not in sys.path:
     sys.path.insert(0, str(ROOT / "vendor"))
 
-DEFAULT_RUN_CARD = ROOT / "docs" / "evidence" / "run-card.json"
+DEFAULT_RUN_CARD = ROOT / "docs" / "evidence" / "h86-wvb-run-card.json"
 
 
 def check_pins() -> bool:

@@ -903,6 +903,11 @@ def build_registry_index() -> dict:
 
 
 def main() -> int:
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from scripts import protocol_preflight
+
+    protocol_preflight.require_feasible()
     t_start = time.time()
     print("[1/7] Loading grid & building 24-channel zero-catalogue H86-WVB static physics stack...")
     grid = GRID.load_grid(DATA_DIR)
@@ -1508,6 +1513,9 @@ def main() -> int:
         "experiments_used": 3,
         "experiment_budget": 3,
         "verdict": verdict,
+        "submission_ready": False,
+        "approved_for_weekly_slot": False,
+        "safe_to_submit": False,
         "selector_handoff_note": (
             "All automated GeoTIFF, [0,1] range, leakage-canary, spatially-blocked HOLDOUT-DTI, and 42-raster "
             "non-lattice lane-uniqueness gates PASSED (`verdict: promote`). Per Parallel-Run Protocol Rule 6, "
@@ -1520,7 +1528,7 @@ def main() -> int:
 
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
     (EVIDENCE_DIR / "h86_wvb_results.json").write_text(json.dumps(results_payload, indent=2) + "\n")
-    (EVIDENCE_DIR / "run-card.json").write_text(json.dumps(run_card, indent=2) + "\n")
+    (EVIDENCE_DIR / "h86-wvb-run-card.json").write_text(json.dumps(run_card, indent=2) + "\n")
     print(f"Done in {results_payload['runtime_seconds']}s — verdict={verdict}, tif={sub_receipt['file']}")
     return 0
 

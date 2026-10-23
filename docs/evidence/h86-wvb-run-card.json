@@ -249,5 +249,9 @@
   "experiments_used": 3,
   "experiment_budget": 3,
   "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false,
+  "crosslane_uniqueness_evidence": "docs/evidence/h86_wvb_crosslane_uniqueness.json",
   "selector_handoff_note": "Gates 1 (15/15 GeoTIFF + [0,1] finite checks), 2 (36/36 Leakage Canary max AUC=0.8705 <= 0.90), 3 (HOLDOUT-DTI=0.15792 [0.13884, 0.17587], +0.05700 over d2.8 and +0.05228 over h33_foldfair), Spearman uniqueness (max |rho|=0.1271 surface / 0.0949 dots <= 0.90), and all 30/30 modern sibling champions (GEMSDOE32..GEMSDOE88, max 3-px overlap 0.6353 <= 0.70; H33-2-B2 overlap 0.2928) PASSED. However, Gate 4 forward 3-px overlap exceeded 0.70 against 2 upstream catalogue-context ridge priors (`gems10-h25-ctx-ridge` 174,232 px: 0.7853; `gems10-h28-dotted-ridge` 69,281 px: 0.7415) plus the 5x5 covering lattice (`0.9964`). Per Parallel-Run Protocol Rule 1 & Rule 5, logged as a negative/duplicate-overlap deliverable after 3/3 budgeted experiments — DO NOT SUBMIT to a weekly DrivenData portal slot."
 }
