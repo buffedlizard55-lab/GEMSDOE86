@@ -119,3 +119,41 @@ deliberately below the 0.01 evidence floor.
 **Not done by AI:** no submission, no login, no leaderboard access, no drivendata.org or dropbox.com
 request, no slot selection. The three builds were not promoted; the duplication with PR #31 was
 found only when `main` was merged, and is logged rather than hidden.
+
+## Addendum — RELIEF axis (branch `arena/1252d45c-gemsdoe86`, 2026-10-23, fourth session on R0)
+
+**AI wrote:** `src/gems86/relief.py`, `scripts/run_relief_axis.py`, `tests/test_relief_axis.py`,
+`evidence/relief_axis_20261023.json`, the three `releases/…-RELIEF-…-zeros.json` receipts, and the
+RELIEF sections of `ledger/variant-cards.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`,
+`README.md` (CURRENT STATE block only) and this file. No human-authored code or text is mixed in
+unlabelled.
+
+**The human decided:** the session's AXIS — **RELIEF** — and that the `-zeros` form is the primary
+upload. Both answers were requested before anything was built, precisely because three earlier
+sessions each self-selected PRUNE on the same parent (IR-86-PRUNE-08). Everything else below is the
+AI's decision and is vetoable.
+
+**AI decided (science):** the direction of the shift (piedmont→range-front, with the sign flip as a
+sibling rung) after measuring that R0's mass sits 53.9 % piedmont / 16.1 % front while an
+independent USGS SGMC inventory puts 2.7× the per-pixel un-mapped fault density at the front; the
+top dose at 15 % (the brief's ceiling) because a 5 % version projected sub-noise; "deepest-in-regime"
+source selection over "nearest-boundary"; a measured in-regime displacement control that is
+deliberately **not** written as a raster; and using the SGMC surrogate only for the *prediction*,
+never in the builder, so the released files are pure geometric edits of R0.
+
+**AI corrected itself twice, in-session, before releasing anything** (both in
+IR-86-RELIEF-01): a band reader that let the stack's nodata sentinel into the standardisation (it
+classified 100 % of R0's dots as "basin"), and a first build whose relocated dots could sit 1 px
+apart — a hidden clustering edit that flipped the surrogate sign of every rung. The defective files
+were deleted, `ledger/` reverted, and the build re-run once; both faults are now unit-tested and the
+builder aborts on them.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no submission, no login, no
+credential, no Dropbox. No gate script was modified, relaxed or bypassed; the repo's 70 % overlap
+rule was *not applied* because brief v2 §6 forbids it, and that conflict stays open
+(IR-86-PRUNE-01). No PROXY or MODEL number is written as a score; R0's 0.2778 is still a CLAIM and
+`ledger/submissions.csv` still has **0 receipts** in 118 rows. No slot is authorised.
+
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the receipt score/date after an upload,
+the data-use decision on the tracked competition rasters (IR-86-PRUNE-04), and the final blind pick.

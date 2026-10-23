@@ -572,5 +572,104 @@
     "predicted_change": "-0.003 (95% range -0.012..+0.006). MODEL. Mechanism: identical count to R0, identical deletions to prune3, collar pushed just past 3 px (mean move 1.14 px). Reads out whether any prune3 effect is mass or collar position.",
     "receipt_score": "",
     "receipt_date": ""
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f",
+    "site": "GEMSDOE86",
+    "axis": "RELIEF",
+    "value": "front+15pct",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 14.9997,
+    "sha8": "e0e2888f",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47",
+    "sha256_nan": "b9a28caa5656ea0cf9e9789b0cda60562e4202e37c3cfa8e0ebfe3dbe0185f45",
+    "predicted_change": "+0.0017 (quadrant range -0.0022..+0.0112; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "064f511f766c6e52482756a5addeca326b198bda06a57e1666571148c9794901",
+    "files": [
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif",
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f.tif"
+    ],
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.003838,
+      "ci95": [
+        0.003602,
+        0.004066
+      ],
+      "class_": "PROXY",
+      "note": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e",
+    "site": "GEMSDOE86",
+    "axis": "RELIEF",
+    "value": "front+10pct",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 9.9989,
+    "sha8": "b20ef72e",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad",
+    "sha256_nan": "17588fe574701c788540f5d28f7d7b380279e15c615986b848f300acc15a2ab4",
+    "predicted_change": "+0.0010 (quadrant range -0.0009..+0.0068; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "fda23eb1206045abf04990d332d22280eef705c957ee75081191e94f828b22ca",
+    "files": [
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e-zeros.tif",
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e.tif"
+    ],
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.004031,
+      "ci95": [
+        0.003774,
+        0.004261
+      ],
+      "class_": "PROXY",
+      "note": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e",
+    "site": "GEMSDOE86",
+    "axis": "RELIEF",
+    "value": "front-10pct",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 9.9989,
+    "sha8": "1b26223e",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "1b26223ec7888a78b4c7b6ef78c9680ae29491691ab3e5ed0c53083f10450669",
+    "sha256_nan": "9e267a10fe5abfcd4092ac8f1dc390876a4619b59b72ed08c4ff9bc7b63f0186",
+    "predicted_change": "-0.0089 (quadrant range -0.0160..-0.0009; 0/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "dcc588d01471191f69ff38a6d7c9980940dd578f92b4ce5144a271c4ddbc79bf",
+    "files": [
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e-zeros.tif",
+      "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e.tif"
+    ],
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.003888,
+      "ci95": [
+        0.003672,
+        0.004078
+      ],
+      "class_": "PROXY",
+      "note": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    }
   }
 ]

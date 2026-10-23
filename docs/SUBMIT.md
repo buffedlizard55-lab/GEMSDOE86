@@ -1,6 +1,6 @@
 # Manual submission card — no automatic submission
 
-**Status: BUILT; not slot-approved.** TOP_PUBLIC, remaining quota and R0's submission receipt
+**Status: BUILT; not slot-approved.** `TOP_PUBLIC`, remaining quota and R0's submission receipt
 were not supplied. The human alone submits, from one registered entity, one file per slot.
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
@@ -15,13 +15,43 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Slot 2 — CONCENTRATION on 5 km blocks (not built yet)
+## Slot 2 — `RELIEF front+15pct`, count-fixed relocation (built this session; AXIS assigned by the human)
+
+- File: `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+- SHA-256: `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` (214,315 bytes);
+  spec form (NaN outside) `b9a28caa5656ea0cf9e9789b0cda60562e4202e37c3cfa8e0ebfe3dbe0185f45`.
+- Submission name (64 ch): `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f`
+- Note (124 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front+15pct: 5648 dots moved piedmont->range-front, count fixed; pred +0.002 MODEL`
+- What it is: 5,648 dots (15.00 % of the mass) moved from the deep middle relief tercile onto the
+  basin-margin range front — front share 16.05 % → 31.05 %, count fixed at 37,654, mean
+  displacement 6.1 km. Regimes are terciles of `z(smoothed det_elev) + z(smoothed |det_elev_slope|)`
+  from the pinned stack, with the top class split by 5 km basin proximity.
+- Prediction: **+0.0017 (MODEL)** on a USGS SGMC hide-and-recover surrogate, quadrant range
+  −0.0022…+0.0112, 3/4 quadrants — below the 0.01 evidence floor. The in-regime displacement control
+  costs −0.0010, so the regime effect is only ~1.7× the cost of moving at all. Receipts:
+  `releases/…-e0e2888f-zeros.json`, `evidence/relief_axis_20261023.json`; cards:
+  `ledger/variant-cards.md` §"RELIEF".
+- Two more RELIEF files are built and gated: `…-frontp10-20261023-b20ef72e-zeros.tif`
+  (`b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad`, 10.00 %, +0.0010 MODEL, a
+  strict prefix of the 15 % dose — the designated fallback if a smaller first edit is preferred) and
+  `…-frontm10-20261023-1b26223e-zeros.tif` (`1b26223ec7888a78b4c7b6ef78c9680ae29491691ab3e5ed0c53083f10450669`,
+  10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
+  Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
+
+## CONCENTRATION on 5 km blocks (not built yet — the slot-2 candidate if the human prefers to wait for it)
 
 Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
 target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
 built (section below) but is not the slot-2 recommendation.
 
-## Slot 3 — SNAP, built and gated, predicted **negative**
+## Slot 3 — a sign flip or a deliberate probe, both predicted non-positive
+
+**Option A (recommended if slots 1–2 both land inside ±0.01): `RELIEF front−10pct`**
+(`…-frontm10-20261023-1b26223e-zeros.tif`, digested in the bullet above). Its value is the *paired* read against
+slot 2: a 25 %-of-mass swing with a predicted separation of ~0.011, i.e. the only RELIEF comparison
+that can clear the evidence floor.
+
+**Option B: SNAP, built and gated, predicted negative**
 
 | Variant | Primary file (NaN outside) | sha256 (NaN twin) | Fallback (`-zeros`) | sha256 (zeros twin) | Prediction |
 |---|---|---|---|---|---|
@@ -88,6 +118,8 @@ Common to every file above — re-read from disk after writing:
 | Dots on mapped catalogue | **0** in every file |
 | Exact-hash duplicate of any file on disk or in the ledger | none |
 | SNAP parent-diff | count exact 37,654 → 37,654; only positions changed; catalogue exclusion unchanged (min distance 2.236 px) |
+| RELIEF parent-diff | count fixed 37,654 → 37,654; deletions == insertions (5,648 / 3,765 / 3,765); every *inserted* cell ≥ 3 px off the catalogue; min dot spacing 2.8284 px → 2.8284 px (not tightened); mass on catalogue pixels 0 |
+| RELIEF re-read | the dot set in the written bytes is compared cell-by-cell with the in-memory set; a mismatch aborts the build |
 
 The `-zeros` twins additionally pass `vendor/gems57/validate.py` (`all_checks_passed = True`)
 and `gems57.gates.format_report` (`ok = True`). The `-nan` twins fail that vendored validator
@@ -99,7 +131,10 @@ twin within the same slot attempt: the twins carry identical dots.
 Release TIFFs are gitignored (public repo, unchecked data-use terms), so the digests above are
 the authority. Re-run the checks any time: `python scripts/prune_collar.py --measure` (deterministic, seed
 20261023), `python scripts/run_snap_axis.py` (deterministic; rebuilds R0 byte-exactly, then the
-three SNAP rasters — the sha8 values are reproducible) and `python scripts/build_ledger.py --check`.
+three SNAP rasters — the sha8 values are reproducible),
+`.venv/bin/python scripts/run_relief_axis.py --no-write` (parent gate + RELIEF measurements, writes
+nothing; without `--no-write` it rebuilds the three RELIEF rasters) and
+`.venv/bin/python scripts/build_ledger.py --check`.
 
 ## After the score comes back
 
