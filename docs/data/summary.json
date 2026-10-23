@@ -1,18 +1,325 @@
 {
-  "submission_ready": false,
-  "safe_to_submit": false,
-  "decision": "No candidate authorized under the supplied literal overlap and scientific promotion gates.",
-  "featured_research_artifact": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
-  "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
-  "dots": 37654,
-  "holdout": {
-    "evidence_class": "HOLDOUT-DTI",
-    "evaluator": "gems57-pooled-hide-v2",
-    "withheld_positives": 22893,
-    "value": 0.07282678213466065,
-    "ci95": [0.05887883153427838, 0.087443273517476]
+  "schema": "gems86.current-status.v1",
+  "decision": "DO NOT SUBMIT",
+  "decision_reason": "The selected H86B-GFCO research artifact is format-valid but fails the preregistered uniqueness gate, and the paired 95% interval for the primary buffered whole-component holdout includes zero. No artifact is approved for a weekly slot.",
+  "latest_evaluated_lane": {
+    "id": "H86B-GFCO",
+    "submission_name": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b",
+    "note": "H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros",
+    "file": "downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+    "zip": "downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip",
+    "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+    "verdict": "negative",
+    "submission_ready": false,
+    "approved_for_weekly_slot": false,
+    "holdouts": [
+      {
+        "split": "buffered whole components",
+        "candidate": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 11321,
+          "dti": 0.10775922634537677,
+          "ci95": [
+            0.0907896118927902,
+            0.1253646273576898
+          ]
+        },
+        "d2_8_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 11321,
+          "dti": 0.09188832467218272,
+          "ci95": [
+            0.07900315412770842,
+            0.10346716075529336
+          ]
+        },
+        "h33_b2_foldfair_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 11321,
+          "dti": 0.09608619416803546,
+          "ci95": [
+            0.08281755542060633,
+            0.10833633773445987
+          ]
+        },
+        "paired_delta_vs_d2_8": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 11321,
+          "delta": 0.01587090167319405,
+          "ci95": [
+            -0.0007078800302750258,
+            0.03429836783193628
+          ]
+        },
+        "paired_delta_vs_h33_b2": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 11321,
+          "delta": 0.011673032177341308,
+          "ci95": [
+            -0.005197603627730072,
+            0.030251906163723148
+          ]
+        }
+      },
+      {
+        "split": "segment hide — all components",
+        "candidate": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22641,
+          "dti": 0.13960685331490388,
+          "ci95": [
+            0.1285628413882666,
+            0.15129812934659334
+          ]
+        },
+        "d2_8_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22641,
+          "dti": 0.1010696473055406,
+          "ci95": [
+            0.09068229120623145,
+            0.11025375325721426
+          ]
+        },
+        "h33_b2_foldfair_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22641,
+          "dti": 0.09096096964267096,
+          "ci95": [
+            0.0807421570310383,
+            0.10009407208211525
+          ]
+        },
+        "paired_delta_vs_d2_8": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22641,
+          "delta": 0.03853720600936328,
+          "ci95": [
+            0.026890006172317783,
+            0.05240950463240834
+          ]
+        },
+        "paired_delta_vs_h33_b2": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22641,
+          "delta": 0.04864588367223292,
+          "ci95": [
+            0.03736892905893816,
+            0.06214853114704805
+          ]
+        }
+      },
+      {
+        "split": "segment hide — detached components",
+        "candidate": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22619,
+          "dti": 0.15208470990262074,
+          "ci95": [
+            0.1378471906477318,
+            0.1662345818297221
+          ]
+        },
+        "d2_8_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22619,
+          "dti": 0.10346446550153578,
+          "ci95": [
+            0.09210940220826873,
+            0.11375608124966502
+          ]
+        },
+        "h33_b2_foldfair_control": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22619,
+          "dti": 0.09481681738698564,
+          "ci95": [
+            0.08388707050229602,
+            0.10496661062076308
+          ]
+        },
+        "paired_delta_vs_d2_8": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22619,
+          "delta": 0.048620244401084964,
+          "ci95": [
+            0.03429609397541206,
+            0.06273010007263594
+          ]
+        },
+        "paired_delta_vs_h33_b2": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "withheld_positive_pixels": 22619,
+          "delta": 0.057267892515635105,
+          "ci95": [
+            0.043843233439998665,
+            0.07190410398367414
+          ]
+        }
+      }
+    ],
+    "leakage_canaries": {
+      "evidence_class": "HOLDOUT-FEATURE-CANARY",
+      "features_checked": 42,
+      "max_discriminative_auc": 0.848547516900676,
+      "stop_threshold": 0.9,
+      "any_leakage_flag": false
+    },
+    "uniqueness": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "rasters_checked": 28,
+      "scope": "28 hash-verified rasters across 16 buffedlizard55-lab repositories (12 pinned local + PR #6 H86-RMRB + 15 cross-repo primary champions GEMSDOE32..83); not an organizer-complete registry.",
+      "surface_worst_abs_spearman": 0.1365611917007443,
+      "final_worst_discriminating_abs_spearman": 0.05298296732022631,
+      "worst_discriminating_dot_overlap_3px": 0.7656384667725108,
+      "worst_discriminating_overlap_against": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "worst_modern_comparable_overlap_3px": 0.6342027670673622,
+      "overlap_vs_gemsdoe32_h33_b2": 0.30117940576094354,
+      "literal_firings_over_0_70": [
+        "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+        "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif"
+      ],
+      "discriminating_duplicates": 2,
+      "registry_complete": false
+    },
+    "validator": {
+      "evidence_class": "LOCAL-FORMAT-MEASUREMENT",
+      "status": "PASS (automated 15/15 shared validator + template format check; not organizer acceptance)",
+      "checks_passed": 15,
+      "checks_total": 15,
+      "no_nan_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "dots": 44090,
+      "min": 0.0,
+      "max": 1.0
+    }
   },
-  "validator_passed_local_format": true,
-  "registry_stop_required": true,
-  "submission_slots_used": 0
+  "current_review": {
+    "new_experiments_run": 0,
+    "new_candidate_generated": false,
+    "submission_slots_used": 0,
+    "lane_assignment_present": false,
+    "cached_feature_stack_present": false,
+    "preflight_status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "review_run_card": "evidence/session-review-run-card.json",
+    "literal_support_witness": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_literal_support_blocker": true,
+      "registry_complete": false,
+      "interpretation": "This is a literal positive-support measurement of one historical raster, not evidence of identical geological arrangement. Under the repository's current literal support rule it blocks any nonempty prediction; no exemption was used."
+    },
+    "blockers": [
+      "Literal overlap rule is unsatisfiable for any nonempty allowed dot set: a pinned historical registry surface covers every allowed cell. STOP before placement.",
+      "No single method paragraph/lane was specified in the supplied prompt.",
+      "Shared cached feature stack referenced upstream is not present; no replacement stack was built.",
+      "No complete, pinned cross-lane raster registry was supplied or reconstructed.",
+      "No feature-alone leakage canary or buffered segment hide-and-recover experiment was run.",
+      "No comparable current-best pooled HOLDOUT-DTI with paired spatial CI was established.",
+      "No new candidate surface or final dots were built in this protocol preflight; the inherited model artifact remains negative."
+    ]
+  },
+  "artifacts": [
+    {
+      "file": "downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.zip"
+    },
+    {
+      "file": "downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+      "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip"
+    },
+    {
+      "file": "downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+      "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip"
+    },
+    {
+      "file": "downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+      "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip"
+    },
+    {
+      "file": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+      "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip"
+    },
+    {
+      "file": "downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+      "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false,
+      "zip": "downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip"
+    }
+  ],
+  "organizer_confirmed_score": null,
+  "organizer_receipt_present": false,
+  "sources": {
+    "competition_problem": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "competition_data": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "usgs_3dep": "https://www.usgs.gov/3d-elevation-program",
+    "usgs_comcat": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "gdr_ingenious": "https://gdr.openei.org/submissions/1391"
+  },
+  "provenance": {
+    "run_card": "docs/evidence/h86b-gfco-run-card.json",
+    "lane_evidence": "docs/evidence/lane86b_results.json",
+    "protocol_run_card": "docs/evidence/protocol-run-card.json",
+    "session_review_run_card": "docs/evidence/session-review-run-card.json",
+    "registry_measurement": "docs/evidence/protocol-preflight.json",
+    "download_inventory": "docs/evidence/download-inventory.json",
+    "score_ledger": "registry/prior_scores.csv",
+    "scores_label": "No organizer-confirmed score is recorded; local model metrics are HOLDOUT-DTI and peer-site values are OWNER/USER-REPORTED or explicitly missing."
+  }
 }

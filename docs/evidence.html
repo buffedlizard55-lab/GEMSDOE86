@@ -1,76 +1,22 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Evidence · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html" style=color:#e8eefc>Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
-<h1>Evidence</h1>
-<p class="muted">Every number below is produced by a script in <code>scripts/</code> and written to
-<code>evidence/</code>. Nothing is typed by hand.</p>
-
-<h2>1. Instrument</h2>
-<div class="card">
-<p>Evaluator <code>gems57-pooled-hide-v2</code> (shared template, 11 modules verified against
-<code>TEMPLATE_SHA256.txt</code>). Whole 8-connected catalogue components withheld per label-blind
-eroded quadrant, 20 % of each quadrant, 3 px feature buffer, 12 px domain erosion, visible catalogue
-masked pixel-exactly. Pooled DTI with α = 0.2, β = 0.8, 300 m triangular kernel; 95 % CI from 1,000
-paired 20 km block-bootstrap draws.</p>
-<p><b>Reproduced size: 11,321 withheld positive pixels</b> — the same number the sibling GEMSDOE82
-reports for the same evaluator.</p>
-</div>
-
-<h2>2. Lane result and ablations</h2>
-<table>
-<tr><th>Configuration</th><th>Dots</th><th>HOLDOUT-DTI</th><th>95 % CI</th></tr>
-<tr><td><b>Lane</b> (44 features + line filter, 8 × K)</td><td>90,568</td><td><b>0.12324</b></td>
-<td>[0.10926, 0.13665]</td></tr>
-<tr><td>Ablation: cross-gradient (GMC) features removed</td><td>90,568</td><td>0.12313</td>
-<td>[0.10913, 0.13653]</td></tr>
-<tr><td>Ablation: line filter removed</td><td>90,568</td><td>0.07934</td>
-<td>[0.06467, 0.09472]</td></tr>
-<tr><td>Histogram-gradient-boosting learner (best ratio)</td><td>271,704</td><td>0.06218</td>
-<td>[0.05099, 0.07428]</td></tr>
-</table>
-<p><b>Read-out.</b> The line filter is the entire effect (+0.0439 at a
-fixed budget, disjoint CIs). The headline cross-gradient hypothesis is a null (+0.0001) and is reported
-as a negative result. A nonlinear learner is worse.</p>
-
-<h3>Budget sweep (lane)</h3>
-<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>4 × K</td><td>45,284</td><td>0.09568</td><td>[0.08380, 0.10694]</td></tr><tr><td>6 × K</td><td>67,926</td><td>0.11656</td><td>[0.10313, 0.13011]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.12324</td><td>[0.10926, 0.13665]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.11794</td><td>[0.10447, 0.13058]</td></tr><tr><td>12 × K</td><td>135,852</td><td>0.10577</td><td>[0.09326, 0.11802]</td></tr></table>
-<h3>Budget sweep (no line filter)</h3>
-<table><tr><th>Budget</th><th>Dots</th><th>DTI</th><th>95 % CI</th></tr><tr><td>6 × K</td><td>67,926</td><td>0.08555</td><td>[0.07050, 0.10144]</td></tr><tr><td>8 × K</td><td>90,568</td><td>0.07934</td><td>[0.06467, 0.09472]</td></tr><tr><td>10 × K</td><td>113,210</td><td>0.07563</td><td>[0.06121, 0.09121]</td></tr></table>
-
-<h2>3. The diagnostic that matters most</h2>
-<div class="card">
-<p>The fleet's best reported artifact (<code>h33-h33-2-b2-…-zeros</code>, 37,654 dots) scored on this
-same instrument:</p>
-<p class="kpi"><span></span></p>
-<div class="kpi">
-<div><span class="muted">HOLDOUT-DTI of that file</span><b>0.00370</b><span class="muted">95 % CI [0.00304, 0.00440]</span></div>
-<div><span class="muted">Its dots within 3 px of the catalogue</span><b>5.77 %</b><span class="muted">0 % within 1 px</span></div>
-<div><span class="muted">Its owner-reported live value</span><b>0.2708</b><span class="muted">base of the 0.2778 projection</span></div>
-</div>
-<p>Two orders of magnitude apart, in opposite directions. The instrument measures catalogue recovery;
-the prize measures new-fault discovery. <b>Any holdout number in this fleet, including this repo's
-0.1232, must be treated as a screening value only.</b></p>
-</div>
-
-<h2>4. Uniqueness</h2>
-<p>Registry: 812 unique git blobs from 68 owner repositories (index <span class="mono">73216d76…7c67</span>,
-built 2026-10-21T02:30Z), fetched object-by-object with blobless clones and hash-verified. 808 compared;
-4 unusable comparators are itemised in the audit JSON.</p>
-<p>Candidate: <b>90,568 dots</b>. <b>Worst Spearman against any prior: 0.0362</b>
-(limit 0.90) — rank correlation alone does not clear the lane. The literal overlap gate fails. Coverage above 70% of the allowed domain does not by itself prove impossibility for every candidate, because dots could be placed in the uncovered subset. Our separately hash-verified dense witness covers 100% and does prove the universal blocker. See <a href="evidence/protocol-preflight.json">the exact certificate</a>. Historical coverage diagnostics:</p>
-<table><tr><th>Blocking prior</th><th>Its positive cells</th><th>Halo coverage of domain</th><th>ρ vs this candidate</th></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/GEMSDOE48-unassigned-mass-20261006.tif</td><td>5,167,373</td><td>1.000</td><td>0.005</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/GEMSDOE48-H56-OWDS-B2xH33D-20261007-1f7b5a4</td><td>5,167,373</td><td>1.000</td><td>-0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h48-1-unassigned_yager_mTheta_inc</td><td>5,167,373</td><td>1.000</td><td>-0.014</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-plausibility-20261007-5b59e10</td><td>5,167,373</td><td>1.000</td><td>0.033</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h50-unassigned-mTheta-20261007-5b</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h54-unassigned-mtheta-dedc43dc016</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-mtheta-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.032</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h55-plausibility-055da9855353.tif</td><td>5,167,373</td><td>1.000</td><td>0.034</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-mtheta-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56-plausibility-9ec0d605c45b.tif</td><td>5,167,373</td><td>1.000</td><td>0.042</td></tr><tr><td class='mono'>GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-mtheta-126ca59c2801.tif</td><td>5,167,373</td><td>1.000</td><td>-0.011</td></tr></table>
-<p class="muted">Full list: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/evidence/saturation_certificate.json">saturation_certificate.json</a>.
-This is a recorded protocol conflict, not permission to ignore the gate. The artifact remains negative and not approved.</p>
-
-<h2>5. What a valid next experiment looks like</h2>
-<ol>
-<li>Build a <b>new-fault-like</b> holdout: faults added to the public catalogue after a fixed date, or the
-Qfaults ↔ INGENIOUS disagreement set (both layers are already restored in this repo).</li>
-<li>Re-rank every fleet artifact on that instrument and check that the ranking tracks the leaderboard.</li>
-<li>Then compare candidates and the visible-only incumbent on identical folds; never equate a catalogue-recovery score with a private new-fault score.</li>
-</ol>
-</main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html" style="color:#e8eefc">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span>
+<p>The values on this page are classified as HOLDOUT-DTI, HOLDOUT-FEATURE-CANARY, REGISTRY-MEASUREMENT, or LOCAL-FORMAT-MEASUREMENT. No organizer receipt exists.</p></section>
+<h1>Evidence ledger</h1>
+<h2>Spatial holdout (the existing H86B-GFCO run)</h2>
+<p>The model lane's three preregistered experiments were already run in the inherited evidence. This review ran no new model experiment. The evaluator pooled DTI terms after buffered whole-component/segment hide-and-recover splits, with visible catalogue masking; the evidence files carry fold details and evaluator hashes.</p>
+<table><thead><tr><th>Split</th><th>H86B-GFCO</th><th>d2.8 control</th><th>Paired delta vs d2.8</th></tr></thead><tbody><tr><td>buffered whole components</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 11321 withheld positives; 95% CI [0.0908, 0.1254]) 0.1078</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 11321 withheld positives; 95% CI [0.0790, 0.1035]) 0.0919</td><td><b>Paired HOLDOUT-DTI delta</b> (gems57-pooled-hide-v2; 11321 withheld positives; 95% CI [-0.0007, 0.0343]) 0.0159</td></tr><tr><td>segment hide — all components</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22641 withheld positives; 95% CI [0.1286, 0.1513]) 0.1396</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22641 withheld positives; 95% CI [0.0907, 0.1103]) 0.1011</td><td><b>Paired HOLDOUT-DTI delta</b> (gems57-pooled-hide-v2; 22641 withheld positives; 95% CI [0.0269, 0.0524]) 0.0385</td></tr><tr><td>segment hide — detached components</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22619 withheld positives; 95% CI [0.1378, 0.1662]) 0.1521</td><td><b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22619 withheld positives; 95% CI [0.0921, 0.1138]) 0.1035</td><td><b>Paired HOLDOUT-DTI delta</b> (gems57-pooled-hide-v2; 22619 withheld positives; 95% CI [0.0343, 0.0627]) 0.0486</td></tr></tbody></table>
+<p>The primary buffered whole-component paired confidence interval includes zero, so the best point estimate does not clear the preregistered promotion test. Segment-split results are descriptive HOLDOUT-DTI, not organizer scores.</p>
+<h2>Leakage canaries</h2>
+<p><b>HOLDOUT-FEATURE-CANARY</b> · 42 single-feature channels checked; maximum discriminative AUC 0.8485; stop threshold 0.90; any flag: False. This diagnostic is not DTI and does not prove geological validity.</p>
+<h2>Registry comparisons</h2>
+<p><b>REGISTRY-MEASUREMENT</b> · 28 hash-verified rasters in the lane's stated partial scope; registry completeness is false. Pre-placement surface worst absolute Spearman 0.1366; final-dot worst discriminating absolute Spearman 0.0530; worst forward 3-px overlap among discriminating comparisons 0.7656 against gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif. Limit: 0.70. The candidate also exceeds the literal overlap limit on the listed dense/legacy dot fields in the run card.</p>
+<p><b>REGISTRY-MEASUREMENT</b> · overlap against GEMSDOE32 H33-2-B2 0.3012; worst overlap against the stated modern/comparable subset 0.6342. These are scoped comparisons, not global uniqueness clearance.</p>
+<p><b>REGISTRY-MEASUREMENT</b> · the separately pinned historical positive-support witness has 0 uncovered allowed cells, SHA-256 <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>, and is positive on the complete allowed domain under the repository's literal support definition. This is a support/overlap blocker, not proof of identical geological arrangement; the evidence inventory is explicitly incomplete. No density exemption was applied.</p>
+<h2>Local file validator</h2>
+<p><b>LOCAL-FORMAT-MEASUREMENT</b> · 15/15 checks pass: no NaN inside the footprint; all values in [0,1]; single-band float32; CRS, shape, and transform match the sample grid. This is not organizer acceptance.</p>
+<h2>Download inventory — all negative</h2>
+<table><thead><tr><th>Research TIFF</th><th>SHA-256</th><th>Bundle</th><th>Decision</th></tr></thead><tbody><tr><td><a class="mono" href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif">gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif</a></td><td class="mono">94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3</td><td><a href="downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr><tr><td><a class="mono" href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif">gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif</a></td><td class="mono">0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9</td><td><a href="downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr><tr><td><a class="mono" href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif">gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif</a></td><td class="mono">5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5</td><td><a href="downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr><tr><td><a class="mono" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif">gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</a></td><td class="mono">cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</td><td><a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr><tr><td><a class="mono" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</a></td><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td><td><a href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr><tr><td><a class="mono" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif">gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif</a></td><td class="mono">897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116</td><td><a href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip">single-TIFF ZIP</a></td><td><span class="badge bad">DO NOT SUBMIT</span></td></tr></tbody></table>
+<p><a href="evidence/h86b-gfco-run-card.json">H86B-GFCO run card</a> · <a href="evidence/lane86b_results.json">Full lane results</a> · <a href="evidence/protocol-preflight.json">Literal support witness</a> · <a href="evidence/download-inventory.json">Exact download inventory</a></p></main>
+<footer>Local format validation is not organizer acceptance. No current file is authorized for submission.</footer></body></html>

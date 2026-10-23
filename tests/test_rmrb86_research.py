@@ -52,9 +52,11 @@ class ResearchTests(unittest.TestCase):
 
     def test_site_leads_with_unambiguous_decision_and_download(self):
         html = (ROOT / "docs/index.html").read_text()
-        self.assertIn("NOT SAFE TO SUBMIT", html)
+        card = json.loads((ROOT / "docs/evidence/h86b-gfco-run-card.json").read_text())
+        self.assertIn("DO NOT SUBMIT", html)
+        self.assertIn("not safe to submit", html)
         self.assertIn("SAFE TO DOWNLOAD FOR AUDIT", html)
-        self.assertIn("DO-NOT-SUBMIT.tif", html)
+        self.assertIn(Path(card["submission_file"]).name, html)
 
 
 if __name__ == "__main__":

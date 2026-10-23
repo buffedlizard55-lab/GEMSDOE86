@@ -1,15 +1,10 @@
 # Agent instructions (GEMSDOE86)
 
-1. Read `PROMPT.md` and `README.md` before any change. The standing rules are the parallel-run
-   protocol (lane, reuse, evidence class, leakage canary, run card, budget).
-2. Never fork `vendor/template66/gems57/*`. If a shared tool is wrong, fix it upstream and report it.
-3. Every number on the site comes from a file in `evidence/` produced by a script in `scripts/`.
-   Run `python scripts/build_site.py` after regenerating evidence — never hand-edit HTML numbers.
-4. Never label a projection as a score. `ORGANIZER-CONFIRMED` requires a submission-page receipt.
-5. `data/bridge/*.tif` are hash-pinned; `scripts/restore_data.py` verifies them and aborts on mismatch.
-   `.cache/` holds the 419 MB feature stack and is never committed.
-6. Before publishing a candidate: `pytest -q`, `scripts/audit_uniqueness.py`, and confirm the
-   saturation certificate is current. A file that fails the format gate must never be linked as
-   submittable.
-7. Report negative results. The GMC hypothesis in this repo is negative and must stay documented as
-   such.
+1. Read `PROMPT.md`, the current-status section at the top of `README.md`, and the canonical run cards before any change. The full standing request is archived in `README.md` and `research/OWNER_PROMPT.md`.
+2. Stay inside the session's preregistered method lane and experiment/time cap. If the prompt has no assigned method paragraph, log that irregularity; do not silently claim a lane assignment.
+3. Never fork `vendor/template66/gems57/*`. Use the pinned shared evaluator, holdout, writer, validator, and uniqueness implementation. If a shared-tool defect is established, fix it once in the template and report it; do not keep a private fork.
+4. Current Pages figures and prior-site tables are generated from evidence JSON and `registry/prior_scores.csv`. Edit source evidence/records, then run `python scripts/build_site.py`; do not hand-edit generated numeric HTML.
+5. The competition TIFFs under `docs/downloads/` are research artifacts unless an explicit run card and a separate selector authorize submission. Keep `DO NOT SUBMIT` visible whenever a gate fails. `ORGANIZER-CONFIRMED` requires an actual submission-page receipt.
+6. `data/bridge/*.tif` are hash-pinned. `.cache/` and restored large owner mirrors are not committed. A matching hash proves mirror integrity, not organizer authentication.
+7. Before publishing changes, run `.venv/bin/python -m pytest -q`, `python scripts/audit.py`, `python scripts/audit_h86b.py`, `python scripts/audit_rmrb86.py`, `python scripts/check_site.py`, and `python scripts/build_site.py`. Confirm the shared-template pins and `git diff --check`.
+8. Report negative results and limitations. The current H86B-GFCO and RMRB lanes are negative; do not relabel their HOLDOUT-DTI or registry measurements as leaderboard scores.

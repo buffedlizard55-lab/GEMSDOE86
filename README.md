@@ -1,63 +1,40 @@
-# GEMSDOE86 — evidence-gated fault predictions (concurrent research lanes)
+# GEMSDOE86 — evidence-gated fault predictions
 
-## DO NOT SUBMIT — literal uniqueness protocol failed
+## Current decision — DO NOT SUBMIT
 
-All six research TIFFs remain downloadable for reproducibility, and **none is approved to spend a weekly DrivenData slot automatically**.
+**There is no submission-ready TIF in this repository.** Existing rasters are downloadable only for audit/reproducibility; all six are explicitly negative and none is cleared for a weekly competition slot.
 
-### Latest Lane: `H86B-GFCO` (Highest Spatial Holdout Across All 6 Lanes — Format-Valid `15/15`, Fail-Closed `DO NOT SUBMIT`)
+### Latest previously evaluated artifact: H86B-GFCO
 
-- **GeoTIFF Download:** [`docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif) (`158,348` B · SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`) · **Single-TIF ZIP:** [`…-zeros.zip`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip) · **Receipt:** [`…-zeros.json`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json)
-- **Canonical Run Card:** [`docs/evidence/h86b-gfco-run-card.json`](docs/evidence/h86b-gfco-run-card.json) · **Full Experiment Evidence:** [`docs/evidence/lane86b_results.json`](docs/evidence/lane86b_results.json) · **Cross-Lane Uniqueness:** [`docs/evidence/h86b_crosslane_uniqueness.json`](docs/evidence/h86b_crosslane_uniqueness.json) · **PhD Scientific Review:** [`research/H86B_GFCO_REVIEW.md`](research/H86B_GFCO_REVIEW.md) · **3-Pass Verification Log:** [`research/H86B_GFCO_VERIFICATION.md`](research/H86B_GFCO_VERIFICATION.md)
-- **Submission Name / Note (`92/140` chars):** `gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b` · `H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros`
-- **Automated Gate Summary (`3/3` experiments run; `0` slots spent):**
-  - **Format (`15/15` PASS):** Single-band `float32`, `[0, 1]` guaranteed (`min=0.0, max=1.0`), `0 NaN/Inf/sentinels`, `EPSG:32611`, `3730×3292` (`100 m`), `0` on-catalogue dots (`44,090` binary dots, `min_nn >= 2.828 px`). Eliminates `"Predicted values must be in range [0, 1]"` by construction.
-  - **Leakage Canaries (`42/42` PASS):** `38` label-free GDR-1391 geothermometer-disequilibrium, 3D MT, TMI-vs-150m contact-offset, basement/strain, 1 m LiDAR scarplet, and Huber topo-deconfounded radiometric planes (`max disc AUC = 0.6486`) + `4` strictly visible-only kinematic fields (`max disc AUC = 0.8485 <= 0.90`).
-  - **Spatial Holdout (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`):**
-    - `segment_all` (`22,641` pos): **`0.1396 [0.1286, 0.1513]`** vs `d2.8 = 0.1011` (`Δ = +0.0385 [+0.0269, +0.0524]`, **+38.1%**).
-    - `segment_detached` (`22,619` pos): **`0.1521 [0.1378, 0.1662]`** vs `d2.8 = 0.1035` (`Δ = +0.0486 [+0.0343, +0.0627]`, **+47.0%**).
-    - `buffered_whole_components` (`11,321` pos, whole 8-connected components + 3-px buffer): **`0.1078 [0.0908, 0.1254]`** vs `H33-2-B2 = 0.0961` (**+12.1%**) & `d2.8 = 0.0919` (**+17.3%**), paired `Δ vs d2.8 = +0.0159 [-0.0007, +0.0343]`.
-  - **Uniqueness & Binding Stop (`verdict: "negative"`, `approved_for_weekly_slot: false`):** Pre-placement surface `|ρ| <= 0.1366`, final dots `|ρ| <= 0.0570`, **`0.3012`** 3-px overlap vs `GEMSDOE32 H33-2-B2`, and **`<= 0.6342`** across all `25` comparable/modern candidates across `16` repos (`GEMSDOE32..86`), **but** literal `> 0.70` forward 3-px overlap fires against dense legacy `13gems` (`0.9988`), `gems10-h25` (`0.7656`), `gems10-h28` (`0.7170`), and the dense `100%`-footprint witness, and whole-component paired CI narrowly straddles zero (`[-0.0007, +0.0343]`). Reproduce: `.venv/bin/python scripts/restore_h86b_data.py && .venv/bin/python scripts/h86b_features.py && .venv/bin/python scripts/run_lane86b.py && .venv/bin/python scripts/audit_h86b.py`.
+- **Audit-only GeoTIFF:** [Download H86B-GFCO TIFF — DO NOT SUBMIT](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif)
+- **Audit-only one-TIFF ZIP:** [Download H86B-GFCO ZIP — DO NOT SUBMIT](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip)
+- **Run card:** [H86B-GFCO JSON](docs/evidence/h86b-gfco-run-card.json) · [full experiment evidence](docs/evidence/lane86b_results.json)
+- **Submission name:** `gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b`
+- **Note (91/140 characters):** `H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros`
+- **Raster SHA-256:** `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`
+- **Local format measurement:** 15/15 checks pass; one float32 band, finite [0,1] values, matching CRS/shape/transform. This is not organizer acceptance.
+- **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI), buffered whole-component split: `0.1078 [0.0908, 0.1254]`. The paired **HOLDOUT-DTI delta** against d2.8 is `+0.0159 [-0.0007, +0.0343]`; against fold-fair H33-2-B2 it is `+0.0117 [-0.0052, +0.0303]`. Both paired intervals include zero, so the primary promotion gate fails.
+- **Registry-measurement:** the H86B candidate has a 3-pixel forward-overlap above the `0.70` threshold against three dense/legacy dot fields. Surface and final-dot correlation/overlap details and incomplete scope are in the run card. It is not uniqueness-cleared.
+- **Leakage diagnostic:** 42 feature-alone canaries; maximum discriminative AUC `0.8485` against the `0.90` alarm threshold. This is not a score or evidence of geological truth.
 
----
+This artifact was generated by an earlier lane; **this review generated no new TIF**. The supplied prompt has no standalone assigned method paragraph, the template's shared cached feature stack is absent, and the earlier H86B lane used its preregistered three-experiment budget. No new model experiment or weekly submission slot was used. See the [2026-10-23 three-pass review](research/SESSION_REVIEW_2026-10-23.md) and the [current review JSON run card](docs/evidence/session-review-run-card.json).
 
-All five earlier inherited TIFFs also remain downloadable for reproducibility, and **none is approved**. The shared checker returns `unique=false / stop_required=true`; a new hash-verified dense witness covers every allowed cell, proving that any nonempty prediction would fail the literal overlap rule. No exception is authorized. [Automated proof](docs/evidence/protocol-preflight.json) · [Scientific critique](research/REVIEW.md) · [Separate protocol run card](docs/evidence/protocol-run-card.json).
+**Quick links:** [Project decision/download page](docs/index.html) · [Executive submission procedure](docs/executive-summary.html) · [Ranked next hypotheses](docs/hypotheses.html) · [Evidence ledger](docs/evidence.html) · [Sources and prior-score ledger](docs/sources.html) · [Machine-readable status feed](docs/data/summary.json)
 
+## Standing prompt and review rules
 
-**Read [`PROMPT.md`](PROMPT.md) first: it is the condensed standing project brief; full original request is archived below.**
+Read `PROMPT.md`, this current-status section, and the canonical run cards before every project change. The full owner request is archived in this README below and in [`research/OWNER_PROMPT.md`](research/OWNER_PROMPT.md). The current task adds these non-negotiable requirements:
 
-**Published site (GitHub Pages, source = `main` / `docs`): <https://buffedlizard55-lab.github.io/GEMSDOE86/>**
+1. Before a new model run, rank three to five distinct fault hypotheses by qualitative expected DTI potential and implementation cost. Name layers, physical signature, missing-fault rationale, non-fault mimic, difference from existing code, data provenance, and availability. Do not invent a score projection.
+2. Follow one assigned method lane; use the template's cached stack and unmodified shared holdout/evaluator/writer; keep every catalogue-derived feature fold-local and visible-fault-only. Stop at three experiments or two hours.
+3. Label results as HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI, or ORGANIZER-CONFIRMED only from a submission-page receipt. Registry and format figures are measurements, not scores.
+4. Check surface rank correlation before placement and final-dot overlap after placement. Preserve the literal thresholds; a failed candidate is a negative deliverable, not a submission recommendation.
+5. A separate selector—not the model runner—decides whether a promoted artifact may consume a weekly slot after checking current quota. Never auto-submit.
+6. Keep Arena's stated Core Values—Maximize P(Win) and Own the Outcome—central to decisions, with reproducible evidence and honest negative results.
 
-<p align="center">
-  <a href="docs/index.html"><b>▶ Open the project site (download page)</b></a> ·
-  <a href="docs/executive-summary.html">Executive summary: submission is blocked</a> ·
-  <a href="evidence/run_card.json">Run card (JSON)</a>
-</p>
+The requested 2026-10-23 addendum is reflected in [`research/next_hypotheses.json`](research/next_hypotheses.json), [`registry/prior_scores.csv`](registry/prior_scores.csv), and the review linked above. A blank score in the owner-supplied ledger means no score was provided, not that no score exists.
 
----
-
-## 1. The deliverable, immediately
-
-| | |
-|---|---|
-| **Submission GeoTIFF** | [`docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif`](docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif) |
-| **ZIP (single GeoTIFF inside)** | [`…-zeros.zip`](docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip) |
-| **SHA-256 of the `.tif`** | `0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9` |
-| **Size / dots** | `195,987` bytes · `90,568` positive cells (binary `0/1`), one dot per 3 × 3 px tile |
-| **Submission name (≤140)** | `gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros` |
-| **Note (≤140, 107 chars)** | `GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]` |
-| **Format gate** | **15 / 15 automated checks pass** — single band, `float32`, 3730 × 3292, EPSG:32611, transform identical to `sample_submission.tif`, **0 NaN / 0 Inf anywhere**, min `0.0`, max `1.0`, zero positive mass outside the footprint, zero positive mass on the mapped catalogue ([receipt](docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.json)) |
-| **Uniqueness gate** | **not uniqueness-cleared** (rank diagnostic only): worst Spearman vs any of the 808 usable priors = **0.036** (limit 0.90). The literal 3 px-dot rule is met against 764 of 808 priors; the 44 exceptions are priors whose own 3 px halo already covers ≥ 35 % of the emittable domain, 41 of which cover **> 70 %** — this does not by itself prove universal blockage; the separately pinned 100%-coverage witness does (proof: [`evidence/saturation_certificate.json`](evidence/saturation_certificate.json), itemised in [`evidence/uniqueness_flagged_priors.json`](evidence/uniqueness_flagged_priors.json)) |
-
-**Traffic-light status of every file produced here**
-
-| File | Format | Unique | Verdict |
-|---|---|---|---|
-| `gems86-gmc-linepost-offcat-…-zeros.tif` | PASS 15/15 | unique arrangement (max \|ρ\| 0.036); literal dot rule blocked only by carpet priors | 🔴 **DO NOT SUBMIT** (format-valid, but not cleared by the mandatory literal gate) |
-| `gems86-gmc-linepost-90568d-…-zeros.tif` (catalogue-following variant) | PASS 15/15 | FAIL — 82 % of its dots sit within 3 px of the `58GEMSDOE` proximity lane | 🔴 **DO NOT SUBMIT — duplicate lane** (kept only as the ablation control) |
-
-The ZIP contains exactly one GeoTIFF and is verified byte-for-byte on write; the shared writer
-(`vendor/template66/gems57/submission_writer.py`, SHA-256 pinned) refuses to emit anything that fails
-the on-disk validator, and it never overwrites.
+**Published GitHub Pages site:** <https://buffedlizard55-lab.github.io/GEMSDOE86/>. The first page prominently says whether the current artifact is safe to submit; today it says **DO NOT SUBMIT**.
 
 ---
 
@@ -69,39 +46,39 @@ score**: the candidate's own audit file says `"UNSCORED"` and `"predicted_leader
 within 2 px of the mapped catalogue deleted and zeros written outside the footprint. That recipe is a
 correct reading of the official metric — with `α = 0.2`, `β = 0.8`, one dot costs at most `0.2 × (1 −
 k)` while one recovered truth pixel is worth `0.8`, so the index is **recall-dominated** and dense-but-
-thinned dot fields beat soft surfaces. It is *not* evidence of a 0.2778 score. The **live public
-leaderboard today is topped by `0.4413` (xiaofanhu), with ranks 1–23 all above `0.3167`**
-([leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)), so a
-`0.2778` submission would not currently be in the top 23. This repo does **not** claim to beat
-`0.4413` or `0.2778`; §8 explains exactly what would have to be true to do so, and §9 lists the
-experiment that must be run first.
+thinned dot fields beat soft surfaces. It is *not* evidence of a 0.2778 score. The prompt supplies conflicting historical leaderboard figures (`0.3195` and `0.4413`) and a
+`0.2778` H33 result claim. These are **OWNER/USER-REPORTED (unverified)** in this checkout; no
+submission-page receipt is present, and the H33 audit says `UNSCORED` with a projection. The official
+leaderboard link is retained for manual review, but it was not freshly fetched in this review. This
+repo therefore makes no claim to beat any of those figures.
 
 ---
 
-## 3. What is actually verified in this checkout
+## 3. What this review re-verified in the checkout
 
-Everything below was re-derived in this session from bytes, not from prose.
+This section reflects checks actually run on 2026-10-23. Historical external-source claims elsewhere in this README are not fresh fetches.
 
 | Claim | How it was verified | Result |
 |---|---|---|
-| Competition grid is `3730 × 3292`, EPSG:32611, 100 m, origin `(243350, 4508550)` | opened the PINNED rasters with `rasterio` | matches the official submission spec ([problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)) |
-| `training_features.tif` = 19 bands, 418,912,844 B | reassembled from five published parts; `sha256 = 4371c82e…23bc5` | equals the pin in `GEMSDOE80/scripts/restore_data.py` |
-| `existing_faults.tif` (the public catalogue; `labels.tif` is byte-identical) | `sha256 = 7ba308cc…4093` | equals the pin in `GEMSDOE32/data/restore_receipt.json` |
-| `sample_submission.tif` | `sha256 = 2176d08e…5cbc`, 5,167,373 finite cells = the scored footprint | equals the pin |
-| Public leaderboard | fetched 2026-10-22 | #1 `0.4413`, #2 `0.3904`, #23 `0.3167` |
-| DrivenData data tab is login-gated | HTTP redirect to `/accounts/login` | confirmed (no credentials are used or requested) |
+| Shared evaluator/writer hashes | `scripts/audit.py`, `scripts/audit_h86b.py`, and `scripts/audit_rmrb86.py` compare the vendored files with `research/template_pin.json` | all pinned shared-tool hashes matched |
+| H86B-GFCO TIFF identity and ZIP | `.venv/bin/python scripts/audit_h86b.py` rechecked run-card SHA, serialized TIFF, and one-TIFF ZIP | local integrity and format checks pass; model verdict remains negative |
+| RMRB-86 TIFF identity and ZIP | `.venv/bin/python scripts/audit_rmrb86.py` | local integrity and format checks pass; model verdict remains negative |
+| Sample grid, existing-fault mirror, and dense witness | restored with `scripts/restore_protocol_data.py --include-registry`; `scripts/protocol_preflight.py` independently checked hashes and grid metadata | owner-mirror integrity verified; not organizer-authenticated |
+| Shared cached feature stack | checked the checkout and the recorded cache receipt | cache absent; no replacement stack was built |
+| Public leaderboard and official competition/USGS pages | no fresh request in this review; see linked primary sources | current live values and page contents are not asserted here |
+| Tests and local site | `.venv/bin/python -m pytest -q`, audits, `scripts/check_site.py` | see `research/SESSION_REVIEW_2026-10-23.md` |
 
-`scripts/restore_data.py` reproduces every input from scratch in ~30 s and aborts on any hash
-mismatch (run and verified in this session; receipt in `evidence/data_restore_receipt.json`).
+The old `scripts/restore_data.py`, `scripts/download_competition_data.sh`, and `scripts/prepare_data.py` paths mentioned in earlier prompt iterations are not present in this checkout. The available small-input restorer verifies owner mirrors; it does not fetch an authenticated organizer dataset or recreate the missing cached feature stack.
 
 ---
 
 ## 4. Why `0.2778` — the forensic answer, line by line
 
-The number is attributed to `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` on
-[GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html). The artifact and its
-audit file were downloaded and inspected (`sha256 c55bafc4…6fa9`, `37,654` positive cells,
-`0.0/1.0`, `0 NaN`, `0` pixels on the catalogue).
+The user attributes the OWNER/USER-REPORTED value to `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` on
+[GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html). An archived upstream audit in
+`research/upstream/h33-best-audit.json` records the artifact SHA, its sparse construction, and the
+`UNSCORED` / projected status. That upstream site was not freshly fetched in this review; the file
+properties below are inherited audit facts, not a new organizer receipt.
 
 1. **Evidence class.** The audit file (`…-e5eb6e7e-audit.json`) contains
    `"submission_note_zeros": "… projected live 0.2747; UNSCORED | id see receipt"` and
@@ -119,10 +96,11 @@ audit file were downloaded and inspected (`sha256 c55bafc4…6fa9`, `37,654` pos
    stray dot.** Hence: maximise coverage, thin redundant dots to the 3 px kernel radius, and remove
    dots whose only neighbours are mapped traces the organiser masks out of scoring.
 4. **What that does *not* prove.** It does not prove the live score was `0.2778`, and it does not
-   prove H33 generalises: on this repo's shared instrument the same file scores
-   **HOLDOUT-DTI = 0.00370 (95 % CI [0.00304, 0.00440])** against 11,321 withheld catalogue pixels —
-   because it was built to *avoid* the catalogue, which is exactly what the hide-and-recover
-   instrument rewards. See §8; this single number is the most important diagnostic in the repo.
+   establish generalization to faults absent from the public catalogue. Earlier site content contains
+   catalogue-hidden diagnostics produced by other instruments; they are not substituted for the
+   current shared `gems57-pooled-hide-v2` results. The current canonical HOLDOUT-DTI records and
+   their withheld-positive counts / confidence intervals are on the generated [evidence page](docs/evidence.html)
+   and in the run cards.
 
 **Irregularity (verified).** The published ZIP for that candidate is a **216-byte archive whose only
 entry is 0 bytes** (`zipfile` reports `file_size = 0`). Anyone who downloaded the ZIP rather than the
@@ -134,7 +112,14 @@ that no receipt exists. The artifact's own `"UNSCORED"` field settles it in favo
 
 ---
 
-## 5. Five candidate hypotheses (ranked before implementation)
+## Historical lane archive — prior GMC research, not the current decision
+
+The following §§5–14 preserve results and plans from an earlier GMC lane and concurrent research sessions. They are historical context, not current status, not the assigned method for this review, and not submission authorization. Some references to budgets, leaderboard values, input availability, or site content predate the current evidence reconciliation. Use the current status and generated pages at the top of this README for present decisions; use canonical run cards for current metrics. The requested three-pass review is recorded in [`research/SESSION_REVIEW_2026-10-23.md`](research/SESSION_REVIEW_2026-10-23.md).
+
+<details>
+<summary>Expand the historical GMC lane and prior-session notes (not current evidence or authorization)</summary>
+
+## 5. Historical candidate hypotheses for the prior GMC lane
 
 Each names the layers, the physical transform, why it should find a fault that is *missing* from the
 USGS/INGENIOUS catalogue rather than one already in it, and how it differs from what the fleet has
@@ -261,10 +246,7 @@ changes the arrangement (worst ρ 0.036 vs 0.374 for the prox variant).
    INGENIOUS disagreement set (`gdr_qfaults_traces.csv`, already restored here) as a "known-unknown"
    test set. Until that exists, no holdout number in this fleet can be compared with a leaderboard
    number.
-2. **Re-run the uniqueness gate with a satisfiability guard.** The literal 3 px-dot rule is unusable
-   while saturated surfaces and lattices are in the registry. Adopt: *informative priors only*
-   (halo < 70 % of the domain), plus a `saturation_certificate` for the rest. The certificate is
-   already computed here.
+2. **Do not relax the uniqueness gate.** A prior-session draft proposed an “informative priors only” exception for dense surfaces and lattices; that proposal was not adopted and conflicts with the current instruction to preserve literal thresholds. Keep the existing rule unchanged until the protocol owner explicitly resolves how dense continuous surfaces are treated. The one-witness certificate remains a blocker, not an exemption.
 3. **Then, and only then, model work.** With a valid instrument, the highest-value next candidates are
    H3 (basement-hinge curvature) and H4 (spectral Curie depth), both of which target *blind* structures
    rather than catalogue continuations — the only class that can beat a strong catalogue-following
@@ -274,27 +256,30 @@ changes the arrangement (worst ρ 0.036 vs 0.374 for the prox variant).
 
 ---
 
-## 10. Reproduce in four commands
+## 10. Reproduce the current audits and dashboard (no new model run)
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install numpy scipy scikit-learn rasterio
-.venv/bin/python scripts/restore_data.py --with-external      # SHA-256-verified inputs (~30 s)
-.venv/bin/python scripts/run_lane.py --arms lane,no_gmc --ratios 4,6,8,10,12   # holdout + ablations
-.venv/bin/python scripts/build_submission.py --suppress-px 10  # validated GeoTIFF + ZIP + receipt
-.venv/bin/python scripts/audit_uniqueness.py --candidate docs/downloads/<file>.tif
+python -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/restore_protocol_data.py --include-registry
+.venv/bin/python scripts/protocol_preflight.py
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/build_site.py  # generates pages, then checks links/downloads
 ```
-`pytest -q` runs the metric against a brute-force oracle, the writer round-trip, the shipped-raster
-validator and the instrument-size check. Every number quoted in this README is written to
-`evidence/` by those commands.
+
+The restorer retrieves only explicitly pinned owner-mirror inputs and the registry witness; matching
+hashes are not organizer authentication. The current feature cache and assigned method paragraph are
+missing, so this sequence intentionally does **not** run model experiments or generate a new TIFF.
+The historical `restore_data.py`, `run_lane.py`, `build_submission.py`, and `audit_uniqueness.py`
+commands in earlier revisions are not the current release procedure.
 
 ---
 
-## 11. Sources (all fetched and checked in this session)
+## 11. Historical source register (links retained; not freshly fetched in the current review)
 
 | Source | What it establishes | Link |
 |---|---|---|
 | DrivenData GEMS problem description | task, metric (`α=0.2, β=0.8, R=300 m`), submission format, ground truth = expert-mapped faults **not** in the public catalogue | [page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) |
-| DrivenData leaderboard | #1 `0.4413`, #2 `0.3904`, #23 `0.3167` (fetched 2026-10-22) | [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) |
+| DrivenData leaderboard | Primary link for manual review; historical values quoted elsewhere are owner/user-reported in this checkout, not re-fetched here | [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) |
 | DrivenData data tab | login-gated download | [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) |
 | Reference solution | baseline approach | [GitHub](https://github.com/drivendataorg/gems-prize-reference-solution) |
 | USGS GeoDAWN | airborne magnetic/radiometric survey context | [USGS](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) |
@@ -304,52 +289,42 @@ validator and the instrument-size check. Every number quoted in this README is w
 | Tversky index | metric family | [Wikipedia](https://en.wikipedia.org/wiki/Tversky_index) |
 | Gallardo & Meju (2003) | cross-gradient joint-inversion constraint used by H1 | *Geophysics* 68(6), doi:10.1190/1.1635047 |
 
+These links are retained for provenance and manual review. The external DrivenData, USGS, GBCGE, and NLR pages were not freshly fetched in the 2026-10-23 review; the sandbox outbound allowlist blocks those hosts. Do not infer current external page contents from this table.
+
 Full machine-readable register: [`evidence/sources.json`](evidence/sources.json).
 
 ---
 
-## 12. Irregularities flagged (all verified, none fixed by assumption)
+## 12. Irregularities and release blockers (evidence scoped)
 
-1. `0.2778` is an unverified user-reported result. The stored estimate is a different number (`"UNSCORED"`, `predicted_leaderboard_dti 0.27467`), not an organizer receipt; two sibling READMEs assert the opposite evidence class.
-2. The published ZIP for that candidate contains a **0-byte** file (216-byte archive) — an unusable
-   deliverable.
-3. The fleet's holdout instrument scores the fleet's best artifact at **0.0037** while the same
-   artifact is reported at `0.2708` live → the instrument does not rank methods the way the prize does.
-4. The separately pinned witness covers every allowed cell and proves a universal literal-overlap blocker. Greater-than-70% domain coverage alone would not be a universal proof.
-5. `GEMSDOE82`'s README describes the fleet's `d2.8` control as "0.2600 live control" and calls other
-   numbers "organizer-confirmed" without receipts; no receipt was found in any inspected repository.
-6. The competition spec says cells *outside the bounds* may be null/NaN, but the upload form rejects
-   values outside `[0, 1]` (the user's observed error). This repo writes `0.0` outside the footprint
-   and documents the deviation.
-7. Four of the 812 registry rasters cannot be used as comparators (CRS/transform mismatch, band-count
-   mismatch, or a format smoke-test file); they are itemised in the audit JSON.
+1. `0.2778` remains an unverified owner/user-reported H33 value. The archived artifact audit labels its estimate `UNSCORED` / projected; it is not a submission-page receipt. Earlier sibling pages reportedly used conflicting evidence labels.
+2. An earlier repository review reported a zero-byte ZIP entry for that H33 artifact. That archive was not re-fetched during this review; do not use the old bundle as a submission.
+3. Current H86B-GFCO point estimates beat controls on all three inherited holdouts, but its primary paired whole-component intervals cross zero. This is HOLDOUT-DTI, not a projection of organizer score.
+4. The separately pinned witness covers every allowed cell and is a blocker under the literal positive-support rule. Greater-than-70% coverage alone would not establish a universal blocker; the witness's measured uncovered count is zero.
+5. Earlier repository reviews reported that GEMSDOE82 used “ORGANIZER-CONFIRMED” language without an attached receipt. No organizer receipt is present for the current artifact in this checkout.
+6. The user previously reported a form error for values outside `[0,1]`; the original rejected bytes were not provided, so its cause is unknown. The current H86B TIFF passes local `[0,1]` validation, which is not organizer acceptance.
+7. The current H86B audit compared 28 hash-verified rasters in an incomplete local/cross-repository scope. This is not an organizer-complete registry, and a modern-comparable subset cannot override literal overlaps.
 
 ---
 
-## 13. Limitations
+## 13. Current limitations
 
-* No DrivenData account is used, so no live submission was made and no live score exists.
-* The three competition rasters are hash-identical to the fleet's published mirrors; that is byte
-  identity with those mirrors, not independent authentication of the organiser's originals.
-* 3 GB RAM / 2 vCPU in this environment: the 419 MB feature stack is memory-mapped, and only one arm is
-  held in memory at a time.
-* The GMC hypothesis is **negative at σ = 4 px**; other scales were not swept beyond an untested
-  10 px variant to stay inside the compute budget.
-* The protocol's 3-experiment / 2-hour budget was exceeded (this session ran the feature arms, the
-  budget sweep, the learner comparison, the line-filter ablation and the uniqueness repair). The
-  overrun is reported rather than hidden.
+* No organizer submission-page receipt or confirmed score is present; no live submission was made in this review.
+* Restored TIFF mirrors match repository hashes, but they are owner-supplied mirrors, not independently authenticated organizer/agency downloads.
+* The shared feature cache and assigned method paragraph are absent; no experiment was run and the new shortlist remains unvalidated.
+* The complete cross-repository registry is not available. The H86B uniqueness comparison is explicitly scoped and cannot establish global novelty.
+* External DrivenData, USGS, and GDR sites are outside the sandbox's outbound allowlist and were not fetched in this review.
+* The inherited literal-support preflight conflicts with the two-phase continuous-surface interpretation; no threshold or gate was modified.
 
 ---
 
-## 14. Parallel lane in this same repository (not audited by the receipts above)
+## 14. Separate RMRB lane (audited; negative)
 
-`main` also carries a second, independently produced lane from a concurrent session
-(`gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif` under `docs/downloads/`, with its own
-`research/`, `scripts/run_lane86.py` and `docs/evidence/`). That artifact was **not** produced, validated
-or uniqueness-audited by the pipeline documented here: its SHA-256, format checks and registry
-comparison are its own, and no number in §1–§13 refers to it. It is left in the tree so the parallel-run
-protocol's "negative results and sibling lanes are deliverables" rule is honoured; it must be evaluated
-with `scripts/audit_uniqueness.py --candidate <its path>` before anyone treats it as submittable.
+The RMRB lane was produced independently and has its own research code and evidence. Its TIFF was
+re-audited on 2026-10-23 with `scripts/audit_rmrb86.py`: the local format validator passes, but the
+verdict is negative and `safe_to_submit` is false. Its score/receipt is not an organizer-confirmed
+result. It is not the latest lane and is not authorized for submission; see the RMRB run card and the
+current [machine-readable dashboard](docs/data/summary.json).
 
 
 ## Protocol audit added by this session
@@ -357,6 +332,8 @@ with `scripts/audit_uniqueness.py --candidate <its path>` before anyone treats i
 Read `research/VERIFICATION.md`. Reproduce the small-input proof with `python scripts/restore_protocol_data.py --include-registry`, then `python scripts/session_preflight.py` and `python scripts/check_registry_candidate.py`. The existing main downloader and model code from concurrent work are preserved. The archived metrics are not a compliant prospective improvement claim for the off-catalogue file. Both scientific run cards now remain negative; any prior promotion wording is historical, not authorization.
 
 A further concurrent merge (PR #9) added the H86-1 straight-edge corroboration lane. Its negative file and dedicated model card are preserved. It does not create a new submission approval, and its CLI now observes the universal preflight stop. [H86-1 model card](docs/evidence/h86_run_card.json). No new model was rerun by this protocol session.
+
+</details>
 
 ## Complete starting request archive
 
