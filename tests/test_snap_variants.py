@@ -38,6 +38,15 @@ def context():
     return dict(footprint=footprint, ref=ref, catalogue=catalogue, parent=parent)
 
 
+def _need_rasters(report):
+    """Release rasters are gitignored (data-use policy); skip when they are absent in CI."""
+    for _, nan_name, zeros_name in _files(report):
+        for name in (nan_name, zeros_name):
+            if not (RELEASES / name).is_file():
+                pytest.skip("release rasters are gitignored; rebuild with "
+                            "scripts/build_snap_variants.py")
+
+
 def _files(report):
     for key, v in report["variants"].items():
         yield key, v["files"]["nan_outside"], v["files"]["zeros_outside"]
@@ -61,6 +70,7 @@ def test_parent_hash_is_not_reused_by_any_release(report):
 
 
 def test_every_release_passes_the_brief_gates_on_disk(report, context):
+    _need_rasters(report)
     for _, nan_name, zeros_name in _files(report):
         key = next(k for k, v in report["variants"].items() if v["files"]["nan_outside"] == nan_name)
         for name, nan_outside in ((nan_name, True), (zeros_name, False)):
@@ -99,6 +109,7 @@ def test_dot_set_invariants_from_the_report(report):
 
 
 def test_twins_share_the_dot_set(context, report):
+    _need_rasters(report)
     fp = context["footprint"]
     for _, nan_name, zeros_name in _files(report):
         with rasterio.open(RELEASES / nan_name) as a, rasterio.open(RELEASES / zeros_name) as b:
