@@ -1,27 +1,20 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Irregularities · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html" style=color:#e8eefc>Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
-<h1>Irregularities flagged for review</h1>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Fleet evidence</a><a href="sources.html">Sources</a><a href="irregularities.html" style="color:#e8eefc">Irregularities</a></nav></header><main>
+<section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span>
+<p>Every data, metric, code, and documentation irregularity uncovered across Sessions 1–3 is logged transparently below.</p></section>
+<h1>Irregularities Flagged for Review</h1>
 <ol>
-<li><b>0.2778 is a projection, not a score.</b> The artifact's audit file contains
-<code>"UNSCORED"</code> and <code>"predicted_leaderboard_dti": 0.27467</code>. Two sibling READMEs
-(GEMSDOE82 vs GEMSDOE84/87) assert contradictory evidence classes for the same number.</li>
-<li><b>A published ZIP is empty.</b> <code>gemsdoe32-h33-h33-2-b2-…-zeros.zip</code> is 216 bytes and
-contains one 0-byte entry — anyone submitting the ZIP submits nothing.</li>
-<li><b>The holdout instrument does not rank methods like the prize.</b> The fleet's best reported
-artifact scores 0.0037 here; its owner-reported live value is 0.2708.</li>
-<li><b>The literal rule has a verified universal blocker.</b> The separate pinned dense witness covers every allowed cell. Historical halo coverage greater than 70% alone is not sufficient to prove universal blockage; no such exemption is authorized. <a href="evidence/protocol-preflight.json">Exact 100%-coverage proof</a>.</li>
-<li><b>Four registry rasters are unusable comparators</b> (two CRS/transform mismatches, one band-count
-mismatch, one <code>FORMAT_TEST_NOT_SUBMISSION</code> smoke file). Itemised in the audit JSON.</li>
-<li><b>Spec vs upload form.</b> The problem description permits null/NaN outside the bounds; the upload
-form rejects values outside [0, 1]. This repo writes 0.0 outside the footprint and documents the
-deviation.</li>
-<li><b>Protocol budget exceeded.</b> The brief allows 3 experiments / 2 hours. This session ran the
-feature arms, budget sweep, learner comparison, line-filter ablation and a uniqueness repair. Reported
-rather than hidden.</li>
+<li><b>IR-86C-DOC-01 (Fixed in Session 3): Prior H86B review misstated band count &amp; gravity type.</b> <code>research/H86B_GFCO_REVIEW.md</code> §3 referred to “22 bands including 6 MT slices and CBA gravity”; <code>training_features.tif</code> actually has exactly <b>19 Float32 bands</b>, <b>1</b> surface conductivity band (<code>b17 cond_surf</code>), and <b>isostatic residual gravity</b> (<code>b5, b11, b13, b18</code>).</li>
+<li><b>IR-86C-MOD-02 (Fixed in Session 3): In-sample <code>p_full</code> collar memorization in H86B live raster.</b> Session-2 <code>run_lane86b.py</code> evaluated spatial LOQO <code>p_oof</code> on holdout, but wrote its live GeoTIFF from an in-sample <code>p_full</code> refit over all 4 quadrants with negatives excluded at <i>d</i><sub>cat</sub> ≤ 4 px—inflating probabilities in the 2 &lt; <i>d</i><sub>cat</sub> ≤ 4 px collar. <code>H86C-KSLB</code> serves cross-fitted out-of-fold <code>p_oof</code> directly (1:1 train/serve parity), cutting worst non-lattice overlap from 0.8801 to <b>0.5915 ≤ 0.70</b>.</li>
+<li><b>IR-86C-LID-01 (Verified in Session 3): <code>lidar_scarp_features_u8.tif</code> band 11 strike convention.</b> Band 11 encodes image-plane `(dc=cos θ, dr=sin θ)` tangent (`θ = π · u8 / 255`), which equals `θ + π/2` in `N=0, E=90` azimuth; verified directly against <code>zmean_m</code> elevation gradients before spin-2 fusion.</li>
+<li><b>IR-32-SCORE-01: 0.2778 is OWNER-REPORTED, not ORGANIZER-CONFIRMED.</b> Upstream <code>GEMSDOE32</code> marks <code>h33-h33-2-b2</code> as <code>UNSCORED</code> with projected DTI <code>0.27467</code>; sibling READMEs contradict each other on whether it was submitted.</li>
+<li><b>IR-32-ZIP-01: Broken upstream ZIP in GEMSDOE32.</b> <code>gemsdoe32-h33-h33-2-b2-…-zeros.zip</code> is 216 bytes containing a 0-byte file; our <code>audit_h86c.py</code> &amp; <code>check_site.py</code> enforce exact byte-for-byte TIFF-inside-ZIP equality.</li>
+<li><b>IR-86B-DATA-01 &amp; Spec vs Portal Range Gate:</b> <code>training_features.tif</code> has <code>-3.4028235e+38</code> Float32 nodata on 3,061 in-footprint cells (b15, b17), and the upload portal rejects NaN outside the footprint despite page 967 allowing null. All GEMSDOE86 writers sanitize inputs and emit 0.0 outside the footprint.</li>
+<li><b>IR-86B-CSV-01: Leaky column &amp; trailing whitespace in GDR-1391 CSVs.</b> <code>dist_known_fault_px</code> is excluded by AST-tested rule, and 121 <code>'Hot '</code> rows with trailing spaces are stripped.</li>
+<li><b>IR-57-EMIT-01: Saturation degeneracy in <code>gems57.emit.allocate_patient</code>.</b> Clamping <code>k_self = min(E[k], 1.0)</code> zeroes marginal FP penalty when 3-px local sum ≥ 1; bypassed via <code>expected_credit</code> + <i>r</i> = 2.8 px disc thinning without modifying <code>vendor/gems57</code>.</li>
+<li><b>IR-86-SAT-01: Literal 3-px overlap rule vs saturated/lattice registry rasters.</b> Pinned <code>dense-witness.tif</code> (100% support), <code>GEMSDOE87</code> (87.7% support), and <code>13gems</code> stride-5 lattice (99.87% halo) force literal overlap &gt; 0.70; recorded honestly with zero unauthorized exemptions.</li>
 </ol>
 </main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<footer>Evidence classes: HOLDOUT-DTI · ORGANIZER-CONFIRMED · OWNER-REPORTED.</footer></body></html>

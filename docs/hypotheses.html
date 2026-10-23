@@ -1,61 +1,30 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hypotheses · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html" style=color:#e8eefc>Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
-<h1>Hypotheses (ranked before implementation)</h1>
-<p class="muted">Five candidates, each with layers, physical transform, why it targets faults
-<i>missing</i> from the catalogue, and its difference from the fleet's ~100 prior lanes. Only H1 and H2
-were executed, inside the protocol budget.</p>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html" style="color:#e8eefc">Hypotheses</a><a href="evidence.html">Fleet evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main>
+<section class="card hero"><span class="badge bad">DO NOT SUBMIT · NO CANDIDATE AUTHORIZED</span>
+<p>Five pre-registered Session-3 geological hypotheses advancing Session-1 &amp; Session-2 untested items. Only Rank #1 (<b>H86C-KSLB</b>) was executed within the 3-experiment budget. <a href="evidence/h86c-kslb-run-card.json">H86C-KSLB run card</a> · <a href="evidence/protocol-preflight.json">Dense-witness proof</a></p></section>
+<h1>Ranked Candidate Geological Hypotheses (Session 3)</h1>
 
-<div class="card"><h3>H1 · Gravity–magnetic cross-gradient structural coherence (GMC)</h3>
-<p><b>Layers:</b> <code>iso_grav_anom</code> (b13), <code>rtp</code> (b2).<br>
-<b>Signature:</b> unit-gradient collinearity |cos θ| and opposed polarity max(0, −cos θ), weighted by the
-geometric mean gradient magnitude, times a structure-tensor coherence term (Gallardo &amp; Meju 2003
-cross-gradient constraint, used as a detector rather than a joint-inversion regulariser).<br>
-<b>Why unmapped faults:</b> a normal fault juxtaposes dense, magnetised bedrock against basin fill, so
-both contrasts reverse across the same plane; the joint constraint fires where either field alone is
-ambiguous.<br>
-<b>Non-fault mimic:</b> lithologic or intrusive contacts carrying both a density and a magnetisation
-contrast.<br>
-<b>Difference:</b> the fleet has used single-field edges, tilt, worms, Euler depth and antislope; it
-never used the joint cross-gradient.</p>
-<p><span class="badge bad">NEGATIVE</span> standalone AUC 0.50–0.53 against withheld truth; adding the
-four GMC features changes the pooled DTI by <b>+0.0001</b> (CIs overlap completely).</p></div>
+<div class="card"><h3>Rank #1 (Selected &amp; Executed) · H86C-KSLB: Lahontan-Deconfounded 10m+1m Scarp + Fluvial k<sub>sn</sub>/χ Knickzone + Blakely Zero-Crossing Dual-Regime Noisy-OR</h3>
+<p><b>Layers:</b> <code>topo_10m_derived_100m_u8.tif</code> (b1,5,6,7,8; 100% coverage), <code>dem10_chi_100m_i16.tif</code> (b1–b5: χ steps, <i>k<sub>sn</sub></i>, log drainage area, true elevation <code>zmean_m</code>), <code>lidar_scarp_features_u8.tif</code> (75.37% coverage; verified image-tangent strike b11), <code>training_features.tif</code> (RTP b2, TMI HG/VG b3/b9, gravity HG/VG b18/b11, basement b15, conductivity b17, strain b4/b7/b8, seismicity b10/b16), <code>geodawn_rad_u8.tif</code> + <code>geodawn_extensions_u8.tif</code>, GDR-1391 wells/vents (excluding <code>dist_known_fault_px</code>).<br>
+<b>Physical signature &amp; non-fault mimic rejection:</b> 25.2% of the footprint lies inside Pleistocene Lake Lahontan shoreline elevations (1,180–1,355 m ASL), where wave-cut beach scarps mimic fault scarps. H86C computes spin-2 transversality between scarp strike and regional <code>zmean_m</code> contours to reject contour-parallel shorelines while retaining contour-cutting scarps corroborated by drainage-area-weighted fluvial <i>k<sub>sn</sub></i> knickzones, Blakely-Miller magnetic/gravity tilt zero-crossings, basement-hinge flexure, and seismicity-strain fabric; fuses strike-concordant tip/relay/hinge linkage <code>P_link</code> with convex blind filaments <code>P_blind</code> via <code>1 − (1 − P_link)(1 − P_blind)</code>.<br>
+<b>Measured HOLDOUT-DTI:</b> Whole-component LOQO <b>0.1241 [0.1080, 0.1403]</b> (+15.1% over H86B-GFCO 0.1078; paired Δ vs d2.8 +0.0322 [+0.0191, +0.0469]); segment-all <b>0.1789</b>; segment-detached <b>0.1844</b>; 0/35 non-lattice dot-field duplicates (max overlap 0.5915). Blocked from auto-promotion solely by literal saturated witnesses (<code>DO NOT SUBMIT</code>).</p></div>
 
-<div class="card"><h3>H2 · Oriented matched-filter posterior sharpening <span class="badge warn">SCREENING SIGNAL — NOT PROMOTED</span></h3>
-<p><b>Layers:</b> any posterior; in production the 44-feature logistic surface.<br>
-<b>Signature:</b> eight zero-mean anisotropic Gaussians (σ∥ = 4 px = 400 m, σ⊥ = 1.2 px), max over
-orientations, applied <i>before</i> the 3 px-tiled allocation.<br>
-<b>Why unmapped faults:</b> the DTI kernel credits linear coverage at 3 px spacing; isolated posterior
-maxima waste dots. The filter converts mass into along-strike coherent chains, and the emission collar
-(≥ 300 m from mapped traces, 1 km in the shipped off-catalogue variant) keeps the chains off the
-catalogue.<br>
-<b>Non-fault mimic:</b> roads, trails and survey lines in the 1 m-LiDAR morphological stack.<br>
-<b>Difference:</b> the fleet sharpens features; no lane sharpens the posterior under a fixed dot budget.</p>
-<p><span class="badge warn">SCREENING SIGNAL — NOT PROMOTED</span> <b>+0.0439 DTI</b> at a fixed 90,568-dot budget
-(0.07934 → 0.12324), CIs disjoint.</p></div>
+<div class="card"><h3>Rank #2 (Deferred) · H86D-PFCO: Bipartite Graph-Matched Piercing-Line Magnetic Ridge Dislocation</h3>
+<p><b>Layers:</b> <code>rtp</code> (b2), <code>tmi_hg</code> (b3), <code>tmi_up150_u8</code> (ext b4), <code>iso_grav_anom_hg</code> (b18).<br>
+<b>Signature:</b> Extract terminated Canny-Hessian magnetic dike/flow ridges and solve minimum-cost bipartite matching across 0.3–3.5 km corridors for systematic lateral piercing-line offset where the intervening corridor carries zero surface scarp.<br>
+<b>Mimic:</b> Primary volcanic flow-lobe terminations and GeoDAWN flight-line tie seams.</p></div>
 
-<div class="card"><h3>H3 · Basement-hinge flexure <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>depth_to_base_surf</code> (b15), <code>iso_grav_anom_hg</code> (b18).
-<b>Signature:</b> curvature of the basement surface × gravity-gradient magnitude.
-<b>Why unmapped faults:</b> faults root at basement hinges that persist under cover.
-<b>Difference:</b> prior <code>h8</code>/<code>h45</code> used depth <i>clustering</i>, not hinge curvature.
-<b>Cost:</b> low; <b>expected gain:</b> moderate. Highest-priority untested candidate.</p></div>
+<div class="card"><h3>Rank #3 (Deferred) · H86E-CSFD: Windowed Radial Spectral Magnetic Centroid / Curie-Depth Gradient</h3>
+<p><b>Layers:</b> <code>tmi</code> (b14), <code>rtp</code> (b2), <code>depth_to_base_surf</code> (b15), GDR-1391 geothermometers.<br>
+<b>Signature:</b> Overlapping 6.4 × 6.4 km radially averaged 2D FFT log-power slope ratios estimating shallow vs deep magnetic source-bottom upwarps along crustal-scale thermal fault conduits.<br>
+<b>Mimic:</b> Shallow young basaltic vents and variable drape altitude.</p></div>
 
-<div class="card"><h3>H4 · Spectral Curie-depth / thermal-gradient proxy <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>tmi</code> (b14), <code>rtp</code> (b2). <b>Signature:</b> windowed radial
-power-spectrum slope → depth-to-centroid per 5 × 5 km tile. <b>Why unmapped faults:</b> a shallow Curie
-surface implies elevated heat flow and a more fractured crust. <b>Difference:</b> the fleet used 2 m
-temperature probes and paleo-sinter seals as point labels, never a spectral-depth surface.
-<b>Cost:</b> high (windowed FFT, survey-altitude confound).</p></div>
+<div class="card"><h3>Rank #4 (External — Egress-Blocked in Sandbox) · H86F-InSAR: OPERA/ASF Sentinel-1 Aquitard Phase-Gradient Step</h3>
+<p><b>External source:</b> Official NASA/JPL OPERA Surface Displacement (DISP-S1, CC0 via ASF/Earthdata). Sharp seasonal poroelastic phase steps across unmapped fault-seal aquitards in Dixie/Humboldt/Buena Vista playas. Verified not obtainable inside this sandbox's 6-host egress allowlist.</p></div>
 
-<div class="card"><h3>H5 · Seismicity-fabric anisotropy <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>ieq_n100a15</code> (b16), <code>deq_n100a15</code> (b10), <code>geod_shearrate</code> (b7).
-<b>Signature:</b> structure tensor of the earthquake-density field, keeping anisotropic ridges aligned with
-shear-plane strike. <b>Why unmapped faults:</b> a reactivated blind fault organises microseismicity into a
-fabric, not a blob. <b>Difference:</b> the fleet used isotropic density and swarm counts.
-<b>Cost:</b> medium; the 100 km kernel is coarse.</p></div>
+<div class="card"><h3>Rank #5 (External — Egress-Blocked in Sandbox) · H86G-ASTER: LP DAAC ASTER TIR Silica/Sinter &amp; SWIR Argillic Alteration Ribbons</h3>
+<p><b>External source:</b> Official NASA/USGS LP DAAC AST_05/AST_07XT (90 m TIR / 30 m SWIR, public domain). Maps opaline sinter, chalcedony, and kaolinite/alunite alteration aprons along blind geothermal range-front/playa faults. Verified not obtainable inside sandbox egress allowlist.</p></div>
 </main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) · OWNER-REPORTED (unverified site claim).</footer></body></html>

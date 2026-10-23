@@ -1,0 +1,154 @@
+{
+  "hypothesis": "H86C-KSLB (Session-3 declared lane, advancing H86B-GFCO & README \u00a79 next steps): Seamless 10m-3DEP + 1m-LiDAR tectonic scarps deconfounded against contour-parallel Pleistocene Lake Lahontan shorelines (1180-1355m ASL), drainage-area-weighted fluvial ksn knickzone chains & chi divide steps, Blakely-Miller magnetic/gravity tilt zero-crossings, basement-hinge flexure, GDR-1391 geothermometer disequilibrium, and seismicity-strain fabric recover both strike-concordant linkage strands and detached whole-component blind faults.",
+  "mechanism": "Cover-adaptive 4-quadrant LOQO GBDT ensemble (48-feature full + 28-feature cover-blind subsurface specialist) + 8-azimuth DoG filament sharpening, fused via Dual-Regime Noisy-OR Discovery Posterior S = 1 - (1 - P_link)*(1 - P_blind) (strike-concordant tip/relay/hinge linkage + convex multi-family blind filaments); 300m expected-credit r=2.8px disc thinning, d_cat>2px collar, 44090 binary dots, all-finite zeros outside footprint.",
+  "non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shorelines (1180-1355m equipotential contour-parallel benches), incised dendritic canyon walls, passive pluton edges, and playa evaporite conductivity (discriminants: regional contour-strike transversality rejection, drainage-area-weighted ksn knickzone co-activation, Blakely tilt zero-crossing x basement flexure, and PU d>4px training).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "buffered_whole_components_loqo": {
+      "withheld_positives": 11321,
+      "candidate_dti": 0.1240634961614658,
+      "ci95": [
+        0.1079703374809469,
+        0.140329759708305
+      ],
+      "d28_incumbent_dti": 0.09188832467218272,
+      "d28_incumbent_ci95": [
+        0.07900315412770842,
+        0.10346716075529336
+      ],
+      "h33_b2_foldfair_dti": 0.09608619416803546,
+      "h33_b2_foldfair_ci95": [
+        0.08281755542060633,
+        0.10833633773445987
+      ],
+      "h86b_gfco_pr16_loqo_dti": 0.10775922634537677,
+      "paired_delta_vs_d28": 0.032175171489283075,
+      "paired_delta_vs_d28_ci95": [
+        0.01909760242496008,
+        0.0469004625117107
+      ],
+      "paired_delta_vs_h33_foldfair": 0.027977301993430334,
+      "paired_delta_vs_h33_foldfair_ci95": [
+        0.014520437249214882,
+        0.04311695758961093
+      ]
+    },
+    "segment_hide_all": {
+      "withheld_positives": 22641,
+      "candidate_dti": 0.1789491895779829,
+      "ci95": [
+        0.16491023403256355,
+        0.19241307215488548
+      ],
+      "d28_incumbent_dti": 0.1010696473055406,
+      "h33_b2_foldfair_dti": 0.09096096964267096,
+      "paired_delta_vs_d28": 0.07787954227244229,
+      "paired_delta_vs_d28_ci95": [
+        0.06434358085766223,
+        0.09138455312793788
+      ]
+    },
+    "segment_hide_detached": {
+      "withheld_positives": 22619,
+      "candidate_dti": 0.18438282894446822,
+      "ci95": [
+        0.1692249417577829,
+        0.19891819154695226
+      ],
+      "d28_incumbent_dti": 0.10346446550153578,
+      "h33_b2_foldfair_dti": 0.09481681738698564,
+      "paired_delta_vs_d28": 0.08091836344293245,
+      "paired_delta_vs_d28_ci95": [
+        0.06666485770593365,
+        0.09651309632250625
+      ]
+    },
+    "experiment_progression": {
+      "E1_kslb_phys_fil_38k": {
+        "buffered_comp": 0.05625902399921849,
+        "all": 0.05008477448997455,
+        "detached": 0.04775004407869436,
+        "mean_ab": 0.05317189924459652
+      },
+      "E2_kslb_noisyor_38k": {
+        "buffered_comp": 0.11534309935293335,
+        "all": 0.16917425320581367,
+        "detached": 0.17770759259607077,
+        "mean_ab": 0.1422586762793735
+      },
+      "E3_kslb_noisyor_44k": {
+        "buffered_comp": 0.1240634961614658,
+        "all": 0.1789491895779829,
+        "detached": 0.18438282894446822,
+        "mean_ab": 0.15150634286972434
+      }
+    },
+    "beats_incumbent_all_3_holdouts_95ci": true
+  },
+  "leakage_canary_auc": {
+    "features_checked": 52,
+    "max_discriminative_auc": 0.8587325208008321,
+    "threshold": 0.9,
+    "any_leakage_flag": false
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 38,
+    "scope": "38 hash-verified rasters across 20+ buffedlizard55-lab repositories (12 GEMSDOE24 + 6 prior GEMSDOE86 lanes + 19 cross-repo primary champions GEMSDOE32..88 + 1 pinned 100%-support dense witness); not an organizer-complete registry.",
+    "surface_worst_abs_spearman": 0.39075302090292985,
+    "final_worst_all_abs_spearman": 0.09268941629291658,
+    "final_worst_nonlattice_dot_overlap_3px": 0.5914719891131776,
+    "final_worst_nonlattice_dot_overlap_vs": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+    "final_worst_modern_comparable_overlap_3px": 0.5914719891131776,
+    "final_worst_gems86_intralane_overlap_3px": 0.5914719891131776,
+    "overlap_3px_vs_gems32_h33_2_b2": 0.30675890224540714,
+    "overlap_3px_vs_d28_incumbent": 0.333703787706963,
+    "overlap_3px_vs_h86b_gfco": 0.5460195055568156,
+    "final_worst_jaccard": 0.05287037921482472,
+    "nonlattice_dot_field_duplicates": 0,
+    "literal_firings_over_0_70": [
+      "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "GEMSDOE87__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "dense-witness-100pct-support.tif"
+    ],
+    "discriminating_nonlattice_unique": true,
+    "literal_protocol_unique": false
+  },
+  "raster_sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
+  "validator": {
+    "status": "PASS (automated 15/15 shared validator + template format check; not organizer acceptance)",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "emitted_dots": 44090,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555",
+  "note": "H86C-KSLB Lahontan-deconf 10m+LiDAR+ksn+Blakely NoisyOR LOQO, 44090 dots d>2px, zeros",
+  "submission_file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
+  "zip_file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.zip",
+  "scores_labelled": "Every local metric is labelled HOLDOUT-DTI (gems57-pooled-hide-v2) or OFF-CATALOGUE-PROXY-DIAGNOSTIC. Zero ORGANIZER-CONFIRMED scores exist in GEMSDOE86; historical figures in the brief (0.2778, 0.3195, 0.4413) are owner/public reports without an organizer submission receipt for this repository.",
+  "experiments_run": 3,
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "selector_note": "FORMAT-VALID RESEARCH ARTIFACT (15/15 checks PASS; 52/52 leakage canaries PASS) \u2014 DO NOT SPEND A WEEKLY SLOT AUTOMATICALLY: literal >0.70 3-px overlap fires on saturated registry witnesses (pinned 100%-support dense surface = 1.0000, GEMS87 90.4%-halo continuous surface, and 13gems 99.87%-halo stride-5 calibration lattice) under the unmodified literal protocol rule; promotion to a live slot requires explicit selector/schema authorization."
+}

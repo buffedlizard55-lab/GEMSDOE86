@@ -2,9 +2,26 @@
 
 ## DO NOT SUBMIT — literal uniqueness protocol failed
 
-All six research TIFFs remain downloadable for reproducibility, and **none is approved to spend a weekly DrivenData slot automatically**.
+All seven research TIFFs remain downloadable for reproducibility, and **none is approved to spend a weekly DrivenData slot automatically**.
 
-### Latest Lane: `H86B-GFCO` (Highest Spatial Holdout Across All 6 Lanes — Format-Valid `15/15`, Fail-Closed `DO NOT SUBMIT`)
+### Latest Session-3 Lane: `H86C-KSLB` (Highest Spatial Holdout Across All 7 Lanes & Wholly Positive 95% CIs on All 3 Views — Format-Valid `15/15`, Fail-Closed `DO NOT SUBMIT`)
+
+- **GeoTIFF Download:** [`docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif`](docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif) (`151,572` B · SHA-256 `bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0`) · **Single-TIF ZIP:** [`…-zeros.zip`](docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.zip) (`114,578` B) · **Receipt:** [`…-zeros.json`](docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.json)
+- **Canonical Run Card:** [`docs/evidence/h86c-kslb-run-card.json`](docs/evidence/h86c-kslb-run-card.json) · **Full 3-Experiment Evidence:** [`docs/evidence/lane86c_results.json`](docs/evidence/lane86c_results.json) · **38-Raster Uniqueness:** [`docs/evidence/h86c_crosslane_uniqueness.json`](docs/evidence/h86c_crosslane_uniqueness.json) · **PhD Scientific Review:** [`research/H86C_KSLB_REVIEW.md`](research/H86C_KSLB_REVIEW.md)
+- **Submission Name / Note (`85/140` chars):** `gems86-h86c-kslb-44090dots-20261023T010446Z-83854555` · `H86C-KSLB Lahontan-deconf 10m+LiDAR+ksn+Blakely NoisyOR LOQO, 44090 dots d>2px, zeros`
+- **Automated Gate Summary (`3/3` experiments run; `0` slots spent):**
+  - **Format (`15/15` PASS):** Single-band `float32`, `[0, 1]` guaranteed (`min=0.0, max=1.0`), `0 NaN/Inf/sentinels`, `EPSG:32611`, `3730×3292` (`100 m`), `0` on-catalogue dots (`44,090` binary dots, `22.75%` in deep blind terrain `d_cat > 1.5 km`).
+  - **Leakage Canaries (`52/52` PASS):** `48` label-free 10m-3DEP + 1m-LiDAR Lahontan-deconfounded scarp, fluvial $k_{sn}/\chi$ knickzone, Blakely-Miller tilt zero-crossing, basement-hinge flexure, GDR-1391 geothermometer, and seismicity-strain planes (`max disc AUC = 0.6497`) + `4` strictly visible-only strike-concordant/hinge kinematic fields (`max disc AUC = 0.8587 <= 0.90`). AST-verified zero label/catalogue/SGMC leakage in `scripts/h86c_features.py`.
+  - **Spatial Holdout (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, 1,000 paired 20 km block-bootstrap draws — ALL 3 views strictly clear 0 on 95% CIs):**
+    - `buffered_whole_components` (`11,321` pos, whole 8-connected components + 3-px buffer): **`0.1241 [0.1080, 0.1403]`** vs Session-2 `H86B-GFCO = 0.1078` (**+15.1%**), `H33-2-B2 = 0.0961` (`Δ = +0.0280 [+0.0145, +0.0431]`, **+29.1%**), & `d2.8 = 0.0919` (`Δ = +0.0322 [+0.0191, +0.0469]`, **+35.0%**); wins **4 / 4 spatial quadrants**.
+    - `segment_all` (`22,641` pos): **`0.1789 [0.1649, 0.1924]`** vs `H86B-GFCO = 0.1396` (**+28.2%**) & `d2.8 = 0.1011` (`Δ = +0.0779 [+0.0643, +0.0914]`, **+77.1%**).
+    - `segment_detached` (`22,619` pos): **`0.1844 [0.1692, 0.1989]`** vs `H86B-GFCO = 0.1521` (**+21.2%**) & `d2.8 = 0.1035` (`Δ = +0.0809 [+0.0667, +0.0965]`, **+78.2%**).
+  - **38-Raster Uniqueness & Binding Stop (`verdict: "negative"`, `approved_for_weekly_slot: false`):** Pre-placement surface `|ρ| <= 0.3908`, final dots `|ρ| <= 0.0927`, **`0 / 35` duplicates across all non-lattice `dot_field` rasters in 21 repos (`GEMSDOE10..88` + all 6 prior `GEMSDOE86` lanes; max 3-px overlap = `0.5915 <= 0.70`, `0.3068` vs `GEMSDOE32 H33-2-B2`, `0.5460` vs `H86B-GFCO`)**, **but** the unmodified literal `> 0.70` 3-px overlap rule fires on 3 saturated/calibration witnesses (`dense-witness-100pct-support.tif = 1.0000`, `13gems` stride-5 lattice `= 0.9988`, `GEMSDOE87` `87.7%`-support continuous surface `= 0.9228`).
+  - **Reproduce Session 3 (`H86C-KSLB`):** `.venv/bin/python scripts/restore_h86c_data.py && .venv/bin/python scripts/h86c_features.py && .venv/bin/python scripts/run_lane86c.py --research-negative-artifact && .venv/bin/python scripts/audit_h86c.py && .venv/bin/python scripts/build_site.py`.
+
+---
+
+### Prior Session-2 Lane: `H86B-GFCO` (Format-Valid `15/15`, Fail-Closed `DO NOT SUBMIT`)
 
 - **GeoTIFF Download:** [`docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif) (`158,348` B · SHA-256 `897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116`) · **Single-TIF ZIP:** [`…-zeros.zip`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip) · **Receipt:** [`…-zeros.json`](docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.json)
 - **Canonical Run Card:** [`docs/evidence/h86b-gfco-run-card.json`](docs/evidence/h86b-gfco-run-card.json) · **Full Experiment Evidence:** [`docs/evidence/lane86b_results.json`](docs/evidence/lane86b_results.json) · **Cross-Lane Uniqueness:** [`docs/evidence/h86b_crosslane_uniqueness.json`](docs/evidence/h86b_crosslane_uniqueness.json) · **PhD Scientific Review:** [`research/H86B_GFCO_REVIEW.md`](research/H86B_GFCO_REVIEW.md) · **3-Pass Verification Log:** [`research/H86B_GFCO_VERIFICATION.md`](research/H86B_GFCO_VERIFICATION.md)

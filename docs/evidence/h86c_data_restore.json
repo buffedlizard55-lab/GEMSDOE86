@@ -1,0 +1,20 @@
+{
+  "lane": "H86C-KSLB",
+  "manifests": [
+    "research/upstream/data_manifest.json",
+    "research/upstream/cross_repo_champions_manifest.json",
+    "research/upstream/cross_repo_champions_ext88_manifest.json",
+    "research/registry_witness_pin.json"
+  ],
+  "core_and_10m_verified": 24,
+  "core_and_10m_total": 24,
+  "cross_repo_verified": 19,
+  "cross_repo_total": 19,
+  "dense_witness_verified": true,
+  "required_present": 14,
+  "required_total": 14,
+  "missing_required": [],
+  "mismatches": [],
+  "qfaults_excluded_by_default": true,
+  "ok": true
+}
