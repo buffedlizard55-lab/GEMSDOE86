@@ -26,3 +26,7 @@ data/raw/
 
 data/processed/
 registry/submissions/
+
+# Local candidate rasters: public-repo data-use terms are unchecked.
+/releases/*.tif
+/releases/*.zip
