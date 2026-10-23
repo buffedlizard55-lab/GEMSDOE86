@@ -182,6 +182,8 @@ def build_prune_refill(r0: np.ndarray, h19: np.ndarray, catalogue: np.ndarray,
         "added_dots": int((candidate & ~r0).sum()),
         "retained_dots": int((r0 & candidate).sum()),
         "changed_grid_cells": changed,
+        "pct_parent_dots_removed": 100.0 * int((r0 & ~candidate).sum()) / int(r0.sum()),
+        "pct_parent_dot_count_added": 100.0 * int((candidate & ~r0).sum()) / int(r0.sum()),
         "pct_changed_vs_parent_dots": 100.0 * changed / int(r0.sum()),
         "refill_rule": "lowest recovered FIFO-BFS visitation rank in pinned H19-5; d_cat>3; fixed count",
         "refill_is_geological_probability": False,
@@ -341,13 +343,13 @@ def proxy_and_sgmc(candidate: np.ndarray, r0: np.ndarray, d28: np.ndarray, grid,
     proxy["caveat"] = "The historical H19-5 surface is fixed, but all catalogue-distance collars are fold-fair. This is a diagnostic, never a live-score gate."
     with rasterio.open(PATHS["sgmc"]) as src:
         sgmc = src.read(1) > 0
-    off_truth = sgmc & grid.footprint & ~grid.catalogue & ~ndi.binary_dilation(grid.catalogue, iterations=3)
+    off_truth = sgmc & grid.footprint & ~grid.catalogue & (ndi.distance_transform_edt(~grid.catalogue) > 3.0)
     scores = {}
     for name, mask in (("r0", r0), ("prune3", candidate)):
         result = metric.dti_binary(mask, off_truth, valid=grid.footprint, known=grid.catalogue)
         scores[name] = {key: result[key] for key in ("dti", "tp", "fp", "fn", "n_truth", "n_emitted")}
     scores["delta_prune3_minus_r0"] = scores["prune3"]["dti"] - scores["r0"]["dti"]
-    control = {"evidence_class": "PROXY", "instrument": "official-kernel DTI vs SGMC off-catalogue control (>3 px dilation exclusion)",
+    control = {"evidence_class": "PROXY", "instrument": "official-kernel DTI vs SGMC off-catalogue control (Euclidean d_cat>3 px)",
                "scores": scores, "note": "SGMC is an independent-map control, not hidden competition truth."}
     return proxy, control
 
@@ -530,10 +532,16 @@ def main() -> int:
         "evidence_labels": {"R0_live_0_2778": "CLAIM (no receipt)", "predicted_live_change": "MODEL",
                             "catalogue_hide_recover": "PROXY", "sgmc_control": "PROXY"},
         "data_use": "Candidate TIFFs are local-only ignored artifacts in a public repository; organizer data-use terms unchecked.",
+        "source_urls": {
+            "r0_recipe": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/scripts/run_h33_validation.py",
+            "parent_ranking_recipe": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/94b027bed628422b7b39b485cb918a3fc15e5364/src/gems27/thinning.py",
+            "catalogue_scoring_clarification": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+            "official_rules": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        },
     }
     evidence = ROOT / "evidence/r0-prune3-run-card.json"
     evidence.write_text(json.dumps(run_card, indent=2, allow_nan=False) + "\n")
-    mechanism = f"""# Mechanism card — {candidate_id}\n\n- **Hypothesis:** At fixed mass, H19-5 cells beyond 300 m from the catalogue are more efficient than R0 cells in the 200–300 m annulus.\n- **Mechanism:** Remove all {diff['removed_dots']:,} R0 dots at catalogue distance ≤3 px and refill the same number from the pinned H19-5 field at >3 px, using the original deterministic FIFO-BFS order. Count stays {diff['candidate_dots']:,}; {diff['pct_changed_vs_parent_dots']:.4f}% of the parent grid's dot cells change.\n- **Non-fault mimic:** Roads, pipelines, alluvial channels and cartographic generalization can create fault-like responses beside mapped traces. The refill order is spatial/content-blind, not a new geological probability.\n- **Predicted live change:** **−0.004 DTI (MODEL)**. The prior 2 px prune was beneficial, but new-fault truth may occur within 300 m of known traces and a dense fixed-count refill can add redundant false-positive mass.\n- **Falsifier:** A comparable public-chunk receipt ≥+0.01 versus R0 falsifies the predicted direction. A change with absolute value <0.01 is no evidence.\n- **Confounder:** Only {diff['spacing_preserving_refills_available']} refills could preserve 2.8 px spacing; the required {diff['removed_dots']:,}-cell refill reduces nearest-neighbour spacing (parent mean {diff['nearest_neighbour_parent']['mean_px']:.3f}px, candidate mean {diff['nearest_neighbour_candidate']['mean_px']:.3f}px). PRUNE and spacing are therefore not perfectly separable at fixed count.\n- **Evidence:** Catalogue hide/recover and SGMC results in `evidence/r0-prune3-run-card.json` are **PROXY**, never scores or gates. R0's 0.2778 remains **CLAIM** until a receipt is supplied.\n"""
+    mechanism = f"""# Mechanism card — {candidate_id}\n\n- **Hypothesis:** At fixed mass, H19-5 cells beyond 300 m from the catalogue are more efficient than R0 cells in the 200–300 m annulus.\n- **Mechanism:** Remove all {diff['removed_dots']:,} R0 dots at catalogue distance ≤3 px ({diff['pct_parent_dots_removed']:.4f}% of R0) and refill the same number from the pinned H19-5 field at >3 px, using the [original deterministic FIFO-BFS order](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/94b027bed628422b7b39b485cb918a3fc15e5364/src/gems27/thinning.py). Count stays {diff['candidate_dots']:,}; the symmetric difference is {diff['pct_changed_vs_parent_dots']:.4f}% of R0's count.\n- **Non-fault mimic:** Roads, pipelines, alluvial channels and cartographic generalization can create fault-like responses beside mapped traces. The refill order is spatial/content-blind, not a new geological probability.\n- **Predicted live change:** **−0.004 DTI (MODEL)**. The prior 2 px prune was beneficial, but [new-fault truth may occur within 300 m of known traces](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516) and a dense fixed-count refill can add redundant false-positive mass.\n- **Falsifier:** A comparable public-chunk receipt ≥+0.01 versus R0 falsifies the predicted direction. A change with absolute value <0.01 is no evidence.\n- **Confounder:** Only {diff['spacing_preserving_refills_available']} refills could preserve 2.8 px spacing; the required {diff['removed_dots']:,}-cell refill reduces nearest-neighbour spacing (parent mean {diff['nearest_neighbour_parent']['mean_px']:.3f}px, candidate mean {diff['nearest_neighbour_candidate']['mean_px']:.3f}px). PRUNE and spacing are therefore not perfectly separable at fixed count.\n- **Evidence:** Catalogue hide/recover and SGMC results in `evidence/r0-prune3-run-card.json` are **PROXY**, never scores or gates. R0's 0.2778 remains **CLAIM** until a receipt is supplied.\n"""
     (ROOT / "evidence/r0-prune3-mechanism.md").write_text(mechanism)
     submit = f"""# Manual submission card — no automatic submission\n\n**Status: BUILT; not slot-approved.** TOP_PUBLIC, remaining quota and R0's submission receipt were not supplied. The human alone submits from one registered entity.\n\n- Candidate ID: `{candidate_id}`\n- Primary (NaN outside): `releases/{candidate_id}.tif`\n- SHA-256: `{validations['nan']['sha256']}`\n- Fallback (zeros outside): `releases/{candidate_id}-zeros.tif`\n- Fallback SHA-256: `{validations['zeros']['sha256']}`\n- Upload **only one file per slot**.\n- Submission name: `{candidate_id}`\n- Form note ({len(note)} chars): `{note}`\n- Predicted change: **−0.004 (MODEL)**, not a score.\n- Format receipt: `evidence/r0-prune3-run-card.json`; both files re-read from disk, all hard checks passed, 37,654 dots, zero catalogue mass.\n- TIFFs are local-only and gitignored because this public repository has unchecked competition data-use terms. Record the actual receipt score/date in `ledger/submissions.csv` after any human submission.\n"""
     (ROOT / "docs/SUBMIT.md").write_text(submit)

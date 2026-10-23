@@ -1,6 +1,6 @@
 # Slot plan — 2026-10-23
 
-**No automatic slot use.** One entity, at most 3 scored submissions per rolling week; actual slots remaining and TOP_PUBLIC are UNSUPPLIED. A live `|Δ| < 0.01` is no evidence. R0 = `h33-h33-2-b2` (0.2778 CLAIM, no receipt).
+**No automatic slot use.** One entity, at most 3 scored submissions per rolling week under the [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf); actual slots remaining and TOP_PUBLIC are UNSUPPLIED. A live `|Δ| < 0.01` is no evidence. R0 = `h33-h33-2-b2` (0.2778 CLAIM, no receipt).
 
 ## Next three slots, in order
 
