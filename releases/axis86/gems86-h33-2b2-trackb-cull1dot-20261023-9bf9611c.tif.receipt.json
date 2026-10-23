@@ -1,0 +1,20 @@
+{
+  "file": "gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c.tif",
+  "sha256": "b743412b38871f4dbd786515da90c51881cd2a176abaac2392b4d175e319c24f",
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 34305,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "nan_outside_count": 7111787,
+  "name": "gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c",
+  "note": "R0 TRACKB cull1dot: drop 3349 isolated 1-dot speckles (<550m); keep 100% >=1km traces",
+  "note_chars": 85,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt"
+}

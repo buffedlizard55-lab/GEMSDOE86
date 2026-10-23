@@ -1,0 +1,20 @@
+{
+  "file": "gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77.tif",
+  "sha256": "96d6ef0993f77d8a610dadeda9ab712814b15a50a4cf731fee9ae25f2b5346ea",
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 37654,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "nan_outside_count": 7111787,
+  "name": "gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77",
+  "note": "R0 TRACKB bridge1km: move 3347 1-dot speckles to >=1km trace gaps/tips; S=37654",
+  "note_chars": 79,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt"
+}
