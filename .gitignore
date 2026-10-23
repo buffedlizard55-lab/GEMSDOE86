@@ -24,3 +24,5 @@ data/raw/
 /data/registry_ext/
 /data/scored_ext/
 
+data/processed/
+registry/submissions/

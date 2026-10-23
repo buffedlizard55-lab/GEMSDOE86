@@ -1,0 +1,105 @@
+{
+  "schema_version": "h86-fvmb-crosslane-uniqueness-v1",
+  "candidate_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+  "candidate_sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+  "candidate_dots": 38400,
+  "vs_6_concurrent_gemsdoe86_lanes": {
+    "lanes_checked": 7,
+    "any_literal_duplicate": false,
+    "max_abs_surface_spearman": 0.1398186177792671,
+    "max_abs_dots_spearman": 0.01767593005378902,
+    "max_forward_3px_overlap": 0.5167447916666666,
+    "comparisons": [
+      {
+        "file": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+        "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+        "prior_dots": 90568,
+        "surface_spearman": 0.1398186177792671,
+        "dots_spearman": 0.006026608369531123,
+        "forward_3px_overlap": 0.5167447916666666,
+        "reverse_3px_overlap": 0.414539351647381,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+        "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+        "prior_dots": 90568,
+        "surface_spearman": 0.06765985016402082,
+        "dots_spearman": 0.0015276947524533314,
+        "forward_3px_overlap": 0.20736979166666666,
+        "reverse_3px_overlap": 0.19670302976768836,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+        "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+        "prior_dots": 38000,
+        "surface_spearman": 0.005039144924452825,
+        "dots_spearman": -0.0008014118469145836,
+        "forward_3px_overlap": 0.12377604166666667,
+        "reverse_3px_overlap": 0.1655,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+        "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+        "prior_dots": 60000,
+        "surface_spearman": 0.0010181484044492603,
+        "dots_spearman": -0.002437263921500899,
+        "forward_3px_overlap": 0.17828125,
+        "reverse_3px_overlap": 0.13238333333333333,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+        "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
+        "prior_dots": 37654,
+        "surface_spearman": 0.09878448139439253,
+        "dots_spearman": 0.012933622924379945,
+        "forward_3px_overlap": 0.3590625,
+        "reverse_3px_overlap": 0.47870080203962395,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+        "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+        "prior_dots": 44090,
+        "surface_spearman": 0.1033300706454184,
+        "dots_spearman": 0.012601116644372917,
+        "forward_3px_overlap": 0.3605729166666667,
+        "reverse_3px_overlap": 0.46375595373100476,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+        "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+        "prior_dots": 37654,
+        "surface_spearman": 0.09398027134511787,
+        "dots_spearman": 0.01767593005378902,
+        "forward_3px_overlap": 0.31135416666666665,
+        "reverse_3px_overlap": 0.5052849630849312,
+        "literal_duplicate": false
+      }
+    ]
+  },
+  "vs_31_modern_gemsdoe28_to_85_priors": {
+    "rasters_checked": 31,
+    "all_31_literally_discriminating": true,
+    "surface_unique": true,
+    "surface_worst_abs_spearman": 0.14330173570043958,
+    "surface_worst_3px_overlap": 0.5602928490507473,
+    "dots_unique": true,
+    "dots_worst_abs_spearman": 0.048041987224648024,
+    "dots_worst_3px_overlap": 0.6830989583333333,
+    "dots_overlap_vs_gems32_h33_2_b2": 0.30520833333333336
+  },
+  "inherited_historical_dense_witness_stop": {
+    "witness_source_repo": "buffedlizard55-lab/17GEMSDOE",
+    "witness_path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_covered_allowed_fraction": 1.0,
+    "implied_literal_3px_overlap": 1.0,
+    "stop_required_under_literal_808_archive": true,
+    "note": "H86-FVMB passes literal uniqueness (<= 0.6831 <= 0.70, |rho| <= 0.1433 <= 0.90) across all 37 modern/concurrent rasters (31 GEMSDOE28..85 + 6 GEMSDOE86 lanes), and fails closed ONLY because 17GEMSDOE_E-proba-multiscale has p > 0 on 100.0% of all 5,106,385 allowed pixels (proof: docs/evidence/protocol-preflight.json)."
+  }
+}
