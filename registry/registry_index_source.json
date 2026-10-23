@@ -1,0 +1,11 @@
+{
+  "source_repository": "buffedlizard55-lab/GEMSDOE84",
+  "source_commit": "e80df44eb4a915ee7d22eece33030eff76ee88eb",
+  "source_path": "registry/registry_index.json",
+  "retrieved_utc_date": "2026-10-22",
+  "local_path": "registry/upstream_registry_index.json",
+  "local_sha256": "805e49ef09ea79ba655c552904dfdc39727c69248306ff997fcd31849d8ba292",
+  "unique_grid_rasters": 1143,
+  "source_complete_accessible_scan": true,
+  "scope": "Public owner repositories as indexed by GEMSDOE84 at this commit; not private/organizer submissions and not guaranteed to include later writes."
+}

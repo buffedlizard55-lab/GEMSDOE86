@@ -1,0 +1,16 @@
+{
+  "lane": "H86B-GFCO",
+  "manifest": "research/upstream/data_manifest.json",
+  "cross_repo_manifest": "research/upstream/cross_repo_champions_manifest.json",
+  "core_verified": 22,
+  "core_total": 22,
+  "cross_repo_verified": 15,
+  "cross_repo_total": 15,
+  "required_present": 11,
+  "required_total": 11,
+  "missing_required": [],
+  "core_mismatches": [],
+  "ext_mismatches": [],
+  "qfaults_excluded_by_default": true,
+  "ok": true
+}

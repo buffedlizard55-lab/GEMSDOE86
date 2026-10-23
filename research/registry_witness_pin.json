@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "purpose": "A single counterexample can prove failure of the literal overlap rule; it cannot prove uniqueness or registry completeness.",
+  "repo": "buffedlizard55-lab/17GEMSDOE",
+  "blob": "374c88b1da2b803e2ed160de467fd71ae114010d",
+  "source_path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+  "dest": "registry/dense-witness.tif",
+  "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "bytes": 25065181,
+  "registry_repository": "buffedlizard55-lab/60GEMSDOE",
+  "registry_commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+  "registry_path": "evidence/registry_full_index.json",
+  "registry_sha256": "e8597b4f527c5935460202735d5b021b3fb587a3c0d3e3682e41ec5835924ddb",
+  "source_class": "owner historical prediction, not official training data or a new submission",
+  "verified_date_utc": "2026-10-22"
+}

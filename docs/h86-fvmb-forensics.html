@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lane H86-FVMB PhD Forensics &amp; Science · GEMSDOE86</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span>GEMSDOE86 · Lane H86-FVMB</span>
+        <span class="brand-badge" style="background:#b91c1c;">FAIL-CLOSED LITERAL GATE · 15/15 FORMAT PASS</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Repository Decision</a>
+        <a href="executive-summary.html">Executive Summary &amp; Upload Guide</a>
+        <a class="active" href="h86-fvmb-forensics.html">H86-FVMB PhD Forensics &amp; Figures</a>
+        <a href="download-status.html">7-TIFF Byte Audit</a>
+        <a href="irregularities.html">Irregularities</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" style="border-left:5px solid #dc2626;">
+      <div class="small muted">SEVENTH CONCURRENT LANE (`H86-FVMB`) · AUTOMATED DUAL-GATE VERDICT</div>
+      <h1 style="margin:6px 0 8px;">Format PASS (<code>15/15</code>) &amp; Modern-37 Unique (<code>&le; 0.6831</code>) · Literal 808-Archive Verdict: <code>DO NOT SUBMIT</code> Automatically</h1>
+      <p style="margin:0 0 12px;">
+        <strong>GeoTIFF:</strong> <a href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download><code>gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif</code></a>
+        (<code>146,282</code> B · SHA-256 <code>413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233</code> · <code>38,400</code> binary dots) ·
+        <a href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip" download>Single-TIFF ZIP</a> ·
+        <a href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.json">Writer Receipt</a> ·
+        <a href="evidence/h86-fvmb-run-card.json">H86-FVMB Run Card</a>
+      </p>
+      <p style="margin:0; font-size:0.9rem;">
+        <strong>Why automatic slot approval fails closed (<code>verdict: "negative"</code>, <code>0</code> slots spent):</strong>
+        Across all <strong>37 modern &amp; concurrent rasters</strong> (31 <code>GEMSDOE28..85</code> priors including the 201,260-dot <code>GEMSDOE77__gems85</code> skeleton + all 6 sibling <code>GEMSDOE86</code> lanes),
+        <code>H86-FVMB</code> passes literal uniqueness strictly (<code>max 3-px overlap = 0.6831 &le; 0.70</code>, <code>0.3052</code> vs <code>GEMSDOE32 H33-2-B2</code>, <code>0.3606</code> vs <code>H86B-GFCO</code>, <code>max |&rho;| = 0.1433 &le; 0.90</code>)
+        and achieves the <strong>highest <code>HOLDOUT-DTI</code> in <code>GEMSDOE86</code></strong> (<code>0.1458 [0.1345, 0.1560]</code> dual-seed all, <strong>+60.5%</strong> vs <code>H33-2-B2</code>; <code>0.1538</code> detached, <strong>+66.2%</strong>).
+        However, in the 808-raster archive, historical <code>17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif</code> has <code>p &gt; 0</code> on <strong>100.0% of all 5,106,385 allowed pixels</strong> (<a href="evidence/protocol-preflight.json">proof</a>),
+        forcing literal 3-px overlap <code>1.000 &gt; 0.70</code> for every nonempty prediction unless the human owner explicitly waives continuous/carpet priors.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>1. Spatial Discovery Map &amp; Three-Regime Tectonic Allocation (<code>38,400</code> Dots)</h2>
+      <div class="figure-box">
+        <img src="assets/fig1_h86_spatial_discovery_map.png" alt="H86-FVMB Spatial Discovery Map" />
+        <div class="figure-caption">
+          <strong>Figure 1.</strong> Left: <code>H86-FVMB</code> calibrated 72-channel SAR-PU fault-discovery posterior (8-stratum Quadrant &times; 1m-LiDAR Bayes calibration).
+          Right: Emitted <code>38,400</code> binary dots across Zone A (immediate outward fault-tip propagations, <code>9,600</code> dots), Zone B (&plusmn;22&deg; horsetail/relay/antithetic fracture networks, <code>23,616</code> dots), and Zone C (deep blind-basin dip-pulled-back <code>iSPI</code> + Sibson hydrothermal conduits, <code>5,184</code> dots). North/South balance = <code>49.98%</code>; 24.6% non-LiDAR swath = <code>24.97%</code>.
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Why <code>GEMSDOE32</code> Scored <code>0.2778</code> &amp; Controlled 3-Experiment Holdout Ablation</h2>
+      <p>
+        Under Distance-Weighted Tversky (<code>&alpha;=0.2, &beta;=0.8</code>, <code>300 m</code> triangular cone <code>k(d)=max(1-d/3,0)</code>),
+        mapped catalogue cells <code>C</code> are masked pixel-exact while unmapped fault cells <code>G</code> take the <code>max</code> inside 300 m and false positives accumulate linearly.
+        Converting soft continuous ridges (<code>H19-5</code>, owner-reported live <code>0.1922</code>) to binary Poisson-disk dots at <code>2.8 px</code> (<code>44,090</code> dots, <code>0.2600</code>) and pruning lateral flank dots within <code>d &le; 1 px</code> (<code>40,199</code> dots, <code>0.2708</code>) and <code>d &le; 2 px</code> (<code>37,654</code> dots, <code>GEMSDOE32 H33-2-B2</code>, owner-reported live <code>0.2778</code>) removed dead halo false positives.
+        <code>GEMSDOE32</code> plateaued because: (1) 55&deg;–65&deg; fault dip shifts vertical gravity/magnetic gradients 300–900 m down-dip into hanging-wall basins; (2) blind Great Basin geothermal systems (&gt;75% of total; <a href="https://www.osti.gov/biblio/1249430" target="_blank" rel="noopener">Faulds &amp; Hinz 2015</a>) hide beneath playal/alluvial cover and self-sealed sinter aprons (<a href="https://doi.org/10.1144/GSL.SP.1990.054.01.02" target="_blank" rel="noopener">Sibson 1990</a>); (3) isotropic <code>d&gt;2 px</code> collars delete 25% of true tip continuations; and (4) the 24.6% non-LiDAR survey seam starves eastern/northern basins.
+      </p>
+      <div class="figure-box">
+        <img src="assets/fig2_ablation_and_forensics.png" alt="Holdout Ablation and Live Forensics" />
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. 72-Channel Single-Feature Leakage Canary &amp; Top Split-Gain Features</h2>
+      <div class="figure-box">
+        <img src="assets/fig3_canary_and_importance.png" alt="Leakage Canary and Feature Importance" />
+        <div class="figure-caption">
+          <strong>Figure 3.</strong> All 72 channels pass the <code>AUC &le; 0.90</code> single-feature leakage canary (<code>max symmetric AUC = 0.7334</code>, <a href="evidence/h86_fvmb_canary.json">JSON receipt</a>).
+          Notice our Lake Lahontan / Bonneville shoreline bench &amp; basalt-rim decontamination feature <code>mimic_along_scarp_elev_climb</code> ranks <strong>#3 of 72</strong> in split gain!
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. 37-Raster Modern &amp; Cross-Lane Uniqueness vs. 808-Archive Dense Witness</h2>
+      <div class="figure-box">
+        <img src="assets/fig4_registry_uniqueness.png" alt="Uniqueness Audit" />
+        <div class="figure-caption">
+          <strong>Figure 4.</strong> Pre-placement continuous surface (<code>max |&rho;| = 0.1433 &le; 0.90</code>, <code>max 3-px = 0.5603 &le; 0.70</code>) and final <code>38,400</code> dots (<code>max |&rho;| = 0.0480 &le; 0.90</code>, <code>max 3-px = 0.6831 &le; 0.70</code>) pass across all 31 modern <code>GEMSDOE28..85</code> rasters (<a href="evidence/h86_fvmb_saturation_aware_uniqueness.json">31-raster receipt</a>) and all 6 sibling <code>GEMSDOE86</code> lanes (<code>max 3-px = 0.5167 &le; 0.70</code>, <a href="evidence/h86_fvmb_crosslane_uniqueness.json">cross-lane receipt</a>).
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="index.html">&larr; Back to Repository Decision Dashboard</a> · <a href="executive-summary.html">Executive Summary &amp; Upload Procedure &rarr;</a>
+  </footer>
+</body>
+</html>

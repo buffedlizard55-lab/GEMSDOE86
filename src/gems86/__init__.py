@@ -1,18 +1,8 @@
-"""GEMSDOE86 Lane H86-FVMB package.
+"""GEMSDOE86 lane: gravity–magnetic cross-gradient structural coherence (GMC).
 
-Implements:
-  - H86-1: Dual Magnetic-Gravity Source Parameter Imaging (iSPI) local-wavenumber
-           contact dipole with cot(60)-scaled basement dip pullback, Sibson hydrothermal
-           fault-valve breaching (RTP magnetite destruction x K/Th x MT clay-cap x
-           GDR 1391 geothermometers, 2m temperature probes & paleo-sinter seals),
-           and Lake Lahontan/Bonneville + TIGER road decontamination.
-  - H86-2: Asymmetric Mode-II/III (±22 deg) horsetail wing-crack dilational splays,
-           bidirectional relay bridges, antithetic graben twins, and counterfactual
-           component-withheld 3-family OOF stacking with 8-stratum calibration.
-  - H86-3: Exact linear-fractional Dinkelbach-Minoux 300 m submodular expected-DTI
-           allocator with endogenous marginal break-even stopping.
+The shared instruments (metric, holdout, emission, uniqueness, writer, validator)
+are vendored byte-identically in ``vendor/template66`` and imported, never forked.
+This package only adds the new structural transforms and the lane driver.
 """
-from __future__ import annotations
 
-LANE_ID = "H86-FVMB"
-__all__ = ["LANE_ID"]
+__all__ = ["features", "io", "emission"]

@@ -1,138 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Executive Summary — GEMSDOE86 (Lane H86-FVMB)</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">
-        <span>GEMSDOE86 · Lane H86-FVMB</span>
-        <span class="brand-badge">OK TO SUBMIT</span>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html">Portal &amp; Download</a>
-        <a class="active" href="executive-summary.html">Executive Summary</a>
-        <a href="forensics-and-science.html">PhD Forensics &amp; Science</a>
-        <a href="audit-and-irregularities.html">Provenance, Uniqueness &amp; Irregularities</a>
-      </nav>
-    </div>
-  </header>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html" style="color:#e8eefc">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
+<h1>Executive summary — submission procedure and current stop</h1>
+<div class="card hero"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY REPOSITORY FILE AUTOMATICALLY</span>
+<h2>Latest H86-FVMB (Lane 7), H86B-GFCO &amp; RMRB-86 research candidates</h2><p>All 7 technical TIFFs pass 15/15 format checks (eliminating DrivenData's <code>"Predicted values must be in range [0, 1]"</code> error by construction). <b>H86-FVMB</b> (<code>38,400</code> binary dots) achieves the <b>highest HOLDOUT-DTI in GEMSDOE86</b> (<code>0.1458 [0.1345, 0.1560]</code> dual-seed all, paired Δ vs H33-2-B2 <code>+0.0550 [+0.0470, +0.0635]</code>, <b>+60.5%</b>; <code>0.1538</code> detached, <b>+66.2%</b>), passes 72/72 leakage canaries (<code>≤0.7334</code>), and passes literal <code>≤0.70</code> uniqueness across all 37 modern &amp; concurrent rasters (<code>≤0.6831</code> vs 31 GEMSDOE28..85 priors incl. 201k-dot H85 skeleton; <code>0.3052</code> vs H33-2-B2; <code>0.3606</code> vs H86B-GFCO). Automatic slot approval remains fail-closed (<code>DO NOT SUBMIT</code> without explicit owner carpet-prior waiver) solely because historical <code>17GEMSDOE_E-proba-multiscale</code> has <code>p&gt;0</code> across 100.0% of the allowed footprint (<code>1.000 &gt; 0.70</code>).</p>
+<a class="btn danger" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download>Download H86-FVMB TIFF (38,400d) — DO NOT SUBMIT</a>
+<a class="btn ghost" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip" download>Download H86-FVMB ZIP — DO NOT SUBMIT</a>
+<a class="btn ghost" href="evidence/h86-fvmb-run-card.json">H86-FVMB Run Card</a>
+<a class="btn ghost" href="h86-fvmb-forensics.html">H86-FVMB PhD Forensics &amp; Figures</a>
+<a class="btn ghost" href="downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif" download>Download H86B-GFCO TIFF — DO NOT SUBMIT</a>
+<a class="btn ghost" href="evidence/h86b-gfco-run-card.json">H86B-GFCO Run Card</a>
+<a class="btn ghost" href="downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif" download>Download RMRB-86 TIFF — DO NOT SUBMIT</a></div>
 
-  <main class="container">
-    <section class="go-banner">
-      <div class="go-kicker">Executive Decision Brief · Automated Preflight Complete</div>
-      <h1>✅ READY FOR DRIVENDATA UPLOAD — VERDICT: <code>PROMOTE</code></h1>
-      <p>
-        <code>gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif</code>
-        (<code>SHA-256: 413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233</code>) is
-        <strong>automatically verified ready to download and submit</strong> without human repair.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif" download>
-          ⬇ Download GeoTIFF (.tif · 146.3 KB)
-        </a>
-        <a class="btn btn-secondary" href="downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip" download>
-          ⬇ Download Archive (.zip · 113.5 KB)
-        </a>
-        <a class="btn btn-secondary" href="data/run_card.json">📄 View JSON Run Card</a>
-      </div>
-      <div style="margin-top:12px; font-size:0.84rem; color:#d1fae5;">
-        <strong>Submission Name:</strong> <code>GEMS86-H86-FVMB-TRIDINK-38400</code> &nbsp;|&nbsp;
-        <strong>DrivenData Note (124/140 chars):</strong> <code>H86-FVMB iSPI dip-pullback + Sibson fault-valve + ±22deg wingcrack SAR-PU + TriRegime Dinkelbach; 38400d; HOLDOUT-DTI 0.1458</code><br/>
-        <strong>.zip SHA-256:</strong> <code>5c14d8f91dc49a5810fe228190c2bdc7ca22fc97faa2f76d44474d02787ebe12</code> &nbsp;|&nbsp;
-        <strong>Emitted Binary Dots:</strong> <code>38,400</code> (<code>float32</code>, <code>[0.0, 1.0]</code>, <code>0</code> NaN/Inf)
-      </div>
-    </section>
+<p class="card"><a href="download-status.html"><b>Generated identity and validation for all downloadable TIFFs</b></a>. This is the canonical byte/size/note-length view; the older scientific reports retain their historical evidence.</p>
+<h2>RMRB-86 identity (not the H86B-GFCO download above)</h2><table>
+<tr><th>File</th><td class="mono">gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif</td></tr>
+<tr><th>SHA-256</th><td class="mono">9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd</td></tr>
+<tr><th>Submission name</th><td>RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots</td></tr>
+<tr><th>Note (107 chars)</th><td>RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.</td></tr>
+<tr><th>Verdict</th><td><b>negative / not authorized</b></td></tr></table>
 
-    <section class="card">
-      <h2>1. Bottom-Line Answer (30-Second Read)</h2>
-      <ul>
-        <li>
-          <strong>Is the generated <code>.tif</code> OK to download and submit right now?</strong>
-          <strong>YES.</strong> Unmodified <code>vendor/gems57/submission_writer.py</code> and <code>vendor/gems57/validate.py</code> passed
-          <strong>15/15</strong> preflight checks: single-band <code>float32</code>, <code>3730 &times; 3292</code>, <code>EPSG:32611</code>,
-          exact affine transform <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code>, <code>nodata=None</code>,
-          <strong><code>0</code> NaN</strong>, <strong><code>0</code> Inf</strong>, values strictly in <code>[0.0, 1.0]</code> across all <code>12,279,160</code> pixels
-          (<code>0.0</code> outside footprint, eliminating the DrivenData <code>"Predicted values must be in range [0, 1]"</code> upload error),
-          and <strong><code>0</code> positive pixels on mapped <code>existing_faults.tif</code></strong>.
-        </li>
-        <li>
-          <strong>Is this submission genuinely unique across the entire GEMSDOE fleet?</strong>
-          <strong>YES.</strong> Checked via unmodified <code>vendor/gems57/uniqueness.py</code> against all <strong>31</strong> restored registry rasters
-          both <em>before</em> dot placement (continuous surface max <code>|Spearman &rho;| = 0.1433 &le; 0.90</code>, max 3-px overlap <code>0.5603 &le; 0.70</code>)
-          and <em>after</em> dot placement (final <code>38,400</code> dots max <code>|Spearman &rho;| = 0.0480 &le; 0.90</code>, max discriminating 3-px overlap <code>0.6831 &le; 0.70</code>,
-          and <code>0.30–0.42</code> against recent 37k–41k Dinkelbach peers <code>GEMSDOE80/82/83</code>).
-        </li>
-        <li>
-          <strong>Does it beat <code>GEMSDOE32</code> (<code>0.2778</code> live) on rigorous spatially-blocked holdout?</strong>
-          <strong>YES, by +60.5% relative (+0.0550 absolute) across 22,641 withheld fault pixels.</strong>
-          On <code>HOLDOUT-DTI (gems57-pooled-hide-v2, Seeds 20 &amp; 21, n=22,641)</code>, <code>H86-FVMB</code> achieves
-          <strong><code>0.145764</code></strong> (95% CI <code>[0.134500, 0.155989]</code>) vs fold-fair <code>GEMSDOE32 H33-2-B2</code>
-          <strong><code>0.090800</code></strong> (95% CI <code>[0.080464, 0.100052]</code>), paired difference
-          <strong><code>+0.054963</code></strong> (95% CI <code>[+0.047024, +0.063463]</code>). On the hardest
-          <strong>detached blind-splay</strong> benchmark (<code>Seed 20 detached</code>, <code>n=11,307</code>, &ge;400 m from all visible strands),
-          <code>H86-FVMB</code> reaches <strong><code>0.153798</code></strong> vs <code>0.092565</code> (<strong>+66.2%</strong>).
-        </li>
-      </ul>
-    </section>
+<h2>Automated gate result</h2><ol>
+<li><b>Format — PASS locally:</b> one float32 band; every value finite in [0,1]; exact EPSG:32611, dimensions and affine; zero outside the sample-defined footprint and on mapped catalogue pixels.</li>
+<li><b>Leakage — PASS:</b> all 20 feature-alone symmetric AUCs are ≤0.58034, below the 0.90 stop.</li>
+<li><b>Holdout point result:</b> <b>HOLDOUT-DTI</b> (gems57-pooled-hide-v2; 22,893 withheld positives; physical-block 95% CI) = 0.07283 [0.05888, 0.08744].</li>
+<li><b>Paired scientific gate — FAIL:</b> delta from the strongest matched raw-radiometric control is <b>HOLDOUT-DTI delta</b> (same evaluator, positives and CI method) = 0.00167 [−0.00285, 0.00620].</li>
+<li><b>H33 comparison — PASS:</b> final rank correlation 0.03022 and forward three-pixel overlap 0.45637; bytes and decoded pixels differ.</li>
+<li><b>Parallel-lane delta — PASS:</b> the new raster stays below both thresholds against all four files newly merged from parallel sessions (eight surface/final comparisons).</li>
+<li><b>Literal registry rule — STOP:</b> a continuous prior is positive throughout the footprint, giving any nonempty sparse field overlap 1.0. No exemption is authorized.</li>
+<li><b>Selector/quota — NOT RUN:</b> no authenticated weekly quota or organizer receipt was available. No slot was spent.</li></ol>
 
-    <section class="card">
-      <h2>2. Why GEMSDOE32 Scored <code>0.2778</code>, Why Others Scored <code>0.0000–0.2750</code>, and How H86-FVMB Advances Toward <code>0.4413</code></h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Regime / Tier</th>
-              <th>ORGANIZER-CONFIRMED Live Score</th>
-              <th>Root Mathematical &amp; Geological Mechanism</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Portal Error / <code>0.0000</code>–<code>0.1552</code></strong><br/>(Early continuous &amp; NaN rasters)</td>
-              <td><code>0.0000</code>–<code>0.1552</code></td>
-              <td>Writing <code>NaN</code> outside the footprint triggers DrivenData's pre-masking range validator; emitting diffuse grayscale probabilities <code>p &in; (0.05, 0.45)</code> across millions of basin pixels inflates <code>0.2 &middot; FP_w</code> linearly while failing to achieve <code>max p(y)k(d) = 1.0</code> on 1-pixel fault traces.</td>
-            </tr>
-            <tr>
-              <td><strong>Soft Corroborated Ridges</strong><br/>(<code>GEMSDOE19 H19-5</code>)</td>
-              <td><code>0.1922</code></td>
-              <td>Combined multi-line topographic openness + thermal/geophysical power-law ridges, locating real range-front corridors (~121k positive pixels) but paying heavy flanking <code>FP_w</code> on 400–800 m wide soft halos.</td>
-            </tr>
-            <tr>
-              <td><strong>Poisson-Disk Binary Thinning</strong><br/>(<code>GEMSDOE24 D1.5</code> &rarr; <code>GEMSDOE25 D2.8</code> &rarr; <code>GEMSDOE30</code>)</td>
-              <td><code>0.2529</code> &rarr; <code>0.2600</code> &rarr; <code>0.2750</code></td>
-              <td>Converting soft clouds into discrete <code>1.0</code> dots spaced at <code>2.8 px</code> (<code>280 m &approx; R=300 m</code>) maximizes <code>TP_w</code> coverage per unit <code>FP_w</code> (+0.0678 jump!). Geodetic strain gating added +0.0150 (<code>0.2750</code>).</td>
-            </tr>
-            <tr>
-              <td><strong>Collar-Pruned D2.8 Champion</strong><br/>(<code>GEMSDOE32 H33-2-B2</code>)</td>
-              <td><code>0.2778</code></td>
-              <td>Removing 6,436 redundant dots inside <code>d(x, existing_faults) &le; 2 px</code> (<code>44,090 &rarr; 37,654</code> dots) eliminated dead halo <code>FP_w</code> (+0.0178 over <code>D2.8</code>) and exported <code>-zeros.tif</code>. Hit a structural ceiling at <code>0.2778</code> because: (1) hand-tuned non-ML weights, (2) vertical gravity/magnetic gradients displaced 300–900 m down-dip from dipping fault traces, (3) isotropic collar pruned real fault-tip continuations, and (4) 24.6% non-LiDAR sensor seam.</td>
-            </tr>
-            <tr class="highlight-row">
-              <td><strong>Lane H86-FVMB (This Work)</strong></td>
-              <td>Holdout: <code>0.1458</code> vs <code>0.0908</code> (+60.5%)<br/>(<code>0</code> live slots spent)</td>
-              <td>Solves all four ceilings of <code>GEMSDOE32</code>: (1) <strong>Dual Mag-Grav <code>iSPI</code> wavenumber ridges pulled back up-dip by <code>z_base cot(60&deg;)</code></strong> + <strong>Sibson hydrothermal fault-valve coupling</strong> (magnetite destruction &times; K/Th &times; MT clay-cap &times; 3,800 2-m probes &times; 402 paleo-sinters); (2) <strong>Asymmetric &plusmn;22&deg; Mode-II/III wing-crack, relay-bridge &amp; antithetic graben 3-family SAR-PU LOQO</strong>; (3) <strong>8-stratum <code>(Quadrant &times; 1m-LiDAR)</code> Bayes calibration</strong>; (4) <strong>Anisotropic Three-Regime 25-cell 300 m Submodular Dinkelbach allocation</strong>.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<h2>Exact portal procedure—for a future promoted file only</h2><p>These steps satisfy the process requirement; they do not authorize any current file.</p><ol>
+<li>Open that future file's canonical run card. Continue only if <code>verdict</code> is <code>promote</code>, <code>safe_to_submit</code> is true, every validator field is true, all literal registry gates pass and a separate selector has confirmed the live quota.</li>
+<li>Download the promoted <code>.tif</code> or its ZIP containing exactly one TIFF. Compute SHA-256 locally and compare it with the run card.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, sign in, review current rules/quota and choose <b>New submission</b>.</li>
+<li>Select the promoted TIFF—not JSON evidence, a sample, an old raster or anything named <code>DO-NOT-SUBMIT</code>.</li>
+<li>Paste its ≤140-character run-card note, submit once and retain the organizer receipt bound to the exact SHA-256.</li>
+<li>Only that receipt's result may be called <b>ORGANIZER-CONFIRMED</b>.</li></ol>
 
-    <section class="card">
-      <h2>3. Alignment with Arena Core Values ("Maximize P(Win)" &amp; "Own the Outcome")</h2>
-      <ul>
-        <li><strong>Maximize P(Win):</strong> Rather than copying or slightly perturbing <code>GEMSDOE32</code> or sibling Dinkelbach lanes (which failed the <code>0.70</code> uniqueness gate against <code>GEMSDOE77__gems85</code> at <code>0.865</code>), we diagnosed the underlying three-regime tectonic geometry of Great Basin geothermal faults — pairing immediate outward fault-tip propagations (<strong>Zone A</strong>), &plusmn;22&deg; horsetail/relay/antithetic fracture networks (<strong>Zone B</strong>), and blind intra-basin dip-pulled-back <code>iSPI</code> + Sibson hydrothermal conduits (<strong>Zone C</strong>). This delivers a genuinely orthogonal portfolio member (<code>0.30–0.42</code> overlap vs <code>GEMSDOE80/82/83</code>) with +60.5% holdout gain over <code>GEMSDOE32</code>.</li>
-        <li><strong>Own the Outcome:</strong> Autonomous SHA-256 data restoration (<code>56</code> verified artifacts in <code>1.4 s</code> warm / <code>46 s</code> cold), zero-swap <code>&lt; 850 MB</code> RAM execution inside a strict <code>3.8 GiB</code> container, three explicit self-audit passes, and complete honesty on scope limitations and flagged irregularities (<a href="audit-and-irregularities.html"><code>IR-86-01..04</code></a>).</li>
-      </ul>
-    </section>
-  </main>
+<h2>Why the prior range error should not recur</h2><p>The rejected bytes were not supplied, so its cause is unknown. This writer does not guess or clip: it rejects NaN, infinity, sentinels, negatives and values above one before serialization, then reopens the output and validates it again. RMRB-86 passes those local checks. A format pass still cannot override its negative scientific/registry verdict.</p>
 
-  <footer class="footer">
-    <a href="index.html">&larr; Back to Download Portal</a> · <a href="forensics-and-science.html">Continue to PhD Forensics &amp; Science &rarr;</a>
-  </footer>
-</body>
-</html>
+<h2>Next action</h2><p>Preserve every current raster as a research artifact and spend no slot. A future preregistered lane must produce a positive paired result on a target-appropriate instrument and clear a registry rule that is satisfiable without an unauthorized exception. Any schema change separating continuous surfaces from sparse dot fields requires explicit owner approval.</p>
+<p><a href="evidence/rmrb86-run-card.json">Canonical RMRB decision</a> · <a href="evidence/holdout.json">Holdout evidence</a> · <a href="evidence/uniqueness.json">Registry evidence</a></p>
+</main><footer>No organizer score is claimed. No current file is authorized for upload.</footer></body></html>

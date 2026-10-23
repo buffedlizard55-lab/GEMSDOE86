@@ -1,22 +1,26 @@
-# Virtual environments & Python caches
+# --- data & caches (never committed; rebuilt by scripts/restore_data.py) ---
+.cache/
 .venv/
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
 .pytest_cache/
-.ruff_cache/
-.mypy_cache/
+/tmp/
 
-# Large cached datasets & memmaps (persisted outside git / snapshot cap; restored via scripts/restore_data.py)
-.cache/
+# --- large local artifacts ---
 data/raw/
-data/processed/
-data/bridge/
-registry/submissions/
-artifacts/
+*.npy
+*.npz
 
-# OS / temporary files
-.DS_Store
-*.tmp
-*.partial
-*.assembling
+# Small protocol-audit mirrors and historical witness (not releases)
+/data/*.tif
+/data/registry/
+/data/restoration_backup/
+
+/data/external/
+/data/work/
+
+/data/cache/
+/data/scored/
+/data/registry_ext/
+data/processed/
+registry/submissions/

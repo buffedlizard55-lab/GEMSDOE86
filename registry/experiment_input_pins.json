@@ -1,0 +1,34 @@
+{
+  "schema": "gems86.experiment-input-pins.v1",
+  "note": "GitHub mirrors are integrity-pinned but not independently organizer-authenticated.",
+  "files": [
+    {
+      "id": "radiometrics",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/geodawn_rad_u8.tif",
+      "dest": "external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "provenance": "owner-derived mirror of USGS GeoDAWN K/Th/U/TC grids (DOI 10.5066/P93LGLVQ); not organizer-authenticated"
+    },
+    {
+      "id": "dense_registry_witness",
+      "repo": "buffedlizard55-lab/17GEMSDOE",
+      "blob": "374c88b1da2b803e2ed160de467fd71ae114010d",
+      "dest": "registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "bytes": 25065181,
+      "provenance": "public owner-repository registry witness; continuous positive support"
+    },
+    {
+      "id": "h33_education",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "blob": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "dest": "registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "provenance": "H33-2-B2 historical raster downloaded only for education and uniqueness measurement; never reused as output"
+    }
+  ]
+}
