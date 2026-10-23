@@ -275,7 +275,7 @@ was submitted — the human submits from their own registered account, one file 
 
 ---
 
-## Addendum — CONCENTRATION knob session (branch `arena/1b2cc347-gemsdoe86`, PR #38)
+## Addendum — CONCENTRATION knob session (branch `arena/1b2cc347-gemsdoe86`, PR #45)
 
 **AI wrote:** `scripts/verify_r0_rebuild.py`, `scripts/build_concentration_knobs.py`,
 `scripts/measure_concentration_instruments.py`, `scripts/emit_concentration_knob_entries.py`,

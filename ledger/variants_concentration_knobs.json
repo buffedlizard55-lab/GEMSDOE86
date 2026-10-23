@@ -19,7 +19,7 @@
     "duplicate_of": "CONCENTRATION / b5km-move15 (PR #43, identical dot-set token 73802181)",
     "predicted_change": "+0.001 (MODEL, band -0.008..+0.008). Preregistered +0.004 in the run card before any instrument ran. Revised twice, in that order: (i) the hide-and-recover proxy gain is circular - the TMI-only prior recovers nothing (+0.0008, CI -0.0044..+0.0073) while the catalogue-only prior carries all of it (+0.0149); (ii) on the SGMC independent map every arm including the shuffled-prior null loses 0.012-0.020, so moving mass costs credit and this prior does not earn it back. Prediction is now indistinguishable from zero.",
     "preregistered_change": 0.004,
-    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/38",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/45",
     "diff": {
       "n_parent": 37654,
       "n_candidate": 37654,
@@ -77,7 +77,7 @@
     "duplicate_of": "",
     "predicted_change": "-0.001 (MODEL, band -0.012..+0.008). Preregistered +0.008. Largest dose on the axis (48.0% of dots changed, inside the brief's 1-50% band) and therefore the largest exposure to the measured cost of moving (SGMC -0.0200 vs the shuffled-prior null's -0.0120). Its value is as a dose readout, not a bet.",
     "preregistered_change": 0.008,
-    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/38",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/45",
     "diff": {
       "n_parent": 37654,
       "n_candidate": 37654,
@@ -135,7 +135,7 @@
     "duplicate_of": "",
     "predicted_change": "+0.002 (MODEL, band -0.007..+0.009). Preregistered +0.007. Sharpest destination selectivity (top 5% of blocks) and the best proxy in the set (+0.0195 vs the +0.0122 of the 5 km arm) - but that proxy ordering is the circular catalogue term, and the SGMC control is -0.0139. Below the evidence floor either way.",
     "preregistered_change": 0.007,
-    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/38",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/45",
     "diff": {
       "n_parent": 37654,
       "n_candidate": 37654,

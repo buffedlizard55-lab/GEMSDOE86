@@ -38,7 +38,7 @@ gitignored (unchecked data-use terms); hashes below are the authority.
   10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
   Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
 
-## CONCENTRATION knobs — built and gated, **not slot-approved** (PR #38, predicted inside ±0.010)
+## CONCENTRATION knobs — built and gated, **not slot-approved** (PR #45, predicted inside ±0.010)
 
 Upload the `-zeros` twin; the `-nan` twin carries identical dots. TIFFs are local-only and
 gitignored. Each arm moves exactly one knob off the spent 1 km / 15 % / top-20 % setting, so a

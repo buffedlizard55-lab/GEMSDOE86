@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_CARD = ROOT / "evidence" / "concentration_knobs_20261023.json"
 INSTRUMENTS = ROOT / "evidence" / "concentration_instruments_20261023.json"
 OUT = ROOT / "ledger" / "variants_concentration_knobs.json"
-SOURCE_URL = "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/38"
+SOURCE_URL = "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/45"
 
 #: (axis, value) keys already in the ledger.  A collision would make the new file a
 #: duplicate, not a candidate; the build refuses to write a colliding value, so this is
