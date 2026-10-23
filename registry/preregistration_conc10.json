@@ -1,0 +1,58 @@
+{
+  "schema": "gems86-preregistration-v1",
+  "registered_utc": "2026-10-23T00:00:00Z",
+  "session_branch": "arena/a681fdaf-gemsdoe86",
+  "axis": "CONCENTRATION",
+  "axis_assignment": "SELF-ASSIGNED (brief v2: do not prompt over axis choice). All 7 brief-v2 axes already carry BUILT rows (37 total, 0 RECEIPT). SLOT_PLAN.md proposal 2 and IR-86-TRACKB-08 identify the unbuilt 10 km fault-system block scale; every (CONCENTRATION, b10km-*) key below is absent from ledger/submissions.csv at d0e53b8.",
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "live_dti": 0.2778,
+    "evidence_class": "CLAIM",
+    "rebuild_gate": "byte-exact via scripts/run_prune_ladder.rebuild_parent (verified this session before building: 0 differing pixels, byte_identical_sha=true)"
+  },
+  "block_px": 100,
+  "block_km": 10,
+  "shared_constraints": {
+    "count_fixed": 37654,
+    "new_dots": "100% on pinned ancestor ridge union H19-5|H19-4|H16-1, inside footprint, >3.0 px from catalogue, >=sqrt(8) px from every other dot (brief sec 4.4; R0 spacing floor never tightened)",
+    "donor_rule": "ascending block key, then ascending exact unique kernel credit (gems86.mass_econ.marginal_credit), then row-major - identical to the audited 5 km session",
+    "pct_changed_bounds": [1.0, 50.0],
+    "evidence_floor": "live |delta| < 0.01 = no evidence (brief sec 5)"
+  },
+  "arms": [
+    {
+      "value": "b10km-down4",
+      "n_move": 1506,
+      "design": "Disperse: donors are the lowest-unique-credit dots in the densest occupied 10 km blocks (density = dots / footprint cells, padded block grid); destinations are unused ridge cells in the sparsest occupied 10 km blocks (dest fraction fixed by the down8 capacity ladder, so down4 is a strict prefix of down8 in sources and destinations). R0 occupied-10 km density CV measured this session = 0.736 (canonical block_density_stats), above the 0.51-0.59 band, so a down move is the CV-band direction at this scale too.",
+      "preregistered_prediction_model": "+0.001 (band -0.002..+0.004); analog of concb5kmdown4 (+0.0015 MODEL, +0.0008 PROXY) with coarser, weaker targeting, so slightly smaller",
+      "falsifier": "Live delta <= -0.005 vs R0 falsifies fault-system-scale dispersal; then close the 10 km branch and keep concb5kmdown4 as the only CONCENTRATION slot candidate."
+    },
+    {
+      "value": "b10km-down8",
+      "n_move": 3012,
+      "design": "Double dose of b10km-down4 (strict extension of the same source and destination orderings). Tests dose response and ridge-pool saturation in sparse 10 km blocks (only 8,761 free ridge cells exist anywhere >=sqrt(8) px from R0).",
+      "preregistered_prediction_model": "+0.001 (band -0.003..+0.005); sign expected to match down4 with attenuated per-dot yield",
+      "falsifier": "down8 live delta <= down4 live delta - 0.005 shows the sparse-block ridge pool is exhausted at 4% and caps any future dispersal dose."
+    },
+    {
+      "value": "b10km-ridge-up8",
+      "n_move": 3012,
+      "design": "Sign control: concentrate toward the top-35% Faulds fault-interaction blocks with the prior recomputed at 100 px blocks (scale-matched halos: 30 km catalogue tip/junction halo, 10 km ridge tip/junction halo, same 0.40/0.30/0.30 weights and AGC TMI term as the 5 km session). Directly comparable to b5km-ridge-up8 (-0.0007 MODEL).",
+      "preregistered_prediction_model": "-0.001 (band -0.004..+0.002); upward concentration has lost at 1 km and 5 km on every instrument",
+      "falsifier": "Live delta >= +0.010 would falsify the dispersal preference and say fault-system-scale interaction zoning, not block-density equalisation, is the active lever."
+    }
+  ],
+  "controls_measured_never_promoted": [
+    "CONTROL-b10km-rand8: random 10 km block prior (seed 20261023), same ridge pool, 3,012 dots moved"
+  ],
+  "instruments_report_only": [
+    "SGMC off-catalogue surrogate DTI delta (MODEL) with 4-quadrant sign replication and +/-6 px jitter ensemble",
+    "Symmetric fold-fair d28 catalogue hide-and-recover (PROXY), buffered whole-component folds, both arms rebuilt from f.visible",
+    "Single-feature leakage canary AUCs (stop-and-investigate only if any feature exceeds 0.90)",
+    "Occupied block-density CV at 1/5/10 km before/after (brief sec 5 CONCENTRATION report)"
+  ],
+  "slots_used": 0,
+  "note": "Predictions above were written before any instrument was run on these arms. Post-build measured MODEL deltas go to ledger/submissions.csv predicted_change (labelled MODEL, never a score)."
+}

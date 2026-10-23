@@ -1,0 +1,1828 @@
+{
+  "generated_utc": "2026-10-23T23:52:15Z",
+  "elapsed_seconds": 321.7,
+  "axis": "CONCENTRATION",
+  "axis_assignment": "SELF-ASSIGNED this session (brief v2: do not prompt over axis choice). All 7 axes already carry BUILT rows; the 10 km fault-system block is the one unbuilt CONCENTRATION scale named by IR-86-TRACKB-08 and SLOT_PLAN.md proposal 2. Every (CONCENTRATION, b10km-*) key below is absent from ledger/submissions.csv.",
+  "block_px": 100,
+  "preregistration": {
+    "schema": "gems86-preregistration-v1",
+    "registered_utc": "2026-10-23T00:00:00Z",
+    "session_branch": "arena/a681fdaf-gemsdoe86",
+    "axis": "CONCENTRATION",
+    "axis_assignment": "SELF-ASSIGNED (brief v2: do not prompt over axis choice). All 7 brief-v2 axes already carry BUILT rows (37 total, 0 RECEIPT). SLOT_PLAN.md proposal 2 and IR-86-TRACKB-08 identify the unbuilt 10 km fault-system block scale; every (CONCENTRATION, b10km-*) key below is absent from ledger/submissions.csv at d0e53b8.",
+    "parent": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "n_dots": 37654,
+      "live_dti": 0.2778,
+      "evidence_class": "CLAIM",
+      "rebuild_gate": "byte-exact via scripts/run_prune_ladder.rebuild_parent (verified this session before building: 0 differing pixels, byte_identical_sha=true)"
+    },
+    "block_px": 100,
+    "block_km": 10,
+    "shared_constraints": {
+      "count_fixed": 37654,
+      "new_dots": "100% on pinned ancestor ridge union H19-5|H19-4|H16-1, inside footprint, >3.0 px from catalogue, >=sqrt(8) px from every other dot (brief sec 4.4; R0 spacing floor never tightened)",
+      "donor_rule": "ascending block key, then ascending exact unique kernel credit (gems86.mass_econ.marginal_credit), then row-major - identical to the audited 5 km session",
+      "pct_changed_bounds": [
+        1.0,
+        50.0
+      ],
+      "evidence_floor": "live |delta| < 0.01 = no evidence (brief sec 5)"
+    },
+    "arms": [
+      {
+        "value": "b10km-down4",
+        "n_move": 1506,
+        "design": "Disperse: donors are the lowest-unique-credit dots in the densest occupied 10 km blocks (density = dots / footprint cells, padded block grid); destinations are unused ridge cells in the sparsest occupied 10 km blocks (dest fraction fixed by the down8 capacity ladder, so down4 is a strict prefix of down8 in sources and destinations). R0 occupied-10 km density CV measured this session = 0.736 (canonical block_density_stats), above the 0.51-0.59 band, so a down move is the CV-band direction at this scale too.",
+        "preregistered_prediction_model": "+0.001 (band -0.002..+0.004); analog of concb5kmdown4 (+0.0015 MODEL, +0.0008 PROXY) with coarser, weaker targeting, so slightly smaller",
+        "falsifier": "Live delta <= -0.005 vs R0 falsifies fault-system-scale dispersal; then close the 10 km branch and keep concb5kmdown4 as the only CONCENTRATION slot candidate."
+      },
+      {
+        "value": "b10km-down8",
+        "n_move": 3012,
+        "design": "Double dose of b10km-down4 (strict extension of the same source and destination orderings). Tests dose response and ridge-pool saturation in sparse 10 km blocks (only 8,761 free ridge cells exist anywhere >=sqrt(8) px from R0).",
+        "preregistered_prediction_model": "+0.001 (band -0.003..+0.005); sign expected to match down4 with attenuated per-dot yield",
+        "falsifier": "down8 live delta <= down4 live delta - 0.005 shows the sparse-block ridge pool is exhausted at 4% and caps any future dispersal dose."
+      },
+      {
+        "value": "b10km-ridge-up8",
+        "n_move": 3012,
+        "design": "Sign control: concentrate toward the top-35% Faulds fault-interaction blocks with the prior recomputed at 100 px blocks (scale-matched halos: 30 km catalogue tip/junction halo, 10 km ridge tip/junction halo, same 0.40/0.30/0.30 weights and AGC TMI term as the 5 km session). Directly comparable to b5km-ridge-up8 (-0.0007 MODEL).",
+        "preregistered_prediction_model": "-0.001 (band -0.004..+0.002); upward concentration has lost at 1 km and 5 km on every instrument",
+        "falsifier": "Live delta >= +0.010 would falsify the dispersal preference and say fault-system-scale interaction zoning, not block-density equalisation, is the active lever."
+      }
+    ],
+    "controls_measured_never_promoted": [
+      "CONTROL-b10km-rand8: random 10 km block prior (seed 20261023), same ridge pool, 3,012 dots moved"
+    ],
+    "instruments_report_only": [
+      "SGMC off-catalogue surrogate DTI delta (MODEL) with 4-quadrant sign replication and +/-6 px jitter ensemble",
+      "Symmetric fold-fair d28 catalogue hide-and-recover (PROXY), buffered whole-component folds, both arms rebuilt from f.visible",
+      "Single-feature leakage canary AUCs (stop-and-investigate only if any feature exceeds 0.90)",
+      "Occupied block-density CV at 1/5/10 km before/after (brief sec 5 CONCENTRATION report)"
+    ],
+    "slots_used": 0,
+    "note": "Predictions above were written before any instrument was run on these arms. Post-build measured MODEL deltas go to ledger/submissions.csv predicted_change (labelled MODEL, never a score)."
+  },
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "n_dots": 37654,
+    "claimed_live_dti": 0.2778,
+    "claimed_evidence_class": "CLAIM",
+    "rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+    },
+    "d28_lineage_exact": true,
+    "unique_kernel_credit_summary": {
+      "disc_cells": 29,
+      "disc_kernel_sum": 9.380298,
+      "marginal_credit_mean": 6.791223,
+      "marginal_credit_min": 2.374139,
+      "marginal_credit_median": 6.892715,
+      "marginal_credit_max": 9.380298,
+      "overlap_writeoff_fraction": 0.276012,
+      "n_dots": 37654
+    },
+    "block_density_cv_parent": {
+      "cv_1km": {
+        "block_px": 10,
+        "occupied_blocks": 15976,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6235,
+        "count_cv_occupied": 0.6187,
+        "mean_dots_per_occupied_block": 2.3569
+      },
+      "cv_5km": {
+        "block_px": 50,
+        "occupied_blocks": 1771,
+        "total_blocks": 4810,
+        "density_cv_occupied": 0.7442,
+        "count_cv_occupied": 0.7238,
+        "mean_dots_per_occupied_block": 21.1056
+      },
+      "cv_10km": {
+        "block_px": 100,
+        "occupied_blocks": 538,
+        "total_blocks": 1184,
+        "density_cv_occupied": 0.736,
+        "count_cv_occupied": 0.6434,
+        "mean_dots_per_occupied_block": 68.9442
+      }
+    }
+  },
+  "design_notes": {
+    "down_dest_block_frac": 0.65,
+    "up_dest_block_frac": 0.35,
+    "down_frac_ladder": [
+      0.5,
+      0.65,
+      0.75,
+      0.85
+    ],
+    "up_frac_ladder": [
+      0.35,
+      0.45,
+      0.55
+    ],
+    "nesting_verified_down4_in_down8": true,
+    "density_valid_occupied_10km_blocks": 537,
+    "faulds_10km_counts": {
+      "cat_tips": 6904,
+      "cat_junctions": 4131,
+      "ridge_tips": 32852,
+      "ridge_junctions": 40659,
+      "valid_5km_blocks": 567
+    },
+    "faulds_10km_quadrant_balance": {
+      "Q1_NW": {
+        "valid_blocks": 254,
+        "valid_share_pct": 44.8,
+        "top35_share_pct": 51.26,
+        "mean_prior": 0.0659
+      },
+      "Q2_NE": {
+        "valid_blocks": 157,
+        "valid_share_pct": 27.69,
+        "top35_share_pct": 15.08,
+        "mean_prior": -0.2671
+      },
+      "Q3_SW": {
+        "valid_blocks": 58,
+        "valid_share_pct": 10.23,
+        "top35_share_pct": 17.09,
+        "mean_prior": 0.3341
+      },
+      "Q4_SE": {
+        "valid_blocks": 98,
+        "valid_share_pct": 17.28,
+        "top35_share_pct": 16.58,
+        "mean_prior": 0.0594
+      }
+    },
+    "ir86_trackb08_cv_note": "IR-86-TRACKB-08 reports R0 10 km CV = 0.570; canonical block_density_stats (occupied blocks, density per footprint cell) measures 0.736 complete-block / 0.733 padded-block this session. See IR-86-CONC-12."
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509",
+      "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+      "axis": "CONCENTRATION",
+      "value": "b10km-down8",
+      "role": "candidate",
+      "n_dots": 37654,
+      "pct_changed": 15.9983,
+      "dot_digest": "e4a68d3f48dbabe8365519f6694306db1318350cb6aa3cb835e9358d5490f1c2",
+      "concentration_stats": {
+        "n_parent": 37654,
+        "n_dots": 37654,
+        "count_fixed": true,
+        "n_removed": 3012,
+        "n_added": 3012,
+        "n_symmetric_diff": 6024,
+        "pct_moved_of_parent": 7.9992,
+        "pct_changed": 15.9983,
+        "min_added_cat_clearance_px": 3.1623,
+        "median_added_cat_clearance_px": 21.1896,
+        "added_on_ancestor_ridge_fraction": 1.0,
+        "min_pair_distance_parent_px": 2.8284,
+        "min_pair_distance_variant_px": 2.8284,
+        "displacement_px": {
+          "mean": 1714.16,
+          "median": 1688.11
+        },
+        "cv_1km_parent": {
+          "block_px": 10,
+          "occupied_blocks": 15976,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6235,
+          "count_cv_occupied": 0.6187,
+          "mean_dots_per_occupied_block": 2.3569
+        },
+        "cv_1km_variant": {
+          "block_px": 10,
+          "occupied_blocks": 16063,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6289,
+          "count_cv_occupied": 0.6245,
+          "mean_dots_per_occupied_block": 2.3441
+        },
+        "cv_5km_parent": {
+          "block_px": 50,
+          "occupied_blocks": 1771,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.7442,
+          "count_cv_occupied": 0.7238,
+          "mean_dots_per_occupied_block": 21.1056
+        },
+        "cv_5km_variant": {
+          "block_px": 50,
+          "occupied_blocks": 1710,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.6662,
+          "count_cv_occupied": 0.6774,
+          "mean_dots_per_occupied_block": 21.8099
+        },
+        "dest_5km_blocks": 349,
+        "dest_block_frac": 0.65,
+        "block_px": 100,
+        "n_valid_occupied_blocks": 537,
+        "cv_10km_parent": {
+          "block_px": 100,
+          "occupied_blocks": 538,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.736,
+          "count_cv_occupied": 0.6434,
+          "mean_dots_per_occupied_block": 68.9442
+        },
+        "cv_10km_variant": {
+          "block_px": 100,
+          "occupied_blocks": 508,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.4956,
+          "count_cv_occupied": 0.5449,
+          "mean_dots_per_occupied_block": 72.7087
+        }
+      },
+      "zeros": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509-zeros.tif",
+        "sha256": "780f850996ea4005774bf197fb11fe20a99c20e2a23847e4ecc117de3838f897",
+        "bytes": 219913,
+        "primary_for_upload": true,
+        "validator": {
+          "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509-zeros.tif",
+          "bytes": 219913,
+          "sha256": "780f850996ea4005774bf197fb11fe20a99c20e2a23847e4ecc117de3838f897",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "nodata": null,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "profile_compress": "deflate"
+          },
+          "band_description": [
+            null
+          ],
+          "n_finite": 12279160,
+          "n_nan": 0,
+          "n_infinite": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0030664964579045773,
+          "emitted_positive_pixels": 37654,
+          "checks": {
+            "single_band": true,
+            "dtype_float32": true,
+            "dimensions_3730x3292": true,
+            "crs_epsg_32611": true,
+            "transform_matches_sample_submission": true,
+            "no_nan_anywhere": true,
+            "no_inf_anywhere": true,
+            "no_sentinel_values": true,
+            "range_0_1_guaranteed": true,
+            "min_ge_0": true,
+            "max_le_1": true,
+            "in_footprint_all_finite": true,
+            "in_footprint_range_0_1": true,
+            "outside_footprint_zero": true,
+            "zero_dots_on_mapped_catalogue": true
+          },
+          "all_checks_passed": true,
+          "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+          "on_catalogue_positive_pixels": 0,
+          "in_footprint_positive_pixels": 37654,
+          "footprint_fraction": 0.007286874781441169
+        },
+        "format_report_ok": true
+      },
+      "nan": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509.tif",
+        "mode": "nan",
+        "sha256": "7ac493c6aad96c7d70df71c28aacdebc89f8b45ae3438ea78f6dcf67233a1ada",
+        "bytes": 356306,
+        "in_footprint_checks_pass": true,
+        "failed_checks": [],
+        "policy_note": "brief v2 spec form (NaN outside footprint); -zeros is portal fallback"
+      },
+      "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509",
+      "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-down8: 3012 ridge dots moved (16.00% chg, 10km CV 0.496); pred +0.0003 MODEL",
+      "predicted_live_change": "+0.0003 (quadrant range -0.0040..+0.0107; 2/4 quadrants positive; fold-fair PROXY +0.0012, CI95 [-0.0016,+0.0038], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+      "model_delta_sgmc": 0.000283,
+      "proxy_fold_fair": {
+        "dti": 0.097309,
+        "ci95": [
+          0.083871,
+          0.109965
+        ],
+        "delta_vs_R0": 0.001223,
+        "delta_ci95": [
+          -0.001606,
+          0.003812
+        ],
+        "n_truth": 11321,
+        "evidence_class": "PROXY"
+      },
+      "evidence_class": "MODEL",
+      "approved_for_weekly_slot": false,
+      "submission_slots_used": 0,
+      "provenance": {
+        "input_pins": {
+          "existing_faults.tif": {
+            "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/existing_faults.tif"
+          },
+          "sample_submission.tif": {
+            "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/sample_submission.tif"
+          },
+          "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+            "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin_source": "data/restore_receipt.json",
+            "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+          },
+          "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+            "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+            "pin": null,
+            "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+            "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+            "matches_expected": true
+          }
+        },
+        "manifest_pins": {
+          "scored_h19_5": {
+            "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+            "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+            "bytes": 1712322,
+            "verified": true,
+            "provenance": "owner-reported 0.1922"
+          },
+          "scored_h19_4": {
+            "path": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+            "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+            "bytes": 1716768,
+            "verified": true,
+            "provenance": "owner-reported 0.1894"
+          },
+          "scored_h16_1": {
+            "path": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+            "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+            "bytes": 1718028,
+            "verified": true,
+            "provenance": "owner-reported 0.1855"
+          },
+          "scored_d28_unscored": {
+            "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+            "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            "bytes": 1603424,
+            "verified": true,
+            "provenance": "unscored alternate"
+          },
+          "ext_derived_sgmc_faults_100m_u8": {
+            "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+            "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+            "bytes": 198602,
+            "verified": true,
+            "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+          },
+          "ext_geodawn_extensions_u8": {
+            "path": ".cache/gems_data/external/geodawn_extensions_u8.tif",
+            "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+            "bytes": 27132925,
+            "verified": true,
+            "provenance": "derived from the USGS GeoDAWN data release (DOI 10.5066/P93LGLVQ): Th/K, U/K, U/Th ratios and TMI upward-continued 150 m"
+          },
+          "ext_geodawn_extensions_json": {
+            "path": ".cache/gems_data/external/geodawn_extensions.json",
+            "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+            "bytes": 8927,
+            "verified": true,
+            "provenance": "USGS GeoDAWN extensions quantization metadata"
+          },
+          "ext_topo_10m_derived_100m_u8": {
+            "path": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+            "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+            "bytes": 32523329,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM derived slope/relief/curvature/aspect-coherence on 100m GEMS grid"
+          },
+          "ext_dem10_chi_100m_i16": {
+            "path": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+            "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+            "bytes": 12777098,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM fluvial ksn, log drainage area, and mean elevation (m) on 100m GEMS grid"
+          }
+        },
+        "parent_rebuild": {
+          "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+          "n_base_dots": 40199,
+          "n_rebuilt": 37654,
+          "n_published": 37654,
+          "differing_pixels": 0,
+          "content_identical": true,
+          "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_identical_sha": true,
+          "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+          "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+        },
+        "git_sha": "d0e53b8fa15a566464f6124eea7dda8b03e7a5e6",
+        "preregistration": "registry/preregistration_conc10.json"
+      },
+      "generated_utc": "2026-10-23T23:51:59Z"
+    },
+    {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9",
+      "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+      "axis": "CONCENTRATION",
+      "value": "b10km-down4",
+      "role": "candidate",
+      "n_dots": 37654,
+      "pct_changed": 7.9992,
+      "dot_digest": "ec692bbc15f27a273a8637890c13a97176efae5ea51e699068d3076a26173389",
+      "concentration_stats": {
+        "n_parent": 37654,
+        "n_dots": 37654,
+        "count_fixed": true,
+        "n_removed": 1506,
+        "n_added": 1506,
+        "n_symmetric_diff": 3012,
+        "pct_moved_of_parent": 3.9996,
+        "pct_changed": 7.9992,
+        "min_added_cat_clearance_px": 3.1623,
+        "median_added_cat_clearance_px": 19.8242,
+        "added_on_ancestor_ridge_fraction": 1.0,
+        "min_pair_distance_parent_px": 2.8284,
+        "min_pair_distance_variant_px": 2.8284,
+        "displacement_px": {
+          "mean": 1729.2,
+          "median": 1702.18
+        },
+        "cv_1km_parent": {
+          "block_px": 10,
+          "occupied_blocks": 15976,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6235,
+          "count_cv_occupied": 0.6187,
+          "mean_dots_per_occupied_block": 2.3569
+        },
+        "cv_1km_variant": {
+          "block_px": 10,
+          "occupied_blocks": 16078,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6275,
+          "count_cv_occupied": 0.6219,
+          "mean_dots_per_occupied_block": 2.342
+        },
+        "cv_5km_parent": {
+          "block_px": 50,
+          "occupied_blocks": 1771,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.7442,
+          "count_cv_occupied": 0.7238,
+          "mean_dots_per_occupied_block": 21.1056
+        },
+        "cv_5km_variant": {
+          "block_px": 50,
+          "occupied_blocks": 1744,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.6844,
+          "count_cv_occupied": 0.688,
+          "mean_dots_per_occupied_block": 21.4106
+        },
+        "dest_5km_blocks": 349,
+        "dest_block_frac": 0.65,
+        "block_px": 100,
+        "n_valid_occupied_blocks": 537,
+        "cv_10km_parent": {
+          "block_px": 100,
+          "occupied_blocks": 538,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.736,
+          "count_cv_occupied": 0.6434,
+          "mean_dots_per_occupied_block": 68.9442
+        },
+        "cv_10km_variant": {
+          "block_px": 100,
+          "occupied_blocks": 518,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.5182,
+          "count_cv_occupied": 0.5638,
+          "mean_dots_per_occupied_block": 71.4653
+        }
+      },
+      "zeros": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9-zeros.tif",
+        "sha256": "c4e8ffc9efce926e93267af1b1f53afc36231a929b0b0189268b67d1c6b39b42",
+        "bytes": 220059,
+        "primary_for_upload": true,
+        "validator": {
+          "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9-zeros.tif",
+          "bytes": 220059,
+          "sha256": "c4e8ffc9efce926e93267af1b1f53afc36231a929b0b0189268b67d1c6b39b42",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "nodata": null,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "profile_compress": "deflate"
+          },
+          "band_description": [
+            null
+          ],
+          "n_finite": 12279160,
+          "n_nan": 0,
+          "n_infinite": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0030664964579045773,
+          "emitted_positive_pixels": 37654,
+          "checks": {
+            "single_band": true,
+            "dtype_float32": true,
+            "dimensions_3730x3292": true,
+            "crs_epsg_32611": true,
+            "transform_matches_sample_submission": true,
+            "no_nan_anywhere": true,
+            "no_inf_anywhere": true,
+            "no_sentinel_values": true,
+            "range_0_1_guaranteed": true,
+            "min_ge_0": true,
+            "max_le_1": true,
+            "in_footprint_all_finite": true,
+            "in_footprint_range_0_1": true,
+            "outside_footprint_zero": true,
+            "zero_dots_on_mapped_catalogue": true
+          },
+          "all_checks_passed": true,
+          "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+          "on_catalogue_positive_pixels": 0,
+          "in_footprint_positive_pixels": 37654,
+          "footprint_fraction": 0.007286874781441169
+        },
+        "format_report_ok": true
+      },
+      "nan": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9.tif",
+        "mode": "nan",
+        "sha256": "ab5594ab0a60a6ce73bf1daaaea29006db9368cd28b0f72beba4b1e758262f03",
+        "bytes": 356490,
+        "in_footprint_checks_pass": true,
+        "failed_checks": [],
+        "policy_note": "brief v2 spec form (NaN outside footprint); -zeros is portal fallback"
+      },
+      "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9",
+      "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-down4: 1506 ridge dots moved (8.00% chg, 10km CV 0.518); pred -0.0010 MODEL",
+      "predicted_live_change": "-0.0010 (quadrant range -0.0034..+0.0048; 2/4 quadrants positive; fold-fair PROXY +0.0005, CI95 [-0.0006,+0.0019], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+      "model_delta_sgmc": -0.001035,
+      "proxy_fold_fair": {
+        "dti": 0.09663,
+        "ci95": [
+          0.08329,
+          0.109184
+        ],
+        "delta_vs_R0": 0.000543,
+        "delta_ci95": [
+          -0.000596,
+          0.001886
+        ],
+        "n_truth": 11321,
+        "evidence_class": "PROXY"
+      },
+      "evidence_class": "MODEL",
+      "approved_for_weekly_slot": false,
+      "submission_slots_used": 0,
+      "provenance": {
+        "input_pins": {
+          "existing_faults.tif": {
+            "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/existing_faults.tif"
+          },
+          "sample_submission.tif": {
+            "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/sample_submission.tif"
+          },
+          "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+            "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin_source": "data/restore_receipt.json",
+            "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+          },
+          "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+            "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+            "pin": null,
+            "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+            "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+            "matches_expected": true
+          }
+        },
+        "manifest_pins": {
+          "scored_h19_5": {
+            "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+            "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+            "bytes": 1712322,
+            "verified": true,
+            "provenance": "owner-reported 0.1922"
+          },
+          "scored_h19_4": {
+            "path": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+            "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+            "bytes": 1716768,
+            "verified": true,
+            "provenance": "owner-reported 0.1894"
+          },
+          "scored_h16_1": {
+            "path": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+            "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+            "bytes": 1718028,
+            "verified": true,
+            "provenance": "owner-reported 0.1855"
+          },
+          "scored_d28_unscored": {
+            "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+            "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            "bytes": 1603424,
+            "verified": true,
+            "provenance": "unscored alternate"
+          },
+          "ext_derived_sgmc_faults_100m_u8": {
+            "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+            "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+            "bytes": 198602,
+            "verified": true,
+            "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+          },
+          "ext_geodawn_extensions_u8": {
+            "path": ".cache/gems_data/external/geodawn_extensions_u8.tif",
+            "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+            "bytes": 27132925,
+            "verified": true,
+            "provenance": "derived from the USGS GeoDAWN data release (DOI 10.5066/P93LGLVQ): Th/K, U/K, U/Th ratios and TMI upward-continued 150 m"
+          },
+          "ext_geodawn_extensions_json": {
+            "path": ".cache/gems_data/external/geodawn_extensions.json",
+            "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+            "bytes": 8927,
+            "verified": true,
+            "provenance": "USGS GeoDAWN extensions quantization metadata"
+          },
+          "ext_topo_10m_derived_100m_u8": {
+            "path": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+            "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+            "bytes": 32523329,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM derived slope/relief/curvature/aspect-coherence on 100m GEMS grid"
+          },
+          "ext_dem10_chi_100m_i16": {
+            "path": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+            "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+            "bytes": 12777098,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM fluvial ksn, log drainage area, and mean elevation (m) on 100m GEMS grid"
+          }
+        },
+        "parent_rebuild": {
+          "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+          "n_base_dots": 40199,
+          "n_rebuilt": 37654,
+          "n_published": 37654,
+          "differing_pixels": 0,
+          "content_identical": true,
+          "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_identical_sha": true,
+          "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+          "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+        },
+        "git_sha": "d0e53b8fa15a566464f6124eea7dda8b03e7a5e6",
+        "preregistration": "registry/preregistration_conc10.json"
+      },
+      "generated_utc": "2026-10-23T23:52:07Z"
+    },
+    {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548",
+      "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+      "axis": "CONCENTRATION",
+      "value": "b10km-ridge-up8",
+      "role": "candidate",
+      "n_dots": 37654,
+      "pct_changed": 15.9983,
+      "dot_digest": "a00d8397d42b18cf0d0ec80495b65696f394f01a5fd8f0561a1aa5c694174203",
+      "concentration_stats": {
+        "n_parent": 37654,
+        "n_dots": 37654,
+        "count_fixed": true,
+        "n_removed": 3012,
+        "n_added": 3012,
+        "n_symmetric_diff": 6024,
+        "pct_moved_of_parent": 7.9992,
+        "pct_changed": 15.9983,
+        "min_added_cat_clearance_px": 3.1623,
+        "median_added_cat_clearance_px": 17.8045,
+        "added_on_ancestor_ridge_fraction": 1.0,
+        "min_pair_distance_parent_px": 2.8284,
+        "min_pair_distance_variant_px": 2.8284,
+        "displacement_px": {
+          "mean": 1841.74,
+          "median": 1861.69
+        },
+        "cv_1km_parent": {
+          "block_px": 10,
+          "occupied_blocks": 15976,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6235,
+          "count_cv_occupied": 0.6187,
+          "mean_dots_per_occupied_block": 2.3569
+        },
+        "cv_1km_variant": {
+          "block_px": 10,
+          "occupied_blocks": 15520,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.627,
+          "count_cv_occupied": 0.6223,
+          "mean_dots_per_occupied_block": 2.4262
+        },
+        "cv_5km_parent": {
+          "block_px": 50,
+          "occupied_blocks": 1771,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.7442,
+          "count_cv_occupied": 0.7238,
+          "mean_dots_per_occupied_block": 21.1056
+        },
+        "cv_5km_variant": {
+          "block_px": 50,
+          "occupied_blocks": 1541,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.6798,
+          "count_cv_occupied": 0.6884,
+          "mean_dots_per_occupied_block": 24.3361
+        },
+        "dest_5km_blocks": 198,
+        "dest_block_frac": 0.35,
+        "block_px": 100,
+        "cv_10km_parent": {
+          "block_px": 100,
+          "occupied_blocks": 538,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.736,
+          "count_cv_occupied": 0.6434,
+          "mean_dots_per_occupied_block": 68.9442
+        },
+        "cv_10km_variant": {
+          "block_px": 100,
+          "occupied_blocks": 441,
+          "total_blocks": 1184,
+          "density_cv_occupied": 0.545,
+          "count_cv_occupied": 0.5688,
+          "mean_dots_per_occupied_block": 84.6054
+        }
+      },
+      "zeros": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548-zeros.tif",
+        "sha256": "ef2f35484527cd7d107d5d528b1a264354d95f55e32d80103e0fe82947673f06",
+        "bytes": 215675,
+        "primary_for_upload": true,
+        "validator": {
+          "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548-zeros.tif",
+          "bytes": 215675,
+          "sha256": "ef2f35484527cd7d107d5d528b1a264354d95f55e32d80103e0fe82947673f06",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "nodata": null,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "profile_compress": "deflate"
+          },
+          "band_description": [
+            null
+          ],
+          "n_finite": 12279160,
+          "n_nan": 0,
+          "n_infinite": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0030664964579045773,
+          "emitted_positive_pixels": 37654,
+          "checks": {
+            "single_band": true,
+            "dtype_float32": true,
+            "dimensions_3730x3292": true,
+            "crs_epsg_32611": true,
+            "transform_matches_sample_submission": true,
+            "no_nan_anywhere": true,
+            "no_inf_anywhere": true,
+            "no_sentinel_values": true,
+            "range_0_1_guaranteed": true,
+            "min_ge_0": true,
+            "max_le_1": true,
+            "in_footprint_all_finite": true,
+            "in_footprint_range_0_1": true,
+            "outside_footprint_zero": true,
+            "zero_dots_on_mapped_catalogue": true
+          },
+          "all_checks_passed": true,
+          "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+          "on_catalogue_positive_pixels": 0,
+          "in_footprint_positive_pixels": 37654,
+          "footprint_fraction": 0.007286874781441169
+        },
+        "format_report_ok": true
+      },
+      "nan": {
+        "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548.tif",
+        "mode": "nan",
+        "sha256": "923482e21d73660c7f6c355cbb61431071169de767243efc2c1a8fe1ee2bc9c8",
+        "bytes": 351743,
+        "in_footprint_checks_pass": true,
+        "failed_checks": [],
+        "policy_note": "brief v2 spec form (NaN outside footprint); -zeros is portal fallback"
+      },
+      "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548",
+      "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-ridge-up8: 3012 ridge dots moved (16.00% chg, 10km CV 0.545); pred -0.0009 MODEL",
+      "predicted_live_change": "-0.0009 (quadrant range -0.0083..+0.0072; 2/4 quadrants positive; fold-fair PROXY -0.0075, CI95 [-0.0159,-0.0004], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+      "model_delta_sgmc": -0.000879,
+      "proxy_fold_fair": {
+        "dti": 0.08862,
+        "ci95": [
+          0.077341,
+          0.100264
+        ],
+        "delta_vs_R0": -0.007467,
+        "delta_ci95": [
+          -0.015942,
+          -0.000392
+        ],
+        "n_truth": 11321,
+        "evidence_class": "PROXY"
+      },
+      "evidence_class": "MODEL",
+      "approved_for_weekly_slot": false,
+      "submission_slots_used": 0,
+      "provenance": {
+        "input_pins": {
+          "existing_faults.tif": {
+            "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/existing_faults.tif"
+          },
+          "sample_submission.tif": {
+            "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+            "pin_source": "registry/data_manifest.json",
+            "path": "data/bridge/sample_submission.tif"
+          },
+          "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+            "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "pin_source": "data/restore_receipt.json",
+            "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+          },
+          "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+            "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+            "pin": null,
+            "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+            "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+            "matches_expected": true
+          }
+        },
+        "manifest_pins": {
+          "scored_h19_5": {
+            "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+            "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+            "bytes": 1712322,
+            "verified": true,
+            "provenance": "owner-reported 0.1922"
+          },
+          "scored_h19_4": {
+            "path": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+            "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+            "bytes": 1716768,
+            "verified": true,
+            "provenance": "owner-reported 0.1894"
+          },
+          "scored_h16_1": {
+            "path": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+            "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+            "bytes": 1718028,
+            "verified": true,
+            "provenance": "owner-reported 0.1855"
+          },
+          "scored_d28_unscored": {
+            "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+            "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            "bytes": 1603424,
+            "verified": true,
+            "provenance": "unscored alternate"
+          },
+          "ext_derived_sgmc_faults_100m_u8": {
+            "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+            "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+            "bytes": 198602,
+            "verified": true,
+            "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+          },
+          "ext_geodawn_extensions_u8": {
+            "path": ".cache/gems_data/external/geodawn_extensions_u8.tif",
+            "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+            "bytes": 27132925,
+            "verified": true,
+            "provenance": "derived from the USGS GeoDAWN data release (DOI 10.5066/P93LGLVQ): Th/K, U/K, U/Th ratios and TMI upward-continued 150 m"
+          },
+          "ext_geodawn_extensions_json": {
+            "path": ".cache/gems_data/external/geodawn_extensions.json",
+            "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+            "bytes": 8927,
+            "verified": true,
+            "provenance": "USGS GeoDAWN extensions quantization metadata"
+          },
+          "ext_topo_10m_derived_100m_u8": {
+            "path": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+            "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+            "bytes": 32523329,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM derived slope/relief/curvature/aspect-coherence on 100m GEMS grid"
+          },
+          "ext_dem10_chi_100m_i16": {
+            "path": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+            "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+            "bytes": 12777098,
+            "verified": true,
+            "provenance": "USGS 3DEP 10m DEM fluvial ksn, log drainage area, and mean elevation (m) on 100m GEMS grid"
+          }
+        },
+        "parent_rebuild": {
+          "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+          "n_base_dots": 40199,
+          "n_rebuilt": 37654,
+          "n_published": 37654,
+          "differing_pixels": 0,
+          "content_identical": true,
+          "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+          "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "byte_identical_sha": true,
+          "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+          "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+        },
+        "git_sha": "d0e53b8fa15a566464f6124eea7dda8b03e7a5e6",
+        "preregistration": "registry/preregistration_conc10.json"
+      },
+      "generated_utc": "2026-10-23T23:52:15Z"
+    }
+  ],
+  "null_control_not_promoted": {
+    "CONTROL-b10km-rand8": {
+      "description": "Random 10 km block prior on the same ancestor ridge pool (3,012 dots moved, seed 20261023)",
+      "stats": {
+        "n_parent": 37654,
+        "n_dots": 37654,
+        "count_fixed": true,
+        "n_removed": 3012,
+        "n_added": 3012,
+        "n_symmetric_diff": 6024,
+        "pct_moved_of_parent": 7.9992,
+        "pct_changed": 15.9983,
+        "min_added_cat_clearance_px": 3.1623,
+        "median_added_cat_clearance_px": 22.8035,
+        "added_on_ancestor_ridge_fraction": 1.0,
+        "min_pair_distance_parent_px": 2.8284,
+        "min_pair_distance_variant_px": 2.8284,
+        "displacement_px": {
+          "mean": 1715.5,
+          "median": 1696.95
+        },
+        "cv_1km_parent": {
+          "block_px": 10,
+          "occupied_blocks": 15976,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6235,
+          "count_cv_occupied": 0.6187,
+          "mean_dots_per_occupied_block": 2.3569
+        },
+        "cv_1km_variant": {
+          "block_px": 10,
+          "occupied_blocks": 15683,
+          "total_blocks": 122717,
+          "density_cv_occupied": 0.6291,
+          "count_cv_occupied": 0.6243,
+          "mean_dots_per_occupied_block": 2.4009
+        },
+        "cv_5km_parent": {
+          "block_px": 50,
+          "occupied_blocks": 1771,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.7442,
+          "count_cv_occupied": 0.7238,
+          "mean_dots_per_occupied_block": 21.1056
+        },
+        "cv_5km_variant": {
+          "block_px": 50,
+          "occupied_blocks": 1622,
+          "total_blocks": 4810,
+          "density_cv_occupied": 0.7064,
+          "count_cv_occupied": 0.7075,
+          "mean_dots_per_occupied_block": 23.0179
+        },
+        "dest_5km_blocks": 312,
+        "dest_block_frac": 0.55,
+        "random_seed": 20261023
+      },
+      "model_sgmc": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.09203,
+          "delta": -0.000863,
+          "n_truth": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.083215,
+          "tp_parent": 6687.851,
+          "tp_child": 6625.186,
+          "fp_parent": 34828.016,
+          "fp_child": 34862.051
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.097804,
+          "delta": 0.002026,
+          "n_truth": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.090812,
+          "tp_parent": 2763.121,
+          "tp_child": 2829.712,
+          "fp_parent": 16842.504,
+          "fp_child": 17192.902
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.092162,
+          "delta": -0.007647,
+          "n_truth": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.080414,
+          "tp_parent": 2546.903,
+          "tp_child": 2342.229,
+          "fp_parent": 8533.737,
+          "fp_child": 8220.65
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.097787,
+          "delta": -0.001366,
+          "n_truth": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.103645,
+          "tp_parent": 405.227,
+          "tp_child": 399.448,
+          "fp_parent": 4613.158,
+          "fp_child": 4608.817
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.077439,
+          "delta": 0.005902,
+          "n_truth": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.067847,
+          "tp_parent": 968.67,
+          "tp_child": 1049.867,
+          "fp_parent": 4839.789,
+          "fp_child": 4840.795
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 2,
+          "n_negative": 2,
+          "quadrant_range": [
+            -0.007647,
+            0.005902
+          ]
+        },
+        "jitter_6px_ensemble": {
+          "shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              -6,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "deltas": [
+            -0.000863,
+            -0.001027,
+            0.000568,
+            0.000242,
+            0.000272
+          ],
+          "mean_delta": -0.000162,
+          "min_delta": -0.001027,
+          "max_delta": 0.000568
+        }
+      }
+    }
+  },
+  "report_only_instruments": {
+    "note": "Brief v2 sec 6: report-only instruments; no candidate was gated or tuned on them.",
+    "leakage_canary": {
+      "catalogue_in_footprint": {
+        "n_domain": 5167373,
+        "n_positives": 60988,
+        "max_auc": 0.6453,
+        "worst_feature": "cat_tips_junc_30km",
+        "aucs": {
+          "prior_10km_px": 0.6102,
+          "density_10km_px": 0.5055,
+          "cat_tips_junc_30km": 0.6453,
+          "ridge_tips_junc_10km": 0.5526,
+          "tmi_agc": 0.5233,
+          "tmi_grad": 0.5237
+        }
+      },
+      "sgmc_beyond_3px_collar": {
+        "n_domain": 4722579,
+        "n_positives": 62122,
+        "max_auc": 0.6171,
+        "worst_feature": "ridge_tips_junc_10km",
+        "aucs": {
+          "prior_10km_px": 0.5399,
+          "density_10km_px": 0.5771,
+          "cat_tips_junc_30km": 0.5037,
+          "ridge_tips_junc_10km": 0.6171,
+          "tmi_agc": 0.5024,
+          "tmi_grad": 0.5038
+        }
+      }
+    },
+    "sgmc_surrogate_info": {
+      "sgmc_pixels_in_footprint": 83593,
+      "catalogue_pixels_in_footprint": 60988,
+      "sgmc_pixels_not_in_catalogue": 79615,
+      "overlap_fraction": 0.0476,
+      "provenance": "USGS State Geologic Map Compilation (SGMC, DOI 10.3133/ds1052), off-catalogue fault pixels",
+      "evidence_class": "MODEL",
+      "note": "Count-fixed across all CONCENTRATION arms (n=37,654), so IR-86-MASS-03 mass monotonicity cancels identically."
+    },
+    "sgmc_model": {
+      "b10km-down8": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.093176,
+          "delta": 0.000283,
+          "n_truth": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.084267,
+          "tp_parent": 6687.851,
+          "tp_child": 6708.925,
+          "fp_parent": 34828.016,
+          "fp_child": 34844.134
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.091782,
+          "delta": -0.003997,
+          "n_truth": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.084786,
+          "tp_parent": 2763.121,
+          "tp_child": 2641.926,
+          "fp_parent": 16842.504,
+          "fp_child": 16642.584
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.09882,
+          "delta": -0.000989,
+          "n_truth": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.086527,
+          "tp_parent": 2546.903,
+          "tp_child": 2520.284,
+          "fp_parent": 8533.737,
+          "fp_child": 8490.607
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.103312,
+          "delta": 0.004159,
+          "n_truth": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.109268,
+          "tp_parent": 405.227,
+          "tp_child": 421.12,
+          "fp_parent": 4613.158,
+          "fp_child": 4543.906
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.082199,
+          "delta": 0.010663,
+          "n_truth": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.072442,
+          "tp_parent": 968.67,
+          "tp_child": 1120.962,
+          "fp_parent": 4839.789,
+          "fp_child": 5168.543
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 2,
+          "n_negative": 2,
+          "quadrant_range": [
+            -0.003997,
+            0.010663
+          ]
+        },
+        "jitter_6px_ensemble": {
+          "shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              -6,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "deltas": [
+            0.000283,
+            6.8e-05,
+            0.000857,
+            0.001349,
+            0.002337
+          ],
+          "mean_delta": 0.000979,
+          "min_delta": 6.8e-05,
+          "max_delta": 0.002337
+        }
+      },
+      "b10km-down4": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.091858,
+          "delta": -0.001035,
+          "n_truth": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.083059,
+          "tp_parent": 6687.851,
+          "tp_child": 6612.709,
+          "fp_parent": 34828.016,
+          "fp_child": 34869.123
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.093572,
+          "delta": -0.002207,
+          "n_truth": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.086679,
+          "tp_parent": 2763.121,
+          "tp_child": 2700.923,
+          "fp_parent": 16842.504,
+          "fp_child": 16982.593
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.096458,
+          "delta": -0.003351,
+          "n_truth": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.084332,
+          "tp_parent": 2546.903,
+          "tp_child": 2456.346,
+          "fp_parent": 8533.737,
+          "fp_child": 8362.261
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.101547,
+          "delta": 0.002393,
+          "n_truth": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.107311,
+          "tp_parent": 405.227,
+          "tp_child": 413.576,
+          "fp_parent": 4613.158,
+          "fp_child": 4534.296
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.076333,
+          "delta": 0.004797,
+          "n_truth": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.067014,
+          "tp_parent": 968.67,
+          "tp_child": 1036.977,
+          "fp_parent": 4839.789,
+          "fp_child": 4991.477
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 2,
+          "n_negative": 2,
+          "quadrant_range": [
+            -0.003351,
+            0.004797
+          ]
+        },
+        "jitter_6px_ensemble": {
+          "shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              -6,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "deltas": [
+            -0.001035,
+            -0.000909,
+            -0.000595,
+            -0.000312,
+            0.000567
+          ],
+          "mean_delta": -0.000457,
+          "min_delta": -0.001035,
+          "max_delta": 0.000567
+        }
+      },
+      "b10km-ridge-up8": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.092014,
+          "delta": -0.000879,
+          "n_truth": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.083199,
+          "tp_parent": 6687.851,
+          "tp_child": 6623.859,
+          "fp_parent": 34828.016,
+          "fp_child": 34851.879
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.102412,
+          "delta": 0.006634,
+          "n_truth": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.095316,
+          "tp_parent": 2763.121,
+          "tp_child": 2970.04,
+          "fp_parent": 16842.504,
+          "fp_child": 17394.184
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.091506,
+          "delta": -0.008303,
+          "n_truth": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.07945,
+          "tp_parent": 2546.903,
+          "tp_child": 2314.154,
+          "fp_parent": 8533.737,
+          "fp_child": 7625.626
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.106316,
+          "delta": 0.007163,
+          "n_truth": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.115057,
+          "tp_parent": 405.227,
+          "tp_child": 443.429,
+          "fp_parent": 4613.158,
+          "fp_child": 4994.777
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.065891,
+          "delta": -0.005645,
+          "n_truth": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.057593,
+          "tp_parent": 968.67,
+          "tp_child": 891.189,
+          "fp_parent": 4839.789,
+          "fp_child": 4838.542
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 2,
+          "n_negative": 2,
+          "quadrant_range": [
+            -0.008303,
+            0.007163
+          ]
+        },
+        "jitter_6px_ensemble": {
+          "shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              -6,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "deltas": [
+            -0.000879,
+            -0.001092,
+            0.000777,
+            0.000524,
+            -0.001779
+          ],
+          "mean_delta": -0.00049,
+          "min_delta": -0.001779,
+          "max_delta": 0.000777
+        }
+      },
+      "CONTROL-b10km-rand8": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.09203,
+          "delta": -0.000863,
+          "n_truth": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.083215,
+          "tp_parent": 6687.851,
+          "tp_child": 6625.186,
+          "fp_parent": 34828.016,
+          "fp_child": 34862.051
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.097804,
+          "delta": 0.002026,
+          "n_truth": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.090812,
+          "tp_parent": 2763.121,
+          "tp_child": 2829.712,
+          "fp_parent": 16842.504,
+          "fp_child": 17192.902
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.092162,
+          "delta": -0.007647,
+          "n_truth": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.080414,
+          "tp_parent": 2546.903,
+          "tp_child": 2342.229,
+          "fp_parent": 8533.737,
+          "fp_child": 8220.65
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.097787,
+          "delta": -0.001366,
+          "n_truth": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.103645,
+          "tp_parent": 405.227,
+          "tp_child": 399.448,
+          "fp_parent": 4613.158,
+          "fp_child": 4608.817
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.077439,
+          "delta": 0.005902,
+          "n_truth": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.067847,
+          "tp_parent": 968.67,
+          "tp_child": 1049.867,
+          "fp_parent": 4839.789,
+          "fp_child": 4840.795
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 2,
+          "n_negative": 2,
+          "quadrant_range": [
+            -0.007647,
+            0.005902
+          ]
+        },
+        "jitter_6px_ensemble": {
+          "shifts_px": [
+            [
+              0,
+              0
+            ],
+            [
+              -6,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          "deltas": [
+            -0.000863,
+            -0.001027,
+            0.000568,
+            0.000242,
+            0.000272
+          ],
+          "mean_delta": -0.000162,
+          "min_delta": -0.001027,
+          "max_delta": 0.000568
+        }
+      }
+    },
+    "hide_and_recover_proxy_fold_fair": {
+      "protocol": "buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12) + symmetric fold-fair d28 rebuild for BOTH R0 and every b10km arm",
+      "evidence_class": "PROXY",
+      "contamination": "NONE (R0, density prior, Faulds prior and collars see only f.visible per fold)",
+      "n_withheld_positive_pixels": 11321,
+      "n_bootstrap_clusters_20km": 154,
+      "R0": {
+        "dti": 0.096086,
+        "ci95": [
+          0.082672,
+          0.108463
+        ],
+        "n_truth": 11321
+      },
+      "folds": [
+        {
+          "fold": "NW",
+          "n_truth_px": 1923,
+          "n_r0_dots": 38802,
+          "down_dest_frac": 0.65,
+          "dti": {
+            "R0": 0.088321,
+            "b10km-down8": 0.091865,
+            "b10km-down4": 0.086664,
+            "b10km-ridge-up8": 0.082423
+          }
+        },
+        {
+          "fold": "NE",
+          "n_truth_px": 2367,
+          "n_r0_dots": 38802,
+          "down_dest_frac": 0.65,
+          "dti": {
+            "R0": 0.111201,
+            "b10km-down8": 0.112002,
+            "b10km-down4": 0.111992,
+            "b10km-ridge-up8": 0.094753
+          }
+        },
+        {
+          "fold": "SW",
+          "n_truth_px": 3781,
+          "n_r0_dots": 38802,
+          "down_dest_frac": 0.65,
+          "dti": {
+            "R0": 0.082915,
+            "b10km-down8": 0.082149,
+            "b10km-down4": 0.084643,
+            "b10km-ridge-up8": 0.086033
+          }
+        },
+        {
+          "fold": "SE",
+          "n_truth_px": 3250,
+          "n_r0_dots": 38802,
+          "down_dest_frac": 0.65,
+          "dti": {
+            "R0": 0.104419,
+            "b10km-down8": 0.105833,
+            "b10km-down4": 0.104994,
+            "b10km-ridge-up8": 0.091318
+          }
+        }
+      ],
+      "arms": {
+        "b10km-down8": {
+          "dti": 0.097309,
+          "ci95": [
+            0.083871,
+            0.109965
+          ],
+          "delta_vs_R0": 0.001223,
+          "delta_ci95": [
+            -0.001606,
+            0.003812
+          ],
+          "n_truth": 11321,
+          "evidence_class": "PROXY"
+        },
+        "b10km-down4": {
+          "dti": 0.09663,
+          "ci95": [
+            0.08329,
+            0.109184
+          ],
+          "delta_vs_R0": 0.000543,
+          "delta_ci95": [
+            -0.000596,
+            0.001886
+          ],
+          "n_truth": 11321,
+          "evidence_class": "PROXY"
+        },
+        "b10km-ridge-up8": {
+          "dti": 0.08862,
+          "ci95": [
+            0.077341,
+            0.100264
+          ],
+          "delta_vs_R0": -0.007467,
+          "delta_ci95": [
+            -0.015942,
+            -0.000392
+          ],
+          "n_truth": 11321,
+          "evidence_class": "PROXY"
+        }
+      }
+    },
+    "hide_and_recover_proxy_static": {
+      "R0": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004356,
+        "ci95": [
+          0.0041,
+          0.004577
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "b10km-down8": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.00416,
+        "ci95": [
+          0.003934,
+          0.004367
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "b10km-down4": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004271,
+        "ci95": [
+          0.004032,
+          0.004484
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      },
+      "b10km-ridge-up8": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004023,
+        "ci95": [
+          0.003728,
+          0.00429
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    }
+  },
+  "submission_slots_used": 0
+}

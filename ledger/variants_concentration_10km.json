@@ -1,0 +1,110 @@
+[
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b10km-down8",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 15.9983,
+    "sha8": "780f8509",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "780f850996ea4005774bf197fb11fe20a99c20e2a23847e4ecc117de3838f897",
+    "sha256_nan": "7ac493c6aad96c7d70df71c28aacdebc89f8b45ae3438ea78f6dcf67233a1ada",
+    "predicted_change": "+0.0003 (quadrant range -0.0040..+0.0107; 2/4 quadrants positive; fold-fair PROXY +0.0012, CI95 [-0.0016,+0.0038], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "e4a68d3f48dbabe8365519f6694306db1318350cb6aa3cb835e9358d5490f1c2",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown8-20261023-780f8509-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-down8: 3012 ridge dots moved (16.00% chg, 10km CV 0.496); pred +0.0003 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.097309,
+      "delta_vs_r0": 0.001223,
+      "ci95": [
+        -0.001606,
+        0.003812
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0, density prior, Faulds prior and collars see only f.visible per fold)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b10km-down4",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 7.9992,
+    "sha8": "c4e8ffc9",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "c4e8ffc9efce926e93267af1b1f53afc36231a929b0b0189268b67d1c6b39b42",
+    "sha256_nan": "ab5594ab0a60a6ce73bf1daaaea29006db9368cd28b0f72beba4b1e758262f03",
+    "predicted_change": "-0.0010 (quadrant range -0.0034..+0.0048; 2/4 quadrants positive; fold-fair PROXY +0.0005, CI95 [-0.0006,+0.0019], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "ec692bbc15f27a273a8637890c13a97176efae5ea51e699068d3076a26173389",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmdown4-20261023-c4e8ffc9-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-down4: 1506 ridge dots moved (8.00% chg, 10km CV 0.518); pred -0.0010 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.09663,
+      "delta_vs_r0": 0.000543,
+      "ci95": [
+        -0.000596,
+        0.001886
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0, density prior, Faulds prior and collars see only f.visible per fold)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b10km-ridge-up8",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 15.9983,
+    "sha8": "ef2f3548",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "ef2f35484527cd7d107d5d528b1a264354d95f55e32d80103e0fe82947673f06",
+    "sha256_nan": "923482e21d73660c7f6c355cbb61431071169de767243efc2c1a8fe1ee2bc9c8",
+    "predicted_change": "-0.0009 (quadrant range -0.0083..+0.0072; 2/4 quadrants positive; fold-fair PROXY -0.0075, CI95 [-0.0159,-0.0004], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "a00d8397d42b18cf0d0ec80495b65696f394f01a5fd8f0561a1aa5c694174203",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb10kmup8-20261023-ef2f3548-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b10km-ridge-up8: 3012 ridge dots moved (16.00% chg, 10km CV 0.545); pred -0.0009 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.08862,
+      "delta_vs_r0": -0.007467,
+      "ci95": [
+        -0.015942,
+        -0.000392
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0, density prior, Faulds prior and collars see only f.visible per fold)"
+    }
+  }
+]

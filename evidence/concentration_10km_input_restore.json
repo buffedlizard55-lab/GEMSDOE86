@@ -1,0 +1,97 @@
+{
+  "evidence_class": "DATA-MEASUREMENT",
+  "pin_source": "registry/data_manifest.json",
+  "organizer_authenticated": false,
+  "files": [
+    {
+      "id": "scored_h19_5",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "dest": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "scored_h19_4",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "bytes": 1716768,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "inputs/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "dest": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "scored_h16_1",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "bytes": 1718028,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "inputs/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "dest": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "scored_d28_unscored",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "dest": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_derived_sgmc_faults_100m_u8",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "dest": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_geodawn_extensions_u8",
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "bytes": 27132925,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "data/external/geodawn_extensions_u8.tif",
+      "dest": ".cache/gems_data/external/geodawn_extensions_u8.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_geodawn_extensions_json",
+      "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+      "bytes": 8927,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "data/external/geodawn_extensions.json",
+      "dest": ".cache/gems_data/external/geodawn_extensions.json",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_topo_10m_derived_100m_u8",
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "bytes": 32523329,
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "remote_path": "data/external/topo_10m_derived_100m_u8.tif",
+      "dest": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_dem10_chi_100m_i16",
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+      "bytes": 12777098,
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "d5e96cbeb61cc932dcefb684305d745be1cb81c8",
+      "remote_path": "data/external/dem10_chi_100m_i16.tif",
+      "dest": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+      "status": "fetched-verified"
+    }
+  ]
+}

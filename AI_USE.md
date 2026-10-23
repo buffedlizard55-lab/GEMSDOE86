@@ -465,3 +465,32 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+
+## 2026-10-23 — CONCENTRATION 10 km fault-system session (branch `arena/a681fdaf-gemsdoe86`, self-assigned axis)
+
+* **AI wrote:** `registry/preregistration_conc10.json` (predictions recorded before any instrument ran),
+  `src/gems86/concentration_10km.py`, `scripts/run_concentration_10km.py`,
+  `tests/test_concentration_10km.py`, `evidence/concentration-10km-mechanism.md`,
+  `evidence/concentration_10km_axis_20261023.json`, `evidence/concentration_10km_input_restore.json`,
+  `ledger/variants_concentration_10km.json`, regenerated `ledger/submissions.csv` via
+  `scripts/build_ledger.py` (plus the one-line `variants_concentration_10km.json` registration in it),
+  appended `ledger/variant-cards.md`, `IRREGULARITIES.md` (`IR-86-CONC-12`), `SLOT_PLAN.md`,
+  `README.md` (`CURRENT STATE` block only), `docs/SUBMIT.md`, and local gitignored TIFF twins +
+  tracked JSON receipts in `releases/h33-h33-2-b2-20261004-e5eb6e7e-conc{b10kmdown8,b10kmdown4,b10kmup8}-20261023-*`.
+* **AI decided:** self-assigned `AXIS = CONCENTRATION` at the unbuilt 10 km fault-system scale
+  (`IR-86-TRACKB-08` / `SLOT_PLAN.md` proposal 2) with fresh `(parent, axis, value)` keys
+  (`b10km-down8`, `b10km-down4`, `b10km-ridge-up8`); verified R0 byte-exactly; restored 9
+  SHA-256-pinned manifest inputs; measured that `IR-86-TRACKB-08`'s `R0 10 km CV = 0.570` does not
+  reproduce canonically (`0.736`, `IR-86-CONC-12`); kept Slots 1–3 unchanged because no b10km arm
+  (`+0.0003 MODEL` best) beats `concb5kmdown4`/`frontp15` on the report-only instruments.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16
+  .venv/bin/python scripts/run_concentration_10km.py
+  .venv/bin/python scripts/build_ledger.py --json && .venv/bin/python scripts/build_ledger.py --check
+  .venv/bin/python -m pytest -q
+  ```
+* **Human decided / must supply:** nothing supplied in-session (`TOP_PUBLIC` + date, rolling-week
+  quota remaining, R0's live `0.2778` receipt, verified deadline, portal encoding preference remain
+  human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
