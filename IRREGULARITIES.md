@@ -408,3 +408,50 @@ the parent's dot set from the visible catalogue — or hold the collar fixed acr
 exactly what IR-86-SNAP-06 concluded.
 **Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
 predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
+
+## IR-86-TRACKB-01 — the ranking TRACKB is specified to use does not exist in this checkout
+
+**Observed.** Brief v2 §5 defines TRACKB as traces "built from R0's top-ranked dots". R0's only
+recorded order is the FIFO-BFS *visitation* order of the `gems27.thinning` recipe, which the MASS
+session showed reproduces the d2.8 set but is a geographic traversal (IR-86-MASS-01); the restored
+H19-5 mirror is **binary** (every positive cell is exactly 1.0, measured on the pinned file), so it
+carries no per-dot score either.
+**Decision.** The substitute ranking is the parent's own *trace support* (longest ≥−1 px collinear run
+containing the dot), computed from R0's geometry alone, and it is used only to choose donors. Stated
+on the mechanism card and in the run card; no ranking is invented and no provenance order is implied.
+**Cost:** transport of a MASS confound into TRACKB is impossible (no dot is added or removed for its
+position in the traversal), but TRACKB cannot be described as "top-ranked dots" in any provenance sense.
+
+## IR-86-TRACKB-02 — two build defects, one caught by a gate and one by the tests; both fixed before release
+
+**Observed.** (a) `trace_runs` first stored indices into the dot *list* rather than flat raster cells,
+so the support field landed on empty cells (7,462 cells, of which 46 were dots) while every shape
+check still passed; the 1 km trace count was therefore wrong by construction. (b) `select_donors` used
+`support >= 0` as its dot mask, which is true for every raster cell, so the "donors" were mostly empty
+cells and deletion was short of the addition — the fixed-count gate in `run_trackb_axis.py` fired
+(`37654 -> 38870`) before any file was written.
+**Decision.** Both fixed (`flat[order]` decode; explicit `dots` argument, `ValueError` on over-donation),
+both regression-tested in `tests/test_trackb_axis.py`. The gate, not the test suite, caught (b).
+**Cost:** none released; one re-run.
+
+## IR-86-TRACKB-03 — the 1–50 % change contract binds at the *bottom* for this axis
+
+**Observed.** Every new trace continuation must clear the catalogue (3 px) and the parent's own √8 px
+dot separation, so the relocation budget is capacity-limited: a requested 10 % donation yields 716
+(3.8 % changed), 1,246 (6.6 %) and 2,710 (14.4 %) at corridors 1.0 / 1.5 / 2.5 px. Only the loosest
+corridor clears 10 % changed, and it is the one whose surrogate sign is negative.
+**Decision.** The three variants are reported as *corridor* values with the realised dose measured and
+recorded, never as dose values that were not achieved. A future TRACKB build that wants a larger dose
+must relax the spacing floor, which would fold SPACING into the axis — not permitted this session.
+**Cost:** the axis is confined to ≤ 7.2 % of the dot set; the ≥ 10 % changed rung exists only at the
+loose corridor.
+
+## IR-86-TRACKB-04 — the GeoJSON trace set is a candidate prediction and stays out of Git
+
+**Observed.** The brief asks for TRACKB as "GeoJSON + raster". This repository already keeps candidate
+rasters out of Git because the data-use terms are unchecked (IR-86-PRUNE-04).
+**Decision.** `releases/trackb/*.geojson` is gitignored exactly like `releases/*.tif`; the committed
+record is the per-file `-zeros.json` receipt (trace table, length/azimuth/catalogue-distance statistics
+and the 12 strongest traces) plus `evidence/trackb_axis_20261023.json`.
+**Cost:** the full 300-trace geometry lives only in the workspace; CI cannot regenerate it without the
+pinned parent (which is itself local-only).

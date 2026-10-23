@@ -236,6 +236,31 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
                          n_removed=n_rem, n_added=n_add)
             assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-4)
             assert 1.0 <= stats["pct_changed"] <= 50.0
+        elif axis == "TRACKB":
+            # TRACKB relocates donated dots onto along-strike continuations of the
+            # parent's own traces (src/gems86/trackb.py). Re-derived from the bytes
+            # with the bridge files only: equal deletions and insertions, the parent's
+            # count, a >= 3 px catalogue floor for every emitted cell, no tightening of
+            # the parent's minimum dot spacing, and the 1-50 % change contract, where
+            # pct_changed counts deleted plus inserted cells (IR-86-TRACKB-03).
+            from scipy.spatial import cKDTree
+            removed, added = parent & ~dots, dots & ~parent
+            n_rem, n_add = int(removed.sum()), int(added.sum())
+            assert n_rem == n_add, "a TRACKB variant relocates: deletions must equal insertions"
+            assert int(dots.sum()) == int(parent.sum()), "a TRACKB variant must fix the count"
+            assert float(dist[added].min()) > 3.0 - 1e-9, \
+                "newly emitted mass must stay >= 3 px off the catalogue"
+            rc = np.column_stack(np.divmod(np.flatnonzero(dots.ravel()), dots.shape[1])).astype(float)
+            d2, _ = cKDTree(rc).query(rc, k=2)
+            prc = np.column_stack(np.divmod(np.flatnonzero(parent.ravel()), parent.shape[1])).astype(float)
+            pd2, _ = cKDTree(prc).query(prc, k=2)
+            assert float(d2[:, 1].min()) >= float(pd2[:, 1].min()) - 1e-9, \
+                "a TRACKB variant must not tighten the parent's minimum dot spacing"
+            pct = round(100.0 * (n_rem + n_add) / int(parent.sum()), 4)
+            assert pct == pytest.approx(receipt["pct_changed"], abs=1e-4)
+            assert 1.0 <= pct <= 50.0
+            assert receipt["trace_set"]["n_traces"] > 0
+            assert receipt["evidence_class"] == "MODEL"
         else:
             assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
             stats = P.diff_stats(parent, dots, dist)
