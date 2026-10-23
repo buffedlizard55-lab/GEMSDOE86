@@ -218,3 +218,57 @@ skipped; withdrew its duplicate r1/r2 pairs (no raster), demoted its one novel f
 (`snapr2g10`) to `BUILT-DUPLICATE` corroboration, and revised its MODEL centres downward
 after measuring the SGMC control (stated on the cards). No DrivenData access of any kind;
 inputs only from the sha256-pinned mirrors in `registry/data_manifest.json`.
+
+## Addendum — SPACING session (branch `arena/c8365759-gemsdoe86`), 2026-10-23
+
+**Required disclosure (rules §"generative-AI disclosure"): what the AI wrote, what the human decided.**
+
+**AI wrote.** `src/gems86/spacing.py` (exclusive-kernel-discredit measure, redundancy selection,
+local-ridge PCA, verified hexagonal covering lattice, the four placement laws, parent-diff stats),
+`scripts/build_r0_spacing.py` (pin verification, byte-exact parent rebuild, gates, instruments,
+releases, receipts, run card), `scripts/emit_spacing_entries.py`, `tests/test_spacing_axis.py`
+(30 tests, all on synthetic grids), `evidence/spacing-mechanism.md`, and the SPACING text in
+`README.md` (CURRENT STATE block only), `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`
+(IR-86-SPACING-01…04) and this file. One one-line additive edit to `scripts/build_ledger.py`'s list
+of `variants_*.json` inputs, so the session's rows reach the ledger through the repo's single
+generator instead of a hand-edited CSV. No shared validator, gate, writer or metric file was touched,
+and `vendor/**` bytes are unchanged (re-verified against `research/template_pin.json` inside the
+build itself).
+
+**AI decided (the human can veto).**
+1. **Took SPACING** because the brief skipped the AXIS assignment and SPACING is the only brief-§5
+   axis with no row in `ledger/submissions.csv`; the other five were already built on this parent.
+2. **Rewrote the dose rule.** The brief's "drop/add 10 %" style count was replaced by a threshold on
+   the mechanism variable (≤ 16 of 29 disc cells) after measuring that a count-based cut lands
+   inside a 3,411-dot tie class and would have been decided by row-major scan order — the exact
+   defect IR-86-MASS-01 records for the MASS session. Dose, arms, exclusions and the control were
+   fixed before the surrogate was read.
+3. **Reinterpreted §5's "lattice vs Poisson-disk vs along-strike" as local, not global**, because a
+   global re-lattice changes ~100 % of the dots and §5 caps a variant at 50 % (IR-86-SPACING-04).
+4. **Kept every placement label-free and band-free** — deliberately not using the TMI/DEM bands, the
+   H19-5 values or the Faulds prior inside a placement, so that the arm cannot be SNAP or
+   CONCENTRATION in disguise; the 419 MB feature stack was therefore not restored this session.
+5. **Reported the axis's own weaknesses as findings**: the random-move control is in the ledger and in
+   every card so no arm can be read against zero, and the fact that 95–98 % of the coverage bought
+   sits off the parent's support surface is stated as the limit on what a SPACING receipt could prove
+   (IR-86-SPACING-02) rather than omitted.
+6. **Offered slot 3 only, and against the plan's existing SNAP probe**, with `le3p000` and
+   `frontp15`/`conc15` left in slots 1–2 unchanged. No slot was used.
+
+**Not done, and why.** `TOP_PUBLIC`, the rolling-week quota and R0's receipt are still unsupplied, so
+`0.2778` stays CLAIM and no variant is labelled anything better than MODEL; the hide-and-recover
+PROXY is reported but ranked by nothing: re-derived per fold it reads 0.0153/0.0136/0.0122 against a
+parent at 0.0037, which looks like a win and is not one — the arms get a fold-visible collar the
+parent never had, so the instrument measures the absence of the collar (IR-86-SPACING-05); `TRACKB` was not started
+(Phase 2, and it needs decisions the human owes); no lidar DEM was invented for SNAP-adjacent work.
+No DrivenData or dropbox.com request was made, no credential was read, printed or stored, and nothing
+was submitted — the human submits from their own registered account, one file per slot.
+
+```
+.venv/bin/python -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_derived_sgmc_faults_100m_u8 scored_h19_5
+.venv/bin/python -m pytest -q tests/test_spacing_axis.py            # 30 passed
+.venv/bin/python scripts/build_r0_spacing.py                          # rebuild R0 -> 3 arms + control
+.venv/bin/python scripts/emit_spacing_entries.py
+.venv/bin/python scripts/build_ledger.py
+```

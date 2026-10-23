@@ -1,0 +1,326 @@
+[
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e",
+    "parent": "h33-h33-2-b2",
+    "axis": "spacing",
+    "value": "pdiskc16",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 37.4781,
+    "sha256": "eb320be3e5a1a16f6fe90ee6b2e295426c7f6b7f32ac092414df503a00cc37df",
+    "sha8": "0d2f135e",
+    "sha256_zeros": "62df4f8b9a2075786ec4f28254208217e0ab77fd432bb35f58504137321d03df",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e.tif",
+      "releases/axis86/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": true,
+    "predicted_change": "+0.0015 (MODEL; band +0.0015..+0.0072, translated-ensemble bracket). Relocate every dot owning <=16 of its 29 kernel-disc cells to the largest local gap, any direction. Below the 0.01 evidence floor by design: this is a mechanism probe, not a score play. Falsifier: live delta <= -0.005, i.e. the coverage the surrogate pays for is off-fault mass the live metric charges for.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/c8365759-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 30598,
+      "removed": 7056,
+      "added": 7056,
+      "pct_of_parent_changed": 37.4781,
+      "pct_relocated_of_parent": 19.1958,
+      "jaccard": 0.684366,
+      "count_exact": true,
+      "axis_note": "largest gap to the nearest retained dot inside an 8 px window, any direction (isotropic hard-core, blue-noise / Poisson-disk form)"
+    },
+    "spacing": {
+      "credit_threshold_cells": 16,
+      "kernel_disc_cells": 29,
+      "selected_dots": 7228,
+      "placed": 7228,
+      "unplaced_kept_in_place": 0,
+      "placed_after_widening": 1,
+      "strike_isotropic_fallback": 0,
+      "window_px": 8,
+      "floor_px": 3.0,
+      "clearance_px_new_mass": 3.0,
+      "mean_displacement_px": 6.7714,
+      "max_displacement_px": 15.8114,
+      "nn_mean_px_before_after": [
+        3.7351,
+        4.2881
+      ],
+      "dots_below_kernel_radius_before_after": [
+        11415,
+        3754
+      ],
+      "exclusive_cells_mean_before_after": [
+        20.7319,
+        23.7413
+      ],
+      "union_cover_gain_cells": 113315,
+      "parent_redundancy_fraction": 0.285106,
+      "min_cat_edt_px_variant": 2.2361,
+      "destinations_on_support_surface_pct": 1.814
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF convention",
+      "delta": 0.00148,
+      "relative_pct": 1.593,
+      "delta_tp": 111.39,
+      "delta_fp": 143.95,
+      "quadrant_positive": "2/4",
+      "translated_mean": 0.004586,
+      "translated_range": [
+        0.00148,
+        0.007175
+      ],
+      "evidence_class": "MODEL",
+      "control_delta": 0.000194,
+      "law_minus_control": 0.001286
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-sp-lattice16-20261023-63c4c56f",
+    "parent": "h33-h33-2-b2",
+    "axis": "spacing",
+    "value": "latticec16",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 37.8871,
+    "sha256": "daf9dfeb15ad0661468fed75682265aff774f83f72d9f45d41f1b14a615fb357",
+    "sha8": "63c4c56f",
+    "sha256_zeros": "66f8f320d5fdc21559e8dd7f78bac6b38d240b0683d3f9cecef4dc577fe09f72",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f.tif",
+      "releases/axis86/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": true,
+    "predicted_change": "+0.0019 (MODEL; band +0.0019..+0.0072). Same selection and objective, destinations restricted to a hexagonal covering lattice (a=5.196 px). The largest surrogate read and the largest coverage gain per unit of displacement. Same falsifier as pdisk; a second falsifier is IR-86-CONC-02's band, since an even arrangement is what 'spread the mass' would look like.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/c8365759-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 30521,
+      "removed": 7133,
+      "added": 7133,
+      "pct_of_parent_changed": 37.8871,
+      "pct_relocated_of_parent": 19.1746,
+      "jaccard": 0.68147,
+      "count_exact": true,
+      "axis_note": "same objective and window, restricted to the nodes of a hexagonal lattice with spacing 5.1962 px = sqrt(3)*R, the thinnest covering of the plane by radius-R discs"
+    },
+    "spacing": {
+      "credit_threshold_cells": 16,
+      "kernel_disc_cells": 29,
+      "selected_dots": 7228,
+      "placed": 7220,
+      "unplaced_kept_in_place": 8,
+      "placed_after_widening": 480,
+      "strike_isotropic_fallback": 0,
+      "window_px": 8,
+      "floor_px": 3.0,
+      "clearance_px_new_mass": 3.0,
+      "mean_displacement_px": 6.2911,
+      "max_displacement_px": 16.0,
+      "nn_mean_px_before_after": [
+        3.7351,
+        4.2573
+      ],
+      "dots_below_kernel_radius_before_after": [
+        11415,
+        3760
+      ],
+      "exclusive_cells_mean_before_after": [
+        20.7319,
+        23.5962
+      ],
+      "union_cover_gain_cells": 107851,
+      "parent_redundancy_fraction": 0.285106,
+      "min_cat_edt_px_variant": 2.2361,
+      "destinations_on_support_surface_pct": 3.0
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF convention",
+      "delta": 0.001861,
+      "relative_pct": 2.003,
+      "delta_tp": 139.3,
+      "delta_fp": 140.76,
+      "quadrant_positive": "2/4",
+      "translated_mean": 0.004907,
+      "translated_range": [
+        0.001861,
+        0.007236
+      ],
+      "evidence_class": "MODEL",
+      "control_delta": 0.000194,
+      "law_minus_control": 0.001667
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-sp-strike16-20261023-caffc3f0",
+    "parent": "h33-h33-2-b2",
+    "axis": "spacing",
+    "value": "strikec16",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 35.9431,
+    "sha256": "cacef9f76cae590873e073a676767be456879e4168a76a9ffa0feb9404b77b9a",
+    "sha8": "caffc3f0",
+    "sha256_zeros": "5070a2081987d8b4936ed6f3ee93a40486b4b5606528a96d2c282657fb0e25a2",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0.tif",
+      "releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": true,
+    "predicted_change": "+0.0020 (MODEL; band +0.0020..+0.0050, 3/4 quadrants positive). Same selection and objective, destinations restricted to the local dot ridge (+/-1 px across, >=2 px along), so mass extends the trace instead of leaving it: the only arm whose false-positive term rises by less than half the others. Falsifier: live delta <= -0.005 while pdisk/lattice are flat, which says the kernel is isotropic and trace continuity buys nothing.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/c8365759-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 30887,
+      "removed": 6767,
+      "added": 6767,
+      "pct_of_parent_changed": 35.9431,
+      "pct_relocated_of_parent": 18.662,
+      "jaccard": 0.695324,
+      "count_exact": true,
+      "axis_note": "same objective and window, restricted to cells within 1 px across the local dot ridge and >= 2 px along it: extend the trace instead of leaving it; falls back to isotropic where the neighbourhood is not line-like (coherence < 0.30)"
+    },
+    "spacing": {
+      "credit_threshold_cells": 16,
+      "kernel_disc_cells": 29,
+      "selected_dots": 7228,
+      "placed": 7027,
+      "unplaced_kept_in_place": 201,
+      "placed_after_widening": 1095,
+      "strike_isotropic_fallback": 1808,
+      "window_px": 8,
+      "floor_px": 3.0,
+      "clearance_px_new_mass": 3.0,
+      "mean_displacement_px": 6.8751,
+      "max_displacement_px": 16.0,
+      "nn_mean_px_before_after": [
+        3.7351,
+        4.0945
+      ],
+      "dots_below_kernel_radius_before_after": [
+        11415,
+        3961
+      ],
+      "exclusive_cells_mean_before_after": [
+        20.7319,
+        22.7274
+      ],
+      "union_cover_gain_cells": 75136,
+      "parent_redundancy_fraction": 0.285106,
+      "min_cat_edt_px_variant": 2.2361,
+      "destinations_on_support_surface_pct": 5.246
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF convention",
+      "delta": 0.001962,
+      "relative_pct": 2.112,
+      "delta_tp": 145.62,
+      "delta_fp": 83.68,
+      "quadrant_positive": "3/4",
+      "translated_mean": 0.004017,
+      "translated_range": [
+        0.001962,
+        0.005008
+      ],
+      "evidence_class": "MODEL",
+      "control_delta": 0.000194,
+      "law_minus_control": 0.001768
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-sp-random16-20261023-db4cae83",
+    "parent": "h33-h33-2-b2",
+    "axis": "spacing",
+    "value": "randomc16",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 37.5525,
+    "sha256": "75ffa953d588202eafe120c86f4b9a0970e9513f55a8a95608de5977063ff743",
+    "sha8": "db4cae83",
+    "sha256_zeros": "cfac3b17e38e9e0c4ff794283f159fa0e50ddb0a7da08f5faa7a86b5feaf2e1d",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83.tif",
+      "releases/axis86/gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.tif"
+    ],
+    "status": "CONTROL",
+    "slot_candidate": false,
+    "predicted_change": "+0.0002 (MODEL; band +0.0002..+0.0050). NULL CONTROL, not a slot candidate: the same dots relocated to a uniform random eligible cell in the same window. Every arm is read against this number, not against zero.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/c8365759-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 30584,
+      "removed": 7070,
+      "added": 7070,
+      "pct_of_parent_changed": 37.5525,
+      "pct_relocated_of_parent": 19.1958,
+      "jaccard": 0.683839,
+      "count_exact": true,
+      "axis_note": "uniform draw from the eligible cells of the window (null control: the cost of moving at all, with no spacing law)"
+    },
+    "spacing": {
+      "credit_threshold_cells": 16,
+      "kernel_disc_cells": 29,
+      "selected_dots": 7228,
+      "placed": 7228,
+      "unplaced_kept_in_place": 0,
+      "placed_after_widening": 1,
+      "strike_isotropic_fallback": 0,
+      "window_px": 8,
+      "floor_px": 3.0,
+      "clearance_px_new_mass": 3.0,
+      "mean_displacement_px": 5.5597,
+      "max_displacement_px": 15.8114,
+      "nn_mean_px_before_after": [
+        3.7351,
+        4.0378
+      ],
+      "dots_below_kernel_radius_before_after": [
+        11415,
+        3754
+      ],
+      "exclusive_cells_mean_before_after": [
+        20.7319,
+        22.7124
+      ],
+      "union_cover_gain_cells": 74573,
+      "parent_redundancy_fraction": 0.285106,
+      "min_cat_edt_px_variant": 2.2361,
+      "destinations_on_support_surface_pct": 3.267
+    },
+    "model": {
+      "instrument": "SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF convention",
+      "delta": 0.000194,
+      "relative_pct": 0.209,
+      "delta_tp": 16.81,
+      "delta_fp": 134.77,
+      "quadrant_positive": "2/4",
+      "translated_mean": 0.003327,
+      "translated_range": [
+        0.000194,
+        0.005032
+      ],
+      "evidence_class": "MODEL",
+      "control_delta": 0.000194,
+      "law_minus_control": 0.0
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  }
+]

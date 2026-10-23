@@ -327,3 +327,84 @@ an explicit human AXIS assignment instead of another slot-plan reading.
 `iso_grav_anom_hg` is signed: PR #31 ranks it as-is, PR #34 uses magnetic bands only, the
 gated build ranks `|iso_grav_anom_hg|`. Nothing is re-run; cross-build gravity comparisons
 are not like-for-like, and any future SNAP-adjacent proposal must state its treatment first.
+
+## IR-86-SPACING-01 — the dedupe gate fires on a session's own rebuild, so the scan was scoped to the ledger
+
+**Observed.** The SPACING builder was re-run once after a defect fix. The second pass aborted on
+`sha256_not_in_ledger`, because `known_hashes()` had globbed `releases/**/*.tif` and picked up the
+*first pass's own bytes*: a deterministic rebuild of the same `(parent, axis, value)` collides with
+itself. Brief §6 dedupes on "exact hash and repeated (parent, axis, value)" — an identical rebuild of
+the same key is neither a repeat slot nor a new file, and treating it as one hides nothing but stops
+the session.
+**Decision.** `scripts/build_r0_spacing.py:known_hashes()` now consults `ledger/submissions.csv`
+plus the delivered parents in `data/scored_fleet/`, and no longer scans `releases/`. The gate script
+`src/gems86_axis/gates.py` was **not** modified: the dedupe rule is unchanged, only the set it is
+compared against. Nothing was promoted by this: the tokens (0d2f135e / 63c4c56f / caffc3f0 /
+db4cae83) are identical in both passes, so the rebuild is provably the same experiment.
+**Cost:** ~6 minutes and one aborted run. A reusable rule for this repo's axis builders: never seed
+the duplicate set from the directory you are about to write into.
+
+## IR-86-SPACING-02 — the axis moves mass off its own evidence surface; the surrogate cannot see the difference
+
+**Observed.** 100 % of the relocated dots start on the H19-5 support surface the lineage was thinned
+from; after placement only 1.8 % (pdisk), 3.0 % (lattice) and 5.2 % (strike) of their destinations
+are on it. The SGMC off-catalogue surrogate nevertheless reads +0.0015…+0.0020 for all three arms,
+while the random-move control in the same window reads +0.0002 — and rises to +0.0033 once the truth
+is translated by up to 6 px to represent the ~400 m flight-line position uncertainty in brief 2.
+**Decision.** Reported as MODEL only, with the control printed next to every arm, and no SPACING arm
+is offered as slot 1 or 2 in `SLOT_PLAN.md`. The law-vs-control separation (~+0.0016) is the axis's
+real content; the absolute number is not trustworthy because most of the bought coverage sits on
+ground the parent's own field does not rate. A SPACING slot is a mechanism probe, decided by the
+human, and `strike` is the only arm whose false-positive term barely rises (+83.7 vs +140).
+**Cost:** none this session; it bounds what a SPACING receipt can later be said to have proved.
+
+## IR-86-SPACING-03 — a count-preserving bug found by the axis tests, not by the gates
+
+**Observed.** The first draft of `src/gems86/spacing.py:relocate()` built its output as
+`retained ∪ destinations`, so any dot it could not place *disappeared*: on a 12×12 synthetic grid the
+"fixed count" arm returned 2 dots for 4. The MUST-pass gates would not have caught it (the file is
+valid, the format is valid, the catalogue is clean) — only the axis contract would.
+**Decision.** Placement now runs on a single occupancy set that starts as the whole parent, vacates a
+source when it is processed and re-fills it if the dot cannot be placed, so the count is fixed **by
+construction** and an unplaced dot is reported in `moved_unplaced` (8 lattice, 201 strike, 0 pdisk).
+Two side effects are features, not accidents: a destination can no longer land on a cell another
+selected dot still occupies, and `destinations_on_vacated_source_cells` (87–260 per arm) is now
+reported so `dots_changed = 2·(placed − reuse)` holds as an identity in
+`tests/test_spacing_axis.py`. **Cost:** one rewrite; the rule to keep is that a variant which changes
+the count is a MASS experiment wearing another name.
+
+## IR-86-SPACING-04 — brief §5's SPACING spec, read literally, is impossible on this parent
+
+**Observed.** Brief §5 asks SPACING for "lattice vs Poisson-disk vs along-strike at matched count",
+and §5 also requires a variant to change 1–50 % of the parent's dots. A *global* lattice or
+Poisson-disk re-arrangement of 37,654 dots changes ~100 % of them (and the historic full-lattice file
+`13GEMSDOE r13-lattice-s5` scored 0.0904 CLAIM). The two instructions cannot both hold on this
+parent.
+**Decision.** The three laws were kept, the *scope* was reduced: each arm re-lattices only the mass
+the metric has already written off (credit ≤ 16 of 29 disc cells), so all three sit at 35.9–37.9 %
+changed cells with the count fixed, and every destination stays within 800 m of its source (widened to
+1.6 km for 480 lattice / 1,095 strike dots, reported). The literal global forms stay unbuilt and are
+recorded here as the reason. **Cost:** none; the reading is logged so a later session does not
+"correct" the dose upward.
+
+## IR-86-SPACING-05 — the fold-fair hide-and-recover PROXY is *not* at the floor here, and that is a confound, not a win
+
+**Observed.** The SPACING run card (`evidence/spacing_axis_20261023.json`,
+`instruments.catalogue_hide_recover_proxy`) measures pooled PROXY DTI **0.00370 [0.00297, 0.00441]
+for R0** and **0.01534 / 0.01359 / 0.01217** for `pdisk16` / `lattice16` / `strike16` (11,321
+withheld positives, 4 folds). Unlike the PRUNE and SNAP arms, which read 0.00000 (IR-86-PRUNE-03,
+IR-86-SNAP-06), these arms recover withheld catalogue faults four times better than the parent.
+The reason is structural: the comparison is fold-fair only for the *arms*. Each arm is re-derived
+per fold using that fold's **visible** catalogue for its collar, so its relocated mass is free to sit
+on the withheld trace, while R0 was built against the **full** catalogue and therefore avoids exactly
+those pixels. The instrument is measuring "you did not apply the 2 px collar here", which is
+PRUNE's quantity, not SPACING's.
+**Decision.** The proxy is published in the run card and **ranked by nothing**: no arm ordering, no
+slot argument, and no README/SLOT_PLAN claim uses it. `SLOT_PLAN.md` and `evidence/spacing-mechanism.md`
+carry this entry instead of the earlier "proxy is at the floor" phrasing, and the run card's own
+`caveat` string (written before the measurement) is superseded by this entry. A future session that
+wants a usable proxy for an arrangement axis must build the parent *in the fold too* — i.e. re-derive
+the parent's dot set from the visible catalogue — or hold the collar fixed across every arm, which is
+exactly what IR-86-SNAP-06 concluded.
+**Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
+predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
