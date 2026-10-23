@@ -248,3 +248,17 @@ stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:
 `.venv/bin/python -c "from gems86_axis import gates, grid_io; ..."` or
 `pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
 rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.
+
+## TRACKB (built this session, self-assigned axis — **no slot requested**)
+
+- Files (local, gitignored): `releases/h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c15len1km-20261023-73f10581-zeros.tif`
+  and the `.tif` spec twin; the two companion rungs are `…-TRACKB-c10len1km-…-b1e1caf1` and
+  `…-TRACKB-c25len1km-…-831ce9cd` (same parent, same rules, corridor 1.0 / 2.5 px).
+- Submission name / note: read both from the adjacent `-zeros.json` (`submission_name`, `note`);
+  the note is `R0 h33-h33-2-b2-20261004-e5eb6e7e; TRACKB corridor 1.5 px, traces >=1 km, 1246 dots extended along strike; pred +0.001 MODEL`
+  (135 characters, under the 140 limit).
+- Prediction: **+0.0008 (MODEL)**, quadrant range +0.0004 … +0.0020 (4/4). Below the 0.01 evidence
+  floor, so a slot buys a *Phase-2 probe*, not a Phase-1 bet. The `c25len1km` rung reads **−0.0007**.
+- Trace geometry for a geologist: `releases/trackb/…-73f10581-traces.geojson` (300 strands, one
+  `evidence_paragraph` property each). Local-only; the receipt records the 12 strongest.
+- Do **not** upload two TRACKB files in one week, and only after slots 1–3 in `SLOT_PLAN.md`.

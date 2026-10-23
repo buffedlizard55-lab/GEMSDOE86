@@ -294,3 +294,54 @@ informative slot rather than a pair, spend it on slot 1 and expect a reading, no
    fractional value `v` scales a dot's numerator and denominator contributions alike, so the sign of
    its marginal effect does not depend on `v`; and the max operator makes two half-dots strictly
    worse than one. Do not build it without a new argument.
+## Addendum — TRACKB session, 2026-10-23 (built; **no slot requested**)
+
+Self-assigned axis (brief v2 §1 forbids prompting for one). TRACKB was the only
+brief-listed axis with no build in this repository. Three gate-clean, count-fixed
+variants now exist (`…-TRACKB-c10len1km| c15len1km | c25len1km-20261023-…`), plus a
+GeoJSON trace set with one evidence paragraph per strand. Full card:
+`evidence/trackb-mechanism.md`; run card: `evidence/trackb_axis_20261023.json`.
+
+**What it establishes, in order of decision value.**
+
+1. **R0 is trace-structured, and we can now say so.** A 18-bin, ±0.75 px corridor
+   detector with a 1 km minimum finds **300 traces** on R0 at a 1.5 px corridor
+   (2.0 km longest, 1,270 dots = 3.4 % of the mass) and **0 traces** in a uniform
+   field of the same 37,654 dots on the same footprint. This is the first label-free
+   description of what the incumbent actually is, and it is the input a Phase-2
+   reviewer needs.
+2. **The axis cannot be made large.** Requesting a 10 % donation yields only
+   716 / 1,246 / 2,710 placeable along-strike continuations: R0 already sits at its
+   packing limit (min pair distance √8 px), so there is almost no free room on
+   strike. **Capacity, not the contract, sets the dose** — the geometric reason every
+   move-the-mass axis in this repository has landed inside ±0.01.
+3. **Prediction is flat to negative.** SGMC off-catalogue deltas
+   **+0.0004 / +0.0008 / −0.0007** (MODEL); the displacement-matched random-azimuth
+   control reads **−0.0001**, so the trace *law* beats chance by ≈ +0.0009 and the
+   act of moving is worth nothing. The loose corridor flips the sign: more trace mass
+   is not better trace mass.
+4. **It does not earn a slot in Phase 1.** The only argument for spending one is the
+   Phase-2 mechanics (experts expand labels around reviewed faults), which nothing in
+   this sandbox can measure.
+
+**Where a TRACKB slot would go if the human wants one.** After slots 1–3, and only as
+`…-TRACKB-c15len1km-…` (largest surrogate read with 4/4 quadrant agreement). Do not
+spend a slot on `c25len1km`: its sign is negative and its extra traces are
+crossing-strand artefacts. Never both TRACKB files in one week.
+
+**Better axes (proposals only; not built).**
+
+* **Coherent SNAP (structure tensor, σ = 2–3 px).** The raw gradient bands are
+  smooth, but their maxima are indistinguishable from chance by the proxy; a
+  coherence-weighted response is the physically correct lineament operator.
+  *Confounder:* coherence peaks on any elongated contact. *Falsifier:* no separation
+  from the random control in two independent hidden-component draws.
+* **Axis-alignment audit of the trace operator.** 5 of the 12 longest traces are
+  exactly azimuth 000°, i.e. aligned with a raster column. Before any TRACKB slot,
+  re-run the detector on R0 rotated by 30° (or on a half-pixel-shifted grid) and
+  keep only traces that survive: that isolates the discretisation share of the
+  signal. *Falsifier:* trace count survives unchanged, so alignment is not an
+  artefact.
+* **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the
+  shared two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no
+  replicated positive sign on untouched spatial folds, then no live receipt.

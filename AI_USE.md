@@ -308,3 +308,14 @@ credential handling. The hide-and-recover PROXY was deliberately not re-run (IR-
 a collar pinned identically across arms it measures the collar, not the arm). `TRACKB` was not
 started. The `data/external/derived_sgmc_faults_100m_u8.tif` and `data/scored/gems19-h19-5…` inputs
 were restored from their pinned codeload mirrors and hash-verified; both are read-only here.
+## 2026-10-23 — TRACKB session (self-assigned axis)
+
+* **AI wrote:** `src/gems86/trackb.py`, `scripts/run_trackb_axis.py`, `tests/test_trackb_axis.py`,
+  `evidence/trackb-mechanism.md`, the SLOT_PLAN/README/IRREGULARITIES/SUBMIT/AI_USE edits, and every
+  raster in `releases/…-TRACKB-*`. The axis was chosen by the agent because brief v2 §1 forbids asking
+  the human to pick one; TRACKB was the only brief-listed axis with no existing build.
+* **AI decided:** the substitute ranking (trace support) necessitated by IR-86-TRACKB-01; the three
+  corridor doses; that the axis earns **no slot** in Phase 1; that the GeoJSON stays out of Git.
+* **Human decided / supplied:** nothing this session — no `TOP_PUBLIC`, no slots-used count, no
+  receipt, no deadline confirmation. The 0.2778 parent score remains a CLAIM.
+* **Not AI-decided:** which file, if any, is uploaded, and the final blind choice.

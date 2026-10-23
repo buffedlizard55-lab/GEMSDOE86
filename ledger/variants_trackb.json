@@ -1,0 +1,53 @@
+[
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c10len1km-20261023-b1e1caf1",
+    "site": "GEMSDOE86",
+    "axis": "TRACKB",
+    "value": "c10len1km",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 3.803,
+    "sha8": "b1e1caf1",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "b1e1caf1e9a6543ca7a416c88d58367853aaed1bf3e6a34a7270491c068dc79b",
+    "sha256_nan": "c438b9a6ac76f4d2fd5394e327f5949787ac4dc6af05e6dfc73dff710d99778f",
+    "predicted_change": "+0.0004 (quadrant range -0.0000..+0.0017; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score; below the 0.01 evidence floor.",
+    "evidence_class": "MODEL",
+    "gate_all_pass": true
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c15len1km-20261023-73f10581",
+    "site": "GEMSDOE86",
+    "axis": "TRACKB",
+    "value": "c15len1km",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 6.6182,
+    "sha8": "73f10581",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "73f1058190390d07728c82926e246e66ac27f8f1ccd2d0d8f44e640c75fe55ac",
+    "sha256_nan": "ccaba1bdb0e6ab64a5efc6d4bae50c31e895c8a15bca42bcc96266bb5e1db7da",
+    "predicted_change": "+0.0008 (quadrant range +0.0004..+0.0020; 4/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score; below the 0.01 evidence floor.",
+    "evidence_class": "MODEL",
+    "gate_all_pass": true
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c25len1km-20261023-831ce9cd",
+    "site": "GEMSDOE86",
+    "axis": "TRACKB",
+    "value": "c25len1km",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 14.3942,
+    "sha8": "831ce9cd",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "831ce9cddb6d5a8ec890c5b35c2d1c73aecaf0c53e7e0b928b64d4e8ec554553",
+    "sha256_nan": "e8a7659b23b75a189f16df593bb0e1c2f8e97ab21410c349426d4d998abb3b2c",
+    "predicted_change": "-0.0007 (quadrant range -0.0051..+0.0054; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score; below the 0.01 evidence floor.",
+    "evidence_class": "MODEL",
+    "gate_all_pass": true
+  }
+]
