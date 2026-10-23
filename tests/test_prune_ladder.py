@@ -261,6 +261,28 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
             assert 1.0 <= pct <= 50.0
             assert receipt["trace_set"]["n_traces"] > 0
             assert receipt["evidence_class"] == "MODEL"
+        elif axis == "CONCENTRATION":
+            # CONCENTRATION relocates across km blocks on ancestor ridges: equal
+            # deletions and insertions, exact parent count, >= 3 px catalogue floor
+            # on every newly emitted dot, no tightening of parent minimum dot
+            # spacing, and 1-50 % symmetric-diff dot change.
+            from scipy.spatial import cKDTree
+            removed, added = parent & ~dots, dots & ~parent
+            n_rem, n_add = int(removed.sum()), int(added.sum())
+            assert n_rem == n_add, "a CONCENTRATION variant relocates: deletions must equal insertions"
+            assert int(dots.sum()) == int(parent.sum()), "a CONCENTRATION variant must fix the count"
+            assert float(dist[added].min()) > 3.0 - 1e-9, \
+                "newly emitted mass must stay >= 3 px off the catalogue"
+            rc = np.column_stack(np.divmod(np.flatnonzero(dots.ravel()), dots.shape[1])).astype(float)
+            d2, _ = cKDTree(rc).query(rc, k=2)
+            prc = np.column_stack(np.divmod(np.flatnonzero(parent.ravel()), parent.shape[1])).astype(float)
+            pd2, _ = cKDTree(prc).query(prc, k=2)
+            assert float(d2[:, 1].min()) >= float(pd2[:, 1].min()) - 1e-9, \
+                "a CONCENTRATION variant must not tighten the parent's minimum dot spacing"
+            pct = round(100.0 * (n_rem + n_add) / int(parent.sum()), 4)
+            assert pct == pytest.approx(receipt["pct_changed"], abs=1e-4)
+            assert 1.0 <= pct <= 50.0
+            assert receipt["evidence_class"] == "MODEL"
         else:
             assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
             stats = P.diff_stats(parent, dots, dist)

@@ -246,3 +246,28 @@ the 2–3 px collar (that is PRUNE, spent three times over — IR-86-PRUNE-08).
    annulus per relief tercile rather than moving whole populations. *Confounder:* relief controls
    both catalogue completeness and lineament visibility. *Falsifier:* no consistent sign across two
    relief regimes on untouched spatial folds ⇒ no live slot.
+
+---
+
+## CONCENTRATION (5 km ridge-supported & CV-band sign flip, 2026-10-23, `arena/69392a35-gemsdoe86`)
+
+Full mechanism cards & PR #37 forensic audit: `evidence/concentration-5km-mechanism.md`; run card: `evidence/concentration_5km_axis_20261023.json`.
+
+### 1. `CONCENTRATION b5km-cvband-down4` — 1,506 dots moved (`7.9992%` changed, `8aab97b6`)
+- **Hypothesis & Mechanism.** Shaves 1,506 lowest-unique-credit dots off `>= 3`-dot 1 km clusters onto unused `H19-5 | H19-4 | H16-1` ancestor ridges (`> 3.0 px` off catalogue, `>= 2.828 px` spacing) in sparse `1–2`-dot blocks, bringing occupied 1 km block-density CV from `0.6235` down to **`0.5162`** (inside the `0.51–0.59` historical top-scorer band) at fixed count `37,654`.
+- **Non-fault mimic.** Intrabasin pluvial-lake (Lahontan) shorelines, basalt flow margins, and alluvial-fan scarps.
+- **Predicted sign and size.** **`+0.0015 MODEL`** on off-catalogue SGMC (`+0.0020` under `±6 px` jitter, **4/4 quadrants positive** `+0.0001..+0.0024`), symmetric fold-fair **`+0.0008 PROXY`** (`95% CI [-0.0004, +0.0018]`, `n = 11,321`). Only `CONCENTRATION` arm positive on both instruments (beats PR #37's `b1km-move15`, which measures `-0.0071 MODEL`, by `+0.0086`).
+- **Falsifier.** Live `Δ <= -0.005` vs R0: proves unmapped faults cluster tighter than `CV = 0.6235`.
+
+### 2. `CONCENTRATION b5km-ridge-up8` — 3,012 dots moved (`15.9983%` changed, `b4d36a67`)
+- **Hypothesis & Mechanism.** Reallocates 3,012 dots (`8.00%`) from lowest-scoring 5 km Faulds fault-interaction blocks (mapped + ridge skeleton tips/junctions + 10.1 km local-RMS AGC `|\nabla TMI_up150|`) onto unused ancestor ridges (`> 3.0 px` off catalogue) in top-35% 5 km blocks, count fixed at `37,654`.
+- **Non-fault mimic.** Quadrangle 1:24k mapping density in mineralized bedrock ranges; caldera/intrusive contacts.
+- **Predicted sign and size.** **`-0.0007 MODEL`** (`2/4` quadrants positive; matched random-5km-block control `-0.0008 MODEL`), symmetric fold-fair **`-0.0026 PROXY`** (`95% CI [-0.0083, +0.0018]`). Do not spend a slot.
+- **Falsifier.** Live `Δ >= +0.010` vs R0.
+
+### 3. `CONCENTRATION b5km-ridge-up4` — 1,506 dots moved (`7.9992%` changed, `493cf242`)
+- **Hypothesis & Mechanism.** Strict nested half-dose prefix (`src4 == src8[:1506]`, `dst4 == dst8[:1506]`) of `b5km-ridge-up8`, paired at identical `1,506`-dot magnitude against `b5km-cvband-down4`.
+- **Non-fault mimic.** Same quadrangle mapping and volcanic/intrusive contact mimics at half dose.
+- **Predicted sign and size.** **`-0.0005 MODEL`** (`2/4` quadrants positive), symmetric fold-fair **`+0.0002 PROXY`** (`95% CI [-0.0026, +0.0027]`). Do not spend a slot.
+- **Falsifier.** Live `Δ >= +0.005` while `b5km-ridge-up8` is negative.
+

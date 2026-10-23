@@ -591,3 +591,17 @@ destinations are confined to a fixed prior fifth of the occupied blocks. **Decis
 is accompanied by the occupied-block count so the two cannot be read as one variable. **Cost:**
 a future arm that wants to test the band must place mass in *unoccupied* low-prior blocks, which is
 exactly the placement `GEMSDOE81 cont-poisson44090` scores 0.0041 with (CLAIM).
+
+## IR-86-CONC-10 — forensic audit retires all off-ridge `CONCENTRATION` slot claims (`conc15`, `dens15`, `spr15`) and resolves `IR-86-CONC-06`/`08`
+
+**Observed.** Restoring all 15 SHA-256-pinned manifest inputs (`training_features.tif`, `derived_sgmc_faults_100m_u8.tif`, `H19-5`, `H19-4`, `H16-1`) enabled direct measurement of the prior `CONCENTRATION` builds (`evidence/concentration_5km_axis_20261023.json`):
+1. PR #37's `conc15` (`b1km-move15`) carried an unmeasured constant (`PREDICTIONS["CONCENTRATION"] = 0.006` in `scripts/build_axis_variants.py:57`), placed 2,248 of 5,648 added dots (`39.8%`) at `<= 3.0 px` (`min = 2.236 px`, breaching brief §4.4) with `99.7%` off ancestor ridges, and actually reads **`-0.0071 MODEL`** (`-0.0063` under `±6 px` jitter) on SGMC.
+2. PR #44's `dens15` and `spr15` (`IR-86-CONC-06`, built without `.cache/gems_data/` and ranked #1/#2 in `SLOT_PLAN.md` from a synthetic five-truth-model mean) place **`0.0%` of added dots on `H19-5 | H19-4 | H16-1`** and **both lose on SGMC** (`dens15 = -0.0006 MODEL`, `spr15 = -0.0013 MODEL`, matching PR #46's off-ridge `b5km-move10/15/20` at `-0.0066..-0.0150`).
+3. Constraining 5 km upward relocations 100% onto ancestor ridges (`concb5kmup4 = -0.0005`, `concb5kmup8 = -0.0007`) eliminates ~95% of PR #46's off-ridge geometric penalty while confirming upward concentration still loses. Conversely, shaving `>= 3`-dot 1 km sub-kernel clusters (`k -> k-1` so occupied blocks never empty) onto sparse-block ancestor ridges (`b5km-cvband-down4` / `concb5kmdown4`, `1,506` dots moved / `8.00%` changed) reaches **`1 km occupied CV = 0.5162` inside `[0.51, 0.59]`** (resolving `IR-86-CONC-08` without desert-floor Poisson scatter) and scores **`+0.0015 MODEL` (`4/4` quadrants `+`, `+0.0020` under `±6 px` jitter) and `+0.0008 PROXY`**.
+
+**Decision.** Retire `conc15`, `dens15`, `spr15`, and `b5km-move10/15/20` from weekly slot consideration; promote `concb5kmdown4` (`8aab97b6`) as the sole count-fixed `CONCENTRATION` slot candidate alongside `RELIEF-frontp15`. **Cost:** historical JSONs remain untouched for reproducibility; human plan updated.
+
+## IR-86-CONC-11 — symmetric fold-fair `d28` rebuild rehabilitates catalogue hide-and-recover `PROXY` (`IR-86-SPACING-05` resolved)
+
+**Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
+

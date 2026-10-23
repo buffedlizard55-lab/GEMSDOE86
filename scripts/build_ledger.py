@@ -133,7 +133,7 @@ def variant_rows() -> list[dict]:
                  "variants_snap_gated.json", "variants_concentration.json",
                  "variants_spacing.json", "variants_mass_econ.json",
                  "variants_concentration_sign.json", "variants_trackb.json",
-                 "variants_concentration5.json"):
+                 "variants_concentration5.json", "variants_concentration_5km.json"):
         src = LEDGER / name
         if src.is_file():
             entries += json.loads(src.read_text(encoding="utf-8"))

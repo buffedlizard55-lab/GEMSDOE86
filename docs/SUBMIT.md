@@ -325,3 +325,21 @@ new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechani
 - Note (83 ch): `R0 spr15: cluster-spread 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
 - 37,654 dots, 29.999 % of cells changed; gates passed: True.
 - Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).
+
+## CONCENTRATION 5 km ridge & CV-band arms (built 2026-10-23, session `arena/69392a35-gemsdoe86`) — `concb5kmdown4` proposed for Slot 2; off-ridge arms retired (`IR-86-CONC-10`)
+
+Restoring all 15 SHA-256-pinned manifest inputs (`training_features.tif`, `derived_sgmc_faults_100m_u8.tif`, `H19-5`, `H19-4`, `H16-1`) showed that **every off-ridge `CONCENTRATION` build loses on SGMC**: PR #37 `conc15` reads **−0.0071 MODEL** (not `+0.006`) and breaches §4.4 (`39.8 %` at `≤ 3.0 px`); PR #44 `dens15` (**−0.0006 MODEL**) and `spr15` (**−0.0013 MODEL**) place **0.0 %** of added dots on ancestor ridges; PR #46 `b5km-move10/15/20` read **−0.0066..−0.0150 MODEL** (`0.0 %` on `H19-5`). **Do not spend weekly slots on `conc15`, `dens15`, `spr15`, or `b5km-move10/15/20`.**
+
+All three arms below hold `n_dots = 37,654` fixed, place **100.0 %** of added dots on `H19-5 | H19-4 | H16-1` at `> 3.0 px` clearance (`min = 3.1623 px`) and `≥ √8 px` spacing, and pass all MUST gates in both encodings after disk re-read. Rebuild via `.venv/bin/python scripts/restore_axis_inputs.py && .venv/bin/python scripts/run_concentration_5km.py`.
+
+| Arm | Upload path (`-zeros.tif` fallback; `.tif` NaN twin adjacent) | `-zeros.tif` SHA-256 (`ledger/submissions.csv`) | `.tif` (NaN-outside) SHA-256 | Form name (`≤ 64` ch) | Form note (`≤ 140` ch) |
+|---|---|---|---|---|---|
+| **`b5km-cvband-down4` (Slot 2 candidate)** | `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif` | `8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863` | `2daf174f8d430a60073ed0b9c6d6e1196ac79a906b80187c8bb3248db6426ff3` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-cvband-down4: 1506 ridge dots moved (8.00% chg, 1km CV 0.516); pred +0.0015 MODEL` |
+| `b5km-ridge-up4` (do not spend Week-1 slot) | `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmup4-20261023-493cf242-zeros.tif` | `493cf24211bfd7d1699a172ccc4fb62194bfa31e2d1d50446ea5908e335919e0` | `d5e18afa6f6a44b8e113ac5dacc58e70b4ff79b495917f5149fe4447878a1afa` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmup4-20261023-493cf242` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-ridge-up4: 1506 ridge dots moved (8.00% chg, 1km CV 0.625); pred -0.0005 MODEL` |
+| `b5km-ridge-up8` (do not spend Week-1 slot) | `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmup8-20261023-b4d36a67-zeros.tif` | `b4d36a671bcd86fd460203fc04f2a0bbcfca79be1124748d11c294c5126974f6` | `1bec1facabdfd54d86db10cca070c9b121ac35bed40468fed9e2b724343bab92` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmup8-20261023-b4d36a67` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-ridge-up8: 3012 ridge dots moved (16.00% chg, 1km CV 0.626); pred -0.0007 MODEL` |
+
+**Manual upload checklist (`concb5kmdown4` only, if chosen for Slot 2):**
+1. Verify local SHA-256 before opening the portal: `sha256sum releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif` must print `8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863` (or `2daf174f...` if the portal prefers NaN-outside `.tif`; upload **one**, never both).
+2. Confirm rolling-week quota has at least 1 slot remaining and record `TOP_PUBLIC` + date first.
+3. Paste the exact 62-char form name and 126-char form note above (`≤ 140` chars), submit manually, and log the live score + portal timestamp as `RECEIPT` in `ledger/submissions.csv` before any subsequent upload.
+
