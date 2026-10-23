@@ -10,7 +10,7 @@ The current machine-readable decision is [`docs/evidence/session-20261023-run-ca
 
 **Concurrent integration completed locally:** `main` advanced through PR #19 (`c9b5852ab9ffad1eaeadcb522d5ff01faffe21ed`) while this review was running. Its seventh H86-WVB TIFF/ZIP/receipt, isolated scientific card, tests, independent publication audit and earlier review were preserved. The new audit now remeasures **all seven** final rasters and normalizes the distinct WVB holdout schema without calling it a new experiment or a cross-design best. All seven are locally valid and all seven have final-dot overlap **1.0** against the pinned witness. Post-integration checks: **127 pytest tests and 32 subtests**, **79 unittest tests**, both publication audits, renderer/checker and registry reproduction passed. Actual browser checks passed on **nine** pages at desktop/mobile widths. No model card or TIFF bytes were rewritten.
 
-**Remote completion:** PR creation, merge and public deployment are pending at this checkpoint; a local pass is not a remote deployment receipt.
+**Remote receipts:** [PR #23](https://github.com/buffedlizard55-lab/GEMSDOE86/pull/23) contains this review and its checks. Its actual merge state and associated Actions/deployment receipts are authoritative for operations after this pre-merge log; a local pass is not a public-deployment receipt. No future successful merge or deployment is predicted by this document.
 
 ## Scientific interpretation
 
