@@ -1,6 +1,6 @@
 {
   "schema": "gems86.prune-axis.v1",
-  "generated_utc": "2026-10-23T03:50:12Z",
+  "generated_utc": "2026-10-23T04:02:00Z",
   "axis": "PRUNE",
   "parent": {
     "id": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
@@ -13,7 +13,7 @@
     "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
   "seed": 20261023,
-  "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82",
+  "git_sha": "357e9781258ee4d8650598561214ddd355d6480f",
   "proxy": {
     "evidence_class": "PROXY",
     "design": "catalogue hide-and-recover, 20% of 8-connected catalogue components withheld per draw, visible catalogue pixel-exactly masked as known, exact alpha=0.2/beta=0.8/R=3px DTI (gems57.metric.dti_exact)",
@@ -305,12 +305,13 @@
         "random_footprint_mean": 0.4986,
         "collar_minus_rest": -0.0136
       }
-    }
+    },
+    "status": "RETAINED_FROM_PRIOR_RUN (feature stack absent on this run)"
   },
   "variants": [
     {
-      "id": "h33-2-b2-prune3-20261023-3eb29af5-nan",
-      "parent": "h33-2-b2",
+      "id": "h33-h33-2-b2-prune3-20261023-3eb29af5-nan",
+      "parent": "h33-h33-2-b2",
       "axis": "prune",
       "value": "3",
       "rule": "2 < d <= 3 dropped",
@@ -319,8 +320,8 @@
       "sha256": "3eb29af50244daada65c70d433be9c0507fd4422b358c54c7e7eebc4485f0501",
       "sha8": "3eb29af5",
       "files": [
-        "releases/h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
-        "releases/h33-2-b2-prune3-20261023-4bd30478-zeros.tif"
+        "releases/h33-h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
+        "releases/h33-h33-2-b2-prune3-20261023-4bd30478-zeros.tif"
       ],
       "sha256_zeros": "4bd3047844fcff384245af58b76906caf9acd48ba356ff37f145225359e4838b",
       "status": "BUILT",
@@ -336,7 +337,7 @@
         "kept_fraction": 0.942343
       },
       "validation_nan": {
-        "file": "releases/h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
+        "file": "releases/h33-h33-2-b2-prune3-20261023-3eb29af5-nan.tif",
         "bytes": 364549,
         "sha256": "3eb29af50244daada65c70d433be9c0507fd4422b358c54c7e7eebc4485f0501",
         "mode": "nan",
@@ -378,7 +379,7 @@
         "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
       },
       "validation_zeros": {
-        "file": "releases/h33-2-b2-prune3-20261023-4bd30478-zeros.tif",
+        "file": "releases/h33-h33-2-b2-prune3-20261023-4bd30478-zeros.tif",
         "bytes": 323470,
         "sha256": "4bd3047844fcff384245af58b76906caf9acd48ba356ff37f145225359e4838b",
         "mode": "zeros",
@@ -584,8 +585,8 @@
       "receipt_date": ""
     },
     {
-      "id": "h33-2-b2-prune4-20261023-e198b768-nan",
-      "parent": "h33-2-b2",
+      "id": "h33-h33-2-b2-prune4-20261023-e198b768-nan",
+      "parent": "h33-h33-2-b2",
       "axis": "prune",
       "value": "4",
       "rule": "2 < d <= 4 dropped",
@@ -594,8 +595,8 @@
       "sha256": "e198b768b5a19d7e08e33de14ad1ec03425154db1acd81fad5db3b4b7e9715cd",
       "sha8": "e198b768",
       "files": [
-        "releases/h33-2-b2-prune4-20261023-e198b768-nan.tif",
-        "releases/h33-2-b2-prune4-20261023-de4c2a98-zeros.tif"
+        "releases/h33-h33-2-b2-prune4-20261023-e198b768-nan.tif",
+        "releases/h33-h33-2-b2-prune4-20261023-de4c2a98-zeros.tif"
       ],
       "sha256_zeros": "de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5",
       "status": "BUILT",
@@ -611,7 +612,7 @@
         "kept_fraction": 0.898417
       },
       "validation_nan": {
-        "file": "releases/h33-2-b2-prune4-20261023-e198b768-nan.tif",
+        "file": "releases/h33-h33-2-b2-prune4-20261023-e198b768-nan.tif",
         "bytes": 359953,
         "sha256": "e198b768b5a19d7e08e33de14ad1ec03425154db1acd81fad5db3b4b7e9715cd",
         "mode": "nan",
@@ -653,7 +654,7 @@
         "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
       },
       "validation_zeros": {
-        "file": "releases/h33-2-b2-prune4-20261023-de4c2a98-zeros.tif",
+        "file": "releases/h33-h33-2-b2-prune4-20261023-de4c2a98-zeros.tif",
         "bytes": 318928,
         "sha256": "de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5",
         "mode": "zeros",
@@ -859,8 +860,8 @@
       "receipt_date": ""
     },
     {
-      "id": "h33-2-b2-prune3r-20261023-9542efac-nan",
-      "parent": "h33-2-b2",
+      "id": "h33-h33-2-b2-prune3r-20261023-9542efac-nan",
+      "parent": "h33-h33-2-b2",
       "axis": "prune",
       "value": "3r",
       "rule": "2 < d <= 3 dropped, equal count relocated into 3 < d <= 5",
@@ -869,8 +870,8 @@
       "sha256": "9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682",
       "sha8": "9542efac",
       "files": [
-        "releases/h33-2-b2-prune3r-20261023-9542efac-nan.tif",
-        "releases/h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif"
+        "releases/h33-h33-2-b2-prune3r-20261023-9542efac-nan.tif",
+        "releases/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif"
       ],
       "sha256_zeros": "8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e",
       "status": "BUILT",
@@ -886,7 +887,7 @@
         "kept_fraction": 0.942343
       },
       "validation_nan": {
-        "file": "releases/h33-2-b2-prune3r-20261023-9542efac-nan.tif",
+        "file": "releases/h33-h33-2-b2-prune3r-20261023-9542efac-nan.tif",
         "bytes": 370817,
         "sha256": "9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682",
         "mode": "nan",
@@ -928,7 +929,7 @@
         "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
       },
       "validation_zeros": {
-        "file": "releases/h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif",
+        "file": "releases/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif",
         "bytes": 329550,
         "sha256": "8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e",
         "mode": "zeros",

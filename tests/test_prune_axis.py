@@ -147,18 +147,21 @@ def test_ledger_never_claims_a_receipt():
     rows = list(csv.DictReader((ROOT / "ledger" / "submissions.csv").open(encoding="utf-8")))
     assert rows
     for r in rows:
-        assert r["evidence_class"] in {"CLAIM", "NO-EVIDENCE", "MODEL-PREDICTION (unscored)"}
+        assert r["evidence_class"] in {"CLAIM", "NO-EVIDENCE", "MODEL", "RECEIPT"}
         if r["evidence_class"] != "RECEIPT":
             assert r["receipt_score"] == ""
+            assert r["receipt"] == "N"
         # a projection is never written into a score column
         if r["status"] == "BUILT":
             assert r["predicted_change"]
+            assert r["score"] == ""
 
 
 def test_ledger_is_reproducible():
     target = ROOT / "ledger" / "submissions.csv"
-    text = prune and ledger.render(ledger.build_rows() + ledger.variant_rows())
-    assert target.read_text(encoding="utf-8") == text, "ledger/submissions.csv is stale; rerun build_ledger.py"
+    text = ledger.render(ledger.build_rows() + ledger.variant_rows())
+    assert target.read_bytes().decode("utf-8") == text, \
+        "ledger/submissions.csv is stale; rerun build_ledger.py"
 
 
 # -------------------------------------------------------------------- releases
@@ -205,13 +208,13 @@ def test_no_release_duplicates_a_known_digest():
 def test_release_names_follow_the_brief_convention():
     for path in _releases():
         parts = path.stem.split("-")
-        # <parent>-<axis><value>-<yyyymmdd>-<sha8>-<fill>
-        assert parts[0] == "h33" and parts[1] == "2" and parts[2] == "b2"
-        assert parts[3].startswith("prune")
-        assert len(parts) == 7
-        assert parts[4] == prune.DATE_TAG
-        assert len(parts[5]) == 8
-        assert parts[6] in {"nan", "zeros"}
+        # <parent>-<axis><value>-<yyyymmdd>-<sha8>-<fill>, parent = h33-h33-2-b2
+        assert parts[:4] == ["h33", "h33", "2", "b2"]
+        assert parts[4].startswith("prune")
+        assert len(parts) == 8
+        assert parts[5] == prune.DATE_TAG
+        assert len(parts[6]) == 8
+        assert parts[7] in {"nan", "zeros"}
 
 
 @pytest.mark.skipif(not _releases(), reason="no releases built in this checkout")

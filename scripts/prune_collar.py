@@ -76,7 +76,7 @@ PIN_CATALOGUE = "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae409
 PIN_PARENT = "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
 
 PARENT_FILE = FLEET / "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
-PARENT_SHORT = "h33-2-b2"
+PARENT_SHORT = "h33-h33-2-b2"   # same prefix the concurrent PRUNE3 build uses
 DATE_TAG = "20261023"
 SEED = 20261023
 
@@ -541,6 +541,14 @@ def main() -> int:
     rings = ring_table(g, g.parent)
     print("[3b/5] label-free ring / feature-response receipts")
     response = feature_response(g, collar, rest)
+    prior = ROOT / "evidence" / "prune_axis_20261023.json"
+    if not response.get("bands") and prior.is_file():
+        # The 418 MB stack is restored on demand and not committed. If it is absent
+        # on a re-run, keep the measurement already recorded rather than deleting it;
+        # the digest under which it was measured stays attached.
+        old = json.loads(prior.read_text(encoding="utf-8")).get("feature_response_parent", {})
+        if old.get("bands"):
+            response = dict(old, status="RETAINED_FROM_PRIOR_RUN (feature stack absent on this run)")
 
     rows = []
     for key, v in variants.items():

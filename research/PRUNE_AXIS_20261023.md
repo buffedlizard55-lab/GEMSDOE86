@@ -146,9 +146,9 @@ never used as a gate or as a prediction.
 
 | id | dots | Δ vs R0 | min catalogue distance | sha256 (nan) | sha256 (zeros) |
 |---|---:|---:|---:|---|---|
-| `h33-2-b2-prune3-20261023-3eb29af5-nan` | 35,483 | 5.766 % | 3.16 px | `3eb29af5…f0501` | `4bd30478…e4838b` |
-| `h33-2-b2-prune4-20261023-e198b768-nan` | 33,829 | 10.158 % | 4.12 px | `e198b768…715cd` | `de4c2a98…4ebc5` |
-| `h33-2-b2-prune3r-20261023-9542efac-nan` | 37,654 | 11.531 % | 3.16 px | `9542efac…06682` | `8c20bd7e…52c2e` |
+| `h33-h33-2-b2-prune3-20261023-3eb29af5-nan` | 35,483 | 5.766 % | 3.16 px | `3eb29af5…f0501` | `4bd30478…e4838b` |
+| `h33-h33-2-b2-prune4-20261023-e198b768-nan` | 33,829 | 10.158 % | 4.12 px | `e198b768…715cd` | `de4c2a98…4ebc5` |
+| `h33-h33-2-b2-prune3r-20261023-9542efac-nan` | 37,654 | 11.531 % | 3.16 px | `9542efac…06682` | `8c20bd7e…52c2e` |
 
 All six rasters pass every MUST gate in brief §6 (single band, float32, EPSG:32611, 3730×3292,
 template transform, values in [0,1], no NaN inside the footprint, NaN outside for `-nan` /
@@ -163,7 +163,21 @@ twins fail the vendored validator by its own all-finite policy (7,111,787 NaN ce
 outside the footprint, exactly as brief §6 asks) — a policy difference, not a defect
 (IR-86-PRUNE-07).
 
-## 6. What this session does *not* claim
+## 6. Reconciliation with the concurrent PRUNE session (IR-86-PRUNE-08)
+
+While this work was in progress, branch `arena/06524e4a` merged PR #28 with
+`(PRUNE, 3)` on the same parent: delete the 2,171 annulus dots and **refill the count from the
+H19-5 field** (`…-01d57649`, 37,654 dots, −0.004 MODEL). This session's `prune3` is the same
+deletion with **no refill** (35,483 dots). They are different experiments under the same
+nominal value, which the brief allows only once.
+
+Resolution adopted here: the pair is spent **once** (slot 1 = `01d57649`), this session's
+`prune3` is retained as the local deletion-side control, and `prune3r` (equal count, collar
+relocated just past 3 px) is the design that actually isolates *collar position* from *mass*
+and from the H19-5 refill's spacing drift (their refill moves mean nearest-neighbour spacing
+3.735 → 3.550 px; the relocation here averages 1.14 px per dot and keeps the field intact).
+
+## 7. What this session does *not* claim
 
 * No live score, no leaderboard comparison, no "beats R0". The predictions above are MODEL.
 * The parent's ranking was not rebuilt, so nothing here re-derives R0's own choice of dots.

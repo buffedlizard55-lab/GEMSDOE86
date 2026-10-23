@@ -1,0 +1,22 @@
+[
+  {
+    "id": "h33-h33-2-b2-prune3-20261023-01d57649",
+    "site": "GEMSDOE86",
+    "parent": "h33-h33-2-b2",
+    "axis": "PRUNE",
+    "value": "3",
+    "rule": "drop 2 < d_cat <= 3 px, refill the same count from the pinned H19-5 field by the original deterministic FIFO-BFS order",
+    "n_dots": 37654,
+    "pct_changed": 11.531311,
+    "sha256": "01d57649168d52a0bf2f9aced7aa2280a92b6fd7a0224757d5acc5e925785e96",
+    "sha256_zeros": "4131e37133a3c5a874c42fb7c975ec4ecb7b4be946b794ff9c9852afa575e225",
+    "sha8": "01d57649",
+    "encoding": "nan",
+    "status": "BUILT",
+    "predicted_change": "-0.004 (MODEL). Drop the 2-3 px collar and refill the count from the H19-5 field; ridge-level spacing falls from 3.735 to 3.550 px, so PRUNE and spacing are not separable in this design.",
+    "receipt_score": "",
+    "receipt_date": "",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/28",
+    "provenance": "Concurrent Arena session (branch arena/06524e4a-gemsdoe86, PR #28), merged to main 2026-10-23. Recorded here so one generator reproduces the whole ledger. Its run card is evidence/r0-prune3-run-card.json."
+  }
+]

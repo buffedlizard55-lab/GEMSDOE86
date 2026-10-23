@@ -2,17 +2,17 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE axis session)
+## CURRENT STATE — 2026-10-23 (PRUNE axis, two sessions reconciled)
 
 | Field | Value |
 |---|---|
-| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue. Live **0.2778** = **CLAIM** (no receipt in `ledger/`). |
-| Best receipt | **none** — `ledger/submissions.csv` holds 0 receipts; every historic score is `CLAIM`. |
-| TOP_PUBLIC | **unset** — the human must supply a dated leaderboard number. 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
-| Slots left this week | **unknown** — the human must supply the authenticated quota (quota is 3 scored / rolling week, 1 final file). |
-| Built this session | AXIS **PRUNE**, 3 variants, 6 rasters in `releases/`, all brief §6 gates PASS, **no slot authorised**. Predictions are MODEL: `prune3` −0.003, `prune4` −0.008, `prune3r` −0.003. |
-| Next 3 slots | 1. `prune3` (`…-3eb29af5-nan`, fallback `…-4bd30478-zeros`). 2. `prune4` only if slot 1 gains ≥ 0.01; otherwise hold R0. 3. `prune3r` only if slots 1–2 land within ±0.01. Full decision tree and the weeks to the deadline: [SLOT_PLAN.md](SLOT_PLAN.md). |
-| Blockers | parent recipe (`gems32`) absent ⇒ MASS unavailable (IR-86-PRUNE-02); hide-and-recover proxy at floor for this lineage (IR-86-PRUNE-03); repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01). |
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue, min catalogue distance 2.236 px. Live **0.2778 is CLAIM**, not RECEIPT. |
+| Best receipt | **none** — `ledger/submissions.csv` holds 0 receipts (108 historic rows, all `CLAIM`). |
+| TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
+| Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
+| Built (4, gate-clean, none slot-approved) | `…-prune3-…-01d57649` PRUNE≤3 + fixed-count H19-5 refill, 37,654 dots, −0.004 MODEL (PR #28) · `…-prune3-…-3eb29af5` PRUNE≤3 pure deletion, 35,483 dots, −0.003 MODEL · `…-prune4-…-e198b768` PRUNE≤4, 33,829 dots, −0.008 MODEL · `…-prune3r-…-9542efac` PRUNE≤3 with equal-count relocation, 37,654 dots, −0.003 MODEL. Two builds share the `(PRUNE, 3)` pair: only one may be scored (IR-86-PRUNE-08). |
+| Next 3 slots | 1. PRUNE≤3+refill `01d57649`; 2. PRUNE≤4 `e198b768` (only if slot 1 gains ≥ 0.01); 3. PRUNE≤3r `9542efac` (only if slots 1–2 land within ±0.01). Decision tree, calendar and proposed axes: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | parent recipe (`gems32`) absent ⇒ MASS unavailable (IR-86-PRUNE-02); hide-and-recover proxy at its floor for this lineage (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs gitignored pending data-use review (IR-86-PRUNE-04). |
 
 <!-- CURRENT_STATE_END -->
 
