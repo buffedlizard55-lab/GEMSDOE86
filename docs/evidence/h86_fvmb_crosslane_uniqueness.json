@@ -4,7 +4,7 @@
   "candidate_sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
   "candidate_dots": 38400,
   "vs_6_concurrent_gemsdoe86_lanes": {
-    "lanes_checked": 6,
+    "lanes_checked": 7,
     "any_literal_duplicate": false,
     "max_abs_surface_spearman": 0.1398186177792671,
     "max_abs_dots_spearman": 0.01767593005378902,
@@ -48,6 +48,16 @@
         "dots_spearman": -0.002437263921500899,
         "forward_3px_overlap": 0.17828125,
         "reverse_3px_overlap": 0.13238333333333333,
+        "literal_duplicate": false
+      },
+      {
+        "file": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+        "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
+        "prior_dots": 37654,
+        "surface_spearman": 0.09878448139439253,
+        "dots_spearman": 0.012933622924379945,
+        "forward_3px_overlap": 0.3590625,
+        "reverse_3px_overlap": 0.47870080203962395,
         "literal_duplicate": false
       },
       {

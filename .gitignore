@@ -22,5 +22,7 @@ data/raw/
 /data/cache/
 /data/scored/
 /data/registry_ext/
+/data/scored_ext/
+
 data/processed/
 registry/submissions/

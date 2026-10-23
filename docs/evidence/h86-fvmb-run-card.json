@@ -56,7 +56,7 @@
     "threshold": 0.9
   },
   "correlation_overlap_vs_registry": {
-    "modern_and_concurrent_rasters_checked": 37,
+    "modern_and_concurrent_rasters_checked": 38,
     "modern_31_and_concurrent_6_all_pass": true,
     "surface_max_abs_spearman_vs_37": 0.143302,
     "dots_max_abs_spearman_vs_37": 0.048042,
