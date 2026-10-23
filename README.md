@@ -1,5 +1,22 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## CURRENT STATE
+
+| field | value | class |
+|---|---|---|
+| Parent (incumbent) | `h33-2b2` (GEMSDOE32), `sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, 37,654 dots | bytes RECEIPT-verified against the manifest pin |
+| Best receipt | **none in this repo** — the parent's 0.2778 is owner-reported | CLAIM |
+| TOP_PUBLIC | 0.3195 (undated; transcribed from `PROMPT.md` at the human's instruction) | CLAIM |
+| Slots left this rolling week | 3 / 3 (human-supplied; not verified against the submission page) | CLAIM |
+| Deadline | 2026-12-03 | UNVERIFIED here |
+| Built this session, gates PASS, **not submitted** | `gems86-h33-2b2-prune3-20261023-e4027684` (PRUNE collar3px, 11.531 % changed) · `gems86-h33-2b2-snap2-20261023-6ec42a92` (SNAP 2px, mean displacement 1.43 px) · `gems86-h33-2b2-conc15-20261023-2b883f2d` (CONCENTRATION 1 km blocks, 15 % moved, 29.999 % changed) | MODEL predictions only |
+| Next 3 slots, in order | 1 PRUNE collar3px → 2 SNAP 2px → 3 CONCENTRATION b1km-move15; see `SLOT_PLAN.md` for what each result changes | plan |
+
+Upload instructions, notes (≤ 140 chars) and the SHA-256 of every file: [`docs/SUBMIT.md`](docs/SUBMIT.md).
+Mechanism cards for a structural geologist: [`research/AXIS_MECHANISM_CARDS.md`](research/AXIS_MECHANISM_CARDS.md).
+Ledger: [`ledger/submissions.csv`](ledger/submissions.csv) (115 transcribed history rows + 3 built variants).
+Decision-relevant irregularities: [`IRREGULARITIES.md`](IRREGULARITIES.md). AI disclosure: [`AI_USE.md`](AI_USE.md).
+
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 
 **Read this README, [PROMPT.md](PROMPT.md), and the current request archive below at the start of every session.**

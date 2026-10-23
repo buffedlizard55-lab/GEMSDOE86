@@ -1,0 +1,21 @@
+{
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 37654,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "name": "gems86-h33-2b2-snap2-20261023-6ec42a92",
+  "note": "GEMSDOE86 h33-2b2 SNAP 2px | 37654 dots, 179.954% changed vs R0 | token 6ec42a92 | UNSCORED",
+  "note_chars": 91,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+  "file": "gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif",
+  "sha256": "accdb5754a85d720b3eb9d9ad2f8c5c3936113c86cdfad8bde94cb3090d88ae9",
+  "mode": "zeros",
+  "nan_outside_count": 0
+}
