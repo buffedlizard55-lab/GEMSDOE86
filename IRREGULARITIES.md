@@ -1,8 +1,5 @@
-# Decision-changing irregularities — 2026-10-23
-
-<<<<<<< HEAD
 Only items that changed what a session did, or that a human must resolve before the next
-slot. Two Arena sessions worked the PRUNE axis on the same parent; both are recorded.
+slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
 ## IR-86-PRUNE-01 — the standing protocol forbids every submission; brief v2 forbids the gate
 `PROMPT.md` / `AGENTS.md` / `scripts/audit_release.py` apply a **70 % overlap** and **0.90
@@ -85,50 +82,26 @@ consideration. The redundant local copies of `3eb29af5` are deleted from `releas
 wrong file cannot be uploaded by accident. **Cost:** three sessions burned on one 5.8 %-of-mass
 axis; the calendar in `SLOT_PLAN.md` now gives PRUNE one slot and moves the rest to a
 feature-based axis.
-=======
-1. **Axis and collar conflict.** No explicit AXIS assignment was supplied. R0 has 1,611 dots at `2 < d_cat < 3` px, while the new brief requires ≥3 px except for PRUNE. Any non-PRUNE variant would need a second collar edit. This session therefore builds only PRUNE≤3/refill; no other axis is silently combined.
-2. **Fixed-count confounder.** The ≤3 px prune removes 2,171 dots, but only 475 same-field refills preserve the parent's 2.8 px spacing. The mandated 2,171-dot refill changes spacing as well as collar membership. This is measured in the run card and prevents a clean geological interpretation of a live change.
-3. **No submission authorization inputs.** R0's 0.2778 is CLAIM, not RECEIPT. TOP_PUBLIC, remaining rolling-week quota, and an explicit human axis assignment are absent. No file is called a winner or automatically approved. The 2026-12-03 deadline is user-supplied and UNVERIFIED because DrivenData was not contacted.
-4. **Ledger substitute.** `ledger/submissions.csv` and `ledger/raw_paste.txt` were absent. The builder seeds the ledger from `registry/prior_scores.csv`, collapses repeated `(name, score)` rows, and marks every historical score CLAIM/receipt=N. Missing hashes or dot counts remain blank rather than inferred.
-5. **Public-raster data use.** This GitHub repository is public and already contains competition-derived TIFFs; data-use terms are unchecked. New candidate TIFFs are written locally under `releases/` but gitignored, so the PR contains code and SHA-bound receipts, not new public raster copies. A human must resolve the existing-data terms question before mirroring or releasing more rasters.
+## IR-86-LADDER-01 — the fixed-count refill confounder (PR #28's design)
+The ≤ 3 px prune removes 2,171 dots, but only 475 same-field refills preserve the parent's 2.8 px
+spacing; the mandated 2,171-dot refill therefore changes spacing as well as collar membership
+(measured: mean nearest-neighbour 3.735 → 3.550 px). A live result from `…-01d57649` cannot be
+attributed to collar width alone. **Decision:** that design is not slot 1; the pure-deletion rung
+is. This branch's `prune3r` (relocate 1.14 px, spacing nearly intact) is the clean version.
 
----
+## IR-86-LADDER-02 — byte identity IS achievable, and my first pass said otherwise
+PR #29 found that `existing_faults.tif`'s own writer profile (deflate, `predictor=3`, `zlevel=9`,
+tiled 256, `nodata=None`) re-encodes R0 to exactly 219,065 bytes and sha256 `c55bafc4…`. My first
+pass declared file bytes unreproducible after a smaller profile sweep; that was wrong and is
+retracted here. **Decision:** the brief's parent gate is satisfiable as "dot set + file bytes", and
+every rung is written with that profile. **Cost:** this branch's own releases use a different
+profile, so their digests differ from PR #29's even where the dot sets agree — the dot-set digest
+is the identity that survives an encoder change, and both are recorded.
 
-## IR-86-PRUNE-01 (corrected) — byte identity IS achievable; the collar ladder does not need a dot-set-only ledger
-
-My first pass concluded "bytes not reproducible" after a 30-profile sweep (best match 147,697 B vs. the
-published 219,065 B) and I was about to key the ledger on a dot-set digest alone. That conclusion was
-**wrong**, and the correction comes from the sibling session in PR #28: the profile carried by
-`existing_faults.tif`, updated to `deflate / predictor=3 / zlevel=9 / tiled 256 / nodata=None`,
-re-encodes R0 to **219,065 B and sha256 `c55bafc47005…` exactly**. I verified this independently in
-this checkout, and `scripts/run_prune_ladder.py` now refuses to continue unless its rebuild is
-byte-identical.
-
-Decision changed twice: (a) the parent gate in the brief is now fully satisfiable — "dot set + file
-bytes" rather than dot set only; (b) every rung is written with that profile, so all four releases are
-byte-reproducible from pinned inputs. The dot-set digest is kept as a secondary identity because it is
-the only identity that survives a different GDAL build.
-
-## IR-86-PRUNE-06 — two sessions built `(PRUNE, 3)` on the same day (decision: one belongs in a slot, and it is not mine)
-
-PR #28 (branch `arena/06524e4a-gemsdoe86`, merged first) shipped `h33-h33-2-b2-prune3-20261023-01d57649`:
-prune ≤3 px **plus a 2,171-dot refill at fixed count**, 37,654 dots, predicted −0.004 MODEL. The brief's
-PRUNE spec asks for exactly that refill, so that file is the spec-compliant `(PRUNE, 3)` and mine
-(`…-PRUNE-le3p000-…-a438e92b`, 35,483 dots, no refill) is **not a second `(PRUNE,3)` experiment** — it is
-the mass-reduced counterpart of it (same collar edit, 5.8 % less mass). I left both in the ledger with
-distinct ids and labelled mine "no refill" in `SLOT_PLAN.md`, because sending two collar edits to the same
-week's slots without knowing which one differs would waste one. **Do not submit both.**
-
-What is *not* duplicated and is new here: the `(PRUNE, √5)` and `(PRUNE, √8)` rungs (PR #28 built only
-value 3), the mass-matched control, and the byte-identity verification above. The two sessions' R0
-rebuilds agree exactly (40,199 − 2,545 = 37,654, sha `c55bafc4…`), which is the strongest cross-check
-either session has.
-
-## IR-86-PRUNE-07 — releases are gitignored (decision: the PR carries code, receipts and hashes, not rasters)
-
-PR #28 established that `/releases/*.tif` stays out of the public repository because the data-use terms
-for competition-derived rasters are unchecked. I adopted that: the four rasters exist only in the working
-tree after `scripts/run_prune_ladder.py` runs, and the committed evidence is the adjacent receipt
-(sha256, bytes, validator output) plus the ledger rows. Anyone can rebuild them byte-for-byte from pinned
-inputs and check the hashes.
->>>>>>> origin/main
+## IR-86-LADDER-03 — the ledger had three writers for one day
+Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, PR #29's
+`merge_prune_ledger.py`, this branch's `build_ledger.py`). **Decision:** this branch's
+`scripts/build_ledger.py` is the single generator; it reproduces PR #29's schema and rebuilds the
+other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
+`build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
+remain valid for building rasters, not for regenerating the ledger.

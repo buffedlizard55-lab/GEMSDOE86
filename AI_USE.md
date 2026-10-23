@@ -16,10 +16,9 @@ No human-authored code or text is mixed in unlabelled.
   earlier claim that R0 could not be rebuilt was corrected once PR #29 showed otherwise
   (IR-86-PRUNE-02).
 - `ledger/submissions.csv` now has **one** generator (`scripts/build_ledger.py`) that rebuilds
-  the concurrent candidate's row from `ledger/variants_external.json`, so the two sessions do
+  the concurrent candidate's row from `ledger/variants_external.json`, so the three sessions do
   not fight over the file.
 
-<<<<<<< HEAD
 **What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
 submission, no credential handling. No PROXY or MODEL number is written as a score or a
 receipt. Every historical score stays `CLAIM` because no submission-page receipt exists in this
@@ -28,24 +27,20 @@ checkout.
 **What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
 remaining rolling-week quota, R0's receipt if one exists, the actual receipt score/date after an
 upload, and the choice of the final file from one registered entity.
-=======
-The human must decide whether to authorize any slot, supply TOP_PUBLIC/date, remaining quota, R0's receipt if available, and the actual submission receipt score/date. The human alone chooses and uploads the final file from one registered entity.
 
 ---
 
-## Addendum — PRUNE ladder (second session on 2026-10-23, branch `arena/72ecdcd1-gemsdoe86`)
+## Addendum — PRUNE ladder (branch `arena/72ecdcd1-gemsdoe86`, PR #29)
 
 **AI wrote:** `src/gems86/prune.py`, `scripts/run_prune_ladder.py`, `scripts/merge_prune_ledger.py`,
-`tests/test_prune_ladder.py`, `ledger/variant-cards.md`, and the PRUNE-ladder sections appended to
+`tests/test_prune_ladder.py`, `ledger/variant-cards.md`, and the ladder sections of
 `IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md` and `README.md`.
 
-**AI decided:** the AXIS (PRUNE — the only listed axis whose inputs are present and pinned, since
-`training_features.tif` is absent); that the rungs must be the three distance shells that actually exist
-among R0's dots (√5, √8, 3.0 px); that a mass-matched control is required before any collar result can be
-attributed to proximity; and that the spec-compliant `(PRUNE,3)` belongs to the earlier session, so this
-one shipped the missing rungs instead (IR-86-PRUNE-06).
+**AI decided:** the three rungs must be the distance shells that actually exist among R0's dots
+(√5, √8, 3.0 px); that a mass-matched control is required before a collar result can be attributed
+to proximity; and that the spec-compliant `(PRUNE, 3)` belongs to PR #28, so this one shipped the
+missing rungs instead.
 
-**AI corrected itself:** an earlier claim in this branch that the parent's file bytes were not
-reproducible was wrong; it was falsified using the sibling PR's writer profile and is retracted in
-IR-86-PRUNE-01 rather than deleted. No truth raster, no portal, no login, no slot.
->>>>>>> origin/main
+**AI corrected itself:** an earlier claim that the parent's file bytes were not reproducible was
+falsified (byte-exact rebuild, `c55bafc4…`) and retracted in `IRREGULARITIES.md` rather than
+deleted. No truth raster, no portal, no login, no slot.
