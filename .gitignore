@@ -30,3 +30,8 @@ registry/submissions/
 # Local candidate rasters: public-repo data-use terms are unchecked.
 /releases/*.tif
 /releases/*.zip
+
+# Restored (not committed) competition feature stack: 418 MB, login-walled upstream.
+/data/bridge/training_features.tif
+/releases/refill/*.tif
+/releases/refill/*.zip
