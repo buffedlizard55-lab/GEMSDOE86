@@ -52,6 +52,14 @@ def build(parent: np.ndarray, ctx: dict, prior: np.ndarray, frac: float,
         raise ValueError(f"{value_for(frac)}: changed-cell percentage outside 1--50%")
     if int((mask & ctx["catalogue"]).sum()):
         raise ValueError(f"{value_for(frac)}: catalogue mass emitted")
+    prior_px = variants.block_to_pixels(prior, parent.shape, block_px)
+    unclassified_parent = parent & ctx["footprint"] & ~np.isfinite(prior_px)
+    unclassified_dropped = parent & ~mask & ~np.isfinite(prior_px)
+    if unclassified_dropped.any():
+        raise ValueError(f"{value_for(frac)}: unclassified edge-strip dots entered the source draw")
+    stats["parent_dots_outside_complete_prior_blocks"] = int(unclassified_parent.sum())
+    stats["dropped_dots_outside_complete_prior_blocks"] = int(unclassified_dropped.sum())
+    stats["density_domain"] = "complete blocks only; partial edge strips excluded, not treated as low prior"
     stats["value"] = value_for(frac)
     stats["pct_parent_dots_moved"] = round(100.0 * stats["moved_placed"] / int(parent.sum()), 6)
     stats["clearance_px_new_mass"] = NEW_MASS_CLEARANCE_PX

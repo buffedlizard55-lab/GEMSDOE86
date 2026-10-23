@@ -325,7 +325,7 @@ def mechanism_markdown(model: dict, stats: dict) -> str:
             f"- **Predicted live change:** {arm['delta']:+.4f} MODEL "
             f"(translation sensitivity {arm['translated_range'][0]:+.4f}…{arm['translated_range'][1]:+.4f}; "
             f"{arm['quadrant_positive']}/4 quadrants positive).",
-            f"- **Density read:** occupied-5 km-block CV "
+            f"- **Density read:** occupied complete-5 km-block CV "
             f"{st['block_density_parent']['density_cv_occupied']:.4f} → "
             f"{st['block_density_variant']['density_cv_occupied']:.4f}; occupied blocks "
             f"{st['block_density_parent']['occupied_blocks']} → "
@@ -527,7 +527,8 @@ def main() -> int:
                             "direction": "lowest-prior -> highest-prior", "count": 37654,
                             "placement": "geometric only; no SGMC or holdout truth enters placement",
                             "new_mass_clearance_px": C5.NEW_MASS_CLEARANCE_PX,
-                            "cv_band_status": "0.51-0.59 is an unverified CLAIM, never a target or gate"},
+                            "cv_band_status": "0.51-0.59 is an unverified CLAIM, never a target or gate",
+                            "density_domain": "complete 5 km blocks; 30-row/42-column remainders are unclassified, never low-prior sources"},
         "inputs_verified": pins, "tmi": tmi_meta,
         "ladder": stats.pop("_ladder"), "variants": cards,
         "instruments": {"leakage_canary": canary, "sgmc_offcatalogue_surrogate": model,

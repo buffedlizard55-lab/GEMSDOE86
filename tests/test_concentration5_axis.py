@@ -18,7 +18,7 @@ from gems86_axis import variants  # noqa: E402
 
 @pytest.fixture(scope="module")
 def synthetic():
-    shape = (100, 100)
+    shape = (110, 110)  # 10 px remainder: unclassified strips must not become "low prior"
     foot = np.ones(shape, bool)
     cat = np.zeros(shape, bool)
     cat[10:90, 50] = True
@@ -57,6 +57,9 @@ def test_all_doses_hold_count_dose_exclusions_and_prior_direction(synthetic):
         assert clearance["passed"] and clearance["minimum_px"] > 3.0
         separation = C5.prior_separation(parent, mask, prior_pack["prior"])
         assert separation["passed"] and separation["destination_minus_source"] > 0
+        prior_px = variants.block_to_pixels(prior_pack["prior"], parent.shape, C5.BLOCK_PX)
+        assert np.isfinite(prior_px[parent & ~mask]).all(), "edge strips are unclassified, not low prior"
+        assert st["dropped_dots_outside_complete_prior_blocks"] == 0
         density = C5.density_report(parent, mask, ctx["footprint"])
         assert set(density) == {"1000m", "5000m"}
         assert density["5000m"]["variant"]["density_cv_occupied"] > 0
