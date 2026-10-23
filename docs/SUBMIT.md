@@ -192,3 +192,30 @@ the JSON receipts next to them carry the digests. Rebuild with the commands in `
 SNAP was spent by PR #31, corroborated by PR #34, and this build's SGMC control is negative
 with dose (IR-86-SNAP-09). Status `BUILT-DUPLICATE`; its `snapr1`/`snapr2` arms are
 withdrawn duplicate pairs with **no raster**. Rebuild: `python scripts/build_r0_snap.py --build`.
+
+## SPACING arms (built 2026-10-23, session `arena/c8365759-gemsdoe86`) — proposed for slot 3, **not approved**
+
+All four files are gated in both encodings and live in `releases/axis86/` (gitignored; the receipts
+and the ledger are the authority). Count fixed at **37,654** dots, 19.20 % of R0's dots relocated,
+`-zeros` twin = the fallback encoding (the two score identically per brief §3, so upload **one**).
+
+| arm | upload (fallback twin) | zeros-twin sha256 | name (≤ 64 ch) | note (≤ 140 ch) |
+|---|---|---|---|---|
+| `strike16` (candidate) | `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif` | see `…-caffc3f0-zeros.json` | `gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros` | `R0 h33-h33-2-b2; SPACING/strike16: 7027 redundant dots re-placed on their own ridge, count 37654 fixed, pred +0.0020 MODEL` |
+| `pdisk16` (candidate) | `…/gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros.tif` | see `…-0d2f135e-zeros.json` | `gems86-h33-2b2-sp-pdisk16-20261023-0d2f135e-zeros` | `R0 h33-h33-2-b2; SPACING/pdisk16: 7228 redundant dots to the largest local kernel gap, count 37654 fixed, pred +0.0015 MODEL` |
+| `lattice16` (candidate) | `…/gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros.tif` | see `…-63c4c56f-zeros.json` | `gems86-h33-2b2-sp-lattice16-20261023-63c4c56f-zeros` | `R0 h33-h33-2-b2; SPACING/lattice16: 7220 dots on a hex covering lattice a=5.196px, count 37654 fixed, pred +0.0019 MODEL` |
+| `random16` (control — do not submit) | `…/gems86-h33-2b2-sp-random16-20261023-db4cae83-zeros.tif` | see `…-db4cae83-zeros.json` | — | — |
+
+**Format receipt (all four, re-read from disk after writing).** Validator:
+`src/gems86_axis/gates.py` → `vendor/template66/gems/validate_submission.py` against
+`data/bridge/sample_submission.tif`. CRS `EPSG:32611`, shape `[3730, 3292]`, transform
+`(100, 0, 243350, 0, −100, 4508550)`, `float32`, single band, values in [0, 1], NaN outside the
+footprint in the `.tif` and 0 outside in the `-zeros.tif`, **0 dots on catalogue pixels**, new mass
+≥ 3.162 px off the catalogue (gate `new_mass_clearance` PASS), `sha256` absent from the ledger before
+the build. The one SKIPPED validator check ("footprint checks", which needs the absent 419 MB feature
+stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:COVERED_SKIPS`.
+
+**Before uploading:** re-read the exact bytes you upload through
+`.venv/bin/python -c "from gems86_axis import gates, grid_io; ..."` or
+`pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
+rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.

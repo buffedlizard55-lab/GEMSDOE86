@@ -137,3 +137,88 @@ the plan above is unchanged. Cards: `evidence/r0-snap-mechanism.md`.
    away from the lineage's own high-value pixels. Confounder: those interaction zones are also where
    geothermal systems sit, and the target is fault pixels, never vents or heat. Falsifier: live
    Δ ≤ −0.01, which would say the H19-5 ranking is not separable from local geometry at all.
+
+---
+
+# Addendum — SPACING session (branch `arena/c8365759-gemsdoe86`), 2026-10-23
+
+**AXIS: SPACING**, self-assigned from the plan because it is the only brief-§5 axis no earlier
+session had built (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF` were all taken; `TRACKB` is
+Phase 2). No slot was used or requested, and nothing here authorises an upload.
+
+## What the axis says
+
+Dose, preregistered before any surrogate was read: relocate every R0 dot owning ≤ 16 of the 29 cells
+of its radius-3 px kernel disc — **7,228 dots, 19.20 % of the mass, 35.9–37.9 % of cells changed,
+count fixed at 37,654**. R0's mean exclusive credit is 20.73 cells, i.e. **28.5 % of its nominal
+kernel credit is already written off by overlap**, and 11,415 dots sit at exactly the 2.828 px
+thinning floor — *inside* the 300 m kernel radius. Three placement laws, identical selection,
+identical objective (largest gap to the nearest retained dot inside 800 m), identical exclusions:
+
+| value | law | coverage bought | surrogate Δ (MODEL) | vs control |
+|---|---|---|---|---|
+| `pdisk16` | isotropic hard core (Poisson-disk / blue noise) | +113,315 px | **+0.0015** | +0.0013 |
+| `lattice16` | hexagonal covering nodes, a = √3·R = 5.196 px (covering verified after rounding) | +107,851 px | **+0.0019** | +0.0017 |
+| `strike16` | on the local dot ridge only (±1 px across, ≥2 px along) | +75,136 px | **+0.0020** | +0.0018 |
+| `random16` | **null control**, uniform cell in the same window | +74,573 px | +0.0002 | — |
+
+Every band is wide and every number is MODEL; the truth is an independent USGS SGMC off-catalogue
+raster, not competition labels.
+
+**The result that changes the plan.** The three laws beat the random control by ~+0.0016, so
+*de-overlapping by a rule* pays where *moving at random* does not — the only clean law-vs-chance
+separation any axis in this repo has produced. But (a) no arm approaches the 0.01 evidence floor,
+(b) under a ±6 px translation of the truth (the 400 m flight-line uncertainty in brief §2) the
+control itself rises to +0.0033 and the separation shrinks to ~+0.0016 of the laws' +0.0049, and
+(c) 95–98 % of the coverage this axis buys is **off** the H19-5 support surface the lineage was
+thinned from (IR-86-SPACING-02), so the surrogate may be paying for area, not for faults.
+
+## Slots, revised (one entity, 3 per rolling week; slots left: UNSUPPLIED)
+
+| # | file | why | decision rule |
+|---|---|---|---|
+| 1 | unchanged: `…-PRUNE-le3p000-…-a438e92b-zeros.tif` (+0.004 MODEL) | the collar is still the only axis with a monotone ladder behind it, and it separates the two things SPACING cannot: mass vs catalogue proximity | as before |
+| 2 | **either** `…-RELIEF-frontp15-…-e0e2888f-zeros.tif` (+0.0017) **or** `gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif` (+0.006) | both move mass between regions; the human picks which spatial prior to test first | as before |
+| 3 | **replace the SNAP probe with `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif`** (+0.0020 MODEL) | SNAP's verdict is already established by three builds; SPACING `strike` is the one arm that (i) keeps its mass on the trace, (ii) is the only arm whose FP term does not jump (+83.7 vs +140), and (iii) arrives with its own control already built, so one slot buys a law-vs-chance read instead of a third measurement of a known negative | ≥ +0.010 → spacing is the binding error: build the global-dose rung (credit ≤ 20, 44 % of the mass) and pair it with `le3p000`; inside ±0.010 → the arrangement is not a lever and **SPACING closes for Phase 1**; ≤ −0.005 → the surrogate was buying off-fault area, close it and stop building arrangement axes |
+| — | `…-sp-random16-…-db4cae83-zeros.tif` | **control, never a slot** — its only job is to make slot 3 interpretable | — |
+
+If the human would rather spend slot 3 on `RELIEF front−10pct` (the sign flip, 25 %-of-mass swing,
+predicted separation ~0.011), that comparison still has more power per slot than any single SPACING
+arm, and it stays the alternative. Do not build `pdisk10`/`pdisk20` dose rungs this week: a
+second dose of a below-floor axis is a repeat, not an experiment.
+
+## What SPACING teaches the *other* axes
+
+`SNAP`'s failure is now explainable without invoking geology: snapping moved 97–99 % of the dots and
+**created** 3,448–8,341 sub-2 px pairs, i.e. it moved mass *into* overlap, while SPACING moves the
+same mass *out* of it at a mean displacement of 6.8 px. Both are arrangement edits at the same scale,
+and the one with a control reads positive-but-tiny. Practical consequence for weeks 4–6: any
+combined finalist must hold **sub-kernel pair count** (currently 11,415) as a reported invariant, not
+just dot count — a `le3p000 + conc15 + strike16` file that re-clusters would undo its own collar gain.
+
+## New axis proposals (mechanism / confounder / falsifier) — not built this session
+
+1. **DE-OVERLAP UNTIL SATURATED (count fixed, law fixed)** — keep relocating the most redundant dot
+   until no dot owns fewer than *k* cells, for k = 20, 24, 29; a dose–response curve on the single
+   quantity the metric's max operator actually charges for. *Mechanism:* T rises with union coverage,
+   (S−M) falls as M → n. *Confounder:* past ~k = 24 the eligible ground is far from any ridge, so the
+   dose and the abandonment of the parent's field are one variable (IR-86-SPACING-02). *Falsifier:* a
+   monotone *decrease* in live score with k, which would say overlap is not waste but redundancy for
+   mapping error — the physically respectable answer.
+2. **PERPENDICULAR-WIDTH** — mirror image of SPACING's along-strike arm: hold the along-trace spacing
+   and *widen across* it (2 → 3–4 px), testing whether the score wants a zone, not a line.
+   *Mechanism:* new-fault truth is mapped as a zone of damage, one pixel wide in the label but wider
+   in the ground. *Confounder:* the catalogue is pixel-exact-masked, so across-trace spreading
+   re-enters the collar and interacts with PRUNE. *Falsifier:* live Δ ≤ −0.005 with
+   `strike16` flat — the metric is line-shaped and the zone hypothesis dies with it.
+3. **Human-supplied lidar DEM SNAP** — brief §5 allows lidar rasters for SNAP only if the human
+   supplies them; none has been. The `lidar03` precedent (PROXY pass, live 0.1152) says do not gate on
+   it. Not built, and unbuildable here: the pinned lidar mirrors are absent from this checkout.
+
+## Human inputs still missing for this session
+
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation on the competition page ·
+any submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01) · and, if slot 3 is to be spent on
+SPACING, whether the human accepts a **predicted +0.002** probe whose real purpose is a law-vs-chance
+test rather than a score improvement.
