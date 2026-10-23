@@ -187,10 +187,22 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
         shas.add(rec["sha256"])
         dots = _read(path) > 0
         assert int(dots.sum()) == receipt["n_dots"]
-        assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
-        stats = P.diff_stats(parent, dots, P.catalogue_distance(g.catalogue))
-        assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
-        assert 1.0 <= stats["pct_changed"] <= 50.0
+        if receipt.get("axis") == "SNAP":
+            # a SNAP release is a *movement* of the parent, not a deletion: the
+            # count is exact, the exclusion is unchanged, and no dot moved farther
+            # than the declared radius (src/gems86/snap.py; tests/test_snap_axis.py)
+            assert int(dots.sum()) == int(parent.sum())
+            movement = receipt["movement"]
+            assert movement["pct_snapped"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
+            assert movement["max_displacement_px"] <= receipt["radius_px"] + 1e-9
+            assert not np.any(dots & g.catalogue)
+            assert receipt["model"]["evidence_class"] == "MODEL"
+            assert receipt["predicted_live_change"] <= 0.0, "this axis shipped predicted-negative"
+        else:
+            assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
+            stats = P.diff_stats(parent, dots, P.catalogue_distance(g.catalogue))
+            assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
+            assert 1.0 <= stats["pct_changed"] <= 50.0
         assert P.dot_digest(dots) == receipt["dot_digest"]
         # spec-form twin: same dots, NaN only outside the footprint
         nan = _read(RELEASES / (path.name.replace("-zeros.tif", ".tif")))

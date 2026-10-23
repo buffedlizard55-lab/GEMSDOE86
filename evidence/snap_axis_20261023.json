@@ -1,0 +1,452 @@
+{
+  "generated_utc": "2026-10-23T15:44:34Z",
+  "elapsed_seconds": 129.9,
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "axis": "SNAP",
+  "axis_assignment": "UNASSIGNED BY HUMAN this session; SNAP chosen because SLOT_PLAN.md's slot 2 pre-registered SNAP (with PRUNE declared crowded after three sessions) and because its two bands restore from a verified pin",
+  "input_pins": {
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/existing_faults.tif"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "training_features.tif": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "pin": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/training_features.tif"
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin_source": "data/restore_receipt.json",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin_source": "PINS in scripts/build_r0_prune.py + scripts/run_prune_ladder.py",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "matches_expected": true
+    }
+  },
+  "parent_rebuild": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+  },
+  "diagnostics": {
+    "lag1_autocorr_raw": 0.977583,
+    "seed_null": 86,
+    "arms": {
+      "NULL-random-r2": {
+        "pct_snapped": 91.2625,
+        "mean_displacement_px": 1.4537,
+        "nn_distance_after_mean_px": 3.5214,
+        "nn_lt_2px_after": 4875,
+        "mean_response_gain_moved": 0.46407,
+        "is_control": true,
+        "writes_no_raster": true,
+        "proxy_mean": 0.00316,
+        "proxy_paired_delta_vs_R0": -0.001196,
+        "proxy_paired_ci95": [
+          -0.001273,
+          -0.001118
+        ]
+      },
+      "smooth1-r2": {
+        "pct_snapped": 98.9138,
+        "mean_displacement_px": 1.8264,
+        "nn_distance_after_mean_px": 3.3397,
+        "nn_lt_2px_after": 7882,
+        "mean_response_gain_moved": 0.043041,
+        "is_control": false,
+        "writes_no_raster": true,
+        "proxy_mean": 0.002563,
+        "proxy_paired_delta_vs_R0": -0.001792,
+        "proxy_paired_ci95": [
+          -0.001999,
+          -0.00161
+        ]
+      },
+      "smooth2-r2": {
+        "pct_snapped": 99.5512,
+        "mean_displacement_px": 1.8843,
+        "nn_distance_after_mean_px": 3.3856,
+        "nn_lt_2px_after": 6172,
+        "mean_response_gain_moved": 0.030314,
+        "is_control": false,
+        "writes_no_raster": true,
+        "proxy_mean": 0.001199,
+        "proxy_paired_delta_vs_R0": -0.003156,
+        "proxy_paired_ci95": [
+          -0.00337,
+          -0.002959
+        ]
+      }
+    },
+    "verdict": "no positional information detectable: every arm's paired proxy delta is within +/-0.003 of the random control's"
+  },
+  "response": {
+    "bands": {
+      "tmi_hg": 3,
+      "iso_grav_anom_hg": 18
+    },
+    "stack_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "transform": "rank-normalise each band over footprint&~catalogue, then weighted mean",
+    "weights": {
+      "r1p000": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "r2p000": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "r2p000-grav": {
+        "tmi_hg": 0.0,
+        "iso_grav_anom_hg": 1.0
+      }
+    },
+    "landing_mask": "footprint & ~catalogue & catalogue_distance > 2.0 px"
+  },
+  "catalogue_as_truth_decomposition": {
+    "tp": 377.9998967710639,
+    "fp": 37376.06204680242,
+    "fn": 60610.00010322894,
+    "n_truth": 60988,
+    "n_emitted": 37654,
+    "dti": 0.006709118968955278
+  },
+  "variants": {
+    "r1p000": {
+      "spec": {
+        "radius": 1.0,
+        "tag": "SNAP-r1p000",
+        "predicted": -0.004,
+        "band": [
+          -0.012,
+          0.004
+        ],
+        "mechanism": "one-pixel re-centring: the smallest move the grid allows, so the coverage cost of convergence is also the smallest"
+      },
+      "weights": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "stats": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "n_snapped": 36494,
+        "pct_snapped": 96.9193,
+        "mean_displacement_px_moved": 1.0,
+        "median_displacement_px_moved": 1.0,
+        "max_displacement_px": 1.0,
+        "mean_displacement_px_all_dots": 0.9692,
+        "mean_response_gain_moved": 0.034651,
+        "mean_response_before_dots": 0.530794,
+        "mean_response_after_dots": 0.564378,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.522,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 3.0,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 3448,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 28.9993,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18519,
+        "dots_moved_farther_from_catalogue": 18710,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 1160,
+          "removed": 36494,
+          "added": 36494,
+          "pct_of_parent_changed": 193.8386,
+          "pct_changed": 193.8386,
+          "pct_removed": 96.9193,
+          "pct_added": 96.9193,
+          "kept_fraction": 0.030807,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
+      },
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.0,
+        "n_snapped": 36494,
+        "dk_per_moved_dot": 0.33333,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0,
+          0.0864
+        ],
+        "midpoint": 0.0238,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+      },
+      "proxy": {
+        "mean": 0.003533,
+        "paired_delta_vs_R0": -0.000822,
+        "paired_ci95": [
+          -0.000972,
+          -0.000675
+        ]
+      }
+    },
+    "r2p000": {
+      "spec": {
+        "radius": 2.0,
+        "tag": "SNAP-r2p000",
+        "predicted": -0.006,
+        "band": [
+          -0.02,
+          0.006
+        ],
+        "mechanism": "two-pixel re-centring: the full positional uncertainty the GeoDAWN 400 m line spacing implies (2 px off earns k=0.33, centred 1.0)"
+      },
+      "weights": {
+        "tmi_hg": 0.5,
+        "iso_grav_anom_hg": 0.5
+      },
+      "stats": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "n_snapped": 37066,
+        "pct_snapped": 98.4384,
+        "mean_displacement_px_moved": 1.7895,
+        "median_displacement_px_moved": 2.0,
+        "max_displacement_px": 2.0,
+        "mean_displacement_px_all_dots": 1.7615,
+        "mean_response_gain_moved": 0.055584,
+        "mean_response_before_dots": 0.530794,
+        "mean_response_after_dots": 0.58551,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.345,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 2.8284,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 8341,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 29.0003,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18583,
+        "dots_moved_farther_from_catalogue": 18781,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 588,
+          "removed": 37066,
+          "added": 37066,
+          "pct_of_parent_changed": 196.8768,
+          "pct_changed": 196.8768,
+          "pct_removed": 98.4384,
+          "pct_added": 98.4384,
+          "kept_fraction": 0.015616,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
+      },
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.7895,
+        "n_snapped": 37066,
+        "dk_per_moved_dot": 0.5965,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0001,
+          0.157
+        ],
+        "midpoint": 0.0432,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+      },
+      "proxy": {
+        "mean": 0.004495,
+        "paired_delta_vs_R0": 0.000139,
+        "paired_ci95": [
+          1.7e-05,
+          0.000258
+        ]
+      }
+    },
+    "r2p000-grav": {
+      "spec": {
+        "radius": 2.0,
+        "tag": "SNAP-r2p000-grav",
+        "predicted": -0.004,
+        "band": [
+          -0.016,
+          0.006
+        ],
+        "mechanism": "band decomposition of r2p000: gravity-only response. If magnetic relief is what carries positional information, this arm loses r2p000's (hypothetical) gain"
+      },
+      "weights": {
+        "tmi_hg": 0.0,
+        "iso_grav_anom_hg": 1.0
+      },
+      "stats": {
+        "n_parent": 37654,
+        "n_candidate": 37654,
+        "n_snapped": 37571,
+        "pct_snapped": 99.7796,
+        "mean_displacement_px_moved": 1.9467,
+        "median_displacement_px_moved": 2.0,
+        "max_displacement_px": 2.0,
+        "mean_displacement_px_all_dots": 1.9425,
+        "mean_response_gain_moved": 0.024132,
+        "mean_response_before_dots": 0.487335,
+        "mean_response_after_dots": 0.511414,
+        "nn_distance_before_mean_px": 3.7351,
+        "nn_distance_after_mean_px": 3.615,
+        "nn_distance_before_median_px": 3.0,
+        "nn_distance_after_median_px": 3.0,
+        "nn_lt_2px_before": 0,
+        "nn_lt_2px_after": 2085,
+        "catalogue_distance_before_mean_px": 28.9966,
+        "catalogue_distance_after_mean_px": 28.9718,
+        "catalogue_distance_before_min_px": 2.2361,
+        "catalogue_distance_after_min_px": 2.2361,
+        "dots_moved_closer_to_catalogue": 18799,
+        "dots_moved_farther_from_catalogue": 18599,
+        "dots_on_catalogue": 0,
+        "diff_vs_parent": {
+          "n_parent": 37654,
+          "n_candidate": 37654,
+          "retained": 83,
+          "removed": 37571,
+          "added": 37571,
+          "pct_of_parent_changed": 199.5591,
+          "pct_changed": 199.5591,
+          "pct_removed": 99.7796,
+          "pct_added": 99.7796,
+          "kept_fraction": 0.002204,
+          "kept_distance_min_px": 2.2361,
+          "count_exact": true,
+          "axis_note": "positions changed only; no dot created, deleted or re-weighted"
+        }
+      },
+      "model": {
+        "algebra": "dDTI = [dT - alpha*DTI*(dT-dk)]/D",
+        "alpha": 0.2,
+        "mean_displacement_px": 1.9467,
+        "n_snapped": 37571,
+        "dk_per_moved_dot": 0.6489,
+        "D_px": 56341.21,
+        "D_source": "catalogue-as-truth decomposition of the parent (assumption, not the live D)",
+        "hit_rate_h": [
+          0.1,
+          0.4
+        ],
+        "midpoint_h": 0.22,
+        "bracket": [
+          0.0001,
+          0.1731
+        ],
+        "midpoint": 0.0477,
+        "evidence_class": "MODEL",
+        "caution": "the sign rests on h > 0.5 of the moves being net towards truth; the live slot is the only measurement of h"
+      },
+      "proxy": {
+        "mean": 0.004511,
+        "paired_delta_vs_R0": 0.000156,
+        "paired_ci95": [
+          -7e-06,
+          0.000289
+        ]
+      }
+    }
+  },
+  "proxy": {
+    "available": true,
+    "class_": "PROXY",
+    "n_draws": 10,
+    "n_withheld_components": 640,
+    "n_withheld_positive_pixels_mean": 12343.2,
+    "hide_frac": 0.2,
+    "seed": 306,
+    "contamination": "catalogue-avoiding parent; absolute value is at the floor, use only the paired sign",
+    "r1p000": {
+      "mean": 0.003533,
+      "paired_delta_vs_R0": -0.000822,
+      "paired_ci95": [
+        -0.000972,
+        -0.000675
+      ]
+    },
+    "r2p000": {
+      "mean": 0.004495,
+      "paired_delta_vs_R0": 0.000139,
+      "paired_ci95": [
+        1.7e-05,
+        0.000258
+      ]
+    },
+    "r2p000-grav": {
+      "mean": 0.004511,
+      "paired_delta_vs_R0": 0.000156,
+      "paired_ci95": [
+        -7e-06,
+        0.000289
+      ]
+    },
+    "R0": {
+      "mean": 0.004356,
+      "paired_delta_vs_R0": 0.0,
+      "paired_ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "gates": {
+    "format": "passed for every zeros twin (shared validator + shared format_report); nan twin passes every check except the repo's all-finite policy",
+    "zero_catalogue_mass": "asserted in memory and on disk",
+    "sha_novel": "checked against every sha256 already in ledger/submissions.csv and on disk",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes"
+  },
+  "not_a_score": "Every number above is a MODEL projection or a PROXY measurement. No submission was made."
+}

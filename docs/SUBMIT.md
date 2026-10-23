@@ -15,11 +15,26 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Slot 2 — a new prediction surface (not a prune rung)
+## Slot 2 — CONCENTRATION on 5 km blocks (not built yet)
 
-Nothing is built yet. The 419 MB feature stack restores in ~22 s and verifies against its pin,
-so SNAP or RELIEF can be built and gated next session. Build one axis, preregister its
-mechanism/confounder/falsifier in `SLOT_PLAN.md` before writing the raster.
+Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
+target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS stays
+blocked: R0's per-dot ranking cannot be recovered from a rebuild (IR-86-PRUNE-02).
+
+## Slot 3 — SNAP, built and gated, predicted **negative**
+
+| Variant | Primary file (NaN outside) | sha256 (NaN twin) | Fallback (`-zeros`) | sha256 (zeros twin) | Prediction |
+|---|---|---|---|---|---|
+| `SNAP ≤ 1.0 px` mixed | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7.tif` | `b8f215b3d858ad1efd6737ae19521deb6b700cd974f769d778251edc3b80c3d0` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7-zeros.tif` | `0e09c2b7800c302a7c840f0c38b3b3808f82eca242d7292d547f68a5098404be` | **−0.004 MODEL** (−0.012…+0.004) |
+| `SNAP ≤ 2.0 px` mixed | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403.tif` | `c9f4042f71add006089f79634468488ed2b08183e0505a4174a688f9ee1e916b` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403-zeros.tif` | `e74734031f478edafc55017d0002e72fe1930dd32c237c9341833732028f5743` | **−0.006 MODEL** (−0.020…+0.006) |
+| `SNAP ≤ 2.0 px` gravity-only | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15.tif` | `a9cc8fdadbcb31d7c8f19a2adeed56bf7034ac2633bdf64af7767f8023c23218` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15-zeros.tif` | `17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823` | **−0.004 MODEL** (−0.016…+0.006) |
+
+Why they are predicted to lose: 97–99 % of dots move, but the random-response **null control**
+scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing makes it worse. Uploading one
+of these buys a test of an unmeasured *live* hypothesis — "new faults sit at potential-field
+edges, not where the field put its dots" — not an expected gain. If the human does not want to
+spend a weekly slot on a predicted-negative probe, skip slot 3 and go to slot 2.
+Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt as `note`.
 
 ## Cheap defaults, already built and gated (only if slot 2 is not ready)
 
@@ -56,6 +71,7 @@ Common to every file above — re-read from disk after writing:
 | Outside footprint | `NaN` for `-nan` files, `0` for `-zeros` files |
 | Dots on mapped catalogue | **0** in every file |
 | Exact-hash duplicate of any file on disk or in the ledger | none |
+| SNAP parent-diff | count exact 37,654 → 37,654; only positions changed; catalogue exclusion unchanged (min distance 2.236 px) |
 
 The `-zeros` twins additionally pass `vendor/gems57/validate.py` (`all_checks_passed = True`)
 and `gems57.gates.format_report` (`ok = True`). The `-nan` twins fail that vendored validator
@@ -65,8 +81,9 @@ values must be in range [0, 1]"*, so if `-nan` is rejected on range, switch to t
 twin within the same slot attempt: the twins carry identical dots.
 
 Release TIFFs are gitignored (public repo, unchecked data-use terms), so the digests above are
-the authority. Re-run the checks any time: `python scripts/prune_collar.py --measure`
-(deterministic, seed 20261023) and `python scripts/build_ledger.py --check`.
+the authority. Re-run the checks any time: `python scripts/prune_collar.py --measure` (deterministic, seed
+20261023), `python scripts/run_snap_axis.py` (deterministic; rebuilds R0 byte-exactly, then the
+three SNAP rasters — the sha8 values are reproducible) and `python scripts/build_ledger.py --check`.
 
 ## After the score comes back
 
