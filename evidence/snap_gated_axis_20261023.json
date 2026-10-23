@@ -1,9 +1,9 @@
 {
   "schema": "gems86.snap-gated-axis.v1",
-  "generated_utc": "2026-10-23T16:21:46Z",
-  "elapsed_s": 315.7,
+  "generated_utc": "2026-10-23T16:35:04Z",
+  "elapsed_s": 312.0,
   "axis": "SNAP",
-  "axis_assignment": "human left AXIS blank and skipped the assignment prompt; SNAP taken from SLOT_PLAN.md's preregistered slot-2 axis (PRUNE spent, MASS blocked by IR-86-PRUNE-02); a concurrent session (PR #31) built the same axis and merged first, so snapr1/snapr2 are WITHDRAWN duplicates here and only the novel gain-gated snapr2g10 is released (IR-86-SNAP-05)",
+  "axis_assignment": "human left AXIS blank and skipped the assignment prompt; SNAP taken from SLOT_PLAN.md's preregistered slot-2 axis (PRUNE spent, MASS blocked by IR-86-PRUNE-02); a concurrent session (PR #31) built the same axis and merged first, so snapr1/snapr2 are WITHDRAWN duplicates here and only the novel gain-gated snapr2g10 is released (IR-86-SNAP-09)",
   "concurrent_build_on_main": "PR #31 scripts/run_snap_axis.py (SNAP r1p000/r2p000/r2p000-grav)",
   "parent": {
     "id": "h33-h33-2-b2",
@@ -76,7 +76,7 @@
     }
   },
   "seed": 20261023,
-  "git_sha": "949998c7c7de370bc4eb5d87d079326d0300e166",
+  "git_sha": "d2c42375f6818fb5deb79e016280de5a8c4ca60a",
   "edge": {
     "bands": [
       "tmi_hg (magnitude)",
@@ -109,7 +109,7 @@
       "status": "PASS"
     }
   },
-  "destination_rule": "footprint & off-catalogue & d(catalogue)>2.0 px (parent's own exclusion; see IR-86-SNAP-04) & valid edge; gain-ordered greedy with origin reservation (src/gems86/snap_gated.py)",
+  "destination_rule": "footprint & off-catalogue & d(catalogue)>2.0 px (parent's own exclusion; see IR-86-SNAP-08) & valid edge; gain-ordered greedy with origin reservation (src/gems86/snap_gated.py)",
   "proxy": {
     "evidence_class": "PROXY",
     "design": "catalogue hide-and-recover, 20% of 8-connected catalogue components withheld per draw, visible catalogue pixel-exactly masked as known, exact alpha=0.2/beta=0.8/R=3px DTI (gems57.metric.dti_exact)",
@@ -692,7 +692,7 @@
         "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif",
         "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif"
       ],
-      "status": "BUILT",
+      "status": "BUILT-DUPLICATE",
       "diff": {
         "n_parent": 37654,
         "n_candidate": 37654,

@@ -1,0 +1,661 @@
+{
+  "schema": "gems86.mass-axis.v1",
+  "generated_utc": "2026-10-23T15:58:21Z",
+  "axis": "MASS",
+  "seed": 20261023,
+  "git_sha": "0d321e991f1cfb5ff5c11ef9000ceebab7668657",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "live_0_2778": "CLAIM (no receipt)"
+  },
+  "ranking": {
+    "definition": "FIFO-BFS visitation rank of H19-5 cells (gems27.thinning, GEMSDOE28 94b027b), mirrored by scripts/build_r0_prune.original_visit_rank",
+    "validation": "greedy 2.8 px acceptance in ascending rank reproduces the pinned d2.8 dot set exactly (44,090 dots, 0 differing cells); row-major order does not",
+    "interpretation": "traversal priority (earlier cells claimed 2.8 px territory first); spatial/content-blind, not a geological probability"
+  },
+  "r0_rebuild": {
+    "dot_set_matches": true,
+    "sha256_matches": true,
+    "bytes": 219065
+  },
+  "leakage_canary": {
+    "status": "PASS",
+    "threshold": 0.9,
+    "max_auc": 0.7750307574598149,
+    "rows": [
+      {
+        "draw": 0,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 11868
+      },
+      {
+        "draw": 0,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.7532278556309411,
+        "withheld_positives": 11868
+      },
+      {
+        "draw": 1,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 12776
+      },
+      {
+        "draw": 1,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.742842861636161,
+        "withheld_positives": 12776
+      },
+      {
+        "draw": 2,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 11270
+      },
+      {
+        "draw": 2,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.7560245620568259,
+        "withheld_positives": 11270
+      },
+      {
+        "draw": 3,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 11019
+      },
+      {
+        "draw": 3,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.7750307574598149,
+        "withheld_positives": 11019
+      },
+      {
+        "draw": 4,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 11349
+      },
+      {
+        "draw": 4,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.7635750996261376,
+        "withheld_positives": 11349
+      },
+      {
+        "draw": 5,
+        "feature": "h19_5_binary",
+        "auc": 0.48813926094487586,
+        "withheld_positives": 12345
+      },
+      {
+        "draw": 5,
+        "feature": "negative_distance_to_visible",
+        "auc": 0.7536632418725838,
+        "withheld_positives": 12345
+      }
+    ]
+  },
+  "proxy": {
+    "evidence_class": "PROXY",
+    "design": "catalogue hide-and-recover, 20% of 8-connected catalogue components withheld per draw, visible catalogue pixel-exactly masked as known, exact alpha=0.2/beta=0.8/R=3px DTI (gems57.metric.dti_exact)",
+    "draws": 6,
+    "withheld_positive_px_mean": 11771.166666666666,
+    "candidates": {
+      "R0": {
+        "proxy_dti_mean": 0.0043589754580666005,
+        "proxy_dti_sd": 0.0006291320836759678,
+        "per_draw": [
+          0.004932,
+          0.004152,
+          0.004291,
+          0.003338,
+          0.005107,
+          0.004334
+        ],
+        "delta_vs_R0_mean": 0.0,
+        "delta_vs_R0_ci95": [
+          0.0,
+          0.0
+        ],
+        "folds_improved": 0
+      },
+      "massminus10": {
+        "proxy_dti_mean": 0.004161621850319587,
+        "proxy_dti_sd": 0.0006834487058505766,
+        "per_draw": [
+          0.004843,
+          0.003913,
+          0.004016,
+          0.003199,
+          0.005062,
+          0.003936
+        ],
+        "delta_vs_R0_mean": -0.00019735360774701224,
+        "delta_vs_R0_ci95": [
+          -0.00033516277495635583,
+          -5.954444053766865e-05
+        ],
+        "folds_improved": 0
+      },
+      "massplus10": {
+        "proxy_dti_mean": 0.004575326602370136,
+        "proxy_dti_sd": 0.0007165136471651922,
+        "per_draw": [
+          0.005068,
+          0.004365,
+          0.004417,
+          0.003421,
+          0.005533,
+          0.004649
+        ],
+        "delta_vs_R0_mean": 0.0002163511443035353,
+        "delta_vs_R0_ci95": [
+          7.861287305953077e-05,
+          0.0003540894155475399
+        ],
+        "folds_improved": 6
+      }
+    }
+  },
+  "proxy_verdict": "REPORT ONLY. A catalogue-avoiding field sits at this instrument's floor, so these numbers are a negative control, never a gate or a prediction.",
+  "feature_percentiles": {
+    "evidence_class": "MEASUREMENT (label-free)",
+    "statistic": "percentile of |value - footprint median|, averaged per dot set; 0.5 = background",
+    "bands": {
+      "tmi_hg": {
+        "parent": 0.5412,
+        "dropped_massminus10": 0.4907,
+        "retained_massminus10": 0.5469,
+        "added_massplus10": 0.4688
+      },
+      "tc": {
+        "parent": 0.5174,
+        "dropped_massminus10": 0.4371,
+        "retained_massminus10": 0.5263,
+        "added_massplus10": 0.5636
+      },
+      "det_elev_slope": {
+        "parent": 0.5048,
+        "dropped_massminus10": 0.5387,
+        "retained_massminus10": 0.5011,
+        "added_massplus10": 0.4913
+      },
+      "iso_grav_anom_hg": {
+        "parent": 0.5164,
+        "dropped_massminus10": 0.4942,
+        "retained_massminus10": 0.5188,
+        "added_massplus10": 0.5234
+      },
+      "rtp": {
+        "parent": 0.5217,
+        "dropped_massminus10": 0.5067,
+        "retained_massminus10": 0.5233,
+        "added_massplus10": 0.4825
+      },
+      "mag_anom": {
+        "parent": 0.5195,
+        "dropped_massminus10": 0.463,
+        "retained_massminus10": 0.5258,
+        "added_massplus10": 0.5165
+      }
+    }
+  },
+  "ring_table_parent": {
+    "evidence_class": "MEASUREMENT (label-free)",
+    "note": "distance to the mapped catalogue; enrichment > 1 = hugging the traces",
+    "rows": [
+      {
+        "ring_px": [
+          0.0,
+          2.0
+        ],
+        "footprint_px": 243560,
+        "dots": 0,
+        "footprint_share": 0.047134,
+        "dot_share": 0.0,
+        "enrichment": 0.0
+      },
+      {
+        "ring_px": [
+          2.0,
+          3.0
+        ],
+        "footprint_px": 140246,
+        "dots": 2171,
+        "footprint_share": 0.027141,
+        "dot_share": 0.057657,
+        "enrichment": 2.1244
+      },
+      {
+        "ring_px": [
+          3.0,
+          4.0
+        ],
+        "footprint_px": 119588,
+        "dots": 1654,
+        "footprint_share": 0.023143,
+        "dot_share": 0.043926,
+        "enrichment": 1.898
+      },
+      {
+        "ring_px": [
+          4.0,
+          5.0
+        ],
+        "footprint_px": 149596,
+        "dots": 1812,
+        "footprint_share": 0.02895,
+        "dot_share": 0.048122,
+        "enrichment": 1.6623
+      },
+      {
+        "ring_px": [
+          5.0,
+          6.0
+        ],
+        "footprint_px": 113774,
+        "dots": 1164,
+        "footprint_share": 0.022018,
+        "dot_share": 0.030913,
+        "enrichment": 1.404
+      },
+      {
+        "ring_px": [
+          6.0,
+          8.0
+        ],
+        "footprint_px": 235340,
+        "dots": 2363,
+        "footprint_share": 0.045543,
+        "dot_share": 0.062756,
+        "enrichment": 1.3779
+      },
+      {
+        "ring_px": [
+          8.0,
+          10.0
+        ],
+        "footprint_px": 246066,
+        "dots": 2196,
+        "footprint_share": 0.047619,
+        "dot_share": 0.05832,
+        "enrichment": 1.2247
+      },
+      {
+        "ring_px": [
+          10.0,
+          15.0
+        ],
+        "footprint_px": 535508,
+        "dots": 4305,
+        "footprint_share": 0.103633,
+        "dot_share": 0.11433,
+        "enrichment": 1.1032
+      },
+      {
+        "ring_px": [
+          15.0,
+          20.0
+        ],
+        "footprint_px": 473662,
+        "dots": 3465,
+        "footprint_share": 0.091664,
+        "dot_share": 0.092022,
+        "enrichment": 1.0039
+      },
+      {
+        "ring_px": [
+          20.0,
+          30.0
+        ],
+        "footprint_px": 765981,
+        "dots": 5037,
+        "footprint_share": 0.148234,
+        "dot_share": 0.133771,
+        "enrichment": 0.9024
+      },
+      {
+        "ring_px": [
+          30.0,
+          50.0
+        ],
+        "footprint_px": 1016593,
+        "dots": 5986,
+        "footprint_share": 0.196733,
+        "dot_share": 0.158974,
+        "enrichment": 0.8081
+      },
+      {
+        "ring_px": [
+          50.0,
+          null
+        ],
+        "footprint_px": 1066471,
+        "dots": 7501,
+        "footprint_share": 0.206386,
+        "dot_share": 0.199209,
+        "enrichment": 0.9652
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-massminus10-20261023-42b4c5c8",
+      "parent": "h33-h33-2-b2",
+      "axis": "MASS",
+      "value": "minus10pct",
+      "rule": "drop the highest-visit-rank 10% of R0 dots",
+      "n_dots": 33889,
+      "pct_changed": 9.9989,
+      "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+      "sha256_zeros": "42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779",
+      "sha8": "42b4c5c8",
+      "encoding": "nan",
+      "status": "BUILT",
+      "files": [
+        "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif",
+        "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif"
+      ],
+      "diff": {
+        "n_parent": 37654,
+        "n_candidate": 33889,
+        "retained": 33889,
+        "removed": 3765,
+        "added": 0,
+        "pct_of_parent_changed": 9.9989,
+        "pct_removed": 9.999,
+        "pct_added": 0.0,
+        "kept_fraction": 0.900011
+      },
+      "validation_nan": {
+        "file": "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif",
+        "bytes": 355805,
+        "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+        "mode": "nan",
+        "meta": {
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": NaN
+        },
+        "n_dots": 33889,
+        "on_catalogue_dots": 0,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "mean_catalogue_distance_px": 28.934836484791248,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "crs_epsg_32611": true,
+          "shape_matches_template": true,
+          "transform_matches_template": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_on_catalogue": true,
+          "unit_mass_where_emitted": true,
+          "nan_outside_footprint": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+      },
+      "validation_zeros": {
+        "file": "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif",
+        "bytes": 312796,
+        "sha256": "42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779",
+        "mode": "zeros",
+        "meta": {
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null
+        },
+        "n_dots": 33889,
+        "on_catalogue_dots": 0,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "mean_catalogue_distance_px": 28.934836484791248,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "crs_epsg_32611": true,
+          "shape_matches_template": true,
+          "transform_matches_template": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_on_catalogue": true,
+          "unit_mass_where_emitted": true,
+          "zeros_outside_footprint": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+      },
+      "gate_all_pass": true,
+      "exact_hash_duplicate": {
+        "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+        "sha8": "6614be74",
+        "exact_hash_duplicates": [],
+        "duplicate": false
+      },
+      "proxy": {
+        "proxy_dti_mean": 0.004161621850319587,
+        "delta_vs_R0_mean": -0.00019735360774701224,
+        "delta_vs_R0_ci95": [
+          -0.00033516277495635583,
+          -5.954444053766865e-05
+        ],
+        "folds_improved": 0,
+        "draws": 6,
+        "evidence_class": "PROXY"
+      },
+      "predicted_change": "-0.003 (MODEL, band -0.012..+0.006). Dropping the traversal-tail 10% saves the false-positive mass of average ridge dots but deletes the only cover of the small late-visited southern ridges; at DTI 0.28 a dot must earn credit > 0.056 to pay, so the net is near the bar and slightly negative.",
+      "receipt_score": "",
+      "receipt_date": "",
+      "extra": {
+        "removed_spatial": {
+          "n": 3765,
+          "mean_row": 3214.7,
+          "mean_col": 1751.8,
+          "share_south_half_pct": 100.0,
+          "share_west_half_pct": 35.35
+        },
+        "added_spatial": null,
+        "nn_parent": {
+          "mean_px": 3.735,
+          "median_px": 3.0,
+          "fraction_below_2_8px": 0.0
+        },
+        "nn_candidate": {
+          "mean_px": 3.741,
+          "median_px": 3.0,
+          "fraction_below_2_8px": 0.0
+        },
+        "dropped_rank_range": [
+          108329,
+          121128
+        ]
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-massplus10-20261023-a5888761",
+      "parent": "h33-h33-2-b2",
+      "axis": "MASS",
+      "value": "plus10pct",
+      "rule": "add the lowest-visit-rank eligible H19-5 cells (footprint, d_cat > 2 px, not already dots)",
+      "n_dots": 41419,
+      "pct_changed": 9.9989,
+      "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+      "sha256_zeros": "a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481",
+      "sha8": "a5888761",
+      "encoding": "nan",
+      "status": "BUILT",
+      "files": [
+        "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif",
+        "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif"
+      ],
+      "diff": {
+        "n_parent": 37654,
+        "n_candidate": 41419,
+        "retained": 37654,
+        "removed": 0,
+        "added": 3765,
+        "pct_of_parent_changed": 9.9989,
+        "pct_removed": 0.0,
+        "pct_added": 9.999,
+        "kept_fraction": 1.0
+      },
+      "validation_nan": {
+        "file": "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif",
+        "bytes": 377557,
+        "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+        "mode": "nan",
+        "meta": {
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": NaN
+        },
+        "n_dots": 41419,
+        "on_catalogue_dots": 0,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "mean_catalogue_distance_px": 28.806491282616197,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "crs_epsg_32611": true,
+          "shape_matches_template": true,
+          "transform_matches_template": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_on_catalogue": true,
+          "unit_mass_where_emitted": true,
+          "nan_outside_footprint": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+      },
+      "validation_zeros": {
+        "file": "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif",
+        "bytes": 336360,
+        "sha256": "a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481",
+        "mode": "zeros",
+        "meta": {
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null
+        },
+        "n_dots": 41419,
+        "on_catalogue_dots": 0,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "mean_catalogue_distance_px": 28.806491282616197,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "crs_epsg_32611": true,
+          "shape_matches_template": true,
+          "transform_matches_template": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_on_catalogue": true,
+          "unit_mass_where_emitted": true,
+          "zeros_outside_footprint": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+      },
+      "gate_all_pass": true,
+      "exact_hash_duplicate": {
+        "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+        "sha8": "45e8ac0a",
+        "exact_hash_duplicates": [],
+        "duplicate": false
+      },
+      "proxy": {
+        "proxy_dti_mean": 0.004575326602370136,
+        "delta_vs_R0_mean": 0.0002163511443035353,
+        "delta_vs_R0_ci95": [
+          7.861287305953077e-05,
+          0.0003540894155475399
+        ],
+        "folds_improved": 6,
+        "draws": 6,
+        "evidence_class": "PROXY"
+      },
+      "predicted_change": "-0.006 (MODEL, band -0.016..+0.002). The next-ranked cells were suppressed by the 2.8 px rule, so ~99% sit within one kernel radius of an existing dot: their marginal truth credit is mostly already claimed (max operator), while each still pays close to full false-positive mass.",
+      "receipt_score": "",
+      "receipt_date": "",
+      "extra": {
+        "removed_spatial": null,
+        "added_spatial": {
+          "n": 3765,
+          "mean_row": 60.5,
+          "mean_col": 1682.6,
+          "share_south_half_pct": 0.0,
+          "share_west_half_pct": 45.98
+        },
+        "nn_parent": {
+          "mean_px": 3.735,
+          "median_px": 3.0,
+          "fraction_below_2_8px": 0.0
+        },
+        "nn_candidate": {
+          "mean_px": 3.396,
+          "median_px": 3.0,
+          "fraction_below_2_8px": 0.1344
+        },
+        "added_within_2_8px_of_parent_pct": 98.59,
+        "added_min_catalogue_distance_px": 2.23606797749979
+      }
+    }
+  ]
+}

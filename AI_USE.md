@@ -47,6 +47,28 @@ deleted. No truth raster, no portal, no login, no slot.
 
 ---
 
+## Addendum — MASS axis (branch `arena/7cf7f98a-gemsdoe86`, 2026-10-23)
+
+**AI wrote:** `scripts/build_mass_axis.py`, `tests/test_mass_axis.py`, the MASS section of
+`scripts/build_ledger.py`'s variant sources, `evidence/mass_axis_20261023.json` (generated),
+`evidence/mass-mechanism.md`, `ledger/variants_mass.json` (generated), and the MASS updates to
+`SLOT_PLAN.md`, `README.md` (CURRENT STATE block only) and `docs/SUBMIT.md`.
+
+**Human decided:** the AXIS for this session is **MASS** (chosen via the session prompt after
+PRUNE was shown spent). Everything else followed brief v2.
+
+**AI decided (human can veto):** the parent's ranking is the recorded recipe's FIFO-BFS
+visitation order, *validated* by exact reproduction of the pinned `d2.8` dot set before use;
+"lowest-ranked" means highest visit rank; the plus pool keeps R0's own >2 px collar; both
+predictions are negative so MASS is recommended **no slot by default** in `SLOT_PLAN.md`;
+release TIFFs live in `releases/mass/` (gitignored) so the PRUNE release contract tests keep
+their meaning.
+
+**AI did not do:** no DrivenData access, no leaderboard read, no submission, no credential
+handling. No PROXY or MODEL number is written as a score. R0's 0.2778 stays `CLAIM`.
+
+---
+
 ## Addendum — SNAP axis (branch `arena/f50143a0-gemsdoe86`, this session)
 
 **AI wrote:** `src/gems86/snap.py`, `scripts/run_snap_axis.py`, `tests/test_snap_axis.py` (10
@@ -79,24 +101,40 @@ Every historical score stays `CLAIM`.
 remaining rolling-week quota, R0's receipt if one exists, the receipt after an upload, the choice
 of the final file, and — before the next session — an actual AXIS assignment.
 
+## Addendum — second SNAP session (magnetic edges), 2026-10-23
+
+**Human decision:** axis = SNAP, response family = magnetic edges (`tmi_hg` / `tc`), chosen from an
+offered list.
+
+**AI-written:** `scripts/build_snap_variants.py`, `registry/preregistration_snap.json` (rule and
+analysis plan fixed before any variant was scored), `tests/test_snap_variants.py`, the addenda in
+`IRREGULARITIES.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md`, and the `BUILT-DUPLICATE` ledger rows, which
+the repo's canonical generator now emits from `ledger/variants_snap_magnetic.json`.
+
+**AI-chosen constants a reviewer should check:** smoothing σ = 1 px and gain gate = 0.25 σ (both
+fixed after a pre-build jitter diagnostic, never tuned on a score); spacing floor = 2.828 px, copied
+from R0's measured nearest-neighbour distance; predicted live ranges centred at +0.003…+0.005, i.e.
+deliberately below the 0.01 evidence floor.
+
+**Not done by AI:** no submission, no login, no leaderboard access, no drivendata.org or dropbox.com
+request, no slot selection. The three builds were not promoted; the duplication with PR #31 was
+found only when `main` was merged, and is logged rather than hidden.
+
 ---
 
-## Addendum — SNAP, second concurrent build (branch `arena/f863bee8-gemsdoe86`, PR #32)
+## Addendum — SNAP gain-gated build (branch `arena/f863bee8-gemsdoe86`, PR #32)
 
 **AI wrote:** `src/gems86/snap_gated.py`, `scripts/build_r0_snap.py`,
-`tests/test_snap_gated_axis.py`, `evidence/r0-snap-mechanism.md`,
-`evidence/snap_gated_axis_20261023.json` + `ledger/variants_snap_gated.json` (generated),
-and reconciled `SLOT_PLAN.md`, `docs/SUBMIT.md`, `README.md` (CURRENT STATE only) and
-`IRREGULARITIES.md` (IR-86-SNAP-04…06) with PR #31, which had merged its own SNAP build
-mid-session.
+`tests/test_snap_gated_axis.py`, `evidence/r0-snap-mechanism.md`, the generated gated
+evidence/ledger files, and the gated addenda in `README.md`, `SLOT_PLAN.md`,
+`docs/SUBMIT.md` and `IRREGULARITIES.md` (IR-86-SNAP-08…10), reconciled across PR #31,
+PR #33 (MASS) and PR #34 (second SNAP), all of which merged mid-session.
 
-**AI decided (human can veto):** with the AXIS blank and the assignment prompt skipped,
-SNAP was again taken from the slot plan — by two sessions at once (IR-86-SNAP-05). On
-discovering PR #31 this session withdrew its duplicate `snapr1`/`snapr2` (no raster
-released, local copies deleted), kept only its novel gain-gated `snapr2g10`, and kept
-its SGMC/canary measurements as an independent replication. Its MODEL centres
-(−0.002/−0.006/−0.001) were revised down from a pre-build optimistic centre once the
-SGMC control was measured, and the revision is stated on the cards, not hidden.
+**AI decided (human can veto):** took SNAP from the slot plan when the AXIS prompt was
+skipped; withdrew its duplicate r1/r2 pairs on discovering PR #31 (no raster released);
+released only the novel gain-gated `snapr2g10`, then demoted it to `BUILT-DUPLICATE`
+corroboration once PR #34's spacing-floored builds landed; revised its MODEL centres
+downward after measuring the SGMC control and said so on the cards.
 
-**AI did not do:** no DrivenData access, leaderboard, login, scrape or submission.
-Inputs came only from the sha256-pinned GitHub mirrors in `registry/data_manifest.json`.
+**AI did not do:** no DrivenData access, leaderboard, login, scrape or submission; inputs
+only from the sha256-pinned mirrors in `registry/data_manifest.json`.

@@ -1,0 +1,42 @@
+{
+ "fixed_collar_proxy": {
+  "parent": {
+   "proxy_pooled": 0.0047,
+   "proxy_fixed_collar_d3": 0.0,
+   "n_scored_a": 37654,
+   "n_scored_b": 36043,
+   "cov_a": 0.0067,
+   "cov_b": 0.0
+  },
+  "cons2": {
+   "proxy_pooled": 0.019,
+   "proxy_fixed_collar_d3": 0.0,
+   "n_scored_a": 37654,
+   "n_scored_b": 35477,
+   "cov_a": 0.0271,
+   "cov_b": 0.0
+  },
+  "hg2": {
+   "proxy_pooled": 0.015,
+   "proxy_fixed_collar_d3": 0.0,
+   "n_scored_a": 37654,
+   "n_scored_b": 35631,
+   "cov_a": 0.0215,
+   "cov_b": 0.0
+  },
+  "vg2": {
+   "proxy_pooled": 0.0169,
+   "proxy_fixed_collar_d3": 0.0,
+   "n_scored_a": 37654,
+   "n_scored_b": 35571,
+   "cov_a": 0.0242,
+   "cov_b": 0.0
+  }
+ },
+ "sgmc_control": {
+  "sgmc_mask_px": 83593,
+  "proxy_pooled": 0.0877,
+  "proxy_fixed_collar_d3": 0.0,
+  "note": "report-only control: SGMC map faults scored as a prediction on the same folds; never a gate"
+ }
+}

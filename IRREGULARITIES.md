@@ -106,6 +106,21 @@ other sessions' rows from `ledger/variants.json` + `ledger/variants_external.jso
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
 
+## IR-86-MASS-01 — the parent's ranking is a traversal, and it is geographically structured
+Brief v2 §5 (MASS) says to rebuild R0's ranking from the recorded recipe. Done and validated:
+greedy 2.8 px thinning in FIFO-BFS visit order reproduces the pinned `d2.8` set exactly
+(44,090 dots, 0 differing cells; row-major order does not). But the order is seeded
+row-major by connected component, so "lowest-ranked 10 %" is not a random or quality tail:
+the 3,765 dropped dots are **100 % in the southern half** (mean row 3,215 vs parent 1,273)
+and the 3,765 added cells are **100 % in the northern strip** (mean row 60.5), with 98.59 %
+of additions within 2.8 px of an existing dot. **Decision:** built literally as briefed,
+with the quadrant shares and redundancy measured in `evidence/mass_axis_20261023.json` and
+stated on the mechanism cards, and with both variants predicted negative so no slot is
+recommended by default. **Cost:** a MASS receipt cannot be attributed to mass alone
+(minus = mass × geography; plus = mass × kernel redundancy); it can only bracket whether
+*traversal-ranked* mass at 37,654 is near-optimal. This also narrows IR-86-PRUNE-02: a
+rebuild supplies no *quality* ranking, but the recipe's actual priority order is recoverable
+and checkable.
 ## IR-86-SNAP-01 — AXIS was again unassigned; SNAP was taken from the slot plan, not from the human
 Brief v2 §1 says the AXIS is human-assigned. It arrived blank for the fourth session running.
 **Decision:** SNAP was chosen because (a) `SLOT_PLAN.md` (written by the PRUNE sessions) had
@@ -134,36 +149,73 @@ exact percentage be recorded.
 count-preservation proof are in `ledger/variants_snap.json`. **Cost:** anyone comparing the SNAP
 rows to the PRUNE rows in that column compares two different denominators.
 
-## IR-86-SNAP-04 — brief §4.4 (>=3 px) and the SNAP spec ("same exclusions") cannot both hold on R0
-Hard constraint 4 says keep >=3 px from the catalogue unless AXIS=PRUNE, but R0 itself
-carries 2,171 dots at 2-3 px. Enforcing >=3 px inside a SNAP variant would move/delete
-exactly the PRUNE collar, confounding two axes in one file. **Decision:** both SNAP
-builds keep the parent's exclusion (> 2.0 px; every SNAP candidate's minimum catalogue
-distance is 2.236 px, zero catalogue mass) — the gated session logged this explicitly
-rather than silently. **Cost:** under a variant-wide reading of §4.4 no SNAP file (or R0)
-is slottable until the human picks the governing reading; the clean >=3 px file is slot 1.
+## IR-86-SNAP-04 — the (R0, SNAP) pair was already spent before this branch saw main
 
-## IR-86-SNAP-05 — two concurrent sessions built SNAP; the second session's r1/r2 are withdrawn
-PR #31 (`run_snap_axis.py`: `r1p000`, `r2p000`, `r2p000-grav`) merged while this session
-was building the same axis from the same slot-plan line — the PRUNE triple-build of
-IR-86-PRUNE-08 repeating one axis later. The two builds are near-identical but not
-dot-identical (r1: 36,494 vs 36,483 dots moved; r2: 37,066 vs 37,055): they differ in
-the gravity edge (IR-86-SNAP-06), tie handling and collision rule. **Decision** (the
-IR-86-PRUNE-08 remedy): all rows stay in the ledger; this session's `snapr1`/`snapr2`
-are WITHDRAWN duplicate (AXIS, value) pairs with **no raster written** (their local
-copies and receipts were deleted, measurements retained in
-`evidence/snap_gated_axis_20261023.json`); its one novel pair, the gain-gated
-`snapr2g10`, is released. PR #31's files are canonical for the unconditional values.
-**Cost:** SNAP now has two builders/modules (`snap.py`, `snap_gated.py`) — as PRUNE
-already does — and the axis consumed two sessions to reach one conclusion both reached.
+The ledger check the brief asks for could not see the other sessions: this branch was cut from
+`27d915f`, and `origin/main` was a single grafted commit, so `git merge-base` returned nothing until
+`git fetch --unshallow` (IR-86-SNAP-05). PR #28–#31 landed the PRUNE ladder and an independent SNAP
+axis (`a3d584a`, three variants `r1p000` / `r2p000` / `r2p000-grav`) while this session was building.
 
-## IR-86-SNAP-06 — the two SNAP builds rank the signed gravity band differently
-`iso_grav_anom_hg` is a *signed* directional derivative (near-symmetric about 0), not a
-gradient magnitude like `tmi_hg`. PR #31 rank-normalises it as-is (its module docstring
-calls both bands "horizontal-gradient magnitudes", which is wrong for this band), so its
-mixed/gravity responses favour one sign of the derivative; the gated build ranks
-`|iso_grav_anom_hg|`. **Decision:** neither build is re-run — the pairs are spent and
-both readings are recorded; the disagreement is itself measured (the dot-set difference
-above) and an isotropic-magnitude build (`iso_grav_anom_slope`) is only a SLOT_PLAN
-proposal. **Cost:** PR #31's "gravity-only" arm tests a one-sided derivative, so the
-two sessions' gravity conclusions are not directly comparable.
+Decision changed: the three magnetic-edge variants built here are recorded as **`BUILT-DUPLICATE`**
+and are **not** proposed for a weekly slot. They are kept because they were built under a different
+rule (1 px smoothing, 0.25 σ gain gate, 2.828 px spacing floor, magnetic-band response) and they
+corroborate PR #31's negative verdict from an independent geometry. Requesting slots for them would
+have spent three of the entity's weekly submissions on an axis already measured negative.
+
+## IR-86-SNAP-05 — depth: shallow checkout hid the common ancestor
+
+`git merge origin/main` failed with *"refusing to merge unrelated histories"* and `git merge-base`
+returned nothing, because the checkout carried `origin/main` at depth 1 (one grafted commit). The
+repository was **not** diverged; `git fetch --unshallow origin` restored 84 commits on main, after
+which the merge base was `27d915f` as expected. Anyone reconciling two sessions here must unshallow
+first, or a resolvable content conflict looks like history corruption.
+
+## IR-86-SNAP-06 — the hide-and-recover PROXY measures catalogue-collar recovery and nothing else
+
+Reported by this session, and it changes how every future proxy number in this repo must be read.
+The proxy gave 0.0047 for the parent and 0.0150 / 0.0169 / 0.0190 for the three magnetic SNAP
+variants — a factor of three. Re-scoring all four with **one fixed ≥ 3 px catalogue collar applied
+to every candidate** gives **0.0000 for all four**, and drops the SGMC control from 0.0877 to
+0.0000 (`evidence/snap_fixed_collar.json`).
+
+Decision changed: no proxy number in `SLOT_PLAN.md`, the README or any card may be quoted as a
+ranking of candidates for this lineage unless the same collar is applied to every arm; the only
+quantity the free proxy is measuring is how much mass sits beside a withheld catalogue trace, which
+is the zone the live metric masks out and penalises. The proxy stays report-only and never a gate.
+
+## IR-86-SNAP-07 — the SNAP window was Chebyshev, corrected to a 2 px Euclidean radius
+
+The pre-registered window was the 25 cells with `max(|dy|,|dx|) <= 2`. A corner move is 2.828 px,
+so the file could claim a "≤ 2 px" rule while displacing dots by 2.83 px, and the repository's own
+SNAP rule and release contract (`src/gems86/snap.py`, `tests/test_prune_ladder.py`) both define the
+cap as a **Euclidean radius**. The house contract caught it (`assert 2.828 <= 2.0`).
+
+Decision changed: the window is now the 13 cells within a 2.0 px Euclidean radius, the realised
+maximum displacement is exactly 2.0 px, and the three builds were regenerated under it — moved
+fractions 33.9 / 39.6 / 45.9 %, mean displacement of moved dots 1.72–1.74 px, spacing floor still
+2.828 px. The change is a definitional correction, made before any score existed and before any
+file left this branch; it is recorded here because it happened after the pre-registration was
+written, and the pre-registration text was amended in the same commit rather than quietly.
+
+## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
+R0 carries 2,171 dots at 2-3 px from the catalogue, so a variant-wide >=3 px rule inside
+SNAP would silently re-run PRUNE. All three SNAP builds keep the parent's >2 px exclusion
+(min distance 2.236 px, zero catalogue mass); the gated session is the one that wrote the
+conflict down. **Decision:** unchanged — the >=3 px file is slot 1 (`le3p000`). **Cost:**
+under the strict reading no SNAP file is slottable until the human picks the reading.
+
+## IR-86-SNAP-09 — a third SNAP build landed while two were already merged
+This session (gain-gated, absolute-gravity edge) built SNAP concurrently with PR #31 and
+PR #34. Its `snapr1`/`snapr2` duplicate PR #31's (SNAP, 1)/(SNAP, 2) pairs (near-identical:
+36,483 vs 36,494 and 37,055 vs 37,066 dots moved) and are **withdrawn with no raster
+written**; its novel gated pair `snapr2g10` is released as `BUILT-DUPLICATE` corroboration
+only, following PR #34's convention. **Cost:** SNAP has now consumed three sessions and
+three builders to reach one thrice-measured negative; the next session needs an explicit
+human AXIS assignment, not another reading of the slot plan.
+
+## IR-86-SNAP-10 — the three SNAP builds treat the signed gravity band three ways
+`iso_grav_anom_hg` is signed (a directional derivative), yet PR #31 ranks it as-is (calling
+it a magnitude), PR #34 uses magnetic bands only, and the gated build ranks its absolute
+value. **Decision:** nothing is re-run; all three readings and their dot-set differences
+stand as the record. **Cost:** cross-build gravity comparisons are not like-for-like; any
+future SNAP-adjacent proposal must state its treatment of this band in advance.

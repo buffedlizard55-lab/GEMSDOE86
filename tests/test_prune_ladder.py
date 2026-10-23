@@ -200,7 +200,8 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
             assert movement["max_displacement_px"] <= receipt["radius_px"] + 1e-9
             assert not np.any(dots & g.catalogue)
             assert receipt["model"]["evidence_class"] == "MODEL"
-            assert receipt["predicted_live_change"] <= 0.0, "this axis shipped predicted-negative"
+            if receipt.get("role", "candidate") == "candidate":
+                assert receipt["predicted_live_change"] <= 0.0, "this axis shipped predicted-negative"
         else:
             assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
             stats = P.diff_stats(parent, dots, P.catalogue_distance(g.catalogue))

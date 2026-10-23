@@ -1,6 +1,6 @@
 """Unit tests for the gain-gated SNAP build (src/gems86/snap_gated.py; PR #31's
 unconditional build is covered by tests/test_snap_axis.py) and its one released
-file (snapr2g10; the r1/r2 arms are withdrawn duplicate pairs, IR-86-SNAP-05).
+file (snapr2g10; the r1/r2 arms are withdrawn duplicate pairs, IR-86-SNAP-09).
 
 Synthetic checks on the rules -- count preservation, radius bound, eligibility,
 gain gate, collision handling, determinism -- plus, when the gitignored release
@@ -148,7 +148,7 @@ def test_snap_releases_pass_brief_gates_and_match_receipts_and_ledger():
         dots = a > 0
         assert int(dots.sum()) == receipt["n_dots"] == int(parent.sum())  # count preserved
         assert not (dots & catalogue).any()
-        assert distance[dots].min() > 2.0  # the parent's exclusion, kept (IR-86-SNAP-04)
+        assert distance[dots].min() > 2.0  # the parent's exclusion, kept (IR-86-SNAP-08)
         assert a[footprint].min() >= 0.0 and a[footprint].max() <= 1.0
         assert np.isfinite(a[footprint]).all() and (a[~footprint] == 0).all()
         # NaN twin: identical dots, NaN only outside the footprint

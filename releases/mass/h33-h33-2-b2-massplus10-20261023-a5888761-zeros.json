@@ -1,0 +1,73 @@
+{
+  "id": "h33-h33-2-b2-massplus10-20261023-a5888761",
+  "parent": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "axis": "MASS",
+  "value": "plus10pct",
+  "role": "candidate",
+  "n_dots": 41419,
+  "pct_changed": 9.9989,
+  "dot_digest": "5233007efd4e8fb388cfa6ccc7e7072c075c6367c57f57bb45df6bae6e92a785",
+  "zeros": {
+    "file": "h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif",
+    "sha256": "a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481",
+    "bytes": 336360,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    }
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-massplus10-20261023-a5888761.tif",
+    "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+    "bytes": 377557,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    }
+  },
+  "submission_name": "h33-h33-2-b2-massplus10-20261023-a5888761",
+  "note": "R0 h33-h33-2-b2 MASS+10%: add 3765 next-ranked H19-5 cells, d>2px off catalogue, 41419 dots; predicted -0.006 MODEL",
+  "note_chars": 115,
+  "predicted_live_change": "-0.006 (MODEL, band -0.016..+0.002). The next-ranked cells were suppressed by the 2.8 px rule, so ~99% sit within one kernel radius of an existing dot: their marginal truth credit is mostly already claimed (max operator), while each still pays close to full false-positive mass.",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 41419,
+    "retained": 37654,
+    "removed": 0,
+    "added": 3765,
+    "pct_of_parent_changed": 9.9989,
+    "pct_removed": 0.0,
+    "pct_added": 9.999,
+    "kept_fraction": 1.0
+  },
+  "generated_utc": "2026-10-23T15:58:21Z"
+}

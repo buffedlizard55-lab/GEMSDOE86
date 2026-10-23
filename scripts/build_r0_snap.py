@@ -8,7 +8,7 @@ main. This builder therefore *releases only* the one pair PR #31 did not build,
 the gain-gated ``r2g10``; its own ``r1``/``r2`` are still computed (they are the
 arms of the SGMC dose-response in the evidence file, an independent replication
 with an absolute-gravity edge) but are recorded WITHDRAWN with no raster
-written (IR-86-SNAP-05). Pure geometry lives in ``src/gems86/snap_gated.py``
+written (IR-86-SNAP-09). Pure geometry lives in ``src/gems86/snap_gated.py``
 (main's ``src/gems86/snap.py`` belongs to PR #31's build).
 
 Parent R0 = ``h33-h33-2-b2`` (GEMSDOE32), 37,654 unit-mass dots, live 0.2778
@@ -28,7 +28,7 @@ Parent R0 = ``h33-h33-2-b2`` (GEMSDOE32), 37,654 unit-mass dots, live 0.2778
    edge-percentile gain is >= 0.10). Count is preserved exactly (37,654);
    destinations keep the parent's exclusion (footprint, off catalogue,
    catalogue distance > 2.0 px, valid edge). See ``src/gems86/snap_gated.py``
-   for the deterministic collision rule and IR-86-SNAP-04 for why the parent's
+   for the deterministic collision rule and IR-86-SNAP-08 for why the parent's
    ">2 px" exclusion is kept instead of a variant-wide ">=3 px" (that would
    confound SNAP with the already-spent PRUNE axis);
 5. writes the released variant (r2g10) twice (NaN outside footprint, zeros twin
@@ -141,7 +141,7 @@ VARIANTS = {
 # (SNAP, value) pairs PR #31 already built on main (ledger ids snap-r1p000 /
 # snap-r2p000). Computed here only as replication arms; no raster is written,
 # so the duplicate can never be uploaded (cf. the withdrawn PRUNE rung,
-# IR-86-PRUNE-08). IR-86-SNAP-05.
+# IR-86-PRUNE-08). IR-86-SNAP-09.
 WITHDRAWN = {
     "snapr1": "duplicate (SNAP,1) pair: PR #31's SNAP-r1p000 (0e09c2b7) is on main; "
               "near-identical independent build (36,483 vs 36,494 dots moved)",
@@ -442,7 +442,7 @@ def main() -> int:
             "pct_dots_moved": diff["pct_dots_moved"],
             "sha256": nan_digest, "sha256_zeros": zeros_digest, "sha8": sha8,
             "files": [str(final_nan.relative_to(ROOT)), str(final_zeros.relative_to(ROOT))],
-            "status": "BUILT", "diff": diff,
+            "status": "BUILT-DUPLICATE", "diff": diff,  # axis already spent on main (PR #31/#34)
             "validation_nan": v_nan, "validation_zeros": v_zeros,
             "vendored_validate_zeros_pass": bool(vendored["all_checks_passed"]),
             "gate_all_pass": gate, "exact_hash_duplicate": dup,
@@ -500,7 +500,7 @@ def main() -> int:
         "prompt; SNAP taken from SLOT_PLAN.md's preregistered slot-2 axis (PRUNE spent, "
         "MASS blocked by IR-86-PRUNE-02); a concurrent session (PR #31) built the same "
         "axis and merged first, so snapr1/snapr2 are WITHDRAWN duplicates here and only "
-        "the novel gain-gated snapr2g10 is released (IR-86-SNAP-05)",
+        "the novel gain-gated snapr2g10 is released (IR-86-SNAP-09)",
         "concurrent_build_on_main": "PR #31 scripts/run_snap_axis.py (SNAP r1p000/r2p000/r2p000-grav)",
         "parent": {"id": PARENT_SHORT, "file": str(PARENT_FILE.relative_to(ROOT)),
                    "sha256": PINS["parent_R0"][1], "n_dots": int(g.parent.sum()),
@@ -514,7 +514,7 @@ def main() -> int:
                  "combination": "mean of footprint percentiles",
                  "detail": edge_detail, "leakage_canary_report_only": canary},
         "destination_rule": "footprint & off-catalogue & d(catalogue)>2.0 px (parent's own "
-                            "exclusion; see IR-86-SNAP-04) & valid edge; gain-ordered greedy "
+                            "exclusion; see IR-86-SNAP-08) & valid edge; gain-ordered greedy "
                             "with origin reservation (src/gems86/snap_gated.py)",
         "proxy": proxy,
         "proxy_verdict": "REPORT ONLY, structurally floored for a catalogue-avoiding parent "

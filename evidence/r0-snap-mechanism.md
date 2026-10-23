@@ -1,11 +1,13 @@
 # Mechanism cards — SNAP axis on R0, gain-gated build (2026-10-23)
 
-> **Reconciliation note.** A concurrent session (PR #31) built and merged the same axis
-> first (`SNAP-r1p000/r2p000/r2p000-grav`, `evidence/snap_axis_20261023.json`, cards in
-> `ledger/variant-cards.md`). Cards 1–2 below describe this session's independent
-> replications of those same two values — they are **WITHDRAWN duplicate pairs with no
-> raster released** (IR-86-SNAP-05) and are kept because their SGMC dose-response is
-> evidence. Card 3 (`snapr2g10`) is the one released file from this build.
+> **Reconciliation note (three SNAP builds now exist).** PR #31 built the axis first
+> (`SNAP-r1p000/r2p000/r2p000-grav`), and PR #34 added a smoothed, spacing-floored
+> magnetic build (`snap-hg2/vg2/cons2`, ledger status `BUILT-DUPLICATE`) — the best-designed
+> SNAP probes in the repo. Cards 1–2 below are this session's independent replications of
+> PR #31's two values: **WITHDRAWN duplicate pairs, no raster released** (IR-86-SNAP-09),
+> kept because their SGMC dose-response is evidence. Card 3 (`snapr2g10`) is this build's
+> one released file, ledger status **`BUILT-DUPLICATE` — corroboration, not a slot
+> candidate**; SNAP's slot question is governed by `SLOT_PLAN.md`, not by these cards.
 
 Parent **R0** = `h33-h33-2-b2` (GEMSDOE32): 37,654 unit-mass dots, sha256
 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, live 0.2778 =
@@ -19,7 +21,7 @@ footprint-percentiles of two provided gradient bands of the pinned 19-band stack
 already a magnitude ≥ 0) and `|iso_grav_anom_hg|` (a signed band, taken absolute).
 Each dot may move to the highest-edge cell inside its Euclidean window. Count is
 preserved exactly (37,654); destinations must lie in the footprint, off the
-catalogue, > 2 px from it (R0's own exclusion; see IR-86-SNAP-04) and on a valid
+catalogue, > 2 px from it (R0's own exclusion; see IR-86-SNAP-08) and on a valid
 edge cell. Collisions are resolved gain-first with origin reservation
 (`src/gems86/snap.py`). 16 dots sit on missing edge values and stay.
 
@@ -114,11 +116,10 @@ value, nothing more.
   *contrast*, not for faulting. And the SGMC control still scores this form
   slightly below R0 (−0.0021), which is why the centre is ~zero, not positive.
 - **Predicted sign and size.** −0.001 (MODEL, band −0.007…+0.008).
-- **Falsifier.** Receipt ≥ +0.010: crest capture is real at decisive contrasts →
-  escalate to `snapr2` (built) and consider combining with the PRUNE winner.
-  Receipt ≤ −0.010: even decisive crests mislead at 100–200 m (dip offset /
-  cultural edges dominate) → close the SNAP axis for Phase 1. Anything between
-  is no evidence, and SNAP must not consume another slot on that outcome.
+- **Falsifier.** If any SNAP file is ever slotted, the spacing-floored PR #34 builds are
+  the cleaner probe; a receipt ≥ +0.010 for one of them would resurrect this gated form
+  for a dose comparison, and ≤ −0.010 closes the axis for Phase 1. This file itself is
+  not proposed for a slot (three SNAP builds agree the expected centre is ≤ ~0).
 
 **Reproduction.** `.venv/bin/python scripts/build_r0_snap.py --build`
 (releases only `snapr2g10`, identical sha256; inputs pinned in `registry/data_manifest.json`,

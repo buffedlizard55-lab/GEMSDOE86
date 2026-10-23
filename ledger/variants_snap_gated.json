@@ -422,7 +422,7 @@
       "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif",
       "releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif"
     ],
-    "status": "BUILT",
+    "status": "BUILT-DUPLICATE",
     "diff": {
       "n_parent": 37654,
       "n_candidate": 37654,

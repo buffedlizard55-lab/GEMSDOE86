@@ -18,8 +18,8 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 ## Slot 2 — CONCENTRATION on 5 km blocks (not built yet)
 
 Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
-target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS stays
-blocked: R0's per-dot ranking cannot be recovered from a rebuild (IR-86-PRUNE-02).
+target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
+built (section below) but is not the slot-2 recommendation.
 
 ## Slot 3 — SNAP, built and gated, predicted **negative**
 
@@ -39,6 +39,22 @@ Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt a
 (r2g10: 91 chars, `R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL`).
 The second session's `snapr1`/`snapr2` duplicate PR #31's pairs and are **withdrawn — no
 raster was written** (IR-86-SNAP-05); there is nothing to upload by those names.
+
+## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
+
+Upload, if the human overrules the default in [SLOT_PLAN.md](../SLOT_PLAN.md), the `-zeros`
+twin; the `-nan` twin carries identical dots. TIFFs are local-only and gitignored.
+
+| Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |
+|---|---|---|---|---|
+| MASS −10 % (drop traversal-tail) | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif` | `6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde` | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif` | `42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779` |
+| MASS +10 % (add next-ranked cells) | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif` | `45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347` | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif` | `a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481` |
+
+Form notes (≤140 chars): minus (107): `R0 h33-h33-2-b2 MASS-10%: drop 3765 lowest-priority
+traversal-tail dots, 33889 left; predicted -0.003 MODEL`; plus (115): `R0 h33-h33-2-b2
+MASS+10%: add 3765 next-ranked H19-5 cells, d>2px off catalogue, 41419 dots; predicted
+-0.006 MODEL`. Re-verify any time: `.venv/bin/python scripts/build_mass_axis.py --measure`
+(gates re-read from disk) and `.venv/bin/python scripts/build_ledger.py --check`.
 
 ## Cheap defaults, already built and gated (only if slot 2 is not ready)
 
@@ -96,3 +112,22 @@ three SNAP rasters — the sha8 values are reproducible), `python scripts/build_
 Write the receipt into `ledger/submissions.csv` (`receipt_score`, `date`, `receipt=Y`,
 `evidence_class=RECEIPT`) and re-read `SLOT_PLAN.md` for what the number licenses. Any live
 change under **0.01** is treated as no evidence.
+
+## Not slot candidates: the three magnetic-edge SNAP builds (2026-10-23, second session)
+
+`releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c*.tif`,
+`…-snap-vg2-20261023-af1f0f2f*.tif` and `…-snap-cons2-20261023-fed241ac*.tif` are **gate-clean but
+must not be uploaded**: the (R0, SNAP) pair was already spent by PR #31, and both builds read
+negative (IR-86-SNAP-04). They exist as corroboration and as the record behind IR-86-SNAP-06 (the
+proxy is catalogue-collar recovery). Ledger status: `BUILT-DUPLICATE`.
+
+## Also not a slot candidate: the gain-gated SNAP build (2026-10-23, third session)
+
+`releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869[-zeros].tif` (37,654 dots, 17.5 % moved
+≤2 px, mean displacement 0.34 px; zeros sha256 `8ca1d8690aa835c8…82d2e`, NaN twin
+`32c1e4e99444abaf…3f52`; prediction **−0.001 MODEL**; 91-char note in its receipt) is
+gate-clean but **must not be uploaded**: SNAP was already spent by PR #31 and corroborated
+by PR #34, and this build's own SGMC control is negative with dose (IR-86-SNAP-09).
+Ledger status: `BUILT-DUPLICATE`. Its unconditional `snapr1`/`snapr2` arms are withdrawn
+duplicate pairs — **no raster exists** under those names. Rebuild/measure:
+`python scripts/build_r0_snap.py --build` (releases only this file, identical sha256).
