@@ -1,61 +1,34 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hypotheses · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
-<header><nav><b>GEMSDOE86</b><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html" style=color:#e8eefc>Hypotheses</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a></nav></header><main><section class="card hero"><span class="badge bad">DO NOT SUBMIT — NO ARTIFACT IS APPROVED</span><p>Local format checks pass, but the literal shared uniqueness checker requires a stop. No saturation exemption or weekly-slot promotion is authorized. <a href="research.html">Scientific review</a> · <a href="evidence/protocol-preflight.json">Automated blocker proof</a></p></section>
-<h1>Hypotheses (ranked before implementation)</h1>
-<p class="muted">Five candidates, each with layers, physical transform, why it targets faults
-<i>missing</i> from the catalogue, and its difference from the fleet's ~100 prior lanes. Only H1 and H2
-were executed, inside the protocol budget.</p>
-
-<div class="card"><h3>H1 · Gravity–magnetic cross-gradient structural coherence (GMC)</h3>
-<p><b>Layers:</b> <code>iso_grav_anom</code> (b13), <code>rtp</code> (b2).<br>
-<b>Signature:</b> unit-gradient collinearity |cos θ| and opposed polarity max(0, −cos θ), weighted by the
-geometric mean gradient magnitude, times a structure-tensor coherence term (Gallardo &amp; Meju 2003
-cross-gradient constraint, used as a detector rather than a joint-inversion regulariser).<br>
-<b>Why unmapped faults:</b> a normal fault juxtaposes dense, magnetised bedrock against basin fill, so
-both contrasts reverse across the same plane; the joint constraint fires where either field alone is
-ambiguous.<br>
-<b>Non-fault mimic:</b> lithologic or intrusive contacts carrying both a density and a magnetisation
-contrast.<br>
-<b>Difference:</b> the fleet has used single-field edges, tilt, worms, Euler depth and antislope; it
-never used the joint cross-gradient.</p>
-<p><span class="badge bad">NEGATIVE</span> standalone AUC 0.50–0.53 against withheld truth; adding the
-four GMC features changes the pooled DTI by <b>+0.0001</b> (CIs overlap completely).</p></div>
-
-<div class="card"><h3>H2 · Oriented matched-filter posterior sharpening <span class="badge warn">SCREENING SIGNAL — NOT PROMOTED</span></h3>
-<p><b>Layers:</b> any posterior; in production the 44-feature logistic surface.<br>
-<b>Signature:</b> eight zero-mean anisotropic Gaussians (σ∥ = 4 px = 400 m, σ⊥ = 1.2 px), max over
-orientations, applied <i>before</i> the 3 px-tiled allocation.<br>
-<b>Why unmapped faults:</b> the DTI kernel credits linear coverage at 3 px spacing; isolated posterior
-maxima waste dots. The filter converts mass into along-strike coherent chains, and the emission collar
-(≥ 300 m from mapped traces, 1 km in the shipped off-catalogue variant) keeps the chains off the
-catalogue.<br>
-<b>Non-fault mimic:</b> roads, trails and survey lines in the 1 m-LiDAR morphological stack.<br>
-<b>Difference:</b> the fleet sharpens features; no lane sharpens the posterior under a fixed dot budget.</p>
-<p><span class="badge warn">SCREENING SIGNAL — NOT PROMOTED</span> <b>+0.0439 DTI</b> at a fixed 90,568-dot budget
-(0.07934 → 0.12324), CIs disjoint.</p></div>
-
-<div class="card"><h3>H3 · Basement-hinge flexure <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>depth_to_base_surf</code> (b15), <code>iso_grav_anom_hg</code> (b18).
-<b>Signature:</b> curvature of the basement surface × gravity-gradient magnitude.
-<b>Why unmapped faults:</b> faults root at basement hinges that persist under cover.
-<b>Difference:</b> prior <code>h8</code>/<code>h45</code> used depth <i>clustering</i>, not hinge curvature.
-<b>Cost:</b> low; <b>expected gain:</b> moderate. Highest-priority untested candidate.</p></div>
-
-<div class="card"><h3>H4 · Spectral Curie-depth / thermal-gradient proxy <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>tmi</code> (b14), <code>rtp</code> (b2). <b>Signature:</b> windowed radial
-power-spectrum slope → depth-to-centroid per 5 × 5 km tile. <b>Why unmapped faults:</b> a shallow Curie
-surface implies elevated heat flow and a more fractured crust. <b>Difference:</b> the fleet used 2 m
-temperature probes and paleo-sinter seals as point labels, never a spectral-depth surface.
-<b>Cost:</b> high (windowed FFT, survey-altitude confound).</p></div>
-
-<div class="card"><h3>H5 · Seismicity-fabric anisotropy <span class="badge warn">NOT RUN</span></h3>
-<p><b>Layers:</b> <code>ieq_n100a15</code> (b16), <code>deq_n100a15</code> (b10), <code>geod_shearrate</code> (b7).
-<b>Signature:</b> structure tensor of the earthquake-density field, keeping anisotropic ridges aligned with
-shear-plane strike. <b>Why unmapped faults:</b> a reactivated blind fault organises microseismicity into a
-fabric, not a blob. <b>Difference:</b> the fleet used isotropic density and swarm counts.
-<b>Cost:</b> medium; the 100 km kernel is coarse.</p></div>
-</main>
-<footer>Evidence classes: HOLDOUT-DTI (measured here) · ORGANIZER-CONFIRMED (submission-page receipt only) ·
-OWNER-REPORTED (site claim, not verified). No number on this site is a live score unless it says so.</footer>
-</body></html>
+<title>Deferred geological hypotheses · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head><body>
+<header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="evidence.html">Evidence</a><a href="sources.html">Sources</a></nav></header><main>
+<div class="card hero"><span class="badge bad">DO NOT SUBMIT — NO NEW EXPERIMENT AUTHORIZED</span>
+<h1>Deferred hypotheses, not promised leaderboard gains</h1>
+<p>No method lane was assigned in the supplied prompt. A pinned historical registry surface proves a literal overlap stop before placement. These proposals remain conditional on resolving that stop, verifying raw physical layer identities and units in the reusable shared cache, and freezing a comparable buffered holdout baseline. No new surface, feature canary or TIFF was produced in this review.</p>
+<p><a href="evidence/session-review-run-card.json">Current negative run card</a> · <a href="evidence/protocol-preflight.json">Measured blocker proof</a> · <a href="download-status.html">Validated research downloads</a></p></div>
+<p>The order is a qualitative expectation of possible benefit relative to cost, not a numerical DTI prediction. Novelty is relative only to inspected local feature builders, not every sibling project or the literature. Each hypothesis could fail or identify a non-fault boundary.</p>
+<section class="card"><h2>First: basement mass-balance residual</h2>
+<p><b>Layers and signature:</b> <code>iso_grav_anom</code> and <code>depth_to_base_surf</code>; model the basement-interface gravity response, fit density contrast on training spatial blocks only, then find persistent transverse gradients in observed-minus-predicted gravity.</p>
+<p><b>Missing-fault rationale:</b> a concealed density discontinuity inside a sedimentary basin could remain after broad sediment-thickness gravity is removed, without a mapped scarp.</p>
+<p><b>Non-fault mimic:</b> lateral sediment-density change or basement-model error. Compare against raw gravity/basement gradients and reject edge ringing.</p>
+<p><b>Difference / cost:</b> physical forward-model residual, not gravity–magnetic gradient-angle agreement or radiometric regression. Moderate-to-high cost; units and datum must be verified first.</p></section>
+<section class="card"><h2>Second: cross-strike magnetic roughness transition</h2>
+<p><b>Layers and signature:</b> <code>rtp</code> and <code>tmi</code>; directional variograms on both sides of label-free magnetic ridges, testing a persistent change in roughness exponent and width rather than edge amplitude alone.</p>
+<p><b>Missing-fault rationale:</b> fractured or altered rock might leave a texture boundary away from existing traces.</p>
+<p><b>Non-fault mimic:</b> volcanic facies and flight-line noise. Require cross-field persistence and reject acquisition-direction periodicity.</p>
+<p><b>Difference / cost:</b> damage-zone texture contrast, rather than generic worms, Euler clusters or contact offsets. Moderate cost.</p></section>
+<section class="card"><h2>Third: gravity source-shape consistency</h2>
+<p><b>Layers and signature:</b> <code>iso_grav_anom</code>, <code>iso_grav_anom_hg</code> and <code>iso_grav_anom_vg</code>; compare scale-dependent horizontal/vertical derivative ratios to extended step-source and compact-source responses.</p>
+<p><b>Missing-fault rationale:</b> an extended buried basement step may be distinguishable from isolated density bodies even without a catalogue trace.</p>
+<p><b>Non-fault mimic:</b> elongate intrusive contacts or basin-margin facies. Include both source-shape controls and bandwidth sensitivity.</p>
+<p><b>Difference / cost:</b> source-shape likelihood, not generic gradient rank or magnetic concordance. Moderate cost; derivative conventions and units are prerequisites.</p></section>
+<section class="card"><h2>Fourth: cross-drainage knickzone synchrony</h2>
+<p><b>Layers and signature:</b> <code>det_elev</code> and <code>det_elev_slope</code>; derive drainage profiles, identify aligned slope changes across independent channels and reject constant-elevation contour-parallel chains.</p>
+<p><b>Missing-fault rationale:</b> a concealed active structure could perturb multiple streams along a corridor absent from the public catalogue.</p>
+<p><b>Non-fault mimic:</b> lake shorelines, resistant bedding and roads. Compare straightness, elevation constancy and topographic controls.</p>
+<p><b>Difference / cost:</b> multi-channel profile synchrony, not a scarp vote or posterior line filter. High cost; coarse elevation resolution could make the result negative.</p></section>
+<h2>Obtainability and validation requirements</h2>
+<p>These proposals use existing layer names, not promised new external products. The raw quantities, units and accessible shared-cache identity remain unverified here; no candidate is currently declared viable to run. The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">official data page</a> is the authoritative input route but was not fetched in this session's restricted network. Owner mirrors are not independent organizer authentication.</p>
+<p>After prerequisites are resolved, test the first hypothesis against raw-feature controls on identical whole-segment buffered spatial folds. Derive catalogue features only from visible faults, run every feature-alone leakage canary, and report pooled HOLDOUT-DTI with evaluator version, withheld positives, spatial confidence interval and paired delta interval. Both pre-placement surfaces and final dots must clear the complete pinned registry. No weekly slot is authorized by this plan.</p>
+<p><a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/SESSION_20261023.md">Current review and experimental plan</a> · <a href="evidence/h86b-gfco-run-card.json">Inherited H86B negative evidence</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/7d8145755a534a1ac102416bddb1286251a9524d/docs/hypotheses.html">Earlier concurrent shortlist, preserved as history, not current clearance</a></p>
+</main><footer>Negative results are deliverables. No numerical expected gain or new geological discovery is claimed.</footer></body></html>

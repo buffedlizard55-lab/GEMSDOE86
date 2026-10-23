@@ -150,6 +150,14 @@ class PublicationTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'failed checks'):
                     audit_downloads.audit_artifact(path, entry, ROOT / 'data/bridge/sample_submission.tif', footprint, catalogue)
 
+    def test_published_pages_do_not_reintroduce_unsupported_concurrent_claims(self):
+        pages = '\n'.join(path.read_text() for path in (ROOT / 'docs').glob('*.html'))
+        for unsupported in ('PEER-REVIEWED METHODOLOGY &amp; VALIDATED PROOF',
+                            'adjacent dots have non-overlapping triangular tolerance cones',
+                            'any non-empty prediction geometrically yields',
+                            'Guarantees zero'):
+            self.assertNotIn(unsupported, pages)
+
     def test_h86b_cannot_bypass_preflight(self):
         from scripts.run_lane86b import main
         with self.assertRaises(TypeError):
