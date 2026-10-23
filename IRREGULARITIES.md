@@ -592,6 +592,44 @@ is accompanied by the occupied-block count so the two cannot be read as one vari
 a future arm that wants to test the band must place mass in *unoccupied* low-prior blocks, which is
 exactly the placement `GEMSDOE81 cont-poisson44090` scores 0.0041 with (CLAIM).
 
+## IR-86-SPACING-06 — kernel-disjoint re-spacing at matched count is locally infeasible on R0's support
+
+**Observed.** The natural strong form of this session's crowded-pool design — re-space the pool
+so *every* final pair is >= 3.0 px (the DTI kernel radius) at the parent's count 37,654 — has
+almost no legal destinations. R0 is a saturated 2.828 px packing of the H19-5 support: cells
+>= 3 px from all 37,654 dots number in the hundreds (7,024 free support cells at the parent's
+own floor before any placement), and the fallback displaced dots by kilometres (up to 3.8 km —
+the CONCENTRATION-scale confound IR-86-RELIEF-01 warns about). 64 % of the pool could not be
+placed within 24 px in the first design pass.
+**Decision.** The shipped arms break each crowded pair at >= 3.0 px from its cluster's kept dot
+(the kernel-overlap waste the axis targets) while holding the parent's own 2.828 px floor
+everywhere else, destinations <= 16 px away; pool members with no legal cell stay put and are
+counted as residual crowding (3,488-3,538 of 6,574). This also retires the KERNEL-BUDGET
+proposal in SLOT_PLAN.md as literally stated ("re-spacing at >= 3.0 px at constant count"): at
+37,654 dots the support cannot host it. Complements IR-86-SPACING-04 (the parallel session's
+1-50 % reading): that entry rules out the global form by dose, this one rules out the strong
+spacing floor by geometry. **Cost:** the arms are a partial repair (~8 % of R0's dots moved),
+so the experiment speaks about the crowded pool only; the three geometries additionally share
+~78 % of destinations (Jaccard 0.64) because legal sets are small.
+
+## IR-86-SPACING-07 — two sessions built SPACING in parallel; distinct value keys both stand
+
+**Observed.** This branch's ledger check (start of session) found no SPACING pair; PRs #44/#46
+(`arena/c1df93fc`, `arena/146307ee`) landed `sp-lattice16 / sp-pdisk16 / sp-strike16 /
+sp-random16` on main while this branch was building `lattice / poisson-disk / along-strike`.
+Both designs answer the same axis with different scopes (their dose ~36-38 % of cells, the
+"written-off mass" selection; this one ~8 % of dots, the kernel-crowded pool). The
+`(parent, axis, value)` keys differ, so brief §6's dedupe does not fire and both builds stand.
+The colliding file names were resolved without deleting either session's evidence: the later
+branch's artifacts were renamed (`evidence/spacing-crowdedpool-mechanism.md`,
+`evidence/spacing_axis_crowdedpool_20261023.json`, `tests/test_spacing_crowdedpool.py`), the
+two `ledger/variants_spacing.json` lists were concatenated, and `tests/test_prune_ladder.py`
+now carries both the TRACKB and the SPACING contract branches.
+**Decision.** No withdrawal and no BUILT-DUPLICATE status (the keys are distinct); every card
+cross-references the other session's arms so a reader cannot mistake the two designs. Slots:
+neither SPACING family is a default bet (all predictions inside +/- 0.01). **Cost:** one merge
+conflict round and a rename; the recurring rule (cf. IR-86-CONC-01) is that a ledger check at
+session start is not a reservation.
 ## IR-86-TRACKB-05 — raw global `|∇TMI_up150|` concentrates 82 % of top-100 geologist traces in NW flood basalts
 
 **Observed.** Ranking R0's `2,801` `H19-5`-supported `>= 1 km` traces by un-normalised global

@@ -63,3 +63,38 @@ every gate (`> 3 px` new-mass clearance, unseen SHA-256, disk re-read; leakage c
 
 **Human inputs still needed:** current `TOP_PUBLIC`, remaining rolling-week slots, actual receipts
 for R0 and any newly tested file, and the verified final deadline. No axis choice is requested.
+for any newly tested file, and the verified final deadline. No new axis choice is requested.
+
+## Addendum — SPACING crowded-pool session (`arena/ee238b91`), 2026-10-23: no slot requested
+
+A parallel session landed the `sp-*c16` SPACING arms (their "written-off mass" selection,
+36–38 % of cells) on main during this branch; the two designs have distinct value keys and
+both stand (IR-86-SPACING-07). This session's arms attack the *kernel-crowded* pool instead
+(pairs closer than the 3 px kernel radius; 11,415 dots, 30.3 % of R0): the earliest
+visit-rank member of each crowded cluster stays, ~3,050 others (8.1 % of R0's dots, median
+displacement 1 px) are re-placed at matched count under three destination geometries —
+`SPACING-lattice-…-4551582d` (**+0.000 MODEL**), `SPACING-poissondisk-…-d2cf39d5`
+(**+0.000**, the neutral arm), `SPACING-alongstrike-…-4d631f4a` (**+0.002**). Instruments are
+flat (SGMC +0.0007/+0.0008/+0.0007 vs R0; fixed-collar proxy 0.0000 everywhere per
+IR-86-SNAP-06; canary PASS 0.7937) and the along-strike ordering is not resolved. A fully
+kernel-disjoint re-spacing at matched count is geometrically impossible on this support
+(IR-86-SPACING-06), which retires the KERNEL-BUDGET proposal as literally stated. **No slot
+by default** — all predictions inside ±0.01; `alongstrike` only as a throwaway probe.
+Cards: `evidence/spacing-crowdedpool-mechanism.md`; run card:
+`evidence/spacing_axis_crowdedpool_20261023.json`.
+
+**Better axes proposed by this session (not built):**
+- **Spread-to-band (CONCENTRATION second value).** Move the minimum mass between 1 km blocks
+  until the block-density CV lands inside the reported 0.51–0.59 band (incumbent 0.6235).
+  *Mechanism:* the band is claimed as the live distribution's signature; matching it tests the
+  claim directly (IR-86-CONC-02). *Confounder:* many configurations share one CV and only some
+  sit near faults. *Falsifier:* no live improvement despite an in-band CV → the band is
+  descriptive and the catalogue-density prior is retired.
+- **Strand-hedge PRUNE (crowded-pair audit).** For each 2.828 px pair, use the SGMC control to
+  ask whether it covers one trace twice or two strands once; delete only the single-trace
+  duplicates and refill to hold the count from the top-ranked uncovered support cells.
+  *Mechanism:* blind pair-breaking is invisible (this session, ±0.001); the worth-touching
+  pairs are the duplicated ones and the en-echelon pairs are worth keeping. *Confounder:* SGMC
+  is incomplete and "one trace vs two" at 280 m is where map generalisation bites.
+  *Falsifier:* the duplicate/strand classification is unstable under SGMC resampling, or the
+  deleted set matches the mass-matched random control.
