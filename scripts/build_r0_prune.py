@@ -312,20 +312,33 @@ def leakage_canaries(grid, folds, h19: np.ndarray) -> dict:
             "note": "Single-feature diagnostics only; catalogue-derived distance is not an independent physical feature."}
 
 
-def proxy_and_sgmc(candidate: np.ndarray, r0: np.ndarray, grid, folds,
+def proxy_and_sgmc(candidate: np.ndarray, r0: np.ndarray, d28: np.ndarray, grid, folds,
                    h19: np.ndarray) -> tuple[dict, dict]:
     terms = {"r0": [], "prune3": []}
+    fold_counts = []
     for fold in folds:
-        for name, mask in (("r0", r0), ("prune3", candidate)):
+        # Every catalogue-derived collar is rebuilt from this fold's visible
+        # catalogue only. Evaluating the final full-catalogue artifact directly
+        # would trivially exclude the hidden truth and is not a recovery test.
+        visible = fold["visible"]
+        distance_visible = ndi.distance_transform_edt(~visible)
+        r0_fold = d28 & (distance_visible > 2.0)
+        candidate_fold, fold_diff = build_prune_refill(
+            r0_fold, h19, visible, grid.footprint, 3.0)
+        fold_counts.append({"fold": fold["name"], "r0_dots": int(r0_fold.sum()),
+                            "candidate_dots": int(candidate_fold.sum()),
+                            "removed": fold_diff["removed_dots"], "added": fold_diff["added_dots"]})
+        for name, mask in (("r0", r0_fold), ("prune3", candidate_fold)):
             _, block_terms = evaluate_holdout.evaluate(
                 mask.astype(np.float32), fold, grid.footprint, block_side=200,
                 origin=(0, 0), global_shape=grid.shape)
             terms[name].append(block_terms)
     pooled = {name: np.sum(np.stack(parts), axis=0) for name, parts in terms.items()}
     proxy = evaluate_holdout.pooled_summary(pooled, draws=1000, seed=SEED, candidate="prune3")
-    proxy["design"] = "fixed-artifact buffered whole-component catalogue hide-and-recover; seed 20; 3 px context buffer"
+    proxy["design"] = "fold-fair buffered whole-component catalogue hide-and-recover; seed 20; 3 px context buffer; collars rebuilt from visible faults only"
+    proxy["fold_fair_counts"] = fold_counts
     proxy["evidence_class"] = "PROXY"
-    proxy["caveat"] = "Historical artifacts are not fold-refit; catalogue-hide recovery is a diagnostic, never a live-score gate."
+    proxy["caveat"] = "The historical H19-5 surface is fixed, but all catalogue-distance collars are fold-fair. This is a diagnostic, never a live-score gate."
     with rasterio.open(PATHS["sgmc"]) as src:
         sgmc = src.read(1) > 0
     off_truth = sgmc & grid.footprint & ~grid.catalogue & ~ndi.binary_dilation(grid.catalogue, iterations=3)
@@ -456,7 +469,7 @@ def main() -> int:
         stop_path = ROOT / "evidence/r0-prune3-canary-stop.json"
         stop_path.write_text(json.dumps(canary, indent=2) + "\n")
         raise ValueError(f"leakage canary >0.90; STOP and investigate: {canary['max_auc']}")
-    proxy, sgmc = proxy_and_sgmc(candidate, parent, grid, folds, h19)
+    proxy, sgmc = proxy_and_sgmc(candidate, parent, d28, grid, folds, h19)
     candidate_id = None
     if args.validate_only:
         ledger_rows, _ = seed_or_read_ledger()
