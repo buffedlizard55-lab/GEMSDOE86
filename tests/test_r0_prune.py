@@ -67,6 +67,33 @@ def test_prune_refill_holds_count_and_excludes_collar():
     assert stats["pct_changed_vs_parent_dots"] == pytest.approx(100 * 4 / 3)
 
 
+def test_prune_375_refill_removes_sqrt10_shell_and_holds_count():
+    footprint = np.ones((41, 41), bool)
+    catalogue = np.zeros_like(footprint)
+    catalogue[20, 20] = True
+    h19 = np.zeros_like(footprint)
+    # R0 contains one dot at 3 px and one at sqrt(10) px, both inside 3.75;
+    # two retained dots are farther away. The BFS-ranked H19 cells are also >3.75.
+    h19[20, 23] = True
+    h19[23, 21] = True
+    h19[20, 24] = True
+    h19[20, 25] = True
+    h19[0, 0] = True
+    h19[1, 1] = True
+    h19[2, 3] = h19[2, 4] = True
+    parent = np.zeros_like(footprint)
+    parent[20, 23] = parent[23, 21] = parent[20, 24] = parent[20, 25] = True
+    parent[0, 0] = parent[1, 1] = True
+
+    candidate, stats = build_prune_refill(parent, h19, catalogue, footprint, 3.75)
+    distance = ndi.distance_transform_edt(~catalogue)
+    assert candidate.sum() == parent.sum() == 6
+    assert not (candidate & (distance <= 3.75)).any()
+    assert stats["removed_dots"] == stats["added_dots"] == 2
+    assert stats["changed_grid_cells"] == 4
+    assert stats["pct_changed_vs_parent_dots"] == pytest.approx(100 * 4 / 6)
+
+
 @pytest.mark.skipif(not all(path.is_file() for path in PATHS.values()),
                     reason="pinned R0 experiment inputs are not restored")
 def test_pinned_r0_mask_reproduces_exactly():
