@@ -1,6 +1,8 @@
 {
   "schema": "gems86.current-status.v1",
   "decision": "DO NOT SUBMIT",
+  "submission_ready": false,
+  "safe_to_submit": false,
   "decision_reason": "The selected H86B-GFCO research artifact is format-valid but fails the preregistered uniqueness gate, and the paired 95% interval for the primary buffered whole-component holdout includes zero. No artifact is approved for a weekly slot.",
   "latest_evaluated_lane": {
     "id": "H86B-GFCO",

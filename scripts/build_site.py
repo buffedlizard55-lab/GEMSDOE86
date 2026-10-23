@@ -66,14 +66,22 @@ def build_summary(root: Path = ROOT) -> dict:
     preflight = _strict_json(evidence / "protocol-preflight.json")
     inventory = _strict_json(evidence / "download-inventory.json")
 
+    inherited_review = review_card.get("inherited_candidate", {})
     if (review_card.get("verdict") != "negative"
-            or review_card.get("submission_status") != "DO NOT SUBMIT"
-            or review_card.get("weekly_slot_authorized") is not False
-            or review_card.get("new_tif_generated") is not False
-            or review_card.get("raster_sha256") != card.get("raster_sha256")
-            or review_card.get("submission_name") != card.get("submission_name")
-            or review_card.get("note") != card.get("note")):
-        raise ValueError("Session review card contradicts the canonical H86B release state")
+            or review_card.get("safe_to_submit") is not False
+            or int(review_card.get("experiments_run", -1)) != 0
+            or int(review_card.get("submission_slots_used", -1)) != 0
+            or review_card.get("raster_sha256") is not None
+            or review_card.get("submission_name") is not None
+            or not isinstance(review_card.get("note"), str)
+            or len(review_card["note"]) > 140
+            or inherited_review.get("generated_in_this_review") is not False
+            or inherited_review.get("raster_sha256") != card.get("raster_sha256")
+            or inherited_review.get("submission_name") != card.get("submission_name")
+            or inherited_review.get("note") != card.get("note")
+            or inherited_review.get("verdict") != "negative"
+            or inherited_review.get("approved_for_weekly_slot") is not False):
+        raise ValueError("Session review card must describe a no-new-candidate negative review and preserve inherited H86B identity")
 
     artifact_path = root / card["submission_file"]
     if not artifact_path.is_file() or _sha256(artifact_path) != card["raster_sha256"]:
@@ -191,12 +199,14 @@ def build_summary(root: Path = ROOT) -> dict:
     return {
         "schema": "gems86.current-status.v1",
         "decision": "DO NOT SUBMIT",
+        "submission_ready": False,
+        "safe_to_submit": False,
         "decision_reason": "The selected H86B-GFCO research artifact is format-valid but fails the preregistered uniqueness gate, and the paired 95% interval for the primary buffered whole-component holdout includes zero. No artifact is approved for a weekly slot.",
         "latest_evaluated_lane": current_lane,
         "current_review": {
-            "new_experiments_run": int(protocol["experiments_run"]),
-            "new_candidate_generated": bool(preflight["candidate_generated"]),
-            "submission_slots_used": int(protocol.get("submission_slots_used", 0)),
+            "new_experiments_run": int(review_card["experiments_run"]),
+            "new_candidate_generated": False,
+            "submission_slots_used": int(review_card["submission_slots_used"]),
             "lane_assignment_present": False,
             "cached_feature_stack_present": False,
             "preflight_status": preflight["status"],
@@ -254,6 +264,7 @@ def _ci(values: list[float]) -> str:
 def _nav(active: str) -> str:
     links = [
         ("index.html", "Decision"),
+        ("download-status.html", "All downloads"),
         ("executive-summary.html", "How to submit"),
         ("hypotheses.html", "Hypotheses"),
         ("evidence.html", "Evidence"),
@@ -295,7 +306,7 @@ def render_index(summary: dict) -> str:
 <p><b>Note (≤140 characters):</b> <code>{_e(lane['note'])}</code></p>
 <p class="mono"><b>Raster SHA-256:</b> {_e(lane['sha256'])}</p>
 <p><b>Why not submit?</b> The primary buffered whole-component paired HOLDOUT-DTI interval includes zero; the final dots also exceed the prescribed overlap threshold against registry dot fields. The strict run card is negative.</p>
-<p><a href="evidence/h86b-gfco-run-card.json">Canonical H86B-GFCO run card</a> · <a href="evidence/session-review-run-card.json">Current-review JSON run card</a> · <a href="data/summary.json">Machine-readable status feed</a></p>
+<p><a href="evidence/h86b-gfco-run-card.json">Canonical H86B-GFCO run card</a> · <a href="evidence/session-review-run-card.json">Current-review JSON run card</a> · <a href="download-status.html">Automated byte-level status for all downloads</a> · <a href="data/summary.json">Machine-readable status feed</a></p>
 </section>
 <section class="card"><h2>Primary evidence (not a leaderboard score)</h2>
 <p><b>HOLDOUT-DTI</b> · evaluator {_e(result['evaluator_version'])} · {_e(result['withheld_positive_pixels'])} withheld positives · 95% CI {_e(_ci(result['ci95']))}: {_e(_fmt(result['dti']))}.</p>
@@ -378,7 +389,7 @@ def render_executive_summary(summary: dict) -> str:
 <ol>
 <li>Open the future candidate's canonical run card and confirm its promotion decision, raster SHA-256, and note length.</li>
 <li>Download the exact <code>.tif</code> or a <code>.zip</code> containing exactly one GeoTIFF. Compute its SHA-256 and compare it with the run card.</li>
-<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official DrivenData submission page</a>, sign in through the competition site, review the current rules and remaining quota, and choose <b>New submission</b>.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official DrivenData submission page</a>, sign in through the competition site, review current registration, eligibility, quota, and AI-use disclosure rules, then choose <b>New submission</b>. This sandbox cannot check your live quota or eligibility.</li>
 <li>Select the promoted TIFF (not JSON evidence, a sample raster, or any file labelled <code>DO-NOT-SUBMIT</code>).</li>
 <li>Paste the run-card note, verify it matches the exact raster, and submit only after the independent selector authorizes a slot.</li>
 <li>Retain the submission-page receipt and exact SHA-256. Only the receipt may support an <b>ORGANIZER-CONFIRMED</b> score.</li>
@@ -455,7 +466,7 @@ def render_sources(root: Path = ROOT) -> str:
     )
     content = f'''<section class="card hero"><span class="badge bad">NO ARTIFACT IS APPROVED FOR SUBMISSION</span>
 <h1>Official links and prior-score ledger</h1>
-<p>Official-source links are provided for manual review. The DrivenData and USGS sites were not freshly fetched in this review because they are outside the sandbox's permitted outbound hosts; this page does not claim a current external leaderboard read or a newly authenticated download.</p></section>
+<p>Official-source links are provided for manual review. Two immutable GitHub documents—the organizer's reference README and the owner-supplied H33 audit—were fetched by commit/blob identity and matched to local archive SHA-256 values; see the <a href="evidence/review-source-checks.json">narrow source-integrity report</a>. This does not authenticate an organizer score. DrivenData and USGS live pages were not freshly fetched because they are outside the sandbox's permitted outbound hosts; this page does not claim a current leaderboard read or a newly authenticated dataset download.</p></section>
 <h2>Official and primary sources</h2>
 <table><thead><tr><th>Source</th><th>Scope / limitation</th><th>Link</th></tr></thead><tbody>{source_rows}</tbody></table>
 <h2>Prior-site ledger</h2>
@@ -507,10 +518,21 @@ def build(root: Path = ROOT) -> dict:
 
 def main() -> int:
     summary = build()
-    # Perform the existing strict download/HTML-link safety audit after rendering.
+    # Reproduce the all-download byte/format audit and both fail-closed page guards.
     sys.path.insert(0, str(ROOT))
     from scripts.check_site import check
+    from scripts.audit_downloads import audit as audit_all_downloads, render as render_download_status, review_card
 
+    report = audit_all_downloads()
+    expected_outputs = {
+        ROOT / "docs/evidence/download-validation.json": json.dumps(report, indent=2, allow_nan=False) + "\n",
+        ROOT / "docs/download-status.html": render_download_status(report),
+        ROOT / "docs/evidence/session-review-run-card.json": json.dumps(review_card(report), indent=2, allow_nan=False) + "\n",
+    }
+    stale = [str(path.relative_to(ROOT)) for path, expected in expected_outputs.items()
+             if not path.is_file() or path.read_text(encoding="utf-8") != expected]
+    if stale:
+        raise SystemExit("Download audit outputs are stale; run scripts/audit_downloads.py --write: " + ", ".join(stale))
     errors = check(ROOT)
     if errors:
         raise SystemExit("Site build failed integrity checks:\n" + "\n".join(errors))

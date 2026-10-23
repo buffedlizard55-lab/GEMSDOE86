@@ -12,6 +12,8 @@ def test_summary_is_strict_json_and_fails_closed():
     summary = build_site.build_summary(ROOT)
     json.dumps(summary, allow_nan=False)
     assert summary["decision"] == "DO NOT SUBMIT"
+    assert summary["submission_ready"] is False
+    assert summary["safe_to_submit"] is False
     lane = summary["latest_evaluated_lane"]
     assert lane["verdict"] == "negative"
     assert lane["submission_ready"] is False
@@ -23,12 +25,19 @@ def test_summary_is_strict_json_and_fails_closed():
     assert summary["organizer_receipt_present"] is False
     card = json.loads((ROOT / "docs/evidence/session-review-run-card.json").read_text())
     assert card["verdict"] == "negative"
-    assert card["submission_status"] == "DO NOT SUBMIT"
-    assert card["raster_sha256"] == lane["sha256"]
-    assert card["weekly_slot_authorized"] is False
-    assert card["holdout"]["evidence_class"] == "HOLDOUT-DTI"
-    assert card["holdout"]["paired_delta_vs_d2_8"]["ci95"][0] < 0
-    assert card["holdout"]["paired_delta_vs_d2_8"]["ci95"][1] > 0
+    assert card["safe_to_submit"] is False
+    assert card["raster_sha256"] is None
+    assert card["submission_name"] is None
+    assert card["experiments_run"] == 0
+    assert card["submission_slots_used"] == 0
+    assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"
+    inherited = card["inherited_candidate"]
+    assert inherited["generated_in_this_review"] is False
+    assert inherited["raster_sha256"] == lane["sha256"]
+    assert inherited["submission_name"] == lane["submission_name"]
+    assert inherited["note"] == lane["note"]
+    assert inherited["holdout_dti"]["buffered_whole_components_loqo"]["withheld_positives"] == 11321
 
 
 def test_hypothesis_shortlist_has_required_qualitative_fields():
@@ -44,7 +53,7 @@ def test_hypothesis_shortlist_has_required_qualitative_fields():
             assert hypothesis[field]
     page = build_site.render_hypotheses(ROOT)
     assert "numerical DTI projection" in page
-    assert "H86E-MTDA" in page
+    assert "H86N-BMR" in page
 
 
 def test_generated_pages_use_live_evidence_and_owner_ledger_labels():
@@ -55,6 +64,7 @@ def test_generated_pages_use_live_evidence_and_owner_ledger_labels():
     assert "DO NOT SUBMIT" in evidence
     assert "ORGANIZER-CONFIRMED score or submission-page receipt" in (ROOT / "docs/index.html").read_text()
     assert "not an organizer receipt" in sources
+    assert "review-source-checks.json" in sources
     with (ROOT / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
     values = {row["site"]: (row["score"], row["evidence_class"]) for row in rows}

@@ -1,6 +1,6 @@
 PY ?= .venv/bin/python
 
-.PHONY: setup data holdout submission audit site test all
+.PHONY: setup data holdout submission audit site test all verify-downloads refresh-downloads
 setup:
 	python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
@@ -17,7 +17,14 @@ audit:
 	$(PY) scripts/build_registry.py
 	$(PY) scripts/audit_uniqueness.py --candidate $$(ls -t docs/downloads/*.tif | head -1)
 
-site:
+verify-downloads:
+	$(PY) scripts/check_site.py
+	$(PY) scripts/audit_downloads.py
+
+refresh-downloads:
+	$(PY) scripts/audit_downloads.py --write
+
+site: verify-downloads
 	$(PY) scripts/build_site.py
 
 test:

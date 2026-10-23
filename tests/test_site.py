@@ -17,6 +17,7 @@ def test_current_download_page_is_prominent_and_fail_closed():
     assert "DO NOT SUBMIT" in html
     assert "NO CANDIDATE IS AUTHORIZED" in html
     assert "SAFE TO DOWNLOAD FOR AUDIT" in html
+    assert "download-status.html" in html
     assert "OK TO DOWNLOAD AND SUBMIT" not in html
     assert h86b["verdict"] == "negative"
     assert h86b["submission_ready"] is False

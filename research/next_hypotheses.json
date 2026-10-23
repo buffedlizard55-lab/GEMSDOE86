@@ -1,29 +1,31 @@
 {
-  "schema": "gems86.next-hypotheses.v1",
+  "schema": "gems86.next-hypotheses.v2",
   "review_date_utc": "2026-10-23",
-  "status": "REVIEWED_SHORTLIST_NOT_RUN_NOT_AUTHORIZED",
-  "ranking_basis": "Qualitative scientific potential relative to implementation cost; no numeric DTI projection. The exact transforms below are not recorded as completed experiments in this checkout. Some source channels were used in earlier ensembles, so this is method-level novelty, not a claim of global novelty across every sibling repository.",
-  "top_candidate": "H86E-MTDA",
-  "validation_status": "NOT VALIDATED IN THIS REVIEW: the supplied prompt contains no assigned method paragraph, the shared cached feature stack is absent, and the earlier H86B-GFCO lane already used its three-experiment budget. No new surface, dots, or TIF were produced.",
+  "status": "DEFERRED_NOT_AUTHORIZED_NOT_RUN",
+  "ranking_basis": "Qualitative scientific prior on possible blind-fault DTI benefit relative to implementation cost. No numeric DTI projection. The shortlist is conditional on verifying the actual shared cache's band meanings, units, and provenance; it is not an assigned method lane.",
+  "top_candidate": "H86N-BMR",
+  "validation_status": "NOT RUN: the assigned method paragraph is absent, the shared cached feature stack is absent, and the literal positive-support registry witness blocks every nonempty candidate under the current protocol. No new surface, dots, experiment, or TIFF were produced.",
+  "novelty_scope": "Narrow review of inspected local feature builders and runners only; not a complete sibling-repository registry or literature search. All proposals remain unproven and may overlap elsewhere.",
   "hypotheses": [
     {
       "rank": 1,
-      "id": "H86E-MTDA",
-      "name": "Depth-migrating magnetotelluric edge vector",
+      "id": "H86N-BMR",
+      "name": "Basement mass-balance residual",
       "layers": [
-        "Competition MT resistivity/depth slices named in the prior feature manifest: 500 m, 1 km, 2 km, 4 km, 6 km, and 10 km"
+        "iso_grav_anom",
+        "depth_to_base_surf"
       ],
-      "physical_signature": "Track the lateral displacement vector of coherent conductivity-gradient ridges between consecutive depth slices; require monotonic migration consistent with a dipping plane, then project the inferred plane to the surface. Do not use a single shallow/deep gradient magnitude as the score.",
-      "missing_fault_mechanism": "A buried dipping conduit or alteration zone can be laterally displaced from its surface trace. Cross-depth migration could therefore prioritize a blind structure not present in a surface-fault catalogue.",
-      "non_fault_mimic": "Depth-dependent inversion smoothing or a basin-margin conductor; require coherent displacement across adjacent depth slices and sensitivity to inversion resolution before interpreting it as a fault.",
-      "difference_from_repo": "The previous H86B lane uses shallow/deep MT gradients and a vertical contrast; the proposed transform is the vector/plane geometry rather than another scalar edge. However, the exact depth-migrating MT idea was already written as H86E-MTDA in research/H86B_GFCO_REVIEW.md and was not tested here.",
-      "repository_novelty": "Not novel relative to repository text: H86B_GFCO_REVIEW.md already describes this depth-migration/up-dip projection proposal. It is re-ranked here, not claimed as a new method or globally unique approach.",
-      "expected_dti_potential": "Highest qualitative potential among the locally specified shortlist for blind-fault coverage; this is a scientific prior, not a numerical score estimate.",
-      "implementation_cost": "High: depth registration, coherence tracking, geometric projection, and fold-safe ablations.",
-      "data_availability": "Requires the official competition training_features.tif MT bands and the template's cached feature stack. An earlier H86B review described the six slices as locally verified in that earlier session; the owner-mirror feature raster is hash-pinned in research/upstream/data_manifest.json but absent from this checkout, and no official organizer download was authenticated here. Not currently viable to validate under the cache-reuse rule.",
+      "physical_signature": "Forward-model the broad basement-interface gravity response, fit density contrast on training spatial blocks only, then score persistent transverse gradients of observed-minus-predicted gravity. Freeze the forward model and density fit inside each training fold.",
+      "missing_fault_mechanism": "A narrow concealed density discontinuity within a basin may remain after removing the broad sediment-thickness response, despite lacking a mapped scarp or catalogue trace.",
+      "non_fault_mimic": "Lateral sediment-density change or basement-model error; compare the residual against raw gravity and basement-gradient controls, and exclude forward-model edge ringing.",
+      "difference_from_repo": "A physical forward-model residual rather than gravity–magnetic gradient-angle agreement (GMC), scalar gravity-gradient ranking, or radiometric mixing regression.",
+      "repository_novelty": "No exact forward basement-response subtraction was found in the reviewed local builders/runners. This is a narrow code search only; no claim of novelty across sibling repositories or literature.",
+      "expected_dti_potential": "Highest qualitative potential in this shortlist because it targets a concealed basin discontinuity rather than a visible surface edge; this is not a numeric score estimate.",
+      "implementation_cost": "Moderate-to-high: verify gravity units/datum and basement conventions, implement fold-contained forward modeling, and compare against raw and compact-source controls.",
+      "data_availability": "Uses named competition gravity and basement-depth layers, so it requires no new external raster if the exact bands and units exist in the official stack. The official data page is login-gated in this environment and the template cache is absent; owner-mirror integrity is not organizer authentication. Not currently viable to execute under the cache-reuse rule.",
       "official_sources": [
         {
-          "name": "DrivenData GEMS problem and data pages",
+          "name": "DrivenData GEMS problem page",
           "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
         },
         {
@@ -34,79 +36,83 @@
     },
     {
       "rank": 2,
-      "id": "H86D-PFCO",
-      "name": "Paired potential-field ridge dislocation with transverse gravity step",
+      "id": "H86N-CMRT",
+      "name": "Cross-strike magnetic roughness transition",
       "layers": [
-        "Competition RTP/TMI, upward-continued TMI, complete Bouguer gravity, and basement-depth bands"
+        "rtp",
+        "tmi"
       ],
-      "physical_signature": "Extract phase-symmetry ridge segments at more than one scale; graph-match conjugate terminations with consistent strike across a lateral offset; score only the intervening corridor when a transverse gravity-gradient step corroborates it.",
-      "missing_fault_mechanism": "A concealed cross-fault can displace an older magnetic marker contact. Scoring the termination/offset corridor rather than the contact itself may reveal the cross-fault away from mapped surface traces.",
-      "non_fault_mimic": "Caldera-ring geometry, intrusive contacts, and survey-mosaic seams; require conjugate geometry across scales and independent gravity support, and test acquisition-axis concentration.",
-      "difference_from_repo": "The paired-endpoint and transverse-bridge formulation adds multi-scale matching and corroboration to earlier potential-field edge/contact features. A related displaced-contact concept already appears as a prior candidate in research/REVIEW.md, so this is a refinement, not a wholly new repository idea.",
-      "repository_novelty": "Not wholly novel relative to repository text: research/REVIEW.md already proposes paired magnetic-contact endpoints with gravity corroboration. No global sibling-repository novelty audit is complete.",
-      "expected_dti_potential": "Medium-high qualitative potential; it targets a structural discontinuity rather than another continuous contact, but its expected value is uncertain.",
-      "implementation_cost": "High: ridge graph construction, endpoint pairing, offset constraints, and fold-stable controls.",
-      "data_availability": "Uses competition geophysics/topography channels only, if the official feature stack is restored. No new external raster is required. The shared cached stack is absent here, so it is not currently viable to validate under the prompt.",
+      "physical_signature": "At label-free magnetic ridges, estimate directional variograms on the two sides of the ridge; score a persistent cross-strike change in roughness exponent and correlation width, not maximum edge amplitude.",
+      "missing_fault_mechanism": "Distributed fracturing or alteration may change magnetic texture across a damage-zone boundary away from a mapped trace, even when the boundary is not a sharp magnetic step.",
+      "non_fault_mimic": "Volcanic facies boundaries and survey flight-line noise; require consistency in both magnetic fields, test acquisition-direction periodicity, and compare against non-ridge controls.",
+      "difference_from_repo": "Targets a cross-strike texture-regime change rather than single-pixel worms, Euler depth clusters, contact-offset magnitude, or generic lineament strength.",
+      "repository_novelty": "No exact two-sided variogram/roughness-transition transform was found in the inspected local builders/runners. Similar texture methods may exist in uninspected sibling repositories; registry-wide novelty is unknown.",
+      "expected_dti_potential": "Moderate qualitative potential: texture change could extend beyond an edge, but magnetic facies and acquisition artifacts are strong confounders.",
+      "implementation_cost": "Moderate: directional-window choice, variogram fitting, edge conditioning, and flight-line controls require fold-stable validation.",
+      "data_availability": "Uses competition RTP/TMI channels only if the official bands and units are present in the restored shared cache. No new external raster is required; the shared cache and authenticated official feature file are currently absent.",
       "official_sources": [
         {
-          "name": "DrivenData GEMS problem and data pages",
+          "name": "DrivenData GEMS problem page",
           "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
         },
         {
-          "name": "Grauch & Hudson (2007), aeromagnetic fault expression / USGS Professional Paper 1707 (manual review)",
-          "url": "https://doi.org/10.1190/1.2750381"
+          "name": "DrivenData competition data page (login may be required)",
+          "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/"
         }
       ]
     },
     {
       "rank": 3,
-      "id": "H86C-TDPL",
-      "name": "Relief-normalized LiDAR scarplet chains with shoreline and drainage rejection",
+      "id": "H86N-GSS",
+      "name": "Gravity source-shape consistency",
       "layers": [
-        "USGS 3DEP-derived one-metre LiDAR scarp features, elevation, and slope"
+        "iso_grav_anom",
+        "iso_grav_anom_hg",
+        "iso_grav_anom_vg"
       ],
-      "physical_signature": "Detect multi-azimuth scarplet chains at piedmont scale after normalizing by local relief; reject contour-parallel benches and dendritic channel edges using tangent-to-contour and drainage alignment tests.",
-      "missing_fault_mechanism": "Low-slip or intrabasin fault scarps can be weak in a 100 m DEM but persist as aligned metre-scale breaks across an alluvial piedmont where no catalogue trace is mapped.",
-      "non_fault_mimic": "Pluvial shoreline benches, fan-channel incision, and roads; explicitly suppress contour-parallel and drainage-aligned responses and verify persistence across independent LiDAR-derived channels.",
-      "difference_from_repo": "Contour-orthogonality and drainage rejection sharpen a LiDAR scarplet-chain idea already proposed as H86C-TDPL in research/H86B_GFCO_REVIEW.md. H86B also used LiDAR scarplet features; the dedicated rejection transform is not documented as a completed standalone ablation in the reviewed current evidence.",
-      "repository_novelty": "Not new at the hypothesis level: H86C-TDPL was previously proposed in research/H86B_GFCO_REVIEW.md. Only the explicit shoreline/drainage rejection ablation may be a refinement; no global novelty claim is supported.",
-      "expected_dti_potential": "Moderate qualitative potential; high native-resolution surface detail is attractive, but the competition holdout is catalogue-based and may not represent blind intrabasin targets.",
-      "implementation_cost": "Moderate: the owner-mirror product is already described in the manifest, but multi-scale orientation and mimic rejection need careful testing.",
-      "data_availability": "The local manifest describes a hash-pinned owner-derived LiDAR product sourced from USGS 3DEP; the raster itself is absent from this checkout, and its official tile-level provenance/coverage has not been independently rechecked here. The named official source is available for manual review but is outside the sandbox's allowed outbound hosts.",
+      "physical_signature": "Compare scale-dependent horizontal-to-vertical derivative ratios with a step-source response; suppress compact-source-like responses and score elongated basement-step geometry only when it persists across scales.",
+      "missing_fault_mechanism": "An extended buried basement step can produce a line-like source response that differs from isolated density bodies, including where the surface catalogue is blank.",
+      "non_fault_mimic": "Elongate intrusive contacts and basin-margin facies; compare against compact-body and contact controls and test sensitivity to bandwidth and derivative conventions.",
+      "difference_from_repo": "Uses a source-shape likelihood rather than generic gravity-gradient rank, magnetic concordance, or a single derivative threshold.",
+      "repository_novelty": "The exact step-source-versus-compact-source likelihood was not found in the inspected local builders/runners. This is not a claim of global or literature novelty.",
+      "expected_dti_potential": "Moderate qualitative potential: a physical source-shape discriminator may reduce broad contact false positives, but depends strongly on derivative calibration.",
+      "implementation_cost": "Moderate: derivative units, continuation scale, and source-geometry assumptions must be verified and stress-tested.",
+      "data_availability": "Requires only competition gravity fields if their documented derivatives/units can be authenticated in the official shared stack. No external raster is required, but the shared cache and authenticated official feature file are absent here.",
       "official_sources": [
         {
-          "name": "USGS 3D Elevation Program (3DEP)",
-          "url": "https://www.usgs.gov/3d-elevation-program"
+          "name": "DrivenData GEMS problem page",
+          "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
         },
         {
-          "name": "USGS GeoDAWN release and DOI 10.5066/P93LGLVQ",
-          "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+          "name": "DrivenData competition data page (login may be required)",
+          "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/"
         }
       ]
     },
     {
       "rank": 4,
-      "id": "H86F-RLSL",
-      "name": "Relocated microseismic planes with uncertainty-aware up-dip projection",
+      "id": "H86N-CDKS",
+      "name": "Cross-drainage knickzone synchrony",
       "layers": [
-        "Raw USGS ComCat events with moment tensors and location uncertainty; not the supplied broad earthquake-density bands"
+        "det_elev",
+        "det_elev_slope"
       ],
-      "physical_signature": "Fit spatially coherent three-dimensional hypocentre planes with uncertainty weighting, test nodal-plane orientation where available, and project the accepted plane up-dip to its surface intersection.",
-      "missing_fault_mechanism": "A seismogenic blind fault may produce a planar hypocentre fabric before a surface trace is mapped; explicit depth geometry can localize a concealed structure better than broad smoothed seismic-density bands.",
-      "non_fault_mimic": "Quarry blasts, fluid-injection swarms, and migrating earthquake sequences; use event-type, depth, uncertainty, and temporal-coherence filters.",
-      "difference_from_repo": "The uncertainty-aware plane fit and up-dip projection elaborate an earlier H86F-RLSL proposal in research/H86B_GFCO_REVIEW.md; this is not a new hypothesis within the repository. It differs from broad seismic-density and event-count features, but any specific source-catalogue overlap still requires registry review.",
-      "repository_novelty": "Previously proposed in research/H86B_GFCO_REVIEW.md as H86F-RLSL. Not novel at the repository proposal level; not tested in this review and no global sibling comparison is complete.",
-      "expected_dti_potential": "Potentially high but highly uncertain; sparse event coverage may leave much of the footprint uninformative.",
-      "implementation_cost": "High, plus a separate data-ingestion and provenance audit.",
-      "data_availability": "Specific free official source: USGS ComCat FDSN event API. It is outside the sandbox outbound allowlist and no event file is present; a previous repository note records external-USGS egress failure. Not viable here until an official-source mirror is legally and hash-verifiably obtained.",
+      "physical_signature": "Derive drainage profiles from the elevation surface, locate slope-change points independently along multiple channels, and score only transverse corridors where changes align; reject constant-elevation contour-parallel chains.",
+      "missing_fault_mechanism": "A concealed active structure could perturb the profiles of several streams along a shared transverse corridor without a mapped fault trace or a single prominent scarp.",
+      "non_fault_mimic": "Lake shorelines, resistant bedding, roads, and DEM artifacts; compare chain straightness against elevation constancy and lithologic/topographic controls, and reject channels dominated by local engineering.",
+      "difference_from_repo": "Tests multi-channel profile synchrony rather than a LiDAR scarp vote, DEM hinge, generic slope edge, or posterior line filter.",
+      "repository_novelty": "No exact cross-drainage multi-profile synchrony transform was found in the inspected local builders/runners. A full sibling-repository comparison is unavailable.",
+      "expected_dti_potential": "Low-to-moderate qualitative potential: independent channel agreement is physically appealing, but the 100 m grid may be too coarse for reliable knickpoint localization.",
+      "implementation_cost": "High: drainage extraction, profile segmentation, channel independence controls, and robustness to coarse resolution.",
+      "data_availability": "Uses competition elevation and slope bands only if their official definitions and units match the shared cache. No external raster is proposed; the shared cache and authenticated official feature file are absent here, so viability is unconfirmed.",
       "official_sources": [
         {
-          "name": "USGS ComCat FDSN event service",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/"
+          "name": "DrivenData GEMS problem page",
+          "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
         },
         {
-          "name": "USGS earthquake catalog documentation",
-          "url": "https://earthquake.usgs.gov/data/comcat/"
+          "name": "DrivenData competition data page (login may be required)",
+          "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/"
         }
       ]
     }
