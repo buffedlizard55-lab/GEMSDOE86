@@ -1,0 +1,79 @@
+{
+  "evidence_class": "MODEL-INSTRUMENT-AUDIT",
+  "instrument": "exact DTI against USGS SGMC off-catalogue pixels (the repo's MODEL surrogate)",
+  "source_url": "https://www.usgs.gov/science-plan/conterminous-synthetic-geologic-map-compiler-sgmc",
+  "parent": {
+    "T": 5840.9496,
+    "M": 6947.2022,
+    "n": 37654.0,
+    "G": 79615.0,
+    "denominator": 71001.5495,
+    "dti": 0.0822651
+  },
+  "curve": [
+    {
+      "dose": -0.2,
+      "how": "delete random",
+      "n_dots": 30123,
+      "dti": 0.06952102,
+      "delta_dti": -0.012744
+    },
+    {
+      "dose": -0.1,
+      "how": "delete random",
+      "n_dots": 33889,
+      "dti": 0.0754577,
+      "delta_dti": -0.006807
+    },
+    {
+      "dose": -0.05,
+      "how": "delete random",
+      "n_dots": 35771,
+      "dti": 0.07928824,
+      "delta_dti": -0.002977
+    },
+    {
+      "dose": 0.05,
+      "how": "add random",
+      "n_dots": 39537,
+      "dti": 0.08409132,
+      "delta_dti": 0.001826
+    },
+    {
+      "dose": 0.1,
+      "how": "add random",
+      "n_dots": 41419,
+      "dti": 0.08630047,
+      "delta_dti": 0.004035
+    },
+    {
+      "dose": 0.2,
+      "how": "add random",
+      "n_dots": 45185,
+      "dti": 0.09037469,
+      "delta_dti": 0.00811
+    }
+  ],
+  "monotone_in_dot_count": true,
+  "surrogate_T_over_G": 0.0734,
+  "live_T_over_G_implied": {
+    "5000": {
+      "implied_T": 2414.6,
+      "implied_T_over_G": 0.4829
+    },
+    "10000": {
+      "implied_T": 3367.0,
+      "implied_T_over_G": 0.3367
+    },
+    "20000": {
+      "implied_T": 5271.8,
+      "implied_T_over_G": 0.2636
+    },
+    "40000": {
+      "implied_T": 9081.3,
+      "implied_T_over_G": 0.227
+    }
+  },
+  "reading": "The surrogate credits only a small share of its own truth inventory (0.073 of |G|) whereas the incumbent's claimed live score implies 0.26-0.34 at plausible new-fault truth sizes, so the surrogate sits far from the live operating point and prices extra mass much too highly.",
+  "consequence": "A MODEL delta from this instrument cannot rank mass-changing arms. It may still order arrangements at fixed count, which is how SPACING used it."
+}
