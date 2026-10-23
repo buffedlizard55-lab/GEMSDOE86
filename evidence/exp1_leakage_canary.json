@@ -1,0 +1,1340 @@
+{
+  "evidence_class": "LEAKAGE-CANARY",
+  "ceiling_auc": 0.9,
+  "n_channels_tested": 72,
+  "max_symmetric_auc": 0.733445,
+  "max_symmetric_channel": "wc_collinear_cont_short",
+  "passed": true,
+  "seeds": {
+    "seed_20": {
+      "max_symmetric_auc": 0.730189,
+      "max_channel": "wc_collinear_cont_short",
+      "any_leakage_gt_090": false,
+      "top_10_channels": [
+        {
+          "index": 60,
+          "channel": "wc_collinear_cont_short",
+          "group": "wingcrack_12",
+          "auc_raw": 0.730189,
+          "auc_symmetric": 0.730189,
+          "leaking": false
+        },
+        {
+          "index": 66,
+          "channel": "wc_antithetic_graben_twin",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72986,
+          "auc_symmetric": 0.72986,
+          "leaking": false
+        },
+        {
+          "index": 65,
+          "channel": "wc_relay_bridge_sym",
+          "group": "wingcrack_12",
+          "auc_raw": 0.726195,
+          "auc_symmetric": 0.726195,
+          "leaking": false
+        },
+        {
+          "index": 71,
+          "channel": "wc_coup_cont_scarp",
+          "group": "wingcrack_12",
+          "auc_raw": 0.725165,
+          "auc_symmetric": 0.725165,
+          "leaking": false
+        },
+        {
+          "index": 70,
+          "channel": "wc_coup_relay_spi",
+          "group": "wingcrack_12",
+          "auc_raw": 0.722603,
+          "auc_symmetric": 0.722603,
+          "leaking": false
+        },
+        {
+          "index": 61,
+          "channel": "wc_collinear_cont_long",
+          "group": "wingcrack_12",
+          "auc_raw": 0.719326,
+          "auc_symmetric": 0.719326,
+          "leaking": false
+        },
+        {
+          "index": 67,
+          "channel": "wc_tip_hollow_cone",
+          "group": "wingcrack_12",
+          "auc_raw": 0.699835,
+          "auc_symmetric": 0.699835,
+          "leaking": false
+        },
+        {
+          "index": 64,
+          "channel": "wc_wing_lobe_max",
+          "group": "wingcrack_12",
+          "auc_raw": 0.674067,
+          "auc_symmetric": 0.674067,
+          "leaking": false
+        },
+        {
+          "index": 63,
+          "channel": "wc_wing_lobe_neg22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.668429,
+          "auc_symmetric": 0.668429,
+          "leaking": false
+        },
+        {
+          "index": 69,
+          "channel": "wc_coup_wing_fv",
+          "group": "wingcrack_12",
+          "auc_raw": 0.667691,
+          "auc_symmetric": 0.667691,
+          "leaking": false
+        }
+      ],
+      "all_channels": [
+        {
+          "index": 60,
+          "channel": "wc_collinear_cont_short",
+          "group": "wingcrack_12",
+          "auc_raw": 0.730189,
+          "auc_symmetric": 0.730189,
+          "leaking": false
+        },
+        {
+          "index": 66,
+          "channel": "wc_antithetic_graben_twin",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72986,
+          "auc_symmetric": 0.72986,
+          "leaking": false
+        },
+        {
+          "index": 65,
+          "channel": "wc_relay_bridge_sym",
+          "group": "wingcrack_12",
+          "auc_raw": 0.726195,
+          "auc_symmetric": 0.726195,
+          "leaking": false
+        },
+        {
+          "index": 71,
+          "channel": "wc_coup_cont_scarp",
+          "group": "wingcrack_12",
+          "auc_raw": 0.725165,
+          "auc_symmetric": 0.725165,
+          "leaking": false
+        },
+        {
+          "index": 70,
+          "channel": "wc_coup_relay_spi",
+          "group": "wingcrack_12",
+          "auc_raw": 0.722603,
+          "auc_symmetric": 0.722603,
+          "leaking": false
+        },
+        {
+          "index": 61,
+          "channel": "wc_collinear_cont_long",
+          "group": "wingcrack_12",
+          "auc_raw": 0.719326,
+          "auc_symmetric": 0.719326,
+          "leaking": false
+        },
+        {
+          "index": 67,
+          "channel": "wc_tip_hollow_cone",
+          "group": "wingcrack_12",
+          "auc_raw": 0.699835,
+          "auc_symmetric": 0.699835,
+          "leaking": false
+        },
+        {
+          "index": 64,
+          "channel": "wc_wing_lobe_max",
+          "group": "wingcrack_12",
+          "auc_raw": 0.674067,
+          "auc_symmetric": 0.674067,
+          "leaking": false
+        },
+        {
+          "index": 63,
+          "channel": "wc_wing_lobe_neg22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.668429,
+          "auc_symmetric": 0.668429,
+          "leaking": false
+        },
+        {
+          "index": 69,
+          "channel": "wc_coup_wing_fv",
+          "group": "wingcrack_12",
+          "auc_raw": 0.667691,
+          "auc_symmetric": 0.667691,
+          "leaking": false
+        },
+        {
+          "index": 62,
+          "channel": "wc_wing_lobe_pos22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.65668,
+          "auc_symmetric": 0.65668,
+          "leaking": false
+        },
+        {
+          "index": 68,
+          "channel": "wc_dist_vis_habitat",
+          "group": "wingcrack_12",
+          "auc_raw": 0.646259,
+          "auc_symmetric": 0.646259,
+          "leaking": false
+        },
+        {
+          "index": 47,
+          "channel": "scarp_dem10_breakline",
+          "group": "static_60",
+          "auc_raw": 0.575819,
+          "auc_symmetric": 0.575819,
+          "leaking": false
+        },
+        {
+          "index": 43,
+          "channel": "scarp_lid1m_aniso_ridge",
+          "group": "static_60",
+          "auc_raw": 0.572522,
+          "auc_symmetric": 0.572522,
+          "leaking": false
+        },
+        {
+          "index": 41,
+          "channel": "scarp_lid1m_ex_downface",
+          "group": "static_60",
+          "auc_raw": 0.568232,
+          "auc_symmetric": 0.568232,
+          "leaking": false
+        },
+        {
+          "index": 40,
+          "channel": "scarp_lid1m_step_relnorm",
+          "group": "static_60",
+          "auc_raw": 0.56247,
+          "auc_symmetric": 0.56247,
+          "leaking": false
+        },
+        {
+          "index": 18,
+          "channel": "b19_det_elev_slope",
+          "group": "static_60",
+          "auc_raw": 0.560916,
+          "auc_symmetric": 0.560916,
+          "leaking": false
+        },
+        {
+          "index": 15,
+          "channel": "b16_ieq_n100a15",
+          "group": "static_60",
+          "auc_raw": 0.560559,
+          "auc_symmetric": 0.560559,
+          "leaking": false
+        },
+        {
+          "index": 5,
+          "channel": "b06_mag_tc",
+          "group": "static_60",
+          "auc_raw": 0.439866,
+          "auc_symmetric": 0.560134,
+          "leaking": false
+        },
+        {
+          "index": 59,
+          "channel": "ctx_transtensional_strain",
+          "group": "static_60",
+          "auc_raw": 0.553628,
+          "auc_symmetric": 0.553628,
+          "leaking": false
+        },
+        {
+          "index": 6,
+          "channel": "b07_geod_shear",
+          "group": "static_60",
+          "auc_raw": 0.552322,
+          "auc_symmetric": 0.552322,
+          "leaking": false
+        },
+        {
+          "index": 3,
+          "channel": "b04_geod_2ndinv",
+          "group": "static_60",
+          "auc_raw": 0.551371,
+          "auc_symmetric": 0.551371,
+          "leaking": false
+        },
+        {
+          "index": 9,
+          "channel": "b10_deq_n100a15",
+          "group": "static_60",
+          "auc_raw": 0.545799,
+          "auc_symmetric": 0.545799,
+          "leaking": false
+        },
+        {
+          "index": 31,
+          "channel": "fv_rad_u_redox",
+          "group": "static_60",
+          "auc_raw": 0.542959,
+          "auc_symmetric": 0.542959,
+          "leaking": false
+        },
+        {
+          "index": 48,
+          "channel": "scarp_dem10_piedmont_step",
+          "group": "static_60",
+          "auc_raw": 0.46273,
+          "auc_symmetric": 0.53727,
+          "leaking": false
+        },
+        {
+          "index": 25,
+          "channel": "spi_basement_grad",
+          "group": "static_60",
+          "auc_raw": 0.537067,
+          "auc_symmetric": 0.537067,
+          "leaking": false
+        },
+        {
+          "index": 2,
+          "channel": "b03_tmi_hg",
+          "group": "static_60",
+          "auc_raw": 0.536897,
+          "auc_symmetric": 0.536897,
+          "leaking": false
+        },
+        {
+          "index": 21,
+          "channel": "spi_mag_analytic_sig",
+          "group": "static_60",
+          "auc_raw": 0.536893,
+          "auc_symmetric": 0.536893,
+          "leaking": false
+        },
+        {
+          "index": 27,
+          "channel": "spi_updip_grav_pullback",
+          "group": "static_60",
+          "auc_raw": 0.532449,
+          "auc_symmetric": 0.532449,
+          "leaking": false
+        },
+        {
+          "index": 23,
+          "channel": "spi_grav_tilt",
+          "group": "static_60",
+          "auc_raw": 0.530273,
+          "auc_symmetric": 0.530273,
+          "leaking": false
+        },
+        {
+          "index": 30,
+          "channel": "fv_rad_k_metasomatism",
+          "group": "static_60",
+          "auc_raw": 0.470893,
+          "auc_symmetric": 0.529107,
+          "leaking": false
+        },
+        {
+          "index": 28,
+          "channel": "spi_dip_coupled_conduit",
+          "group": "static_60",
+          "auc_raw": 0.528921,
+          "auc_symmetric": 0.528921,
+          "leaking": false
+        },
+        {
+          "index": 7,
+          "channel": "b08_geod_dilate",
+          "group": "static_60",
+          "auc_raw": 0.528177,
+          "auc_symmetric": 0.528177,
+          "leaking": false
+        },
+        {
+          "index": 4,
+          "channel": "b05_iso_grav_slope",
+          "group": "static_60",
+          "auc_raw": 0.526615,
+          "auc_symmetric": 0.526615,
+          "leaking": false
+        },
+        {
+          "index": 42,
+          "channel": "scarp_lid1m_coh100",
+          "group": "static_60",
+          "auc_raw": 0.473565,
+          "auc_symmetric": 0.526435,
+          "leaking": false
+        },
+        {
+          "index": 35,
+          "channel": "fv_probe2m_f2mdab",
+          "group": "static_60",
+          "auc_raw": 0.52519,
+          "auc_symmetric": 0.52519,
+          "leaking": false
+        },
+        {
+          "index": 39,
+          "channel": "fv_sibson_breach_index",
+          "group": "static_60",
+          "auc_raw": 0.525002,
+          "auc_symmetric": 0.525002,
+          "leaking": false
+        },
+        {
+          "index": 10,
+          "channel": "b11_iso_grav_vg",
+          "group": "static_60",
+          "auc_raw": 0.524008,
+          "auc_symmetric": 0.524008,
+          "leaking": false
+        },
+        {
+          "index": 12,
+          "channel": "b13_iso_grav_anom",
+          "group": "static_60",
+          "auc_raw": 0.476676,
+          "auc_symmetric": 0.523324,
+          "leaking": false
+        },
+        {
+          "index": 20,
+          "channel": "spi_mag_wavenumber",
+          "group": "static_60",
+          "auc_raw": 0.522779,
+          "auc_symmetric": 0.522779,
+          "leaking": false
+        },
+        {
+          "index": 53,
+          "channel": "fluv_valley_collinear",
+          "group": "static_60",
+          "auc_raw": 0.478601,
+          "auc_symmetric": 0.521399,
+          "leaking": false
+        },
+        {
+          "index": 44,
+          "channel": "scarp_lid1m_valid_mask",
+          "group": "static_60",
+          "auc_raw": 0.520553,
+          "auc_symmetric": 0.520553,
+          "leaking": false
+        },
+        {
+          "index": 37,
+          "channel": "fv_heatflow_volcanic_halo",
+          "group": "static_60",
+          "auc_raw": 0.47948,
+          "auc_symmetric": 0.52052,
+          "leaking": false
+        },
+        {
+          "index": 46,
+          "channel": "scarp_wal3m_cover",
+          "group": "static_60",
+          "auc_raw": 0.520343,
+          "auc_symmetric": 0.520343,
+          "leaking": false
+        },
+        {
+          "index": 1,
+          "channel": "b02_rtp",
+          "group": "static_60",
+          "auc_raw": 0.519894,
+          "auc_symmetric": 0.519894,
+          "leaking": false
+        },
+        {
+          "index": 14,
+          "channel": "b15_depth_to_base",
+          "group": "static_60",
+          "auc_raw": 0.518992,
+          "auc_symmetric": 0.518992,
+          "leaking": false
+        },
+        {
+          "index": 26,
+          "channel": "spi_basement_hinge",
+          "group": "static_60",
+          "auc_raw": 0.48118,
+          "auc_symmetric": 0.51882,
+          "leaking": false
+        },
+        {
+          "index": 49,
+          "channel": "scarp_dem10_collinear_chain",
+          "group": "static_60",
+          "auc_raw": 0.51754,
+          "auc_symmetric": 0.51754,
+          "leaking": false
+        },
+        {
+          "index": 8,
+          "channel": "b09_tmi_vg",
+          "group": "static_60",
+          "auc_raw": 0.483656,
+          "auc_symmetric": 0.516344,
+          "leaking": false
+        },
+        {
+          "index": 0,
+          "channel": "b01_mag_anom",
+          "group": "static_60",
+          "auc_raw": 0.514189,
+          "auc_symmetric": 0.514189,
+          "leaking": false
+        },
+        {
+          "index": 55,
+          "channel": "mimic_along_scarp_elev_climb",
+          "group": "static_60",
+          "auc_raw": 0.485893,
+          "auc_symmetric": 0.514107,
+          "leaking": false
+        },
+        {
+          "index": 52,
+          "channel": "fluv_chi_knick_density",
+          "group": "static_60",
+          "auc_raw": 0.513704,
+          "auc_symmetric": 0.513704,
+          "leaking": false
+        },
+        {
+          "index": 24,
+          "channel": "spi_grav_wavenumber",
+          "group": "static_60",
+          "auc_raw": 0.513278,
+          "auc_symmetric": 0.513278,
+          "leaking": false
+        },
+        {
+          "index": 19,
+          "channel": "spi_mag_tilt",
+          "group": "static_60",
+          "auc_raw": 0.488142,
+          "auc_symmetric": 0.511858,
+          "leaking": false
+        },
+        {
+          "index": 51,
+          "channel": "fluv_ksn_knickzone",
+          "group": "static_60",
+          "auc_raw": 0.511614,
+          "auc_symmetric": 0.511614,
+          "leaking": false
+        },
+        {
+          "index": 29,
+          "channel": "fv_mag_destruction_trough",
+          "group": "static_60",
+          "auc_raw": 0.511608,
+          "auc_symmetric": 0.511608,
+          "leaking": false
+        },
+        {
+          "index": 56,
+          "channel": "mimic_tiger_road_prox",
+          "group": "static_60",
+          "auc_raw": 0.510932,
+          "auc_symmetric": 0.510932,
+          "leaking": false
+        },
+        {
+          "index": 33,
+          "channel": "fv_gdr_spring_plume_s5",
+          "group": "static_60",
+          "auc_raw": 0.510917,
+          "auc_symmetric": 0.510917,
+          "leaking": false
+        },
+        {
+          "index": 36,
+          "channel": "fv_paleo_sinter_seal",
+          "group": "static_60",
+          "auc_raw": 0.490102,
+          "auc_symmetric": 0.509898,
+          "leaking": false
+        },
+        {
+          "index": 57,
+          "channel": "mimic_road_scarp_interaction",
+          "group": "static_60",
+          "auc_raw": 0.491233,
+          "auc_symmetric": 0.508767,
+          "leaking": false
+        },
+        {
+          "index": 34,
+          "channel": "fv_gdr_geotherm_enthalpy",
+          "group": "static_60",
+          "auc_raw": 0.508259,
+          "auc_symmetric": 0.508259,
+          "leaking": false
+        },
+        {
+          "index": 16,
+          "channel": "b17_cond_surf",
+          "group": "static_60",
+          "auc_raw": 0.492174,
+          "auc_symmetric": 0.507826,
+          "leaking": false
+        },
+        {
+          "index": 13,
+          "channel": "b14_tmi",
+          "group": "static_60",
+          "auc_raw": 0.507068,
+          "auc_symmetric": 0.507068,
+          "leaking": false
+        },
+        {
+          "index": 58,
+          "channel": "ctx_piedmont_bajada_regime",
+          "group": "static_60",
+          "auc_raw": 0.493996,
+          "auc_symmetric": 0.506004,
+          "leaking": false
+        },
+        {
+          "index": 45,
+          "channel": "scarp_wal3m_gate",
+          "group": "static_60",
+          "auc_raw": 0.494658,
+          "auc_symmetric": 0.505342,
+          "leaking": false
+        },
+        {
+          "index": 11,
+          "channel": "b12_det_elev",
+          "group": "static_60",
+          "auc_raw": 0.505057,
+          "auc_symmetric": 0.505057,
+          "leaking": false
+        },
+        {
+          "index": 17,
+          "channel": "b18_iso_grav_hg",
+          "group": "static_60",
+          "auc_raw": 0.495356,
+          "auc_symmetric": 0.504644,
+          "leaking": false
+        },
+        {
+          "index": 50,
+          "channel": "scarp_openness_lrm",
+          "group": "static_60",
+          "auc_raw": 0.503754,
+          "auc_symmetric": 0.503754,
+          "leaking": false
+        },
+        {
+          "index": 22,
+          "channel": "spi_mag_shallow_res",
+          "group": "static_60",
+          "auc_raw": 0.49782,
+          "auc_symmetric": 0.50218,
+          "leaking": false
+        },
+        {
+          "index": 54,
+          "channel": "mimic_lahontan_bonneville_bench",
+          "group": "static_60",
+          "auc_raw": 0.498053,
+          "auc_symmetric": 0.501947,
+          "leaking": false
+        },
+        {
+          "index": 38,
+          "channel": "fv_epithermal_vein_prox",
+          "group": "static_60",
+          "auc_raw": 0.498365,
+          "auc_symmetric": 0.501635,
+          "leaking": false
+        },
+        {
+          "index": 32,
+          "channel": "fv_claycap_edge",
+          "group": "static_60",
+          "auc_raw": 0.501578,
+          "auc_symmetric": 0.501578,
+          "leaking": false
+        }
+      ]
+    },
+    "seed_21": {
+      "max_symmetric_auc": 0.733445,
+      "max_channel": "wc_collinear_cont_short",
+      "any_leakage_gt_090": false,
+      "top_10_channels": [
+        {
+          "index": 60,
+          "channel": "wc_collinear_cont_short",
+          "group": "wingcrack_12",
+          "auc_raw": 0.733445,
+          "auc_symmetric": 0.733445,
+          "leaking": false
+        },
+        {
+          "index": 66,
+          "channel": "wc_antithetic_graben_twin",
+          "group": "wingcrack_12",
+          "auc_raw": 0.730066,
+          "auc_symmetric": 0.730066,
+          "leaking": false
+        },
+        {
+          "index": 71,
+          "channel": "wc_coup_cont_scarp",
+          "group": "wingcrack_12",
+          "auc_raw": 0.729423,
+          "auc_symmetric": 0.729423,
+          "leaking": false
+        },
+        {
+          "index": 65,
+          "channel": "wc_relay_bridge_sym",
+          "group": "wingcrack_12",
+          "auc_raw": 0.727155,
+          "auc_symmetric": 0.727155,
+          "leaking": false
+        },
+        {
+          "index": 70,
+          "channel": "wc_coup_relay_spi",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72263,
+          "auc_symmetric": 0.72263,
+          "leaking": false
+        },
+        {
+          "index": 61,
+          "channel": "wc_collinear_cont_long",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72217,
+          "auc_symmetric": 0.72217,
+          "leaking": false
+        },
+        {
+          "index": 67,
+          "channel": "wc_tip_hollow_cone",
+          "group": "wingcrack_12",
+          "auc_raw": 0.700056,
+          "auc_symmetric": 0.700056,
+          "leaking": false
+        },
+        {
+          "index": 64,
+          "channel": "wc_wing_lobe_max",
+          "group": "wingcrack_12",
+          "auc_raw": 0.676125,
+          "auc_symmetric": 0.676125,
+          "leaking": false
+        },
+        {
+          "index": 63,
+          "channel": "wc_wing_lobe_neg22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.671014,
+          "auc_symmetric": 0.671014,
+          "leaking": false
+        },
+        {
+          "index": 62,
+          "channel": "wc_wing_lobe_pos22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.668497,
+          "auc_symmetric": 0.668497,
+          "leaking": false
+        }
+      ],
+      "all_channels": [
+        {
+          "index": 60,
+          "channel": "wc_collinear_cont_short",
+          "group": "wingcrack_12",
+          "auc_raw": 0.733445,
+          "auc_symmetric": 0.733445,
+          "leaking": false
+        },
+        {
+          "index": 66,
+          "channel": "wc_antithetic_graben_twin",
+          "group": "wingcrack_12",
+          "auc_raw": 0.730066,
+          "auc_symmetric": 0.730066,
+          "leaking": false
+        },
+        {
+          "index": 71,
+          "channel": "wc_coup_cont_scarp",
+          "group": "wingcrack_12",
+          "auc_raw": 0.729423,
+          "auc_symmetric": 0.729423,
+          "leaking": false
+        },
+        {
+          "index": 65,
+          "channel": "wc_relay_bridge_sym",
+          "group": "wingcrack_12",
+          "auc_raw": 0.727155,
+          "auc_symmetric": 0.727155,
+          "leaking": false
+        },
+        {
+          "index": 70,
+          "channel": "wc_coup_relay_spi",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72263,
+          "auc_symmetric": 0.72263,
+          "leaking": false
+        },
+        {
+          "index": 61,
+          "channel": "wc_collinear_cont_long",
+          "group": "wingcrack_12",
+          "auc_raw": 0.72217,
+          "auc_symmetric": 0.72217,
+          "leaking": false
+        },
+        {
+          "index": 67,
+          "channel": "wc_tip_hollow_cone",
+          "group": "wingcrack_12",
+          "auc_raw": 0.700056,
+          "auc_symmetric": 0.700056,
+          "leaking": false
+        },
+        {
+          "index": 64,
+          "channel": "wc_wing_lobe_max",
+          "group": "wingcrack_12",
+          "auc_raw": 0.676125,
+          "auc_symmetric": 0.676125,
+          "leaking": false
+        },
+        {
+          "index": 63,
+          "channel": "wc_wing_lobe_neg22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.671014,
+          "auc_symmetric": 0.671014,
+          "leaking": false
+        },
+        {
+          "index": 62,
+          "channel": "wc_wing_lobe_pos22",
+          "group": "wingcrack_12",
+          "auc_raw": 0.668497,
+          "auc_symmetric": 0.668497,
+          "leaking": false
+        },
+        {
+          "index": 69,
+          "channel": "wc_coup_wing_fv",
+          "group": "wingcrack_12",
+          "auc_raw": 0.66446,
+          "auc_symmetric": 0.66446,
+          "leaking": false
+        },
+        {
+          "index": 68,
+          "channel": "wc_dist_vis_habitat",
+          "group": "wingcrack_12",
+          "auc_raw": 0.642866,
+          "auc_symmetric": 0.642866,
+          "leaking": false
+        },
+        {
+          "index": 47,
+          "channel": "scarp_dem10_breakline",
+          "group": "static_60",
+          "auc_raw": 0.572836,
+          "auc_symmetric": 0.572836,
+          "leaking": false
+        },
+        {
+          "index": 43,
+          "channel": "scarp_lid1m_aniso_ridge",
+          "group": "static_60",
+          "auc_raw": 0.564361,
+          "auc_symmetric": 0.564361,
+          "leaking": false
+        },
+        {
+          "index": 6,
+          "channel": "b07_geod_shear",
+          "group": "static_60",
+          "auc_raw": 0.563438,
+          "auc_symmetric": 0.563438,
+          "leaking": false
+        },
+        {
+          "index": 59,
+          "channel": "ctx_transtensional_strain",
+          "group": "static_60",
+          "auc_raw": 0.561993,
+          "auc_symmetric": 0.561993,
+          "leaking": false
+        },
+        {
+          "index": 40,
+          "channel": "scarp_lid1m_step_relnorm",
+          "group": "static_60",
+          "auc_raw": 0.560181,
+          "auc_symmetric": 0.560181,
+          "leaking": false
+        },
+        {
+          "index": 15,
+          "channel": "b16_ieq_n100a15",
+          "group": "static_60",
+          "auc_raw": 0.560169,
+          "auc_symmetric": 0.560169,
+          "leaking": false
+        },
+        {
+          "index": 3,
+          "channel": "b04_geod_2ndinv",
+          "group": "static_60",
+          "auc_raw": 0.560145,
+          "auc_symmetric": 0.560145,
+          "leaking": false
+        },
+        {
+          "index": 41,
+          "channel": "scarp_lid1m_ex_downface",
+          "group": "static_60",
+          "auc_raw": 0.559382,
+          "auc_symmetric": 0.559382,
+          "leaking": false
+        },
+        {
+          "index": 18,
+          "channel": "b19_det_elev_slope",
+          "group": "static_60",
+          "auc_raw": 0.557207,
+          "auc_symmetric": 0.557207,
+          "leaking": false
+        },
+        {
+          "index": 5,
+          "channel": "b06_mag_tc",
+          "group": "static_60",
+          "auc_raw": 0.446898,
+          "auc_symmetric": 0.553102,
+          "leaking": false
+        },
+        {
+          "index": 9,
+          "channel": "b10_deq_n100a15",
+          "group": "static_60",
+          "auc_raw": 0.542938,
+          "auc_symmetric": 0.542938,
+          "leaking": false
+        },
+        {
+          "index": 4,
+          "channel": "b05_iso_grav_slope",
+          "group": "static_60",
+          "auc_raw": 0.536965,
+          "auc_symmetric": 0.536965,
+          "leaking": false
+        },
+        {
+          "index": 30,
+          "channel": "fv_rad_k_metasomatism",
+          "group": "static_60",
+          "auc_raw": 0.46548,
+          "auc_symmetric": 0.53452,
+          "leaking": false
+        },
+        {
+          "index": 31,
+          "channel": "fv_rad_u_redox",
+          "group": "static_60",
+          "auc_raw": 0.533263,
+          "auc_symmetric": 0.533263,
+          "leaking": false
+        },
+        {
+          "index": 48,
+          "channel": "scarp_dem10_piedmont_step",
+          "group": "static_60",
+          "auc_raw": 0.469548,
+          "auc_symmetric": 0.530452,
+          "leaking": false
+        },
+        {
+          "index": 26,
+          "channel": "spi_basement_hinge",
+          "group": "static_60",
+          "auc_raw": 0.47024,
+          "auc_symmetric": 0.52976,
+          "leaking": false
+        },
+        {
+          "index": 27,
+          "channel": "spi_updip_grav_pullback",
+          "group": "static_60",
+          "auc_raw": 0.526859,
+          "auc_symmetric": 0.526859,
+          "leaking": false
+        },
+        {
+          "index": 28,
+          "channel": "spi_dip_coupled_conduit",
+          "group": "static_60",
+          "auc_raw": 0.525752,
+          "auc_symmetric": 0.525752,
+          "leaking": false
+        },
+        {
+          "index": 12,
+          "channel": "b13_iso_grav_anom",
+          "group": "static_60",
+          "auc_raw": 0.474367,
+          "auc_symmetric": 0.525633,
+          "leaking": false
+        },
+        {
+          "index": 2,
+          "channel": "b03_tmi_hg",
+          "group": "static_60",
+          "auc_raw": 0.525084,
+          "auc_symmetric": 0.525084,
+          "leaking": false
+        },
+        {
+          "index": 21,
+          "channel": "spi_mag_analytic_sig",
+          "group": "static_60",
+          "auc_raw": 0.525069,
+          "auc_symmetric": 0.525069,
+          "leaking": false
+        },
+        {
+          "index": 55,
+          "channel": "mimic_along_scarp_elev_climb",
+          "group": "static_60",
+          "auc_raw": 0.476486,
+          "auc_symmetric": 0.523514,
+          "leaking": false
+        },
+        {
+          "index": 42,
+          "channel": "scarp_lid1m_coh100",
+          "group": "static_60",
+          "auc_raw": 0.476695,
+          "auc_symmetric": 0.523305,
+          "leaking": false
+        },
+        {
+          "index": 23,
+          "channel": "spi_grav_tilt",
+          "group": "static_60",
+          "auc_raw": 0.522491,
+          "auc_symmetric": 0.522491,
+          "leaking": false
+        },
+        {
+          "index": 53,
+          "channel": "fluv_valley_collinear",
+          "group": "static_60",
+          "auc_raw": 0.478024,
+          "auc_symmetric": 0.521976,
+          "leaking": false
+        },
+        {
+          "index": 25,
+          "channel": "spi_basement_grad",
+          "group": "static_60",
+          "auc_raw": 0.521647,
+          "auc_symmetric": 0.521647,
+          "leaking": false
+        },
+        {
+          "index": 7,
+          "channel": "b08_geod_dilate",
+          "group": "static_60",
+          "auc_raw": 0.519528,
+          "auc_symmetric": 0.519528,
+          "leaking": false
+        },
+        {
+          "index": 49,
+          "channel": "scarp_dem10_collinear_chain",
+          "group": "static_60",
+          "auc_raw": 0.519446,
+          "auc_symmetric": 0.519446,
+          "leaking": false
+        },
+        {
+          "index": 10,
+          "channel": "b11_iso_grav_vg",
+          "group": "static_60",
+          "auc_raw": 0.51832,
+          "auc_symmetric": 0.51832,
+          "leaking": false
+        },
+        {
+          "index": 35,
+          "channel": "fv_probe2m_f2mdab",
+          "group": "static_60",
+          "auc_raw": 0.518271,
+          "auc_symmetric": 0.518271,
+          "leaking": false
+        },
+        {
+          "index": 44,
+          "channel": "scarp_lid1m_valid_mask",
+          "group": "static_60",
+          "auc_raw": 0.518259,
+          "auc_symmetric": 0.518259,
+          "leaking": false
+        },
+        {
+          "index": 46,
+          "channel": "scarp_wal3m_cover",
+          "group": "static_60",
+          "auc_raw": 0.517742,
+          "auc_symmetric": 0.517742,
+          "leaking": false
+        },
+        {
+          "index": 37,
+          "channel": "fv_heatflow_volcanic_halo",
+          "group": "static_60",
+          "auc_raw": 0.484102,
+          "auc_symmetric": 0.515898,
+          "leaking": false
+        },
+        {
+          "index": 52,
+          "channel": "fluv_chi_knick_density",
+          "group": "static_60",
+          "auc_raw": 0.515573,
+          "auc_symmetric": 0.515573,
+          "leaking": false
+        },
+        {
+          "index": 1,
+          "channel": "b02_rtp",
+          "group": "static_60",
+          "auc_raw": 0.513624,
+          "auc_symmetric": 0.513624,
+          "leaking": false
+        },
+        {
+          "index": 56,
+          "channel": "mimic_tiger_road_prox",
+          "group": "static_60",
+          "auc_raw": 0.5129,
+          "auc_symmetric": 0.5129,
+          "leaking": false
+        },
+        {
+          "index": 39,
+          "channel": "fv_sibson_breach_index",
+          "group": "static_60",
+          "auc_raw": 0.512893,
+          "auc_symmetric": 0.512893,
+          "leaking": false
+        },
+        {
+          "index": 20,
+          "channel": "spi_mag_wavenumber",
+          "group": "static_60",
+          "auc_raw": 0.512503,
+          "auc_symmetric": 0.512503,
+          "leaking": false
+        },
+        {
+          "index": 51,
+          "channel": "fluv_ksn_knickzone",
+          "group": "static_60",
+          "auc_raw": 0.512284,
+          "auc_symmetric": 0.512284,
+          "leaking": false
+        },
+        {
+          "index": 33,
+          "channel": "fv_gdr_spring_plume_s5",
+          "group": "static_60",
+          "auc_raw": 0.511755,
+          "auc_symmetric": 0.511755,
+          "leaking": false
+        },
+        {
+          "index": 14,
+          "channel": "b15_depth_to_base",
+          "group": "static_60",
+          "auc_raw": 0.511087,
+          "auc_symmetric": 0.511087,
+          "leaking": false
+        },
+        {
+          "index": 36,
+          "channel": "fv_paleo_sinter_seal",
+          "group": "static_60",
+          "auc_raw": 0.490414,
+          "auc_symmetric": 0.509586,
+          "leaking": false
+        },
+        {
+          "index": 13,
+          "channel": "b14_tmi",
+          "group": "static_60",
+          "auc_raw": 0.509352,
+          "auc_symmetric": 0.509352,
+          "leaking": false
+        },
+        {
+          "index": 0,
+          "channel": "b01_mag_anom",
+          "group": "static_60",
+          "auc_raw": 0.50934,
+          "auc_symmetric": 0.50934,
+          "leaking": false
+        },
+        {
+          "index": 54,
+          "channel": "mimic_lahontan_bonneville_bench",
+          "group": "static_60",
+          "auc_raw": 0.508907,
+          "auc_symmetric": 0.508907,
+          "leaking": false
+        },
+        {
+          "index": 29,
+          "channel": "fv_mag_destruction_trough",
+          "group": "static_60",
+          "auc_raw": 0.506223,
+          "auc_symmetric": 0.506223,
+          "leaking": false
+        },
+        {
+          "index": 22,
+          "channel": "spi_mag_shallow_res",
+          "group": "static_60",
+          "auc_raw": 0.505597,
+          "auc_symmetric": 0.505597,
+          "leaking": false
+        },
+        {
+          "index": 57,
+          "channel": "mimic_road_scarp_interaction",
+          "group": "static_60",
+          "auc_raw": 0.49583,
+          "auc_symmetric": 0.50417,
+          "leaking": false
+        },
+        {
+          "index": 24,
+          "channel": "spi_grav_wavenumber",
+          "group": "static_60",
+          "auc_raw": 0.503983,
+          "auc_symmetric": 0.503983,
+          "leaking": false
+        },
+        {
+          "index": 32,
+          "channel": "fv_claycap_edge",
+          "group": "static_60",
+          "auc_raw": 0.503787,
+          "auc_symmetric": 0.503787,
+          "leaking": false
+        },
+        {
+          "index": 11,
+          "channel": "b12_det_elev",
+          "group": "static_60",
+          "auc_raw": 0.503613,
+          "auc_symmetric": 0.503613,
+          "leaking": false
+        },
+        {
+          "index": 17,
+          "channel": "b18_iso_grav_hg",
+          "group": "static_60",
+          "auc_raw": 0.503235,
+          "auc_symmetric": 0.503235,
+          "leaking": false
+        },
+        {
+          "index": 38,
+          "channel": "fv_epithermal_vein_prox",
+          "group": "static_60",
+          "auc_raw": 0.496819,
+          "auc_symmetric": 0.503181,
+          "leaking": false
+        },
+        {
+          "index": 50,
+          "channel": "scarp_openness_lrm",
+          "group": "static_60",
+          "auc_raw": 0.502165,
+          "auc_symmetric": 0.502165,
+          "leaking": false
+        },
+        {
+          "index": 19,
+          "channel": "spi_mag_tilt",
+          "group": "static_60",
+          "auc_raw": 0.498317,
+          "auc_symmetric": 0.501683,
+          "leaking": false
+        },
+        {
+          "index": 8,
+          "channel": "b09_tmi_vg",
+          "group": "static_60",
+          "auc_raw": 0.498532,
+          "auc_symmetric": 0.501468,
+          "leaking": false
+        },
+        {
+          "index": 34,
+          "channel": "fv_gdr_geotherm_enthalpy",
+          "group": "static_60",
+          "auc_raw": 0.498666,
+          "auc_symmetric": 0.501334,
+          "leaking": false
+        },
+        {
+          "index": 58,
+          "channel": "ctx_piedmont_bajada_regime",
+          "group": "static_60",
+          "auc_raw": 0.501224,
+          "auc_symmetric": 0.501224,
+          "leaking": false
+        },
+        {
+          "index": 45,
+          "channel": "scarp_wal3m_gate",
+          "group": "static_60",
+          "auc_raw": 0.500679,
+          "auc_symmetric": 0.500679,
+          "leaking": false
+        },
+        {
+          "index": 16,
+          "channel": "b17_cond_surf",
+          "group": "static_60",
+          "auc_raw": 0.499519,
+          "auc_symmetric": 0.500481,
+          "leaking": false
+        }
+      ]
+    }
+  }
+}

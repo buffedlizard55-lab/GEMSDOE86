@@ -1,0 +1,22 @@
+# Virtual environments & Python caches
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Large cached datasets & memmaps (persisted outside git / snapshot cap; restored via scripts/restore_data.py)
+.cache/
+data/raw/
+data/processed/
+data/bridge/
+registry/submissions/
+artifacts/
+
+# OS / temporary files
+.DS_Store
+*.tmp
+*.partial
+*.assembling

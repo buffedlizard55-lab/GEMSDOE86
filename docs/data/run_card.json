@@ -1,0 +1,227 @@
+{
+  "schema_version": "gems-parallel-run-card-v1",
+  "generated_utc": "2026-10-23T00:21:09+00:00",
+  "repository": "buffedlizard55-lab/GEMSDOE86",
+  "lane_id": "H86-FVMB",
+  "ok_to_download_and_submit": true,
+  "verdict": "promote",
+  "experiments_executed": 3,
+  "budget_limit_experiments": 3,
+  "elapsed_wall_seconds": 1243.24,
+  "weekly_submission_slots_used": 0,
+  "hypothesis": "Blind and under-mapped Quaternary faults in the NW Great Basin act as episodically breaching Sibson hydrothermal fault-valves and asymmetric Mode-II/III (\u00b122 deg) wing-crack / step-over relays whose subsurface geometry is jointly resolved by dual Magnetic-Gravity Source Parameter Imaging (iSPI) local-wavenumber ridges projected up-dip via cot(60 deg) basement-depth pullback.",
+  "mechanism": "60-channel label-free multi-physics stack (dual B9/B3 magnetic & B11/B18 gravity iSPI local wavenumber ridges with cot(60) up-dip projection, high-pass RTP magnetite-destruction troughs x GeoDAWN K/Th metasomatism x MT clay-cap B17 x INGENIOUS 2m temperature probe F2mDAB x paleo-sinter seals x GDR 1391 geothermometers, 1m/3m/10m scarps, and fluvial chi/ksn knickzones) coupled with 12 fold-strict \u00b122-deg wing-crack / relay-bridge / antithetic-twin FFT channels in a counterfactual component-withheld 3-family SAR-PU LOQO ensemble (LightGBM + HistGradientBoosting + MLP) with 8-stratum (Quadrant x 1m-LiDAR-Seam) Bayes calibration and exact 25-cell 300 m Dinkelbach-Minoux submodular expected-DTI allocation.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan (~1,332 m ASL) and Lake Bonneville (~1,463 / 1,552 m ASL) wave-cut paleoshoreline benches, flat basalt flow rims, and US Census TIGER highway/railroad embankments \u2014 explicitly rejected via along-scarp elevation climb variance sigma_9(z_ASL)/(|grad z_ASL|+3m), subsurface iSPI silence gating, and road-proximity x scarp interaction decontamination.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI (gems57-pooled-hide-v2, n=22641, 95% CI [0.134500, 0.155989])",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dual_seed_pooled_dti": 0.145764,
+    "dual_seed_ci95": [
+      0.1345,
+      0.155989
+    ],
+    "dual_seed_withheld_positives": 22641,
+    "seed_20_dti": 0.149007,
+    "seed_20_ci95": [
+      0.136925,
+      0.161271
+    ],
+    "seed_20_withheld_positives": 11318,
+    "seed_21_dti": 0.142519,
+    "seed_21_ci95": [
+      0.130907,
+      0.154387
+    ],
+    "detached_blind_splay_seed20_dti": 0.153798,
+    "ablation_ladder_dual_seed": {
+      "Control_Random_37654": {
+        "dti": 0.041283,
+        "ci95": [
+          0.037668,
+          0.044515
+        ]
+      },
+      "Ref_GEMS25_D28_02600": {
+        "dti": 0.098011,
+        "ci95": [
+          0.088143,
+          0.106668
+        ]
+      },
+      "Ref_GEMS32_H33_FoldFair_02778": {
+        "dti": 0.0908,
+        "ci95": [
+          0.080464,
+          0.100052
+        ]
+      },
+      "EXP86_1_Phys_3Fam_D28": {
+        "dti": 0.09808,
+        "ci95": [
+          0.085158,
+          0.109808
+        ]
+      },
+      "EXP86_2_WingCrack_3Fam_D28": {
+        "dti": 0.148561,
+        "ci95": [
+          0.136268,
+          0.160386
+        ]
+      },
+      "EXP86_3_FVMB_Dink_SingleRegime": {
+        "dti": 0.148541,
+        "ci95": [
+          0.138118,
+          0.158804
+        ]
+      },
+      "EXP86_3_FVMB_TriRegime_Dink": {
+        "dti": 0.145764,
+        "ci95": [
+          0.1345,
+          0.155989
+        ]
+      }
+    },
+    "paired_delta_vs_controls": {
+      "Control_Random_37654": {
+        "delta": 0.104481,
+        "ci95": [
+          0.09388,
+          0.114181
+        ]
+      },
+      "Ref_GEMS25_D28_02600": {
+        "delta": 0.047753,
+        "ci95": [
+          0.039605,
+          0.056099
+        ]
+      },
+      "Ref_GEMS32_H33_FoldFair_02778": {
+        "delta": 0.054963,
+        "ci95": [
+          0.047024,
+          0.063463
+        ]
+      },
+      "EXP86_1_Phys_3Fam_D28": {
+        "delta": 0.047684,
+        "ci95": [
+          0.040794,
+          0.054906
+        ]
+      },
+      "EXP86_2_WingCrack_3Fam_D28": {
+        "delta": -0.002797,
+        "ci95": [
+          -0.008005,
+          0.0022
+        ]
+      },
+      "EXP86_3_FVMB_Dink_SingleRegime": {
+        "delta": -0.002777,
+        "ci95": [
+          -0.007843,
+          0.002294
+        ]
+      }
+    }
+  },
+  "leakage_canary": {
+    "passed": true,
+    "channels_tested": 72,
+    "max_symmetric_auc": 0.733445,
+    "max_channel": "wc_collinear_cont_short",
+    "ceiling": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 31,
+    "pre_placement_surface_unique": true,
+    "pre_placement_max_abs_spearman": 0.143302,
+    "pre_placement_max_3px_overlap": 0.560293,
+    "final_dots_unique": true,
+    "final_dots_max_abs_spearman": 0.048042,
+    "final_dots_max_spearman_peer": "/home/user/GEMSDOE86/.cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+    "final_dots_max_3px_overlap": 0.683099,
+    "final_dots_max_overlap_peer": "/home/user/GEMSDOE86/.cache/gems_data/scored/GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+    "spearman_limit": 0.9,
+    "overlap_3px_limit": 0.7
+  },
+  "submission_artifact": {
+    "tif_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+    "tif_submissions_copy": "submissions/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+    "tif_bytes": 146282,
+    "raster_sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+    "zip_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip",
+    "zip_bytes": 113465,
+    "zip_sha256": "5c14d8f91dc49a5810fe228190c2bdc7ca22fc97faa2f76d44474d02787ebe12",
+    "emitted_positive_pixels": 38400,
+    "footprint_fraction": 0.007431242141800099,
+    "nw_ne_dot_fraction": 0.499766,
+    "non_lidar_24pct_dot_fraction": 0.249661,
+    "min_distance_to_catalogue_px": 1.0,
+    "median_distance_to_catalogue_px": 7.0711,
+    "submission_name": "GEMS86-H86-FVMB-TRIDINK-38400",
+    "submission_note": "H86-FVMB iSPI dip-pullback + Sibson fault-valve + \u00b122deg wingcrack SAR-PU + TriRegime Dinkelbach; 38400d; HOLDOUT-DTI 0.1458",
+    "submission_note_chars": 124
+  },
+  "validator_output": {
+    "file": "/home/user/GEMSDOE86/submissions/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+    "bytes": 146282,
+    "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0031272496562451124,
+    "emitted_positive_pixels": 38400,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 38400,
+    "footprint_fraction": 0.007431242141800099
+  }
+}
