@@ -1,0 +1,200 @@
+"""PRUNE-axis geometry, the parent rebuild, and the shipped release twins.
+
+The artifact tests re-read every committed ``releases/*.tif`` and re-derive the
+gates from the bytes, so a release that drifts (wrong grid, mass on the
+catalogue, a dot added rather than removed) fails CI rather than a reviewer.
+"""
+import csv
+import json
+from pathlib import Path
+
+import numpy as np
+import pytest
+import rasterio
+
+from gems57.validate import validate
+from src.gems86 import prune as P
+
+ROOT = Path(__file__).resolve().parents[1]
+BRIDGE = ROOT / "data" / "bridge"
+RELEASES = ROOT / "releases"
+FLEET = ROOT / "data" / "scored_fleet"
+PARENT = FLEET / "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+BASE = FLEET / "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+
+
+def _read(path):
+    with rasterio.open(path) as ds:
+        return ds.read(1)
+
+
+def _grid():
+    from gems57.grid import load_grid
+    return load_grid(BRIDGE)
+
+
+# --------------------------------------------------------------------------- geometry
+
+def test_catalogue_distance_is_euclidean_in_pixels():
+    cat = np.zeros((7, 7), bool)
+    cat[0, 0] = True
+    d = P.catalogue_distance(cat)
+    assert d[0, 0] == 0.0
+    assert d[0, 3] == 3.0
+    assert d[3, 0] == 3.0
+    assert d[3, 3] == pytest.approx(np.sqrt(18))
+
+
+def test_empty_catalogue_is_rejected():
+    with pytest.raises(ValueError):
+        P.catalogue_distance(np.zeros((4, 4), bool))
+
+
+def test_shell_ladder_removes_the_expected_cells():
+    cat = np.zeros((9, 9), bool)
+    cat[4, 4] = True
+    d = P.catalogue_distance(cat)
+    dots = np.zeros((9, 9), bool)
+    dots[4, 5] = dots[5, 5] = dots[4, 6] = dots[6, 5] = dots[4, 7] = True
+    assert set(np.round(d[dots], 6)) == {1.0, round(float(np.sqrt(2)), 6), 2.0,
+                                        round(float(np.sqrt(5)), 6), 3.0}
+    kept = {name: int(P.prune_mask(dots, d, rung["upper"]).sum()) for name, rung in P.RUNGS.items()}
+    assert kept == {"r150": 3, "r225": 1, "r283": 1, "r300": 0}
+
+
+def test_rungs_are_nested():
+    rng = np.random.default_rng(7)
+    cat = np.zeros((60, 60), bool)
+    cat[rng.integers(0, 60, 5), rng.integers(0, 60, 5)] = True
+    d = P.catalogue_distance(cat)
+    dots = rng.random((60, 60)) > 0.9
+    rungs = [P.prune_mask(dots, d, P.RUNGS[k]["upper"]) for k in ("r225", "r283", "r300")]
+    assert np.all(rungs[1] <= rungs[0]) and np.all(rungs[2] <= rungs[1])
+    assert np.all(rungs[0] <= dots)
+
+
+def test_control_matches_mass_and_never_touches_the_collar():
+    cat = np.zeros((40, 40), bool)
+    cat[20, 20] = True
+    d = P.catalogue_distance(cat)
+    dots = np.zeros((40, 40), bool)
+    dots[20, 20:23] = True            # collar dots at 1,2 px
+    dots[2:12, 2:12] = True           # far field
+    ctl = P.mass_matched_control(dots, d, 10, keep_above=3.0, seed=1)
+    assert int(ctl.sum()) == int(dots.sum()) - 10
+    assert np.all(ctl[20, 20:23])     # collar untouched
+    with pytest.raises(ValueError):
+        P.mass_matched_control(dots, d, 10_000, keep_above=3.0, seed=1)
+
+
+def test_dot_digest_is_position_sensitive_and_stable():
+    a = np.zeros((5, 5), bool); a[1, 1] = True
+    b = np.zeros((5, 5), bool); b[1, 2] = True
+    assert P.dot_digest(a) == P.dot_digest(a.copy())
+    assert P.dot_digest(a) != P.dot_digest(b)
+
+
+def test_prune_variants_may_only_delete():
+    cat = np.zeros((20, 20), bool); cat[10, 10] = True
+    d = P.catalogue_distance(cat)
+    parent = np.zeros((20, 20), bool); parent[10, 11] = True
+    child = parent & (d > 1.5)
+    stats = P.diff_stats(parent, child, d)
+    assert stats["n_added"] == 0
+    added = parent.copy(); added[13, 13] = True
+    with pytest.raises(ValueError):
+        P.diff_stats(parent, added, d)
+
+
+# --------------------------------------------------------------------------- algebra
+
+def test_collar_prune_decision_rule_against_the_shared_metric():
+    """The decision rule the ladder is built on, checked against the real metric.
+
+    A dot that earns no kernel credit only adds false-positive mass, so deleting
+    it can never lower DTI. A dot that is the only cover of a truth cell *can*
+    lower DTI when deleted. Both directions are asserted, not assumed.
+    """
+    from gems57 import metric
+    truth = np.zeros((40, 40), bool)
+    truth[5, 5] = truth[35, 35] = True          # two isolated truth cells
+
+    cover = np.zeros((40, 40), bool)
+    cover[5, 5] = True                          # covers one truth cell completely
+    base = metric.dti_exact(cover.astype(np.float32), truth)["dti"]
+    assert 0.0 < base < 1.0
+
+    # a zero-credit dot (>3 px from every truth cell) only adds false-positive mass
+    dead = cover.copy(); dead[20, 20] = True
+    assert metric.dti_exact(dead.astype(np.float32), truth)["dti"] < base
+
+    # a dot 2 px from the uncovered truth cell earns 1/3 and pays for itself
+    payoff = cover.copy(); payoff[35, 37] = True
+    assert metric.dti_exact(payoff.astype(np.float32), truth)["dti"] > base
+
+    # the marginal-inclusion bar quoted in the brief, on the shared metric
+    bar = metric.marginal_inclusion_threshold(base)
+    assert bar == pytest.approx(0.2 * base)          # the brief's "credit > 0.2 * DTI"
+    assert metric.kernel(2.0) > bar                  # a 2 px dot still pays here
+    assert metric.kernel(3.0) < bar
+
+
+# --------------------------------------------------------------------------- parent + releases
+
+@pytest.mark.skipif(not (PARENT.is_file() and BASE.is_file()), reason="pinned fleet rasters absent")
+def test_parent_dot_set_is_reproduced_pixel_for_pixel():
+    g = _grid()
+    d = P.catalogue_distance(g.catalogue)
+    rebuilt = P.prune_mask(_read(BASE) > 0, d, 2.0)
+    published = _read(PARENT) > 0
+    assert int((rebuilt != published).sum()) == 0
+    assert int(rebuilt.sum()) == 37654
+    assert P.dot_digest(rebuilt) == P.dot_digest(published)
+
+
+@pytest.mark.skipif(not (PARENT.is_file() and BASE.is_file()), reason="pinned fleet rasters absent")
+def test_parent_file_is_reproduced_byte_for_byte(tmp_path):
+    """The brief's gate: rebuild R0 and match its sha256, not just its dot set."""
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from scripts.run_prune_ladder import write_with_profile
+    g = _grid()
+    d = P.catalogue_distance(g.catalogue)
+    rebuilt = P.prune_mask(_read(BASE) > 0, d, 2.0).astype(np.float32)
+    out = tmp_path / "r0_rebuild.tif"
+    sha = write_with_profile(out, np.where(g.footprint, rebuilt, np.float32(0.0)), None)
+    assert sha == "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    assert out.stat().st_size == 219065
+
+
+@pytest.mark.skipif(not RELEASES.is_dir(), reason="no releases written")
+def test_every_release_passes_the_shared_validator_and_the_axis_contract():
+    g = _grid()
+    parent = _read(PARENT) > 0
+    shas = set()
+    ledger = {r["sha256"] for r in csv.DictReader(open(ROOT / "ledger" / "submissions.csv")) if r["sha256"]}
+    zeros = sorted(RELEASES.glob("*-zeros.tif"))
+    if not zeros:
+        # rasters are gitignored (data-use policy): rebuild with scripts/run_prune_ladder.py
+        pytest.skip("no zeros twins in the working tree; receipts alone cannot re-derive the gates")
+    for path in zeros:
+        receipt = json.loads(path.with_suffix(".json").read_text())
+        rec = validate(path, g.footprint, g.catalogue)
+        assert rec["all_checks_passed"], (path.name, rec["checks"])
+        assert rec["on_catalogue_positive_pixels"] == 0
+        assert rec["sha256"] == receipt["zeros"]["sha256"]
+        assert rec["sha256"] in ledger
+        shas.add(rec["sha256"])
+        dots = _read(path) > 0
+        assert int(dots.sum()) == receipt["n_dots"]
+        assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
+        stats = P.diff_stats(parent, dots, P.catalogue_distance(g.catalogue))
+        assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
+        assert 1.0 <= stats["pct_changed"] <= 50.0
+        assert P.dot_digest(dots) == receipt["dot_digest"]
+        # spec-form twin: same dots, NaN only outside the footprint
+        nan = _read(RELEASES / (path.name.replace("-zeros.tif", ".tif")))
+        assert np.array_equal(np.nan_to_num(nan) > 0, dots)
+        assert np.all(np.isnan(nan[~g.footprint]))
+        assert np.all(np.isfinite(nan[g.footprint]))
+    assert len(shas) == len(zeros), "release twins must be distinct from each other"

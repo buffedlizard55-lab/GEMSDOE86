@@ -8,6 +8,19 @@
 - **Built:** `h33-h33-2-b2-prune3-20261023-01d57649`, PRUNE≤3 + fixed-count refill, 37,654 dots, 11.5313% changed; format PASS, zero catalogue mass, status BUILT—not slot-approved. Prediction **−0.004 MODEL**; fold-fair catalogue PROXY Δ **−0.00428** and SGMC PROXY Δ **−0.00169**, never live scores.
 - **Next 3 slots:** (1) PRUNE3 per `docs/SUBMIT.md`; (2) MASS−10%, unbuilt; (3) MASS+10%, unbuilt and conditional. See `SLOT_PLAN.md`; missing human inputs are listed in `IRREGULARITIES.md`.
 
+## CURRENT STATE (2026-10-23, PRUNE ladder — second session)
+
+| field | value |
+|---|---|
+| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots — **CLAIM 0.2778, no receipt** |
+| Parent rebuild | **byte-identical**: `deflate/predictor=3/zlevel=9/tiled 256` re-encodes the rebuilt dot set to 219,065 B = sha256 `c55bafc4…`; dot set also exact (0 of 12,279,160 cells differ) |
+| Best **receipt** | none — every scored row in `ledger/submissions.csv` is a CLAIM |
+| `TOP_PUBLIC` / slots left | **blank — human fills from the leaderboard** (3/week, one blind final, 2026-12-03) |
+| Built | `(PRUNE, √5)`, `(PRUNE, √8)`, `(PRUNE, 3.0 no-refill)` + mass-matched control; `(PRUNE,3)+refill` came from the earlier session — see [SLOT_PLAN.md](SLOT_PLAN.md), [ledger/variant-cards.md](ledger/variant-cards.md) |
+| Predicted (MODEL) | +0.001 / +0.003 / +0.004 live; every band crosses zero and stays under the 0.01 evidence floor. PRUNE is a **one-slot axis** |
+| Upload | [docs/SUBMIT.md](docs/SUBMIT.md); verify by rebuilding — rasters are gitignored, hashes are not |
+| Open | IR-86-PRUNE-03 (literal-overlap stop), IR-86-PRUNE-06 (two sessions built `(PRUNE,3)`; one belongs in a slot), IR-86-PRUNE-05 (SNAP/RELIEF/MASS/CONCENTRATION need the absent 419 MB feature stack) |
+
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 
 **Read this README, [PROMPT.md](PROMPT.md), and the current request archive below at the start of every session.**
