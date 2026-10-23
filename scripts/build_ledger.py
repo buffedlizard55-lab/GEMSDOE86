@@ -128,7 +128,7 @@ def variant_rows() -> list[dict]:
     """
     out = []
     entries = []
-    for name in ("variants.json", "variants_external.json", "variants_snap.json"):
+    for name in ("variants.json", "variants_external.json", "variants_mass.json", "variants_snap.json"):
         src = LEDGER / name
         if src.is_file():
             entries += json.loads(src.read_text(encoding="utf-8"))

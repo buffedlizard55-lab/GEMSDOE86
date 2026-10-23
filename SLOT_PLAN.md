@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (PRUNE ladder + SNAP, three axes reconciled)
+# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS, four axes reconciled)
 
 **No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
 ([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
@@ -19,9 +19,20 @@ which is the blind final pick. The date is user-supplied and **UNVERIFIED**.
   coverage cost (dots < 2 px apart: 0 → 3,448 / 8,341 / 2,085). **Do not spend slot 1 on SNAP.**
   It is worth one slot only as a deliberate probe of the unmeasurable live hypothesis: "new
   faults are at potential-field edges rather than at catalogue-adjacent positions".
-* **MASS / CONCENTRATION / RELIEF / SPACING** — unbuilt. MASS stays blocked (R0's per-dot
-  ranking is not recoverable from a rebuild, IR-86-PRUNE-02). RELIEF and CONCENTRATION need no
-  ranking and no new data.
+* **CONCENTRATION / RELIEF / SPACING** — unbuilt. They need no ranking and no new data.
+  MASS is built (next paragraph).
+
+**MASS is now built (2026-10-23, this session).** The parent ranking that blocked it
+(IR-86-PRUNE-02) was rebuilt from the recorded recipe (FIFO-BFS visit order of
+`gems27.thinning`) and *validated*: greedy 2.8 px thinning in that order reproduces the
+pinned `d2.8` set exactly (44,090 dots, 0 differing cells). Two variants, each 9.9989 %
+changed, both gate-clean in `releases/mass/`: `…-massminus10-…-42b4c5c8` (33,889 dots,
+**−0.003 MODEL**) and `…-massplus10-…-a5888761` (41,419 dots, **−0.006 MODEL**). Both are
+predicted to *lose*, so MASS gets **no slot by default** — R0's 37,654 looks near a local
+mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`; run card:
+`evidence/mass_axis_20261023.json`. Spend a MASS slot only if PRUNE and SNAP/RELIEF both
+come back flat and the mass question becomes the binding one; then take `massminus10`
+(its falsifier is the sharper of the two) and never both.
 
 ## Next three slots, in order
 

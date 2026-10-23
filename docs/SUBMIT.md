@@ -18,8 +18,8 @@ gitignored (unchecked data-use terms); hashes below are the authority.
 ## Slot 2 — CONCENTRATION on 5 km blocks (not built yet)
 
 Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
-target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS stays
-blocked: R0's per-dot ranking cannot be recovered from a rebuild (IR-86-PRUNE-02).
+target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
+built (section below) but is not the slot-2 recommendation.
 
 ## Slot 3 — SNAP, built and gated, predicted **negative**
 
@@ -35,6 +35,22 @@ of these buys a test of an unmeasured *live* hypothesis — "new faults sit at p
 edges, not where the field put its dots" — not an expected gain. If the human does not want to
 spend a weekly slot on a predicted-negative probe, skip slot 3 and go to slot 2.
 Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt as `note`.
+
+## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
+
+Upload, if the human overrules the default in [SLOT_PLAN.md](../SLOT_PLAN.md), the `-zeros`
+twin; the `-nan` twin carries identical dots. TIFFs are local-only and gitignored.
+
+| Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |
+|---|---|---|---|---|
+| MASS −10 % (drop traversal-tail) | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif` | `6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde` | `releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif` | `42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779` |
+| MASS +10 % (add next-ranked cells) | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif` | `45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347` | `releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif` | `a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481` |
+
+Form notes (≤140 chars): minus (107): `R0 h33-h33-2-b2 MASS-10%: drop 3765 lowest-priority
+traversal-tail dots, 33889 left; predicted -0.003 MODEL`; plus (115): `R0 h33-h33-2-b2
+MASS+10%: add 3765 next-ranked H19-5 cells, d>2px off catalogue, 41419 dots; predicted
+-0.006 MODEL`. Re-verify any time: `.venv/bin/python scripts/build_mass_axis.py --measure`
+(gates re-read from disk) and `.venv/bin/python scripts/build_ledger.py --check`.
 
 ## Cheap defaults, already built and gated (only if slot 2 is not ready)
 

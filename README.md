@@ -2,18 +2,19 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE ladder + SNAP axis; four sessions reconciled)
+## CURRENT STATE — 2026-10-23 (PRUNE + SNAP + MASS; five sessions reconciled)
 
 | Field | Value |
 |---|---|
 | Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** again this session from the pinned base `gems28-h27-4-r1-solo-d2-8` (40,199 → 37,654, 0 differing pixels, same sha256). Live **0.2778 is CLAIM**, not RECEIPT. |
-| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 10 built rows, all `MODEL`). |
+| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 11 built rows, all `MODEL`; 1 withdrawn). |
 | TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
 | Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
-| Built (9 gate-clean + 1 withdrawn, none slot-approved) | **PRUNE:** `le2p236` (36,713 dots), `le2p828` (36,043), `le3p000` (35,483, **+0.004 MODEL**), mass control; `prune3-…-01d57649` (37,654, refill, −0.004); `prune4-…-de4c2a98` (33,829, −0.008); `prune3r-…-8c20bd7e` (37,654, −0.003); `prune3-…-3eb29af5` **withdrawn** (IR-86-PRUNE-08). **SNAP (new):** `SNAP-r1p000` (−0.004), `SNAP-r2p000` (−0.006), `SNAP-r2p000-grav` (−0.004), all 37,654 dots, all MODEL. |
+| Built (11 gate-clean + 1 withdrawn, none slot-approved) | **PRUNE:** `le2p236` (36,713 dots), `le2p828` (36,043), `le3p000` (35,483, **+0.004 MODEL**), mass control `…-CONTROL-massctl2171`; `prune3-…-01d57649` (37,654, refill, −0.004); `prune4-…-de4c2a98` (33,829, −0.008); `prune3r-…-8c20bd7e` (37,654, −0.003); `prune3-…-3eb29af5` **withdrawn** (IR-86-PRUNE-08). **SNAP:** `SNAP-r1p000` (−0.004), `SNAP-r2p000` (−0.006), `SNAP-r2p000-grav` (−0.004), all 37,654 dots, all MODEL. **MASS (new):** `massminus10-…-42b4c5c8` (33,889, −0.003), `massplus10-…-a5888761` (41,419, −0.006), both 9.9989 % changed, all MODEL. |
 | SNAP outcome | **Negative as an instrument.** 97–99 % of R0's dots move, but a random-response null control scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing it makes it worse (−0.0018 / −0.0032). Snapping re-centres the field on gradient maxima the proxy cannot tell from chance, and costs coverage (dots < 2 px apart 0 → 3,448 / 8,341 / 2,085). Full card: [ledger/variant-cards.md](ledger/variant-cards.md), evidence: `evidence/snap_axis_20261023.json`. |
-| Next 3 slots | 1. `releases/…-PRUNE-le3p000-…-a438e92b-zeros.tif`. 2. **CONCENTRATION on 5 km blocks** (not yet built). 3. `SNAP-r2p000` as a deliberate probe of an unmeasured live hypothesis, or a RELIEF variant. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
-| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is at its floor and cannot separate the SNAP arms from a random control (IR-86-PRUNE-03, IR-86-SNAP-02); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
+| MASS outcome | **Ranking rebuilt and validated; both variants predicted negative.** The FIFO-BFS visit order of the recorded recipe reproduces the pinned `d2.8` set exactly (44,090 dots, 0 diff), so the ranking blocker (IR-86-PRUNE-02) is resolved — but the order is a geographic traversal, not a quality ranking: the dropped 10 % is 100 % southern-half dots, the added 10 % is 100 % northern-strip cells, 98.6 % of them within 2.8 px of an existing dot (IR-86-MASS-01). Cards: `evidence/mass-mechanism.md`; run card: `evidence/mass_axis_20261023.json`. |
+| Next 3 slots | 1. `releases/…-PRUNE-le3p000-…-a438e92b-zeros.tif` (+0.004 MODEL, the only positive prediction outstanding). 2. **CONCENTRATION on 5 km blocks** (not yet built), the axis both SNAP and MASS point to. 3. The better of (1)/(2) re-cut, or a RELIEF variant; MASS and SNAP variants only as deliberate probes (all predicted ≤ −0.003). Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | The hide-and-recover proxy is at its floor and cannot separate SNAP arms from a random control (IR-86-PRUNE-03, IR-86-SNAP-02); MASS's ranking is a traversal, so a MASS receipt cannot be attributed to mass alone (IR-86-MASS-01); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
 
 <!-- CURRENT_STATE_END -->
 
