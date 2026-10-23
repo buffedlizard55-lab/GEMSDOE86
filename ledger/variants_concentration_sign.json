@@ -1,0 +1,50 @@
+[
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-concspr15-20261023-6d452f96",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "sha8": "6d452f96",
+    "parent": "h33-h33-2-b2",
+    "axis": "CONCENTRATION",
+    "value": "spr15",
+    "pct_changed": 29.999,
+    "sha256_zeros": "6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843",
+    "status": "BUILT",
+    "predicted_change": "-0.030 MODEL (five-truth-model mean; range -0.064..+0.011, uncalibrated upper bounds). Spread: 5,648 dots leave the highest-prior 1km blocks for the lowest-prior occupied ones. Loses iff new-fault truth is catalogue-adjacent, gains iff it is in unmapped ground.",
+    "receipt_score": "",
+    "source_url": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-concdens15-20261023-f8e7ae42",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "sha8": "f8e7ae42",
+    "parent": "h33-h33-2-b2",
+    "axis": "CONCENTRATION",
+    "value": "dens15",
+    "pct_changed": 29.999,
+    "sha256_zeros": "f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b",
+    "status": "BUILT",
+    "predicted_change": "+0.026 MODEL (five-truth-model mean; range -0.011..+0.047). Dense: mirror of spr15, and a band-free-prior replication of PR #37's conc15 (+0.006 MODEL on the SGMC surrogate).",
+    "receipt_score": "",
+    "source_url": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-concrand15-20261023-fcbae067",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "sha8": "fcbae067",
+    "parent": "h33-h33-2-b2",
+    "axis": "CONCENTRATION",
+    "value": "rand15",
+    "pct_changed": 29.622,
+    "sha256_zeros": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+    "status": "CONTROL",
+    "predicted_change": "-0.014 MODEL (control, never a slot). Same source dots as spr15, random occupied destination blocks: isolates how much of spr15's loss is the *source* rather than the destination rule.",
+    "receipt_score": "",
+    "source_url": ""
+  }
+]

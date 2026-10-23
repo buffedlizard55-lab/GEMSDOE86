@@ -5,20 +5,21 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Current slot order after MASS-econ, TRACKB and 5 km CONCENTRATION — **supersedes older headings below**
+## Current slot order after CONCENTRATION sign + 5 km arms — **supersedes older headings below**
 
-The session's instrument audit (evidence/mass_instrument_monotonicity.json) shows the SGMC MODEL
-surrogate is monotone in dot count, so no mass-changing artefact may be ranked on it. The count-fixed
-pair is therefore the only above-floor comparison this repository has built:
+The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models
+are uncalibrated and every number remains MODEL. The MASS instrument audit separately shows that
+mass-changing reads are partly mass readings; neither audit licenses an automatic upload.
 
-1. **RELIEF front +15 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
-   (card below; count fixed, +0.0017 MODEL).
-2. **RELIEF front −10 %** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e-zeros.tif`
-   (−0.0089 MODEL). Slots 1 + 2 are **one experiment**: the pair's predicted separation (~0.011) is
-   the only one that clears the 0.01 evidence floor.
-3. **CONCENTRATION `b1km-move15`** — `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
-   (count fixed, +0.006 MODEL). PRUNE is demoted because its mass-changing read is confounded by the
-   instrument audit. The 5 km arms below are not substitutes: their SGMC reads are negative.
+1. **CONCENTRATION `dens15`** — `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
+   (+0.026 MODEL, −0.011…+0.047; exact name/note/hash in the sign section below).
+2. **CONCENTRATION `spr15`** — `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
+   (−0.030 MODEL, −0.064…+0.011). Slots 1+2 are **one sign experiment**, not two expected gains.
+3. **PRUNE `le3p000`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
+   (+0.004 MODEL, mass-confounded; historical 0.2708→0.2778 direction is CLAIM only).
+
+RELIEF `frontp15/frontm10` is the fallback pair. Original `b1km-move15` and SPACING are later
+probes. The new 5 km arms are audit artifacts, not substitutes for the sign pair.
 
 **The MASS-econ session's three files are NOT for upload** (mass-changing on an instrument that
 cannot rank mass). If one is ever used, it must be `plus10pct-extend`, never the control:
@@ -36,7 +37,7 @@ values in {0, 1} inside the 5,167,373-cell footprint, NaN (spec form) or 0 (fall
 `evidence/mass_econ_axis_20261023.json` (`gates.*.read_back`), plus the `*.receipt.json` beside each
 TIFF. Hashes above are the authority because the TIFFs are gitignored.
 
-## PRUNE ≤ 3.000 px — demoted by the mass-instrument audit (nested ladder, PR #29)
+## Slot 3 — PRUNE ≤ 3.000 px (mass-confounded MODEL; nested ladder, PR #29)
 
 - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros`
 - Upload: `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
@@ -46,7 +47,7 @@ TIFF. Hashes above are the authority because the TIFFs are gitignored.
 - Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
   shallower first edit.
 
-## Slots 1–2 — RELIEF paired experiment (`front+15pct` card; `front−10pct` below)
+## Fallback pair — RELIEF (`front+15pct` card; `front−10pct` below)
 
 - File: `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
 - SHA-256: `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` (214,315 bytes);
@@ -213,7 +214,7 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
 *negative* against a random-response null. Both are `BUILT-DUPLICATE` in
 `ledger/submissions.csv`; they exist for audit only.
 
-### Slot 3 — CONCENTRATION, 1 km blocks
+### Later alternative — CONCENTRATION, original 1 km `b1km-move15`
 
 - **File:** `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
   (nan-outside twin: `releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif`)
@@ -231,8 +232,8 @@ be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, a
   highest-prior fifth (10,462 blocks), count fixed at 37,654, all placements at the parent's
   2.828 px spacing, placement geometric only. Block-density CV 0.6235 → 0.7644.
 - **Prediction:** +0.006 MODEL (+0.003…+0.010). Not a score.
-- **Where it sits in the plan:** **slot 3** in the current `SLOT_PLAN.md`, after the two-file
-  RELIEF paired experiment. It is not auto-approved and has no receipt.
+- **Where it sits in the plan:** a later alternative to `dens15`, outside the current next three.
+  It is not auto-approved and has no receipt.
 
 Release TIFFs are gitignored (data-use terms unchecked), so they exist only in this working copy;
 the JSON receipts next to them carry the digests. Rebuild with the commands in `AI_USE.md`.
@@ -286,3 +287,41 @@ rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token
 - Trace geometry for a geologist: `releases/trackb/…-73f10581-traces.geojson` (300 strands, one
   `evidence_paragraph` property each). Local-only; the receipt records the 12 strongest.
 - Do **not** upload two TRACKB files in one week, and only after slots 1–3 in `SLOT_PLAN.md`.
+
+## CONCENTRATION sign experiment — three files, none slot-approved (2026-10-23)
+
+Parent R0 `h33-h33-2-b2` (`c55bafc4…`, 37,654 dots). Each file relocates 5,648 dots (15.00 %) at
+1 km blocks, count fixed, 29.999 % of cells changed, all placements at the parent's 2.828 px floor,
+new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechanism.md`; run card
+`evidence/concentration_sign_20261023.json`. Format gate PASS on both twins of all three files
+(template validator + values + catalogue clearance + new-mass clearance + hash-newness + re-read).
+
+### `gems86-h33-2b2-concdens15-20261023-f8e7ae42` — candidate
+
+- Upload (one file only): `gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
+- SHA-256: `f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b` (314,048 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concdens15-20261023-f8e7ae42.tif`, `dc45662372ab4b6ab0c5fda791e1d9bb3db3f3bbc75c3beea4e827a53b175d7f` (366,803 bytes)
+- Submission name (43 ch): `gems86-h33-2b2-concdens15-20261023-f8e7ae42`
+- Note (83 ch): `R0 dens15: cluster-dense 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
+- 37,654 dots, 29.999 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concdens15-20261023-f8e7ae42` (MODEL class, band crosses zero).
+
+### `gems86-h33-2b2-concrand15-20261023-fcbae067` — control
+
+- Upload (one file only): `gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif`
+- SHA-256: `fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c` (313,157 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concrand15-20261023-fcbae067.tif`, `f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992` (366,030 bytes)
+- Submission name (43 ch): `gems86-h33-2b2-concrand15-20261023-fcbae067`
+- Note (90 ch): `R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed`
+- 37,654 dots, 29.622 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concrand15-20261023-fcbae067` (MODEL class, band crosses zero).
+
+### `gems86-h33-2b2-concspr15-20261023-6d452f96` — candidate
+
+- Upload (one file only): `gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
+- SHA-256: `6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843` (310,477 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concspr15-20261023-6d452f96.tif`, `f72eb6a6c927dff74c882858b0f314294f9421875d4d968d8778fe1aaa4d04e3` (363,404 bytes)
+- Submission name (42 ch): `gems86-h33-2b2-concspr15-20261023-6d452f96`
+- Note (83 ch): `R0 spr15: cluster-spread 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
+- 37,654 dots, 29.999 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).

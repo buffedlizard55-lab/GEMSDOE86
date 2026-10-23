@@ -327,7 +327,7 @@ SGMC read. A synthetic 110×110 regression grid now exercises the remainder stri
 column remainder issue in the older 1 km implementation; no historical 1 km artifact was rebuilt
 or relabelled here.
 
-## IR-86-CONC-06 — positive catalogue-recovery PROXY conflicts with support and independent control
+## IR-86-CONC-09 — positive catalogue-recovery PROXY conflicts with support and independent control
 
 **Observed.** All three 5 km arms place **0% of their added cells** on pinned `gems19-h19-5`, the
 support surface from which R0's lineage was thinned; all source cells are on it. Meanwhile pooled
@@ -561,3 +561,33 @@ record is the per-file `-zeros.json` receipt (trace table, length/azimuth/catalo
 and the 12 strongest traces) plus `evidence/trackb_axis_20261023.json`.
 **Cost:** the full 300-trace geometry lives only in the workspace; CI cannot regenerate it without the
 pinned parent (which is itself local-only).
+
+## IR-86-CONC-06 — the CONCENTRATION prior is band-free this session, so `dens15` is not a replication of `conc15`
+`variants.block_prior()` needs two terms: catalogue fault-interaction density **and** the mean Sobel
+gradient of upward-continued TMI. The second comes from `training_features.tif` (419 MB), which is
+absent from this checkout (`.cache/gems_data` does not exist), so this session's prior is the
+catalogue term only. **Decision:** build the prior that the data support, add a matched
+same-dose arm in *both* prior directions under that prior (`concdens15`, `concspr15`) plus a
+random-block control, and log that `concdens15` is a **paired calibration**, not a replication of
+`conc15`'s `+0.006 MODEL`; the difference between the two arms is the only quantity that isolates
+the prior's sign from the missing band. The absent SGMC raster also means no SGMC control gate
+this session. **Cost to the next session:** if `dens15` and `conc15` disagree, the TMI term is the
+first suspect and cannot be tested until the feature stack is restored.
+
+## IR-86-CONC-07 — this axis's sign is not measurable with any instrument in this repo, only with a live receipt
+The five-truth-model panel puts `spr15`/`dens15` at −0.064/+0.047 under catalogue-adjacent truth
+and +0.011/−0.011 under uniform far-field truth. Hide-and-recover, the SGMC off-catalogue DTI and
+the H19-5 support surface are *all* built from the mapped-fault record that the organiser masks at
+scoring time, so all three favour "mass near mapped faults" by construction and cannot rank these
+arms. **Decision:** the plan treats one live slot as the only admissible test and spends at most
+one slot per direction; no local instrument is reported as evidence for either sign. **Cost:**
+every prediction for this axis is MODEL-class and its band crosses zero from either side.
+
+## IR-86-CONC-08 — the block-density CV band is not reachable at the doses brief §5 allows
+CV is non-monotone in dose (0.5970 at 5 %, 0.6136 at 15 %, 0.6722 at 30 %; parent 0.6235) and
+*every* arm — spread included — reduces the number of occupied 1 km blocks (15,976 → 13,297), because
+destinations are confined to a fixed prior fifth of the occupied blocks. **Decision:** the
+0.51–0.59 band is recorded as an unverified CLAIM and is not used to choose a dose; the reported CV
+is accompanied by the occupied-block count so the two cannot be read as one variable. **Cost:**
+a future arm that wants to test the band must place mass in *unoccupied* low-prior blocks, which is
+exactly the placement `GEMSDOE81 cont-poisson44090` scores 0.0041 with (CLAIM).
