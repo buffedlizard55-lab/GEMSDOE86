@@ -249,6 +249,20 @@ stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:
 `pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
 rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.
 
+## TRACKB (built this session, self-assigned axis — **no slot requested**)
+
+- Files (local, gitignored): `releases/h33-h33-2-b2-20261004-e5eb6e7e-TRACKB-c15len1km-20261023-73f10581-zeros.tif`
+  and the `.tif` spec twin; the two companion rungs are `…-TRACKB-c10len1km-…-b1e1caf1` and
+  `…-TRACKB-c25len1km-…-831ce9cd` (same parent, same rules, corridor 1.0 / 2.5 px).
+- Submission name / note: read both from the adjacent `-zeros.json` (`submission_name`, `note`);
+  the note is `R0 h33-h33-2-b2-20261004-e5eb6e7e; TRACKB corridor 1.5 px, traces >=1 km, 1246 dots extended along strike; pred +0.001 MODEL`
+  (135 characters, under the 140 limit).
+- Prediction: **+0.0008 (MODEL)**, quadrant range +0.0004 … +0.0020 (4/4). Below the 0.01 evidence
+  floor, so a slot buys a *Phase-2 probe*, not a Phase-1 bet. The `c25len1km` rung reads **−0.0007**.
+- Trace geometry for a geologist: `releases/trackb/…-73f10581-traces.geojson` (300 strands, one
+  `evidence_paragraph` property each). Local-only; the receipt records the 12 strongest.
+- Do **not** upload two TRACKB files in one week, and only after slots 1–3 in `SLOT_PLAN.md`.
+
 ## CONCENTRATION sign experiment — three files, none slot-approved (2026-10-23)
 
 Parent R0 `h33-h33-2-b2` (`c55bafc4…`, 37,654 dots). Each file relocates 5,648 dots (15.00 %) at
@@ -286,4 +300,3 @@ new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechani
 - Note (83 ch): `R0 spr15: cluster-spread 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
 - 37,654 dots, 29.999 % of cells changed; gates passed: True.
 - Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).
-
