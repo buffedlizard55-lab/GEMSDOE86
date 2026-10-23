@@ -131,9 +131,14 @@ def test_every_mass_release_passes_the_brief_gates():
 def test_mass_ledger_rows_exist_and_carry_predictions():
     rows = [r for r in csv.DictReader((ROOT / "ledger" / "submissions.csv").open(encoding="utf-8"))
             if r["axis"] == "MASS"]
-    assert {r["value"] for r in rows} == {"minus10pct", "plus10pct"}
+    # the traversal-ranked pair (this file's session) must be present; the kernel-budget session
+    # (2026-10-23, ledger/variants_mass_econ.json) adds three rows on the same axis, one a CONTROL.
+    assert {"minus10pct", "plus10pct"} <= {r["value"] for r in rows}
+    assert {"minus10pct-marginal", "plus10pct-extend",
+            "plus10pct-extend-rand"} <= {r["value"] for r in rows}
     for r in rows:
-        assert r["status"] == "BUILT" and r["evidence_class"] == "MODEL"
+        expected = "CONTROL" if r["value"].endswith("-rand") else "BUILT"
+        assert r["status"] == expected and r["evidence_class"] == "MODEL"
         assert "MODEL" in r["predicted_change"] and r["score"] == ""
         assert 1.0 <= float(r["pct_changed"]) <= 50.0
     card = json.loads((ROOT / "evidence" / "mass_axis_20261023.json").read_text(encoding="utf-8"))

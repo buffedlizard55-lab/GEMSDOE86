@@ -39,5 +39,7 @@ registry/submissions/
 /releases/mass/*.zip
 /releases/axis86/*.tif
 /releases/axis86/*.zip
+/releases/mass86/*.tif
+/releases/mass86/*.zip
 
 tmp_session/
