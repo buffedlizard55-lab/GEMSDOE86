@@ -157,3 +157,19 @@ rule was *not applied* because brief v2 §6 forbids it, and that conflict stays 
 **What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
 remaining rolling-week quota, R0's receipt if one exists, the receipt score/date after an upload,
 the data-use decision on the tracked competition rasters (IR-86-PRUNE-04), and the final blind pick.
+
+---
+
+## Addendum — SNAP gain-gated build (branch `arena/f863bee8-gemsdoe86`, PR #32)
+
+**AI wrote:** `src/gems86/snap_gated.py`, `scripts/build_r0_snap.py`,
+`tests/test_snap_gated_axis.py`, `evidence/r0-snap-mechanism.md`, the generated gated
+evidence/ledger files, and the gated addenda in `README.md`, `SLOT_PLAN.md`,
+`docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-86-SNAP-08…10), reconciled across PR #31
+(SNAP), PR #33 (MASS), PR #34 (SNAP magnetic) and PR #36 (RELIEF) as they merged.
+
+**AI decided (human can veto):** took SNAP from the slot plan when the AXIS prompt was
+skipped; withdrew its duplicate r1/r2 pairs (no raster), demoted its one novel file
+(`snapr2g10`) to `BUILT-DUPLICATE` corroboration, and revised its MODEL centres downward
+after measuring the SGMC control (stated on the cards). No DrivenData access of any kind;
+inputs only from the sha256-pinned mirrors in `registry/data_manifest.json`.

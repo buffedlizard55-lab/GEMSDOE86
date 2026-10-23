@@ -103,6 +103,16 @@ not mistaken for untested candidates.
   5.4–5.8 %. They also drop the lineage's own ranking evidence from the 98.8th percentile of the
   restored H19-5 field to 69.7–75.1 — an independent, label-free reason to expect no gain.
 
+### Third SNAP build (gain-gated, absolute-gravity) — same verdict, no slot requested
+
+A third concurrent session built SNAP with an unsmoothed `tmi_hg`+`|iso_grav_anom_hg|`
+percentile edge and a 0.10 gain gate: `snapr2g10` (17.5 % of dots moved, mean disp. 0.34 px,
+**−0.001 MODEL**, status `BUILT-DUPLICATE`); its unconditional r1/r2 arms duplicate PR #31's
+pairs and are withdrawn with no raster (IR-86-SNAP-09). Its one new instrument, the SGMC
+off-catalogue control, degrades monotonically with snap dose (gated −0.0021, r1 −0.0032,
+r2 −0.0089 SGMC-DTI) — a third instrument, same sign. **No slot requested for any of it;**
+the plan above is unchanged. Cards: `evidence/r0-snap-mechanism.md`.
+
 ### Two axes this session proposes and did not build (neither is in the plan above)
 
 1. **KERNEL-BUDGET (spacing floor at the kernel radius, count held)** — mechanism: 30.3 % of R0's dots
