@@ -345,3 +345,90 @@ crossing-strand artefacts. Never both TRACKB files in one week.
 * **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the
   shared two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no
   replicated positive sign on untouched spatial folds, then no live receipt.
+
+## Human inputs still missing
+
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
+submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01).
+
+## Human inputs still missing for this session
+
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation on the competition page ·
+any submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01) · and, if slot 3 is to be spent on
+SPACING, whether the human accepts a **predicted +0.002** probe whose real purpose is a law-vs-chance
+test rather than a score improvement.
+
+---
+
+# Addendum — CONCENTRATION sign experiment (branch `arena/c1df93fc-gemsdoe86`), 2026-10-23
+
+**AXIS: CONCENTRATION**, self-assigned: it is the only brief-§5 axis whose built arm (`conc15`,
+PR #37, +0.006 MODEL) is a *spatial-prior* claim, and that arm's own falsifier asks for this exact
+build ("≤ −0.010 → build the spread variant instead"). Three gate-clean files, count fixed at
+37,654, 5,648 dots (15.00 %) relocated at 1 km blocks, 29.999 % of cells changed, every
+placement at the parent's 2.828 px floor, new mass ≥ 3 px off the catalogue, min clearance
+2.236 px, 0 dots on catalogue. **No slot used or requested.** Cards:
+[evidence/concentration-sign-mechanism.md](evidence/concentration-sign-mechanism.md); run card:
+`evidence/concentration_sign_20261023.json`.
+
+| arm | file (`-zeros` twin is the upload) | prediction (MODEL) | role |
+|---|---|---|---|
+| `spr15` | `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif` | **−0.030** (−0.064…+0.011) | candidate: the sign flip |
+| `dens15` | `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif` | **+0.026** (−0.011…+0.047) | candidate: mirror, band-free prior |
+| `rand15` | `releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif` | −0.014 | **CONTROL, never a slot** |
+
+## What this session changes in the plan
+
+1. **The magnitude class changes.** Every axis built so far predicted |Δ| ≤ 0.006. This one's
+   truth-model panel spans **−0.064…+0.047** on the same 15 % dose: the concentration *sign* is
+   worth up to an order of magnitude more than any arrangement or collar edit. It is also the
+   only axis whose predicted sign is set by an *assumption* (where new-fault truth sits) rather
+   than by the file, so one slot on it buys a decision, not a tweak.
+2. **The instruments cannot settle it, and now we can say why.** Hide-and-recover, the SGMC
+   off-catalogue DTI and the H19-5 support surface are all built from the same mapped-fault
+   record that the competition *masks* at scoring time. They are structurally biased toward
+   "mass near mapped faults" — which is `conc15`'s direction. This session therefore does not use
+   them to rank arms; it uses a five-truth-model panel and reports the sign flip explicitly.
+3. **The CV band claim is degenerate at 10–20 % dose.** CV is non-monotone in dose (0.5970 at
+   5 %, 0.6136 at 15 %, 0.6722 at 30 %) and *every* arm — spread included — concentrates mass
+   into fewer blocks, because destinations are a fixed fifth of the occupied blocks. The reported
+   0.51–0.59 band is only reachable at ≈5 % dose with mass placed in currently **unoccupied**
+   low-prior blocks, which is the placement `GEMSDOE81` `cont-poisson44090` (**0.0041 CLAIM**)
+   already shows can collapse the score. Treat the band as a CLAIM that the plan cannot test.
+
+## Next three slots, in order (unchanged slot 1; slots 2–3 re-ordered)
+
+| # | file | why this one | decision rule |
+|---|---|---|---|
+| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | still the only prediction that is positive **and** sits on a monotone, live-backed ladder: the collar is the one lever in the ledger with a live step behind it (0.2708 → 0.2778 after the ≤ 2 px prune). Prediction **+0.004 MODEL** | ≥ +0.010 → the collar is not exhausted, next week a 4 px rung. Inside ±0.010 → PRUNE closes for Phase 1 with its direction confirmed |
+| 2 | `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif` | **+0.026 MODEL**, the largest predicted effect available, it replicates `conc15`'s direction with a prior that needs no absent feature stack, and it is the arm all three local instruments agree with — so a receipt here is the first *independent* confirmation of the catalogue prior | ≥ +0.010 → the concentration axis is binding: the final file is `le3p000` + `dens15` as one attributable edit. Inside ±0.010 → the prior is worth nothing measurable; do not spend slot 3 on the mirror, take SPACING `strike16` instead. ≤ −0.005 → the instruments are circular: slot 3 must be `spr15` |
+| 3 | `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif` **only if** slot 2 lands ≤ −0.005 or inside ±0.010 with the human wanting the sign resolved; otherwise `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif` (+0.0020 MODEL, with its own null control already built) | the pair (slot 2 up, slot 3 down, or the reverse) is the only comparison in this repo that can separate "near mapped faults" from "unmapped ground" with two live numbers, and its predicted separation is ~0.05 | opposite signs → the prior is the lever: build the *mixture* rule (destination prior × kernel-gap) next. Both inside ±0.010 → the catalogue prior is dead for Phase 1; the remaining weeks go to the collar rungs and to one SNAP-style probe, and the final file stays R0-derived |
+
+**Do not spend a slot on** `rand15` (control), `spr30`/`dense30` dose rungs (the CV curve above
+shows 15 % is already past the CV minimum), or a second `conc15`-family arm without its mirror.
+
+## Better axes (mechanism / confounder / falsifier) — proposed, not built
+
+1. **SUPPORT-BOUNDED DE-CLUSTER** — relocate only *within* a dot's own 1 km block (largest gap
+   inside the same block). Isolates the overlap mechanism from the prior mechanism, so a flat
+   result would say block-scale arrangement is not a lever at all, independent of any prior.
+   *Confounder:* it cannot change CV at all (block counts are invariant), so it tests the kernel
+   budget only. *Falsifier:* live Δ inside ±0.005 with `strike16` also flat → arrangement axes
+   close together.
+2. **CV-TARGETED SPREAD at 5 % dose into unoccupied blocks** — the only dose/destination pair
+   that reaches the reported 0.51–0.59 band. *Confounder:* far-field placement is exactly the
+   `cont-poisson44090` collapse (0.0041), so the arm risks a −0.27 tail. *Falsifier:* live
+   Δ ≤ −0.01 → the band is a property of the files that scored well, not a cause of it.
+3. **PRIOR-MIXTURE** — destination score = z(catalogue prior) − z(distance to the lineage's own
+   support), i.e. put mass where *both* the mapped record and the geophysical field agree.
+   *Confounder:* the field itself was thinned from the same lineage, so agreement may be
+   circular. *Falsifier:* no separation from `rand15`.
+
+## Human inputs still missing
+
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation on the competition page
+· any submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01) · **and, before slot 2, whether the
+human accepts a predicted +0.026 whose sign rests on "new faults sit near mapped traces"**.

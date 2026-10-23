@@ -1,0 +1,288 @@
+{
+  "id": "gems86-h33-2b2-concrand15-20261023-fcbae067",
+  "parent": "h33-h33-2-b2",
+  "axis": "CONCENTRATION",
+  "value": "rand15",
+  "role": "control",
+  "n_dots": 37654,
+  "pct_changed": 29.622,
+  "dot_digest": "29c902b3460d4a3dd6dd0d1c2336cd1fd317bb7ec515539d2f5110506ed8e18f",
+  "nan": {
+    "path": "releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067.tif",
+    "sha256": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+    "shape_hw": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "footprint_cells": 5167373,
+    "emitted_cells_gt0": 37654,
+    "min_inside": 0.0,
+    "max_inside": 1.0,
+    "nan_inside": 0,
+    "nan_outside_count": 7111787,
+    "name": "gems86-h33-2b2-concrand15-20261023-tmp",
+    "note": "R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed",
+    "note_chars": 90,
+    "reference": "sample_submission.tif",
+    "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+    "mode": "nan",
+    "file": "gems86-h33-2b2-concrand15-20261023-fcbae067.tif"
+  },
+  "zeros": {
+    "path": "releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif",
+    "shape_hw": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "footprint_cells": 5167373,
+    "emitted_cells_gt0": 37654,
+    "min_inside": 0.0,
+    "max_inside": 1.0,
+    "nan_inside": 0,
+    "name": "gems86-h33-2b2-concrand15-20261023-tmp",
+    "note": "R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed",
+    "note_chars": 90,
+    "reference": "sample_submission.tif",
+    "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+    "sha256": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+    "mode": "zeros",
+    "nan_outside_count": 0,
+    "file": "gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif"
+  },
+  "submission_name": "gems86-h33-2b2-concrand15-20261023-fcbae067",
+  "note": "R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed",
+  "note_chars": 90,
+  "gates": {
+    "nan": {
+      "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067.tif",
+      "sha256": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+      "format": {
+        "gate": "format",
+        "passed": true,
+        "skipped": [
+          "footprint checks"
+        ],
+        "skipped_covered_elsewhere": {
+          "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+        },
+        "uncovered_skips": [],
+        "failed": [],
+        "checks": [
+          {
+            "check": "single band",
+            "status": "PASS",
+            "detail": "count=1"
+          },
+          {
+            "check": "dtype float32",
+            "status": "PASS",
+            "detail": "dtype=float32"
+          },
+          {
+            "check": "CRS EPSG:32611",
+            "status": "PASS",
+            "detail": "crs=EPSG:32611"
+          },
+          {
+            "check": "shape matches",
+            "status": "PASS",
+            "detail": "file=(3730, 3292) expected=(3730, 3292)"
+          },
+          {
+            "check": "resolution 100 m",
+            "status": "PASS",
+            "detail": "res=(100.0, 100.0)"
+          },
+          {
+            "check": "transform matches reference",
+            "status": "PASS",
+            "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          {
+            "check": "CRS matches reference",
+            "status": "PASS",
+            "detail": "file=EPSG:32611 ref=EPSG:32611"
+          },
+          {
+            "check": "nodata tag is none or NaN",
+            "status": "PASS",
+            "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+          },
+          {
+            "check": "no infinities",
+            "status": "PASS",
+            "detail": "inf_count=0"
+          },
+          {
+            "check": "values within [0, 1]",
+            "status": "PASS",
+            "detail": "min=0.0 max=1.0 finite_cells=5167373"
+          },
+          {
+            "check": "footprint checks",
+            "status": "SKIPPED",
+            "detail": "SKIPPED: no features raster supplied"
+          },
+          {
+            "check": "info: emitted cells (value > 0)",
+            "status": "INFO",
+            "detail": "emitted=37654"
+          }
+        ]
+      },
+      "values": {
+        "gate": "values",
+        "passed": true,
+        "checks": {
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_nan_or_zero": true,
+          "zero_catalogue_mass": true,
+          "single_band": true
+        },
+        "mode": "nan",
+        "n_dots": 37654,
+        "dots_on_catalogue": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "catalogue_clearance": {
+        "gate": "catalogue_clearance",
+        "passed": true,
+        "clearance_px": 2.0,
+        "violations": 0,
+        "min_cat_edt_px": 2.2361
+      },
+      "ledger_hash": {
+        "gate": "sha256_not_in_ledger",
+        "passed": true,
+        "sha256": "f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992",
+        "sha8": "f608e4e3"
+      },
+      "passed": true
+    },
+    "zeros": {
+      "file": "/home/user/GEMSDOE86/releases/sign86/gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif",
+      "sha256": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+      "format": {
+        "gate": "format",
+        "passed": true,
+        "skipped": [
+          "footprint checks"
+        ],
+        "skipped_covered_elsewhere": {
+          "footprint checks": "covered by gates.value_gate, which re-reads the written file and checks in_footprint_all_finite / in_footprint_range_0_1 / outside_footprint_nan_or_zero against the footprint of the pinned sample_submission.tif; the template validator skips them only because the 419 MB feature stack was not restored this session"
+        },
+        "uncovered_skips": [],
+        "failed": [],
+        "checks": [
+          {
+            "check": "single band",
+            "status": "PASS",
+            "detail": "count=1"
+          },
+          {
+            "check": "dtype float32",
+            "status": "PASS",
+            "detail": "dtype=float32"
+          },
+          {
+            "check": "CRS EPSG:32611",
+            "status": "PASS",
+            "detail": "crs=EPSG:32611"
+          },
+          {
+            "check": "shape matches",
+            "status": "PASS",
+            "detail": "file=(3730, 3292) expected=(3730, 3292)"
+          },
+          {
+            "check": "resolution 100 m",
+            "status": "PASS",
+            "detail": "res=(100.0, 100.0)"
+          },
+          {
+            "check": "transform matches reference",
+            "status": "PASS",
+            "detail": "file=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) ref=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+          },
+          {
+            "check": "CRS matches reference",
+            "status": "PASS",
+            "detail": "file=EPSG:32611 ref=EPSG:32611"
+          },
+          {
+            "check": "nodata tag is none or NaN",
+            "status": "PASS",
+            "detail": "nodata=None (finite nodata tags are rejected conservatively)"
+          },
+          {
+            "check": "no infinities",
+            "status": "PASS",
+            "detail": "inf_count=0"
+          },
+          {
+            "check": "values within [0, 1]",
+            "status": "PASS",
+            "detail": "min=0.0 max=1.0 finite_cells=12279160"
+          },
+          {
+            "check": "footprint checks",
+            "status": "SKIPPED",
+            "detail": "SKIPPED: no features raster supplied"
+          },
+          {
+            "check": "info: emitted cells (value > 0)",
+            "status": "INFO",
+            "detail": "emitted=37654"
+          }
+        ]
+      },
+      "values": {
+        "gate": "values",
+        "passed": true,
+        "checks": {
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_nan_or_zero": true,
+          "zero_catalogue_mass": true,
+          "single_band": true
+        },
+        "mode": "zeros",
+        "n_dots": 37654,
+        "dots_on_catalogue": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "catalogue_clearance": {
+        "gate": "catalogue_clearance",
+        "passed": true,
+        "clearance_px": 2.0,
+        "violations": 0,
+        "min_cat_edt_px": 2.2361
+      },
+      "ledger_hash": {
+        "gate": "sha256_not_in_ledger",
+        "passed": true,
+        "sha256": "fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c",
+        "sha8": "fcbae067"
+      },
+      "passed": true
+    },
+    "new_mass": {
+      "gate": "new_mass_clearance",
+      "required_px": 3.0,
+      "n_new": 5577,
+      "on_catalogue": 0,
+      "min_cat_distance_px": 3.1623,
+      "passed": true
+    },
+    "re_read_from_disk_matches_mask": true
+  },
+  "gates_passed": true,
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0
+}

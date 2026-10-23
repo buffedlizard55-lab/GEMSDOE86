@@ -45,3 +45,6 @@ registry/submissions/
 /releases/mass86/*.zip
 
 tmp_session/
+
+/releases/sign86/*.tif
+/releases/sign86/*.zip
