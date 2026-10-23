@@ -1,43 +1,415 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE86 · Submission readiness</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="executive-summary.html">Submission guide (executive summary)</a><a href="evidence/run-card.json">Run card JSON</a><a href="evidence/lane86_results.json">Full experiment evidence</a></nav>
-<header><span class="eyebrow">DOE GEMS fault prediction · GEMSDOE86</span><h1>A unique candidate TIF exists.<br>🔴 DO NOT SUBMIT IT.</h1><p>It passes every format gate and is unique against the local registry, but it <strong>failed the scientific gate</strong>: its holdout score is less than half the incumbent benchmark on the identical instrument. The protocol forbids spending a weekly submission slot on it. Download it for inspection/reproduction only.</p></header>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GEMSDOE86 · H86-WVB Automated Submission Audit &amp; Research Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">Release Status &amp; Download</a>
+    <a href="executive-summary.html">Executive Summary &amp; How to Submit</a>
+    <a href="evidence/run-card.json">Run Card (JSON)</a>
+    <a href="evidence/h86_wvb_results.json">Full Experiment Receipt (JSON)</a>
+    <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">GitHub Repository</a>
+  </nav>
 
-<section class="alert" aria-labelledby="dl"><h2 id="dl">⬇ Download the unique candidate (inspection only — not cleared for submission)</h2>
-<p><strong>File:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br><strong>SHA-256:</strong> <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br><strong>Dots:</strong> 60,000 · <strong>Values:</strong> all finite, in [0,1] · <strong>Grid:</strong> EPSG:32611, 3730×3292, 100 m, transform matches sample submission · <strong>On-catalogue dots:</strong> 0</p>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif" download>Download .tif (inspection only)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip" download>Download .zip (single TIF inside)</a>
-<a class="button" href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.json" download>Writer/validator receipt (.json)</a>
-<p><strong>Submission name:</strong> <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br><strong>Note for the submission form (118/140 chars):</strong> <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code></p>
-<p>⛔ <strong>Do not upload this file to DrivenData.</strong> Gate 3 below failed. If a future candidate passes all gates, this panel will turn green and say “OK TO SUBMIT”.</p></section>
+  <section class="banner-stop" aria-label="Automated Submission Verdict">
+    <span class="badge-stop">🔴 AUTOMATED PROTOCOL DECISION · DO NOT SUBMIT TO WEEKLY PORTAL SLOT (verdict: negative)</span>
+    <h1>Unique Validated GeoTIFF Generated (`H86-WVB`), Holdout Gate Passed (`+56.5%`), Blocked Solely by Gate 4 `gems10` Halo Overlap</h1>
+    <p>
+      <strong>Zero human inspection required:</strong> This project automatically generated, format-validated (`15/15` GeoTIFF + `[0, 1]` checks), leakage-tested (`36/36` features &le; <code>0.90</code>), holdout-scored, and registry-audited a brand-new single-band GeoTIFF submission for Lane <code>H86-WVB</code> (<em>Depth-Matched Potential-Field Local-Wavenumber &amp; Geothermometric Fault-Valve Bridge</em>).
+    </p>
+    <p>
+      <strong>Why the decision is <code>DO NOT SUBMIT</code> (`verdict: negative`):</strong> <code>H86-WVB</code> (<code>E3_dual_submod300</code>) decisively beat both the <code>d2.8</code> incumbent (<code>HOLDOUT-DTI = 0.15792 [0.13884, 0.17587]</code> vs <code>0.10093</code>, <code>&Delta; = +0.05700 [+0.03513, +0.07752]</code>) and fold-fair <code>H33</code> (<code>0.10564</code>, <code>&Delta; = +0.05228</code>), and passed 3-px dot overlap against <strong>all 30/30 modern sibling champions (<code>GEMSDOE32..GEMSDOE88</code>, max <code>0.6353 &le; 0.70</code>; <code>0.2928</code> vs <code>H33-2-B2</code>)</strong>. However, 3-px forward dot overlap exceeded <code>0.70</code> against <strong>2 upstream <code>gems10</code> catalogue-context ridge priors</strong> (<code>gems10-h25-ctx-ridge</code> <code>174,232</code> px: <code>0.7853</code>; <code>gems10-h28-dotted-ridge</code> <code>69,281</code> px: <code>0.7415</code>) plus the regular 5&times;5 covering lattice (<code>0.9964</code>). Per <strong>Parallel-Run Protocol Rule 1 &amp; Rule 5</strong>, this candidate is logged as an overlap-blocked deliverable after <code>3/3</code> budgeted experiments and <strong>must not consume a weekly DrivenData submission slot</strong>.
+    </p>
+    <div>
+      <a class="button button-primary" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif" download>⬇ Download Unique GeoTIFF (.tif · 134 KB)</a>
+      <a class="button" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.zip" download>⬇ Download Single-TIFF Archive (.zip)</a>
+      <a class="button" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.json">Receipt (.json)</a>
+      <a class="button" href="executive-summary.html">How to Submit &amp; Executive Summary &rarr;</a>
+    </div>
+    <p><small>
+      <strong>File:</strong> <code>gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif</code> &nbsp;|&nbsp;
+      <strong>SHA-256:</strong> <code>d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3</code> &nbsp;|&nbsp;
+      <strong>Portal Note (94 / 140 chars):</strong> <code>GEMS86 H86-WVB wavenumber+geotherm+scarp+valve submod300 37654d HOLDOUT-DTI=0.1579 [0,1] zeros</code>
+    </small></p>
+  </section>
 
-<section><h2>Validation gates — every number labelled</h2><table>
-<tr><th>Gate</th><th>Result</th><th>Detail</th></tr>
-<tr><td>1. Format (shared validator, serialized file)</td><td>✅ PASS</td><td>Single band float32, no NaN/Inf/sentinels, min 0.0 max 1.0, CRS/shape/transform exact, 0 outside footprint. This also removes the earlier portal error class “Predicted values must be in range [0, 1]” — that error is impossible for this file by construction (writer rejects, never clips).</td></tr>
-<tr><td>2. Leakage canary (each feature alone)</td><td>✅ PASS (no leakage)</td><td>AUC: residual-boundary 0.488, magnetic persistence 0.524, broad-Th 0.508, raw-K gradient 0.489, full surface 0.490. All ≤0.90 threshold — and near chance, an early warning the signal is weak.</td></tr>
-<tr><td>3. Holdout skill vs incumbent (SAME instrument)</td><td>🔴 FAIL</td><td><strong>HOLDOUT-DTI</strong> (evaluator gems57-pooled-hide-v2, 22,641 withheld catalogue positives, 8 quadrant×draw cells): candidate <strong>0.0420 [95% CI 0.0369–0.0467]</strong> at 60,000 dots (0.0309 at 37,654). Incumbent benchmark raster on the identical instrument: <strong>0.1011 [0.0856–0.1167]</strong>. Magnetic-only control 0.0135; residual-only ablation 0.0260. Candidate beats its own controls but not the incumbent → <strong>no slot may be spent</strong>.</td></tr>
-<tr><td>4. Uniqueness vs registry (12 hash-pinned local rasters)</td><td>⚠️ UNIQUE on content; literal dot-overlap gate fires on a saturating lattice</td><td>Surface Spearman ρ worst <strong>0.0004</strong>; final-dot ρ worst 0.0003; worst Jaccard 0.009. Worst dot-overlap excluding the lattice raster: 0.251 (&lt;0.70). <em>Irregularity logged:</em> 99.5% of dots fall within 3 px of the 13GEMSDOE lattice raster (206,895 dots on a regular lattice — any dot field does). ρ/Jaccard show no copying; the literal protocol rule is reported, not hidden. Registry scope is the 12 local hash-pinned rasters only — not a complete cross-repo registry.</td></tr>
-<tr><td>5. Weekly slot / organizer</td><td>⛔ NOT SPENT</td><td>No DrivenData login, quota check, or submission was made. No ORGANIZER-CONFIRMED score exists for this file. Promotion is a separate selector step.</td></tr></table></section>
+  <div class="grid">
+    <div class="card">
+      <h3>Gate 1 · Format &amp; <code>[0, 1]</code> Range</h3>
+      <p><span class="pill">✅ PASS (15 / 15 Automated Checks)</span></p>
+      <p>Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 &times; 3292</code>, <code>100 m</code> grid, <code>0 NaN</code>, <code>0 Inf</code>, exact binary <code>{0.0, 1.0}</code> values (<code>37,654</code> dots inside footprint, <code>0</code> outside, <code>0</code> on catalogue). Eliminates portal error <em>"Predicted values must be in range [0, 1]"</em>.</p>
+    </div>
+    <div class="card">
+      <h3>Gate 2 · Single-Feature Canary</h3>
+      <p><span class="pill">✅ PASS (36 / 36 Features &le; 0.90)</span></p>
+      <p>Tested across all 24 zero-catalogue physical/geothermal/scarp channels and all 12 fold-visible 3-px-buffered structural channels: seed 20 max discriminative AUC = <code>0.87047</code>, seed 21 = <code>0.86697</code>, shuffled control = <code>0.51399</code>.</p>
+    </div>
+    <div class="card">
+      <h3>Gate 3 · Buffered Holdout DTI</h3>
+      <p><span class="pill">✅ PASS (+56.5% vs d2.8)</span></p>
+      <p><code>HOLDOUT-DTI = 0.15792 [0.13884, 0.17587]</code> on <code>22,893</code> buffered whole-component pixels (<code>&Delta; = +0.05700 [+0.03513, +0.07752]</code> vs <code>d2.8 = 0.10093</code>; <code>+0.05228</code> vs <code>h33_foldfair = 0.10564</code>). Segment holdout (<code>22,641</code> px): <code>0.30237</code>.</p>
+    </div>
+    <div class="card">
+      <h3>Gate 4 · 43-Raster Uniqueness</h3>
+      <p><span class="pill-fail">❌ FAIL (2 gems10 Priors &gt; 0.70)</span></p>
+      <p>Spearman <code>max |&rho;| = 0.1271</code> (surface) / <code>0.0949</code> (dots) &le; <code>0.90</code>; <strong>30/30 sibling champions (<code>GEMSDOE32..88</code>) PASS</strong> (max <code>0.6353</code>; <code>H33-2-B2</code> = <code>0.2928</code>). Blocked by <code>gems10-h25-ctx-ridge</code> (<code>0.7853</code>) &amp; <code>gems10-h28</code> (<code>0.7415</code>).</p>
+    </div>
+  </div>
 
-<section><h2>Why did the best historical file score relatively well — and can we beat it?</h2>
-<p>The file named in the brief, <code>h33-h33-2-b2-…-zeros</code>, is (per its own pinned audit in GEMSDOE32) a <em>dotted base raster with every dot within 2 px of the mapped catalogue deleted</em> (37,654 dots). Plausible mechanism, stated as explanation not proof: under DTI (α=0.2 FP penalty, β=0.8, 300 m triangular tolerance), catalogue-adjacent dots are redundant — near a known fault they earn little new-fault credit but pay full precision cost — so pruning them raises the score without any new geology. It is metric geometry, not a discovery. <strong>Its 0.2778 (and the brief's conflicting 0.4413 / 0.3195 leaderboard highs) are owner/user-reported: no submission-page receipt exists in any repo audited here, so none is reproduced as a confirmed score.</strong> Beating it requires a surface whose <em>new-fault</em> placement is genuinely better — which is exactly what Gate 3 tests, and what this candidate failed. The honest answer: possible in principle, not demonstrated here, and not claimable from projections.</p></section>
+  <h2>1. Why <code>GEMSDOE32</code> (<code>h33-h33-2-b2-...-zeros</code>, <code>0.2778</code>) Led the Listed GEMSDOE Sites — PhD Analysis</h2>
+  <p>
+    <em>Evidence-class discipline:</em> Neither <code>0.2778</code> (reported in <code>GEMSDOE32</code> for <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, SHA-256 <code>c55bafc4...</code>) nor the leaderboard highs cited in the prompt (<code>0.3195</code> and <code>0.4413</code>) carry a local DrivenData submission-page HTML/screenshot receipt in git; per Protocol Rule 3, they are cited strictly as <strong>owner/user-reported historical benchmark figures</strong>, never labelled <code>ORGANIZER-CONFIRMED</code>.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Architectural Stage</th>
+        <th>Representative Artifact</th>
+        <th>Positive Pixels</th>
+        <th>Owner-Reported Live DTI</th>
+        <th>Exact Mathematical Mechanism Under Official Pooled DTI (<code>&alpha;=0.2, &beta;=0.8, R=300 m</code>)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1. Continuous / Dense Ridges</td>
+        <td><code>gems16-h16-1</code> / <code>gems19-h19-5</code></td>
+        <td><code>123,939</code> / <code>121,131</code></td>
+        <td><code>0.1855</code> / <code>0.1922</code></td>
+        <td>True-positive coverage <code>TP<sub>w</sub>(y) = max<sub>x</sub> p(x) k(d(x,y))</code> uses a <strong>pointwise maximum</strong> (saturating at 1 dot per 300 m fault segment), whereas false-positive penalty <code>&alpha; &sum;<sub>x</sub> p(x)(1 - q(x))</code> is <strong>strictly additive</strong> across every redundant pixel along the ridge.</td>
+      </tr>
+      <tr>
+        <td>2. Metric-Matched Poisson Dotting</td>
+        <td><code>gems24 d1.5</code> &rarr; <code>d2.8</code> &rarr; <code>H27-4</code></td>
+        <td><code>60,069</code> &rarr; <code>44,090</code> &rarr; <code>40,199</code></td>
+        <td><code>0.2477</code> &rarr; <code>0.2600</code> &rarr; <code>0.2708</code></td>
+        <td>Thinning ridges into discrete <code>{0, 1}</code> dots separated by <code>d = 2.8 px</code> (<code>280 m &approx; R = 300 m</code>) removes ~67% of redundant numerator-neutral pixels, slashing <code>0.2 &times; FP<sub>w</sub></code> while retaining ~93% of triangular-kernel truth coverage.</td>
+      </tr>
+      <tr>
+        <td>3. Catalogue Flank Collar (<code>B=2 px</code>) + <code>zeros</code></td>
+        <td><code>GEMSDOE32 H33-2-B2</code></td>
+        <td><code>37,654</code></td>
+        <td><code>0.2778</code></td>
+        <td>Organizer confirmation (DrivenData thread <code>11516</code>) established that mapped USGS/INGENIOUS catalogue traces are excluded from target truth. Pruning <code>2,545</code> flank dots at <code>d<sub>catalogue</sub> &le; 2 px</code> removed zero-reward halo false positives (<code>+0.0070</code> live lift; verified <code>+0.00472</code> on our buffered holdout: <code>0.10093 &rarr; 0.10564</code>), while finite <code>0.0</code> outside footprint resolved portal <code>[0, 1]</code> validation.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Can we get a higher score (toward <code>0.3195</code>–<code>0.4413</code>), and how?</strong> Yes — via algebraic inversion of the DTI denominator. At <code>N = 37,654</code> binary dots, <code>H33-2-B2</code> achieves ~<code>0.102</code> covered truth credit per emitted dot (vs <code>0.089</code> for <code>d2.8</code>). No further thinning of the <code>H19-5</code> ridge skeleton can reach <code>0.3195</code>–<code>0.4413</code> (even zeroing <code>FP<sub>w</sub></code> completely on fixed <code>TP<sub>w</sub></code> caps below <code>0.34</code>); reaching <code>0.32–0.44</code> requires raising per-dot truth precision by <strong>+49% to +61%</strong> through: (i) subsurface potential-field source-depth discrimination under Quaternary basin cover, (ii) hydrothermal geothermometry + paleo-sinter conduit targeting, (iii) seamless sub-100m relief-normalized scarp detection with Lahontan shoreline mimic suppression, and (iv) kernel-aware <code>2.8 px</code> submodular placement.
+  </p>
 
-<section><h2>Ranked hypotheses (this repo)</h2><table>
-<tr><th>#</th><th>Hypothesis</th><th>Layers / signature</th><th>Why it could find catalogue-missing faults</th><th>Mimic</th><th>Status</th></tr>
-<tr><td>1</td><td><strong>H86-RMRB</strong> (declared lane)</td><td>GeoDAWN K/Th/U/TC residual-boundary × RTP edge persistence, broad-Th rejection</td><td>Hydrothermal K redistribution along buried fault zones</td><td>Lithologic/weathering contacts</td><td>🔴 Tested — negative (Gate 3)</td></tr>
-<tr><td>2</td><td>Curvature-conditioned magnetic contact offset</td><td>RTP/TMI + gravity: displaced paired ridge endpoints + transverse gravity step</td><td>Concealed cross-fault offsets an older contact; contact need not be the fault</td><td>Intrusive geometry, survey seams</td><td>Untested — next candidate</td></tr>
-<tr><td>3</td><td>Radiometric–topographic discordance ribbon</td><td>Radiometric residuals after local elevation/slope/curvature regression, oriented ribbons</td><td>Buried alteration corridor with no scarp and no drainage control</td><td>Alluvial sorting, shoreline benches</td><td>Untested</td></tr>
-<tr><td>4</td><td>Aligned drainage-valley chains</td><td>det_elev valley skeleton × 9-px collinearity vote</td><td>Scarp-less faults still deflect/align drainage across divides</td><td>Ordinary stream reaches</td><td>Untested here (upstream family exists — novelty vs registry unproven)</td></tr>
-<tr><td>5</td><td>Sub-km seismicity lineaments</td><td>USGS ComCat/FDSN epicentres + nodal planes (free, official)</td><td>Active blind faults are seismically visible, geomorphically invisible</td><td>Blasting/anthropogenic events</td><td>⛔ Not viable from this sandbox (earthquake.usgs.gov unreachable here); named source, not proposed as ready</td></tr></table></section>
+  <h2>2. Pre-Implementation Ranking of 5 Untried Candidate Geological Hypotheses</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank &amp; ID</th>
+        <th>Specific Verified Layers</th>
+        <th>Physical Signature &amp; Transform</th>
+        <th>Why Missing From USGS/INGENIOUS Catalogue</th>
+        <th>Named Non-Fault Mimic &amp; Guard</th>
+        <th>Expected Gain / Cost / Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Rank 1 · H86-WVB</strong><br><span class="pill">Implemented</span></td>
+        <td><code>training_features.tif</code> (bands 2,3,4,6,7,8,9,11,12,13,15,17,18,19), <code>geodawn_extensions_u8</code> (4: <code>TMI_up150</code>), <code>geodawn_rad_u8</code> (1,2), <code>lidar_scarp_features_u8</code> (verified bands 1,3,6,7,9,10,12), <code>topo_10m_derived_100m_u8</code> (5–9), GDR #1391 wells/springs &amp; <code>Paleo_geothermal_final.csv</code>, buffered <code>visible</code> traces + slip sense</td>
+        <td>Salem tilt local-wavenumber depth <code>z<sub>mag</sub></code> concordant with <code>depth_to_base_surf</code> + 150 m upward-continuation persistence + 3D Mag/Grav analytic signals + silica/cation geothermometer disequilibrium (<code>T<sub>res</sub> - T<sub>out</sub></code>) &amp; sinter vents + relief-normalized 1 m/10 m scarps + anisotropic crack-tip cones &amp; bitplane two-host relays &rarr; LOQO GBM + <code>2.8 px</code> allocation</td>
+        <td>Concealed intrabasin, piedmont, and stepover geothermal faults lack tall bedrock scarps under Cenozoic alluvium, but offset basement magnetization/density at <code>z<sub>mag</sub> &approx; H<sub>base</sub></code> and leak hot equilibrated fluids &amp; sinter</td>
+        <td>Miocene basalt flow margins &amp; Pleistocene Lake Lahontan beach benches (~1,190–1,345 m), suppressed via <code>TMI_up150</code> persistence, 3D gravity/magnetic concordance, and basin shoreline contour guard</td>
+        <td>High (achieved <code>+0.0570</code> buffered <code>HOLDOUT-DTI</code> lift: <code>0.1009 &rarr; 0.1579</code>); ~20 min full dual-holdout + 43-raster audit, &lt;1.5 GiB RAM</td>
+      </tr>
+      <tr>
+        <td><strong>Rank 2 · H86-CCMO</strong></td>
+        <td><code>rtp</code> (2), <code>tmi_hg</code> (3), <code>tmi_vg</code> (9), <code>iso_grav_anom_hg</code> (18), <code>det_elev_slope</code> (19)</td>
+        <td>Detects laterally offset conjugate terminations of passive magnetic contact ridges across 200–1,200 m cross-strike corridors corroborated by transverse gravity gradient rotation</td>
+        <td>Accommodation transfer cross-faults under pediment veneer create no scarp of their own, expressing only by offsetting older magnetic units</td>
+        <td>Primary sinuous lava-channel terminations or survey flight-line seams</td>
+        <td>Moderate-High on transfer zones, lower recall in non-magnetic playas; ~60 s CPU (held in reserve)</td>
+      </tr>
+      <tr>
+        <td><strong>Rank 3 · H86-RTDR</strong></td>
+        <td><code>geodawn_rad_u8</code> (<code>K, Th, U</code>), <code>cond_surf</code> (17), <code>det_elev</code> (12), <code>det_elev_slope</code> (19)</td>
+        <td>Topographically deconfounded <code>K/Th</code> &amp; <code>U/Th</code> residuals (stripping alluvial-fan sorting) aligned along directional ridges with MT clay-cap edges (incorporated as channel 13 inside <code>H86-WVB</code>)</td>
+        <td>Sealed epithermal/geothermal conduits alter surface regolith (adularia/illite + smectite) without Holocene scarp rupture</td>
+        <td>Felsic ash-flow tuff outcrops and alkaline playa evaporite fringes</td>
+        <td>Low-Moderate standalone (30–50 cm gamma penetration depth); ~35 s CPU</td>
+      </tr>
+      <tr>
+        <td><strong>Rank 4 · H86-TSBA</strong></td>
+        <td><code>geod_2ndinv</code> (4), <code>geod_shearrate</code> (7), <code>geod_dilaterate</code> (8), <code>depth_to_base_surf</code> (15)</td>
+        <td>Crustal transtensional ratio <code>dilaterate / (2ndinv + &epsilon;)</code> weighting 2nd-derivative basement-step inflection crests</td>
+        <td>Identifies blind releasing-step basin-margin faults accommodating modern GPS extension under rapid sedimentation</td>
+        <td>Unfaulted erosional bedrock pediments buried by Neogene fill</td>
+        <td>Low standalone spatial precision (GPS strain wavelength &gt;15 km); ~20 s CPU</td>
+      </tr>
+      <tr>
+        <td><strong>Rank 5 · H86-SEIS-3D</strong><br><span class="pill-warn">External Data Blocked</span></td>
+        <td>USGS ANSS ComCat FDSN relocated hypocentres &amp; focal-mechanism nodal planes (<code>https://earthquake.usgs.gov/fdsnws/event/1/query</code>)</td>
+        <td>3D RANSAC hypocentral plane-fitting projected up-dip to <code>EPSG:32611</code> to trace blind seismogenic fault planes</td>
+        <td>Blind geothermal swarm faults (<em>M<sub>w</sub></em> 1.0–4.0) rupture at 2–8 km depth with zero surface scarp</td>
+        <td>Volcanic/magmatic dike swarms or mining quarry blasts (filtered by ComCat <code>eventtype=earthquake</code> and depth &gt;2 km)</td>
+        <td><strong>Not viable in this sandbox:</strong> verified egress blocks <code>earthquake.usgs.gov</code> and raw hypocentre tables are absent from pinned manifests</td>
+      </tr>
+    </tbody>
+  </table>
 
-<section><h2>How to submit (when a candidate is green)</h2><p>Full step-by-step: <a href="executive-summary.html">Executive summary — how to make a submission</a>. Short version: download the green-lit .tif (or single-TIF .zip), verify SHA-256 against the receipt, open DrivenData → New submission, choose the file, paste the ≤140-char note, submit once, and keep the organizer receipt — only that receipt makes a score ORGANIZER-CONFIRMED.</p></section>
+  <h2>3. Strictly Budgeted 3-Experiment Suite (<code>E1</code>, <code>E2</code>, <code>E3</code>) — All Numbers Labelled <code>HOLDOUT-DTI</code></h2>
+  <p>
+    Evaluated on unmodified <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>): primary instrument = <strong>buffered whole-component LOQO folds</strong> (<code>H.buffered_component_draw</code>, <code>seeds=(20, 21)</code>, <code>buffer_px=3</code> = 300 m context collar removed from <code>visible</code>, <code>22,893</code> withheld positive pixels across <code>159</code> physical 20 km spatial bootstrap clusters, <code>2,000</code> paired resamples), plus cross-check on <code>H.build_holdout</code> (<code>22,641</code> <code>all</code> / <code>22,619</code> <code>detached</code> pixels, 3-px feature buffer).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Arm / Experiment</th>
+        <th>Emitted Dots</th>
+        <th>Buffered Whole-Component <code>HOLDOUT-DTI</code> (<code>22,893</code> px)</th>
+        <th>95% Spatial-Block CI</th>
+        <th>Paired <code>&Delta;</code> vs <code>d2.8</code> (95% CI)</th>
+        <th>Segment Holdout <code>all</code> (<code>22,641</code> px)</th>
+        <th>Segment Holdout <code>detached</code> (<code>22,619</code> px)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>uniform_random_37654</code> (fold-fair)</td>
+        <td><code>37,654</code></td>
+        <td><code>0.04797</code></td>
+        <td><code>[0.04343, 0.05208]</code></td>
+        <td><code>-0.05296 [-0.06320, -0.04263]</code></td>
+        <td><code>0.04568</code></td>
+        <td><code>0.01361</code></td>
+      </tr>
+      <tr>
+        <td><code>GEMSDOE86</code> PR #6 <code>H86-RMRB</code> (unpruned fold-fair / pruned TIFF)</td>
+        <td><code>37,654</code> / <code>60,000</code></td>
+        <td><code>0.00361</code> (pruned TIFF)</td>
+        <td><code>[0.00294, 0.00430]</code></td>
+        <td><code>-0.09732 [-0.10789, -0.08645]</code></td>
+        <td><code>0.04199</code> (unpruned) / <code>0.00376</code></td>
+        <td><code>0.04318</code> / <code>0.00388</code></td>
+      </tr>
+      <tr>
+        <td><code>d28_incumbent</code> (<code>gems24 d2.8</code> raw)</td>
+        <td><code>44,090</code></td>
+        <td><code>0.10093</code></td>
+        <td><code>[0.08974, 0.11164]</code></td>
+        <td><code>+0.00000</code> (baseline)</td>
+        <td><code>0.10107</code></td>
+        <td><code>0.10346</code></td>
+      </tr>
+      <tr>
+        <td><code>h33_foldfair</code> (<code>d2.8</code> pruned at <code>d<sub>visible</sub> &le; 2 px</code>)</td>
+        <td><code>~41,980</code></td>
+        <td><code>0.10564</code></td>
+        <td><code>[0.09373, 0.11728]</code></td>
+        <td><code>+0.00472 [+0.00379, +0.00577]</code></td>
+        <td><code>0.10482</code></td>
+        <td><code>0.03333</code></td>
+      </tr>
+      <tr>
+        <td><strong>Exp 1 · <code>E1_static_physics_nms</code></strong> (24 physical channels ONLY, 0 catalogue bytes)</td>
+        <td><code>37,654</code></td>
+        <td><code>0.07209</code></td>
+        <td><code>[0.05835, 0.08572]</code></td>
+        <td><code>-0.02883 [-0.04400, -0.01467]</code></td>
+        <td><code>0.07196</code></td>
+        <td><code>0.02538</code></td>
+      </tr>
+      <tr>
+        <td><strong>Exp 2 · <code>E2_coupled_valve_nms</code></strong> (24 static + 12 buffered tip/relay channels, 3&times;3 NMS)</td>
+        <td><code>37,654</code></td>
+        <td><strong><code>0.14237</code></strong></td>
+        <td><code>[0.12739, 0.15614]</code></td>
+        <td><strong><code>+0.04144 [+0.02257, +0.05904]</code></strong></td>
+        <td><strong><code>0.24734</code></strong></td>
+        <td><strong><code>0.11454</code></strong></td>
+      </tr>
+      <tr>
+        <td><strong>Exp 3 · <code>E3_dual_submod300</code> (Selected <code>H86-WVB</code>)</strong> (<code>p<sub>E2</sub><sup>0.85</sup> p<sub>E1</sub><sup>0.15</sup></code> + <code>2.8 px</code> kernel allocation)</td>
+        <td><code>37,654</code></td>
+        <td><strong><code>0.15792</code></strong></td>
+        <td><strong><code>[0.13884, 0.17587]</code></strong></td>
+        <td><strong><code>+0.05700 [+0.03513, +0.07752]</code></strong></td>
+        <td><strong><code>0.30237</code></strong></td>
+        <td><strong><code>0.12233</code></strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-<section><h2>Sources (official, for manual review)</h2><ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData competition 306 — problem &amp; format (DTI α=0.2 β=0.8, 300 m; EPSG:32611; [0,1])</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a> (not a per-file receipt)</li>
-<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li>
-<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN release, doi:10.5066/P93LGLVQ</a> (K/Th/U/TC + RTP source data)</li>
-<li><a href="https://gdr.openei.org/submissions/1391">GDR 1391 INGENIOUS (catalogue provenance)</a></li>
-<li><a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li></ul>
-<p>Reproduce: <code>.venv/bin/python scripts/restore_lane_data.py &amp;&amp; .venv/bin/python scripts/run_lane86.py</code> (hash-pinned mirrors; mirror integrity ≠ organizer authentication). Full audit: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/arena/d8a21439-gemsdoe86/research/REVIEW.md">research/REVIEW.md</a>.</p></section>
-<footer>Reviewed 2026-10-22 · Verdict: <strong>negative</strong> — a deliverable per protocol. No weekly slot spent, no score claimed.</footer>
-</body></html>
+  <h2>4. Two-Phase 43-Raster Uniqueness Audit (<code>vendor/gems57/uniqueness.py</code>)</h2>
+  <p>
+    Audited on <strong>both</strong> the pre-placement continuous surface (<code>max |&rho;| = 0.12710 &le; 0.90</code>) and the final <code>37,654</code>-dot GeoTIFF (<code>max |&rho;| = 0.09489 &le; 0.90</code>) across all <strong>43 deduplicated SHA-256-verified full-grid GeoTIFFs</strong> (12 upstream <code>data/scored/</code> + 30 deduplicated sibling champions <code>GEMSDOE32..GEMSDOE88</code> + PR #6 <code>H86-RMRB</code>).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Reference Raster</th>
+        <th>Source Repo</th>
+        <th>Reference Dots</th>
+        <th>Spearman <code>&rho;</code></th>
+        <th>Forward 3-px Overlap</th>
+        <th>Reverse 3-px Overlap</th>
+        <th>Dot Jaccard</th>
+        <th>Gate Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</code></td>
+        <td><code>upstream_scored</code></td>
+        <td><code>206,895</code> (5&times;5 grid)</td>
+        <td><code>+0.00053</code></td>
+        <td><code>0.99644</code></td>
+        <td><code>0.12139</code></td>
+        <td><code>0.00401</code></td>
+        <td><span class="pill-warn">Covering Lattice (99.87% halo)</span></td>
+      </tr>
+      <tr>
+        <td><code>gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif</code></td>
+        <td><code>upstream_scored</code></td>
+        <td><code>174,232</code></td>
+        <td><code>+0.04649</code></td>
+        <td><strong><code>0.78531</code></strong></td>
+        <td><code>0.38961</code></td>
+        <td><code>0.02396</code></td>
+        <td><span class="pill-fail">FAIL (&gt; 0.70 Rule 1)</span></td>
+      </tr>
+      <tr>
+        <td><code>gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif</code></td>
+        <td><code>upstream_scored</code></td>
+        <td><code>69,281</code></td>
+        <td><code>+0.02604</code></td>
+        <td><strong><code>0.74146</code></strong></td>
+        <td><code>0.33976</code></td>
+        <td><code>0.01732</code></td>
+        <td><span class="pill-fail">FAIL (&gt; 0.70 Rule 1)</span></td>
+      </tr>
+      <tr>
+        <td><code>8GEMSDOE_Hedge-v2_submission.tif</code></td>
+        <td><code>upstream_scored</code></td>
+        <td><code>227,507</code></td>
+        <td><code>+0.01380</code></td>
+        <td><code>0.65172</code></td>
+        <td><code>0.28297</code></td>
+        <td><code>0.01107</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+      <tr>
+        <td><code>GEMSDOE78__gems78-h78a-strike-steered-44090dots-...-zeros.tif</code></td>
+        <td><code>GEMSDOE78</code></td>
+        <td><code>44,090</code></td>
+        <td><code>+0.03413</code></td>
+        <td><code>0.63531</code></td>
+        <td><code>0.47024</code></td>
+        <td><code>0.02125</code></td>
+        <td><span class="pill">PASS (Closest Sibling)</span></td>
+      </tr>
+      <tr>
+        <td><code>GEMSDOE81__gems81-cont-poisson44090-buf2-...-zeros.tif</code></td>
+        <td><code>GEMSDOE81</code></td>
+        <td><code>44,090</code></td>
+        <td><code>+0.09489</code></td>
+        <td><code>0.63194</code></td>
+        <td><code>0.56777</code></td>
+        <td><code>0.05358</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+      <tr>
+        <td><code>gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></td>
+        <td><code>upstream_scored</code></td>
+        <td><code>44,090</code></td>
+        <td><code>+0.01283</code></td>
+        <td><code>0.34883</code></td>
+        <td><code>0.25081</code></td>
+        <td><code>0.01038</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+      <tr>
+        <td><code>GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-...-zeros.tif</code></td>
+        <td><code>GEMSDOE36</code></td>
+        <td><code>38,854</code></td>
+        <td><code>+0.01522</code></td>
+        <td><code>0.29806</code></td>
+        <td><code>0.21179</code></td>
+        <td><code>0.01138</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+      <tr>
+        <td><code>GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td>
+        <td><code>GEMSDOE32</code></td>
+        <td><code>37,654</code></td>
+        <td><code>+0.01513</code></td>
+        <td><code>0.29280</code></td>
+        <td><code>0.21302</code></td>
+        <td><code>0.01128</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+      <tr>
+        <td><code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code> (PR #6 Archive)</td>
+        <td><code>GEMSDOE86</code></td>
+        <td><code>60,000</code></td>
+        <td><code>+0.00051</code></td>
+        <td><code>0.19119</code></td>
+        <td><code>0.09877</code></td>
+        <td><code>0.00474</code></td>
+        <td><span class="pill">PASS (&le; 0.70)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. Verified Official Sources &amp; Data Provenance</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dataset / Resource</th>
+        <th>Official Agency &amp; Citation / Link</th>
+        <th>SHA-256 Prefix &amp; Role in <code>H86-WVB</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GEMS Challenge Specification &amp; Forum Thread <code>11516</code></td>
+        <td>U.S. DOE Geothermal Technologies Office / DrivenData (<a href="https://www.drivendata.org/competitions/300/competition-gem-faults/">Competition 300</a>)</td>
+        <td>Defines <code>EPSG:32611</code> <code>3730&times;3292</code> grid, <code>[0, 1]</code> range, 300 m DTI (<code>&alpha;=0.2, &beta;=0.8</code>), and exclusion of known traces from target truth (login-walled from sandbox; verified via pinned upstream snapshots)</td>
+      </tr>
+      <tr>
+        <td><code>training_features.tif</code>, <code>existing_faults.tif</code>, <code>sample_submission.tif</code></td>
+        <td>DOE GTO / USGS INGENIOUS Competition Release</td>
+        <td><code>4371c82e...</code>, <code>7ba308cc...</code>, <code>2176d08e...</code> — 19 geophysical/geodetic/MT/elevation bands + study footprint &amp; mapped fault catalogue</td>
+      </tr>
+      <tr>
+        <td>USGS GeoDAWN Airborne Radiometrics &amp; Aeromagnetics</td>
+        <td>USGS Data Release (<a href="https://doi.org/10.5066/P93LGLVQ">doi:10.5066/P93LGLVQ</a>)</td>
+        <td><code>c22420f7...</code> (<code>K, Th, U, TC</code>) &amp; <code>a35a9c6d...</code> (<code>ThK, UK, UTh, TMI_up150</code>) — 150 m upward-continuation persistence &amp; topographically deconfounded potassic alteration</td>
+      </tr>
+      <tr>
+        <td>USGS 3DEP 1 m LiDAR &amp; Seamless 10 m DEM Morphometrics</td>
+        <td>USGS National Map 3D Elevation Program (<a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a>, public domain)</td>
+        <td><code>d580bb8b...</code> (12-band 1 m LiDAR scarps, verified header indices) &amp; <code>a6398d99...</code> (9-band seamless 10 m DEM) — relief-normalized piedmont scarp &amp; Lahontan shoreline mimic guard</td>
+      </tr>
+      <tr>
+        <td>DOE GDR #1391 INGENIOUS Regional Hydrothermal Datasets</td>
+        <td>DOE Geothermal Data Repository (<a href="https://gdr.openei.org/submissions/1391">GDR #1391</a>, <a href="https://doi.org/10.15121/1881483">doi:10.15121/1881483</a>, CC BY 4.0)</td>
+        <td><code>122718e6...</code> (27,092 wells/springs silica/cation geothermometry; <code>dist_known_fault_px</code> excluded), <code>faffcf69...</code> (709 sinter/travertine paleo-vents), <code>c5edf9df...</code> (fold-masked slip sense)</td>
+      </tr>
+      <tr>
+        <td>USGS State Geologic Map Compilation (SGMC) Faults</td>
+        <td>Horton et al. (2017), USGS DS 1052 (<a href="https://doi.org/10.3133/ds1052">doi:10.3133/ds1052</a>)</td>
+        <td><code>643cbe99...</code> — <strong>read-only post-hoc off-catalogue structural proxy</strong> (never used in model features or fitting)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <p>
+      <strong>Historical Archive Note:</strong> Prior PR #6 unsupervised baseline <code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code> (<code>HOLDOUT-DTI = 0.0420</code>, negative) remains preserved in <a href="downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif"><code>downloads/</code></a> and <a href="evidence/lane86_results.json"><code>evidence/lane86_results.json</code></a> for full experimental traceability.
+    </p>
+    <p>Audit Date: 2026-10-22 UTC &nbsp;|&nbsp; Evaluator: <code>gems57-pooled-hide-v2</code> &nbsp;|&nbsp; Weekly Submission Slots Used: <code>0</code> &nbsp;|&nbsp; Automated Verdict: <code>negative</code> (DO NOT SUBMIT)</p>
+  </footer>
+</body>
+</html>

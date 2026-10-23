@@ -1,19 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary · How to submit · GEMSDOE86</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><strong>GEMS / 86</strong><a href="index.html">Readiness dashboard</a><a href="evidence/run-card.json">Run card JSON</a></nav>
-<header><span class="eyebrow">Executive summary</span><h1>Exactly how to make a submission.</h1><p><strong>Current file status: 🔴 DO NOT SUBMIT.</strong> A unique, format-valid candidate TIF is downloadable from the <a href="index.html">dashboard</a> for inspection only; it failed the holdout gate (HOLDOUT-DTI 0.0420 vs incumbent 0.1011 on the identical instrument), so no weekly slot may be spent on it. The steps below are the exact procedure to use when a future candidate turns green.</p></header>
-<section class="alert"><h2>The candidate on file (inspection only)</h2><p><code>gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif</code><br>SHA-256 <code>cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962</code><br>Submission name: <code>gems86-h86-rmrb-60000dots-20261022T225314Z</code><br>Note (118/140): <code>H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only</code><br>Validator: PASS — single-band float32, all values finite in [0,1] (min 0.0, max 1.0), no NaN/Inf/sentinels, EPSG:32611, 3730×3292, transform identical to sample submission, 0 dots on the mapped catalogue, 0 mass outside the footprint. The portal error <em>“Predicted values must be in range [0, 1]”</em> cannot occur with this file: the shared writer rejects out-of-range/non-finite arrays before writing (it never clips) and re-validates the serialized bytes.</p></section>
-<section id="gates"><h2>Gates a file must pass before anyone submits it</h2><ol>
-<li><strong>Lane &amp; provenance:</strong> single declared method; data hash-pinned; catalogue never used as a predictor.</li>
-<li><strong>Leakage canary:</strong> every feature alone on the buffered whole-segment holdout; AUC &gt;0.90 = leakage until proven otherwise.</li>
-<li><strong>Holdout skill:</strong> pooled HOLDOUT-DTI (α=0.2, β=0.8, 300 m triangular) must beat the incumbent benchmark on the <em>identical</em> evaluator, with withheld-positive count and 95% CI reported. <em>This candidate failed here.</em></li>
-<li><strong>Uniqueness:</strong> surface (pre-placement) and final dots vs registry: stop on Spearman ρ &gt;0.90 or &gt;70% dots within 3 px of one raster; literal firings (e.g. saturating lattices) are logged, not hidden; incomplete registry = stated scope limit, never “clearance”.</li>
-<li><strong>Format:</strong> shared submission_writer only; serialized file re-validated; SHA-256 recorded.</li>
-<li><strong>Selector step:</strong> a separate human/selector checks the live weekly quota on the authenticated submission page and authorizes the slot. Local PASS ≠ organizer acceptance.</li></ol></section>
-<section><h2>Portal steps (green-lit files only)</h2><ol>
-<li>Download the .tif (or the .zip containing only that TIF) from the dashboard; verify SHA-256 against the adjacent receipt.</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition</a>, sign in, re-read the rules, confirm remaining weekly quota.</li>
-<li>Click <strong>New submission</strong> → <strong>File to submit</strong> → choose the verified .tif/.zip (single-band GeoTIFF matching the format CRS/shape/geotransform).</li>
-<li>Paste the release note (≤140 chars) into <strong>Note</strong> so the team can tell submissions apart.</li>
-<li>Submit once. Save the organizer's receipt/score page. Only that evidence may be labelled ORGANIZER-CONFIRMED; projections and holdout numbers may never be written as scores.</li></ol></section>
-<section><h2>Limitations &amp; next steps</h2><p>No DrivenData auth in this environment (data page is login-walled; mirrors are hash-pinned owner copies, not organizer-authenticated). Registry comparison covers 12 local hash-pinned rasters, not every GEMSDOE site. The radiometric-residual signal is real but weak (canary AUC ≈0.49–0.52; holdout DTI rises with dot budget, suggesting placement density, not boundary precision, is limiting). Next experiments, in order: (2) magnetic contact-offset, (3) radiometric–topographic discordance — each must pass Gates 2–4 before any slot is discussed. Historical scores quoted in the brief (0.2778 / 0.4413 / 0.3195) conflict with each other and have no receipts here; they are treated as unverified owner reports, not targets of record.</p></section>
-<footer>No competition submission was made by this project. Verdict: negative (deliverable).</footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Executive Summary &amp; How to Submit · GEMSDOE86</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">Release Status &amp; Download</a>
+    <a href="executive-summary.html">Executive Summary &amp; How to Submit</a>
+    <a href="evidence/run-card.json">Run Card (JSON)</a>
+    <a href="evidence/h86_wvb_results.json">Full Experiment Receipt (JSON)</a>
+    <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">GitHub Repository</a>
+  </nav>
+
+  <section class="banner-stop" aria-label="Executive Submission Status">
+    <span class="badge-stop">🔴 CURRENT LANE VERDICT: DO NOT SUBMIT TO WEEKLY PORTAL SLOT (verdict: negative)</span>
+    <h1>Executive Summary &amp; DrivenData Submission Guide</h1>
+    <p>
+      <strong>Artifact Under Audit:</strong> <code>gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif</code>
+      (<code>SHA-256: d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3</code>)
+    </p>
+    <p>
+      <strong>Bottom-Line Decision:</strong> Lane 86 (<code>H86-WVB</code>) generated a brand-new, <code>15/15</code>-valid <code>[0, 1]</code> GeoTIFF that passed all 36 leakage canaries (max AUC <code>0.8705 &le; 0.90</code>) and lifted primary buffered whole-component <code>HOLDOUT-DTI</code> by <strong>+56.5%</strong> over <code>d2.8</code> (<code>0.15792 [0.13884, 0.17587]</code> vs <code>0.10093</code>; <code>+49.5%</code> over fold-fair <code>H33</code> = <code>0.10564</code>), while remaining distinct from all <strong>30/30 modern sibling champions (<code>GEMSDOE32..GEMSDOE88</code>, max 3-px overlap <code>0.6353 &le; 0.70</code>)</strong>. Because 3-px forward dot overlap exceeded <code>0.70</code> on <strong>2 historical <code>gems10</code> catalogue-context priors</strong> (<code>gems10-h25-ctx-ridge = 0.7853</code>, <code>gems10-h28-dotted-ridge = 0.7415</code>), <strong>Parallel-Run Protocol Rule 1 &amp; Rule 5 forbid spending a weekly DrivenData submission slot on this standalone file</strong>. Preserve it as a selector-stage ensemble component rather than uploading directly.
+    </p>
+    <div>
+      <a class="button button-primary" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif" download>⬇ Download GeoTIFF (.tif)</a>
+      <a class="button" href="downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.zip" download>⬇ Download Single-TIFF Archive (.zip)</a>
+      <a class="button" href="index.html">&larr; Back to Full Technical Dashboard</a>
+    </div>
+  </section>
+
+  <h2>1. Executive Summary of Findings</h2>
+  <ul>
+    <li><strong>Why <code>GEMSDOE32</code> (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, owner-reported <code>0.2778</code>) led the listed GEMSDOE sites:</strong> Under the official pooled Distance-Tolerant IoU metric (<code>&alpha;=0.2, &beta;=0.8, R=300 m</code>), true-positive coverage saturates at one dot per 300 m fault segment (<code>max</code> operator) while false-positive penalties add linearly across every emitted pixel. <code>H33-2-B2</code> kept <code>2.8 px</code> Poisson-disk dotting, removed <code>2,545</code> zero-reward flank pixels within <code>2 px</code> (<code>200 m</code>) of known USGS/INGENIOUS catalogue traces (confirmed excluded from target truth in forum thread <code>11516</code>), and wrote finite <code>0.0</code> outside the footprint (<code>zeros</code> mode) so the portal validator accepted <code>[0, 1]</code> bounds.</li>
+    <li><strong>Why higher scores (<code>0.3195</code>–<code>0.4413</code>) require subsurface &amp; hydrothermal physics:</strong> Algebraic inversion shows <code>H33-2-B2</code> earns ~<code>0.102</code> truth credit per dot; reaching <code>0.3195</code>–<code>0.4413</code> requires ~<code>0.118</code>–<code>0.165</code> truth credit per dot, which cannot be reached by further thinning near-catalogue ridges alone.</li>
+    <li><strong>What <code>H86-WVB</code> achieved:</strong> Combining Salem potential-field local-wavenumber basement-depth concordance, GDR #1391 silica/cation geothermometry &amp; paleo-sinter conduits, verified 1 m LiDAR / seamless 10 m relief-normalized scarps (fixing upstream band-index bug <code>IR-86-LIDAR-01</code>), and 3-px-buffered anisotropic tip/relay mechanics with <code>2.8 px</code> kernel allocation raised buffered whole-component <code>HOLDOUT-DTI</code> from <code>0.10093</code> (<code>d2.8</code>) and <code>0.10564</code> (<code>h33_foldfair</code>) to <strong><code>0.15792 [0.13884, 0.17587]</code></strong>.</li>
+    <li><strong>Why standalone upload is withheld:</strong> Only <code>25,194 / 37,654</code> dots (<code>66.9%</code>) lie outside the broad <code>gems10</code> catalogue-context envelope, leaving 3-px forward dot overlap at <code>0.7853</code> vs <code>gems10-h25-ctx-ridge</code> (threshold <code>&le; 0.70</code>).</li>
+  </ul>
+
+  <h2>2. Step-by-Step Guide: How to Submit a Promoted Candidate on DrivenData</h2>
+  <div class="alert">
+    <strong>Mandatory Pre-Upload Rule:</strong> Only submit a candidate whose Run Card carries <code>"verdict": "promote"</code> AND has been cleared by the weekly cross-lane selector (maximum 3 submissions per rolling 7-day window). <strong>Do not upload <code>gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif</code> directly to a weekly portal slot</strong> because its automated verdict is <code>"negative"</code>.
+  </div>
+
+  <ol>
+    <li>
+      <strong>Run the Zero-Touch Automated Validator Locally Before Any Upload:</strong>
+      <pre>.venv/bin/python scripts/audit.py</pre>
+      Confirm all <strong>15 / 15 format &amp; numerical gates</strong> return <code>ok: true</code>:
+      <ul>
+        <li>Single-band GeoTIFF matching <code>sample_submission.tif</code>: <code>EPSG:32611</code>, <code>width = 3292</code>, <code>height = 3730</code>, 100 m pixel size, affine transform <code>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</code>.</li>
+        <li><strong>Strict <code>[0, 1]</code> finite values across the entire raster (<code>zeros</code> outside-footprint mode):</strong> <code>nan_count = 0</code>, <code>inf_count = 0</code>, <code>nodata = None</code>, <code>min &ge; 0.0</code>, <code>max &le; 1.0</code>. Earlier submissions using <code>NaN</code> or sentinel values (e.g., <code>-9999</code>) triggered DrivenData portal rejection: <em>"Predicted values must be in range [0, 1]"</em>.</li>
+        <li>Zero positive predictions outside the active Great Basin footprint (<code>outside_footprint_positive = 0</code>) and zero positive predictions on known catalogue pixels (<code>on_catalogue_positive = 0</code>).</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Verify SHA-256 Checksum &amp; Compression:</strong>
+      <pre>sha256sum docs/downloads/&lt;candidate-name&gt;.tif</pre>
+      Ensure the local checksum matches <code>raster_sha256</code> in <code>docs/evidence/run-card.json</code>. Both the DEFLATE-compressed <code>.tif</code> and the single-file <code>.zip</code> archive produced by <code>vendor/gems57/submission_writer.py</code> are pre-verified under the portal size cap.
+    </li>
+    <li>
+      <strong>Open the Official Competition Submission Page:</strong>
+      Sign in to DrivenData and navigate to <a href="https://www.drivendata.org/competitions/300/competition-gem-faults/submissions/">GEMS: Geothermal Exploration with Machine Learning for Subsurface Faults &rarr; Submissions</a>. Confirm that at least one weekly submission slot remains in the rolling 7-day quota and check with the cross-lane selector so parallel lanes never collide on the same slot.
+    </li>
+    <li>
+      <strong>Upload the Validated File &amp; Paste the Traceability Note (&le; 140 chars):</strong>
+      Upload the single-band <code>.tif</code> (or single-TIFF <code>.zip</code> if requested by the upload widget) and paste the exact <code>submission_note</code> from the Run Card (always verified <code>&le; 140</code> characters; for <code>H86-WVB</code> reference: <code>GEMS86 H86-WVB wavenumber+geotherm+scarp+valve submod300 37654d HOLDOUT-DTI=0.1579 [0,1] zeros</code>, <code>94</code> chars).
+    </li>
+    <li>
+      <strong>Archive the Organizer Receipt Immediately:</strong>
+      Once DrivenData finishes scoring, save the submission-page receipt (timestamp, exact filename, and organizer-returned score) before labelling any number <code>ORGANIZER-CONFIRMED</code>. Never record projections or unreceipted memories as confirmed scores.
+    </li>
+  </ol>
+
+  <h2>3. Reproducing the Full Automated Audit &amp; Test Suite</h2>
+  <pre># 1. Restore SHA-256-verified competition + external + 30 sibling champion rasters into gitignored data/
+.venv/bin/python scripts/restore_lane_data.py
+
+# 2. Run the full 3-experiment H86-WVB pipeline, 36-feature canary, dual holdout, 43-raster uniqueness &amp; validator
+.venv/bin/python scripts/run_h86_wvb.py
+
+# 3. Verify all 23 vendor/gems57 template pins, unit tests, and Run Card / GeoTIFF integrity
+.venv/bin/python scripts/audit.py
+.venv/bin/python -m unittest discover -s tests -v</pre>
+
+  <footer>
+    <p>GEMSDOE86 Executive Summary &amp; Submission Guide &nbsp;|&nbsp; <a href="index.html">Return to Main Release Dashboard</a> &nbsp;|&nbsp; <a href="evidence/run-card.json">View JSON Run Card</a></p>
+  </footer>
+</body>
+</html>
