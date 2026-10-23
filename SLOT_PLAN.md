@@ -82,3 +82,39 @@ the other two MASS rungs (−0.003 / −0.006, both predicted negative and never
 `TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
 submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time ·
 confirmation of the governing uniqueness rule (IR-86-PRUNE-01).
+
+## Addendum — second SNAP session (magnetic edges), 2026-10-23: no slot requested
+
+A second session was assigned SNAP and, because its branch predated PR #28–#31, built the axis
+independently before `main` was merged in (IR-86-SNAP-04). It is recorded here so the three files are
+not mistaken for untested candidates.
+
+* **Built:** `snap-hg2` (33.9 % of dots moved), `snap-vg2` (39.6 %), `snap-cons2` (45.9 %); mean
+  displacement 1.72–1.74 px, count fixed at 37,654, 2.828 px spacing floor held, all format and
+  catalogue gates pass. Ledger status **`BUILT-DUPLICATE`**.
+* **Verdict: corroborates PR #31, does not reopen the axis.** Under a different rule the result is
+  the same: the movement carries no measurable signal. **Do not spend a slot on these three.**
+* **What it does add — the proxy is blind (IR-86-SNAP-06).** With one fixed ≥ 3 px collar applied to
+  every arm, the hide-and-recover proxy collapses to 0.0000 for the parent, all three variants *and*
+  the SGMC control. From now on a proxy comparison is only admissible with the collar held fixed
+  across arms; unpinned proxy numbers in earlier cards should be read as collar recovery.
+* **Quantified cost of the edit.** The variants put 502 / 564 / 686 dots back inside the 200 m
+  catalogue halo (parent: 0) and lift the share of dots within 300 m of a mapped fault from 4.28 % to
+  5.4–5.8 %. They also drop the lineage's own ranking evidence from the 98.8th percentile of the
+  restored H19-5 field to 69.7–75.1 — an independent, label-free reason to expect no gain.
+
+### Two axes this session proposes and did not build (neither is in the plan above)
+
+1. **KERNEL-BUDGET (spacing floor at the kernel radius, count held)** — mechanism: 30.3 % of R0's dots
+   sit within 3 px of another dot, so part of each dot's unit mass buys credit another dot already
+   earns; re-spacing at ≥ 3.0 px at constant count converts wasted α into coverage. Confounder: real
+   parallel strands and en-echelon step-overs are exactly 300 m apart, which is why the 2.828 px
+   floor was chosen in the first place. Falsifier: live Δ ≤ −0.01, i.e. the deleted neighbour was a
+   real second fault.
+2. **RE-RANK (positions fixed, ranking changed)** — mechanism: hold every dot's position and re-decide
+   which pixels inside the same 2 px neighbourhood enter the top 37,654, using a label-free
+   fault-interaction prior (step-over / intersection / tip density from the Faulds inventory). This
+   is the one SNAP-adjacent idea the negative result does *not* kill, because it never moves a dot
+   away from the lineage's own high-value pixels. Confounder: those interaction zones are also where
+   geothermal systems sit, and the target is fault pixels, never vents or heat. Falsifier: live
+   Δ ≤ −0.01, which would say the H19-5 ranking is not separable from local geometry at all.
