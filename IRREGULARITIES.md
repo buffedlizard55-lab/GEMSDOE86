@@ -148,3 +148,51 @@ exact percentage be recorded.
 (96.92 / 98.44 / 99.78 %) because a dot is the unit of mass; the cell-level figure and the
 count-preservation proof are in `ledger/variants_snap.json`. **Cost:** anyone comparing the SNAP
 rows to the PRUNE rows in that column compares two different denominators.
+
+## IR-86-SNAP-04 — the (R0, SNAP) pair was already spent before this branch saw main
+
+The ledger check the brief asks for could not see the other sessions: this branch was cut from
+`27d915f`, and `origin/main` was a single grafted commit, so `git merge-base` returned nothing until
+`git fetch --unshallow` (IR-86-SNAP-05). PR #28–#31 landed the PRUNE ladder and an independent SNAP
+axis (`a3d584a`, three variants `r1p000` / `r2p000` / `r2p000-grav`) while this session was building.
+
+Decision changed: the three magnetic-edge variants built here are recorded as **`BUILT-DUPLICATE`**
+and are **not** proposed for a weekly slot. They are kept because they were built under a different
+rule (1 px smoothing, 0.25 σ gain gate, 2.828 px spacing floor, magnetic-band response) and they
+corroborate PR #31's negative verdict from an independent geometry. Requesting slots for them would
+have spent three of the entity's weekly submissions on an axis already measured negative.
+
+## IR-86-SNAP-05 — depth: shallow checkout hid the common ancestor
+
+`git merge origin/main` failed with *"refusing to merge unrelated histories"* and `git merge-base`
+returned nothing, because the checkout carried `origin/main` at depth 1 (one grafted commit). The
+repository was **not** diverged; `git fetch --unshallow origin` restored 84 commits on main, after
+which the merge base was `27d915f` as expected. Anyone reconciling two sessions here must unshallow
+first, or a resolvable content conflict looks like history corruption.
+
+## IR-86-SNAP-06 — the hide-and-recover PROXY measures catalogue-collar recovery and nothing else
+
+Reported by this session, and it changes how every future proxy number in this repo must be read.
+The proxy gave 0.0047 for the parent and 0.0150 / 0.0169 / 0.0190 for the three magnetic SNAP
+variants — a factor of three. Re-scoring all four with **one fixed ≥ 3 px catalogue collar applied
+to every candidate** gives **0.0000 for all four**, and drops the SGMC control from 0.0877 to
+0.0000 (`evidence/snap_fixed_collar.json`).
+
+Decision changed: no proxy number in `SLOT_PLAN.md`, the README or any card may be quoted as a
+ranking of candidates for this lineage unless the same collar is applied to every arm; the only
+quantity the free proxy is measuring is how much mass sits beside a withheld catalogue trace, which
+is the zone the live metric masks out and penalises. The proxy stays report-only and never a gate.
+
+## IR-86-SNAP-07 — the SNAP window was Chebyshev, corrected to a 2 px Euclidean radius
+
+The pre-registered window was the 25 cells with `max(|dy|,|dx|) <= 2`. A corner move is 2.828 px,
+so the file could claim a "≤ 2 px" rule while displacing dots by 2.83 px, and the repository's own
+SNAP rule and release contract (`src/gems86/snap.py`, `tests/test_prune_ladder.py`) both define the
+cap as a **Euclidean radius**. The house contract caught it (`assert 2.828 <= 2.0`).
+
+Decision changed: the window is now the 13 cells within a 2.0 px Euclidean radius, the realised
+maximum displacement is exactly 2.0 px, and the three builds were regenerated under it — moved
+fractions 33.9 / 39.6 / 45.9 %, mean displacement of moved dots 1.72–1.74 px, spacing floor still
+2.828 px. The change is a definitional correction, made before any score existed and before any
+file left this branch; it is recorded here because it happened after the pre-registration was
+written, and the pre-registration text was amended in the same commit rather than quietly.

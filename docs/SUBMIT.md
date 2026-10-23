@@ -106,3 +106,11 @@ three SNAP rasters — the sha8 values are reproducible) and `python scripts/bui
 Write the receipt into `ledger/submissions.csv` (`receipt_score`, `date`, `receipt=Y`,
 `evidence_class=RECEIPT`) and re-read `SLOT_PLAN.md` for what the number licenses. Any live
 change under **0.01** is treated as no evidence.
+
+## Not slot candidates: the three magnetic-edge SNAP builds (2026-10-23, second session)
+
+`releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c*.tif`,
+`…-snap-vg2-20261023-af1f0f2f*.tif` and `…-snap-cons2-20261023-fed241ac*.tif` are **gate-clean but
+must not be uploaded**: the (R0, SNAP) pair was already spent by PR #31, and both builds read
+negative (IR-86-SNAP-04). They exist as corroboration and as the record behind IR-86-SNAP-06 (the
+proxy is catalogue-collar recovery). Ledger status: `BUILT-DUPLICATE`.

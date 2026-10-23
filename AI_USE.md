@@ -100,3 +100,22 @@ Every historical score stays `CLAIM`.
 **What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
 remaining rolling-week quota, R0's receipt if one exists, the receipt after an upload, the choice
 of the final file, and — before the next session — an actual AXIS assignment.
+
+## Addendum — second SNAP session (magnetic edges), 2026-10-23
+
+**Human decision:** axis = SNAP, response family = magnetic edges (`tmi_hg` / `tc`), chosen from an
+offered list.
+
+**AI-written:** `scripts/build_snap_variants.py`, `registry/preregistration_snap.json` (rule and
+analysis plan fixed before any variant was scored), `tests/test_snap_variants.py`, the addenda in
+`IRREGULARITIES.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md`, and the `BUILT-DUPLICATE` ledger rows, which
+the repo's canonical generator now emits from `ledger/variants_snap_magnetic.json`.
+
+**AI-chosen constants a reviewer should check:** smoothing σ = 1 px and gain gate = 0.25 σ (both
+fixed after a pre-build jitter diagnostic, never tuned on a score); spacing floor = 2.828 px, copied
+from R0's measured nearest-neighbour distance; predicted live ranges centred at +0.003…+0.005, i.e.
+deliberately below the 0.01 evidence floor.
+
+**Not done by AI:** no submission, no login, no leaderboard access, no drivendata.org or dropbox.com
+request, no slot selection. The three builds were not promoted; the duplication with PR #31 was
+found only when `main` was merged, and is logged rather than hidden.
