@@ -3,7 +3,7 @@ PY ?= .venv/bin/python
 # data → audit → site → verify must stay ordered even with make -j.
 .NOTPARALLEL:
 
-.PHONY: setup data holdout submission audit refresh site test verify all
+.PHONY: setup data holdout submission audit refresh site test verify all verify-downloads refresh-downloads
 setup:
 	python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
 
@@ -22,6 +22,14 @@ submission:
 audit:
 	$(PY) scripts/audit_release.py --measure-registry
 
+# Retain the independently merged all-download integrity audit and its commands.
+verify-downloads:
+	$(PY) scripts/check_site.py
+	$(PY) scripts/audit_downloads.py
+
+refresh-downloads:
+	$(PY) scripts/audit_downloads.py --write
+
 refresh:
 	$(PY) scripts/refresh_fleet.py
 
@@ -34,6 +42,7 @@ test:
 verify:
 	$(PY) scripts/build_site.py --check
 	$(PY) scripts/check_site.py
+	$(PY) scripts/audit_downloads.py
 	$(PY) -m pytest -q
 
 # The safe default pipeline performs no model experiment, placement or slot selection.

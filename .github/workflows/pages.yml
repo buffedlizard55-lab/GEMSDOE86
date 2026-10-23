@@ -42,6 +42,7 @@ jobs:
           python scripts/build_site.py
           python scripts/build_site.py --check
           python scripts/check_site.py
+          python scripts/audit_downloads.py
           python -m pytest -q
       - name: Retain audit evidence, including explicit failed refreshes
         if: always()

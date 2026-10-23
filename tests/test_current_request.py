@@ -40,3 +40,12 @@ def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_train
     assert "refresh_fleet.py" in workflow
     assert "run_lane" not in workflow
     assert "build_submission.py" not in workflow
+
+
+def test_current_review_and_readme_deliverable_links_exist():
+    readme = (ROOT / "README.md").read_text().split("<!-- CURRENT_REQUEST_20261023_START -->", 1)[0]
+    for relative in re.findall(r"\]\(([^():#\s]+)(?:#[^)]*)?\)", readme):
+        assert (ROOT / relative).is_file(), relative
+    review = (ROOT / "research/SESSION_20261023_REVIEW.md").read_text()
+    assert "highest-priority new-TIFF requirement is unmet" in review
+    assert "Pass 1" in review and "Pass 2" in review and "Pass 3" in review

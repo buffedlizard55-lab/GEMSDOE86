@@ -1,0 +1,38 @@
+{
+  "hypothesis": "Deferred basement mass-balance residual; no assigned method lane",
+  "mechanism": "Remove a forward basement gravity response and test persistent residual gradients.",
+  "non_fault_mimic": "Lateral sediment-density changes and basement-model error",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "complete": false,
+    "surface": null,
+    "final_dots": null,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_fraction": 1.0,
+    "implication": "Every nonempty allowed dot set fails the literal overlap rule; not a measured candidate comparison."
+  },
+  "raster_sha256": null,
+  "validator": {
+    "status": "NOT_RUN_NO_NEW_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_artifacts_local_format_pass": true,
+    "report": "docs/evidence/download-validation.json"
+  },
+  "submission_name": null,
+  "note": "No new TIFF: literal overlap stop reproduced. Inherited research downloads pass local format, not submission approval.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "scope": "Publication audit only. No new model, surface or dots. Inherited scientific evidence is not rerun or promoted."
+}

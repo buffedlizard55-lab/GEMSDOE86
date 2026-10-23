@@ -31,8 +31,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 6,
-    "local_format_pass": 6,
+    "checked": 7,
+    "local_format_pass": 7,
     "files": [
       {
         "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -62,6 +62,11 @@
       {
         "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
         "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+        "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
         "verdict": "negative"
       }
     ],

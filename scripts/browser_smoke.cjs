@@ -12,7 +12,8 @@ const packageModule = require("@sparticuz/chromium");
 const chromium = packageModule.default ?? packageModule;
 const root = path.resolve(__dirname, "..");
 const base = new URL(process.argv[2] || "http://127.0.0.1:8000/");
-const pages = ["index.html", "executive-summary.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html"];
+const artifactCount = JSON.parse(fs.readFileSync(path.join(root, "docs/evidence/download-inventory.json"), "utf8")).artifacts.length;
+const pages = ["index.html", "executive-summary.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html", "download-status.html"];
 const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
 
 (async () => {
@@ -47,13 +48,13 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
         const response = await page.goto(new URL(file, base).href);
         assert.equal(response.status(), 200, file);
         assert.equal(await page.locator("h1").count(), 1, file);
-        assert(await page.locator("footer").textContent().then(text => text.includes("No candidate authorized")), file);
+        assert(await page.locator("footer").textContent().then(text => text.includes("No candidate authorized") || text.includes("DO NOT SUBMIT")), file);
         const layout = await page.evaluate(() => ({ width: innerWidth, scroll: document.documentElement.scrollWidth }));
         assert(layout.scroll <= layout.width, `Horizontal page overflow at ${width}px on ${file}: ${JSON.stringify(layout)}`);
       }
       await page.goto(new URL("index.html", base).href);
-      assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), 6);
-      assert.equal(await page.getByRole("link", { name: "One-TIFF ZIP — audit only", exact: true }).count(), 6);
+      assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), artifactCount);
+      assert.equal(await page.getByRole("link", { name: "One-TIFF ZIP — audit only", exact: true }).count(), artifactCount);
       await page.locator("article.artifact details").first().locator("summary").click();
       await page.getByRole("button", { name: "Copy hash", exact: true }).first().click();
       await page.waitForFunction(() => {
@@ -79,14 +80,14 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
       await page.goto(new URL("index.html", base).href);
       await page.screenshot({ path: path.join(root, `.cache/ui/dashboard-${width}.png`), fullPage: false });
       report.viewports.push({ width, height: 1000, pages_checked: pages.length, no_horizontal_overflow: true,
-        downloads_each_format: 6, browser_download_sha_matches: true, fleet_filter_passed: true });
+        downloads_each_format: artifactCount, browser_download_sha_matches: true, fleet_filter_passed: true });
       await context.close();
     }
     // Progressive enhancement: the essential decision and download links survive without JS.
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
     await page.goto(new URL("index.html", base).href);
-    assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), 6);
+    assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), artifactCount);
     assert((await page.locator("main").textContent()).includes("DO NOT SUBMIT"));
     report.without_javascript_decision_and_downloads_work = true;
     await context.close();

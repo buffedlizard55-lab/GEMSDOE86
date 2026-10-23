@@ -83,6 +83,15 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "design": "buffered whole components; one seed",
                 "caveat": "Historical configuration only. Hidden-positive counts were used for the prior and dot budget; not an independent promotion benchmark."}
     h = context["holdout_dti"]
+    if kind == "wvb_whole_components":
+        if h.get("label") != "HOLDOUT-DTI":
+            raise ValueError("Archived WVB performance lacks its evidence class")
+        return {**base, "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["dti"], "ci95": h["ci95"],
+                "paired_delta": h["delta_vs_d28"], "paired_delta_ci95": h["delta_vs_d28_ci95"],
+                "design": "buffered whole components; LOQO; two seeds; physical-block interval",
+                "caveat": "Concurrent archived experiment, not rerun or certified by this audit. Its paired delta is positive, but literal overlap fails; model-selection and cache-provenance limits still apply. Not a repository-wide best."}
     if h.get("evidence_class") != "HOLDOUT-DTI":
         raise ValueError("Historical performance lacks its evidence class")
     base["evaluator_version"] = h["evaluator_version"]

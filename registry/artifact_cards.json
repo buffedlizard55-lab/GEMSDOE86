@@ -2,11 +2,54 @@
   "schema": "gems86.artifact-card-index.v1",
   "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision.",
   "artifacts": [
-    {"lane": "GMC catalogue-following control", "card": null, "context": "evidence/run_card.json", "holdout_kind": "gmc_control", "stem": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros"},
-    {"lane": "GMC off-catalogue variant", "card": "evidence/run_card.json", "context": "evidence/run_card.json", "holdout_kind": "unvalidated_variant", "stem": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros"},
-    {"lane": "H86-1 edge corroboration", "card": "docs/evidence/h86_run_card.json", "context": "docs/evidence/h86_run_card.json", "holdout_kind": "pooled", "stem": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros"},
-    {"lane": "H86-RMRB unsupervised boundary", "card": "docs/evidence/run-card.json", "context": "docs/evidence/run-card.json", "holdout_kind": "cut_segments", "stem": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros"},
-    {"lane": "RMRB-86 supervised residual", "card": "docs/evidence/rmrb86-run-card.json", "context": "docs/evidence/rmrb86-run-card.json", "holdout_kind": "pooled", "stem": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT"},
-    {"lane": "H86B-GFCO multi-physics", "card": "docs/evidence/h86b-gfco-run-card.json", "context": "docs/evidence/h86b-gfco-run-card.json", "holdout_kind": "gfco_whole_components", "stem": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros"}
+    {
+      "lane": "GMC catalogue-following control",
+      "card": null,
+      "context": "evidence/run_card.json",
+      "holdout_kind": "gmc_control",
+      "stem": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros"
+    },
+    {
+      "lane": "GMC off-catalogue variant",
+      "card": "evidence/run_card.json",
+      "context": "evidence/run_card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros"
+    },
+    {
+      "lane": "H86-1 edge corroboration",
+      "card": "docs/evidence/h86_run_card.json",
+      "context": "docs/evidence/h86_run_card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros"
+    },
+    {
+      "lane": "H86-RMRB unsupervised boundary",
+      "card": "docs/evidence/run-card.json",
+      "context": "docs/evidence/run-card.json",
+      "holdout_kind": "cut_segments",
+      "stem": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros"
+    },
+    {
+      "lane": "RMRB-86 supervised residual",
+      "card": "docs/evidence/rmrb86-run-card.json",
+      "context": "docs/evidence/rmrb86-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT"
+    },
+    {
+      "lane": "H86B-GFCO multi-physics",
+      "card": "docs/evidence/h86b-gfco-run-card.json",
+      "context": "docs/evidence/h86b-gfco-run-card.json",
+      "holdout_kind": "gfco_whole_components",
+      "stem": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros"
+    },
+    {
+      "lane": "H86-WVB wavenumber / fault-valve bridge",
+      "card": "docs/evidence/h86-wvb-run-card.json",
+      "context": "docs/evidence/h86-wvb-run-card.json",
+      "holdout_kind": "wvb_whole_components",
+      "stem": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros"
+    }
   ]
 }

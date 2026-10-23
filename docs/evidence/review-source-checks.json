@@ -1,0 +1,29 @@
+{
+  "retrieved_utc": "2026-10-23T00:16:08.142723+00:00",
+  "sources": [
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "source_class": "OFFICIAL-REFERENCE-CODE",
+      "git_blob": "a8814f99c395d12a8e1c3731c738e61d7dca06b5",
+      "retrieved_sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "archive_file": "research/upstream/official-reference-README.md",
+      "archived_sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "archive_matches_retrieved_bytes": true,
+      "cpu_only_explicitly_supported": true
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/780a5a534269c79adfe6d1d7d5aadead161332aa/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json",
+      "source_class": "OWNER-ARTIFACT-NOT-ORGANIZER-RECEIPT",
+      "git_blob": "5d4157e5a084345faa5d5a6ccb1fc4f12cb9a486",
+      "retrieved_sha256": "e4db14f2e369b1db37870d8d1a31035f730512309a88810d99ff705782e28212",
+      "archive_file": "research/upstream/h33-best-audit.json",
+      "archived_sha256": "e4db14f2e369b1db37870d8d1a31035f730512309a88810d99ff705782e28212",
+      "archive_matches_retrieved_bytes": true,
+      "has_unscored_wording_in_submission_note": true,
+      "contains_projected_leaderboard_field": true,
+      "is_organizer_receipt": false
+    }
+  ],
+  "scope": "Two immutable source documents only; not a full fleet review, live leaderboard or official submission receipt.",
+  "live_portal_verified": false
+}
