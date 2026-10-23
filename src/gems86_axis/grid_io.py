@@ -51,6 +51,22 @@ def load_context(catalogue_path: str | Path = CATALOGUE, sample_path: str | Path
             "sample_path": str(sample_path), "catalogue_path": str(catalogue_path)}
 
 
+def dot8(mask: np.ndarray) -> str:
+    """Deterministic identity token for a dot set.
+
+    Independent of any filename or TIFF tag, so a release can carry its own token without
+    the circularity of hashing a file whose tags contain the hash.  Reproducible from the
+    mask alone.
+    """
+    import hashlib
+
+    packed = np.packbits(np.asarray(mask, dtype=bool).astype(np.uint8).ravel())
+    h = hashlib.sha256()
+    h.update(np.array(np.asarray(mask).shape, dtype=np.int64).tobytes())
+    h.update(packed.tobytes())
+    return h.hexdigest()[:8]
+
+
 def load_dots(path: str | Path, footprint: np.ndarray) -> np.ndarray:
     """Boolean dot mask from any scored encoding (NaN-outside or zeros-outside)."""
     import rasterio

@@ -1,0 +1,97 @@
+{
+  "id": "gems86-h33-2b2-prune3-20261023-e4027684",
+  "parent": "h33-h33-2-b2",
+  "axis": "prune",
+  "value": "collar3px",
+  "generated_utc": "2026-10-23T16:55:47Z",
+  "role": "duplicate-corroboration",
+  "slot_candidate": false,
+  "slot_reason": "duplicate of (parent, axis, value) = PRUNE / 3 already in the ledger; kept for audit, not a slot candidate (IR-86-CONC-01)",
+  "n_dots": 37654,
+  "pct_changed": 11.531,
+  "dot_digest": "71b8a067ac3e18cfbfa45c3feee4d013190d0ecc849c07c5f4b375896fdffb78",
+  "dot8": "e4027684",
+  "evidence_class": "MODEL",
+  "predicted_live_change": 0.004,
+  "predicted_live_range": [
+    0.002,
+    0.006
+  ],
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "retained": 35483,
+    "removed": 2171,
+    "added": 2171,
+    "pct_of_parent_changed": 11.531,
+    "pct_removed": 5.7657,
+    "pct_added": 5.7657,
+    "kept_fraction": 0.942343,
+    "jaccard": 0.890973,
+    "count_exact": true
+  },
+  "model": {
+    "evidence_class": "MODEL",
+    "algebra": "DTI = T / (0.2T + 0.2(S-M) + 0.8|G|)",
+    "caution": "no live score and no holdout PROXY was run this session; the sign rests on the mechanism card alone"
+  },
+  "rule": "parent H19-5 support mask, eligible cells ranked by distance to the nearest retained dot (largest kernel gaps first); pass 1 keeps the parent's 2.83 px thinning, pass 2 relaxes to the parent's 2 px clearance floor only as far as holding the count requires",
+  "provenance": {
+    "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "git_sha": "71718fbda8b044b58e5e6df465220823848c7cc6",
+    "builder": "scripts/build_axis_variants.py",
+    "run_card": "evidence/axis_variants.json"
+  },
+  "refill": {
+    "axis": "PRUNE",
+    "value": "collar3px",
+    "radius_px": 3.0,
+    "removed_dots": 2171,
+    "refilled_dots": 2171,
+    "refilled_at_parent_spacing": 475,
+    "refilled_at_relaxed_spacing": 1696,
+    "refill_shortfall": 0,
+    "n_dots_parent": 37654,
+    "n_dots_variant": 37654,
+    "dots_changed": 4342,
+    "pct_changed": 11.531,
+    "refill_pool": "parent H19-5 support mask, eligible cells ranked by distance to the nearest retained dot (largest kernel gaps first); pass 1 keeps the parent's 2.83 px thinning, pass 2 relaxes to the parent's 2 px clearance floor only as far as holding the count requires",
+    "cat_edt_mean_parent": 28.9966,
+    "cat_edt_mean_variant": 30.3052,
+    "min_cat_edt_variant": 3.1623
+  },
+  "nan": {
+    "file": "gems86-h33-2b2-prune3-20261023-e4027684.tif",
+    "sha256": "6286ebe52628a80ceefdbbb88d307376854c65c842b2c6b0551578999880a296",
+    "bytes": 367258,
+    "validator": {
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 3.1623,
+      "checks": {
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_nan_or_zero": true,
+        "zero_catalogue_mass": true,
+        "single_band": true
+      }
+    }
+  },
+  "zeros": {
+    "file": "gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif",
+    "sha256": "f0f3d620144478038a53b8fa40ba10b39aba80f82f5a4c5614f35b2de2b097d2",
+    "bytes": 314543,
+    "validator": {
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 3.1623,
+      "checks": {
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_nan_or_zero": true,
+        "zero_catalogue_mass": true,
+        "single_band": true
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+[
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-prune3-20261023-e4027684",
+    "parent": "h33-h33-2-b2",
+    "axis": "prune",
+    "value": "collar3px",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 11.531,
+    "sha256": "6286ebe52628a80ceefdbbb88d307376854c65c842b2c6b0551578999880a296",
+    "sha8": "e4027684",
+    "sha256_zeros": "f0f3d620144478038a53b8fa40ba10b39aba80f82f5a4c5614f35b2de2b097d2",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684.tif",
+      "releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif"
+    ],
+    "status": "BUILT-DUPLICATE",
+    "duplicate_of": "PRUNE / 3",
+    "predicted_change": "+0.004 (MODEL). Widen the catalogue collar from the parent's 2 px to 3 px and refill to hold the count. DUPLICATE of (PRUNE,3) already in the ledger; not a slot candidate.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/37",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 35483,
+      "removed": 2171,
+      "added": 2171,
+      "pct_of_parent_changed": 11.531,
+      "pct_changed": 11.531,
+      "jaccard": 0.890973,
+      "count_exact": true,
+      "axis_note": "parent H19-5 support mask, eligible cells ranked by distance to the nearest retained dot (largest kernel gaps first); pass 1 keeps the parent's 2.83 px thinning, pass 2 relaxes to the parent's 2 px clearance floor only as far as holding the count requires"
+    },
+    "gates_passed": true,
+    "refill": {
+      "removed": 2171,
+      "refilled": 2171,
+      "at_parent_spacing": 475,
+      "at_relaxed_spacing": 1696,
+      "shortfall": 0,
+      "cat_edt_mean_before": 28.9966,
+      "cat_edt_mean_after": 30.3052,
+      "min_cat_edt_px": 3.1623
+    }
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-conc15-20261023-2b883f2d",
+    "parent": "h33-h33-2-b2",
+    "axis": "concentration",
+    "value": "b1km-move15",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 29.999,
+    "sha256": "cf54e7578a9ecd5202a02c464e1142ca911eb88039af0a9f9db5e47d8915000e",
+    "sha8": "2b883f2d",
+    "sha256_zeros": "09aaa696e1f0fce6ea010a0c125e64bf6df9a1dff18bcf547dffae94b928e6f5",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
+      "releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif"
+    ],
+    "status": "BUILT",
+    "duplicate_of": "",
+    "predicted_change": "+0.006 (range +0.003..+0.010, MODEL). Move 15% of dots out of the lowest-prior 1 km blocks into the highest-prior fifth, count fixed, placement geometric only. Block-density CV 0.6235 -> 0.7644, i.e. away from the reported 0.51-0.59 band, which is the stated falsifier.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/37",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 32006,
+      "removed": 5648,
+      "added": 5648,
+      "pct_of_parent_changed": 29.999,
+      "pct_changed": 29.999,
+      "jaccard": 0.739134,
+      "count_exact": true,
+      "axis_note": "geometric only: highest-prior destination block, then the largest remaining kernel gap; no pixel-scale response term"
+    },
+    "gates_passed": true,
+    "blocks": {
+      "block_size": "1000 m (10x10 px)",
+      "moved": 5648,
+      "moved_target": 5648,
+      "dest_blocks": 10462,
+      "density_cv_occupied_parent": 0.6235,
+      "density_cv_occupied_variant": 0.7644,
+      "occupied_blocks_parent": 15976,
+      "occupied_blocks_variant": 14339,
+      "min_cat_edt_px": 2.2361
+    }
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-snap2-20261023-6ec42a92",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "2px",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 179.954,
+    "sha256": "23cc396355bc5a0f4761f685f18dc0817361985c67c4067b23ab8242c666c0aa",
+    "sha8": "6ec42a92",
+    "sha256_zeros": "accdb5754a85d720b3eb9d9ad2f8c5c3936113c86cdfad8bde94cb3090d88ae9",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
+      "releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif"
+    ],
+    "status": "BUILT-DUPLICATE",
+    "duplicate_of": "SNAP / 2",
+    "predicted_change": "+0.004 (MODEL). Move each dot <= 2 px to the strongest TMI/DEM edge response. DUPLICATE of (SNAP,2) already in the ledger; that arm's own instrument reads negative against a random-response null, so this is not a slot candidate.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/37",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "retained": 3774,
+      "removed": 33880,
+      "added": 33880,
+      "pct_of_parent_changed": 179.954,
+      "pct_changed": 179.954,
+      "jaccard": 0.052758,
+      "count_exact": true,
+      "axis_note": "Sobel gradient magnitude of TMI upward-continued to 150 m + z-scored DEM scarp composite (|profile curvature|, max slope, hillshade lineament)"
+    },
+    "gates_passed": true,
+    "movement": {
+      "n_snapped": 33880,
+      "mean_displacement_px_moved": 1.4349,
+      "median_displacement_px_moved": 1.4142,
+      "max_displacement_px": 2.0,
+      "blocked_by_occupancy": 1701,
+      "blocked_by_clearance": 0,
+      "cat_edt_mean_before": 28.9966,
+      "cat_edt_mean_after": 29.0209
+    }
+  }
+]

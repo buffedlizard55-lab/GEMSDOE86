@@ -1,74 +1,206 @@
-# AI_USE — generative-AI disclosure (required by the competition rules)
+# Generative-AI use — 2026-10-23
 
-Rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf (3 scored submissions per week per entity,
-one final file, reproducible code, generative-AI disclosure). This file records what the AI
-agent wrote and what the human decided, for the 2026-10-23 AXIS session.
+Arena.ai Agent Mode wrote the R0 PRUNE builders, unit tests, ledger generator, gate checks,
+measurement receipts, mechanism cards, slot plan, submission card and the README state block.
+No human-authored code or text is mixed in unlabelled.
 
-## What the AI agent wrote
+**What the AI decided (and the human can veto):**
+- **Three** sessions ran the same axis on the same parent: PR #28 (`arena/06524e4a`, PRUNE≤3 +
+  fixed-count H19-5 refill), PR #29 (`arena/72ecdcd1`, nested collar ladder + mass control +
+  byte-exact parent rebuild) and this one (`arena/71e90a17`, PRUNE≤3 pure deletion, PRUNE≤4,
+  PRUNE≤3-with-relocation). No AXIS assignment arrived in any of them; each selected PRUNE as
+  the only axis whose pinned inputs were present, which is itself the flaw this file records.
+  This session's PRUNE≤3 turned out to be the same dot set as PR #29's `le3p000` and was
+  withdrawn (IR-86-PRUNE-08).
+- This file and `SLOT_PLAN.md` were rewritten by this session to reconcile the three, and the
+  earlier claim that R0 could not be rebuilt was corrected once PR #29 showed otherwise
+  (IR-86-PRUNE-02).
+- `ledger/submissions.csv` now has **one** generator (`scripts/build_ledger.py`) that rebuilds
+  the concurrent candidate's row from `ledger/variants_external.json`, so the three sessions do
+  not fight over the file.
 
-- `src/gems86_axis/` — the single-axis variant builders (`prune`, `concentration`, `snap`),
-  the block-prior and block-density measures, the grid I/O for the two submission encodings,
-  and the MUST-pass gates.
-- `scripts/build_axis_variants.py` — the pipeline that verifies input pins, builds the
-  variants, writes both encodings, runs every gate from the file re-read on disk, and emits
-  `evidence/axis_variants.json`.
-- `scripts/build_ledger.py` — assembles `ledger/submissions.csv` from the transcribed history
-  and this session's builds.
-- `scripts/restore_axis_inputs.py` — restores the hash-pinned inputs into the gitignored
-  `.cache/`, verifying SHA-256 and byte count before use and aborting on any mismatch.
-- `tests/test_axis_variants.py` — the metric-algebra unit test the brief requires
-  (`DTI = T / (0.2T + 0.2(S−M) + 0.8|G|)` against the shared template metric, plus the
-  isolated-dot break-even `k > α·DTI`), and the variant invariants.
-- `research/AXIS_MECHANISM_CARDS.md`, `SLOT_PLAN.md`, `IRREGULARITIES.md`, `docs/SUBMIT.md`,
-  this file, and the README `CURRENT STATE` block.
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. No PROXY or MODEL number is written as a score or a
+receipt. Every historical score stays `CLAIM` because no submission-page receipt exists in this
+checkout.
 
-No AI-written code submits anything, logs in anywhere, scrapes a leaderboard, or contacts
-drivendata.org or dropbox.com. The only network calls are `gh api` / `api.github.com` blob
-fetches of owner-published mirrors and the PyPI install of the pinned requirements.
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the actual receipt score/date after an
+upload, and the choice of the final file from one registered entity.
 
-## What the human decided
+---
 
-- The AXIS set for this session: **PRUNE, CONCENTRATION, SNAP** (chosen from the brief's wk1–2
-  default order, over three alternatives offered).
-- **TOP_PUBLIC = 0.3195**, taken from this repo's `PROMPT.md` archive and accepted as an
-  undated owner CLAIM rather than a receipt.
-- **Slots left this rolling week: 3 of 3.**
-- **Data scope:** restore the external GeoDAWN/DEM mirror set (~100 MB) but *not* the 419 MB
-  feature stack. That single decision is why MASS and RELIEF are unbuilt and why the format
-  validator's footprint checks are covered by a direct re-read instead (see
-  `IRREGULARITIES.md` items 5 and 7).
-- Nothing has been submitted. Promotion to a weekly slot is the human's step, from their own
-  registered account.
+## Addendum — PRUNE ladder (branch `arena/72ecdcd1-gemsdoe86`, PR #29)
 
-## Reproducibility
+**AI wrote:** `src/gems86/prune.py`, `scripts/run_prune_ladder.py`, `scripts/merge_prune_ledger.py`,
+`tests/test_prune_ladder.py`, `ledger/variant-cards.md`, and the ladder sections of
+`IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md` and `README.md`.
+
+**AI decided:** the three rungs must be the distance shells that actually exist among R0's dots
+(√5, √8, 3.0 px); that a mass-matched control is required before a collar result can be attributed
+to proximity; and that the spec-compliant `(PRUNE, 3)` belongs to PR #28, so this one shipped the
+missing rungs instead.
+
+**AI corrected itself:** an earlier claim that the parent's file bytes were not reproducible was
+falsified (byte-exact rebuild, `c55bafc4…`) and retracted in `IRREGULARITIES.md` rather than
+deleted. No truth raster, no portal, no login, no slot.
+
+---
+
+## Addendum — MASS axis (branch `arena/7cf7f98a-gemsdoe86`, 2026-10-23)
+
+**AI wrote:** `scripts/build_mass_axis.py`, `tests/test_mass_axis.py`, the MASS section of
+`scripts/build_ledger.py`'s variant sources, `evidence/mass_axis_20261023.json` (generated),
+`evidence/mass-mechanism.md`, `ledger/variants_mass.json` (generated), and the MASS updates to
+`SLOT_PLAN.md`, `README.md` (CURRENT STATE block only) and `docs/SUBMIT.md`.
+
+**Human decided:** the AXIS for this session is **MASS** (chosen via the session prompt after
+PRUNE was shown spent). Everything else followed brief v2.
+
+**AI decided (human can veto):** the parent's ranking is the recorded recipe's FIFO-BFS
+visitation order, *validated* by exact reproduction of the pinned `d2.8` dot set before use;
+"lowest-ranked" means highest visit rank; the plus pool keeps R0's own >2 px collar; both
+predictions are negative so MASS is recommended **no slot by default** in `SLOT_PLAN.md`;
+release TIFFs live in `releases/mass/` (gitignored) so the PRUNE release contract tests keep
+their meaning.
+
+**AI did not do:** no DrivenData access, no leaderboard read, no submission, no credential
+handling. No PROXY or MODEL number is written as a score. R0's 0.2778 stays `CLAIM`.
+
+---
+
+## Addendum — SNAP axis (branch `arena/f50143a0-gemsdoe86`, this session)
+
+**AI wrote:** `src/gems86/snap.py`, `scripts/run_snap_axis.py`, `tests/test_snap_axis.py` (10
+tests), the SNAP section of `ledger/variant-cards.md`, the null-control and smoothing-sweep
+diagnostics, `ledger/variants_snap.json`, the SNAP rows of `ledger/submissions.csv` (regenerated by
+`scripts/build_ledger.py`, which now also reads `variants_snap.json`), and the SNAP sections of
+`SLOT_PLAN.md`, `docs/SUBMIT.md`, `README.md` and `IRREGULARITIES.md`.
+
+**AI decided (the human can veto):**
+- **SNAP** as the axis, because the AXIS field was again blank and `SLOT_PLAN.md` had already
+  pre-registered SNAP for slot 2 (IR-86-SNAP-01).
+- The response is the rank-normalised mean of the two pinned gradient bands `tmi_hg` and
+  `iso_grav_anom_hg` — monotone per band, so it cannot invent an edge.
+- Three variants only: ≤1 px, ≤2 px, and ≤2 px gravity-only. They differ in window size and band,
+  never in count, mass or catalogue exclusion.
+- **The predictions are negative** (−0.004 / −0.006 / −0.004 MODEL). The optimistic algebra
+  bracket (+0.000…+0.086 and larger) is reported next to them and explicitly not used, because a
+  random-response null control scores the same proxy as the real response.
+
+**AI corrected itself:** the first instrumented pass (a `--no-write` run, before any raster was
+written) showed 97–99 % of dots moving, which looked like a large positive effect; the null control
+and the smoothing sweep showed it was not. Both numbers stay in
+`evidence/snap_axis_20261023.json` rather than being deleted.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. No PROXY or MODEL number is written as a score or a receipt.
+Every historical score stays `CLAIM`.
+
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the receipt after an upload, the choice
+of the final file, and — before the next session — an actual AXIS assignment.
+
+## Addendum — second SNAP session (magnetic edges), 2026-10-23
+
+**Human decision:** axis = SNAP, response family = magnetic edges (`tmi_hg` / `tc`), chosen from an
+offered list.
+
+**AI-written:** `scripts/build_snap_variants.py`, `registry/preregistration_snap.json` (rule and
+analysis plan fixed before any variant was scored), `tests/test_snap_variants.py`, the addenda in
+`IRREGULARITIES.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md`, and the `BUILT-DUPLICATE` ledger rows, which
+the repo's canonical generator now emits from `ledger/variants_snap_magnetic.json`.
+
+**AI-chosen constants a reviewer should check:** smoothing σ = 1 px and gain gate = 0.25 σ (both
+fixed after a pre-build jitter diagnostic, never tuned on a score); spacing floor = 2.828 px, copied
+from R0's measured nearest-neighbour distance; predicted live ranges centred at +0.003…+0.005, i.e.
+deliberately below the 0.01 evidence floor.
+
+**Not done by AI:** no submission, no login, no leaderboard access, no drivendata.org or dropbox.com
+request, no slot selection. The three builds were not promoted; the duplication with PR #31 was
+found only when `main` was merged, and is logged rather than hidden.
+
+## Addendum — RELIEF axis (branch `arena/1252d45c-gemsdoe86`, 2026-10-23, fourth session on R0)
+
+**AI wrote:** `src/gems86/relief.py`, `scripts/run_relief_axis.py`, `tests/test_relief_axis.py`,
+`evidence/relief_axis_20261023.json`, the three `releases/…-RELIEF-…-zeros.json` receipts, and the
+RELIEF sections of `ledger/variant-cards.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`,
+`README.md` (CURRENT STATE block only) and this file. No human-authored code or text is mixed in
+unlabelled.
+
+**The human decided:** the session's AXIS — **RELIEF** — and that the `-zeros` form is the primary
+upload. Both answers were requested before anything was built, precisely because three earlier
+sessions each self-selected PRUNE on the same parent (IR-86-PRUNE-08). Everything else below is the
+AI's decision and is vetoable.
+
+**AI decided (science):** the direction of the shift (piedmont→range-front, with the sign flip as a
+sibling rung) after measuring that R0's mass sits 53.9 % piedmont / 16.1 % front while an
+independent USGS SGMC inventory puts 2.7× the per-pixel un-mapped fault density at the front; the
+top dose at 15 % (the brief's ceiling) because a 5 % version projected sub-noise; "deepest-in-regime"
+source selection over "nearest-boundary"; a measured in-regime displacement control that is
+deliberately **not** written as a raster; and using the SGMC surrogate only for the *prediction*,
+never in the builder, so the released files are pure geometric edits of R0.
+
+**AI corrected itself twice, in-session, before releasing anything** (both in
+IR-86-RELIEF-01): a band reader that let the stack's nodata sentinel into the standardisation (it
+classified 100 % of R0's dots as "basin"), and a first build whose relocated dots could sit 1 px
+apart — a hidden clustering edit that flipped the surrogate sign of every rung. The defective files
+were deleted, `ledger/` reverted, and the build re-run once; both faults are now unit-tested and the
+builder aborts on them.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no submission, no login, no
+credential, no Dropbox. No gate script was modified, relaxed or bypassed; the repo's 70 % overlap
+rule was *not applied* because brief v2 §6 forbids it, and that conflict stays open
+(IR-86-PRUNE-01). No PROXY or MODEL number is written as a score; R0's 0.2778 is still a CLAIM and
+`ledger/submissions.csv` still has **0 receipts** in 118 rows. No slot is authorised.
+
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the receipt score/date after an upload,
+the data-use decision on the tracked competition rasters (IR-86-PRUNE-04), and the final blind pick.
+
+---
+
+## Session `arena/95e0ad6b-gemsdoe86` (2026-10-23, PR #37) — CONCENTRATION session
+
+Added on merge; the sections above are the earlier sessions' disclosures and stand unchanged.
+
+**Axis set assigned by the human:** PRUNE + CONCENTRATION + SNAP, with TOP_PUBLIC recorded as
+0.3195 (undated CLAIM from `PROMPT.md`, at the human's instruction) and 3/3 slots left. The human
+also scoped the data: restore the external GeoDAWN/DEM mirror set (~100 MB) but **not** the
+419 MB feature stack. That single decision is why this session ran no holdout PROXY, no leakage
+canary and no SGMC control — all three are recorded **NOT RUN**, never as passes.
+
+**What the agent wrote:** `src/gems86_axis/` (the `prune` / `concentration` / `snap` builders, the
+km-block prior and density measures, the MUST-pass gates, the dual-encoding writer);
+`scripts/build_axis_variants.py` (pin verification → build → write both encodings → re-run every
+gate from the file re-read on disk → `evidence/axis_variants.json`);
+`scripts/restore_axis_inputs.py` (SHA-256-verified mirror restore into the gitignored `.cache/`);
+`scripts/emit_axis_variant_entries.py` (this session's entries into the canonical ledger schema);
+`tests/test_axis_variants.py` and `tests/test_axis_releases.py`;
+`research/AXIS_MECHANISM_CARDS.md`; the `IR-86-CONC-01…04` entries above.
+
+**What the human decided:** the axis set, TOP_PUBLIC, the slot count, and the data scope. Nothing
+was submitted; promotion to a weekly slot stays the human's step from their own account.
+
+**Outcome of the merge:** `(PRUNE, collar3px)` and `(SNAP, 2px)` collided with keys parallel
+sessions had already built, so both are `BUILT-DUPLICATE` and not slot candidates
+(IR-86-CONC-01). The session's contribution is `(CONCENTRATION, b1km-move15)`.
+
+**Reproducibility.** The builders use no RNG and break every tie by `(row, col)`, so re-running
+reproduces the same dot sets and tokens (`e4027684`, `2b883f2d`, `6ec42a92`); PRUNE and SNAP were
+each rebuilt twice during the session after unrelated code changes and returned identical tokens.
 
 ```
-python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
-.venv/bin/python scripts/restore_axis_inputs.py \
-    --ids ext_geodawn_extensions_u8 ext_geodawn_rad_u8 ext_topo_10m_derived_100m_u8 \
-          ext_dem10_chi_100m_i16 ext_geodawn_extensions_json ext_geodawn_rad_json \
-          ext_derived_sgmc_faults_100m_u8 scored_h19_5 scored_d28_unscored
-.venv/bin/python -m pytest tests/test_axis_variants.py -q
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_geodawn_extensions_u8 \
+    ext_geodawn_rad_u8 ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 \
+    ext_geodawn_extensions_json ext_geodawn_rad_json ext_derived_sgmc_faults_100m_u8 \
+    scored_h19_5 scored_d28_unscored
 .venv/bin/python scripts/build_axis_variants.py
+.venv/bin/python scripts/emit_axis_variant_entries.py
 .venv/bin/python scripts/build_ledger.py
+.venv/bin/python -m pytest tests/test_axis_variants.py tests/test_axis_releases.py -q
 ```
 
-The builders are deterministic: no RNG is used anywhere in `src/gems86_axis/`, and every
-tie is broken by `(row, col)`. Re-running reproduces the same dot sets and the same
-dot-set tokens (`e4027684`, `2b883f2d`, `6ec42a92`) — verified this session by rebuilding
-PRUNE and SNAP twice after unrelated code changes and getting identical tokens.
-
-Every input carries a SHA-256 pin in `registry/data_manifest.json`; the restore receipt is
-`.cache/axis_input_receipt*.json` (gitignored) and the pins are re-verified at build time by
-`build_axis_variants.py`, which aborts on mismatch. The build logs the git SHA of the checkout
-into each run card (`evidence/axis_variants.json → variants[].git_sha`).
-
-## Limits of this session's evidence
-
-- No live score was produced or observed. Every predicted change is **MODEL**.
-- The catalogue hide-and-recover PROXY was **not run**: the shared evaluator scores against
-  lidar-covered positives inside held blocks, and the lidar raster is excluded by the brief
-  unless the human supplies it. Recorded as NOT RUN, not as a pass.
-- The leakage canary was **not run**: it needs a labelled holdout fit, which needs the
-  declined feature stack. Recorded as NOT RUN.
-- The SGMC control was not re-measured this session.
+**Network use.** Only `gh api` / `api.github.com` blob fetches of owner-published mirrors and the
+PyPI install of `requirements-lock.txt`. No drivendata.org or dropbox.com access, no credentials
+read, printed or stored, and no code that logs in, scrapes a leaderboard or submits.

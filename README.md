@@ -1,21 +1,38 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## CURRENT STATE
+<!-- CURRENT_STATE_START -->
 
-| field | value | class |
-|---|---|---|
-| Parent (incumbent) | `h33-2b2` (GEMSDOE32), `sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, 37,654 dots | bytes RECEIPT-verified against the manifest pin |
-| Best receipt | **none in this repo** — the parent's 0.2778 is owner-reported | CLAIM |
-| TOP_PUBLIC | 0.3195 (undated; transcribed from `PROMPT.md` at the human's instruction) | CLAIM |
-| Slots left this rolling week | 3 / 3 (human-supplied; not verified against the submission page) | CLAIM |
-| Deadline | 2026-12-03 | UNVERIFIED here |
-| Built this session, gates PASS, **not submitted** | `gems86-h33-2b2-prune3-20261023-e4027684` (PRUNE collar3px, 11.531 % changed) · `gems86-h33-2b2-snap2-20261023-6ec42a92` (SNAP 2px, mean displacement 1.43 px) · `gems86-h33-2b2-conc15-20261023-2b883f2d` (CONCENTRATION 1 km blocks, 15 % moved, 29.999 % changed) | MODEL predictions only |
-| Next 3 slots, in order | 1 PRUNE collar3px → 2 SNAP 2px → 3 CONCENTRATION b1km-move15; see `SLOT_PLAN.md` for what each result changes | plan |
+## CURRENT STATE — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF; six sessions reconciled)
 
-Upload instructions, notes (≤ 140 chars) and the SHA-256 of every file: [`docs/SUBMIT.md`](docs/SUBMIT.md).
-Mechanism cards for a structural geologist: [`research/AXIS_MECHANISM_CARDS.md`](research/AXIS_MECHANISM_CARDS.md).
-Ledger: [`ledger/submissions.csv`](ledger/submissions.csv) (115 transcribed history rows + 3 built variants).
-Decision-relevant irregularities: [`IRREGULARITIES.md`](IRREGULARITIES.md). AI disclosure: [`AI_USE.md`](AI_USE.md).
+| Field | Value |
+|---|---|
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** by the PRUNE, SNAP and RELIEF sessions independently (pinned base `gems28-h27-4-r1-solo-d2-8`, `ab023001…`, 40,199 → 37,654, 0 differing pixels). Live **0.2778 is CLAIM**, not RECEIPT. |
+| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (every historic row `CLAIM`, every built row `MODEL`; 1 withdrawn). Regenerate: `python scripts/build_ledger.py`. |
+| TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
+| Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
+| Built (14 gate-clean candidates + 3 `BUILT-DUPLICATE` magnetic SNAP arms + 1 withdrawn, none slot-approved) | **PRUNE:** `le2p236` (36,713 dots), `le2p828` (36,043), `le3p000` (35,483, **+0.004 MODEL**), mass control `…-CONTROL-massctl2171`; `prune3-…-01d57649` (37,654, refill, −0.004); `prune4-…-de4c2a98` (33,829, −0.008); `prune3r-…-8c20bd7e` (37,654, −0.003); `prune3-…-3eb29af5` **withdrawn** (IR-86-PRUNE-08). **SNAP:** `SNAP-r1p000` (−0.004), `SNAP-r2p000` (−0.006), `SNAP-r2p000-grav` (−0.004), all 37,654 dots, all MODEL. **MASS (new):** `massminus10-…-42b4c5c8` (33,889, −0.003), `massplus10-…-a5888761` (41,419, −0.006), both 9.9989 % changed, all MODEL. **RELIEF (new):** `RELIEF-frontp15-…-e0e2888f` (15.00 % changed, **+0.0017 MODEL**), `…-frontp10-…-b20ef72e` (+0.0010), `…-frontm10-…-1b26223e` (−0.0089), all 37,654 dots (count fixed by design), all MODEL. |
+| SNAP outcome | **Negative as an instrument.** 97–99 % of R0's dots move, but a random-response null control scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing it makes it worse (−0.0018 / −0.0032). Snapping re-centres the field on gradient maxima the proxy cannot tell from chance, and costs coverage (dots < 2 px apart 0 → 3,448 / 8,341 / 2,085). Full card: [ledger/variant-cards.md](ledger/variant-cards.md), evidence: `evidence/snap_axis_20261023.json`. |
+| SNAP corroboration (second session, no slot) | Three independent magnetic-edge builds (`snap-hg2` 33.9 % / `snap-vg2` 39.6 % / `snap-cons2` 45.9 % of dots moved ≤ 2 px, gates pass) reach the same verdict as PR #31; ledger status `BUILT-DUPLICATE`, **not slot candidates**. They also show the hide-and-recover proxy is collar recovery only: with one fixed ≥ 3 px collar on every arm it collapses to 0.0000 for parent, variants **and** the SGMC control (0.0877 → 0.0000), so unpinned proxy comparisons must not rank arms (IR-86-SNAP-06, `evidence/snap_fixed_collar.json`). |
+| MASS outcome | **Ranking rebuilt and validated; both variants predicted negative.** The FIFO-BFS visit order of the recorded recipe reproduces the pinned `d2.8` set exactly (44,090 dots, 0 diff), so the ranking blocker (IR-86-PRUNE-02) is resolved — but the order is a geographic traversal, not a quality ranking: the dropped 10 % is 100 % southern-half dots, the added 10 % is 100 % northern-strip cells, 98.6 % of them within 2.8 px of an existing dot (IR-86-MASS-01). Cards: `evidence/mass-mechanism.md`; run card: `evidence/mass_axis_20261023.json`. |
+| RELIEF outcome | **Built, human-assigned, the only positive prediction that is not a deletion.** Relocation between the three tectono-geomorphic regimes (terciles of `z(smoothed det_elev) + z(smoothed |det_elev_slope|)`, top class split by 5 km basin proximity): front share 16.05 % to 31.05 % at +0.0017, to 26.05 % at +0.0010, to 6.06 % at −0.0089 (4/4 quadrants negative). A USGS SGMC inventory gives 2.7x more mapped-fault px/Mpx at the front than on the piedmont - the axis's whole case, confounded with mapping completeness, so MODEL only. An in-regime displacement control (−0.0010) says the cost of moving is most of the effect. Run card: `evidence/relief_axis_20261023.json`. |
+| Next 3 slots | 1. `releases/…-PRUNE-le3p000-…-a438e92b-zeros.tif` (+0.004 MODEL, the only positive with a monotone ladder behind it). 2. `releases/…-RELIEF-frontp15-…-e0e2888f-zeros.tif` (+0.0017, built, and the only edit here that moves mass instead of deleting it). 3. `…-RELIEF-frontm10-…-1b26223e-zeros.tif` **only if** 1-2 both land inside ±0.01 - the +15/-10 pair is the one comparison that can clear the evidence floor - else SNAP `r2p000` as a deliberate live probe. **CONCENTRATION is now built** (1 km blocks, PR #37): `releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif` (+0.006 MODEL, 15.00 % of dots moved, count fixed, block-density CV 0.6235 → 0.7644) — slot **2b**, the move-the-mass alternative to a second RELIEF rung. The three magnetic SNAP builds and PR #37's PRUNE/SNAP arms are duplicates, not candidates. [SLOT_PLAN.md](SLOT_PLAN.md); [docs/SUBMIT.md](docs/SUBMIT.md). |
+| CONCENTRATION outcome (PR #37) | **Built, the only new candidate this branch adds.** 5,648 dots (15.00 %) relocated out of the lowest-prior 1 km blocks into the highest-prior fifth (10,462 blocks), count fixed at 37,654, every placement at the parent's 2.828 px spacing, placement geometric only so the axis cannot inherit SNAP's pixel-scale snapping. **Block-density CV 0.6235 → 0.7644**, occupied blocks 15,976 → 14,339, minimum catalogue clearance unchanged at 2.236 px, 0 dots on catalogue pixels. Prediction **+0.006 MODEL** (+0.003…+0.010). Note the incumbent itself measures 0.6235, *outside* the reported 0.51–0.59 band, so that band is treated as an unverified CLAIM and the direction is the axis's stated falsifier (IR-86-CONC-02). The same session's `(PRUNE, collar3px)` and `(SNAP, 2px)` collided with keys parallel sessions had already built and are `BUILT-DUPLICATE`, not slot candidates (IR-86-CONC-01). Cards: [research/AXIS_MECHANISM_CARDS.md](research/AXIS_MECHANISM_CARDS.md); run card: `evidence/axis_variants.json`. |
+| Blockers | The hide-and-recover proxy is at its floor and cannot separate SNAP arms from a random control (IR-86-PRUNE-03, IR-86-SNAP-02), and with a fixed collar it reads 0.0000 for every arm (IR-86-SNAP-06); MASS's ranking is a traversal, so a MASS receipt cannot be attributed to mass alone (IR-86-MASS-01); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04); brief §4.4 "≥3 px off the catalogue" is unsatisfiable jointly with R0's own geometry (2,171 of its dots sit at 2-3 px), so RELIEF applied the rule to newly emitted mass only (IR-86-RELIEF-02); two RELIEF build defects were caught by report-only instruments and fixed before release (IR-86-RELIEF-01). |
+
+<!-- CURRENT_STATE_END -->
+
+## CURRENT STATE (2026-10-23, PRUNE ladder — second session)
+
+| field | value |
+|---|---|
+| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots — **CLAIM 0.2778, no receipt** |
+| Parent rebuild | **byte-identical**: `deflate/predictor=3/zlevel=9/tiled 256` re-encodes the rebuilt dot set to 219,065 B = sha256 `c55bafc4…`; dot set also exact (0 of 12,279,160 cells differ) |
+| Best **receipt** | none — every scored row in `ledger/submissions.csv` is a CLAIM |
+| `TOP_PUBLIC` / slots left | **blank — human fills from the leaderboard** (3/week, one blind final, 2026-12-03) |
+| Built | `(PRUNE, √5)`, `(PRUNE, √8)`, `(PRUNE, 3.0 no-refill)` + mass-matched control; `(PRUNE,3)+refill` came from the earlier session — see [SLOT_PLAN.md](SLOT_PLAN.md), [ledger/variant-cards.md](ledger/variant-cards.md) |
+| Predicted (MODEL) | +0.001 / +0.003 / +0.004 live; every band crosses zero and stays under the 0.01 evidence floor. PRUNE is a **one-slot axis** |
+| Upload | [docs/SUBMIT.md](docs/SUBMIT.md); verify by rebuilding — rasters are gitignored, hashes are not |
+| Open | IR-86-PRUNE-03 (literal-overlap stop), IR-86-PRUNE-06 (two sessions built `(PRUNE,3)`; one belongs in a slot), IR-86-PRUNE-05 (SNAP/RELIEF/MASS/CONCENTRATION need the absent 419 MB feature stack) |
 
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 

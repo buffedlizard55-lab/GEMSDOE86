@@ -1,0 +1,50 @@
+{
+  "id": "h33-h33-2-b2-snap-hg2-20261023-1ced061c",
+  "parent": "h33-h33-2-b2",
+  "axis": "SNAP",
+  "value": "hg2",
+  "role": "duplicate-corroboration",
+  "rule": "each dot may move <= 2 px onto the strongest smoothed magnetic-edge response in its window, subject to a 0.25 sigma gain gate and a 2.828 px spacing floor; count, mass and catalogue exclusion unchanged",
+  "radius_px": 2.0,
+  "field": "tmi_hg horizontal-gradient peak",
+  "n_dots": 37654,
+  "pct_changed": 33.94,
+  "dot_digest": "e793346e801583db10dcb6650424283d9aa31eaea8f8427b1ab4e2dc7e0ff605",
+  "movement": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "pct_snapped": 33.94,
+    "mean_displacement_px_moved": 1.737,
+    "median_displacement_px_moved": 2.0,
+    "max_displacement_px": 2.0,
+    "mean_gain_z_moved": 0.693,
+    "min_spacing_px_before": 2.828,
+    "min_spacing_px_after": 2.828
+  },
+  "model": {
+    "evidence_class": "MODEL",
+    "hypothesis": "A dot's 100 m position is uncertain by about the kernel radius, so moving it up to 2 px onto the local maximum of the horizontal magnetic gradient recovers true-trace credit the kernel currently only half-credits.",
+    "mechanism": "Faults and their damage zones truncate or offset magnetised units, so the horizontal gradient of TMI peaks along the structure. The grader gives a triangular credit max(1-d/3px,0), so a dot displaced 2 px from truth keeps only 0.33 of its unit credit; the same dot re-centred earns ~1.0.",
+    "confounder": "Magnetic contacts with no Quaternary slip (intrusive contacts, remanence boundaries, survey seams between flight-line blocks) produce the same gradient peak; so do shallow alluvial magnetic contrasts.",
+    "falsifier": "Live change <= -0.02 kills the positional-correction reading (the dots were already on true traces and the gradient peak is a mimicking contact); |change| < 0.01 is no evidence in either direction.",
+    "note": "no live receipt; projection only"
+  },
+  "predicted_live_change": 0.004,
+  "predicted_live_range": "MODEL: live change in [-0.005, +0.015], central +0.004. Below the 0.01 evidence floor this is a mechanism probe, not a score play.",
+  "zeros": {
+    "file": "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c-zeros.tif",
+    "sha256": "43f7ef51c7d2ad60366c4048867e53db1f1ee9735947cf41cf7c6b72815a8622"
+  },
+  "nan_outside": {
+    "file": "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c.tif",
+    "sha256": "1ced061c7ea697143bb7c748432d75599ee3f30e1a45c9f853d6a5fa4e131193"
+  },
+  "gates_all_passed": true,
+  "slot_candidate": false,
+  "slot_reason": "the (h33-h33-2-b2, SNAP) pair was already built and merged by PR #31; this build corroborates it under a different rule (IR-86-SNAP-04)",
+  "provenance": {
+    "git_sha": "3a9bfbc589c03df7d7c3909fd6acec1d98c3258b",
+    "script": "scripts/build_snap_variants.py",
+    "preregistration": "registry/preregistration_snap.json"
+  }
+}

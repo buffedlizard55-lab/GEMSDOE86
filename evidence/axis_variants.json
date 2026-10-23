@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T16:27:06Z",
+  "generated_utc": "2026-10-23T16:55:54Z",
   "session_axis_set": [
     "PRUNE",
     "CONCENTRATION",
@@ -8,7 +8,7 @@
   ],
   "parent_id": "h33-2b2",
   "parent_claimed_live": "0.2778 CLAIM (owner-reported; no submission-page receipt)",
-  "elapsed_s": 242.0,
+  "elapsed_s": 233.0,
   "inputs_verified": [
     {
       "id": "existing_faults",
@@ -61,6 +61,14 @@
       "axis": "PRUNE",
       "value": "collar3px",
       "token": "e4027684",
+      "generated_utc": "2026-10-23T16:55:47Z",
+      "duplicate_of": "PRUNE / 3",
+      "predicted_change": 0.004,
+      "predicted_range": [
+        0.002,
+        0.006
+      ],
+      "rule": "parent H19-5 support mask, eligible cells ranked by distance to the nearest retained dot (largest kernel gaps first); pass 1 keeps the parent's 2.83 px thinning, pass 2 relaxes to the parent's 2 px clearance floor only as far as holding the count requires",
       "parent": {
         "id": "h33-2b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -99,7 +107,7 @@
       "note_chars": 97,
       "gates": {
         "nan": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-prune3-20261023-e4027684.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684.tif",
           "sha256": "6286ebe52628a80ceefdbbb88d307376854c65c842b2c6b0551578999880a296",
           "format": {
             "gate": "format",
@@ -207,7 +215,7 @@
           "passed": true
         },
         "zeros": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif",
           "sha256": "f0f3d620144478038a53b8fa40ba10b39aba80f82f5a4c5614f35b2de2b097d2",
           "format": {
             "gate": "format",
@@ -317,7 +325,7 @@
       },
       "artifacts": {
         "nan": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-prune3-20261023-e4027684.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684.tif",
           "file": "gems86-h33-2b2-prune3-20261023-e4027684.tif",
           "sha256": "6286ebe52628a80ceefdbbb88d307376854c65c842b2c6b0551578999880a296",
           "shape_hw": [
@@ -339,7 +347,7 @@
           "mode": "nan"
         },
         "zeros": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684-zeros.tif",
           "shape_hw": [
             3730,
             3292
@@ -361,13 +369,22 @@
           "nan_outside_count": 0
         }
       },
-      "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82"
+      "git_sha": "71718fbda8b044b58e5e6df465220823848c7cc6",
+      "receipt": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-prune3-20261023-e4027684-zeros.json"
     },
     {
       "id": "gems86-h33-2b2-conc15-20261023-2b883f2d",
       "axis": "CONCENTRATION",
       "value": "b1km-move15",
       "token": "2b883f2d",
+      "generated_utc": "2026-10-23T16:55:50Z",
+      "duplicate_of": "",
+      "predicted_change": 0.006,
+      "predicted_range": [
+        0.003,
+        0.01
+      ],
+      "rule": "geometric only: highest-prior destination block, then the largest remaining kernel gap; no pixel-scale response term",
       "parent": {
         "id": "h33-2b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -426,7 +443,7 @@
       "note_chars": 107,
       "gates": {
         "nan": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
           "sha256": "cf54e7578a9ecd5202a02c464e1142ca911eb88039af0a9f9db5e47d8915000e",
           "format": {
             "gate": "format",
@@ -534,7 +551,7 @@
           "passed": true
         },
         "zeros": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif",
           "sha256": "09aaa696e1f0fce6ea010a0c125e64bf6df9a1dff18bcf547dffae94b928e6f5",
           "format": {
             "gate": "format",
@@ -644,7 +661,7 @@
       },
       "artifacts": {
         "nan": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
           "file": "gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
           "sha256": "cf54e7578a9ecd5202a02c464e1142ca911eb88039af0a9f9db5e47d8915000e",
           "shape_hw": [
@@ -666,7 +683,7 @@
           "mode": "nan"
         },
         "zeros": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif",
           "shape_hw": [
             3730,
             3292
@@ -688,13 +705,22 @@
           "nan_outside_count": 0
         }
       },
-      "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82"
+      "git_sha": "71718fbda8b044b58e5e6df465220823848c7cc6",
+      "receipt": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.json"
     },
     {
       "id": "gems86-h33-2b2-snap2-20261023-6ec42a92",
       "axis": "SNAP",
       "value": "2px",
       "token": "6ec42a92",
+      "generated_utc": "2026-10-23T16:55:54Z",
+      "duplicate_of": "SNAP / 2",
+      "predicted_change": 0.004,
+      "predicted_range": [
+        0.001,
+        0.008
+      ],
+      "rule": "Sobel gradient magnitude of TMI upward-continued to 150 m + z-scored DEM scarp composite (|profile curvature|, max slope, hillshade lineament)",
       "parent": {
         "id": "h33-2b2",
         "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -734,7 +760,7 @@
       "note_chars": 91,
       "gates": {
         "nan": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
           "sha256": "23cc396355bc5a0f4761f685f18dc0817361985c67c4067b23ab8242c666c0aa",
           "format": {
             "gate": "format",
@@ -842,7 +868,7 @@
           "passed": true
         },
         "zeros": {
-          "file": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif",
+          "file": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif",
           "sha256": "accdb5754a85d720b3eb9d9ad2f8c5c3936113c86cdfad8bde94cb3090d88ae9",
           "format": {
             "gate": "format",
@@ -952,7 +978,7 @@
       },
       "artifacts": {
         "nan": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
           "file": "gems86-h33-2b2-snap2-20261023-6ec42a92.tif",
           "sha256": "23cc396355bc5a0f4761f685f18dc0817361985c67c4067b23ab8242c666c0aa",
           "shape_hw": [
@@ -974,7 +1000,7 @@
           "mode": "nan"
         },
         "zeros": {
-          "path": "/home/user/GEMSDOE86/releases/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif",
+          "path": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.tif",
           "shape_hw": [
             3730,
             3292
@@ -996,7 +1022,8 @@
           "nan_outside_count": 0
         }
       },
-      "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82"
+      "git_sha": "71718fbda8b044b58e5e6df465220823848c7cc6",
+      "receipt": "/home/user/GEMSDOE86/releases/axis86/gems86-h33-2b2-snap2-20261023-6ec42a92-zeros.json"
     }
   ]
 }

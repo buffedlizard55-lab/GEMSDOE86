@@ -4,6 +4,17 @@ Written for a structural geologist. Each card names the hypothesis, the physical
 the **non-fault process that could mimic it**, the predicted sign and size of the *live*
 change, and the observation that would falsify it.
 
+> **Status after merging `origin/main` (2026-10-23).** Only the **CONCENTRATION** card below is a
+> slot candidate. `(PRUNE, collar3px)` and `(SNAP, 2px)` collide with `(parent, axis, value)` keys
+> that parallel sessions had already built on `main` — `(PRUNE,3)` `…-01d57649` and `(SNAP,2)`
+> `…-SNAP-r2p000-…-e7473403` — so both are recorded `BUILT-DUPLICATE` and must **not** be uploaded
+> (IR-86-CONC-01). They stay here as an independent replication: a second implementation of the
+> same two axes that reached the same dot counts (37,654 each) by a different refill / response
+> route. Note also that `main`'s own SNAP instrument reads **negative** for that axis — a
+> random-response null control scores the same catalogue proxy — which this session did not
+> measure, having run no PROXY at all. Read the SNAP card as a mechanism statement, not as an
+> endorsement.
+
 Every number below is a measurement made in this checkout, or is labelled CLAIM / PROXY /
 MODEL. Nothing here is a score. Parent R0's 0.2778 is a **CLAIM** (owner-reported; no
 submission-page receipt exists in this repo).

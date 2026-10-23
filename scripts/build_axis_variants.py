@@ -21,6 +21,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import subprocess
@@ -35,6 +36,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from gems86_axis import bands as bandmod  # noqa: E402
 from gems86_axis import gates, grid_io, variants  # noqa: E402
+from gems86_axis.grid_io import dot8  # noqa: E402
 
 R0_ID = "h33-2b2"
 R0_REL = ("data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-"
@@ -49,10 +51,17 @@ SNAP_SHIFT_PX = 2
 
 #: Predicted live change, MODEL class only (brief section 8).  None of these is a score.
 PREDICTIONS = {
-    "PRUNE": "+0.004 (range +0.002..+0.006); MODEL, below the 0.01 evidence band",
-    "CONCENTRATION": "+0.006 (range +0.003..+0.010); MODEL, at the 0.01 evidence band",
-    "SNAP": "+0.004 (range +0.001..+0.008); MODEL, below the 0.01 evidence band",
+    "PRUNE": {"change": 0.004, "range": [0.002, 0.006],
+              "text": "+0.004 (range +0.002..+0.006); MODEL, below the 0.01 evidence band"},
+    "CONCENTRATION": {"change": 0.006, "range": [0.003, 0.010],
+                      "text": "+0.006 (range +0.003..+0.010); MODEL, at the 0.01 evidence band"},
+    "SNAP": {"change": 0.004, "range": [0.001, 0.008],
+             "text": "+0.004 (range +0.001..+0.008); MODEL, below the 0.01 evidence band"},
 }
+
+#: (axis, value) keys already built on main by parallel sessions, verified at merge time.
+#: Brief section 6 dedupes on exactly this key, so a rebuild is corroboration, not a candidate.
+ALREADY_BUILT = {("PRUNE", "collar3px"): "PRUNE / 3", ("SNAP", "2px"): "SNAP / 2"}
 
 
 def git_sha() -> str:
@@ -77,6 +86,96 @@ def verify_pin(manifest_id: str, path: Path) -> dict:
             "repo": entry["repo"], "ref": entry["ref"], "verified": True}
 
 
+
+def house_receipt(card: dict, mask, ctx: dict, pair: dict) -> dict:
+    """A receipt in the schema the repo's other release arms use.
+
+    ``tests/test_prune_ladder.py`` reads ``<id>-zeros.json`` next to every top-level
+    ``-zeros.tif``.  These arms live in a subdirectory (like ``releases/refill/`` and
+    ``releases/mass/``) because they do not satisfy that test's PRUNE-only-deletion
+    contract, but they still carry the same receipt shape so any tool that reads one
+    schema reads all of them.
+    """
+    import sys
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from gems86.prune import catalogue_distance, diff_stats, dot_digest  # noqa: PLC0415
+
+    parent = grid_io.load_dots(ROOT / R0_REL, ctx["footprint"])
+    dist = catalogue_distance(ctx["catalogue"])
+    d = card["parent_diff"]
+    axis = card["axis"].upper()
+    block = {
+        "n_parent": d["parent_dots"], "n_candidate": d["variant_dots"],
+        "retained": d["shared_dots"], "removed": d["dropped"], "added": d["added"],
+        "pct_of_parent_changed": d["pct_changed_of_parent"],
+        "pct_removed": round(100.0 * d["dropped"] / max(d["parent_dots"], 1), 4),
+        "pct_added": round(100.0 * d["added"] / max(d["parent_dots"], 1), 4),
+        "kept_fraction": round(d["shared_dots"] / max(d["parent_dots"], 1), 6),
+        "jaccard": d["jaccard"], "count_exact": d["count_delta"] == 0,
+    }
+    rec = {
+        "id": card["id"], "parent": "h33-h33-2-b2", "axis": axis.lower(),
+        "value": card["value"], "generated_utc": card["generated_utc"],
+        "role": "duplicate-corroboration" if card["duplicate_of"] else "candidate",
+        "slot_candidate": not card["duplicate_of"],
+        "slot_reason": (f"duplicate of (parent, axis, value) = {card['duplicate_of']} already in "
+                        "the ledger; kept for audit, not a slot candidate (IR-86-CONC-01)"
+                        if card["duplicate_of"] else
+                        "unbuilt axis on main at merge time; the one new candidate this branch adds"),
+        "n_dots": d["variant_dots"], "pct_changed": d["pct_changed_of_parent"],
+        "dot_digest": dot_digest(mask), "dot8": card["token"],
+        "evidence_class": "MODEL",
+        "predicted_live_change": card["predicted_change"],
+        "predicted_live_range": card["predicted_range"],
+        "diff": block,
+        "model": {"evidence_class": "MODEL",
+                  "algebra": "DTI = T / (0.2T + 0.2(S-M) + 0.8|G|)",
+                  "caution": "no live score and no holdout PROXY was run this session; the "
+                             "sign rests on the mechanism card alone"},
+        "rule": card["rule"],
+        "provenance": {"parent_sha256": card["parent"]["sha256"],
+                       "git_sha": card["git_sha"],
+                       "builder": "scripts/build_axis_variants.py",
+                       "run_card": "evidence/axis_variants.json"},
+    }
+    if axis == "SNAP":
+        s_ = card["stats"]
+        rec["radius_px"] = float(s_["max_shift_px"])
+        rec["movement"] = {
+            "n_parent": d["parent_dots"], "n_candidate": d["variant_dots"],
+            "n_snapped": s_["dots_moved"],
+            "pct_snapped": round(100.0 * s_["dots_moved"] / max(d["parent_dots"], 1), 4),
+            "mean_displacement_px_moved": s_["mean_displacement_px"],
+            "median_displacement_px_moved": s_["median_displacement_px"],
+            "max_displacement_px": s_["max_displacement_px"],
+            "blocked_by_occupancy": s_["dots_blocked_by_occupancy"],
+            "blocked_by_clearance": s_["dots_blocked_by_clearance"],
+            "catalogue_distance_before_mean_px": s_["cat_edt_mean_parent"],
+            "catalogue_distance_after_mean_px": s_["cat_edt_mean_variant"],
+            "catalogue_distance_after_min_px": s_["min_cat_edt_variant"],
+            "dots_on_catalogue": 0,
+            "diff_vs_parent": block,
+        }
+    if axis == "PRUNE":
+        rec["refill"] = card["stats"]
+    if axis == "CONCENTRATION":
+        rec["blocks"] = {k: v for k, v in card["stats"].items()
+                         if k.startswith("block_density") or k in
+                         ("block_size", "moved_placed", "moved_target", "dest_blocks",
+                          "dest_block_frac", "placement_rule", "source_rule", "prior_terms")}
+    for mode in ("nan", "zeros"):
+        a = card["artifacts"][mode]
+        rec[mode] = {"file": Path(a["path"]).name, "sha256": a["sha256"],
+                     "bytes": Path(a["path"]).stat().st_size,
+                     "validator": {"all_checks_passed": bool(card["gates"][mode]["passed"]),
+                                   "on_catalogue_dots": card["gates"][mode]["values"]["dots_on_catalogue"],
+                                   "min_catalogue_distance_px":
+                                       card["gates"][mode]["catalogue_clearance"]["min_cat_edt_px"],
+                                   "checks": card["gates"][mode]["values"]["checks"]}}
+    return rec
+
+
 def _axis_values(axes: list[str]) -> list[tuple[str, str]]:
     """The (axis, value) keys this invocation will write, for ledger dedupe."""
     out = []
@@ -91,20 +190,14 @@ def _axis_values(axes: list[str]) -> list[tuple[str, str]]:
     return out
 
 
-def dot8(mask: np.ndarray) -> str:
-    """Deterministic identity token for a dot set (independent of any filename or tag)."""
-    packed = np.packbits(mask.astype(np.uint8).ravel())
-    h = hashlib.sha256()
-    h.update(np.array(mask.shape, dtype=np.int64).tobytes())
-    h.update(packed.tobytes())
-    return h.hexdigest()[:8]
-
-
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--axes", nargs="+", default=["PRUNE", "CONCENTRATION", "SNAP"])
-    ap.add_argument("--out", default="releases")
-    ap.add_argument("--ledger", default="ledger/submissions.csv")
+    ap.add_argument("--out", default="releases/axis86",
+                    help="subdirectory, per the repo convention that arms outside the "
+                         "top-level PRUNE-only-deletion contract live in their own dir")
+    ap.add_argument("--ledger", default="ledger/submissions.csv",
+                    help="read-only: supplies the known-SHA256 set for the dedupe gate")
     a = ap.parse_args()
     t0 = time.time()
 
@@ -131,32 +224,30 @@ def main() -> int:
           f"R0 dots={int(r0.sum())} support={int(support.sum())}", flush=True)
 
     prior_pack = variants.block_prior(ctx, bd, ctx["catalogue"])
+    # Read the canonical ledger by COLUMN NAME, never by position: the file is written by
+    # scripts/build_ledger.py and its schema belongs to that generator, not to this script.
     ledger = ROOT / a.ledger
-    header = ("id,parent,axis,value,n_dots,pct_changed,sha256_nan,sha256_zeros,"
-              "status,predicted_change,receipt_score,receipt_date")
-    existing: list[list[str]] = []
-    if ledger.is_file():
-        lines = ledger.read_text().splitlines()
-        if lines:
-            header = lines[0]
-        existing = [ln.split(",") for ln in lines[1:] if ln.strip()]
-    # The brief dedupes on exact hash and on repeated (parent, axis, value).  A rebuild of
-    # the same axis/value replaces its own BUILT row instead of being rejected by it.
-    keep, replaced = [], []
-    for row in existing:
-        key = (row[1], row[2], row[3]) if len(row) > 3 else None
-        if key and any(key == (R0_ID, ax, val) for ax, val in _axis_values(a.axes)):
-            replaced.append(row[0])
-        else:
-            keep.append(row)
-    existing = keep
+    own_keys = set(_axis_values(a.axes))
     known_sha: set[str] = set()
-    for row in existing:
-        known_sha.update(c for c in row if len(c) == 64)
+    replaced: list[str] = []
+    if ledger.is_file():
+        with ledger.open(newline="", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                key = ((row.get("axis") or "").upper(), (row.get("value") or "").strip())
+                if key in own_keys:
+                    # The brief dedupes on exact hash and on repeated (parent, axis, value).
+                    # A rebuild of the same axis/value supersedes its own row instead of
+                    # being rejected by its own digest.
+                    replaced.append(row.get("id") or row.get("name") or "?")
+                    continue
+                for col in ("sha256", "sha256_nan", "sha256_zeros"):
+                    v = (row.get(col) or "").strip()
+                    if len(v) == 64:
+                        known_sha.add(v)
     for f in (ROOT / "data/scored_fleet").glob("*.tif"):
         known_sha.add(grid_io.sha256_file(f))
     if replaced:
-        print(f"[ledger] replaced prior BUILT rows for the same (parent, axis, value): {replaced}",
+        print(f"[ledger] superseding prior rows for the same (parent, axis, value): {replaced}",
               flush=True)
 
     built = []
@@ -188,13 +279,23 @@ def main() -> int:
                                        grid_io.PARENT_CAT_CLEARANCE_PX)
             if gate[mode]["passed"]:
                 known_sha.add(pair[mode]["sha256"])
+        dup = ALREADY_BUILT.get((st["axis"], st["value"]), "")
+        pred = PREDICTIONS[st["axis"]]
         card = {"id": stem, "axis": st["axis"], "value": st["value"], "token": ident,
+                "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "duplicate_of": dup, "predicted_change": pred["change"],
+                "predicted_range": pred["range"],
+                "rule": st.get("refill_pool") or st.get("placement_rule") or st.get("response", ""),
                 "parent": {"id": R0_ID, "file": R0_REL, "sha256": pins[2]["sha256"]},
                 "stats": {k: v for k, v in st.items() if k != "counts"},
                 "parent_diff": diff, "note": note, "note_chars": len(note),
                 "gates": gate, "artifacts": pair,
                 "git_sha": git_sha()}
         cards.append(card)
+        receipt = house_receipt(card, mask, ctx, pair)
+        rp = Path(pair["zeros"]["path"]).with_suffix(".json")
+        rp.write_text(json.dumps(receipt, indent=2) + "\n")
+        card["receipt"] = str(rp)
         rows.append(card)
         print(f"[{st['axis']:14s}] {stem}  dots={diff['variant_dots']} "
               f"changed={diff['pct_changed_of_parent']}%  "
@@ -216,16 +317,13 @@ def main() -> int:
     ev.parent.mkdir(parents=True, exist_ok=True)
     ev.write_text(json.dumps(out, indent=2) + "\n")
 
-    ledger.parent.mkdir(parents=True, exist_ok=True)
-    lines = [header] + [",".join(r) for r in existing]
-    for c in rows:
-        lines.append(",".join([
-            c["id"], R0_ID, c["axis"], c["value"], str(c["parent_diff"]["variant_dots"]),
-            str(c["parent_diff"]["pct_changed_of_parent"]),
-            c["artifacts"]["nan"]["sha256"], c["artifacts"]["zeros"]["sha256"],
-            "BUILT", PREDICTIONS.get(c["axis"], ""), "", ""]))
-    ledger.write_text("\n".join(lines) + "\n")
-    print(f"wrote {ev} and {ledger} ({out['elapsed_s']}s)", flush=True)
+    # This repo keeps ONE ledger generator (scripts/build_ledger.py).  This script does not
+    # write ledger/submissions.csv; it emits the run card, and the variant entries reach the
+    # ledger through scripts/emit_axis_variant_entries.py -> ledger/variants_concentration.json
+    # -> scripts/build_ledger.py.  Writing the CSV here would let the file drift.
+    print(f"wrote {ev} ({out['elapsed_s']}s)", flush=True)
+    print("next: python scripts/emit_axis_variant_entries.py && python scripts/build_ledger.py",
+          flush=True)
     return 0
 
 
