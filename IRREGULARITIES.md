@@ -408,3 +408,18 @@ the parent's dot set from the visible catalogue — or hold the collar fixed acr
 exactly what IR-86-SNAP-06 concluded.
 **Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
 predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
+
+## IR-86-TRACKB-01 — brief §5's 1–50 % change cap cannot hold for a trace raster, so TRACKB arms are not dot variants
+
+**Observed.** Each TRACKB raster changes 118–135 % of R0's cells (dropped untraced dots + added segment pixels), because rendering ≥1 km polylines necessarily deletes the 66–82 % of dots that lie on no chain and paints the segments between the rest. The §5 cap ("except for SNAP, a variant must change 1–50 % of R0's dots") and the TRACKB deliverable ("traces as GeoJSON + raster") cannot both hold.
+**Decision.** The GeoJSON is the TRACKB product; the raster is its rendering, ledger status `BUILT` with `slot_candidate=false`, and no arm is offered for a weekly slot. The cap is recorded as satisfied-in-spirit only for the *traced-dot subset* (18–34 % of R0's dots retained). **Cost:** none; a later session must not "fix" the raster into a 50 %-changed dot file and call it TRACKB.
+
+## IR-86-TRACKB-02 — "R0's top-ranked dots" has no quality ranking to inherit; chain support is the substitute, stated openly
+
+**Observed.** The only stored ranking of R0's dots is the FIFO-BFS traversal order (IR-86-MASS-01: geographic, not quality). Brief §5's "top-ranked dots" therefore cannot be read literally.
+**Decision.** Rank = chain support (on a ≥1 km strike-consistent chain; longer/straighter first), computed from dot geometry only. Untraced dots are reported as unranked (66–82 % of R0), not silently dropped from the record: they remain in the parent and in every ledger diff. **Cost:** the Phase-2 reviewer sees a ranking this session invented; the mechanism cards say so.
+
+## IR-86-TRACKB-03 — raster renderings drop 1,210–2,414 segment pixels to the ≥3 px new-mass rule; GeoJSON traces are unbroken
+
+**Observed.** Segments between member dots (R0 clearance 2.236 px) pass within 3 px of the catalogue; brief §4.4 bars new mass there (IR-86-RELIEF-02 precedent).
+**Decision.** Those pixels are dropped from the raster and counted (`new_segment_px_dropped_clearance`); polylines in the GeoJSON are not moved or split, because the trace is the interpretation object and the raster is only its rendering. Anyone scoring the raster should know it has clearance gaps the trace does not. **Cost:** raster DTI reads slightly worse than the trace geometry implies; accepted, disclosed in every receipt.

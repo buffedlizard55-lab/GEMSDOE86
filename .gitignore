@@ -41,3 +41,7 @@ registry/submissions/
 /releases/axis86/*.zip
 
 tmp_session/
+
+# TRACKB session rasters (local-only, same rule as other release dirs)
+/releases/trackb/*.tif
+/releases/trackb/*.zip
