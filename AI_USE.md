@@ -1,46 +1,99 @@
-# AI_USE — disclosure of what the AI wrote and what the human decided
+# Generative-AI use — 2026-10-23
 
-Required by the competition rules (reproducible code, generative-AI disclosure). This file covers the
-SNAP session of 2026-10-23 only; earlier sessions are described in their own records.
+Arena.ai Agent Mode wrote the R0 PRUNE builders, unit tests, ledger generator, gate checks,
+measurement receipts, mechanism cards, slot plan, submission card and the README state block.
+No human-authored code or text is mixed in unlabelled.
 
-## Human decisions (not made by the AI)
+**What the AI decided (and the human can veto):**
+- **Three** sessions ran the same axis on the same parent: PR #28 (`arena/06524e4a`, PRUNE≤3 +
+  fixed-count H19-5 refill), PR #29 (`arena/72ecdcd1`, nested collar ladder + mass control +
+  byte-exact parent rebuild) and this one (`arena/71e90a17`, PRUNE≤3 pure deletion, PRUNE≤4,
+  PRUNE≤3-with-relocation). No AXIS assignment arrived in any of them; each selected PRUNE as
+  the only axis whose pinned inputs were present, which is itself the flaw this file records.
+  This session's PRUNE≤3 turned out to be the same dot set as PR #29's `le3p000` and was
+  withdrawn (IR-86-PRUNE-08).
+- This file and `SLOT_PLAN.md` were rewritten by this session to reconcile the three, and the
+  earlier claim that R0 could not be rebuilt was corrected once PR #29 showed otherwise
+  (IR-86-PRUNE-02).
+- `ledger/submissions.csv` now has **one** generator (`scripts/build_ledger.py`) that rebuilds
+  the concurrent candidate's row from `ledger/variants_external.json`, so the three sessions do
+  not fight over the file.
 
-| Decision | Who | Where it is recorded |
-|---|---|---|
-| AXIS for this session = **SNAP**, response family **magnetic edges (tmi_hg / tc)** | human, from the options put to them | this file; `SLOT_PLAN.md` header |
-| Which weekly slots are spent, and the uploads themselves | human, from their own account | human-owned columns of `ledger/submissions.csv` |
-| `receipt_score` / `receipt_date` values | human, copied from the submission page | `ledger/submissions.csv` |
-| Whether to keep the SNAP lane open after the first two live results | human | `SLOT_PLAN.md` decides-it table |
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. No PROXY or MODEL number is written as a score or a
+receipt. Every historical score stays `CLAIM` because no submission-page receipt exists in this
+checkout.
 
-The AI never logged in, never fetched drivendata.org, never contacted dropbox.com, never submitted,
-and never wrote code capable of doing any of those.
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the actual receipt score/date after an
+upload, and the choice of the final file from one registered entity.
 
-## AI-written, in this session
+---
 
-* `scripts/build_snap_variants.py` — input hash verification, R0 recipe re-derivation, response
-  fields, the placement engine, the gate set, the report-only proxy/canary readouts, and the writer
-  for `releases/` (NaN and zeros twins).
-* `scripts/build_ledger.py` — merges the transcribed history with this session's rows, preserving
-  human-entered receipt columns on re-run.
-* `tests/test_snap_variants.py` — the invariant tests (count, catalogue, spacing, cap, determinism,
-  on-disk format).
-* `registry/preregistration_snap.json` — the rule, axis values and analysis plan, written before any
-  variant was built or scored.
-* `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md`, the README CURRENT STATE block, and the
-  mechanism-card prose inside the build script.
+## Addendum — PRUNE ladder (branch `arena/72ecdcd1-gemsdoe86`, PR #29)
 
-## AI-written constants that the human should sanity-check
+**AI wrote:** `src/gems86/prune.py`, `scripts/run_prune_ladder.py`, `scripts/merge_prune_ledger.py`,
+`tests/test_prune_ladder.py`, `ledger/variant-cards.md`, and the ladder sections of
+`IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md` and `README.md`.
 
-1. `SMOOTH_SIGMA_PX = 1.0`, `GAIN_GATE = 0.25` σ — chosen after a jitter diagnostic (IR-86-SNAP-02),
-   fixed before scoring, not tuned on any score.
-2. `SPACING_FLOOR_PX = 2.828` — copied from the parent's own measured nearest-neighbour floor, so the
-   edit cannot change emission spacing.
-3. The three predicted-change ranges. These are MODEL projections with no receipt behind them and are
-   centred below the 0.01 evidence floor on purpose.
+**AI decided:** the three rungs must be the distance shells that actually exist among R0's dots
+(√5, √8, 3.0 px); that a mass-matched control is required before a collar result can be attributed
+to proximity; and that the spec-compliant `(PRUNE, 3)` belongs to PR #28, so this one shipped the
+missing rungs instead.
 
-## Data and models
+**AI corrected itself:** an earlier claim that the parent's file bytes were not reproducible was
+falsified (byte-exact rebuild, `c55bafc4…`) and retracted in `IRREGULARITIES.md` rather than
+deleted. No truth raster, no portal, no login, no slot.
 
-No model was trained. No new external data was fetched: every raster used is hash-pinned in
-`registry/data_manifest.json` and verified on use. The H19-5 ranking field is owner-mirrored
-competition-side output (pinned sha `ec1f9b56…`), used only for a readout here and reserved for the
-MASS axis later.
+---
+
+## Addendum — SNAP axis (branch `arena/f50143a0-gemsdoe86`, this session)
+
+**AI wrote:** `src/gems86/snap.py`, `scripts/run_snap_axis.py`, `tests/test_snap_axis.py` (10
+tests), the SNAP section of `ledger/variant-cards.md`, the null-control and smoothing-sweep
+diagnostics, `ledger/variants_snap.json`, the SNAP rows of `ledger/submissions.csv` (regenerated by
+`scripts/build_ledger.py`, which now also reads `variants_snap.json`), and the SNAP sections of
+`SLOT_PLAN.md`, `docs/SUBMIT.md`, `README.md` and `IRREGULARITIES.md`.
+
+**AI decided (the human can veto):**
+- **SNAP** as the axis, because the AXIS field was again blank and `SLOT_PLAN.md` had already
+  pre-registered SNAP for slot 2 (IR-86-SNAP-01).
+- The response is the rank-normalised mean of the two pinned gradient bands `tmi_hg` and
+  `iso_grav_anom_hg` — monotone per band, so it cannot invent an edge.
+- Three variants only: ≤1 px, ≤2 px, and ≤2 px gravity-only. They differ in window size and band,
+  never in count, mass or catalogue exclusion.
+- **The predictions are negative** (−0.004 / −0.006 / −0.004 MODEL). The optimistic algebra
+  bracket (+0.000…+0.086 and larger) is reported next to them and explicitly not used, because a
+  random-response null control scores the same proxy as the real response.
+
+**AI corrected itself:** the first instrumented pass (a `--no-write` run, before any raster was
+written) showed 97–99 % of dots moving, which looked like a large positive effect; the null control
+and the smoothing sweep showed it was not. Both numbers stay in
+`evidence/snap_axis_20261023.json` rather than being deleted.
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no login, no scrape, no
+submission, no credential handling. No PROXY or MODEL number is written as a score or a receipt.
+Every historical score stays `CLAIM`.
+
+**What only the human can supply:** authorization for any slot, `TOP_PUBLIC` and its date, the
+remaining rolling-week quota, R0's receipt if one exists, the receipt after an upload, the choice
+of the final file, and — before the next session — an actual AXIS assignment.
+
+## Addendum — second SNAP session (magnetic edges), 2026-10-23
+
+**Human decision:** axis = SNAP, response family = magnetic edges (`tmi_hg` / `tc`), chosen from an
+offered list.
+
+**AI-written:** `scripts/build_snap_variants.py`, `registry/preregistration_snap.json` (rule and
+analysis plan fixed before any variant was scored), `tests/test_snap_variants.py`, the addenda in
+`IRREGULARITIES.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md`, and the `BUILT-DUPLICATE` ledger rows, which
+the repo's canonical generator now emits from `ledger/variants_snap_magnetic.json`.
+
+**AI-chosen constants a reviewer should check:** smoothing σ = 1 px and gain gate = 0.25 σ (both
+fixed after a pre-build jitter diagnostic, never tuned on a score); spacing floor = 2.828 px, copied
+from R0's measured nearest-neighbour distance; predicted live ranges centred at +0.003…+0.005, i.e.
+deliberately below the 0.01 evidence floor.
+
+**Not done by AI:** no submission, no login, no leaderboard access, no drivendata.org or dropbox.com
+request, no slot selection. The three builds were not promoted; the duplication with PR #31 was
+found only when `main` was merged, and is logged rather than hidden.

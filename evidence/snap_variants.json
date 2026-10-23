@@ -1,8 +1,8 @@
 {
   "schema": "gems86.snap-variants.v1",
   "version": "gems86-snap-v1",
-  "generated_utc": "2026-10-23T16:00:18+00:00",
-  "git_sha": "27d915f3a308e8cec55562c87c15f9bdfd8a3c82",
+  "generated_utc": "2026-10-23T16:15:17+00:00",
+  "git_sha": "3a9bfbc589c03df7d7c3909fd6acec1d98c3258b",
   "inputs": {
     "data/bridge/existing_faults.tif": {
       "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
@@ -35,35 +35,35 @@
   },
   "variants": {
     "hg2": {
-      "id": "h33-h33-2-b2-snap-hg2-20261023-718658bc",
+      "id": "h33-h33-2-b2-snap-hg2-20261023-1ced061c",
       "parent": "h33-h33-2-b2",
       "axis": "SNAP",
       "value": "hg2",
       "field_label": "tmi_hg horizontal-gradient peak",
       "files": {
-        "nan_outside": "h33-h33-2-b2-snap-hg2-20261023-718658bc.tif",
-        "zeros_outside": "h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif"
+        "nan_outside": "h33-h33-2-b2-snap-hg2-20261023-1ced061c.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-hg2-20261023-1ced061c-zeros.tif"
       },
       "parent_diff": {
         "n_dots": 37654,
-        "n_moved": 16329,
-        "pct_changed": 43.37,
-        "mean_displacement_px_all": 1.011,
-        "mean_displacement_px_moved": 2.331,
-        "median_displacement_px_moved": 2.236,
-        "max_displacement_px": 2.828,
+        "n_moved": 12781,
+        "pct_changed": 33.94,
+        "mean_displacement_px_all": 0.59,
+        "mean_displacement_px_moved": 1.737,
+        "median_displacement_px_moved": 2.0,
+        "max_displacement_px": 2.0,
         "n_movers_blocked_kept_source": 0,
         "n_forced_floor_violations": 0,
-        "mean_gain_z_moved": 0.818,
+        "mean_gain_z_moved": 0.693,
         "min_spacing_px_after": 2.828,
         "min_spacing_px_before": 2.828,
         "seed": 0
       },
       "gates": {
-        "h33-h33-2-b2-snap-hg2-20261023-718658bc.tif": {
-          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-718658bc.tif",
-          "bytes": 219708,
-          "sha256": "718658bc70c75cc58679004058e33474b9005942c47099d0b905e6f8e9548a4f",
+        "h33-h33-2-b2-snap-hg2-20261023-1ced061c.tif": {
+          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c.tif",
+          "bytes": 219868,
+          "sha256": "1ced061c7ea697143bb7c748432d75599ee3f30e1a45c9f853d6a5fa4e131193",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -99,10 +99,10 @@
           "on_catalogue_positive_pixels": 0,
           "emitted_positive_pixels": 37654
         },
-        "h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif": {
-          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-718658bc-zeros.tif",
-          "bytes": 148044,
-          "sha256": "905e654d06abe8e4a3557bab250b06b8ef04ca65fa429681170d239a960fa069",
+        "h33-h33-2-b2-snap-hg2-20261023-1ced061c-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c-zeros.tif",
+          "bytes": 148224,
+          "sha256": "43f7ef51c7d2ad60366c4048867e53db1f1ee9735947cf41cf7c6b72815a8622",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -151,39 +151,39 @@
         "cap_px": 2,
         "gain_gate_z": 0.25,
         "spacing_floor_px": 2.828,
-        "window": "25 cells, max(|dy|,|dx|) <= 2"
+        "window": "13 cells, Euclidean distance <= 2 px (matches src/gems86/snap.py)"
       }
     },
     "vg2": {
-      "id": "h33-h33-2-b2-snap-vg2-20261023-b5776416",
+      "id": "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f",
       "parent": "h33-h33-2-b2",
       "axis": "SNAP",
       "value": "vg2",
       "field_label": "|tmi_vg| vertical-gradient flank peak",
       "files": {
-        "nan_outside": "h33-h33-2-b2-snap-vg2-20261023-b5776416.tif",
-        "zeros_outside": "h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif"
+        "nan_outside": "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f-zeros.tif"
       },
       "parent_diff": {
         "n_dots": 37654,
-        "n_moved": 18179,
-        "pct_changed": 48.28,
-        "mean_displacement_px_all": 1.114,
-        "mean_displacement_px_moved": 2.307,
-        "median_displacement_px_moved": 2.236,
-        "max_displacement_px": 2.828,
+        "n_moved": 14908,
+        "pct_changed": 39.59,
+        "mean_displacement_px_all": 0.679,
+        "mean_displacement_px_moved": 1.716,
+        "median_displacement_px_moved": 2.0,
+        "max_displacement_px": 2.0,
         "n_movers_blocked_kept_source": 0,
         "n_forced_floor_violations": 0,
-        "mean_gain_z_moved": 0.991,
+        "mean_gain_z_moved": 0.807,
         "min_spacing_px_after": 2.828,
         "min_spacing_px_before": 2.828,
         "seed": 0
       },
       "gates": {
-        "h33-h33-2-b2-snap-vg2-20261023-b5776416.tif": {
-          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-b5776416.tif",
-          "bytes": 219758,
-          "sha256": "b5776416ad139e4c87347d4078348768b1a0dbfb719812ec2307c7a91ab465a3",
+        "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f.tif": {
+          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-af1f0f2f.tif",
+          "bytes": 219927,
+          "sha256": "af1f0f2fde03f9b5530df22148433f185a2be0738084fb4a943663f1fd92d56a",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -219,10 +219,10 @@
           "on_catalogue_positive_pixels": 0,
           "emitted_positive_pixels": 37654
         },
-        "h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif": {
-          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-b5776416-zeros.tif",
-          "bytes": 147979,
-          "sha256": "27511d13b362e1aa81308a58adc4e01d301eb8bcb3fe589464eff4f6611a52b5",
+        "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-vg2-20261023-af1f0f2f-zeros.tif",
+          "bytes": 148233,
+          "sha256": "75c88f294fae1f66364205998b95b0593ea403761fdf2026febcf666d13e8086",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -271,39 +271,39 @@
         "cap_px": 2,
         "gain_gate_z": 0.25,
         "spacing_floor_px": 2.828,
-        "window": "25 cells, max(|dy|,|dx|) <= 2"
+        "window": "13 cells, Euclidean distance <= 2 px (matches src/gems86/snap.py)"
       }
     },
     "cons2": {
-      "id": "h33-h33-2-b2-snap-cons2-20261023-43829550",
+      "id": "h33-h33-2-b2-snap-cons2-20261023-fed241ac",
       "parent": "h33-h33-2-b2",
       "axis": "SNAP",
       "value": "cons2",
       "field_label": "tmi_hg + |tmi_vg| consensus",
       "files": {
-        "nan_outside": "h33-h33-2-b2-snap-cons2-20261023-43829550.tif",
-        "zeros_outside": "h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif"
+        "nan_outside": "h33-h33-2-b2-snap-cons2-20261023-fed241ac.tif",
+        "zeros_outside": "h33-h33-2-b2-snap-cons2-20261023-fed241ac-zeros.tif"
       },
       "parent_diff": {
         "n_dots": 37654,
-        "n_moved": 20589,
-        "pct_changed": 54.68,
-        "mean_displacement_px_all": 1.288,
-        "mean_displacement_px_moved": 2.356,
-        "median_displacement_px_moved": 2.236,
-        "max_displacement_px": 2.828,
+        "n_moved": 17294,
+        "pct_changed": 45.93,
+        "mean_displacement_px_all": 0.801,
+        "mean_displacement_px_moved": 1.744,
+        "median_displacement_px_moved": 2.0,
+        "max_displacement_px": 2.0,
         "n_movers_blocked_kept_source": 0,
         "n_forced_floor_violations": 0,
-        "mean_gain_z_moved": 1.148,
+        "mean_gain_z_moved": 0.912,
         "min_spacing_px_after": 2.828,
         "min_spacing_px_before": 2.828,
         "seed": 0
       },
       "gates": {
-        "h33-h33-2-b2-snap-cons2-20261023-43829550.tif": {
-          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-43829550.tif",
-          "bytes": 219715,
-          "sha256": "438295503dc95a102663c3f9ae0560336ff380821b0ca08e56bfb06d6492b6d5",
+        "h33-h33-2-b2-snap-cons2-20261023-fed241ac.tif": {
+          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac.tif",
+          "bytes": 220140,
+          "sha256": "fed241ac0a4273be50ada80bdb97cbd6807e42d4b8168ee21dbaf44aea85e480",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -339,10 +339,10 @@
           "on_catalogue_positive_pixels": 0,
           "emitted_positive_pixels": 37654
         },
-        "h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif": {
-          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-43829550-zeros.tif",
-          "bytes": 147918,
-          "sha256": "483e680fcc282925f0f07e53519862cb863c5aa28fb61d0630e6ed5164d755b3",
+        "h33-h33-2-b2-snap-cons2-20261023-fed241ac-zeros.tif": {
+          "file": "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac-zeros.tif",
+          "bytes": 148454,
+          "sha256": "fb0a6ac2e6431a2ba5425de89ba761c5e2814c737eb679442ab45e006a5ac0bc",
           "meta": {
             "crs": "EPSG:32611",
             "shape": [
@@ -391,7 +391,7 @@
         "cap_px": 2,
         "gain_gate_z": 0.25,
         "spacing_floor_px": 2.828,
-        "window": "25 cells, max(|dy|,|dx|) <= 2"
+        "window": "13 cells, Euclidean distance <= 2 px (matches src/gems86/snap.py)"
       }
     }
   },
@@ -442,90 +442,90 @@
     "hg2": {
       "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
       "n_withheld_positive_px": 45260,
-      "pooled_dti": 0.015,
-      "pooled_coverage": 0.0215,
+      "pooled_dti": 0.0108,
+      "pooled_coverage": 0.0154,
       "coverage_wilson95": [
-        0.0202,
-        0.0228
+        0.0143,
+        0.0166
       ],
-      "mean_fold_dti": 0.0147,
+      "mean_fold_dti": 0.0105,
       "fold_dti_spread_95": [
-        0.0094,
-        0.0215
+        0.0066,
+        0.0153
       ],
       "per_quadrant_dti": {
-        "foldNE": 0.0118,
-        "foldNW": 0.0135,
-        "foldSE": 0.0143,
-        "foldSW": 0.0191
+        "foldNE": 0.0087,
+        "foldNW": 0.0092,
+        "foldSE": 0.0102,
+        "foldSW": 0.014
       },
       "per_draw_dti": {
-        "draw20": 0.0143,
-        "draw21": 0.0151
+        "draw20": 0.0103,
+        "draw21": 0.0107
       },
       "folds": 16
     },
     "vg2": {
       "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
       "n_withheld_positive_px": 45260,
-      "pooled_dti": 0.0169,
-      "pooled_coverage": 0.0242,
+      "pooled_dti": 0.0124,
+      "pooled_coverage": 0.0176,
       "coverage_wilson95": [
-        0.0228,
-        0.0256
+        0.0165,
+        0.0189
       ],
-      "mean_fold_dti": 0.0164,
+      "mean_fold_dti": 0.012,
       "fold_dti_spread_95": [
-        0.0096,
-        0.0248
+        0.007,
+        0.0184
       ],
       "per_quadrant_dti": {
-        "foldNE": 0.0108,
-        "foldNW": 0.0134,
-        "foldSE": 0.0208,
-        "foldSW": 0.0208
+        "foldNE": 0.0081,
+        "foldNW": 0.0107,
+        "foldSE": 0.0134,
+        "foldSW": 0.0159
       },
       "per_draw_dti": {
-        "draw20": 0.0156,
-        "draw21": 0.0173
+        "draw20": 0.0111,
+        "draw21": 0.0129
       },
       "folds": 16
     },
     "cons2": {
       "evidence_class": "PROXY (catalogue hide-and-recover, not a leaderboard score)",
       "n_withheld_positive_px": 45260,
-      "pooled_dti": 0.019,
-      "pooled_coverage": 0.0271,
+      "pooled_dti": 0.0137,
+      "pooled_coverage": 0.0196,
       "coverage_wilson95": [
-        0.0256,
-        0.0286
+        0.0184,
+        0.0209
       ],
-      "mean_fold_dti": 0.0185,
+      "mean_fold_dti": 0.0134,
       "fold_dti_spread_95": [
-        0.011,
-        0.0256
+        0.0072,
+        0.0199
       ],
       "per_quadrant_dti": {
-        "foldNE": 0.0121,
-        "foldNW": 0.0174,
-        "foldSE": 0.0212,
-        "foldSW": 0.0235
+        "foldNE": 0.0086,
+        "foldNW": 0.0125,
+        "foldSE": 0.0155,
+        "foldSW": 0.017
       },
       "per_draw_dti": {
-        "draw20": 0.0178,
-        "draw21": 0.0192
+        "draw20": 0.0126,
+        "draw21": 0.0142
       },
       "folds": 16
     }
   },
   "h19_rank_readout": {
     "parent_mean_rank_pct": 0.9883,
-    "hg2": 0.7505,
-    "hg2_delta_pct_points": -23.783,
-    "vg2": 0.7272,
-    "vg2_delta_pct_points": -26.113,
-    "cons2": 0.6965,
-    "cons2_delta_pct_points": -29.183,
+    "hg2": 0.8,
+    "hg2_delta_pct_points": -18.833,
+    "vg2": 0.7722,
+    "vg2_delta_pct_points": -21.613,
+    "cons2": 0.742,
+    "cons2_delta_pct_points": -24.633,
     "evidence_class": "PROXY readout on the parent lineage's ranking field (H19-5)"
   }
 }

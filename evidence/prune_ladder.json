@@ -1,0 +1,256 @@
+{
+  "generated_utc": "2026-10-23T03:52:50Z",
+  "elapsed_seconds": 76.1,
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "axis": "PRUNE",
+  "axis_assignment": "UNASSIGNED BY HUMAN this session; PRUNE chosen because it is the only listed axis whose inputs are all present and pinned (see SLOT_PLAN.md)",
+  "input_pins": {
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/existing_faults.tif"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin_source": "data/restore_receipt.json",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin": null,
+      "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "matches_expected": true
+    }
+  },
+  "parent_rebuild": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+  },
+  "shells": {
+    "d1": 0,
+    "d_sqrt2": 0,
+    "d2": 0,
+    "d_sqrt5": 941,
+    "d_sqrt8": 670,
+    "d3": 560
+  },
+  "variants": {
+    "r225": {
+      "axis": "PRUNE",
+      "value": "<=2.2361px",
+      "role": "candidate",
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 36713,
+        "n_removed": 941,
+        "n_added": 0,
+        "pct_changed": 2.4991,
+        "removed_distance_median_px": 2.23606797749979,
+        "removed_distance_max_px": 2.23606797749979,
+        "kept_distance_min_px": 2.8284271247461903,
+        "kept_distance_median_px": 20.248456731316587
+      },
+      "removed_shells": {
+        "d1": 0,
+        "d_sqrt2": 0,
+        "d2": 0,
+        "d_sqrt5": 941,
+        "d_sqrt8": 0,
+        "d3": 0
+      },
+      "predicted_live_change": 0.001,
+      "predicted_band": [
+        -0.003,
+        0.003
+      ],
+      "evidence_class": "MODEL"
+    },
+    "r283": {
+      "axis": "PRUNE",
+      "value": "<=2.8284px",
+      "role": "candidate",
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 36043,
+        "n_removed": 1611,
+        "n_added": 0,
+        "pct_changed": 4.2784,
+        "removed_distance_median_px": 2.23606797749979,
+        "removed_distance_max_px": 2.8284271247461903,
+        "kept_distance_min_px": 3.0,
+        "kept_distance_median_px": 20.8806130178211
+      },
+      "removed_shells": {
+        "d1": 0,
+        "d_sqrt2": 0,
+        "d2": 0,
+        "d_sqrt5": 941,
+        "d_sqrt8": 670,
+        "d3": 0
+      },
+      "predicted_live_change": 0.003,
+      "predicted_band": [
+        -0.003,
+        0.008
+      ],
+      "evidence_class": "MODEL"
+    },
+    "r300": {
+      "axis": "PRUNE",
+      "value": "<=3.0000px",
+      "role": "candidate",
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 35483,
+        "n_removed": 2171,
+        "n_added": 0,
+        "pct_changed": 5.7657,
+        "removed_distance_median_px": 2.8284271247461903,
+        "removed_distance_max_px": 3.0,
+        "kept_distance_min_px": 3.1622776601683795,
+        "kept_distance_median_px": 21.213203435596427
+      },
+      "removed_shells": {
+        "d1": 0,
+        "d_sqrt2": 0,
+        "d2": 0,
+        "d_sqrt5": 941,
+        "d_sqrt8": 670,
+        "d3": 560
+      },
+      "predicted_live_change": 0.004,
+      "predicted_band": [
+        -0.004,
+        0.013
+      ],
+      "evidence_class": "MODEL"
+    },
+    "ctl": {
+      "axis": "CONTROL",
+      "value": "mass-matched-random",
+      "role": "control (never submit)",
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 35483,
+        "n_removed": 2171,
+        "n_added": 0,
+        "pct_changed": 5.7657,
+        "removed_distance_median_px": 22.80350850198276,
+        "removed_distance_max_px": 179.0111728356641,
+        "kept_distance_min_px": 2.23606797749979,
+        "kept_distance_median_px": 19.313207915827967
+      },
+      "removed_shells": {
+        "d1": 0,
+        "d_sqrt2": 0,
+        "d2": 0,
+        "d_sqrt5": 0,
+        "d_sqrt8": 0,
+        "d3": 0
+      },
+      "predicted_live_change": 0.0,
+      "predicted_band": [
+        -0.004,
+        0.003
+      ],
+      "evidence_class": "MODEL"
+    }
+  },
+  "proxy": {
+    "R0": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.004356,
+      "ci95": [
+        0.0041,
+        0.004577
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "r225": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.000447,
+      "ci95": [
+        0.000419,
+        0.00048
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "r283": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    },
+    "r300": {
+      "available": true,
+      "class_": "PROXY",
+      "n_withheld_components": 640,
+      "n_withheld_positive_pixels": 11548,
+      "n_draws": 10,
+      "mean": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+    }
+  },
+  "controls": [
+    "ctl"
+  ],
+  "written": [
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p236-20261023-82b3f1f4",
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-6ff38618",
+    "h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b",
+    "h33-h33-2-b2-20261004-e5eb6e7e-CONTROL-massctl2171-20261023-a2a8be25"
+  ],
+  "gates": {
+    "format": "passed for every zeros twin (shared validator + shared format_report)",
+    "zero_catalogue_mass": "asserted in memory and on disk",
+    "sha_novel": "checked against every sha256 already in ledger/submissions.csv",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes (validate() and format_report() open the written file)"
+  },
+  "not_a_score": "Every number above is a MODEL projection or a PROXY measurement. No submission was made."
+}

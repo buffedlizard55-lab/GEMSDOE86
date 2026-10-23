@@ -23,7 +23,8 @@ For variant ``v`` with response field ``R_v`` (z-scored over the footprint):
    interpolation noise between the 400 m GeoDAWN flight lines, and a diagnostic run
    before this file existed showed raw-field snapping moves 99 % of dots with a
    per-dot gain barely above a random-offset null.
-2. Window: the 25 cells with max(|dy|, |dx|) <= 2 (the brief's "<= 2 px").
+2. Window: the 13 cells within Euclidean distance 2 px (the brief's "<= 2 px", and the same
+   radius convention as the repository's own SNAP rule, so a corner move cannot exceed the cap).
 3. Valid destinations: inside the footprint, NOT on the catalogue, finite ``R_v``,
    and not another dot's source pixel (sources stay reserved, which is what makes
    the dot count exact by construction).
@@ -219,8 +220,11 @@ def snap(parent: np.ndarray, R: np.ndarray, footprint: np.ndarray,
     H, W = parent.shape
     wy, wx = np.nonzero(parent)
     n = len(wy)
+    # EUCLIDEAN radius, matching the brief's "<= 2 px" and the repo's own SNAP rule
+    # (src/gems86/snap.py): 13 cells, corner moves capped at 1.414 px, max 2.0 px.
     offs = [(dy, dx) for dy in range(-CAP_PX, CAP_PX + 1)
-            for dx in range(-CAP_PX, CAP_PX + 1)]
+            for dx in range(-CAP_PX, CAP_PX + 1)
+            if float(np.hypot(dy, dx)) <= CAP_PX + 1e-9]
     dist = np.array([float(np.hypot(dy, dx)) for dy, dx in offs], float)
 
     valid = np.isfinite(R) & footprint & ~catalogue
@@ -393,6 +397,51 @@ def write_pair(stem: str, mask: np.ndarray, profile: dict, footprint: np.ndarray
     return written
 
 
+def release_card(stem: str, key: str, mask: np.ndarray, gates: dict, parent: np.ndarray,
+                 card: dict, stats: dict) -> dict:
+    """Release receipt in the schema tests/test_prune_ladder.py enforces."""
+    zeros_name = f"{stem}-zeros.tif"
+    nan_name = f"{stem}.tif"
+    central = {"hg2": 0.004, "vg2": 0.003, "cons2": 0.005}[key]
+    return {
+        "id": stem, "parent": "h33-h33-2-b2", "axis": "SNAP", "value": key,
+        "role": "duplicate-corroboration",
+        "rule": ("each dot may move <= 2 px onto the strongest smoothed magnetic-edge response "
+                 "in its window, subject to a 0.25 sigma gain gate and a 2.828 px spacing floor; "
+                 "count, mass and catalogue exclusion unchanged"),
+        "radius_px": float(CAP_PX),
+        "field": VARIANTS[key]["label"],
+        "n_dots": int(mask.sum()),
+        "pct_changed": stats["pct_changed"],
+        "dot_digest": hashlib.sha256(np.flatnonzero(mask).astype("<u4").tobytes()).hexdigest(),
+        "movement": {
+            "n_parent": int(parent.sum()),
+            "n_candidate": int(mask.sum()),
+            "pct_snapped": stats["pct_changed"],
+            "mean_displacement_px_moved": stats["mean_displacement_px_moved"],
+            "median_displacement_px_moved": stats["median_displacement_px_moved"],
+            "max_displacement_px": stats["max_displacement_px"],
+            "mean_gain_z_moved": stats["mean_gain_z_moved"],
+            "min_spacing_px_before": stats["min_spacing_px_before"],
+            "min_spacing_px_after": stats["min_spacing_px_after"],
+        },
+        "model": {"evidence_class": "MODEL", "hypothesis": card["hypothesis"],
+                  "mechanism": card["mechanism"], "confounder": card["confounder"],
+                  "falsifier": card["falsifier"],
+                  "note": "no live receipt; projection only"},
+        "predicted_live_change": central,
+        "predicted_live_range": card["predicted"],
+        "zeros": {"file": f"releases/{zeros_name}", "sha256": gates[zeros_name]["sha256"]},
+        "nan_outside": {"file": f"releases/{nan_name}", "sha256": gates[nan_name]["sha256"]},
+        "gates_all_passed": all(g["all_checks_passed"] for g in gates.values()),
+        "slot_candidate": False,
+        "slot_reason": ("the (h33-h33-2-b2, SNAP) pair was already built and merged by PR #31; "
+                        "this build corroborates it under a different rule (IR-86-SNAP-04)"),
+        "provenance": {"git_sha": _git_sha(), "script": "scripts/build_snap_variants.py",
+                       "preregistration": "registry/preregistration_snap.json"},
+    }
+
+
 # ---------------------------------------------------------------------- proxy / report
 def proxy_report(masks: dict[str, np.ndarray], footprint: np.ndarray,
                  catalogue: np.ndarray) -> dict:
@@ -494,6 +543,10 @@ def main() -> int:
         for p in files:
             nan_outside = not p.stem.endswith("-zeros")
             gates[p.name] = gate(p, footprint, catalogue, int(parent.sum()), nan_outside)
+        # house contract: every release needs a receipt beside its zeros twin
+        card = release_card(stem_final, key, mask, gates, parent, MECHANISM[key], stats)
+        (ROOT / "releases" / f"{stem_final}-zeros.json").write_text(
+            json.dumps(_clean(card), indent=2, allow_nan=False) + "\n")
         mask_receipts[key] = {
             "id": stem_final, "parent": "h33-h33-2-b2",
             "axis": "SNAP", "value": key,
@@ -504,7 +557,7 @@ def main() -> int:
             "mechanism_card": MECHANISM[key],
             "rule": {"smooth_sigma_px": SMOOTH_SIGMA_PX, "cap_px": CAP_PX,
                      "gain_gate_z": GAIN_GATE, "spacing_floor_px": SPACING_FLOOR_PX,
-                     "window": "25 cells, max(|dy|,|dx|) <= 2"},
+                     "window": "13 cells, Euclidean distance <= 2 px (matches src/gems86/snap.py)"},
         }
 
     report = {"schema": "gems86.snap-variants.v1", "version": VERSION,
@@ -518,6 +571,33 @@ def main() -> int:
         report["leakage_canary"] = canary_auc(fields, catalogue, footprint)
         report["holdout_proxy"] = proxy_report(masks, footprint, catalogue)
         report["h19_rank_readout"] = h19_rank_readout(masks, footprint)
+
+    # house-schema rows so the canonical ledger generator (scripts/build_ledger.py) can
+    # read this session without a second writer.  Status is BUILT-DUPLICATE on purpose:
+    # the (parent, axis) pair was already spent by PR #31 before this branch saw main.
+    rows = []
+    for key, v in mask_receipts.items():
+        nan_gate = v["gates"][v["files"]["nan_outside"]]
+        zeros_gate = v["gates"][v["files"]["zeros_outside"]]
+        d = v["parent_diff"]
+        rows.append({
+            "id": v["id"], "parent": v["parent"], "axis": "snap", "value": key,
+            "encoding": "zeros", "n_dots": d["n_dots"], "pct_changed": d["pct_changed"],
+            "sha256": nan_gate["sha256"], "sha8": nan_gate["sha256"][:8],
+            "sha256_zeros": zeros_gate["sha256"],
+            "files": [f"releases/{v['files']['nan_outside']}",
+                      f"releases/{v['files']['zeros_outside']}"],
+            "status": "BUILT-DUPLICATE",
+            "predicted_change": v["mechanism_card"]["predicted"],
+            "evidence_class": "MODEL",
+            "source_url": "",
+            "note": ("duplicate of the (h33-h33-2-b2, SNAP) pair already built and merged by "
+                     "PR #31; kept as corroboration with a different rule, not a slot candidate"),
+            "diff": d,
+        })
+    (ROOT / "ledger").mkdir(exist_ok=True)
+    (ROOT / "ledger" / "variants_snap_magnetic.json").write_text(
+        json.dumps(rows, indent=2, allow_nan=False) + "\n")
 
     out = ROOT / "evidence" / "snap_variants.json"
     out.parent.mkdir(exist_ok=True)

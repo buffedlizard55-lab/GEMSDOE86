@@ -92,7 +92,7 @@ def test_dot_set_invariants_from_the_report(report):
         d = v["parent_diff"]
         assert d["n_dots"] == 37654
         assert 1.0 <= d["pct_changed"] <= 100.0
-        assert d["max_displacement_px"] <= 2.828 + 1e-6, "cap is <= 2 px per axis"
+        assert d["max_displacement_px"] <= 2.0 + 1e-6, "cap is a 2 px Euclidean radius"
         assert d["min_spacing_px_after"] >= 2.828 - 1e-9, "spacing floor must not be tightened"
         assert d["n_forced_floor_violations"] == 0
         assert d["mean_gain_z_moved"] >= 0.25 - 1e-9, "every moved dot cleared the gain gate"
@@ -133,8 +133,11 @@ def test_ledger_rows_exist_for_every_built_release(report):
         rows = {r["id"]: r for r in csv.DictReader(fh)}
     for key, v in report["variants"].items():
         row = rows[v["id"]]
-        assert row["status"] == "BUILT"
+        # the (parent, axis) pair was already spent by PR #31 on main, so these are
+        # corroborating builds and must never be proposed as slot candidates
+        assert row["status"] == "BUILT-DUPLICATE"
         assert row["axis"] == "SNAP" and row["value"] == key
-        assert row["sha256"] == v["gates"][v["files"]["nan_outside"]]["sha256"]
+        # house ledger convention: the sha256 column carries the zeros twin's digest
+        assert row["sha256"] == v["gates"][v["files"]["zeros_outside"]]["sha256"]
         assert row["receipt_score"] == "", "a receipt is human-supplied, never generated"
         assert "MODEL" in row["evidence_class"]

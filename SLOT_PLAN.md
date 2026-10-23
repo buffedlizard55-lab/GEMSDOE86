@@ -1,73 +1,103 @@
-# SLOT_PLAN — 3 scored submissions/week, one entity, deadline 2026-12-03
+# SLOT PLAN — 2026-10-23 (PRUNE ladder + SNAP, three axes reconciled)
 
-Plan only. No file here has a receipt: every score in `ledger/submissions.csv` marked `CLAIM`
-stays a claim until a line copied from the submission page is pasted into `receipt_score`.
+**No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
+([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
+`TOP_PUBLIC` are **UNSUPPLIED by the human** — I did not guess them. A live `|Δ| < 0.01`
+is no evidence. R0 = `h33-h33-2-b2` (**0.2778 CLAIM**, no receipt in `ledger/`).
 
-## What the SNAP session established (before any slot is spent)
+Deadline arithmetic: 2026-10-23 → **2026-12-03** is 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots, one of
+which is the blind final pick. The date is user-supplied and **UNVERIFIED**.
 
-| Item | Value |
-|---|---|
-| Parent R0 `h33-h33-2-b2` | 37,654 dots, sha `c55bafc…`, 0 catalogue mass, **CLAIM 0.2778** |
-| R0 rebuilt from its recorded recipe | dot-set symdiff **0 px** (`evidence/snap_variants.json`) |
-| SNAP variants built and gated | `snap-hg2` 43.4 % moved, `snap-vg2` 48.3 %, `snap-cons2` 54.7 %; mean displacement 2.31–2.36 px; spacing floor held at 2.828 px; all format/catalogue/count checks pass |
-| Hide-and-recover PROXY (n = 45,260 withheld positives) | parent 0.0047 → variants 0.0150 / 0.0169 / 0.0190 |
-| **Same proxy with a fixed ≥3 px collar on every candidate** | **0.0000 for all four**, and 0.0000 for the SGMC control that scores 0.0877 without the collar |
-| H19-5 rank readout | parent dots sit at the 98.8th percentile of the lineage's own ranking field; the variants drop to 69.7–75.1 |
+## What the three axes now say
 
-Two consequences, both of which change the plan:
+* **PRUNE** — seven gate-clean artifacts, best predicted +0.004, whole ladder inside ±0.01.
+  One slot, no more (three sessions already spent here).
+* **SNAP** — three gate-clean artifacts this session, **all predicted ≤ 0**. The instrument is
+  decisive and negative: 97–99 % of dots move, but a random-response null control scores the
+  same proxy (+0.0001 vs −0.0012) and smoothing makes it worse. Snapping re-centres the field on
+  local gradient maxima that the catalogue proxy cannot distinguish from chance, at a measured
+  coverage cost (dots < 2 px apart: 0 → 3,448 / 8,341 / 2,085). **Do not spend slot 1 on SNAP.**
+  It is worth one slot only as a deliberate probe of the unmeasurable live hypothesis: "new
+  faults are at potential-field edges rather than at catalogue-adjacent positions".
+* **MASS / CONCENTRATION / RELIEF / SPACING** — unbuilt. MASS stays blocked (R0's per-dot
+  ranking is not recoverable from a rebuild, IR-86-PRUNE-02). RELIEF and CONCENTRATION need no
+  ranking and no new data.
 
-1. **The free proxy is blind here.** Its entire signal is catalogue-collar recovery. Any edit that
-   puts mass back beside a known trace "improves" it, which is exactly what the live metric
-   penalises. It is still recorded as a PROXY and never used as a gate.
-2. **SNAP spends real lineage evidence to buy an unproven edge.** Every variant trades the parent's
-   own top-1 % ranking for a magnetic-gradient peak 2.3 px away, and puts 1.3–1.8 % of the dots
-   back inside the 200 m collar whose removal is the only controlled edit with a live-claimed gain
-   (+0.007, 0.2708 → 0.2778). Predicted live change is therefore stated as a range that straddles
-   zero, and the honest expectation is "no evidence" (|Δ| < 0.01) rather than a win.
+## Next three slots, in order
 
-## The next three slots, in order
+| # | file (upload the `-zeros` twin) | why this one | decision rule |
+|---|---|---|---|
+| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest collar rung, unchanged from the last plan; it is the only prediction that is positive *and* has a monotone ladder behind it. Prediction **+0.004 MODEL** (−0.004…+0.013), 35,483 dots, 5.77 % removed | ≥ +0.010 → the collar is not exhausted; next week a 4 px rung. Flat or ≤ −0.010 → PRUNE is finished for Phase 1 |
+| 2 | **CONCENTRATION on 5 km blocks** — not built yet | the only remaining axis that changes *where* mass is without needing R0's ranking or a new physical field; the best files reportedly sit at block-density CV 0.51–0.59 | preregister block size, direction and CV target before writing; ≥ +0.010 → the win is spatial allocation, and the final file is a PRUNE+CONCENTRATION combination |
+| 3 | `…-SNAP-r2p000-…-e7473403-zeros.tif` **or** a RELIEF variant | SNAP is the one built artifact that tests an unmeasured live hypothesis (faults at geophysical edges); RELIEF is the cheap alternative if the human prefers not to spend a slot on a predicted-negative file | SNAP ≥ +0.010 → positions *are* the binding error and SNAP becomes the main lineage. SNAP within ±0.010 → the axis is retired in one slot, as PRUNE was |
 
-| # | File | One thing it decides | If it lands | If it does not |
-|---|---|---|---|---|
-| 1 | `releases/h33-h33-2-b2-snap-cons2-20261023-43829550.tif` | Does a ≤ 2 px re-centring on a magnetic edge move the live score at all? (widest field, most robust to one band's artefacts) | Δ ≥ +0.01 ⇒ kernel-scale position, not field choice, was the binding constraint; commission the SNAP+PRUNE combination (destinations forced outside the collar) | Δ within ±0.01 ⇒ position is already optimal at kernel scale; retire SNAP and spend the rest of the quota on mass/geometry axes |
-| 2 | `releases/h33-h33-2-b2-snap-hg2-20261023-718658bc.tif` | Is the single horizontal-gradient field enough, i.e. did the consensus add anything? (cleanest mechanistic attribution) | hg2 ≈ cons2 ⇒ use the simpler field for the combination; hg2 > cons2 by ≥ 0.01 ⇒ sharpness/consensus was diluting | hg2 < cons2 − 0.01 ⇒ keep consensus; both flat ⇒ SNAP closed as a lane |
-| 3 | Hold | Reserved for the week's best MASS or CONCENTRATION variant, or for `snap-cons2` re-cut with every destination forced to ≥ 3 px from the catalogue | keeps one slot responsive to whichever axis the first two results point at | if both SNAP slots are flat, this slot goes to the collar dose-response below |
+**Do not spend a slot on:** `SNAP-r1p000` or `SNAP-r2p000-grav` (same axis, weaker dose /
+single band; they are the arms that read out *why* slot 3 went the way it did);
+`…-prune4-…-de4c2a98` (−0.008) and `…-prune3r-…-8c20bd7e` (−0.003) — rehearsals, not bets;
+`…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08).
 
-Do **not** spend a slot on an exact re-submission of R0: the ledger already records ≥ 8 slots lost to
-exact repeats, and a repeat cannot separate "no change" from "no effect".
+## Calendar to the deadline
 
-## Weeks to the deadline (today 2026-10-23 → 2026-12-03)
+- **wk 1 (slot 1).** PRUNE `le3p000`. Single decisive read on the collar.
+- **wk 2.** CONCENTRATION at 5 km blocks, preregistered; record block-density CV before/after.
+- **wk 3.** SNAP `r2p000` (only if the human accepts a predicted-negative probe) or RELIEF.
+- **wk 4.** The better of CONCENTRATION / SNAP / RELIEF, re-cut at a second value on that axis.
+- **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as **one attributable edit**.
+- **wk 6.** Confirm both finalists, re-validate both formats, choose the final file and a
+  fallback blind, never multiply accounts.
 
-* **wk 1 (now)** — SNAP trio above; 2 slots consumed, 1 held.
-* **wk 2** — MASS (drop lowest-ranked 10 % / add next-ranked 10 %, ranking rebuilt from the restored
-  H19-5 field, not from another lane) and CONCENTRATION (10–20 % of dots between 1 km blocks,
-  block-density CV reported against the 0.51–0.59 band). Third slot: whichever of wk 1 pointed at.
-* **wk 3** — the two best axes combined in one controlled edit; 2 slots plus 1 for a replication.
-* **wk 4–5** — confirm the winner against a second draw of the same axis value; freeze the choice.
-* **wk 6** — re-validate format of the final file **and** its zeros twin, re-read both from disk,
-  pick the final submission and the fallback blind, leave one slot unused rather than guess.
+## Better axes (proposals only; not built this session)
 
-## Axes proposed for later sessions (none built here)
+- **Coherent SNAP (structure-tensor, σ = 2–3 px).** The raw gradient bands are smooth but their
+  local maxima are still not distinguishable from chance by the proxy; a coherence-weighted
+  response is the physically correct "lineament" operator. *Confounder:* coherence peaks on
+  any elongated contact. *Falsifier:* no separation from the random control in two independent
+  hidden-component draws.
+- **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the shared
+  two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no replicated positive sign on
+  untouched spatial folds, then no live receipt.
+- **Collar-conditional CONCENTRATION.** Only reallocate mass in blocks > 3 px clear of the
+  catalogue, so the two axes do not interact. *Confounder:* relief controls both catalogue
+  completeness and lineament visibility. *Falsifier:* opposite signs in two relief regimes.
 
-1. **COLLAR (dose–response, held count)** — mechanism: mass inside the mapped-fault halo earns no
-   truth credit but still pays α per dot, so widening the exclusion from 2 to 3 px and refilling the
-   removed dots elsewhere should raise DTI if the halo is net-negative. Confounder: a genuine
-   parallel new fault within 300 m of a known trace is deleted, and the forum answer says new-fault
-   truth *can* lie that close. Falsifier: live Δ ≤ −0.01 at 3 px while the count is held. This is the
-   only mechanism with a live-measured precedent, and B = 3 has never been tested with the count
-   held (the historical B = 3 lost 2,171 dots, which confounds mass with geometry).
-2. **KERNEL-BUDGET (spacing floor at the kernel radius)** — mechanism: at a 2.828 px floor, 30.3 % of
-   parent dots sit within 3 px of another dot, so part of the unit mass is spent on credit another dot
-   already earns. Re-spacing at ≥ 3.0 px at constant count should convert wasted α into coverage.
-   Confounder: real parallel strands and en-echelon step-overs are exactly 300 m apart. Falsifier:
-   live coverage loss exceeds the credit gain, i.e. Δ ≤ −0.01.
-3. **RE-RANK (position fixed, ranking changed)** — mechanism: the lineage's edge is its ranking, not
-   its dot geometry. Hold every dot's position and only re-decide *which* pixels within the same 2 px
-   neighbourhood enter the top 37,654 by a strictly label-free, prospectivity-style prior of fault
-   interaction zones (step-over / intersection / tip density). Confounder: those zones are also where
-   geothermal systems sit, and the target is fault pixels, never vents. Falsifier: live Δ ≤ −0.01,
-   which would say the H19-5 ranking is not separable from the local geometry at all.
+## Human inputs still missing
 
-Rejected as not worth a slot: SPACING (lattice vs Poisson at matched count, already swept), RELIEF
-(relief terciles are a proxy for the same piedmont signal the radon/hydro lanes already lost with),
-TRACKB (Phase-2 deliverable, needs a geologist's read of each trace).
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
+submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01).
+
+## Addendum — second SNAP session (magnetic edges), 2026-10-23: no slot requested
+
+A second session was assigned SNAP and, because its branch predated PR #28–#31, built the axis
+independently before `main` was merged in (IR-86-SNAP-04). It is recorded here so the three files are
+not mistaken for untested candidates.
+
+* **Built:** `snap-hg2` (33.9 % of dots moved), `snap-vg2` (39.6 %), `snap-cons2` (45.9 %); mean
+  displacement 1.72–1.74 px, count fixed at 37,654, 2.828 px spacing floor held, all format and
+  catalogue gates pass. Ledger status **`BUILT-DUPLICATE`**.
+* **Verdict: corroborates PR #31, does not reopen the axis.** Under a different rule the result is
+  the same: the movement carries no measurable signal. **Do not spend a slot on these three.**
+* **What it does add — the proxy is blind (IR-86-SNAP-06).** With one fixed ≥ 3 px collar applied to
+  every arm, the hide-and-recover proxy collapses to 0.0000 for the parent, all three variants *and*
+  the SGMC control. From now on a proxy comparison is only admissible with the collar held fixed
+  across arms; unpinned proxy numbers in earlier cards should be read as collar recovery.
+* **Quantified cost of the edit.** The variants put 502 / 564 / 686 dots back inside the 200 m
+  catalogue halo (parent: 0) and lift the share of dots within 300 m of a mapped fault from 4.28 % to
+  5.4–5.8 %. They also drop the lineage's own ranking evidence from the 98.8th percentile of the
+  restored H19-5 field to 69.7–75.1 — an independent, label-free reason to expect no gain.
+
+### Two axes this session proposes and did not build (neither is in the plan above)
+
+1. **KERNEL-BUDGET (spacing floor at the kernel radius, count held)** — mechanism: 30.3 % of R0's dots
+   sit within 3 px of another dot, so part of each dot's unit mass buys credit another dot already
+   earns; re-spacing at ≥ 3.0 px at constant count converts wasted α into coverage. Confounder: real
+   parallel strands and en-echelon step-overs are exactly 300 m apart, which is why the 2.828 px
+   floor was chosen in the first place. Falsifier: live Δ ≤ −0.01, i.e. the deleted neighbour was a
+   real second fault.
+2. **RE-RANK (positions fixed, ranking changed)** — mechanism: hold every dot's position and re-decide
+   which pixels inside the same 2 px neighbourhood enter the top 37,654, using a label-free
+   fault-interaction prior (step-over / intersection / tip density from the Faulds inventory). This
+   is the one SNAP-adjacent idea the negative result does *not* kill, because it never moves a dot
+   away from the lineage's own high-value pixels. Confounder: those interaction zones are also where
+   geothermal systems sit, and the target is fault pixels, never vents or heat. Falsifier: live
+   Δ ≤ −0.01, which would say the H19-5 ranking is not separable from local geometry at all.

@@ -1,16 +1,35 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## CURRENT STATE (2026-10-23, SNAP session)
+<!-- CURRENT_STATE_START -->
+
+## CURRENT STATE — 2026-10-23 (PRUNE ladder + SNAP axis; four sessions reconciled)
 
 | Field | Value |
 |---|---|
-| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots, sha `c55bafc4…` — dot set reproduced from its recorded recipe at symdiff 0 px |
-| Best receipt | **none yet.** 0.2778 is a CLAIM (owner-reported); `ledger/submissions.csv` has no `RECEIPT` row |
-| TOP_PUBLIC | **not supplied.** The brief requires the human to fill it from the leaderboard with a date; no other target number is used here |
-| Slots left this week | **not supplied** (human fills from the submission page). Session rule applied: 3 scored submissions per rolling week, 1 final file |
-| Built this session (3) | `snap-hg2` / `snap-vg2` / `snap-cons2` of R0 — 43.4 / 48.3 / 54.7 % of dots moved ≤ 2 px onto a magnetic-edge peak, mean displacement 2.31–2.36 px, count and 2.828 px spacing floor held, all format gates pass. Predicted live change +0.003…+0.005 central, i.e. **below the 0.01 evidence floor** |
-| Next 3 slots | 1) `snap-cons2`, 2) `snap-hg2`, 3) held for the week's best MASS/CONCENTRATION variant or a collar-respecting re-cut of `snap-cons2` — see `SLOT_PLAN.md` |
-| Why SNAP is not a score play | the free holdout PROXY collapsed to 0.0000 for every candidate once a fixed ≥ 3 px collar was applied, and the variants put 502–686 dots back inside the catalogue halo whose removal is the only edit with a live-claimed gain (`IRREGULARITIES.md` IR-86-SNAP-01/03) |
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** again this session from the pinned base `gems28-h27-4-r1-solo-d2-8` (40,199 → 37,654, 0 differing pixels, same sha256). Live **0.2778 is CLAIM**, not RECEIPT. |
+| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 10 built rows, all `MODEL`). |
+| TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
+| Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
+| Built (9 gate-clean + 1 withdrawn, none slot-approved) | **PRUNE:** `le2p236` (36,713 dots), `le2p828` (36,043), `le3p000` (35,483, **+0.004 MODEL**), mass control; `prune3-…-01d57649` (37,654, refill, −0.004); `prune4-…-de4c2a98` (33,829, −0.008); `prune3r-…-8c20bd7e` (37,654, −0.003); `prune3-…-3eb29af5` **withdrawn** (IR-86-PRUNE-08). **SNAP (new):** `SNAP-r1p000` (−0.004), `SNAP-r2p000` (−0.006), `SNAP-r2p000-grav` (−0.004), all 37,654 dots, all MODEL. |
+| SNAP outcome | **Negative as an instrument.** 97–99 % of R0's dots move, but a random-response null control scores the same catalogue proxy (+0.0001 vs −0.0012) and smoothing it makes it worse (−0.0018 / −0.0032). Snapping re-centres the field on gradient maxima the proxy cannot tell from chance, and costs coverage (dots < 2 px apart 0 → 3,448 / 8,341 / 2,085). Full card: [ledger/variant-cards.md](ledger/variant-cards.md), evidence: `evidence/snap_axis_20261023.json`. |
+| SNAP corroboration (second session, no slot) | Three independent magnetic-edge builds (`snap-hg2` 33.9 % / `snap-vg2` 39.6 % / `snap-cons2` 45.9 % of dots moved ≤ 2 px, gates pass) reach the same verdict as PR #31; ledger status `BUILT-DUPLICATE`, **not slot candidates**. They also prove the hide-and-recover proxy is collar recovery only: with one fixed ≥ 3 px collar on every arm it collapses to 0.0000 for parent, all variants and the SGMC control (IR-86-SNAP-06, `evidence/snap_fixed_collar.json`). |
+| Next 3 slots | 1. `releases/…-PRUNE-le3p000-…-a438e92b-zeros.tif`. 2. **CONCENTRATION on 5 km blocks** (not yet built). 3. `SNAP-r2p000` as a deliberate probe of an unmeasured live hypothesis, or a RELIEF variant. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is at its floor and cannot separate the SNAP arms from a random control (IR-86-PRUNE-03, IR-86-SNAP-02); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
+
+<!-- CURRENT_STATE_END -->
+
+## CURRENT STATE (2026-10-23, PRUNE ladder — second session)
+
+| field | value |
+|---|---|
+| Parent | `h33-h33-2-b2` (GEMSDOE32), 37,654 dots — **CLAIM 0.2778, no receipt** |
+| Parent rebuild | **byte-identical**: `deflate/predictor=3/zlevel=9/tiled 256` re-encodes the rebuilt dot set to 219,065 B = sha256 `c55bafc4…`; dot set also exact (0 of 12,279,160 cells differ) |
+| Best **receipt** | none — every scored row in `ledger/submissions.csv` is a CLAIM |
+| `TOP_PUBLIC` / slots left | **blank — human fills from the leaderboard** (3/week, one blind final, 2026-12-03) |
+| Built | `(PRUNE, √5)`, `(PRUNE, √8)`, `(PRUNE, 3.0 no-refill)` + mass-matched control; `(PRUNE,3)+refill` came from the earlier session — see [SLOT_PLAN.md](SLOT_PLAN.md), [ledger/variant-cards.md](ledger/variant-cards.md) |
+| Predicted (MODEL) | +0.001 / +0.003 / +0.004 live; every band crosses zero and stays under the 0.01 evidence floor. PRUNE is a **one-slot axis** |
+| Upload | [docs/SUBMIT.md](docs/SUBMIT.md); verify by rebuilding — rasters are gitignored, hashes are not |
+| Open | IR-86-PRUNE-03 (literal-overlap stop), IR-86-PRUNE-06 (two sessions built `(PRUNE,3)`; one belongs in a slot), IR-86-PRUNE-05 (SNAP/RELIEF/MASS/CONCENTRATION need the absent 419 MB feature stack) |
 
 ## Downloadable TIFFs exist. **No file is approved for submission.**
 

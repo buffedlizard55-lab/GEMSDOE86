@@ -1,0 +1,50 @@
+{
+  "id": "h33-h33-2-b2-snap-cons2-20261023-fed241ac",
+  "parent": "h33-h33-2-b2",
+  "axis": "SNAP",
+  "value": "cons2",
+  "role": "duplicate-corroboration",
+  "rule": "each dot may move <= 2 px onto the strongest smoothed magnetic-edge response in its window, subject to a 0.25 sigma gain gate and a 2.828 px spacing floor; count, mass and catalogue exclusion unchanged",
+  "radius_px": 2.0,
+  "field": "tmi_hg + |tmi_vg| consensus",
+  "n_dots": 37654,
+  "pct_changed": 45.93,
+  "dot_digest": "86d6ac660520690d29ac46350bc9270bf1696806c6efd4a8b1708c140d9b63ef",
+  "movement": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "pct_snapped": 45.93,
+    "mean_displacement_px_moved": 1.744,
+    "median_displacement_px_moved": 2.0,
+    "max_displacement_px": 2.0,
+    "mean_gain_z_moved": 0.912,
+    "min_spacing_px_before": 2.828,
+    "min_spacing_px_after": 2.828
+  },
+  "model": {
+    "evidence_class": "MODEL",
+    "hypothesis": "The two magnetic derivatives disagree where one of them is artefact-dominated, so their consensus peak should be the more reliable positional estimate even though it is broader.",
+    "mechanism": "Averaging two edge measures that are sensitive to the same source but to different noise keeps the shared (geological) peak and suppresses the band-specific seam and interpolation artefacts.",
+    "confounder": "Where both bands share one artefact (a flight-line seam distorts every derivative at once) consensus adds no robustness at all.",
+    "falsifier": "cons2 outside the hg2/vg2 spread, i.e. worse than both, would mean the consensus peak lands on a compromise neither band supports.",
+    "note": "no live receipt; projection only"
+  },
+  "predicted_live_change": 0.005,
+  "predicted_live_range": "MODEL: live change in [-0.005, +0.015], central +0.005; expected to be the most stable of the three if any of them works.",
+  "zeros": {
+    "file": "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac-zeros.tif",
+    "sha256": "fb0a6ac2e6431a2ba5425de89ba761c5e2814c737eb679442ab45e006a5ac0bc"
+  },
+  "nan_outside": {
+    "file": "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac.tif",
+    "sha256": "fed241ac0a4273be50ada80bdb97cbd6807e42d4b8168ee21dbaf44aea85e480"
+  },
+  "gates_all_passed": true,
+  "slot_candidate": false,
+  "slot_reason": "the (h33-h33-2-b2, SNAP) pair was already built and merged by PR #31; this build corroborates it under a different rule (IR-86-SNAP-04)",
+  "provenance": {
+    "git_sha": "3a9bfbc589c03df7d7c3909fd6acec1d98c3258b",
+    "script": "scripts/build_snap_variants.py",
+    "preregistration": "registry/preregistration_snap.json"
+  }
+}

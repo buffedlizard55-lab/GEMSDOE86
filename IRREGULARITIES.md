@@ -1,61 +1,183 @@
-# IRREGULARITIES — items that changed a decision in this session
+Only items that changed what a session did, or that a human must resolve before the next
+slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
-Only entries that altered what was built or what the human should do. Everything else is in the
-session documents.
+## IR-86-PRUNE-01 — the standing protocol forbids every submission; brief v2 forbids the gate
+`PROMPT.md` / `AGENTS.md` / `scripts/audit_release.py` apply a **70 % overlap** and **0.90
+rank-correlation** uniqueness rule against a pinned registry witness that is positive at every
+allowed pixel, so forward overlap is 100 % for any nonempty candidate and nothing is ever
+submittable. Brief v2 §6 says the opposite: *"Do NOT apply rank-correlation or dot-overlap
+'uniqueness' thresholds."* **Decision:** both sessions followed the brief — no overlap
+threshold applied, dedupe on exact sha256 and repeated `(parent, axis, value)` only — and
+**no gate script was modified, relaxed or bypassed**. No slot is authorised here. **Cost:** the
+human must choose which rule governs before submitting; both cannot hold.
 
-## IR-86-SNAP-01 — the free holdout proxy is blind on this parent lineage (finding, not a bug)
+## IR-86-PRUNE-02 — parent rebuild: impossible from the `gems32` recipe, solved another way (corrected)
+Brief v2 §5 says rebuild R0 and match its sha256, or stop. My first pass concluded "cannot
+rebuild": `research/upstream/run_h33.py` imports `gems32.*`, which is not vendored here.
+**That conclusion was too strong and is corrected.** PR #29 reproduced R0 **byte-exactly** by
+taking the pinned base raster `gems28-h27-4-r1-solo-d2-8` (sha256 `ab023001…`) and deleting
+every dot within 2.0 px of a mapped-fault cell: 40,199 → 37,654 dots, 0 differing pixels,
+rebuilt sha256 `c55bafc4…b6fa9` = the published file. So the *lineage step* is reproducible
+even though the original H33 model is not.
+**Decision:** R0's identity is now established twice — by pinned digest (this branch) and by
+byte-exact re-execution (PR #29). **MASS remains unavailable**, because a rebuild gives the
+dot *set*, not the parent's ranking of the cells it rejected.
 
-The catalogue hide-and-recover PROXY returned 0.0047 for the parent and 0.0150 / 0.0169 / 0.0190 for
-the three SNAP variants, which reads like a 3× improvement. Re-scoring every candidate with an
-identical ≥ 3 px catalogue collar collapses **all four to 0.0000**, and collapses the SGMC control
-from 0.0877 to 0.0000 as well (`evidence/snap_fixed_collar.json`).
+## IR-86-PRUNE-03 — the catalogue hide-and-recover PROXY is at its floor for this lineage
+Measured: R0 scores PROXY DTI 0.00436 and every pruned variant 0.00000, because a
+catalogue-avoiding field earns almost no credit from withheld catalogue pixels. The published
+correlation of this instrument with live scores is sign-unstable (−0.87 … +0.54, n = 12–14).
+**Decision:** reported in full (`evidence/prune_axis_20261023.json`), used only as a negative
+control; no prediction or gate depends on it. **Cost:** the live slot *is* the measurement.
 
-Decision changed: the proxy is no longer reported as a headline comparison for this lineage, and it
-does not rank the SNAP variants. The entire signal is recovery of withheld catalogue traces inside
-the halo that the live metric masks out and penalises. This is consistent with the ledger's own note
-that proxy-to-live correlation spans −0.87 to +0.54 over 12–14 files, i.e. it is not informative here.
-Reported as PROXY, never as a score, never a gate.
+## IR-86-PRUNE-04 — competition rasters are committed in a public repository
+`data/bridge/existing_faults.tif` (byte-identical to `labels.tif`) and
+`data/bridge/sample_submission.tif` are tracked here, with 26 derived `.tif` files in
+`data/scored_fleet/`; data-use terms are unchecked.
+**Decision:** no new competition raster is committed. Release TIFFs stay local and are
+gitignored (`/releases/*.tif`); only code, hashes and receipts are published. The restored
+418 MB feature stack is gitignored too. **Cost:** the human must confirm the data-use terms and
+decide whether the tracked bridge rasters should leave history.
 
-## IR-86-SNAP-02 — raw-field snapping is jitter, so the rule had to be fixed in advance
+## IR-86-PRUNE-05 — no valid target number exists
+`TOP_PUBLIC` is blank; the owner prompt quotes 0.3195 and then 0.4413, undated and without
+receipts. DrivenData cannot be fetched from this sandbox (terms ban automated access).
+**Decision:** no target was invented and no score comparison was made. Everything is reported
+against R0 = 0.2778 (**CLAIM**). **Cost:** "beat TOP_PUBLIC" cannot be evaluated.
 
-A diagnostic run made **before** the variants were built showed that snapping each dot to the raw
-100 m magnetic bands moves 99 % of dots with a mean gain barely above a random-offset null
-(0.000 σ against a null 90th percentile of +0.288 σ; only 43 % of dots beat that). The 100 m bands
-carry interpolation structure between the 400 m GeoDAWN flight lines, so "strongest edge in the
-window" is dominated by survey geometry, not geology.
+## IR-86-PRUNE-06 — the (PRUNE, 3.5) pair is already spent on another parent
+`GEMSDOE77` `gems85-h85-edti-collar35-skel-r33` (owner-reported 0.0964) already built a 3.5 px
+collar, on a skeleton/`r33` parent whose baseline is unknown.
+**Decision:** 3.5 was not rebuilt; values 3, 4, `3`+refill and `3r` were used. The 0.0964 says
+nothing about R0 because it is confounded with a much weaker parent. **Cost:** the collar curve
+has a gap at 3.5 px.
 
-Decision changed: the pre-registered rule smooths at 1 px and requires a ≥ 0.25 σ gain before a dot
-may move; both are recorded in `registry/preregistration_snap.json` as fixed before scoring. Without
-that gate the experiment would have been "displace 99 % of the parent's dots by 2.4 px", which
-cannot be attributed to an edge at all.
+## IR-86-PRUNE-07 — the brief wants NaN outside the footprint; the repo's validator forbids any NaN
+Brief §6 lists "NaN outside the footprint" as a MUST gate; `vendor/gems57/validate.py` runs the
+opposite convention (`no_nan_anywhere`, `outside_footprint_zero`) as a conservative local policy
+adopted after the portal's "values must be in range [0, 1]" error.
+**Decision:** every variant ships both forms under distinct names and digests. The `-nan` twin
+satisfies the brief; the `-zeros` twin additionally clears the vendored validator
+(`all_checks_passed = True`) and `gates.format_report` (`ok = True`). Upload **one** per slot —
+`-zeros` if the portal rejects `-nan` on range. **Cost:** one decision left to the human at
+upload time.
 
-## IR-86-SNAP-03 — SNAP moves mass back inside the catalogue collar
+## IR-86-PRUNE-08 — three sessions, seven builds, one `(PRUNE, 3)` pair spent twice over
+Brief v2: "each (AXIS, value) pair is built once across all sessions". Three concurrent
+sessions built the PRUNE axis on the same parent today:
 
-The parent has 0 dots within 2 px of the catalogue (that exclusion is the only edit with a
-live-claimed gain, +0.007 at 0.2708 → 0.2778). The variants put 502 / 564 / 686 dots back inside that
-200 m halo, and raise the share of dots within 300 m of a mapped fault from 4.28 % to 5.37 / 5.53 /
-5.78 % (`evidence/snap_variants.json`, collar table in `SLOT_PLAN.md`).
+* PR #28 — `(PRUNE, 3)` with a fixed-count H19-5 refill (`…-01d57649`, 37,654 dots);
+* PR #29 — a nested ladder `(PRUNE, ≤2.2361)`, `(≤2.8284)`, `(≤3.0000)` plus a mass-matched
+  control (`82b3f1f4`, `6ff38618`, `a438e92b`, `a2a8be25`);
+* this PR — `(PRUNE, 3)` pure deletion (`3eb29af5`), `(PRUNE, 4)` (`e198b768`) and
+  `(PRUNE, 3r)` equal-count relocation (`9542efac`).
 
-Decision changed: the predicted live change for all three variants is stated as a range that includes
-zero (central +0.003 to +0.005, i.e. below the 0.01 evidence floor), and the follow-up axis proposed
-for week 2 is a held-count collar dose–response rather than a second SNAP round. A SNAP variant that
-forces every destination outside the collar is named in `SLOT_PLAN.md` as the slot-3 reserve.
+`3eb29af5` and `a438e92b` are the **same dot set**: R0 minus the 2,171 dots within 3.0 px of the
+catalogue (PR #29 measured the shells as 941 at √5 + 670 at √8 + 560 at 3.0 px; this branch
+removed exactly 2,171 = 5.766 %). Only the TIFF encoding differs.
 
-## IR-86-SNAP-04 — this workspace does not persist `.venv` or `.cache` (operational)
+**Decision:** all seven stay in `ledger/submissions.csv` (nothing is deleted), the pair is spent
+**once** (`le3p000` in slot 1), and this branch's `3eb29af5` is **withdrawn** from slot
+consideration. The redundant local copies of `3eb29af5` are deleted from `releases/` so the
+wrong file cannot be uploaded by accident. **Cost:** three sessions burned on one 5.8 %-of-mass
+axis; the calendar in `SLOT_PLAN.md` now gives PRUNE one slot and moves the rest to a
+feature-based axis.
+## IR-86-LADDER-01 — the fixed-count refill confounder (PR #28's design)
+The ≤ 3 px prune removes 2,171 dots, but only 475 same-field refills preserve the parent's 2.8 px
+spacing; the mandated 2,171-dot refill therefore changes spacing as well as collar membership
+(measured: mean nearest-neighbour 3.735 → 3.550 px). A live result from `…-01d57649` cannot be
+attributed to collar width alone. **Decision:** that design is not slot 1; the pure-deletion rung
+is. This branch's `prune3r` (relocate 1.14 px, spacing nearly intact) is the clean version.
 
-Both directories are excluded from workspace snapshots, so the interpreter and the hash-verified
-inputs are gone at the start of every session. Order used and required:
-`python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt`, then
-`.venv/bin/python scripts/restore_data.py --dest .cache/bridge --with-external`, plus the H19-5
-field from manifest entry `scored_h19_5` (used only for the ranking readout and, later, MASS).
-A restore run rewrites `evidence/data_restore_receipt.json`; restore the committed copy afterwards
-(`git checkout -- evidence/data_restore_receipt.json`) or CI's site check will see a diff.
+## IR-86-LADDER-02 — byte identity IS achievable, and my first pass said otherwise
+PR #29 found that `existing_faults.tif`'s own writer profile (deflate, `predictor=3`, `zlevel=9`,
+tiled 256, `nodata=None`) re-encodes R0 to exactly 219,065 bytes and sha256 `c55bafc4…`. My first
+pass declared file bytes unreproducible after a smaller profile sweep; that was wrong and is
+retracted here. **Decision:** the brief's parent gate is satisfiable as "dot set + file bytes", and
+every rung is written with that profile. **Cost:** this branch's own releases use a different
+profile, so their digests differ from PR #29's even where the dot sets agree — the dot-set digest
+is the identity that survives an encoder change, and both are recorded.
 
-## IR-86-SNAP-05 — R0 is reproducible as a dot set, not as bytes
+## IR-86-LADDER-03 — the ledger had three writers for one day
+Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, PR #29's
+`merge_prune_ledger.py`, this branch's `build_ledger.py`). **Decision:** this branch's
+`scripts/build_ledger.py` is the single generator; it reproduces PR #29's schema and rebuilds the
+other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
+`build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
+remain valid for building rasters, not for regenerating the ledger.
 
-`c55bafc…` is reproduced exactly at the level that matters (37,654 dots, symdiff 0 px, from the
-0.2708 base minus every dot at d(catalogue) ≤ 2 px, verified in `scripts/build_snap_variants.py`).
-The container bytes are **not** byte-reproducible: 90 combinations of compression, predictor, zlevel
-and block shape were tried and none reproduces 219,065 bytes / `c55bafc…`
-(nearest 153,363 bytes, tiled 512). The parent is therefore carried as the pinned file, and the
-variants are compared against its dot set, never against re-derived bytes.
+## IR-86-SNAP-01 — AXIS was again unassigned; SNAP was taken from the slot plan, not from the human
+Brief v2 §1 says the AXIS is human-assigned. It arrived blank for the fourth session running.
+**Decision:** SNAP was chosen because (a) `SLOT_PLAN.md` (written by the PRUNE sessions) had
+already pre-registered "SNAP or RELIEF" as slot 2 and declared PRUNE crowded, and (b) SNAP's two
+bands restore from a verified pin, so nothing had to be guessed. No other axis was touched.
+**Cost:** if the human wanted MASS, CONCENTRATION or RELIEF, this session's three builds are off-axis.
+
+## IR-86-SNAP-02 — SNAP is a negative axis on the only instrument available
+97–99 % of R0's dots move to a stronger gradient cell, so the edit is large; but the catalogue
+hide-and-recover PROXY cannot separate any arm from a **random-response null control** (real
++0.00013 vs null −0.00120; σ=1 smoothing −0.00179, σ=2 −0.00316), and it costs coverage
+(dots with a neighbour closer than 2 px: 0 → 3,448 / 8,341 / 2,085). The response is smooth
+(lag-1 autocorrelation 0.978), so this is not speckle — the incumbent field simply is not on the
+TMI/gravity ridge, and "on the ridge" is not demonstrably "on a fault".
+**Decision:** all three variants ship as gate-clean artifacts with **negative** MODEL predictions
+and are ranked *below* the PRUNE rung in `SLOT_PLAN.md`. SNAP gets at most one slot, and only as a
+deliberate probe of the live hypothesis, never as an expected gain. **Cost:** the live hypothesis
+("new faults are at potential-field edges") is untestable locally; one slot is the only measurement.
+
+## IR-86-SNAP-03 — a SNAP variant changes ~194 % of R0's cells, which the 1–50 % rule cannot express
+A move deletes one cell and adds another, so % of parent *cells* changed is 2×% of dots moved
+(193.8 / 196.9 / 199.6 %). Brief §5 exempts SNAP from the 1–50 % contract and asks only that the
+exact percentage be recorded.
+**Decision:** the ledger's `pct_changed` column reports **% of parent dots that moved**
+(96.92 / 98.44 / 99.78 %) because a dot is the unit of mass; the cell-level figure and the
+count-preservation proof are in `ledger/variants_snap.json`. **Cost:** anyone comparing the SNAP
+rows to the PRUNE rows in that column compares two different denominators.
+
+## IR-86-SNAP-04 — the (R0, SNAP) pair was already spent before this branch saw main
+
+The ledger check the brief asks for could not see the other sessions: this branch was cut from
+`27d915f`, and `origin/main` was a single grafted commit, so `git merge-base` returned nothing until
+`git fetch --unshallow` (IR-86-SNAP-05). PR #28–#31 landed the PRUNE ladder and an independent SNAP
+axis (`a3d584a`, three variants `r1p000` / `r2p000` / `r2p000-grav`) while this session was building.
+
+Decision changed: the three magnetic-edge variants built here are recorded as **`BUILT-DUPLICATE`**
+and are **not** proposed for a weekly slot. They are kept because they were built under a different
+rule (1 px smoothing, 0.25 σ gain gate, 2.828 px spacing floor, magnetic-band response) and they
+corroborate PR #31's negative verdict from an independent geometry. Requesting slots for them would
+have spent three of the entity's weekly submissions on an axis already measured negative.
+
+## IR-86-SNAP-05 — depth: shallow checkout hid the common ancestor
+
+`git merge origin/main` failed with *"refusing to merge unrelated histories"* and `git merge-base`
+returned nothing, because the checkout carried `origin/main` at depth 1 (one grafted commit). The
+repository was **not** diverged; `git fetch --unshallow origin` restored 84 commits on main, after
+which the merge base was `27d915f` as expected. Anyone reconciling two sessions here must unshallow
+first, or a resolvable content conflict looks like history corruption.
+
+## IR-86-SNAP-06 — the hide-and-recover PROXY measures catalogue-collar recovery and nothing else
+
+Reported by this session, and it changes how every future proxy number in this repo must be read.
+The proxy gave 0.0047 for the parent and 0.0150 / 0.0169 / 0.0190 for the three magnetic SNAP
+variants — a factor of three. Re-scoring all four with **one fixed ≥ 3 px catalogue collar applied
+to every candidate** gives **0.0000 for all four**, and drops the SGMC control from 0.0877 to
+0.0000 (`evidence/snap_fixed_collar.json`).
+
+Decision changed: no proxy number in `SLOT_PLAN.md`, the README or any card may be quoted as a
+ranking of candidates for this lineage unless the same collar is applied to every arm; the only
+quantity the free proxy is measuring is how much mass sits beside a withheld catalogue trace, which
+is the zone the live metric masks out and penalises. The proxy stays report-only and never a gate.
+
+## IR-86-SNAP-07 — the SNAP window was Chebyshev, corrected to a 2 px Euclidean radius
+
+The pre-registered window was the 25 cells with `max(|dy|,|dx|) <= 2`. A corner move is 2.828 px,
+so the file could claim a "≤ 2 px" rule while displacing dots by 2.83 px, and the repository's own
+SNAP rule and release contract (`src/gems86/snap.py`, `tests/test_prune_ladder.py`) both define the
+cap as a **Euclidean radius**. The house contract caught it (`assert 2.828 <= 2.0`).
+
+Decision changed: the window is now the 13 cells within a 2.0 px Euclidean radius, the realised
+maximum displacement is exactly 2.0 px, and the three builds were regenerated under it — moved
+fractions 33.9 / 39.6 / 45.9 %, mean displacement of moved dots 1.72–1.74 px, spacing floor still
+2.828 px. The change is a definitional correction, made before any score existed and before any
+file left this branch; it is recorded here because it happened after the pre-registration was
+written, and the pre-registration text was amended in the same commit rather than quietly.

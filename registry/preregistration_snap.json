@@ -12,7 +12,7 @@
     "evidence_class": "CLAIM (owner-reported; no submission-page receipt in ledger/)"
   },
   "fixed_rule": {
-    "window": "25 cells with max(|dy|,|dx|) <= 2 (brief: 'move each dot <= 2 px')",
+    "window": "13 cells with Euclidean distance <= 2 px (brief: 'move each dot <= 2 px'; same radius convention as src/gems86/snap.py, so the realised maximum displacement cannot exceed the cap)",
     "smoothing_sigma_px": 1.0,
     "gain_gate_z": 0.25,
     "spacing_floor_px": 2.828,

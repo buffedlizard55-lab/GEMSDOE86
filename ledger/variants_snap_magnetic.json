@@ -1,0 +1,110 @@
+[
+  {
+    "id": "h33-h33-2-b2-snap-hg2-20261023-1ced061c",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "hg2",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 33.94,
+    "sha256": "1ced061c7ea697143bb7c748432d75599ee3f30e1a45c9f853d6a5fa4e131193",
+    "sha8": "1ced061c",
+    "sha256_zeros": "43f7ef51c7d2ad60366c4048867e53db1f1ee9735947cf41cf7c6b72815a8622",
+    "files": [
+      "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c.tif",
+      "releases/h33-h33-2-b2-snap-hg2-20261023-1ced061c-zeros.tif"
+    ],
+    "status": "BUILT-DUPLICATE",
+    "predicted_change": "MODEL: live change in [-0.005, +0.015], central +0.004. Below the 0.01 evidence floor this is a mechanism probe, not a score play.",
+    "evidence_class": "MODEL",
+    "source_url": "",
+    "note": "duplicate of the (h33-h33-2-b2, SNAP) pair already built and merged by PR #31; kept as corroboration with a different rule, not a slot candidate",
+    "diff": {
+      "n_dots": 37654,
+      "n_moved": 12781,
+      "pct_changed": 33.94,
+      "mean_displacement_px_all": 0.59,
+      "mean_displacement_px_moved": 1.737,
+      "median_displacement_px_moved": 2.0,
+      "max_displacement_px": 2.0,
+      "n_movers_blocked_kept_source": 0,
+      "n_forced_floor_violations": 0,
+      "mean_gain_z_moved": 0.693,
+      "min_spacing_px_after": 2.828,
+      "min_spacing_px_before": 2.828,
+      "seed": 0
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-snap-vg2-20261023-af1f0f2f",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "vg2",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 39.59,
+    "sha256": "af1f0f2fde03f9b5530df22148433f185a2be0738084fb4a943663f1fd92d56a",
+    "sha8": "af1f0f2f",
+    "sha256_zeros": "75c88f294fae1f66364205998b95b0593ea403761fdf2026febcf666d13e8086",
+    "files": [
+      "releases/h33-h33-2-b2-snap-vg2-20261023-af1f0f2f.tif",
+      "releases/h33-h33-2-b2-snap-vg2-20261023-af1f0f2f-zeros.tif"
+    ],
+    "status": "BUILT-DUPLICATE",
+    "predicted_change": "MODEL: live change in [-0.008, +0.015], central +0.003.",
+    "evidence_class": "MODEL",
+    "source_url": "",
+    "note": "duplicate of the (h33-h33-2-b2, SNAP) pair already built and merged by PR #31; kept as corroboration with a different rule, not a slot candidate",
+    "diff": {
+      "n_dots": 37654,
+      "n_moved": 14908,
+      "pct_changed": 39.59,
+      "mean_displacement_px_all": 0.679,
+      "mean_displacement_px_moved": 1.716,
+      "median_displacement_px_moved": 2.0,
+      "max_displacement_px": 2.0,
+      "n_movers_blocked_kept_source": 0,
+      "n_forced_floor_violations": 0,
+      "mean_gain_z_moved": 0.807,
+      "min_spacing_px_after": 2.828,
+      "min_spacing_px_before": 2.828,
+      "seed": 0
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-snap-cons2-20261023-fed241ac",
+    "parent": "h33-h33-2-b2",
+    "axis": "snap",
+    "value": "cons2",
+    "encoding": "zeros",
+    "n_dots": 37654,
+    "pct_changed": 45.93,
+    "sha256": "fed241ac0a4273be50ada80bdb97cbd6807e42d4b8168ee21dbaf44aea85e480",
+    "sha8": "fed241ac",
+    "sha256_zeros": "fb0a6ac2e6431a2ba5425de89ba761c5e2814c737eb679442ab45e006a5ac0bc",
+    "files": [
+      "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac.tif",
+      "releases/h33-h33-2-b2-snap-cons2-20261023-fed241ac-zeros.tif"
+    ],
+    "status": "BUILT-DUPLICATE",
+    "predicted_change": "MODEL: live change in [-0.005, +0.015], central +0.005; expected to be the most stable of the three if any of them works.",
+    "evidence_class": "MODEL",
+    "source_url": "",
+    "note": "duplicate of the (h33-h33-2-b2, SNAP) pair already built and merged by PR #31; kept as corroboration with a different rule, not a slot candidate",
+    "diff": {
+      "n_dots": 37654,
+      "n_moved": 17294,
+      "pct_changed": 45.93,
+      "mean_displacement_px_all": 0.801,
+      "mean_displacement_px_moved": 1.744,
+      "median_displacement_px_moved": 2.0,
+      "max_displacement_px": 2.0,
+      "n_movers_blocked_kept_source": 0,
+      "n_forced_floor_violations": 0,
+      "mean_gain_z_moved": 0.912,
+      "min_spacing_px_after": 2.828,
+      "min_spacing_px_before": 2.828,
+      "seed": 0
+    }
+  }
+]
