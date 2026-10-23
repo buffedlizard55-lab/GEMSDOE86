@@ -173,6 +173,8 @@ class H86CKslbTests(unittest.TestCase):
         self.assertIn(end_tag, readme)
         archived = readme.split(start_tag, 1)[1].split(end_tag, 1)[0].strip()
         self.assertEqual(archived, owner)
+        tif_bytes = (ROOT / "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif").stat().st_size
+        self.assertIn(f"| {tif_bytes:,} | 85 |", readme)
 
 
 if __name__ == "__main__":

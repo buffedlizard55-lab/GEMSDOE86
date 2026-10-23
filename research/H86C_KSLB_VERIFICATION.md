@@ -3,8 +3,8 @@
 **Branch:** `arena/798a71e8-gemsdoe86`  
 **Date (UTC):** 2026-10-23  
 **Candidate GeoTIFF:** `docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif`  
-**SHA-256:** `bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0` (`151,572` bytes)  
-**ZIP SHA-256:** `28cf3b37a047e4ca53b6e0ef6c94943a24793ef995645fa658c652580e1de99a` (`114,578` bytes, single-TIF archive)
+**SHA-256:** `bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0` (`142,387` bytes)  
+**ZIP SHA-256:** `28cf3b37a047e4ca53b6e0ef6c94943a24793ef995645fa658c652580e1de99a` (`106,005` bytes, single-TIF archive)
 
 ---
 
@@ -27,7 +27,7 @@
 
 1. **Caught & Fixed `IR-86C-MOD-02` (In-Sample `p_full` Collar Memorization):**
    - Initial diagnostic revealed that refitting `p_full` in-sample across all 4 quadrants simultaneously (the pattern inherited from `scripts/run_lane86b.py`) memorizes mapped fault coordinates and inflates predictions inside the unpenalized $2 < d_{\text{cat}} \le 4\text{ px}$ collar, driving 3-px overlap with `H86B-GFCO` to `0.8801`.
-   - **Fix:** Served the spatially cross-fitted out-of-fold ensemble `p_oof` directly at emission (1:1 train/serve parity with holdout evaluation, zero new experiments spent), cutting max 3-px overlap across all 35 non-lattice `dot_field` rasters in 21 repos from `0.8801` to **`0.5915 <= 0.70`** (`0.5460` vs `H86B-GFCO`, `0.3068` vs `H33-2-B2`).
+   - **Fix:** Served the spatially cross-fitted out-of-fold ensemble `p_oof` directly at emission (1:1 train/serve parity with holdout evaluation, zero new experiments spent), cutting max 3-px overlap across all 37 non-lattice `dot_field` rasters in 21 repos (40 total rasters including `H86-WVB` `0.4236` and `H86-FVMB` `0.4259`) from `0.8801` to **`0.5915 <= 0.70`** (`0.5460` vs `H86B-GFCO`, `0.3068` vs `H33-2-B2`).
 2. **Caught & Fixed Single-Component / Empty-Crop Edge Case in `compute_kslb_kinematics()`:**
    - Unit testing on a single straight synthetic fault (`ncomp == 1`) caught `ValueError: two_host_frame requires at least two distinct visible components` from `vendor/gems57/relay_bend_anatomy.py`.
    - **Fix:** Added explicit `ncomp == 0` and `ncomp == 1` branches in `scripts/h86c_features.py` (`compute_kslb_kinematics`) without modifying `vendor/gems57`, verified by synthetic tests covering `ncomp = 0`, `1`, and `2`.
