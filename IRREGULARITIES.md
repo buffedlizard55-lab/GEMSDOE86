@@ -694,3 +694,33 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
+## IR-86-CONC-12 — R0 is saturated on its own evidence surface, which caps every reallocation axis
+
+**Observed.** Measured on the pinned inputs before any candidate was built
+(`evidence/concentration_surfext_axis_20261023.json` → `surface_capacity_audit`): all 37,654 R0 dots lie
+on the `H19-5` ancestor surface, and under the parent's own constraints (`> 3.0 px` from the catalogue,
+`>= 2.8284 px` from every dot) only **90** legal free cells remain on that surface. `H19-4 | H16-1`
+minus `H19-5` is 35,954 px of near-equal owner-reported quality (`0.1894` / `0.1855` vs `0.1922`, all
+CLAIM) that carries **zero** parent mass, with 8,671 legal free cells (6,456 placeable greedily). The
+merged cvband rule's within-surface destination capacity is only ~2,400 dots, which is why every
+within-surface arm reads `|dDTI| <= 0.008`.
+**Decision.** Any future CONCENTRATION/SPACING session must state the free-slot count before building;
+within-surface reallocation is treated as closed, and the open headroom is surface extension
+(`H19-4 | H16-1` ground, or a genuinely new evidence surface). `SLOT_PLAN.md` carries this as the
+`EVIDENCE-OFFSURFACE` proposal.
+
+## IR-86-CONC-13 — the SGMC-extra MODEL instrument is confounded for outward-moving arms; the PROXY is biased the other way
+
+**Observed.** The SGMC surrogate's truth is `SGMC − catalogue`, so a dot in the mapped-fault collar can
+never earn credit there, while the organiser states new truth *can* lie within 300 m of a known trace
+(and R0 is built almost entirely of such dots). Measured on this session's arms: `surfext10`'s added
+mass sits **21.7 px** from SGMC-extra truth versus **22.6 px** for the mass it removed (i.e. it moved
+mass *toward* SGMC truth) yet it beats its matched control by only **+0.0012 MODEL**; the control moved
+mass *away* (22.8 px) and still scored **+0.0047 MODEL**, `4/4` quadrants. The fold-fair
+catalogue hide-and-recover PROXY is biased the opposite way, since it can only reward mass near
+*withheld catalogue* traces — exactly what surface extension gives up (`−0.00003` vs `−0.0008` for the
+control).
+**Decision.** CONCENTRATION MODEL deltas are no longer compared across arms with different
+catalogue-distance profiles; every arm is read against a matched control, never against zero, and a
+positive SGMC delta alone is not evidence of lineament knowledge. Recorded in the mechanism card and in
+`SLOT_PLAN.md`'s budget section.

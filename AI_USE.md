@@ -465,3 +465,38 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+## Session 2026-10-23 (3) — `arena/aee7c83d-gemsdoe86`, AXIS = CONCENTRATION (surface extension)
+
+* **AI wrote:** `src/gems86/concentration_surfext.py` (dose-independent redundant-source order that
+  reproduces the merged cvband removal rule, greedy placement honouring the `> 3.0 px` catalogue
+  clearance and the parent `>= sqrt(8) px` spacing floor, a seeded off-union control, parent-diff
+  statistics), `scripts/run_concentration_surfext.py` (pin verification, byte-exact R0 rebuild,
+  byte-exact reproduction of the merged `concb5kmdown4` file, three arms, MUST gates on both
+  encodings, SGMC quadrant MODEL, fold-fair PROXY, leakage canary, instrument-confound audit,
+  live credit-budget projection), `tests/test_concentration_surfext.py` (9 tests),
+  `evidence/concentration-surfext-mechanism.md`, `evidence/concentration_surfext_axis_20261023.json`,
+  `ledger/variants_concentration_surfext.json`, three rows appended to `ledger/submissions.csv`,
+  and updates to `SLOT_PLAN.md`, the `CURRENT STATE` block of `README.md`, `docs/SUBMIT.md`,
+  `IRREGULARITIES.md` (`IR-86-CONC-12/13`).
+* **AI measured and decided:** self-assigned the axis (all seven brief axes already have ledger
+  rows; new `(parent, axis, value)` keys only). A pre-build capacity audit showed R0 is saturated on
+  its own evidence surface (90 free legal slots on `H19-5`) and that `H19-4 | H16-1` ground not on
+  `H19-5` carries zero parent mass with 8,671 legal slots, so the headroom is surface extension, not
+  more within-surface shaving. Built `surfext10` (MODEL +0.0059, PROXY −0.00003), `surfext15`
+  (MODEL +0.0073, PROXY −0.0005) and a matched off-union control (MODEL +0.0047, PROXY −0.0008).
+  Concluded that the SGMC-extra MODEL instrument rewards outward movement / de-clustering rather than
+  lineament knowledge for this family (`IR-86-CONC-13`), that the ridge-specific increment is
+  +0.0012 MODEL / +0.0008 PROXY, and that **no arm clears the 0.01 evidence floor**. Reported the
+  negative result; no file is slot-approved.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 \
+      scored_d28_unscored ext_derived_sgmc_faults_100m_u8
+  .venv/bin/python scripts/run_concentration_surfext.py    # ~4.5 min, deterministic
+  .venv/bin/python -m pytest -q
+  ```
+* **Human decided / must supply:** nothing was supplied in-session — `TOP_PUBLIC` + date,
+  rolling-week quota remaining, R0's live `0.2778` receipt, the accepted outside-footprint encoding
+  and the deadline confirmation all remain human inputs. Zero submissions, zero portal requests,
+  zero credentials read or stored.

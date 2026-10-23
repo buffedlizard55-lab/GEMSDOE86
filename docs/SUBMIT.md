@@ -5,6 +5,30 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
+## 2026-10-23 session 3 — CONCENTRATION surface extension (`arena/aee7c83d-gemsdoe86`) — **probe only, not slot-approved**
+
+R0 was rebuilt byte-exactly (`c55bafc4…`) and the merged `concb5kmdown4` file was reproduced byte-exactly
+(`8aab97b6…`) from the restored pinned inputs before anything was built. Three count-fixed files move
+3,765 / 5,648 / 3,765 dots off the **saturated** `H19-5` surface (90 legal free slots left there) onto
+the unused `H19-4 | H16-1` ground (8,671 legal slots, zero parent mass). Every MUST gate passed after a
+disk re-read of both encodings; the leakage canary max single-feature AUC is 0.5154 (stop ≥ 0.90).
+
+| Role | Upload path (upload **one** file per slot) | Form name (≤ 64 ch) | Form note (≤ 140 ch) | `-zeros.tif` sha256 | `.tif` NaN sha256 |
+|---|---|---|---|---|---|
+| probe candidate | `releases/h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext10-20261023-fe814da5-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext10-20261023-fe814da5` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC surface-ext to H19-4\|H16-1: 3765 dots moved (20.0% chg); pred +0.0059 MODEL` | `fe814da552360f752657f6fbd5825f74f52cbdcfda0437a118a2302412877737` | `b29549fcd2a335a25ae6aa13e6427988093978236a592b3560294e18b5982474` |
+| dose rung | `releases/h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC surface-ext to H19-4\|H16-1: 5648 dots moved (30.0% chg); pred +0.0073 MODEL` | `d3f2ecc74c39bc1eb91b0447f22ce50f4a2326c033d22b853f74f050e5d09c8d` | `68df26046680e6ba0b1ee8e9ed4f6d60458c926d3808de1f84932ca3a8c223bd` |
+| **CONTROL — never upload** | `…-CONC-surfext10ctl-20261023-b204c41b-zeros.tif` | `…-CONC-surfext10ctl-20261023-b204c41b` | `R0 …; CONC surface-ext to off-union same-block (CONTROL): 3765 dots moved; pred +0.0046 MODEL` | `b204c41b97daed3f72f133b06594999f180049a2c5c5d6ec16299a8e7ca58978` | `e9ef2b7c0e241c5441a1eb2dd6c3bb99eb2971f0665fac9aea43b3fc47c7dd10` |
+
+Format receipt (measured on the written bytes, both encodings): CRS EPSG:32611, 3,730 × 3,292, single
+float32 band, transform `(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)`, values in {0, 1} inside the
+5,167,373-cell footprint, 0 dots on catalogue pixels, 0 dots outside the footprint, NaN (spec form) or 0
+(`-zeros` fallback) outside; smallest catalogue distance of any **added** dot 3.1623 px; parent dot
+spacing floor 2.8284 px never tightened; 37,654 dots in every file. Files are gitignored — rebuild with
+`.venv/bin/python scripts/run_concentration_surfext.py`; the hashes above and the tracked per-file
+receipts (`releases/…-zeros.json`) are the authority. **Predicted live Δ ≈ 0.000 to +0.003 (bracket
+[−0.002, +0.007]); below the 0.01 evidence floor, so this card exists to answer "what did we build",
+not "upload this".** See [SLOT_PLAN.md](../SLOT_PLAN.md) slot 4.
+
 ## Current slot order after CONCENTRATION sign + 5 km arms — **supersedes older headings below**
 
 The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models

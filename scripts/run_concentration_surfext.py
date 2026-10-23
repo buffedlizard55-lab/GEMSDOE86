@@ -534,7 +534,8 @@ def main() -> int:
             f"fold-fair PROXY {p_ff['delta_vs_R0']:+.4f}, CI95 [{p_ff['delta_ci95'][0]:+.4f},"
             f"{p_ff['delta_ci95'][1]:+.4f}], n={p_ff['n_truth']}). MODEL: SGMC-extra surrogate, not a score."
         )
-        note = (f"R0 {PARENT_ID}; CONC surface-ext to H19-4|H16-1: {st['n_added']} dots moved "
+        target = "H19-4|H16-1" if spec["role"] == "candidate" else "off-union same-block (CONTROL)"
+        note = (f"R0 {PARENT_ID}; CONC surface-ext to {target}: {st['n_added']} dots moved "
                 f"({st['pct_changed']:.1f}% chg); pred {m_all['delta']:+.4f} MODEL")[:140]
         if args.no_write:
             receipts.append(dict(id=cid, note=note, predicted_change=predicted, dry_run=True))
