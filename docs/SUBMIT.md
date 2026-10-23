@@ -38,11 +38,33 @@ gitignored (unchecked data-use terms); hashes below are the authority.
   10.00 % the other way, **−0.0089 MODEL**, sign negative in 4/4 quadrants).
   Its note: `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front-10pct: 3765 dots moved range-front->piedmont, count fixed; pred -0.009 MODEL`
 
-## CONCENTRATION on 5 km blocks (not built yet — the slot-2 candidate if the human prefers to wait for it)
+## CONCENTRATION knobs — built and gated, **not slot-approved** (PR #38, predicted inside ±0.010)
 
-Not built. Preregister block size, direction (low-prior → high-prior) and the block-density CV
-target in `SLOT_PLAN.md` before writing the raster, and record the CV before/after. MASS is
-built (section below) but is not the slot-2 recommendation.
+Upload the `-zeros` twin; the `-nan` twin carries identical dots. TIFFs are local-only and
+gitignored. Each arm moves exactly one knob off the spent 1 km / 15 % / top-20 % setting, so a
+receipt on any two of them attributes the difference to that knob.
+
+| Variant | File (`-zeros`, fallback twin — upload one) | sha256 (zeros) | sha256 (NaN twin) | Prediction |
+|---|---|---|---|---|
+| `b5km-move15` block 1→5 km — **BUILT-DUPLICATE, do not upload** (PR #43 built the same dot set, token `73802181`; IR-86-CONC-07) | `releases/axis86/gems86-h33-2b2-conc15-b5km-20261023-73802181-zeros.tif` | `fc9229d85d1f0b7872118b94bbf43e1c28bbbb8138b44d90aeb14c4ac63453c1` | `054e228259d288b7c966a24b61eea1c87277ae72d6bf4b4d0e5fbcee476e1118` | **+0.001 MODEL** (−0.008…+0.008) |
+| `b1km-move24` dose 15→24 % | `releases/axis86/gems86-h33-2b2-conc24-20261023-af31526e-zeros.tif` | `90a5756f49f79ae17fc56ba0d6e4d2b5d76b4b751169babdaecf0dc92ae5512d` | `9b471507d93d70f9d5bb148c8a481548045c4e8a396267d5f74dd2bea9f79c9c` | **−0.001 MODEL** (−0.012…+0.008) |
+| `b1km-move15-t05` top 20→5 % | `releases/axis86/gems86-h33-2b2-conc15-t05-20261023-278d9995-zeros.tif` | `cd5c7545defe108d09f18ab1e39b0ec63c9a31d425d8ec4e1efcfd5b0237e3b8` | `2baf8424f007e44209490aeeb541b9b12cc6184b3dfac7ff33b544b9907c945e` | **+0.002 MODEL** (−0.007…+0.009) |
+
+- The two uploadable arms are `b1km-move24` and `b1km-move15-t05`; `b5km-move15` is a
+  duplicate of a parallel session's file and is listed only for audit.
+- All three: 37,654 dots (count fixed), every placement at the parent's 2.828 px spacing, zero
+  catalogue mass, minimum catalogue clearance 2.236 px, parent-diff 29.999 % / 48.0 % / 29.999 % of
+  cells changed, both encodings re-read from disk and passing `format`, `values`,
+  `catalogue_clearance` and `sha256_not_in_ledger`.
+- Submission names are the file stems without `-zeros`. Form notes (auto-written, ≤140 chars) are in
+  each `-zeros.json` receipt, e.g. `GEMSDOE86 h33-2b2 CONCENTRATION b5km-move15 | 37654 dots,
+  29.999% changed vs R0 | UNSCORED; MODEL prediction only`.
+- Why they are predicted flat: the fold-fair hide-and-recover gain (+0.012/+0.024/+0.020) is
+  entirely the catalogue-density term (+0.0149) and not the physical one (+0.0008, CI crossing
+  zero); on the SGMC independent map every arm including the shuffled-prior null loses 0.012–0.020.
+  Full numbers: `evidence/concentration_instruments_20261023.json`; IR-86-CONC-05/06.
+- Use one of these only as a **probe** of whether a catalogue-density prior transfers to new faults.
+  The default slot order is in [SLOT_PLAN.md](../SLOT_PLAN.md) and does not include them.
 
 ## Slot 3 — a sign flip or a deliberate probe, both predicted non-positive
 

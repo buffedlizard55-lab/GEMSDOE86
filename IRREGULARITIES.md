@@ -408,3 +408,92 @@ the parent's dot set from the visible catalogue — or hold the collar fixed acr
 exactly what IR-86-SNAP-06 concluded.
 **Cost:** one report-only instrument retired for this lineage, and a rule for future axes. The MODEL
 predictions used for the ledger come from the SGMC off-catalogue surrogate, not from this number.
+
+## IR-86-CONC-03 — the reported block-density band (CV 0.51–0.59) is not reproducible at any block size
+The ledger's inherited constraint on this axis is "the best files reportedly sit at a block-density
+CV of 0.51–0.59". Measured here on the four best files in `data/scored_fleet/` at 0.5 / 1 / 2 / 5 /
+10 km blocks (density = dots ÷ footprint cells per block, CV over occupied blocks):
+
+| file | 0.5 km | 1 km | 2 km | 5 km | 10 km |
+|---|---|---|---|---|---|
+| R0 (37,654) | 0.3997 | **0.6235** | 0.7652 | 0.7442 | 0.7360 |
+| solo-d28 (40,199) | 0.3997 | 0.6179 | 0.7498 | 0.7228 | 0.7068 |
+| h32d submodular (46,090) | 0.4064 | 0.6168 | 0.7335 | 0.7245 | 0.7110 |
+| h33d analog (41,865) | 0.3993 | 0.6204 | 0.7517 | 0.7299 | 0.7021 |
+
+No block size reproduces 0.51–0.59, and the four files are indistinguishable from each other at
+every scale (spread ≤ 0.02). The band is therefore either computed on a different quantity or is an
+unverified claim.
+**Decision:** the band is retired as a decision target and as a falsifier. `conc15`'s stated
+falsifier ("CV moved away from the band") is void, and this session does not report CV as a
+prediction — it records CV as a descriptive statistic only (the ledger's `blocks` field). **Cost:** one of the only two quantitative statements about file *structure* in the brief
+is unavailable; future sessions must not use it to choose a variant.
+
+## IR-86-CONC-04 — brief §5 asks for a count change of 1–50 %, so the dose ladder stops at 24 %
+A CONCENTRATION move of fraction *f* changes **2f** of the dots (each moved dot is one removal and
+one addition). The brief's non-SNAP band is therefore `f ≤ 25 %`; `f = 25 %` sits exactly on the
+boundary after rounding. This session's dose rung is `f = 24 %` (48.0 % changed) rather than 25 %.
+**Decision:** doses above 24 % on this axis are out of spec and were not built. **Cost:** the
+dose–response curve cannot be extended past ~1.6× the spent setting inside one week.
+
+## IR-86-CONC-05 — the hide-and-recover PROXY is circular for a catalogue-derived prior
+The instrument holds out catalogue pixels and asks a candidate to recover them. This axis' prior is
+`z(catalogue density) + z(|∇TMI|)`, so its first term is built from the same quantity the instrument
+withholds. Fold-fair measurement (the prior itself is rebuilt from each fold's visible catalogue):
+
+| arm | PROXY Δ vs R0 | 95 % CI |
+|---|---|---|
+| mixed prior, 5 km / 15 % | +0.0122 | +0.0029…+0.0254 |
+| mixed prior, 1 km / 24 % | +0.0241 | +0.0121…+0.0372 |
+| mixed prior, 1 km / 15 % / top 5 % | +0.0195 | +0.0093…+0.0315 |
+| **catalogue-only prior** | **+0.0149** | +0.0064…+0.0257 |
+| **TMI-only prior** | **+0.0008** | −0.0044…+0.0073 |
+| shuffled-prior null | −0.0004 | −0.0028…+0.0027 |
+
+The whole effect is the catalogue term, i.e. the instrument rewarding a prior built from what it
+holds out; the only non-circular, physical term recovers nothing.
+**Decision:** for any prior-driven axis, the PROXY must be reported as a **decomposition**
+(single-term arms plus a shuffled-prior null), never as a single number, and it may not order arms.
+This generalises IR-86-SPACING-05 (same failure, different mechanism: there it was the collar, here
+it is the density term). **Cost:** none of the three published PROXY gains may be cited as evidence
+for the live chunks, and none is.
+
+## IR-86-CONC-06 — an independent map says relocation costs more than any prior here repays
+Against USGS **SGMC** faults that are absent from the competition catalogue (off-catalogue by
+> 3 px), exact-kernel DTI is **0.09539 for R0** and lower for *every* arm, null included:
+
+| arm | SGMC DTI | Δ vs R0 |
+|---|---|---|
+| mixed prior, 5 km / 15 % | 0.08281 | −0.0126 |
+| mixed prior, 1 km / 24 % | 0.07542 | −0.0200 |
+| mixed prior, 1 km / 15 % / top 5 % | 0.08151 | −0.0139 |
+| catalogue-only prior | 0.08572 | −0.0097 |
+| TMI-only prior | 0.07943 | −0.0160 |
+| shuffled-prior null | 0.08338 | −0.0120 |
+
+SGMC is itself a catalogue-like map, so it is biased the *same* way as the holdout and still comes
+out negative; that makes the negative the harder half of the evidence. The pattern is a
+cost-of-moving term (sources lose credit, destinations do not earn it), not a prior effect.
+**Decision:** the three arms' predictions were revised from the preregistered
++0.004 / +0.008 / +0.007 to **+0.001 / −0.001 / +0.002**, all inside ±0.010, and CONCENTRATION is
+closed for Phase 1 unless a live receipt says otherwise. Both numbers are in `ledger/submissions.csv`
+(`predicted_change` and `preregistered_change`), so the revision is visible. **Cost:** three built
+candidates are not slot-approved; the session's output is a negative result plus a reusable
+instrument design.
+
+## IR-86-CONC-07 — a parallel session built the only *scale* arm at the same value while this branch was open
+While this branch was open, `arena/0bcc88da-gemsdoe86` (PR #43, still open) built
+`(CONCENTRATION, b1km-move10 / b1km-move20 / b5km-move15)` on the same parent; PR #44
+(`arena/c1df93fc`) built `spr15 / dens15 / rand15`. The construction is deterministic, and PR #43's
+`b5km-move15` artifact carries the token **`73802181`**, which is this branch's dot-set digest for
+exactly that arm — the two files are the same dots, independently reproduced.
+**Decision.** This branch's `b5km-move15` is recorded `BUILT-DUPLICATE` of PR #43's and is **not** a
+slot candidate; `b1km-move24` (PR #43 went to 20 %, not 24 %) and `b1km-move15-t05` remain the two
+unique arms here. Nothing is deleted: both copies stay on disk and in the ledger, and the human
+merges the two branches in whichever order is convenient — if PR #43 lands first, this branch's
+`conc15-b5km-…-73802181` is the duplicate; if this branch lands first, that label flips.
+**Cost.** The scale question (1 km vs 5 km) is now over-subscribed three ways across two branches,
+and CONCENTRATION has consumed three sessions in one day while every arm is predicted inside ±0.010.
+The dedupe rule in brief §6 (exact hash, repeated (parent, axis, value)) is satisfied — this is a
+*policy* cost, not a rule violation — but a fourth CONCENTRATION session would be indefensible
+unless a receipt arrives.

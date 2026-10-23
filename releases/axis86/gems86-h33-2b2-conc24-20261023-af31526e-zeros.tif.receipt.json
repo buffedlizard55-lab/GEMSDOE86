@@ -1,0 +1,21 @@
+{
+  "shape_hw": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "footprint_cells": 5167373,
+  "emitted_cells_gt0": 37654,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "nan_inside": 0,
+  "name": "gems86-h33-2b2-conc24-20261023-af31526e",
+  "note": "GEMSDOE86 h33-2b2 CONCENTRATION b1km-move24 | 37654 dots, 48.0% changed vs R0 | UNSCORED; MODEL prediction only",
+  "note_chars": 111,
+  "reference": "sample_submission.tif",
+  "receipt_kind": "local receipt written by submission_writer; NOT an organiser receipt",
+  "file": "gems86-h33-2b2-conc24-20261023-af31526e-zeros.tif",
+  "sha256": "90a5756f49f79ae17fc56ba0d6e4d2b5d76b4b751169babdaecf0dc92ae5512d",
+  "mode": "zeros",
+  "nan_outside_count": 0
+}

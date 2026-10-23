@@ -272,3 +272,36 @@ was submitted — the human submits from their own registered account, one file 
 .venv/bin/python scripts/emit_spacing_entries.py
 .venv/bin/python scripts/build_ledger.py
 ```
+
+---
+
+## Addendum — CONCENTRATION knob session (branch `arena/1b2cc347-gemsdoe86`, PR #38)
+
+**AI wrote:** `scripts/verify_r0_rebuild.py`, `scripts/build_concentration_knobs.py`,
+`scripts/measure_concentration_instruments.py`, `scripts/emit_concentration_knob_entries.py`,
+`tests/test_concentration_knobs.py`, `evidence/concentration-knobs-mechanism.md`, both
+`evidence/concentration*_20261023.json` run cards, the new `ledger/variants_concentration_knobs.json`
+entry file (plus one line in `scripts/build_ledger.py` registering it), and the edits to
+`SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-86-CONC-03…06) and the README current-state
+block.
+
+**AI decided:** (1) the axis. No assignment arrived; the stock of built axes was checked against the
+ledger first (every (AXIS, value) pair there was already spent except CONCENTRATION at a second
+block size, a second dose and a second destination share), and CONCENTRATION was chosen because its
+mechanism — relocation rather than deletion — is the only one in brief §5 whose expected change is
+positive without needing to identify useless dots. (2) The calibration `D ≈ 20,200, T ≈ 5,610`
+derived from the single live pair in the ledger; it is a MODEL built on two CLAIMs. (3) To run the
+prior decomposition (catalogue-only vs TMI-only vs shuffled null) after the first proxy numbers
+looked good, because the good numbers were circular; that decision changed all three predictions and
+closed the axis. (5) To mark this branch's `b5km-move15` `BUILT-DUPLICATE` when a parallel
+session's open PR (#43) turned out to hold the identical dot set (token `73802181`), rather than
+claim the pair twice (IR-86-CONC-07). (4) To leave the preregistered predictions visible in the ledger
+(`preregistered_change`) rather than overwrite them.
+
+**AI did not:** contact DrivenData or any leaderboard, read or store credentials, submit anything,
+apply any overlap/rank-correlation gate (IR-86-PRUNE-01 stands: the brief's §6 governs and no gate
+script was modified), or cite any PROXY/MODEL number as a score.
+
+**Human must supply:** `TOP_PUBLIC` + date, remaining slot quota, authorization for any slot, the
+receipt score/date after an upload, and the final blind pick. The data-use review of the tracked
+competition rasters (IR-86-PRUNE-04) is also still open.
