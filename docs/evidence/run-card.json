@@ -88,10 +88,248 @@
   "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
   "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
   "submission_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and unique vs 12-raster local registry, but HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
+  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and byte/pixel-distinct vs 12-raster local registry, but shared uniqueness checker unique=false (literal >0.70 3px-overlap gate fires vs saturating lattice raster; stop_required=true) and HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
   "scores_labelled": "No ORGANIZER-CONFIRMED score exists for this file. Historical numbers in the brief (0.2778, 0.4413, 0.3195) are owner/user-reported without a submission-page receipt and are NOT reproduced as scores.",
   "experiments_run": 3,
   "verdict": "negative",
   "submission_ready": false,
-  "approved_for_weekly_slot": false
+  "approved_for_weekly_slot": false,
+  "parallel_lane_h86_1": {
+    "hypothesis": "H86-1: straight-edge 2-of-5 corroboration (rtp/grav/cond/depth/det_elev), spaced-dot emission, baked-in 2px catalogue-flank exclusion",
+    "mechanism": "Second-highest rank of per-physics gradient-magnitude x structure-tensor-coherence straight-edge scores; greedy 2.8px-spaced binary dots outside 200m of visible catalogue.",
+    "non_fault_mimic": "Lithologic contacts and basin-margin sedimentary edges; survey seams",
+    "holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI",
+      "status": "RUN",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 22893,
+      "value": 0.04634033664830094,
+      "ci95": [
+        0.03716409843757012,
+        0.05603082910126058
+      ],
+      "design": "buffered whole-component hide (seeds 20,21 x 4 quadrants, 12px domain erosion, 3px context buffer); catalogue features visible-only per fold; visible faults masked pixel-exactly; pooled alpha0.2 beta0.8 300m triangular",
+      "controls": {
+        "spaced_random": {
+          "dti": 0.04578219688856532,
+          "ci95": [
+            0.04154042961018088,
+            0.04945568719098254
+          ]
+        },
+        "incumbent_d28_fixed": {
+          "dti": 0.10092595889565632,
+          "ci95": [
+            0.09008103475576108,
+            0.11168444050681649
+          ]
+        },
+        "incumbent_h33b2_fixed": {
+          "dti": 0.0038851762665228526,
+          "ci95": [
+            0.0033163452898184367,
+            0.004477890943922922
+          ]
+        },
+        "incumbent_h32d_fixed": {
+          "dti": 0.10302660606121831,
+          "ci95": [
+            0.09199606892446824,
+            0.11388837849587456
+          ]
+        }
+      },
+      "paired_differences": {
+        "spaced_random": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.0005581397597356139,
+          "ci95": [
+            -0.008153470457044919,
+            0.010301666086244348
+          ],
+          "withheld_positive_pixels": 22893
+        },
+        "incumbent_d28_fixed": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": -0.054585622247355386,
+          "ci95": [
+            -0.06715117053892966,
+            -0.04161385691240095
+          ],
+          "withheld_positive_pixels": 22893
+        },
+        "incumbent_h33b2_fixed": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.04245516038177809,
+          "ci95": [
+            0.03313132250934203,
+            0.05198265560272682
+          ],
+          "withheld_positive_pixels": 22893
+        },
+        "incumbent_h32d_fixed": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": -0.05668626941291738,
+          "ci95": [
+            -0.0685189216090435,
+            -0.04386165147405491
+          ],
+          "withheld_positive_pixels": 22893
+        }
+      },
+      "sensitivity_other_budget": {
+        "total_budget": 44090,
+        "pooled_dti": 0.05047768403095799,
+        "ci95": [
+          0.04080012846137017,
+          0.06091995146307433
+        ]
+      },
+      "caveat": "Candidate and spaced-random dots are re-emitted per fold from the fold-visible catalogue only (pipeline-level holdout). Fixed incumbent rasters were built upstream with the full catalogue; that advantage/disadvantage is not removable here and the comparison is labelled as such."
+    },
+    "leakage_canary": {
+      "rtp_mag": 0.5471341839390498,
+      "det_elev": 0.602554871121449,
+      "iso_grav": 0.5315302341327043,
+      "depth_base": 0.5324349235210181,
+      "cond_surf": 0.5211085335400922,
+      "h86_2of5_surface": 0.5706286171901164
+    },
+    "correlation_overlap_vs_registry": {
+      "status": "RUN",
+      "complete": false,
+      "scope": "Accessible pinned registry only: 14 hash-verified rasters from research/upstream/data_manifest.json group=scored plus GEMSDOE32 H33-2-B2 and H32-D downloads. NOT a complete organizer/cross-team registry; unfetched sibling rasters are a stated limitation, not a claim of absence.",
+      "rasters_checked": 14,
+      "surface_worst": {
+        "id": "scored_h16_1",
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "grid_ok": true,
+        "their_dots": 123939,
+        "representation": "dot_field",
+        "support_fraction": 0.023984914578452147,
+        "spearman_full_footprint": 0.06997887981359856
+      },
+      "final_dots_worst_dot_field": {
+        "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "grid_ok": true,
+        "their_dots": 206895,
+        "representation": "dot_field",
+        "support_fraction": 0.04003871986790967,
+        "my_dots_within_3px_of_theirs": 0.9709736842105263,
+        "jaccard_dot_sets": 0.04003872761628154
+      },
+      "duplicate_within_accessible_registry": true
+    },
+    "raster_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+    "raster": {
+      "file": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+      "path": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+      "zip": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip",
+      "zip_sha256": "52aa21b130229672afd7d281acf4b0ae8076795def1644664377d6f83d515a42",
+      "dots": 38000
+    },
+    "validator": {
+      "status": "PASS",
+      "no_nan_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "min": 0.0,
+      "max": 1.0,
+      "emitted_positive_pixels": 38000,
+      "on_catalogue_positive_pixels": 0
+    },
+    "submission_name": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros",
+    "note": "H86-1 edge2of5 dotted B2 38000dots | HOLDOUT-DTI 0.0463 pooled-hide-v2 n=22893 | UNSCORED",
+    "verdict": "negative",
+    "submission_ready": false,
+    "auxiliary_sgmc_proxy": {
+      "evidence_class": "AUXILIARY-PROXY (not HOLDOUT-DTI, not ORGANIZER-CONFIRMED, never a score)",
+      "proxy_pixels": 79615,
+      "rows": {
+        "h86_candidate_final": 0.054389467441059845,
+        "spaced_random_full": 0.06679560644996761,
+        "incumbent_d28_fixed": 0.13107556112229748,
+        "incumbent_h33b2_fixed": 0.0928930494744682,
+        "incumbent_h32d_fixed": 0.13383489612165742
+      },
+      "candidate_below_random": true
+    },
+    "lattice_saturation_certificate": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/calib_13gems_20261001_r13-lattice-s5_v2_nan-ou.tif",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "positive_pixels": 206895,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 6514,
+      "covered_allowed_fraction": 0.9987243421716145,
+      "universal_overlap_blocker": false,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "No universal blockage established."
+    },
+    "worst_dot_overlap_excluding_lattice_witness": {
+      "id": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+      "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+      "grid_ok": true,
+      "their_dots": 69281,
+      "representation": "dot_field",
+      "support_fraction": 0.01340739288609512,
+      "my_dots_within_3px_of_theirs": 0.29189473684210526,
+      "jaccard_dot_sets": 0.01340739548072018
+    },
+    "selector_still_required": true,
+    "experiments_run": 3,
+    "gates": {
+      "canary_no_leakage_block": true,
+      "beats_spaced_random_ci": false,
+      "beats_best_comparable_control": "incumbent_h32d_fixed",
+      "beats_best_comparable_control_ci": false,
+      "surface_rho_le_0p90_accessible": true,
+      "dot_overlap_le_0p70_dotfields": false,
+      "validator_all_checks_passed": true,
+      "registry_complete": false
+    },
+    "blockers": [
+      "Failed gate(s): ['beats_spaced_random_ci', 'beats_best_comparable_control_ci', 'dot_overlap_le_0p70_dotfields', 'registry_complete']",
+      "Registry scope is the 14-raster accessible pinned set, not a complete organizer registry.",
+      "No organizer receipt: HOLDOUT-DTI is not a leaderboard score and cannot confirm beating 0.2778.",
+      "Literal dot-overlap failure is solely vs the r13-lattice-s5 calibration raster (0.971; it covers 99.87% of allowed cells within 3px, rho=-0.0003, Jaccard=0.04): a degenerate witness, reported not waived. Worst geological dot-field overlap is 0.292."
+    ]
+  },
+  "crosslane_h86_1_vs_h86_rmrb": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "note": "Cross-lane check added at merge with origin/main (PR #7 H86-RMRB candidate was not in the 14-raster registry used during the H86-1 session).",
+    "h86_1_sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+    "h86_rmrb_sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+    "spearman_full_footprint": 0.012554219248873283,
+    "jaccard_dot_sets": 0.010673954519672046,
+    "my_dots_within_3px_of_theirs": 0.3076315789473684,
+    "their_dots_within_3px_of_mine": 0.17231666666666667,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "duplicate_by_literal_gates": false
+  },
+  "merged_lanes_note": "Two parallel lanes merged 2026-10-22: top level = H86-RMRB (PR #7); parallel_lane_h86_1 = H86-1 straight-edge lane (PR #9), also saved as docs/evidence/h86_run_card.json. Both candidates are format-valid and both verdicts are negative; neither may be submitted."
 }

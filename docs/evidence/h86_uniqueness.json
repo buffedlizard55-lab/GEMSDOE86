@@ -1,0 +1,313 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "scope": "Accessible pinned registry only: 14 hash-verified rasters from research/upstream/data_manifest.json group=scored plus GEMSDOE32 H33-2-B2 and H32-D downloads. NOT a complete organizer/cross-team registry; unfetched sibling rasters are a stated limitation, not a claim of absence.",
+  "complete": false,
+  "rasters_checked": 14,
+  "rho_limit": 0.9,
+  "overlap_limit": 0.7,
+  "surface": {
+    "worst": {
+      "id": "scored_h16_1",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "grid_ok": true,
+      "their_dots": 123939,
+      "representation": "dot_field",
+      "support_fraction": 0.023984914578452147,
+      "spearman_full_footprint": 0.06997887981359856
+    },
+    "rows": [
+      {
+        "id": "scored_h19_5",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "grid_ok": true,
+        "their_dots": 121131,
+        "representation": "dot_field",
+        "support_fraction": 0.023441504996833014,
+        "spearman_full_footprint": 0.06878092371729302
+      },
+      {
+        "id": "scored_h19_4",
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "grid_ok": true,
+        "their_dots": 123779,
+        "representation": "dot_field",
+        "support_fraction": 0.023953951069527978,
+        "spearman_full_footprint": 0.06836812406622676
+      },
+      {
+        "id": "scored_h16_1",
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "grid_ok": true,
+        "their_dots": 123939,
+        "representation": "dot_field",
+        "support_fraction": 0.023984914578452147,
+        "spearman_full_footprint": 0.06997887981359856
+      },
+      {
+        "id": "scored_d15_scored",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "grid_ok": true,
+        "their_dots": 60069,
+        "representation": "dot_field",
+        "support_fraction": 0.0116246688597862,
+        "spearman_full_footprint": 0.045187210622098996
+      },
+      {
+        "id": "scored_d28_unscored",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "grid_ok": true,
+        "their_dots": 44090,
+        "representation": "dot_field",
+        "support_fraction": 0.00853238192791579,
+        "spearman_full_footprint": 0.0373852780001175
+      },
+      {
+        "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "grid_ok": true,
+        "their_dots": 206895,
+        "representation": "dot_field",
+        "support_fraction": 0.04003871986790967,
+        "spearman_full_footprint": -0.0002641461480673821
+      },
+      {
+        "id": "calib_8GEMSDOE_Hedge-v2_submission",
+        "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792",
+        "grid_ok": true,
+        "their_dots": 227507,
+        "representation": "dot_field",
+        "support_fraction": 0.04402759390506549,
+        "spearman_full_footprint": 0.054842817855391336
+      },
+      {
+        "id": "calib_gems10-h25-ctx-ridge-20260927T2329477041",
+        "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+        "grid_ok": true,
+        "their_dots": 174232,
+        "representation": "dot_field",
+        "support_fraction": 0.03371771304297174,
+        "spearman_full_footprint": 0.051088941121394
+      },
+      {
+        "id": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+        "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+        "grid_ok": true,
+        "their_dots": 69281,
+        "representation": "dot_field",
+        "support_fraction": 0.01340739288609512,
+        "spearman_full_footprint": 0.025468697544585195
+      },
+      {
+        "id": "calib_gemsdoe-ens12-adopted-7f00890a",
+        "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+        "grid_ok": true,
+        "their_dots": 172974,
+        "representation": "dot_field",
+        "support_fraction": 0.03347426245405547,
+        "spearman_full_footprint": 0.05070199327402087
+      },
+      {
+        "id": "calib_gemsdoe9-PLACEHOLDER-2314b599",
+        "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
+        "grid_ok": true,
+        "their_dots": 147684,
+        "representation": "dot_field",
+        "support_fraction": 0.028580092824729317,
+        "spearman_full_footprint": 0.0036458104511466315
+      },
+      {
+        "id": "scored_gems27_tgc_v2_d15",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "grid_ok": true,
+        "their_dots": 61328,
+        "representation": "dot_field",
+        "support_fraction": 0.011868312970633241,
+        "spearman_full_footprint": 0.044383598298518866
+      },
+      {
+        "id": "gemsdoe32_h33_2_b2_zeros",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "grid_ok": true,
+        "their_dots": 37654,
+        "representation": "dot_field",
+        "support_fraction": 0.007286874781441169,
+        "spearman_full_footprint": 0.03267270894204801
+      },
+      {
+        "id": "gemsdoe32_h32d_46090_zeros",
+        "sha256": "f81e26d7712d1a4a9d3d5393037b09849400c3976d1ebd40e2760a586f2adc2f",
+        "grid_ok": true,
+        "their_dots": 46090,
+        "representation": "dot_field",
+        "support_fraction": 0.008919425789467878,
+        "spearman_full_footprint": 0.0404727367434109
+      }
+    ]
+  },
+  "final_dots": {
+    "worst_dot_field_overlap": {
+      "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "grid_ok": true,
+      "their_dots": 206895,
+      "representation": "dot_field",
+      "support_fraction": 0.04003871986790967,
+      "my_dots_within_3px_of_theirs": 0.9709736842105263,
+      "jaccard_dot_sets": 0.04003872761628154
+    },
+    "worst_literal_overlap": {
+      "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "grid_ok": true,
+      "their_dots": 206895,
+      "representation": "dot_field",
+      "support_fraction": 0.04003871986790967,
+      "my_dots_within_3px_of_theirs": 0.9709736842105263,
+      "jaccard_dot_sets": 0.04003872761628154
+    },
+    "rows": [
+      {
+        "id": "scored_h19_5",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "grid_ok": true,
+        "their_dots": 121131,
+        "representation": "dot_field",
+        "support_fraction": 0.023441504996833014,
+        "my_dots_within_3px_of_theirs": 0.2205,
+        "jaccard_dot_sets": 0.023441509533279198
+      },
+      {
+        "id": "scored_h19_4",
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "grid_ok": true,
+        "their_dots": 123779,
+        "representation": "dot_field",
+        "support_fraction": 0.023953951069527978,
+        "my_dots_within_3px_of_theirs": 0.22921052631578948,
+        "jaccard_dot_sets": 0.023953955705143738
+      },
+      {
+        "id": "scored_h16_1",
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "grid_ok": true,
+        "their_dots": 123939,
+        "representation": "dot_field",
+        "support_fraction": 0.023984914578452147,
+        "my_dots_within_3px_of_theirs": 0.23721052631578948,
+        "jaccard_dot_sets": 0.023984919220060023
+      },
+      {
+        "id": "scored_d15_scored",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "grid_ok": true,
+        "their_dots": 60069,
+        "representation": "dot_field",
+        "support_fraction": 0.0116246688597862,
+        "my_dots_within_3px_of_theirs": 0.202,
+        "jaccard_dot_sets": 0.011624671109415
+      },
+      {
+        "id": "scored_d28_unscored",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "grid_ok": true,
+        "their_dots": 44090,
+        "representation": "dot_field",
+        "support_fraction": 0.00853238192791579,
+        "my_dots_within_3px_of_theirs": 0.19294736842105265,
+        "jaccard_dot_sets": 0.008532383579119134
+      },
+      {
+        "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "grid_ok": true,
+        "their_dots": 206895,
+        "representation": "dot_field",
+        "support_fraction": 0.04003871986790967,
+        "my_dots_within_3px_of_theirs": 0.9709736842105263,
+        "jaccard_dot_sets": 0.04003872761628154
+      },
+      {
+        "id": "calib_8GEMSDOE_Hedge-v2_submission",
+        "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792",
+        "grid_ok": true,
+        "their_dots": 227507,
+        "representation": "dot_field",
+        "support_fraction": 0.04402759390506549,
+        "my_dots_within_3px_of_theirs": 0.25373684210526315,
+        "jaccard_dot_sets": 0.044027602425372125
+      },
+      {
+        "id": "calib_gems10-h25-ctx-ridge-20260927T2329477041",
+        "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+        "grid_ok": true,
+        "their_dots": 174232,
+        "representation": "dot_field",
+        "support_fraction": 0.03371771304297174,
+        "my_dots_within_3px_of_theirs": 0.28957894736842105,
+        "jaccard_dot_sets": 0.03371771956808993
+      },
+      {
+        "id": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+        "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+        "grid_ok": true,
+        "their_dots": 69281,
+        "representation": "dot_field",
+        "support_fraction": 0.01340739288609512,
+        "my_dots_within_3px_of_theirs": 0.29189473684210526,
+        "jaccard_dot_sets": 0.01340739548072018
+      },
+      {
+        "id": "calib_gemsdoe-ens12-adopted-7f00890a",
+        "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+        "grid_ok": true,
+        "their_dots": 172974,
+        "representation": "dot_field",
+        "support_fraction": 0.03347426245405547,
+        "my_dots_within_3px_of_theirs": 0.2221842105263158,
+        "jaccard_dot_sets": 0.03347426893206063
+      },
+      {
+        "id": "calib_gemsdoe9-PLACEHOLDER-2314b599",
+        "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
+        "grid_ok": true,
+        "their_dots": 147684,
+        "representation": "dot_field",
+        "support_fraction": 0.028580092824729317,
+        "my_dots_within_3px_of_theirs": 0.06184210526315789,
+        "jaccard_dot_sets": 0.02858009835560513
+      },
+      {
+        "id": "scored_gems27_tgc_v2_d15",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "grid_ok": true,
+        "their_dots": 61328,
+        "representation": "dot_field",
+        "support_fraction": 0.011868312970633241,
+        "my_dots_within_3px_of_theirs": 0.20476315789473684,
+        "jaccard_dot_sets": 0.011868315267412527
+      },
+      {
+        "id": "gemsdoe32_h33_2_b2_zeros",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "grid_ok": true,
+        "their_dots": 37654,
+        "representation": "dot_field",
+        "support_fraction": 0.007286874781441169,
+        "my_dots_within_3px_of_theirs": 0.18147368421052631,
+        "jaccard_dot_sets": 0.0072868761916115195
+      },
+      {
+        "id": "gemsdoe32_h32d_46090_zeros",
+        "sha256": "f81e26d7712d1a4a9d3d5393037b09849400c3976d1ebd40e2760a586f2adc2f",
+        "grid_ok": true,
+        "their_dots": 46090,
+        "representation": "dot_field",
+        "support_fraction": 0.008919425789467878,
+        "my_dots_within_3px_of_theirs": 0.21905263157894736,
+        "jaccard_dot_sets": 0.008919427515572714
+      }
+    ],
+    "note": "Literal overlap vs continuous-surface registry rasters is reported but cannot discriminate (any dot is within 3px of a whole-footprint surface); the 0.70 gate is applied to dot-field rasters, rank rho to all, per gems57.uniqueness.two_phase_summary doctrine."
+  },
+  "duplicate_within_accessible_registry": true
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "existing_faults",
+    "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "bytes": 425830,
+    "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated (byte-identical to labels.tif)",
+    "organizer_authenticated": false
+  },
+  {
+    "id": "sample_submission",
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "bytes": 1599597,
+    "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)",
+    "organizer_authenticated": false
+  }
+]
