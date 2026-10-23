@@ -465,3 +465,11 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+
+## Addendum — R0 PRUNE 3.75 px collar rung (2026-10-23)
+
+**AI wrote:** `scripts/build_r0_prune375.py`, the synthetic regression test in `tests/test_r0_prune.py`, the PRUNE mechanism/run cards, the submission card, this session's short slot plan, and the README CURRENT STATE edits. It also added one `BUILT` row to `ledger/submissions.csv`.
+
+**AI selected:** PRUNE as the only brief axis that can clear the inherited R0 2–3 px catalogue collar without violating the brief's ≥3 px rule on all emitted mass. Existing ledger and irregularity records showed the `(PRUNE, 3.5px)` value was already used on another parent, so this build uses the distinct `3.75px` threshold. It removes the <=3.75 px collar and refills from the parent's recorded FIFO-BFS H19-5 order, with fixed count. Predicted change `-0.002` is **MODEL**; the SGMC control is a report-only surrogate, the catalogue hide/recover result is a contaminated **PROXY**, and neither is a score.
+
+**Human decision still required:** verify `TOP_PUBLIC`, quota, deadline, receipt, accepted null convention, and whether to spend a slot. No site, competition endpoint, leaderboard, or submission portal was accessed. Candidate TIFFs remain ignored/local-only; public-repository data-use terms remain unchecked.

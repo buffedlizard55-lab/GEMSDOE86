@@ -82,6 +82,18 @@ consideration. The redundant local copies of `3eb29af5` are deleted from `releas
 wrong file cannot be uploaded by accident. **Cost:** three sessions burned on one 5.8 %-of-mass
 axis; the calendar in `SLOT_PLAN.md` now gives PRUNE one slot and moves the rest to a
 feature-based axis.
+
+## IR-86-PRUNE-09 — R0's distinct 3.75 px rung is built but not a slot favorite
+The R0-specific `(PRUNE, 3.75px)` pair was absent from the ledger; the nearby `3.5px` value
+was already spent on a different parent (IR-86-PRUNE-06), so it was not repeated. The new
+fixed-count refill removes 3,361 dots and adds 3,361 H19-5 FIFO-BFS-ranked cells (17.8520%
+symmetric change); the minimum catalogue distance is 4 px. Both NaN-outside and zeros-outside
+files pass the required on-disk format/exclusion checks. The prediction is **−0.002 MODEL**;
+the report-only SGMC surrogate is −0.0040 and catalogue hide/recover is 0.0000 **PROXY**
+(known contaminated by construction). **Decision:** preserve as a reproducible diagnostic but
+do not recommend it for the first slot; consider only after a `le3p000` live receipt of at least
++0.01. No live score or receipt was obtained. The candidate raster stays gitignored/local-only.
+
 ## IR-86-LADDER-01 — the fixed-count refill confounder (PR #28's design)
 The ≤ 3 px prune removes 2,171 dots, but only 475 same-field refills preserve the parent's 2.8 px
 spacing; the mandated 2,171-dot refill therefore changes spacing as well as collar membership

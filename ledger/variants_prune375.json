@@ -1,0 +1,27 @@
+[
+  {
+    "id": "h33-h33-2-b2-PRUNE3p75-20261023-a90d5477",
+    "site": "GEMSDOE86",
+    "axis": "PRUNE",
+    "value": "3.75px",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 17.852,
+    "sha8": "a90d5477",
+    "parent": "h33-h33-2-b2",
+    "encoding": "zeros",
+    "sha256_nan": "a90d5477865ee3f65c84980a05d0722edb22fde51caa21f235d6c8b8cf423097",
+    "sha256_zeros": "c1207ab8886b56415586bf3441fc5c86a4c49982dd7bf6ede0b36bc27d293e2c",
+    "predicted_change": "-0.002 MODEL",
+    "source_url": "releases/h33-h33-2-b2-PRUNE3p75-20261023-a90d5477.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "89315cf3056a0049812071461f99c14f80aaa83de68943b11b9c145735b7a4b8",
+    "files": [
+      "releases/h33-h33-2-b2-PRUNE3p75-20261023-a90d5477.tif",
+      "releases/h33-h33-2-b2-PRUNE3p75-20261023-a90d5477-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2; PRUNE <=3.75px, FIFO-BFS H19-5 refill; count fixed; pred -0.002 MODEL",
+    "gate_all_pass": true
+  }
+]
