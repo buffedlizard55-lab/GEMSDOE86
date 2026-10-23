@@ -1,0 +1,74 @@
+{
+  "id": "h33-h33-2-b2-snapr2g10-20261023-8ca1d869",
+  "parent": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "axis": "snap",
+  "value": "r2g10",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 34.9445,
+  "pct_dots_moved": 17.4722,
+  "dot_digest": "aeb1cd8537d2a4ec915620e72fc7c344798882e1831219bf223b84b96a7b914c",
+  "zeros": {
+    "file": "h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif",
+    "sha256": "8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e",
+    "bytes": 219532,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    },
+    "vendored_gems57_validate_all_passed": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-snapr2g10-20261023-8ca1d869.tif",
+    "sha256": "32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52",
+    "bytes": 355791,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    }
+  },
+  "submission_name": "h33-h33-2-b2-snapr2g10-20261023-8ca1d869",
+  "note": "R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL",
+  "predicted_live_change": "-0.001 (MODEL, band -0.007..+0.008). Only the 17.5% of dots whose window holds a decisively stronger edge (>=0.10 percentile, median realised gain 0.142) move, mean 1.95 px; 82.5% of the parent is untouched. This is the only SNAP form worth a live test if the crest hypothesis must be settled, but the SGMC control is still slightly negative (-0.0021), so the centre is ~zero, not positive.",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "mean_displacement_px": 0.3401,
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "retained": 31075,
+    "removed": 6579,
+    "added": 6579,
+    "pct_of_parent_changed": 34.9445,
+    "pct_dots_moved": 17.4722,
+    "kept_fraction": 0.825278
+  },
+  "generated_utc": "2026-10-23T15:50:05Z"
+}

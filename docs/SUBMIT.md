@@ -3,70 +3,62 @@
 **Status: BUILT; not slot-approved.** TOP_PUBLIC, remaining quota and R0's submission receipt
 were not supplied. The human alone submits, from one registered entity, one file per slot.
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
-gitignored (unchecked data-use terms); hashes below are the authority.
+gitignored (unchecked data-use terms); hashes below are the authority. Rebuild them any time:
+`.venv/bin/python scripts/build_r0_snap.py --build` (SNAP; identical sha256s) — PRUNE files
+per their own builders (`scripts/run_prune_ladder.py`, `scripts/prune_collar.py --build`).
 
-## Slot 1 — PRUNE ≤ 3.000 px, pure deletion (nested ladder, PR #29)
+## Slot 1 — PRUNE ≤ 3.000 px, pure deletion (nested ladder, PR #29) — unchanged
 
 - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros`
 - Upload: `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
 - SHA-256: `a438e92b…` — take the full digest from `releases/…-a438e92b-zeros.json`.
 - 35,483 dots (R0 minus all 2,171 dots within 3.0 px of the catalogue), 5.77 % changed.
 - Prediction: **+0.004 (MODEL)**, band −0.004 … +0.013. Receipt: `evidence/prune_ladder.json`.
-- Nested rungs at ≤ 2.2361 px and ≤ 2.8284 px exist in the same ladder if the human prefers a
-  shallower first edit.
 
-## Slot 2 — a new prediction surface (not a prune rung)
+## Slot 2 — RELIEF (to be built) — SNAP fallback below only if a slot must be filled first
 
-Nothing is built yet. The 419 MB feature stack restores in ~22 s and verifies against its pin,
-so SNAP or RELIEF can be built and gated next session. Build one axis, preregister its
-mechanism/confounder/falsifier in `SLOT_PLAN.md` before writing the raster.
+SNAP was built this session and its report-only controls came back flat-to-negative
+(SGMC dose-response −0.0021 … −0.0089; mechanism cards:
+[`evidence/r0-snap-mechanism.md`](../evidence/r0-snap-mechanism.md)). All three keep
+R0's 37,654 dots and its >2 px catalogue exclusion (min distance 2.236 px — see
+IR-86-SNAP-01 before uploading anything).
 
-## Cheap defaults, already built and gated (only if slot 2 is not ready)
+| Variant | Upload (zeros twin) | sha256 (zeros) | NaN twin sha256 | moved / mean disp. | prediction (MODEL) |
+|---|---|---|---|---|---|
+| `snapr2g10` (the only SNAP slot candidate) | `releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869-zeros.tif` | `8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e` | `32c1e4e99444abafd35165666e34efc9fda3a15c664dea4e7c809d06ae613f52` | 17.47 % / 0.34 px | −0.001 [−0.007, +0.008] |
+| `snapr1` (do not slot; dominated) | `releases/h33-h33-2-b2-snapr1-20261023-adefae6a-zeros.tif` | `adefae6a6ab19370141b25ecbd5fa2ac575138e5195ce0b49e4506ab44c59e04` | `ca91076ae31e2ca266d4f5bfe8f34981bd790133295bf1051de2b6eecf34a5aa` | 96.89 % / 0.97 px | −0.002 [−0.008, +0.003] |
+| `snapr2` (dose instrument; slot only after an r2g10 receipt ≥ +0.010) | `releases/h33-h33-2-b2-snapr2-20261023-4d3834c9-zeros.tif` | `4d3834c9b86c3b896a9fd88d0be03428b0917f36ab64ec42e72d75804035fe7d` | `771d0ba35f1df5857b70593119645a986261a49fe96cbd19308f1d687cf880fe` | 98.41 % / 1.77 px | −0.006 [−0.018, +0.006] |
 
-| Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |
-|---|---|---|---|---|
-| PRUNE ≤ 4 px | `releases/h33-h33-2-b2-prune4-20261023-de4c2a98.tif` | `e198b768b5a19d7e08e33de14ad1ec03425154db1acd81fad5db3b4b7e9715cd` | `releases/h33-h33-2-b2-prune4-20261023-de4c2a98-zeros.tif` | `de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5` |
-| PRUNE ≤ 3 px, equal count relocated | `releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e.tif` | `9542efacb60a4e8c9155b1e9c000ce7e33f43f7e413ad2a5883304b413906682` | `releases/refill/h33-h33-2-b2-prune3r-20261023-8c20bd7e-zeros.tif` | `8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e` |
+- Submission name (r2g10): `h33-h33-2-b2-snapr2g10-20261023-8ca1d869`
+- Form note (**91 chars**): `R0 h33-h33-2-b2 SNAP r2g10: dots <=2px to edge if gain>=0.10, 37654 dots; pred -0.001 MODEL`
+- Ledger `% changed` for SNAP counts changed *cells* (a moved dot = 2 cells): r2g10 34.94 %,
+  r1 193.78 %, r2 196.82 %; the axis dose is `% dots moved` above (brief §5 exempts SNAP from
+  the 1–50 % change rule).
 
-Predictions: PRUNE ≤ 4 px **−0.008 MODEL** (111-char note: `prune4 — parent h33-2-b2
-(0.2778); drop 3825 dots at 2<d<=4px from catalogue; predicted -0.008 (MODEL, +-0.014)`);
-relocated-collar **−0.003 MODEL** (113-char note: `prune3r — parent h33-2-b2 (0.2778); same
-count, collar moved past 3px, mean move 1.14px; predicted -0.003 (MODEL)`). Neither is
-predicted to help; they are rehearsals.
+**Do not upload:** `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08),
+`…-prune3-…-01d57649` (same `(PRUNE, 3)` pair as slot 1), or either SNAP
+unconditional variant under any currently foreseen outcome.
 
-Naming note: the pair is named once — the NaN twin (`…-<zeros8>.tif`) carries the **zeros**
-digest, the zeros twin is `…-<zeros8>-zeros.tif`, and the receipt is `…-<zeros8>-zeros.json`.
+## Format receipt (measured on disk, brief §6 MUST gates — SNAP twins, this session)
 
-**Do not upload:** `…-prune3-…-3eb29af5` (withdrawn — identical dot set to slot 1's
-`le3p000`, IR-86-PRUNE-08; its local copies are deleted) or `…-prune3-…-01d57649` (same
-`(PRUNE, 3)` pair; a control for the mass question, not a candidate).
-
-## Format receipt (measured on disk, brief §6 MUST gates)
-
-Common to every file above — re-read from disk after writing:
-
-| Gate | Measured |
+| Gate | Measured (all 6 SNAP files) |
 |---|---|
 | Bands / dtype | 1 / `float32` |
 | CRS | `EPSG:32611` (= `sample_submission.tif`) |
 | Shape | 3730 × 3292 |
 | Transform | `(100, 0, 243350, 0, -100, 4508550)` (= template) |
-| Values | inside `[0,1]`, unit mass where emitted |
+| Values | inside `[0,1]`, unit mass where emitted; 37,654 dots each (= R0) |
 | NaN inside footprint | none |
-| Outside footprint | `NaN` for `-nan` files, `0` for `-zeros` files |
-| Dots on mapped catalogue | **0** in every file |
-| Exact-hash duplicate of any file on disk or in the ledger | none |
+| Outside footprint | `NaN` in the spec twin, `0` in the `-zeros` twin |
+| Dots on mapped catalogue | **0**; min catalogue distance 2.236 px (parent exclusion kept) |
+| Exact-hash duplicate (ledger or disk) | none |
+| Vendored `gems57.validate` on `-zeros` twins | `all_checks_passed = True` |
 
-The `-zeros` twins additionally pass `vendor/gems57/validate.py` (`all_checks_passed = True`)
-and `gems57.gates.format_report` (`ok = True`). The `-nan` twins fail that vendored validator
-**by its all-finite policy** — their NaN cells all lie outside the footprint, which is what the
-brief asks for (IR-86-PRUNE-07). The portal previously rejected an upload with *"Predicted
-values must be in range [0, 1]"*, so if `-nan` is rejected on range, switch to the `-zeros`
-twin within the same slot attempt: the twins carry identical dots.
-
-Release TIFFs are gitignored (public repo, unchecked data-use terms), so the digests above are
-the authority. Re-run the checks any time: `python scripts/prune_collar.py --measure`
-(deterministic, seed 20261023) and `python scripts/build_ledger.py --check`.
+The `-nan` twins fail that vendored validator **by its all-finite policy** (NaN cells all lie
+outside the footprint, per the brief; IR-86-PRUNE-07). If the portal rejects `-nan` on range,
+upload the `-zeros` twin in the same slot attempt — identical dots. Re-run the gates any time:
+`.venv/bin/python scripts/build_r0_snap.py --measure` and
+`.venv/bin/python scripts/build_ledger.py --check`.
 
 ## After the score comes back
 

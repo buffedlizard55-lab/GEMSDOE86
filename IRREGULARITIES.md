@@ -105,3 +105,40 @@ Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, 
 other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
+
+## IR-86-SNAP-01 — brief §4.4 (>=3 px) and the SNAP spec (same exclusions) cannot both hold on R0
+Hard constraint 4 says keep >=3 px from the catalogue unless AXIS=PRUNE, but R0 itself
+carries 2,171 dots at 2-3 px and the SNAP definition says "same count, same exclusions".
+Enforcing >=3 px inside a SNAP variant would delete/relocate exactly the PRUNE collar,
+confounding two axes in one file. **Decision:** SNAP destinations keep the parent's
+exclusion (footprint, off-catalogue, Euclidean distance > 2.0 px); every SNAP candidate
+therefore still holds 1,962-2,144 dots in the 2-3 px ring and a minimum distance of
+2.236 px, like R0. Zero catalogue mass holds in all files. **Cost:** a human who reads
+§4.4 as a variant-wide rule must not slot any SNAP file (or R0 itself) until they choose
+the governing reading; the clean >=3 px file already exists as slot 1 (`le3p000`).
+
+## IR-86-SNAP-02 — the AXIS was again not assigned; SNAP came from the plan, not the human
+The brief says the human assigns the session AXIS. It was blank in the paste, and the
+assignment prompt was skipped. **Decision:** this session built SNAP because
+`SLOT_PLAN.md` (merged) preregistered it as slot 2 with bands, radius and falsifier,
+PRUNE's pairs are spent, and MASS is blocked (IR-86-PRUNE-02). **Cost:** if the human
+intended a different axis, three (SNAP, value) pairs are now spent — `r1`, `r2`, `r2g10`
+must not be rebuilt; assign the next axis explicitly (RELIEF is the plan's candidate).
+
+## IR-86-SNAP-03 — the PRUNE ladder's release test governed every axis; scoped, not relaxed
+`tests/test_prune_ladder.py` asserted that *every* `releases/*-zeros.tif` only deletes
+dots — true for PRUNE, false by construction for any relocation/refill axis placed in
+`releases/`. **Decision:** the ladder test now scans `*prune*`/`*control*` twins only,
+and SNAP releases carry their own contract in `tests/test_snap_axis.py` (same format
+gates, count preservation, >2 px exclusion, receipt/ledger hash binding). No PRUNE
+assertion was weakened. **Cost:** future axes must add their own release test or their
+files go ungated.
+
+## IR-86-SNAP-04 — the provided gravity gradient band is signed (directional), not a magnitude
+`tmi_hg` is a non-negative gradient magnitude, but `iso_grav_anom_hg` is signed and
+near-symmetric about 0, i.e. a directional derivative; the preregistered pair therefore
+mixes an isotropic magnetic edge with a one-direction gravity edge (taken absolute).
+**Decision:** built as preregistered, limitation stated on the mechanism cards;
+an isotropic re-run (`iso_grav_anom_slope`) is proposed in SLOT_PLAN.md, not built.
+**Cost:** part of SNAP's flat/negative local readout may be band choice rather than
+the crest idea — only an r2g10 live receipt can justify spending build time on it.

@@ -1,0 +1,74 @@
+{
+  "id": "h33-h33-2-b2-snapr2-20261023-4d3834c9",
+  "parent": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "axis": "snap",
+  "value": "r2",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 196.8184,
+  "pct_dots_moved": 98.4092,
+  "dot_digest": "7f9a48dbe68a20f54bdca3bbbb5d92038f21e183b5decf8119deca7f3beeda1d",
+  "zeros": {
+    "file": "h33-h33-2-b2-snapr2-20261023-4d3834c9-zeros.tif",
+    "sha256": "4d3834c9b86c3b896a9fd88d0be03428b0917f36ab64ec42e72d75804035fe7d",
+    "bytes": 219239,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    },
+    "vendored_gems57_validate_all_passed": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-snapr2-20261023-4d3834c9.tif",
+    "sha256": "771d0ba35f1df5857b70593119645a986261a49fe96cbd19308f1d687cf880fe",
+    "bytes": 355103,
+    "validator": {
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979
+    }
+  },
+  "submission_name": "h33-h33-2-b2-snapr2-20261023-4d3834c9",
+  "note": "R0 h33-h33-2-b2 SNAP r2: dots <=2px to strongest tmi/grav edge, 37654 dots; pred -0.006 MODEL",
+  "predicted_live_change": "-0.006 (MODEL, band -0.018..+0.006). Strongest dose: 98.4% of dots move (mean 1.77 px, median gain 0.042), 40.1% acquire a sub-2.8 px neighbour, and the SGMC control is worst here (-0.0089). Unconditional window-argmax mostly chases gradient noise and clusters onto crests, redundant under the max-kernel. A dose-escalation instrument, not a slot candidate.",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "mean_displacement_px": 1.7675,
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "retained": 599,
+    "removed": 37055,
+    "added": 37055,
+    "pct_of_parent_changed": 196.8184,
+    "pct_dots_moved": 98.4092,
+    "kept_fraction": 0.015908
+  },
+  "generated_utc": "2026-10-23T15:49:59Z"
+}

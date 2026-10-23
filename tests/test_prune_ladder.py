@@ -1,8 +1,10 @@
 """PRUNE-axis geometry, the parent rebuild, and the shipped release twins.
 
-The artifact tests re-read every committed ``releases/*.tif`` and re-derive the
-gates from the bytes, so a release that drifts (wrong grid, mass on the
+The artifact tests re-read every PRUNE/CONTROL ``releases/*.tif`` and re-derive
+the gates from the bytes, so a release that drifts (wrong grid, mass on the
 catalogue, a dot added rather than removed) fails CI rather than a reviewer.
+Other axes keep their own release contracts (SNAP: tests/test_snap_axis.py) —
+this test is scoped to the deletion-only axis it was written for.
 """
 import csv
 import json
@@ -173,7 +175,8 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
     parent = _read(PARENT) > 0
     shas = set()
     ledger = {r["sha256"] for r in csv.DictReader(open(ROOT / "ledger" / "submissions.csv")) if r["sha256"]}
-    zeros = sorted(RELEASES.glob("*-zeros.tif"))
+    zeros = sorted(p for p in RELEASES.glob("*-zeros.tif")
+                   if "prune" in p.name.lower() or "control" in p.name.lower())
     if not zeros:
         # rasters are gitignored (data-use policy): rebuild with scripts/run_prune_ladder.py
         pytest.skip("no zeros twins in the working tree; receipts alone cannot re-derive the gates")

@@ -2,17 +2,17 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE axis; three sessions reconciled)
+## CURRENT STATE — 2026-10-23 (SNAP axis built; PRUNE still owns slot 1)
 
 | Field | Value |
 |---|---|
-| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** from the pinned base `gems28-h27-4-r1-solo-d2-8` by PR #29 (40,199 → 37,654, 0 differing pixels). Live **0.2778 is CLAIM**, not RECEIPT. |
-| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 7 built rows, all `MODEL`). |
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). This session rebuilt it **byte-exactly** again from the pinned solo-d2.8 base (219,065 B, 0 differing pixels) before building. Live **0.2778 is CLAIM**, not RECEIPT. |
+| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 10 built rows, all `MODEL`). |
 | TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
 | Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
-| Built (6 gate-clean + 1 withdrawn, none slot-approved) | Nested ladder from PR #29: `…-PRUNE-le2p236` (36,713 dots), `…-le2p828` (36,043), `…-le3p000` (35,483, **+0.004 MODEL**), plus mass control `…-CONTROL-massctl2171`. From PR #28: `…-prune3-…-01d57649` (37,654, refill, −0.004). From this session: `…-prune4-…-de4c2a98` (33,829, −0.008), `…-prune3r-…-8c20bd7e` (37,654, −0.003), and `…-prune3-…-3eb29af5` **withdrawn** — same dot set as `le3p000`, its local rasters deleted (IR-86-PRUNE-08). |
-| Next 3 slots | 1. `le3p000` (the deepest collar rung). 2. A **new axis** (SNAP or RELIEF) — the feature stack is proven restorable and verified, so that blocker is gone. 3. The better of the two, re-cut. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
-| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is structurally invalid for catalogue-avoiding fields (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
+| Built this session (SNAP; 3 gate-clean, none slot-approved) | Same 37,654 dots, relocated ≤2 px to the mean-percentile crest of `tmi_hg`+`\|iso_grav_anom_hg\|`: `…-snapr1-…-adefae6a` (96.9 % moved 1 px, mean disp. 0.97 px, **−0.002 MODEL**), `…-snapr2-…-4d3834c9` (98.4 % moved, mean disp. 1.77 px, **−0.006 MODEL**), `…-snapr2g10-…-8ca1d869` (17.5 % moved ≥0.10 gain, mean disp. 0.34 px, **−0.001 MODEL**). The report-only SGMC control is negative with a clean dose-response (r2g10 −0.0021, r1 −0.0032, r2 −0.0089), so SNAP does **not** leapfrog PRUNE. Cards: [evidence/r0-snap-mechanism.md](evidence/r0-snap-mechanism.md). PRUNE builds (7 rows incl. 1 withdrawn) unchanged. |
+| Next 3 slots | 1. `le3p000` (deepest PRUNE rung, +0.004 MODEL). 2. **RELIEF** build next session (SNAP `snapr2g10` only if a slot must be filled before RELIEF exists — as a crest-hypothesis test, expected ~0). 3. The better-receipted axis re-cut / combined. Full tree: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Blockers | AXIS was again unassigned (human skipped the prompt; SNAP taken from SLOT_PLAN's preregistration — IR-86-SNAP-01/02); MASS still needs R0's *ranking* (IR-86-PRUNE-02); hide-and-recover proxy floored for this parent (IR-86-PRUNE-03); SNAP keeps the parent's >2 px collar, not a ≥3 px one, to stay a single-axis edit (IR-86-SNAP-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
 
 <!-- CURRENT_STATE_END -->
 

@@ -44,3 +44,27 @@ missing rungs instead.
 **AI corrected itself:** an earlier claim that the parent's file bytes were not reproducible was
 falsified (byte-exact rebuild, `c55bafc4…`) and retracted in `IRREGULARITIES.md` rather than
 deleted. No truth raster, no portal, no login, no slot.
+
+---
+
+## Addendum — SNAP axis (branch `arena/f863bee8-gemsdoe86`, 2026-10-23)
+
+**AI wrote:** `src/gems86/snap.py`, `scripts/build_r0_snap.py`, `tests/test_snap_axis.py`,
+`evidence/r0-snap-mechanism.md`, `evidence/snap_axis_20261023.json` (generated),
+`ledger/variants_snap.json` (generated), the SNAP rows of `ledger/submissions.csv`
+(via the existing single generator, extended to read `variants_snap.json`), and the SNAP
+sections of `SLOT_PLAN.md`, `docs/SUBMIT.md`, `README.md` (CURRENT STATE block only) and
+`IRREGULARITIES.md` (IR-86-SNAP-01…04).
+
+**AI decided (human can veto):** the AXIS field was blank and the assignment prompt was
+skipped, so SNAP was taken from `SLOT_PLAN.md`'s preregistered slot-2 design (IR-86-SNAP-02);
+the edge is the mean footprint-percentile of `tmi_hg` and `|iso_grav_anom_hg|`; the three
+values are `r1`, `r2` and the gain-gated `r2g10`; destinations keep R0's >2 px exclusion
+(IR-86-SNAP-01). MODEL prediction centres (−0.002/−0.006/−0.001) were set from the
+measured dose plus the report-only SGMC control's negative dose-response — the AI
+revised its own pre-build optimistic centre for `r2g10` (+0.004) once that control was
+measured, and said so in the mechanism cards rather than quietly keeping the higher number.
+
+**AI did not do:** no DrivenData access, no leaderboard, no login/scrape/submit, no
+credentials. Feature and SGMC rasters were restored only from the GitHub mirrors pinned
+in `registry/data_manifest.json` and verified by sha256 before use.
