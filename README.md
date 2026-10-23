@@ -2,17 +2,17 @@
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (PRUNE axis; three sessions reconciled)
+## CURRENT STATE — 2026-10-23 (RELIEF axis, human-assigned; fourth session on this parent)
 
 | Field | Value |
 |---|---|
-| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, 0 within 2 px of the catalogue (min distance 2.236 px). Reproduced **byte-exactly** from the pinned base `gems28-h27-4-r1-solo-d2-8` by PR #29 (40,199 → 37,654, 0 differing pixels). Live **0.2778 is CLAIM**, not RECEIPT. |
-| Best receipt | **none** — `ledger/submissions.csv` has 0 receipts (108 historic rows, all `CLAIM`; 7 built rows, all `MODEL`). |
-| TOP_PUBLIC | **UNSUPPLIED** (human must give value + date). 0.3195 and 0.4413 in the request archive are undated owner claims, not targets. |
-| Slots | remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored per rolling week / one blind final choice. |
-| Built (6 gate-clean + 1 withdrawn, none slot-approved) | Nested ladder from PR #29: `…-PRUNE-le2p236` (36,713 dots), `…-le2p828` (36,043), `…-le3p000` (35,483, **+0.004 MODEL**), plus mass control `…-CONTROL-massctl2171`. From PR #28: `…-prune3-…-01d57649` (37,654, refill, −0.004). From this session: `…-prune4-…-de4c2a98` (33,829, −0.008), `…-prune3r-…-8c20bd7e` (37,654, −0.003), and `…-prune3-…-3eb29af5` **withdrawn** — same dot set as `le3p000`, its local rasters deleted (IR-86-PRUNE-08). |
-| Next 3 slots | 1. `le3p000` (the deepest collar rung). 2. A **new axis** (SNAP or RELIEF) — the feature stack is proven restorable and verified, so that blocker is gone. 3. The better of the two, re-cut. Full tree and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
-| Blockers | MASS still needs R0's *ranking*, which no rebuild supplies (IR-86-PRUNE-02); the hide-and-recover proxy is structurally invalid for catalogue-avoiding fields (IR-86-PRUNE-03); the repo's 70 % overlap rule contradicts brief v2 §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04). |
+| Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32), 37,654 unit-mass dots, none within 2 px of the catalogue (min 2.236 px). Live **0.2778 = CLAIM** — still no receipt in `ledger/` (115 rows, `receipt=N` on every one). Rebuilt **byte-exactly again** in this session: dot set 0 differing pixels, file sha256 `c55bafc4…b6fa9`, via the pinned base `gems28-h27-4-r1-solo-d2-8` (`ab023001…`). |
+| AXIS | **RELIEF, assigned by the human in-session** (brief v2 §1). `-zeros` chosen as the primary upload form. PRUNE deliberately untouched: spent by three earlier sessions (IR-86-PRUNE-08). |
+| Built this session (3 gate-clean, none slot-approved) | `…-RELIEF-frontp15-20261023-e0e2888f` (5,648 dots piedmont→front, 15.0 % changed, **+0.0017 MODEL**), `…-frontp10-…-b20ef72e` (3,765, 10.0 %, **+0.0010 MODEL**, a strict prefix of the 15 % dose), `…-frontm10-…-1b26223e` (3,765 front→piedmont, 10.0 %, **−0.0089 MODEL**, the sign flip). Count fixed at 37,654 in all three; zero mass on the catalogue; new cells ≥3 px off it and ≥2.83 px from every dot; receipts in `releases/`, measurements in `evidence/relief_axis_20261023.json`. |
+| What RELIEF measured | R0's mass sits 53.9 % piedmont / 16.1 % range-front / 5.3 % basin, while an independent USGS SGMC inventory says the un-mapped fault population is 2.7× denser per pixel at the front (34,565 vs 12,944 px/Mpx). That gradient is the axis's whole case — and it is confounded with mapping completeness (relief lets geologists see bedrock), so it is stated as a MODEL, never as a score. |
+| Next 3 slots | 1. `front+15pct` (the only positive, max-dose rung). 2. PRUNE `le3p000` (`a438e92b`, +0.004 MODEL) — orthogonal edit, additive test. 3. `front−10pct` **only if** 1 and 2 both land inside ±0.01: the +15/−10 pair is the one comparison here that can clear the evidence floor. Order, decision rules and calendar: [SLOT_PLAN.md](SLOT_PLAN.md); upload card: [docs/SUBMIT.md](docs/SUBMIT.md). |
+| Beat | `TOP_PUBLIC` = **UNSUPPLIED** (0.3195 / 0.4413 in the request archive are undated owner claims). Quota left this week **UNSUPPLIED**. Deadline 2026-12-03 **UNVERIFIED** (the competition page is not fetched from this sandbox). |
+| Blockers / open items | The hide-and-recover proxy is at its floor for this lineage and disagreed with the surrogate on sign for two of three rungs (IR-86-PRUNE-03); the repo's 70 % overlap rule still contradicts brief §6 (IR-86-PRUNE-01); release TIFFs stay gitignored pending data-use review (IR-86-PRUNE-04); two design defects caught and fixed mid-session are recorded (IR-86-RELIEF-01), as are the ≥3 px-vs-parent-geometry conflict (IR-86-RELIEF-02) and why MASS still is not built (IR-86-RELIEF-03). |
 
 <!-- CURRENT_STATE_END -->
 

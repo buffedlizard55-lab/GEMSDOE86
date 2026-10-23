@@ -1,0 +1,716 @@
+{
+  "generated_utc": "2026-10-23T16:11:26Z",
+  "elapsed_seconds": 120.0,
+  "axis": "RELIEF",
+  "axis_assignment": "HUMAN-ASSIGNED this session (brief v2 \u00a71). PRUNE is deliberately not touched: it is already spent on this parent by three earlier sessions (IR-86-PRUNE-08).",
+  "parent": {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027"
+  },
+  "parent_rebuild": {
+    "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+    "n_base_dots": 40199,
+    "n_rebuilt": 37654,
+    "n_published": 37654,
+    "differing_pixels": 0,
+    "content_identical": true,
+    "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "byte_identical_sha": true,
+    "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+    "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+  },
+  "input_pins": {
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/existing_faults.tif"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "pin_source": "registry/data_manifest.json",
+      "path": "data/bridge/sample_submission.tif"
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "pin_source": "data/restore_receipt.json",
+      "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "pin": null,
+      "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+      "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "matches_expected": true
+    }
+  },
+  "manifest_pins": {
+    "training_features": {
+      "path": "data/bridge/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; 19 float32 bands, nodata -3.4028234663852886e+38"
+    },
+    "existing_faults": {
+      "path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated (byte-identical to labels.tif)"
+    },
+    "sample_submission": {
+      "path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)"
+    },
+    "ext_derived_sgmc_faults_100m_u8": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "verified": true,
+      "organizer_authenticated": false,
+      "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+    }
+  },
+  "regime_cuts": {
+    "quantile_lower": -1.280323115639509,
+    "quantile_upper": 0.5836247567559614,
+    "front_proximity_px": 50,
+    "smooth_window_px": 31,
+    "area_px": {
+      "piedmont": 1722457,
+      "range-front": 688855,
+      "basin": 1722458,
+      "range-interior": 1033603
+    }
+  },
+  "regime_census": {
+    "piedmont": {
+      "area_px": 1722457,
+      "area_share_of_footprint": 0.333333,
+      "dots": 20280,
+      "dot_share_pct": 53.8588,
+      "dots_per_Mpx": 11773.9,
+      "eligible_free_cells": 1213774,
+      "median_dot_catalogue_px": 17.72
+    },
+    "range-front": {
+      "area_px": 688855,
+      "area_share_of_footprint": 0.133309,
+      "dots": 6045,
+      "dot_share_pct": 16.0541,
+      "dots_per_Mpx": 8775.4,
+      "eligible_free_cells": 530891,
+      "median_dot_catalogue_px": 18.111
+    },
+    "basin": {
+      "area_px": 1722458,
+      "area_share_of_footprint": 0.333333,
+      "dots": 2014,
+      "dot_share_pct": 5.3487,
+      "dots_per_Mpx": 1169.3,
+      "eligible_free_cells": 1585139,
+      "median_dot_catalogue_px": 23.738
+    },
+    "range-interior": {
+      "area_px": 1033603,
+      "area_share_of_footprint": 0.200025,
+      "dots": 9315,
+      "dot_share_pct": 24.7384,
+      "dots_per_Mpx": 9012.2,
+      "eligible_free_cells": 806221,
+      "median_dot_catalogue_px": 24.207
+    }
+  },
+  "sgmc_info": {
+    "sgmc_pixels": 83593,
+    "catalogue_pixels": 60988,
+    "sgmc_pixels_not_in_catalogue": 79615,
+    "overlap_fraction": 0.0476,
+    "note": "surrogate for 'new-fault' truth only in the weak sense that both are mappings of faults the training catalogue lacks; its density is itself relief-dependent, which is the confounder named on the mechanism cards"
+  },
+  "variants": {
+    "frontp15": {
+      "value": "front+15pct",
+      "hypothesis": "more mass on the basin-margin range front",
+      "relief_stats": {
+        "source": "piedmont",
+        "destination": "range-front",
+        "n_move": 5648,
+        "n_source_available": 20280,
+        "n_destination_free": 530891,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 17.0,
+          "min": 11.7047
+        },
+        "source_regime_area_px": 1722457,
+        "displacement_px": {
+          "mean": 61.0516,
+          "median": 45.5412,
+          "p90": 124.5484,
+          "max": 249.994
+        },
+        "source_shift_px_median": 32.2645
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 5648,
+        "n_added": 5648,
+        "pct_changed": 14.9997,
+        "expected_pct_changed": 14.9997,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 38.8591,
+          "range-front": 31.0538,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "removed_from_regime": {
+          "piedmont": 5648,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "added_in_regime": {
+          "piedmont": 0,
+          "range-front": 5648,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1946
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.6189,
+            "min": 2.8284
+          }
+        }
+      },
+      "support_percentile": {
+        "removed": 0.6033,
+        "added": 0.6394
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.094604,
+          "delta": 0.001711,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.085557
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.097433,
+          "delta": 0.001655,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.090203
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.097634,
+          "delta": -0.002175,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.085484
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.11039,
+          "delta": 0.011236,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.118225
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.077749,
+          "delta": 0.006212,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.067947
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 3,
+          "quadrant_range": [
+            -0.002175,
+            0.011236
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.003838,
+        "ci95": [
+          0.003602,
+          0.004066
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "frontp10": {
+      "value": "front+10pct",
+      "hypothesis": "lower dose of the same direction (nested inside +15)",
+      "relief_stats": {
+        "source": "piedmont",
+        "destination": "range-front",
+        "n_move": 3765,
+        "n_source_available": 20280,
+        "n_destination_free": 530891,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 20.5913,
+          "min": 14.7648
+        },
+        "source_regime_area_px": 1722457,
+        "displacement_px": {
+          "mean": 67.134,
+          "median": 57.0088,
+          "p90": 126.7588,
+          "max": 224.544
+        },
+        "source_shift_px_median": 41.7852
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 3765,
+        "n_added": 3765,
+        "pct_changed": 9.9989,
+        "expected_pct_changed": 9.9989,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 43.8599,
+          "range-front": 26.053,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "removed_from_regime": {
+          "piedmont": 3765,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "added_in_regime": {
+          "piedmont": 0,
+          "range-front": 3765,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 2039
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.6501,
+            "min": 2.8284
+          }
+        }
+      },
+      "support_percentile": {
+        "removed": 0.6126,
+        "added": 0.6474
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.093898,
+          "delta": 0.001004,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.084914
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.09595,
+          "delta": 0.000172,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.08881
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.098896,
+          "delta": -0.000913,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.086621
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.10596,
+          "delta": 0.006807,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.113261
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.076131,
+          "delta": 0.004595,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.066543
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 3,
+          "quadrant_range": [
+            -0.000913,
+            0.006807
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.004031,
+        "ci95": [
+          0.003774,
+          0.004261
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    },
+    "frontm10": {
+      "value": "front-10pct",
+      "hypothesis": "sign flip: mass off the front into the middle tercile",
+      "relief_stats": {
+        "source": "range-front",
+        "destination": "piedmont",
+        "n_move": 3765,
+        "n_source_available": 6045,
+        "n_destination_free": 1213774,
+        "selection": "deepest",
+        "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+        "source_boundary_depth_px": {
+          "median": 6.4031,
+          "min": 3.0
+        },
+        "source_regime_area_px": 688855,
+        "displacement_px": {
+          "mean": 13.0258,
+          "median": 11.1803,
+          "p90": 23.0217,
+          "max": 44.2832
+        },
+        "source_shift_px_median": 9.2195
+      },
+      "diff": {
+        "n_parent": 37654,
+        "n_child": 37654,
+        "count_fixed": true,
+        "n_removed": 3765,
+        "n_added": 3765,
+        "pct_changed": 9.9989,
+        "expected_pct_changed": 9.9989,
+        "regime_share_parent_pct": {
+          "piedmont": 53.8588,
+          "range-front": 16.0541,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "regime_share_child_pct": {
+          "piedmont": 63.8578,
+          "range-front": 6.0551,
+          "basin": 5.3487,
+          "range-interior": 24.7384
+        },
+        "removed_from_regime": {
+          "piedmont": 0,
+          "range-front": 3765,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "added_in_regime": {
+          "piedmont": 3765,
+          "range-front": 0,
+          "basin": 0,
+          "range-interior": 0
+        },
+        "min_catalogue_px_child": 2.236068,
+        "dots_in_2_3px_of_catalogue": {
+          "parent": 2171,
+          "child": 1925
+        },
+        "nn_dist_px": {
+          "parent": {
+            "mean": 3.7351,
+            "min": 2.8284
+          },
+          "child": {
+            "mean": 3.6549,
+            "min": 2.8284
+          }
+        }
+      },
+      "support_percentile": {
+        "removed": 0.57,
+        "added": 0.5461
+      },
+      "predicted_live_change": {
+        "all": {
+          "dti_parent": 0.092893,
+          "dti_child": 0.08404,
+          "delta": -0.008853,
+          "n_truth": 79615,
+          "n_truth_child": 79615,
+          "coverage_parent": 0.084002,
+          "coverage_child": 0.07591
+        },
+        "q1": {
+          "dti_parent": 0.095778,
+          "dti_child": 0.088976,
+          "delta": -0.006803,
+          "n_truth": 31160,
+          "n_truth_child": 31160,
+          "coverage_parent": 0.088675,
+          "coverage_child": 0.082284
+        },
+        "q2": {
+          "dti_parent": 0.099809,
+          "dti_child": 0.083828,
+          "delta": -0.015981,
+          "n_truth": 29127,
+          "n_truth_child": 29127,
+          "coverage_parent": 0.087441,
+          "coverage_child": 0.07331
+        },
+        "q3": {
+          "dti_parent": 0.099153,
+          "dti_child": 0.094148,
+          "delta": -0.005005,
+          "n_truth": 3854,
+          "n_truth_child": 3854,
+          "coverage_parent": 0.105145,
+          "coverage_child": 0.099752
+        },
+        "q4": {
+          "dti_parent": 0.071537,
+          "dti_child": 0.070601,
+          "delta": -0.000936,
+          "n_truth": 15474,
+          "n_truth_child": 15474,
+          "coverage_parent": 0.0626,
+          "coverage_child": 0.061777
+        },
+        "sign_replication": {
+          "n_quadrants": 4,
+          "n_positive": 0,
+          "quadrant_range": [
+            -0.015981,
+            -0.000936
+          ]
+        }
+      },
+      "proxy": {
+        "available": true,
+        "class_": "PROXY",
+        "n_withheld_components": 640,
+        "n_withheld_positive_pixels": 11548,
+        "n_draws": 10,
+        "mean": 0.003888,
+        "ci95": [
+          0.003672,
+          0.004078
+        ],
+        "contamination": "dot field was emitted from a catalogue-trained surface; absolute value is inflated, use only for ordering"
+      }
+    }
+  },
+  "ladder_nesting": {
+    "front5_is_prefix_of_front10": true
+  },
+  "control": {
+    "role": "displacement-matched, same regime, never written as a raster",
+    "relief_stats": {
+      "source": "piedmont",
+      "destination": "piedmont",
+      "n_move": 5648,
+      "n_source_available": 20280,
+      "n_destination_free": 1213774,
+      "selection": "nearest-boundary",
+      "dose_order": "ascending nearest-destination distance, ties by flat index",
+      "source_boundary_depth_px": {
+        "median": 7.713,
+        "min": 1.0
+      },
+      "source_regime_area_px": 1722457,
+      "displacement_px": {
+        "mean": 2.9135,
+        "median": 2.8284,
+        "p90": 2.8284,
+        "max": 9.0554
+      },
+      "source_shift_px_median": 2.8284
+    },
+    "diff": {
+      "n_parent": 37654,
+      "n_child": 37654,
+      "count_fixed": true,
+      "n_removed": 5648,
+      "n_added": 5648,
+      "pct_changed": 14.9997,
+      "expected_pct_changed": 14.9997,
+      "regime_share_parent_pct": {
+        "piedmont": 53.8588,
+        "range-front": 16.0541,
+        "basin": 5.3487,
+        "range-interior": 24.7384
+      },
+      "regime_share_child_pct": {
+        "piedmont": 53.8588,
+        "range-front": 16.0541,
+        "basin": 5.3487,
+        "range-interior": 24.7384
+      },
+      "removed_from_regime": {
+        "piedmont": 5648,
+        "range-front": 0,
+        "basin": 0,
+        "range-interior": 0
+      },
+      "added_in_regime": {
+        "piedmont": 5648,
+        "range-front": 0,
+        "basin": 0,
+        "range-interior": 0
+      },
+      "min_catalogue_px_child": 2.236068,
+      "dots_in_2_3px_of_catalogue": {
+        "parent": 2171,
+        "child": 1926
+      },
+      "nn_dist_px": {
+        "parent": {
+          "mean": 3.7351,
+          "min": 2.8284
+        },
+        "child": {
+          "mean": 3.851,
+          "min": 2.8284
+        }
+      }
+    },
+    "predicted_live_change": {
+      "dti_parent": 0.092893,
+      "dti_child": 0.09189,
+      "delta": -0.001004,
+      "n_truth": 79615,
+      "n_truth_child": 79615,
+      "coverage_parent": 0.084002,
+      "coverage_child": 0.083093
+    }
+  },
+  "instruments": {
+    "surrogate_class": "MODEL",
+    "proxy_class": "PROXY",
+    "canaries": {
+      "catalogue": {
+        "n_sampled_cells": 400000,
+        "n_positive": 4653,
+        "auc_per_feature": {
+          "relief_index": 0.5186,
+          "det_elev": 0.4808,
+          "det_elev_slope": 0.5578,
+          "tmi_hg": 0.5201
+        },
+        "max_auc": 0.5578,
+        "threshold": 0.9
+      },
+      "sgmc_extra": {
+        "n_sampled_cells": 400000,
+        "n_positive": 6123,
+        "auc_per_feature": {
+          "relief_index": 0.7281,
+          "det_elev": 0.6629,
+          "det_elev_slope": 0.7328,
+          "tmi_hg": 0.4908
+        },
+        "max_auc": 0.7328,
+        "threshold": 0.9
+      }
+    },
+    "worst_single_feature_auc": 0.7328,
+    "note": "both instruments are REPORT ONLY (brief \u00a76); the proxy is at its floor for catalogue-avoiding fields (IR-86-PRUNE-03)"
+  },
+  "gates": {
+    "format": "shared validator + shared format_report on the written bytes, both twins",
+    "zero_catalogue_mass": "asserted in memory and after re-read",
+    "count_fixed": "asserted for every variant",
+    "pct_changed_contract": "1.0-50.0% enforced",
+    "sha_novel": "checked against every sha256 in ledger/submissions.csv, data/scored_fleet and docs/downloads",
+    "parent_diff": "recorded per variant",
+    "reread_from_disk": "yes",
+    "uniqueness_thresholds": "NOT applied, by brief v2 \u00a76 (IR-86-PRUNE-01)"
+  },
+  "written": [
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f",
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e",
+    "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e"
+  ],
+  "no_slot_authorized": true,
+  "not_a_score": "Every number here is a MODEL projection or a PROXY measurement. No submission was made."
+}

@@ -105,3 +105,52 @@ Three sessions seeded `ledger/submissions.csv` independently (PR #28's builder, 
 other sessions' rows from `ledger/variants.json` + `ledger/variants_external.json`, so
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
+
+## IR-86-RELIEF-01 — the report-only instruments caught two defects in my own first build
+The first RELIEF pass built the same three doses with two faults: (a) sources were selected as the
+dots *nearest* a legal destination, which moved every dot only 3–4 px (300–400 m) — a class-label
+flip, not a change of terrain setting; and (b) eligibility was tested against the *parent* dot set
+only, so two relocated dots could be placed 1 px apart. The children therefore had minimum
+nearest-neighbour 1.0 px against the parent's 2.828 px, i.e. each variant silently contained a
+clustering edit — precisely the confound IR-86-LADDER-01 records for PR #28's refill. The parent-diff
+statistics (`nn_dist_px`) and the surrogate instrument are what exposed it: the first pass read
+−0.003 / −0.002 / −0.010, and after fixing selection ("deepest-in-regime" first) and blocking the
+spacing disc around every accepted cell, the same three doses read +0.0017 / +0.0010 / −0.0089 —
+the sign of the axis flipped because the clustering cost disappeared.
+**Decision:** the defective files were never released and never entered the ledger (their local
+rasters were deleted, `ledger/` reverted, and the build re-run once); both fixes are unit-tested
+(`tests/test_relief_axis.py::test_relocation_preserves_the_parents_min_spacing`,
+`test_deepest_selection_picks_dots_further_inside_the_regime`), and the gate now refuses a child
+whose spacing contract is broken. **Cost:** ~25 min of one session, and a rule for future axes:
+*report-only* statistics have to be read before a file is called a variant, because they are the
+only thing here that can see a self-inflicted confound.
+Related trap, same session: bands 12/19 of the pinned stack carry `-3.4028234663852886e+38`
+nodata **inside** the footprint (3,061 cells). A reader that scrubs only non-finite values lets
+those spikes dominate the standardisation, and the regime classification then puts 100 % of R0's
+dots in "basin". `src/gems86/io.read_band` is the only sanctioned reader; the driver now asserts
+`max|band| < 1e6` on the inputs it classifies with.
+
+## IR-86-RELIEF-02 — brief §4.4's ">=3 px from the catalogue" contradicts the parent's own geometry
+R0 keeps 2,171 dots at 2–3 px from a mapped fault (its rule was "off the trace, >2 px"). Brief §4.4
+demands ≥3 px for every emitted mass, but §5's axis contracts demand that a variant change *only*
+its own axis, and clearing that band **is** `(PRUNE, 3.0)` — already built, already slot-1, spent
+three times over (IR-86-PRUNE-08).
+**Decision:** the ≥3 px rule binds **newly emitted** mass — every cell any RELIEF variant inserted
+is ≥3 px from the catalogue — while the parent's inherited 2–3 px dots are left exactly as they
+are; relocation shrinks that band incidentally (2,171 → 1,925–2,039), which is reported per variant
+rather than optimised away. **Cost:** the variants are not fully §4.4-compliant, and the residual
+difference (1,925–2,039 dots) is a known, quantified gap that any reader must attribute to PRUNE,
+not RELIEF.
+
+## IR-86-RELIEF-03 — MASS is not blocked the way IR-86-PRUNE-02 says, but the recovered rank is not geology
+Brief §5 MASS allows "rebuild the ranking from the recorded recipe if it is not stored", and PR
+#28 did reconstruct one: `scripts/build_r0_prune.py::original_visit_rank` reproduces the
+deterministic FIFO-BFS visitation order of the `gems27.thinning` recipe (GEMSDOE28 94b027b) that
+produced the parent's dot set. So a "lowest-ranked 10 %" cut is buildable here today.
+**Decision:** not built. That rank is *traversal order over connected ridge pixels*, explicitly
+content-blind — the same script says so — so a MASS drop by it measures "cut the tail of a
+breadth-first scan", not "cut the least-probable dots", and a live result would be uninterpretable
+in exactly the way the ledger's mass-versus-field confound already is (brief §3). **Cost:** MASS
+stays unbuilt until either the parent's *probability* field is recovered (H19-5 is pinned in the
+manifest but its values, not just its dot mask, would be needed) or a session is explicitly
+authorised to define the ranking itself and say so on the card.

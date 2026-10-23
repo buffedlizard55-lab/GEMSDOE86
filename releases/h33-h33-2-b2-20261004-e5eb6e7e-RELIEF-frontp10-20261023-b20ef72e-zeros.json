@@ -1,0 +1,295 @@
+{
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "RELIEF",
+  "value": "front+10pct",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 9.9989,
+  "dot_digest": "fda23eb1206045abf04990d332d22280eef705c957ee75081191e94f828b22ca",
+  "regime_census": {
+    "piedmont": {
+      "area_px": 1722457,
+      "area_share_of_footprint": 0.333333,
+      "dots": 20280,
+      "dot_share_pct": 53.8588,
+      "dots_per_Mpx": 11773.9,
+      "eligible_free_cells": 1213774,
+      "median_dot_catalogue_px": 17.72
+    },
+    "range-front": {
+      "area_px": 688855,
+      "area_share_of_footprint": 0.133309,
+      "dots": 6045,
+      "dot_share_pct": 16.0541,
+      "dots_per_Mpx": 8775.4,
+      "eligible_free_cells": 530891,
+      "median_dot_catalogue_px": 18.111
+    },
+    "basin": {
+      "area_px": 1722458,
+      "area_share_of_footprint": 0.333333,
+      "dots": 2014,
+      "dot_share_pct": 5.3487,
+      "dots_per_Mpx": 1169.3,
+      "eligible_free_cells": 1585139,
+      "median_dot_catalogue_px": 23.738
+    },
+    "range-interior": {
+      "area_px": 1033603,
+      "area_share_of_footprint": 0.200025,
+      "dots": 9315,
+      "dot_share_pct": 24.7384,
+      "dots_per_Mpx": 9012.2,
+      "eligible_free_cells": 806221,
+      "median_dot_catalogue_px": 24.207
+    }
+  },
+  "regime_cuts": {
+    "quantile_lower": -1.280323115639509,
+    "quantile_upper": 0.5836247567559614,
+    "front_proximity_px": 50,
+    "smooth_window_px": 31,
+    "area_px": {
+      "piedmont": 1722457,
+      "range-front": 688855,
+      "basin": 1722458,
+      "range-interior": 1033603
+    }
+  },
+  "relief_stats": {
+    "source": "piedmont",
+    "destination": "range-front",
+    "n_move": 3765,
+    "n_source_available": 20280,
+    "n_destination_free": 530891,
+    "selection": "deepest",
+    "dose_order": "descending distance of the source dot to its own regime boundary, ties by flat index",
+    "source_boundary_depth_px": {
+      "median": 20.5913,
+      "min": 14.7648
+    },
+    "source_regime_area_px": 1722457,
+    "displacement_px": {
+      "mean": 67.134,
+      "median": 57.0088,
+      "p90": 126.7588,
+      "max": 224.544
+    },
+    "source_shift_px_median": 41.7852
+  },
+  "diff": {
+    "n_parent": 37654,
+    "n_child": 37654,
+    "count_fixed": true,
+    "n_removed": 3765,
+    "n_added": 3765,
+    "pct_changed": 9.9989,
+    "expected_pct_changed": 9.9989,
+    "regime_share_parent_pct": {
+      "piedmont": 53.8588,
+      "range-front": 16.0541,
+      "basin": 5.3487,
+      "range-interior": 24.7384
+    },
+    "regime_share_child_pct": {
+      "piedmont": 43.8599,
+      "range-front": 26.053,
+      "basin": 5.3487,
+      "range-interior": 24.7384
+    },
+    "removed_from_regime": {
+      "piedmont": 3765,
+      "range-front": 0,
+      "basin": 0,
+      "range-interior": 0
+    },
+    "added_in_regime": {
+      "piedmont": 0,
+      "range-front": 3765,
+      "basin": 0,
+      "range-interior": 0
+    },
+    "min_catalogue_px_child": 2.236068,
+    "dots_in_2_3px_of_catalogue": {
+      "parent": 2171,
+      "child": 2039
+    },
+    "nn_dist_px": {
+      "parent": {
+        "mean": 3.7351,
+        "min": 2.8284
+      },
+      "child": {
+        "mean": 3.6501,
+        "min": 2.8284
+      }
+    }
+  },
+  "support_percentile": {
+    "removed": 0.6126,
+    "added": 0.6474
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e-zeros.tif",
+    "sha256": "b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad",
+    "bytes": 215691,
+    "primary_for_upload": true,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e-zeros.tif",
+      "bytes": 215691,
+      "sha256": "b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e.tif",
+    "mode": "nan",
+    "sha256": "17588fe574701c788540f5d28f7d7b380279e15c615986b848f300acc15a2ab4",
+    "bytes": 352005,
+    "in_footprint_checks_pass": true,
+    "failed_checks": [],
+    "policy_checks_excluded": [
+      "no_nan_anywhere",
+      "outside_footprint_zero"
+    ],
+    "policy_note": "brief v2 \u00a76 form; repo policy prefers -zeros (IR-86-PRUNE-07)"
+  },
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e",
+  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF front+10pct: 3765 dots moved piedmont->range-front, count fixed; pred +0.001 MODEL",
+  "predicted_live_change": "+0.0010 (quadrant range -0.0009..+0.0068; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "provenance": {
+    "input_pins": {
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/existing_faults.tif"
+      },
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/sample_submission.tif"
+      },
+      "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin_source": "data/restore_receipt.json",
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      },
+      "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin": null,
+        "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "matches_expected": true
+      }
+    },
+    "manifest_pins": {
+      "training_features": {
+        "path": "data/bridge/training_features.tif",
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "bytes": 418912844,
+        "verified": true,
+        "organizer_authenticated": false,
+        "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; 19 float32 bands, nodata -3.4028234663852886e+38"
+      },
+      "existing_faults": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "verified": true,
+        "organizer_authenticated": false,
+        "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated (byte-identical to labels.tif)"
+      },
+      "sample_submission": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "verified": true,
+        "organizer_authenticated": false,
+        "provenance": "owner-supplied mirror of a DrivenData competition file (login-walled at https://www.drivendata.org/competitions/306/competition-doe-gems/data/); integrity-pinned, NOT organizer-authenticated; used ONLY as the grid/footprint template (its 60,988 pixels equal to 1 sit on the labelled faults, unlike the page's 'total fault absence' wording)"
+      },
+      "ext_derived_sgmc_faults_100m_u8": {
+        "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "verified": true,
+        "organizer_authenticated": false,
+        "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+    },
+    "git_sha": "6c27868c8348fd2f58712c3379dfd7b1ae2b6b4a"
+  },
+  "generated_utc": "2026-10-23T16:11:20Z"
+}
