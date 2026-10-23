@@ -69,6 +69,15 @@ already in the ledger.
   two-sided metric. *Confounder:* proxy-truth shift; *falsifier:* no replicated positive sign on
   untouched spatial folds.
 
+## Collision to resolve first (IR-86-SNAP-06)
+
+A second SNAP family is already on `main` (PR #33: radii 1 / 2 / 2 px-gravity, 96.9–99.8 % of dot
+cells changed, predicted −0.004 / −0.006 / −0.004). This branch's gated family moves 7.7–34 % of
+dots. They agree that SNAP cannot be distinguished from chance, but only **one** implementation can
+own `src/gems86/snap.py`, and PR #35 conflicts in 12 files. **No SNAP slot should be spent until the
+human picks a family**; if both are kept, slot 3 becomes "the better SNAP of the six", not "the
+better of two".
+
 ## Human inputs still missing
 
 `TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any submission-page

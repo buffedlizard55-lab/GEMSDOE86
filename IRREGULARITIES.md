@@ -154,3 +154,32 @@ shape, not by the dots. **Decision:** the 0.51–0.59 band is treated as **unusa
 the human supplies the definition; CONCENTRATION's next-session gate must therefore be a *relative*
 CV change with the block definition frozen in the script, not an absolute attempt to hit 0.55.
 **Cost:** one of the few quantitative targets in the brief is unavailable.
+
+## IR-86-SNAP-06 — two SNAP families were built the same day by two sessions
+While this branch was open, PR #33 (`arena/7cf7f98a`) merged a **different SNAP design** to `main`:
+`SNAP-r1p000`, `SNAP-r2p000`, `SNAP-r2p000-grav` (values = the movement radius), 37,654 dots each,
+96.9 / 98.4 / 99.8 % of dot cells changed, predicted **−0.004 / −0.006 / −0.004 MODEL**. This branch
+builds `SNAP-tmihg`, `SNAP-gravhg`, `SNAP-combo` (values = the edge surface, with a preregistered
+crest ≥ 0.75 / gain > 0.02 gate), 68.0 / 15.5 / 46.6 % of cells changed, predicted
+**−0.006 / −0.002 / −0.004 MODEL**. The two families agree on the conclusion (no variant is predicted
+to beat R0; both found the edge indistinguishable from chance) and on the mechanism, but they are
+different experiments: theirs moves essentially the whole field (the ungated form this session
+measured at 97–99 % moved, IR-86-SNAP-02), mine moves 7.7–34 % of dots.
+
+The two branches also claim the same two file paths — `src/gems86/snap.py` and
+`tests/test_snap_axis.py` — so a merge conflicts in **12 files** (`.gitignore`, `AI_USE.md`,
+`IRREGULARITIES.md`, `README.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`, `ledger/submissions.csv`,
+`ledger/variant-cards.md`, `ledger/variants_snap.json`, `scripts/build_ledger.py`,
+`src/gems86/snap.py`, `tests/test_snap_axis.py`). Their branch also modified
+`tests/test_prune_ladder.py` and `scripts/build_ledger.py` in ways that overlap this branch's
+single-line additions.
+
+**Decision:** PR #35 is left **OPEN and unmerged**. brief v2 §7 permits a merge only with green CI
+*and* no conflicts, and the conflict here is a design choice, not a merge artefact: two SNAP
+implementations cannot both own `src/gems86/snap.py`. No `(parent, axis, value)` pair repeats
+across the families (`1`, `2`, `2-grav` vs `tmihg`, `gravhg`, `combo`), so exact+pair dedupe does not
+collapse them; the ledger now carries six SNAP rows and the human must choose.
+**Cost / what the human must decide:** keep one family (recommended: the gated one, since the
+ungated form is a near-total relocation measured this session, and its files imply 96–99.8 % of dot
+cells change) — or keep both and merge carefully with this module renamed (e.g.
+`src/gems86/snap_gated.py`). No slot should be spent on any SNAP file until that choice is made.
