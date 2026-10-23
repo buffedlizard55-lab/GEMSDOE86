@@ -160,6 +160,51 @@ the data-use decision on the tracked competition rasters (IR-86-PRUNE-04), and t
 
 ---
 
+## Session `arena/95e0ad6b-gemsdoe86` (2026-10-23, PR #37) — CONCENTRATION session
+
+Added on merge; the sections above are the earlier sessions' disclosures and stand unchanged.
+
+**Axis set assigned by the human:** PRUNE + CONCENTRATION + SNAP, with TOP_PUBLIC recorded as
+0.3195 (undated CLAIM from `PROMPT.md`, at the human's instruction) and 3/3 slots left. The human
+also scoped the data: restore the external GeoDAWN/DEM mirror set (~100 MB) but **not** the
+419 MB feature stack. That single decision is why this session ran no holdout PROXY, no leakage
+canary and no SGMC control — all three are recorded **NOT RUN**, never as passes.
+
+**What the agent wrote:** `src/gems86_axis/` (the `prune` / `concentration` / `snap` builders, the
+km-block prior and density measures, the MUST-pass gates, the dual-encoding writer);
+`scripts/build_axis_variants.py` (pin verification → build → write both encodings → re-run every
+gate from the file re-read on disk → `evidence/axis_variants.json`);
+`scripts/restore_axis_inputs.py` (SHA-256-verified mirror restore into the gitignored `.cache/`);
+`scripts/emit_axis_variant_entries.py` (this session's entries into the canonical ledger schema);
+`tests/test_axis_variants.py` and `tests/test_axis_releases.py`;
+`research/AXIS_MECHANISM_CARDS.md`; the `IR-86-CONC-01…04` entries above.
+
+**What the human decided:** the axis set, TOP_PUBLIC, the slot count, and the data scope. Nothing
+was submitted; promotion to a weekly slot stays the human's step from their own account.
+
+**Outcome of the merge:** `(PRUNE, collar3px)` and `(SNAP, 2px)` collided with keys parallel
+sessions had already built, so both are `BUILT-DUPLICATE` and not slot candidates
+(IR-86-CONC-01). The session's contribution is `(CONCENTRATION, b1km-move15)`.
+
+**Reproducibility.** The builders use no RNG and break every tie by `(row, col)`, so re-running
+reproduces the same dot sets and tokens (`e4027684`, `2b883f2d`, `6ec42a92`); PRUNE and SNAP were
+each rebuilt twice during the session after unrelated code changes and returned identical tokens.
+
+```
+.venv/bin/python scripts/restore_axis_inputs.py --ids ext_geodawn_extensions_u8 \
+    ext_geodawn_rad_u8 ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 \
+    ext_geodawn_extensions_json ext_geodawn_rad_json ext_derived_sgmc_faults_100m_u8 \
+    scored_h19_5 scored_d28_unscored
+.venv/bin/python scripts/build_axis_variants.py
+.venv/bin/python scripts/emit_axis_variant_entries.py
+.venv/bin/python scripts/build_ledger.py
+.venv/bin/python -m pytest tests/test_axis_variants.py tests/test_axis_releases.py -q
+```
+
+**Network use.** Only `gh api` / `api.github.com` blob fetches of owner-published mirrors and the
+PyPI install of `requirements-lock.txt`. No drivendata.org or dropbox.com access, no credentials
+read, printed or stored, and no code that logs in, scrapes a leaderboard or submits.
+
 ## Addendum — SNAP gain-gated build (branch `arena/f863bee8-gemsdoe86`, PR #32)
 
 **AI wrote:** `src/gems86/snap_gated.py`, `scripts/build_r0_snap.py`,

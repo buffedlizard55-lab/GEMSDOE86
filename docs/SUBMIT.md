@@ -150,6 +150,40 @@ must not be uploaded**: the (R0, SNAP) pair was already spent by PR #31, and bot
 negative (IR-86-SNAP-04). They exist as corroboration and as the record behind IR-86-SNAP-06 (the
 proxy is catalogue-collar recovery). Ledger status: `BUILT-DUPLICATE`.
 
+---
+
+## Added by PR #37 (`arena/95e0ad6b`, CONCENTRATION session)
+
+Two of this session's three builds are **duplicates** of arms already in the ledger and must not
+be uploaded: `gems86-h33-2b2-prune3-20261023-e4027684` duplicates `(PRUNE,3)`, and
+`gems86-h33-2b2-snap2-20261023-6ec42a92` duplicates `(SNAP,2)` — an arm whose own instrument reads
+*negative* against a random-response null. Both are `BUILT-DUPLICATE` in
+`ledger/submissions.csv`; they exist for audit only.
+
+### CONCENTRATION, 1 km blocks — the one new candidate
+
+- **File:** `releases/gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif`
+  (nan-outside twin: `gems86-h33-2b2-conc15-20261023-2b883f2d.tif`)
+- **Name:** `gems86-h33-2b2-conc15-20261023-2b883f2d`
+- **Note (107 chars):**
+  `GEMSDOE86 h33-2b2 CONCENTRATION b1km-move15 | 37654 dots, 29.999% changed vs R0 | token 2b883f2d | UNSCORED`
+- **Format receipt:** PASS, re-read from disk — single band, float32, EPSG:32611, 3730×3292,
+  transform `|100, 0, 243350| |0, −100, 4508550|`, all values in [0, 1], no NaN inside the
+  footprint, 0 outside-footprint mass, **0 dots on catalogue pixels**, minimum catalogue clearance
+  2.236 px (the parent's own floor), 37,654 emitted cells.
+- **SHA-256 (zeros twin, the ledger's `sha256`):**
+  `09aaa696e1f0fce6ea010a0c125e64bf6df9a1dff18bcf547dffae94b928e6f5`
+- **SHA-256 (nan twin):** `cf54e7578a9ecd5202a02c464e1142ca911eb88039af0a9f9db5e47d8915000e`
+- **What it is:** 5,648 dots (15.00 %) moved out of the lowest-prior 1 km blocks into the
+  highest-prior fifth (10,462 blocks), count fixed at 37,654, all placements at the parent's
+  2.828 px spacing, placement geometric only. Block-density CV 0.6235 → 0.7644.
+- **Prediction:** +0.006 MODEL (+0.003…+0.010). Not a score.
+- **Where it sits in the plan:** slot **2b** in `SLOT_PLAN.md` — the move-the-mass alternative to a
+  second RELIEF rung, not a replacement for slot 1 (`PRUNE-le3p000`).
+
+Release TIFFs are gitignored (data-use terms unchecked), so they exist only in this working copy;
+the JSON receipts next to them carry the digests. Rebuild with the commands in `AI_USE.md`.
+
 ## Also not a slot candidate: the gain-gated SNAP build (2026-10-23, third session)
 
 `releases/h33-h33-2-b2-snapr2g10-20261023-8ca1d869[-zeros].tif` (37,654 dots, 17.5 % moved

@@ -248,6 +248,68 @@ attributed to mass alone. This item stays as the record that the axis was *avail
 to re-derive it a third time. **Cost:** none to this branch; the MASS files exist and are
 `-0.003 / -0.006 MODEL`.
 
+---
+
+## IR-86-CONC-01 — two sessions built (PRUNE,3) and (SNAP,2) independently; the ledger was stale at branch point
+
+**Observed.** This branch was cut at `27d915f`, before PRs #33/#34/#36 merged. Its
+`ledger/submissions.csv` therefore did not contain the parallel sessions' rows, so the brief's
+"check the ledger first" step passed locally and this session built `(PRUNE, collar3px)` and
+`(SNAP, 2px)` — keys already built on `main` as `(PRUNE,3)` (`…-prune3-…-01d57649`) and
+`(SNAP,2)` (`…-SNAP-r2p000-…-e7473403`).
+
+**Decision.** Brief §6 dedupes on repeated `(parent, axis, value)`, so both are recorded
+`BUILT-DUPLICATE` in `ledger/variants_concentration.json` and are **not** slot candidates. They
+stay on disk for audit only. The one non-colliding build is `(CONCENTRATION, b1km-move15)`, which
+was unbuilt on `main`.
+**Cost.** Two wasted builds (~400 s of compute), no slot spent.
+**Prevention.** Re-`git fetch origin main` and re-read the ledger *after* the axis is chosen and
+*before* the build, not only at session start. `tests/test_axis_releases.py::
+test_duplicate_arms_are_not_marked_built` now fails if a duplicate is ever recorded as `BUILT`.
+
+## IR-86-CONC-02 — the reported block-density CV band does not contain the incumbent
+
+**Observed.** The brief states the best files sit at block-density CV 0.51–0.59. Measured on R0
+over occupied 1 km blocks (10×10 px): **0.6235** (15,976 of 122,717 blocks occupied, mean 2.357
+dots per occupied block). The parent is outside the band it is supposed to exemplify.
+
+**Decision.** The band is treated as an unverified CLAIM, not a target and not a gate.
+CONCENTRATION was built to the brief's own definition (move 15 % from the lowest-prior blocks to
+the highest-prior ones), which moves the CV to **0.7644** — further outside. That direction is
+recorded as the axis's falsifier rather than tuned away: if the live result is ≤ 0, the band
+becomes the thing to test (spread mass until the CV lands in-band) and CONCENTRATION-as-defined
+retires. **Cost:** none; the variant is built either way.
+
+## IR-86-CONC-03 — R0's support mask is saturated at its own thinning radius
+
+**Observed.** A count-preserving PRUNE refill must find 2,171 free cells. Inside the parent's own
+H19-5 support mask (121,131 px) only **611** eligible cells region-wide sit ≥ 2.828 px from a
+retained dot.
+
+**Decision.** The refill runs in two passes: parent spacing first (475 placed), then a relaxation
+to the parent's own >2 px catalogue-clearance floor (1,696 placed), recorded as
+`refilled_at_relaxed_spacing`. The alternative — a 1,696-dot shortfall — would have turned a PRUNE
+build into an unlabelled MASS change, which is worse. Note this is the same confound PR #28
+recorded for its own `(PRUNE,3)+refill` ("PRUNE and spacing are not separable in this design");
+two sessions reached it independently. **Cost:** the PRUNE arm cannot be attributed to the collar
+alone. It is a duplicate arm here, so it costs no slot.
+
+## IR-86-CONC-04 — the parent's filename token is not a digest of the parent's bytes
+
+**Observed.** The parent's name carries `e5eb6e7e`; its SHA-256 is
+`c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`. The upstream `-zeros` and
+`-nan` twins hash to `c55bafc4…` and `baeae321…`
+(`docs/evidence/h86_wvb_data_restore.json`, GEMSDOE32 ref `780a5a53`), so no published twin of
+that file hashes to `e5eb6e7e…`. Other sessions' `h33-h33-2-b2-20261004-e5eb6e7e-…` release names
+inherit the same non-digest token.
+
+**Decision.** This session's releases are named with a deterministic **dot-set** digest
+(`grid_io.dot8`: SHA-256 over the packed bitmap plus shape), so the token is reproducible from the
+mask alone and cannot be circular with the file's own tags. The ledger records the token in
+`sha8` and the zeros twin's file digest in `sha256`, per house convention, and
+`tests/test_axis_releases.py` re-derives both from disk. **Cost:** none, but any tool that parses
+`e5eb6e7e` as a content digest is wrong.
+
 ## IR-86-SNAP-08 — brief §4.4 (>=3 px) vs the SNAP spec ("same exclusions") on R0
 The same conflict RELIEF logged as IR-86-RELIEF-02, reached independently from SNAP:
 enforcing >=3 px inside a SNAP variant re-runs PRUNE's collar. All SNAP builds keep the

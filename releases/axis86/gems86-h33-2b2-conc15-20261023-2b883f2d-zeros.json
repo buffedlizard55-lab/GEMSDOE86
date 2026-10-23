@@ -1,0 +1,106 @@
+{
+  "id": "gems86-h33-2b2-conc15-20261023-2b883f2d",
+  "parent": "h33-h33-2-b2",
+  "axis": "concentration",
+  "value": "b1km-move15",
+  "generated_utc": "2026-10-23T16:55:50Z",
+  "role": "candidate",
+  "slot_candidate": true,
+  "slot_reason": "unbuilt axis on main at merge time; the one new candidate this branch adds",
+  "n_dots": 37654,
+  "pct_changed": 29.999,
+  "dot_digest": "b5d7fa103030355bad2887c22f41119700a27d4b9762705512a57ab064ef6416",
+  "dot8": "2b883f2d",
+  "evidence_class": "MODEL",
+  "predicted_live_change": 0.006,
+  "predicted_live_range": [
+    0.003,
+    0.01
+  ],
+  "diff": {
+    "n_parent": 37654,
+    "n_candidate": 37654,
+    "retained": 32006,
+    "removed": 5648,
+    "added": 5648,
+    "pct_of_parent_changed": 29.999,
+    "pct_removed": 14.9997,
+    "pct_added": 14.9997,
+    "kept_fraction": 0.850003,
+    "jaccard": 0.739134,
+    "count_exact": true
+  },
+  "model": {
+    "evidence_class": "MODEL",
+    "algebra": "DTI = T / (0.2T + 0.2(S-M) + 0.8|G|)",
+    "caution": "no live score and no holdout PROXY was run this session; the sign rests on the mechanism card alone"
+  },
+  "rule": "geometric only: highest-prior destination block, then the largest remaining kernel gap; no pixel-scale response term",
+  "provenance": {
+    "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "git_sha": "71718fbda8b044b58e5e6df465220823848c7cc6",
+    "builder": "scripts/build_axis_variants.py",
+    "run_card": "evidence/axis_variants.json"
+  },
+  "blocks": {
+    "block_size": "1000 m (10x10 px)",
+    "moved_target": 5648,
+    "moved_placed": 5648,
+    "dest_block_frac": 0.2,
+    "dest_blocks": 10462,
+    "placement_rule": "geometric only: highest-prior destination block, then the largest remaining kernel gap; no pixel-scale response term",
+    "source_rule": "lowest-prior km blocks first, all dots in a block before the next",
+    "prior_terms": [
+      "catalogue fault-interaction density (3x3 km mean, z-scored)",
+      "mean Sobel gradient of TMI upward-continued to 150 m (z-scored)"
+    ],
+    "block_density_parent": {
+      "occupied_blocks": 15976,
+      "total_blocks": 122717,
+      "density_cv_occupied": 0.6235,
+      "count_cv_occupied": 0.6187,
+      "mean_dots_per_occupied_block": 2.3569
+    },
+    "block_density_variant": {
+      "occupied_blocks": 14339,
+      "total_blocks": 122717,
+      "density_cv_occupied": 0.7644,
+      "count_cv_occupied": 0.737,
+      "mean_dots_per_occupied_block": 2.626
+    }
+  },
+  "nan": {
+    "file": "gems86-h33-2b2-conc15-20261023-2b883f2d.tif",
+    "sha256": "cf54e7578a9ecd5202a02c464e1142ca911eb88039af0a9f9db5e47d8915000e",
+    "bytes": 365972,
+    "validator": {
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.2361,
+      "checks": {
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_nan_or_zero": true,
+        "zero_catalogue_mass": true,
+        "single_band": true
+      }
+    }
+  },
+  "zeros": {
+    "file": "gems86-h33-2b2-conc15-20261023-2b883f2d-zeros.tif",
+    "sha256": "09aaa696e1f0fce6ea010a0c125e64bf6df9a1dff18bcf547dffae94b928e6f5",
+    "bytes": 312873,
+    "validator": {
+      "all_checks_passed": true,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.2361,
+      "checks": {
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_nan_or_zero": true,
+        "zero_catalogue_mass": true,
+        "single_band": true
+      }
+    }
+  }
+}

@@ -37,3 +37,5 @@ registry/submissions/
 /releases/refill/*.zip
 /releases/mass/*.tif
 /releases/mass/*.zip
+/releases/axis86/*.tif
+/releases/axis86/*.zip
