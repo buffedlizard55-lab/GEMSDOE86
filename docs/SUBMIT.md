@@ -219,3 +219,42 @@ stack) is covered by `gates.value_gate`, as logged in `src/gems86_axis/gates.py:
 `.venv/bin/python -c "from gems86_axis import gates, grid_io; ..."` or
 `pytest tests/test_axis_releases.py -q` (it re-derives every gate from disk and fails on drift), and
 rebuild the file from `scripts/build_r0_spacing.py` to confirm the dot-set token in the name.
+
+## CONCENTRATION sign experiment — three files, none slot-approved (2026-10-23)
+
+Parent R0 `h33-h33-2-b2` (`c55bafc4…`, 37,654 dots). Each file relocates 5,648 dots (15.00 %) at
+1 km blocks, count fixed, 29.999 % of cells changed, all placements at the parent's 2.828 px floor,
+new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechanism.md`; run card
+`evidence/concentration_sign_20261023.json`. Format gate PASS on both twins of all three files
+(template validator + values + catalogue clearance + new-mass clearance + hash-newness + re-read).
+
+### `gems86-h33-2b2-concdens15-20261023-f8e7ae42` — candidate
+
+- Upload (one file only): `gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
+- SHA-256: `f8e7ae4288b5cb8fc008cfe4bc4d97e09c39655a9af44b48176f7cc3f107ec2b` (314,048 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concdens15-20261023-f8e7ae42.tif`, `dc45662372ab4b6ab0c5fda791e1d9bb3db3f3bbc75c3beea4e827a53b175d7f` (366,803 bytes)
+- Submission name (43 ch): `gems86-h33-2b2-concdens15-20261023-f8e7ae42`
+- Note (83 ch): `R0 dens15: cluster-dense 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
+- 37,654 dots, 29.999 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concdens15-20261023-f8e7ae42` (MODEL class, band crosses zero).
+
+### `gems86-h33-2b2-concrand15-20261023-fcbae067` — control
+
+- Upload (one file only): `gems86-h33-2b2-concrand15-20261023-fcbae067-zeros.tif`
+- SHA-256: `fcbae067a4f3b34732a66648f6577bd502bdd680fbdf9393320b3d893ad2701c` (313,157 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concrand15-20261023-fcbae067.tif`, `f608e4e3299ecf0a85c102816d1962f0b1e6fecee4ee23666459f6c50713f992` (366,030 bytes)
+- Submission name (43 ch): `gems86-h33-2b2-concrand15-20261023-fcbae067`
+- Note (90 ch): `R0 rand15: CONTROL random-block 15pct of dots at 1km blocks, count 37654, 29.62pct changed`
+- 37,654 dots, 29.622 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concrand15-20261023-fcbae067` (MODEL class, band crosses zero).
+
+### `gems86-h33-2b2-concspr15-20261023-6d452f96` — candidate
+
+- Upload (one file only): `gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
+- SHA-256: `6d452f96eb7910ba82f48bb3a04816b034c82d4bb3f7e82da109d7da5c55f843` (310,477 bytes)
+- Spec form (NaN outside): `gems86-h33-2b2-concspr15-20261023-6d452f96.tif`, `f72eb6a6c927dff74c882858b0f314294f9421875d4d968d8778fe1aaa4d04e3` (363,404 bytes)
+- Submission name (42 ch): `gems86-h33-2b2-concspr15-20261023-6d452f96`
+- Note (83 ch): `R0 spr15: cluster-spread 15pct of dots at 1km blocks, count 37654, 30.00pct changed`
+- 37,654 dots, 29.999 % of cells changed; gates passed: True.
+- Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).
+

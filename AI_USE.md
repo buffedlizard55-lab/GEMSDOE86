@@ -272,3 +272,19 @@ was submitted — the human submits from their own registered account, one file 
 .venv/bin/python scripts/emit_spacing_entries.py
 .venv/bin/python scripts/build_ledger.py
 ```
+
+## 2026-10-23 — CONCENTRATION sign experiment (branch `arena/c1df93fc-gemsdoe86`)
+
+* **AI wrote:** `scripts/build_concentration_sign.py` (arm builder, band-free catalogue prior,
+  five-truth-model panel, CV-vs-dose sweep, gates, receipts, ledger rows);
+  `evidence/concentration-sign-mechanism.md`; the SLOT_PLAN addendum; the README CURRENT STATE
+  block; IR-86-CONC-03/04/05; three ledger rows.
+* **AI decided (agent brief §5 delegates the axis):** that this session's axis is CONCENTRATION,
+  that its value is the *sign flip* plus a matched calibration and a random-block control, and
+  that destination blocks are restricted to blocks that already hold parent dots.
+* **AI did not decide and cannot:** which arm to submit, `TOP_PUBLIC`, the rolling-week quota, the
+  governing uniqueness rule, and the governing deadline. No submission was made; no leaderboard,
+  competition page or dropbox.com was contacted; no credentials were read, stored or printed.
+* **Human decisions preserved:** the parent R0 lineage, the 2.828 px spacing floor, the
+  pixel-exact catalogue zero-mass rule, and the standing instruction never to apply
+  overlap/rank-correlation uniqueness gates.
