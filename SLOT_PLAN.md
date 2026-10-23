@@ -171,7 +171,10 @@ separation any axis in this repo has produced. But (a) no arm approaches the 0.0
 (b) under a ±6 px translation of the truth (the 400 m flight-line uncertainty in brief §2) the
 control itself rises to +0.0033 and the separation shrinks to ~+0.0016 of the laws' +0.0049, and
 (c) 95–98 % of the coverage this axis buys is **off** the H19-5 support surface the lineage was
-thinned from (IR-86-SPACING-02), so the surrogate may be paying for area, not for faults.
+thinned from (IR-86-SPACING-02), so the surrogate may be paying for area, not for faults. The fold-fair
+hide-and-recover PROXY in the same run card reads 0.0122–0.0153 for the arms against 0.0037 for R0,
+which looks like corroboration and is not: only the arms got a fold-visible collar, so the instrument
+is measuring the absence of the collar (IR-86-SPACING-05). It orders nothing in this plan.
 
 ## Slots, revised (one entity, 3 per rolling week; slots left: UNSUPPLIED)
 
