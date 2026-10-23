@@ -5,7 +5,7 @@
 - **Parent:** `h33-h33-2-b2` (37,654 dots); R0 rebuilt byte-exactly, SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
 - **Best receipt:** none supplied. R0's **0.2778 is CLAIM**, not RECEIPT. **TOP_PUBLIC:** UNSUPPLIED (human must provide value and date); no substitute target is used.
 - **Slots:** remaining rolling-week quota **UNSUPPLIED**; 0 used here. One entity / 3 scored submissions per rolling week / one blind final choice.
-- **Built:** `h33-h33-2-b2-prune3-20261023-01d57649`, PRUNE≤3 + fixed-count refill, 37,654 dots, 11.5313% changed; format PASS, zero catalogue mass, status BUILT—not slot-approved. Prediction **−0.004 MODEL**; fold-fair catalogue PROXY Δ **−0.00428** and SGMC PROXY Δ **−0.00240**, never live scores.
+- **Built:** `h33-h33-2-b2-prune3-20261023-01d57649`, PRUNE≤3 + fixed-count refill, 37,654 dots, 11.5313% changed; format PASS, zero catalogue mass, status BUILT—not slot-approved. Prediction **−0.004 MODEL**; fold-fair catalogue PROXY Δ **−0.00428** and SGMC PROXY Δ **−0.00169**, never live scores.
 - **Next 3 slots:** (1) PRUNE3 per `docs/SUBMIT.md`; (2) MASS−10%, unbuilt; (3) MASS+10%, unbuilt and conditional. See `SLOT_PLAN.md`; missing human inputs are listed in `IRREGULARITIES.md`.
 
 ## Downloadable TIFFs exist. **No file is approved for submission.**
