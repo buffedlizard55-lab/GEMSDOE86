@@ -1,0 +1,161 @@
+[
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "cull1dot",
+    "encoding": "nan",
+    "n_dots": 34305,
+    "pct_changed": 8.8941,
+    "sha256": "b743412b38871f4dbd786515da90c51881cd2a176abaac2392b4d175e319c24f",
+    "sha8": "9bf9611c",
+    "sha256_zeros": "74b7e4bc64e9f5f91af56cd38b5a7584b978a3119130ee3b7353c9ea03bd05eb",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c.tif",
+      "releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "Pre-registered +0.0010 MODEL (band -0.0040..+0.0040; |delta|<0.01 = no single-slot evidence); post-build SGMC off-catalogue MODEL delta -0.0096 (>3px collar -0.0081; +/-6px shift mean -0.0090), 4-fold catalogue PROXY 0.00303 (95% CI [0.00239, 0.00379], n=11321). Phase 2 Track B arm (not a weekly-slot candidate unless human decides). Falsifier: Live delta <= -0.010 falsifies singleton noise-dominance and proves R0's isolated dots capture real segmented or alluvium-masked fault windows above the 0.2*DTI bar.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/ac0bd04f-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 34305,
+      "removed": 3349,
+      "added": 0,
+      "pct_of_parent_changed": 8.8941,
+      "count_exact": false,
+      "axis_note": "Delete every isolated 1-dot singleton in R0 (zero R0 neighbours within 550 m = 5.5 px); all multi-dot chains and all >= 1 km strike-consistent traces remain 100 % intact; no tie-break."
+    },
+    "model": {
+      "instrument": "USGS SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF/SPACING convention",
+      "dti": 0.083249,
+      "delta": -0.009644,
+      "delta_gt3px_collar": -0.008128,
+      "translated_mean_delta": -0.008994,
+      "quadrant_positive": "0/4",
+      "control_random1dot_delta": -0.005134,
+      "evidence_class": "MODEL"
+    },
+    "proxy": {
+      "evidence_class": "PROXY",
+      "pooled_proxy_dti": 0.003034,
+      "bootstrap_95ci": [
+        0.002395,
+        0.003785
+      ],
+      "n_withheld_catalogue_positives": 11321,
+      "tpw": 47.04,
+      "fpw": 32197.09
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "bridge1km",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 17.7777,
+    "sha256": "96d6ef0993f77d8a610dadeda9ab712814b15a50a4cf731fee9ae25f2b5346ea",
+    "sha8": "f23c9d77",
+    "sha256_zeros": "ac908de81372c08279f6688640a720f6f9898c4fbb981207ff3b5e55e4ea384c",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77.tif",
+      "releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "Pre-registered +0.0020 MODEL (band -0.0030..+0.0070; <0.01 Phase 1 floor; Phase 2 trace-completion arm); post-build SGMC off-catalogue MODEL delta -0.0043 (>3px collar -0.0017; +/-6px shift mean -0.0036), 4-fold catalogue PROXY 0.00291 (95% CI [0.00230, 0.00364], n=11321). Phase 2 Track B arm (not a weekly-slot candidate unless human decides). Falsifier: Live delta <= -0.010, or live delta worse than cull1dot on the identical singleton pool, falsifies >= 1 km trace bridging/tip-extension and shows relocated mass walked onto linear volcanic/shoreline/erosional mimics.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/ac0bd04f-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "removed": 3347,
+      "added": 3347,
+      "pct_of_parent_changed": 17.7777,
+      "count_exact": true,
+      "axis_note": "Count-fixed reallocation of R0's isolated 1-dot singletons into internal >300 m kernel blind-spot midpoints first, then collinear 320 m/640 m tip extensions of R0's >= 1 km strike-consistent traces; spacing >= 2.8284 px and catalogue clearance > 3.0 px held."
+    },
+    "model": {
+      "instrument": "USGS SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF/SPACING convention",
+      "dti": 0.088601,
+      "delta": -0.004292,
+      "delta_gt3px_collar": -0.001747,
+      "translated_mean_delta": -0.003555,
+      "quadrant_positive": "0/4",
+      "control_random1dot_delta": -0.005134,
+      "evidence_class": "MODEL"
+    },
+    "proxy": {
+      "evidence_class": "PROXY",
+      "pooled_proxy_dti": 0.002913,
+      "bootstrap_95ci": [
+        0.002296,
+        0.003641
+      ],
+      "n_withheld_catalogue_positives": 11321,
+      "tpw": 47.04,
+      "fpw": 35399.09
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  },
+  {
+    "site": "GEMSDOE86",
+    "id": "gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469",
+    "parent": "h33-h33-2-b2",
+    "axis": "trackb",
+    "value": "rendertop120",
+    "encoding": "nan",
+    "n_dots": 37654,
+    "pct_changed": 8.1957,
+    "sha256": "f1aef881445fedf7f94360fcfc4bd3ee589dd99f44c0a889ac4064562bd507a2",
+    "sha8": "79ca1469",
+    "sha256_zeros": "0cb962846977ddaae7a5b4e1f6c4b2605c64cd7e7bea856fddf3254477c8db78",
+    "files": [
+      "releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469.tif",
+      "releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469-zeros.tif"
+    ],
+    "status": "BUILT",
+    "slot_candidate": false,
+    "predicted_change": "Pre-registered -0.0005 MODEL (band -0.0050..+0.0030; Phase 1 neutral, Phase 2 geologist-legibility arm); post-build SGMC off-catalogue MODEL delta -0.0043 (>3px collar -0.0033; +/-6px shift mean -0.0039), 4-fold catalogue PROXY 0.00321 (95% CI [0.00256, 0.00392], n=11321). Phase 2 Track B arm (not a weekly-slot candidate unless human decides). Falsifier: Phase 1 live delta <= -0.010 falsifies continuous 100 m trace rendering even at a 4% mass budget; Phase 2 geologist audit rejecting > 50% of the 120 GeoJSON traces as volcanic flow margins, hogbacks, or pluvial shorelines falsifies the ranking composite.",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/arena/ac0bd04f-gemsdoe86",
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 37654,
+      "removed": 1543,
+      "added": 1543,
+      "pct_of_parent_changed": 8.1957,
+      "count_exact": true,
+      "axis_note": "Rasterise the top-120 GeoJSON >= 1 km strike-consistent traces as unbroken 8-connected 100 m polylines (every pixel > 3.0 px off catalogue), compensated 1-for-1 by removing weakest isolated speckles so total count stays fixed at 37654."
+    },
+    "model": {
+      "instrument": "USGS SGMC off-catalogue exact DTI (gems57.metric.dti_binary), RELIEF/SPACING convention",
+      "dti": 0.088558,
+      "delta": -0.004335,
+      "delta_gt3px_collar": -0.003331,
+      "translated_mean_delta": -0.003851,
+      "quadrant_positive": "0/4",
+      "control_random1dot_delta": -0.005134,
+      "evidence_class": "MODEL"
+    },
+    "proxy": {
+      "evidence_class": "PROXY",
+      "pooled_proxy_dti": 0.003213,
+      "bootstrap_95ci": [
+        0.002562,
+        0.003921
+      ],
+      "n_withheld_catalogue_positives": 11321,
+      "tpw": 51.83,
+      "fpw": 35330.47
+    },
+    "gates_passed": true,
+    "receipt_score": ""
+  }
+]

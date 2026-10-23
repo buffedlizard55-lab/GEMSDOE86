@@ -326,6 +326,65 @@ new mass ≥ 3 px off the catalogue. Cards: `evidence/concentration-sign-mechani
 - 37,654 dots, 29.999 % of cells changed; gates passed: True.
 - Prediction: see the ledger row for `gems86-h33-2b2-concspr15-20261023-6d452f96` (MODEL class, band crosses zero).
 
+## TRACKB hybrid & geologist dossier arms (built 2026-10-23, session `arena/ac0bd04f-gemsdoe86`) — Phase 2 (`slot_candidate: false` unless human decides)
+
+Parent R0 `h33-h33-2-b2` (`c55bafc4…`, 37,654 dots). Paired with local RFC 7946 GeoJSON
+`releases/trackb/gems86-h33-2b2-trackb-top120-20261023.geojson` (`sha256: 683111ac95943d25…`, 120
+`>= 1 km` traces) and tracked geologist dossier `evidence/trackb-geologist-dossier.md` + run card
+`evidence/trackb_hybrid_20261023.json`. Rebuild deterministically via `.venv/bin/python scripts/build_r0_trackb.py`.
+
+### `gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c` — Phase 2 singleton-cull arm (not slot-recommended)
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c-zeros.tif`
+- SHA-256 (`-zeros`): `74b7e4bc64e9f5f9982c0178d0e3c78223d9887837a1040b97fb9594b7d42989` (305,508 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c.tif`, `b743412b38871f4d98ba12961183457211579a0f12475fb83952efed76a9d844` (358,117 bytes)
+- Submission name (49 ch): `gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c`
+- Note (89 ch): `R0 TRACKB cull1dot: drop 3349 isolated 1-dot speckles (<550m); keep 100% >=1km traces`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, 34,305 dots (`8.8941 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-cull1dot-20261023-9bf9611c-zeros.json`).
+
+### `gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77` — Phase 2 trace gap-bridging arm (not slot-recommended)
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77-zeros.tif`
+- SHA-256 (`-zeros`): `ac908de81372c082f69cb03b4340fd9760542173712e94d9db96c3f627799686` (314,104 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77.tif`, `96d6ef0993f77d8a3f950f415599d7a89fb0706732d645df55d2ba6de59a742b` (366,789 bytes)
+- Submission name (50 ch): `gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77`
+- Note (84 ch): `R0 TRACKB bridge1km: move 3347 1-dot speckles to >=1km trace gaps/tips; S=37654`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, new mass min catalogue distance `3.1623 px > 3.0 px`, 37,654 dots (`17.7777 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-bridge1km-20261023-f23c9d77-zeros.json`).
+
+### `gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469` — Phase 2 continuous 120-trace hybrid arm
+
+- Upload (fallback zeros-outside): `releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469-zeros.tif`
+- SHA-256 (`-zeros`): `0cb962846977ddaa277007c70faaa1d8a8631094e3254a0d5c8478a35bcdfcf8` (314,019 bytes)
+- Spec form (NaN outside): `releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469.tif`, `f1aef881445fedf7c980cf926296d83534cf9c32145b78b1b12e47de87fd0241` (366,640 bytes)
+- Submission name (53 ch): `gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469`
+- Note (95 ch): `R0 TRACKB rendertop120: render 120 >=1km GeoJSON traces continuously (-1543 1-dot); S=37654`
+- Format receipt: CRS `EPSG:32611`, `3730×3292` `float32`, `[0, 1]`, 0 NaNs inside footprint, 0 catalogue dots, new mass min catalogue distance `3.1623 px > 3.0 px`, all 120 GeoJSON traces verified pixel-for-pixel, 37,654 dots (`8.1957 %` changed), disk re-read gates PASS (`releases/axis86/gems86-h33-2b2-trackb-rendertop120-20261023-79ca1469-zeros.json`).
+
+## SPACING crowded-pool candidates (built 2026-10-23, `arena/ee238b91`) — mechanism probes, predictions inside ±0.002
+
+Three arms at matched count 37,654, differing only in where ~3,050 kernel-crowded dots
+(8.1 % of R0) are re-placed. Distinct keys from the `sp-*c16` SPACING arms (IR-86-SPACING-07).
+Upload the `-zeros` twin only if the human decides to probe; none is a default bet.
+
+- **along-strike** (the only one worth a throwaway probe):
+  `releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a-zeros.tif`
+  - SHA-256: `4d631f4a9b1dcec957815e6e77025a616b929192e1ea8418ddac2c6ea7e5faf6`
+  - Submission name: `h33-h33-2-b2-20261004-e5eb6e7e-SPACING-alongstrike-20261023-4d631f4a`
+  - Note (125 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING along-strike: 3036 crowded dots re-spaced at 3.0px, count fixed; pred +0.002 MODEL`
+  - 3,036 dots moved (8.06 %), mean displacement 2.05 px, prediction **+0.002 MODEL** (−0.003…+0.006).
+- **lattice**: `…-SPACING-lattice-20261023-4551582d-zeros.tif`
+  - SHA-256: `4551582db3bb76e7fe8d521bae9b385634a31ae9b2d411e8d932a69d09d8a08e`
+  - Note (120 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING lattice: 3086 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL`
+- **poisson-disk** (the neutral arm): `…-SPACING-poissondisk-20261023-d2cf39d5-zeros.tif`
+  - SHA-256: `d2cf39d533893f4006d4e057546c22be5a988ff06d861df7fa01f88b52a276a3`
+  - Note (125 ch): `R0 h33-h33-2-b2-20261004-e5eb6e7e; SPACING poisson-disk: 3056 crowded dots re-spaced at 3.0px, count fixed; pred +0.000 MODEL`
+
+Format receipt: all three pass the shared validator and `format_report` against
+`sample_submission.tif` (EPSG:32611, 3730x3292, float32, values in [0,1], zero catalogue
+mass, new cells >= 3 px off the catalogue, parent 2.828 px spacing floor never tightened);
+each has a spec-form twin (NaN outside the footprint) and a `-zeros` twin (upload form).
+Full receipts: `releases/…-zeros.json`; cards: `evidence/spacing-crowdedpool-mechanism.md`.
+
 ## CONCENTRATION 5 km ridge & CV-band arms (built 2026-10-23, session `arena/69392a35-gemsdoe86`) — `concb5kmdown4` proposed for Slot 2; off-ridge arms retired (`IR-86-CONC-10`)
 
 Restoring all 15 SHA-256-pinned manifest inputs (`training_features.tif`, `derived_sgmc_faults_100m_u8.tif`, `H19-5`, `H19-4`, `H16-1`) showed that **every off-ridge `CONCENTRATION` build loses on SGMC**: PR #37 `conc15` reads **−0.0071 MODEL** (not `+0.006`) and breaches §4.4 (`39.8 %` at `≤ 3.0 px`); PR #44 `dens15` (**−0.0006 MODEL**) and `spr15` (**−0.0013 MODEL**) place **0.0 %** of added dots on ancestor ridges; PR #46 `b5km-move10/15/20` read **−0.0066..−0.0150 MODEL** (`0.0 %` on `H19-5`). **Do not spend weekly slots on `conc15`, `dens15`, `spr15`, or `b5km-move10/15/20`.**
@@ -342,4 +401,3 @@ All three arms below hold `n_dots = 37,654` fixed, place **100.0 %** of added do
 1. Verify local SHA-256 before opening the portal: `sha256sum releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif` must print `8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863` (or `2daf174f...` if the portal prefers NaN-outside `.tif`; upload **one**, never both).
 2. Confirm rolling-week quota has at least 1 slot remaining and record `TOP_PUBLIC` + date first.
 3. Paste the exact 62-char form name and 126-char form note above (`≤ 140` chars), submit manually, and log the live score + portal timestamp as `RECEIPT` in `ledger/submissions.csv` before any subsequent upload.
-

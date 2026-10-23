@@ -1,0 +1,37 @@
+{
+  "evidence_class": "DATA-MEASUREMENT",
+  "pin_source": "registry/data_manifest.json",
+  "organizer_authenticated": false,
+  "files": [
+    {
+      "id": "scored_h19_5",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "dest": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "scored_d28_unscored",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "dest": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "status": "fetched-verified"
+    },
+    {
+      "id": "ext_derived_sgmc_faults_100m_u8",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "remote_path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "dest": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+      "status": "fetched-verified"
+    }
+  ]
+}

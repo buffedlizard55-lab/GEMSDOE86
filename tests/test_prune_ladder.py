@@ -261,6 +261,37 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
             assert 1.0 <= pct <= 50.0
             assert receipt["trace_set"]["n_traces"] > 0
             assert receipt["evidence_class"] == "MODEL"
+        elif axis == "SPACING":
+            # SPACING relocates the kernel-crowded pool: equal deletions and
+            # insertions, the parent's count, >= 3 px catalogue clearance for every
+            # inserted cell, and no tightening of the parent's minimum dot spacing
+            # (2.828 px).  The crowded-pair break (>= 3.0 px from the cluster's kept
+            # dot) and the three destination geometries need the H19-5 field and the
+            # visit-rank reconstruction, so they are asserted by
+            # tests/test_spacing_crowdedpool.py and the builder's own gates; here we
+            # re-derive what the bytes alone can prove.
+            from scipy.spatial import cKDTree
+            removed, added = parent & ~dots, dots & ~parent
+            n_rem, n_add = int(removed.sum()), int(added.sum())
+            assert n_rem == n_add, "a SPACING variant relocates: deletions must equal insertions"
+            assert int(dots.sum()) == int(parent.sum()), "a SPACING variant must fix the count"
+            assert float(dist[added].min()) > 3.0 - 1e-9, \
+                "newly emitted mass must stay >= 3 px off the catalogue"
+            rc = np.column_stack(np.divmod(np.flatnonzero(dots.ravel()), dots.shape[1])).astype(float)
+            d2, _ = cKDTree(rc).query(rc, k=2)
+            prc = np.column_stack(np.divmod(np.flatnonzero(parent.ravel()), parent.shape[1])).astype(float)
+            pd2, _ = cKDTree(prc).query(prc, k=2)
+            assert float(d2[:, 1].min()) >= float(pd2[:, 1].min()) - 1e-9, \
+                "a SPACING variant must not tighten the parent's minimum dot spacing"
+            stats = dict(pct_changed=round(100.0 * (n_rem + n_add) / int(parent.sum()), 4))
+            assert stats["pct_changed"] == pytest.approx(
+                receipt["parent_diff"]["pct_cells_changed"], abs=1e-4)
+            movement = receipt["movement"]
+            assert receipt["n_moved"] == movement["n_moved"]
+            assert receipt["pct_changed"] == pytest.approx(movement["pct_dots_changed"], abs=1e-9)
+            assert 1.0 <= receipt["pct_changed"] <= 50.0
+            assert movement["displacement_max_px"] <= 16.0 + 16e-9
+            assert receipt["predicted_live_change"] is not None
         elif axis == "CONCENTRATION":
             # CONCENTRATION relocates across km blocks on ancestor ridges: equal
             # deletions and insertions, exact parent count, >= 3 px catalogue floor

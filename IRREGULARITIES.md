@@ -592,6 +592,95 @@ is accompanied by the occupied-block count so the two cannot be read as one vari
 a future arm that wants to test the band must place mass in *unoccupied* low-prior blocks, which is
 exactly the placement `GEMSDOE81 cont-poisson44090` scores 0.0041 with (CLAIM).
 
+## IR-86-SPACING-06 — kernel-disjoint re-spacing at matched count is locally infeasible on R0's support
+
+**Observed.** The natural strong form of this session's crowded-pool design — re-space the pool
+so *every* final pair is >= 3.0 px (the DTI kernel radius) at the parent's count 37,654 — has
+almost no legal destinations. R0 is a saturated 2.828 px packing of the H19-5 support: cells
+>= 3 px from all 37,654 dots number in the hundreds (7,024 free support cells at the parent's
+own floor before any placement), and the fallback displaced dots by kilometres (up to 3.8 km —
+the CONCENTRATION-scale confound IR-86-RELIEF-01 warns about). 64 % of the pool could not be
+placed within 24 px in the first design pass.
+**Decision.** The shipped arms break each crowded pair at >= 3.0 px from its cluster's kept dot
+(the kernel-overlap waste the axis targets) while holding the parent's own 2.828 px floor
+everywhere else, destinations <= 16 px away; pool members with no legal cell stay put and are
+counted as residual crowding (3,488-3,538 of 6,574). This also retires the KERNEL-BUDGET
+proposal in SLOT_PLAN.md as literally stated ("re-spacing at >= 3.0 px at constant count"): at
+37,654 dots the support cannot host it. Complements IR-86-SPACING-04 (the parallel session's
+1-50 % reading): that entry rules out the global form by dose, this one rules out the strong
+spacing floor by geometry. **Cost:** the arms are a partial repair (~8 % of R0's dots moved),
+so the experiment speaks about the crowded pool only; the three geometries additionally share
+~78 % of destinations (Jaccard 0.64) because legal sets are small.
+
+## IR-86-SPACING-07 — two sessions built SPACING in parallel; distinct value keys both stand
+
+**Observed.** This branch's ledger check (start of session) found no SPACING pair; PRs #44/#46
+(`arena/c1df93fc`, `arena/146307ee`) landed `sp-lattice16 / sp-pdisk16 / sp-strike16 /
+sp-random16` on main while this branch was building `lattice / poisson-disk / along-strike`.
+Both designs answer the same axis with different scopes (their dose ~36-38 % of cells, the
+"written-off mass" selection; this one ~8 % of dots, the kernel-crowded pool). The
+`(parent, axis, value)` keys differ, so brief §6's dedupe does not fire and both builds stand.
+The colliding file names were resolved without deleting either session's evidence: the later
+branch's artifacts were renamed (`evidence/spacing-crowdedpool-mechanism.md`,
+`evidence/spacing_axis_crowdedpool_20261023.json`, `tests/test_spacing_crowdedpool.py`), the
+two `ledger/variants_spacing.json` lists were concatenated, and `tests/test_prune_ladder.py`
+now carries both the TRACKB and the SPACING contract branches.
+**Decision.** No withdrawal and no BUILT-DUPLICATE status (the keys are distinct); every card
+cross-references the other session's arms so a reader cannot mistake the two designs. Slots:
+neither SPACING family is a default bet (all predictions inside +/- 0.01). **Cost:** one merge
+conflict round and a rename; the recurring rule (cf. IR-86-CONC-01) is that a ledger check at
+session start is not a reservation.
+
+## IR-86-TRACKB-05 — raw global `|∇TMI_up150|` concentrates 82 % of top-100 geologist traces in NW flood basalts
+
+**Observed.** Ranking R0's `2,801` `H19-5`-supported `>= 1 km` traces by un-normalised global
+`|∇TMI_up150|` + 3DEP scarp placed `82/100` (`82 %`) of the top traces in the NW quadrant (`47.4 %` of
+footprint, `47.9 %` of R0 dots) over high-susceptibility Miocene–Pliocene flood basalts, leaving SE/SW
+tuffs and metasediments under-represented (`1 %` in SE).
+**Decision.** Replaced raw global magnetic gradient in the trace ranking composite with 5 km (`50 px`)
+local-RMS automatic-gain-control normalisation `|∇TMI_up150| / sqrt(mean_5km(|∇TMI_up150|²) + 1e-3)`
+paired equally with 3DEP 10 m scarp, restoring footprint-matched balance across the 120 geologist
+dossier traces (`NW 63 / NE 27 / SW 13 / SE 17` = `52.5 % / 22.5 % / 10.8 % / 14.2 %`).
+**Cost:** none; raw `|∇TMI_up150|` percentile is reported alongside AGC percentile per trace so
+volcanic-margin mimics stay visible to a reviewing geologist.
+
+## IR-86-TRACKB-06 — pure trace-only rasters fail both brief §5 (`1–50 %` diff) and `NLR-RULES`'s single-final-file constraint
+
+**Observed.** Under official challenge rules (`https://docs.nlr.gov/docs/fy26osti/96647.pdf`), ONE
+blind final GeoTIFF is scored in both Phase 1 ($50k automated `DTI`) and Phase 2 ($250k expert
+geologist trace review + expanded ground truth). Emitting *only* the `2,237` connected pixels of the
+top-120 `>= 1 km` traces changes `96.31 %` of R0 (outside brief §5's `1–50 %` invariant) and collapses
+off-catalogue SGMC `MODEL` DTI from `0.092893` to `0.002429` (`Δ = −0.090464`, `−97.4 %`) because DTI
+weights recall `4:1` (`β = 0.8` vs `α = 0.2`).
+**Decision.** Kept pure-trace emission strictly as an in-memory diagnostic (`diagnostic_pure_top120_only`)
+and implemented `rendertop120` as a count-fixed (`37,654` dots, `8.1957 %` changed) hybrid that
+rasterises all 120 `>= 1 km` traces continuously at 100 m while preserving `95.9 %` of R0's background
+(`SGMC Δ = −0.004335`, inside the `0.01` live evidence floor).
+
+## IR-86-TRACKB-07 — R0's 3,349 isolated 1-dot singletons carry 4.1× the live DTI inclusion bar due to collar truncation
+
+**Observed.** Deleting R0's `3,349` isolated 1-dot singletons (`0` R0 neighbours within `550 m`,
+`cull1dot`) lowered off-catalogue SGMC `T` by `−758.25` (`0.2264 T`/dot — `12.2×` above SGMC's
+`0.2 × 0.0929 = 0.0186` isolated-dot bar and `4.1×` above R0's live `0.2 × 0.2778 = 0.0556` bar),
+giving `SGMC Δ = −0.009644`. Inspection shows `551` of those singletons sit in `(2.0, 3.0] px` where
+R0's `<= 2 px` pruning severed real fault splays into 1-dot islands, and others sample narrow bedrock
+windows across alluvial fans. Relocating them onto `>= 1 km` trace gap-bridges and collinear tips
+(`bridge1km`) recovered `+444.54 T` (`+0.005352` over `cull1dot` and `+0.000842` over random relocation;
+`Δ = −0.001747` on `> 3 px` SGMC truth).
+**Decision.** Pre-registered rules and rasters were NOT post-hoc retuned on the surrogate; all three
+`TRACKB` variants remain `slot_candidate: false`, and `SLOT_PLAN.md` logs `COLLAR-TO-TRACE` (fund trace
+bridges from `PRUNE le3p000` collar dots, conditional on a non-negative Slot 3 receipt).
+
+## IR-86-TRACKB-08 — full-footprint occupied 10 km (`100 px`) blocks match brief §4.2's `0.51–0.59` CV band across historical leaders
+
+**Observed.** Measuring occupied block-density CV across `1, 2, 5, 10 km` scales on 10 tracked
+historical scored rasters (`data/scored_fleet/`) showed that while `1 km` gives `0.6235` on R0
+(`IR-86-CONC-02/08`) and `5 km` complete blocks give `0.7442`, at **`10 km` (`100 px`, fault-system
+scale)** every top-scoring file (`0.2632–0.2778`) sits inside **`0.547–0.570`** (`R0 = 0.570`,
+`H27-4 d2.8 = 0.547`, `H19-5 = 0.575`) whereas `gems66-lidar03` (`0.1152`) sits at **`0.960`**.
+**Decision.** Logged in `SLOT_PLAN.md` as the unbuilt proposal `CONCENTRATION-10km` so any future
+scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5 km`.
+
 ## IR-86-CONC-10 — forensic audit retires all off-ridge `CONCENTRATION` slot claims (`conc15`, `dens15`, `spr15`) and resolves `IR-86-CONC-06`/`08`
 
 **Observed.** Restoring all 15 SHA-256-pinned manifest inputs (`training_features.tif`, `derived_sgmc_faults_100m_u8.tif`, `H19-5`, `H19-4`, `H16-1`) enabled direct measurement of the prior `CONCENTRATION` builds (`evidence/concentration_5km_axis_20261023.json`):
