@@ -1,0 +1,316 @@
+[
+  {
+    "id": "h33-h33-2-b2-massminus10-20261023-42b4c5c8",
+    "parent": "h33-h33-2-b2",
+    "axis": "MASS",
+    "value": "minus10pct",
+    "rule": "drop the highest-visit-rank 10% of R0 dots",
+    "n_dots": 33889,
+    "pct_changed": 9.9989,
+    "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+    "sha256_zeros": "42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779",
+    "sha8": "42b4c5c8",
+    "encoding": "nan",
+    "status": "BUILT",
+    "files": [
+      "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif",
+      "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif"
+    ],
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 33889,
+      "retained": 33889,
+      "removed": 3765,
+      "added": 0,
+      "pct_of_parent_changed": 9.9989,
+      "pct_removed": 9.999,
+      "pct_added": 0.0,
+      "kept_fraction": 0.900011
+    },
+    "validation_nan": {
+      "file": "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8.tif",
+      "bytes": 355805,
+      "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+      "mode": "nan",
+      "meta": {
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "n_dots": 33889,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "mean_catalogue_distance_px": 28.934836484791248,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+    },
+    "validation_zeros": {
+      "file": "releases/mass/h33-h33-2-b2-massminus10-20261023-42b4c5c8-zeros.tif",
+      "bytes": 312796,
+      "sha256": "42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779",
+      "mode": "zeros",
+      "meta": {
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "n_dots": 33889,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "mean_catalogue_distance_px": 28.934836484791248,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+    },
+    "gate_all_pass": true,
+    "exact_hash_duplicate": {
+      "sha256": "6614be7425dbbf00403ac8491fb38ab365d8947b26b759245f29197f5ab1abde",
+      "sha8": "6614be74",
+      "exact_hash_duplicates": [],
+      "duplicate": false
+    },
+    "proxy": {
+      "proxy_dti_mean": 0.004161621850319587,
+      "delta_vs_R0_mean": -0.00019735360774701224,
+      "delta_vs_R0_ci95": [
+        -0.00033516277495635583,
+        -5.954444053766865e-05
+      ],
+      "folds_improved": 0,
+      "draws": 6,
+      "evidence_class": "PROXY"
+    },
+    "predicted_change": "-0.003 (MODEL, band -0.012..+0.006). Dropping the traversal-tail 10% saves the false-positive mass of average ridge dots but deletes the only cover of the small late-visited southern ridges; at DTI 0.28 a dot must earn credit > 0.056 to pay, so the net is near the bar and slightly negative.",
+    "receipt_score": "",
+    "receipt_date": "",
+    "extra": {
+      "removed_spatial": {
+        "n": 3765,
+        "mean_row": 3214.7,
+        "mean_col": 1751.8,
+        "share_south_half_pct": 100.0,
+        "share_west_half_pct": 35.35
+      },
+      "added_spatial": null,
+      "nn_parent": {
+        "mean_px": 3.735,
+        "median_px": 3.0,
+        "fraction_below_2_8px": 0.0
+      },
+      "nn_candidate": {
+        "mean_px": 3.741,
+        "median_px": 3.0,
+        "fraction_below_2_8px": 0.0
+      },
+      "dropped_rank_range": [
+        108329,
+        121128
+      ]
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-massplus10-20261023-a5888761",
+    "parent": "h33-h33-2-b2",
+    "axis": "MASS",
+    "value": "plus10pct",
+    "rule": "add the lowest-visit-rank eligible H19-5 cells (footprint, d_cat > 2 px, not already dots)",
+    "n_dots": 41419,
+    "pct_changed": 9.9989,
+    "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+    "sha256_zeros": "a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481",
+    "sha8": "a5888761",
+    "encoding": "nan",
+    "status": "BUILT",
+    "files": [
+      "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif",
+      "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif"
+    ],
+    "diff": {
+      "n_parent": 37654,
+      "n_candidate": 41419,
+      "retained": 37654,
+      "removed": 0,
+      "added": 3765,
+      "pct_of_parent_changed": 9.9989,
+      "pct_removed": 0.0,
+      "pct_added": 9.999,
+      "kept_fraction": 1.0
+    },
+    "validation_nan": {
+      "file": "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761.tif",
+      "bytes": 377557,
+      "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+      "mode": "nan",
+      "meta": {
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "n_dots": 41419,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "mean_catalogue_distance_px": 28.806491282616197,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "nan_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+    },
+    "validation_zeros": {
+      "file": "releases/mass/h33-h33-2-b2-massplus10-20261023-a5888761-zeros.tif",
+      "bytes": 336360,
+      "sha256": "a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481",
+      "mode": "zeros",
+      "meta": {
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "n_dots": 41419,
+      "on_catalogue_dots": 0,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "mean_catalogue_distance_px": 28.806491282616197,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "crs_epsg_32611": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_on_catalogue": true,
+        "unit_mass_where_emitted": true,
+        "zeros_outside_footprint": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/geometry gate (brief section 6); not organizer acceptance"
+    },
+    "gate_all_pass": true,
+    "exact_hash_duplicate": {
+      "sha256": "45e8ac0aee4ca237552d6c71698b82f87698f566f03c6da7d9228917c58e8347",
+      "sha8": "45e8ac0a",
+      "exact_hash_duplicates": [],
+      "duplicate": false
+    },
+    "proxy": {
+      "proxy_dti_mean": 0.004575326602370136,
+      "delta_vs_R0_mean": 0.0002163511443035353,
+      "delta_vs_R0_ci95": [
+        7.861287305953077e-05,
+        0.0003540894155475399
+      ],
+      "folds_improved": 6,
+      "draws": 6,
+      "evidence_class": "PROXY"
+    },
+    "predicted_change": "-0.006 (MODEL, band -0.016..+0.002). The next-ranked cells were suppressed by the 2.8 px rule, so ~99% sit within one kernel radius of an existing dot: their marginal truth credit is mostly already claimed (max operator), while each still pays close to full false-positive mass.",
+    "receipt_score": "",
+    "receipt_date": "",
+    "extra": {
+      "removed_spatial": null,
+      "added_spatial": {
+        "n": 3765,
+        "mean_row": 60.5,
+        "mean_col": 1682.6,
+        "share_south_half_pct": 0.0,
+        "share_west_half_pct": 45.98
+      },
+      "nn_parent": {
+        "mean_px": 3.735,
+        "median_px": 3.0,
+        "fraction_below_2_8px": 0.0
+      },
+      "nn_candidate": {
+        "mean_px": 3.396,
+        "median_px": 3.0,
+        "fraction_below_2_8px": 0.1344
+      },
+      "added_within_2_8px_of_parent_pct": 98.59,
+      "added_min_catalogue_distance_px": 2.23606797749979
+    }
+  }
+]

@@ -69,6 +69,73 @@ measuring instrument, never a slot: it is labelled `BUILT-CONTROL` in the ledger
 
 ---
 
+# SNAP axis — 2026-10-23 (parent R0 = `h33-h33-2-b2`, 37,654 dots)
+
+All three variants move dots and nothing else: identical count, identical unit mass, identical
+catalogue exclusion (`d_cat > 2 px`, the parent's own rule), no dot created or deleted. The
+response surface is the rank-normalised weighted mean of the two pinned gradient bands
+(`tmi_hg` = band 3, `iso_grav_anom_hg` = band 18); a dot may land only on the strongest free
+cell inside its window. Evidence: `evidence/snap_axis_20261023.json`.
+
+**The instrument result that governs all three.** The response is spatially smooth (lag-1
+autocorrelation **0.978**), yet **97–99 % of R0's dots move**, i.e. the incumbent field sits
+1–2 px off the strongest potential-field gradient almost everywhere. A **null control** — the
+identical snap driven by a *random* response over the same window — moves 91 % of the dots and
+scores proxy Δ **−0.0012**; the real response scores **+0.0001**, and a σ=1 smoothing of it
+**−0.0018**, σ=2 **−0.0032**. The catalogue hide-and-recover PROXY therefore cannot tell these
+snaps apart from a random walk inside the window. Every arm's proxy lies within ±0.003 of the
+control, on an instrument whose absolute value (0.0044) is at its floor (IR-86-PRUNE-03).
+
+### 1. `SNAP ≤ 1.0 px`, mixed response (96.9 % of dots moved, mean move 1.00 px)
+- **Hypothesis.** R0's dot *positions* — not its dot *density* — are the binding error, and one
+  grid step of re-centring on the TMI/gravity edge recovers kernel credit without losing coverage.
+- **Mechanism.** DTI credits a dot with `k = max(1−d/3,0)`; a 1 px correction to a dot 1 px off
+  the trace raises `k` 0.667→1.0 and lowers `FP_w` by the same amount. The 4-neighbour window is
+  the smallest admissible perturbation, so this is the arm with the least coverage cost.
+- **Non-fault process that could mimic it.** Pixel-scale specular structure in a 400 m-spaced
+  aeromagnetic survey (flight-line corrugation) produces ridges that are *not* geology; snapping
+  to them is a random walk with extra clustering. Measured clustering cost: dots closer than
+  2 px to a neighbour 0 → **3,448**; mean nearest-neighbour 3.735 → 3.522 px.
+- **Predicted sign and size.** **−0.004** (MODEL, band −0.012…+0.004). The optimistic algebra
+  bracket (+0.000…+0.086) is reported and *not* used: the null control removes the reason to
+  believe the hit rate exceeds chance.
+- **Falsifier.** Live Δ > +0.01 with `le3p000` flat → positions were the binding error and the
+  2 px arm should confirm with a larger gain. Live within ±0.01 of the null-only expectation
+  → the axis is a no-op and no further SNAP slot is spent.
+
+### 2. `SNAP ≤ 2.0 px`, mixed response (98.4 % moved, mean 1.79 px) — the main bet
+- **Hypothesis.** The full positional uncertainty implied by the survey geometry
+  (400 m line spacing, 150–200 m terrain clearance; GeoDAWN Area 2, USGS data release) is
+  ≈1 line spacing ≈ the kernel radius, so a 2 px search window is the geologically motivated one.
+- **Mechanism.** As above, with a 12-cell window: a dot 2 px off the trace earns 0.33, centred 1.0.
+  This is the arm where the mechanism has the most room to pay.
+- **Non-fault process that could mimic it.** Speckle-chasing plus convergence: 2 px moves make
+  8,341 dots sit within 2 px of another dot (0 in R0), which raises the mutual redundancy term
+  `M` and destroys coverage without adding truth credit. Also, any edge that is a *lithological
+  contact* rather than a fault pulls dots onto itself and away from the true trace.
+- **Predicted sign and size.** **−0.006** (MODEL, band −0.020…+0.006).
+- **Falsifier.** A live gain > +0.01 here (with arm 1 positive) is real positional information;
+  a gain only in the smoothing sweep (not built as a raster) would mean coherence, not amplitude,
+  is the signal and the next slot should carry a structure-tensor response instead.
+
+### 3. `SNAP ≤ 2.0 px`, `iso_grav_anom_hg` only (99.8 % moved, mean 1.95 px)
+- **Hypothesis.** Decomposition of arm 2: if magnetic relief carries the positional information,
+  a gravity-only response must lose most of arm 2's (hypothetical) gain.
+- **Mechanism.** Isostatic gravity responds to density contrasts at greater depth and is far less
+  contaminated by flight-line corrugation than TMI; it is also the band with the higher measured
+  percentile at R0's collar (`iso_grav_anom_hg` 0.557 vs 0.514 elsewhere, PR #29's measurement).
+- **Non-fault process that could mimic it.** Basin-fill / basement contacts and isostatic
+  compensation edges, which are regional and low-frequency: they pull dots onto broad gradients
+  rather than lineaments. This arm clusters least (dots < 2 px apart 0 → 2,085).
+- **Predicted sign and size.** **−0.004** (MODEL, band −0.016…+0.006).
+- **Falsifier.** Arm 3 ≥ arm 2 by > 0.01 live: the magnetic gradient is the confounded band and
+  the next SNAP-family build should use gravity only.
+
+### Null control (never a slot, no raster)
+Random response, identical window and landing mask, seed 86: 91.3 % moved, mean 1.45 px,
+proxy Δ −0.0012 [−0.0013, −0.0011]. It exists so that any SNAP result can be read against the
+"the window itself costs coverage" baseline rather than against zero.
+
 # RELIEF axis, 2026-10-23 (this session; AXIS assigned by the human)
 
 Parent `h33-h33-2-b2` (R0, 37,654 unit dots, **0.2778 CLAIM**, rebuilt byte-exactly here:

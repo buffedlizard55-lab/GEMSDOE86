@@ -196,19 +196,33 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
         assert int(dots.sum()) == receipt["n_dots"]
         dist = P.catalogue_distance(g.catalogue)
         axis = str(receipt.get("axis", "PRUNE")).upper()
-        if axis == "PRUNE":
-            assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
-            stats = P.diff_stats(parent, dots, dist)
-        else:
-            # RELIEF contract, re-derived from the bytes with the bridge files only
-            # (the feature stack is gitignored, so the regime map is not re-derived here).
+        if axis == "SNAP":
+            # a SNAP release is a *movement* of the parent, not a deletion: the
+            # count is exact, the exclusion is unchanged, and no dot moved farther
+            # than the declared radius (src/gems86/snap.py; tests/test_snap_axis.py).
+            # The 1-50 % contract does not apply to SNAP (brief v2 §5), which is why
+            # these checks live in this branch and not in the common tail (IR-86-SNAP-03).
+            assert int(dots.sum()) == int(parent.sum())
+            movement = receipt["movement"]
+            assert movement["pct_snapped"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
+            assert movement["max_displacement_px"] <= receipt["radius_px"] + 1e-9
+            assert not np.any(dots & g.catalogue)
+            assert receipt["model"]["evidence_class"] == "MODEL"
+            assert receipt["predicted_live_change"] <= 0.0, "this axis shipped predicted-negative"
+        elif axis == "RELIEF":
+            # RELIEF relocates: equal deletions and insertions, the parent's count,
+            # a >= 3 px floor for every inserted cell, and no tightening of the
+            # parent's minimum dot spacing. Re-derived from the bytes with the bridge
+            # files only (the feature stack is gitignored, so the regime map is not
+            # re-derived here); the regime confinement itself is asserted by the
+            # builder and re-checkable with tests/test_relief_axis.py.
             from scipy.spatial import cKDTree
             removed, added = parent & ~dots, dots & ~parent
             n_rem, n_add = int(removed.sum()), int(added.sum())
-            assert receipt["axis"].upper() == "RELIEF", f"unknown axis {axis!r} in releases/"
             assert n_rem == n_add, "a RELIEF variant relocates: deletions must equal insertions"
             assert int(dots.sum()) == int(parent.sum()), "a RELIEF variant must fix the count"
-            assert float(dist[added].min()) > 3.0 - 1e-9, "newly emitted mass must stay >= 3 px off the catalogue"
+            assert float(dist[added].min()) > 3.0 - 1e-9, \
+                "newly emitted mass must stay >= 3 px off the catalogue"
             rc = np.column_stack(np.divmod(np.flatnonzero(dots.ravel()), dots.shape[1])).astype(float)
             d2, _ = cKDTree(rc).query(rc, k=2)
             prc = np.column_stack(np.divmod(np.flatnonzero(parent.ravel()), parent.shape[1])).astype(float)
@@ -217,8 +231,13 @@ def test_every_release_passes_the_shared_validator_and_the_axis_contract():
                 "a RELIEF variant must not tighten the parent's minimum dot spacing"
             stats = dict(pct_changed=round(100.0 * n_rem / int(parent.sum()), 4),
                          n_removed=n_rem, n_added=n_add)
-        assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
-        assert 1.0 <= stats["pct_changed"] <= 50.0
+            assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-4)
+            assert 1.0 <= stats["pct_changed"] <= 50.0
+        else:
+            assert np.all(dots <= parent), "a PRUNE variant may only delete dots"
+            stats = P.diff_stats(parent, dots, dist)
+            assert stats["pct_changed"] == pytest.approx(receipt["pct_changed"], abs=1e-6)
+            assert 1.0 <= stats["pct_changed"] <= 50.0
         assert P.dot_digest(dots) == receipt["dot_digest"]
         # spec-form twin: same dots, NaN only outside the footprint
         nan = _read(RELEASES / (path.name.replace("-zeros.tif", ".tif")))

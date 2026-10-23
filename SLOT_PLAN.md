@@ -1,72 +1,84 @@
-# SLOT PLAN — 2026-10-23, after the RELIEF axis (AXIS assigned by the human)
+# SLOT PLAN — 2026-10-23 (PRUNE + SNAP + MASS + RELIEF, five axes reconciled)
 
-**No automatic slot use.** One entity, ≤3 scored submissions per rolling week
-([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); `TOP_PUBLIC` and the remaining quota are
-**UNSUPPLIED** and were not guessed. A live `|Δ| < 0.01` is no evidence. R0 = `h33-h33-2-b2`
-(**0.2778 CLAIM**, no receipt anywhere in `ledger/` — 115 rows, `receipt=N` on all of them).
-2026-10-23 → 2026-12-03 is 41 days ≈ 5.9 weeks ⇒ ≈17 slots, one of which is the blind final pick.
-Deadline date is user-supplied and **UNVERIFIED** (the competition page is not fetched from here).
+**No automatic slot use.** One entity, ≤ 3 scored submissions per rolling week
+([rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)); the remaining quota and
+`TOP_PUBLIC` are **UNSUPPLIED by the human** — I did not guess them. A live `|Δ| < 0.01`
+is no evidence. R0 = `h33-h33-2-b2` (**0.2778 CLAIM**, no receipt in `ledger/`).
 
-Every number below is a **MODEL** projection on a USGS SGMC hide-and-recover surrogate
-(`evidence/relief_axis_20261023.json`), never a score. The catalogue hide-and-recover PROXY is at
-its floor for this lineage and is not in the decision path (IR-86-PRUNE-03).
+Deadline arithmetic: 2026-10-23 → **2026-12-03** is 41 days ≈ 5.9 weeks ⇒ ≈ 17 slots, one of
+which is the blind final pick. The date is user-supplied and **UNVERIFIED**.
+
+## What the three axes now say
+
+* **PRUNE** — seven gate-clean artifacts, best predicted +0.004, whole ladder inside ±0.01.
+  One slot, no more (three sessions already spent here).
+* **SNAP** — three gate-clean artifacts this session, **all predicted ≤ 0**. The instrument is
+  decisive and negative: 97–99 % of dots move, but a random-response null control scores the
+  same proxy (+0.0001 vs −0.0012) and smoothing makes it worse. Snapping re-centres the field on
+  local gradient maxima that the catalogue proxy cannot distinguish from chance, at a measured
+  coverage cost (dots < 2 px apart: 0 → 3,448 / 8,341 / 2,085). **Do not spend slot 1 on SNAP.**
+  It is worth one slot only as a deliberate probe of the unmeasurable live hypothesis: "new
+  faults are at potential-field edges rather than at catalogue-adjacent positions".
+* **CONCENTRATION / RELIEF / SPACING** — unbuilt. They need no ranking and no new data.
+  MASS is built (next paragraph).
+
+**MASS is now built (2026-10-23, this session).** The parent ranking that blocked it
+(IR-86-PRUNE-02) was rebuilt from the recorded recipe (FIFO-BFS visit order of
+`gems27.thinning`) and *validated*: greedy 2.8 px thinning in that order reproduces the
+pinned `d2.8` set exactly (44,090 dots, 0 differing cells). Two variants, each 9.9989 %
+changed, both gate-clean in `releases/mass/`: `…-massminus10-…-42b4c5c8` (33,889 dots,
+**−0.003 MODEL**) and `…-massplus10-…-a5888761` (41,419 dots, **−0.006 MODEL**). Both are
+predicted to *lose*, so MASS gets **no slot by default** — R0's 37,654 looks near a local
+mass optimum in traversal order. Cards: `evidence/mass-mechanism.md`; run card:
+`evidence/mass_axis_20261023.json`. Spend a MASS slot only if PRUNE and SNAP/RELIEF both
+come back flat and the mass question becomes the binding one; then take `massminus10`
+(its falsifier is the sharper of the two) and never both.
 
 ## Next three slots, in order
 
-| # | file (upload the `-zeros` twin) | what it is | decision rule |
+| # | file (upload the `-zeros` twin) | why this one | decision rule |
 |---|---|---|---|
-| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | 5,648 dots relocated piedmont→range-front, count fixed at 37,654, 15.0 % changed, mean displacement 6.1 km. The max dose the axis contract allows and the only RELIEF rung with a positive surrogate read (+0.0017, 3/4 quadrants). | ≥ +0.010 → the front is unsaturated: next build is RELIEF-ADD (insert, don't move) at 25–30 %. ≤ −0.005 → the front population is already covered; RELIEF closes for Phase 1. Inside ±0.01 → no conclusion, which is the expected outcome and is why slot 3 exists. |
-| 2 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest collar rung (2,171 dots deleted, 5.77 % changed, +0.004 MODEL), already built and gated by PR #29. Kept because it is a *different kind* of edit — deletion, not relocation — so its result is additive to slot 1's, not redundant. | ≥ +0.010 → PRUNE is not exhausted and the front+collar combination becomes the next file. Flat/negative → the prune lineage is finished for Phase 1 and the mass budget moves to RELIEF-ADD. |
-| 3 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e-zeros.tif` | the sign flip: 3,765 dots relocated front→piedmont, −0.0089 MODEL, sign negative in 4/4 quadrants (the only replicated sign on this axis). **Only if slots 1–2 both land inside ±0.01.** | Spend it for the *paired* read: +15 vs −10 is a 25 %-of-mass swing whose predicted separation (~0.011) is the only RELIEF comparison that can clear the evidence floor. Skip it if slot 1 already moved ≥0.01 or ≤−0.01 — then the direction is known and a third dose adds nothing. |
+| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | the deepest collar rung, unchanged from the last plan; it is the only prediction that is positive *and* has a monotone ladder behind it. Prediction **+0.004 MODEL** (−0.004…+0.013), 35,483 dots, 5.77 % removed | ≥ +0.010 → the collar is not exhausted; next week a 4 px rung. Flat or ≤ −0.010 → PRUNE is finished for Phase 1 |
+| 2 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | the only *built* positive prediction outside the collar lineage, and the only one that moves mass instead of deleting it: 5,648 dots (15.00 %) piedmont → range-front, count fixed at 37,654, mean displacement 6.1 km | ≥ +0.010 → the win is spatial allocation, not pruning: build RELIEF-ADD (same selection, count raised 43,302–49,000) and then the combination | ≤ −0.005 → sign confirmed, RELIEF closes for Phase 1 (brief §9 stop rule) | otherwise the axis is alive but below the evidence floor: do not multiply variants, spend slot 3 on the sign flip instead |
+| 2b | **CONCENTRATION on 5 km blocks** — not built yet (the slot-2 alternative if the human prefers to wait for a stronger cut) | the only remaining axis that changes *where* mass is without needing R0's ranking or a new physical field; the best files reportedly sit at block-density CV 0.51–0.59 | preregister block size, direction and CV target before writing; ≥ +0.010 → the win is spatial allocation, and the final file is a PRUNE+CONCENTRATION combination |
+| 3 | `…-RELIEF-frontm10-20261023-1b26223e-zeros.tif` **or** `…-SNAP-r2p000-…-e7473403-zeros.tif` | the RELIEF rung is the **sign flip**: paired with slot 2 it is a 25 %-of-mass swing with a predicted separation of ~0.011, the only RELIEF comparison that can clear the floor. SNAP instead if the human would rather test an unmeasured *live* hypothesis (faults at potential-field edges) than a surrogate-measured one | RELIEF pair straddles 0 (slot 2 up, slot 3 down, or the reverse) → relocation is the axis; build RELIEF-ADD, then combine with `le3p000`. Both inside ±0.010 → RELIEF closes, take SNAP next. SNAP ≥ +0.010 → positions are the binding error and SNAP becomes the main lineage |
 
-`front+10pct` (`b20ef72e`) is the nested middle rung: it is in the ledger and downloadable, but it
-is the one file here whose result is implied by the other two, so it is the designated **fallback
-substitute** if the human prefers a smaller first edit. The in-regime displacement control
-(surrogate −0.0010) was measured, not written: controls never take a slot.
+**Do not spend a slot on:** `SNAP-r1p000` or `SNAP-r2p000-grav` (same axis, weaker dose /
+single band; they are the arms that read out *why* slot 3 went the way it did);
+`…-prune4-…-de4c2a98` (−0.008) and `…-prune3r-…-8c20bd7e` (−0.003) — rehearsals, not bets;
+`…-CONTROL-massctl2171…` (a control); `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08);
+`RELIEF-frontp10` (a strict 10 % prefix of the 15 % dose, +0.0010 — the fallback, not a third bet);
+the other two MASS rungs (−0.003 / −0.006, both predicted negative and never both).
 
-**Do not spend a slot on:** `…-prune3-…-01d57649` (same `(PRUNE,3)` pair as slot 2), `…-prune4…`
-and `…-prune3r…` (rehearsals, both predicted negative), `…-PRUNE-le2p236/le2p828` (shallower
-rungs of the same ladder), and `…-prune3-…-3eb29af5` (withdrawn, IR-86-PRUNE-08).
+## Calendar to the deadline
 
-## Weeks to the deadline
-
-- **wk 1** (this week, ≤3 slots): slots 1–3 above. Nothing else — four sessions have now built
-  seven files on one parent, and each additional unsubmitted file costs review time, not feedback.
-- **wk 2**: combine or close. If either of slots 1–2 cleared +0.010, build
-  `front+15pct ∧ le3p000` as one attributable edit (both singles exist, so the combination is
-  interpretable). If both were flat, switch the week to **RELIEF-ADD** (insert 5,648–11,296 front
-  dots, count 43,302–48,950 — crossing the 44k band is itself the test) and preregister it first.
-- **wk 3–4**: one more *mechanism* axis, SNAP only if the human assigns it (its inputs —
-  `tmi_hg`, `iso_grav_anom_slope`, the pinned 3DEP scarp stack — are restored and verified here;
-  the blocker recorded in IR-86-PRUNE-05 is gone). Then re-cut the best axis at a second value.
-- **wk 5**: confirm the leader, freeze two finalists, re-run the format gates on the exact bytes to
-  be uploaded, and re-check both twins against the ledger for exact-hash repeats.
-- **wk 6** (before 2026-12-03): no experiments. The human submits the blind final pick from one
-  registered account, writes the receipt into `ledger/submissions.csv` (`receipt_score`, `date`,
-  `receipt=Y`, `evidence_class=RECEIPT`) and keeps the fallback file unreproduced.
+- **wk 1 (slot 1).** PRUNE `le3p000`. Single decisive read on the collar.
+- **wk 2.** RELIEF `frontp15` (built; upload inside 24 h of any change to the regime map, and
+  re-read the `-zeros` bytes through the validator before upload). CONCENTRATION at 5 km blocks only
+  if it is built and preregistered first.
+- **wk 3.** `RELIEF front−10pct` (paired with week 2) or SNAP `r2p000`, only if the human accepts
+  a predicted-negative probe.
+- **wk 4.** The better of CONCENTRATION / SNAP / RELIEF, re-cut at a second value on that axis.
+- **wk 5.** Combine the two axes with receipt-level effects ≥ 0.01 as **one attributable edit**.
+- **wk 6.** Confirm both finalists, re-validate both formats, choose the final file and a
+  fallback blind, never multiply accounts.
 
 ## Better axes (proposals only; not built this session)
 
-1. **RELIEF-ADD** — insert front dots instead of moving them. *Mechanism:* a max-kernel numerator
-   cannot be improved by relocating a dot that already covers its truth pixel, and relocation pays
-   a measured ~0.001 displacement cost that insertion does not. *Confounder:* mass is confounded
-   with field (brief §3); 43.3k–49.0k dots bracket the best-file band, so keep the first build at
-   the low end. *Falsifier:* no gain while `front+15pct` gains ⇒ the front is saturated, not sparse.
-2. **Corroboration-ranked insertion** — place new dots by SGMC-extra proximity *and* gradient
-   support. *Mechanism:* targets the population the metric actually pays. *Confounder:* it optimises
-   against a proxy for the label set, not the label set — the sources are undisclosed
-   ([forum 11527](https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527)),
-   and the mapping-completeness bias in relief would be baked in rather than tested.
-   *Falsifier:* a gain here with no gain from plain RELIEF-ADD means the corroboration term, not
-   relief, is doing the work — which is a Phase-2 expert-review argument, not a Phase-1 score lever.
-3. **Annulus-conditional RELIEF** (carried from the ladder plan): test the 200–300 m annulus per
-   relief tercile instead of moving whole populations. *Confounder:* relief controls both catalogue
-   completeness and lineament visibility. *Falsifier:* no consistent sign across two relief regimes
-   on untouched spatial folds ⇒ no live slot.
+- **Coherent SNAP (structure-tensor, σ = 2–3 px).** The raw gradient bands are smooth but their
+  local maxima are still not distinguishable from chance by the proxy; a coherence-weighted
+  response is the physically correct "lineament" operator. *Confounder:* coherence peaks on
+  any elongated contact. *Falsifier:* no separation from the random control in two independent
+  hidden-component draws.
+- **Exact-marginal PRUNE.** Remove dots with the most negative exact ΔDTI under the shared
+  two-sided metric. *Confounder:* proxy-truth shift. *Falsifier:* no replicated positive sign on
+  untouched spatial folds, then no live receipt.
+- **Collar-conditional CONCENTRATION.** Only reallocate mass in blocks > 3 px clear of the
+  catalogue, so the two axes do not interact. *Confounder:* relief controls both catalogue
+  completeness and lineament visibility. *Falsifier:* opposite signs in two relief regimes.
 
 ## Human inputs still missing
 
-`TOP_PUBLIC` + date · slots used in this rolling week · deadline confirmation on the competition
-page · any submission-page receipt (R0's 0.2778 included) · which fill form (`-zeros` or `-nan`)
-the portal accepted last · **authorization for any slot** — nothing here is authorised to be uploaded
-by an agent, and the agent never submits.
+`TOP_PUBLIC` + date · slots used this rolling week · deadline confirmation · any
+submission-page receipt (R0's 0.2778 included) · which fill form the portal accepted last time ·
+confirmation of the governing uniqueness rule (IR-86-PRUNE-01).

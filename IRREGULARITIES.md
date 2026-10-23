@@ -106,6 +106,49 @@ other sessions' rows from `ledger/variants.json` + `ledger/variants_external.jso
 `build_ledger.py --check` proves the file is current. The other two scripts are left untouched and
 remain valid for building rasters, not for regenerating the ledger.
 
+## IR-86-MASS-01 — the parent's ranking is a traversal, and it is geographically structured
+Brief v2 §5 (MASS) says to rebuild R0's ranking from the recorded recipe. Done and validated:
+greedy 2.8 px thinning in FIFO-BFS visit order reproduces the pinned `d2.8` set exactly
+(44,090 dots, 0 differing cells; row-major order does not). But the order is seeded
+row-major by connected component, so "lowest-ranked 10 %" is not a random or quality tail:
+the 3,765 dropped dots are **100 % in the southern half** (mean row 3,215 vs parent 1,273)
+and the 3,765 added cells are **100 % in the northern strip** (mean row 60.5), with 98.59 %
+of additions within 2.8 px of an existing dot. **Decision:** built literally as briefed,
+with the quadrant shares and redundancy measured in `evidence/mass_axis_20261023.json` and
+stated on the mechanism cards, and with both variants predicted negative so no slot is
+recommended by default. **Cost:** a MASS receipt cannot be attributed to mass alone
+(minus = mass × geography; plus = mass × kernel redundancy); it can only bracket whether
+*traversal-ranked* mass at 37,654 is near-optimal. This also narrows IR-86-PRUNE-02: a
+rebuild supplies no *quality* ranking, but the recipe's actual priority order is recoverable
+and checkable.
+## IR-86-SNAP-01 — AXIS was again unassigned; SNAP was taken from the slot plan, not from the human
+Brief v2 §1 says the AXIS is human-assigned. It arrived blank for the fourth session running.
+**Decision:** SNAP was chosen because (a) `SLOT_PLAN.md` (written by the PRUNE sessions) had
+already pre-registered "SNAP or RELIEF" as slot 2 and declared PRUNE crowded, and (b) SNAP's two
+bands restore from a verified pin, so nothing had to be guessed. No other axis was touched.
+**Cost:** if the human wanted MASS, CONCENTRATION or RELIEF, this session's three builds are off-axis.
+
+## IR-86-SNAP-02 — SNAP is a negative axis on the only instrument available
+97–99 % of R0's dots move to a stronger gradient cell, so the edit is large; but the catalogue
+hide-and-recover PROXY cannot separate any arm from a **random-response null control** (real
++0.00013 vs null −0.00120; σ=1 smoothing −0.00179, σ=2 −0.00316), and it costs coverage
+(dots with a neighbour closer than 2 px: 0 → 3,448 / 8,341 / 2,085). The response is smooth
+(lag-1 autocorrelation 0.978), so this is not speckle — the incumbent field simply is not on the
+TMI/gravity ridge, and "on the ridge" is not demonstrably "on a fault".
+**Decision:** all three variants ship as gate-clean artifacts with **negative** MODEL predictions
+and are ranked *below* the PRUNE rung in `SLOT_PLAN.md`. SNAP gets at most one slot, and only as a
+deliberate probe of the live hypothesis, never as an expected gain. **Cost:** the live hypothesis
+("new faults are at potential-field edges") is untestable locally; one slot is the only measurement.
+
+## IR-86-SNAP-03 — a SNAP variant changes ~194 % of R0's cells, which the 1–50 % rule cannot express
+A move deletes one cell and adds another, so % of parent *cells* changed is 2×% of dots moved
+(193.8 / 196.9 / 199.6 %). Brief §5 exempts SNAP from the 1–50 % contract and asks only that the
+exact percentage be recorded.
+**Decision:** the ledger's `pct_changed` column reports **% of parent dots that moved**
+(96.92 / 98.44 / 99.78 %) because a dot is the unit of mass; the cell-level figure and the
+count-preservation proof are in `ledger/variants_snap.json`. **Cost:** anyone comparing the SNAP
+rows to the PRUNE rows in that column compares two different denominators.
+
 ## IR-86-RELIEF-01 — the report-only instruments caught two defects in my own first build
 The first RELIEF pass built the same three doses with two faults: (a) sources were selected as the
 dots *nearest* a legal destination, which moved every dot only 3–4 px (300–400 m) — a class-label
@@ -142,15 +185,17 @@ rather than optimised away. **Cost:** the variants are not fully §4.4-compliant
 difference (1,925–2,039 dots) is a known, quantified gap that any reader must attribute to PRUNE,
 not RELIEF.
 
-## IR-86-RELIEF-03 — MASS is not blocked the way IR-86-PRUNE-02 says, but the recovered rank is not geology
-Brief §5 MASS allows "rebuild the ranking from the recorded recipe if it is not stored", and PR
-#28 did reconstruct one: `scripts/build_r0_prune.py::original_visit_rank` reproduces the
-deterministic FIFO-BFS visitation order of the `gems27.thinning` recipe (GEMSDOE28 94b027b) that
-produced the parent's dot set. So a "lowest-ranked 10 %" cut is buildable here today.
-**Decision:** not built. That rank is *traversal order over connected ridge pixels*, explicitly
-content-blind — the same script says so — so a MASS drop by it measures "cut the tail of a
-breadth-first scan", not "cut the least-probable dots", and a live result would be uninterpretable
-in exactly the way the ledger's mass-versus-field confound already is (brief §3). **Cost:** MASS
-stays unbuilt until either the parent's *probability* field is recovered (H19-5 is pinned in the
-manifest but its values, not just its dot mask, would be needed) or a session is explicitly
-authorised to define the ranking itself and say so on the card.
+## IR-86-RELIEF-03 — MASS: this session declined it, a concurrent session built it, and both said the same thing
+Brief v2 §5 MASS allows "rebuild the ranking from the recorded recipe if it is not stored", and PR
+#28 had reconstructed one: `scripts/build_r0_prune.py::original_visit_rank`, the deterministic
+FIFO-BFS visitation order of the `gems27.thinning` recipe. So when the human assigned RELIEF, this
+session left MASS unbuilt on the grounds that a traversal order is not a quality ranking
+(IR-86-PRUNE-02 had gone further and called MASS unavailable).
+**Update during merge:** the concurrent `arena/7cf7f98a` session *did* build MASS ±10 % and reached
+the same conclusion independently — the reconstructed order reproduces the pinned `d2.8` set
+exactly, but it is geographic, so its dropped 10 % is 100 % southern-half dots and its added 10 % is
+100 % northern-strip cells, 98.6 % of them within 2.8 px of an existing dot (IR-86-MASS-01).
+**Decision:** no conflict to resolve — the two sessions agree that a MASS receipt cannot be
+attributed to mass alone. This item stays as the record that the axis was *available*, so nobody has
+to re-derive it a third time. **Cost:** none to this branch; the MASS files exist and are
+`-0.003 / -0.006 MODEL`.
