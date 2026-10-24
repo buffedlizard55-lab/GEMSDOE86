@@ -166,5 +166,13 @@ def test_swcon_candidate_is_revoked_and_not_downloadable():
     assert not list((ROOT / "submission").glob("gems86-swcon-*"))
     submit_page = (ROOT / "docs/submit.html").read_text()
     assert "IR-86-SWCON-01" in submit_page
+    assert "IR-86-FAULTHALO-01" in submit_page
     assert "DO NOT SUBMIT" in submit_page
+    faulthalo = audit_release.strict_json(ROOT / "docs/evidence/h86-faulthalo-run-card.json")
+    assert faulthalo["verdict"] == "negative"
+    assert faulthalo["submission_ready"] is False
+    assert faulthalo["new_candidate_generated"] is False
+    assert faulthalo["ok_to_download_for_audit"] is False
+    assert not list((ROOT / "docs/downloads").glob("gems86-faulthalo-*"))
+
 
