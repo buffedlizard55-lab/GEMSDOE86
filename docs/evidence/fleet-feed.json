@@ -1,8 +1,8 @@
 {
   "schema": "gems86.fleet-feed.v1",
   "evidence_class": "REPOSITORY-METADATA",
-  "refresh_started_utc": "2026-10-24T06:17:18+00:00",
-  "refreshed_utc": "2026-10-24T06:17:37+00:00",
+  "refresh_started_utc": "2026-10-24T06:18:07+00:00",
+  "refreshed_utc": "2026-10-24T06:18:25+00:00",
   "targets_sha256": "ec96e0acb868de409844a3c99e78edfbb96362accdb9d7e76aac2b284cda185a",
   "owner_ledger_sha256": "e4ac6f1ca5de11894744ef6ffb03bfdb612e9a3cb99fefd6e749168778347724",
   "projects_requested": 88,

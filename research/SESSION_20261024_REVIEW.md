@@ -1,56 +1,90 @@
-# Session review — 2026-10-24 UTC
+# 2026-10-24 — repository review, refreshed fleet feed, and three-pass verification
 
-## Decision at a glance
+## Decision
 
-**No new submission TIFF was generated. No artifact in this repository is authorized for upload.** This is a negative result, not a claim that an experiment or candidate passed. The literal parallel-run overlap rule is unsatisfiable for every nonempty candidate under the pinned witness; bypassing it, copying a prior TIFF, or emitting an empty file merely to evade the rule would not satisfy the scientific task.
+**Negative for new submission.** No new model experiment, candidate surface, dot placement, TIFF, slot selection, or organizer submission was made. The prescribed pre-placement gate is unsatisfiable under the repository's unchanged literal overlap rule, so continuing to feature tests or placement would violate the project protocol. Existing TIFFs remain audit-only; none is approved for submission.
 
-The evidence below is local, reproducible project evidence and public GitHub metadata. It is not an organizer receipt. The public competition/leaderboard pages and authenticated account state were not queried in this session; no current competition score or quota is asserted.
+This review follows `PROMPT.md`, the full README request archive, `AGENTS.md`, and the session's parallel-run rules. The owner-provided score values (including H33 `0.2778` and the competing claimed current highs `0.3195` and `0.4413`) remain **claims**, not ORGANIZER-CONFIRMED results: no submission-page receipt or authenticated leaderboard observation was obtained here. The automatically refreshed fleet is repository metadata, not a score or raster validator.
 
-## Three-pass review
+## Pass 1 — inspect requirements and current implementation
 
-### Pass 1 — repository and prior-results review
+- Read the standing prompt, README decision, archived request, effective template pin, lane preregistration, current hypothesis register, current run card, release audit, and preflight implementation.
+- The request's asserted “single method paragraph” is not supplied as a separately unambiguous lane assignment. Existing records conflict: `registry/preregistration.json` records `RMRB-86`, while `registry/h86c_hypotheses.json` is expressly planning-only and the repository also contains later independently completed lanes. **Lane-assignment ambiguity remains an irregularity; this review does not choose a new lane or combine lanes.**
+- The mandatory shared cached feature stack is absent. Owner-mirrored competition rasters and historical registry TIFFs do not equal that cache. The cached-stack requirement therefore cannot be met by rebuilding locally.
+- The registered three-item hypothesis shortlist is retained as planning, not a newly run experiment or measured gain ranking. The ranking below is qualitative information-gain-per-cost only.
 
-- Read `PROMPT.md`, `README.md`, `AGENTS.md`, the current request archive, the H33 forensic analysis, the H86C candidate register, and the existing negative run card before taking action.
-- The H33 answer and three prospective hypotheses already exist in `README.md`, `research/H86_RESULTS.md`, and `registry/h86c_hypotheses.json`. The proposed hypotheses are planning only: cross-fault magnetic-marker translation (RTP/TMI), signed paired-throw consistency (basement depth/gravity/elevation), and watershed-crossing scarp persistence (official native-resolution DEM). They are not newly claimed discoveries or validated candidates.
-- The explanation for the H33 site's comparatively high owner-reported result is plausible metric engineering, not proof of a geological discovery: a spaced lineament surface can avoid redundant false-positive mass, while pruning close to mapped faults can spend less prediction mass on already-known traces; zero-valued outside cells also avoid out-of-range predictions. These operations can improve distance-weighted Tversky utility if retained predictions cover new truth, but pruning can remove useful coverage. The actual private competition truth is unavailable here, so the result's causal explanation and any expected improvement remain unverified.
-- The number shown by the H33 site is an **OWNER-REPORTED claim**, not ORGANIZER-CONFIRMED evidence in this checkout. The H33 upstream audit marks the file `UNSCORED` in its captured state; that does not prove a later owner-reported score false. See `research/upstream/h33-best-audit.json` and `research/H86_RESULTS.md`.
+| Rank (qualitative) | Hypothesis; exact inputs and signature | Why it could detect an unmapped fault; difference from implemented work | Main non-fault mimic | Cost / readiness |
+|---|---|---|---|---|
+| 1 | **Cross-fault magnetic marker translation (H86C-MMT):** competition RTP and TMI. Estimate stable along-line translation of transverse magnetic texture between opposite flanks using bounded phase correlation; require adjacent-window consistency and compare against zero-shift controls. | Tests displacement of image-internal markers rather than extending a known catalogue trace or rewarding another magnetic edge. The checked-in GFCO, GMC, WVB, CTHB and other lanes use edge, cross-gradient, wavenumber, contact, or catalogue-tip evidence; none is this flank-to-flank marker-translation test. | Unfaulted intrusive contact with unrelated texture, acquisition seam, or remanent-magnetization contrast. | Medium-high; **not ready** until the actual pinned shared feature stack and seam metadata are restored. No gain measured. |
+| 2 | **Signed paired-throw consistency (H86C-SPT):** competition depth-to-base surface, isostatic gravity anomaly, and detrended elevation. Test opposing flank profiles and require compatible downthrown-side polarity across independent fields. | A buried offset could survive where surface lineaments are weak. The distinct test is signed, polarity-consistent flank displacement, not another unsigned edge or cross-gradient score. | Erosional basement escarpment, basin-fill density contrast, or inversion artifact; an old buried offset may not indicate active permeability. | Medium; **not ready** until exact layer sign/datum metadata and the shared stack are authenticated. No gain measured. |
+| 3 | **Watershed-crossing scarp persistence (H86C-WCS):** native-resolution USGS 3DEP bare-earth DEM plus competition detr_elev for regional context. Require signed scarps with stable strike and down-side across independently delineated drainage divides; test against channel, shoreline, road, and fan-boundary controls. | Catchment-crossing structural persistence can extend beyond mapped traces without using catalogue distance. The repository's existing relief/scarp lanes do not condition signed steps on independently delineated watershed topology. | Paleolake shoreline, fluvial terrace, road cut, or fan boundary. | High; **not viable yet**. The competition's 1 m DEM-link CSV and required native tiles/coverage/license manifest are absent here. The official free source to check is [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) and, for competition coverage, the [competition data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/). We did not obtain the CSV or tiles, so access/coverage is not claimed. |
 
-### Pass 2 — fresh pinned-input and artifact checks
+Primary source basis already recorded in the project: [DrivenData problem and format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [DrivenData about page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [USGS basement-offset report](https://pubs.usgs.gov/of/1999/0383/), [USGS magnetic-offset report](https://pubs.usgs.gov/pp/1658/pdf/ch5.pdf), and [pinned official reference-solution source](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b). Their evidentiary scope and prior access dates are in `docs/evidence/source-review-20261023.json`; this review did not claim fresh scientific-source retrieval.
 
-- Restored the integrity-pinned `existing_faults.tif`, `sample_submission.tif`, and one historical registry witness from public GitHub using `scripts/restore_protocol_data.py --include-registry`. These are owner mirrors, **not organizer-authenticated data**. SHA-256 and byte-length checks passed; generated raster data remains ignored and is not a new output.
-- Ran `scripts/protocol_preflight.py`. **REGISTRY-MEASUREMENT:** one hash-pinned historical witness has positive support at every allowed pixel (5,106,385 allowed pixels; zero uncovered). Consequently every nonempty candidate subset has forward overlap 1.0 against this witness, above the literal 0.70 limit. This proves a gate conflict for this witness; it is not a uniqueness clearance, since the registry snapshot is incomplete.
-- Ran `scripts/audit_release.py --measure-registry`. The audit rechecked all 10 inherited TIFFs; all pass local file-format checks, but the release decision remains **DO NOT SUBMIT**. These historical artifacts are not new submissions.
-- Refreshed the GitHub project metadata feed: all 88 of 88 named repositories were snapshotted successfully. This feed is current main-branch Git metadata, not a complete historical-raster registry, current leaderboard, organizer score, or remaining submission quota.
+## Pass 2 — try the mandatory preflight and review edge cases
 
-### Pass 3 — independent consistency and release review
+The first preflight attempt failed closed because the restorable `data/sample_submission.tif` and `data/existing_faults.tif` were not present at the paths the checker requires (`ModuleNotFoundError` was first resolved by installing the committed lockfile into ignored `.venv/`). We then used the repository's pinned GitHub mirror restorer (`scripts/restore_protocol_data.py --include-registry`), which verifies object identity, SHA-256 and byte count; it explicitly marks the competition mirrors as **not organizer-authenticated**. The ignored TIFF bytes were not added to Git.
 
-- Ran `scripts/audit_downloads.py`, `scripts/check_site.py`, and `scripts/build_site.py --check`; all passed after regenerating the site from the refreshed feed and freshly measured evidence.
-- The separate SHA-256 pin for the shared template metric/writer/validator is enforced by the release audit. The actual shared cached feature stack is absent. No private replacement stack was created.
-- No method paragraph was assigned in the supplied parallel-run prompt. The H86C magnetic-marker idea is therefore still provisional, and no placement, holdout fitting, leakage canary, or final-dot check was performed.
-- **HOLDOUT-DTI:** not run; evaluator `gems57-pooled-hide-v2`; withheld-positive count and 95% CI are unavailable. The mandatory pre-placement stop precedes the experiment; no holdout number is imputed from historical runs.
-- No new TIFF exists, so candidate rank-correlation, final-dot overlap, raster SHA-256 and candidate format-validator fields are all not measured. Do not treat the witness overlap as a measurement of a nonexistent candidate.
-- No weekly slot was used. No selector was run and no portal upload was attempted.
+The successful preflight remeasured the immutable historical witness and produced `docs/evidence/protocol-preflight.json`:
 
-## Research decision and next steps
+- One SHA-pinned historical raster is part of the repository's recorded registry snapshot; its coverage is a sufficient **counterexample** to the literal support rule, not proof that the snapshot is complete.
+- Its positive support covers every allowed non-catalogue pixel. Under the current literal definition (`finite prediction > 0`), any nonempty candidate support therefore has forward three-pixel overlap `1.0`, above the protocol's `0.70` ceiling.
+- This is a pre-placement impossibility result. No candidate raster exists, so candidate rank-correlation, candidate dot overlap, leakage canaries, a candidate HOLDOUT-DTI, and candidate validator results are correctly **not measured**. A synthetic, empty, renamed, or historical TIFF would not satisfy the unique-new-candidate requirement.
+- The thresholds were not changed, continuous prior support was not privately exempted, no fork of the shared evaluator/writer was created, and no weekly slot was spent.
 
-The requested next candidates are already recorded, ranked qualitatively, with feature layers, physical signatures, non-fault mimics, repository novelty comparisons and data-readiness limits in `registry/h86c_hypotheses.json`. Their expected gains are not numeric projections. The top magnetic-marker candidate cannot be responsibly validated until the protocol has an authorized lane, an explicit resolution of the literal uniqueness contradiction, the actual shared cache, and a complete-enough registry for the requested screen. The watershed/DEM idea additionally requires official native DEM bytes and coverage; metadata alone does not establish obtainability. Do not spend a submission slot on any of these ideas before matched spatial-block validation and separate selector approval.
+## Pass 3 — refresh user-facing status and rerun verification
 
-To make progress, the project owner or governing protocol must resolve the contradiction in the overlap rule explicitly. This implementation does not weaken the thresholds, exempt a dense raster, or silently change the support definition. After an authorized protocol revision: authenticate the shared cache and registry; preregister one lane; freeze visible-only buffered whole-segment holdouts and controls; run each feature's leakage canary; then use the pinned shared evaluator and writer. Only a positive, paired spatial-block result against a rerunnable matched control can justify a later selector review.
+The feed refresher retrieved the current main-branch Git trees for **88/88 named repositories**, updated `docs/evidence/fleet-feed.json`, and the generated site was rebuilt. This is a Git metadata refresh only: it records **zero** organizer receipts, generated rasters, or slots used. It does not verify raster payloads, historical completeness, leaderboard standing, or organizer acceptance. The updated [fleet feed page](../docs/fleet.html) and machine-readable [feed record](../docs/evidence/fleet-feed.json) explicitly retain those limitations.
 
-## Evidence and source scope
+Checks run after the feed rebuild:
 
-- Current machine card: [`docs/evidence/session-20261024-run-card.json`](../docs/evidence/session-20261024-run-card.json).
-- Fresh artifact/file checks: [`docs/evidence/release-readiness.json`](../docs/evidence/release-readiness.json).
-- Fresh witness and inherited-dot measurement: [`docs/evidence/all-artifacts-registry.json`](../docs/evidence/all-artifacts-registry.json).
-- Refreshed repository metadata only: [`docs/evidence/fleet-feed.json`](../docs/evidence/fleet-feed.json).
-- Hypothesis register: [`registry/h86c_hypotheses.json`](../registry/h86c_hypotheses.json).
-- Manual review: [official DrivenData problem/format page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [competition rules](https://www.drivendata.org/competitions/306/competition-doe-gems/), [official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN metadata](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), and [USGS magnetic-offset report](https://pubs.usgs.gov/pp/1658/pdf/ch5.pdf). These links are provided for inspection; the external non-GitHub hosts were not accessed in this session.
+- `python scripts/audit_release.py --measure-registry`: PASS; the immutable witness and all 10 inherited TIFFs were remeasured. The TIFFs pass local format checks but remain **DO NOT SUBMIT**.
+- `python scripts/build_site.py --check`: PASS.
+- `python scripts/check_site.py`: PASS; links, TIFF/ZIP integrity and negative-state safety; not scientific clearance.
+- `python -m pytest -q`: **336 passed, 24 skipped, 32 subtests passed**, with 4 Rasterio pending-deprecation warnings.
+- `git diff --check`: PASS.
 
-## Limitations / irregularities
+The changed files are the refreshed metadata feed and its generated HTML views. No predictor, evaluator, template, registry threshold, submission raster, or score was changed.
 
-1. The supplied prompt names a “single method paragraph,” but no separate lane paragraph was present. No lane was guessed or run.
-2. A pinned historical raster creates a universal forward-overlap blocker under the literal rule. The accessible registry is incomplete. The valid conclusion is “cannot clear,” not “the candidate duplicates a complete registry.”
-3. Competition source rasters are owner-mirrored, hash-pinned files; they are not authenticated from DrivenData in this session. Official competition data download requires account access not available to this process.
-4. H33 and other site score figures are owner/site claims unless a submission-page receipt is captured. No receipt is present for the H33 result in this checkout.
-5. The refreshed project feed covers the named owner repositories' current Git trees, not all projects, historical rasters, organizer submissions, scores, or quota.
-6. No published TIFF is safe to submit. “Format valid” means local byte/format checks only; it is not competition acceptance or scientific promotion.
+## Interpretation and remaining blockers
+
+The H33 `0.2778` figure may be discussed only as the user's owner-reported claim. The repository's causal account is that kernel-scale thinning and catalogue-collar pruning could improve coverage efficiency by reducing redundant false-positive mass while retaining triangular-kernel coverage. This explains a plausible mechanism, **not** why that specific score occurred. It cannot distinguish geological signal from placement geometry, proxy leakage, private labels, or other submission differences without the exact submission receipt, bytes, matched evaluation and controls. The request's two different “current high” values are irreconcilable here; neither is asserted as current organizer-confirmed evidence. No evidence in this review establishes that a new strategy beats either value.
+
+Next work should be gated in this order:
+
+1. Resolve the literal-registry/uniqueness contradiction with an explicit, versioned protocol decision from the project owner/competition context. Do not implement a private dense-raster exception or silently drop registry entries.
+2. Assign exactly one method lane in unambiguous text; restore and hash-bind the actual shared feature stack and a current, accessible, representation-aware registry.
+3. Only after those gates pass, use the pinned `evaluate_holdout.py` / `submission_writer.py`, buffered whole-segment hide-and-recover, visible-only catalogue features, pixel-exact masks, pooled alpha `0.2` / beta `0.8` / 300 m triangular DTI, per-feature leakage canaries, and paired spatial-block uncertainty. Freeze the holdout best on a matched design before any separate slot-selector step.
+4. Obtain and audit official DEM tile bytes, coverage and licenses before reconsidering H86C-WCS. Never call a source viable based on a landing page alone.
+5. Obtain a submission-page receipt and authenticated quota only through the separate selector/account workflow. The current public feed is not that service.
+
+## Session run card (negative)
+
+The machine-readable card is [`docs/evidence/session-20261024-run-card.json`](../docs/evidence/session-20261024-run-card.json); the following is its human-readable summary. Values below describe this review, not an invented candidate score.
+
+```json
+{
+  "hypothesis": "No candidate tested; top planning hypothesis is H86C-MMT, blocked before experimentation by the literal registry-overlap stop and missing shared cache.",
+  "mechanism": "Proposed only: detect fault-related along-line translation of transverse RTP/TMI texture across opposite flanks; no surface or candidate was generated.",
+  "named_non_fault_mimic": "Unfaulted intrusive contacts, acquisition seams, and remanent-magnetization changes.",
+  "holdout_dti": null,
+  "holdout_dti_label": "Not measured; no candidate or holdout run. No evaluator version, withheld-positive count, or CI is applicable.",
+  "correlation_overlap_vs_registry": {
+    "candidate_rank_correlation": null,
+    "candidate_dot_overlap": null,
+    "preplacement_witness_result": "The pinned historical witness has 100% allowed-domain positive support under the unchanged literal support rule, so every nonempty candidate would exceed the 70% overlap limit.",
+    "registry_completeness": "Not established; one witness is a counterexample only."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_exists": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate TIFF was written; format validation cannot authorize submission."
+  },
+  "submission_name": null,
+  "submission_note": "No candidate generated; no TIFF in this review is approved for submission.",
+  "verdict": "negative"
+}
+```
