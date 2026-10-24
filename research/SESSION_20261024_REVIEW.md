@@ -78,3 +78,14 @@ Final full suite: **425 passed, 24 skipped, 32 subtests passed**, with four Rast
 5. Verify PR checks, merge and Pages deployment. A local HTML build is not proof of a live site update.
 
 **Own the outcome:** the requested unique validated submission has not been delivered. This review improves the enforceability and auditability of the stop rather than hiding that result behind an attractive download button.
+
+
+## Concurrent-main integration
+
+While PR #59 checks were queued, main merged PR #57's separate fleet review.
+Its refreshed 88-project metadata feed is retained. The incoming same-date review
+is preserved without editing as `SESSION_20261024_FEED_REVIEW.md`; this builder
+safety review keeps its own file. Generated homepage content was rebuilt from the
+merged feed and current hash-bound negative audit, not resolved by choosing stale
+HTML. No predictor, raster, score or scientific result was introduced by resolving
+these documentation/generated-view conflicts.

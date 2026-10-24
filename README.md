@@ -58,7 +58,11 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 - **[Machine-readable all-file validator](docs/evidence/release-readiness.json)** · [all final-dot registry measurements](docs/evidence/all-artifacts-registry.json) · [this session's negative JSON card](docs/evidence/session-20261023-run-card.json).
 - **[Full named-project feed](docs/fleet.html)** · [official sources and observation limits](docs/sources.html) · [three ranked, untested hypotheses](registry/h86c_hypotheses.json).
 
-### Outcome of the current review
+### Latest review — 2026-10-24
+
+The 88-project repository-metadata feed was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, verified no new raster bytes, generated no new TIFF and used no submission slot. The mandatory preflight again stops before candidate construction because one pinned historical registry witness covers the entire allowed non-catalogue support under the unchanged literal rule. Full three-pass inspection, ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
+
+## Outcome of the current review
 
 The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 10 final rasters (including concurrent `H86C-KSLB` and `H86D-CTHB`) were remeasured and fail that literal gate. No exception was granted, and no weekly slot was spent.
 
