@@ -952,3 +952,24 @@ binary fleet rasters) and the literal dense-witness reading (1.0, unsatisfiable)
 threshold was changed and no slot was authorized; verdict remains DO NOT SUBMIT on the
 independent holdout gate. Resolving this requires an explicit revised protocol from the
 owner, not a private exemption.
+
+
+## IR-86-REGISTRY-BINDING-4D79B443 — 2026-10-24
+
+Independent review found false-clearance paths in the newer H86E orchestration:
+missing registry files were omitted from expected counts, surface/final booleans
+ignored incomplete scans, and final arrays were silently binarized/masked before
+checking. PA-86-02 did not load its candidate argument, did not require complete
+bound evidence, and allowed arbitrary self exclusion with a truncated correlation
+list. The RIDF builder placed dots before checking its surface; its writer executed
+on import without the literal preflight. Fixed in the orchestration, not a private
+shared-tool fork. New v2 evidence is source/decoded/index-bound and retains all rows;
+negative checks exit nonzero. Legacy reports stay archived, never upgraded in place.
+Surface/dot order and literal gated serialization now have regression coverage.
+
+Fresh audit: 13 published research TIFFs pass local format and fail literal overlap;
+no new TIFF, model experiment or slot. See
+`research/SESSION_20261024_4D79B443.md` and the current machine-readable audit card.
+The user generation mandate remains unmet; inherited PA interpretations do not
+establish that the stated literal overlap gate passed. The missing lane/cache and
+non-comparable holdout histories remain blockers.

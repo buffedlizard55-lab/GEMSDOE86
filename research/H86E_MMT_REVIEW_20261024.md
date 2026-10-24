@@ -41,7 +41,7 @@ The raw checker also reports the literal full-support witness separately. Its 10
 - `LEAKAGE-CANARY` — maximum discriminative AUC across the five fields **0.5321255**, below the hard `0.90` leakage stop.
 - `REGISTRY-MEASUREMENT` — 685 inventory entries were enumerated; 2 were incompatible with the pinned submission grid/CRS. Final like-for-like comparison covered 629 dot fields and 54 continuous surfaces. `PA-86-02` found 6 informative chance-adjusted dot-field firings; its gate is false. Rank correlation/overlap findings and full-support firings are retained in the JSON receipts.
 - `LOCAL-FORMAT-VALIDATION` — single-band float32, 3730×3292, EPSG:32611, exact sample transform, finite values in [0,1], zero outside the footprint, zero mapped-catalogue positives, 44,090 emitted cells, one-TIFF ZIP, and SHA-256 all pass. This is format validity, not scientific authorization.
-- Repository gates: `589 passed, 24 skipped, 4 warnings, 41 subtests` in the final full test run; `scripts/audit_downloads.py`, `scripts/check_site.py`, `scripts/build_site.py --check`, and the release audit pass. All 14 published TIFFs remain audit-only and negative.
+- Repository gates: `628 passed, 24 skipped, 42 warnings, 41 subtests` in the final full repository test run (including the concurrent registry-integrity tests); `scripts/audit_downloads.py`, `scripts/check_site.py`, `scripts/build_site.py --check`, and the release audit pass. All 14 published TIFFs remain audit-only and negative.
 
 ## What GEMSDOE32 `0.2778` means
 

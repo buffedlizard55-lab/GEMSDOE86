@@ -83,6 +83,16 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "design": "buffered whole components; one seed",
                 "caveat": "Historical configuration only. Hidden-positive counts were used for the prior and dot budget; not an independent promotion benchmark."}
     h = context["holdout_dti"]
+    if kind == "blind_geothermal":
+        # The concurrent blind-geothermal lane has a complete writer receipt but
+        # no separate scientific card. Preserve its own holdout receipt rather
+        # than treating a format-valid export as promotion evidence.
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["n_truth"],
+                "value": h["dti"], "ci95": h["ci95"],
+                "design": "buffered whole components; visible-fault catalogue holdout; archived lane receipt",
+                "caveat": "Concurrent blind-geothermal lane receipt; holdout is negative and registry scope is incomplete. No organizer score or slot authorization."}
     if kind == "wvb_whole_components":
         if h.get("label") != "HOLDOUT-DTI":
             raise ValueError("Archived WVB performance lacks its evidence class")

@@ -1,0 +1,152 @@
+{
+  "evidence_class": "RUN-CARD",
+  "generated_utc": "2026-10-24T22:28:50.879007+00:00",
+  "file": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
+  "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
+  "bytes": 127953,
+  "submission_name": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros",
+  "note": "Blind off-catalogue geothermal propensity (dilation+TC+gravity+basement); dots off mapped faults. Format-valid; see run card.",
+  "note_chars": 125,
+  "format": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
+    "bytes": 127953,
+    "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0032575519289821386,
+    "emitted_positive_pixels": 40000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 40000,
+    "footprint_fraction": 0.007740877231041769
+  },
+  "method": {
+    "hypothesis": "Blind / off-catalogue geothermal faults (missing from the USGS/INGENIOUS catalogue) express as localized geodetic dilatation, radiometric total-count alteration, gravity density-contrast boundaries and deep sedimentary cover; they are NOT close to mapped traces, so a catalogue-driven surface is the wrong target.",
+    "mechanism": "Rank-normalize geod_dilaterate, tc (GeoDAWN Total Count), iso_grav_anom, iso_grav_anom_slope, depth_to_base_surf, ieq_n100a15 over the footprint; average with fixed weights; remove a 3 px collar around mapped faults; emit one dot per 5x5 px tile ranked by triangular-kernel expected credit.",
+    "layers": [
+      "training_features.tif bands 6, 5, 8, 13, 15, 17; existing_faults.tif catalogue; sample_submission.tif footprint"
+    ],
+    "physical_signature": "geodetic dilatation + radiometric alteration + gravity boundary + deep basement",
+    "why_off_catalogue": "Catalogue traces are masked from scoring; new geothermal faults are expected blind/off-catalogue. Distance-to-visible-fault cannot discover them.",
+    "differs_from_repo": "Every GEMSDOE86 lane uses distance-to-catalogue / tip continuation / snap-to-catalogue as its primary driver; this lane uses none of them.",
+    "non_fault_mimic": "Shallow alluvial/radionuclide or sedimentation patterns can elevate TC and basement depth without a fault (leakage canary: no truth fit, so no leakage)."
+  },
+  "holdout_dti": {
+    "dti": 0.0003726032948468772,
+    "ci95": [
+      0.00024653682959954417,
+      0.0005139291358331259
+    ],
+    "n_truth": 11321,
+    "tp": 6.176623509137143,
+    "fp": 37594.537421698784,
+    "fn": 11314.823376490864,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "clusters": 143
+  },
+  "uniqueness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked": 13,
+    "rasters_expected": 13,
+    "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+    "footprint_cells": 5167373,
+    "dense_support_fraction": 0.2,
+    "thresholds": {
+      "rho": 0.9,
+      "forward_overlap": 0.7,
+      "jaccard": 0.5
+    },
+    "literal_reading": {
+      "worst_spearman_full_footprint": 0.01707824939259435,
+      "worst_spearman_submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "worst_forward_overlap": 0.8433,
+      "worst_overlap_submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "forward_overlap_firings": 1,
+      "rho_firings": 0,
+      "duplicate": true,
+      "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+    },
+    "like_for_like_reading": {
+      "dot_field_rasters": 12,
+      "continuous_surface_rasters": 1,
+      "worst_forward_overlap_dot_fields": 0.305825,
+      "worst_forward_overlap_dot_field_submission": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+      "worst_reverse_overlap": 0.20884210526315788,
+      "worst_reverse_overlap_submission": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+      "worst_jaccard": 0.013317604693757179,
+      "worst_jaccard_submission": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "forward_overlap_firings": 0,
+      "duplicate": false,
+      "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+    },
+    "literal_firings": [
+      {
+        "submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "repo": "docs/downloads",
+        "representation": "continuous_surface",
+        "forward_overlap": 0.8433,
+        "their_dots": 4210938
+      }
+    ]
+  },
+  "verdict": "format-valid; not organizer-confirmed; weekly slot not used",
+  "submission_slots_used": 0,
+  "registry_scoped": "Locally present registry rasters only (docs/downloads); not organizer-complete.",
+  "registry_rasters_checked": 13,
+  "zip_file": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.zip",
+  "zip_sha256": "0ef9c046488723799383d4e0da5b9c57130721bcd06afe6b393071b538683e3a",
+  "promoted": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false,
+  "status": "DO NOT SUBMIT",
+  "validation_class": "LOCAL-FORMAT-VALIDATION and archived lane receipt; not organizer acceptance"
+}
