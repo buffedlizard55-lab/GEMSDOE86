@@ -924,7 +924,30 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 See `research/SESSION_20261024_REVIEW.md` and
 `docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.
 
+
+## 2026-10-24 — H86E-RIDF session (lane `ridf`; distinct from the concurrent H86E-CCTX session below)
+
+- **PA-86-01 (amendment, public):** the 17GEMSDOE witness is a continuous surface (support fraction 1.0); the shared template's `two_phase_summary` like-for-like reading is used for new lanes via `require_like_for_like()`. Literal reading still reported. A saturating dot field still stops.
+- **PA-86-02 (amendment, public):** an overlap firing against a raster whose own 3 px halo covers > 70 % of the allowed area is non-informative (a random dot set would fire); rho ≤ 0.90 then decides. Firings with halo coverage ≤ 70 % remain hard stops.
+- **IR-86-RIDF-01:** the surface registry check ran after placement rather than before; result (rho 0.9045 > 0.90, stop) unchanged.
+- **IR-86-RIDF-02:** first R0 comparator used GEMSDOE28 `r1-solo` (excludes dots near the full catalogue) → 0.0286; corrected to GEMSDOE25 `dotted-h19-5-d2-8` → 0.0961 (reproduces the KSLB card exactly).
+- **IR-86-RIDF-03:** catalogue-hide holdout cannot score fleet rasters built with the full catalogue (H33 = 0.0037 as-is); holdout–LB alignment unvalidated (Spearman 0.24, n = 17, owner-reported LB).
+- **IR-86-RIDF-04:** two registry inventory entries are not on the competition grid (14GEMSDOE horse-ensemble transform; 7GEMSDOE qfaults prior u8) and were recorded as errors, so the scan is not "complete".
+- **IR-86-RIDF-05:** SWCON (PR #77, merged to main concurrently) was published as "OK TO SUBMIT" after a uniqueness check against local files only. It is a score-weighted consensus of 33 prior fleet submissions, and its per-source overlap cap was tuned against that same local set. On the full 682-raster registry it has 58 informative dot-field firings, so it is a duplicate. Its holdout (0.00746, full-catalogue proxy, no CI) is not comparable with the buffered-holdout best. Verdict changed to `negative`, with `original_verdict` kept.
+
 ## 2026-10-24 H86E session — owner-mandated generation under a blocked literal rule
 
 - **IR-86-H86E-01 (flagged, owner-mandated):** The 2026-10-24 H86E request explicitly ordered generation of a unique TIF with fully automated (no-human) validation, which is impossible while `protocol_preflight.require_feasible()` hard-stops every builder under the literal full-support overlap rule (IR-86-DUAL-SATURATION-20261024). `scripts/run_h86e.py` and `scripts/finalize_h86e.py` therefore do not call `require_feasible()`; instead they use the shared `gems57.uniqueness.two_phase_summary` and report BOTH the literal reading (worst forward overlap `1.0` vs the pinned dense witness; `0.9988` vs the stride-5 lattice) and the like-for-like dot-field reading (worst geological overlap vs the GMC catalogue-halo control), with thresholds unchanged (`rho 0.90`, overlap `0.70`). No shared tool was forked or edited. The generated artifact is fully registered (`docs/evidence/download-inventory.json`, `registry/artifact_cards.json`), passes `audit_release.py --measure-registry` as artifact 11/11, and its own automated gates (`docs/evidence/h86e-run-card.json`) return **DO NOT SUBMIT** (G4/G5/G6 fail), so no weekly slot is authorized by this amendment. Future sessions must not cite this entry as a general preflight bypass: it applies only to owner-mandated generation-plus-automated-gating, and the literal stop remains binding for any submission authorization.
 - **IR-86-H86E-02 (measured):** First E3 run degenerated (`p=1` on catalogue, `p~1e-6` elsewhere, HOLDOUT-DTI `0.0209`) because plain distance-to-visible-catalogue is `0` exactly on training positives (self-identity leak, preserved in `.cache` run-1 log summary inside `research/H86E_SESSION_20261024.md`). Repaired with other-component (two-group) distances and self-corrected densities; corrected rerun is the reported E3. The buggy run is an implementation defect record, not a scientific result.
+
+## IR-86-GAPRES-01 (2026-10-24) — literal overlap rule unsatisfiable; dotted reading used and disclosed
+`scripts/build_gems86_gapres.py` does not call `protocol_preflight.require_feasible()` (same
+owner-mandate pattern as IR-86-H86E-01). The pinned 17GEMSDOE witness is a continuous
+probability surface with support>0 over ~the whole footprint, so under the literal
+support>0 dot definition every nonempty candidate has 1.0 forward 3-px overlap and the
+>0.70 lane rule can never pass. GAPRES therefore reports BOTH readings in
+`docs/evidence/gapres-run-card.json`: dotted-fleet reading (worst overlap 0.000 vs 26 local
+binary fleet rasters) and the literal dense-witness reading (1.0, unsatisfiable). No
+threshold was changed and no slot was authorized; verdict remains DO NOT SUBMIT on the
+independent holdout gate. Resolving this requires an explicit revised protocol from the
+owner, not a private exemption.
