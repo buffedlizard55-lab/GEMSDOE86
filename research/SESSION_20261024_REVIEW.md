@@ -1,212 +1,91 @@
-# 2026-10-24 — registry-integrity session, compliance finding, and three-pass record
+# 2026-10-24 — protocol remeasurement and builder bypass repair
 
-## Decision and scope
+## Executive decision
 
-**Negative on the primary ask, positive on registry integrity.** The highest-priority new-TIFF requirement is unmet, still: every nonempty allowed prediction still fails the unchanged literal
-3 px / 0.70 overlap rule against the pinned full-positive historical registry witness
-(`research/registry_witness_pin.json`, raster `17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif`).
-This was **independently re-measured from scratch this session** (`python
-scripts/protocol_preflight.py`, output `docs/evidence/protocol-preflight.json`): the witness is
-positive at **100.0 %** of the 5,106,385 allowed pixels, so any nonempty candidate has forward
-overlap 1.0 ≥ 0.70. No bypass, threshold change or CLI shortcut was added; `AGENTS.md` rule 6 still
-holds. A new filename, different bytes, empty prediction or private dense-prior exemption is still
-not a solution, and none was produced.
+**DO NOT SUBMIT. No new unique submission TIFF was generated.** The highest-priority deliverable remains unmet, not silently replaced by an old file. The literal overlap rule is mathematically incompatible with any nonempty prediction while the pinned full-positive registry prior remains in scope. No rule exception, dense-prior exclusion, changed support threshold, empty candidate, private evaluator, competition submission or slot selection was introduced.
 
-What **is** new this session: (1) the owner's request text changed between 2026-10-23 and
-2026-10-24 in seven places — four sites gained a previously-unsupplied score, two gained a
-previously-unsupplied artifact+score, one existing site gained a second score, and four brand-new
-site names (`GEMSDOE89`–`GEMSDOE92`) appeared — and `registry/prior_scores.csv` /
-`registry/site_targets.json` are now reconciled line-by-line against the new text (every change is
-listed in `docs/evidence/session-20261024-run-card.json`, `session_activity.registry_corrections`,
-and verified by `tests/test_current_request.py::test_every_named_current_project_and_reported_submission_is_traceable`);
-(2) this session's tooling can reach the open internet beyond the sandboxed shell's host allowlist,
-and checking DrivenData's own Terms of Use after using that capability surfaced a real compliance
-constraint that was not previously documented — recorded as `IR-86-ACCESS-01` below and in
-`IRREGULARITIES.md` and `AGENTS.md` rule 8.
+Read the standing request in [PROMPT.md](../PROMPT.md), its complete normalized [README archive](../README.md#complete-current-request-archive--read-at-the-start-of-every-session), and [REQUEST_20261023.md](REQUEST_20261023.md) each session. The repeated request in this session preserves the same objectives and protocol; archived scores and access assertions are user claims, not measurements.
 
-The complete current request is in `REQUEST_20261024.md` and verbatim within its README archive
-markers after whitespace/URL normalization (`CURRENT_REQUEST_20261024_START/END`). The prior day's
-request remains on disk at `research/REQUEST_20261023.md` (no longer the embedded "current" block,
-but unmodified and still readable); the original 2026-10-22 request remains embedded under
-`OWNER_PROMPT_ARCHIVE_START/END`, unchanged. All of these preserve user claims, not verified scores
-or lane authorization.
+### What was actually measured
 
-The current machine-readable decision is
-[`docs/evidence/session-20261024-run-card.json`](../docs/evidence/session-20261024-run-card.json).
-Historical TIFFs, ZIPs and scientific cards are retained unmodified; this session wrote **zero**
-new raster bytes.
+- Restored **only** hash-pinned owner-mirrored sample/catalogue and the immutable registry witness using `restore_protocol_data.py --include-registry`. These are not organizer-authenticated originals or the required shared feature cache.
+- Reran `protocol_preflight.measure()`, including both vendored tool-path integrity checks. Allowed pixels: **5,106,385**; directly uncovered allowed pixels: **0**. Every nonempty allowed candidate therefore has forward overlap **1.0**, exceeding **0.70**, independently of its rank correlation or physical hypothesis. This is **REGISTRY-MEASUREMENT**, not a performance score.
+- Reread all **10** historical published TIFFs, receipts and one-TIFF ZIPs with the unchanged shared validators. All passed local numerical/format/integrity checks: finite values in `[0,1]`, matching grid, valid footprint, zero mapped-fault mass. All **10** final-dot fields still fail the literal overlap gate against the witness. A single counterexample suffices for rejection; the registry is not claimed complete.
+- Added a current remeasurement receipt, [latest-review-run-card.json](../docs/evidence/latest-review-run-card.json), distinct from the archived `session-20261023-run-card.json`. The receipt records the actual UTC measurement time and hashes of both the all-artifact measurement and release report. A stale or optimistic receipt stops site rendering. Rebuilding HTML alone cannot invent a fresh audit timestamp.
 
-## Compliance finding: IR-86-ACCESS-01
+The homepage still leads with an explicit no-submit decision and real audit-only TIFF/ZIP links. The executive summary describes the eventual upload procedure without selecting a weekly slot. A file's numerical validity is not scientific validation, uniqueness, eligibility, quota or organizer acceptance.
 
-This session's environment exposes a page-fetch tool whose reach is not limited to the sandboxed
-shell's network allowlist. Before realizing the constraint below, it was used to read three public
-DrivenData pages: the competition leaderboard (public rank #1 `xiaofanhu`, **0.4413**, 29
-submissions, as displayed 2026-10-24), the `/data/` tab (still redirects to `/accounts/login/` —
-confirms every prior session's "no auth" finding, not a new blocker), and the official rules PDF at
-`docs.nlr.gov` (different domain, no restriction found). Reading DrivenData's Terms of Use
-afterward (`https://www.drivendata.org/termsofuse/`) shows an explicit "Prohibited Uses" clause:
-*"you agree not to ... [u]se any robot, spider or other automatic device, process or means to
-access the Website for any purpose, including monitoring or copying any of the material on the
-Website."* `robots.txt` only disallows `/accounts/`, `/competitions/search/` and
-`*/leaderboard_partial`, so the leaderboard path itself is not robots-disallowed — but the Terms of
-Use restriction is broader, explicit, and contractual rather than a crawler courtesy convention.
+## H33 scientific answer, with evidence boundaries
 
-**This is reported, not hidden.** The observed `0.4413` figure is recorded here as an
-incidentally-obtained, non-repeatable fact, not as a new verification channel, and it is **not**
-promoted to `ORGANIZER-CONFIRMED` or used to overwrite `TOP_PUBLIC: UNSUPPLIED` anywhere in the
-evidence or decision tables. `AGENTS.md` now has an explicit rule 8: no future automated request to
-any `drivendata.org` URL, by any tool, in any session. A human may view the same public page in a
-browser without implicating the "automatic device, process or means" clause; that is now the only
-sanctioned way this project obtains `TOP_PUBLIC`, remaining weekly quota, or a submission receipt.
+The freshly retrieved [GEMSDOE32 page at a pinned commit](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/078f3cea1bc75d15beb81b095ab488a912327a5d/docs/index.html) identifies H33-2-B2 as flank pruning of a dotted parent. Its note explicitly says `projected 0.2747; UNSCORED`; the requested owner-reported **0.2778** does not occur in those page bytes. Neither absence nor an old `UNSCORED` note disproves a later result. No submission-page receipt was obtained, so the reported result remains **OWNER-REPORTED**, never ORGANIZER-CONFIRMED. Conflicting prompt leaderboard maxima are also unverified.
 
-## Why no new TIFF — the proof holds, reproduced independently
+The plausible advantage is **coverage efficiency**: remove redundant prediction mass while retaining useful distance-weighted coverage. This can reduce false-positive penalty without gaining a new physical signal. Pruning may instead lose coverage of an unmapped parallel fault, so it is not intrinsically beneficial. The README's tested pruning inequality formalizes that tradeoff; it is not a prediction of leaderboard improvement. A mechanism cannot be causally attributed from a sequence of aggregate private scores with simultaneous geometry, budget and preprocessing changes.
 
-Write the registry witness as a raster that is positive (`> 0`) at every allowed footprint pixel.
-Any nonempty candidate dot set `C` is a subset of the allowed footprint, so `C ⊆ {pixels where the
-witness is positive}`, which makes the witness-forward overlap of `C` against the witness exactly
-`|C| / |C| = 1.0` for every nonempty `C` — independent of `C`'s geometry, geological mechanism, or
-rank correlation. `1.0 ≥ 0.70` triggers the lane rule's "drifted into another lane: log it as a
-duplicate and stop" clause for *every* nonempty candidate, by construction of the witness, not by
-any property of a candidate this session could choose. This was re-derived from the metric's
-algebra (not merely re-quoted from a prior session) and then re-measured on disk:
-`docs/evidence/protocol-preflight.json` shows `uncovered_allowed_pixels: 0`,
-`covered_allowed_fraction: 1.0`, `universal_overlap_blocker: true`. The repository's stance
-(`AGENTS.md` rule 6, `IR-86-PRUNE-01`) is to report this as a rule-satisfiability failure of the
-*parallel-run lane instruction*, not as proof that no new geological idea could ever be distinct
-from the 92 sibling repositories' outputs; resolving it requires either a corrected registry
-(excluding non-"dot" dense probability surfaces from the overlap test, or scoping the comparison to
-concurrently-running sessions rather than all historical repositories) or an explicit human ruling
-on which protocol version governs, neither of which this session is authorized to decide
-unilaterally.
+Can we do better? **It is possible in principle, but no validated improvement has been established by this review.** The defensible target is better independent discrimination of displaced rock from contacts, shorelines and acquisition artifacts, not another renamed ancestor or unconditional increase in dot count. Catalogue hide-and-recover is an imperfect proxy for genuinely new expert-mapped faults and does not confirm geothermal vents or economic resources.
 
-## Registry corrections (full list, cross-checked against `research/REQUEST_20261024.md`)
+### Ranked candidates before any new implementation
 
-| Site | Before (`registry/prior_scores.csv`, pre-session) | After (this session) |
-|---|---|---|
-| GEMSDOE78 | `gems78-h78sigx-fuse-b5-44090dots-...-zeros`, *NO SCORE SUPPLIED* | same submission, **0.1564**, OWNER-REPORTED |
-| GEMSDOE79 | `gems79-tilt-ring-100000dots-...-zeros`, *NO SCORE SUPPLIED* | same submission, **0.0005**, OWNER-REPORTED |
-| GEMSDOE82 | `gemsdoe82-h82-submodular-punoisyor-...-zeros`, *NO SCORE SUPPLIED* | same submission, **0.1886**, OWNER-REPORTED |
-| GEMSDOE83 | `gems83-h83-gvcd-dink300-...-zeros`, *NO SCORE SUPPLIED* | same submission, **0.0573**, OWNER-REPORTED |
-| GEMSDOE84 | blank row, *NO ARTIFACT OR SCORE SPECIFIED IN PROMPT* | `gems84-h84-kthm-tworegime-58000px-...-zeros`, **0.0132**, OWNER-REPORTED |
-| GEMSDOE85 | blank row, *NO ARTIFACT OR SCORE SPECIFIED IN PROMPT* | `gemsdoe85-hjcd-ventbridge-submod-zeros`, **0.1110**, OWNER-REPORTED |
-| GEMSDOE87 | blank row, *NO ARTIFACT OR SCORE SPECIFIED IN PROMPT* | `h87-h87-cmgep-20261022T060000Z-8f394f43`, **0.0500**, OWNER-REPORTED |
-| GEMSDOE76 (2nd row) | `gems76-ptcf-tiltworm-submod39k-...-zeros`, *NO SCORE SUPPLIED* | same submission, **0.2343**, OWNER-REPORTED |
-| GEMSDOE89–92 | not present | added, blank, *NO ARTIFACT OR SCORE SPECIFIED IN PROMPT* |
+The three still-unimplemented ideas were already preregistered in [h86c_hypotheses.json](../registry/h86c_hypotheses.json); this review does not falsely call them new inventions today. No missing lane was autonomously assigned. Their ranking is **qualitative expected DTI opportunity**, not a numerical score forecast:
 
-`registry/site_targets.json` grew from 88 to 92 entries to match. After the correction, the maximum
-OWNER-REPORTED figure across all 92 sibling repositories is still `GEMSDOE32`'s `h33-h33-2-b2-...`
-at **0.2778** — none of the eight corrected/added values exceeds it, so the README's existing
-"0.2778 is the highest claim among the named sites" framing is unchanged. All 92 named repositories
-were confirmed to actually exist on GitHub this session (`scripts/refresh_fleet.py`,
-`SNAPSHOT_OK` for all 92, via `gh api`, not a browser render or score check) — repository
-*existence*, not page content, uniqueness or any score, is what that check establishes.
+| Rank | Specific layers and physical transform | Why potentially off-catalogue; difference from existing implementation | Named non-fault mimic | Cost / viability |
+|---|---|---|---|---|
+| 1 | RTP/TMI; phase-correlate opposing flanks for along-strike displacement of transverse magnetic markers | Searches image-derived offsets, not catalogue-tip extrapolation or unsigned cross-field edges; contrasts with existing GFCO/GMC/WVB methods | Intrusive contacts, remanence boundaries, survey seams | Medium-high; no new external product required, but the actual shared cache is absent; NOT RUN |
+| 2 | Depth-to-base, isostatic gravity, detrended elevation; signed paired-flank throw consistency | Concealed basin faults may leave internally consistent subsurface offsets without a mapped scarp; tests polarity rather than magnitude-only edges | Erosional basement scarps, density changes, inversion artifacts, old inactive structures | Medium; band/sign semantics and shared cache must be recovered; NOT RUN |
+| 3 | USGS 3DEP native 1 m bare-earth DEM plus detrended elevation; signed scarp persistence across independent drainage divides | Tests cross-catchment continuity rather than a ridge or isolated scarplet already represented in existing features | Paleolake shorelines, fluvial terraces, road cuts | High; exact free official product needed is USGS 3DEP 1 m tiles referenced by competition `1m_DEM_links.csv`; actual tiles/coverage not obtained, **NOT VIABLE YET** |
 
-Regenerated, unchanged in method: `ledger/submissions.csv` (`scripts/build_ledger.py`), the
-evidence-generated site (`scripts/build_site.py`, `--check` passes), and
-`docs/evidence/fleet-feed.json` (`scripts/refresh_fleet.py`, 92/92 snapshotted, 0 organizer
-receipts, 0 submission slots used — unchanged invariants).
+The original register contains scoped USGS physical-basis links and explicit obtainability caveats. This restricted session cannot recheck USGS tile downloads, so the third idea is not offered as runnable. No new external-data hypothesis was falsely declared viable. The top candidate was **not validated**: the pre-placement STOP fires before construction, and no current comparable holdout baseline or actual shared cache is available. Feature-alone canaries, pooled HOLDOUT-DTI and paired spatial confidence intervals remain **NOT RUN**, not zero.
 
-## Hypotheses — unchanged ranking, still not validated
+## Safety bug found and fixed
 
-The ranked candidates in `registry/h86c_hypotheses.json` are carried forward unmodified; none was
-re-ranked, re-scored or built this session, because the mandatory pre-placement stop (above) applies
-equally to any of them:
+The earlier model entrypoints were guarded, but **22 historical variant-builder mains** introduced by later work were not. Some flags named `--measure` or `--no-write` still construct new dot fields in memory, so suppressing disk writes is not sufficient. They now call the same `protocol_preflight.require_feasible()` before parsing arguments, reading inputs, computing a candidate, serializing rebuilt parents or updating a ledger. Root-path setup makes the guard work for direct `python scripts/...py` invocation as well as imports.
 
-1. **Cross-fault magnetic marker translation** — RTP/TMI flank phase correlation for a displaced
-   transverse magnetic marker, not another magnetic edge. Mimics: intrusive contacts, remanence
-   changes, survey seams. Untested; not lane-authorized.
-2. **Signed paired-throw consistency** — depth-to-base, isostatic gravity and detrended elevation
-   flank profiles must imply compatible throw polarity. Mimics: erosional basement escarpments,
-   density/inversion artifacts, old inactive buried faults. Untested.
-3. **Watershed-crossing scarp persistence** — signed native-resolution DEM steps across independent
-   catchments. **Still NOT_VIABLE_YET**: native USGS 3DEP tiles were not obtained (checked again this
-   session — `data/` on DrivenData still login-walled, and per `IR-86-ACCESS-01` no further
-   automated DrivenData request will be made to try). The official free source remains USGS 3DEP via
-   the competition's own DEM-link CSV, which requires the DrivenData-authenticated data tab a human
-   must supply.
+Imported orchestration was also an alternate route: `experiment.run`, `run_lane.holdout`, and H86's surface/canary/holdout/SGMC/final stages now guard themselves rather than relying only on `__main__`. Pure numerical helpers, read-only all-artifact audits, source/registry metadata restoration, historical evidence and actual shared evaluator/writer bytes remain unchanged. Existing `--validate-only` builder commands also stop conservatively; use the dedicated `audit_release.py`, `audit_downloads.py` and `validate_download.py` for read-only published-artifact validation instead.
 
-No candidate was validated on the holdout this session (0 experiments run), because validating any
-of them would require writing and placing a candidate raster, which the literal protocol stop
-forbids before a human resolves `IR-86-PRUNE-01`.
+Regression tests exercise all repaired imported entrypoints with both a literal-overlap stop and missing-input error. An invalid CLI argument detects accidental continuation to parsing or later work. AST tests check that the guard is first and has no bypass option. These are orchestration safety tests with a mocked stop, **not scientific experiments**. This does not claim that every arbitrary low-level Python helper is sandboxed against a caller deliberately bypassing orchestration.
 
-## Sources read this session (full list, with access method)
+## Scoped source verification and limitations
 
-- `https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html` — read via automated page fetch;
-  a `*.github.io` site has no DrivenData-style automation restriction. Confirms the GEMSDOE32 page's
-  own framing: H33-2-B2 is a *projection* (`UNSCORED`), not an organizer receipt.
-- `https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/` — read via
-  automated page fetch, **before** the Terms of Use check below; see `IR-86-ACCESS-01`. Not to be
-  repeated.
-- `https://www.drivendata.org/competitions/306/competition-doe-gems/data/` — read via automated page
-  fetch; redirects to `/accounts/login/`. Same finding every prior session reached; also covered by
-  `IR-86-ACCESS-01` going forward.
-- `https://docs.nlr.gov/docs/fy26osti/96647.pdf` — read via automated page fetch; different domain,
-  no restriction found (`docs.nlr.gov` serves no `robots.txt`). Confirms the official rules document
-  structure already cited by prior sessions (Executive Summary, Submission, Prize Administrator,
-  Appendix A).
-- `https://www.drivendata.org/robots.txt` and `https://www.drivendata.org/termsofuse/` — read to
-  check the access question itself; these are policy documents, reading them is how the restriction
-  in `IR-86-ACCESS-01` was discovered.
-- `https://www.dropbox.com/scl/fi/t7fyt03qdh9egyme0itwo/existing_faults.tif?...` (one of the owner's
-  Dropbox mirror links) — read via automated page fetch; returned Dropbox's HTML preview page, not
-  the raw GeoTIFF bytes (the fetch tool renders pages to text/markdown, it does not retrieve binary
-  files). **No competition raster was obtained this way.** `data/bridge/existing_faults.tif` in this
-  checkout continues to come only from the pre-existing hash-pinned GitHub mirror restorer
-  (`scripts/restore_protocol_data.py`), unchanged.
+[Machine-readable recheck](../docs/evidence/source-recheck-20261024.json) records Git blob identities, SHA-256 digests, exact excerpts and limits.
 
-## Actual three-pass record
+- Rechecked the [official reference repository](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b) README and inspected relevant notebook cells at their exact Git blob identities. CPU-only and GPU options exist; GPU is not a universal prerequisite. The notebook uses Tversky training-loss coefficients `alpha=0.2`, `beta=0.8`. Its Monte Carlo patch split is not the requested buffered whole-segment validation, and training loss is not the full official distance-weighted scoring implementation.
+- The H33 page's suggested note is **177 characters**, above this project's **140-character** rule. That is an irregularity, not evidence that the competition portal has the same limit. No historical receipt or note was edited.
+- Outbound access is restricted to allowed GitHub/package hosts. DrivenData leaderboard/submission pages, NLR rules, USGS, GDR and Dropbox were **not newly retrieved**. Their [prior source observations](../docs/evidence/source-review-20261023.json) retain their historical date; no current official score, eligibility determination, account quota or complete literature review is claimed.
+- The rejected upload bytes were not supplied; the cause of its range error cannot honestly be determined. Validating a different local artifact is not diagnosis of that failed upload.
+- The full feature cache, a method lane and comparable frozen-fold baseline remain missing. The cached stack must not be privately rebuilt to work around the protocol.
 
-### Pass 1 — read the standing state, reproduce the blocker, find the drift
+## Three-pass verification record
 
-- Read `README.md`, `PROMPT.md`, `AGENTS.md`, `IRREGULARITIES.md`, `SLOT_PLAN.md`,
-  `docs/SUBMIT.md`, and the generated site (`docs/index.html`, `docs/executive-summary.html`).
-  Baseline: **335 passed, 24 skipped, 32 subtests** (`.venv/bin/python -m pytest -q`).
-- Rebuilt the Python virtualenv from `requirements-lock.txt`, restored the pinned protocol data
-  (`scripts/restore_protocol_data.py --include-registry`), and **re-measured** the literal overlap
-  blocker from scratch (`scripts/protocol_preflight.py`) rather than trusting the prior session's
-  JSON — confirmed byte-for-byte: witness sha256 `ab0a0a62…`, 100.0 % coverage,
-  `universal_overlap_blocker: true`.
-- Compared `research/REQUEST_20261024.md` (today's owner text) against the already-committed
-  `registry/prior_scores.csv` / `registry/site_targets.json` line by line and found eight scored
-  rows plus four site names that the committed registry had not yet absorbed (listed above).
+### Pass 1 — inspect, reproduce, repair
 
-### Pass 2 — fix the drift without inventing data, check my own new capability
+Read standing instructions, current state, prior next steps, archived request, shared pins, negative cards and scientific register. Installed the locked dependencies in an isolated ignored `.venv` (system Python correctly rejected global installation). Baseline full suite: **335 passed, 24 skipped, 32 subtests passed**, four dependency pending-deprecation warnings. Restored pinned proof inputs and reproduced the universal overlap stop. All 10 historical artifacts passed fresh format/integrity checks and failed literal uniqueness. Repaired the 22 mains and seven imported orchestration functions; initial guard regression suite: **80 passed**.
 
-- Corrected the nine registry rows and added the four new site entries, each traced to an exact
-  substring of `research/REQUEST_20261024.md` (verified programmatically: every `name: 0.NNNN` line
-  in the request text is present in `registry/prior_scores.csv` with a matching score, and every
-  `buffedlizard55-lab.github.io/<repo>/` name in the text has a matching `registry/site_targets.json`
-  entry — both asserted by
-  `tests/test_current_request.py::test_every_named_current_project_and_reported_submission_is_traceable`).
-  Re-ran `scripts/refresh_fleet.py` (92/92 `SNAPSHOT_OK`) and `scripts/build_ledger.py` /
-  `scripts/build_site.py --check` / `scripts/check_site.py` to regenerate every derived artifact
-  rather than hand-editing generated files, per `AGENTS.md` rule 3.
-- Used the page-fetch tool to check three public DrivenData URLs before realizing the Terms of Use
-  implication; on finding the explicit "no robot/automatic device" clause, stopped making further
-  DrivenData requests for the remainder of the session, wrote `IR-86-ACCESS-01`, and added
-  `AGENTS.md` rule 8 so the finding survives into future sessions rather than being rediscovered (or
-  worse, repeated) later.
-- Attempted to retrieve the owner's Dropbox-hosted competition-data mirrors to see whether they
-  could unblock the "single remaining blocker to training is data placement" item from an earlier
-  session; confirmed the page-fetch tool returns Dropbox's share-page HTML, not the underlying
-  GeoTIFF bytes, so this does **not** unblock data acquisition — recorded as a tested-and-negative
-  avenue rather than left ambiguous.
+### Pass 2 — edge cases and freshness
 
-### Pass 3 — re-check against the full request, tests, and site
+Reviewed direct invocation import paths, missing evidence, imported-call bypasses, no-write/measure semantics and preservation of read-only audits. Added current UTC receipt/hash binding and negative-state site checks; historical dates and scientific metrics remain unchanged. Rechecked pinned H33/reference bytes. Added regression tests for invalid/missing UTC timestamps, stale report/registry identities, optimistic verdicts and fabricated candidate flags. No source/feature acquisition or new model experiment occurred.
 
-- Re-read `research/REQUEST_20261024.md` end to end against the original message to confirm no
-  score, submission name, or repository name was paraphrased, re-ordered, or dropped; the
-  traceability test above encodes this check so future sessions cannot silently regress it.
-  Verified the `0.2778` "highest among the named sites" framing still holds after every correction
-  (next-highest after correction is `GEMSDOE36`'s `0.2750`, unaffected by this session's changes).
-- Rotated the README's embedded current-request markers from `CURRENT_REQUEST_20261023_*` to
-  `CURRENT_REQUEST_20261024_*` (content replaced with `research/REQUEST_20261024.md` verbatim); left
-  `OWNER_PROMPT_ARCHIVE_START/END` (`research/OWNER_PROMPT.md`, the original 2026-10-22 request)
-  untouched, matching the two-slot rotation already in use. Updated
-  `tests/test_current_request.py` to the new marker names and file names.
-- Final verification: `python scripts/audit_release.py` (`audit_ok: true`, `decision: "DO NOT
-  SUBMIT"`, `artifact_count: 10`, unchanged), `python scripts/build_site.py --check`, `python
-  scripts/check_site.py`, and `python -m pytest -q` all pass after every edit in this session
-  (see the PR description for the exact final counts). No raster bytes, model weights, cached
-  features, or scientific card numbers were altered by this session; only the registry/ledger/site
-  generators, documentation, and tests described above changed.
+### Pass 3 — final integration
+
+Final full suite: **425 passed, 24 skipped, 32 subtests passed**, with four Rasterio/Affine pending-deprecation warnings. Skipped tests retain their existing missing optional-data conditions; they are not claimed as executed geological validation. The 90 new regression cases passed. Three actual direct CLI checks (`build_axis_variants`, `run_concentration_pediment`, `run_h86`) with `PYTHONPATH` unset stopped with `STOP_LITERAL_OVERLAP_UNSATISFIABLE` before an invalid CLI option could be parsed. The first test-harness attempt incorrectly resolved the virtualenv Python symlink to system Python and failed to import NumPy; preserving the virtualenv executable path corrected the harness, not the application.
+
+`build_site.py --check`, `check_site.py`, `audit_downloads.py`, `audit.py`, `validate_download.py`, `build_ledger.py --check`, compileall and `git diff --check` passed. Shared evaluator/writer hashes and historical raster/ZIP bytes remain unchanged. The 2026-10-24 receipt is derived only from fresh measurements, not HTML build time. GitHub integration/deployment is an independent operational step; it is not a scientific promotion or evidence that an official submission occurred.
+
+## Next-session priorities
+
+1. **Resolve the impossible uniqueness policy through an explicitly authorized shared protocol revision**, not a private exception. A representation-aware distinction between dense surfaces and emitted dots is a proposal only; this patch does not implement it.
+2. Recover the actual shared cache with input/mask/band/unit/implementation hashes and a complete current registry. Assign one method lane. Do not repeat the historical ancestor-reallocation work merely because builders exist.
+3. Freeze buffered whole-segment folds, visible-only catalogue features, exact visible masks and budgets. Establish the strongest rerunnable matched baseline on those same folds. Run feature-alone canaries and at most three experiments/two hours; report pooled HOLDOUT-DTI, evaluator version, withheld positives, block 95% CI and paired deltas. Only a separate selector may consider a weekly slot after all gates pass.
+4. Retain an actual organizer receipt and exact uploaded SHA before using ORGANIZER-CONFIRMED; do not infer live leaderboard or remaining quota from public project pages. Check external product bytes, provenance, license, geography and target independence before proposing them as available data.
+5. Verify PR checks, merge and Pages deployment. A local HTML build is not proof of a live site update.
+
+**Own the outcome:** the requested unique validated submission has not been delivered. This review improves the enforceability and auditability of the stop rather than hiding that result behind an attractive download button.
+
+
+## Concurrent-main integration
+
+While PR #59 checks were queued, main merged PR #57's separate fleet review.
+Its refreshed 88-project metadata feed is retained. The incoming same-date review
+is preserved without editing as `SESSION_20261024_FEED_REVIEW.md`; this builder
+safety review keeps its own file. Generated homepage content was rebuilt from the
+merged feed and current hash-bound negative audit, not resolved by choosing stale
+HTML. No predictor, raster, score or scientific result was introduced by resolving
+these documentation/generated-view conflicts.

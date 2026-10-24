@@ -10,7 +10,11 @@ stop before fitting or placement; do not bypass that gate, relabel an old TIFF a
 unmet unique-TIFF requirement has been completed. `scripts/audit_release.py` checks all historical
 downloads; `docs/evidence/session-20261024-run-card.json` records the current negative outcome
 (`docs/evidence/session-20261023-run-card.json` is the prior one). Do not send any automated
-request to any `drivendata.org` URL (`IR-86-ACCESS-01`, `AGENTS.md` rule 8).
+request to any `drivendata.org` URL (`IR-86-ACCESS-01`, `AGENTS.md` rule 9).
+Also see `docs/evidence/latest-review-run-card.json` (a separate, concurrently-produced fresh
+UTC-timestamped remeasurement receipt) and `research/SESSION_20261024_REVIEW.md` /
+`research/SESSION_20261024_REGISTRY_REVIEW.md` (this project's two same-day 2026-10-24 reviews,
+kept under distinct filenames because two sessions worked concurrently).
 
 ---
 

@@ -46,6 +46,6 @@ def test_current_review_and_readme_deliverable_links_exist():
     readme = (ROOT / "README.md").read_text().split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[0]
     for relative in re.findall(r"\]\(([^():#\s]+)(?:#[^)]*)?\)", readme):
         assert (ROOT / relative).is_file(), relative
-    review = (ROOT / "research/SESSION_20261024_REVIEW.md").read_text()
+    review = (ROOT / "research/SESSION_20261024_REGISTRY_REVIEW.md").read_text()
     assert "highest-priority new-TIFF requirement is unmet" in review
     assert "Pass 1" in review and "Pass 2" in review and "Pass 3" in review
