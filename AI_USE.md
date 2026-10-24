@@ -465,6 +465,79 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+
+## 2026-10-23 — CONCENTRATION dose ladder & ordering control (branch `arena/60ecf1c8-gemsdoe86`, self-assigned axis)
+
+* **AI wrote:** `scripts/run_concentration_dose.py`, one new additive function in
+  `src/gems86/concentration_5km.py` (`relocate_cvband_down_shuffled`, the matched ordering control —
+  no existing function was modified or forked), `tests/test_concentration_dose.py`,
+  `evidence/concentration-dose-mechanism.md` (pre-registration written **before** the builds, results
+  appended after), `evidence/concentration_dose_20261023.json`,
+  `ledger/variants_concentration_dose.json`, the one-line registration of that file in
+  `scripts/build_ledger.py`, regenerated `ledger/submissions.csv`, `SLOT_PLAN.md`, the `CURRENT STATE`
+  block of `README.md`, the leading section of `docs/SUBMIT.md`, and `IRREGULARITIES.md`
+  (`IR-86-CONC-12/13/14`). Local gitignored twins and their tracked JSON receipts:
+  `releases/…-conc{3,5dose,6,6rand}-20261023-*`.
+* **AI decided (mechanism, not measurement):** `AXIS = CONCENTRATION` at the dose/scale level of
+  PR #47's only two-instrument-positive arm; three builds at 3 % / 5 % / 6 % of R0 plus one matched
+  ordering control; the 8 % and 2 km arms were pre-registered but are geometrically infeasible and
+  were replaced by the 3 % arm with the infeasibility logged (`IR-86-CONC-12`). The pre-registered
+  inverted-U was falsified by the measurement and that is reported as such (`IR-86-CONC-13`).
+* **AI did not decide:** no submission, no slot approval, no `TOP_PUBLIC`, no score comparison, no
+  contact with DrivenData/Dropbox, no credential access. `conc6` is flagged as the CONCENTRATION
+  candidate of record but explicitly *not* recommended before the two larger predicted levers.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_data.py                 # 418,912,844 B, sha256 4371c82e…
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 \
+      scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 \
+      ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16
+  .venv/bin/python scripts/run_concentration_dose.py
+  .venv/bin/python scripts/build_ledger.py --check
+  .venv/bin/python -m pytest -q
+  ```
+* **Human must supply:** `TOP_PUBLIC` + date, rolling-week slots left, R0's `0.2778` portal receipt,
+  verified 2026-12-03 deadline, portal encoding preference (`.tif` NaN vs `-zeros`), and the
+  uniqueness-rule decision (`IR-86-PRUNE-01`).
+
+## 2026-10-23 — RELIEF source factorial + instrument audit (branch `arena/ada3049e-gemsdoe86`, agent-chosen axis)
+
+* **AI chose the axis.** Brief v2 §1 forbids prompting the human for it, so the agent selected
+  `AXIS = RELIEF`: it had the thinnest evidence base (3 ledger rows), it is count-fixed (immune to the
+  MASS confound `IR-86-MASS-03`), and it is the only axis whose entire published support came from one
+  instrument that the agent could test. **Human can veto:** the choice, the three values, and the
+  re-ranking that follows from it.
+* **AI wrote:** `scripts/run_relief_source.py`, `evidence/relief-source-mechanism.md` (three mechanism
+  cards, pre-registered before the build), `evidence/relief_source_20261023.json`,
+  `ledger/variants_relief_source.json`, this entry, `IRREGULARITIES.md` (`IR-86-RELIEF-04`,
+  `IR-86-RELIEF-05`), a rewritten `SLOT_PLAN.md`, the `README.md` `CURRENT STATE` block only, a new
+  section in `docs/SUBMIT.md`, and one line in `scripts/build_ledger.py` registering the new variants
+  file with the single ledger generator. Local candidate rasters in `releases/` stay gitignored.
+* **AI measured and decided (the human can veto):** three arms built and gated (`int2front-15pct`
+  `c543e779`, `int2front-10pct` `4471a74b`, `int2pied-15pct` `295eaf92`). The **pre-registered sign was
+  falsified** — the agent predicted `+0.0010 / +0.0005 / −0.0020` and measured `−0.0057 / −0.0038 /
+  −0.0118` — and the negative is reported as a negative rather than re-tuned
+  (`evidence/relief-source-mechanism.md`, post-build section). The decisive result is not the arms but
+  the instrument audit: eight RELIEF rebuilds score `≈ 0.0283·Δrelief-index − 0.0033` with
+  `R² = 0.9135` on the SGMC-extra surrogate, so the shipped `front+15pct`'s `+0.0017` is the
+  instrument's own relief gradient (residual `−0.0008`). The agent re-ranked the slot plan on that
+  basis: `PRUNE-le3p000` → Slot 1, `concb5kmdown4` → Slot 2, `RELIEF-frontp15` → Slot 3.
+* **AI did NOT do:** zero DrivenData or `dropbox.com` requests; zero logins, credentials, scraping or
+  submissions; zero `MODEL`/`PROXY` number written as a score or receipt; zero post-hoc change to the
+  pre-registered predictions (the falsification is recorded, not edited away); zero uniqueness or
+  rank-correlation thresholds applied; zero slots requested (`approved_for_weekly_slot: false`).
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_data.py
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h33_2_b2_zeros ext_derived_sgmc_faults_100m_u8 labels
+  .venv/bin/python scripts/run_relief_source.py        # rebuilds R0 gate, 3 arms, 2 nulls, ledger
+  .venv/bin/python scripts/build_ledger.py --check && .venv/bin/python -m pytest -q
+  ```
+* **Human must supply:** `TOP_PUBLIC` + date, remaining rolling-week slots, R0's `0.2778` receipt,
+  verified deadline, accepted outside-footprint encoding, and the single blind final-submission choice.
+
 ## Session 2026-10-23 (3) — `arena/aee7c83d-gemsdoe86`, AXIS = CONCENTRATION (surface extension)
 
 * **AI wrote:** `src/gems86/concentration_surfext.py` (dose-independent redundant-source order that
@@ -472,31 +545,36 @@ throwaway probe slot on `SPACING-alongstrike`.
   clearance and the parent `>= sqrt(8) px` spacing floor, a seeded off-union control, parent-diff
   statistics), `scripts/run_concentration_surfext.py` (pin verification, byte-exact R0 rebuild,
   byte-exact reproduction of the merged `concb5kmdown4` file, three arms, MUST gates on both
-  encodings, SGMC quadrant MODEL, fold-fair PROXY, leakage canary, instrument-confound audit,
-  live credit-budget projection), `tests/test_concentration_surfext.py` (9 tests),
+  encodings, SGMC quadrant MODEL, fold-fair PROXY, leakage canary, instrument-confound audit, live
+  credit-budget projection), `tests/test_concentration_surfext.py` (9 tests),
   `evidence/concentration-surfext-mechanism.md`, `evidence/concentration_surfext_axis_20261023.json`,
-  `ledger/variants_concentration_surfext.json`, three rows appended to `ledger/submissions.csv`,
-  and updates to `SLOT_PLAN.md`, the `CURRENT STATE` block of `README.md`, `docs/SUBMIT.md`,
-  `IRREGULARITIES.md` (`IR-86-CONC-12/13`).
-* **AI measured and decided:** self-assigned the axis (all seven brief axes already have ledger
-  rows; new `(parent, axis, value)` keys only). A pre-build capacity audit showed R0 is saturated on
+  `ledger/variants_concentration_surfext.json`, and updates to `SLOT_PLAN.md`, the `CURRENT STATE`
+  block of `README.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` (`IR-86-CONC-15/16`); the ledger is
+  regenerated by `scripts/build_ledger.py` (its generator list gained this session's variants file).
+* **AI measured and decided:** self-assigned the axis (all seven brief axes already carry ledger rows;
+  only new `(parent, axis, value)` keys are used). A pre-build capacity audit showed R0 is saturated on
   its own evidence surface (90 free legal slots on `H19-5`) and that `H19-4 | H16-1` ground not on
   `H19-5` carries zero parent mass with 8,671 legal slots, so the headroom is surface extension, not
   more within-surface shaving. Built `surfext10` (MODEL +0.0059, PROXY −0.00003), `surfext15`
   (MODEL +0.0073, PROXY −0.0005) and a matched off-union control (MODEL +0.0047, PROXY −0.0008).
-  Concluded that the SGMC-extra MODEL instrument rewards outward movement / de-clustering rather than
-  lineament knowledge for this family (`IR-86-CONC-13`), that the ridge-specific increment is
-  +0.0012 MODEL / +0.0008 PROXY, and that **no arm clears the 0.01 evidence floor**. Reported the
-  negative result; no file is slot-approved.
+  Concluded that the SGMC-extra MODEL instrument rewards outward movement / de-clustering for this
+  family (`IR-86-CONC-15`), that the ridge-specific increment is only +0.0012 MODEL / +0.0008 PROXY,
+  and that **no arm clears the 0.01 evidence floor**. Negative result reported; no file is
+  slot-approved.
+* **Reconciled with the two concurrent sessions** merged into `main` during this session (PR #50
+  CONCENTRATION dose ladder, PR #51 RELIEF source factorial): their `conc6` (+0.0022 MODEL, +0.0013
+  PROXY) keeps Slot 2 and my arms do not displace it; `frontp15` moves to Slot 3 per their
+  `IR-86-RELIEF-04`; the slot order in `SLOT_PLAN.md` is theirs, with `surfext10` added only as a
+  spare-slot probe.
 * **Exact reproduction:**
   ```bash
   python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
   .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 \
       scored_d28_unscored ext_derived_sgmc_faults_100m_u8
   .venv/bin/python scripts/run_concentration_surfext.py    # ~4.5 min, deterministic
-  .venv/bin/python -m pytest -q
+  .venv/bin/python scripts/build_ledger.py --check && .venv/bin/python -m pytest -q
   ```
 * **Human decided / must supply:** nothing was supplied in-session — `TOP_PUBLIC` + date,
   rolling-week quota remaining, R0's live `0.2778` receipt, the accepted outside-footprint encoding
-  and the deadline confirmation all remain human inputs. Zero submissions, zero portal requests,
-  zero credentials read or stored.
+  and the deadline confirmation all remain human inputs. Zero submissions, zero portal requests, zero
+  credentials read or stored.
