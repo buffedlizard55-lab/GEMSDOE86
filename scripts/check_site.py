@@ -131,8 +131,8 @@ def check(root=ROOT):
                     errors.append(f'Invalid quarantined submission ZIP: {cand_zip.name}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
-        if 'READY TO DOWNLOAD' in html_text:
-            errors.append(f'Contradictory READY TO DOWNLOAD banner during negative release state: {html_file.name}')
+        if any(marker in html_text for marker in ('READY TO DOWNLOAD', 'OK TO DOWNLOAD AND SUBMIT')):
+            errors.append(f'Contradictory submission-approval banner during negative release state: {html_file.name}')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
             errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
     canonical_card = root / 'docs/evidence/run-card.json'

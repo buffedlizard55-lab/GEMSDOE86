@@ -13,7 +13,7 @@ import numpy as np
 import rasterio
 
 from scripts import audit_downloads
-from scripts.check_site import check, load_inventory
+from scripts.check_site import Links, check, load_inventory
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -127,6 +127,8 @@ class PublicationTests(unittest.TestCase):
             bad_html = root / 'docs/submit.html'
             bad_html.write_text('<!doctype html><html><body><h1>READY TO DOWNLOAD</h1></body></html>')
             self.assertTrue(check(root))
+            bad_html.write_text('<!doctype html><html><body><h1>OK TO DOWNLOAD AND SUBMIT</h1></body></html>')
+            self.assertTrue(check(root))
             bad_html.write_text('<!doctype html><html><body><a href="https://raw.githubusercontent.com/org/repo/main/submission/x.tif">dl</a></body></html>')
             self.assertTrue(check(root))
 
@@ -176,6 +178,18 @@ class PublicationTests(unittest.TestCase):
                             'any non-empty prediction geometrically yields',
                             'Guarantees zero'):
             self.assertNotIn(unsupported, pages)
+
+    def test_swcon_candidate_page_is_negative_and_has_no_tiff_download_link(self):
+        page = (ROOT / 'docs/swcon-submission.html').read_text()
+        self.assertIn('DO NOT SUBMIT', page)
+        self.assertIn('0.70 limit', page)
+        self.assertIn('superseded', page)
+        self.assertNotIn('OK TO DOWNLOAD AND SUBMIT', page)
+        parser = Links(); parser.feed(page)
+        self.assertFalse(any(url.lower().endswith(('.tif', '.tiff', '.zip')) for url in parser.urls))
+        audit = json.loads((ROOT / 'docs/evidence/swcon-protocol-review.json').read_text())
+        self.assertEqual(audit['verdict'], 'negative')
+        self.assertFalse(audit['submission_ready'])
 
     def test_h86b_cannot_bypass_preflight(self):
         from scripts.run_lane86b import main

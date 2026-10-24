@@ -126,6 +126,14 @@ class ProtocolTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, 'STOP_LITERAL_OVERLAP_UNSATISFIABLE'):
                     entrypoint()
 
+    def test_swcon_builder_respects_early_literal_stop(self):
+        from scripts.build_gems86_swcon import main
+        with patch('scripts.protocol_preflight.require_feasible', side_effect=RuntimeError('STOP')):
+            with patch('scripts.build_gems86_swcon.gridmod.load_grid') as load_grid:
+                with self.assertRaisesRegex(RuntimeError, 'STOP'):
+                    main()
+                load_grid.assert_not_called()
+
     def test_registry_reproduction_tolerates_only_last_bit_rho(self):
         from scripts.check_registry_reproduction import differences
         base = {'spearman_full_footprint': .1, 'stop_required': True, 'worst_dot_overlap': 1.0}
