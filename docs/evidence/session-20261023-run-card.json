@@ -1,9 +1,9 @@
 {
   "schema": "gems86.session-negative.v1",
   "date_utc": "2026-10-23",
-  "hypothesis": "H86C-MMT: Cross-fault magnetic marker translation (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse magnetic markers, consistent in adjacent windows, and a weaker zero-shift match. Keep both signed slip directions rather than assuming one regional sense of slip.",
-  "named_non_fault_process": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
+  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf and a negative step in iso_grav_anom must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev scarp relief is muted by basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
+  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; inversion artifacts.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",

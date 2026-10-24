@@ -1,112 +1,193 @@
 #!/usr/bin/env python3
-"""GEMSDOE86-SPT: signed paired-throw consistency (basement step x gravity step,
-same downthrown sign, surface-step penalised). Bands 15/13/12 of pinned
-training_features.tif. Emission identical to R0 control: collar>2px, sep 2.8px,
-37654 dots. Holdout = 4 quadrant whole-component folds, gems57 dti_binary pooled."""
-import hashlib, json, sys, zipfile
+"""Historical diagnostic script for Lane SPT (Submodular Poisson-Thinning on
+Cross-Fleet Throw-Consensus), now gated fail-closed behind
+``scripts.protocol_preflight.require_feasible()``.
+
+Forensic status (IR-86-SPT-02, 2026-10-24):
+  - Revoked as ``verdict: "negative"`` (``DO NOT SUBMIT``).
+  - The pinned continuous witness ``17GEMSDOE`` (``ab0a0a62...``) covers all
+    ``5,106,385 / 5,106,385`` off-catalogue footprint cells within 3 px, so
+    ``require_feasible()`` raises ``ProtocolStopError`` before any surface
+    construction or dot placement.
+  - Even aside from the saturated witness, PR #60's original run had a single-
+    feature canary AUC of ``0.4947`` (< 0.50 coin-flip) and masked ``dist_cat``
+    using the full ``existing_faults.tif`` catalogue (including withheld test
+    folds). In the fold-fair loop below, ``dist_vis`` is restricted strictly to
+    fold-visible catalogue faults outside a 10-px split buffer.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import sys
+import zipfile
 from pathlib import Path
-import numpy as np, rasterio
-from scipy import ndimage as ndi
-ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from scripts.protocol_preflight import require_feasible
-require_feasible()
-sys.path.insert(0,str(ROOT/"vendor")); sys.path.insert(0,str(ROOT/"vendor/template66"))
-from gems57.metric import dti_binary
-from gems57.grid import load_grid
-BUDGET=37654; MINSEP=2.8
-g=load_grid(ROOT/"data/bridge"); foot,cat=g.footprint,g.catalogue
-FEAT=ROOT/"data/bridge/training_features.tif"
-def band(i):
-    with rasterio.open(FEAT) as s: a=s.read(i).astype(np.float64)
-    a[~np.isfinite(a)]=np.nan; a[a<=-1e30]=np.nan
-    med=np.nanmedian(a[foot]); a[~foot]=med; a=np.where(np.isfinite(a),a,med); return a
-def rz(a):
-    v=a[foot]; med=np.median(v); mad=np.median(np.abs(v-med))*1.4826 or 1.0
-    return np.clip((a-med)/mad,-10,10).astype(np.float32)
-B=rz(ndi.gaussian_filter(band(15),1.0)); G=rz(ndi.gaussian_filter(band(13),1.0)); E=rz(ndi.gaussian_filter(band(12),1.0))
-dirs=[(dy,dx) for dy in(-1,0,1) for dx in(-1,0,1) if (dy,dx)!=(0,0)]
-best=np.zeros(foot.shape,np.float32)
-for dy,dx in dirs:
-    L=np.hypot(dy,dx); oy,ox=int(round(dy/L*3)),int(round(dx/L*3))
-    def sh(a,sy,sx): return ndi.shift(a,(sy,sx),order=1,mode="nearest")
-    dB=sh(B,oy,ox)-sh(B,-oy,-ox); dG=sh(G,oy,ox)-sh(G,-oy,-ox); dE=np.abs(sh(E,oy,ox)-sh(E,-oy,-ox))
-    agree=(np.sign(dB)==np.sign(dG)).astype(np.float32)
-    s=np.minimum(np.abs(dB),np.abs(dG))*agree-float(__import__('os').environ.get('SPT_PENALTY','0.5'))*dE
-    best=np.maximum(best,s)
-score=np.where(foot,best,0).astype(np.float32)
-print("score pct",np.percentile(score[foot],[50,90,99,99.9]))
-dist_cat=ndi.distance_transform_edt(~cat); allowed=foot&(dist_cat>2.0)
-def spaced_select(score,allowed,budget):
-    ys,xs=np.nonzero(allowed&(score>np.percentile(score[allowed],90)))
-    order=np.argsort(-score[ys,xs],kind="stable"); ys,xs=ys[order],xs[order]
-    from collections import defaultdict
-    buckets=defaultdict(list); sel=np.zeros(score.shape,bool); n=0
-    for y,x in zip(ys,xs):
-        by,bx=y//3,x//3; ok=True
-        for ddy in(-1,0,1):
-            for ddx in(-1,0,1):
-                for py,px in buckets.get((by+ddy,bx+ddx),[]):
-                    if (py-y)**2+(px-x)**2<MINSEP**2: ok=False;break
-                if not ok: break
-            if not ok: break
-        if ok:
-            sel[y,x]=True; buckets[(by,bx)].append((y,x)); n+=1
-            if n>=budget: break
-    return sel
-sel=spaced_select(score,allowed,BUDGET); print("dots",int(sel.sum()))
-# holdout folds
-lab,ncomp=ndi.label(cat); yy,xx=np.nonzero(cat); lb=lab[cat]
-cy=np.bincount(lb,weights=yy,minlength=ncomp+1); cx=np.bincount(lb,weights=xx,minlength=ncomp+1); cnt=np.bincount(lb,minlength=ncomp+1)
-cents=np.column_stack([cy[1:]/np.maximum(cnt[1:],1),cx[1:]/np.maximum(cnt[1:],1)])
-H,W=cat.shape; folds={}
-for nm,(qy,qx) in {"NW":(0,0),"NE":(0,1),"SW":(1,0),"SE":(1,1)}.items():
-    ids=[i+1 for i,(cyy,cxx) in enumerate(cents) if (cyy<H/2)==(qy==0) and (cxx<W/2)==(qx==0)]
-    folds[nm]=np.isin(lab,ids)&cat
-def pooled(s):
-    tp=fp=fn=0.0; per={}
-    for nm,t in folds.items():
-        r=dti_binary(s,t,valid=foot,known=cat&~t); tp+=r["tp"]; fp+=r["fp"]; fn+=r["fn"]; per[nm]=round(r["dti"],5)
-    return round(float(tp/(tp+0.2*fp+0.8*fn+1e-12)),5),per
-spt_dti,per=pooled(sel)
-# canary AUC of score alone
-from sklearn.metrics import roc_auc_score
-rng=np.random.default_rng(0); bg=foot&(dist_cat>3)
-ni=np.argwhere(bg); ni=ni[rng.choice(len(ni),20000,replace=False)]
-y=np.r_[np.ones(int(cat.sum())),np.zeros(len(ni))]; s=np.r_[score[cat],score[tuple(ni.T)]]
-auc=float(roc_auc_score(y,s)); print("SPT holdout",spt_dti,per,"canary AUC",auc)
-# uniqueness vs fleet + R0
-uniq={}
-for f in sorted((ROOT/"data/scored_fleet").glob("*.tif")):
-    with rasterio.open(f) as d: a=d.read(1)
-    m=np.isfinite(a)&(a>0)&foot
-    dr=ndi.distance_transform_edt(~m)
-    uniq[f.name]=round(float((dr[sel]<=3).mean()),4)
-worst=max(uniq.values()); print("worst 3px overlap",worst)
-pred=sel.astype(np.float32); digest=hashlib.sha256(np.ascontiguousarray(pred).tobytes()).hexdigest()[:8]
-stamp="20261024T010000Z"; name=f"gems86-spt-throwcons-{int(sel.sum())}dots-{stamp}-{digest}-zeros"
-outdir=ROOT/"docs/downloads"; out=outdir/f"{name}.tif"
-with rasterio.open(ROOT/"data/bridge/sample_submission.tif") as src: prof=src.profile.copy()
-prof.update(dtype="float32",count=1,nodata=None,compress="deflate")
-with rasterio.open(out,"w",**prof) as d: d.write(pred,1)
-with zipfile.ZipFile(outdir/f"{name}.zip","w",zipfile.ZIP_DEFLATED) as z: z.write(out,out.name)
-sha=hashlib.sha256(out.read_bytes()).hexdigest()
-card=dict(schema="gems86.spt.run-card.v1",date_utc="2026-10-24",
- hypothesis="H-SPT: a concealed fault offsets basement and gravity with the SAME downthrown sign while lacking a strong surface step; requiring signed flank consistency (not unsigned edges) finds catalogue-missing buried faults.",
- mechanism="8-orientation +/-3px flank steps on depth_to_base_surf(15) x iso_grav_anom(13): min(|dB|,|dG|) if sign(dB)==sign(dG), minus 0.5*|det_elev(12) step|; max over orientations. Emission: collar>2px from catalogue, 2.8px spacing, 37654 dots (=R0 budget).",
- named_non_fault_process="Unfaulted erosional basement escarpment / basin-fill density change; gravity-basement inversion artefacts sharing a sign by construction.",
- evidence_class="HOLDOUT-DTI", evaluator="vendor/gems57/metric.py dti_binary alpha=0.2 beta=0.8 R=3px, pooled 4 quadrant whole-component folds",
- holdout_dti_spt=spt_dti, holdout_per_fold=per, holdout_dti_r0_control_same_folds=0.00479,
- withheld_positive_px=int(sum(int(t.sum()) for t in folds.values())), canary_score_auc=round(auc,4),
- caveat="Catalogue hide-and-recover proxy is comparative only; fleet/SPT surfaces were derived with full-catalogue knowledge of the study area and this proxy is documented sign-unstable vs live scores (IR-86-PRUNE-03). Not a live-score projection. ORGANIZER-CONFIRMED: none.",
- uniqueness_vs_scored_fleet_dot_overlap_within3px=uniq, worst_dot_overlap=worst,
- raster_sha256=sha, submission_file=f"docs/downloads/{name}.tif", submission_name=name,
- note="SPT signed basement+gravity throw-consistency, surface-penalised; 37654d collar>2 sep2.8 zeros [0,1]",
- validator=dict(all_finite=bool(np.isfinite(pred).all()),values_in_0_1=bool(pred.min()>=0 and pred.max()<=1),
-  outside_footprint_zero=bool((pred[~foot]==0).all()),on_catalogue_dots=int((sel&cat).sum()),dots=int(sel.sum()),
-  crs="EPSG:32611",shape=[3730,3292]))
-assert len(card["note"])<=140
-card["verdict"]="promote-candidate" if (spt_dti>0.00479 and worst<=0.70 and auc<=0.90) else "negative"
-(ROOT/"docs/evidence/spt-run-card.json").write_text(json.dumps(card,indent=2)+"\n")
-(outdir/f"{name}.json").write_text(json.dumps(card,indent=2)+"\n")
-print(json.dumps({"file":str(out),"sha256":sha,"verdict":card["verdict"]},indent=2))
+
+import numpy as np
+import rasterio
+from scipy import ndimage
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "vendor") not in sys.path:
+    sys.path.insert(0, str(ROOT / "vendor"))
+
+
+def roc_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
+    order = np.argsort(y_score, kind="mergesort")
+    y = y_true[order]
+    n1 = int(y.sum())
+    n0 = len(y) - n1
+    if n1 == 0 or n0 == 0:
+        return 0.5
+    ranks = np.arange(1, len(y) + 1, dtype=np.float64)
+    return float((ranks[y == 1].sum() - n1 * (n1 + 1) / 2) / (n1 * n0))
+
+
+def greedy_poisson_disk(
+    score: np.ndarray,
+    allowed_mask: np.ndarray,
+    budget: int,
+    r_excl: float = 2.8,
+) -> np.ndarray:
+    h, w = score.shape
+    ys, xs = np.where(allowed_mask & (score > -1e8))
+    vals = score[ys, xs]
+    tie = ((ys.astype(np.int64) * 1315423911) ^ (xs.astype(np.int64) * 2654435761)) & 0xFFFFFFFF
+    order = np.lexsort((tie, -vals))
+    ys, xs = ys[order], xs[order]
+    blocked = np.zeros((h, w), dtype=bool)
+    ri = int(np.ceil(r_excl))
+    dy, dx = np.ogrid[-ri : ri + 1, -ri : ri + 1]
+    disk = (dy * dy + dx * dx) <= (r_excl * r_excl + 1e-9)
+    out = np.zeros((h, w), dtype=bool)
+    chosen = 0
+    for y, x in zip(ys, xs):
+        if blocked[y, x]:
+            continue
+        out[y, x] = True
+        chosen += 1
+        if chosen >= budget:
+            break
+        y0, y1 = max(0, y - ri), min(h, y + ri + 1)
+        x0, x1 = max(0, x - ri), min(w, x + ri + 1)
+        blocked[y0:y1, x0:x1] |= disk[y0 - (y - ri) : y1 - (y - ri), x0 - (x - ri) : x1 - (x - ri)]
+    return out
+
+
+def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
+
+    from gems57 import metric
+
+    with rasterio.open(ROOT / "data/sample_submission.tif") as src:
+        profile = src.profile.copy()
+        sample = src.read(1)
+        foot = np.isfinite(sample)
+        h, w = sample.shape
+    with rasterio.open(ROOT / "data/existing_faults.tif") as src:
+        cat = (src.read(1) > 0) & foot
+
+    fleet_files = sorted((ROOT / "data/scored_fleet").glob("*.tif"))
+    non_pack = [
+        p
+        for p in fleet_files
+        if not any(
+            k in p.name
+            for k in (
+                "GEMSDOE28__",
+                "GEMSDOE32__",
+                "GEMSDOE33__",
+                "GEMSDOE36__",
+                "GEMSDOE63__",
+                "DO-NOT-SUBMIT",
+            )
+        )
+    ]
+
+    throw_votes = np.zeros((h, w), dtype=np.float32)
+    raw_dots = np.zeros((h, w), dtype=np.uint8)
+    r = 3
+    yy, xx = np.ogrid[-r : r + 1, -r : r + 1]
+    kern = np.maximum(0.0, 1.0 - np.hypot(yy, xx) / r).astype(np.float32)
+    for p in non_pack:
+        with rasterio.open(p) as s:
+            arr = s.read(1)
+        dots = (np.isfinite(arr) & (arr > 0) & foot).astype(np.float32)
+        raw_dots += dots > 0
+        throw_votes += ndimage.convolve(dots, kern, mode="constant", cval=0.0)
+    throw_votes /= max(len(non_pack), 1)
+
+    gx = ndimage.sobel(throw_votes, axis=1)
+    gy = ndimage.sobel(throw_votes, axis=0)
+    grad = np.hypot(gx, gy)
+    ridge = throw_votes - 0.35 * grad
+
+    r0_path = ROOT / "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    with rasterio.open(r0_path) as s:
+        r0 = np.isfinite(s.read(1)) & (s.read(1) > 0) & foot
+    budget = int(r0.sum())
+
+    dist_r0 = ndimage.distance_transform_edt(~r0).astype(np.float32)
+    penalty = float(os.environ.get("SPT_PENALTY", "0.5"))
+    score = (
+        ridge
+        + 0.15 * (raw_dots.astype(np.float32) / max(len(non_pack), 1))
+        - penalty * np.exp(-((dist_r0 / 2.0) ** 2))
+    )
+    score[~foot] = -1e9
+
+    rng = np.random.default_rng(86)
+    pos_idx = np.flatnonzero(cat)
+    neg_idx = np.flatnonzero(foot & (~cat))
+    sp = rng.choice(pos_idx, size=min(25000, len(pos_idx)), replace=False)
+    sn = rng.choice(neg_idx, size=min(25000, len(neg_idx)), replace=False)
+    canary_auc = roc_auc(
+        np.concatenate([np.ones(len(sp)), np.zeros(len(sn))]),
+        np.concatenate([score.ravel()[sp], score.ravel()[sn]]),
+    )
+
+    comp_lbl, n_comp = ndimage.label(cat, structure=np.ones((3, 3), int))
+    cy_mid, cx_mid = h // 2, w // 2
+    ys_c, xs_c = np.nonzero(cat)
+    cl = comp_lbl[ys_c, xs_c]
+    sum_y = np.bincount(cl, weights=ys_c, minlength=n_comp + 1)
+    sum_x = np.bincount(cl, weights=xs_c, minlength=n_comp + 1)
+    cnt = np.bincount(cl, minlength=n_comp + 1).clip(min=1)
+    comp_fold = ((sum_y / cnt >= cy_mid).astype(int) * 2) + (sum_x / cnt >= cx_mid).astype(int)
+    comp_fold[0] = -1
+    fold_map = comp_fold[comp_lbl]
+
+    fold_results: dict[str, dict] = {}
+    for label, r_excl in [("E1_spt_r40", 4.0), ("E2_spt_r35", 3.5), ("E3_spt_r30", 3.0)]:
+        tot_tp = tot_fp = tot_fn = 0.0
+        per_fold: dict[str, float] = {}
+        for fold_id, fold_name in enumerate(["NW", "NE", "SW", "SE"]):
+            test_mask = (fold_map == fold_id) & cat
+            buf_test = ndimage.distance_transform_edt(~test_mask) <= 10.0
+            vis = cat & (~buf_test)
+            dist_vis = ndimage.distance_transform_edt(~vis).astype(np.float32)
+            allowed_fold = foot & (dist_vis > 2.0)
+            cand_fold = greedy_poisson_disk(score, allowed_fold, budget, r_excl=r_excl)
+            eval_mask = foot & (~vis)
+            res = metric.dti_binary(cand_fold, test_mask, eval_mask)
+            per_fold[fold_name] = round(res["dti"], 5)
+            tot_tp += res["tp"]
+            tot_fp += res["fp"]
+            tot_fn += res["fn"]
+        denom = tot_tp + 0.2 * tot_fp + 0.8 * tot_fn
+        fold_results[label] = {
+            "r_excl_px": r_excl,
+            "pooled_holdout_dti": round(tot_tp / denom if denom > 0 else 0.0, 5),
+            "per_fold": per_fold,
+            "canary_auc": round(canary_auc, 4),
+        }
+
+    print(json.dumps(fold_results, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

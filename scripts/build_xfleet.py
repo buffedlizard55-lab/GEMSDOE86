@@ -1,131 +1,123 @@
 #!/usr/bin/env python3
-"""GEMSDOE86 XFLEET experiment: cross-fleet consensus anchored to R0 (h33).
-Exp1 anchored consensus, Exp2 pure consensus, Exp3 R0 respaced control.
-Holdout: quadrant whole-component hide-and-recover, gems57 metric dti_binary pooled.
-Writes only Exp1 TIF (zeros outside footprint, float32, values {0,1})."""
-import hashlib, json, sys
+"""Historical diagnostic script for Lane XFLEET (Cross-Fleet Consensus + R0
+Anchor), now gated fail-closed behind ``scripts.protocol_preflight.require_feasible()``.
+
+Forensic status (IR-86-SPT-02, 2026-10-24):
+  - Revoked as ``verdict: "negative"`` (``DO NOT SUBMIT``).
+  - Even against the 25 local scored-fleet rasters alone, XFLEET breached both
+    duplicate limits (``dot_overlap_within_3px = 0.9988 > 0.70``,
+    ``spearman = 0.9979 > 0.90`` vs ``GEMSDOE32`` ``R0``), and ``require_feasible()``
+    stops before any surface construction or dot placement because the pinned
+    continuous witness ``17GEMSDOE`` (``ab0a0a62...``) covers ``100%`` of
+    allowed off-catalogue footprint cells within 3 px.
+"""
+from __future__ import annotations
+
+import json
+import sys
 from pathlib import Path
-import numpy as np, rasterio
-from scipy import ndimage as ndi
+
+import numpy as np
+import rasterio
+from scipy import ndimage
+
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from scripts.protocol_preflight import require_feasible
-require_feasible()
-sys.path.insert(0, str(ROOT/"vendor")); sys.path.insert(0, str(ROOT/"vendor/template66"))
-from gems57.metric import dti_binary
-from gems57.grid import load_grid
+if str(ROOT / "vendor") not in sys.path:
+    sys.path.insert(0, str(ROOT / "vendor"))
 
-BUDGET=37654; MINSEP=2.8
-g=load_grid(ROOT/"data/bridge")
-foot, cat = g.footprint, g.catalogue
-fleet=sorted((ROOT/"data/scored_fleet").glob("*.tif"))
-votes=np.zeros(foot.shape, np.float32); r0=None; masks={}
-for f in fleet:
-    with rasterio.open(f) as d: a=d.read(1)
-    m=np.isfinite(a)&(a>0)&foot
-    masks[f.name]=m; votes+=m
-    if "h33-h33-2-b2" in f.name: r0=m
-print(f"fleet={len(fleet)} r0_dots={int(r0.sum())} maxvotes={votes.max()}")
-dist_cat=ndi.distance_transform_edt(~cat)
-allowed=foot&(dist_cat>2.0)
 
-def spaced_select(score, allowed, budget):
-    ys,xs=np.nonzero(allowed&(score>=2)) if score.max()>2 else np.nonzero(allowed&(score>0))
-    order=np.argsort(-score[ys,xs],kind="stable"); ys,xs=ys[order],xs[order]
-    sel=np.zeros(score.shape,bool); r=int(np.ceil(MINSEP))
-    # grid-bucket greedy
-    from collections import defaultdict
-    buckets=defaultdict(list)
-    n=0
-    for y,x in zip(ys,xs):
-        by,bx=y//3,x//3; ok=True
-        for dy in(-1,0,1):
-            for dx in(-1,0,1):
-                for (py,px) in buckets.get((by+dy,bx+dx),[]):
-                    if (py-y)**2+(px-x)**2 < MINSEP**2: ok=False;break
-                if not ok: break
-            if not ok: break
-        if ok:
-            sel[y,x]=True; buckets[(by,bx)].append((y,x)); n+=1
-            if n>=budget: break
-    return sel
+def greedy_poisson_disk(
+    score: np.ndarray,
+    allowed_mask: np.ndarray,
+    budget: int,
+    r_excl: float = 2.8,
+) -> np.ndarray:
+    h, w = score.shape
+    ys, xs = np.where(allowed_mask & (score > -1e8))
+    vals = score[ys, xs]
+    tie = ((ys.astype(np.int64) * 1315423911) ^ (xs.astype(np.int64) * 2654435761)) & 0xFFFFFFFF
+    order = np.lexsort((tie, -vals))
+    ys, xs = ys[order], xs[order]
+    blocked = np.zeros((h, w), dtype=bool)
+    ri = int(np.ceil(r_excl))
+    dy, dx = np.ogrid[-ri : ri + 1, -ri : ri + 1]
+    disk = (dy * dy + dx * dx) <= (r_excl * r_excl + 1e-9)
+    out = np.zeros((h, w), dtype=bool)
+    chosen = 0
+    for y, x in zip(ys, xs):
+        if blocked[y, x]:
+            continue
+        out[y, x] = True
+        chosen += 1
+        if chosen >= budget:
+            break
+        y0, y1 = max(0, y - ri), min(h, y + ri + 1)
+        x0, x1 = max(0, x - ri), min(w, x + ri + 1)
+        blocked[y0:y1, x0:x1] |= disk[y0 - (y - ri) : y1 - (y - ri), x0 - (x - ri) : x1 - (x - ri)]
+    return out
 
-exps={
- "E1_anchored_consensus": spaced_select(votes+2.0*r0, allowed, BUDGET),
- "E2_pure_consensus": spaced_select(votes, allowed, BUDGET),
- "E3_r0_control": spaced_select(r0.astype(np.float32), allowed, BUDGET),
-}
-# holdout: connected components assigned by centroid quadrant
-lab,ncomp=ndi.label(cat)
-objs=ndi.find_objects(lab)
-yy,xx=np.nonzero(cat); lb=lab[cat]
-cy=np.bincount(lb,weights=yy,minlength=ncomp+1); cx=np.bincount(lb,weights=xx,minlength=ncomp+1); cnt=np.bincount(lb,minlength=ncomp+1)
-cents=np.column_stack([cy[1:]/np.maximum(cnt[1:],1),cx[1:]/np.maximum(cnt[1:],1)])
-H,W=cat.shape; folds={}
-for name,(qy,qx) in {"NW":(0,0),"NE":(0,1),"SW":(1,0),"SE":(1,1)}.items():
-    ids=[i+1 for i,(cy,cx) in enumerate(cents) if (cy<H/2)==(qy==0) and (cx<W/2)==(qx==0)]
-    folds[name]=np.isin(lab,ids)&cat
-results={}
-for ename,sel in exps.items():
-    tp=fp=fn=0.0; per={}
-    for fname,truth in folds.items():
-        r=dti_binary(sel,truth,valid=foot,known=cat&~truth)
-        tp+=r["tp"]; fp+=r["fp"]; fn+=r["fn"]; per[fname]=round(r["dti"],5)
-    pooled=tp/(tp+0.2*fp+0.8*fn+1e-12)
-    results[ename]=dict(dots=int(sel.sum()),pooled_holdout_dti=round(float(pooled),5),per_fold=per,
-                        withheld_positive_px=int(sum(int(t.sum()) for t in folds.values())))
-    print(ename,results[ename])
-# canary AUC: votes vs withheld-all (full catalogue as positive proxy, background >3px)
-from sklearn.metrics import roc_auc_score
-bg=foot&(dist_cat>3)
-samp=np.zeros(foot.shape,bool); rng=np.random.default_rng(0)
-pos_idx=np.argwhere(cat); neg_idx=np.argwhere(bg)
-sel_neg=neg_idx[rng.choice(len(neg_idx),size=min(20000,len(neg_idx)),replace=False)]
-y=np.r_[np.ones(len(pos_idx)),np.zeros(len(sel_neg))]
-s=np.r_[votes[cat],votes[tuple(sel_neg.T)]]
-auc=float(roc_auc_score(y,s)); print("canary votes AUC",auc)
-# uniqueness of E1 vs every fleet raster
-sel=exps["E1_anchored_consensus"]
-dist_sel=ndi.distance_transform_edt(~sel)
-uniq={}
-for name,m in masks.items():
-    dist_reg=ndi.distance_transform_edt(~m)
-    cand_frac=float((dist_reg[sel]<=3).mean())
-    # spearman on 200k footprint sample
-    idx=np.argwhere(foot); sidx=idx[rng.choice(len(idx),size=min(200000,len(idx)),replace=False)]
-    from scipy.stats import spearmanr
-    rho=float(spearmanr(sel[tuple(sidx.T)].astype(float),m[tuple(sidx.T)].astype(float)).statistic) if m[tuple(sidx.T)].std()>0 and sel[tuple(sidx.T)].std()>0 else 0.0
-    uniq[name]=dict(dot_overlap_within3px_of_candidate=round(cand_frac,4),spearman_sample=round(rho,4))
-worst=max(uniq.values(),key=lambda v:v["dot_overlap_within3px_of_candidate"])
-worst_rho=max(abs(v["spearman_sample"]) for v in uniq.values())
-print("worst overlap",worst,"worst |rho|",worst_rho)
-# write E1
-stamp="20261024T000000Z"
-pred=sel.astype(np.float32)
-digest=hashlib.sha256(np.ascontiguousarray(pred).tobytes()).hexdigest()[:8]
-name=f"gems86-xfleet-consensus-{int(sel.sum())}dots-{stamp}-{digest}-zeros"
-outdir=ROOT/"docs/downloads"; outdir.mkdir(parents=True,exist_ok=True)
-out=outdir/f"{name}.tif"
-with rasterio.open(ROOT/"data/bridge/sample_submission.tif") as s: prof=s.profile.copy()
-prof.update(dtype="float32",count=1,nodata=None,compress="deflate")
-with rasterio.open(out,"w",**prof) as d: d.write(pred,1)
-import zipfile
-with zipfile.ZipFile(outdir/f"{name}.zip","w",zipfile.ZIP_DEFLATED) as z: z.write(out,out.name)
-sha=hashlib.sha256(out.read_bytes()).hexdigest()
-card=dict(schema="gems86.xfleet.run-card.v1",date_utc="2026-10-24",evidence_class_holdout="HOLDOUT-DTI",
- hypothesis="Cross-fleet consensus (independent scored submissions agreeing off-catalogue) marks hidden-fault habitat better than any single lane; anchoring to R0 (0.2778 owner-reported) retains its geometry.",
- mechanism="Vote surface over 25 scored-fleet rasters in data/scored_fleet + 2x R0 anchor weight; catalogue collar >2px (dist to mapped fault), 2.8px min spacing, 37654-dot budget matching R0.",
- named_non_fault_process="Shared catalogue-avoidance geometry and shared GeoDAWN edge artefacts (survey seams, lithologic contacts) can make independent-looking lanes agree off-fault.",
- holdout=dict(evaluator="vendor/gems57/metric.py dti_binary alpha=0.2 beta=0.8 R=3px pooled over 4 quadrant whole-component folds",
-   results=results, canary_votes_auc=round(auc,4), canary_note="AUC vs catalogue proxy; >0.90 would flag leakage",
-   caveat="Fleet rasters were built against the full catalogue, so this hide-and-recover proxy is comparative only and known sign-unstable vs live scores (IR-86-PRUNE-03); not a live-score projection."),
- uniqueness_vs_scored_fleet=uniq, worst_dot_overlap=worst, worst_abs_spearman=round(worst_rho,4),
- registry_note="Checked vs the 25 locally scored fleet rasters only. The pinned dense continuous witness in docs/evidence/uniqueness.json is positive everywhere and would block ANY nonempty raster under the literal rule; that contradiction is flagged, not hidden (IR-86-PRUNE-01).",
- raster_sha256=sha, submission_file=f"docs/downloads/{name}.tif",
- submission_name=name, note="XFLEET consensus+R0 anchor 37654d collar>2px sep2.8 HOLDOUT-DTI proxy in run card; zeros [0,1]",
- validator=dict(all_finite=bool(np.isfinite(pred).all()),values_in_0_1=bool(pred.min()>=0 and pred.max()<=1),
-   outside_footprint_zero=bool((pred[~foot]==0).all()),on_catalogue_dots=int((sel&cat).sum()),dots=int(sel.sum())))
-assert len(card["note"])<=140
-(ROOT/"docs/evidence/xfleet-run-card.json").write_text(json.dumps(card,indent=2)+"\n")
-(outdir/f"{name}.json").write_text(json.dumps(card,indent=2)+"\n")
-print(json.dumps({"file":str(out),"sha256":sha,"name":name},indent=2))
+
+def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
+
+    from gems57 import metric
+
+    with rasterio.open(ROOT / "data/sample_submission.tif") as src:
+        sample = src.read(1)
+        foot = np.isfinite(sample)
+        h, w = sample.shape
+    with rasterio.open(ROOT / "data/existing_faults.tif") as src:
+        cat = (src.read(1) > 0) & foot
+
+    fleet_files = [
+        p for p in sorted((ROOT / "data/scored_fleet").glob("*.tif")) if "DO-NOT-SUBMIT" not in p.name
+    ]
+    r0_path = ROOT / "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    with rasterio.open(r0_path) as s:
+        r0 = np.isfinite(s.read(1)) & (s.read(1) > 0) & foot
+    budget = int(r0.sum())
+
+    votes = np.zeros((h, w), dtype=np.float32)
+    r = 3
+    yy, xx = np.ogrid[-r : r + 1, -r : r + 1]
+    kern = np.maximum(0.0, 1.0 - np.hypot(yy, xx) / r).astype(np.float32)
+    for p in fleet_files:
+        with rasterio.open(p) as s:
+            arr = s.read(1)
+        dots = (np.isfinite(arr) & (arr > 0) & foot).astype(np.float32)
+        votes += ndimage.convolve(dots, kern, mode="constant", cval=0.0)
+    votes /= max(len(fleet_files), 1)
+    r0_k = ndimage.convolve(r0.astype(np.float32), kern, mode="constant", cval=0.0)
+
+    comp_lbl, n_comp = ndimage.label(cat, structure=np.ones((3, 3), int))
+    cy_mid, cx_mid = h // 2, w // 2
+    ys_c, xs_c = np.nonzero(cat)
+    cl = comp_lbl[ys_c, xs_c]
+    sum_y = np.bincount(cl, weights=ys_c, minlength=n_comp + 1)
+    sum_x = np.bincount(cl, weights=xs_c, minlength=n_comp + 1)
+    cnt = np.bincount(cl, minlength=n_comp + 1).clip(min=1)
+    comp_fold = ((sum_y / cnt >= cy_mid).astype(int) * 2) + (sum_x / cnt >= cx_mid).astype(int)
+    comp_fold[0] = -1
+    fold_map = comp_fold[comp_lbl]
+
+    surf_anchor = np.where(foot, votes + 2.0 * r0_k, -1e9)
+    tot_tp = tot_fp = tot_fn = 0.0
+    for fold_id in range(4):
+        test_mask = (fold_map == fold_id) & cat
+        buf_test = ndimage.distance_transform_edt(~test_mask) <= 10.0
+        vis = cat & (~buf_test)
+        dist_vis = ndimage.distance_transform_edt(~vis).astype(np.float32)
+        cand = greedy_poisson_disk(surf_anchor, foot & (dist_vis > 2.0), budget, r_excl=2.8)
+        res = metric.dti_binary(cand, test_mask, foot & (~vis))
+        tot_tp += res["tp"]
+        tot_fp += res["fp"]
+        tot_fn += res["fn"]
+    denom = tot_tp + 0.2 * tot_fp + 0.8 * tot_fn
+    print(json.dumps({"pooled_holdout_dti": round(tot_tp / denom if denom > 0 else 0.0, 5)}, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

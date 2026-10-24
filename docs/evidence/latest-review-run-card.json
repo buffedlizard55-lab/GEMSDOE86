@@ -1,9 +1,9 @@
 {
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-24",
-  "hypothesis": "H86C-MMT: Cross-fault magnetic marker translation (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse magnetic markers, consistent in adjacent windows, and a weaker zero-shift match. Keep both signed slip directions rather than assuming one regional sense of slip.",
-  "named_non_fault_process": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
+  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf and a negative step in iso_grav_anom must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev scarp relief is muted by basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
+  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; inversion artifacts.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",
@@ -97,8 +97,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T07:30:41+00:00",
+  "registry_measured_utc": "2026-10-24T08:13:37+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "6f57fc82ba2c8b50f9858f9ab8bab50b2be6410a2f68b51ab2afb9f16d3f9a40",
-  "registry_measurement_sha256": "4d15448cc38097a0e5c9fd19f3e8b2b27c82f4c7ef701a4fb2a3bcc834a3e133"
+  "release_report_sha256": "632d6699421f1a202998892a7bc9197ae0785494810497a1df14b0bdd758a451",
+  "registry_measurement_sha256": "1b903a15d210863f129631b7843a5f22192a2715e3ac40add7b402f4ddddf8b0"
 }

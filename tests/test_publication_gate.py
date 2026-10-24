@@ -111,6 +111,25 @@ class PublicationTests(unittest.TestCase):
                 'submission_ready': True, 'verdict': 'promote', 'raster_sha256': entry['sha256']}))
             self.assertTrue(check(root))
 
+    def test_submission_dir_binaries_sidecar_cards_and_ready_html_fail(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            self.assertEqual(check(root), [])
+            (root / 'submission').mkdir()
+            rogue = root / 'submission/rogue.tif'
+            rogue.write_bytes(b'smuggled')
+            self.assertTrue(check(root))
+            rogue.unlink()
+            sidecar = root / 'docs/evidence/spt-run-card.json'
+            sidecar.write_text(json.dumps({'verdict': 'promote-candidate', 'submission_ready': True}))
+            self.assertTrue(check(root))
+            sidecar.unlink()
+            bad_html = root / 'docs/submit.html'
+            bad_html.write_text('<!doctype html><html><body><h1>READY TO DOWNLOAD</h1></body></html>')
+            self.assertTrue(check(root))
+            bad_html.write_text('<!doctype html><html><body><a href="https://raw.githubusercontent.com/org/repo/main/submission/x.tif">dl</a></body></html>')
+            self.assertTrue(check(root))
+
     def masks(self):
         with rasterio.open(ROOT / 'data/bridge/sample_submission.tif') as src:
             footprint = np.isfinite(src.read(1)) & (src.read_masks(1) > 0)

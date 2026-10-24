@@ -28,7 +28,7 @@
     "docs/evidence/h86-fvmb-run-card.json": "c742a128e4c6422284ab008fe447612174955e0f2a48d8b24ad8d386637f5d31",
     "docs/evidence/h86c-kslb-run-card.json": "2c685a0ab79319ef4ca0c109c4205a48b6a2426c9e114afc815b17aafb263270",
     "docs/evidence/h86d-cthb-run-card.json": "501dc56b9ff90731f1308e5b9c67248a5b3b2a1c9a5540a4938417b9ca3bde80",
-    "docs/evidence/all-artifacts-registry.json": "4d15448cc38097a0e5c9fd19f3e8b2b27c82f4c7ef701a4fb2a3bcc834a3e133"
+    "docs/evidence/all-artifacts-registry.json": "1b903a15d210863f129631b7843a5f22192a2715e3ac40add7b402f4ddddf8b0"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -1118,6 +1118,7 @@
     "All-finite zeros outside the footprint are a local conservative export policy; the public specification describes null/NaN outside bounds. Portal acceptance is not established.",
     "The rejected upload bytes and an organizer receipt were not supplied; the prior range error's cause and historical scores remain unverified.",
     "Fault prediction is not confirmation of a geothermal vent, heat supply, permeability, or commercial viability.",
-    "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements."
+    "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements.",
+    "PR #60 (IR-86-SPT-02) bypassed protocol_preflight, masked withheld test faults via full existing_faults.tif, yielded canary AUC 0.4947 (<0.50), omitted 95% CIs, misrepresented SPT prose vs code, and placed unregistered binaries in submission/. Those binaries have been removed and spt-run-card.json / xfleet-run-card.json / submit.html revoked to DO NOT SUBMIT."
   ]
 }

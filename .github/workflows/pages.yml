@@ -53,6 +53,7 @@ jobs:
             docs/evidence/release-readiness.json
             docs/evidence/all-artifacts-registry.json
             docs/evidence/session-20261023-run-card.json
+            docs/evidence/latest-review-run-card.json
             docs/evidence/fleet-feed.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

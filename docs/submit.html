@@ -1,27 +1,20 @@
 <!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Submission status — GEMSDOE86</title>
-<link rel="stylesheet" href="assets/site.css">
-</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submission gate &amp; candidate revocations · GEMSDOE86</title><meta name="description" content="Machine-checked fault-prediction research downloads. Local format validity is not submission approval.">
+<link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
-<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a><a href="submit.html" aria-current="page">Submission status</a></nav></header>
-<main id="main">
-<p class="eyebrow">Automated review of the concurrently merged SPT candidate</p>
-<h1>⛔ DO NOT SUBMIT</h1>
-<div class="callout"><strong>No download link or authorization is provided for the SPT TIFF; do not use it for competition submission.</strong> The TIFF remains in the repository solely for audit provenance.
-<p>A later literal-rule audit compared its final dots with the pinned full-support registry witness. <strong>REGISTRY-MEASUREMENT:</strong> candidate-dot overlap within 3 px = <strong>1.0</strong>, exceeding the unchanged <strong>0.70</strong> limit. The witness is positive across the allowed domain, so the candidate fails even though an earlier comparison against only 25 scored-fleet rasters reported a lower maximum.</p>
-<p>This is a duplicate-stop under the supplied protocol, not a claim that every scientific surface is identical. No full registry clearance is claimed.</p></div>
-<h2>Candidate identity — audit only</h2>
-<dl><dt>Submission name (not approved)</dt><dd><code>gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros</code></dd>
-<dt>Note (identity only; do not paste into DrivenData)</dt><dd><code>SPT signed basement+gravity throw-consistency, surface-penalised; 37654d collar&gt;2 sep2.8 zeros [0,1]</code></dd>
-<dt>SHA-256</dt><dd><code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code></dd></dl>
-<h2>Why the previous promotion is withdrawn</h2>
-<ul><li>The earlier uniqueness figure was computed against a restricted scored-fleet subset and omitted the pinned full-support witness; the literal protocol requires comparison against any registry raster.</li>
-<li>The SPT builder's holdout evaluation used a catalogue-derived exclusion collar computed from the full catalogue, did not show fold-visible-only derivation or exact masking of visible faults, and reports no 95% confidence interval. Its number is therefore not accepted as protocol-compliant HOLDOUT-DTI.</li>
-<li>No pre-placement surface rank-correlation measurement is available. The final-dot overlap is independently measured and alone exceeds the stop threshold.</li>
-<li>Local GeoTIFF formatting cannot override a uniqueness or scientific-evidence failure. No selector decision, weekly slot, or organizer receipt exists.</li></ul>
-<p><a href="evidence/spt-full-support-witness-audit.json">Open literal witness audit</a> · <a href="evidence/spt-run-card.json">Open amended SPT card</a> · <a href="evidence/latest-review-run-card.json">Open latest repository audit</a> · <a href="executive-summary.html">Submission procedure and project-wide stop</a></p>
-</main>
-<footer><strong>Local validation ≠ organizer acceptance.</strong> Do not submit this candidate.</footer>
-</body></html>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html">How to submit</a><a href="submit.html" aria-current="page">Submission status</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main"><p class="eyebrow">Automated submission safety gate · IR-86-SPT-02 &amp; IR-86-TIPRELAY-01</p><h1>DO NOT SUBMIT:<br>Concurrent SPT &amp; TIPRELAY candidates revoked.</h1>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT · VERDICT NEGATIVE</span><p>Concurrent commits published unregistered candidates (<code>SPT</code> in PR #60 and <code>H86-TIPRELAY</code> in PR #63) claiming submission readiness. Automated forensic review on <time>2026-10-24T08:13:37+00:00</time> verified that both violate mandatory uniqueness and holdout gates; neither is authorized for download as a competition upload.</p>
+<a class="btn" href="executive-summary.html">Open official submission guide &amp; audit status →</a><a class="btn secondary" href="evidence/spt-full-support-witness-audit.json">Open SPT witness audit JSON</a></div>
+<h2>1. Why PR #60's SPT candidate is blocked (<code>IR-86-SPT-02</code>)</h2>
+<ol><li><strong>100% overlap with pinned registry witness:</strong> Direct measurement of SHA-256 <code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code> against <code>17GEMSDOE</code> (<code>ab0a0a62...</code>) yields <code>candidate_dot_overlap_within_3px_of_witness = 1.0 &gt; 0.70</code> (<a href="evidence/spt-full-support-witness-audit.json">witness audit</a> · <a href="evidence/spt-run-card.json">run card</a>).</li>
+<li><strong>Single-feature canary below coin-flip (<code>AUC = 0.4947</code>) &amp; withheld-fold collar leak:</strong> The throw-vote surface had no positive fault discrimination on the footprint and masked <code>dist_cat &gt; 2.0</code> using the full <code>existing_faults.tif</code> catalogue.</li>
+<li><strong>Preflight enforced:</strong> Both <code>scripts/build_spt.py</code> and <code>scripts/build_xfleet.py</code> now stop at <code>protocol_preflight.require_feasible()</code> before loading features.</li></ol>
+<h2>2. Why PR #63's H86-TIPRELAY candidate was revoked (<code>IR-86-TIPRELAY-01</code>)</h2>
+<ol><li><strong>85.08% 3-px dot overlap against sparse <code>GEMSDOE32</code> <code>h33-h33-2-b2</code> (<code>&gt; 70%</code> limit):</strong> Even before checking the continuous witness (<code>100%</code> overlap), SHA-256 <code>c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3</code> copied 70% of <code>H33</code> verbatim and overlapped <code>85.08%</code> with <code>GEMSDOE32</code> and <code>85.10%</code> with <code>GEMSDOE28</code> (<a href="evidence/h86-tiprelay-run-card.json">revoked TIPRELAY card</a>).</li>
+<li><strong>Zero holdout evaluation:</strong> Reported <code>PROJECTION_NOT_HOLDOUT</code> with no spatially-blocked evaluation or leakage canary, and added a <code>tiprelay</code> exclusion backdoor to <code>audit_release.py</code> that broke <code>check_site.py</code> and <code>build_site.py --check</code>. That unregistered binary and backdoor have been removed, and <code>scripts/gen_tip_final.py</code> is now gated behind <code>require_feasible()</code>.</li></ol>
+<p>All 10 preserved historical research rasters remain available for audit-only inspection on <a href="index.html#downloads">Downloads</a>, and the exact DrivenData portal procedure (<code>[0, 1]</code> range check, unique name, and <code>&lt;= 140</code>-char note) is documented on <a href="executive-summary.html">How to submit</a>.</p></main>
+<footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Source code</a> ·
+<a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>

@@ -1,16 +1,15 @@
 # Standing project prompt (condensed historical archive)
 
-**Read the latest README decision and its complete 2026-10-23 request archive first.**
-The repeated 2026-10-24 request follows the same standing protocol. Current remeasurement:
+**Read the latest README decision and its complete 2026-10-24 request archive first.**
+The 2026-10-24 request expands the named fleet to 92 projects (`GEMSDOE` through `GEMSDOE92`, adding 8 newly reported owner scores across `GEMSDOE76`..`GEMSDOE87`) while retaining the exact same standing protocol. Current remeasurement:
 `docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
-The current request is also in `research/REQUEST_20261023.md`; the earlier request remains in
+The current request is archived verbatim in `research/REQUEST_20261024.md`; the 2026-10-23 request remains in `research/REQUEST_20261023.md`, and the earlier request remains in
 `research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
 verified results. A pinned full-positive registry witness currently makes the literal overlap
 rule unsatisfiable for every nonempty candidate. Scientific CLIs must stop before fitting or
-placement; do not bypass that gate, relabel an old TIFF as new, or claim the unmet unique-TIFF
-requirement has been completed. `scripts/audit_release.py` checks all historical downloads;
-`docs/evidence/session-20261023-run-card.json` is the dated archive, while the latest fresh negative
-remeasurement is recorded separately in `docs/evidence/latest-review-run-card.json`.
+placement; do not bypass that gate, relabel an old TIFF as new, smuggle unregistered binaries into `submission/`, or claim the unmet unique-TIFF
+requirement has been completed. `scripts/audit_release.py` checks all historical downloads and sidecar run cards;
+`docs/evidence/session-20261023-run-card.json` and `docs/evidence/latest-review-run-card.json` record the current negative outcome.
 
 ---
 
