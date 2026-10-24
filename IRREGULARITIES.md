@@ -830,7 +830,33 @@ within-surface reallocation is treated as closed, and the open headroom is surfa
 (`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
 `EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
 0.000…+0.003, below the evidence floor).
-## IR-86-CONC-17 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
+## IR-86-CONC-17 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
+
+**Observed.** This session (`arena/4822aa3b-gemsdoe86`, PR #55) and the concurrent PR #50 session
+(`arena/60ecf1c8`) both self-assigned CONCENTRATION, both extended the `b5km-cvband-down4` dose
+curve, and both named their artifacts `run_concentration_dose.py` / `variants_concentration_dose.json`.
+PR #50 merged first (with `cvband-down3` `ffb47d4b`, `cvband-down5` `a2f8aaad`, `cvband-down6`
+`1ed78e0f`, and a `CONTROL-cvband-down6-randcredit` `a6838dc2`). On merging origin/main for PR #55,
+this session's `b5km-cvband-down6` proved **byte-identical** to PR #50's `conc6` (same zeros sha256
+`1ed78e0f…`) — the same deterministic pipeline and dose from two independent runs, which is itself
+a reproducibility datum. This session's other two rungs are new: `b5km-cvband-down2` (`f0ee647f`,
+753 moves — a point below PR #50's lowest rung) and `b5km-cvband-downmax` (`d4a42664`, 2,381 moves —
+the exact binary-searched sparse-ridge destination-pool ceiling), which confirm `IR-86-CONC-12`'s
+"≈ 6.4 % of R0" capacity cap with the precise number (2,381 = 6.32 %) and show the marginal 122
+moves past `conc6` cost more than they bought (`+0.0020` vs `+0.0022` MODEL, both 4/4 quadrants).
+This item was first drafted as "IR-86-CONC-12" before main's numbering was known; 12/13/14 are
+taken (`IR-86-CONC-14` is PR #50's own canary item), so it is renumbered here.
+
+**Decision.** This session's `down6` is recorded `BUILT-DUPLICATE` (house pattern:
+`gems86-h33-2b2-prune3` `collar3px`), pointing at PR #50's `conc6` BUILT row; files renamed to
+`scripts/run_concentration_dose_rungs.py`, `tests/test_concentration_dose_rungs.py`,
+`ledger/variants_concentration_dose_rungs.json`, `evidence/concentration_dose_axis_20261023.json`;
+`down2`/`downmax` recorded `BUILT` as curve brackets, not slot candidates (Slot 2 stays `conc6`
+per rev. D). No slot was spent; the exact-hash duplicate is kept in the ledger rather than deleted,
+because two independent byte-identical builds is evidence the down-mechanism dose ladder is
+reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, axis, value)".
+
+## IR-86-CONC-18 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.

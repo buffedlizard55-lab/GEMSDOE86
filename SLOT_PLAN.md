@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (rev. F: rev. E + CONCENTRATION completed at 10 km fault-system scale)
+# SLOT PLAN — 2026-10-23 (rev. G: rev. F + CONCENTRATION completed at 10 km fault-system scale)
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -14,8 +14,14 @@ Live `|Δ| < 0.01` = no evidence.
 CV falls `0.5377 → 0.4998 → 0.4840`, so the historical `0.51–0.59` band is a correlate, not the cause
 (`IR-86-CONC-13`). The matched ordering control (same blocks, same count, random dot, random
 destination) gets `+0.0015` / `+0.0008 PROXY`, so **the ranking buys only ≈ `+0.0007`**. The axis is
-capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`). `conc6` supersedes `concb5kmdown4` on both
-instruments at 753 extra moved dots.
+capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`) — pinned exactly by the PR #55 rungs session:
+the binary-searched sparse-ridge destination-pool ceiling is **2,381 moves** (`b5km-cvband-downmax`,
+`d4a42664`, CV 0.4789), and the 122 moves past `conc6` cost more than they bought (`+0.0020` vs
+`+0.0022` MODEL, 4/4 quads). The same session added the low rung `b5km-cvband-down2` (`f0ee647f`,
+753 moves, CV 0.5611, `+0.0012` MODEL 4/4, `+0.0001` PROXY), so the curve is now measured at
+753 / 1,130 / 1,506 / 1,883 / 2,259 / 2,381 moves and is monotone to the pool ceiling
+(`IR-86-CONC-17` records that PR #55's `down6` rebuilt PR #50's `conc6` byte-identically).
+`conc6` supersedes `concb5kmdown4` on both instruments at 753 extra moved dots.
 
 **B. `RELIEF`'s only instrument is a relief-index meter (PR #51).** Eight RELIEF rebuilds (3 shipped +
 3 new + 2 displacement-matched random nulls) score on the SGMC-extra surrogate as
@@ -45,6 +51,8 @@ a 20k–80k `|G|` band). Rearranging 2–6k existing dots has produced `|Δ| ≤
 instrument across all three sessions. Wk 1–3 below still test the three best reallocations because they
 are already built and cost nothing but slots; everything after that should fund new evidence.
 
+**D. `CONCENTRATION` at 10 km agrees, weaker; up closed at every scale (PR #54 session).** Pre-registered 100 px arms: `b10km-down8` `+0.0003 MODEL` (jitter `+0.0010`) / `+0.0012 PROXY` vs random-block control `-0.0009`; prefix `b10km-down4` splits sign (`-0.0010` / `+0.0005`). Neither displaces Slot 2 or the spares. `b10km-ridge-up8` (`-0.0009` = control; `-0.0075 PROXY`, CI excludes 0) retires upward concentration at 1, 5 and 10 km. `IR-86-CONC-18`: canonical R0 occupied-10 km CV is `0.736`, not `0.570` (`IR-86-TRACKB-08` unreplicated) — cite no 10 km CV band until the fleet is re-measured under one definition.
+
 ## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
 
 | Slot | Candidate (`releases/<id>`) | Edit vs R0 | Predicted Δ (MODEL, not a score) | Decision rule on live `RECEIPT` Δ vs 0.2778 |
@@ -52,10 +60,10 @@ are already built and cost nothing but slots; everything after that should fund 
 | **1** | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | delete 2,171 dots (`5.77 %`) in the `2.0 < d_cat ≤ 3.0 px` collar; 35,483 dots | `+0.0040` — largest lever, and its Δrelief-index ≈ 0 so the bias in §B cannot manufacture it (partly mass-confounded, `IR-86-MASS-04`) | `≥ +0.010`: collar halo is real drag → next slot probes `4.0 px` and combines with Slot 2. `≤ −0.005`: keep the 2 px collar, close PRUNE. Flat: run Slot 2. |
 | **2** | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif` *(replaces `concb5kmdown4`)* | 2,259 dots (`12.0 %` changed) shaved from `≥3`-dot 1 km clusters onto sparse-block ancestor ridges; 1 km CV `0.6235 → 0.4840`; count fixed | `+0.0022` (4/4 quads, `+0.0007` above its own dispersal control), `+0.0013 PROXY` | `≥ +0.010`: density-cap dispersal is a real lever → 6 % is the ceiling, so combine rather than dose up. `≤ −0.005`: dispersal is neutral-to-negative on private chunks → close CONCENTRATION. |
 | **3** | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` *(demoted)* | 5,648 dots (`15.0 %`) piedmont → range-front, count fixed | `+0.0017` headline, but **unbiased prior `0 ± 0.005`**: the headline is the instrument's relief gradient (§B) | `≥ +0.010`: the front destination beats the instrument's own gradient → restore RELIEF and combine. `≤ −0.005`: close RELIEF. Inside `±0.010`: close as unmeasurable at this effect size. |
-| 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. |
+| 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. `…-concb10kmdown8-20261023-780f8509-zeros.tif` (`+0.0003`/`+0.0012`) is the next spare behind these, only if Slot 2 `≥ +0.005`. |
 | 4b (spare alternate) | `…-CONC-surfext10-20261023-fe814da5-zeros.tif` (PR #53) | 3,765 dots (`20.0 %` chg) off saturated `H19-5` onto `H19-4\|H16-1`, count fixed | `+0.0059` MODEL (**−0.00003** PROXY; only `+0.0012` above its own off-union control) | Use **instead of** 4 only if the aim is to test whether unmapped ground on the other two ancestor surfaces holds new truth: `≥ +0.010` → escalate to `surfext15`; `≤ −0.005` → retire the family. Never upload `surfext10ctl`. |
 
-**Never upload:** the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
+**Never upload:** `concb10kmup8` (`-0.0009` / `-0.0075 PROXY`); the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
 `dens15`/`spr15` (`−0.0006`/`−0.0013`), `b5km-move10/15/20` (`−0.0066…−0.0150`), `concb5kmup4/8`
 (`−0.0005`/`−0.0007`); all MASS arms; all SNAP arms; `trackb-cull1dot`; every `BUILT-DUPLICATE` /
 `withdrawn` row.
@@ -75,6 +83,8 @@ are already built and cost nothing but slots; everything after that should fund 
   file plus one fallback, freeze `AI_USE.md` and the reproducibility pins.
 
 ## Unbuilt proposals (mechanism / confounder / falsifier — not built here)
+
+0. **Pool-extension `CONCENTRATION` rung beyond the ceiling (`downmax-plus`).** *Mechanism:* the ceiling at 2,381 moves is the 1–2-dot destination pool running dry; extend destinations to 3-dot blocks (or the strict 1-dot-only mirror) past the ceiling and read whether the marginal `−0.0002` (`conc6`→`downmax`) is destination-quality decay or a hard mechanism limit. *Confounder:* 3-dot destinations re-create the sub-kernel overlap the shave removed. *Falsifier:* `MODEL ≤ conc6` again with CV still > 0.47 ⇒ the mechanism, not the pool, is exhausted.
 
 1. **Kernel-credit saturation pruning (`MASS` at fixed count).** *Mechanism:* replace the 1 km-CV rule
    with a direct per-dot marginal-`DTI` ranking from the metric code, delete the lowest-ranked dots

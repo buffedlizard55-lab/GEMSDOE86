@@ -1,0 +1,270 @@
+{
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "CONCENTRATION",
+  "value": "b5km-cvband-down6",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 11.9987,
+  "dot_digest": "558b7bc30bd403014eb568f9c3546fa60f7d5718cafcbc43c028f10ee604c1d4",
+  "concentration_stats": {
+    "n_parent": 37654,
+    "n_dots": 37654,
+    "count_fixed": true,
+    "n_removed": 2259,
+    "n_added": 2259,
+    "n_symmetric_diff": 4518,
+    "pct_moved_of_parent": 5.9994,
+    "pct_changed": 11.9987,
+    "min_added_cat_clearance_px": 3.1623,
+    "median_added_cat_clearance_px": 22.3607,
+    "added_on_ancestor_ridge_fraction": 1.0,
+    "min_pair_distance_parent_px": 2.8284,
+    "min_pair_distance_variant_px": 2.8284,
+    "displacement_px": {
+      "mean": 1524.89,
+      "median": 1490.13
+    },
+    "cv_1km_parent": {
+      "block_px": 10,
+      "occupied_blocks": 15976,
+      "total_blocks": 122717,
+      "density_cv_occupied": 0.6235,
+      "count_cv_occupied": 0.6187,
+      "mean_dots_per_occupied_block": 2.3569
+    },
+    "cv_1km_variant": {
+      "block_px": 10,
+      "occupied_blocks": 15976,
+      "total_blocks": 122717,
+      "density_cv_occupied": 0.484,
+      "count_cv_occupied": 0.4763,
+      "mean_dots_per_occupied_block": 2.3569
+    },
+    "cv_5km_parent": {
+      "block_px": 50,
+      "occupied_blocks": 1771,
+      "total_blocks": 4810,
+      "density_cv_occupied": 0.7442,
+      "count_cv_occupied": 0.7238,
+      "mean_dots_per_occupied_block": 21.1056
+    },
+    "cv_5km_variant": {
+      "block_px": 50,
+      "occupied_blocks": 1771,
+      "total_blocks": 4810,
+      "density_cv_occupied": 0.7019,
+      "count_cv_occupied": 0.6824,
+      "mean_dots_per_occupied_block": 21.0977
+    }
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif",
+    "sha256": "1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85",
+    "bytes": 220435,
+    "primary_for_upload": true,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif",
+      "bytes": 220435,
+      "sha256": "1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f.tif",
+    "mode": "nan",
+    "sha256": "b5ecdcde65d10ee8e55bd6b67a7dd21d42acb8539db8ad459f18c77d84c48954",
+    "bytes": 356859,
+    "in_footprint_checks_pass": true,
+    "failed_checks": [],
+    "policy_note": "brief v2 sections 6/7 spec form (NaN outside footprint); -zeros is portal fallback"
+  },
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f",
+  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-cvband-down6: 2259 ridge dots moved (12.00% chg, 1km CV 0.484); pred +0.0022 MODEL",
+  "predicted_live_change": "+0.0022 (quadrant range +0.0005..+0.0045; 4/4 quadrants positive; fold-fair PROXY +0.0013, CI95 [-0.0004,+0.0028], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+  "model_delta_sgmc": 0.002212,
+  "proxy_fold_fair": {
+    "dti": 0.097352,
+    "ci95": [
+      0.083684,
+      0.109805
+    ],
+    "delta_vs_R0": 0.001266,
+    "delta_ci95": [
+      -0.000417,
+      0.002824
+    ],
+    "n_truth": 11321,
+    "evidence_class": "PROXY"
+  },
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "provenance": {
+    "input_pins": {
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/existing_faults.tif"
+      },
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin_source": "registry/data_manifest.json",
+        "path": "data/bridge/sample_submission.tif"
+      },
+      "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin_source": "data/restore_receipt.json",
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      },
+      "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin": null,
+        "pin_source": "MEASURED-LOCAL (no upstream pin found in this checkout; see IRREGULARITIES.md)",
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "matches_expected": true
+      }
+    },
+    "manifest_pins": {
+      "scored_h19_5": {
+        "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "bytes": 1712322,
+        "verified": true,
+        "provenance": "owner-reported 0.1922"
+      },
+      "scored_h19_4": {
+        "path": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "bytes": 1716768,
+        "verified": true,
+        "provenance": "owner-reported 0.1894"
+      },
+      "scored_h16_1": {
+        "path": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "bytes": 1718028,
+        "verified": true,
+        "provenance": "owner-reported 0.1855"
+      },
+      "scored_d28_unscored": {
+        "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "bytes": 1603424,
+        "verified": true,
+        "provenance": "unscored alternate"
+      },
+      "ext_derived_sgmc_faults_100m_u8": {
+        "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "verified": true,
+        "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+      },
+      "ext_geodawn_extensions_u8": {
+        "path": ".cache/gems_data/external/geodawn_extensions_u8.tif",
+        "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+        "bytes": 27132925,
+        "verified": true,
+        "provenance": "derived from the USGS GeoDAWN data release (DOI 10.5066/P93LGLVQ): Th/K, U/K, U/Th ratios and TMI upward-continued 150 m"
+      },
+      "ext_geodawn_extensions_json": {
+        "path": ".cache/gems_data/external/geodawn_extensions.json",
+        "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+        "bytes": 8927,
+        "verified": true,
+        "provenance": "USGS GeoDAWN extensions quantization metadata"
+      },
+      "ext_topo_10m_derived_100m_u8": {
+        "path": ".cache/gems_data/external/topo_10m_derived_100m_u8.tif",
+        "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+        "bytes": 32523329,
+        "verified": true,
+        "provenance": "USGS 3DEP 10m DEM derived slope/relief/curvature/aspect-coherence on 100m GEMS grid"
+      },
+      "ext_dem10_chi_100m_i16": {
+        "path": ".cache/gems_data/external/dem10_chi_100m_i16.tif",
+        "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+        "bytes": 12777098,
+        "verified": true,
+        "provenance": "USGS 3DEP 10m DEM fluvial ksn, log drainage area, and mean elevation (m) on 100m GEMS grid"
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+    },
+    "down4_regression_anchor": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6",
+      "zeros_sha256": "8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863",
+      "matched": true
+    },
+    "git_sha": "d0e53b8fa15a566464f6124eea7dda8b03e7a5e6"
+  },
+  "generated_utc": "2026-10-23T23:51:53Z"
+}

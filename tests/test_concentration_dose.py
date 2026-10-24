@@ -145,16 +145,11 @@ def test_committed_evidence_and_ledger_invariants():
 
 
 def _local_dose_zeros() -> list[Path]:
-    # Scoped to this session's own slugs: the earlier "*-conc*-" glob also matched
-    # other CONCENTRATION sessions' local TIFFs (concb5km*, concb10km*), which
-    # un-skipped this test in checkouts that hold those files but not the dose ones.
     rel = ROOT / "releases"
-    if not rel.is_dir():
-        return []
-    out: list[Path] = []
-    for slug in ("conc3", "conc5dose", "conc6"):
-        out += rel.glob(f"*-{slug}*-zeros.tif")
-    return sorted(set(out))
+    ids = ("conc3-20261023-ffb47d4b", "conc5dose-20261023-a2f8aaad",
+            "conc6-20261023-1ed78e0f", "conc6rand-20261023-a6838dc2")
+    return [rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif" for i in ids
+            if (rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif").is_file()]
 
 
 @pytest.mark.skipif(not _local_dose_zeros(), reason="release TIFFs are gitignored in CI")

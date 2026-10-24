@@ -13,7 +13,7 @@ sits on a pinned ancestor ridge cell (`H19-5|H19-4|H16-1`), > 3.0 px from the ca
 (measured min 3.162 px), ≥ √8 px from every other dot; donors are chosen by ascending exact
 unique kernel credit within their block class; count fixed at 37,654. R0's occupied block-density
 CV (canonical `block_density_stats`): **1 km 0.6235 · 5 km 0.7442 · 10 km 0.7360**. The 10 km
-figure corrects IR-86-TRACKB-08's 0.570 (see IR-86-CONC-17): under the repo's canonical
+figure corrects IR-86-TRACKB-08's 0.570 (see IR-86-CONC-18): under the repo's canonical
 definition R0 sits *above* the 0.51–0.59 band at 10 km, so dispersal is the band-ward direction
 at this scale as well.
 
