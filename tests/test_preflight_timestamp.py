@@ -87,3 +87,21 @@ def test_pages_rebinds_receipts_after_proof_refresh():
         'python scripts/build_site.py')
     assert '            docs/evidence/latest-review-run-card.json' in workflow
     assert '            docs/evidence/protocol-preflight.json' in workflow
+
+
+def test_reproduction_ignores_only_validated_measurement_time():
+    from scripts.check_preflight_reproduction import normalized
+    original = dict(measured_utc='2026-10-24T23:59:59+00:00', measured_date_utc='2026-10-24',
+                    witness_verified_date_utc='2026-10-22', universal_overlap_blocker=True)
+    later = dict(original, measured_utc='2026-10-25T00:00:01+00:00', measured_date_utc='2026-10-25')
+    assert normalized(original) == normalized(later)
+    assert normalized(original) != normalized(dict(later, universal_overlap_blocker=False))
+    assert normalized(original) != normalized(dict(later, witness_verified_date_utc='2026-10-23'))
+    for invalid in (dict(later, measured_date_utc='2026-10-24'),
+                    dict(later, measured_utc='2026-10-25T00:00:01'),
+                    dict(later, measured_utc='2026-10-25T00:00:01+02:00')):
+        with pytest.raises(ValueError):
+            normalized(invalid)
+    nested = {'correlation_overlap_vs_registry': {'universal_witness': original}}
+    path = ('correlation_overlap_vs_registry', 'universal_witness')
+    assert normalized(nested, path)['correlation_overlap_vs_registry']['universal_witness'] == normalized(original)

@@ -39,3 +39,9 @@ H33's plausible advantage remains reduced redundant prediction mass while preser
 4. Preserve an organizer receipt, exact uploaded hash and verified quota before describing any result as ORGANIZER-CONFIRMED or authorizing a slot.
 
 Current negative run card: [latest-review-run-card.json](../docs/evidence/latest-review-run-card.json). PR merge/deployment, if completed, is operational delivery only, not scientific promotion.
+
+### Final workflow review
+
+Found a second consequence during pre-merge review: the proof-reproduction CI job compared entire JSON files byte-for-byte, including the now-correct variable measurement timestamp. Added `check_preflight_reproduction.py` to validate explicit UTC and date consistency, then compare all other fields exactly (including historical verification date, hashes, thresholds and verdicts). Only those two proof files are excluded from the generic Git diff; the dedicated comparator checks both. Added regression coverage for midnight, missing/non-UTC offsets, mismatched dates, changed verdicts and historical dates. This does not relax any scientific gate.
+
+Final full-suite recheck after all code changes: **430 passed, 24 skipped, 32 subtests passed**, four dependency pending-deprecation warnings. Site generation/check, link/integrity checks and all ten download audits passed again. GitHub checks were queued without runners at the first watch timeout; queued is not passed.
