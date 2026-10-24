@@ -2,9 +2,9 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
-**No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+**No submission is approved.** A TIFF was added by a concurrent SPT run in PR #60, but a direct full-support-witness recheck measured final-dot overlap **1.0 (REGISTRY-MEASUREMENT)**, above the literal **0.70 (protocol limit)**. Its earlier promotion used only a restricted scored-fleet subset; the download/status page now says **DO NOT SUBMIT**. The exact new-file requirement is not satisfied by that duplicate-stop artifact. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no organizer-confirmed score is claimed.
 
-- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [SPT full-support-witness audit](docs/evidence/spt-full-support-witness-audit.json) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
 - Repaired **22 historical builder commands and seven imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight. `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
 - All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
 - **Read the standing prompt and complete request archive below every session.** The repeated 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.

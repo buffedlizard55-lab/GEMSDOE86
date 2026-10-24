@@ -894,7 +894,7 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.
 
 ## IR-86-SPT-01 — 2026-10-24 SPT candidate vs the negative-only release audit
-`scripts/audit_release.py` only certifies the 10 registered historical artifacts as DO NOT SUBMIT and fails closed on any other TIFF under `docs/`. The new SPT candidate (sha256 `26cf2d39…`) therefore lives in `submission/` (GitHub-downloadable, linked from `docs/submit.html`), not `docs/downloads/`, and the generated site/audit were left byte-unchanged so the full test suite stays green. Uniqueness is measured vs the 25 scored fleet rasters in `data/scored_fleet/` (worst 3 px overlap 0.5056); the pinned dense continuous witness still blocks any raster under a literal reading (IR-86-PRUNE-01) — that contradiction is unresolved and flagged, not waived. HOLDOUT-DTI is a catalogue proxy documented as sign-unstable vs live scores (IR-86-PRUNE-03); no live score is claimed.
+The original PR #60 card compared the SPT candidate (sha256 `26cf2d39…`) against only 25 scored-fleet rasters (reported worst 3 px overlap 0.5056), called it ready, and exposed a GitHub download URL. The candidate lives in `submission/`, outside the release audit's 10-item `docs/downloads/` inventory. That subset analysis was incomplete under the literal registry rule. A subsequent direct comparison against the pinned dense witness measured overlap 1.0; see `IR-86-SPT-02` for the corrective audit. The old HOLDOUT-DTI claim is also not accepted as protocol-compliant because it lacks fold-visible-only derivation, exact mask evidence and a 95% CI. No live score is claimed.
 
 ## 2026-10-24 review — builder entrypoint bypass and freshness
 
@@ -912,5 +912,12 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
   organizer receipt for the owner-reported result. No current leaderboard or
   organizer acceptance was obtainable from the allowed-host network in this run.
 
-See `research/SESSION_20261024_REVIEW.md` and
-`docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.
+## IR-86-SPT-02 — the SPT “ready” decision omitted the literal full-support witness (repaired)
+
+**Observed.** PR #60's SPT run card used a restricted comparison against 25 scored-fleet rasters and set `submission_ready=true`. It did not include the pinned dense witness, whose positive support covers every allowed pixel. A fresh `REGISTRY-MEASUREMENT` with the shared `gems57.uniqueness.dot_overlap` function measured the SPT final-dot overlap within 3 px of that witness as **1.0**, above the literal **0.70** limit. The candidate's grid matches; it is not cleared. The registry remains incomplete, but a single violating witness is sufficient to reject.
+
+**Additional protocol gap.** `build_spt.py` formed the full-catalogue collar and used that same placement in its quadrant evaluation; it does not demonstrate fold-visible-only catalogue feature derivation, exact pixel masking of visible faults, or a 95% confidence interval. Its reported holdout value is therefore not accepted as protocol-compliant HOLDOUT-DTI. No new score is inferred.
+
+**Repair.** The card and its paired JSON now say negative, `docs/submit.html` says **DO NOT SUBMIT** without a candidate download link, the full-support audit is recorded at `docs/evidence/spt-full-support-witness-audit.json`, and both SPT/XFLEET builders enforce the literal preflight before feature reads. The TIFF remains in `submission/` only as a reproducibility/audit artifact; no slot is selected or spent.
+
+See `research/SESSION_20261024_REVIEW.md`, `docs/evidence/spt-full-support-witness-audit.json`, and `docs/evidence/source-recheck-20261024.json` for exact scope and remaining blockers.
