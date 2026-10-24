@@ -32,8 +32,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 13,
-    "local_format_pass": 13,
+    "checked": 14,
+    "local_format_pass": 14,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -100,6 +100,11 @@
       {
         "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
         "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+        "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
         "verdict": "negative"
       }
     ],

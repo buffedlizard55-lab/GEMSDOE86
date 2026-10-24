@@ -92,6 +92,13 @@
       "context": "docs/evidence/gapres-run-card.json",
       "holdout_kind": "pooled",
       "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
+    },
+    {
+      "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
+      "card": "docs/evidence/h86e-mmt-run-card.json",
+      "context": "docs/evidence/h86e-mmt-run-card.json",
+      "holdout_kind": "h86e_mmt",
+      "stem": "gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros"
     }
   ]
 }

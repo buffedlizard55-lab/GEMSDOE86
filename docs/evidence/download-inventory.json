@@ -78,6 +78,12 @@
       "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+      "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

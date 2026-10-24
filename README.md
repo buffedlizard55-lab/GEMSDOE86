@@ -2,18 +2,28 @@
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
-**Every file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+**Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
 
-| Gate (no human inspection) | Result |
+- TIFF: [`docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif)
+- ZIP: [`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip)
+- SHA-256: `c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6`
+- Writer receipt: [`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.json`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.json)
+- Full run card: [`docs/evidence/h86e-mmt-run-card.json`](docs/evidence/h86e-mmt-run-card.json)
+
+| Automated gate (no human inspection) | Result |
 |---|---|
-| Format (CRS/shape/transform, float32, 0 NaN, [0,1], 0 dots on faults) | PASS — `gems86-h86e-ridf-hgbthin-37654dots-20261024-zeros.tif`, sha256 `543a59d7…7fb1` |
-| HOLDOUT-DTI vs R0 fold-fair (gems57-pooled-hide-v2, 11,321 withheld positives) | **FAIL** — 0.0811 [0.0650, 0.0972] vs 0.0961 [0.0830, 0.1089]; paired Δ −0.0150 [−0.0280, −0.0019] |
-| Surface rank correlation ≤ 0.90 | **FAIL** — 0.9045 vs 17GEMSDOE E-proba-multiscale |
-| Final-dot overlap ≤ 70 % vs informative dot fields (PA-86-02) | **FAIL** — 64 informative dot-field firings over 682 measured registry rasters |
-| Verdict | `negative`, duplicate — **DO NOT SUBMIT**; 0 weekly slots used |
-| Historical H86C-KSLB (holdout best 0.1241) re-audited on the same 682 rasters | **FAIL** — 12 informative dot-field firings (PA-86-02) → DO NOT SUBMIT ([measurement](docs/evidence/kslb_pa86_chance_overlap.json)) |
+| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, `[0,1]`, 0 NaN/Inf, 44,090 positive cells, 0 mapped-catalogue positives |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives) | **FAIL** — candidate `0.0290` 95% CI `[0.0206, 0.0381]` vs preregistered R0 `0.0339` `[0.0160, 0.0503]`; paired Δ `−0.0049` `[−0.0240, +0.0149]` |
+| `LEAKAGE-CANARY` | **PASS** — maximum discriminative AUC `0.5321`, below the `0.90` stop threshold |
+| Pre-placement surface registry check | **NOT CLEARANCE** — 685 inventory entries enumerated; 2 grid/CRS-incompatible entries are explicitly recorded; surface comparison did not authorize placement |
+| Final dots / `PA-86-02` | **FAIL** — 6 informative dot-field overlap firings; gate `false` |
+| Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
-Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged.
+The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its holdout numbers are `HOLDOUT-DTI`, not leaderboard scores; owner-reported `GEMSDOE32` `0.2778` remains an unverified claim, and no projection is made. Read the [current machine-checked site](docs/index.html), [executive submission guide](docs/executive-summary.html), [three-to-five-hypothesis preregistration](research/H86E_MMT_PREREGISTRATION.md), [three-pass H86E-MMT review](research/H86E_MMT_REVIEW_20261024.md), and [current feed/evidence](docs/evidence/release-readiness.json).
+
+**Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
+
+Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains 14 audit-only TIFFs, including H86E-MMT.
 
 ## SWCON (PR #77): revoked on main, and confirmed by an independent measurement
 
