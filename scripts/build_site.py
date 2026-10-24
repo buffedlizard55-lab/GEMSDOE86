@@ -206,7 +206,7 @@ def hypotheses(plan: dict) -> str:
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
 <div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p></div>
-<p>{e(plan['ranking_basis'])} {e(plan['novelty_scope'])}</p>{''.join(sections)}
+<p>{e(plan['ranking_basis'])} {e(plan['novelty_scope'])}</p><p>{e(plan['evidence_boundary'])}</p>{''.join(sections)}
 <h2>Validation plan after blockers are resolved</h2><ol>{steps}</ol>
 <p><a href="{REPO}/blob/main/registry/h86c_hypotheses.json">Machine-readable hypothesis register</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">2026-10-24 scientific critique</a> · <a href="{REPO}/blob/main/research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md">Geothermal vent synthesis</a> · <a href="research.html">Physical rationale and limitations</a></p>''')
 

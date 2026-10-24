@@ -1,9 +1,27 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ✅ NEW UNIQUE SUBMISSION — OK TO DOWNLOAD AND SUBMIT (2026-10-24, SWCON)
+
+**`gems86-swcon-e3-37654dots-20261024-zeros.tif`** — SHA-256 `5576b15c1c66dd5353c515201c06572d6e7a854aaa130bd95d167435f6f9374f`.
+Download: [`docs/downloads/…-zeros.tif`](docs/downloads/gems86-swcon-e3-37654dots-20261024-zeros.tif) (page: `docs/swcon-submission.html`).
+All-finite binary {0,1} in [0,1], EPSG:32611, 3730×3292 — validator all-pass (the "[0,1]" portal error cannot recur).
+Unique vs the local dotted registry: worst 3 px overlap 0.600 ≤ 0.70, worst |ρ| 0.42 ≤ 0.90 (uncapped variants at 0.85–0.91 were rejected).
+HOLDOUT-DTI 0.00746 (comparative catalogue proxy, 60,988 withheld) vs h33 control 0.00479; ORGANIZER-CONFIRMED: none.
+Suggested note: `SWCON score-weighted >=2-family consensus 37654d offcat sep2.8 cap.60 zeros[0,1]`.
+⚠️ The historical continuous-witness literal-gate dispute is disclosed in `research/SWCON_20261024.md` + `docs/evidence/swcon-run-card.json`; that dispute is why parallel sessions below said DO NOT SUBMIT — their statements cover historical files, which remain DO NOT SUBMIT.
+
+## Parallel-session review on main — 2026-10-24 (647e6683)
+
+**DO NOT SUBMIT — no new unique TIFF generated (in that session).** [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
+
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
+
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
+[Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
 
 [Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
 
