@@ -17,7 +17,7 @@
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
     "docs/evidence/download-inventory.json": "8e640d286b137011d64c31192cd02476bccb4732fe6f0cb28a1479e9337efccc",
-    "registry/artifact_cards.json": "6466eea920089f11c4dc11a660400f46e1aa3a0c934efdb7c5b0323feedf9212",
+    "registry/artifact_cards.json": "3330058a77329d6a72ffcd75d61dc84407464b0d964d7d63c71f87dcdf179c92",
     "docs/evidence/protocol-preflight.json": "e5ffd6a53c488a4c153ba92fc6674360fdabd7c9d9204c2d861d217225754829",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
@@ -33,7 +33,7 @@
     "docs/evidence/gapres-run-card.json": "01d54a5f71c304ea4fb58718b398736ffe29d3da3261e6f893d9fcbee7b4585e",
     "docs/evidence/h86e-mmt-run-card.json": "fd0a0a6b1342729b1b5573328b7982f013710c7b974efb4692dd393817d6d5da",
     "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json": "8c4e88abe5e33b2197b20d014ba9f50957525c1b9f6cd3797fc8e8c8669c3f66",
-    "docs/evidence/all-artifacts-registry.json": "bf7017af9cc7947698e7f6a5c44aaf458cc7079c895e61b8d020b10d316a734a"
+    "docs/evidence/all-artifacts-registry.json": "d3fbc54c22f4f6e53e18bf08e28d0094be3599597745d66e7434cd0e3d59f211"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -1533,7 +1533,7 @@
       }
     },
     {
-      "lane": "Blind off-catalogue geothermal dilation (current negative lane)",
+      "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
       "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
       "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
       "bytes": 127953,

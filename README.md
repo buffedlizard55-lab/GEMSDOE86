@@ -23,11 +23,11 @@ The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its h
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains 15 audit-only TIFFs, including H86E-MMT and the blind-geothermal lane.
+Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **15** published research TIFFs, including H86E-MMT and the blind-geothermal lane.
 
-## Concurrent blind-geothermal lane — also **DO NOT SUBMIT**
+## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 
-A separate mainline lane generated [`gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif`](docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif), SHA-256 `94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5`. It is locally format-valid and byte-unique within its 13-raster archived comparison, but its **HOLDOUT-DTI** is `0.0003726` 95% CI `[0.0002465, 0.0005139]` (`gems57-pooled-hide-v2`, 11,321 withheld positives), so it is negative and not an organizer-confirmed scorer. Its scope is preserved as a separate lane; no slot was used.
+A separate mainline lane generated [`gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif`](docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif), SHA-256 `94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5`. It is locally format-valid and byte-unique within its 13-raster archived comparison, but its **HOLDOUT-DTI** is `0.0003726` 95% CI `[0.0002465, 0.0005139]` (`gems57-pooled-hide-v2`, 11,321 withheld positives), so it is negative and not an organizer-confirmed scorer. It was not generated in this review; its scope is preserved as a separate lane; no slot was used.
 
 The independent registry-integrity review [`SESSION_20261024_4D79B443.md`](research/SESSION_20261024_4D79B443.md) fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence, arbitrary self-exclusion, surface-check-before-placement ordering, and import-safe RIDF writing. The later [Arena review](research/SESSION_20261024_ARENA_REVIEW.md) records the same fail-closed boundary. Shared evaluator/writer bytes and thresholds remain unchanged. Its additional research sketches are not validated results.
 

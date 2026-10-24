@@ -12,5 +12,30 @@
   "featured_research_artifact": null,
   "current_comparable_holdout_best": null,
   "reason": "No selector decision. Different historical holdout designs cannot be ranked by their maxima; the pre-existing PR #92 artifact remains audit-only and fails the literal witness gate.",
-  "release_readiness": "../evidence/release-readiness.json"
+  "release_readiness": "../evidence/release-readiness.json",
+  "preexisting_pr92_artifact": {
+    "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
+    "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
+    "status": "DO NOT SUBMIT",
+    "safe_to_download_for_audit": true,
+    "holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI",
+      "status": "ARCHIVED_NOT_RECOMPUTED",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 11321,
+      "value": 0.0003726032948468772,
+      "ci95": [
+        0.00024653682959954417,
+        0.0005139291358331259
+      ]
+    },
+    "registry_measurement": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "spearman_full_footprint": -0.013262959540920908,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    }
+  }
 }
