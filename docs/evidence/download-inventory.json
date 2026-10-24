@@ -1,5 +1,5 @@
 {
-  "scope": "Existing artifacts merged from concurrent sessions; all negative, no competition clearance. | One new format-valid unique candidate added (negative state, holdout-DTI 0.00037, not organizer-confirmed).",
+  "scope": "Existing artifacts merged from concurrent sessions; all are DO NOT SUBMIT, with no competition clearance. | Pre-existing PR #92 blind-geothermal artifact is format-valid; its HOLDOUT-DTI is archived, its like-for-like registry diagnostic is local-only, and the current pinned-witness measurement triggers the literal stop. Not generated or authorized by this review.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",

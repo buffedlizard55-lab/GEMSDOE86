@@ -92,6 +92,13 @@
       "context": "docs/evidence/gapres-run-card.json",
       "holdout_kind": "pooled",
       "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
+    },
+    {
+      "lane": "PR #92 blind off-catalogue geothermal candidate (archived; audit only)",
+      "card": null,
+      "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
+      "holdout_kind": "blindgeothermal_candidate",
+      "stem": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros"
     }
   ]
 }

@@ -30,6 +30,38 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["release_report_sha256"] == audit_release.sha256(ROOT / "docs/evidence/release-readiness.json")
 
 
+def test_current_readme_download_counts_match_fresh_release_inventory():
+    report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
+    readme = (ROOT / "README.md").read_text()
+    current = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[0]
+    count = report["artifact_count"]
+    assert report["locally_valid_artifacts"] == count
+    assert f"**{count}** published research TIFFs" in current
+    assert "PR #92" in current and "DO NOT SUBMIT" in current
+    assert "not generated in this review" in current
+
+
+def test_pr92_candidate_is_explicitly_negative_on_site_and_machine_summary():
+    report = audit_release.build_report()
+    page = build_site.render(ROOT)
+    for name in ("docs/index.html", "docs/executive-summary.html", "docs/submit.html"):
+        html = page[name]
+        assert "PR #92 ARTIFACT · DO NOT SUBMIT" in html
+        assert "SAFE FOR AUDIT DOWNLOAD" in html
+        assert "HOLDOUT-DTI</strong> (gems57-pooled-hide-v2, 11,321 withheld positives)" in html
+        assert "stop_required=true" in html
+        assert "UNIQUE · FORMAT-VALID" not in html
+    summary = json.loads(page["docs/data/summary.json"])
+    candidate = summary["preexisting_pr92_artifact"]
+    assert summary["featured_research_artifact"] is None
+    assert summary["current_comparable_holdout_best"] is None
+    assert candidate["status"] == "DO NOT SUBMIT"
+    assert candidate["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
+    assert candidate["registry_measurement"]["unique"] is False
+    assert candidate["registry_measurement"]["stop_required"] is True
+    assert report["new_candidate_generated"] is False
+
+
 @pytest.mark.parametrize("timestamp", ["2026-10-24T10:00:00", "2026-10-24T10:00:00+02:00", "not-a-date"])
 def test_measurement_timestamp_requires_explicit_utc(timestamp):
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")

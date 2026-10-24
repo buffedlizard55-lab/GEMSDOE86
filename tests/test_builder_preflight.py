@@ -17,9 +17,9 @@ from scripts import protocol_preflight
 ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = """
 build_axis_variants build_concentration5_axis build_concentration_sign
-build_gems86_swcon build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
+build_gems86_gapres build_gems86_swcon build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
 build_r0_trackb build_snap_variants build_spt build_submission build_xfleet
-experiment finalize_h86e gen_tip_final generate_unique_submission h86b_features h86c_features h86d_features
+experiment finalize_h86e gen_tip_final generate_unique_submission build_unique_submission h86b_features h86c_features h86d_features
 prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
@@ -138,13 +138,15 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     )
 
 
-@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py", "build_gems86_swcon.py", "generate_unique_submission.py"])
+@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py", "build_gems86_swcon.py", "generate_unique_submission.py", "build_gems86_gapres.py", "build_unique_submission.py"])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()
     env.pop("PYTHONPATH", None)
+    args = [sys.executable, str(ROOT / "scripts" / name)]
+    if name == "build_unique_submission.py":
+        args.extend(["--skip-holdout", "--skip-registry"])
     result = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / name)], cwd=ROOT, env=env,
-        text=True, capture_output=True, timeout=30,
+        args, cwd=ROOT, env=env, text=True, capture_output=True, timeout=30,
     )
     output = result.stdout + result.stderr
     assert result.returncode != 0

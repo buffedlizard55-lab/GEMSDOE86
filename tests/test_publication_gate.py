@@ -41,7 +41,13 @@ class PublicationTests(unittest.TestCase):
         expected = json.loads((ROOT / audit_downloads.REPORT).read_text())
         self.assertEqual(actual, expected)
         self.assertEqual(audit_downloads.render(actual), (ROOT / audit_downloads.PAGE).read_text())
-        self.assertEqual(actual['artifact_count'], 13)  # 10 inherited + faulthalo + H86E + GAPRES
+        self.assertEqual(actual['artifact_count'], 14)  # inventory includes the pre-existing PR #92 artifact
+        blind = next(row for row in actual['artifacts'] if 'blindgeothermal' in row['file'])
+        self.assertEqual(blind['sidecar_kind'], 'archived run-card sidecar')
+        self.assertTrue(blind['checks']['zip_one_exact_tif'])
+        self.assertTrue(blind['checks']['zip_payload_equals_tif'])
+        self.assertTrue(blind['checks']['run_card_no_unverified_zip_hash_claim'])
+        self.assertFalse(blind['safe_to_submit'])
         self.assertFalse(actual['safe_to_submit'])
         card = audit_downloads.review_card(actual)
         self.assertEqual(card, json.loads((ROOT / audit_downloads.CARD).read_text()))
