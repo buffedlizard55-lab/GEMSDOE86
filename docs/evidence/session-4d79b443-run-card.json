@@ -1,0 +1,51 @@
+{
+  "schema": "gems86.gate-integrity-review.v1",
+  "reviewed_utc": "2026-10-24T22:32:26.432019+00:00",
+  "hypothesis": "Local cross-spectral magnetic/gravity admittance break (proposal only; no assigned geological lane)",
+  "mechanism": "Compare normalized magnetic/gravity response functions on matched opposing flanks; no features or candidate constructed.",
+  "named_non_fault_process": "Volcanic or intrusive lithologic contact without fault displacement",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface": null,
+    "final_dots": null,
+    "registry_complete": false,
+    "registry_rasters_measured": 1,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "universal_overlap_blocker": true,
+    "allowed_domain_covered_fraction": 1.0,
+    "implication": "Any nonempty allowed dot set fails the literal overlap rule; not a measured new candidate comparison."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_artifacts_checked": 13,
+    "inherited_artifacts_format_valid": 13
+  },
+  "submission_name": null,
+  "note": "No new TIFF: literal uniqueness blocker and missing lane/cache. Gate-integrity fixes only; all downloads remain DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "evidence_sha256": {
+    "docs/evidence/release-readiness.json": "501a13ac40061062c79c859897d9ff06960e6b96aebf54d916e4da164332d6ab",
+    "docs/evidence/all-artifacts-registry.json": "62f2d1bbab9202eabea5cda40559ecc15145d36ffe06fb14212b4d7374d154c9",
+    "docs/evidence/review-source-checks.json": "58dda2979722c719b04db814cc6b5a7b277e92570c5fe2bb3a2d7c991a6cd9e1"
+  },
+  "unmet_requirements": [
+    "New unique submission TIFF",
+    "Validated holdout improvement",
+    "Organizer-confirmed score or current quota"
+  ]
+}

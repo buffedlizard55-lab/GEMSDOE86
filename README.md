@@ -2,6 +2,12 @@
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
+### Latest independent review — registry evidence integrity (session 4d79b443)
+
+**DO NOT SUBMIT. No new TIFF or competition slot.** A fresh audit rechecked **13** published research TIFFs: all locally format-valid, all rejected by the literal overlap rule. [Three-pass review and four additional, untested research sketches](research/SESSION_20261024_4D79B443.md).
+
+Fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence and arbitrary self exclusion; restored surface-check-before-placement ordering and gated/import-safe RIDF writing. New reports bind exact array and registry identities and return nonzero on a failed gate. Shared evaluator/writer bytes and protocol thresholds are unchanged. Older dated summaries below remain historical, not new authorization. [Current machine-readable audit card](docs/evidence/latest-review-run-card.json).
+
 **Every file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
 
 | Gate (no human inspection) | Result |

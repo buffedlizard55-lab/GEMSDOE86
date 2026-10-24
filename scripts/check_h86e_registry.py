@@ -1,17 +1,14 @@
-"""Shared-template registry check (PA-86-01 like-for-like + literal, side by side).
+"""Audit a candidate with the unchanged shared registry comparator.
 
-Usage:
-  python scripts/check_h86e_registry.py SURFACE_OR_DOTS.npy OUT.json [--surface]
+Usage: python scripts/check_h86e_registry.py CANDIDATE.npy OUT.json [--surface]
 
-Compares one candidate array against every hash-verified raster in the pinned
-public owner inventory (research/upstream/registry_inventory.json, 655 rasters,
-restored into data/registry_ext/ by sha256) plus this repository's own
-published downloads and locally pinned scored-fleet rasters not in the
-inventory.  Uses gems57.uniqueness.compare_array_to_registry and
-two_phase_summary unchanged.
+PA-86-01 diagnostics are NOT submission authorization. Missing/invalid registry
+rows, invalid candidate values, empty/constant predictions and duplicates fail
+closed. Both literal and representation-aware readings remain visible.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import sys
@@ -23,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "vendor")]
 from gems57 import grid  # noqa: E402
 from gems57.uniqueness import compare_array_to_registry, two_phase_summary  # noqa: E402
+
+SCHEMA = "gems86.registry-candidate.v2"
 
 
 def sha(p: Path) -> str:
@@ -48,50 +47,94 @@ def build_index():
         seen.add(d)
         rasters.append(dict(sha256=d, bytes=f.stat().st_size, blob=None, cache_file=str(f),
                             sources=[f"GEMSDOE86-local:{f.relative_to(ROOT)}"], repo_first="GEMSDOE86-local"))
-    complete = not missing
-    return dict(rasters=rasters, complete_accessible_scan=complete, errors=[]), missing
+    return dict(rasters=rasters, complete_accessible_scan=not missing, errors=[]), missing
 
 
-def main(argv):
-    src, out = Path(argv[0]), Path(argv[1])
-    surface = "--surface" in argv
-    g = grid.load_grid(ROOT / "data")
-    arr = np.load(src).astype(np.float32)
-    if not surface:
-        arr = (arr > 0).astype(np.float32)
-    arr[~g.footprint] = 0
-    index, missing = build_index()
+def load_candidate(path, footprint, *, surface):
+    """Reject, never repair, invalid bytes before comparing rank or support."""
+    raw = np.load(path, allow_pickle=False)
+    if raw.shape != footprint.shape or raw.dtype.kind not in "buif":
+        raise ValueError("candidate shape/type mismatch")
+    # Validate BEFORE float32 conversion: e.g. 1 + 1e-9 must not round into range.
+    if not np.isfinite(raw).all() or (raw < 0).any() or (raw > 1).any():
+        raise ValueError("candidate must already be finite in [0,1]")
+    if (raw[~footprint] != 0).any():
+        raise ValueError("candidate has nonzero values outside footprint")
+    if not surface and not ((raw == 0) | (raw == 1)).all():
+        raise ValueError("final dots must already be binary; no implicit thresholding")
+    return raw.astype(np.float32)
+
+
+def index_identity(index):
+    """Bind the exact indexed content AND its labels, not local cache filenames."""
+    records = sorted((r["sha256"], r["repo_first"], sorted(r["sources"]))
+                     for r in index["rasters"])
+    return hashlib.sha256(json.dumps(records, separators=(",", ":")).encode()).hexdigest()
+
+
+def evaluate_candidate(arr, index, missing, g):
+    """Pure orchestration; metric, rank, overlap and thresholds stay shared."""
     res = compare_array_to_registry(arr, index, g.footprint,
                                     expected_grid=(g.shape, g.crs, g.transform))
-    phase = two_phase_summary(res["rows"], int(g.footprint.sum()),
-                              expected_rasters=len(index["rasters"]))
     rows = res.pop("rows")
-    top = sorted([r for r in rows if "error" not in r],
-                 key=lambda r: -r["my_dots_within_3px_of_theirs"])[:15]
-    top_rho = sorted([r for r in rows if r.get("spearman_full_footprint") is not None],
-                     key=lambda r: -r["spearman_full_footprint"])[:15]
+    checked = [r for r in rows if "error" not in r]
+    expected = len(index["rasters"]) + len(missing)
+    phase = (two_phase_summary(rows, int(g.footprint.sum()), expected_rasters=expected)
+             if checked else None)
+    complete = bool(not missing and res["complete_accessible_scan"]
+                    and len(checked) == expected and expected > 0)
+    candidate_valid = bool(res["my_dots"] > 0 and res["candidate_rank_variation"])
+    identity_clear = bool(res["byte_unique_among_checked"] and res["pixel_unique_among_checked"])
     keep = ("repo", "submission", "sha256", "their_dots", "my_dots_within_3px_of_theirs",
             "their_dots_within_3px_of_mine", "spearman_full_footprint", "jaccard_dot_sets")
-    report = dict(
-        candidate=str(src), mode="surface" if surface else "final_dots",
-        inventory_rasters_missing=missing, registry_rasters_measured=len(rows),
-        errors=[r for r in rows if "error" in r],
-        shared_summary={k: v for k, v in res.items()},
-        two_phase=phase,
-        top15_by_forward_overlap=[{k: r.get(k) for k in keep} | {"representation": r.get("representation")} for r in top],
-        top15_by_spearman=[{k: r.get(k) for k in keep} | {"representation": r.get("representation")} for r in top_rho],
+
+    def compact(items):
+        return [{k: r.get(k) for k in keep} | {"representation": r.get("representation")} for r in items[:15]]
+
+    top = sorted(checked, key=lambda r: -r["my_dots_within_3px_of_theirs"])
+    top_rho = sorted([r for r in checked if r.get("spearman_full_footprint") is not None],
+                     key=lambda r: -r["spearman_full_footprint"])
+    ready = complete and candidate_valid and identity_clear and phase is not None
+    return dict(
+        schema=SCHEMA, registry_index_sha256=index_identity(index),
+        inventory_rasters_missing=missing, registry_rasters_expected=expected,
+        registry_rasters_measured=len(checked), registry_complete_for_index=complete,
+        scope="Pinned inventory plus local extras only; not all current projects or organizer submissions.",
+        errors=[r for r in rows if "error" in r], shared_summary=res, two_phase=phase,
+        comparison_rows=rows,
+        top15_by_forward_overlap=compact(top), top15_by_spearman=compact(top_rho),
+        surface_gate_pass=bool(ready and phase["literal_reading"]["rho_firings"] == 0),
+        final_dots_gate_pass=bool(ready and not phase["like_for_like_reading"]["duplicate"]),
+        literal_gate_pass=bool(ready and res["unique"]),
+        submission_authorized=False,
     )
-    if surface:
-        # A continuous surface has no dot set; only the rank test is meaningful here.
-        report["surface_gate_pass"] = bool(phase["literal_reading"]["rho_firings"] == 0)
-    else:
-        report["final_dots_gate_pass"] = bool(not phase["like_for_like_reading"]["duplicate"]
-                                              and not res["byte_unique_among_checked"] is False)
-    out.write_text(json.dumps(report, indent=2, allow_nan=False, default=str) + "\n")
-    print(json.dumps({k: report[k] for k in report if k.endswith("gate_pass")}, indent=1))
-    print(json.dumps(phase["like_for_like_reading"], indent=1))
-    print(json.dumps(phase["literal_reading"], indent=1))
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("candidate", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--surface", action="store_true")
+    args = parser.parse_args(argv)
+    from scripts.audit_release import verify_shared_pins, write_json
+    if not all(verify_shared_pins(ROOT).values()):
+        raise ValueError("Shared tool SHA drift")
+    g = grid.load_grid(ROOT / "data")
+    source_sha = sha(args.candidate)
+    arr = load_candidate(args.candidate, g.footprint, surface=args.surface)
+    if sha(args.candidate) != source_sha:
+        raise ValueError("Candidate changed while loading")
+    index, missing = build_index()
+    report = evaluate_candidate(arr, index, missing, g)
+    report.update(candidate=str(args.candidate), candidate_source_sha256=source_sha,
+                  mode="surface" if args.surface else "final_dots")
+    # A surface pass must never be mistaken for completed final-dot clearance.
+    report.pop("final_dots_gate_pass" if args.surface else "surface_gate_pass")
+    write_json(args.output, report)
+    gate = "surface_gate_pass" if args.surface else "final_dots_gate_pass"
+    print(json.dumps({k: report[k] for k in (gate, "literal_gate_pass", "registry_complete_for_index")}, indent=2))
+    return 0 if report[gate] else 1
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    raise SystemExit(main())
