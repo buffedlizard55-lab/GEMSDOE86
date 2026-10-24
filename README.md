@@ -2,7 +2,7 @@
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
-**This session generated a new unique TIFF and the automated gates rejected it.** Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+**This session generated a new unique TIFF and the automated gates rejected it.** Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
 
 | Gate (no human inspection) | Result |
 |---|---|

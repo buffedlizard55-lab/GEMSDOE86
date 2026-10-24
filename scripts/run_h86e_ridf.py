@@ -1,6 +1,6 @@
 """H86E-RIDF holdout experiments (budget: at most 3 emission experiments).
 
-Usage: python scripts/run_h86e.py   (needs data/training_features.tif and
+Usage: python scripts/run_h86e_ridf.py   (needs data/training_features.tif and
 data/work/h86e_features.npy built by scripts/build_h86e_features.py)
 
 Writes docs/evidence/h86e_holdout.json.  Every number is HOLDOUT-DTI on the

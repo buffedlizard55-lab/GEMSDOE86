@@ -119,6 +119,6 @@
   "metadata": {
     "lane": "H86E-RIDF",
     "verdict": "negative",
-    "evidence": "docs/evidence/h86e-run-card.json"
+    "evidence": "docs/evidence/h86e-ridf-run-card.json"
   }
 }

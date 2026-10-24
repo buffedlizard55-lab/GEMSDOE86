@@ -14,6 +14,6 @@ pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
 assert len(NOTE) <= 140, len(NOTE)
 rec = submission_writer.write_submission(OUT, pred, ROOT / 'data/sample_submission.tif', g.footprint,
         note=NOTE, name=NAME, catalogue=g.catalogue,
-        metadata=dict(lane='H86E-RIDF', verdict='negative', evidence='docs/evidence/h86e-run-card.json'))
+        metadata=dict(lane='H86E-RIDF', verdict='negative', evidence='docs/evidence/h86e-ridf-run-card.json'))
 print(json.dumps({k: rec[k] for k in ('file', 'sha256', 'bytes', 'note_chars', 'zip_sha256', 'approved_for_weekly_slot')}, indent=1))
 print(json.dumps(rec['validator'], indent=1)[:1500])

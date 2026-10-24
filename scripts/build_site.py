@@ -69,7 +69,7 @@ def downloads(artifacts: list[dict]) -> str:
 
 
 def h86e_answer(card: dict, kslb: dict | None, swcon: dict | None = None) -> str:
-    """Top-of-page answer box rendered from docs/evidence/h86e-run-card.json (no hand-typed numbers)."""
+    """Top-of-page answer box rendered from docs/evidence/h86e-ridf-run-card.json (no hand-typed numbers)."""
     h = card["holdout_dti"]
     r = card["registry"]
     c1, r0, d = h["candidate_E1"], h["R0_foldfair"], h["paired_delta_vs_R0_foldfair"]
@@ -93,7 +93,7 @@ but the automated gates say <strong>{e(card["submit_decision"])}</strong>:</p>
 <ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives): candidate {c1["dti"]:.4f} [{c1["ci95"][0]:.4f}, {c1["ci95"][1]:.4f}] vs R0 fold-fair {r0["dti"]:.4f} [{r0["ci95"][0]:.4f}, {r0["ci95"][1]:.4f}]; paired delta {d["delta"]:+.4f} [{d["ci95"][0]:+.4f}, {d["ci95"][1]:+.4f}] — worse, CI excludes zero.</li>
 <li><strong>Lane drift (surface):</strong> rank correlation {r["surface_worst_spearman"]:.4f} &gt; 0.90 with <code>{e(r["surface_worst_spearman_submission"])}</code>.</li>
 <li><strong>Lane drift (final dots):</strong> {pa["informative_firings"]} informative forward-overlap firings &gt; 70% against non-space-filling dot fields ({r["rasters_measured"]} registry rasters measured).</li>{k}</ul>
-<p>Verdict <strong>{e(card["verdict"])}</strong> (duplicate = {str(card["duplicate"]).lower()}). The file is kept out of the download list. <a href="evidence/h86e-run-card.json">Run card</a> · <a href="{REPO}/blob/main/research/H86E_RIDF_REVIEW.md">Scientific review, H33 answer and next steps</a></p></section>'''
+<p>Verdict <strong>{e(card["verdict"])}</strong> (duplicate = {str(card["duplicate"]).lower()}). The file is kept out of the download list. <a href="evidence/h86e-ridf-run-card.json">Run card</a> · <a href="{REPO}/blob/main/research/H86E_RIDF_REVIEW.md">Scientific review, H33 answer and next steps</a></p></section>'''
 
 
 def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "") -> str:
@@ -368,7 +368,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
     summary.update(featured_research_artifact=None, current_comparable_holdout_best=None,
                    reason="No selector decision. Different historical holdout designs cannot be ranked by their maxima.",
                    release_readiness="../evidence/release-readiness.json")
-    card86e = strict_json(root / "docs/evidence/h86e-run-card.json")
+    card86e = strict_json(root / "docs/evidence/h86e-ridf-run-card.json")
     kslb_path = root / "docs/evidence/kslb_pa86_chance_overlap.json"
     kslb = strict_json(kslb_path) if kslb_path.exists() else None
     if card86e["verdict"] != "negative" or card86e["submission_ready"] is not False:

@@ -92,7 +92,7 @@ def main():
                 "duplicate and stopped, per protocol rule 1."),
         submission_slots_used=0,
     )
-    (EV / "h86e-run-card.json").write_text(json.dumps(card, indent=2, allow_nan=False) + "\n")
+    (EV / "h86e-ridf-run-card.json").write_text(json.dumps(card, indent=2, allow_nan=False) + "\n")
     print(json.dumps({k: card[k] for k in ("verdict", "submit_decision", "raster_sha256")}, indent=1))
 
 
