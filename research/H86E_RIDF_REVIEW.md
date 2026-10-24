@@ -18,6 +18,7 @@ No weekly slot was used. No current file in this repository is authorized for su
 | Surface rank correlation | **0.9045 > 0.90** vs `17GEMSDOE E-proba-multiscale` → lane drift / duplicate | `docs/evidence/h86e_registry_surface.json` |
 | Final-dot overlap (682 registry rasters measured; 2 grid-mismatch errors) | 135 literal firings; 52 from continuous surfaces and 67 from space-filling rasters (overlapping sets); **64 informative dot-field firings** (e.g. 80.9 % vs `11GEMSDOE gems-structural-area06-v1`, whose own halo covers only 17.3 % of the allowed area) → duplicate | `docs/evidence/h86e_pa86_chance_overlap.json` |
 | Run card | verdict `negative`, `duplicate: true` | `docs/evidence/h86e-run-card.json` |
+| Parallel SWCON (PR #77, labelled OK-to-submit) re-audit | 131 literal firings, **58 informative dot-field firings** (81.9 % vs 12GEMSDOE r7-nms3-dem10-scarp, chance 31.7 %) → overruled, DO NOT SUBMIT | `docs/evidence/swcon_pa86_chance_overlap.json` |
 | Historical H86C-KSLB re-audit (same registry, self row excluded) | 83 literal firings (52 continuous-surface, 67 space-filling), **12 informative dot-field firings** (worst other ρ 0.093) → DO NOT SUBMIT | `docs/evidence/kslb_pa86_chance_overlap.json` |
 
 Experiments used: **3 of 3** (E1–E3); wall-clock within the 2-hour budget. Logged as duplicate and stopped (protocol rule 1).

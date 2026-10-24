@@ -15,22 +15,33 @@
 
 Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged.
 
+## ⛔ SWCON (parallel session, PR #77) — overruled: DO NOT SUBMIT
+
+`gems86-swcon-e3-37654dots-20261024-zeros.tif` (sha256 `5576b15c…374f`) was labelled "OK to submit" after a uniqueness check against only the local fleet and repo downloads. The full 682-raster registry gate found **58 informative dot-field overlap firings**. Example: 81.9 % of its dots lie within 3 px of 12GEMSDOE `r7-nms3-dem10-scarp`, where chance would give 31.7 %. Its holdout ran on a full-catalogue proxy, using fleet inputs that had already seen that catalogue, with no CI and no comparison against the buffered-holdout best. The file is still format-valid and can be downloaded for audit only. Evidence: [`swcon_pa86_chance_overlap.json`](docs/evidence/swcon_pa86_chance_overlap.json), [`swcon-run-card.json`](docs/evidence/swcon-run-card.json) (verdict changed to `negative`, original `promote` kept), IRREGULARITIES IR-86-H86E-05.
+
+## Parallel-session review on main — 2026-10-24 (647e6683)
+
+**DO NOT SUBMIT — no new unique TIFF generated (in that session).** [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
+
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
 [Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
 
-[Additional three-pass download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md): incomplete or duplicate registry scans now explicitly block optimistic readiness flags in the independent download validator. All ten inherited artifacts were remeasured; no new TIFF or slot authorization was produced.
+[Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
 
-**No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+[Earlier d50d503b three-pass review](research/SESSION_20261024_D50D503B.md) and [download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md) document prior fixes and review history. Current fresh remeasurement: [all-artifact registry report](docs/evidence/all-artifacts-registry.json), [release readiness](docs/evidence/release-readiness.json), and [current negative run card](docs/evidence/latest-review-run-card.json). The registry scan is intentionally reported as incomplete: one pinned full-support witness is enough to reject, never to clear, a candidate.
 
-- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
-- Repaired **37 CLI builder/feature/pipeline commands (adding `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and normalizing all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, and **revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`)** (`SPT`: `100%` literal witness overlap, `0.4947` coin-flip canary AUC, test-fold collar leak, quarantined outside `docs/` with SHA/ZIP verification; `H86-TIPRELAY`: `85.08% > 70%` 3-px overlap vs sparse `GEMSDOE32` `h33-h33-2-b2` + `100%` witness overlap + zero holdout run + `audit_release.py` backdoor removed). `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
-- Synchronized the **92-project fleet feed (`GEMSDOE` through `GEMSDOE92`)** with all **113 `OWNER-REPORTED` score entries** (`92 / 92` GitHub trees snapshotted in [docs/evidence/fleet-feed.json](docs/evidence/fleet-feed.json); `0` organizer receipts).
-- All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
-- **Read the standing prompt and complete 2026-10-24 request archive below every session.** The 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.
+**No new unique submission TIFF was generated; that requirement remains unmet.** Every historical GeoTIFF remains an audit-only download. The website states this at the top of [Downloads](docs/index.html) and the [submission guide](docs/executive-summary.html); none is OK to submit. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+
+- [H33 analysis, ranked candidate hypotheses, and previous three-pass review](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- The previous review repaired **37 CLI builder/feature/pipeline commands and eight imported orchestration entrypoints** that could bypass mandatory preflight, and revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`). `--no-write` / `--measure` is not a protocol exemption. Read-only artifact audits remain available.
+- The **92-project fleet feed** and its **113 owner-reported score entries** remain sourced to repository snapshots; there are **0 organizer submission receipts** in the ledger. User-provided score and access claims are not treated as verified competition results.
+- **Read `PROMPT.md`, this README, and the complete 2026-10-24 request archive below at the start of every session.** The archived request retains the goals; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not upload authorization.
 
 
 <!-- CURRENT_STATE_START -->
