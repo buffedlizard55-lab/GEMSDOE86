@@ -134,6 +134,16 @@ class ProtocolTests(unittest.TestCase):
                     main()
                 load_grid.assert_not_called()
 
+    def test_faulthalo_builder_respects_early_literal_stop(self):
+        import sys
+        from scripts.generate_unique_submission import main
+        with patch.object(sys, 'argv', ['generate_unique_submission.py']):
+            with patch('scripts.protocol_preflight.require_feasible', side_effect=RuntimeError('STOP')):
+                with patch('scripts.generate_unique_submission.load_grid') as load_grid:
+                    with self.assertRaisesRegex(RuntimeError, 'STOP'):
+                        main()
+                    load_grid.assert_not_called()
+
     def test_registry_reproduction_tolerates_only_last_bit_rho(self):
         from scripts.check_registry_reproduction import differences
         base = {'spearman_full_footprint': .1, 'stop_required': True, 'worst_dot_overlap': 1.0}
