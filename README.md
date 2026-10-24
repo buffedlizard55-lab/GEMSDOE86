@@ -1,6 +1,21 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
+## Latest session — 2026-10-24 H86E: new unique TIF generated, automated verdict 🔴 DO NOT SUBMIT
+
+[H86E session report](research/H86E_SESSION_20261024.md): under the owner's explicit
+generate-and-auto-validate mandate (IR-86-H86E-01), a new byte-unique, format-valid
+GeoTIFF was generated — `docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif`
+(sha256 `c26ebb29…`, 44,090 dots, artifact 11/11 in the release audit, one-click
+download on the site dashboard). **Do not upload it.** Its automated gates
+([run card](docs/evidence/h86e-run-card.json)) fail G4 (HOLDOUT-DTI 0.1037 < KSLB
+0.1241 on the identical instrument), G5 (SGMC auxiliary proxy 0.0718 < h33 0.0929)
+and G6 (85.4% dot overlap vs the GMC catalogue-halo control). The preregistered
+signed paired-throw hypothesis (SPBT) was run and **falsified** (HOLDOUT-DTI 0.0310
+vs spaced random 0.0333; SGMC proxy 0.0144). No weekly slot was used; no leaderboard
+improvement is claimed; every score-like number remains labelled HOLDOUT-DTI /
+AUXILIARY-PROXY / OWNER-REPORTED.
+
+[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. (Earlier review; superseded on artifact generation by the H86E session above.)
 
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT

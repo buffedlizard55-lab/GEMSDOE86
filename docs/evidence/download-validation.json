@@ -6,7 +6,7 @@
   "safe_to_submit": false,
   "verdict": "negative",
   "all_checks_passed": true,
-  "artifact_count": 10,
+  "artifact_count": 11,
   "shared_tool_hashes": {
     "gems57.grid": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
     "gems57.gates": "7c57f70dbba58bb1112df4193a3de56516af0f981970d4b943b394f99b573dae",
@@ -641,6 +641,72 @@
           4508550.0
         ],
         "profile_compress": "deflate"
+      },
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true,
+        "shared_template_format_pass": true,
+        "in_footprint_valid_mask": true,
+        "no_nodata_tag": true,
+        "hash_matches_inventory": true,
+        "receipt_hash_matches": true,
+        "receipt_filename_matches": true,
+        "receipt_byte_count_matches": true,
+        "receipt_zip_filename_matches": true,
+        "receipt_zip_hash_matches": true,
+        "receipt_not_promoted": true,
+        "receipt_no_slot_approval": true,
+        "submission_name_valid_length": true,
+        "note_valid_length": true,
+        "receipt_note_length_matches": true
+      },
+      "all_checks_passed": true,
+      "safe_to_submit": false,
+      "status": "DO NOT SUBMIT"
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
+      "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
+      "bytes": 831854,
+      "submission_name": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a",
+      "note": "H86E-CCTX cat-context LOQO-HGB+SPBTchan 44090dots B2 HOLDOUT-DTI 0.1037 v2 n=11321 UNSCORED",
+      "note_chars": 91,
+      "positive_pixels": 44090,
+      "min": 0.0,
+      "max": 1.0,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "grid": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "lzw"
       },
       "checks": {
         "single_band": true,
