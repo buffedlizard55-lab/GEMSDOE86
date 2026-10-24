@@ -9,6 +9,10 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
+[Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
+
 [Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
 
 [Earlier d50d503b three-pass review](research/SESSION_20261024_D50D503B.md) and [download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md) document prior fixes and review history. Current fresh remeasurement: [all-artifact registry report](docs/evidence/all-artifacts-registry.json), [release readiness](docs/evidence/release-readiness.json), and [current negative run card](docs/evidence/latest-review-run-card.json). The registry scan is intentionally reported as incomplete: one pinned full-support witness is enough to reject, never to clear, a candidate.
