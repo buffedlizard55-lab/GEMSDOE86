@@ -2,6 +2,8 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+**Follow-up provenance review:** [three-pass results and next steps](research/SESSION_20261024_PROVENANCE_REVIEW.md). Fresh preflight measurements now record actual UTC separately from historical witness verification; Pages refreshes proof before rebinding artifact receipts. The literal registry stop was reproduced; no new candidate or slot was used. The complete request archive below remains the starting point for every session.
+
 **No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
 
 - [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
