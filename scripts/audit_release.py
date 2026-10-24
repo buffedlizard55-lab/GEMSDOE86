@@ -282,7 +282,25 @@ def build_report(root: Path = ROOT) -> dict:
                       if p.suffix.lower() == ".zip"}
     if registered_zips != published_zips:
         raise ValueError("Unregistered or missing published ZIP")
+    submission_dir = root / "submission"
+    if submission_dir.exists():
+        smuggled = [str(p.relative_to(root)) for p in submission_dir.rglob("*")
+                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}]
+        if smuggled:
+            raise ValueError(f"Unregistered or missing published binary in submission/: {smuggled[0]}")
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
+    linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
+    sidecar_cards_negative = True
+    for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
+        rel_card = str(card_path.relative_to(root))
+        if rel_card in linked_cards:
+            continue
+        card_doc = strict_json(card_path)
+        if (card_doc.get("verdict") != "negative"
+                or card_doc.get("submission_ready") is True
+                or card_doc.get("safe_to_submit") is True
+                or card_doc.get("approved_for_weekly_slot") is True):
+            sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:
         inputs[config["context"]] = sha256(root / config["context"])
@@ -306,7 +324,7 @@ def build_report(root: Path = ROOT) -> dict:
     names = [r["submission_name"] for r in artifacts]
     if len(names) != len(set(names)):
         raise ValueError("Duplicate human-readable submission names")
-    all_integrity = all(a["validator"]["all_checks_passed"] for a in artifacts)
+    all_integrity = all(a["validator"]["all_checks_passed"] for a in artifacts) and sidecar_cards_negative
     return dict(schema="gems86.release-readiness.v1", audit_ok=all_integrity,
                 decision="DO NOT SUBMIT", submission_ready=False, safe_to_submit=False,
                 approved_for_weekly_slot=False, selector_run=False, authenticated_remaining_quota=None,
@@ -327,6 +345,7 @@ def build_report(root: Path = ROOT) -> dict:
                     "The rejected upload bytes and an organizer receipt were not supplied; the prior range error's cause and historical scores remain unverified.",
                     "Fault prediction is not confirmation of a geothermal vent, heat supply, permeability, or commercial viability.",
                     "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements.",
+                    "PR #60 (IR-86-SPT-02) bypassed protocol_preflight, masked withheld test faults via full existing_faults.tif, yielded canary AUC 0.4947 (<0.50), omitted 95% CIs, misrepresented SPT prose vs code, and placed unregistered binaries in submission/. Those binaries have been removed and spt-run-card.json / xfleet-run-card.json / submit.html revoked to DO NOT SUBMIT.",
                 ])
 
 
@@ -335,7 +354,7 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
     plan = strict_json(root / "registry/h86c_hypotheses.json")
     top = plan["hypotheses"][0]
     return dict(
-        schema="gems86.session-negative.v1", date_utc=plan["date_utc"],
+        schema="gems86.session-negative.v1", date_utc="2026-10-23",
         hypothesis=f"{top['id']}: {top['name']} (provisional, NOT RUN; no method lane was assigned)",
         mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
         holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_PROTOCOL_STOP",

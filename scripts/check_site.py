@@ -96,15 +96,30 @@ def check(root=ROOT):
                    any(artifact.resolve() == p.with_suffix('.zip') for p in registered))
         if not allowed:
             errors.append(f'Unregistered downloadable raster/archive: {artifact.relative_to(root)}')
-    for card_file in (root / 'docs/evidence/run-card.json', root / 'evidence/run_card.json'):
+    submission_dir = root / 'submission'
+    if submission_dir.exists():
+        for extra in sorted(submission_dir.rglob('*')):
+            if extra.is_file() and extra.suffix.lower() in {'.tif', '.tiff', '.zip'}:
+                errors.append(f'Unregistered submission binary outside inventory: {extra.relative_to(root)}')
+    for html_file in sorted((root / 'docs').glob('*.html')):
+        html_text = html_file.read_text(encoding='utf-8')
+        if 'READY TO DOWNLOAD' in html_text:
+            errors.append(f'Contradictory READY TO DOWNLOAD banner during negative release state: {html_file.name}')
+        if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
+            errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
+    canonical_card = root / 'docs/evidence/run-card.json'
+    if not canonical_card.is_file():
+        errors.append('Missing canonical run card')
+    card_files = sorted(set((root / 'docs/evidence').glob('*card*.json')) | {canonical_card, root / 'evidence/run_card.json'})
+    for card_file in card_files:
         if not card_file.is_file():
-            if card_file == root / 'docs/evidence/run-card.json':
-                errors.append('Missing canonical run card')
             continue
         card = json.loads(card_file.read_text())
-        if card.get('submission_ready') is not False or card.get('verdict') != 'negative':
+        if card.get('verdict') != 'negative':
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
-        for key in ('approved_for_weekly_slot', 'safe_to_submit'):
+        if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
+            errors.append(f'Run card contradicts negative publication state: {card_file.name}')
+        for key in ('submission_ready', 'approved_for_weekly_slot', 'safe_to_submit'):
             if key in card and card[key] is not False:
                 errors.append(f'{card_file.name}: {key} must be false')
     summary_path = root / 'docs/data/summary.json'
