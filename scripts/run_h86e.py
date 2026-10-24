@@ -296,6 +296,9 @@ def holdout_eval(arms_masks: dict, folds, fp, candidate: str):
 
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     CACHE.mkdir(parents=True, exist_ok=True)
     g = G.load_grid()

@@ -26,7 +26,7 @@ from src.gems86.io import BANDS, BY_NAME, NODATA
 
 EXPECTED_EPSG = 32611
 EXPECTED_SHAPE = (3730, 3292)
-EXPECTED_TRANSFORM = (100.0, 0.0, 275500.0, 0.0, -100.0, 4496600.0)
+EXPECTED_TRANSFORM = (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)
 EXPECTED_FOOTPRINT_PIXELS = 5167373
 EXPECTED_CATALOGUE_PIXELS = 60988
 
@@ -54,7 +54,12 @@ def find_file(dirs: list[Path], filenames: list[str]) -> Path | None:
     return None
 
 
-def prepare(data_dir: Path | None = None, work_dir: Path | None = None, fetch_if_missing: bool = False) -> dict:
+def prepare(
+    data_dir: Path | None = None,
+    work_dir: Path | None = None,
+    fetch_if_missing: bool = False,
+    manifest_path: Path | None = None,
+) -> dict:
     if data_dir is None:
         data_dirs = [ROOT / "data", ROOT / "data" / "bridge"]
     else:
@@ -96,6 +101,8 @@ def prepare(data_dir: Path | None = None, work_dir: Path | None = None, fetch_if
         if shape_hw != EXPECTED_SHAPE:
             raise ValueError(f"Expected shape {EXPECTED_SHAPE}, got {shape_hw}")
         transform_tuple = tuple(float(v) for v in tmpl.transform)[:6]
+        if transform_tuple != EXPECTED_TRANSFORM:
+            raise ValueError(f"Expected transform {EXPECTED_TRANSFORM}, got {transform_tuple}")
         foot_arr = tmpl.read(1)
         foot = np.isfinite(foot_arr)
 
@@ -182,7 +189,7 @@ def prepare(data_dir: Path | None = None, work_dir: Path | None = None, fetch_if
         "bands": band_stats,
     }
 
-    out_path = ROOT / "data" / "prepared_manifest.json"
+    out_path = Path(manifest_path) if manifest_path is not None else (ROOT / "data" / "prepared_manifest.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest

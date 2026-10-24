@@ -56,6 +56,9 @@ def select(score, allowed, near_list, budget, cap):
     return out, counts
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     g = gridmod.load_grid(ROOT / "data/bridge")
     foot, cat = g.footprint, g.catalogue
     scores = {}

@@ -1,0 +1,94 @@
+{
+  "schema": "gems86.prompt-named-unscored-audit.v1",
+  "audit_date_utc": "2026-10-24",
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "scope": "Byte-level GeoTIFF validation and pinned shared-checker (vendor/gems57/uniqueness.py) registry overlap measurement of the two unscored submission artifacts newly named in the 2026-10-24 owner prompt (GEMSDOE89 and GEMSDOE90). Neither artifact has an organizer score receipt; both fail the unchanged literal 0.70 3-px overlap stop against both continuous (17GEMSDOE) and discrete binary (13GEMSDOE) prior registry submissions.",
+  "checker_pin": {
+    "repository": "buffedlizard55-lab/60GEMSDOE",
+    "pinned_commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+    "latest_checked_main_commit": "111cf8f1a8db998fc017dc1a8c32cc740bb29140",
+    "gems57_code_changed_since_pin": false,
+    "uniqueness_module": "vendor/gems57/uniqueness.py",
+    "spearman_limit": 0.9,
+    "dot_overlap_3px_limit": 0.7
+  },
+  "witnesses_measured": [
+    {
+      "repository": "buffedlizard55-lab/17GEMSDOE",
+      "path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "emitted_positive_pixels": 5167373,
+      "kind": "continuous_full_footprint_surface"
+    },
+    {
+      "repository": "buffedlizard55-lab/13GEMSDOE",
+      "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+      "sha256": "c12533bb980234c3a706af641d4f1d514bbbe482714b2ebcac3b10f3e72a7a3f",
+      "decoded_sha256": "3140ac4bcfca3d20dc2684c1efb7d8b770d9f861ac3f1869e360b0451970cfec",
+      "emitted_positive_pixels": 206895,
+      "kind": "discrete_binary_stride5_dot_set"
+    },
+    {
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "emitted_positive_pixels": 37654,
+      "kind": "sparse_incumbent_parent_R0"
+    }
+  ],
+  "artifacts": [
+    {
+      "site": "GEMSDOE89",
+      "repository": "buffedlizard55-lab/GEMSDOE89",
+      "prompt_submission_name": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+      "prompt_score": null,
+      "organizer_confirmed_score": false,
+      "source_path": "docs/downloads/gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros.tif",
+      "bytes": 140693,
+      "sha256": "715c8b862c50af4218cdfb201869f743e9b85585b840180486f947bbd64d8361",
+      "format_all_checks_passed": true,
+      "emitted_positive_pixels": 37654,
+      "on_catalogue_positive_pixels": 0,
+      "nan_pixels": 0,
+      "forward_overlap_3px_vs_17GEMSDOE": 1.0,
+      "forward_overlap_3px_vs_13GEMSDOE_binary": 0.9992032718967441,
+      "dots_within_3px_of_13GEMSDOE_binary": 37624,
+      "forward_overlap_3px_vs_GEMSDOE32_R0": 0.26993148138312,
+      "spearman_vs_17GEMSDOE": 0.09750784849426013,
+      "spearman_vs_GEMSDOE32_R0": 0.012188995414417089,
+      "unique_under_literal_protocol": false,
+      "stop_required": true,
+      "irregularities_found": [
+        "registry/h89_run_card.json asserts complete_registry_coverage=true and verdict=promote over a 91-geometry subset that omitted both 17GEMSDOE (1.0000 forward 3-px overlap) and binary 13GEMSDOE (0.999203 forward 3-px overlap; 37,624/37,654 dots).",
+        "Adjacent writer receipt docs/downloads/gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros.json records approved_for_weekly_slot=false and promoted=false, contradicting registry/h89_run_card.json verdict=promote."
+      ]
+    },
+    {
+      "site": "GEMSDOE90",
+      "repository": "buffedlizard55-lab/GEMSDOE90",
+      "prompt_submission_name": "gems90-cnc-35000dots-20261024T084324Z",
+      "prompt_score": null,
+      "organizer_confirmed_score": false,
+      "source_path": "docs/downloads/gems90-cnc-35000dots-20261024T084324Z.tif",
+      "bytes": 241734,
+      "sha256": "e1e91be23d763ee184839f38a22aa573d6c957aac8fd0038a680cf6615ef41eb",
+      "format_all_checks_passed": true,
+      "emitted_positive_pixels": 35000,
+      "on_catalogue_positive_pixels": 0,
+      "nan_pixels": 0,
+      "forward_overlap_3px_vs_17GEMSDOE": 1.0,
+      "forward_overlap_3px_vs_13GEMSDOE_binary": 0.9834857142857143,
+      "dots_within_3px_of_13GEMSDOE_binary": 34422,
+      "forward_overlap_3px_vs_GEMSDOE32_R0": 0.4237714285714286,
+      "spearman_vs_17GEMSDOE": 0.03218687355360833,
+      "spearman_vs_GEMSDOE32_R0": 0.018391250430553223,
+      "unique_under_literal_protocol": false,
+      "stop_required": true,
+      "irregularities_found": [
+        "evidence/run_card.json privately rewrote the protocol duplicate rule to '(dot overlap within 3 px > 0.70 AND excess over chance > 0.30) or Spearman rho > 0.90', measured max_overlap=0.983286 (> 0.70) AND max_excess_over_chance=0.403712 (> 0.30) — exceeding BOTH clauses of its own rewritten rule — yet still recorded duplicate=false.",
+        "Pinned vendor/gems57/uniqueness.py measures 1.0000 forward 3-px overlap vs 17GEMSDOE and 0.983486 (34,422/35,000 dots) vs binary 13GEMSDOE.",
+        "Top leakage-canary feature is external qfault_sliprate_den (AUC=0.7784) evaluated on 4-fold cut segments (60,823/60,988 withheld catalogue pixels) rather than buffered whole-component spatial blocks, and its own calibration_against_real_scores verdict is NEGATIVE."
+      ]
+    }
+  ]
+}

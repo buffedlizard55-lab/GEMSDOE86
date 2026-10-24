@@ -65,6 +65,9 @@ def loadmask(p: Path) -> np.ndarray:
 
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     g = G.load_grid()
     fp, cat = g.footprint, g.catalogue

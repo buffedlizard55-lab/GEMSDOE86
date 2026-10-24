@@ -105,6 +105,9 @@ def gaussian_blur(a: np.ndarray, sigma: float) -> np.ndarray:
 
 
 def main() -> None:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out-dir", default="docs/downloads")
     ap.add_argument("--name", default=None,
