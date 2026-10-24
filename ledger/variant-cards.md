@@ -276,12 +276,12 @@ Full mechanism cards & PR #37 forensic audit: `evidence/concentration-5km-mechan
 
 ## CONCENTRATION (10 km fault-system scale, 2026-10-23, `arena/a681fdaf-gemsdoe86`)
 
-Full cards: `evidence/concentration-10km-mechanism.md`; run card: `evidence/concentration_10km_axis_20261023.json`; pre-registration: `registry/preregistration_conc10.json`. All count-fixed at 37,654, 100 % of new dots on ancestor ridges at > 3.0 px clearance (min 3.162 px), block = 100 px. R0 occupied-density CVs: 1 km 0.6235 · 5 km 0.7442 · 10 km 0.7360 (IR-86-CONC-12 corrects the 0.570 figure in IR-86-TRACKB-08).
+Full cards: `evidence/concentration-10km-mechanism.md`; run card: `evidence/concentration_10km_axis_20261023.json`; pre-registration: `registry/preregistration_conc10.json`. All count-fixed at 37,654, 100 % of new dots on ancestor ridges at > 3.0 px clearance (min 3.162 px), block = 100 px. R0 occupied-density CVs: 1 km 0.6235 · 5 km 0.7442 · 10 km 0.7360 (IR-86-CONC-15 corrects the 0.570 figure in IR-86-TRACKB-08).
 
 ### 1. `CONCENTRATION b10km-down8` — 3,012 dots moved (`15.9983%` changed, `780f8509`)
 - **Hypothesis & Mechanism.** Disperse the lowest-unique-credit dots of the densest occupied 10 km blocks onto unused ancestor ridges in the sparsest 65 % of occupied 10 km blocks: occupied-10 km CV 0.736 → **0.496** (overshoots the 0.51–0.59 band; 5 km CV 0.666, 1 km CV 0.629). First-coverage of under-sampled fault systems under DTI's max operator.
 - **Non-fault mimic.** Lahontan shorelines / beach ridges and fan distributary lineaments dominating the sparse-block ridge pool.
-- **Predicted sign and size.** Pre-registered +0.001 (−0.003…+0.005). Measured **`+0.0003 MODEL`** (2/4 quadrants; ±6 px jitter +0.0010, 5/5 shifts positive; random-block control −0.0009), **`+0.0012 PROXY`** (95 % CI [−0.0016, +0.0038], n = 11,321). Below the 0.01 floor; does not displace `concb5kmdown4`.
+- **Predicted sign and size.** Pre-registered +0.001 (−0.003…+0.005). Measured **`+0.0003 MODEL`** (2/4 quadrants; ±6 px jitter +0.0010, 5/5 shifts positive; random-block control −0.0009), **`+0.0012 PROXY`** (95 % CI [−0.0016, +0.0038], n = 11,321). Below the 0.01 floor; does not displace `conc6` (PR #50, +0.0022 MODEL).
 - **Falsifier.** Live `Δ <= -0.005` vs R0 closes 10 km dispersal.
 
 ### 2. `CONCENTRATION b10km-down4` — 1,506 dots moved (`7.9992%` changed, `c4e8ffc9`)

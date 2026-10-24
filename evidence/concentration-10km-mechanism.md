@@ -13,7 +13,7 @@ sits on a pinned ancestor ridge cell (`H19-5|H19-4|H16-1`), > 3.0 px from the ca
 (measured min 3.162 px), ≥ √8 px from every other dot; donors are chosen by ascending exact
 unique kernel credit within their block class; count fixed at 37,654. R0's occupied block-density
 CV (canonical `block_density_stats`): **1 km 0.6235 · 5 km 0.7442 · 10 km 0.7360**. The 10 km
-figure corrects IR-86-TRACKB-08's 0.570 (see IR-86-CONC-12): under the repo's canonical
+figure corrects IR-86-TRACKB-08's 0.570 (see IR-86-CONC-15): under the repo's canonical
 definition R0 sits *above* the 0.51–0.59 band at 10 km, so dispersal is the band-ward direction
 at this scale as well.
 
@@ -58,8 +58,8 @@ at this scale as well.
   **−0.0010 MODEL** (2/4 quadrants; jitter −0.0005) but **+0.0005 PROXY** (CI [−0.0006,
   +0.0019]). The two instruments disagree on sign at this dose and both intervals cover zero:
   the honest read is *no evidence either way at 4 %*, with the dose–response non-monotone on
-  MODEL (8 % > 4 %) and monotone on PROXY. This is why neither down arm displaces
-  `concb5kmdown4` (+0.0015 MODEL, 4/4 quadrants, +0.0008 PROXY) in the slot order.
+  MODEL (8 % > 4 %) and monotone on PROXY. Neither down arm displaces the 1 km dose ladder's
+  `conc6` (+0.0022 MODEL, 4/4 quadrants, +0.0013 PROXY; PR #50, merged while this session ran).
 - **Falsifier.** If down4 were ever scored and beat down8 by ≥ +0.005 live, the CV-band
   interpretation (aim at 0.51–0.59, do not overshoot) beats the first-coverage interpretation.
 
@@ -86,11 +86,12 @@ at this scale as well.
 
 ## What this session changes
 
-Nothing here clears the 0.01 live evidence floor, and no b10km arm displaces the current slot
-order (RELIEF `frontp15`, CONCENTRATION `concb5kmdown4`, PRUNE `le3p000`). What it retires is
-the *up* direction at the last unbuilt scale, and what it adds is a second, independent
-dispersal dose–response (PROXY +0.0005 → +0.0012 across 4 % → 8 %) consistent with the 1 km
-CV-band result. If Slots 1–3 all return inside ±0.005, `b10km-down8` is the cheapest remaining
-probe of whether *any* concentration sign survives contact with live truth; `b10km-down4` is
-its in-band fallback. (The `displacement_px` field in the receipts pairs sources and
+Nothing here clears the 0.01 live evidence floor, and no b10km arm displaces the slot order as
+re-ranked by the concurrent PR #50/#51 sessions (PRUNE `le3p000`, CONCENTRATION `conc6`, RELIEF
+`frontp15` demoted). What this session retires is the *up* direction at the last unbuilt scale;
+what it adds is a second, independent dispersal dose–response (PROXY +0.0005 → +0.0012 across
+4 % → 8 %) whose control gap (+0.0011 MODEL over random blocks) matches the 1 km ladder's
+finding that most of the dispersal gain is generic and the ranking buys ≈ +0.0007
+(IR-86-CONC-13). `b10km-down8` is a week-2 spare only if Slot 2 (`conc6`) returns ≥ +0.005;
+`b10km-down4` is its in-band fallback. (The `displacement_px` field in the receipts pairs sources and
 destinations by sort order, not by transport; do not read it as a physical move distance.)

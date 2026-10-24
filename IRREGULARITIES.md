@@ -695,7 +695,112 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
 
-## IR-86-CONC-12 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
+## IR-86-CONC-12 — the pre-registered 8 % and 2 km arms do not exist; the axis is capacity-capped
+Two of the three builds pre-registered in `evidence/concentration-dose-mechanism.md` turned out to be
+**geometrically impossible on this parent**, discovered on the first execution and before any score
+was computed:
+
+* 1 km `cvband-down8` needs 3,012 destinations; the sparse-ridge 1 km pool at `> 3.0 px` clearance
+  and `>= sqrt(8) px` spacing exhausts after **2,399** placements (max feasible dose ≈ 6.37 % of R0);
+* 2 km `cvband-2km-down4` needs 1,506; the 2 km pool exhausts after **920**.
+
+**Decision:** the ladder was re-cut to 3 % / 5 % / 6 % on the unchanged 1 km rule, and the matched
+ordering control was moved to the 6 % dose so it matches the strongest arm. The amendment is recorded
+in the run card (`preregistration.predictions.*.amended_from`) and in the mechanism card; the
+original predictions for `down5`/`down6` were **not** revised after seeing the CV values. **Cost:** the
+dose curve has no point above 6.4 %, so "more dose" is not an open direction without changing a second
+variable (spacing or ridge support). A 2 km block-scale replication is unavailable at the dose that
+would make it comparable.
+
+## IR-86-CONC-13 — the CV-band mechanism is falsified as stated; dispersal dose is the live variable
+Measured against the pre-registration, the registered **inverted-U** shape is wrong. SGMC `MODEL` and
+the fold-fair `PROXY` both rise monotonically with dose (`+0.0013 → +0.0018 → +0.0022` MODEL;
+`+0.0004 → +0.0010 → +0.0013` PROXY for 3 % → 5 % → 6 %) while 1 km occupied CV falls
+`0.5377 → 0.4998 → 0.4840`, i.e. the best arm lands **outside** the `0.51–0.59` band that PR #47's
+card called the target. Separately, the matched ordering control (same source blocks, random dot,
+random destination, same count, same gates) captures ≈ 67 % of the ranked arm's MODEL gain and ≈ 62 %
+of its PROXY gain.
+
+**Decision:** the `0.51–0.59` CV band is retired as a *mechanism* and demoted to a descriptive
+correlate; future CONCENTRATION cards must state a dose, not a CV target. The credit ranking is
+retained only as a `≈ +0.0007 MODEL` refinement, explicitly below instrument resolution — no ledger
+row or slot note may credit the ranking with the whole gain. `conc6` still dominates PR #47's `down4`
+on both report-only instruments, so it is the CONCENTRATION candidate of record, placed in slot 3
+behind the two larger predicted levers. **Cost:** a clean price on the ranking needs a paired live
+A/B (two slots), which the 3-per-week budget makes expensive; until then the honest prior for this
+axis is the control's `+0.0015 MODEL`.
+
+## IR-86-CONC-14 — the leakage canary initially flagged AUC 1.0000 because the canary itself leaked
+On the first execution the canary returned `max_auc = 1.0000`, which trips the brief's stop rule. The
+cause was in my own feature dict: `catalogue_px` is the scoring target verbatim, so its AUC is 1.0 by
+construction. It was replaced by `block_density_1km_parent` (a feature the rule actually uses), and no
+result was read before that fix.
+
+**Decision:** the stop rule was honoured literally (the run aborted and no raster was written), and
+the canary now reports only features that enter the edit: against the catalogue target
+`ridge_union_px` 0.5154, `unique_credit_parent` 0.5037, `block_density_1km_parent` 0.5094, and
+against the SGMC off-catalogue target 0.5086 / 0.5023 / 0.5467 respectively — worst case 0.5467,
+far below 0.90. **Cost:** none, but the episode is a reminder that a "leakage canary" can pass or
+fail on the choice of feature, so the feature list must be printed with the number.
+
+## IR-86-RELIEF-04 — the only instrument that supports RELIEF is a relief-index meter (R² = 0.9135, n = 8)
+
+**Observed.** Eight deterministic RELIEF rebuilds of R0 (the three shipped ladder arms, this
+session's three arms, and two displacement-matched random nulls) were scored on the SGMC-extra
+surrogate and regressed on the one quantity that varies across all of them, the change in mean
+`relief_index` at the dots (`evidence/relief_source_20261023.json`, `instrument_diagnostic`):
+
+| arm | Δ mean relief index | surrogate Δ (MODEL) | residual vs the fit |
+|---|---:|---:|---:|
+| `front+15pct` (reconstruction of the ledger row) | +0.2058 | **+0.00171** | −0.0008 |
+| `front+10pct` (reconstruction) | +0.1370 | +0.00100 | −0.0009 |
+| `front-10pct` (reconstruction) | −0.1163 | −0.00885 | −0.0023 |
+| `int2front-15pct` (new) | −0.0587 | −0.00569 | −0.0007 |
+| `int2front-10pct` (new) | −0.0565 | −0.00379 | +0.0011 |
+| `int2pied-15pct` (new) | −0.2987 | −0.01179 | +0.0000 |
+| null, random destination (interior source) | −0.0677 | −0.00298 | +0.0020 |
+| null, random destination (piedmont source) | +0.0170 | −0.00256 | −0.0008 |
+
+Pearson **r = +0.9558, R² = 0.9135, slope +0.0283 DTI per index unit**, intercept −0.0033 (the
+"displacement tax": an arm that does not change mean relief index is predicted to lose 0.0033).
+The surrogate's single-feature AUC for `relief_index → SGMC-extra` is `0.7281`, so this is not a
+coincidence of the arms: to first order the instrument is a monotone function of exactly the
+quantity every RELIEF variant manipulates. The reconstruction of `front+15pct` reproduces the
+ledger's delta to three decimals (`+0.001711` vs `+0.0017`), so the regression is on the shipped
+recipe, not a look-alike.
+
+**Decision (changes the slot order).** No RELIEF MODEL number may be cited as *mechanism*
+evidence. `front+15pct`'s `+0.0017` is what the instrument reports for a `+0.206` shift in mean
+relief index, and its residual is **−0.0008** — i.e. after the gradient is removed it is
+indistinguishable from (slightly below) the instrument's own line. `RELIEF-frontp15` is therefore
+**demoted from Slot 1 to Slot 3**; `PRUNE-le3p000` takes Slot 1 (its relief-index change is
+near zero, so this bias cannot manufacture its `+0.0040`), and `CONC-concb5kmdown4`
+(`+0.0015 MODEL` **and** `+0.0008 PROXY`, two differently-biased instruments agreeing, `1 km`
+CV inside `0.51–0.59`) takes Slot 2. **Cost:** the RELIEF family keeps its rows and rasters, but
+its published support is reclassified as instrument-shaped; a live receipt is now the only thing
+that can restore it, and at `+0.0017` a single slot could never clear the §"|Δ| < 0.01 = no
+evidence" floor anyway.
+**Not claimed:** that RELIEF is wrong. `relief_index` tracks real basin-margin structure; the
+claim is that this instrument cannot separate that from its own gradient.
+**Limit:** n = 8 deterministic rebuilds of one parent, not independent experiments, and seven of
+the eight sit on two source classes of a single grid. It prices the instrument; it does not
+re-score the competition.
+
+## IR-86-RELIEF-05 — the basin source cannot be tested inside the axis contract (2,014 dots = 5.35 %)
+
+**Observed.** Regime census of R0 this session: piedmont 20,280 dots (53.86 %), range-front 6,045
+(16.05 %), range-interior 9,315 (24.74 %), **basin 2,014 (5.35 %)**. Brief v2 §5 fixes the RELIEF
+dose at 10–15 % of the parent's dots, i.e. 3,765–5,648 dots. The basin holds fewer dots than the
+*floor* of that window, so "does leaving the alluvium pay?" — the cleanest geological version of the
+question — cannot be asked as a RELIEF variant at any legal dose.
+**Decision:** the source was varied over the range interior (the only remaining class with enough
+mass) and the basin question is recorded as **unbuildable on this parent**; it would need a
+different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and MASS is closed per
+`IR-86-MASS-01..03`). **Cost:** one of the three arms that looked most promising on mechanism
+grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
+rather than the 6-cell design with basin.
+
+## IR-86-CONC-15 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.

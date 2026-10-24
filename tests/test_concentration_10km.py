@@ -111,7 +111,7 @@ def test_committed_evidence_and_ledger_invariants():
     canary = ev["report_only_instruments"]["leakage_canary"]
     assert max(t["max_auc"] for t in canary.values()) <= 0.90
 
-    # R0's canonical 10 km CV is above the band (IR-86-CONC-12): dispersal is the
+    # R0's canonical 10 km CV is above the band (IR-86-CONC-15): dispersal is the
     # band-ward direction, and both down arms must reduce it.
     cv0 = ev["parent"]["block_density_cv_parent"]["cv_10km"]["density_cv_occupied"]
     assert cv0 > 0.59

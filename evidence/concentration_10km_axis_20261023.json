@@ -172,7 +172,7 @@
         "mean_prior": 0.0594
       }
     },
-    "ir86_trackb08_cv_note": "IR-86-TRACKB-08 reports R0 10 km CV = 0.570; canonical block_density_stats (occupied blocks, density per footprint cell) measures 0.736 complete-block / 0.733 padded-block this session. See IR-86-CONC-12."
+    "ir86_trackb08_cv_note": "IR-86-TRACKB-08 reports R0 10 km CV = 0.570; canonical block_density_stats (occupied blocks, density per footprint cell) measures 0.736 complete-block / 0.733 padded-block this session. See IR-86-CONC-15."
   },
   "variants": [
     {

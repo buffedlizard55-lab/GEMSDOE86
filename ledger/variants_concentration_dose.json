@@ -1,0 +1,146 @@
+[
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "cvband-down5",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 10.0016,
+    "sha8": "a2f8aaad",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "a2f8aaad1d9507fbe623efde2e2cb72922f5e19058f9e91eb34826b0c20bd522",
+    "sha256_nan": "e542423480b6b582fcaa7d6ed6bc360a8c1f99a9935dc28559048481478781c8",
+    "predicted_change": "+0.0018 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0006..+0.0036; 4/4 quadrants positive; jitter6px mean +0.0024); fold-fair PROXY +0.0010 [-0.0003, +0.0023], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "ecff89c0c312b3ae3c28e7ab38c919f2243e2011022dad3a45098b1aaff666b7",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down5: 1883 ridge dots moved (10.00% chg; 1km CV 0.500); pred +0.0018 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.097131,
+      "delta_vs_r0": 0.001045,
+      "ci95": [
+        -0.000274,
+        0.002275
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (per-fold geometry sees only f.visible)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "cvband-down6",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 11.9987,
+    "sha8": "1ed78e0f",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85",
+    "sha256_nan": "b5ecdcde65d10ee8e55bd6b67a7dd21d42acb8539db8ad459f18c77d84c48954",
+    "predicted_change": "+0.0022 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0005..+0.0045; 4/4 quadrants positive; jitter6px mean +0.0028); fold-fair PROXY +0.0013 [-0.0004, +0.0028], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "558b7bc30bd403014eb568f9c3546fa60f7d5718cafcbc43c028f10ee604c1d4",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down6: 2259 ridge dots moved (12.00% chg; 1km CV 0.484); pred +0.0022 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.097352,
+      "delta_vs_r0": 0.001266,
+      "ci95": [
+        -0.000417,
+        0.002824
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (per-fold geometry sees only f.visible)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "cvband-down3",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 6.002,
+    "sha8": "ffb47d4b",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "ffb47d4bc4af3d5d62f106f577b501e40728cae147017a8a6cdf400105239af5",
+    "sha256_nan": "37e804221429833a94935c78673b70a7492c4ee855761308e7fc466adcf685e4",
+    "predicted_change": "+0.0013 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0004..+0.0020; 4/4 quadrants positive; jitter6px mean +0.0017); fold-fair PROXY +0.0004 [-0.0006, +0.0013], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "fb91e2f86776a142ffc2b68b86f8c40e775f73c6d570d8a6fec7d4b19debb10d",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down3: 1130 ridge dots moved (6.00% chg; 1km CV 0.538); pred +0.0013 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.096499,
+      "delta_vs_r0": 0.000413,
+      "ci95": [
+        -0.000613,
+        0.001312
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (per-fold geometry sees only f.visible)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "CONTROL-cvband-down6-randcredit",
+    "status": "CONTROL",
+    "n_dots": 37654,
+    "pct_changed": 11.9987,
+    "sha8": "a6838dc2",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "a6838dc25b0ac5b4eaa1c5383c4b8033806b9d69315b692937680aaa172a2c78",
+    "sha256_nan": "efb7628c438c31ad0d8d62ba75489a984dd129b3495948f776158d913e02f6f0",
+    "predicted_change": "+0.0015 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0002..+0.0040; 4/4 quadrants positive; jitter6px mean +0.0021); fold-fair PROXY +0.0008 [-0.0014, +0.0026], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "5519db791f0cbda7f16c8c7dc9c89dd9a561c4a4f450e4cbd8bd4571e51585ba",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC CONTROL-cvband-down6-randcredit: 2259 ridge dots moved (12.00% chg; 1km CV 0.485); pred +0.0015 MODE",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.096854,
+      "delta_vs_r0": 0.000768,
+      "ci95": [
+        -0.001415,
+        0.002604
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (per-fold geometry sees only f.visible)"
+    }
+  }
+]
