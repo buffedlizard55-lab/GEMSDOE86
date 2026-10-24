@@ -1,5 +1,26 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+
+**Every file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+
+| Gate (no human inspection) | Result |
+|---|---|
+| Format (CRS/shape/transform, float32, 0 NaN, [0,1], 0 dots on faults) | PASS — `gems86-h86e-ridf-hgbthin-37654dots-20261024-zeros.tif`, sha256 `543a59d7…7fb1` |
+| HOLDOUT-DTI vs R0 fold-fair (gems57-pooled-hide-v2, 11,321 withheld positives) | **FAIL** — 0.0811 [0.0650, 0.0972] vs 0.0961 [0.0830, 0.1089]; paired Δ −0.0150 [−0.0280, −0.0019] |
+| Surface rank correlation ≤ 0.90 | **FAIL** — 0.9045 vs 17GEMSDOE E-proba-multiscale |
+| Final-dot overlap ≤ 70 % vs informative dot fields (PA-86-02) | **FAIL** — 64 informative dot-field firings over 682 measured registry rasters |
+| Verdict | `negative`, duplicate — **DO NOT SUBMIT**; 0 weekly slots used |
+| Historical H86C-KSLB (holdout best 0.1241) re-audited on the same 682 rasters | **FAIL** — 12 informative dot-field firings (PA-86-02) → DO NOT SUBMIT ([measurement](docs/evidence/kslb_pa86_chance_overlap.json)) |
+
+Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged.
+
+## SWCON (PR #77): revoked on main, and confirmed by an independent measurement
+
+Parallel sessions revoked SWCON (`5576b15c…374f`) and removed its binaries from `docs/downloads/`. This session ran its own full 682-raster registry measurement and reached the same verdict. That measurement found **58 informative dot-field overlap firings**. For example, 81.9 % of SWCON's dots lie within 3 px of 12GEMSDOE `r7-nms3-dem10-scarp`, where chance would give 31.7 %. Its earlier "unique" label came from a check against local files only. Evidence: [`swcon_pa86_chance_overlap.json`](docs/evidence/swcon_pa86_chance_overlap.json); see also IRREGULARITIES IR-86-RIDF-05.
+
+Two different 2026-10-24 sessions used the name "H86E". **H86E-RIDF** (this section, `docs/evidence/h86e-ridf-run-card.json`) and **H86E-CCTX** (below, `docs/evidence/h86e-run-card.json`) are separate lanes, and both are DO NOT SUBMIT.
+
 > **2026-10-24 MANDATORY GATE STATUS: `DO NOT SUBMIT` (`safe_to_submit: false`, `submission_slots_used: 0`).** All **12** published research GeoTIFFs in `docs/downloads/` pass local format/range checks (`[0, 1]`, `0` NaN, `EPSG:32611`, `3730×3292`, `100 m` grid) and **all 12 fail the mandatory literal uniqueness gate (`100.0%` 3-px overlap vs `17GEMSDOE`)**. All **45 CLI builders + 8 imported orchestrators** (including concurrent `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `experiment`, `run_experiment`, `run_h86`, and `run_lane`) are gated behind `protocol_preflight.require_feasible()`.
 
 ## Latest session — 2026-10-24 H86E & parallel reviews (`d7b214a5`, `dcbb8404` & `647e6683`): automated verdict 🔴 DO NOT SUBMIT

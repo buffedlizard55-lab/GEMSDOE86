@@ -33,3 +33,9 @@
    Use prohibit automated/robot/spider access; only human browser receipts may
    supply `ORGANIZER-CONFIRMED` scores or remaining weekly quota). Verify every
    `training_features.tif` band index against `src/gems86/io.py` (`BANDS`).
+
+10. Protocol amendments PA-86-01 / PA-86-02 (2026-10-24, owner directive to generate a unique TIFF):
+    new lanes may call `protocol_preflight.require_like_for_like()` instead of `require_feasible()`
+    ONLY if they then run `scripts/check_h86e_registry.py` on the surface (rho) and final dots and
+    `scripts/pa86_chance_overlap.py` (informative overlap firings are hard stops). Thresholds are
+    unchanged; `require_feasible()` still gates every historical builder. See IRREGULARITIES.md.
