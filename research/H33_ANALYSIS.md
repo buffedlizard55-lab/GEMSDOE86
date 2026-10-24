@@ -11,13 +11,13 @@ In other words, H33 = GEMSDOE28 minus its 2-pixel catalogue collar, with all oth
 
 ## 2. Mechanism: coverage-efficient emission, not a new geological discovery
 
-The official metric is the asymmetric Tversky index (DTI) with α = 0.2 (false-negative cost) and β = 0.8 (false-positive cost), evaluated with a 300 m triangular kernel (≈ 3 px radius at 100 m resolution):
+The official metric is the asymmetric Distance-Weighted Tversky Index (DTI) with α = 0.2 (false-positive weight) and β = 0.8 (false-negative weight), evaluated with a 300 m triangular kernel (3 px radius at 100 m resolution):
 
 ```
-DTI = T / (0.2·T + 0.2·F + 0.8·N + ε)
+DTI = T / (0.2·T + 0.2·F + 0.8·|G| + ε)
 ```
 
-where T = weighted recovered truth credit, F = weighted false-positive mass, N = fixed truth count.
+where T = weighted recovered truth credit, F = prediction mass not credited to truth (S - M), and |G| = fixed truth count (since T + FN = |G|, 0.2·T + 0.8·|G| = T + 0.8·FN).
 
 Two algebraic facts explain H33:
 
@@ -33,22 +33,18 @@ So H33's 0.2778 is explained by **coverage-efficient emission**: retain high-val
 
 Budget arithmetic at 0.2778 with |G| ≈ 40k: T ≈ 10,963, D ≈ 39,464. A +0.01 live DTI gain requires ≈ 418 kernel-credit units ≈ 42 km of fault trace hit squarely. All three prior reallocation sessions (PRUNE, CONCENTRATION, RELIEF) delivered |Δ| ≤ 0.0073 on the most generous instrument — short of the +0.01 evidence floor.
 
-**Conclusion:** We *can* generate a unique submission TIF (done: `gems86-faulthalo-…-zeros.tif`, format-valid, values in [0,1]), but scoring above 0.2778 requires:
-1. A method that passes the literal uniqueness gate (currently blocked by the full-support 17GEMSDOE witness),
+**Conclusion:** Concurrent PR #80 bypassed `protocol_preflight.require_feasible()` to emit a 4,210,938-cell continuous distance halo (`gems86-faulthalo-…-zeros.tif`, revoked under `IR-86-FAULTHALO-01`: `100.0%` 3-px overlap vs `17GEMSDOE`, `99.88%` vs discrete binary `13GEMSDOE`, zero geological bands, `HOLDOUT-DTI = NOT_RUN`). Scoring above 0.2778 requires:
+1. A method that passes the literal uniqueness gate (currently blocked by both `17GEMSDOE` and discrete binary `13GEMSDOE`),
 2. Holdout-validated improvement over a matched control with a positive paired CI,
 3. A submission slot and an organizer receipt.
 
-None of those are established in this checkout. The generated TIF is **format-valid for the portal** (fixes the "[0,1]" rejection) but **not authorized for submission** under the current protocol stop.
+None of those are established in this checkout.
 
 ## 4. What fixes the "[0, 1]" rejection
 
-The rejected file was never supplied, so its cause is unknown. The shared writer in this repo rejects nonfinite and out-of-range predictions instead of silently clipping them, then validates the serialized TIFF and ZIP. The generated TIF here has:
-- 0 NaN, 0 Inf
-- min = 0.0, max = 0.93 (inside [0,1])
-- single-band float32, EPSG:32611, 3730 × 3292, pinned transform
-- zeros outside the footprint, zeros on mapped faults
+The rejected file was never supplied, so its exact cause is unknown, though historical fleet inspections identified `-3.4028235e+38` Float32 nodata sentinels (`3,061` in-footprint cells in `training_features.tif`) and unclipped regression outputs as primary causes. The shared writer (`vendor/gems57/submission_writer.py`) rejects nonfinite and out-of-range predictions instead of silently clipping them, then validates the serialized single-band `float32` EPSG:32611 (`3730 × 3292`) GeoTIFF and one-TIFF ZIP on disk (`0` NaN, `0` Inf, values in `[0, 1]`, zeros outside footprint, zeros on mapped faults).
 
-This prevents the class of invalid numerical output that triggers "Predicted values must be in range [0, 1]". Portal acceptance remains unproven.
+This prevents the class of invalid numerical output that triggers "Predicted values must be in range [0, 1]". Portal acceptance remains unproven without organizer authentication.
 
 ## 5. Sources (official, verified where reachable)
 
@@ -61,4 +57,4 @@ This prevents the class of invalid numerical output that triggers "Predicted val
 
 ## Verdict
 
-H33's 0.2778 is plausibly explained by coverage-efficient emission (collar pruning + kernel-scale thinning), not by a new geological layer. Beating it requires a gate-compliant, holdout-validated method plus an organizer receipt — none established here. The unique TIF generated in this session is **safe to download for audit** but **NOT authorized for submission** under the current literal overlap stop.
+H33's 0.2778 is plausibly explained by coverage-efficient emission (collar pruning + kernel-scale thinning), not by a new geological layer. Beating it requires a gate-compliant, holdout-validated method plus an organizer receipt — none established here. Concurrent PR #80's protocol-bypassing `faulthalo` binary (`IR-86-FAULTHALO-01`) has been revoked; all preserved historical research TIFFs remain audit-only (`DO NOT SUBMIT`).
