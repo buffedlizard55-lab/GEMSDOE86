@@ -4,7 +4,7 @@
 Preregistered in registry/preregistration_h86f.json (amendment A1 included).
 Strictly zero-catalogue: no feature is derived from existing_faults.tif.
 
-  E1  leakage canaries on all 46 features (43 fusion + 3 controls);
+  E1  leakage canaries on all 46 features (48 fusion + 3 controls);
   E2  single-channel holdout arms at 37,654 dots (characterization);
   E3  LOQO-HGB fusion + substrate-only ablation at 44,090 dots,
       SGMC auxiliary proxy, and a non-gating region-hide diagnostic.
@@ -63,7 +63,7 @@ N_WITHHELD_PREREG = 11321
 
 
 def build_feature_stack(g, hmdc: dict) -> tuple[np.memmap, list[str], np.ndarray]:
-    """43 label-free columns: H86E substrate (38, ex-SPBT) + 5 HMDC.
+    """48 label-free columns: H86E substrate (43, ex-SPBT) + 5 HMDC.
 
     Substrate band/gradient/external lists are copied verbatim from H86E's
     builder (same pinned inputs, same _fill, same order); only the SPBT
@@ -108,11 +108,11 @@ def build_feature_stack(g, hmdc: dict) -> tuple[np.memmap, list[str], np.ndarray
             for b, nm in zip(bands, nms):
                 add(nm, _fill(s.read(b), fp, nodata_vals=(-32768,) if "chi" in nm else ()))
     n_substrate = len(feats)
-    assert n_substrate == 38, n_substrate
+    assert n_substrate == 43, n_substrate
 
     for nm in ["trough_rtp", "trough_tvg", "cond_dilat", "vent_corr_gated", "vent_logdist"]:
         add("hmdc_" + nm, hmdc[nm])
-    assert len(feats) == 43, len(feats)
+    assert len(feats) == 48, len(feats)
 
     n = len(feats)
     mm = np.memmap(CACHE / f"static_{n}.dat", dtype=np.float32, mode="w+",
@@ -257,7 +257,7 @@ def main():
     vis_row = visible.ravel()[flat_idx]
     dcat_full = ndi.distance_transform_edt(~cat)
     neg_ok_row = (dcat_full.ravel()[flat_idx] > 1.0)
-    sub_mm = static_mm[:, :38]  # substrate-only ablation view (memmap, no copy)
+    sub_mm = static_mm[:, :43]  # substrate-only ablation view (memmap, no copy)
     oof = np.zeros(flat_idx.size, np.float32)
     oof_sub = np.zeros(flat_idx.size, np.float32)
     fold_info = {}
