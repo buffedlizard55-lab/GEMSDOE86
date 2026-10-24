@@ -5,6 +5,10 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
+[Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
+
 [Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
 
 [Earlier d50d503b three-pass review](research/SESSION_20261024_D50D503B.md) and [download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md) document prior fixes and review history. Current fresh remeasurement: [all-artifact registry report](docs/evidence/all-artifacts-registry.json), [release readiness](docs/evidence/release-readiness.json), and [current negative run card](docs/evidence/latest-review-run-card.json). The registry scan is intentionally reported as incomplete: one pinned full-support witness is enough to reject, never to clear, a candidate.
@@ -14,7 +18,7 @@
 - [H33 analysis, ranked candidate hypotheses, and previous three-pass review](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
 - The previous review repaired **37 CLI builder/feature/pipeline commands and eight imported orchestration entrypoints** that could bypass mandatory preflight, and revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`). `--no-write` / `--measure` is not a protocol exemption. Read-only artifact audits remain available.
 - The **92-project fleet feed** and its **113 owner-reported score entries** remain sourced to repository snapshots; there are **0 organizer submission receipts** in the ledger. User-provided score and access claims are not treated as verified competition results.
-- **Fresh feed follow-up (2026-10-24 18:19 UTC):** snapshotted 92/92 named GitHub project trees; rechecked two immutable source documents at 18:19 UTC; zero organizer receipts. Full suite: **492 passed, 24 skipped, 4 warnings, 41 subtests**. This is metadata, not raster validation or a live leaderboard/quota feed. See [feed evidence](docs/evidence/fleet-feed.json), [source identity check](docs/evidence/review-source-checks.json), and [follow-up three-pass revalidation](research/SESSION_20261024_REVALIDATION.md).
+- **Fresh feed follow-up (2026-10-24 18:26 UTC):** snapshotted 92/92 named GitHub project trees; rechecked two immutable source documents at 18:26 UTC; zero organizer receipts. Full suite: **495 passed, 24 skipped, 4 warnings, 41 subtests**. This is metadata, not raster validation or a live leaderboard/quota feed. See [feed evidence](docs/evidence/fleet-feed.json), [source identity check](docs/evidence/review-source-checks.json), and [follow-up three-pass revalidation](research/SESSION_20261024_REVALIDATION.md).
 - **Read `PROMPT.md`, this README, and the complete 2026-10-24 request archive below at the start of every session.** The archived request retains the goals; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not upload authorization.
 
 

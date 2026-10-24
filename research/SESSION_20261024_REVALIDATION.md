@@ -75,7 +75,7 @@ qualifiers.
 - Restored the integrity-pinned bridge inputs and historical witness using
   `scripts/restore_protocol_data.py --include-registry`; this used GitHub mirror bytes and is not
   organizer-authenticated data access.
-- Re-ran `scripts/protocol_preflight.py`. Its `REGISTRY-MEASUREMENT` reports witness SHA-256
+- Re-ran `scripts/protocol_preflight.py` at `2026-10-24T18:22:55+00:00`. Its `REGISTRY-MEASUREMENT` reports witness SHA-256
   `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`, `5,106,385` allowed
   cells, zero uncovered allowed cells, one raster measured from a snapshot of `655` registry
   entries, and `registry_complete: false`. Thus the literal forward overlap bound is `1.0` for
@@ -83,10 +83,10 @@ qualifiers.
 - Re-ran `scripts/audit_release.py --measure-registry`: all `10/10` inherited published TIFFs
   passed the local on-disk format/integrity checks, while all remain explicitly negative and
   unauthorized under the registry stop. A format pass is not submission approval.
-- Refreshed the repository-metadata feed at `2026-10-24T18:19:07+00:00`: `92/92` named GitHub
+- Refreshed the repository-metadata feed at `2026-10-24T18:26:23+00:00`: `92/92` named GitHub
   project trees were snapshotted; the refresh obtained `0` organizer receipts. This is current
   GitHub metadata, not a live DrivenData score/quota feed.
-- Rechecked two immutable GitHub source documents at `2026-10-24T18:19:14+00:00` with
+- Rechecked two immutable GitHub source documents at `2026-10-24T18:26:24+00:00` with
   `scripts/review_sources.py`. The official
   reference README's retrieved Git blob matches the archived bytes and explicitly supports a
   CPU-only path. The GEMSDOE32 owner audit also matches its pinned archived bytes, but is classified
@@ -95,7 +95,7 @@ qualifiers.
 
 ## Pass 3 — review the implementation and verify outputs
 
-- Full tests: **492 passed, 24 skipped, 4 rasterio pending-deprecation warnings, 41 subtests**.
+- Full tests: **495 passed, 24 skipped, 4 rasterio pending-deprecation warnings, 41 subtests**.
   The skipped tests require gitignored historical release rasters or restored experiment inputs;
   they are not successful experiments and do not validate the missing feature cache.
 - `scripts/build_site.py`, `scripts/build_site.py --check`, `scripts/check_site.py`,
