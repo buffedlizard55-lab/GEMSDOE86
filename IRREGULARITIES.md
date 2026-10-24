@@ -918,3 +918,7 @@ See `research/SESSION_20261024_REVIEW.md` and
 ## IR-86-PREFLIGHT-TIMESTAMP — 2026-10-24 follow-up (fixed)
 
 Fresh `protocol_preflight.measure()` results carried a hard-coded 2026-10-22 measurement date. This confused witness verification with the actual measurement event. The wrapper now records UTC completion time/date and retains the historical verification date separately. No historical score or shared tool was changed. Pages explicitly refreshes the proof before hash-bound artifact receipts; reverse order correctly fails the site build. Midnight/corrupt-input/order regression tests added. See `research/SESSION_20261024_PROVENANCE_REVIEW.md`. The unique-TIFF requirement remains unmet under the literal full-support registry stop.
+
+## IR-86-CONCURRENT-TIPRELAY — integration blocked, not repaired here
+
+During attempted PR #62 merge, main `502fc14` introduced an unguarded module-level `scripts/gen_tip_final.py` builder and `tiprelay` filename exemptions in the published-raster audit. The local merge was aborted; these changes were not incorporated into this branch. PR #62 remains open/conflicting. Reconcile this publication bypass before claiming the current main deployment audits every downloadable raster. See the follow-up provenance review and PR comment for scope; no new candidate was built in this session.
