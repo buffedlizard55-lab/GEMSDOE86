@@ -695,31 +695,169 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
 
-## IR-86-CONC-12 — pre-registered pediment refinement of `concb5kmdown4` FAILS its SGMC falsifier; instruments split; no slot change
+## IR-86-CONC-12 — the pre-registered 8 % and 2 km arms do not exist; the axis is capacity-capped
+Two of the three builds pre-registered in `evidence/concentration-dose-mechanism.md` turned out to be
+**geometrically impossible on this parent**, discovered on the first execution and before any score
+was computed:
 
-**Observed** (session 15, `evidence/concentration_pediment_axis_20261023.json`, R0 rebuilt byte-exactly first):
-SLOT_PLAN proposal 2 (`IR-86-TRACKB-08`) was built as three dose-controlled destination splits of the
-slot-2 arm's shave: `concb5kmpeddown2p5` (941 dots, 5.00 % chg, 100 % in-window), `concb5kmnonpeddown2p5`
-(941 dots, 100 % out-window, attribution control), `concb5kmpeddown5` (1,882 dots, 10.00 % chg,
-55.6 % in-window). The truth-free pediment window (3DEP `relief_local` 10–40 m, > 1 km from the RELIEF
-regime front; 18.8 % of the footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules, so
-the pair is dose-matched at 2.5 % of R0, not `concb5kmdown4`'s 4 %.
+* 1 km `cvband-down8` needs 3,012 destinations; the sparse-ridge 1 km pool at `> 3.0 px` clearance
+  and `>= sqrt(8) px` spacing exhausts after **2,399** placements (max feasible dose ≈ 6.37 % of R0);
+* 2 km `cvband-2km-down4` needs 1,506; the 2 km pool exhausts after **920**.
+
+**Decision:** the ladder was re-cut to 3 % / 5 % / 6 % on the unchanged 1 km rule, and the matched
+ordering control was moved to the 6 % dose so it matches the strongest arm. The amendment is recorded
+in the run card (`preregistration.predictions.*.amended_from`) and in the mechanism card; the
+original predictions for `down5`/`down6` were **not** revised after seeing the CV values. **Cost:** the
+dose curve has no point above 6.4 %, so "more dose" is not an open direction without changing a second
+variable (spacing or ridge support). A 2 km block-scale replication is unavailable at the dose that
+would make it comparable.
+
+## IR-86-CONC-13 — the CV-band mechanism is falsified as stated; dispersal dose is the live variable
+Measured against the pre-registration, the registered **inverted-U** shape is wrong. SGMC `MODEL` and
+the fold-fair `PROXY` both rise monotonically with dose (`+0.0013 → +0.0018 → +0.0022` MODEL;
+`+0.0004 → +0.0010 → +0.0013` PROXY for 3 % → 5 % → 6 %) while 1 km occupied CV falls
+`0.5377 → 0.4998 → 0.4840`, i.e. the best arm lands **outside** the `0.51–0.59` band that PR #47's
+card called the target. Separately, the matched ordering control (same source blocks, random dot,
+random destination, same count, same gates) captures ≈ 67 % of the ranked arm's MODEL gain and ≈ 62 %
+of its PROXY gain.
+
+**Decision:** the `0.51–0.59` CV band is retired as a *mechanism* and demoted to a descriptive
+correlate; future CONCENTRATION cards must state a dose, not a CV target. The credit ranking is
+retained only as a `≈ +0.0007 MODEL` refinement, explicitly below instrument resolution — no ledger
+row or slot note may credit the ranking with the whole gain. `conc6` still dominates PR #47's `down4`
+on both report-only instruments, so it is the CONCENTRATION candidate of record, placed in slot 3
+behind the two larger predicted levers. **Cost:** a clean price on the ranking needs a paired live
+A/B (two slots), which the 3-per-week budget makes expensive; until then the honest prior for this
+axis is the control's `+0.0015 MODEL`.
+
+## IR-86-CONC-14 — the leakage canary initially flagged AUC 1.0000 because the canary itself leaked
+On the first execution the canary returned `max_auc = 1.0000`, which trips the brief's stop rule. The
+cause was in my own feature dict: `catalogue_px` is the scoring target verbatim, so its AUC is 1.0 by
+construction. It was replaced by `block_density_1km_parent` (a feature the rule actually uses), and no
+result was read before that fix.
+
+**Decision:** the stop rule was honoured literally (the run aborted and no raster was written), and
+the canary now reports only features that enter the edit: against the catalogue target
+`ridge_union_px` 0.5154, `unique_credit_parent` 0.5037, `block_density_1km_parent` 0.5094, and
+against the SGMC off-catalogue target 0.5086 / 0.5023 / 0.5467 respectively — worst case 0.5467,
+far below 0.90. **Cost:** none, but the episode is a reminder that a "leakage canary" can pass or
+fail on the choice of feature, so the feature list must be printed with the number.
+
+## IR-86-RELIEF-04 — the only instrument that supports RELIEF is a relief-index meter (R² = 0.9135, n = 8)
+
+**Observed.** Eight deterministic RELIEF rebuilds of R0 (the three shipped ladder arms, this
+session's three arms, and two displacement-matched random nulls) were scored on the SGMC-extra
+surrogate and regressed on the one quantity that varies across all of them, the change in mean
+`relief_index` at the dots (`evidence/relief_source_20261023.json`, `instrument_diagnostic`):
+
+| arm | Δ mean relief index | surrogate Δ (MODEL) | residual vs the fit |
+|---|---:|---:|---:|
+| `front+15pct` (reconstruction of the ledger row) | +0.2058 | **+0.00171** | −0.0008 |
+| `front+10pct` (reconstruction) | +0.1370 | +0.00100 | −0.0009 |
+| `front-10pct` (reconstruction) | −0.1163 | −0.00885 | −0.0023 |
+| `int2front-15pct` (new) | −0.0587 | −0.00569 | −0.0007 |
+| `int2front-10pct` (new) | −0.0565 | −0.00379 | +0.0011 |
+| `int2pied-15pct` (new) | −0.2987 | −0.01179 | +0.0000 |
+| null, random destination (interior source) | −0.0677 | −0.00298 | +0.0020 |
+| null, random destination (piedmont source) | +0.0170 | −0.00256 | −0.0008 |
+
+Pearson **r = +0.9558, R² = 0.9135, slope +0.0283 DTI per index unit**, intercept −0.0033 (the
+"displacement tax": an arm that does not change mean relief index is predicted to lose 0.0033).
+The surrogate's single-feature AUC for `relief_index → SGMC-extra` is `0.7281`, so this is not a
+coincidence of the arms: to first order the instrument is a monotone function of exactly the
+quantity every RELIEF variant manipulates. The reconstruction of `front+15pct` reproduces the
+ledger's delta to three decimals (`+0.001711` vs `+0.0017`), so the regression is on the shipped
+recipe, not a look-alike.
+
+**Decision (changes the slot order).** No RELIEF MODEL number may be cited as *mechanism*
+evidence. `front+15pct`'s `+0.0017` is what the instrument reports for a `+0.206` shift in mean
+relief index, and its residual is **−0.0008** — i.e. after the gradient is removed it is
+indistinguishable from (slightly below) the instrument's own line. `RELIEF-frontp15` is therefore
+**demoted from Slot 1 to Slot 3**; `PRUNE-le3p000` takes Slot 1 (its relief-index change is
+near zero, so this bias cannot manufacture its `+0.0040`), and `CONC-concb5kmdown4`
+(`+0.0015 MODEL` **and** `+0.0008 PROXY`, two differently-biased instruments agreeing, `1 km`
+CV inside `0.51–0.59`) takes Slot 2. **Cost:** the RELIEF family keeps its rows and rasters, but
+its published support is reclassified as instrument-shaped; a live receipt is now the only thing
+that can restore it, and at `+0.0017` a single slot could never clear the §"|Δ| < 0.01 = no
+evidence" floor anyway.
+**Not claimed:** that RELIEF is wrong. `relief_index` tracks real basin-margin structure; the
+claim is that this instrument cannot separate that from its own gradient.
+**Limit:** n = 8 deterministic rebuilds of one parent, not independent experiments, and seven of
+the eight sit on two source classes of a single grid. It prices the instrument; it does not
+re-score the competition.
+
+## IR-86-RELIEF-05 — the basin source cannot be tested inside the axis contract (2,014 dots = 5.35 %)
+
+**Observed.** Regime census of R0 this session: piedmont 20,280 dots (53.86 %), range-front 6,045
+(16.05 %), range-interior 9,315 (24.74 %), **basin 2,014 (5.35 %)**. Brief v2 §5 fixes the RELIEF
+dose at 10–15 % of the parent's dots, i.e. 3,765–5,648 dots. The basin holds fewer dots than the
+*floor* of that window, so "does leaving the alluvium pay?" — the cleanest geological version of the
+question — cannot be asked as a RELIEF variant at any legal dose.
+**Decision:** the source was varied over the range interior (the only remaining class with enough
+mass) and the basin question is recorded as **unbuildable on this parent**; it would need a
+different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and MASS is closed per
+`IR-86-MASS-01..03`). **Cost:** one of the three arms that looked most promising on mechanism
+grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
+rather than the 6-cell design with basin.
+
+## IR-86-CONC-15 — the SGMC-extra instrument rewards *outward movement* for CONCENTRATION arms, not lineaments
+
+**Observed.** The SGMC surrogate's truth is `SGMC − catalogue`, so a dot in the mapped-fault collar can
+never earn credit there, while the organiser states new truth *can* lie within 300 m of a known trace —
+and R0 is built almost entirely of such dots. Measured on this session's three arms
+(`evidence/concentration_surfext_axis_20261023.json` → `instrument_confound`): `surfext10`'s added mass
+sits **21.7 px** from SGMC-extra truth versus **22.6 px** for the mass it removed (the treatment moved
+mass *toward* SGMC truth) yet beats its matched control by only **+0.0012 MODEL**; the control moved
+mass *away* (22.8 px) and still scored **+0.0047 MODEL** in 4/4 quadrants. The fold-fair PROXY is biased
+the opposite way, since it can only reward mass near *withheld catalogue* traces — exactly what surface
+extension gives up (`−0.00003` treatment vs `−0.0008` control).
+**Decision.** CONCENTRATION MODEL deltas are not compared across arms with different
+catalogue-distance profiles; every arm is read against a matched control, never against zero, and a
+positive SGMC delta alone is not evidence of lineament knowledge. This is the same instrument failure
+mode already recorded for RELIEF (`IR-86-RELIEF-04`) and for the CV band (`IR-86-CONC-13`).
+
+## IR-86-CONC-16 — R0 is saturated on its own evidence surface; the headroom is *off* that surface
+
+**Observed.** Confirms and localises `IR-86-CONC-12`'s ≈6.4 % capacity cap. Measured on the pinned
+inputs before any candidate was built: all 37,654 R0 dots lie on the `H19-5` ancestor surface, and under
+the parent's own constraints (`> 3.0 px` from the catalogue, `>= 2.8284 px` from every dot) only **90**
+legal free cells remain on that surface — the merged cvband rule's within-surface destination capacity
+is ~2,400 dots. `H19-4 | H16-1` minus `H19-5` is 35,954 px of near-equal owner-reported quality
+(`0.1894` / `0.1855` vs `0.1922`, all CLAIM) carrying **zero** parent mass, with 8,671 legal free cells
+(6,456 placeable greedily).
+**Decision.** Future CONCENTRATION/SPACING sessions must state the free-slot count before building;
+within-surface reallocation is treated as closed, and the open headroom is surface extension
+(`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
+`EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
+0.000…+0.003, below the evidence floor).
+
+## IR-86-CONC-17 — the pediment refinement of `concb5kmdown4` FAILS its SGMC falsifier; instruments split; no slot change
+
+**Observed** (session `arena/f29e1689`, `evidence/concentration_pediment_axis_20261023.json`; R0 rebuilt
+byte-exactly first). The pre-rev-E SLOT_PLAN's pediment proposal (former proposal 2, `IR-86-TRACKB-08`
+line) was built as three destination-regime splits of the slot-2 arm's shave: `concb5kmpeddown2p5`
+(941 dots, 5.00 % chg, 100 % in-window), `concb5kmnonpeddown2p5` (941 dots, 100 % out-window,
+attribution control), `concb5kmpeddown5` (1,882 dots, 10.00 % chg, 55.6 % in-window). The truth-free
+pediment window (3DEP `relief_local` 10–40 m, > 1 km from the RELIEF regime front; 18.8 % of the
+footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules — a *second*, window-specific
+capacity beside `IR-86-CONC-12`/`16`'s within-surface caps — so the pair is dose-matched at 2.5 % of R0.
 
 1. **SGMC MODEL falsifier fired:** at the identical dose the non-pediment complement beats the
-   pediment arm (+0.0013 vs +0.0007; per-moved-dot 1.3e-6 vs 0.7e-6; REF `concb5kmdown4` +0.0015
-   replicates the recorded value exactly). As far as mapped-fault truth can tell, the slot-2 arm's
-   gain is **generic sparse-ridge coverage**, not the thin-alluvium concealed-fault prior.
-2. **The symmetric fold-fair d28 PROXY orders the arms oppositely** (+0.0012 in-window vs +0.0004
-   out-window, CIs straddling/near zero), so the attribution is *split*, not resolved. Both
-   instruments stay REPORT-ONLY; no arm clears the 0.01 live-evidence floor (max |Δ| = 0.0017).
-3. **Dose** is near-linear on SGMC (+0.0007 → +0.0017) but the 2× dose pushes the 1 km CV to 0.5013,
-   below the empirical 0.51–0.59 band edge.
-4. **10 km CV definition pinned:** `IR-86-TRACKB-08`'s numbers (R0 = 0.570) reproduce exactly
-   (0.5699) only under fully-covered 100 px blocks; the unfiltered occupied-block definition gives
-   0.736. Both are now reported by `gems86.concentration_pediment.cv_report` so future scale-matched
-   tests cannot mix the two definitions.
+   pediment arm (+0.0013 vs +0.0007; REF `concb5kmdown4` +0.0015 replicates the recorded value
+   exactly). As far as mapped-fault truth can tell, the dispersal gain is **generic sparse-ridge
+   coverage**, not the thin-alluvium concealed-fault prior.
+2. **Displacement is matched** (mean 1,612.7 vs 1,630.8 px; median 1,597.3 vs 1,582.3), so
+   `IR-86-CONC-15`'s outward-movement bias is common-mode across the pair and cannot explain the
+   ped/nonped gap — but it does inflate both vs R0, which is why the arm-vs-arm comparison (not
+   arm-vs-zero) is the quoted read.
+3. **The symmetric fold-fair d28 `PROXY` orders the arms oppositely** (+0.0012 in-window vs +0.0004
+   out-window, CIs straddling/near zero): the attribution is *split*, not resolved. No arm clears the
+   0.01 live-evidence floor (max |Δ| = 0.0017).
+4. **Dose** is near-linear on SGMC (+0.0007 → +0.0017 at 2×) but the 2× dose pushes the 1 km CV to
+   0.5013, below the (already demoted, `IR-86-CONC-13`) CV-band's lower edge.
 
-**Decision.** Slot 2 stays `concb5kmdown4` (8aab97b6) exactly as ranked; the three pediment arms are
-recorded `BUILT` audit artifacts and are **never upload candidates**. Any future pediment-restricted
-CONCENTRATION design is capped at ~2.8 % of R0's dots by destination capacity. Cost: none beyond
-build time; rasters stay gitignored.
+**Decision.** No slot change: slots stay exactly as rev E ranks them (`le3p000`, `conc6`, `frontp15`).
+The three pediment arms are recorded `BUILT` audit artifacts and are **never upload candidates**. Any
+future pediment-restricted CONCENTRATION design is capped at ~2.8 % of R0's dots by destination
+capacity. The 10 km CV definition was pinned to `IR-86-TRACKB-08` (fully-covered 100 px blocks:
+R0 = 0.5699 vs 0.736 unfiltered — both now reported by `gems86.concentration_pediment.cv_report`).

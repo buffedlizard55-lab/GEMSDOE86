@@ -5,28 +5,91 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Current slot order after the 5 km ridge + pediment sessions — **supersedes older headings below**
+## 2026-10-23 session 3 (`arena/aee7c83d`) — CONCENTRATION surface extension: **probe only, does not change the slot order**
 
-Ranking per [SLOT_PLAN.md](../SLOT_PLAN.md) after `IR-86-CONC-10/11/12`: the off-ridge sign pair
-(`dens15`/`spr15`) is **retired** (0 % on ancestor ridges; both lose on real SGMC), and the
-pre-registered pediment refinement of slot 2 was **built and rejected** — at the dose-matched 941
-dots the non-pediment complement beats the pediment arm on SGMC (+0.0013 vs +0.0007) while the d28
-`PROXY` orders them oppositely, so the pediment arms are audit artifacts, never uploads
-(`IR-86-CONC-12`).
+R0 (`c55bafc4…`) and the merged `concb5kmdown4` (`8aab97b6…`) were both rebuilt byte-exactly from the
+restored pinned inputs before building. Three count-fixed files move dots off the **saturated** `H19-5`
+surface (90 legal free slots left there) onto unused `H19-4 | H16-1` ground (8,671 legal slots, zero
+parent mass). All MUST gates passed after a disk re-read of both encodings; canary max AUC 0.5154.
 
-1. **RELIEF `frontp15`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
-   (+0.0017 MODEL, 3/4 quads `+`; full card in the fallback section below).
-2. **CONCENTRATION `b5km-cvband-down4`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif`
-   (+0.0015 MODEL, 4/4 quads `+`, +0.0008 PROXY; 1,506 dots / 8.00 % chg, count fixed, 100 %
-   ancestor-ridge, 1 km CV 0.6235 → 0.5162; hashes in `releases/…-8aab97b6-zeros.json`).
+| Role | Upload path (one file per slot) | Form name (≤ 64 ch) | Form note (≤ 140 ch) | `-zeros.tif` sha256 |
+|---|---|---|---|---|
+| probe only | `releases/h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext10-20261023-fe814da5-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext10-20261023-fe814da5` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC surface-ext to H19-4\|H16-1: 3765 dots moved (20.0% chg); pred +0.0059 MODEL` | `fe814da552360f752657f6fbd5825f74f52cbdcfda0437a118a2302412877737` |
+| dose rung | `releases/h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC surface-ext to H19-4\|H16-1: 5648 dots moved (30.0% chg); pred +0.0073 MODEL` | `d3f2ecc74c39bc1eb91b0447f22ce50f4a2326c033d22b853f74f050e5d09c8d` |
+| **CONTROL — never upload** | `…-CONC-surfext10ctl-20261023-b204c41b-zeros.tif` | `…-CONC-surfext10ctl-20261023-b204c41b` | `R0 …; CONC surface-ext to off-union same-block (CONTROL): 3765 dots moved; pred +0.0046 MODEL` | `b204c41b97daed3f72f133b06594999f180049a2c5c5d6ec16299a8e7ca58978` |
+
+NaN-twin sha256: `b29549fc…982474` (surfext10), `68df2604…c223bd` (surfext15), `e9ef2b7c…c7dd10`
+(control) — see each `releases/…-zeros.json`. Format receipt (both encodings, measured on the written
+bytes): EPSG:32611, 3,730 × 3,292, single float32 band, transform
+`(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)`, values in {0, 1} inside the 5,167,373-cell footprint,
+NaN (spec form) or 0 (`-zeros`) outside, 0 dots on catalogue pixels, 0 dots outside the footprint,
+37,654 dots, added mass ≥ 3.1623 px from the catalogue, parent 2.8284 px spacing floor never tightened.
+**Predicted live Δ ≈ 0.000…+0.003 (bracket [−0.002, +0.007]) — below the 0.01 floor; use only as the
+spare-slot probe in [SLOT_PLAN.md](../SLOT_PLAN.md).**
+
+## 2026-10-23 session (`arena/f29e1689`, PR #56) — pediment-window attribution: **audit only, never upload**
+
+The pediment refinement of the dispersal rule was built and **fails its SGMC falsifier**
+(`IR-86-CONC-17`): at the dose-matched 941 dots the non-pediment complement beats the pediment arm
+(+0.0013 vs +0.0007 MODEL; REF `concb5kmdown4` +0.0015 replicated), the d28 `PROXY` orders oppositely
+(+0.0012 vs +0.0004), and the truth-free pediment window caps at 1,045 moved dots. Slots are
+unchanged. The three files below exist for audit only (all count-fixed 37,654, all MUST gates PASS,
+zeros sha256 in each `-zeros.json`):
+
+| Role | file (`releases/`) | `-zeros.tif` sha256 |
+|---|---|---|
+| **audit only — never upload** | `…-concb5kmpeddown2p5-20261023-9fb6bfc9-zeros.tif` | `9fb6bfc9…` |
+| **audit only — never upload** | `…-concb5kmnonpeddown2p5-20261023-57cc867c-zeros.tif` | `57cc867c…` |
+| **audit only — never upload** | `…-concb5kmpeddown5-20261023-161b002e-zeros.tif` | `161b002e…` |
+
+## Slot order after the 2026-10-23 sessions (latest) — **supersedes everything below**
+
+**Status: BUILT; not slot-approved.** No `RECEIPT` row exists for any file. Ordering logic, in one
+line each: `PRUNE-le3p000` has the largest predicted lever and its Δrelief-index is ≈ 0, so the
+instrument bias documented in `IR-86-RELIEF-04` cannot manufacture it; `conc6` is `+0.0022 MODEL`
+with `+0.0013 PROXY` and `+0.0007` above its own random-ordering control, but two-thirds of its gain
+is generic dispersal; `RELIEF-frontp15`'s `+0.0017` is the SGMC surrogate's own relief gradient
+(residual `−0.0008`), so its unbiased prior is `0 ± 0.005`. One file per slot; log the receipt in
+`ledger/submissions.csv` before the next upload.
+
+| # | File (`releases/`) | Submission name (≤ 64 ch) | Note (≤ 140 ch) | zeros SHA-256 | bytes |
+|---:|---|---|---|---|---:|
+| 1 | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b` | `R0 h33-h33-2-b2; PRUNE <=3.0px collar, 2171 dots removed (5.77%); pred +0.004 MODEL` | `a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22` | 210,325 |
+| 2 | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f` | `R0 h33-h33-2-b2; CONC cvband-down6: 2259 ridge dots moved (12.00% chg, 1km CV 0.484); pred +0.002 MODEL` | `1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85` | 220,435 |
+| 3 | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f` | `R0 h33-h33-2-b2; RELIEF front+15pct: 5648 dots piedmont->range-front, count fixed; pred +0.002 MODEL` | `e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47` | 214,315 |
+
+**The PRUNE and RELIEF TIFFs are not in this checkout** (gitignored, built by earlier sessions).
+Rebuild them from their pinned recipes (`scripts/run_prune_ladder.py`, `scripts/run_relief_axis.py`)
+and confirm the digests above before upload; only `conc6`'s twins are currently on disk here.
+
+Format receipt for `conc6` (written and re-read from disk by `scripts/run_concentration_dose.py`):
+CRS EPSG:32611 · 3,730 × 3,292 · single float32 band · transform `(100, 0, 243350, 0, -100, 4508550)`
+· one band · values `{0,1}` inside the 5,167,373-cell footprint, `0` outside (fallback twin) or NaN
+outside (spec twin `…-1ed78e0f.tif`, 356,859 B) · 0 dots on catalogue pixels · 0 dots outside the
+footprint · 37,654 dots · shared validator `all_checks_passed = True` · format report `ok = True`.
+Full per-file receipt: `releases/…-1ed78e0f-zeros.json` and
+`evidence/concentration_dose_20261023.json`.
+
+Also built this session, **do not upload**: `conc5dose` (10.00 % chg, +0.0018 MODEL),
+`conc3` (6.00 % chg, +0.0013 MODEL), `conc6rand` (`CONTROL`, random dot + random destination).
+
+---
+
+## Superseded: current slot order after CONCENTRATION sign + 5 km arms
+
+The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models
+are uncalibrated and every number remains MODEL. The MASS instrument audit separately shows that
+mass-changing reads are partly mass readings; neither audit licenses an automatic upload.
+
+1. **CONCENTRATION `dens15`** — `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
+   (+0.026 MODEL, −0.011…+0.047; exact name/note/hash in the sign section below).
+2. **CONCENTRATION `spr15`** — `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
+   (−0.030 MODEL, −0.064…+0.011). Slots 1+2 are **one sign experiment**, not two expected gains.
 3. **PRUNE `le3p000`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
-   (+0.004 MODEL, mass-confounded; card in the Slot 3 section below).
+   (+0.004 MODEL, mass-confounded; historical 0.2708→0.2778 direction is CLAIM only).
 
-`RELIEF-frontm10` (−0.0089, 4/4 quads `−`) is the pure-slope pairing option for slot 2; SPACING
-`sp-strike16` (+0.0020 MODEL) is the wk-2 diagnostic if slots 1–3 return inside ±0.005. The MASS-econ
-session's three files remain **NOT for upload**; the pediment trio
-(`…concb5kmpeddown2p5…9fb6bfc9`, `…concb5kmnonpeddown2p5…57cc867c`, `…concb5kmpeddown5…161b002e`)
-likewise — every predicted |Δ| ≤ 0.002 MODEL, far under the 0.01 evidence floor.
+RELIEF `frontp15/frontm10` is the fallback pair. Original `b1km-move15` and SPACING are later
+probes. The new 5 km arms are audit artifacts, not substitutes for the sign pair.
 
 **The MASS-econ session's three files are NOT for upload** (mass-changing on an instrument that
 cannot rank mass). If one is ever used, it must be `plus10pct-extend`, never the control:
@@ -408,3 +471,28 @@ All three arms below hold `n_dots = 37,654` fixed, place **100.0 %** of added do
 1. Verify local SHA-256 before opening the portal: `sha256sum releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif` must print `8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863` (or `2daf174f...` if the portal prefers NaN-outside `.tif`; upload **one**, never both).
 2. Confirm rolling-week quota has at least 1 slot remaining and record `TOP_PUBLIC` + date first.
 3. Paste the exact 62-char form name and 126-char form note above (`≤ 140` chars), submit manually, and log the live score + portal timestamp as `RECEIPT` in `ledger/submissions.csv` before any subsequent upload.
+
+## RELIEF source factorial (built 2026-10-23, session `arena/ada3049e-gemsdoe86`) — **not slot-recommended**
+
+All three are count-fixed at 37,654 dots and differ from R0 only in which relief regime the mass
+sits in. Every one is **negative on the SGMC-extra surrogate (MODEL) and slightly below R0 on the
+catalogue PROXY**; they exist to test a mechanism, not to be uploaded. `IR-86-RELIEF-04` explains
+why the whole RELIEF family's MODEL numbers are instrument-shaped, which is why the shipped
+`front+15pct` row is now Slot 3 rather than Slot 1.
+
+| Arm | Upload path (`-zeros` twin; spec `.tif` with NaN outside is adjacent) | `-zeros` SHA-256 | Submission name | Note (≤ 140 ch) |
+|---|---|---|---|---|
+| `int2front-15pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front15-20261023-c543e779-zeros.tif` | `c543e77929280ae92f9ad5efcdd0e1b1013d2d079d13fe981adb80f69674c15c` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front15-20261023-c543e779` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2front-15pct: 5648 dots moved range-interior->range-front, count fixed; pred -0.006 MODEL` |
+| `int2front-10pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front10-20261023-4471a74b-zeros.tif` | `4471a74bcc684ee13df5f01b2d4d70c633ef3100e765a43193a063f5014a9814` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2front10-20261023-4471a74b` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2front-10pct: 3765 dots moved range-interior->range-front, count fixed; pred -0.004 MODEL` |
+| `int2pied-15pct` | `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2pied15-20261023-295eaf92-zeros.tif` | `295eaf92bdf6c0108599b43b694baec7bf0ddce92dfa23d1d58a35564e90ace9` | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-int2pied15-20261023-295eaf92` | `R0 h33-h33-2-b2-20261004-e5eb6e7e; RELIEF int2pied-15pct: 5648 dots moved range-interior->piedmont, count fixed; pred -0.012 MODEL` |
+
+**Format receipt (both encodings, re-read from disk after writing):** CRS `EPSG:32611`, `3730×3292`,
+`float32`, one band, values in `[0, 1]`, **0 NaN inside the footprint**, zeros (or NaN) outside,
+**0 catalogue pixels carrying mass**, every newly occupied cell at `≥ 3.1623 px` from the
+catalogue, `37,654` dots, `14.9997 / 9.9989 / 14.9997 %` of cells changed, shared validator and
+`format_report` both `True`, `sha256` matches the ledger row. Parent-difference statistics and the
+per-arm mechanism card are in `releases/<id>-zeros.json` and
+`evidence/relief-source-mechanism.md`.
+
+**Upload order (unchanged by this session):** Slot 1 `PRUNE-le3p000` → Slot 2 `concb5kmdown4` →
+Slot 3 `RELIEF-frontp15`. See [SLOT_PLAN.md](../SLOT_PLAN.md).

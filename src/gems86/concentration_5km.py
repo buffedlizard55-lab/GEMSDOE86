@@ -629,3 +629,114 @@ def relocate_5km_random_control(
         except ValueError:
             continue
     raise ValueError(f"Random 5 km control could not place {n_move} dots on ridge union")
+
+
+def relocate_cvband_down_shuffled(
+    parent_dots: np.ndarray,
+    footprint: np.ndarray,
+    edt_cat: np.ndarray,
+    ridge_union: np.ndarray,
+    *,
+    n_move: int,
+    km_block_px: int = 10,
+    seed: int = 20261023,
+    min_clearance_px: float = 3.0,
+    min_spacing_px: float = math.sqrt(8.0) - 1e-6,
+    unique_credit_dots: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, Any]]:
+    """Matched ordering control for :func:`relocate_cvband_down` (never promoted).
+
+    Holds the **source-block sequence** and the destination-block eligibility mask of
+    ``relocate_cvband_down`` fixed, and replaces exactly two decisions with seeded random
+    choice:
+
+    1. which dot inside the chosen over-dense block is removed (the ranked arm pops the
+       *lowest unique kernel credit* dot first);
+    2. the order in which eligible destination cells are consumed (the ranked arm fills the
+       largest kernel gap inside the sparsest block first).
+
+    Everything the brief gates on is unchanged: count fixed, no catalogue mass, ``> 3.0 px``
+    clearance on new mass, ``>= sqrt(8) px`` spacing, 100 % ancestor-ridge placement.  The arm
+    exists so a live result from the ranked dose ladder can be attributed to the credit ranking
+    rather than to "displace 3,012 dots somewhere".
+    """
+    parent = np.asarray(parent_dots, dtype=bool) & np.asarray(footprint, dtype=bool)
+    foot = np.asarray(footprint, dtype=bool)
+    rdg = np.asarray(ridge_union, dtype=bool) & foot
+    edt = np.asarray(edt_cat, dtype=np.float64)
+    h, w = parent.shape
+    rng = np.random.default_rng(int(seed))
+
+    nb, mb = h // km_block_px, w // km_block_px
+    sub_p = parent[: nb * km_block_px, : mb * km_block_px].astype(np.float64)
+    sub_f = foot[: nb * km_block_px, : mb * km_block_px].astype(np.float64)
+    c_cur = sub_p.reshape(nb, km_block_px, mb, km_block_px).sum(axis=(1, 3)).copy()
+    fb = sub_f.reshape(nb, km_block_px, mb, km_block_px).sum(axis=(1, 3))
+    d_cur = c_cur / np.maximum(fb, 1.0)
+
+    ys, xs = np.nonzero(parent)
+    blk_dots: dict[tuple[int, int], list[tuple[float, int, int]]] = {}
+    for r, c in zip(ys.tolist(), xs.tolist()):
+        bi, bj = r // km_block_px, c // km_block_px
+        if bi < nb and bj < mb:
+            blk_dots.setdefault((bi, bj), []).append((1.0, r, c))
+    # Shuffle each block's internal order so .pop() is a uniformly random dot of that block.
+    for k, items in blk_dots.items():
+        order = rng.permutation(len(items))
+        blk_dots[k] = [items[i] for i in order]
+
+    sim = parent.copy()
+    removed: list[tuple[int, int]] = []
+    while len(removed) < int(n_move):
+        elig_hi = c_cur >= 3
+        if not np.any(elig_hi):
+            raise ValueError(f"Exhausted >=3-dot blocks after {len(removed)} removals")
+        flat_idx = int(np.argmax(np.where(elig_hi, d_cur, -1.0)))
+        bi, bj = divmod(flat_idx, mb)
+        _, r, c = blk_dots[(bi, bj)].pop()
+        sim[r, c] = False
+        c_cur[bi, bj] -= 1.0
+        d_cur[bi, bj] = c_cur[bi, bj] / max(fb[bi, bj], 1.0)
+        removed.append((r, c))
+
+    edt_sim = ndi.distance_transform_edt(~sim)
+    min_area = max(1, int(0.40 * (km_block_px ** 2)))
+    dest_blk = (c_cur >= 1) & (c_cur <= 2) & (fb >= min_area)
+    dest_px = np.zeros((h, w), dtype=bool)
+    dest_px[: nb * km_block_px, : mb * km_block_px] = np.repeat(
+        np.repeat(dest_blk, km_block_px, axis=0), km_block_px, axis=1
+    )
+
+    cand_mask = rdg & dest_px & ~parent & (edt > float(min_clearance_px)) & (edt_sim >= float(min_spacing_px))
+    c_ys, c_xs = np.nonzero(cand_mask)
+    c_order = rng.permutation(len(c_ys))
+
+    half = int(math.ceil(float(min_spacing_px)))
+    added: list[tuple[int, int]] = []
+    for k in c_order.tolist():
+        if len(added) >= int(n_move):
+            break
+        r, c = int(c_ys[k]), int(c_xs[k])
+        bi, bj = r // km_block_px, c // km_block_px
+        if c_cur[bi, bj] >= 3:
+            continue
+        r0, r1 = max(0, r - half), min(h, r + half + 1)
+        c0, c1 = max(0, c - half), min(w, c + half + 1)
+        win = sim[r0:r1, c0:c1]
+        if win.any():
+            rr, cc = np.nonzero(win)
+            if float(np.hypot(rr + r0 - r, cc + c0 - c).min()) < float(min_spacing_px):
+                continue
+        sim[r, c] = True
+        c_cur[bi, bj] += 1.0
+        added.append((r, c))
+
+    if len(added) < int(n_move):
+        raise ValueError(f"Shuffled control destination capacity {len(added)} < n_move={n_move}")
+
+    src_rc = np.asarray(removed, dtype=np.int32)
+    dst_rc = np.asarray(added, dtype=np.int32)
+    stats = _relocation_stats(parent, sim, foot, edt, rdg, src_rc=src_rc, dst_rc=dst_rc)
+    stats["random_seed"] = int(seed)
+    stats["ordering"] = "random dot within block + random destination order (matched control)"
+    return sim, src_rc, dst_rc, stats

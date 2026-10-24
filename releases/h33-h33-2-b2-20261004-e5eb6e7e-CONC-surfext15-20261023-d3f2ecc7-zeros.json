@@ -1,0 +1,258 @@
+{
+  "id": "h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "axis": "CONCENTRATION",
+  "value": "b5km-surfext-down15",
+  "role": "candidate",
+  "n_dots": 37654,
+  "pct_changed": 29.9995,
+  "dot_digest": "d88f4da37dccab42386b21f2ecb1f36c73dd962b20380c827cf2d7b889aac2ac",
+  "surface_extension_stats": {
+    "n_parent": 37654,
+    "n_dots": 37654,
+    "count_fixed": true,
+    "n_removed": 5648,
+    "n_added": 5648,
+    "n_symmetric_diff": 11296,
+    "pct_moved_of_parent": 14.9997,
+    "pct_changed": 29.9995,
+    "min_added_cat_clearance_px": 3.1623,
+    "median_added_cat_clearance_px": 23.0543,
+    "added_on_destination_surface_fraction": 1.0,
+    "added_inside_footprint_fraction": 1.0,
+    "min_pair_distance_parent_px": 2.8284,
+    "min_pair_distance_variant_px": 2.8284,
+    "displacement_px": {
+      "mean": 1575.23,
+      "median": 1528.24
+    },
+    "placement": {
+      "n_candidate_cells": 10624,
+      "n_placed": 5648,
+      "order": "deterministic_sparse_block_gap"
+    },
+    "cv_1km": {
+      "parent": {
+        "block_px": 10,
+        "occupied_blocks": 15976,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.6235,
+        "count_cv_occupied": 0.6187,
+        "mean_dots_per_occupied_block": 2.3569
+      },
+      "variant": {
+        "block_px": 10,
+        "occupied_blocks": 18121,
+        "total_blocks": 122717,
+        "density_cv_occupied": 0.4677,
+        "count_cv_occupied": 0.4503,
+        "mean_dots_per_occupied_block": 2.0779
+      }
+    },
+    "cv_5km": {
+      "parent": {
+        "block_px": 50,
+        "occupied_blocks": 1771,
+        "total_blocks": 4810,
+        "density_cv_occupied": 0.7442,
+        "count_cv_occupied": 0.7238,
+        "mean_dots_per_occupied_block": 21.1056
+      },
+      "variant": {
+        "block_px": 50,
+        "occupied_blocks": 1793,
+        "total_blocks": 4810,
+        "density_cv_occupied": 0.6734,
+        "count_cv_occupied": 0.6501,
+        "mean_dots_per_occupied_block": 20.826
+      }
+    }
+  },
+  "zeros": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7-zeros.tif",
+    "sha256": "d3f2ecc74c39bc1eb91b0447f22ce50f4a2326c033d22b853f74f050e5d09c8d",
+    "bytes": 222211,
+    "primary_for_upload": true,
+    "validator": {
+      "file": "/home/user/GEMSDOE86/releases/h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7-zeros.tif",
+      "bytes": 222211,
+      "sha256": "d3f2ecc74c39bc1eb91b0447f22ce50f4a2326c033d22b853f74f050e5d09c8d",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true
+  },
+  "nan": {
+    "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7.tif",
+    "mode": "nan",
+    "sha256": "68df26046680e6ba0b1ee8e9ed4f6d60458c926d3808de1f84932ca3a8c223bd",
+    "bytes": 358605,
+    "in_footprint_checks_pass": true,
+    "failed_checks": [],
+    "policy_note": "brief v2 spec form (NaN outside footprint); -zeros is the portal fallback"
+  },
+  "submission_name": "h33-h33-2-b2-20261004-e5eb6e7e-CONC-surfext15-20261023-d3f2ecc7",
+  "note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC surface-ext to H19-4|H16-1: 5648 dots moved (30.0% chg); pred +0.0073 MODEL",
+  "predicted_live_change": "+0.0073 (quadrant range +0.0050..+0.0121; 4/4 quadrants positive; fold-fair PROXY -0.0005, CI95 [-0.0038,+0.0027], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+  "model_delta_sgmc": 0.007255,
+  "proxy_fold_fair": {
+    "dti": 0.095599,
+    "ci95": [
+      0.083067,
+      0.107157
+    ],
+    "delta_vs_R0": -0.000488,
+    "delta_ci95": [
+      -0.003788,
+      0.002737
+    ],
+    "n_truth": 11321,
+    "evidence_class": "PROXY"
+  },
+  "evidence_class": "MODEL",
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "provenance": {
+    "input_pins": {
+      "existing_faults.tif": {
+        "path": "data/bridge/existing_faults.tif",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pin_source": "registry/data_manifest.json"
+      },
+      "sample_submission.tif": {
+        "path": "data/bridge/sample_submission.tif",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pin_source": "registry/data_manifest.json"
+      },
+      "parent": {
+        "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "pin_source": "registry/data_manifest.json"
+      },
+      "base": {
+        "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "pin_source": "MEASURED-LOCAL (see IRREGULARITIES.md)"
+      },
+      "scored_h19_5": {
+        "path": ".cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "bytes": 1712322,
+        "pin_source": "registry/data_manifest.json",
+        "provenance": "owner-reported 0.1922"
+      },
+      "scored_h19_4": {
+        "path": ".cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "bytes": 1716768,
+        "pin_source": "registry/data_manifest.json",
+        "provenance": "owner-reported 0.1894"
+      },
+      "scored_h16_1": {
+        "path": ".cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "bytes": 1718028,
+        "pin_source": "registry/data_manifest.json",
+        "provenance": "owner-reported 0.1855"
+      },
+      "scored_d28_unscored": {
+        "path": ".cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "bytes": 1603424,
+        "pin_source": "registry/data_manifest.json",
+        "provenance": "unscored alternate"
+      },
+      "ext_derived_sgmc_faults_100m_u8": {
+        "path": ".cache/gems_data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "bytes": 198602,
+        "pin_source": "registry/data_manifest.json",
+        "provenance": "derived from USGS SGMC geologic-map faults (proxy only; not used in the factorial)"
+      }
+    },
+    "parent_rebuild": {
+      "rule": "delete dots at Euclidean distance <= 2.0 px from a mapped-fault cell",
+      "n_base_dots": 40199,
+      "n_rebuilt": 37654,
+      "n_published": 37654,
+      "differing_pixels": 0,
+      "content_identical": true,
+      "dot_digest_rebuilt": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "dot_digest_published": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+      "rebuilt_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "byte_identical_sha": true,
+      "published_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "profile": "deflate predictor=3 zlevel=9 tiled 256, nodata=None (on the catalogue profile)",
+      "note": "Dot-set identity and FILE identity both hold: re-encoding the rebuilt field with the recorded profile reproduces the published sha256. The sibling PR #28 run card reached the same profile independently."
+    },
+    "merged_arm_reproduction": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6",
+      "sha256": "8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863",
+      "matched": true
+    },
+    "surface_audit": {
+      "h19_5_px": 121131,
+      "h19_4_px": 123779,
+      "h16_1_px": 123939,
+      "union_px": 157085,
+      "off_h19_5_px": 35954,
+      "parent_dots_on_h19_5": 37654,
+      "parent_dots_on_off5": 0,
+      "free_slots_on_h19_5": 90,
+      "free_slots_on_off5": 8671,
+      "constraint": ">3.0 px from the catalogue and >=2.8284 px from every R0 dot",
+      "reading": "R0 is the H19-5 surface dotted at 2.8 px and is saturated there (90 free slots); 8671 legal slots exist on H19-4|H16-1 ground that carries zero parent mass."
+    },
+    "git_sha": "7613a5cdc66010f870961232dd63a5807fcbd676"
+  },
+  "generated_utc": "2026-10-23T23:49:48Z"
+}
