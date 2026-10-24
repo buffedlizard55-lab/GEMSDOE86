@@ -85,6 +85,13 @@
       "context": "docs/evidence/h86-faulthalo-run-card.json",
       "holdout_kind": "unvalidated_variant",
       "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
+    },
+    {
+      "lane": "GEMS86-GAPRES fleet-gap interpolation",
+      "card": "docs/evidence/gapres-run-card.json",
+      "context": "docs/evidence/gapres-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
     }
   ]
 }
