@@ -2,7 +2,15 @@
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **No organizer-confirmed submission.** One new unique, format-valid candidate exists; weekly slots used: 0.
 
-**Latest candidate** — `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (sha256 `94591f4c…683cc5`), direct download on the site [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads) and [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html).
+**Latest candidate** — `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (sha256 `94591f4c…683cc5`), direct download on the site [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads) and [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html). It passes every local format/range gate and is unique under the like-for-like registry reading, but its holdout-DTI is `0.00037 [0.00025, 0.00051]` (negative) and no organizer receipt exists — downloadable, not a confirmed scorer.
+
+### Latest independent review — registry evidence integrity (session 4d79b443)
+
+**DO NOT SUBMIT. No new TIFF or competition slot.** A fresh audit rechecked **13** published research TIFFs: all locally format-valid, all rejected by the literal overlap rule. [Three-pass review and four additional, untested research sketches](research/SESSION_20261024_4D79B443.md).
+
+Fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence and arbitrary self exclusion; restored surface-check-before-placement ordering and gated/import-safe RIDF writing. New reports bind exact array and registry identities and return nonzero on a failed gate. Shared evaluator/writer bytes and protocol thresholds are unchanged. Older dated summaries below remain historical, not new authorization. [Current machine-readable audit card](docs/evidence/latest-review-run-card.json).
+
+**Every archived research file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
 
 | Gate (no human inspection) | Result |
 |---|---|

@@ -39,3 +39,10 @@
     ONLY if they then run `scripts/check_h86e_registry.py` on the surface (rho) and final dots and
     `scripts/pa86_chance_overlap.py` (informative overlap firings are hard stops). Thresholds are
     unchanged; `require_feasible()` still gates every historical builder. See IRREGULARITIES.md.
+
+11. Registry-candidate evidence must bind the source `.npy` hash, shared decoded hash,
+    full comparison rows and indexed registry identity. Never grant a gate pass on
+    missing/invalid registry rows or implicitly binarize/repair candidate arrays.
+    Old unbound H86E reports are archives; rerun them for any future gate decision.
+    Surface checks precede placement, final-dot checks precede serialization, and
+    a PA diagnostic pass never overrides a failing literal submission gate.
