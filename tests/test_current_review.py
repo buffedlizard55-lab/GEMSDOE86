@@ -30,6 +30,15 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["release_report_sha256"] == audit_release.sha256(ROOT / "docs/evidence/release-readiness.json")
 
 
+def test_homepage_links_to_latest_negative_run_card_and_three_pass_followup():
+    html = (ROOT / "docs/index.html").read_text()
+    assert "evidence/latest-review-run-card.json" in html
+    assert "research/SESSION_20261024_REVALIDATION.md" in html
+    assert "NOT SAFE TO SUBMIT" in html
+    assert "NO CANDIDATE AUTHORIZED" in html
+    assert "Historical model results below were not rerun" in html
+
+
 @pytest.mark.parametrize("timestamp", ["2026-10-24T10:00:00", "2026-10-24T10:00:00+02:00", "not-a-date"])
 def test_measurement_timestamp_requires_explicit_utc(timestamp):
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
