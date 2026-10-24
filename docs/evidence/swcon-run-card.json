@@ -254,7 +254,16 @@
     "spearman_sample400k": 0.08405457522914656
    }
   ],
-  "irregularity": "Literal gate vs continuous full-support registry witness (17GEMSDOE ab0a0a62) overlaps any nonempty field by construction; flagged, not hidden. Dotted-registry gate passes."
+  "irregularity": "REVOKED (IR-86-SWCON-01): Pinned vendor/gems57/uniqueness.py measures 1.0000 forward 3-px overlap vs 17GEMSDOE (ab0a0a62...) AND 0.997769 (37,570/37,654 > 0.70) vs discrete binary dotted 13GEMSDOE (c12533bb..., 206,895 dots), refuting the claim that the dotted-registry gate passed. Also bypassed protocol_preflight.require_feasible(), blended 33 prior submissions rather than geological features, had below-chance canary AUC=0.4046, omitted 95% CI (ci95=null), leaked full-catalogue collars across its 33 input rasters, and broke CI/Pages deploy."
+ },
+ "measured_registry_witness_audit": {
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "checker_module": "vendor/gems57/uniqueness.py",
+  "unique": false,
+  "stop_required": true,
+  "forward_overlap_3px_vs_17GEMSDOE": 1.0,
+  "forward_overlap_3px_vs_13GEMSDOE_binary": 0.9977691613108833,
+  "dots_within_3px_of_13GEMSDOE_binary": 37570
  },
  "raster_sha256": "5576b15c1c66dd5353c515201c06572d6e7a854aaa130bd95d167435f6f9374f",
  "validator": {
@@ -314,6 +323,9 @@
   "footprint_fraction": 0.007286874781441169
  },
  "submission_name": "gems86-swcon-e3-37654dots-20261024",
- "note": "SWCON score-weighted >=2-family consensus 37654d offcat sep2.8 cap.60 zeros[0,1]",
- "verdict": "promote"
+ "note": "REVOKED (IR-86-SWCON-01): DO NOT SUBMIT; 99.78% 3px overlap vs binary 13GEMSDOE, 100% vs 17GEMSDOE, canary AUC 0.4046.",
+ "submission_ready": false,
+ "approved_for_weekly_slot": false,
+ "download_authorized": false,
+ "verdict": "negative"
 }
