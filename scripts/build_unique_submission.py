@@ -177,6 +177,10 @@ def holdout_dti(dots, g):
 
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", default="docs/downloads")
     ap.add_argument("--name", default=None)

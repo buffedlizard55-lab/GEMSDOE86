@@ -142,8 +142,6 @@
   "submission_slots_used": 0,
   "registry_scoped": "Locally present registry rasters only (docs/downloads); not organizer-complete.",
   "registry_rasters_checked": 13,
-  "zip_file": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.zip",
-  "zip_sha256": "0ef9c046488723799383d4e0da5b9c57130721bcd06afe6b393071b538683e3a",
   "promoted": false,
   "approved_for_weekly_slot": false,
   "safe_to_submit": false,

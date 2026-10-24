@@ -77,6 +77,40 @@ def archived_holdout(config: dict, context: dict) -> dict:
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
+    if kind == "blindgeothermal_candidate":
+        if context.get("evidence_class") != "RUN-CARD":
+            raise ValueError("Archived blind-geothermal candidate lacks its original run-card evidence class")
+        h = context.get("holdout_dti")
+        if not isinstance(h, dict):
+            raise ValueError("Archived blind-geothermal candidate lacks HOLDOUT-DTI evidence")
+        value, ci, n = h.get("dti"), h.get("ci95"), h.get("n_truth")
+        if (h.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or not isinstance(value, (int, float)) or isinstance(value, bool) or not np.isfinite(value) or not 0 <= value <= 1
+                or not isinstance(ci, list) or len(ci) != 2
+                or any(not isinstance(x, (int, float)) or isinstance(x, bool) or not np.isfinite(x) or not 0 <= x <= 1 for x in ci)
+                or ci[0] > ci[1]
+                or not isinstance(n, int) or isinstance(n, bool) or n <= 0):
+            raise ValueError("Archived blind-geothermal HOLDOUT-DTI fields are invalid")
+        if (context.get("verdict") != "format-valid; not organizer-confirmed; weekly slot not used"
+                or context.get("submission_slots_used") != 0):
+            raise ValueError("Archived blind-geothermal sidecar does not preserve its negative/no-slot state")
+        uniqueness = context.get("uniqueness")
+        local = uniqueness.get("like_for_like_reading", {}) if isinstance(uniqueness, dict) else {}
+        literal = uniqueness.get("literal_reading", {}) if isinstance(uniqueness, dict) else {}
+        if (not isinstance(uniqueness, dict)
+                or "bytes are present locally" not in uniqueness.get("scope_note", "")
+                or "claim of absence" not in uniqueness.get("scope_note", "")
+                or "Locally present registry rasters only" not in context.get("registry_scoped", "")
+                or not isinstance(uniqueness.get("rasters_checked"), int)
+                or not isinstance(uniqueness.get("rasters_expected"), int)
+                or uniqueness["rasters_checked"] != uniqueness["rasters_expected"]
+                or local.get("duplicate") is not False
+                or literal.get("duplicate") is not True):
+            raise ValueError("Archived blind-geothermal registry summary is incomplete or internally inconsistent")
+        return {**base, "evaluator_version": h["evaluator_version"],
+                "withheld_positives": n, "value": value, "ci95": ci,
+                "design": "candidate-sidecar holdout; fold construction and result not recomputed by this audit",
+                "caveat": "Pre-existing PR #92 artifact, not generated in this review. Its HOLDOUT-DTI is archived, with no matched-baseline delta established here. Its local like-for-like registry summary is scoped to locally present rasters and cannot clear the complete-registry gate; the fresh pinned full-support witness measurement below triggers the unchanged literal stop. Not organizer-confirmed or authorized for submission."}
     if kind == "gmc_control":
         return {**base, "withheld_positives": context["withheld_positive_pixels"],
                 "value": context["holdout_dti"], "ci95": context["holdout_ci95"],
@@ -188,7 +222,15 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
         checks["zip_one_exact_tif"] = bundle.namelist() == [tif.name]
         checks["zip_payload_equals_tif"] = checks["zip_one_exact_tif"] and bundle.read(tif.name) == tif.read_bytes()
         checks["zip_crc_passed"] = bundle.testzip() is None
-    checks["zip_sha_matches_receipt"] = sha256(zip_path) == receipt["zip_sha256"]
+    if "zip_sha256" in receipt:
+        checks["zip_sha_matches_receipt"] = sha256(zip_path) == receipt["zip_sha256"]
+    else:
+        # PR #92's preserved sidecar is a run card, not the writer receipt schema;
+        # the exact ZIP payload, member, CRC and computed SHA are still audited.
+        checks["run_card_sidecar_schema_recognized"] = (
+            config["holdout_kind"] == "blindgeothermal_candidate"
+            and receipt.get("evidence_class") == "RUN-CARD"
+        )
     context = strict_json(inside(root, config["context"]))
     if config["card"]:
         card = strict_json(inside(root, config["card"]))
@@ -196,6 +238,31 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
         checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
         checks["scientific_card_does_not_authorize"] = all(
             card.get(field) is not True for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+    if config["holdout_kind"] == "blindgeothermal_candidate":
+        method = context.get("method", {})
+        uniqueness = context.get("uniqueness", {})
+        checks.update(
+            sidecar_sha_matches_raster=context.get("sha256") == file_sha,
+            sidecar_bytes_match_raster=context.get("bytes") == tif.stat().st_size,
+            sidecar_name_matches_receipt=context.get("submission_name") == receipt.get("submission_name"),
+            sidecar_note_matches_receipt=context.get("note") == receipt.get("note"),
+            sidecar_note_count_matches=context.get("note_chars") == len(context.get("note", "")),
+            sidecar_verdict_preserves_no_slot=context.get("verdict") == "format-valid; not organizer-confirmed; weekly slot not used"
+                and context.get("submission_slots_used") == 0,
+            sidecar_has_hypothesis_and_mimic=bool(method.get("hypothesis")) and bool(method.get("non_fault_mimic")),
+            sidecar_registry_scope_is_local_only=(
+                isinstance(uniqueness, dict)
+                and "bytes are present locally" in uniqueness.get("scope_note", "")
+                and "claim of absence" in uniqueness.get("scope_note", "")
+                and "Locally present registry rasters only" in context.get("registry_scoped", "")
+                and uniqueness.get("rasters_checked") == uniqueness.get("rasters_expected")
+            ),
+            sidecar_records_literal_gate_firing=(
+                isinstance(uniqueness, dict)
+                and uniqueness.get("literal_reading", {}).get("duplicate") is True
+                and uniqueness.get("like_for_like_reading", {}).get("duplicate") is False
+            ),
+        )
     passed = all(value is True for value in checks.values())
     return dict(lane=config["lane"], file=entry["file"], sha256=file_sha,
                 bytes=tif.stat().st_size, zip_file=str(zip_path.relative_to(root)),

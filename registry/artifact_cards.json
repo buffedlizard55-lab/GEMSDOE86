@@ -104,7 +104,7 @@
       "lane": "Blind off-catalogue geothermal dilation (current negative lane)",
       "card": null,
       "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
-      "holdout_kind": "blind_geothermal",
+      "holdout_kind": "blindgeothermal_candidate",
       "stem": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros"
     }
   ]
