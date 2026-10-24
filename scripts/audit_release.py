@@ -384,7 +384,7 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
     top = plan["hypotheses"][0]
     return dict(
         schema="gems86.session-negative.v1", date_utc="2026-10-23",
-        hypothesis=f"{top['id']}: {top['name']} (provisional, NOT RUN; no method lane was assigned)",
+        hypothesis=f"{top['id']}: {top['name']} (planned g_zz/low-relief extension; standalone SPBT-v1 was previously negative; exact extension NOT RUN; no method lane assigned)",
         mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
         holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_PROTOCOL_STOP",
                          evaluator_version="gems57-pooled-hide-v2", withheld_positives=None, value=None, ci95=None),

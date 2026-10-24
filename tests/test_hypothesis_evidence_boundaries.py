@@ -14,6 +14,14 @@ def test_planning_cannot_be_read_as_measured_improvement():
         assert h['status'].startswith('NOT_RUN')
 
 
+def test_spbt_extension_is_distinguished_from_its_negative_predecessor():
+    spbt = PLAN["hypotheses"][0]
+    assert "unregularized standalone SPBT-v1" in spbt["difference_from_repo"]
+    assert "did not beat its polarity-scrambled or spaced-random controls" in spbt["difference_from_repo"]
+    assert "still-untested extension" in spbt["difference_from_repo"]
+    assert "No measured or projected DTI gain" in spbt["expected_dti_gain"]
+
+
 def test_external_sources_require_actual_obtainability_check():
     for h in PLAN['hypotheses']:
         if h['external_data_required']:
