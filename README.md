@@ -141,7 +141,7 @@ python3 -m venv .venv
 
 The restorer obtains hash-pinned owner mirrors and a historical comparison witness through GitHub. This is **not** organizer-authenticated data acquisition, not the actual shared feature cache, and not a new prediction. Large data and caches remain ignored. `requirements-lock.txt` records the tested environment; `requirements.txt` is the broader compatibility specification.
 
-`make submission` and every scientific CLI remain blocked by the literal preflight. Concurrent FVMB work added a `download_competition_data.sh` mirror-restoration wrapper and `prepare_h86_fvmb_data.py`; the quoted `prepare_data.py` still does not exist. The new cache-builder/pipeline CLIs are also now blocked before construction or fitting; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
+`make submission` and every scientific CLI remain blocked by the literal preflight. `download_competition_data.sh` and `scripts/prepare_data.py` are implemented and verified against the restored competition grid (auditing EPSG:32611, 3730x3292 shape, 100 m transform, footprint valid pixels, and writing `data/prepared_manifest.json`). The candidate-builder/pipeline CLIs remain safely blocked before construction or fitting under the literal preflight; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
 
 ## Verification and deployment scope
 
