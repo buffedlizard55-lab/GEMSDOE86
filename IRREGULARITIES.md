@@ -694,3 +694,25 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
+## IR-86-CONC-12 — the `0.51–0.59` CV band is measured non-optimal: the down-dose curve is monotone through the band bottom and saturates at the destination-pool ceiling
+
+**Observed.** The down-dose session (`arena/4822aa3b-gemsdoe86`) completed the single-point
+`b5km-cvband-down4` curve with three source-prefix-nested rungs (`down2 ⊂ down4 ⊂ down6 ⊂ downmax`,
+verified programmatically; `down4` rebuilt byte-exactly first, `8aab97b6…`). Measured on the same
+instruments as the 5 km session (SGMC-extra MODEL, symmetric fold-fair d28 PROXY, n=11,321,
+canary 0.7222 ≤ 0.90): `down2` (753 moved, CV 0.5611) `+0.0012 MODEL` 4/4 quads / `+0.0001 PROXY`;
+`down6` (2,259 moved, CV 0.4840, **below the band bottom**) `+0.0022 MODEL` 4/4 quads /
+**`+0.0013 PROXY`**; `downmax` (2,381 moved = binary-searched maximum the 1–2-dot sparse-ridge
+destination pool absorbs at `>= √8` spacing, CV 0.4789) `+0.0020 MODEL` — the last ~122 placements
+cost more than they bought. A band optimum would have peaked inside `0.51–0.59`; instead the curve
+rises monotonically past the band bottom and flattens only where destinations run out
+(`IR-86-CONC-02`'s suspicion, now measured; `IR-86-TRACKB-08`'s 10 km reading is untouched).
+
+**Decision.** The `0.51–0.59` CV band is retired as a *target* (it remains a historical
+correlation); Slot 2 upgrades from `concb5kmdown4` (`8aab97b6`) to **`concb5kmdown6`
+(`1ed78e0f`)** — the best CONCENTRATION arm on both instruments and the largest non-PRUNE SGMC
+read in the ledger; `down2`/`downmax` are curve brackets, not slot candidates; the Week 4–5
+composite ingredient changes to `down6` at a 2,381-move ceiling; the unbuilt pool-extension rung
+(`downmax-plus`) is proposed in `SLOT_PLAN.md`, not built. No slot was spent; the live dose
+ordering remains unproven until receipts exist.
+

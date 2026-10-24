@@ -5,21 +5,24 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Current slot order after CONCENTRATION sign + 5 km arms — **supersedes older headings below**
+## Current slot order after the down-dose session — **supersedes older headings below**
 
-The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models
-are uncalibrated and every number remains MODEL. The MASS instrument audit separately shows that
-mass-changing reads are partly mass readings; neither audit licenses an automatic upload.
+Matches [SLOT_PLAN.md](../SLOT_PLAN.md). Every number below is MODEL (SGMC-extra surrogate) or
+PROXY (fold-fair d28 hide-and-recover), never a score; all sit under the 0.01 live-evidence floor.
+The toy five-truth-model sign pair (`dens15`/`spr15`) is retired to the audit trail at the bottom
+of this file; the measured SGMC reads are −0.0006/−0.0013 (`IR-86-CONC-10`).
 
-1. **CONCENTRATION `dens15`** — `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
-   (+0.026 MODEL, −0.011…+0.047; exact name/note/hash in the sign section below).
-2. **CONCENTRATION `spr15`** — `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
-   (−0.030 MODEL, −0.064…+0.011). Slots 1+2 are **one sign experiment**, not two expected gains.
+1. **RELIEF `frontp15`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+   (+0.0017 MODEL, 3/4 quads +; 5,648 dots piedmont → range-front, count fixed).
+2. **CONCENTRATION `b5km-cvband-down6`** —
+   `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif`
+   (+0.0022 MODEL 4/4 quads, +0.0013 PROXY; dose-ladder upgrade of `down4` after the curve measured
+   monotone through the retired 0.51–0.59 CV band — `IR-86-CONC-12`).
 3. **PRUNE `le3p000`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
    (+0.004 MODEL, mass-confounded; historical 0.2708→0.2778 direction is CLAIM only).
 
-RELIEF `frontp15/frontm10` is the fallback pair. Original `b1km-move15` and SPACING are later
-probes. The new 5 km arms are audit artifacts, not substitutes for the sign pair.
+Fallbacks/diagnostics: `RELIEF-frontm10` (−0.0089, 4/4 −), `sp-strike16` (+0.0020 vs +0.0002
+control), `concb5kmdown2`/`downmax` (dose-curve brackets, not slot candidates).
 
 **The MASS-econ session's three files are NOT for upload** (mass-changing on an instrument that
 cannot rank mass). If one is ever used, it must be `plus10pct-extend`, never the control:
@@ -36,6 +39,29 @@ values in {0, 1} inside the 5,167,373-cell footprint, NaN (spec form) or 0 (fall
 0 dots on catalogue pixels, 0 dots outside the footprint. Full per-file receipt:
 `evidence/mass_econ_axis_20261023.json` (`gates.*.read_back`), plus the `*.receipt.json` beside each
 TIFF. Hashes above are the authority because the TIFFs are gitignored.
+
+## Down-dose session files (2026-10-23, `arena/4822aa3b-gemsdoe86`) — brackets, not slot candidates
+
+Three source-prefix-nested CONCENTRATION rungs completing the `down` curve (`down2 ⊂ down4 ⊂
+down6 ⊂ downmax`, verified in `evidence/concentration_dose_axis_20261023.json`). `down6` is the
+slot-2 candidate above; `down2` and `downmax` exist to read the curve's shape and the
+destination-pool ceiling, and should only be uploaded if the human wants a second CONCENTRATION
+experiment after a slot-2 receipt.
+
+| file (`releases/`) | name (≤ 140 ch) | note (≤ 140 ch) | zeros sha256 | bytes |
+|---|---|---|---|---|
+| `…-concb5kmdown2-20261023-f0ee647f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f` | `R0 …e5eb6e7e; CONC b5km-cvband-down2: 753 ridge dots moved (4.00% chg, 1km CV 0.561); pred +0.0012 MODEL` | `f0ee647f…` | 219,773 |
+| `…-concb5kmdown6-20261023-1ed78e0f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f` | `R0 …e5eb6e7e; CONC b5km-cvband-down6: 2259 ridge dots moved (12.00% chg, 1km CV 0.484); pred +0.0022 MODEL` | `1ed78e0f…` | 220,435 |
+| `…-concb5kmdownmax-20261023-d4a42664-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664` | `R0 …e5eb6e7e; CONC b5km-cvband-downmax: 2381 ridge dots moved (12.65% chg, 1km CV 0.479); pred +0.0020 MODEL` | `d4a42664…` | 220,507 |
+
+Format receipt (all three, and the spec-form NaN twins `…f0ee647f.tif`/`…1ed78e0f.tif`/`…d4a42664.tif`):
+CRS EPSG:32611, 3,730 × 3,292, single float32 band, transform `(100, 0, 243350, 0, -100, 4508550)`,
+values in {0, 1} inside the 5,167,373-cell footprint, 0 (fallback) / NaN (spec form) outside,
+0 dots on catalogue pixels, min dot-to-catalogue clearance 3.162 px, min inter-dot spacing 2.8284 px,
+count fixed at 37,654, re-read from disk after writing (`gems57.validate` +
+`gems57.gates.format_report` PASS). Per-file receipts sit beside the TIFFs
+(`*-zeros.json`); master run card `evidence/concentration_dose_axis_20261023.json`.
+The released `down4` anchor rebuilt byte-exactly before any new file was written.
 
 ## Slot 3 — PRUNE ≤ 3.000 px (mass-confounded MODEL; nested ladder, PR #29)
 
