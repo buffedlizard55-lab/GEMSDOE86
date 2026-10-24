@@ -40,3 +40,16 @@ def test_measurement_uses_current_utc_not_historical_snapshot(instant):
     assert result['candidate_generated'] is False
     assert result['registry_complete'] is False
     assert result['direct_support_uncovered_allowed_pixels'] == 0
+
+
+def test_reproduction_ignores_only_valid_measurement_time():
+    from scripts.check_preflight_reproduction import content
+    base = {'measured_date_utc': '2026-10-22', 'universal_overlap_blocker': True}
+    current = {**base, 'measured_date_utc': '2026-10-25',
+               'measured_utc': '2026-10-25T00:00:00+00:00'}
+    assert content(base) == content(current)
+    assert content(base) != content({**current, 'universal_overlap_blocker': False})
+    for invalid in ('2026-10-24T23:59:59+00:00', '2026-10-25T00:00:00',
+                    '2026-10-25T00:00:00+01:00'):
+        with pytest.raises(ValueError):
+            content({**current, 'measured_utc': invalid})

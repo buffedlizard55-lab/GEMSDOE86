@@ -51,10 +51,11 @@ jobs:
           fi
       - name: Require reproducible evidence (only last-bit rho tolerance)
         run: |
-          if ! git diff --exit-code -- docs/evidence ':!docs/evidence/inherited-registry-check.json' >proof-diff.log; then
+          if ! git diff --exit-code -- docs/evidence ':!docs/evidence/inherited-registry-check.json' ':!docs/evidence/protocol-preflight.json' ':!docs/evidence/protocol-run-card.json' >proof-diff.log; then
             while IFS= read -r line; do printf '::error::%s\n' "$line"; done <proof-diff.log
             exit 1
           fi
+          python scripts/check_preflight_reproduction.py
           python scripts/check_registry_reproduction.py
       - uses: actions/upload-artifact@v4
         with:
