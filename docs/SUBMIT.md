@@ -481,3 +481,27 @@ per-arm mechanism card are in `releases/<id>-zeros.json` and
 
 **Upload order (unchanged by this session):** Slot 1 `PRUNE-le3p000` → Slot 2 `concb5kmdown4` →
 Slot 3 `RELIEF-frontp15`. See [SLOT_PLAN.md](../SLOT_PLAN.md).
+
+## Down-dose rungs session files (PR #55, post-collision reconciliation)
+
+Two new curve brackets beyond PR #50's `cvband-down3/5/6` (this session's `down6` rebuilt PR #50's
+`conc6` byte-identically — `1ed78e0f…` — and is recorded `BUILT-DUPLICATE`, not a slot candidate;
+`IR-86-CONC-17`). Neither new file is a slot candidate: they are the low-dose point and the
+destination-pool ceiling that pin Slot 2's dose-response curve.
+
+| file (`releases/`) | name (≤ 140 ch) | note (≤ 140 ch) | zeros sha256 | bytes |
+|---|---|---|---|---|
+| `…-concb5kmdown2-20261023-f0ee647f-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f` | `R0 …e5eb6e7e; CONC b5km-cvband-down2: 753 ridge dots moved (4.00% chg, 1km CV 0.561); pred +0.0012 MODEL` | `f0ee647f…` | 219,773 |
+| `…-concb5kmdownmax-20261023-d4a42664-zeros.tif` | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664` | `R0 …e5eb6e7e; CONC b5km-cvband-downmax: 2381 ridge dots moved (12.65% chg, 1km CV 0.479); pred +0.0020 MODEL` | `d4a42664…` | 220,507 |
+
+(`…-concb5kmdown6-20261023-1ed78e0f-zeros.tif` also exists locally; upload PR #50's
+`…-conc6-20261023-1ed78e0f-zeros.tif` instead — the bytes are identical.)
+
+Format receipt (both files, and the spec-form NaN twins): CRS EPSG:32611, 3,730 × 3,292, single
+float32 band, transform `(100, 0, 243350, 0, -100, 4508550)`, values in {0, 1} inside the
+5,167,373-cell footprint, 0 (fallback) / NaN (spec form) outside, 0 dots on catalogue pixels,
+count fixed at 37,654, added dots ≥ 3.162 px off catalogue, inter-dot spacing ≥ 2.8284 px,
+re-read from disk after writing (`gems57.validate` + `gems57.gates.format_report` PASS).
+Master run card `evidence/concentration_dose_axis_20261023.json`; the released `down4` anchor
+rebuilt byte-exactly (`8aab97b6…`) before any new file was written.
+

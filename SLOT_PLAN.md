@@ -14,8 +14,14 @@ Live `|Δ| < 0.01` = no evidence.
 CV falls `0.5377 → 0.4998 → 0.4840`, so the historical `0.51–0.59` band is a correlate, not the cause
 (`IR-86-CONC-13`). The matched ordering control (same blocks, same count, random dot, random
 destination) gets `+0.0015` / `+0.0008 PROXY`, so **the ranking buys only ≈ `+0.0007`**. The axis is
-capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`). `conc6` supersedes `concb5kmdown4` on both
-instruments at 753 extra moved dots.
+capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`) — pinned exactly by the PR #55 rungs session:
+the binary-searched sparse-ridge destination-pool ceiling is **2,381 moves** (`b5km-cvband-downmax`,
+`d4a42664`, CV 0.4789), and the 122 moves past `conc6` cost more than they bought (`+0.0020` vs
+`+0.0022` MODEL, 4/4 quads). The same session added the low rung `b5km-cvband-down2` (`f0ee647f`,
+753 moves, CV 0.5611, `+0.0012` MODEL 4/4, `+0.0001` PROXY), so the curve is now measured at
+753 / 1,130 / 1,506 / 1,883 / 2,259 / 2,381 moves and is monotone to the pool ceiling
+(`IR-86-CONC-17` records that PR #55's `down6` rebuilt PR #50's `conc6` byte-identically).
+`conc6` supersedes `concb5kmdown4` on both instruments at 753 extra moved dots.
 
 **B. `RELIEF`'s only instrument is a relief-index meter (PR #51).** Eight RELIEF rebuilds (3 shipped +
 3 new + 2 displacement-matched random nulls) score on the SGMC-extra surrogate as
@@ -75,6 +81,8 @@ are already built and cost nothing but slots; everything after that should fund 
   file plus one fallback, freeze `AI_USE.md` and the reproducibility pins.
 
 ## Unbuilt proposals (mechanism / confounder / falsifier — not built here)
+
+0. **Pool-extension `CONCENTRATION` rung beyond the ceiling (`downmax-plus`).** *Mechanism:* the ceiling at 2,381 moves is the 1–2-dot destination pool running dry; extend destinations to 3-dot blocks (or the strict 1-dot-only mirror) past the ceiling and read whether the marginal `−0.0002` (`conc6`→`downmax`) is destination-quality decay or a hard mechanism limit. *Confounder:* 3-dot destinations re-create the sub-kernel overlap the shave removed. *Falsifier:* `MODEL ≤ conc6` again with CV still > 0.47 ⇒ the mechanism, not the pool, is exhausted.
 
 1. **Kernel-credit saturation pruning (`MASS` at fixed count).** *Mechanism:* replace the 1 km-CV rule
    with a direct per-dot marginal-`DTI` ranking from the metric code, delete the lowest-ranked dots
