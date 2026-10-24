@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_release import build_report, strict_json, sha256, session_card  # noqa: E402
 from scripts.audit_legacy_spt import check_snapshot as check_legacy_spt  # noqa: E402
+from scripts.audit_legacy_tiprelay import check_snapshot as check_legacy_tiprelay  # noqa: E402
 
 REPO = "https://github.com/buffedlizard55-lab/GEMSDOE86"
 
@@ -31,7 +32,8 @@ def link(path: str) -> str:
 
 def page(title: str, active: str, body: str) -> str:
     nav = (("index.html", "Downloads"), ("executive-summary.html", "How to submit"),
-           ("evidence.html", "Validation"), ("hypotheses.html", "Research queue"),
+           ("submit.html", "Submission status"), ("evidence.html", "Validation"),
+           ("hypotheses.html", "Research queue"),
            ("fleet.html", "Project feed"), ("sources.html", "Sources"))
     navigation = "".join(f'<a href="{url}"' + (' aria-current="page"' if url == active else '') + f'>{label}</a>' for url, label in nav)
     return f'''<!doctype html>
@@ -68,21 +70,25 @@ def downloads(artifacts: list[dict]) -> str:
     return "\n".join(result)
 
 
-def legacy_notice(legacy: dict) -> str:
-    """Replace the previously optimistic direct-URL upload guide with a stop."""
-    return page("Legacy SPT correction", "executive-summary.html", f'''
-<p class="eyebrow">Correction of a historical release claim</p>
-<h1>SPT file: <strong>DO NOT SUBMIT</strong>.</h1>
+def legacy_notice(spt: dict, tip: dict) -> str:
+    """Replace both historical promotion pages with one fail-closed status."""
+    return page("Submission status corrections", "submit.html", f'''
+<p class="eyebrow">Corrected status of two inherited candidates</p>
+<h1>SPT and TIPRELAY:<br><strong>DO NOT SUBMIT</strong>.</h1>
 <div class="callout"><span class="badge bad">NOT CLEARED · NO COMPETITION UPLOAD</span>
-<p>A former page described this TIFF as ready to submit. That claim was wrong. This page is generated from a byte-checked negative review, not a human-inspection placeholder. No upload link or recommendation is offered.</p>
-<p><strong>Existing research file (not generated in this review):</strong> <code>{e(Path(legacy['file']).name)}</code><br>SHA-256: <code>{e(legacy['sha256'])}</code>.</p>
-<p>The original TIFF and ZIP pass local numerical and grid checks, including finite values in [0,1], but their dots have <strong>{legacy['registry']['final_dots_forward_overlap_3px']:.0%} forward 3-pixel overlap</strong> with one pinned registry prior, above the {legacy['registry']['overlap_limit']:.0%} stop. A 25-file subset check cannot clear a file against the full registry.</p>
-<p>The archived 0.00526 / 0.00479 figures used the full catalogue to place dots before evaluating held faults; they are <strong>not a valid visible-only HOLDOUT-DTI or an organizer score</strong>. No paired physical-block 95% confidence interval or pre-placement surface check is available. The builder used a private writer rather than the shared submission writer and has been retired.</p>
-<p><a href="evidence/spt-legacy-audit.json">Automated TIFF/ZIP/registry audit</a> · <a href="evidence/spt-run-card.json">Corrected negative run card</a> · <a href="executive-summary.html">Actual submission procedure and gating</a></p></div>''')
+<p>Earlier pages described each TIFF as ready to submit. Those claims were wrong under the current owner's literal parallel-run protocol. This page is generated from byte-checked negative audits, not a request for a human to guess whether upload is safe. No direct upload link or recommendation is offered.</p>
+<h2>SPT (PR #60) — DO NOT SUBMIT</h2>
+<p><strong>Archived research identity:</strong> <code>{e(Path(spt['file']).name)}</code><br>SHA-256: <code>{e(spt['sha256'])}</code>.</p>
+<p>Its unchanged TIFF/ZIP passes numerical and grid checks, but final dots have <strong>{spt['registry']['final_dots_forward_overlap_3px']:.0%} forward 3-pixel overlap</strong> with one pinned registry prior, above the {spt['registry']['overlap_limit']:.0%} stop. A 25-file subset cannot certify the full registry. The archived 0.00526 / 0.00479 figures used the full catalogue before fold scoring, so they are <strong>not valid visible-only HOLDOUT-DTI or organizer scores</strong>. Its builder is retired.</p>
+<p><a href="evidence/spt-legacy-audit.json">Automated SPT TIFF/ZIP/registry audit</a> · <a href="evidence/spt-run-card.json">Corrected SPT negative card</a> · <a href="evidence/spt-full-support-witness-audit.json">Independent witness audit</a></p>
+<h2>TIPRELAY (PR #63) — DO NOT SUBMIT</h2>
+<p><strong>Archived research identity:</strong> <code>{e(Path(tip['file']).name)}</code><br>SHA-256: <code>{e(tip['sha256'])}</code>.</p>
+<p>Its TIFF/ZIP also passes local format checks, but its final dots have <strong>{tip['registry']['final_dots_forward_overlap_3px']:.0%} forward 3-pixel overlap</strong> with the same pinned prior, above {tip['registry']['overlap_limit']:.0%}. Its parent-only overlap estimate and novel file SHA cannot replace the registry test. No buffered fold-trained holdout, withheld-positive count, feature-alone leakage canaries or paired 95% CI exists for this file; the original uplift was <strong>a projection, not a score</strong>. The published green badge and submit instructions are withdrawn. The generator is retired; its exact TIFF/ZIP bytes remain for research audit only.</p>
+<p><a href="evidence/tiprelay-legacy-audit.json">Automated TIPRELAY TIFF/ZIP/registry audit</a> · <a href="evidence/h86-tiprelay-run-card.json">Corrected TIPRELAY negative card</a> · <a href="executive-summary.html">Safe future procedure and gates</a></p></div>''')
 
 
-def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
-    n = report["artifact_count"]
+def home(report: dict, fleet: dict, registry: dict, review: dict, tip: dict) -> str:
+    n = report["published_tiff_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED</span>
@@ -91,12 +97,12 @@ def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
 <p><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <strong>DO NOT SUBMIT</strong> any current file.</p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Why blocked &amp; how submission works →</a></div></section>
-<section class="callout"><span class="badge bad">IMPORTANT: LEGACY SPT PAGE CORRECTED</span><p>A separate earlier SPT page described an off-dashboard TIFF as ready. Its TIFF passes local format checks but fails the literal registry-overlap rule; its in-sample diagnostic is not a valid holdout. <a href="submit.html">Read the corrected DO NOT SUBMIT notice</a>.</p></section>
-<div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
+<section class="callout"><span class="badge bad">IMPORTANT: TWO UPLOAD CLAIMS WITHDRAWN</span><p>Both SPT and TIPRELAY were previously promoted. Their TIFFs pass local format but each has 100% literal registry overlap; neither has a valid new buffered holdout. <a href="submit.html">SPT and TIPRELAY: DO NOT SUBMIT</a>.</p></section>
+<div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts'] + int(tip['validator']['all_checks_passed'])} / {n}</strong><small>Ten inventoried downloads and one separately audited TIPRELAY TIFF/ZIP. SPT is audited separately outside Pages. Local format is not submission approval.</small></div>
 <div><span>Submission-approved files</span><strong>None</strong><small>Every candidate remains negative. No selector or portal operation was run.</small></div>
 <div><span>New experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This audit stopped before modeling or placement, as required.</small></div></div>
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
-<p>All {len(registry['artifacts'])} inherited final TIFFs were independently rechecked against this witness. No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/session-20261023-run-card.json">This session's run card</a>.</p></section>
+<p>The ten inventoried final TIFFs, plus separately audited TIPRELAY and SPT files, were checked against this witness; both late candidates have final-dot overlap 1.0. No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Ten-file proof</a> · <a href="evidence/tiprelay-legacy-audit.json">TIPRELAY measurement</a> · <a href="evidence/spt-legacy-audit.json">SPT measurement</a>.</p></section>
 <section id="downloads"><p class="eyebrow">Immediate downloads · historical research artifacts</p><h2>TIFF + single-TIFF ZIP + identity receipt</h2>
 <p>Files below were generated by earlier lanes, not this audit. They are preserved for reproducibility, not relabeled as new or submission-ready. No file is selected or ranked here.</p>
 {downloads(report['artifacts'])}</section>
@@ -106,19 +112,19 @@ def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def executive(report: dict, sources: dict) -> str:
+def executive(report: dict, sources: dict, tip: dict) -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>DO NOT SUBMIT</strong></td></tr>' for a in report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
-<p><strong>Correction:</strong> a separate historical SPT upload guide was unsafe. Its 11th, off-dashboard raster is <a href="submit.html">DO NOT SUBMIT</a>, despite passing local [0,1] checks. It is reviewed separately in <a href="evidence/spt-legacy-audit.json">the automatic legacy audit</a>, not silently counted among the ten downloads below.</p>
-<h2>Current downloads — audit only, no submission authorized</h2>
+<p><strong>Corrections:</strong> the SPT guide and TIPRELAY green page incorrectly claimed upload readiness. <a href="submit.html">Both are DO NOT SUBMIT</a>. SPT is audited outside Pages, while TIPRELAY is an 11th published TIFF not in the older ten-file inventory. Both are separately byte/ZIP/format/registry-audited: <a href="evidence/spt-legacy-audit.json">SPT</a> · <a href="evidence/tiprelay-legacy-audit.json">TIPRELAY</a>. The TIPRELAY file has local format PASS, 3-pixel overlap {tip['registry']['final_dots_forward_overlap_3px']:.0%} &gt; {tip['registry']['overlap_limit']:.0%}, and no valid holdout CI. Do not use its old writer receipt as approval.</p>
+<h2>Current ten inventoried downloads — audit only, no submission authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
 <p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
 <h2>What is checked without intervention?</h2><ul><li>Every published TIFF is decoded and checked by the pinned shared validator and template-format checker.</li>
 <li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
-<li>The SHA matches the inventory, writer receipt and applicable scientific card. ZIP bytes must contain exactly the corresponding TIFF; empty or mismatched ZIPs fail.</li>
+<li>The ten-file inventory binds SHA, writer receipts and scientific cards. The 11th TIPRELAY and off-dashboard SPT artifacts have separate pinned negative audits. Every ZIP must contain only its exact TIFF bytes.</li>
 <li>Names and notes are verified against the project length cap. Stored model evidence is not rewritten or upgraded by a format pass.</li>
 <li>All final artifacts are bound to the negative registry measurement. Unknown/missing/stale evidence fails closed.</li></ul>
 <h2>Future submission steps — only after scientific clearance</h2><ol class="steps"><li><strong>Resolve the protocol conflict first.</strong> A new lane must be authorized, the actual shared cached features and a complete accessible registry recovered, and the uniqueness rule made satisfiable through an explicit protocol revision. This project does not grant that revision itself.</li>
@@ -173,7 +179,7 @@ def hypotheses(plan: dict) -> str:
 <dt>Data / viability</dt><dd>{e(h['data_readiness'])} {e(h.get('obtainability', 'No new external product is proposed as acquired.'))}</dd></dl><p>{sources}</p></article>''')
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Untried hypotheses · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
-<div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p><p>The older plan included SPT as untried; <a href="submit.html">SPT was subsequently tried and its optimistic release status has been withdrawn</a>.</p></div>
+<div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p><p>The older plan included SPT as untried. SPT and TIPRELAY were subsequently tried in separate PRs; <a href="submit.html">both optimistic release statuses have been withdrawn</a>. Neither is counted among the three untried proposals below.</p></div>
 <p>{e(plan['ranking_basis'])} {e(plan['novelty_scope'])}</p>{''.join(sections)}
 <h2>Validation plan after blockers are resolved</h2><ol>{steps}</ol>
 <p><a href="{REPO}/blob/main/registry/hypotheses_20261024.json">Current machine-readable hypothesis register</a> · <a href="{REPO}/blob/main/registry/h86c_hypotheses.json">Archived earlier plan</a> · <a href="research.html">Physical rationale and limitations</a></p>''')
@@ -212,7 +218,8 @@ def source_page(observations: dict) -> str:
 def irregularities(report: dict) -> str:
     items = "".join(f'<li>{e(item)}</li>' for item in report["limitations"])
     return page("Limitations and irregularities", "irregularities.html", f'''<p class="eyebrow">Explicitly unresolved</p><h1>No silent exceptions.<br>No invented score.</h1><ol>{items}</ol>
-<h2>Defects found in the reviews</h2><ul><li>The inherited PR #60 <a href="submit.html">SPT upload page</a> incorrectly said READY and its card called an in-sample diagnostic HOLDOUT-DTI. Both are withdrawn; <a href="evidence/spt-legacy-audit.json">the separate byte/registry audit</a> proves the file passes format but fails literal uniqueness.</li>
+<h2>Defects found in the reviews</h2><ul><li>The inherited PR #63 TIPRELAY page showed a green upload button, excluded its TIFF from the ten-file inventory by filename substring, treated a projection as a score advantage and privately exempted the literal overlap gate. <a href="evidence/tiprelay-legacy-audit.json">Its own final dots measure overlap 1.0</a>. The page and cards are corrected and its builder retired.</li>
+<li>The inherited PR #60 <a href="submit.html">SPT upload page</a> incorrectly said READY and its card called an in-sample diagnostic HOLDOUT-DTI. Both are withdrawn; <a href="evidence/spt-legacy-audit.json">the separate byte/registry audit</a> proves the file passes format but fails literal uniqueness.</li>
 <li>An imported model caller could bypass the mandatory preflight with a boolean parameter. That escape hatch was removed; regression tests require a stop before feature building.</li>
 <li>The inherited site compared nonidentical holdout instruments as a repository-wide “highest holdout.” That wording was removed. The automated view labels each design and confidence interval separately.</li>
 <li>The inherited headline byte and note-character counts disagreed with the serialized GFCO receipt. Counts now come directly from every actual file and receipt on each build.</li>
@@ -270,18 +277,38 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or review["new_candidate_generated"] is not False):
         raise ValueError("Current review is stale or contradicts the negative release audit; remeasure registry")
     legacy = check_legacy_spt(root)  # verifies off-dashboard TIFF and withdrawn card, fail closed
+    # PR #58 added a second public SPT witness JSON; do not let it contradict
+    # the independently remeasured negative artifact audit after integration.
+    secondary = strict_json(root / "docs/evidence/spt-full-support-witness-audit.json")
+    if (secondary.get("candidate_file_sha256") != legacy["sha256"]
+            or secondary.get("witness_sha256") != legacy["witness_sha256"]
+            or secondary.get("candidate_dot_overlap_within_3px_of_witness") != 1.0
+            or secondary.get("literal_overlap_limit") != legacy["registry"]["overlap_limit"]
+            or secondary.get("verdict") != "negative_duplicate_stop_do_not_submit"
+            or secondary.get("submission_ready") is not False
+            or secondary.get("promotion_authorized") is not False):
+        raise ValueError("SPT candidate is stale or violates negative witness audit")
+    tip = check_legacy_tiprelay(root)  # verifies 11th published TIFF/ZIP and withdrawn card
+    extras = report.get("extra_published_artifacts")
+    if (report.get("published_tiff_count") != report["artifact_count"] + 1
+            or not isinstance(extras, list) or len(extras) != 1
+            or extras[0].get("sha256") != tip["sha256"]
+            or extras[0].get("verdict") != "negative"):
+        raise ValueError("TIPRELAY extra published file is missing from negative release report")
     sources = strict_json(root / "docs/evidence/source-review-20261023.json")
     plan = strict_json(root / "registry/hypotheses_20261024.json")
     with (root / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
         ledger = list(csv.DictReader(stream))
     summary = {k: report[k] for k in ("schema", "audit_ok", "decision", "submission_ready", "safe_to_submit", "artifact_count", "locally_valid_artifacts", "new_candidate_generated", "experiments_run", "submission_slots_used")}
-    summary.update(featured_research_artifact=None, current_comparable_holdout_best=None,
+    summary.update(published_tiff_count=report["published_tiff_count"],
+                   separately_audited_tiprelay=tip["file"],
+                   featured_research_artifact=None, current_comparable_holdout_best=None,
                    reason="No selector decision. Different historical holdout designs cannot be ranked by their maxima.",
                    release_readiness="../evidence/release-readiness.json")
     return {
-        "docs/index.html": home(report, feed, registry, review),
-        "docs/submit.html": legacy_notice(legacy),
-        "docs/executive-summary.html": executive(report, sources),
+        "docs/index.html": home(report, feed, registry, review, tip),
+        "docs/submit.html": legacy_notice(legacy, tip),
+        "docs/executive-summary.html": executive(report, sources, tip),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan),
         "docs/fleet.html": fleet_page(feed, ledger),

@@ -16,7 +16,10 @@ def release_copy(tmp_path):
     for rel in ("data/bridge", "docs/downloads", "docs/evidence", "vendor", "registry"):
         shutil.copytree(ROOT / rel, tmp_path / rel, ignore=shutil.ignore_patterns("__pycache__"))
     (tmp_path / "research").mkdir()
-    for rel in ("research/template_pin.json", "research/registry_witness_pin.json", "evidence/run_card.json"):
+    for rel in ("research/template_pin.json", "research/registry_witness_pin.json",
+                "research/upstream/tiprelay-original-run-card.json",
+                "research/upstream/tiprelay-original-download-card.json",
+                "evidence/run_card.json"):
         target = tmp_path / rel
         target.parent.mkdir(exist_ok=True)
         shutil.copyfile(ROOT / rel, target)

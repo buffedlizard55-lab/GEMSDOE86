@@ -34,3 +34,10 @@
    and `scripts/build_site.py --check`. Never rerun the retired builder or use its
    full-catalogue proxy as HOLDOUT-DTI. The file and original card are preserved for
    forensics, not offered for a weekly submission slot.
+10. PR #63's TIPRELAY raster is an additional Pages TIFF excluded from the old
+    ten-file inventory. Its green upload claim was withdrawn: shared-comparator
+    forward overlap is 1.0 (>0.70), despite a valid format and different SHA.
+    `scripts/audit_legacy_tiprelay.py` binds its exact TIFF/ZIP, active negative
+    cards and archived originals. The generator is retired; do not privately use
+    the older brief-v2 no-overlap clause to override the current owner prompt.
+    All published files must be covered by an inventory or an exact-path audit.

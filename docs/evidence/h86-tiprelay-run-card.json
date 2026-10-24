@@ -1,0 +1,56 @@
+{
+  "schema": "gems86.tiprelay.corrected-negative.v1",
+  "date_utc": "2026-10-24",
+  "supersedes": "research/upstream/tiprelay-original-run-card.json",
+  "original_card_sha256": "d991df50b79f274316d9f62da6751cc8a8452d0d7df96c8374e5e8b8dcf10fd8",
+  "hypothesis": "H86-TIPRELAY: blind along-strike tip continuation + relay splay hypothesis",
+  "mechanism": "Archived PR #63 randomized movement of 30% of H33 dots outward along the distance-to-catalogue gradient, not a fold-trained visible-only geophysical detector. Calling random offsets a mechanically required hidden-fault continuation is not substantiated by a holdout.",
+  "named_non_fault_process": "Pediment-marginal erosional scarps, fluvial terrace risers, range-front colluvial wedges, lateral-spread headscarps",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_VALIDATED_FOR_THIS_RASTER",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No fold-trained, buffered visible-only spatial holdout, feature-alone leakage canaries or paired physical-block CI. The former expected uplift was a projection, not a measurement."
+  },
+  "historical_claims_not_promotion_evidence": {
+    "class": "UNVALIDATED-PROJECTION",
+    "original_parent_score": "0.2778 OWNER-REPORTED, no organizer receipt",
+    "original_projection": "No new spatially-blocked holdout rerun due to preflight blocker. Projection from DTI marginal gain: at DTI 0.2778 need k > 0.055 to raise score; tip annulus provides k 0.33-0.77. Even 1-in-4 hit rate yields +0.008-0.012 before collateral loss.",
+    "original_estimated_overlap_vs_h33": 0.71,
+    "source": "research/upstream/tiprelay-original-run-card.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "source": "docs/evidence/tiprelay-legacy-audit.json",
+    "preplacement_surface": null,
+    "registry_complete": false,
+    "final_dots_forward_overlap_3px": 1.0,
+    "full_footprint_spearman_vs_witness": 0.05086217425960956,
+    "overlap_limit": 0.7,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "verdict": "duplicate_by_literal_overlap"
+  },
+  "raster_sha256": "c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3",
+  "submission_file": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif",
+  "submission_name": "gems86-h86-tiprelay-37654-20261024T070000Z",
+  "note": "DO NOT SUBMIT: historic TIPRELAY fails literal 3-pixel registry overlap; no validated holdout.",
+  "validator_output": {
+    "status": "LOCAL_FORMAT_ONLY",
+    "source": "docs/evidence/tiprelay-legacy-audit.json",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "organizer_acceptance": null
+  },
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "download_url": null,
+  "new_candidate_generated_this_review": false,
+  "submission_slots_used": 0,
+  "reason": "PR #63 used a private exemption for the pinned full-support prior and promoted an unvalidated projection. Under the current owner parallel-run rule its final dots are a duplicate (>70%). The prior TIFF and ZIP bytes are preserved for audit only."
+}

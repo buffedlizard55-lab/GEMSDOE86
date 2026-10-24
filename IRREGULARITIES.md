@@ -11,6 +11,14 @@ threshold applied, dedupe on exact sha256 and repeated `(parent, axis, value)` o
 **no gate script was modified, relaxed or bypassed**. No slot is authorised here. **Cost:** the
 human must choose which rule governs before submitting; both cannot hold.
 
+**2026-10-24 correction to that historical decision:** the current owner request
+explicitly repeats the **0.90 / 0.70** thresholds; no authorized shared revision
+has superseded them. A separate older brief clause, a different SHA, or a
+format pass is **not** permission for this lane to waive the gate. PR #63's
+attempted TIPRELAY exemption is withdrawn (IR-86-TIPRELAY-01 below). A
+representation-aware revision remains a *proposal* for an owner decision, not
+an operative exemption or a slot authorization.
+
 ## IR-86-PRUNE-02 — parent rebuild: impossible from the `gems32` recipe, solved another way (corrected)
 Brief v2 §5 says rebuild R0 and match its sha256, or stop. My first pass concluded "cannot
 rebuild": `research/upstream/run_h33.py` imports `gems32.*`, which is not vendored here.
@@ -957,3 +965,49 @@ protocol, actual shared feature cache and complete raster registry, then a new
 visible-only, buffered, paired holdout; no score or weekly slot was used by this
 correction. Do not use the unchanged SPT TIFF just because its TIFF bytes pass
 format checks.
+
+## IR-86-TIPRELAY-01 — PR #63 green upload claim bypassed the literal uniqueness gate (2026-10-24)
+
+**Observed after integrating concurrent `main`: format PASS, release FAIL.**
+Merged PR #63 (`https://github.com/buffedlizard55-lab/GEMSDOE86/pull/63`)
+added a new `docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif`
+(149,598 B, SHA-256 `c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3`),
+a one-TIFF ZIP (SHA-256 `47d0fbfdc8cb3ebf6a847583d94549b928ed9596f33349c3f6289981bce020cc`),
+a green homepage badge, direct “submit this file” links and a `submission_ready=true`
+scientific card. It also changed `scripts/audit_release.py` to ignore *any* TIFF
+or ZIP whose name contained `tiprelay` while checking the ten-file inventory;
+extras got only a size check and no ZIP verification. The old
+`scripts/check_site.py` still rejected all such unregistered files. This was
+not automatic end-to-end release validation.
+
+The pinned shared validators confirm the historical TIFF is one-band float32,
+EPSG:32611, exact 3730×3292 grid, all-finite [0,1], zero out-of-footprint
+mass and zero catalogue dots (37,654 positive cells). Pinned shared comparator
+against the immutable full-support prior **remeasured final-dot forward overlap
+1.0 > 0.70** and full-footprint Spearman `0.05086217425960956`. The pre-placement
+surface was not saved; registry coverage is incomplete. One witness suffices
+for a negative. The main card's `0.71` overlap was **estimated versus H33
+alone**, not a full-registry clearance, and even that estimate exceeded 0.70.
+The inherited “+0.008–0.012” uplift was a projection using owner-reported H33
+`0.2778`, not pooled HOLDOUT-DTI or an ORGANIZER-CONFIRMED score. The method
+used random 3–7-pixel distance-gradient shifts on 30% of a prior raster;
+no buffered visible-only fold refit, feature-alone canaries, withheld-positive
+count or paired spatial CI exists. The temporary shared writer receipt contains
+a digest matching the final file but names a now-absent `-writer.tif`; byte
+equality does not independently establish the writer call used for the saved
+path. The original rejected portal-upload bytes were not supplied, so the
+claim that NaN caused that prior error cannot be verified by this new raster.
+
+**Corrected:** both original optimistic cards are archived byte-exactly under
+`research/upstream/tiprelay-original-*.json` (hashes pinned by
+`scripts/audit_legacy_tiprelay.py`). The TIFF and ZIP bytes remain unchanged;
+their active cards now say negative / DO NOT SUBMIT. `docs/submit.html` and
+`docs/index.html` are evidence-generated warnings with no green upload buttons.
+The builder fails closed before reading data; `scripts/audit_release.py` and
+`scripts/check_site.py` allow *only this exact file* after the independent
+TIFF/ZIP/format/witness/card audit succeeds. Regression tests cover altered
+bytes, ZIP, optimistic cards, stale proof, bogus rank correlation and unsafe
+site copy. This is **not** a new submission, a current H33 receipt or a slot
+selection. See `docs/evidence/tiprelay-legacy-audit.json`,
+`docs/evidence/h86-tiprelay-run-card.json`, and
+`research/SESSION_20261024_SPT_CORRECTION.md`.

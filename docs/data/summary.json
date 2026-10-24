@@ -9,6 +9,8 @@
   "new_candidate_generated": false,
   "experiments_run": 0,
   "submission_slots_used": 0,
+  "published_tiff_count": 11,
+  "separately_audited_tiprelay": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif",
   "featured_research_artifact": null,
   "current_comparable_holdout_best": null,
   "reason": "No selector decision. Different historical holdout designs cannot be ranked by their maxima.",

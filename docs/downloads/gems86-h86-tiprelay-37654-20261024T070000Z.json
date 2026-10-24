@@ -1,0 +1,23 @@
+{
+  "schema": "gems86.tiprelay.download-identity.corrected-negative.v1",
+  "name": "gems86-h86-tiprelay-37654-20261024T070000Z",
+  "file": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif",
+  "zip": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.zip",
+  "sha256": "c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3",
+  "bytes": 149598,
+  "zip_sha256": "47d0fbfdc8cb3ebf6a847583d94549b928ed9596f33349c3f6289981bce020cc",
+  "original_download_card_sha256": "35e76a3a634f17ef88fe6130f7efc5ef402a7783999c29ef0816cac1667917d4",
+  "original_download_card": "research/upstream/tiprelay-original-download-card.json",
+  "scientific_card": "docs/evidence/h86-tiprelay-run-card.json",
+  "note": "DO NOT SUBMIT: historic TIPRELAY fails literal 3-pixel registry overlap; no validated holdout.",
+  "note_chars": 94,
+  "local_format_valid": true,
+  "organizer_acceptance": null,
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false,
+  "download_url": null,
+  "status": "DO NOT SUBMIT - AUDIT ONLY",
+  "evidence": "docs/evidence/tiprelay-legacy-audit.json"
+}

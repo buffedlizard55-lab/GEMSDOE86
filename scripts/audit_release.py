@@ -272,18 +272,27 @@ def build_report(root: Path = ROOT) -> dict:
     inventory_stems = {Path(p).stem for p in paths}
     if inventory_stems != set(by_stem):
         raise ValueError("Inventory and card mappings do not describe the same artifacts")
+    # PR #63 published an 11th TIFF/ZIP without adding them to the ten-file
+    # inventory. Accept ONLY this exact, separately byte/format/registry-audited
+    # negative artifact; never skip arbitrary files by a filename substring.
+    from scripts.audit_legacy_tiprelay import check_snapshot as check_tiprelay
+    tip = check_tiprelay(root)
+    extra = tip["file"]
     registered = set(paths)
     published = {str(p.relative_to(root)) for p in (root / "docs").rglob("*")
                  if p.suffix.lower() in {".tif", ".tiff"}}
-    if registered != published:
+    if published != registered | {extra}:
         raise ValueError("Unregistered or missing published TIFF")
     registered_zips = {str(Path(p).with_suffix(".zip")) for p in registered}
     published_zips = {str(p.relative_to(root)) for p in (root / "docs").rglob("*")
                       if p.suffix.lower() == ".zip"}
-    if registered_zips != published_zips:
+    if published_zips != registered_zips | {str(Path(extra).with_suffix(".zip"))}:
         raise ValueError("Unregistered or missing published ZIP")
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
+    inputs[extra] = tip["sha256"]
+    inputs["docs/evidence/tiprelay-legacy-audit.json"] = sha256(root / "docs/evidence/tiprelay-legacy-audit.json")
+    inputs["docs/evidence/h86-tiprelay-run-card.json"] = tip["corrected_run_card_sha256"]
     for config in configs:
         inputs[config["context"]] = sha256(root / config["context"])
     registry_path = root / "docs/evidence/all-artifacts-registry.json"
@@ -312,7 +321,13 @@ def build_report(root: Path = ROOT) -> dict:
                 approved_for_weekly_slot=False, selector_run=False, authenticated_remaining_quota=None,
                 new_candidate_generated=False, experiments_run=0, submission_slots_used=0,
                 artifact_count=len(artifacts), locally_valid_artifacts=sum(a["safe_to_download_for_audit"] for a in artifacts),
-                method="Read-only, all-artifact byte/ZIP/receipt validation using unchanged shared validators. This audit cannot promote or submit a file.",
+                extra_published_artifacts=[dict(file=tip["file"], sha256=tip["sha256"],
+                    local_format_pass=tip["validator"]["all_checks_passed"],
+                    forward_overlap_3px=tip["registry"]["final_dots_forward_overlap_3px"],
+                    verdict=tip["verdict"], submission_ready=False,
+                    audit="docs/evidence/tiprelay-legacy-audit.json")],
+                published_tiff_count=len(artifacts) + 1,
+                method="Read-only ten-file inventory plus separately pinned PR #63 TIFF/ZIP byte/format/registry audit. Neither can promote or submit a file.",
                 shared_tool_hashes_match=all(shared.values()), shared_tools_checked=len(shared),
                 input_evidence_sha256=inputs, all_final_artifacts_remeasured=bool(registry_rows),
                 registry_scope="One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",

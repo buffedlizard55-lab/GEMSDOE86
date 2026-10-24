@@ -34,7 +34,7 @@
     "legacy_spt_origin": "Existing PR #60 file; not generated or promoted by this session"
   },
   "submission_name": null,
-  "note": "DO NOT SUBMIT: literal registry overlap blocks new TIFF; archived SPT file is format-valid but not unique.",
+  "note": "DO NOT SUBMIT SPT or TIPRELAY: both have literal overlap 1.0 > 0.70; no new validated file or slot.",
   "verdict": "negative",
   "submission_ready": false,
   "new_candidate_generated": false,
@@ -45,5 +45,21 @@
     "Restore actual shared feature cache; raw owner-mirrored core is not that cache or authenticated official data.",
     "Assigned single method lane, buffered visible-only holdout, every-feature canaries, pooled DTI and paired spatial 95% CI against matched baseline.",
     "Only a separately authorized selector may inspect authenticated quota, upload, and retain a receipt."
-  ]
+  ],
+  "scope": "This branch corrected inherited artifacts; PR #63 concurrently generated the existing TIPRELAY TIFF in main. The boolean new_candidate_generated=false applies to this correction lane, not to all concurrent branches.",
+  "concurrent_inherited_tiprelay": {
+    "source_pr": "https://github.com/buffedlizard55-lab/GEMSDOE86/pull/63",
+    "file": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif",
+    "sha256": "c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3",
+    "zip_sha256": "47d0fbfdc8cb3ebf6a847583d94549b928ed9596f33349c3f6289981bce020cc",
+    "local_format_pass": true,
+    "preplacement_surface": null,
+    "registry_forward_dot_overlap_3px": 1.0,
+    "registry_spearman_full_footprint": 0.05086217425960956,
+    "holdout_dti": null,
+    "ci95": null,
+    "verdict": "negative",
+    "submission_ready": false,
+    "audit": "docs/evidence/tiprelay-legacy-audit.json"
+  }
 }

@@ -87,5 +87,52 @@ Its refreshed 88-project metadata feed is retained. The incoming same-date revie
 is preserved without editing as `SESSION_20261024_FEED_REVIEW.md`; this builder
 safety review keeps its own file. Generated homepage content was rebuilt from the
 merged feed and current hash-bound negative audit, not resolved by choosing stale
-HTML. No predictor, raster, score or scientific result was introduced by resolving
-these documentation/generated-view conflicts.
+HTML. No predictor or raster pixels were changed by resolving these conflicts.
+
+## Concurrent SPT candidate re-audit — duplicate stop
+
+After the safety review began, main also received PR #60, which added an SPT TIFF
+and initially labeled it ready using a restricted scored-fleet comparison. I did
+not build or alter that candidate. I re-read its committed raster and compared its
+final dots against the already pinned dense witness with the shared
+`gems57.uniqueness.dot_overlap` function; the raster grid matches the reference.
+
+**REGISTRY-MEASUREMENT:** the SPT candidate's final-dot overlap within three pixels
+of the witness is **1.0**, exceeding the unchanged **0.70** limit. The overlap of
+candidate dots on the witness's positive support is also **1.0**. This single
+witness disproves clearance; it does not establish completeness of the registry.
+The earlier `0.5056` value was calculated against only 25 scored-fleet rasters
+and omitted the pinned full-support witness. No saved pre-placement surface was
+available, so candidate-surface rank correlation remains unmeasured. The final-dot
+failure alone requires the duplicate stop.
+
+The SPT run card was amended to negative and the public `docs/submit.html` page
+now says **DO NOT SUBMIT** and contains no candidate download link. The candidate
+TIFF remains in the repository only as an audit artifact; no weekly slot or
+organizer upload occurred. Its inherited holdout result is not accepted as
+protocol-compliant HOLDOUT-DTI: the builder used a collar derived from the full
+catalogue, did not demonstrate fold-visible-only derivation or exact visible-fault
+masking, and provides no 95% CI. We do not use its number as a valid holdout score.
+
+The SPT/XFLEET builders were missing the mandatory preflight at their entrypoints.
+They now stop before grid/cache/feature reads. Regression tests cover direct CLI
+invocation and ensure the SPT audit/page cannot revert to an optimistic status.
+
+## Final post-merge verification
+
+After resolving the latest-main integration and the SPT duplicate stop, the complete
+suite passed: **431 passed, 24 skipped, 32 subtests passed**, with four existing
+Rasterio/Affine pending-deprecation warnings. The 24 skips remain conditional on
+optional/missing data; they are not geological validation. The release audit
+remeasured all 10 registered historical TIFFs and receipts: local integrity is
+valid, the decision remains **DO NOT SUBMIT**, and no experiment or weekly slot was
+used. The separate SPT final-dot witness audit is preserved in its own JSON card.
+
+`audit_downloads.py --write`, `build_site.py`, `build_site.py --check`,
+`check_site.py`, and `git diff --check` passed. The site explicitly withholds a
+candidate download link, the candidate card contains no raw-download URL, and the
+site generator rejects a mismatched or optimistic candidate receipt. These checks
+do not establish a passing holdout, complete registry clearance, an official score,
+organizer acceptance, or Pages deployment. This working branch now includes the
+latest-main integration; PR checks and PR #58's merge into main remain external
+operational gates at review close.

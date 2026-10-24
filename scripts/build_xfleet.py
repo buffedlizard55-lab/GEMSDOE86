@@ -8,6 +8,9 @@ from pathlib import Path
 import numpy as np, rasterio
 from scipy import ndimage as ndi
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.protocol_preflight import require_feasible
+require_feasible()
 sys.path.insert(0, str(ROOT/"vendor")); sys.path.insert(0, str(ROOT/"vendor/template66"))
 from gems57.metric import dti_binary
 from gems57.grid import load_grid

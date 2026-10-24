@@ -1,0 +1,63 @@
+{
+  "schema": "gems86.tiprelay-legacy-audit.v1",
+  "evidence_class": "LOCAL-ARTIFACT-AND-REGISTRY-MEASUREMENT",
+  "scope": "PR #63 existing TIFF/ZIP. Local file format passes but literal overlap fails; original promotion/holdout projection is withdrawn. This is not a new candidate or a complete registry scan.",
+  "file": "docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif",
+  "sha256": "c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3",
+  "bytes": 149598,
+  "zip_sha256": "47d0fbfdc8cb3ebf6a847583d94549b928ed9596f33349c3f6289981bce020cc",
+  "original_run_card_sha256": "d991df50b79f274316d9f62da6751cc8a8452d0d7df96c8374e5e8b8dcf10fd8",
+  "original_download_card_sha256": "35e76a3a634f17ef88fe6130f7efc5ef402a7783999c29ef0816cac1667917d4",
+  "corrected_run_card_sha256": "b88ee402b0f9e7657e74b7a662240723b5d8c94e0c72e02e45be3b9ff917c285",
+  "corrected_download_card_sha256": "4d279ce761c4e040df09a077da5ecb6037606bbb5ff0926ffcb9894dfbc997ab",
+  "proof_sha256": "89e842174df0d1efc24098d9a41742152e273e06ffc22f8b352ac32d675c9dd0",
+  "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "validator": {
+    "checks": {
+      "shared_tools_pinned": true,
+      "local_validator_pass": true,
+      "template_format_pass": true,
+      "valid_mask_inside_footprint": true,
+      "no_nodata_tag": true,
+      "positive_pixels_in_allowed_domain": true,
+      "zip_contains_only_tif": true,
+      "zip_bytes_equal_tif": true,
+      "zip_crc_pass": true,
+      "active_cards_negative": true,
+      "universal_overlap_proof_bound": true
+    },
+    "all_checks_passed": true,
+    "min": 0.0,
+    "max": 1.0,
+    "nan_inside_footprint": 0,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "positive_pixels": 37654,
+    "organizer_acceptance": null,
+    "writer_receipt_provenance": "The inherited receipt under releases/ names an ephemeral -writer.tif, not this saved path. Its byte digest agrees; its source-specific writer call for the saved file cannot be established from that alone."
+  },
+  "registry": {
+    "surface_preplacement": null,
+    "registry_complete": false,
+    "final_dots_forward_overlap_3px": 1.0,
+    "overlap_limit": 0.7,
+    "spearman_full_footprint": 0.05086217425960956,
+    "reason": "Pinned prior has positive support at every allowed cell; all 37,654 dots overlap a prior by the literal rule (1.0 > 0.7). A new SHA is not uniqueness clearance."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_VALIDATED_FOR_THIS_RASTER",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No buffered whole-fault, fold-visible-only experiment, leakage canaries or matched paired 95% CI; former uplift was a projection."
+  },
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_raster_generated_by_this_audit": false,
+  "submission_slots_used_by_this_audit": 0,
+  "witness_measured_utc": "2026-10-24T07:56:17+00:00"
+}

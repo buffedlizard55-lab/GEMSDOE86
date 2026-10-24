@@ -7,11 +7,13 @@ from html.parser import HTMLParser
 import hashlib
 import json
 import re
+import sys
 import zipfile
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 
 class Links(HTMLParser):
@@ -87,12 +89,27 @@ def check(root=ROOT):
                     errors.append(f'ZIP must contain exactly the registered TIFF bytes: {archive.name}')
         except (OSError, zipfile.BadZipFile, KeyError, RuntimeError, NotImplementedError):
             errors.append(f'Missing or invalid candidate ZIP: {archive.name}')
+    # One concurrent file lives in docs/downloads but not the ten-file research
+    # inventory. It gets an exact-path exception ONLY after its independent
+    # negative audit verifies actual TIFF/ZIP bytes, format, proof and cards.
+    from scripts.audit_legacy_tiprelay import REL as TIP_REL, REPORT as TIP_REPORT, check_snapshot as check_tip
+    tip_path = root / TIP_REL
+    separately_audited = set()
+    if root == ROOT or tip_path.is_file() or (root / TIP_REPORT).is_file():
+        try:
+            tip = check_tip(root)
+            if tip['verdict'] != 'negative' or tip['submission_ready'] is not False:
+                raise ValueError('Historic TIPRELAY is not negative')
+            separately_audited = {tip_path.resolve(), tip_path.with_suffix('.zip').resolve()}
+        except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile) as exc:
+            errors.append(f'TIPRELAY published file has no valid negative audit: {exc}')
     for artifact in (root / 'docs').rglob('*'):
         suffix = artifact.suffix.lower()
         if suffix not in {'.tif', '.tiff', '.zip'}:
             continue
-        # Match ZIPs to actual registered .tif OR .tiff partners, not guessed stems.
-        allowed = (artifact.resolve() in registered if suffix != '.zip' else
+        # Match ZIPs to registered files or the exact separately audited file.
+        allowed = (artifact.resolve() in set(registered) | separately_audited if suffix != '.zip' else
+                   artifact.resolve() in separately_audited or
                    any(artifact.resolve() == p.with_suffix('.zip') for p in registered))
         if not allowed:
             errors.append(f'Unregistered downloadable raster/archive: {artifact.relative_to(root)}')
@@ -118,6 +135,15 @@ def check(root=ROOT):
         if ('DO NOT SUBMIT' not in html or 'READY TO DOWNLOAD' in html
                 or 'raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE86/main/submission/' in html):
             errors.append('Legacy SPT page contains an unsafe release claim or direct upload link')
+        if root == ROOT and ('TIPRELAY' not in html or 'DO NOT SUBMIT' not in html):
+            errors.append('Legacy TIPRELAY status is missing from submit page')
+        for public_page in ('docs/index.html', 'docs/executive-summary.html', 'docs/submit.html'):
+            page_file = root / public_page
+            if page_file.is_file():
+                text = page_file.read_text(encoding='utf-8').lower()
+                if any(term in text for term in ('✅ validated', 'submit this file',
+                        'why this file is obviously submittable', 'upload this tiff now')):
+                    errors.append(f'{public_page}: unsafe TIPRELAY promotion wording')
         card_path = root / 'docs/evidence/spt-run-card.json'
         try:
             card = json.loads(card_path.read_text())

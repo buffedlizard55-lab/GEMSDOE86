@@ -9,9 +9,13 @@ literal overlap rule unsatisfiable for every nonempty candidate. Scientific CLIs
 stop before fitting or placement. In particular the inherited PR #60 SPT TIFF/ZIP
 passes local format but **fails literal uniqueness**; its optimistic `docs/submit.html`
 and active run cards were corrected to DO NOT SUBMIT, and `scripts/build_spt.py` is
-retired. Do not relabel an old TIFF as new or claim the unique-TIFF requirement met.
-`scripts/audit_release.py` checks the 10 published research downloads;
-`scripts/audit_legacy_spt.py` checks the additional off-dashboard SPT file.
+retired. PR #63 then added a TIPRELAY TIFF with a green upload claim; it too passes
+format but fails literal uniqueness (forward overlap 1.0) and lacks a compliant
+holdout/CI. The TIPRELAY status and generator are also corrected/retired. Do not
+relabel either TIFF as new or claim the unique-TIFF requirement met.
+`scripts/audit_release.py` checks 10 inventoried research downloads plus the
+separately byte-pinned TIPRELAY file via `scripts/audit_legacy_tiprelay.py`;
+`scripts/audit_legacy_spt.py` checks the off-dashboard SPT file.
 Current scientific correction: `research/SESSION_20261024_SPT_CORRECTION.md`.
 
 ---
