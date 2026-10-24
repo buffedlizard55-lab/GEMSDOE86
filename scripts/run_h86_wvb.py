@@ -46,6 +46,10 @@ ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "vendor"
 if str(VENDOR) not in sys.path:
     sys.path.insert(0, str(VENDOR))
+if "gems57" in sys.modules and hasattr(sys.modules["gems57"], "__path__"):
+    _vg = str(VENDOR / "gems57")
+    if _vg not in sys.modules["gems57"].__path__:
+        sys.modules["gems57"].__path__.append(_vg)
 
 from gems57 import (  # noqa: E402
     anatomy as AN,
