@@ -276,7 +276,7 @@ Full mechanism cards & PR #37 forensic audit: `evidence/concentration-5km-mechan
 
 # CONCENTRATION down-dose ladder — 2026-10-23 (second CONCENTRATION session, `arena/4822aa3b-gemsdoe86`)
 
-> **Post-merge reconciliation (IR-86-CONC-15).** The concurrent PR #50 session independently built the same
+> **Post-merge reconciliation (IR-86-CONC-17).** The concurrent PR #50 session independently built the same
 > down-mechanism ladder (`cvband-down3/5/6` + random-credit control) and merged first. This session's `down6`
 > is **byte-identical** to PR #50's `conc6` (`1ed78e0f…`) and is carried as `BUILT-DUPLICATE`; its ledger row
 > here is a reproducibility witness, not a slot candidate. The two rungs unique to this session are `down2`

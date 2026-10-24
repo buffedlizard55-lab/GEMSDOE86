@@ -800,7 +800,8 @@ different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and 
 grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
 rather than the 6-cell design with basin.
 
-## IR-86-CONC-15 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
+<<<<<<< HEAD
+## IR-86-CONC-17 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
 
 **Observed.** This session (`arena/4822aa3b-gemsdoe86`, PR #55) and the concurrent PR #50 session
 (`arena/60ecf1c8`) both self-assigned CONCENTRATION, both extended the `b5km-cvband-down4` dose
@@ -826,3 +827,35 @@ per rev. D). No slot was spent; the exact-hash duplicate is kept in the ledger r
 because two independent byte-identical builds is evidence the down-mechanism dose ladder is
 reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, axis, value)".
 
+=======
+## IR-86-CONC-15 — the SGMC-extra instrument rewards *outward movement* for CONCENTRATION arms, not lineaments
+
+**Observed.** The SGMC surrogate's truth is `SGMC − catalogue`, so a dot in the mapped-fault collar can
+never earn credit there, while the organiser states new truth *can* lie within 300 m of a known trace —
+and R0 is built almost entirely of such dots. Measured on this session's three arms
+(`evidence/concentration_surfext_axis_20261023.json` → `instrument_confound`): `surfext10`'s added mass
+sits **21.7 px** from SGMC-extra truth versus **22.6 px** for the mass it removed (the treatment moved
+mass *toward* SGMC truth) yet beats its matched control by only **+0.0012 MODEL**; the control moved
+mass *away* (22.8 px) and still scored **+0.0047 MODEL** in 4/4 quadrants. The fold-fair PROXY is biased
+the opposite way, since it can only reward mass near *withheld catalogue* traces — exactly what surface
+extension gives up (`−0.00003` treatment vs `−0.0008` control).
+**Decision.** CONCENTRATION MODEL deltas are not compared across arms with different
+catalogue-distance profiles; every arm is read against a matched control, never against zero, and a
+positive SGMC delta alone is not evidence of lineament knowledge. This is the same instrument failure
+mode already recorded for RELIEF (`IR-86-RELIEF-04`) and for the CV band (`IR-86-CONC-13`).
+
+## IR-86-CONC-16 — R0 is saturated on its own evidence surface; the headroom is *off* that surface
+
+**Observed.** Confirms and localises `IR-86-CONC-12`'s ≈6.4 % capacity cap. Measured on the pinned
+inputs before any candidate was built: all 37,654 R0 dots lie on the `H19-5` ancestor surface, and under
+the parent's own constraints (`> 3.0 px` from the catalogue, `>= 2.8284 px` from every dot) only **90**
+legal free cells remain on that surface — the merged cvband rule's within-surface destination capacity
+is ~2,400 dots. `H19-4 | H16-1` minus `H19-5` is 35,954 px of near-equal owner-reported quality
+(`0.1894` / `0.1855` vs `0.1922`, all CLAIM) carrying **zero** parent mass, with 8,671 legal free cells
+(6,456 placeable greedily).
+**Decision.** Future CONCENTRATION/SPACING sessions must state the free-slot count before building;
+within-surface reallocation is treated as closed, and the open headroom is surface extension
+(`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
+`EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
+0.000…+0.003, below the evidence floor).
+>>>>>>> origin/main
