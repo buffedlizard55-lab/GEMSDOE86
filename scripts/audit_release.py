@@ -135,6 +135,22 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["value"], "ci95": h["ci95"],
                 "design": "buffered whole components; two seeds; physical-block bootstrap",
                 "caveat": "Archived pipeline evidence only; not recomputed in this audit, not a private-test score."}
+    if kind == "h86e_spbt":
+        # Our new candidate's holdout is directly in context's holdout_dti structure, not nested
+        # It was built via g57.holdout.build_holdout seeds 20,21, whole segments
+        # We have already recorded its value as 0.0 with no CI (negative)
+        # Use the context's holdout_dti.value_all
+        v = context.get("holdout_dti", {})
+        # Support both flat and nested
+        if "value_all" in v:
+            return {**base, "withheld_positives": v.get("withheld_positives_all", 22641),
+                    "value": v.get("value_all", 0.0), "ci95": v.get("ci95_all", [0.0, 0.0]),
+                    "design": v.get("design", "whole segments, 4 quadrants, 12px erosion, 20% hide"),
+                    "caveat": "H86E-SPBT relay step-over: pooled whole-component hide-and-recover (seeds 20,21) DTI 0.0, not beating H33 (0.004) or CTHB (0.113); catalogue-recovery proxy only, not organizer score"}
+        return {**base, "withheld_positives": h["withheld_positives"],
+                "value": h["value"], "ci95": h["ci95"],
+                "design": "buffered whole components; two seeds; physical-block bootstrap",
+                "caveat": "Archived pipeline evidence only; not recomputed in this audit, not a private-test score."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

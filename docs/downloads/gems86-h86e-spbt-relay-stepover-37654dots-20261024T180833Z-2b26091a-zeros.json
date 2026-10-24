@@ -1,0 +1,14 @@
+{
+  "file": "gems86-h86e-spbt-relay-stepover-37654dots-20261024T180833Z-2b26091a-zeros.tif",
+  "bytes": 144275,
+  "sha256": "2b26091af4bd72892396793ca0215c78cfe746ceebe756e222223270b45dc32f",
+  "zip_sha256": "777dad275a04880131c3c02ce3c61499f8da02f0345e38eb94e394948480df8b",
+  "submission_name": "gems86-h86e-spbt-relay-stepover-37654dots-20261024T180833Z-2b26091a-zeros",
+  "note": "H86E-SPBT relay step-over x basement-gravity concordance 37654 dots d>2px zeros [0,1] HOLDOUT-DTI pooled-hide-v2",
+  "note_chars": 112,
+  "zip_file": "gems86-h86e-spbt-relay-stepover-37654dots-20261024T180833Z-2b26091a-zeros.zip",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval"
+}

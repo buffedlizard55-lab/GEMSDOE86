@@ -60,6 +60,12 @@
       "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-spbt-relay-stepover-37654dots-20261024T180833Z-2b26091a-zeros.tif",
+      "sha256": "2b26091af4bd72892396793ca0215c78cfe746ceebe756e222223270b45dc32f",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

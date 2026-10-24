@@ -1,0 +1,138 @@
+{
+  "schema": "gems86.session-negative.v1",
+  "date_utc": "2026-10-24",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013gravity concordance under low-relief alluvial cover + relay step-over corridor (178 intrabasin relay pairs, 0.45 relay weight, 0.55 distance-moderated off-catalogue, 37654 dots)",
+  "mechanism": "178 subparallel fault pairs (5-25 px separation, <30deg strike difference, overlapping along-strike) define relay corridors via antisymmetric basement depth (Band15) and gravity (Band13) polarity; corridors are fused with distance-moderated off-catalogue potential (peak 25px) and emitted via 3x3 tiled decimation + budget 37654 at >2px catalogue collar, targeting blind intrabasin step-overs erased by Holocene basin fill",
+  "named_non_fault_process": "Unfaulted erosional paleovalley walls and Lake Lahontan/Bonneville wave-cut strandlines at constant elevation, plus unfaulted caldera moats that produce parallel negative magnetic/gravity steps without Quaternary throw",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57.holdout.build_holdout (whole segments, 3px buffer, 12px domain erosion, seeds 20,21, alpha 0.2 beta 0.8 R=300m triangular)",
+    "withheld_positives_all": 22641,
+    "withheld_positives_detached": 22619,
+    "value_all": 0,
+    "ci95_all": [
+      0,
+      0
+    ],
+    "value_detached": 0,
+    "ci95_detached": [
+      0,
+      0
+    ],
+    "design": "whole 8-connected catalogue components, 4 quadrants (NW/NE/SW/SE) at median footprint, 12px boundary erosion, 20% hide fraction per fold, visible-only catalogue, pixel-exact masking, pooled DTI",
+    "control_comparison": {
+      "h33_h33_2_b2_all": 0.00438,
+      "h33_h33_2_b2_detached": 0.00507,
+      "gmc_offcat_all": 0,
+      "paired_delta_vs_h33_all": -0.00438,
+      "verdict_vs_best": "negative: does not beat H33 on this primary instrument; H86D-CTHB buffered whole-component LOQO 0.1133 [0.0965,0.1297] remains the strongest rerunnable holdout in repo"
+    },
+    "caveat": "Not the organizer-confirmed competition score; catalogue-recovery proxy only. Truth is new expert-mapped faults absent from catalogue, not withheld catalogue segments"
+  },
+  "leakage_canary": {
+    "features_tested": 1,
+    "feature": "catalogue-geometry relay heat (no radiometric/magnetic features)",
+    "auc_max": 0.52,
+    "threshold": 0.9,
+    "any_leakage": false,
+    "note": "No external GeoDAWN/radiometric/MT/LiDAR features used; geometry derived strictly from visible faults per fold, so canary AUC is near 0.5 (non-informative, not leaky)"
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 35,
+    "rasters_expected": 35,
+    "complete_accessible_scan": false,
+    "scope": "35 locally-available dot-field rasters (docs/downloads + data/scored_fleet); dense continuous witness 17GEMSDOE (ab0a0a62...) and lattice 13GEMSDOE (b4570b40...) not in local scored_fleet but cause universal literal overlap",
+    "preplacement_surface": {
+      "worst_spearman": 0.000698,
+      "worst_overlap": 0.4691,
+      "duplicate": false
+    },
+    "final_dots": {
+      "worst_spearman_full_footprint": 0.000698,
+      "worst_spearman_submission": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "worst_forward_overlap_3px": 0.4691,
+      "worst_overlap_submission": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "worst_jaccard": 0.00548,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": false,
+      "duplicate": false,
+      "literal_reading": {
+        "forward_overlap_firings": 0,
+        "rho_firings": 0,
+        "duplicate": false,
+        "note": "Without dense witness, 0 literal firings; with 17GEMSDOE dense witness (100% allowed coverage) literal fires on every nonempty candidate, forcing STOP_LITERAL_OVERLAP_UNSATISFIABLE"
+      },
+      "like_for_like_reading": {
+        "dot_field_rasters": 35,
+        "continuous_surface_rasters": 0,
+        "forward_overlap_firings": 0,
+        "duplicate": false,
+        "note": "35 dot fields only, same thresholds, 0 firings; scientifically meaningful reading"
+      }
+    },
+    "registry_sha256": "e8597b4f527c5935460202735d5b021b3fb587a3c0d3e3682e41ec5835924ddb",
+    "status": "UNIQUE_UNDER_LIKE_FOR_LIKE_BUT_LITERAL_BLOCKED_BY_DENSE_WITNESS"
+  },
+  "raster_sha256": "2b26091af4bd72892396793ca0215c78cfe746ceebe756e222223270b45dc32f",
+  "raster_bytes": 144275,
+  "validator_output": {
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true,
+      "template_format_report_passed": true
+    },
+    "min": 0,
+    "max": 1,
+    "n_nan": 0,
+    "n_inf": 0,
+    "emitted_dots": 37654,
+    "outside_footprint_positive": 0,
+    "on_catalogue_positive": 0,
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100,
+        0,
+        243350,
+        0,
+        -100,
+        4508550
+      ],
+      "profile_compress": "deflate"
+    }
+  },
+  "submission_name": "gems86-h86e-spbt-relay-stepover-37654dots-20261024T180833Z-2b26091a-zeros",
+  "note": "H86E-SPBT relay step-over x basement-gravity concordance 37654 dots d>2px zeros [0,1] HOLDOUT-DTI pooled-hide-v2",
+  "note_chars": 112,
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": true,
+  "experiments_run": 1,
+  "submission_slots_used": 0,
+  "requirement_unmet": "Literal registry gate remains unsatisfiable due to 17GEMSDOE 100%-coverage dense witness and 13GEMSDOE 99.87%-coverage lattice; candidate is unique under scientifically meaningful like-for-like (35 dot fields, 0 firings) and format-valid, but not cleared for weekly slot until upstream protocol is made saturation-aware"
+}
