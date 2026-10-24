@@ -75,3 +75,9 @@ After the initial review, `origin/main` advanced with a concurrent SWCON TIFF an
 The main-branch generator originally asserted it could bypass the mandatory preflight because it did no fitting. That is not permitted: surface construction/placement is itself stopped by the supplied protocol. I added `require_feasible()` before grid loading/surface construction and a regression test ensuring an early stop. The already-generated TIFF remains in the registered site inventory as **audit-only / DO NOT SUBMIT**, not an approved file. The previously generated SWCON TIFF remains quarantined outside the Pages inventory.
 
 The H33 values and fleet/leaderboard claims remain unverified except for their classifications in owner-supplied records. The exact H33 collar relationship is raster forensics, not a controlled causal comparison. No new lane, holdout, canary, or submission slot was used during this integration.
+
+## PR #79 reconciliation
+
+The next `origin/main` advance removed the quarantined SWCON TIFF/ZIP/receipt and its negative landing page to clean unlinked binaries. This checkout no longer contains the SWCON raster; its SHA, registry failure, historical holdout caveat, and negative conclusion remain in this report, the retained negative run card, and `docs/evidence/swcon-protocol-review.json`. The card now records that the historical raster bytes were removed. It was never publicly linked after quarantine, and removal does not turn it into a candidate or clear it for upload. The H86E-faulthalo raster remains the sole newer audit-only TIFF in the downloads inventory and is still **DO NOT SUBMIT**.
+
+The merge retained mandatory early `require_feasible()` calls in both the SWCON and Faulthalo builders, with regressions confirming they stop before grid loading. The 11-artifact release audit and generated site continue to show a negative verdict; this integration adds no experiment, score, or slot use.

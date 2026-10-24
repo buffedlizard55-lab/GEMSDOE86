@@ -2,26 +2,37 @@
 
 ## Current decision — 2026-10-24: DO NOT SUBMIT
 
-**No TIFF presently satisfies the full literal uniqueness, validation, and scientific promotion gates.** This session generated no new file. A concurrent-main change added a SWCON candidate (`gems86-swcon-e3-37654dots-20261024-zeros.tif`) and a page that called it “OK TO SUBMIT”; that clearance was measured only against the local dotted subset. The disclosed SHA-pinned continuous full-support witness covers every allowed pixel, so the candidate has literal forward overlap 1.0, greater than the required 0.70. The registry remains incomplete. Under the standing protocol, it is a duplicate stop—not cleared for competition upload. The promotional label is not supported by the complete gate and has been superseded here by a negative review.
+The full literal uniqueness gate still blocks every nonempty candidate: the pinned full-support witness forces forward overlap 1.0 against a 0.70 limit. The registry scan remains incomplete, so this establishes a stop, not global uniqueness. No organizer-confirmed score exists and no weekly slot was used.
 
-The SWCON run card's **HOLDOUT-DTI** is 0.00746 (gems57 binary DTI, alpha 0.2, beta 0.8, 300 m triangular kernel / 3 px, pooled four-quadrant whole-component folds; 60,988 withheld positives; 95% CI not computed). It is explicitly a comparative proxy, not a live score, and does not establish that the candidate beats a comparable current best. The only canary reported was for the combined consensus surface; per-input feature canaries and complete registry clearance are not established.
+H86E-faulthalo is retained as an **audit-only** format-valid artifact: [run card](docs/evidence/h86-faulthalo-run-card.json), SHA-256 `8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b`. It fails with **REGISTRY-MEASUREMENT** forward overlap 1.0 (>0.70), has no HOLDOUT-DTI result or single-feature canary, and is **DO NOT SUBMIT**. The public page permits audit download only. Its generator now stops at mandatory protocol preflight before grid loading or placement.
 
-A second concurrent-main candidate, H86E-faulthalo (`gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif`), is published **for audit only** with **DO NOT SUBMIT** status. Its own run card reports **REGISTRY-MEASUREMENT** rank correlation 0.218 (below 0.90) but forward overlap 1.0 (above 0.70) against the full-support witness, so it fails the literal gate; it has no HOLDOUT-DTI result and no leakage canary. The generator lacked the mandatory preflight when it created the historical artifact; the builder has now been fixed to stop before loading data or placing a surface.
+The SWCON candidate remains a **negative historical result**, not a submit-ready raster. PR #79 removed its TIFF/ZIP/receipt and dedicated page from this checkout. The [negative run card](docs/evidence/swcon-run-card.json), [protocol review](docs/evidence/swcon-protocol-review.json), and [review record](research/SESSION_20261024_ARENA_RECHECK.md) preserve its SHA and failure analysis; the card records that quarantined raster bytes were removed. It was never publicly linked after quarantine, and removal does not turn it into a candidate or clear it for upload. No SWCON TIFF is currently offered for download.
 
-**ORGANIZER-CONFIRMED** score: none. No weekly submission slot should be spent.
+All 11 currently registered download artifacts remain **DO NOT SUBMIT**. Local format validity is not uniqueness clearance, holdout evidence, or organizer acceptance. Read the current [release audit](docs/evidence/release-readiness.json), [registry measurement](docs/evidence/all-artifacts-registry.json), and [negative review card](docs/evidence/latest-review-run-card.json) for the machine-readable verdict.
 
-- [This session’s three-pass repository review](research/SESSION_20261024_ARENA_RECHECK.md): no candidate created; preflight, artifact audits, and limitations.
-- [Concurrent SWCON experiment note](research/SWCON_20261024.md) and [run card](docs/evidence/swcon-run-card.json): inspect the candidate and its caveat; its original `promote` flag is superseded by the full literal witness review. The raster is quarantined, not a download for competition upload.
-- [H86E-faulthalo run card](docs/evidence/h86-faulthalo-run-card.json): registered audit artifact only; format-valid, overlap blocker 1.0, no holdout or canary, **DO NOT SUBMIT**. The generator now stops at shared preflight.
-- [Latest negative review card](docs/evidence/latest-review-run-card.json), [release-readiness audit](docs/evidence/release-readiness.json), and [registry report](docs/evidence/all-artifacts-registry.json): local format validity is distinct from uniqueness and approval.
-- The older score `0.2778` and competing `0.3195` / `0.4413` values are **OWNER-REPORTED**, not organizer receipts. H33’s collar-pruning relationship is an evidence-backed forensic observation; its causal effect on the claimed live score is unproven. See [the H33 analysis](research/SESSION_20261024_REVIEW.md).
-- [Prior independent review](research/SESSION_20261024_F2817423.md) and [parallel-session review](research/SESSION_20261024_647E6683.md) preserve distinct scoped outcomes. Do not conflate any session’s report with a submission receipt.
+## Parallel-session review on main — 2026-10-24 (647e6683)
 
-**Downloads:** the official-format guide is in [the executive summary](docs/executive-summary.html). Any file marked audit-only or `DO NOT SUBMIT` must not be uploaded. The SWCON candidate is locally format-valid, but is **not authorized** under the current all-registry uniqueness rule. Current public competition state, authenticated weekly quota, and organizer acceptance were not checked.
+**DO NOT SUBMIT — no new unique TIFF generated (in that session).** [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
 
-**At the start of every session, read `PROMPT.md`, this README, and `research/REQUEST_20261024.md`.** User-provided scores/access claims remain unverified. Do not bypass shared protocol stops, change thresholds, or convert an incomplete registry check into a clearance.
+[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
-[Earlier independent review](research/SESSION_20261024_INDEPENDENT_RECHECK.md) documents prior negative audit work; [latest session audit](research/SESSION_20261024_F2817423.md) records the merge follow-up. Full 92-project feed and source links remain in the site.
+
+## Latest review — 2026-10-24: DO NOT SUBMIT
+
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
+[Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
+
+[Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
+
+[Earlier d50d503b three-pass review](research/SESSION_20261024_D50D503B.md) and [download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md) document prior fixes and review history. Current fresh remeasurement: [all-artifact registry report](docs/evidence/all-artifacts-registry.json), [release readiness](docs/evidence/release-readiness.json), and [current negative run card](docs/evidence/latest-review-run-card.json). The registry scan is intentionally reported as incomplete: one pinned full-support witness is enough to reject, never to clear, a candidate.
+
+**No new unique submission TIFF was generated; that requirement remains unmet.** Every historical GeoTIFF remains an audit-only download. The website states this at the top of [Downloads](docs/index.html) and the [submission guide](docs/executive-summary.html); none is OK to submit. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+
+- [H33 analysis, ranked candidate hypotheses, and previous three-pass review](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- The previous review repaired **37 CLI builder/feature/pipeline commands and eight imported orchestration entrypoints** that could bypass mandatory preflight, and revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`). `--no-write` / `--measure` is not a protocol exemption. Read-only artifact audits remain available.
+- The **92-project fleet feed** and its **113 owner-reported score entries** remain sourced to repository snapshots; there are **0 organizer submission receipts** in the ledger. User-provided score and access claims are not treated as verified competition results.
+- **Read `PROMPT.md`, this README, and the complete 2026-10-24 request archive below at the start of every session.** The archived request retains the goals; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not upload authorization.
 
 
 <!-- CURRENT_STATE_START -->
@@ -148,7 +159,7 @@ python3 -m venv .venv
 
 The restorer obtains hash-pinned owner mirrors and a historical comparison witness through GitHub. This is **not** organizer-authenticated data acquisition, not the actual shared feature cache, and not a new prediction. Large data and caches remain ignored. `requirements-lock.txt` records the tested environment; `requirements.txt` is the broader compatibility specification.
 
-`make submission` and every scientific CLI remain blocked by the literal preflight. Concurrent FVMB work added a `download_competition_data.sh` mirror-restoration wrapper and `prepare_h86_fvmb_data.py`; the quoted `prepare_data.py` still does not exist. The new cache-builder/pipeline CLIs are also now blocked before construction or fitting; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
+`make submission` and every scientific CLI remain blocked by the literal preflight. `download_competition_data.sh` and `scripts/prepare_data.py` are implemented and verified against the restored competition grid (auditing EPSG:32611, 3730x3292 shape, 100 m transform, footprint valid pixels, and writing `data/prepared_manifest.json`). The candidate-builder/pipeline CLIs remain safely blocked before construction or fitting under the literal preflight; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
 
 ## Verification and deployment scope
 

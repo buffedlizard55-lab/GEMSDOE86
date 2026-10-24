@@ -1,0 +1,38 @@
+"""Test scripts/prepare_data.py under normal and edge conditions."""
+import json
+from pathlib import Path
+import tempfile
+import unittest
+
+import numpy as np
+import rasterio
+from rasterio.transform import Affine
+
+ROOT = Path(__file__).resolve().parents[1]
+from scripts import prepare_data
+
+
+class PrepareDataTests(unittest.TestCase):
+    def test_prepare_data_on_restored_inputs(self):
+        """When bridge files exist, prepare_data should succeed and write manifest."""
+        manifest = prepare_data.prepare()
+        self.assertEqual(manifest["schema_version"], 1)
+        self.assertEqual(manifest["grid"]["epsg"], 32611)
+        self.assertEqual(manifest["grid"]["height"], 3730)
+        self.assertEqual(manifest["grid"]["width"], 3292)
+        self.assertEqual(manifest["counts"]["footprint_valid_pixels"], 5167373)
+        self.assertEqual(manifest["counts"]["positive_catalogue_label_pixels"], 60988)
+
+        manifest_path = ROOT / "data" / "prepared_manifest.json"
+        self.assertTrue(manifest_path.is_file())
+        saved = json.loads(manifest_path.read_text())
+        self.assertEqual(saved["counts"]["footprint_valid_pixels"], 5167373)
+
+    def test_missing_files_raises_filenotfound(self):
+        with tempfile.TemporaryDirectory() as empty_dir:
+            with self.assertRaises(FileNotFoundError):
+                prepare_data.prepare(data_dir=Path(empty_dir))
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -179,17 +179,25 @@ class PublicationTests(unittest.TestCase):
                             'Guarantees zero'):
             self.assertNotIn(unsupported, pages)
 
-    def test_swcon_candidate_page_is_negative_and_has_no_tiff_download_link(self):
-        page = (ROOT / 'docs/swcon-submission.html').read_text()
-        self.assertIn('DO NOT SUBMIT', page)
-        self.assertIn('0.70 limit', page)
-        self.assertIn('superseded', page)
-        self.assertNotIn('OK TO DOWNLOAD AND SUBMIT', page)
-        parser = Links(); parser.feed(page)
-        self.assertFalse(any(url.lower().endswith(('.tif', '.tiff', '.zip')) for url in parser.urls))
+    def test_swcon_candidate_is_negative_and_absent_from_public_downloads(self):
+        # PR #79 removed the quarantined binary and dedicated page; retain the
+        # negative forensic record without exposing stale TIFF/ZIP links.
+        self.assertFalse((ROOT / 'docs/swcon-submission.html').exists())
+        self.assertFalse((ROOT / 'docs/downloads/gems86-swcon-e3-37654dots-20261024-zeros.tif').exists())
+        self.assertFalse((ROOT / 'docs/downloads/gems86-swcon-e3-37654dots-20261024-zeros.zip').exists())
         audit = json.loads((ROOT / 'docs/evidence/swcon-protocol-review.json').read_text())
         self.assertEqual(audit['verdict'], 'negative')
         self.assertFalse(audit['submission_ready'])
+        self.assertFalse(audit['approved_for_weekly_slot'])
+        self.assertEqual(audit['literal_registry_result']['result'], 'FAIL_STOP')
+        self.assertEqual(audit['candidate_location_status'], 'REMOVED_FROM_CHECKOUT_AFTER_QUARANTINE')
+        card = json.loads((ROOT / 'docs/evidence/swcon-run-card.json').read_text())
+        self.assertEqual(card['verdict'], 'negative')
+        self.assertFalse(card['safe_to_submit'])
+        self.assertFalse(card['approved_for_weekly_slot'])
+        self.assertIsNone(audit['candidate_file'])
+        pages = '\n'.join(path.read_text() for path in (ROOT / 'docs').glob('*.html'))
+        self.assertNotIn('gems86-swcon-e3-37654dots-20261024-zeros.tif', pages)
 
     def test_h86b_cannot_bypass_preflight(self):
         from scripts.run_lane86b import main
