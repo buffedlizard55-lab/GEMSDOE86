@@ -33,6 +33,15 @@ def validate() -> dict:
         and recorded['final_worst_spearman'] == uniq['worst_spearman_full_footprint'])
     checks['readiness_respects_shared_stop'] = bool(not uniq['stop_required'] or (
         card['verdict'] == 'negative' and not card['submission_ready'] and not card['approved_for_weekly_slot']))
+    # A missing/incomplete scan is not clearance, even if stop_required is false.
+    # This is necessary evidence only: a complete unique scan cannot by itself
+    # establish a holdout improvement or authorize the separate slot selector.
+    claims_promotion = (card['verdict'] == 'promote' or card['submission_ready']
+                        or card['approved_for_weekly_slot'])
+    checks['readiness_requires_complete_unique_scan'] = bool(not claims_promotion or (
+        uniq.get('unique') is True
+        and uniq.get('complete_accessible_scan') is True
+        and uniq.get('stop_required') is False))
     with rasterio.open(tif) as ds:
         a = ds.read(1)
         checks["single_band_float32"] = ds.count == 1 and ds.dtypes == ("float32",)
