@@ -20,18 +20,38 @@ def test_full_current_request_is_embedded_without_changing_earlier_archive():
 
 def test_every_named_current_project_and_reported_submission_is_traceable():
     prompt = (ROOT / "research/REQUEST_20261024.md").read_text()
+    prompt_urls = set(re.findall(r"https://buffedlizard55-lab\.github\.io/[^\s]+", prompt))
     named = set(re.findall(r"https://buffedlizard55-lab\.github\.io/([^/\s]+)/", prompt))
     targets = strict_json(ROOT / "registry/site_targets.json")["sites"]
     assert len(targets) == 92
     assert named == {t["repository"].split("/")[-1] for t in targets}
+    assert prompt_urls == {t["site_url"] for t in targets}
     with (ROOT / "registry/prior_scores.csv").open(newline="") as stream:
         ledger = list(csv.DictReader(stream))
+    assert prompt_urls == {r["source_url"] for r in ledger}
     scored = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", prompt, re.M)
+    unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
     assert sum(1 for r in ledger if r["score"]) == 113
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
+    assert set(unscored_named) == {
+        "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+        "gems90-cnc-35000dots-20261024T084324Z",
+    }
+    assert all((name, "") in registered for name in unscored_named)
+    for row in ledger:
+        if row["submission"] in unscored_named:
+            assert row["score"] == ""
+            assert row["evidence_class"].startswith("PROMPT-NAMED UNSCORED")
+    with (ROOT / "ledger/submissions.csv").open(newline="") as stream:
+        canonical_ledger = list(csv.DictReader(stream))
+    canonical_by_name = {r["name"]: r for r in canonical_ledger}
+    for name in unscored_named:
+        assert name in canonical_by_name
+        assert canonical_by_name[name]["score"] == ""
+        assert canonical_by_name[name]["evidence_class"] == "NO-EVIDENCE"
 
 
 def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_training():
@@ -60,6 +80,9 @@ def test_current_review_and_readme_deliverable_links_exist():
 
 def test_current_session_card_is_complete_negative_and_not_presented_as_a_download():
     card = strict_json(ROOT / "docs/evidence/session-20261024-run-card.json")
+    hypotheses = strict_json(ROOT / "registry/h86c_hypotheses.json")["hypotheses"]
+    assert card["hypothesis"].startswith(f"{hypotheses[0]['id']}: ")
+    assert "H86C-MMT" not in card["hypothesis"]
     assert card["verdict"] == "negative"
     assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"

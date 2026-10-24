@@ -127,3 +127,25 @@ def test_site_rejects_optimistic_spt_witness_audit(tmp_path, monkeypatch):
     path.write_text(json.dumps(audit))
     with pytest.raises(ValueError, match="SPT candidate is stale or violates"):
         build_site.render(tmp_path)
+
+
+def test_prompt_named_unscored_audit_and_official_rules_citation_are_verified():
+    audit = audit_release.strict_json(ROOT / "docs/evidence/prompt-named-unscored-audit-20261024.json")
+    assert audit["schema"] == "gems86.prompt-named-unscored-audit.v1"
+    assert audit["evidence_class"] == "REGISTRY-MEASUREMENT"
+    assert audit["checker_pin"]["gems57_code_changed_since_pin"] is False
+    by_site = {a["site"]: a for a in audit["artifacts"]}
+    assert set(by_site) == {"GEMSDOE89", "GEMSDOE90"}
+    assert by_site["GEMSDOE89"]["prompt_submission_name"] == "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros"
+    assert by_site["GEMSDOE90"]["prompt_submission_name"] == "gems90-cnc-35000dots-20261024T084324Z"
+    for item in by_site.values():
+        assert item["prompt_score"] is None
+        assert item["organizer_confirmed_score"] is False
+        assert item["format_all_checks_passed"] is True
+        assert item["forward_overlap_3px_vs_17GEMSDOE"] == 1.0
+        assert item["forward_overlap_3px_vs_13GEMSDOE_binary"] > 0.70
+        assert item["unique_under_literal_protocol"] is False
+        assert item["stop_required"] is True
+    exec_html = (ROOT / "docs/executive-summary.html").read_text()
+    assert "Official Rules §1.1 &amp; §3.4–3.6" in exec_html
+    assert "Official Rules §5–6" not in exec_html
