@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-24T18:45:02+00:00",
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "total_cells": 12279160,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "pixel_size_m": [
+      100.0,
+      100.0
+    ]
+  },
+  "counts": {
+    "footprint_valid_pixels": 5167373,
+    "outside_footprint_pixels": 7111787,
+    "positive_catalogue_label_pixels": 60988,
+    "negative_in_footprint_pixels": 5106385,
+    "has_features": false,
+    "total_sentinel_band_pixels_inside_footprint": 0,
+    "unique_footprint_pixels_with_any_sentinel": 0
+  },
+  "source_paths": {
+    "sample_submission": "data/sample_submission.tif",
+    "existing_faults": "data/existing_faults.tif",
+    "training_features": null
+  },
+  "source_hashes": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "bands": []
+}
