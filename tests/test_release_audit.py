@@ -36,7 +36,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_all_remain_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 10
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 12  # 10 inherited + faulthalo + H86E
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -152,7 +152,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 10
+    assert len(card["inherited_artifacts"]["files"]) == 12  # 10 inherited + faulthalo + H86E
 
 
 def test_h86b_imported_call_has_no_preflight_bypass(monkeypatch):

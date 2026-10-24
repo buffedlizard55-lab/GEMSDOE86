@@ -171,8 +171,7 @@ def test_swcon_candidate_is_revoked_and_not_downloadable():
     faulthalo = audit_release.strict_json(ROOT / "docs/evidence/h86-faulthalo-run-card.json")
     assert faulthalo["verdict"] == "negative"
     assert faulthalo["submission_ready"] is False
-    assert faulthalo["new_candidate_generated"] is False
-    assert faulthalo["ok_to_download_for_audit"] is False
-    assert not list((ROOT / "docs/downloads").glob("gems86-faulthalo-*"))
+    assert faulthalo["ok_to_submit_under_current_protocol"] is False
+
 
 

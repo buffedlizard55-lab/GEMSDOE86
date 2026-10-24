@@ -1,8 +1,20 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Parallel-session review on main — 2026-10-24 (`dcbb8404` & `647e6683`)
+## Latest session — 2026-10-24 H86E & parallel review (`dcbb8404` & `647e6683`): automated verdict 🔴 DO NOT SUBMIT
 
-**DO NOT SUBMIT — no new unique TIFF is authorized (`verdict: "negative"`).** Concurrent PR #77 (`SWCON`, `510fdb6`, `sha256: 5576b15c...`) and PR #80 (`FAULTHALO`, `3c98290`, `sha256: 8a66c57c...`) were forensically audited and revoked (`IR-86-SWCON-01`: `100.0%` forward 3-px overlap vs `17GEMSDOE`, **`99.78%` (`37,570 / 37,654 > 70%`)** vs discrete binary dotted `13GEMSDOE`, below-chance canary `AUC = 0.4046`, missing `ci95 = null`, `HOLDOUT-DTI = 0.00746`; `IR-86-FAULTHALO-01`: bypassed `protocol_preflight.require_feasible()` to emit `4,210,938` cells with `99.88%` overlap vs binary `13GEMSDOE` and `100.0%` vs `17GEMSDOE`, zero geological bands, `HOLDOUT-DTI = NOT_RUN`). [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
+[H86E session report](research/H86E_SESSION_20261024.md): under the owner's explicit
+generate-and-auto-validate mandate (IR-86-H86E-01), a byte-unique, format-valid
+GeoTIFF was generated — `docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif`
+(sha256 `c26ebb29…`, 44,090 dots, registered in the 12-artifact audit-only inventory). **Do not upload it.** Its automated gates
+([run card](docs/evidence/h86e-run-card.json)) fail G4 (HOLDOUT-DTI 0.1037 < KSLB
+0.1241 on the identical instrument), G5 (SGMC auxiliary proxy 0.0718 < h33 0.0929)
+and G6 (85.4% dot overlap vs the GMC catalogue-halo control, plus 100% vs `17GEMSDOE`). The preregistered
+signed paired-throw hypothesis (SPBT) was run and **falsified** (HOLDOUT-DTI 0.0310
+vs spaced random 0.0333; SGMC proxy 0.0144). No weekly slot was used; no leaderboard
+improvement is claimed; every score-like number remains labelled HOLDOUT-DTI /
+AUXILIARY-PROXY / OWNER-REPORTED.
+
+**Parallel-session review (`dcbb8404` & `647e6683`):** Concurrent PR #77 (`SWCON`, `510fdb6`, `sha256: 5576b15c...`) and PR #80 (`FAULTHALO`, `3c98290`, `sha256: 8a66c57c...`) were forensically audited (`IR-86-SWCON-01`: `100.0%` forward 3-px overlap vs `17GEMSDOE`, **`99.78%` (`37,570 / 37,654 > 70%`)** vs discrete binary dotted `13GEMSDOE`, below-chance canary `AUC = 0.4046`, missing `ci95 = null`, `HOLDOUT-DTI = 0.00746`; `IR-86-FAULTHALO-01`: `99.88%` overlap vs binary `13GEMSDOE` and `100.0%` vs `17GEMSDOE`, zero geological bands, `HOLDOUT-DTI = NOT_RUN`, preserved only as `DO NOT SUBMIT` audit record). [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
 
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
@@ -20,9 +32,9 @@
 **No new unique submission TIFF was generated; that requirement remains unmet.** Every historical GeoTIFF remains an audit-only download. The website states this at the top of [Downloads](docs/index.html) and the [submission guide](docs/executive-summary.html); none is OK to submit. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
 
 - [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [PR #77 SWCON revocation card](docs/evidence/swcon-run-card.json) · [PR #80 FAULTHALO revocation card](docs/evidence/h86-faulthalo-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
-- Repaired **39 CLI builder/feature/pipeline commands (including `build_gems86_swcon`, `generate_unique_submission`, `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, and **revoked concurrent PR #60 (`IR-86-SPT-02`), PR #63 (`IR-86-TIPRELAY-01`), PR #77 (`IR-86-SWCON-01`), and PR #80 (`IR-86-FAULTHALO-01`)**. `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
+- Repaired **41 CLI builder/feature/pipeline commands (including `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, and **revoked concurrent PR #60 (`IR-86-SPT-02`), PR #63 (`IR-86-TIPRELAY-01`), PR #77 (`IR-86-SWCON-01`), and PR #80 (`IR-86-FAULTHALO-01`)**. `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
 - Synchronized the **92-project fleet feed (`GEMSDOE` through `GEMSDOE92`)** with all **113 `OWNER-REPORTED` score entries** plus **2 newly prompt-named unscored fleet artifacts** (`GEMSDOE89` `gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros` and `GEMSDOE90` `gems90-cnc-35000dots-20261024T084324Z`, both byte-verified against `17GEMSDOE` `100.0%` and binary `13GEMSDOE` `99.92%` / `98.35%` forward 3-px overlap; `92 / 92` GitHub trees snapshotted in [docs/evidence/fleet-feed.json](docs/evidence/fleet-feed.json); `0` organizer receipts).
-- All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
+- All **12** research TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute authorized submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
 - **Read `PROMPT.md`, this README, and the complete 2026-10-24 request archive below at the start of every session.** The archived request retains the goals; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not upload authorization.
 
 
