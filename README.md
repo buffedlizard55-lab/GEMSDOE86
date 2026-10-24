@@ -1,5 +1,11 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Session addendum — 2026-10-24 UTC
+
+**Do not submit any file currently downloadable from this project. No new TIFF was generated or authorized.** The fresh pinned-witness preflight confirms the literal registry overlap stop; no geological experiment, holdout score, or candidate-level uniqueness measurement was run. The refreshed GitHub feed now snapshots all **88/88 named repositories** (repository metadata only, not live competition scores or a complete raster registry). See the [dated three-pass review](research/SESSION_20261024_REVIEW.md), [current negative run card](docs/evidence/session-20261024-run-card.json), [fresh artifact audit](docs/evidence/release-readiness.json), [witness measurement](docs/evidence/all-artifacts-registry.json), and [project metadata feed](docs/evidence/fleet-feed.json).
+
+The H33 file's score remains an **owner-reported claim without a submission-page receipt in this checkout**. Existing H33 analysis explains a plausible metric-efficiency mechanism; it does not establish causality or that a new result can beat it. The three H86C ideas in `registry/h86c_hypotheses.json` remain proposals, not validated experiments. The next blocker is explicit resolution of the literal uniqueness-rule contradiction and assignment of one authorized method lane—not a reason to weaken the gate or relabel a historical TIFF.
+
 <!-- CURRENT_STATE_START -->
 
 ## CURRENT STATE — 2026-10-23 (rev. F: rev. D/E + pediment-window attribution BUILT — SGMC falsifier fired, no slot change)
