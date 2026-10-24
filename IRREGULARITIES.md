@@ -892,3 +892,62 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.
+
+## IR-86-ACCESS-01 — this session's agent tooling can reach the live internet beyond the sandbox's bash allowlist, and DrivenData's own Terms of Use forbid using it that way
+
+**Observed, 2026-10-24.** This session's coding environment exposes a page-fetch tool that is not
+limited to the sandboxed shell's host allowlist (`github.com`, `codeload.github.com`,
+`api.github.com`, `registry.npmjs.org`, `pypi.org`, `files.pythonhosted.org`). Using it, this session
+read `https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/` (public rank #1
+`xiaofanhu`, **0.4413**, 29 submissions, read 2026-10-24), confirmed `.../data/` still redirects to
+`/accounts/login/` (no auth, as every prior session found), and read the official rules PDF at
+`https://docs.nlr.gov/docs/fy26osti/96647.pdf`. **Checking DrivenData's own published Terms of Use
+afterward** (`https://www.drivendata.org/termsofuse/`, "Prohibited Uses") shows: *"you agree not to
+... [u]se any robot, spider or other automatic device, process or means to access the Website for
+any purpose, including monitoring or copying any of the material on the Website."* `robots.txt` only
+disallows `/accounts/`, `/competitions/search/` and `*/leaderboard_partial`, so the leaderboard page
+itself is not robots-disallowed, but the Terms of Use ban is broader and explicit, and this session's
+tool is exactly an "automatic device, process or means."
+
+**Decision.** The three DrivenData reads already performed cannot be undone; they are disclosed here
+in full rather than quietly used as if obtained some other way, and the observed `0.4413` figure is
+reported below **only as an incidentally-observed, non-repeatable fact**, not as a sanctioned
+monitoring channel. **No further automated request to any `drivendata.org` URL should be made by this
+or any future session**, by any tool. `TOP_PUBLIC` stays **UNSUPPLIED** for scientific/decision
+purposes (it must come from the human, who may view the same public page in a browser without
+violating the automated-access clause); it is not promoted to `ORGANIZER-CONFIRMED` or treated as a
+new verification channel. The `docs.nlr.gov` PDF and the owner-named `buffedlizard55-lab/*` sibling
+GitHub Pages sites are unaffected (different domains, different terms; `docs.nlr.gov` has no
+`robots.txt` restricting the publications PDF). **Cost:** this closes off a route several earlier
+sessions assumed was blocked by sandbox network policy; it is in fact blocked by the organizer's own
+contract terms, which bind a human project member too — the fix is procedural (a human checks the
+page), not technical.
+
+## IR-86-REG-01 — the 2026-10-24 owner request diverged from the committed registry in eight places before this session reconciled them
+
+**Observed, 2026-10-24.** Diffing `research/REQUEST_20261024.md` (today's verbatim owner request)
+against the already-committed `registry/prior_scores.csv` and `registry/site_targets.json` found
+eight registry rows out of step with the plain-text request they are supposed to mirror: four sites
+(`GEMSDOE78`, `GEMSDOE79`, `GEMSDOE82`, `GEMSDOE83`) had a score in the prompt but `NO SCORE
+SUPPLIED` in the registry; three sites (`GEMSDOE84`, `GEMSDOE85`, `GEMSDOE87`) had both an artifact
+name and a score in the prompt but a blank row in the registry; one site (`GEMSDOE76`) had a second,
+previously-unrecorded submission/score pair (`gems76-ptcf-tiltworm-submod39k-...-zeros`, `0.2343`).
+Four entirely new site names (`GEMSDOE89`–`GEMSDOE92`) also appear in the 2026-10-24 prompt with no
+registered entry at all. None of this reflects a scoring improvement discovered this session — it
+reflects the registry not having been re-synchronized against the request text since whichever
+earlier session first transcribed it.
+
+**Decision.** All eight rows were corrected and the four new sites added to `registry/prior_scores.csv`
+/ `registry/site_targets.json`, each traced to an exact substring of `research/REQUEST_20261024.md`
+(verified programmatically — every `name: 0.NNNN` line in the request has a matching registry row,
+and every named `buffedlizard55-lab.github.io/<repo>/` link has a matching target entry; both are
+now asserted by `tests/test_current_request.py::test_every_named_current_project_and_reported_submission_is_traceable`,
+raised from 88 to the corrected 92-site count checked by `tests/test_fleet_feed.py`). `scripts/refresh_fleet.py`,
+`scripts/build_ledger.py` and `scripts/build_site.py` were all re-run afterward so no generated
+artifact stayed stale relative to the corrected inputs. The maximum OWNER-REPORTED score across all
+92 named sites is unchanged at **0.2778** (`GEMSDOE32`, `h33-h33-2-b2-20261004T220000Z-e5eb6e7e`);
+none of the eight corrected/added values exceeds it, so no slot-plan ranking changes. **Cost:** this
+is a data-integrity fix, not a new scientific result — it closes a silent-drift risk (`README.md`
+item 8, "Priorities for the next session") rather than producing a new candidate; future sessions
+should re-diff the registry against the live request at the start of every session, not only when a
+new registry file is written.

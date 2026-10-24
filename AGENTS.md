@@ -22,3 +22,10 @@
    Never call a maximum across different holdout designs the current holdout best.
 7. Report negative results. The GMC hypothesis in this repo is negative and must stay documented as
    such.
+8. Never make an automated request (any tool, any session) to a `drivendata.org` URL. DrivenData's
+   Terms of Use prohibit "any robot, spider or other automatic device, process or means" to access
+   the Website, which is broader than `robots.txt` and binds coding-agent tools even when they can
+   technically reach the host. `TOP_PUBLIC`, remaining weekly quota and submission receipts must come
+   from a human checking the page in a browser; see `IR-86-ACCESS-01`. Public `*.github.io` sibling
+   sites, `github.com`/`api.github.com`, and `docs.nlr.gov` are different domains with no such clause
+   and remain fine to read.

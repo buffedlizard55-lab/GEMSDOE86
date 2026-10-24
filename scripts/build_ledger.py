@@ -6,7 +6,8 @@ Why this script exists
 The brief expects ``ledger/submissions.csv`` and, if absent, a rebuild from
 ``ledger/raw_paste.txt``.  Neither existed; the only committed transcription of
 the team's submission history is ``registry/prior_scores.csv`` (itself
-transcribed from ``research/REQUEST_20261023.md``, owner-supplied text).  Two
+transcribed from the dated owner request archives, most recently
+``research/REQUEST_20261024.md``, owner-supplied text).  Two
 sessions on 2026-10-23 seeded a ledger independently.  This module is the single
 generator so the file cannot drift; it reproduces the schema introduced by
 ``scripts/build_r0_prune.py`` (``LEDGER_FIELDS``) and adds every candidate that
