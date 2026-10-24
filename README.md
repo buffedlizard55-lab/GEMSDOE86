@@ -55,7 +55,7 @@
 The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior, an optimistic score projection, or a file needing a human inspector to discover it is unsafe.
 
 - **[Open the download dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/)** · [executive summary / exact submission procedure](docs/executive-summary.html).
-- **[Machine-readable all-file validator](docs/evidence/release-readiness.json)** · [all final-dot registry measurements](docs/evidence/all-artifacts-registry.json) · [this session's negative JSON card](docs/evidence/session-20261023-run-card.json).
+- **[Machine-readable all-file validator](docs/evidence/release-readiness.json)** · [all final-dot registry measurements](docs/evidence/all-artifacts-registry.json) · [current negative JSON card](docs/evidence/latest-review-run-card.json).
 - **[Full named-project feed](docs/fleet.html)** · [official sources and observation limits](docs/sources.html) · [three ranked, untested hypotheses](registry/h86c_hypotheses.json).
 
 ### Latest review — 2026-10-24

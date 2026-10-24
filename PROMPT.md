@@ -9,7 +9,8 @@ verified results. A pinned full-positive registry witness currently makes the li
 rule unsatisfiable for every nonempty candidate. Scientific CLIs must stop before fitting or
 placement; do not bypass that gate, relabel an old TIFF as new, or claim the unmet unique-TIFF
 requirement has been completed. `scripts/audit_release.py` checks all historical downloads;
-`docs/evidence/session-20261023-run-card.json` records the current negative outcome.
+`docs/evidence/session-20261023-run-card.json` is the dated archive, while the latest fresh negative
+remeasurement is recorded separately in `docs/evidence/latest-review-run-card.json`.
 
 ---
 

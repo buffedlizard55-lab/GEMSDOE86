@@ -134,5 +134,13 @@ candidate download link, the candidate card contains no raw-download URL, and th
 site generator rejects a mismatched or optimistic candidate receipt. These checks
 do not establish a passing holdout, complete registry clearance, an official score,
 organizer acceptance, or Pages deployment. This working branch now includes the
-latest-main integration; PR checks and PR #58's merge into main remain external
-operational gates at review close.
+latest-main integration; PR checks and PR #58's merge into main remained external
+operational gates at that review's close.
+
+## Follow-up on `arena/57b36fc2-gemsdoe86` — 2026-10-24
+
+The session branch had fallen behind `origin/main`; it was fast-forwarded in place (the branch name was not changed) to include the already-merged SPT duplicate-stop work. No SPT prediction was generated or promoted in this follow-up. I reopened the inherited SPT GeoTIFF, verified its SHA and grid against its audit card, and independently reran the pinned shared `dot_overlap` check against the pinned witness. **REGISTRY-MEASUREMENT:** final-dot overlap was **1.0**, above the unchanged **0.70** limit; this is a duplicate-stop result, not a DTI score. The SPT file remains an audit artifact with no download or submission authorization. Its stored holdout is still explicitly rejected as protocol-incomplete; no valid HOLDOUT-DTI was computed for the current H86C-MMT plan.
+
+The owner-repository metadata feed was refreshed from GitHub: **88/88** named repositories were snapshotted; **zero** organizer receipts were obtained. The read-only release audit re-opened all **10** registered `docs/downloads` TIFFs and their ZIP/identity receipts; local format checks pass, but no file is approved. The latest hash-bound run card records the fresh registry-measurement time and still says no candidate, no experiment and no slot used. No DrivenData, USGS, NLR or Dropbox endpoint was newly retrieved under the session egress policy; prior source observations remain dated.
+
+A user-facing traceability defect was fixed: the generated homepage, research queue and irregularities page now link to `latest-review-run-card.json` and the current 2026-10-24 review rather than labeling a dated card as current. README and PROMPT pointers now distinguish the current remeasurement from the dated archive. The final post-fix suite passed **432 tests**, with **24** existing conditional skips, **32** subtests and **4** dependency deprecation warnings. `build_site.py --check`, `check_site.py`, `audit_downloads.py`, `audit.py`, `validate_download.py`, `build_ledger.py --check`, registry reproduction, compileall and whitespace checks passed. These are software/integrity checks, not new geological experiments, a leaderboard result or organizer approval.

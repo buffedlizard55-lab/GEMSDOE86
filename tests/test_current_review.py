@@ -12,6 +12,18 @@ from scripts import audit_release, build_site
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_current_pages_link_to_fresh_evidence_not_the_archived_session_card():
+    home = (ROOT / "docs/index.html").read_text()
+    hypotheses = (ROOT / "docs/hypotheses.html").read_text()
+    irregularities = (ROOT / "docs/irregularities.html").read_text()
+    assert 'href="evidence/latest-review-run-card.json">Current remeasurement run card' in home
+    assert 'href="evidence/session-20261023-run-card.json">This session\'s run card' not in home
+    assert "SESSION_20261024_REVIEW.md" in hypotheses
+    assert 'href="evidence/latest-review-run-card.json">Current negative run card' in irregularities
+    assert "SESSION_20261024_REVIEW.md" in irregularities
+    assert 'href="evidence/session-20261023-run-card.json">Negative run card' not in irregularities
+
+
 def test_current_review_binds_actual_measurement_without_relabeling_old_results():
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
     registry = audit_release.strict_json(ROOT / "docs/evidence/all-artifacts-registry.json")
