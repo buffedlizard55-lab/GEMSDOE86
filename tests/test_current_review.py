@@ -30,6 +30,17 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["release_report_sha256"] == audit_release.sha256(ROOT / "docs/evidence/release-readiness.json")
 
 
+def test_current_readme_download_counts_match_fresh_release_inventory():
+    report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
+    readme = (ROOT / "README.md").read_text()
+    current = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[0]
+    count = report["artifact_count"]
+    assert report["locally_valid_artifacts"] == count
+    assert f"re-read all **{count}** published research GeoTIFFs" in current
+    assert f"All **{count}** research TIFFs were freshly reread" in current
+    assert f"All **{count}** final rasters" in current
+
+
 @pytest.mark.parametrize("timestamp", ["2026-10-24T10:00:00", "2026-10-24T10:00:00+02:00", "not-a-date"])
 def test_measurement_timestamp_requires_explicit_utc(timestamp):
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
