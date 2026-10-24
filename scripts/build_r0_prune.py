@@ -433,6 +433,10 @@ def git_receipt() -> dict:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--validate-only", action="store_true", help="validate existing release files without rebuilding")
     args = parser.parse_args()

@@ -1,5 +1,15 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Latest review — 2026-10-24: DO NOT SUBMIT
+
+**No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+
+- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- Repaired **22 historical builder commands and seven imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight. `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
+- All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
+- **Read the standing prompt and complete request archive below every session.** The repeated 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.
+
+
 <!-- CURRENT_STATE_START -->
 
 ## CURRENT STATE — 2026-10-23 (rev. F: rev. D/E + pediment-window attribution BUILT — SGMC falsifier fired, no slot change)
@@ -48,7 +58,11 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 - **[Machine-readable all-file validator](docs/evidence/release-readiness.json)** · [all final-dot registry measurements](docs/evidence/all-artifacts-registry.json) · [this session's negative JSON card](docs/evidence/session-20261023-run-card.json).
 - **[Full named-project feed](docs/fleet.html)** · [official sources and observation limits](docs/sources.html) · [three ranked, untested hypotheses](registry/h86c_hypotheses.json).
 
-### Outcome of the current review
+### Latest review — 2026-10-24
+
+The 88-project repository-metadata feed was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, verified no new raster bytes, generated no new TIFF and used no submission slot. The mandatory preflight again stops before candidate construction because one pinned historical registry witness covers the entire allowed non-catalogue support under the unchanged literal rule. Full three-pass inspection, ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
+
+## Outcome of the current review
 
 The uniqueness-cleared **new TIFF requirement remains unmet**, for a measured reason rather than a missing human inspection. The pinned historical registry witness is positive at every allowed pixel. Under the unchanged literal support rule, any nonempty dot set has forward overlap **100%**, exceeding the **70%** stop. One such counterexample proves failure; it never proves registry completeness. All 10 final rasters (including concurrent `H86C-KSLB` and `H86D-CTHB`) were remeasured and fail that literal gate. No exception was granted, and no weekly slot was spent.
 

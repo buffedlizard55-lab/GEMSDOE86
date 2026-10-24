@@ -159,6 +159,10 @@ def displacement_matched_null(dots: np.ndarray, src: np.ndarray, disp: np.ndarra
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", default="releases")
     ap.add_argument("--no-write", action="store_true")

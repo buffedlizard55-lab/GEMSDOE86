@@ -282,6 +282,10 @@ def trace_record(trace: dict, catalogue_distance: np.ndarray, width: int) -> dic
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", default="releases")
     ap.add_argument("--geo-dir", default="releases/trackb")

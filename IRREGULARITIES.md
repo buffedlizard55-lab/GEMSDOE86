@@ -895,3 +895,22 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 ## IR-86-SPT-01 — 2026-10-24 SPT candidate vs the negative-only release audit
 `scripts/audit_release.py` only certifies the 10 registered historical artifacts as DO NOT SUBMIT and fails closed on any other TIFF under `docs/`. The new SPT candidate (sha256 `26cf2d39…`) therefore lives in `submission/` (GitHub-downloadable, linked from `docs/submit.html`), not `docs/downloads/`, and the generated site/audit were left byte-unchanged so the full test suite stays green. Uniqueness is measured vs the 25 scored fleet rasters in `data/scored_fleet/` (worst 3 px overlap 0.5056); the pinned dense continuous witness still blocks any raster under a literal reading (IR-86-PRUNE-01) — that contradiction is unresolved and flagged, not waived. HOLDOUT-DTI is a catalogue proxy documented as sign-unstable vs live scores (IR-86-PRUNE-03); no live score is claimed.
+
+## 2026-10-24 review — builder entrypoint bypass and freshness
+
+- **IR-86-20261024-01 (repaired):** 22 later historical variant-builder mains did
+  not enforce the literal registry preflight; seven imported orchestration routes
+  could also avoid CLI-only guards. Guarded before candidate work; missing evidence
+  remains an error and `--no-write` does not authorize construction in memory.
+  Shared evaluator/writer bytes and historical scientific evidence are unchanged.
+- **IR-86-20261024-02 (repaired):** automated re-audits still rendered a dated
+  2026-10-23 session card as "this session". Preserve that archive and additionally
+  issue a current UTC, report/registry-hash-bound negative receipt only after fresh
+  registry measurement; site builds reject stale or optimistic receipts.
+- **IR-86-20261024-03 (open):** H33 page recommends a 177-character note, above
+  this project's 140-character rule. Its HTML says projected/UNSCORED, not an
+  organizer receipt for the owner-reported result. No current leaderboard or
+  organizer acceptance was obtainable from the allowed-host network in this run.
+
+See `research/SESSION_20261024_REVIEW.md` and
+`docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.

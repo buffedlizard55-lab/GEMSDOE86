@@ -120,6 +120,8 @@ def budget_sweep(ranked_by_fold: dict[str, np.ndarray], folds, ratios) -> ArmRes
 def holdout(arm_names_: tuple[str, ...] = ("lane", "no_gmc"),
             ratios=(0.5, 1.0, 2.0, 4.0, 8.0, 16.0), model: str = "logit",
             use_line_filter: bool = True, tag: str = "") -> dict:
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     t0 = time.time()
     g = load_grid(ROOT / "data" / "bridge")
     grid_feats = F.structural(FEATURES_TIF, g.footprint, use_gmc=True)

@@ -1,6 +1,8 @@
 # Standing project prompt (condensed historical archive)
 
-**Read the current README decision and its complete 2026-10-23 request archive first.**
+**Read the latest README decision and its complete 2026-10-23 request archive first.**
+The repeated 2026-10-24 request follows the same standing protocol. Current remeasurement:
+`docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
 The current request is also in `research/REQUEST_20261023.md`; the earlier request remains in
 `research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
 verified results. A pinned full-positive registry witness currently makes the literal overlap

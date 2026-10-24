@@ -191,6 +191,10 @@ def _axis_values(axes: list[str]) -> list[tuple[str, str]]:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--axes", nargs="+", default=["PRUNE", "CONCENTRATION", "SNAP"])
     ap.add_argument("--out", default="releases/axis86",

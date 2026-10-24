@@ -223,6 +223,10 @@ def _git_sha() -> str:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true", help="write releases/mass/ + evidence + ledger rows")
     ap.add_argument("--measure", action="store_true", help="rebuild in memory, re-validate on-disk files")

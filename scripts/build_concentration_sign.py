@@ -381,6 +381,10 @@ def parent_diff(parent: np.ndarray, variant: np.ndarray, foot: np.ndarray) -> di
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="build and measure, write nothing")
     args = ap.parse_args()

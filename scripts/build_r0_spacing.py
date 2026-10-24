@@ -402,6 +402,10 @@ def note_for(stem: str, st: dict, diff: dict) -> str:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="releases/axis86")
     ap.add_argument("--no-proxy", action="store_true",
