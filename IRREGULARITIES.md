@@ -892,3 +892,23 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.
+
+
+## 2026-10-24 review — builder entrypoint bypass and freshness
+
+- **IR-86-20261024-01 (repaired):** 22 later historical variant-builder mains did
+  not enforce the literal registry preflight; seven imported orchestration routes
+  could also avoid CLI-only guards. Guarded before candidate work; missing evidence
+  remains an error and `--no-write` does not authorize construction in memory.
+  Shared evaluator/writer bytes and historical scientific evidence are unchanged.
+- **IR-86-20261024-02 (repaired):** automated re-audits still rendered a dated
+  2026-10-23 session card as "this session". Preserve that archive and additionally
+  issue a current UTC, report/registry-hash-bound negative receipt only after fresh
+  registry measurement; site builds reject stale or optimistic receipts.
+- **IR-86-20261024-03 (open):** H33 page recommends a 177-character note, above
+  this project's 140-character rule. Its HTML says projected/UNSCORED, not an
+  organizer receipt for the owner-reported result. No current leaderboard or
+  organizer acceptance was obtainable from the allowed-host network in this run.
+
+See `research/SESSION_20261024_REVIEW.md` and
+`docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.

@@ -360,6 +360,24 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
         requirement_unmet="No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.")
 
 
+def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict:
+    """Date this remeasurement honestly; do not relabel historical model evidence.
+
+    Called only after --measure-registry, never by a read-only site build.
+    The original dated session card remains reproducible archive content.
+    """
+    card = session_card(report, root)
+    measured = datetime.fromisoformat(registry["measured_utc"])
+    if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
+        raise ValueError("Registry measurement must carry a UTC timestamp")
+    card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+                registry_measured_utc=registry["measured_utc"],
+                scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
+                release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
+                registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
+    return card
+
+
 def write_json(path: Path, value: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     # This is an evidence file, not a release raster. Avoid partial JSON on failure.
@@ -380,6 +398,9 @@ def main(argv=None) -> int:
     report = build_report()
     write_json(ROOT / "docs/evidence/release-readiness.json", report)
     write_json(ROOT / "docs/evidence/session-20261023-run-card.json", session_card(report))
+    if args.measure_registry and report["audit_ok"]:
+        registry = strict_json(ROOT / "docs/evidence/all-artifacts-registry.json")
+        write_json(ROOT / "docs/evidence/latest-review-run-card.json", current_review_card(report, registry))
     print(json.dumps({k: report[k] for k in ("audit_ok", "decision", "artifact_count", "locally_valid_artifacts", "all_final_artifacts_remeasured", "experiments_run", "submission_slots_used")}, indent=2))
     return 0 if report["audit_ok"] else 1
 

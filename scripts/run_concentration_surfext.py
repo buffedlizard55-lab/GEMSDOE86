@@ -366,6 +366,10 @@ def fold_fair_proxy(d28_unmasked, footprint, catalogue, union, h19_5, *, km_bloc
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out-dir", default="releases")
     ap.add_argument("--stamp", default=DATE_TAG)
