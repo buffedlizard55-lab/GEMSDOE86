@@ -43,7 +43,7 @@
       ],
       "witness_grid_matches": true,
       "witness_validity_mask_covers_footprint": true,
-      "measured_date_utc": "2026-10-22",
+      "witness_pin_verified_date_utc": "2026-10-22",
       "candidate_generated": false,
       "thresholds_unchanged": true,
       "dense_surface_exemption": false,

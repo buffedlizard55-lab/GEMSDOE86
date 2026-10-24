@@ -4,6 +4,7 @@ This is not a model experiment, candidate validation, or registry clearance.
 The shared saturation_certificate is reused unchanged. A second direct-support
 check makes the observed full-footprint coverage independently auditable.
 """
+from datetime import date
 from pathlib import Path
 import hashlib
 import json
@@ -29,6 +30,20 @@ def verify_file(path, sha256, size=None):
         raise ValueError(f'Wrong byte length: {path.name}')
     if digest(path) != sha256:
         raise ValueError(f'SHA256 mismatch: {path.name}')
+
+
+def witness_pin_provenance(pin):
+    """Label the pin's historical verification date, not today's remeasurement."""
+    value = pin.get('verified_date_utc')
+    if not isinstance(value, str):
+        raise ValueError('Witness pin has no verified_date_utc provenance')
+    try:
+        normalized = date.fromisoformat(value).isoformat()
+    except ValueError as exc:
+        raise ValueError('Witness pin verified_date_utc is not an ISO date') from exc
+    if normalized != value:
+        raise ValueError('Witness pin verified_date_utc is not normalized')
+    return {'witness_pin_verified_date_utc': normalized}
 
 
 def measure(data_dir=None):
@@ -86,7 +101,7 @@ def measure(data_dir=None):
         witness_range_inside_footprint=range_inside,
         witness_grid_matches=True,
         witness_validity_mask_covers_footprint=True,
-        measured_date_utc='2026-10-22',
+        **witness_pin_provenance(pin),
         candidate_generated=False,
         thresholds_unchanged=True,
         dense_surface_exemption=False,

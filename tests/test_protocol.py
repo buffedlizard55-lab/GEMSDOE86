@@ -14,7 +14,7 @@ from affine import Affine
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'vendor')]
 from scripts.session_preflight import run
-from scripts.protocol_preflight import verify_file
+from scripts.protocol_preflight import verify_file, witness_pin_provenance
 from gems57.uniqueness import saturation_certificate, dot_overlap
 
 
@@ -84,6 +84,17 @@ class ProtocolTests(unittest.TestCase):
             p.write_bytes(b'evil')
             with self.assertRaises(ValueError):
                 verify_file(p, digest, 4)
+
+    def test_witness_date_is_labeled_as_pin_provenance(self):
+        pin = json.loads((ROOT / 'research/registry_witness_pin.json').read_text())
+        provenance = witness_pin_provenance(pin)
+        self.assertEqual(provenance, {
+            'witness_pin_verified_date_utc': pin['verified_date_utc']})
+        self.assertNotIn('measured_date_utc', provenance)
+        for invalid in ({}, {'verified_date_utc': 'not-a-date'},
+                        {'verified_date_utc': '2026-1-2'}):
+            with self.assertRaises(ValueError):
+                witness_pin_provenance(invalid)
 
     def test_nonwriting_audit_preserves_published_evidence(self):
         path = ROOT / 'docs/evidence/protocol-run-card.json'
