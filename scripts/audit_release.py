@@ -379,11 +379,22 @@ def build_report(root: Path = ROOT) -> dict:
 
 
 def session_card(report: dict, root: Path = ROOT) -> dict:
-    """Describe this audit only; inherited metrics/hashes are never a new result."""
+    """Describe this audit only; inherited metrics/hashes are never a new result.
+
+    ``date_utc`` is pinned to the 2026-10-23 session whose protocol outcome this
+    card records.  The ``inherited_artifacts`` list is NOT frozen to that date:
+    it is re-derived from the live release report on every audit run, so it
+    legitimately grows as later sessions register new artifacts.  Both facts are
+    stated inside the card (``inventory_basis`` / ``inventory_is_live``) so the
+    pinned date and a later-dated file in the list are never a contradiction,
+    and so registering a new artifact is not misread as hand-editing an archive.
+    """
     plan = strict_json(root / "registry/h86c_hypotheses.json")
     top = plan["hypotheses"][0]
     return dict(
         schema="gems86.session-negative.v1", date_utc="2026-10-23",
+        date_utc_basis=("Date of the session whose protocol outcome this card records. "
+                        "Not the date of the artifact inventory below."),
         hypothesis=f"{top['id']}: {top['name']} (provisional, NOT RUN; no method lane was assigned)",
         mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
         holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_PROTOCOL_STOP",
@@ -399,6 +410,10 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
         validator_output=dict(status="NOT_RUN_NO_NEW_RASTER", no_nan_inside_footprint=None,
                               values_in_0_1=None, crs_shape_transform_match=None),
         inherited_artifacts=dict(checked=report["artifact_count"], local_format_pass=report["locally_valid_artifacts"],
+            inventory_is_live=True,
+            inventory_basis=("Re-derived from the live release report at each audit run; may contain "
+                             "artifacts created after date_utc. A later-dated file here is expected "
+                             "provenance, not a mutation of the archived 2026-10-23 outcome."),
             files=[dict(file=a["file"], sha256=a["sha256"], verdict=a["verdict"]) for a in report["artifacts"]],
             evidence="docs/evidence/release-readiness.json", submission_authorized=False),
         submission_name=None,
@@ -419,6 +434,10 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
     if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
         raise ValueError("Registry measurement must carry a UTC timestamp")
     card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+                # date_utc means something different here than in the archived
+                # session card, so its basis must be restated rather than inherited.
+                date_utc_basis=("Date of this registry remeasurement (registry_measured_utc). "
+                                "The artifact inventory below is live, not frozen to this date."),
                 registry_measured_utc=registry["measured_utc"],
                 scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
                 release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),

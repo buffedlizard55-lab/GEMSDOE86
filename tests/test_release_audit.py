@@ -155,6 +155,41 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert len(card["inherited_artifacts"]["files"]) == 12  # 10 inherited + faulthalo + H86E
 
 
+def test_session_card_date_cannot_contradict_its_live_artifact_inventory():
+    """A pinned card date plus a later-dated file must be explained, not silent.
+
+    ``session_card()`` re-derives ``inherited_artifacts`` from the live release
+    report on every audit run while ``date_utc`` stays pinned to 2026-10-23.
+    Without explicit provenance that combination reads as an archived card being
+    mutated -- the false irregularity raised against PR #80
+    (IR-86-FAULTHALO-01). These fields make the drift self-describing so a
+    later-dated artifact is provably expected provenance.
+    """
+    report = audit.strict_json(ROOT / "docs/evidence/release-readiness.json")
+    card = audit.session_card(report)
+    inventory = card["inherited_artifacts"]
+
+    assert card["date_utc"] == "2026-10-23"
+    assert inventory["inventory_is_live"] is True
+    assert isinstance(card["date_utc_basis"], str) and card["date_utc_basis"].strip()
+    assert isinstance(inventory["inventory_basis"], str) and inventory["inventory_basis"].strip()
+    # The current-review card reuses session_card() but restates date_utc as the
+    # measurement date, so it must also restate what that date means.
+    registry = audit.strict_json(ROOT / "docs/evidence/all-artifacts-registry.json")
+    review = audit.current_review_card(report, registry)
+    assert review["date_utc"] != card["date_utc"] or review["registry_measured_utc"].startswith(card["date_utc"])
+    assert review["date_utc_basis"] != card["date_utc_basis"]
+    assert "remeasurement" in review["date_utc_basis"]
+    # The live inventory must actually track the report it is derived from.
+    assert inventory["checked"] == report["artifact_count"] == len(inventory["files"])
+    assert [f["file"] for f in inventory["files"]] == [a["file"] for a in report["artifacts"]]
+    # Self-description must not weaken the negative verdict or authorize anything.
+    assert card["verdict"] == "negative"
+    assert card["submission_ready"] is False
+    assert card["new_candidate_generated"] is False
+    assert inventory["submission_authorized"] is False
+
+
 def test_h86b_imported_call_has_no_preflight_bypass(monkeypatch):
     from scripts import run_lane86b
     from scripts import protocol_preflight

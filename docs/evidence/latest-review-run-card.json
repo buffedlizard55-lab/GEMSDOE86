@@ -1,6 +1,7 @@
 {
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-24",
+  "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
   "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
   "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and a negative step in iso_grav_anom (Band 13) must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev (Band 12) and det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
   "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts.",
@@ -33,6 +34,8 @@
   "inherited_artifacts": {
     "checked": 12,
     "local_format_pass": 12,
+    "inventory_is_live": true,
+    "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
       {
         "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -107,8 +110,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T18:56:26+00:00",
+  "registry_measured_utc": "2026-10-24T19:35:06+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "442755bfda23ddecd1aa1ecdde23f7cec097fdba149f60c07cfe9f92565de8e2",
-  "registry_measurement_sha256": "c3c3b974ea51889bb3622f6b39b6732ea3f7fa338366fb9d77704dab8a5ad1bb"
+  "release_report_sha256": "bb826e95b936ef4b53a23948339ac2da837bda00dd01da30a62af708e64451b3",
+  "registry_measurement_sha256": "7552546a906c65443bff29920e15e70e217549a74615dfa90e79263a003d9817"
 }

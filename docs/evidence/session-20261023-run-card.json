@@ -1,6 +1,7 @@
 {
   "schema": "gems86.session-negative.v1",
   "date_utc": "2026-10-23",
+  "date_utc_basis": "Date of the session whose protocol outcome this card records. Not the date of the artifact inventory below.",
   "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
   "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and a negative step in iso_grav_anom (Band 13) must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev (Band 12) and det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
   "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts.",
@@ -33,6 +34,8 @@
   "inherited_artifacts": {
     "checked": 12,
     "local_format_pass": 12,
+    "inventory_is_live": true,
+    "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
       {
         "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
