@@ -365,3 +365,24 @@ on either instrument: the curve is monotone through the band bottom and saturate
 destination-pool ceiling. `IR-86-CONC-02`'s suspicion is now measured: the band is a recipe
 correlation, not a target. The CONCENTRATION slot candidate upgrades from `down4` to **`down6`**;
 `downmax` is the ceiling witness, not a slot candidate.
+## CONCENTRATION (10 km fault-system scale, 2026-10-23, `arena/a681fdaf-gemsdoe86`)
+
+Full cards: `evidence/concentration-10km-mechanism.md`; run card: `evidence/concentration_10km_axis_20261023.json`; pre-registration: `registry/preregistration_conc10.json`. All count-fixed at 37,654, 100 % of new dots on ancestor ridges at > 3.0 px clearance (min 3.162 px), block = 100 px. R0 occupied-density CVs: 1 km 0.6235 · 5 km 0.7442 · 10 km 0.7360 (IR-86-CONC-19 corrects the 0.570 figure in IR-86-TRACKB-08).
+
+### 1. `CONCENTRATION b10km-down8` — 3,012 dots moved (`15.9983%` changed, `780f8509`)
+- **Hypothesis & Mechanism.** Disperse the lowest-unique-credit dots of the densest occupied 10 km blocks onto unused ancestor ridges in the sparsest 65 % of occupied 10 km blocks: occupied-10 km CV 0.736 → **0.496** (overshoots the 0.51–0.59 band; 5 km CV 0.666, 1 km CV 0.629). First-coverage of under-sampled fault systems under DTI's max operator.
+- **Non-fault mimic.** Lahontan shorelines / beach ridges and fan distributary lineaments dominating the sparse-block ridge pool.
+- **Predicted sign and size.** Pre-registered +0.001 (−0.003…+0.005). Measured **`+0.0003 MODEL`** (2/4 quadrants; ±6 px jitter +0.0010, 5/5 shifts positive; random-block control −0.0009), **`+0.0012 PROXY`** (95 % CI [−0.0016, +0.0038], n = 11,321). Below the 0.01 floor; does not displace `conc6` (PR #50, +0.0022 MODEL).
+- **Falsifier.** Live `Δ <= -0.005` vs R0 closes 10 km dispersal.
+
+### 2. `CONCENTRATION b10km-down4` — 1,506 dots moved (`7.9992%` changed, `c4e8ffc9`)
+- **Hypothesis & Mechanism.** Strict half-dose prefix of `b10km-down8`; lands occupied-10 km CV at **0.518**, inside the 0.51–0.59 band.
+- **Non-fault mimic.** Same shoreline/terrace mimic at half exposure.
+- **Predicted sign and size.** Pre-registered +0.001 (−0.002…+0.004). Measured **`-0.0010 MODEL`** (2/4 quadrants) vs **`+0.0005 PROXY`** (CI [−0.0006, +0.0019]): instruments disagree on sign, both cover zero — no evidence at 4 %.
+- **Falsifier.** Live down4 beating down8 by ≥ +0.005 would favour the CV-band (do-not-overshoot) reading over first-coverage.
+
+### 3. `CONCENTRATION b10km-ridge-up8` — 3,012 dots moved (`15.9983%` changed, `ef2f3548`)
+- **Hypothesis & Mechanism.** Sign control: concentrate toward top-35 % Faulds fault-interaction blocks with the prior recomputed at 100 px (30 km catalogue / 10 km ridge tip-junction halos + AGC TMI). 10 km CV 0.736 → 0.545 (interaction blocks ≠ dot-densest blocks).
+- **Non-fault mimic.** Quadrangle mapping density; volcanic-margin TMI texture surviving AGC.
+- **Predicted sign and size.** Pre-registered −0.001 (−0.004…+0.002). Measured **`-0.0009 MODEL`** (= random control) and **`-0.0075 PROXY`** (CI [−0.0159, −0.0004], excludes zero). Upward concentration has now lost at 1, 5 and 10 km. Do not spend a slot.
+- **Falsifier.** Live `Δ >= +0.010` vs R0 would resurrect interaction zoning.

@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (rev. F: rev. E + the pediment-window attribution, BUILT, SGMC falsifier fired)
+# SLOT PLAN — 2026-10-23 (rev. H: prior rev + CONCENTRATION completed at 10 km, PR #54)
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -52,6 +52,8 @@ instrument across all three sessions. Wk 1–3 below still test the three best r
 are already built and cost nothing but slots; everything after that should fund new evidence.
 
 **E. The pediment refinement of the dispersal rule is BUILT and fails its SGMC falsifier (this session, `IR-86-CONC-18`).** The truth-free pediment window (3DEP `relief_local` 10–40 m, > 1 km off the RELIEF regime front; 18.8 % of the footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules, so the attribution pair is dose-matched at 941 dots (5.00 % chg) with matched displacement (mean 1,613 vs 1,631 px, making `IR-86-CONC-15`'s outward-movement bias common-mode). At that dose the **non-pediment complement beats the pediment arm on SGMC (+0.0013 vs +0.0007**; REF `concb5kmdown4` +0.0015 replicated exactly**)** while the fold-fair d28 `PROXY` orders them oppositely (+0.0012 vs +0.0004): instruments split, attribution unresolved, **no slot change** — `concb5kmpeddown2p5` / `concb5kmnonpeddown2p5` / `concb5kmpeddown5` are audit-only. Card: `evidence/concentration-pediment-mechanism.md`.
+
+**10 km addendum (PR #54).** Pre-registered 100 px arms: `b10km-down8` `+0.0003 MODEL` (jitter `+0.0010`) / `+0.0012 PROXY` vs control `-0.0009`; prefix `b10km-down4` splits sign. Neither displaces Slot 2 or the spares; `…-concb10kmdown8-20261023-780f8509-zeros.tif` is the next spare only if Slot 2 `≥ +0.005`. `b10km-ridge-up8` (`-0.0009` = control; `-0.0075 PROXY`, CI excludes 0) retires upward concentration at 1, 5 and 10 km — never upload `concb10kmup8`. `IR-86-CONC-19`: canonical R0 occupied-10 km CV is `0.736`, not `0.570`.
 
 ## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
 
