@@ -85,8 +85,28 @@ def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability()
             assert row["free_official_source_needed"]
             assert row["obtainability"]
         text_blob = " ".join([*row["layers"], row["signature"], row["why_unmapped"], row["difference_from_repo"]])
+        assert "tc (Band 6) magnetic tilt zero-crossings" not in text_blob
         for key, band_str in re.findall(r"\b([a-z0-9_]+)\s*\(Band\s+(\d+)\b", text_blob):
             assert BANDS[int(band_str)] == key, f"Band mismatch in {row['id']}: Band {band_str} is {BANDS[int(band_str)]}, not {key}"
+
+
+def test_band_physics_verification_receipt_blocks_header_mislabels():
+    receipt = strict_json(ROOT / "docs/evidence/band-physics-verification-20261024.json")
+    assert receipt["schema"] == "gems86.band-physics-verification.v1"
+    b6 = receipt["band6_tc_verification"]
+    assert b6["band_index"] == 6
+    assert b6["min"] > 0.0 and b6["nonpositive_pixel_count"] == 0 and b6["zero_crossing_possible"] is False
+    assert b6["correlations_vs_geodawn_radiometrics"]["TC"]["pearson_r"] > 0.995
+    assert abs(b6["pearson_r_vs_true_magnetic_tilt_atan2_b9_b3"]) < 0.05
+    grav = receipt["gravity_derivative_vector_verification"]["pearson_correlations"]
+    assert grav["corr_b18_vs_plus_dg_dx_east"] > 0.94
+    assert abs(grav["corr_b18_vs_scalar_grad_mag"]) < 0.05
+    assert grav["corr_b11_vs_plus_dg_drow_south"] > 0.93
+    assert grav["corr_hypot_b11_b18_vs_b5_slope"] > 0.94
+    lap = receipt["gravity_derivative_vector_verification"]["laplace_gzz_multiscale_verification"]["corr_minus_div_b18_b11_vs_minus_laplacian_b13"]
+    assert lap["sigma_0px_0m"] < 0.50
+    assert lap["sigma_4px_400m"] > 0.85
+    assert lap["sigma_6px_600m"] > 0.91
 
 
 def test_workflow_may_publish_fresh_partial_feed_but_cannot_hide_fatal_errors(monkeypatch, tmp_path):

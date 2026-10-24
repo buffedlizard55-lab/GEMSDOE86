@@ -22,9 +22,10 @@ from scipy import ndimage
 from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor/template66"))
+sys.path[:0] = [str(ROOT), str(ROOT / "vendor/template66")]
 from gems57 import grid as gridmod, metric
 from gems57.validate import validate as validate_tif
+from scripts.protocol_preflight import require_feasible
 
 BUDGET = 37654
 
