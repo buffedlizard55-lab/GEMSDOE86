@@ -92,6 +92,13 @@
       "context": "docs/evidence/gapres-run-card.json",
       "holdout_kind": "pooled",
       "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
+    },
+    {
+      "lane": "TIPRELAY-HYBRID tip-relay + distal hybrid (catalogue geometry only)",
+      "card": "docs/evidence/tiprelay-hybrid-run-card.json",
+      "context": "docs/evidence/tiprelay-hybrid-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros"
     }
   ]
 }

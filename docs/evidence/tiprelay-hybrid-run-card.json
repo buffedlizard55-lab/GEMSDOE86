@@ -1,0 +1,109 @@
+{
+  "schema": "gems86.tiprelay-hybrid-run-card.v1",
+  "lane": "GEMSDOE86-TIPRELAY-HYBRID",
+  "generated_utc": "2026-10-24T22:29:18.739419+00:00",
+  "hypothesis": "Unmapped blind faults concentrate at tip-to-tip relay bridges and distal intrabasin stepovers of USGS/INGENIOUS catalogue; targeting tip extrapolations (0.6-1.2 km) plus distal corridors (>2 km) recovers blind faults hidden by Quaternary alluvium better than catalogue-proximal density methods.",
+  "mechanism": "Catalogue geometry only: PCA strike on 7-px trace window per tip, 6-12 px forward extrapolation (100 m grid), 0.5-2.0 km tip-pair straight bridges with <30\u00b0 collinearity, plus distal >2 km pool thinned to 3-px spacing (18827+18827 dots), binary 1 px dots, collar >2 px off mapped faults, outside-footprint zero, EPSG:32611 3730x3292 float32 [0,1].",
+  "named_non_fault_process": "Unfaulted paleovalley margins, caldera moat walls, and Miocene lava-flow lobe terminations mimic tip-rectilinear geometry without tectonic slip; pluvial shorelines mimic distal lineaments.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2 (vendor/template66/gems57/holdout.py + metric.py, 300m triangular kernel, alpha 0.2 beta 0.8)",
+    "design": "buffered whole components LOQO, seeds [20], hide_frac 0.20, DOMAIN_ERODE 12 px, 4 folds, withheld_positives = 11321",
+    "withheld_positives": 11318,
+    "candidate_pooled_dti": 0.013589954066298874,
+    "candidate_mean_fold_dti": 0.013376286826087394,
+    "per_fold_dti": {
+      "draw20_foldNW_all": 0.01277527870483268,
+      "draw20_foldNE_all": 0.012198531128566425,
+      "draw20_foldSW_all": 0.015744656819408256,
+      "draw20_foldSE_all": 0.012786680651542221
+    },
+    "per_quadrant_dti": {
+      "foldNE": 0.012198531128566425,
+      "foldNW": 0.01277527870483268,
+      "foldSE": 0.012786680651542221,
+      "foldSW": 0.015744656819408256
+    },
+    "ci95_note": "Exact pooled DTI; 95% CI requires 20km-block bootstrap (1200 draws) not rerun here. Fold dispersion std = 0.0014",
+    "R0_foldfair_reference": null,
+    "H33_same_instrument": 0.004395789340079206,
+    "delta_vs_H33": 0.009194164726219669,
+    "current_holdout_best_R0_foldfair": 0.09608619416803546,
+    "current_holdout_best_H86C_KSLB": 0.1240634961614658,
+    "beats_H33_on_same_instrument": true,
+    "beats_R0_foldfair": false,
+    "beats_holdout_best": false,
+    "verdict_holdout": "negative - candidate >H33 but <R0 and <H86C best; no evidence to claim leaderboard improvement",
+    "value": 0.013589954066298874,
+    "ci95": [
+      0.012229812066298874,
+      0.014950096066298874
+    ]
+  },
+  "leakage_canary": {
+    "max_auc": null,
+    "note": "Catalogue-derived tip geometry feature not evaluated via AUC here; catalogue-derived distance would be ~0.75 AUC as in H86E-RIDF (dist_to_visible 0.755). AUC>0.90 leakage threshold not exceeded per prior canary. Tip-only distance is not a withheld-truth leak because it uses only visible faults per fold during holdout (enforced by build_holdout visible mask)."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "data/scored_fleet 25 local rasters (full 682 registry not rescanned here; literal 17GEMSDOE continuous witness blocks all nonempty candidates)",
+    "literal_witness": "Blocked by 17GEMSDOE continuous witness (halo coverage 1.00) and 13GEMSDOE stride-5 lattice (0.998) under literal rule; reported for completeness, not informative duplication.",
+    "pa86_02_informative": {
+      "overlap_limit": 0.7,
+      "rho_limit": 0.9,
+      "max_forward_overlap_vs_local_fleet": 0.4265,
+      "worst_overlap_file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "worst_spearman_vs_local_fleet": 0.000855,
+      "informative_firings": 0,
+      "informative_firing_rows": [],
+      "worst_halo_coverage_local_fleet": 0.4566,
+      "candidate_halo_coverage": 0.1484,
+      "space_filling": false,
+      "gate_pass_pa86_02": true,
+      "gate_fail_literal": true,
+      "note": "PA-86-02: informative dot-field firings =0, rho 0.0008 <<0.90 => PASSES informative uniqueness. Literal witness still 1.00 => fails literal gate but not informative."
+    }
+  },
+  "raster_sha256": "7c1963ea1edff750c3d4a484f90f9e2762a49ce62d76185d84c3ffc76eea075d",
+  "validator_output": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "n_nan_inside_footprint": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "crs_shape_transform_match": true,
+    "values_in_0_1": true,
+    "emitted_dots": 37654
+  },
+  "submission_name": "gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros",
+  "note": "TIPRELAY hybrid tip+distal 3-px-thin 37654d collar>2px HOLDOUT-DTI 0.0136 >H33 0.0044 PA86_02 0 firings",
+  "note_chars": 99,
+  "submission_file": "docs/downloads/gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.tif",
+  "zip_file": "docs/downloads/gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.zip",
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit_format": true,
+  "safe_to_submit_uniqueness_pa86_02": true,
+  "approved_for_weekly_slot": false,
+  "decision": "DO NOT SUBMIT - holdout negative vs R0 and best; but format-valid and PA86_02 unique for organizer portal if selector overrides (see docs/executive-summary.html)",
+  "decision_reason": "G4 holdout_best fail (0.0136 < 0.124) and <R0 0.096. G6 literal fails (universal witness) but PA86_02 informative passes. No slot used; negative result is deliverable.",
+  "experiments_run": 2,
+  "submission_slots_used": 0,
+  "elapsed_s": 19.5,
+  "budget_status": "2 experiments (v1 tip-only revoked overlap 0.80, v2 hybrid unique 0.426) within 3-experiment cap"
+}

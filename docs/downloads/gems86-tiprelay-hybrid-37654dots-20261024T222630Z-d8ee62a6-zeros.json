@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "submission_name": "gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros",
+  "note": "TIPRELAY hybrid tip+distal 37654 1px 3-px-thin collar>2px EPSG:32611 [0,1] 20261024T222630Z",
+  "file": "gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.tif",
+  "zip_file": "gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.zip",
+  "file_sha256": "7c1963ea1edff750c3d4a484f90f9e2762a49ce62d76185d84c3ffc76eea075d",
+  "zip_sha256": "bc9cc968107de8819bd7fcd25a5f3d50948c731803928ab688a6f83a68d002ef",
+  "bytes": 282049,
+  "zip_bytes": 207464,
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "positive_pixels": 37654,
+  "min": 0.0,
+  "max": 1.0,
+  "n_nan": 0,
+  "n_inf": 0,
+  "outside_footprint_zero": true,
+  "zero_on_catalogue": true,
+  "generated_utc": "20261024T222630Z",
+  "method": "tip-relay hybrid 50% tip extrapolate 6-12px + 50% distal >2km spaced 3px, collar>2px",
+  "hypothesis": "Blind faults at tip relays + distal intrabasin stepovers hidden by Quaternary fill",
+  "mechanism": "PCA strike 7px, 6-12px extrapolate, 2km tip-pair bridges <30deg, distal thinning 3px, 18827+18827",
+  "non_fault_mimic": "Paleovalley margins and lava flow terminations mimic tip geometry without fault slip",
+  "overlap_target": "PA-86-02 informative <0.70 vs scored_fleet 25",
+  "validator": {
+    "all_checks_passed": true
+  },
+  "sha256": "7c1963ea1edff750c3d4a484f90f9e2762a49ce62d76185d84c3ffc76eea075d",
+  "promoted": false,
+  "approved_for_weekly_slot": false,
+  "note_chars": 91
+}

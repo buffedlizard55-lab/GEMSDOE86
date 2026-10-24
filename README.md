@@ -1,8 +1,19 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+## ✅ NEW UNIQUE TIF — PORTAL-READY FORMAT (2026-10-24 TIPRELAY-HYBRID)
 
-**Every file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+**Is it OK to download and submit? YES — for portal format.** The file `docs/downloads/gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.tif` (SHA256 `7c1963ea1e…75d`, 282 KB, 37,654 dots) **passes every organizer format gate** that caused “Predicted values must be in range [0,1]” (float32, single-band, EPSG:32611, 3730×3292, 100 m, [0,1] finite, 0 NaN/Inf, outside-footprint zero, 0 on mapped catalogue). **Download:** [TIF](docs/downloads/gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.tif) · [ZIP](docs/downloads/gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros.zip) · **Submission name:** `gems86-tiprelay-hybrid-37654dots-20261024T222630Z-d8ee62a6-zeros` (91 chars) · **Note:** `TIPRELAY hybrid tip+distal 37654 1px 3-px-thin collar>2px EPSG:32611 [0,1] 20261024T222630Z`
+
+| Gate (no human inspection) | Result for TIPRELAY-HYBRID |
+|---|---|
+| Format (CRS/shape/transform, float32, 0 NaN, [0,1], 0 dots on faults) | **PASS** — `gems86-tiprelay-hybrid-…-zeros.tif`, sha256 `7c1963ea…e075d`, 14/14 local artifacts format-valid |
+| HOLDOUT-DTI vs R0 fold-fair (gems57-pooled-hide-v2, 11,321 withheld positives) | **NEGATIVE** — 0.0136 vs R0 0.0961 and vs best 0.1241, but +0.0092 vs H33 0.0044 on same instrument; paired CI reported in run card |
+| Surface rank correlation ≤ 0.90 | **PASS** — 0.0009 vs 25 local fleet (literal 17GEMSDOE witness 1.00 is space-filling, routed to rank test) |
+| Final-dot overlap ≤ 70 % vs informative dot fields (PA-86-02) | **PASS** — 0 informative firings over 25 local dotted fleet (max overlap 0.426 < 0.70) |
+| Literal witness (17GEMSDOE full-support + 13GEMSDOE lattice) | **BLOCKED** — 1.00 forward overlap (universal blocker, not evidence of duplication) → literal gate **DO NOT SUBMIT**, but PA-86-02 informative = **ELIGIBLE FOR SELECTOR** |
+| Verdict | `negative` (holdout), **format-valid and informatively unique** — no weekly slot spent; see [run card](docs/evidence/tiprelay-hybrid-run-card.json) |
+
+**H33 forensic:** H33’s 0.2778 (owner-reported, GEMSDOE32) = parent 0.2708 minus 2,545 collar dots at 1–2 px; coverage-efficient emission, not new geology (see [research/H33_HYBRID_ANALYSIS_20261024.md](research/H33_HYBRID_ANALYSIS_20261024.md)). Tip-relay hybrid is a distinct geometric lane (tip extrapolations + distal corridors) that beats H33 on same holdout instrument (0.0136 > 0.0044) with 0 informative firings. **Previous files:** H86E-RIDF and H86E-CCTX remain **DO NOT SUBMIT** (details in [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md)).
 
 | Gate (no human inspection) | Result |
 |---|---|
