@@ -285,6 +285,8 @@ def build_report(root: Path = ROOT) -> dict:
     submission_dir = root / "submission"
     if submission_dir.exists():
         allowed_submission = set()
+        expected_spt_sha = None
+        cand_rel = ""
         spt_audit_path = root / "docs/evidence/spt-full-support-witness-audit.json"
         if spt_audit_path.is_file():
             spt_doc = strict_json(spt_audit_path)
@@ -292,7 +294,8 @@ def build_report(root: Path = ROOT) -> dict:
                     and spt_doc.get("submission_ready") is False
                     and spt_doc.get("download_authorized") is False):
                 cand_rel = spt_doc.get("candidate_file", "")
-                if cand_rel.startswith("submission/"):
+                expected_spt_sha = spt_doc.get("candidate_file_sha256")
+                if cand_rel.startswith("submission/") and expected_spt_sha:
                     allowed_submission.add(cand_rel)
                     allowed_submission.add(str(Path(cand_rel).with_suffix(".zip")))
         smuggled = [str(p.relative_to(root)) for p in submission_dir.rglob("*")
@@ -300,6 +303,20 @@ def build_report(root: Path = ROOT) -> dict:
                     and str(p.relative_to(root)) not in allowed_submission]
         if smuggled:
             raise ValueError(f"Unregistered or missing published binary in submission/: {smuggled[0]}")
+        if cand_rel and expected_spt_sha:
+            cand_tif = root / cand_rel
+            cand_zip = cand_tif.with_suffix(".zip")
+            if cand_tif.is_file() and sha256(cand_tif) != expected_spt_sha:
+                raise ValueError(f"Quarantined submission/ TIFF SHA mismatch: {cand_rel}")
+            if cand_zip.is_file():
+                if not cand_tif.is_file():
+                    raise ValueError(f"Quarantined submission/ ZIP missing companion TIFF: {cand_zip.name}")
+                try:
+                    with zipfile.ZipFile(cand_zip) as zf:
+                        if zf.namelist() != [cand_tif.name] or zf.read(cand_tif.name) != cand_tif.read_bytes():
+                            raise ValueError(f"Quarantined submission/ ZIP payload mismatch: {cand_zip.name}")
+                except zipfile.BadZipFile as exc:
+                    raise ValueError(f"Invalid quarantined submission/ ZIP: {cand_zip.name}") from exc
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
     linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
     sidecar_cards_negative = True
@@ -357,7 +374,7 @@ def build_report(root: Path = ROOT) -> dict:
                     "The rejected upload bytes and an organizer receipt were not supplied; the prior range error's cause and historical scores remain unverified.",
                     "Fault prediction is not confirmation of a geothermal vent, heat supply, permeability, or commercial viability.",
                     "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements.",
-                    "PR #60 (IR-86-SPT-02) bypassed protocol_preflight, masked withheld test faults via full existing_faults.tif, yielded canary AUC 0.4947 (<0.50), omitted 95% CIs, misrepresented SPT prose vs code, and placed unregistered binaries in submission/. Those binaries have been removed and spt-run-card.json / xfleet-run-card.json / submit.html revoked to DO NOT SUBMIT.",
+                    "PR #60 (IR-86-SPT-02) bypassed protocol_preflight, masked withheld test faults via full existing_faults.tif, yielded canary AUC 0.4947 (<0.50), omitted 95% CIs, misrepresented SPT prose vs code, and placed unregistered binaries in submission/; PR #63 (IR-86-TIPRELAY-01) placed unregistered binaries in docs/downloads/ with an audit backdoor and 85.08% 3-px overlap vs GEMSDOE32. PR #63's docs/downloads/ binaries were removed, PR #60's submission/ binaries remain quarantined outside docs/ (excluded from GitHub Pages, SHA/ZIP-verified against spt-full-support-witness-audit.json with download_authorized=false), and all sidecar cards and submit.html are revoked to DO NOT SUBMIT.",
                 ])
 
 

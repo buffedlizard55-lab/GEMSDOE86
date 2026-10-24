@@ -16,8 +16,7 @@ from gems86_fvmb.features import build_static60_memmap  # noqa: E402
 
 def main() -> None:
     # The common literal gate is mandatory before cache construction or fitting.
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
     mmap_path, meta = build_static60_memmap(ROOT, force=False)

@@ -2,8 +2,8 @@
   "schema": "gems86.provisional-hypotheses.v1",
   "date_utc": "2026-10-24",
   "scope": "Planning only, not a lane assignment, validation, score projection, or permission to run past a duplicate stop.",
-  "ranking_basis": "Qualitative expected information gain for catalogue-missing fault discrimination per implementation cost; not a numerical prediction of DTI improvement.",
-  "novelty_scope": "Source review of this checkout, including H86-RMRB, GMC, H86-1, RMRB-86, H86B-GFCO, H86C-KSLB, H86-WVB, H86-FVMB, H86D-CTHB, and the revoked PR #60 SPT/XFLEET diagnostics (which never loaded training_features.tif; IR-86-SPT-02). Not proof that no inaccessible sibling has tried these ideas.",
+  "ranking_basis": "Qualitative expected information gain for catalogue-missing geothermal/tectonic fault discrimination per implementation cost; not a numerical prediction of DTI improvement.",
+  "novelty_scope": "Source review of this checkout, including H86-RMRB, GMC, H86-1, RMRB-86, H86B-GFCO, H86C-KSLB, H86-WVB, H86-FVMB, H86D-CTHB, and the revoked PR #60/PR #63 SPT/XFLEET/TIPRELAY diagnostics (IR-86-SPT-02, IR-86-TIPRELAY-01). Not proof that no inaccessible sibling has tried these ideas.",
   "experiments_run": 0,
   "hypotheses": [
     {
@@ -12,15 +12,15 @@
       "name": "Signed paired-throw basement-gravity concordance under low-relief alluvial cover",
       "layers": [
         "competition depth_to_base_surf (Band 15)",
-        "competition iso_grav_anom (Band 13)",
-        "competition det_elev (Band 12, USGS DOI 10.5066/P9MQRCBY)",
-        "competition mag_horiz_grad (Band 2, GeoDAWN DOI 10.5066/P93LGLVQ)"
+        "competition iso_grav_anom (Band 13, USGS DOI 10.5066/P9Z6SA1Z)",
+        "competition det_elev (Band 12, USGS DOI 10.5066/P9MQRCBY) and det_elev_slope (Band 19)",
+        "competition tmi_hg (Band 3, GeoDAWN DOI 10.5066/P93LGLVQ)"
       ],
-      "signature": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf and a negative step in iso_grav_anom must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev scarp relief is muted by basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
-      "why_unmapped": "USGS/INGENIOUS Quaternary fault mapping captures subaerial range-front scarps where det_elev steps are sharp, but systematically under-maps intrabasin blind growth faults and buried accommodation steps beneath Holocene playa/alluvial cover where sedimentation erases surface scarps while cumulative dip-slip preserves concordant basement-depth and gravity steps.",
+      "signature": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and a negative step in iso_grav_anom (Band 13) must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev (Band 12) and det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
+      "why_unmapped": "USGS/INGENIOUS Quaternary fault mapping captures subaerial range-front scarps where det_elev_slope steps are sharp, but systematically under-maps intrabasin blind growth faults and buried accommodation steps beneath Holocene playa/alluvial cover where sedimentation erases surface scarps while cumulative dip-slip preserves concordant basement-depth and gravity steps.",
       "difference_from_repo": "All executed GEMSDOE86 lanes (GMC, RMRB, WVB, GFCO, KSLB, CTHB) rely on unsigned gradient magnitudes, tilt zero-crossings, or Blakely curvature ridges and discard cross-flank dip-slip polarity concordance; PR #60 mentioned signed paired-throw in prose without ever loading training_features.tif or implementing it (IR-86-SPT-02).",
-      "non_fault_mimic": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; inversion artifacts.",
-      "expected_dti_gain": "Highest qualitative priority among local-feature candidates: directly targets intrabasin blind dip-slip faults at low CPU cost (~35 min once protocol gate permits). No score projection.",
+      "non_fault_mimic": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts.",
+      "expected_dti_gain": "Highest qualitative priority among local-feature candidates: directly targets intrabasin blind dip-slip faults >1-5 km off-catalogue (the exact regime separating R0 0.2778 from GEMSDOE81 0.0041) at low CPU cost (~35 min once protocol gate permits). No score projection.",
       "implementation_cost": "Low-medium: oriented +/-400 m antisymmetric flank filters, polarity-scrambled control, and existing 300 m submodular decoder.",
       "external_data_required": false,
       "data_readiness": "NOT_READY: raw competition layers have pinned mirrors, but execution remains blocked by protocol_preflight.require_feasible() under the literal 17GEMSDOE dense-witness rule.",
@@ -38,19 +38,20 @@
       "id": "H86E-MMT",
       "name": "Cross-corridor GeoDAWN magnetic marker-horizon phase-correlation offset",
       "layers": [
-        "competition rtp_tilt_deriv (Band 14)",
-        "competition mag_horiz_grad (Band 2)",
-        "competition ter_rad_k (Band 6)"
+        "competition rtp (Band 2, GeoDAWN DOI 10.5066/P93LGLVQ)",
+        "competition tc (Band 6, magnetic tilt angle / total curvature) and tmi_hg (Band 3)",
+        "mirrored external geodawn_rad_u8.tif K/Th/U radiometrics (GeoDAWN DOI 10.5066/P93LGLVQ)"
       ],
-      "signature": "For label-free candidate line orientations, phase-correlate transverse magnetic marker ridges on opposite +/-700 m flanks. Require a consistent nonzero lateral translation across adjacent strike windows and a weaker zero-shift match, retaining both dextral and sinistral slip senses.",
+      "signature": "For label-free oblique candidate fault orientations (excluding pure 090 deg E-W flight-line and 180 deg N-S tie-line seam azimuths), phase-correlate transverse rtp (Band 2) and tc (Band 6) marker ridges on opposite +/-700 m flanks. Require a consistent nonzero lateral translation across adjacent strike windows and a weaker zero-shift match, retaining both dextral and sinistral slip senses.",
       "why_unmapped": "Accommodation-zone transfer faults and oblique Walker Lane / Humboldt relay structures cut buried Tertiary volcanic sheets across basin floors without building prominent range-front topographic scarps, leaving coherent lateral marker offsets where surface mapping is blank.",
-      "difference_from_repo": "GFCO compares TMI with upward-continued TMI; GMC computes cross-gradients between gravity and magnetics; WVB and CTHB use local-wavenumber, tilt-phase, and hydrothermal couplings. None estimate two-sided flank-to-flank lateral phase translation of transverse magnetic markers.",
-      "non_fault_mimic": "Unfaulted intrusive contacts, primary Miocene lava-flow lobe terminations, GeoDAWN survey-block flight-line tie seams, and remanent magnetization reversals.",
-      "expected_dti_gain": "Second qualitative priority: physically orthogonal strike-slip / transfer-zone detector using local bands without external downloads. No score projection.",
-      "implementation_cost": "Medium-high: multi-azimuth split-window FFT phase correlation, seam controls, and buffered LOQO validation (~65 min CPU).",
+      "difference_from_repo": "GFCO compares TMI (Band 14) with upward-continued TMI; GMC computes cross-gradients between iso_grav_anom (Band 13) and rtp (Band 2); WVB and CTHB use local-wavenumber, tilt-phase, and hydrothermal couplings. None estimate two-sided flank-to-flank lateral phase translation of transverse magnetic markers.",
+      "non_fault_mimic": "Unfaulted intrusive contacts, primary Miocene lava-flow lobe terminations, GeoDAWN E-W (200/400 m) flight-line and N-S (2000/4000 m) tie-line leveling seams, and remanent magnetization reversals.",
+      "expected_dti_gain": "Second qualitative priority: physically orthogonal strike-slip / transfer-zone detector using local and mirrored GeoDAWN bands without new external downloads. No score projection.",
+      "implementation_cost": "Medium-high: multi-azimuth split-window FFT phase correlation, E-W/N-S survey-seam suppression, and buffered LOQO validation (~65 min CPU).",
       "external_data_required": false,
       "data_readiness": "NOT_READY: blocked prior to feature construction by protocol_preflight.require_feasible() under the pinned dense-witness overlap stop.",
       "official_basis": [
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
         "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
         "https://gbcge.org/current-projects/ingenious/"
       ],
@@ -60,53 +61,80 @@
     },
     {
       "rank": 3,
-      "id": "H86E-MTCS",
-      "name": "Magnetotelluric crustal conductance boundary x geodetic transtensional dilatancy bridge",
+      "id": "H86E-HMDC",
+      "name": "Hydrothermal magnetite-destruction trough & pairwise paleo-vent/sinter strike-alignment corridor",
       "layers": [
-        "external USGS Great Basin MT electrical conductance grids (DOI 10.5066/P9TWT2LU)",
-        "external INGENIOUS GPS geodetic strain-rate & dilatation archive (DOE GDR 1391 geodetics, DOI 10.15121/1881483)",
-        "competition rtp_tilt_deriv (Band 14) and heat_flow / 2m temperature compilations (DOI 10.5066/P9BZPVUC)"
+        "competition rtp (Band 2), tmi_vg (Band 9), cond_surf (Band 17), geod_dilaterate (Band 8), and geod_shearrate (Band 7)",
+        "mirrored DOE GDR 1391 paleo_geothermal_regional.zip (726 sinter/tufa deposits, sha256 faffcf69...) and 2m_temperature_probe_INGENIOUS_regional_data.zip (3,800 probes, sha256 1301f70d...)",
+        "mirrored DOE GDR 1391 gdr_volcanic_vents_in_footprint.csv and gdr_wellspring_in_footprint.csv (excluding dist_known_fault_px) + geodawn_extensions_u8.tif K/Th & U/Th"
       ],
-      "signature": "Co-align steep horizontal log10 electrical conductance gradients at 1-5 km depth with positive horizontal geodetic dilatation (eps_xx + eps_yy > 0) and maximum shear strain rate, sharpened onto 100 m corridors along GeoDAWN RTP magnetic tilt zero-crossings.",
-      "why_unmapped": "Blind hydrothermal fault conduits in the Humboldt structural zone and northern Walker Lane frequently lack Holocene surface scarps and modern catalog seismicity, yet hot saline fluids plus smectite-illite clay alteration produce strong subsurface MT conductance contrasts inside actively dilating crust — the core blind geothermal target emphasized by INGENIOUS Phase 2 expert relabeling.",
-      "difference_from_repo": "No GEMSDOE86 lane ingests either USGS MT electrical conductance (10.5066/P9TWT2LU) or INGENIOUS geodetic strain/dilatation tensors (GDR 1391 geodetics); H86D-CTHB used only gravity, magnetics, radiometrics, SGMC contacts, and shallow geothermometry.",
-      "non_fault_mimic": "Closed-basin evaporitic playa brines and stratiform Paleozoic graphitic/sulfidic black shales generating non-tectonic high conductance.",
-      "expected_dti_gain": "Third qualitative priority: strong physical complementarity for blind geothermal conduits, gated behind external archive mirroring and coarse-to-100 m downscaling verification. No score projection.",
-      "implementation_cost": "Medium-high: external ScienceBase/GDR archive pinning, EPSG:32611 reprojection, leakage-canary check against Qfaults-derived layers, and buffered holdout testing.",
-      "external_data_required": true,
-      "free_official_source_needed": "USGS ScienceBase MT electrical conductance release (https://doi.org/10.5066/P9TWT2LU) and DOE GDR Submission 1391 geodetics archive (https://gdr.openei.org/submissions/1391, CC-BY-4.0), excluding qfaults_ingenious shapefiles to prevent label leakage.",
+      "signature": "Extract strike-continuous negative magnetic troughs (positive maximum cross-strike second derivative of -rtp Band 2 and -tmi_vg Band 9 with positive volcanic flanking shoulders, diagnostic of hydrothermal magnetite -> pyrite/leucoxene destruction) along pairwise co-linear geodesic corridors (<=6 km) connecting paleo-sinter/tufa mounds, 2-m temperature anomalies, and Quaternary volcanic vents inside dilatant conductive crust (cond_surf Band 17 x geod_dilaterate Band 8).",
+      "why_unmapped": "Approximately three-quarters of Great Basin geothermal systems are blind or lack Holocene range-front scarps; ascending H2S-bearing fluids chemically destroy magnetite along subtle intrabasin stepovers, horse-tail splays, and relay ramps omitted from airphoto Quaternary fault compilations.",
+      "difference_from_repo": "H86D-CTHB extracted only positive magnetic Hessian ridges (mag_ridge_s15) and radially isotropic point halos around sinter/volcanic vents (paleo_sinter_vent, volcanic_vent_halo); no lane in GEMSDOE86 extracts negative flanking-shoulder magnetite-destruction troughs or pairwise co-linear vent-to-vent geodesic corridors.",
+      "non_fault_mimic": "Non-tectonic reversed-polarity volcanic flows, felsic ash-flow tuffs with primary low magnetic susceptibility, or E-W/N-S GeoDAWN tie-line troughs.",
+      "expected_dti_gain": "Third qualitative priority: directly targets the competition's blind geothermal-vent fault mission using already SHA-pinned GitHub mirrors (research/h86d_extended_manifest.json) with zero external host fetches needed. No score projection.",
+      "implementation_cost": "Medium: signed valley-curvature filter on rtp/tmi_vg, pairwise vent-alignment Radon/geodesic corridor builder, and buffered whole-component LOQO (~45 min CPU).",
+      "external_data_required": false,
+      "data_readiness": "NOT_READY: all competition and GDR 1391 sinter/2m-probe/vent inputs are SHA-pinned on GitHub mirrors (research/h86d_extended_manifest.json), but execution remains blocked by protocol_preflight.require_feasible() under the literal 17GEMSDOE dense-witness rule.",
       "official_basis": [
         "https://gdr.openei.org/submissions/1391",
         "https://gbcge.org/current-projects/ingenious/",
-        "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
       ],
-      "obtainability": "Public metadata and CC-BY-4.0 archive listings on https://gdr.openei.org/submissions/1391 and https://gbcge.org/current-projects/ingenious/ were verified on 2026-10-24, but direct binary download from gdr.openei.org / sciencebase.gov is blocked inside this sandbox's outbound allowlist (GitHub/PyPI/npm only) until SHA-pinned into a permitted mirror.",
-      "data_readiness": "NOT_VIABLE_YET: public CC-BY-4.0 releases exist, but raw MT conductance and geodetic grid bytes are not mirrored or hash-pinned in this workspace, and protocol_preflight.require_feasible() also blocks execution.",
-      "status": "NOT_RUN_MISSING_DATA_AND_PROTOCOL_STOP",
+      "status": "NOT_RUN_PROTOCOL_STOP",
       "holdout_dti": null,
       "ci95": null
     },
     {
       "rank": 4,
+      "id": "H86E-MTCS",
+      "name": "Multi-depth 3D MT conductance contrast x conductive heat-flow & transtensional dilatancy bridge",
+      "layers": [
+        "external USGS Great Basin 3D MT electrical conductance slices (5 depth ranges 2-200 km, DOI 10.5066/P9TWT2LU)",
+        "external USGS Great Basin conductive heat-flow grids (DOI 10.5066/P9BZPVUC)",
+        "competition cond_surf (Band 17), geod_dilaterate (Band 8), geod_shearrate (Band 7), and tc (Band 6)"
+      ],
+      "signature": "Contrast deep (2-10 km) vs shallow (<2 km) MT electrical conductance gradients to separate subvertical fault-fluid conduits from shallow playa brines, co-aligned with conductive heat-flow highs and competition geod_dilaterate (Band 8) > 0, sharpened onto 100 m corridors along tc (Band 6) magnetic tilt zero-crossings.",
+      "why_unmapped": "Blind hydrothermal fault conduits in the Humboldt structural zone and northern Walker Lane frequently lack Holocene surface scarps and modern catalog seismicity, yet deep saline upflow + smectite-illite clay alteration produce multi-kilometer MT conductance steps inside actively dilating crust.",
+      "difference_from_repo": "Training_features.tif provides only single-surface cond_surf (Band 17) plus geodetic bands (Bands 4, 7, 8), which conflate shallow playa brines with deep fault conduits; no GEMSDOE86 lane ingests the 5-depth USGS 3D MT conductance slices (10.5066/P9TWT2LU) or USGS conductive heat-flow release (10.5066/P9BZPVUC).",
+      "non_fault_mimic": "Stratiform Paleozoic graphitic/sulfidic marine black shales (e.g., Roberts Mountains thrust allochthon) generating deep non-geothermal crustal conductance.",
+      "expected_dti_gain": "Fourth qualitative priority: resolves the shallow-playa vs deep-conduit ambiguity of Band 17 cond_surf, gated behind ScienceBase raster mirroring and coarse-to-100 m downscaling verification. No score projection.",
+      "implementation_cost": "Medium-high: USGS ScienceBase archive pinning, EPSG:32611 reprojection, depth-ratio differencing, leakage-canary check, and buffered holdout testing.",
+      "external_data_required": true,
+      "free_official_source_needed": "USGS ScienceBase Electrical Conductance Maps of the Great Basin (https://doi.org/10.5066/P9TWT2LU, Peacock & Bedrosian 2022) and Heat Flow Maps of the Great Basin (https://doi.org/10.5066/P9BZPVUC, DeAngelo et al. 2022), public domain.",
+      "official_basis": [
+        "https://gdr.openei.org/submissions/1391",
+        "https://gbcge.org/current-projects/ingenious/",
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+      ],
+      "obtainability": "Public-domain USGS DOIs 10.5066/P9TWT2LU and 10.5066/P9BZPVUC were verified on 2026-10-24 via https://gdr.openei.org/submissions/1391 and https://gbcge.org/current-projects/ingenious/, but sciencebase.gov binary downloads are outside this sandbox's bash host allowlist until mirrored and SHA-pinned.",
+      "data_readiness": "NOT_VIABLE_YET: public-domain USGS releases verified, but multi-depth MT and heat-flow raster bytes are not mirrored in this workspace, and protocol_preflight.require_feasible() blocks execution.",
+      "status": "NOT_RUN_MISSING_DATA_AND_PROTOCOL_STOP",
+      "holdout_dti": null,
+      "ci95": null
+    },
+    {
+      "rank": 5,
       "id": "H86E-WCS",
       "name": "Watershed-crossing 1-m 3DEP LiDAR micro-scarp curvature persistence",
       "layers": [
         "official USGS 3DEP bare-earth 1 m DEM tiles (competition 1m_DEM_links.csv)",
-        "competition det_elev (Band 12) and surf_rough (Band 10)"
+        "competition det_elev (Band 12) and det_elev_slope (Band 19)"
       ],
       "signature": "Measure signed 5-25 m cross-strike profile curvature steps on native 1 m bare-earth LiDAR DEMs that retain strike and downthrown polarity across independently delineated drainage divides, vetoing candidates aligned with steepest-descent channels, constant-elevation pluvial shorelines, or road embankments.",
-      "why_unmapped": "Low-slip (0.3-1.5 m) late Quaternary piedmont and intrabasin scarps are smoothed below noise in 30-100 m DEM products and missed in pre-LiDAR airphoto mapping, yet persist cleanly across multiple ephemeral fan catchments at 1 m LiDAR resolution.",
-      "difference_from_repo": "Zero GEMSDOE86 lanes ingest native 1 m 3DEP LiDAR tiles; GFCO, WVB, and CTHB operated exclusively on 100 m pre-aggregated morphological layers without sub-pixel scarp dipole extraction or cross-divide persistence.",
+      "why_unmapped": "Low-slip (0.3-1.5 m) late Quaternary piedmont and intrabasin scarps are smoothed below noise in 30-100 m DEM products (det_elev Band 12, det_elev_slope Band 19) and missed in pre-LiDAR airphoto mapping, yet persist cleanly across multiple ephemeral fan catchments at 1 m LiDAR resolution.",
+      "difference_from_repo": "Zero GEMSDOE86 lanes ingest raw native 1 m 3DEP LiDAR tiles (prior lanes used only pre-quantized 100 m summary bands in lidar_scarp_features_u8.tif without cross-divide polarity persistence).",
       "non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches, fluvial terrace risers, and highway/railroad grades.",
-      "expected_dti_gain": "Fourth qualitative priority: high physical specificity on subtle piedmont scarps, ranked fourth due to multi-gigabyte external tile-processing cost. No score projection.",
+      "expected_dti_gain": "Fifth qualitative priority: high physical specificity on subtle piedmont scarps, ranked fifth due to multi-gigabyte external tile-streaming cost (~716 tiles). No score projection.",
       "implementation_cost": "High: native 1 m DEM tile streaming, hydrologic catchment conditioning, and 100 m EPSG:32611 summary raster generation (~2-4 hr preprocessing).",
       "external_data_required": true,
       "free_official_source_needed": "USGS 3DEP 1 m bare-earth DEM GeoTIFFs indexed by the competition's 1m_DEM_links.csv (documented in https://docs.nlr.gov/docs/fy26osti/96647.pdf).",
       "official_basis": [
         "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
         "https://epsg.io/32611"
       ],
-      "obtainability": "Official competition rules (https://docs.nlr.gov/docs/fy26osti/96647.pdf, verified 2026-10-24) confirm 1 m USGS DEM features are part of the official public data package, but neither authenticated DrivenData 1m_DEM_links.csv nor USGS TNM tile hosts are reachable from this sandbox allowlist.",
+      "obtainability": "Official competition rules (https://docs.nlr.gov/docs/fy26osti/96647.pdf, verified 2026-10-24) confirm 1 m USGS 3DEP DEM features are part of the official data package, but neither login-walled DrivenData 1m_DEM_links.csv nor USGS TNM tile hosts are reachable from this sandbox allowlist.",
       "data_readiness": "NOT_VIABLE_YET: native 1 m DEM tiles and coverage manifest are not present in this checkout, and protocol_preflight.require_feasible() blocks model execution.",
       "status": "NOT_RUN_MISSING_DATA_AND_PROTOCOL_STOP",
       "holdout_dti": null,
@@ -115,7 +143,7 @@
   ],
   "required_validation_after_blockers_are_resolved": [
     "Assign one method lane; restore and hash-verify the actual shared cached feature stack and a current complete accessible registry.",
-    "Preserve the literal rho (>0.90) and 3-px dot-overlap (>0.70) limits; do not exempt the 17GEMSDOE dense continuous witness without an explicit owner-approved protocol revision.",
+    "Resolve both literal saturation witnesses upstream in 60GEMSDOE (the 17GEMSDOE 100%-allowed continuous surface ab0a0a62... AND the 13GEMSDOE 99.87%-covered stride-5 discrete dot lattice b4570b40..., which forces >=82.70% 3-px overlap on any 37,654-dot raster by pigeonhole); never patch vendor/gems57 privately.",
     "Freeze buffered whole-component folds and fixed budgets before touching withheld labels; derive every catalogue feature strictly from fold-visible faults outside the buffer (never mask full existing_faults.tif as PR #60 did).",
     "Run single-feature and combined leakage canaries before trusting any holdout number; max(AUC, 1-AUC) > 0.90 stops the run, and AUC <= 0.52 flags a non-informative feature.",
     "Use the pinned shared evaluate_holdout.py and submission_writer.py unchanged; report pooled HOLDOUT-DTI with evaluator version, withheld-positive pixel count, physical-block 95% CI, and paired delta vs H86D-CTHB and fold-fair R0.",

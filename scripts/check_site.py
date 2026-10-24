@@ -99,6 +99,8 @@ def check(root=ROOT):
     submission_dir = root / 'submission'
     if submission_dir.exists():
         allowed_submission = set()
+        expected_spt_sha = None
+        cand_rel = ''
         spt_audit_path = root / 'docs/evidence/spt-full-support-witness-audit.json'
         if spt_audit_path.is_file():
             spt_doc = json.loads(spt_audit_path.read_text(encoding='utf-8'))
@@ -106,13 +108,27 @@ def check(root=ROOT):
                     and spt_doc.get('submission_ready') is False
                     and spt_doc.get('download_authorized') is False):
                 cand_rel = spt_doc.get('candidate_file', '')
-                if cand_rel.startswith('submission/'):
+                expected_spt_sha = spt_doc.get('candidate_file_sha256')
+                if cand_rel.startswith('submission/') and expected_spt_sha:
                     allowed_submission.add(cand_rel)
                     allowed_submission.add(str(Path(cand_rel).with_suffix('.zip')))
         for extra in sorted(submission_dir.rglob('*')):
             if extra.is_file() and extra.suffix.lower() in {'.tif', '.tiff', '.zip'}:
                 if str(extra.relative_to(root)) not in allowed_submission:
                     errors.append(f'Unregistered submission binary outside inventory: {extra.relative_to(root)}')
+        if cand_rel and expected_spt_sha:
+            cand_tif = root / cand_rel
+            cand_zip = cand_tif.with_suffix('.zip')
+            if cand_tif.is_file() and hashlib.sha256(cand_tif.read_bytes()).hexdigest() != expected_spt_sha:
+                errors.append(f'Quarantined submission TIFF SHA differs from witness audit: {cand_rel}')
+            if cand_zip.is_file():
+                try:
+                    with zipfile.ZipFile(cand_zip) as zf:
+                        if (not cand_tif.is_file() or zf.namelist() != [cand_tif.name]
+                                or zf.read(cand_tif.name) != cand_tif.read_bytes()):
+                            errors.append(f'Quarantined submission ZIP payload differs from audited TIFF: {cand_zip.name}')
+                except (OSError, zipfile.BadZipFile, KeyError, RuntimeError, NotImplementedError):
+                    errors.append(f'Invalid quarantined submission ZIP: {cand_zip.name}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
         if 'READY TO DOWNLOAD' in html_text:

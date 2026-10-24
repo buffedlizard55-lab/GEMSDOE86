@@ -249,3 +249,18 @@ def test_concurrent_fvmb_entrypoints_stop_before_cache_or_fitting(monkeypatch, n
     with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
         module.main()
     assert built == []
+
+
+def test_tampered_quarantined_submission_bytes_or_zip_fail_release_audit(release_copy):
+    shutil.copytree(ROOT / "submission", release_copy / "submission")
+    assert audit.build_report(release_copy)["audit_ok"]
+    spt_doc = audit.strict_json(release_copy / "docs/evidence/spt-full-support-witness-audit.json")
+    cand_tif = release_copy / spt_doc["candidate_file"]
+    cand_zip = cand_tif.with_suffix(".zip")
+    with zipfile.ZipFile(cand_zip, "w") as bundle:
+        bundle.writestr(cand_tif.name, b"substituted")
+    with pytest.raises(ValueError, match="Quarantined submission/ ZIP payload mismatch"):
+        audit.build_report(release_copy)
+    cand_tif.write_bytes(b"substituted")
+    with pytest.raises(ValueError, match="Quarantined submission/ TIFF SHA mismatch"):
+        audit.build_report(release_copy)

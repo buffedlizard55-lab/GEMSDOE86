@@ -11,10 +11,9 @@ Declared lane (Session 3, advancing Session-2 H86B-GFCO next steps & README §9)
   filament-coherent multi-family physical corridors.
 
 Reuses `vendor/gems57` byte-for-byte without modification.
-By default (`main()`), calls `protocol_preflight.require_feasible()` and halts before
-surface construction under the literal 100%-dense witness stop. Passing
-`--research-negative-artifact` executes the 3 pre-declared research experiments and
-records a fail-closed `verdict="negative"` / `DO NOT SUBMIT` research deliverable.
+`main()` calls `protocol_preflight.require_feasible()` unconditionally before argument parsing,
+feature construction, fitting, or placement under the literal 100%-dense witness stop; no CLI or
+boolean bypass exists.
 """
 from __future__ import annotations
 
@@ -428,12 +427,15 @@ def collect_registry_records(data_dir: Path) -> list[dict]:
 
 
 def main(data_dir: Path | None = None):
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
+    if data_dir is None:
+        ap = argparse.ArgumentParser(description=__doc__)
+        ap.add_argument("--data-dir", type=Path, default=F.DEFAULT_DATA_DIR)
+        data_dir = ap.parse_args().data_dir
 
-    d = Path(data_dir) if data_dir is not None else F.DEFAULT_DATA_DIR
+    d = Path(data_dir)
     t_start = time.time()
     plane_man = F.build_physical_planes(d)
     adir = F.aux_dir_for(d)
@@ -978,7 +980,4 @@ def main(data_dir: Path | None = None):
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--data-dir", type=Path, default=F.DEFAULT_DATA_DIR)
-    args = ap.parse_args()
-    main(data_dir=args.data_dir)
+    main()

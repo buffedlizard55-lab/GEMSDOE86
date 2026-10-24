@@ -70,6 +70,8 @@ def test_checked_in_feed_covers_named_targets_without_score_promotion():
 
 
 def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability():
+    import re
+    from src.gems86.io import BANDS
     plan = strict_json(ROOT / "registry/h86c_hypotheses.json")
     assert 3 <= len(plan["hypotheses"]) <= 5
     assert plan["experiments_run"] == 0
@@ -82,6 +84,9 @@ def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability()
             assert "NOT_VIABLE" in row["data_readiness"]
             assert row["free_official_source_needed"]
             assert row["obtainability"]
+        text_blob = " ".join([*row["layers"], row["signature"], row["why_unmapped"], row["difference_from_repo"]])
+        for key, band_str in re.findall(r"\b([a-z0-9_]+)\s*\(Band\s+(\d+)\b", text_blob):
+            assert BANDS[int(band_str)] == key, f"Band mismatch in {row['id']}: Band {band_str} is {BANDS[int(band_str)]}, not {key}"
 
 
 def test_workflow_may_publish_fresh_partial_feed_but_cannot_hide_fatal_errors(monkeypatch, tmp_path):

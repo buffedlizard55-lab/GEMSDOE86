@@ -29,6 +29,10 @@ from sklearn.linear_model import HuberRegressor
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "vendor") not in sys.path:
     sys.path.insert(0, str(ROOT / "vendor"))
+if "gems57" in sys.modules and hasattr(sys.modules["gems57"], "__path__"):
+    _vg = str(ROOT / "vendor" / "gems57")
+    if _vg not in sys.modules["gems57"].__path__:
+        sys.modules["gems57"].__path__.append(_vg)
 
 from gems57 import grid as G
 from gems57.faultzone import _fragment_stats
@@ -675,8 +679,7 @@ def compute_kinematic_components(
 def main():
     # Direct feature-building must not get around the model entrypoint's STOP.
     # Pure transformation functions remain importable for synthetic unit tests.
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
     man = build_physical_planes()

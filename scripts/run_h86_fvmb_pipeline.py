@@ -537,8 +537,7 @@ def run_uniqueness_audit(surf: np.ndarray, dots: np.ndarray, g: GRID.Grid) -> di
 
 def main() -> None:
     # The common literal gate is mandatory before cache construction or fitting.
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
     t_start = time.time()
