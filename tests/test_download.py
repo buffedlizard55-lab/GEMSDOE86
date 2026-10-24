@@ -45,6 +45,29 @@ class DownloadTests(unittest.TestCase):
             self.assertFalse(result['checks']['zip_tif_bytes_equal_registered_tif'])
             self.assertFalse(result['all_format_checks_passed'])
 
+    def test_optimistic_card_requires_complete_unique_scan_even_without_stop(self):
+        # Tamper only with authorization fields; byte integrity alone must not
+        # make an incomplete or duplicate registry report submission-ready.
+        for complete, unique in ((False, True), (True, False), (None, True)):
+            for field, value in (('verdict', 'promote'), ('submission_ready', True),
+                                 ('approved_for_weekly_slot', True)):
+                with self.subTest(complete=complete, unique=unique, field=field):
+                    with tempfile.TemporaryDirectory() as d:
+                        root = Path(d); card, _ = self.fixture(root)
+                        card[field] = value
+                        (root / 'docs/evidence/run-card.json').write_text(json.dumps(card))
+                        path = root / 'docs/evidence/lane86_results.json'
+                        lane = json.loads(path.read_text())
+                        lane['final_uniqueness'].update(
+                            stop_required=False, unique=unique,
+                            complete_accessible_scan=complete)
+                        path.write_text(json.dumps(lane))
+                        with patch.object(validate_download, 'ROOT', root):
+                            result = validate_download.validate()
+                        self.assertTrue(result['checks']['readiness_respects_shared_stop'])
+                        self.assertFalse(result['checks']['readiness_requires_complete_unique_scan'])
+                        self.assertFalse(result['all_format_checks_passed'])
+
     def test_uniqueness_consistency_is_computed_not_hardcoded_true(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d); card, _ = self.fixture(root)

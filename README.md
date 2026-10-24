@@ -1,6 +1,13 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
+
+
 ## Latest review — 2026-10-24: DO NOT SUBMIT
+
+[Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
+
+[Additional three-pass download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md): incomplete or duplicate registry scans now explicitly block optimistic readiness flags in the independent download validator. All ten inherited artifacts were remeasured; no new TIFF or slot authorization was produced.
 
 **No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
 

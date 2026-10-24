@@ -39,6 +39,15 @@ class ProtocolTests(unittest.TestCase):
                 dots = np.zeros_like(a); dots[y, x] = 1
                 self.assertEqual(dot_overlap(dots, a), 1)
 
+    def test_three_pixel_spacing_does_not_imply_disjoint_kernel_support(self):
+        # Geometry only, not HOLDOUT-DTI or a geological experiment. The H33
+        # explanation must not claim spacing near R makes radius-R cones disjoint.
+        y, x = np.indices((9, 12))
+        left = np.maximum(0, 1 - np.hypot(y - 4, x - 4) / 3)
+        right = np.maximum(0, 1 - np.hypot(y - 4, x - 7) / 3)
+        self.assertTrue(((left > 0) & (right > 0)).any())
+        self.assertGreater((left + right).sum(), np.maximum(left, right).sum())
+
     def test_sparse_surface_is_not_a_universal_certificate(self):
         with tempfile.TemporaryDirectory() as d:
             path = Path(d) / 'sparse.tif'
