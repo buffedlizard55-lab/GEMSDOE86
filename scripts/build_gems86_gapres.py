@@ -14,10 +14,10 @@ lineaments every fleet method traced for non-fault reasons.
 
 Uses shared tools unchanged: gems57.grid (writer), gems57.validate,
 gems57.holdout + gems57.metric via holdout.evaluate (DTI a=0.2 b=0.8 300m).
-Does NOT call protocol_preflight.require_feasible(): its literal support>0
-reading is saturated by a continuous (non-dotted) witness; that irregularity
-is reported in the run card, not silently exempted (cf. IR-86-H86E-01).
-No weekly slot is authorized by this script.
+The historical builder entrypoint now calls
+protocol_preflight.require_feasible() before reading inputs or constructing a
+candidate. The pinned literal witness makes that gate stop; the existing GAPRES
+artifact is an archive and no new build or weekly slot is authorized.
 """
 from __future__ import annotations
 import hashlib, json, sys, zipfile
@@ -39,6 +39,9 @@ def dil(mask, r=3):
     return ndi.binary_dilation(mask, structure=yy*yy+xx*xx <= r*r)
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     g = G.load_grid(ROOT/"data/bridge")
     fleet_files = sorted((ROOT/"data/scored_fleet").glob("*.tif"))
     vote = np.zeros(g.shape, np.float32); union = np.zeros(g.shape, bool)

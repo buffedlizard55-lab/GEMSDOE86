@@ -12,6 +12,7 @@ from html import escape
 import json
 from pathlib import Path
 import sys
+import zipfile
 
 import numpy as np
 import rasterio
@@ -60,7 +61,7 @@ def digest(path):
 
 
 def audit_artifact(path, entry, sample, footprint, catalogue):
-    """Inspect actual bytes, rather than trust a writer receipt's PASS flag."""
+    """Inspect bytes directly; the adjacent JSON may be a writer receipt or archived run card."""
     receipt = json.loads(path.with_suffix('.json').read_text())
     sha = digest(path)
     local = validate(path, footprint, catalogue)
@@ -69,6 +70,13 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         # Project's conservative all-finite export has no nodata tag/masked cells.
         unmasked = bool((src.read_masks(1)[footprint] > 0).all())
         no_nodata = src.nodata is None
+    is_run_card = (receipt.get('evidence_class') == 'RUN-CARD'
+                   and path.name.startswith('gems86-blindgeothermal-dilation-'))
+    zip_path = path.with_suffix('.zip')
+    with zipfile.ZipFile(zip_path) as bundle:
+        zip_one_exact_tif = bundle.namelist() == [path.name]
+        zip_payload_matches = zip_one_exact_tif and bundle.read(path.name) == path.read_bytes()
+        zip_crc_passed = bundle.testzip() is None
     checks = dict(local['checks'])
     checks.update(
         shared_template_format_pass=template['ok'],
@@ -78,11 +86,24 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         receipt_hash_matches=receipt.get('sha256') == sha,
         receipt_filename_matches=receipt.get('file') == path.name,
         receipt_byte_count_matches=receipt.get('bytes') == path.stat().st_size,
-        receipt_zip_filename_matches=receipt.get('zip_file') == path.with_suffix('.zip').name,
-        receipt_zip_hash_matches=receipt.get('zip_sha256') == digest(path.with_suffix('.zip')),
-        receipt_not_promoted=receipt.get('promoted') is False,
-        receipt_no_slot_approval=receipt.get('approved_for_weekly_slot') is False,
+        zip_one_exact_tif=zip_one_exact_tif,
+        zip_payload_equals_tif=zip_payload_matches,
+        zip_crc_passed=zip_crc_passed,
     )
+    if is_run_card:
+        checks.update(
+            run_card_sidecar_schema_recognized=True,
+            run_card_no_unverified_zip_hash_claim='zip_sha256' not in receipt and 'zip_file' not in receipt,
+            receipt_not_promoted=receipt.get('verdict') == 'format-valid; not organizer-confirmed; weekly slot not used',
+            receipt_no_slot_approval=receipt.get('submission_slots_used') == 0,
+        )
+    else:
+        checks.update(
+            receipt_zip_filename_matches=receipt.get('zip_file') == zip_path.name,
+            receipt_zip_hash_matches=receipt.get('zip_sha256') == digest(zip_path),
+            receipt_not_promoted=receipt.get('promoted') is False,
+            receipt_no_slot_approval=receipt.get('approved_for_weekly_slot') is False,
+        )
     for key in ('submission_name', 'note'):
         text = receipt.get(key)
         checks[key + '_valid_length'] = isinstance(text, str) and bool(text.strip()) and len(text) <= 140
@@ -91,6 +112,8 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
     if failed:
         raise ValueError(f'{path.name}: failed checks: {failed}')
     return dict(file=entry['file'], sha256=sha, bytes=path.stat().st_size,
+                zip_file=str(Path(entry['file']).with_suffix('.zip')),
+                zip_sha256=digest(zip_path), sidecar_kind='archived run-card sidecar' if is_run_card else 'writer receipt',
                 submission_name=receipt['submission_name'], note=receipt['note'],
                 note_chars=len(receipt['note']), positive_pixels=local['emitted_positive_pixels'],
                 min=local['min'], max=local['max'], n_nan=local['n_nan'], n_infinite=local['n_infinite'],
@@ -131,7 +154,7 @@ def audit(root=ROOT):
     if not artifacts:
         raise ValueError('No registered research artifacts to validate')
     return dict(schema_version=1, evidence_class='LOCAL-FORMAT-AND-INTEGRITY',
-                scope='All registered published research TIFFs, ZIPs and writer identity fields; not holdout, uniqueness or organizer acceptance.',
+                scope='All registered published research TIFFs, ZIPs and identity sidecars (writer receipts or archived run cards); not holdout, uniqueness or organizer acceptance.',
                 organizer_authenticated=False, safe_to_submit=False, verdict='negative',
                 all_checks_passed=True, artifact_count=len(artifacts), shared_tool_hashes=tool_hashes,
                 inputs={name: digest(bridge / name) for name in ('sample_submission.tif', 'existing_faults.tif')},
@@ -147,7 +170,7 @@ def render(report):
 <p><span class="badge bad">DO NOT SUBMIT</span> <span class="badge ok">Local format / integrity PASS</span></p>
 <p><a class="btn ghost" href="{escape(href)}" download>Download TIFF for research only</a>
 <a class="btn ghost" href="{escape(str(Path(href).with_suffix('.zip')))}" download>Single-TIFF ZIP</a>
-<a href="{escape(str(Path(href).with_suffix('.json')))}">Writer receipt</a></p>
+<a href="{escape(str(Path(href).with_suffix('.json')))}">{escape(row['sidecar_kind'])}</a></p>
 <dl><dt>SHA-256</dt><dd class="mono">{row['sha256']}</dd>
 <dt>File bytes</dt><dd>{row['bytes']:,}</dd>
 <dt>Submission name (identity only, not authorization)</dt><dd>{escape(row['submission_name'])}</dd>
@@ -159,7 +182,7 @@ def render(report):
 <body><header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Evidence</a></nav></header><main>
 <h1>Verified research downloads — DO NOT SUBMIT</h1>
 <p>No file is authorized for a competition slot. Local byte/format checks do not establish geological skill, uniqueness, eligibility or organizer acceptance. No new TIFF was generated by this audit.</p>
-<p>This page is generated from actual TIFF bytes and adjacent writer receipts, not manually transcribed sizes or note lengths. The conservative export policy requires finite [0,1] values everywhere, exact sample geometry, valid in-footprint masks, no nodata tag, zero outside the footprint and zero on mapped faults. Inputs are hash-pinned owner mirrors, not authenticated organizer downloads.</p>
+<p>This page is generated from actual TIFF bytes and adjacent writer receipts or archived run-card sidecars, not manually transcribed sizes or note lengths. The conservative export policy requires finite [0,1] values everywhere, exact sample geometry, valid in-footprint masks, no nodata tag, zero outside the footprint and zero on mapped faults. Inputs are hash-pinned owner mirrors, not authenticated organizer downloads.</p>
 <p><a href="evidence/download-validation.json">Full automated validation report</a> · <a href="evidence/protocol-preflight.json">Literal registry blocker proof</a> · <a href="evidence/session-review-run-card.json">This review's negative run card</a></p>
 <p>Regenerate with <code>python scripts/audit_downloads.py --write</code>; verify without writes with <code>python scripts/audit_downloads.py</code>. CI reruns the byte checks before Pages publication. This is not a live leaderboard feed.</p>
 ''' + '\n'.join(sections) + '\n</main><footer>Format PASS ≠ submission approval. Every artifact remains DO NOT SUBMIT.</footer></body></html>\n'

@@ -1,25 +1,31 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **No organizer-confirmed submission.** One new unique, format-valid candidate exists; weekly slots used: 0.
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **No. DO NOT SUBMIT any current TIFF.** All **14** registered downloads pass local byte/format checks, but all fail the unchanged literal registry gate against a pinned full-support witness; the accessible registry scan remains incomplete. Weekly slots used: 0.
 
-**Latest candidate** — `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (sha256 `94591f4c…683cc5`), direct download on the site [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads) and [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html). It passes every local format/range gate and is unique under the like-for-like registry reading, but its holdout-DTI is `0.00037 [0.00025, 0.00051]` (negative) and no organizer receipt exists — downloadable, not a confirmed scorer.
+**Pre-existing PR #92 artifact — audit download only, not generated in this review:** `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (SHA-256 `94591f4c…683cc5`). Its archived **HOLDOUT-DTI** is `0.00037` (95% CI `[0.00025, 0.00051]`; `gems57-pooled-hide-v2`; 11,321 withheld positives); the release audit did not rerun this holdout, and the sidecar does not establish a matched-control improvement. The fresh pinned-witness **REGISTRY-MEASUREMENT** reports Spearman `-0.0133`, forward 3-px overlap `1.0000`, `unique=false`, `stop_required=true` (one witness only; not a complete registry scan). The local like-for-like diagnostic is not uniqueness clearance. The file is downloadable for audit only and is **not authorized for submission**. See the generated [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads), [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html), and current [release report](docs/evidence/release-readiness.json).
 
-### Latest independent review — registry evidence integrity (session 4d79b443)
+### Latest post-rebase review — PR #92 artifact reconciliation
 
-**DO NOT SUBMIT. No new TIFF or competition slot.** A fresh audit rechecked **13** published research TIFFs: all locally format-valid, all rejected by the literal overlap rule. [Three-pass review and four additional, untested research sketches](research/SESSION_20261024_4D79B443.md).
+**DO NOT SUBMIT. No new TIFF, model experiment, or competition slot in this review.** After rebasing onto main, the release inventory contained **14** published research TIFFs but only **13** artifact-card mappings. The missing mapping was the pre-existing PR #92 blind-geothermal TIFF. It is now explicitly joined to its archived sidecar, with its limited scope preserved; the all-artifact release report, site, and download audit are regenerated from that consistent inventory. All **14** files pass local format/identity checks and fail the literal full-support-witness gate. This repository measures one immutable witness, not a complete registry; one witness is enough to reject, never clear, a candidate. See the [current release report](docs/evidence/release-readiness.json), [all-artifact registry measurement](docs/evidence/all-artifacts-registry.json), and [current negative run card](docs/evidence/latest-review-run-card.json).
 
-Fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence and arbitrary self exclusion; restored surface-check-before-placement ordering and gated/import-safe RIDF writing. New reports bind exact array and registry identities and return nonzero on a failed gate. Shared evaluator/writer bytes and protocol thresholds are unchanged. Older dated summaries below remain historical, not new authorization. [Current machine-readable audit card](docs/evidence/latest-review-run-card.json).
+The PR #92 sidecar records **HOLDOUT-DTI 0.00037** (95% CI `[0.00025, 0.00051]`, evaluator `gems57-pooled-hide-v2`, 11,321 withheld positives); that result was not rerun here and has no matched-baseline delta in the sidecar. Its local like-for-like diagnostic is limited to locally present dot fields, not a complete uniqueness clearance. The fresh literal measurement against the pinned full-support witness is `forward_overlap_3px = 1.0`, `unique = false`, `stop_required = true`. The candidate remains downloadable for audit only and must not be described as unique or submission-ready. This review did not generate or promote it.
+
+### Earlier independent review — session 4d79b443
+
+**DO NOT SUBMIT. No new TIFF or competition slot.** That earlier audit rechecked **13** published research TIFFs before PR #92 was merged: all locally format-valid, all rejected by the literal overlap rule. [Three-pass review and four additional, untested research sketches](research/SESSION_20261024_4D79B443.md).
+
+Fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence and arbitrary self exclusion; restored surface-check-before-placement ordering and gated/import-safe RIDF writing. New reports bind exact array and registry identities and return nonzero on a failed gate. Shared evaluator/writer bytes and protocol thresholds are unchanged. Older dated summaries below remain historical, not new authorization.
 
 **Every archived research file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
 
 | Gate (no human inspection) | Result |
 |---|---|
 | Format (CRS/shape/transform, float32, 0 NaN/inf, [0,1], 0 dots on faults) | **PASS** — `gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` |
-| HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives) | **0.00037 [0.00025, 0.00051]** — negative; off-catalogue surface does not recover withheld catalogue faults |
-| Like-for-like registry reading (PA-86-01) vs 12 local dot-field rasters | **not a duplicate** — 0 overlap firings, worst dot-field overlap 0.306 ≤ 0.70, worst Spearman 0.017 ≤ 0.90 |
-| Literal reading vs the continuous-surface prior (`faulthalo`) | overlap 0.843, but the protocol treats continuous-surface firings as non-informative (not duplication) |
-| Organizer-confirmed score | **none** — no DrivenData upload credentials in this sandbox; weekly slots used: 0 |
-| Verdict | `format-valid · unique locally · holdout negative · not organizer-confirmed` — downloadable; do not treat as a confirmed high scorer |
+| HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) | **0.00037 [0.00025, 0.00051]** — archived sidecar result; not rerun here; no matched-control delta established |
+| Scoped REGISTRY-MEASUREMENT: PA-86-01 like-for-like diagnostic vs 12 local dot fields | Sidecar reports 0 overlap firings, worst overlap 0.306 and worst Spearman 0.017; scoped local diagnostic only, not complete registry clearance |
+| Literal REGISTRY-MEASUREMENT against the pinned full-support witness | Forward 3-px overlap **1.0000**, `unique=false`, `stop_required=true`; one-witness scan is incomplete but sufficient to reject |
+| Organizer-confirmed score | **none** — no submission-page receipt; weekly slots used: 0 |
+| Verdict | `FORMAT-VALID · AUDIT DOWNLOAD ONLY · DO NOT SUBMIT`; do not call this candidate unique or organizer-confirmed |
 
 **How to submit** (once a slot is authorized): download the TIFF above → DrivenData "New submission" → select the `.tif` (or the single-TIFF `.zip`) → paste the ≤140-char note → retain the organizer receipt → classify the score as ORGANIZER-CONFIRMED only from that receipt. See `docs/executive-summary.html`.
 
