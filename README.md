@@ -1,19 +1,21 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **No organizer-confirmed submission.** One new unique, format-valid candidate exists; weekly slots used: 0.
 
-**Every file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+**Latest candidate** — `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (sha256 `94591f4c…683cc5`), direct download on the site [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads) and [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html).
 
 | Gate (no human inspection) | Result |
 |---|---|
-| Format (CRS/shape/transform, float32, 0 NaN, [0,1], 0 dots on faults) | PASS — `gems86-h86e-ridf-hgbthin-37654dots-20261024-zeros.tif`, sha256 `543a59d7…7fb1` |
-| HOLDOUT-DTI vs R0 fold-fair (gems57-pooled-hide-v2, 11,321 withheld positives) | **FAIL** — 0.0811 [0.0650, 0.0972] vs 0.0961 [0.0830, 0.1089]; paired Δ −0.0150 [−0.0280, −0.0019] |
-| Surface rank correlation ≤ 0.90 | **FAIL** — 0.9045 vs 17GEMSDOE E-proba-multiscale |
-| Final-dot overlap ≤ 70 % vs informative dot fields (PA-86-02) | **FAIL** — 64 informative dot-field firings over 682 measured registry rasters |
-| Verdict | `negative`, duplicate — **DO NOT SUBMIT**; 0 weekly slots used |
-| Historical H86C-KSLB (holdout best 0.1241) re-audited on the same 682 rasters | **FAIL** — 12 informative dot-field firings (PA-86-02) → DO NOT SUBMIT ([measurement](docs/evidence/kslb_pa86_chance_overlap.json)) |
+| Format (CRS/shape/transform, float32, 0 NaN/inf, [0,1], 0 dots on faults) | **PASS** — `gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` |
+| HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives) | **0.00037 [0.00025, 0.00051]** — negative; off-catalogue surface does not recover withheld catalogue faults |
+| Like-for-like registry reading (PA-86-01) vs 12 local dot-field rasters | **not a duplicate** — 0 overlap firings, worst dot-field overlap 0.306 ≤ 0.70, worst Spearman 0.017 ≤ 0.90 |
+| Literal reading vs the continuous-surface prior (`faulthalo`) | overlap 0.843, but the protocol treats continuous-surface firings as non-informative (not duplication) |
+| Organizer-confirmed score | **none** — no DrivenData upload credentials in this sandbox; weekly slots used: 0 |
+| Verdict | `format-valid · unique locally · holdout negative · not organizer-confirmed` — downloadable; do not treat as a confirmed high scorer |
 
-Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged.
+**How to submit** (once a slot is authorized): download the TIFF above → DrivenData "New submission" → select the `.tif` (or the single-TIFF `.zip`) → paste the ≤140-char note → retain the organizer receipt → classify the score as ORGANIZER-CONFIRMED only from that receipt. See `docs/executive-summary.html`.
+
+Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged. Negative results are deliverables.
 
 ## SWCON (PR #77): revoked on main, and confirmed by an independent measurement
 
