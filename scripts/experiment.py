@@ -117,6 +117,8 @@ def _distance_px(visible: np.ndarray, key: str) -> np.ndarray:
 
 def run(arm: str, *, seed: int = 20, hide_frac: float = 0.20, save: Path | None = None,
         use_gmc: bool = True) -> dict:
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     t0 = time.time()
     g = load_grid(ROOT / "data" / "bridge")
     need_struct = arm in ("structural", "full", "full_nogmc", "gmc", "external")

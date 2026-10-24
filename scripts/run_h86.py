@@ -84,6 +84,8 @@ def straight_edge(field: np.ndarray, foot: np.ndarray) -> np.ndarray:
 
 
 def build_surface():
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     WORK.mkdir(parents=True, exist_ok=True)
     cache = WORK / 'h86_surface.npy'
     ranks_cache = WORK / 'h86_ranks.npy'
@@ -185,6 +187,8 @@ def budget_for(region, g, total):
 
 # ---------------- E1 canary ----------------
 def stage_canary():
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     from sklearn.metrics import roc_auc_score
     g = load_grid()
     surface, stack = build_surface()
@@ -239,6 +243,8 @@ def read_incumbent(path, g):
 
 
 def run_holdout(budget: int, tag: str):
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     g = load_grid()
     surface, _stack = build_surface()
     folds = build_folds(g)
@@ -338,6 +344,8 @@ def compare_surface_and_dots(mine_surface, mine_dots, g):
 
 # ---------------- auxiliary SGMC proxy instrument (not holdout, not a score) ----------------
 def stage_sgmc():
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     from gems57 import metric as gmet
     g = load_grid()
     with rasterio.open(DATA / 'external' / 'derived_sgmc_faults_100m_u8.tif') as src:
@@ -376,6 +384,8 @@ def stage_sgmc():
 
 # ---------------- final candidate ----------------
 def stage_final(budget: int, holdout_tag: str):
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # Imported orchestration must not bypass the CLI stop.
     from gems57.submission_writer import write_submission
     from gems57.validate import validate
     g = load_grid()

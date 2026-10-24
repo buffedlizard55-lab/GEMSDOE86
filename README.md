@@ -1,10 +1,14 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Session addendum — 2026-10-24 UTC
+## Latest review — 2026-10-24: DO NOT SUBMIT
 
-**Do not submit any file currently downloadable from this project. No new TIFF was generated or authorized.** The fresh pinned-witness preflight confirms the literal registry overlap stop; no geological experiment, holdout score, or candidate-level uniqueness measurement was run. The refreshed GitHub feed now snapshots all **88/88 named repositories** (repository metadata only, not live competition scores or a complete raster registry). See the [dated three-pass review](research/SESSION_20261024_REVIEW.md), [current negative run card](docs/evidence/session-20261024-run-card.json), [fresh artifact audit](docs/evidence/release-readiness.json), [witness measurement](docs/evidence/all-artifacts-registry.json), and [project metadata feed](docs/evidence/fleet-feed.json).
+**No submission is approved.** A TIFF was added by a concurrent SPT run in PR #60, but a direct full-support-witness recheck measured final-dot overlap **1.0 (REGISTRY-MEASUREMENT)**, above the literal **0.70 (protocol limit)**. Its earlier promotion used only a restricted scored-fleet subset; the download/status page now says **DO NOT SUBMIT**. The exact new-file requirement is not satisfied by that duplicate-stop artifact. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no organizer-confirmed score is claimed.
 
-The H33 file's score remains an **owner-reported claim without a submission-page receipt in this checkout**. Existing H33 analysis explains a plausible metric-efficiency mechanism; it does not establish causality or that a new result can beat it. The three H86C ideas in `registry/h86c_hypotheses.json` remain proposals, not validated experiments. The next blocker is explicit resolution of the literal uniqueness-rule contradiction and assignment of one authorized method lane—not a reason to weaken the gate or relabel a historical TIFF.
+- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [SPT full-support-witness audit](docs/evidence/spt-full-support-witness-audit.json) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- Repaired **22 historical builder commands and seven imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight. `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
+- All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
+- **Read the standing prompt and complete request archive below every session.** The repeated 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.
+
 
 <!-- CURRENT_STATE_START -->
 
