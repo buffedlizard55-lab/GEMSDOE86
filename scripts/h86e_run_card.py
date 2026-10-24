@@ -74,7 +74,7 @@ def main():
                                                               "worst_spearman_any_raster", "max_excess_over_chance", "gate_pass")),
             final_dots_top_informative=chance["informative_firing_rows"][:3],
             final_dots_duplicate=dots_duplicate,
-            ordering_irregularity="IR-86-H86E-01: surface registry check ran after placement (protocol requires before); the result is a stop either way.",
+            ordering_irregularity="IR-86-RIDF-01: surface registry check ran after placement (protocol requires before); the result is a stop either way.",
         ),
         raster_sha256=rec["sha256"], zip_sha256=rec["zip_sha256"], bytes=rec["bytes"],
         validator=dict(all_checks_passed=rec["validator"]["all_checks_passed"],

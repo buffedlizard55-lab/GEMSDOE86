@@ -1,0 +1,139 @@
+{
+ "schema": "gems86.h86e-run-card.v1",
+ "lane": "H86E (SPBT E1-E2; CCTX E3)",
+ "generated_utc": "2026-10-24T18:37:30.572233+00:00",
+ "hypothesis": "Expert-mapped new faults are recoverable from (a) signed paired-throw basement/gravity concordance under low-relief cover (SPBT, E1-E2) and (b) visible-catalogue context + label-free geophysics learned LOQO (CCTX, E3).",
+ "mechanism": "SPBT: depth-to-basement flank step anti-concordant with isostatic-gravity flank step, >=900 m strike continuity. CCTX: LOQO HistGradientBoosting over 19 competition bands + gradients + LiDAR/topo/radiometrics + SPBT channel + other-component catalogue distance/density context; 300 m decimated emission at 44090 dots, >2 px off catalogue.",
+ "named_non_fault_process": "SPBT mimic: unfaulted paleovalley/caldera-moat margins infilled by low-density sediment. CCTX mimic: lithologic contacts and the mapped-network halo (fault-parallel contacts near range fronts).",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "design": "buffered whole components, seed 20, LOQO, 20 km physical-block bootstrap",
+  "withheld_positives": 11321,
+  "value": 0.10371214679058846,
+  "ci95": [
+   0.08543632732446023,
+   0.12161421375047948
+  ]
+ },
+ "holdout_source": "docs/evidence/h86e_results.json",
+ "correlation_overlap_vs_registry": {
+  "worst_abs_surface_spearman": 0.6649973080068331,
+  "worst_dot_field_overlap": 0.9988205942390564,
+  "worst_dot_field_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "literal_worst_overlap": 1.0,
+  "rasters_checked": 41,
+  "evidence": "docs/evidence/h86e_uniqueness.json"
+ },
+ "raster_sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
+ "validator_output": {
+  "all_checks_passed": true,
+  "n_nan_inside_footprint": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "emitted_dots": 44090
+ },
+ "gates": {
+  "G1_format": {
+   "passed": true,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   }
+  },
+  "G2_canary": {
+   "passed": true,
+   "max_discriminative_auc": 0.7817380271177458,
+   "limit": 0.9
+  },
+  "G3_holdout_vs_controls": {
+   "passed": true,
+   "candidate": 0.10371214679058846,
+   "best_control": "neg_dist_visible",
+   "best_control_dti": 0.04435671048447353,
+   "paired_delta": 0.05935543630611493,
+   "paired_delta_ci95": [
+    0.04591631863719781,
+    0.0725085883090098
+   ]
+  },
+  "G4_holdout_best": {
+   "passed": false,
+   "candidate": 0.10371214679058846,
+   "candidate_ci95": [
+    0.08543632732446023,
+    0.12161421375047948
+   ],
+   "current_best": "H86C-KSLB E3_kslb_noisyor_44k (docs/evidence/lane86c_results.json, identical instrument)",
+   "current_best_dti": 0.1240634961614658,
+   "current_best_ci95": [
+    0.1079703374809469,
+    0.140329759708305
+   ]
+  },
+  "G5_sgmc_proxy": {
+   "passed": false,
+   "candidate_final_file": 0.07175607923061313,
+   "spaced_random": 0.05188474571841903,
+   "fixed_h33_b2": 0.0928930494744682,
+   "note": "AUXILIARY-PROXY only; never a score. SGMC shares lineage with the catalogue and rewards near-catalogue placement."
+  },
+  "G6_uniqueness": {
+   "passed": false,
+   "worst_dot_field_overlap": 0.9988205942390564,
+   "worst_dot_field_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "worst_abs_surface_spearman": 0.6649973080068331,
+   "literal_worst_overlap": 1.0,
+   "literal_worst_submission": "dense-witness.tif",
+   "literal_note": "Literal reading fires on the pinned full-support dense witness / stride-5 lattice for every nonempty candidate; reported via the shared two-phase summary, thresholds unchanged."
+  }
+ },
+ "gates_failed": [
+  "G4_holdout_best",
+  "G5_sgmc_proxy",
+  "G6_uniqueness"
+ ],
+ "submission_name": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a",
+ "note": "H86E-CCTX cat-context LOQO-HGB+SPBTchan 44090dots B2 HOLDOUT-DTI 0.1037 v2 n=11321 UNSCORED",
+ "note_chars": 91,
+ "submission_file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
+ "verdict": "negative",
+ "submission_ready": false,
+ "safe_to_submit": false,
+ "approved_for_weekly_slot": false,
+ "decision": "DO NOT SUBMIT",
+ "decision_reason": "Automated gates failed: G4_holdout_best, G5_sgmc_proxy, G6_uniqueness. Generated and format-valid, but not cleared for a weekly slot.",
+ "experiments_run": 3,
+ "submission_slots_used": 0,
+ "elapsed_s": 118.11608481407166
+}

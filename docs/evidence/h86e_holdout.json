@@ -404,7 +404,7 @@
   },
   "runtime_s": 126.83514451980591,
   "comparator_correction": {
-    "id": "IR-86-H86E-02",
+    "id": "IR-86-RIDF-02",
     "superseded_arm": "R0_foldfair_d28_visible_collar",
     "reason": "Used GEMSDOE28 h27-4-r1-solo-d2-8 (already excludes every dot within ~1.4 px of the FULL catalogue, i.e. of the withheld truth). The correct R0 recipe source is GEMSDOE25 dotted-h19-5-d2-8 (sha256 91eae1ca...), scored in docs/evidence/h86e_comparator.json: 0.0961, reproducing the H86C-KSLB card value 0.09608619 exactly."
   }

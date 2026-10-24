@@ -73,18 +73,18 @@
       "stem": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros"
     },
     {
+      "lane": "H86E catalogue-context LOQO (SPBT channel)",
+      "card": "docs/evidence/h86e-run-card.json",
+      "context": "docs/evidence/h86e-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros"
+    },
+    {
       "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
       "card": null,
       "context": "docs/evidence/h86-faulthalo-run-card.json",
       "holdout_kind": "unvalidated_variant",
       "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
-    },
-    {
-      "lane": "SWCON score-weighted fleet consensus (format-valid; full-registry duplicate, overruled)",
-      "card": null,
-      "context": "docs/evidence/swcon-run-card.json",
-      "holdout_kind": "unvalidated_variant",
-      "stem": "gems86-swcon-e3-37654dots-20261024-zeros"
     }
   ]
 }

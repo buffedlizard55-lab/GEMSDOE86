@@ -36,8 +36,8 @@ All numbers in this section are **OWNER-REPORTED** leaderboard claims (no organi
 
 * A catalogue-trained, catalogue-blind-feature classifier converges to the same ranking as a previous lane (ρ = 0.9045 with 17GEMSDOE's supervised probability surface, LB claim for its 2 % emission 0.0187). In-sample, it concentrates dots next to mapped faults (median d_cat 4.0 px), the regime with the worst owner-reported scores. **Supervised "looks like a mapped fault" is a crowded, low-yield lane.**
 * Distal quotas (E2/E3) lowered HOLDOUT-DTI, while the fleet evidence favours distal placement — further evidence that the catalogue-hide instrument and the leaderboard reward different things.
-* **Comparator error caught (IR-86-H86E-02):** a first R0 comparator built from GEMSDOE28 `r1-solo` (0.0286) was wrong because that file already excludes dots within ~1.4 px of the *full* catalogue. The correct recipe source (GEMSDOE25 `dotted-h19-5-d2-8`, sha256 `91eae1ca…`) reproduces the archived 0.0961 exactly.
-* **Ordering irregularity (IR-86-H86E-01):** the surface registry check ran after placement instead of before. The outcome (stop) is unchanged.
+* **Comparator error caught (IR-86-RIDF-02):** a first R0 comparator built from GEMSDOE28 `r1-solo` (0.0286) was wrong because that file already excludes dots within ~1.4 px of the *full* catalogue. The correct recipe source (GEMSDOE25 `dotted-h19-5-d2-8`, sha256 `91eae1ca…`) reproduces the archived 0.0961 exactly.
+* **Ordering irregularity (IR-86-RIDF-01):** the surface registry check ran after placement instead of before. The outcome (stop) is unchanged.
 
 ## Protocol amendments used (public, tested, thresholds unchanged)
 

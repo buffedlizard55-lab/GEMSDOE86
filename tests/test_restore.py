@@ -13,6 +13,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts import restore_protocol_data as restore_data
+from scripts import restore_data as full_restore
 
 
 class RestoreTests(unittest.TestCase):
@@ -65,6 +66,29 @@ class RestoreTests(unittest.TestCase):
                 with self.assertRaises(subprocess.CalledProcessError):
                     restore_data.restore_registry_witness()
             self.assertEqual(list((root / 'data/registry').iterdir()), [])
+
+    def test_full_restore_verify_pin_and_dropbox_hash_rejection(self):
+        self.assertEqual(set(full_restore.EXTERNAL_PINS), set(full_restore.EXTERNAL))
+        self.assertEqual(set(full_restore.DROPBOX_MIRRORS), set(full_restore.PINS))
+        for url in full_restore.DROPBOX_MIRRORS.values():
+            self.assertTrue(url.startswith('https://www.dropbox.com/scl/fi/'))
+            self.assertTrue(url.endswith('dl=1'))
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            missing = root / 'missing.tif'
+            with self.assertRaises(SystemExit):
+                full_restore.verify_pin(missing, 'missing.tif', '0' * 64)
+            bad = root / 'bad.tif'
+            bad.write_bytes(b'corrupt')
+            with self.assertRaises(SystemExit):
+                full_restore.verify_pin(bad, 'bad.tif', '0' * 64)
+            self.assertFalse(bad.exists())
+            dst = root / 'dropbox.tif'
+            with patch.object(full_restore.urllib.request, 'urlopen', return_value=io.BytesIO(b'tampered')):
+                with self.assertRaises(ValueError):
+                    full_restore.download_verified(full_restore.DROPBOX_MIRRORS['existing_faults.tif'], dst, '0' * 64)
+            self.assertFalse(dst.exists())
+            self.assertFalse(dst.with_suffix('.tif.partial').exists())
 
 
 if __name__ == '__main__':

@@ -201,7 +201,7 @@
       }
     ],
     "final_dots_duplicate": true,
-    "ordering_irregularity": "IR-86-H86E-01: surface registry check ran after placement (protocol requires before); the result is a stop either way."
+    "ordering_irregularity": "IR-86-RIDF-01: surface registry check ran after placement (protocol requires before); the result is a stop either way."
   },
   "raster_sha256": "543a59d7dd8dd29ff564a17811a37817206c24211e5c60a77549bf4a9ddd7fb1",
   "zip_sha256": "ede9173c4b1f315dfcca2f77ecf73f4ee3942bd469f81605cf4e27e6cfc319b2",

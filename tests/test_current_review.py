@@ -127,3 +127,51 @@ def test_site_rejects_optimistic_spt_witness_audit(tmp_path, monkeypatch):
     path.write_text(json.dumps(audit))
     with pytest.raises(ValueError, match="SPT candidate is stale or violates"):
         build_site.render(tmp_path)
+
+
+def test_prompt_named_unscored_audit_and_official_rules_citation_are_verified():
+    audit = audit_release.strict_json(ROOT / "docs/evidence/prompt-named-unscored-audit-20261024.json")
+    assert audit["schema"] == "gems86.prompt-named-unscored-audit.v1"
+    assert audit["evidence_class"] == "REGISTRY-MEASUREMENT"
+    assert audit["checker_pin"]["gems57_code_changed_since_pin"] is False
+    by_site = {a["site"]: a for a in audit["artifacts"]}
+    assert set(by_site) == {"GEMSDOE89", "GEMSDOE90"}
+    assert by_site["GEMSDOE89"]["prompt_submission_name"] == "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros"
+    assert by_site["GEMSDOE90"]["prompt_submission_name"] == "gems90-cnc-35000dots-20261024T084324Z"
+    for item in by_site.values():
+        assert item["prompt_score"] is None
+        assert item["organizer_confirmed_score"] is False
+        assert item["format_all_checks_passed"] is True
+        assert item["forward_overlap_3px_vs_17GEMSDOE"] == 1.0
+        assert item["forward_overlap_3px_vs_13GEMSDOE_binary"] > 0.70
+        assert item["unique_under_literal_protocol"] is False
+        assert item["stop_required"] is True
+    exec_html = (ROOT / "docs/executive-summary.html").read_text()
+    assert "Official Rules §1.1 &amp; §3.4–3.6" in exec_html
+    assert "Official Rules §5–6" not in exec_html
+
+
+def test_swcon_candidate_is_revoked_and_not_downloadable():
+    card = audit_release.strict_json(ROOT / "docs/evidence/swcon-run-card.json")
+    assert card["verdict"] == "negative"
+    assert card["submission_ready"] is False
+    assert card["approved_for_weekly_slot"] is False
+    assert card["download_authorized"] is False
+    audit = card["measured_registry_witness_audit"]
+    assert audit["unique"] is False and audit["stop_required"] is True
+    assert audit["forward_overlap_3px_vs_17GEMSDOE"] == 1.0
+    assert audit["forward_overlap_3px_vs_13GEMSDOE_binary"] > 0.70
+    assert not (ROOT / "docs/swcon-submission.html").exists()
+    assert not list((ROOT / "docs/downloads").glob("gems86-swcon-*"))
+    assert not list((ROOT / "submission").glob("gems86-swcon-*"))
+    submit_page = (ROOT / "docs/submit.html").read_text()
+    assert "IR-86-SWCON-01" in submit_page
+    assert "IR-86-FAULTHALO-01" in submit_page
+    assert "DO NOT SUBMIT" in submit_page
+    faulthalo = audit_release.strict_json(ROOT / "docs/evidence/h86-faulthalo-run-card.json")
+    assert faulthalo["verdict"] == "negative"
+    assert faulthalo["submission_ready"] is False
+    assert faulthalo["ok_to_submit_under_current_protocol"] is False
+
+
+
