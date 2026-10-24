@@ -1,5 +1,9 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Current branch review — 2026-10-24 (647e6683)
+
+**DO NOT SUBMIT — no new unique TIFF generated.** [Three-pass scientific and release review](research/SESSION_20261024_647E6683.md) corrects hypothesis curvature polarity, uncertain band semantics, layer-dependence assumptions and unsupported external-data verification claims. Five proposals remain untested; no model experiment or weekly slot was used. Fresh release measurements are recorded in the current negative run card.
+
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
 
