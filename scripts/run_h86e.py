@@ -16,14 +16,28 @@ Shared tools are used unchanged: gems57.holdout.buffered_component_draw,
 gems57.evaluate_holdout (gems57-pooled-hide-v2), gems57.emit.emit_decimated,
 gems57.grid.write_submission / validate via gems57.validate.
 
-Protocol note (owner mandate, 2026-10-24, this session): the owner explicitly
-ordered generation of a unique TIF with fully automated validation.  This
-script therefore does NOT call protocol_preflight.require_feasible(), whose
-literal full-support stop makes generation impossible for any nonempty
-candidate.  Instead the literal reading is measured and reported unchanged
-(finalize_h86e.py, shared two_phase_summary) alongside the like-for-like
-reading, and no weekly slot is authorized unless every automated gate passes.
-Flagged as IR-86-H86E-01 in IRREGULARITIES.md.
+Protocol note (SUPERSEDED — read this before citing IR-86-H86E-01): an earlier
+revision of this script skipped protocol_preflight.require_feasible() on the
+grounds that the owner's 2026-10-24 mandate ordered generation of a unique TIF
+with fully automated validation, which the literal full-support stop makes
+impossible for any nonempty candidate.  That bypass has been REVOKED.
+``main()`` now calls ``require_feasible()`` as its first action, before argparse,
+any grid load, feature construction, fitting or placement, and
+``tests/test_builder_preflight.py`` pins that guard (an owner mandate to produce
+a file is not a protocol exemption; AGENTS.md item 8).  Under the current
+literal rule the call raises STOP_LITERAL_OVERLAP_UNSATISFIABLE, so this script
+emits nothing.
+
+The E1-E3 measurements and the H86E artifact already published were produced by
+the earlier ungated revision and are preserved as a DO NOT SUBMIT audit record
+(``docs/evidence/h86e-run-card.json``, G4/G5/G6 fail).  Uniqueness is reported
+with the shared ``gems57.uniqueness.two_phase_summary`` -- BOTH the literal
+reading (worst forward overlap ``1.0`` vs the pinned dense witness; ``0.9988``
+vs the stride-5 lattice) and the like-for-like dot-field reading -- with
+thresholds unchanged (``rho 0.90``, overlap ``0.70``).  No shared tool was forked
+or edited and no weekly slot is authorized.  Recorded as IR-86-H86E-01 in
+IRREGULARITIES.md (now marked SUPERSEDED, with this revocation stated) and
+IR-86-PROSE-CODE-01 (the stale docstring that contradicted this guard).
 """
 from __future__ import annotations
 

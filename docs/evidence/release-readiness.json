@@ -18,7 +18,7 @@
   "input_evidence_sha256": {
     "docs/evidence/download-inventory.json": "aa6e3f20a4373d718fd9b0c93e61f31658de3d9ecc166dc2f854c456e7f089fe",
     "registry/artifact_cards.json": "f5b607641434c8717ecd04e80fc890e07d1fbe76ee38270e34c2ab192555e48b",
-    "docs/evidence/protocol-preflight.json": "aa7d5a37e77507a64ff48898c3a5ea4eae7f270cb164801e4d777c4f068bef35",
+    "docs/evidence/protocol-preflight.json": "4aa3646ee0247f6d23568bfae9ad4f635b9f7c93d43c5c9c5c4d3b5ae6753db4",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -31,7 +31,7 @@
     "docs/evidence/h86e-run-card.json": "eee64b8b85de84eb74a0562be437028a10e7061e8f3f644d5a1372504a430b02",
     "docs/evidence/h86-faulthalo-run-card.json": "2907acf0db9d765755d9443712cddeb35cf307523b03ec88c13d81da4f7e359c",
     "docs/evidence/gapres-run-card.json": "01d54a5f71c304ea4fb58718b398736ffe29d3da3261e6f893d9fcbee7b4585e",
-    "docs/evidence/all-artifacts-registry.json": "ce8b3629290d22341b18a801dfbb7ee949b80205c442858c1d7c7eb6ec2a9b31"
+    "docs/evidence/all-artifacts-registry.json": "377b0cabf9da0ff2436c9ef80edc7ee207a8162b7d0f170b1ff36f5dfdfe6f33"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
