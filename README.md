@@ -5,7 +5,7 @@
 [H86E session report](research/H86E_SESSION_20261024.md): under the owner's explicit
 generate-and-auto-validate mandate (IR-86-H86E-01), a new byte-unique, format-valid
 GeoTIFF was generated — `docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif`
-(sha256 `c26ebb29…`, 44,090 dots, artifact 11/11 in the release audit, one-click
+(sha256 `c26ebb29…`, 44,090 dots, registered in the release audit (12 artifacts after merging the parallel faulthalo session), one-click
 download on the site dashboard). **Do not upload it.** Its automated gates
 ([run card](docs/evidence/h86e-run-card.json)) fail G4 (HOLDOUT-DTI 0.1037 < KSLB
 0.1241 on the identical instrument), G5 (SGMC auxiliary proxy 0.0718 < h33 0.0929)
@@ -17,20 +17,29 @@ AUXILIARY-PROXY / OWNER-REPORTED.
 
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. (Earlier review; superseded on artifact generation by the H86E session above.)
 
+## Parallel-session review on main — 2026-10-24 (647e6683)
+
+**DO NOT SUBMIT — no new unique TIFF generated (in that session).** [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
+
+[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
+
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
 [Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
 
-[Additional three-pass download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md): incomplete or duplicate registry scans now explicitly block optimistic readiness flags in the independent download validator. All ten inherited artifacts were remeasured; no new TIFF or slot authorization was produced.
+[Independent repository recheck at 18:02 UTC](research/SESSION_20261024_INDEPENDENT_RECHECK.md): three passes completed; 491 tests passed, 24 skipped, 41 subtests passed; all release and site safety checks passed. The unique-TIFF requirement remains unmet because the literal overlap gate blocks every nonempty allowed prediction. No new raster, model experiment, weekly slot, or submission authorization was produced.
 
-**No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+[Earlier d50d503b three-pass review](research/SESSION_20261024_D50D503B.md) and [download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md) document prior fixes and review history. Current fresh remeasurement: [all-artifact registry report](docs/evidence/all-artifacts-registry.json), [release readiness](docs/evidence/release-readiness.json), and [current negative run card](docs/evidence/latest-review-run-card.json). The registry scan is intentionally reported as incomplete: one pinned full-support witness is enough to reject, never to clear, a candidate.
 
-- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
-- Repaired **37 CLI builder/feature/pipeline commands (adding `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and normalizing all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, and **revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`)** (`SPT`: `100%` literal witness overlap, `0.4947` coin-flip canary AUC, test-fold collar leak, quarantined outside `docs/` with SHA/ZIP verification; `H86-TIPRELAY`: `85.08% > 70%` 3-px overlap vs sparse `GEMSDOE32` `h33-h33-2-b2` + `100%` witness overlap + zero holdout run + `audit_release.py` backdoor removed). `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
-- Synchronized the **92-project fleet feed (`GEMSDOE` through `GEMSDOE92`)** with all **113 `OWNER-REPORTED` score entries** (`92 / 92` GitHub trees snapshotted in [docs/evidence/fleet-feed.json](docs/evidence/fleet-feed.json); `0` organizer receipts).
-- All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
-- **Read the standing prompt and complete 2026-10-24 request archive below every session.** The 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.
+**No new unique submission TIFF was generated; that requirement remains unmet.** Every historical GeoTIFF remains an audit-only download. The website states this at the top of [Downloads](docs/index.html) and the [submission guide](docs/executive-summary.html); none is OK to submit. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
+
+- [H33 analysis, ranked candidate hypotheses, and previous three-pass review](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- The previous review repaired **37 CLI builder/feature/pipeline commands and eight imported orchestration entrypoints** that could bypass mandatory preflight, and revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`). `--no-write` / `--measure` is not a protocol exemption. Read-only artifact audits remain available.
+- The **92-project fleet feed** and its **113 owner-reported score entries** remain sourced to repository snapshots; there are **0 organizer submission receipts** in the ledger. User-provided score and access claims are not treated as verified competition results.
+- **Read `PROMPT.md`, this README, and the complete 2026-10-24 request archive below at the start of every session.** The archived request retains the goals; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not upload authorization.
 
 
 <!-- CURRENT_STATE_START -->
@@ -156,7 +165,7 @@ python3 -m venv .venv
 
 The restorer obtains hash-pinned owner mirrors and a historical comparison witness through GitHub. This is **not** organizer-authenticated data acquisition, not the actual shared feature cache, and not a new prediction. Large data and caches remain ignored. `requirements-lock.txt` records the tested environment; `requirements.txt` is the broader compatibility specification.
 
-`make submission` and every scientific CLI remain blocked by the literal preflight. Concurrent FVMB work added a `download_competition_data.sh` mirror-restoration wrapper and `prepare_h86_fvmb_data.py`; the quoted `prepare_data.py` still does not exist. The new cache-builder/pipeline CLIs are also now blocked before construction or fitting; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
+`make submission` and every scientific CLI remain blocked by the literal preflight. `download_competition_data.sh` and `scripts/prepare_data.py` are implemented and verified against the restored competition grid (auditing EPSG:32611, 3730x3292 shape, 100 m transform, footprint valid pixels, and writing `data/prepared_manifest.json`). The candidate-builder/pipeline CLIs remain safely blocked before construction or fitting under the literal preflight; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
 
 ## Verification and deployment scope
 

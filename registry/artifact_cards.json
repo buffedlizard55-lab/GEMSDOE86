@@ -78,6 +78,13 @@
       "context": "docs/evidence/h86e-run-card.json",
       "holdout_kind": "pooled",
       "stem": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros"
+    },
+    {
+      "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
+      "card": null,
+      "context": "docs/evidence/h86-faulthalo-run-card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
     }
   ]
 }
