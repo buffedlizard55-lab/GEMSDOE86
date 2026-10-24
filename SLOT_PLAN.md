@@ -1,30 +1,87 @@
-# SLOT PLAN — 2026-10-23 (All 7 Brief-v2 Axes & 14 Sessions Reconciled, <=1 Page)
+# SLOT PLAN — 2026-10-23 (rev. D: merges the RELIEF instrument audit and the CONCENTRATION dose ladder)
 
-**No automatic submission.** One entity, `<= 3` scored submissions/rolling week, 1 blind final pick scored in both Phase 1 ($50k DTI) and Phase 2 ($250k geologist review) ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline `2026-12-03` (`UNVERIFIED` portal clock: 41 d $\approx$ 5.9 wk $\Rightarrow$ ~17 remaining slots max, minus 1 final pick). `TOP_PUBLIC`, rolling-week quota remaining, and R0's live receipt are **UNSUPPLIED** by the human; parent **R0 = `h33-h33-2-b2`** (`37,654` unit-mass dots, `0.2778 CLAIM`, zero `RECEIPT` rows in `ledger/submissions.csv`). Live `|\Delta| < 0.01` = no evidence.
+**No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
+([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
+portal clock; ~5.9 wk ⇒ ~17 slots max, minus the final pick). Parent **R0 = `h33-h33-2-b2`**
+(GEMSDOE32), 37,654 unit-mass dots; `0.2778` is **CLAIM** (0 `RECEIPT` rows in
+`ledger/submissions.csv`). `TOP_PUBLIC`, rolling-week quota left and R0's receipt are **UNSUPPLIED**.
+Live `|Δ| < 0.01` = no evidence.
 
-## Reconciled Evidence Across All 7 Brief-v2 Axes
+## What the two 2026-10-23 sessions changed
 
-* **CONCENTRATION (`n=37,654` fixed — reconciled across 4 sessions / 10 ledger rows):** Restoring all 15 pinned manifest inputs (`IR-86-CONC-10`) resolved `IR-86-CONC-06`/`08` and retired every off-ridge `CONCENTRATION` slot claim: PR #37 `conc15` carried an unmeasured `+0.006` constant, breached §4.4 (`39.8%` at `<=3.0 px`), and actually reads **`-0.0071 MODEL`**; PR #44 `dens15`/`spr15` (`0.0%` on ancestor ridges, previously ranked #1/#2 from a toy synthetic model) **both lose on real SGMC (`-0.0006` / `-0.0013 MODEL`)**; PR #46 off-ridge `b5km-move10/15/20` (`0.0%` on `H19-5`) read **`-0.0066..-0.0150 MODEL`**. Constraining 5 km upward moves 100% onto ancestor ridges (`H19-5|H19-4|H16-1`) removes ~95% of the off-ridge penalty yet still reads slightly negative (`concb5kmup4 = -0.0005`, `concb5kmup8 = -0.0007`), whereas shaving `>=3`-dot 1 km sub-kernel clusters onto sparse-block ancestor ridges and **completing the down-dose curve (2026-10-23 dose session, `arena/4822aa3b-gemsdoe86`) — `down2` `+0.0012` (4/4 quads) → `down4` `+0.0015` → `down6` `+0.0022` (4/4 quads, jitter `+0.0028`, PROXY `+0.0013`) → `downmax` `+0.0020` at the sparse-ridge pool ceiling (2,381 moves, CV 0.4789)** — shows the curve is **monotone through the `0.51–0.59` band bottom and saturates at the pool ceiling**: the band is a recipe correlation, not an optimum (`IR-86-CONC-12`), and **`concb5kmdown6` (`1ed78e0f`) is the best CONCENTRATION arm on both instruments** and the largest non-PRUNE SGMC read in the ledger.
-* **RELIEF (`n=37,654` fixed):** `frontp15` (`+0.0017 MODEL`, 3/4 quads `+`) vs `frontm10` (`-0.0089 MODEL`, 4/4 quads `-`) gives the largest SGMC-calibrated count-fixed straddle (`~0.0106`), immune to SGMC mass monotonicity (`IR-86-MASS-03`).
-* **PRUNE (`35,483` dots):** `le3p000` (`+0.0040 MODEL`) has a monotone collar ladder, placed in Slot 3 because part of its surrogate delta reflects mass/halo alignment (`IR-86-MASS-04`).
-* **SPACING / MASS / SNAP / TRACKB — DO NOT SPEND WEEK-1 SLOTS:** `SPACING` (`strike16` `+0.0020 MODEL`, crowded-pool `along-strike` `+0.0007..+0.002`, `IR-86-SPACING-02/06/07`); `MASS` closed (`IR-86-MASS-01..03`); `SNAP` 3 sessions negative (`-0.001..-0.009`); `TRACKB` (`c15len1km` `+0.0008` + 120-trace geologist dossier `rendertop120/bridge1km` `-0.0043`, Phase-2 hybrid only, `IR-86-TRACKB-05..07`).
+**A. `CONCENTRATION` is monotone in dose and partly generic dispersal (PR #50).** `conc3` `+0.0013` →
+`conc5dose` `+0.0018` → `conc6` `+0.0022 MODEL` (4/4 quadrants; `+0.0013` PROXY) while 1 km occupied
+CV falls `0.5377 → 0.4998 → 0.4840`, so the historical `0.51–0.59` band is a correlate, not the cause
+(`IR-86-CONC-13`). The matched ordering control (same blocks, same count, random dot, random
+destination) gets `+0.0015` / `+0.0008 PROXY`, so **the ranking buys only ≈ `+0.0007`**. The axis is
+capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`) — pinned exactly by the PR #55 rungs session:
+the binary-searched sparse-ridge destination-pool ceiling is **2,381 moves** (`b5km-cvband-downmax`,
+`d4a42664`, CV 0.4789), and the 122 moves past `conc6` cost more than they bought (`+0.0020` vs
+`+0.0022` MODEL, 4/4 quads). The same session added the low rung `b5km-cvband-down2` (`f0ee647f`,
+753 moves, CV 0.5611, `+0.0012` MODEL 4/4, `+0.0001` PROXY), so the curve is now measured at
+753 / 1,130 / 1,506 / 1,883 / 2,259 / 2,381 moves and is monotone to the pool ceiling
+(`IR-86-CONC-15` records that PR #55's `down6` rebuilt PR #50's `conc6` byte-identically).
+`conc6` supersedes `concb5kmdown4` on both instruments at 753 extra moved dots.
 
-## Next Weekly Slots (Upload `-zeros.tif` Fallback or `.tif` Spec Twin — One File Per Slot)
+**B. `RELIEF`'s only instrument is a relief-index meter (PR #51).** Eight RELIEF rebuilds (3 shipped +
+3 new + 2 displacement-matched random nulls) score on the SGMC-extra surrogate as
+`Δ ≈ 0.0283·Δ(mean relief index) − 0.0033`, **r = +0.956, R² = 0.9135, n = 8**; the `front+15pct`
+reconstruction reproduces its ledger `+0.0017` exactly and sits **−0.0008 below the fit**, and the
+zero-index nulls cost `−0.0026…−0.0030` (`IR-86-RELIEF-04`). RELIEF MODEL deltas are therefore not
+mechanism evidence, and `frontp15` drops to Slot 3. The new source arms are all negative
+(`−0.0057 / −0.0038 / −0.0118`) and the pre-registered sign was falsified
+(`evidence/relief-source-mechanism.md`). The basin source holds 2,014 dots (5.35 %), below RELIEF's
+10 % dose floor, so the alluvium question cannot be asked on this parent (`IR-86-RELIEF-05`).
 
-| Slot | Candidate (`releases/<id>-zeros.tif`) | Edit vs R0 | Predicted $\Delta$ (not a score) | Decision Rule on Live `RECEIPT` $\Delta$ vs `0.2778` |
+## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
+
+| Slot | Candidate (`releases/<id>`) | Edit vs R0 | Predicted Δ (MODEL, not a score) | Decision rule on live `RECEIPT` Δ vs 0.2778 |
 |---:|---|---|---|---|
-| **1** | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` | `5,648` dots (`15.0%`) piedmont $\to$ range-front, `S=37,654` fixed | `+0.0017 MODEL` (3/4 quads `+`) | `>= +0.010`: range-front allocation wins $\to$ combine with Slot 2/3 winner. `<= -0.005`: close `RELIEF`. Inside `±0.010`: run Slot 2. |
-| **2** | `h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif` *(dose-ladder upgrade of `concb5kmdown4`; replaces off-ridge `dens15/spr15/conc15`; or pair `RELIEF-frontm10` `-0.0089` for pure RELIEF slope)* | `2,259` dots (`12.00%` chg) shaved from `>=3`-dot 1 km clusters onto sparse-block ancestor ridges (`1 km CV -> 0.4840`, first rung below the retired band), `S=37,654` | **`+0.0022 MODEL` (`4/4` quads `+`, jitter `+0.0028`); `+0.0013 PROXY`** — best CONCENTRATION arm on both instruments (dose-curve point) | `>= +0.010`: monotone spreading confirmed $\to$ build the pool-extension rung + combine with `le3p000`. `<= -0.005`: unmapped faults cluster tighter than CV 0.48 $\to$ close `CONCENTRATION` below `down4`. Flat while Slot 1 gains: keep `down4` as the combine ingredient. |
-| **3** | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | Delete `2,171` dots (`5.77%`) in `2.0 < d_cat <= 3.0 px` collar (`35,483` dots) | `+0.0040 MODEL` (monotone collar ladder) | `>= +0.010`: collar halo is active drag $\to$ test `3.5 px` rung & combine with Slot 1/2 winner. Flat/`<= -0.005`: keep `2.0 px` collar; close `PRUNE`. |
-| **4 (wk 2 alt)** | `releases/axis86/gems86-h33-2b2-sp-strike16-20261023-caffc3f0-zeros.tif` *(or Wk 5 Phase-2 hybrid `trackb-rendertop120`)* | `7,027` overlap-redundant dots re-spaced along strike (`S=37,654`) | `+0.0020 MODEL` (`+0.0018` vs random control) | Probe **only if** Slots 1–3 all return inside `±0.005`. |
+| **1** | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | delete 2,171 dots (`5.77 %`) in the `2.0 < d_cat ≤ 3.0 px` collar; 35,483 dots | `+0.0040` — largest lever, and its Δrelief-index ≈ 0 so the bias in §B cannot manufacture it (partly mass-confounded, `IR-86-MASS-04`) | `≥ +0.010`: collar halo is real drag → next slot probes `4.0 px` and combines with Slot 2. `≤ −0.005`: keep the 2 px collar, close PRUNE. Flat: run Slot 2. |
+| **2** | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif` *(replaces `concb5kmdown4`)* | 2,259 dots (`12.0 %` changed) shaved from `≥3`-dot 1 km clusters onto sparse-block ancestor ridges; 1 km CV `0.6235 → 0.4840`; count fixed | `+0.0022` (4/4 quads, `+0.0007` above its own dispersal control), `+0.0013 PROXY` | `≥ +0.010`: density-cap dispersal is a real lever → 6 % is the ceiling, so combine rather than dose up. `≤ −0.005`: dispersal is neutral-to-negative on private chunks → close CONCENTRATION. |
+| **3** | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` *(demoted)* | 5,648 dots (`15.0 %`) piedmont → range-front, count fixed | `+0.0017` headline, but **unbiased prior `0 ± 0.005`**: the headline is the instrument's relief gradient (§B) | `≥ +0.010`: the front destination beats the instrument's own gradient → restore RELIEF and combine. `≤ −0.005`: close RELIEF. Inside `±0.010`: close as unmeasurable at this effect size. |
+| 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. |
 
-**Explicitly retired / never upload:** `conc15` (`-0.0071`), `dens15`/`spr15` (`-0.0006`/`-0.0013`, 0% on-ridge), `b5km-move10/15/20` (`-0.0066..-0.0150`), `concb5kmup4/8`, all `MASS` arms, all `SNAP` arms, `trackb-cull1dot`, and all `CONTROL` / `BUILT-DUPLICATE` / `withdrawn` rows.
+**Never upload:** the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
+`dens15`/`spr15` (`−0.0006`/`−0.0013`), `b5km-move10/15/20` (`−0.0066…−0.0150`), `concb5kmup4/8`
+(`−0.0005`/`−0.0007`); all MASS arms; all SNAP arms; `trackb-cull1dot`; every `BUILT-DUPLICATE` /
+`withdrawn` row.
 
-## Calendar to 2026-12-03 & Unbuilt Proposals (Mechanism / Confounder / Falsifier — Not Built Here)
+## Calendar to 2026-12-03
 
-* **Wk 1:** Slots 1–3 (`1` file/slot; log live `RECEIPT` score + timestamp in `ledger/submissions.csv` before next upload). **Wk 2–3:** Second dose on any axis clearing `|\Delta| >= 0.01`, or `RELIEF-frontm10` / `sp-strike16` diagnostic if flat. **Wk 4–5:** Single attributable combination of receipt-verified `>= +0.01` levers (`>3.0 px` clearance, `<=11,415` sub-kernel pairs). **Wk 6:** Re-validate on disk; lock 1 blind final pick (best `RECEIPT`-verified conservative finalist, or `rendertop120` hybrid if prioritizing Phase 2 review).
-* **1. Regime-Conditioned Composite (`le3p000` + `RELIEF-frontp15` + `concb5kmdown6`):** *Mechanism:* prune `2–3 px` halo waste, shift piedmont mass to range fronts, and cap `>=3`-dot 1 km clusters inside piedmont/basin blocks onto `H19-4|H16-1` ridges at the `down6` dose (2,259 moves; pool ceiling 2,381) without undoing range-front density. *Confounder:* unconditioned shaving would cancel `frontp15` at range fronts. *Falsifier:* live `RECEIPT < max(single-lever RECEIPT)`.
-* **2. Pool-Extension `CONCENTRATION` rung beyond the ceiling (`downmax-plus`, unbuilt):** *Mechanism:* `downmax` saturates at 2,381 moves because 1–2-dot destination blocks run dry; extend destinations to 3-dot blocks (or 1-dot-only blocks as the strict mirror) beyond the ceiling and read whether the marginal −0.0002 (`down6` → `downmax`) is destination-quality decay or a hard source limit. *Confounder:* 3-dot destination blocks re-create the sub-kernel overlap the shave removed. *Falsifier:* `MODEL <= down6` again with `CV` still `> 0.47` ⇒ the mechanism, not the pool, is exhausted.
-* **3. Collar-Funded Rotation-Survived `TRACKB` (`IR-86-TRACKB-03/07`):** *Mechanism:* fund `>=1 km` trace gap bridges from `PRUNE le3p000` collar dots (not R0 singletons) on traces surviving `30°` grid rotation + AGC `TMI_up150`. *Confounder:* E–W flight-line anisotropy. *Falsifier:* survival rate within `±5%` of random-azimuth lineaments or Slot 3 `RECEIPT <= -0.005`.
+* **Wk 1:** Slots 1–3 in order, logging each live `RECEIPT` + portal timestamp in
+  `ledger/submissions.csv` before the next upload. If Slot 1 clears `+0.010`, spend Wk 2 on the
+  `4.0 px` collar rung instead of Slot 3.
+* **Wk 2–3:** second dose only on an axis that cleared `|Δ| ≥ 0.01`; otherwise the next-best levers.
+  A paired CONCENTRATION A/B (ranked `conc6` vs its own control) is the only clean way to price the
+  ranking and costs two slots — not before one lever proves real.
+* **Wk 4–5:** one attributable combination of receipt-verified `≥ +0.01` levers (at most two, so the
+  result stays attributable), with **no relief edit** in the mix.
+* **Wk 6:** re-validate both finalists on disk (format, hashes, disk re-read), lock one blind final
+  file plus one fallback, freeze `AI_USE.md` and the reproducibility pins.
 
-**Human inputs still required:** `TOP_PUBLIC` + date · rolling-week slots left · verified deadline · R0's `0.2778` portal receipt · accepted outside-footprint encoding (`.tif` NaN vs `-zeros.tif` fallback) · organizer uniqueness rule (`IR-86-PRUNE-01`).
+## Unbuilt proposals (mechanism / confounder / falsifier — not built here)
+
+0. **Pool-extension `CONCENTRATION` rung beyond the ceiling (`downmax-plus`).** *Mechanism:* the ceiling at 2,381 moves is the 1–2-dot destination pool running dry; extend destinations to 3-dot blocks (or the strict 1-dot-only mirror) past the ceiling and read whether the marginal `−0.0002` (`conc6`→`downmax`) is destination-quality decay or a hard mechanism limit. *Confounder:* 3-dot destinations re-create the sub-kernel overlap the shave removed. *Falsifier:* `MODEL ≤ conc6` again with CV still > 0.47 ⇒ the mechanism, not the pool, is exhausted.
+
+1. **Kernel-credit saturation pruning (`MASS` at fixed count).** *Mechanism:* replace the 1 km-CV rule
+   with a direct per-dot marginal-`DTI` ranking from the metric code, delete the lowest-ranked dots
+   and refill at the largest kernel gaps, so the edit targets numerator `T` instead of block
+   statistics. *Confounder:* the ranking is only as good as the surrogate, and mass is monotone on
+   that instrument (`IR-86-MASS-03`). *Falsifier:* `≤ 0` live Δ.
+2. **A non-relief instrument for relief (§B fix).** *Mechanism:* build the RELIEF prior from the
+   pinned public-domain SGMC inventory filtered to **basin-margin** traces only, and score arms
+   against that rather than against a raster whose density is itself relief. *Confounder:* SGMC and
+   the training catalogue share a provenance lineage. *Falsifier:* rank correlation with the shipped
+   RELIEF ladder `< 0.5`.
+3. **10 km fault-system concentration (`IR-86-TRACKB-08`).** *Mechanism:* every `≥ 0.26` historical
+   file sits in a 10 km occupied-block CV of `0.547–0.570`; test that scale instead of the 1 km and
+   5 km scales already spent. *Confounder:* 10 km blocks co-vary with the two flight regimes (400 m
+   vs 200 m line spacing). *Falsifier:* `< +0.001` over `conc6` with the relief-index term held fixed.
+4. **Collar-funded `TRACKB`, Phase 2 only (`IR-86-TRACKB-03/07`).** Fund `≥ 1 km` gap bridges from
+   `PRUNE le3p000` collar dots on traces surviving 30° grid rotation + AGC `TMI_up150`. *Falsifier:*
+   survival within `±5 %` of random-azimuth lineaments.
+
+**Human inputs still required:** `TOP_PUBLIC` + date · rolling-week slots left · verified deadline ·
+R0's `0.2778` portal receipt · accepted outside-footprint encoding (`.tif` NaN vs `-zeros` fallback) ·
+organizer uniqueness rule (`IR-86-PRUNE-01`).

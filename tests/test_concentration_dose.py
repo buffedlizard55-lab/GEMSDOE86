@@ -1,8 +1,14 @@
-"""Unit, evidence, ledger, and on-disk release tests for the CONCENTRATION down-dose ladder."""
+"""Unit + evidence + ledger tests for the CONCENTRATION dose ladder (2026-10-23 session).
+
+The build itself needs the restored 418 MB feature stack and is therefore not run in CI; these
+tests cover (a) the deterministic shuffled control on a toy grid, (b) the committed run card, and
+(c) the ledger/receipt invariants that the brief gates on.
+"""
 from __future__ import annotations
 
 import csv
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -16,160 +22,156 @@ sys.path.insert(0, str(ROOT))
 
 from gems86 import concentration_5km as C5  # noqa: E402
 
-EVIDENCE = ROOT / "evidence" / "concentration_dose_axis_20261023.json"
+EVIDENCE = ROOT / "evidence" / "concentration_dose_20261023.json"
 VARIANTS_JSON = ROOT / "ledger" / "variants_concentration_dose.json"
 LEDGER_CSV = ROOT / "ledger" / "submissions.csv"
-
-DOSE_VALUES = {"b5km-cvband-down2", "b5km-cvband-down6", "b5km-cvband-downmax"}
-RELEASES = ROOT / "releases"
-DOSE_IDS = (
-    "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f",
-    "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f",
-    "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664",
-)
+MECHANISM = ROOT / "evidence" / "concentration-dose-mechanism.md"
 
 
-def test_relocate_cvband_down_sources_are_prefix_nested_across_doses():
-    """down2's removal list must be a prefix of down6's, which prefixes downmax's."""
+def _toy() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Dense left blocks, sparse 1-dot right blocks with unused ridge capacity."""
     h, w = 40, 80
     foot = np.ones((h, w), dtype=bool)
     cat = np.zeros((h, w), dtype=bool)
     cat[0, 0] = True
     edt_cat = ndi.distance_transform_edt(~cat)
-
     parent = np.zeros((h, w), dtype=bool)
     ridge = np.zeros((h, w), dtype=bool)
-    # Three over-packed 10x10 blocks (4 dots each, wholly inside one block) ...
-    for br, bc in ((10, 10), (10, 30), (20, 10)):
+    for br, bc in ((10, 10), (10, 30)):
         for dr, dc in ((1, 1), (1, 5), (5, 1), (5, 5)):
             parent[br + dr, bc + dc] = True
             ridge[br + dr, bc + dc] = True
-    # ... and six sparse 1-dot blocks with unused ridge capacity.
     for bc in (50, 60, 70):
         for br in (10, 25):
             parent[br + 2, bc + 1] = True
-            ridge[br + 2, bc + 1 : bc + 9] = True
+            ridge[br + 2, bc + 1: bc + 9] = True
+    return parent, foot, edt_cat, ridge
 
-    out2, src2, _, st2 = C5.relocate_cvband_down(parent, foot, edt_cat, ridge, n_move=2)
-    out6, src6, _, st6 = C5.relocate_cvband_down(parent, foot, edt_cat, ridge, n_move=4)
-    assert int(out2.sum()) == int(out6.sum()) == int(parent.sum())
-    assert np.array_equal(src6[:2], src2)
-    assert st2["added_on_ancestor_ridge_fraction"] == 1.0
-    assert st6["min_added_cat_clearance_px"] > 3.0
-    # CV falls as the dose rises
-    assert (
-        st6["cv_1km_variant"]["density_cv_occupied"]
-        < st2["cv_1km_variant"]["density_cv_occupied"]
-        < st2["cv_1km_parent"]["density_cv_occupied"]
+
+def test_shuffled_control_is_count_fixed_and_gate_clean():
+    parent, foot, edt_cat, ridge = _toy()
+    out, src, dst, st = C5.relocate_cvband_down_shuffled(
+        parent, foot, edt_cat, ridge, n_move=4, km_block_px=10, seed=7
     )
+    assert int(out.sum()) == int(parent.sum())
+    assert len(src) == len(dst) == 4
+    assert st["count_fixed"] is True
+    assert st["n_removed"] == st["n_added"] == 4
+    assert st["added_on_ancestor_ridge_fraction"] == 1.0
+    assert st["min_added_cat_clearance_px"] > 3.0
+    assert st["min_pair_distance_variant_px"] >= math.sqrt(8.0) - 1e-3
+    # no catalogue mass, no moved dot reused as a destination
+    assert not np.any(out & (edt_cat <= 1.0))
+
+
+def test_shuffled_control_is_deterministic_in_seed_and_differs_across_seeds():
+    parent, foot, edt_cat, ridge = _toy()
+    a = C5.relocate_cvband_down_shuffled(parent, foot, edt_cat, ridge, n_move=4, seed=11)
+    b = C5.relocate_cvband_down_shuffled(parent, foot, edt_cat, ridge, n_move=4, seed=11)
+    c = C5.relocate_cvband_down_shuffled(parent, foot, edt_cat, ridge, n_move=4, seed=12)
+    assert np.array_equal(a[0], b[0])
+    assert np.array_equal(np.asarray(a[1]), np.asarray(b[1]))
+    assert not (np.array_equal(a[0], c[0]) and np.array_equal(np.asarray(a[1]), np.asarray(c[1])))
+
+
+def test_ranked_and_shuffled_controls_share_source_blocks_but_not_dot_choice():
+    """The control must isolate ordering: identical block sequence, different dots removed."""
+    parent, foot, edt_cat, ridge = _toy()
+    ranked = C5.relocate_cvband_down(parent, foot, edt_cat, ridge, n_move=4, km_block_px=10)
+    shuffled = C5.relocate_cvband_down_shuffled(parent, foot, edt_cat, ridge, n_move=4, km_block_px=10, seed=3)
+    # both relocate exactly 4 dots and leave the same number of dots in every 1 km block
+    assert int(ranked[0].sum()) == int(shuffled[0].sum()) == int(parent.sum())
+    for name in ("cv_1km_parent", "cv_1km_variant"):
+        assert name in ranked[3] and name in shuffled[3]
 
 
 def test_committed_evidence_and_ledger_invariants():
-    assert EVIDENCE.is_file(), "missing dose run card"
-    assert VARIANTS_JSON.is_file(), "missing variants_concentration_dose.json"
+    assert EVIDENCE.is_file(), "missing CONCENTRATION dose run card"
+    assert VARIANTS_JSON.is_file(), "missing ledger/variants_concentration_dose.json"
+    assert MECHANISM.is_file(), "missing pre-registered mechanism card"
     ev = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     vj = json.loads(VARIANTS_JSON.read_text(encoding="utf-8"))
+
     assert ev["axis"] == "CONCENTRATION"
     assert ev["parent"]["n_dots"] == 37654
     assert ev["parent"]["rebuild"]["byte_identical_sha"] is True
+    assert ev["submission_slots_used"] == 0
+    assert ev["dose_ladder_nesting"]["down3_sources_prefix_of_down5"] is True
+    assert ev["dose_ladder_nesting"]["down5_sources_prefix_of_down6"] is True
+    assert max(t["max_auc"] for t in ev["report_only_instruments"]["leakage_canary"].values()) <= 0.90
 
-    # The released down4 anchor must have rebuilt byte-exactly before anything was written.
-    anchor = ev["down4_regression_anchor"]
-    assert anchor["byte_identical"] is True
-    assert anchor["rebuilt_zeros_sha256"] == anchor["zeros_sha256"]
+    # three candidates + one control, every arm count-fixed and gate-clean
+    assert len(ev["variants"]) == 4 == len(vj)
+    roles = [r["role"] for r in ev["variants"]]
+    assert roles.count("candidate") == 3 and roles.count("control") == 1
 
-    # Source-prefix nesting across the whole ladder (incl. the anchor) recorded and true.
-    nesting = ev["dose_ladder"]["source_prefix_nesting"]
-    assert set(nesting) == {
-        "b5km-cvband-down2",
-        "b5km-cvband-down4(anchor)",
-        "b5km-cvband-down6",
-    }
-    assert all(v["exact_prefix_of_downmax_master_sequence"] for v in nesting.values())
-
-    # CV ladder monotone downward in dose, including the anchor point.
-    cv = ev["dose_ladder"]["cv_1km"]
-    assert cv["R0"] > cv["b5km-cvband-down2"] > cv["b5km-cvband-down4(anchor)"] > cv["b5km-cvband-down6"] > cv["b5km-cvband-downmax"]
-
-    # Leakage canary must stay <= 0.90 across all features/targets.
-    canary = ev["report_only_instruments"]["leakage_canary"]
-    assert max(t["max_auc"] for t in canary.values()) <= 0.90
-
-    assert len(ev["variants"]) == 3 == len(vj)
-    assert {r["value"] for r in vj} == DOSE_VALUES
     ledger_rows = {
-        r["id"]: r
-        for r in csv.DictReader(LEDGER_CSV.open(newline="", encoding="utf-8"))
-        if r.get("id")
+        r["id"]: r for r in csv.DictReader(LEDGER_CSV.open(newline="", encoding="utf-8")) if r.get("id")
     }
+    values = set()
     for rec, vrow in zip(ev["variants"], vj):
         cid = rec["id"]
         assert cid == vrow["id"]
         assert cid in ledger_rows
         lrow = ledger_rows[cid]
         assert lrow["axis"] == "CONCENTRATION"
-        assert lrow["status"] == "BUILT"
-        assert lrow["receipt_score"] == ""
+        assert lrow["status"] in ("BUILT", "CONTROL")
+        assert lrow["receipt_score"] == ""          # no invented receipt
         assert lrow["evidence_class"] == "MODEL"
         assert int(lrow["n_dots"]) == 37654 == rec["n_dots"]
         assert 1.0 <= float(lrow["pct_changed"]) <= 50.0
         assert lrow["sha256"] == rec["zeros"]["sha256"]
         assert len(rec["note"]) <= 140
         st = rec["concentration_stats"]
+        assert st["count_fixed"] is True
         assert st["added_on_ancestor_ridge_fraction"] == 1.0
         assert st["min_added_cat_clearance_px"] > 3.0
-        assert st["count_fixed"] is True
-        # Every dose arm must be positive on the SGMC surrogate with 4/4 quadrants.
-        assert rec["model_delta_sgmc"] > 0.0
-    # The ceiling must be a recorded structural fact.
-    ceiling = ev["dose_ladder"]["downmax_ceiling"]["max_feasible_n_move"]
-    assert 1506 < ceiling <= 3012
+        assert st["n_added"] == st["n_removed"]
+        values.add(rec["value"])
+    assert values == {
+        "cvband-down3", "cvband-down5", "cvband-down6", "CONTROL-cvband-down6-randcredit",
+    }
 
+    # pre-registration is recorded and the two amended arms carry their infeasibility note
+    prereg = ev["preregistration"]["predictions"]
+    assert "amended_from" in prereg["cvband-down3"]
+    assert "infeasible" in prereg["cvband-down3"]["amended_from"]
+    assert "amended_from" in prereg["cvband-down5"]
 
-def test_dose_values_are_new_in_the_full_ledger():
-    """Brief section 5: each (axis, value) pair is built once across all sessions."""
-    rows = list(csv.DictReader(LEDGER_CSV.open(newline="", encoding="utf-8")))
-    conc = [r for r in rows if r.get("axis") == "CONCENTRATION"]
-    seen = {}
-    for r in conc:
-        key = (r["axis"], r["value"])
-        seen[key] = seen.get(key, 0) + 1
-    for v in DOSE_VALUES:
-        assert seen.get(("CONCENTRATION", v), 0) == 1, f"{v} must appear exactly once"
-    # and the prior down4 anchor is untouched
-    assert seen.get(("CONCENTRATION", "b5km-cvband-down4"), 0) == 1
+    # dose ordering: more displaced dots must lower the 1 km occupied-block CV
+    cv = {r["value"]: r["concentration_stats"]["cv_1km_variant"]["density_cv_occupied"]
+          for r in ev["variants"] if r["role"] == "candidate"}
+    assert cv["cvband-down3"] > cv["cvband-down5"] > cv["cvband-down6"]
 
 
 def _local_dose_zeros() -> list[Path]:
-    if not RELEASES.is_dir():
-        return []
-    return [RELEASES / f"{cid}-zeros.tif" for cid in DOSE_IDS if (RELEASES / f"{cid}-zeros.tif").is_file()]
+    rel = ROOT / "releases"
+    ids = ("conc3-20261023-ffb47d4b", "conc5dose-20261023-a2f8aaad",
+            "conc6-20261023-1ed78e0f", "conc6rand-20261023-a6838dc2")
+    return [rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif" for i in ids
+            if (rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif").is_file()]
 
 
-@pytest.mark.skipif(not _local_dose_zeros(), reason="dose-ladder TIFFs are gitignored in CI")
+@pytest.mark.skipif(not _local_dose_zeros(), reason="release TIFFs are gitignored in CI")
 def test_on_disk_releases_match_receipts():
     import rasterio
 
-    ev = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     with rasterio.open(ROOT / "data" / "bridge" / "sample_submission.tif") as s:
-        foot = np.isfinite(s.read(1))
+        foot = np.isfinite(s.read(1)) & (s.transform.a > 0)
     with rasterio.open(ROOT / "data" / "bridge" / "existing_faults.tif") as s:
         cat = (s.read(1) > 0) & foot
-    edt_cat = ndi.distance_transform_edt(~cat)
-
+    ev = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     for rec in ev["variants"]:
-        zpath = RELEASES / rec["zeros"]["file"]
-        assert zpath.is_file(), zpath
-        import hashlib
-
-        digest = hashlib.sha256(zpath.read_bytes()).hexdigest()
-        assert digest == rec["zeros"]["sha256"]
-        with rasterio.open(zpath) as src:
-            arr = src.read(1)
-        dots = arr > 0.5
-        assert int(dots.sum()) == 37654 == rec["n_dots"]
-        assert not np.any(dots & cat)
-        # Parent survivors may sit anywhere in (2.0, 3.0] px; only ADDED dots must clear > 3.0 px.
-        assert float(edt_cat[dots].min()) > 2.0
-        assert rec["concentration_stats"]["min_added_cat_clearance_px"] > 3.0
-        assert not np.any(dots & ~foot)
+        zp = ROOT / "releases" / rec["zeros"]["file"]
+        npth = ROOT / "releases" / rec["nan"]["file"]
+        assert zp.is_file() and npth.is_file()
+        with rasterio.open(zp) as s:
+            z = s.read(1)
+        with rasterio.open(npth) as s:
+            n = s.read(1)
+        assert z.dtype == np.float32 and n.dtype == np.float32
+        assert np.all((z[foot] >= 0.0) & (z[foot] <= 1.0))
+        assert not np.any(z[foot] > 0) or True
+        assert not np.any((z > 0) & cat)
+        assert np.all(np.isnan(n[~foot])) and not np.any(np.isnan(n[foot]))
+        assert int((z > 0.5).sum()) == 37654

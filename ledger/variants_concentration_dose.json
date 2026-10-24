@@ -1,45 +1,45 @@
 [
   {
-    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f",
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad",
     "site": "GEMSDOE86",
     "axis": "CONCENTRATION",
-    "value": "b5km-cvband-down2",
+    "value": "cvband-down5",
     "status": "BUILT",
     "n_dots": 37654,
-    "pct_changed": 3.9996,
-    "sha8": "f0ee647f",
+    "pct_changed": 10.0016,
+    "sha8": "a2f8aaad",
     "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
     "encoding": "zeros",
-    "sha256_zeros": "f0ee647f059236148d293b38a2cd8b04928315adc7956b3a5b3e97e1cdd29f16",
-    "sha256_nan": "b049bf132a6b2606d736e2f6b25431c4808722b981d946ccc065096bd06b8739",
-    "predicted_change": "+0.0012 (quadrant range +0.0001..+0.0022; 4/4 quadrants positive; fold-fair PROXY +0.0001, CI95 [-0.0006,+0.0008], n=11321). MODEL: SGMC-extra surrogate, not a score.",
-    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f-zeros.tif",
+    "sha256_zeros": "a2f8aaad1d9507fbe623efde2e2cb72922f5e19058f9e91eb34826b0c20bd522",
+    "sha256_nan": "e542423480b6b582fcaa7d6ed6bc360a8c1f99a9935dc28559048481478781c8",
+    "predicted_change": "+0.0018 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0006..+0.0036; 4/4 quadrants positive; jitter6px mean +0.0024); fold-fair PROXY +0.0010 [-0.0003, +0.0023], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad-zeros.tif",
     "receipt_score": "",
     "receipt_date": "",
-    "dot_digest": "8ee28e8a298819067464edffb45c9bacccd204dc89cb06ac9f70236e37fa78ac",
+    "dot_digest": "ecff89c0c312b3ae3c28e7ab38c919f2243e2011022dad3a45098b1aaff666b7",
     "files": [
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f.tif",
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown2-20261023-f0ee647f-zeros.tif"
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc5dose-20261023-a2f8aaad-zeros.tif"
     ],
-    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-cvband-down2: 753 ridge dots moved (4.00% chg, 1km CV 0.561); pred +0.0012 MODEL",
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down5: 1883 ridge dots moved (10.00% chg; 1km CV 0.500); pred +0.0018 MODEL",
     "gate_all_pass": true,
     "proxy": {
-      "value": 0.096194,
-      "delta_vs_r0": 0.000108,
+      "value": 0.097131,
+      "delta_vs_r0": 0.001045,
       "ci95": [
-        -0.000581,
-        0.000841
+        -0.000274,
+        0.002275
       ],
       "n_withheld_positive_pixels": 11321,
       "class_": "PROXY",
-      "note": "NONE (both R0 and all candidate priors/collars see only f.visible per fold)"
+      "note": "NONE (per-fold geometry sees only f.visible)"
     }
   },
   {
-    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f",
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f",
     "site": "GEMSDOE86",
     "axis": "CONCENTRATION",
-    "value": "b5km-cvband-down6",
+    "value": "cvband-down6",
     "status": "BUILT",
     "n_dots": 37654,
     "pct_changed": 11.9987,
@@ -48,16 +48,16 @@
     "encoding": "zeros",
     "sha256_zeros": "1ed78e0f2106ecbd2eab07ce40a1d229b7e9bf19f433d8eaee0edcf867728c85",
     "sha256_nan": "b5ecdcde65d10ee8e55bd6b67a7dd21d42acb8539db8ad459f18c77d84c48954",
-    "predicted_change": "+0.0022 (quadrant range +0.0005..+0.0045; 4/4 quadrants positive; fold-fair PROXY +0.0013, CI95 [-0.0004,+0.0028], n=11321). MODEL: SGMC-extra surrogate, not a score.",
-    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif",
+    "predicted_change": "+0.0022 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0005..+0.0045; 4/4 quadrants positive; jitter6px mean +0.0028); fold-fair PROXY +0.0013 [-0.0004, +0.0028], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif",
     "receipt_score": "",
     "receipt_date": "",
     "dot_digest": "558b7bc30bd403014eb568f9c3546fa60f7d5718cafcbc43c028f10ee604c1d4",
     "files": [
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f.tif",
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown6-20261023-1ed78e0f-zeros.tif"
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif"
     ],
-    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-cvband-down6: 2259 ridge dots moved (12.00% chg, 1km CV 0.484); pred +0.0022 MODEL",
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down6: 2259 ridge dots moved (12.00% chg; 1km CV 0.484); pred +0.0022 MODEL",
     "gate_all_pass": true,
     "proxy": {
       "value": 0.097352,
@@ -68,43 +68,79 @@
       ],
       "n_withheld_positive_pixels": 11321,
       "class_": "PROXY",
-      "note": "NONE (both R0 and all candidate priors/collars see only f.visible per fold)"
+      "note": "NONE (per-fold geometry sees only f.visible)"
     }
   },
   {
-    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664",
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b",
     "site": "GEMSDOE86",
     "axis": "CONCENTRATION",
-    "value": "b5km-cvband-downmax",
+    "value": "cvband-down3",
     "status": "BUILT",
     "n_dots": 37654,
-    "pct_changed": 12.6467,
-    "sha8": "d4a42664",
+    "pct_changed": 6.002,
+    "sha8": "ffb47d4b",
     "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
     "encoding": "zeros",
-    "sha256_zeros": "d4a426640b562f2c08fce2f84a58d88a8fd62ac1638d43396b4cf3531d5e6f89",
-    "sha256_nan": "b547f97700a380c5f5a78b1bab0dff4435f38ff69403acc85599a80d8351deb3",
-    "predicted_change": "+0.0020 (quadrant range +0.0011..+0.0027; 4/4 quadrants positive; fold-fair PROXY +0.0013, CI95 [-0.0004,+0.0028], n=11321). MODEL: SGMC-extra surrogate, not a score.",
-    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664-zeros.tif",
+    "sha256_zeros": "ffb47d4bc4af3d5d62f106f577b501e40728cae147017a8a6cdf400105239af5",
+    "sha256_nan": "37e804221429833a94935c78673b70a7492c4ee855761308e7fc466adcf685e4",
+    "predicted_change": "+0.0013 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0004..+0.0020; 4/4 quadrants positive; jitter6px mean +0.0017); fold-fair PROXY +0.0004 [-0.0006, +0.0013], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b-zeros.tif",
     "receipt_score": "",
     "receipt_date": "",
-    "dot_digest": "896a9f6db58b98b80617397a6ee4796b9e8835f8e912e00a7dd95c14b001abe6",
+    "dot_digest": "fb91e2f86776a142ffc2b68b86f8c40e775f73c6d570d8a6fec7d4b19debb10d",
     "files": [
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664.tif",
-      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdownmax-20261023-d4a42664-zeros.tif"
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc3-20261023-ffb47d4b-zeros.tif"
     ],
-    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-cvband-downmax: 2381 ridge dots moved (12.65% chg, 1km CV 0.479); pred +0.0020 MODEL",
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC cvband-down3: 1130 ridge dots moved (6.00% chg; 1km CV 0.538); pred +0.0013 MODEL",
     "gate_all_pass": true,
     "proxy": {
-      "value": 0.097352,
-      "delta_vs_r0": 0.001266,
+      "value": 0.096499,
+      "delta_vs_r0": 0.000413,
       "ci95": [
-        -0.000417,
-        0.002824
+        -0.000613,
+        0.001312
       ],
       "n_withheld_positive_pixels": 11321,
       "class_": "PROXY",
-      "note": "NONE (both R0 and all candidate priors/collars see only f.visible per fold)"
+      "note": "NONE (per-fold geometry sees only f.visible)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "CONTROL-cvband-down6-randcredit",
+    "status": "CONTROL",
+    "n_dots": 37654,
+    "pct_changed": 11.9987,
+    "sha8": "a6838dc2",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "a6838dc25b0ac5b4eaa1c5383c4b8033806b9d69315b692937680aaa172a2c78",
+    "sha256_nan": "efb7628c438c31ad0d8d62ba75489a984dd129b3495948f776158d913e02f6f0",
+    "predicted_change": "+0.0015 MODEL (SGMC off-catalogue surrogate; quadrant range +0.0002..+0.0040; 4/4 quadrants positive; jitter6px mean +0.0021); fold-fair PROXY +0.0008 [-0.0014, +0.0026], n=11321. Not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "5519db791f0cbda7f16c8c7dc9c89dd9a561c4a4f450e4cbd8bd4571e51585ba",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-conc6rand-20261023-a6838dc2-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC CONTROL-cvband-down6-randcredit: 2259 ridge dots moved (12.00% chg; 1km CV 0.485); pred +0.0015 MODE",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.096854,
+      "delta_vs_r0": 0.000768,
+      "ci95": [
+        -0.001415,
+        0.002604
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (per-fold geometry sees only f.visible)"
     }
   }
 ]

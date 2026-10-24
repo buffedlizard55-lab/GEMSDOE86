@@ -694,25 +694,135 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
-## IR-86-CONC-12 — the `0.51–0.59` CV band is measured non-optimal: the down-dose curve is monotone through the band bottom and saturates at the destination-pool ceiling
 
-**Observed.** The down-dose session (`arena/4822aa3b-gemsdoe86`) completed the single-point
-`b5km-cvband-down4` curve with three source-prefix-nested rungs (`down2 ⊂ down4 ⊂ down6 ⊂ downmax`,
-verified programmatically; `down4` rebuilt byte-exactly first, `8aab97b6…`). Measured on the same
-instruments as the 5 km session (SGMC-extra MODEL, symmetric fold-fair d28 PROXY, n=11,321,
-canary 0.7222 ≤ 0.90): `down2` (753 moved, CV 0.5611) `+0.0012 MODEL` 4/4 quads / `+0.0001 PROXY`;
-`down6` (2,259 moved, CV 0.4840, **below the band bottom**) `+0.0022 MODEL` 4/4 quads /
-**`+0.0013 PROXY`**; `downmax` (2,381 moved = binary-searched maximum the 1–2-dot sparse-ridge
-destination pool absorbs at `>= √8` spacing, CV 0.4789) `+0.0020 MODEL` — the last ~122 placements
-cost more than they bought. A band optimum would have peaked inside `0.51–0.59`; instead the curve
-rises monotonically past the band bottom and flattens only where destinations run out
-(`IR-86-CONC-02`'s suspicion, now measured; `IR-86-TRACKB-08`'s 10 km reading is untouched).
+## IR-86-CONC-12 — the pre-registered 8 % and 2 km arms do not exist; the axis is capacity-capped
+Two of the three builds pre-registered in `evidence/concentration-dose-mechanism.md` turned out to be
+**geometrically impossible on this parent**, discovered on the first execution and before any score
+was computed:
 
-**Decision.** The `0.51–0.59` CV band is retired as a *target* (it remains a historical
-correlation); Slot 2 upgrades from `concb5kmdown4` (`8aab97b6`) to **`concb5kmdown6`
-(`1ed78e0f`)** — the best CONCENTRATION arm on both instruments and the largest non-PRUNE SGMC
-read in the ledger; `down2`/`downmax` are curve brackets, not slot candidates; the Week 4–5
-composite ingredient changes to `down6` at a 2,381-move ceiling; the unbuilt pool-extension rung
-(`downmax-plus`) is proposed in `SLOT_PLAN.md`, not built. No slot was spent; the live dose
-ordering remains unproven until receipts exist.
+* 1 km `cvband-down8` needs 3,012 destinations; the sparse-ridge 1 km pool at `> 3.0 px` clearance
+  and `>= sqrt(8) px` spacing exhausts after **2,399** placements (max feasible dose ≈ 6.37 % of R0);
+* 2 km `cvband-2km-down4` needs 1,506; the 2 km pool exhausts after **920**.
+
+**Decision:** the ladder was re-cut to 3 % / 5 % / 6 % on the unchanged 1 km rule, and the matched
+ordering control was moved to the 6 % dose so it matches the strongest arm. The amendment is recorded
+in the run card (`preregistration.predictions.*.amended_from`) and in the mechanism card; the
+original predictions for `down5`/`down6` were **not** revised after seeing the CV values. **Cost:** the
+dose curve has no point above 6.4 %, so "more dose" is not an open direction without changing a second
+variable (spacing or ridge support). A 2 km block-scale replication is unavailable at the dose that
+would make it comparable.
+
+## IR-86-CONC-13 — the CV-band mechanism is falsified as stated; dispersal dose is the live variable
+Measured against the pre-registration, the registered **inverted-U** shape is wrong. SGMC `MODEL` and
+the fold-fair `PROXY` both rise monotonically with dose (`+0.0013 → +0.0018 → +0.0022` MODEL;
+`+0.0004 → +0.0010 → +0.0013` PROXY for 3 % → 5 % → 6 %) while 1 km occupied CV falls
+`0.5377 → 0.4998 → 0.4840`, i.e. the best arm lands **outside** the `0.51–0.59` band that PR #47's
+card called the target. Separately, the matched ordering control (same source blocks, random dot,
+random destination, same count, same gates) captures ≈ 67 % of the ranked arm's MODEL gain and ≈ 62 %
+of its PROXY gain.
+
+**Decision:** the `0.51–0.59` CV band is retired as a *mechanism* and demoted to a descriptive
+correlate; future CONCENTRATION cards must state a dose, not a CV target. The credit ranking is
+retained only as a `≈ +0.0007 MODEL` refinement, explicitly below instrument resolution — no ledger
+row or slot note may credit the ranking with the whole gain. `conc6` still dominates PR #47's `down4`
+on both report-only instruments, so it is the CONCENTRATION candidate of record, placed in slot 3
+behind the two larger predicted levers. **Cost:** a clean price on the ranking needs a paired live
+A/B (two slots), which the 3-per-week budget makes expensive; until then the honest prior for this
+axis is the control's `+0.0015 MODEL`.
+
+## IR-86-CONC-14 — the leakage canary initially flagged AUC 1.0000 because the canary itself leaked
+On the first execution the canary returned `max_auc = 1.0000`, which trips the brief's stop rule. The
+cause was in my own feature dict: `catalogue_px` is the scoring target verbatim, so its AUC is 1.0 by
+construction. It was replaced by `block_density_1km_parent` (a feature the rule actually uses), and no
+result was read before that fix.
+
+**Decision:** the stop rule was honoured literally (the run aborted and no raster was written), and
+the canary now reports only features that enter the edit: against the catalogue target
+`ridge_union_px` 0.5154, `unique_credit_parent` 0.5037, `block_density_1km_parent` 0.5094, and
+against the SGMC off-catalogue target 0.5086 / 0.5023 / 0.5467 respectively — worst case 0.5467,
+far below 0.90. **Cost:** none, but the episode is a reminder that a "leakage canary" can pass or
+fail on the choice of feature, so the feature list must be printed with the number.
+
+## IR-86-RELIEF-04 — the only instrument that supports RELIEF is a relief-index meter (R² = 0.9135, n = 8)
+
+**Observed.** Eight deterministic RELIEF rebuilds of R0 (the three shipped ladder arms, this
+session's three arms, and two displacement-matched random nulls) were scored on the SGMC-extra
+surrogate and regressed on the one quantity that varies across all of them, the change in mean
+`relief_index` at the dots (`evidence/relief_source_20261023.json`, `instrument_diagnostic`):
+
+| arm | Δ mean relief index | surrogate Δ (MODEL) | residual vs the fit |
+|---|---:|---:|---:|
+| `front+15pct` (reconstruction of the ledger row) | +0.2058 | **+0.00171** | −0.0008 |
+| `front+10pct` (reconstruction) | +0.1370 | +0.00100 | −0.0009 |
+| `front-10pct` (reconstruction) | −0.1163 | −0.00885 | −0.0023 |
+| `int2front-15pct` (new) | −0.0587 | −0.00569 | −0.0007 |
+| `int2front-10pct` (new) | −0.0565 | −0.00379 | +0.0011 |
+| `int2pied-15pct` (new) | −0.2987 | −0.01179 | +0.0000 |
+| null, random destination (interior source) | −0.0677 | −0.00298 | +0.0020 |
+| null, random destination (piedmont source) | +0.0170 | −0.00256 | −0.0008 |
+
+Pearson **r = +0.9558, R² = 0.9135, slope +0.0283 DTI per index unit**, intercept −0.0033 (the
+"displacement tax": an arm that does not change mean relief index is predicted to lose 0.0033).
+The surrogate's single-feature AUC for `relief_index → SGMC-extra` is `0.7281`, so this is not a
+coincidence of the arms: to first order the instrument is a monotone function of exactly the
+quantity every RELIEF variant manipulates. The reconstruction of `front+15pct` reproduces the
+ledger's delta to three decimals (`+0.001711` vs `+0.0017`), so the regression is on the shipped
+recipe, not a look-alike.
+
+**Decision (changes the slot order).** No RELIEF MODEL number may be cited as *mechanism*
+evidence. `front+15pct`'s `+0.0017` is what the instrument reports for a `+0.206` shift in mean
+relief index, and its residual is **−0.0008** — i.e. after the gradient is removed it is
+indistinguishable from (slightly below) the instrument's own line. `RELIEF-frontp15` is therefore
+**demoted from Slot 1 to Slot 3**; `PRUNE-le3p000` takes Slot 1 (its relief-index change is
+near zero, so this bias cannot manufacture its `+0.0040`), and `CONC-concb5kmdown4`
+(`+0.0015 MODEL` **and** `+0.0008 PROXY`, two differently-biased instruments agreeing, `1 km`
+CV inside `0.51–0.59`) takes Slot 2. **Cost:** the RELIEF family keeps its rows and rasters, but
+its published support is reclassified as instrument-shaped; a live receipt is now the only thing
+that can restore it, and at `+0.0017` a single slot could never clear the §"|Δ| < 0.01 = no
+evidence" floor anyway.
+**Not claimed:** that RELIEF is wrong. `relief_index` tracks real basin-margin structure; the
+claim is that this instrument cannot separate that from its own gradient.
+**Limit:** n = 8 deterministic rebuilds of one parent, not independent experiments, and seven of
+the eight sit on two source classes of a single grid. It prices the instrument; it does not
+re-score the competition.
+
+## IR-86-RELIEF-05 — the basin source cannot be tested inside the axis contract (2,014 dots = 5.35 %)
+
+**Observed.** Regime census of R0 this session: piedmont 20,280 dots (53.86 %), range-front 6,045
+(16.05 %), range-interior 9,315 (24.74 %), **basin 2,014 (5.35 %)**. Brief v2 §5 fixes the RELIEF
+dose at 10–15 % of the parent's dots, i.e. 3,765–5,648 dots. The basin holds fewer dots than the
+*floor* of that window, so "does leaving the alluvium pay?" — the cleanest geological version of the
+question — cannot be asked as a RELIEF variant at any legal dose.
+**Decision:** the source was varied over the range interior (the only remaining class with enough
+mass) and the basin question is recorded as **unbuildable on this parent**; it would need a
+different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and MASS is closed per
+`IR-86-MASS-01..03`). **Cost:** one of the three arms that looked most promising on mechanism
+grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
+rather than the 6-cell design with basin.
+
+## IR-86-CONC-15 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
+
+**Observed.** This session (`arena/4822aa3b-gemsdoe86`, PR #55) and the concurrent PR #50 session
+(`arena/60ecf1c8`) both self-assigned CONCENTRATION, both extended the `b5km-cvband-down4` dose
+curve, and both named their artifacts `run_concentration_dose.py` / `variants_concentration_dose.json`.
+PR #50 merged first (with `cvband-down3` `ffb47d4b`, `cvband-down5` `a2f8aaad`, `cvband-down6`
+`1ed78e0f`, and a `CONTROL-cvband-down6-randcredit` `a6838dc2`). On merging origin/main for PR #55,
+this session's `b5km-cvband-down6` proved **byte-identical** to PR #50's `conc6` (same zeros sha256
+`1ed78e0f…`) — the same deterministic pipeline and dose from two independent runs, which is itself
+a reproducibility datum. This session's other two rungs are new: `b5km-cvband-down2` (`f0ee647f`,
+753 moves — a point below PR #50's lowest rung) and `b5km-cvband-downmax` (`d4a42664`, 2,381 moves —
+the exact binary-searched sparse-ridge destination-pool ceiling), which confirm `IR-86-CONC-12`'s
+"≈ 6.4 % of R0" capacity cap with the precise number (2,381 = 6.32 %) and show the marginal 122
+moves past `conc6` cost more than they bought (`+0.0020` vs `+0.0022` MODEL, both 4/4 quadrants).
+This item was first drafted as "IR-86-CONC-12" before main's numbering was known; 12/13/14 are
+taken (`IR-86-CONC-14` is PR #50's own canary item), so it is renumbered here.
+
+**Decision.** This session's `down6` is recorded `BUILT-DUPLICATE` (house pattern:
+`gems86-h33-2b2-prune3` `collar3px`), pointing at PR #50's `conc6` BUILT row; files renamed to
+`scripts/run_concentration_dose_rungs.py`, `tests/test_concentration_dose_rungs.py`,
+`ledger/variants_concentration_dose_rungs.json`, `evidence/concentration_dose_axis_20261023.json`;
+`down2`/`downmax` recorded `BUILT` as curve brackets, not slot candidates (Slot 2 stays `conc6`
+per rev. D). No slot was spent; the exact-hash duplicate is kept in the ledger rather than deleted,
+because two independent byte-identical builds is evidence the down-mechanism dose ladder is
+reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, axis, value)".
 

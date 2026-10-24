@@ -1,38 +1,39 @@
 #!/usr/bin/env python3
-"""CONCENTRATION dose-response rungs on R0 (down2 / down6 / down-max ceiling).
+"""CONCENTRATION dose ladder & block-scale replication on R0 (brief v2 session, 2026-10-23).
 
-Why CONCENTRATION again, and why only the ``down`` direction
-------------------------------------------------------------
-Across all 10 CONCENTRATION rows in ``ledger/submissions.csv`` exactly one arm is
-positive on **both** instruments: ``b5km-cvband-down4`` (SGMC ``MODEL`` ``+0.0015``
-with 4/4 quadrants positive; symmetric fold-fair ``d28`` ``PROXY`` ``+0.0008``,
-CI95 ``[-0.0004, +0.0018]``, ``n = 11,321``).  The up direction toward the Faulds
-5 km prior is measured flat-to-negative (``up4 = -0.0005``, ``up8 = -0.0007``),
-``MASS`` is closed (``IR-86-MASS-03``), ``SNAP`` is negative in three sessions
-(``IR-86-SNAP-02``), and the PRUNE/RELIEF/SPACING ladders are built.  The ``down``
-curve has exactly one point, so this session completes it:
+One axis, three builds, one matched control.
 
-* ``b5km-cvband-down2``   — 753 dots moved (2.00 % of dots, 4.00 % changed),
-  1 km CV ``0.6235 -> ~0.56``: the *band-interior* rung.
-* ``b5km-cvband-down6``   — 2,259 dots moved (6.00 % of dots, 12.00 % changed),
-  1 km CV ``~0.48``: the first *below-the-band* rung.
-* ``b5km-cvband-downmax`` — capacity-limited ceiling of the exact mechanism
-  (binary-searched max feasible ``n_move`` under the same destination rule),
-  CV ``~0.478``: the *pool-ceiling* rung.  The ceiling itself is a recorded
-  structural fact the Week 4-5 composite needs.
+The parent is **R0 = `h33-h33-2-b2`** (GEMSDOE32, 37,654 unit-mass dots, claimed live 0.2778 =
+CLAIM).  The rule under test is PR #47's `b5km-cvband-down4`: shave the lowest unique-kernel-credit
+dot out of over-dense 1 km blocks and re-emit it on an unused pinned ancestor ridge cell
+(`H19-5 | H19-4 | H16-1`) inside a sparse 1-2 dot block.  That arm is the only CONCENTRATION build
+positive on both report-only instruments (SGMC MODEL +0.0015; fold-fair PROXY +0.0008).
 
-Every rung shaves the lowest-unique-credit dot from the densest ``>= 3``-dot
-1 km block (sources are exact prefixes across doses) and re-plants it on an
-unused ``H19-5 | H19-4 | H16-1`` ancestor-ridge cell in a 1-2-dot block at
-``> 3.0 px`` catalogue clearance and ``>= sqrt(8)`` spacing, count fixed at
-37,654.  The released ``down4`` file is rebuilt in-run and asserted byte-identical
-(``8aab97b6...``) as a regression anchor before anything new is written.
+This session changes ONE thing at a time across the three builds:
 
-No truth raster is read. No network call, no portal, no submission, no login.
+* ``cvband-down3``      — 1 km blocks, 3 % of R0 moved (brackets the CV-band peak from below);
+* ``cvband-down5``      — 1 km blocks, 5 % of R0 moved (PR #47 dose + 1 %);
+* ``cvband-down6``      — 1 km blocks, 6 % of R0 moved (1.5x the PR #47 dose; near the ceiling);
+* ``CONTROL-cvband-down6-randcredit`` — same source blocks as ``down6`` with random dot choice and
+  random destination order (measured, never promoted).
+
+Two pre-registered arms are **infeasible on this parent** and are replaced by a lower dose
+(``IR-86-CONC-12``): the 1 km sparse-ridge destination pool exhausts after 2,399 placements (8 % is
+impossible) and the 2 km pool after 920 (4 % is impossible).  The ladder is therefore
+3 % / 4 % (PR #47) / 5 % / 6 % on the same 1 km rule, and the two capacity ceilings are reported as
+results rather than hidden.
+
+Count is fixed at 37,654 on every arm, no arm emits mass on the catalogue, every newly emitted dot
+is ``> 3.0 px`` from the catalogue and ``>= sqrt(8) px`` from its neighbours, and 100 % of new dots
+sit on the pinned ancestor ridge union.
+
+No truth raster, no portal, no login, no submission.  Predictions are pre-registered in
+``evidence/concentration-dose-mechanism.md``; the SGMC surrogate and the catalogue
+hide-and-recover instrument are REPORT-ONLY and are never called a score.
 
 Usage
 -----
-    .venv/bin/python scripts/run_concentration_dose.py [--out-dir releases] [--stamp 20261023] [--no-write]
+    .venv/bin/python scripts/run_concentration_dose.py [--no-write] [--stamp 20261023]
 """
 from __future__ import annotations
 
@@ -57,14 +58,6 @@ sys.path.insert(0, str(ROOT / "vendor" / "template66"))
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
-from run_concentration_5km import (  # noqa: E402
-    PINNED_INPUTS,
-    evaluate_surrogate,
-    quadrant_masks,
-    run_leakage_canary,
-    sgmc_surrogate,
-    verify_manifest_pins,
-)
 from run_prune_ladder import (  # noqa: E402
     BRIDGE,
     PARENT_FILE,
@@ -78,175 +71,135 @@ from run_prune_ladder import (  # noqa: E402
     verify_pins,
     write_with_profile,
 )
-from gems57 import evaluate_holdout, grid as g57grid, metric as g57metric  # noqa: E402
+from run_concentration_5km import (  # noqa: E402
+    evaluate_surrogate,
+    quadrant_masks,
+    run_leakage_canary,
+    sgmc_surrogate,
+    verify_manifest_pins,
+)
+from gems57 import evaluate_holdout, grid as g57grid  # noqa: E402
 from gems57.gates import format_report  # noqa: E402
 from gems57.validate import validate  # noqa: E402
-from gems86 import concentration_5km as C5, instrument as g86inst, mass_econ  # noqa: E402
-from gems86_axis import bands as ax_bands  # noqa: E402
+from gems86 import concentration_5km as C5, instrument as g86inst, mass_econ, prune as PRUNE  # noqa: E402
 
 MANIFEST = ROOT / "registry" / "data_manifest.json"
 FLEET = ROOT / "data" / "scored_fleet"
-EVIDENCE_JSON = ROOT / "evidence" / "concentration_dose_axis_20261023.json"
+CACHE_SCORED = ROOT / ".cache" / "gems_data" / "scored"
+CACHE_EXT = ROOT / ".cache" / "gems_data" / "external"
+EVIDENCE_JSON = ROOT / "evidence" / "concentration_dose_20261023.json"
 VARIANTS_JSON = ROOT / "ledger" / "variants_concentration_dose.json"
 
 AXIS = "CONCENTRATION"
-AXIS_ASSIGNMENT = (
-    "SELF-ASSIGNED this session (brief v2 section 1: pick axis without prompting). "
-    "CONCENTRATION is the only axis whose single both-instruments-positive arm "
-    "(b5km-cvband-down4) has a one-point dose curve; MASS/SNAP are closed negative, "
-    "PRUNE/RELIEF/SPACING ladders are built, TRACKB is Phase-2 only."
-)
 N_DOTS_R0 = 37654
-MIN_PCT_CHANGED, MAX_PCT_CHANGED = 1.0, 50.0
+MIN_PCT, MAX_PCT = 1.0, 50.0
 NAN_POLICY_CHECKS = {"no_nan_anywhere", "outside_footprint_zero"}
 
-# Released down4 anchor (ledger/submissions.csv, GEMSDOE86 row of 2026-10-23).
-ANCHOR_ID = "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6"
-ANCHOR_ZEROS_SHA = "8aab97b65f70ba6c5dc4e3f0e73d95cbcb602da0d110c46dd0cf6a3a2e55d863"
-ANCHOR_CV = 0.5162
+PINNED_INPUTS: dict[str, Path] = {
+    "scored_h19_5": CACHE_SCORED / "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+    "scored_h19_4": CACHE_SCORED / "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+    "scored_h16_1": CACHE_SCORED / "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+    "scored_d28_unscored": CACHE_SCORED / "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "ext_derived_sgmc_faults_100m_u8": CACHE_EXT / "derived_sgmc_faults_100m_u8.tif",
+    "ext_geodawn_extensions_u8": CACHE_EXT / "geodawn_extensions_u8.tif",
+    "ext_geodawn_extensions_json": CACHE_EXT / "geodawn_extensions.json",
+    "ext_topo_10m_derived_100m_u8": CACHE_EXT / "topo_10m_derived_100m_u8.tif",
+    "ext_dem10_chi_100m_i16": CACHE_EXT / "dem10_chi_100m_i16.tif",
+}
 
-DOWNMAX_FRACTION_LADDER = (0.0632, 0.06, 0.055, 0.05, 0.045, 0.04, 0.03, 0.02)
+SLUG = {
+    "cvband-down5": "conc5dose",
+    "cvband-down6": "conc6",
+    "cvband-down3": "conc3",
+    "CONTROL-cvband-down6-randcredit": "conc6rand",
+}
 
-
-def ridge_union_from_pins(foot: np.ndarray) -> np.ndarray:
-    ridge = np.zeros_like(foot, dtype=bool)
-    for key in ("scored_h19_5", "scored_h19_4", "scored_h16_1"):
-        ridge |= (read(PINNED_INPUTS[key]) > 0.5) & foot
-    return ridge
-
-
-def max_feasible_downmax(
-    parent: np.ndarray,
-    foot: np.ndarray,
-    edt_cat: np.ndarray,
-    ridge: np.ndarray,
-    u_cred: np.ndarray,
-    lo: int = 1506,
-    hi: int = 3012,
-) -> tuple[int, dict]:
-    """Largest n_move the 1-2-dot sparse-ridge destination pool can absorb."""
-    best_stats: dict | None = None
-    while hi - lo > 1:
-        mid = (lo + hi) // 2
-        try:
-            _, _, _, st = C5.relocate_cvband_down(
-                parent, foot, edt_cat, ridge, n_move=mid, unique_credit_dots=u_cred
-            )
-            lo = mid
-            best_stats = st
-        except ValueError:
-            hi = mid
-    return lo, best_stats or {}
+#: Pre-registered predictions (evidence/concentration-dose-mechanism.md), written before the run.
+PREREG = {
+    # preregistered 2026-10-23 in evidence/concentration-dose-mechanism.md, before any build
+    "cvband-down5": dict(predicted=0.0017, lo=-0.0023, hi=0.0057,
+                         amended_from="cvband-down8 (infeasible: destination capacity 2,399 < 3,012)"),
+    "cvband-down6": dict(predicted=0.0015, lo=-0.0025, hi=0.0055),
+    "cvband-down3": dict(predicted=0.0016, lo=-0.0024, hi=0.0056,
+                         amended_from="cvband-2km-down4 (infeasible: 2 km destination capacity 920 < 1,506)"),
+    "CONTROL-cvband-down6-randcredit": dict(predicted=0.0, lo=-0.004, hi=0.004),
+}
+CONTROL_SEED = 20261023
 
 
-def run_fold_fair_proxy_dose(
-    d28_unmasked: np.ndarray,
+def fold_fair_proxy(
+    d28: np.ndarray,
     footprint: np.ndarray,
     catalogue: np.ndarray,
-    *,
     ridge_union: np.ndarray,
-    tmi_up150: np.ndarray,
-    dose_fractions: dict[str, float],
+    arms: dict[str, dict],
 ) -> dict:
-    """Fold-fair hide-and-recover PROXY restricted to the down-dose arms.
+    """Symmetric fold-fair hide-and-recover PROXY (REPORT ONLY).
 
-    Same protocol as the 5 km session (buffered component draw seed=20,
-    hide_frac=0.20, buffer_px=3, boundary_px=12; both R0 and every arm's block
-    prior and >3 px collar are rebuilt from f.visible only).  ``downmax`` falls
-    back down its fraction ladder inside a fold whose sparse-ridge pool cannot
-    absorb the full-grid ceiling dose; the chosen fraction is recorded per fold.
+    Both R0 and every arm are rebuilt from ``f.visible`` on each buffered whole-component fold, so
+    no withheld catalogue pixel enters either the parent or the candidate geometry.
     """
     folds = g86inst.build(footprint, catalogue, seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12)
-    arm_keys = ("R0", "b5km-cvband-down4", "b5km-cvband-down2", "b5km-cvband-down6", "b5km-cvband-downmax")
-    terms_by_arm: dict[str, np.ndarray | None] = {k: None for k in arm_keys}
+    keys = ["R0"] + list(arms)
+    terms: dict[str, np.ndarray | None] = {k: None for k in keys}
     fold_details = []
-    rdg_topo_cached = C5.skeleton_tips_and_junctions(ridge_union & footprint)
-    tmi_ga_cached = C5.local_agc_gradient(tmi_up150, footprint, window_px=101)
 
     for f in folds:
         vis = f.visible & footprint
         edt_vis = ndi.distance_transform_edt(~vis)
-        r0_f = d28_unmasked & footprint & (edt_vis > 2.0)
+        r0_f = d28 & footprint & (edt_vis > 2.0)
         u_cred_f, _ = mass_econ.marginal_credit(r0_f)
-        n_r0 = int(r0_f.sum())
-
-        p5_f = C5.faulds_5km_block_prior(
-            footprint, vis, ridge_union, tmi_up150, block_px=50,
-            precomputed_ridge_topo=rdg_topo_cached,
-            precomputed_tmi_grad_agc=tmi_ga_cached,
-        )
-        n_down4 = int(round(dose_fractions["b5km-cvband-down4"] * n_r0))
-        down4_f, _, _, _ = C5.relocate_cvband_down(
-            r0_f, footprint, edt_vis, ridge_union, n_move=n_down4, unique_credit_dots=u_cred_f,
-        )
-        arms_f = {"b5km-cvband-down4": down4_f}
-        per_fold_dose = {"b5km-cvband-down4": n_down4}
-        for key in ("b5km-cvband-down2", "b5km-cvband-down6"):
-            n_k = int(round(dose_fractions[key] * n_r0))
-            out_k, _, _, _ = C5.relocate_cvband_down(
-                r0_f, footprint, edt_vis, ridge_union, n_move=n_k, unique_credit_dots=u_cred_f,
-            )
-            arms_f[key] = out_k
-            per_fold_dose[key] = n_k
-        for frac in DOWNMAX_FRACTION_LADDER:
-            n_max = int(round(frac * n_r0))
-            try:
-                out_m, _, _, _ = C5.relocate_cvband_down(
-                    r0_f, footprint, edt_vis, ridge_union, n_move=n_max, unique_credit_dots=u_cred_f,
+        rasters = {"R0": r0_f}
+        for name, spec in arms.items():
+            if name.startswith("CONTROL"):
+                dots, _, _, _ = C5.relocate_cvband_down_shuffled(
+                    r0_f, footprint, edt_vis, ridge_union,
+                    n_move=int(round(spec["frac"] * int(r0_f.sum()))),
+                    km_block_px=spec["block_px"], seed=CONTROL_SEED, unique_credit_dots=u_cred_f,
                 )
-                arms_f["b5km-cvband-downmax"] = out_m
-                per_fold_dose["b5km-cvband-downmax"] = n_max
-                break
-            except ValueError:
-                continue
-        if "b5km-cvband-downmax" not in arms_f:
-            arms_f["b5km-cvband-downmax"] = r0_f.copy()
-            per_fold_dose["b5km-cvband-downmax"] = 0
-
-        rasters = {"R0": r0_f, **arms_f}
-        for aname, arr in rasters.items():
+            else:
+                dots, _, _, _ = C5.relocate_cvband_down(
+                    r0_f, footprint, edt_vis, ridge_union,
+                    n_move=int(round(spec["frac"] * int(r0_f.sum()))),
+                    km_block_px=spec["block_px"], unique_credit_dots=u_cred_f,
+                )
+            rasters[name] = dots
+        f_scores = {}
+        for name, arr in rasters.items():
             res, t_arr = evaluate_holdout.evaluate(
-                arr.astype(np.float32),
-                f.fold,
-                f.fold["region"] & footprint,
-                origin=(0, 0),
-                global_shape=arr.shape,
+                arr.astype(np.float32), f.fold, f.fold["region"] & footprint,
+                origin=(0, 0), global_shape=arr.shape,
             )
-            terms_by_arm[aname] = t_arr if terms_by_arm[aname] is None else terms_by_arm[aname] + t_arr
+            terms[name] = t_arr if terms[name] is None else terms[name] + t_arr
+            f_scores[name] = round(float(res["dti"]), 6)
         fold_details.append(
-            dict(fold=f.name, n_truth_px=int(f.truth.sum()), n_r0_dots=n_r0,
-                 per_fold_dose=per_fold_dose)
+            dict(fold=f.name, n_truth_px=int(f.truth.sum()), n_r0_dots=int(r0_f.sum()), dti=f_scores)
         )
 
     base = evaluate_holdout.pooled_summary(
-        {k: v for k, v in terms_by_arm.items() if v is not None},
-        draws=1000, seed=520810, candidate="R0",
+        {k: v for k, v in terms.items() if v is not None}, draws=1000, seed=520810, candidate="R0"
     )
-    out: dict = {
-        "protocol": (
-            "buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12) + "
-            "symmetric fold-fair d28 rebuild for BOTH R0 and every down-dose arm"
+    out = dict(
+        protocol=(
+            "buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12); "
+            "R0 and every arm rebuilt per fold from f.visible only"
         ),
-        "evidence_class": "PROXY",
-        "contamination": "NONE (both R0 and all candidate priors/collars see only f.visible per fold)",
-        "n_withheld_positive_pixels": int(base["scores"]["R0"]["withheld_positive_pixels"]),
-        "n_bootstrap_clusters_20km": int(base["bootstrap"]["clusters"]),
-        "R0": dict(
+        evidence_class="PROXY",
+        contamination="NONE (per-fold geometry sees only f.visible)",
+        n_withheld_positive_pixels=int(base["scores"]["R0"]["withheld_positive_pixels"]),
+        R0=dict(
             dti=round(float(base["scores"]["R0"]["dti"]), 6),
             ci95=[round(float(x), 6) for x in base["scores"]["R0"]["ci95"]],
-            n_truth=int(base["scores"]["R0"]["withheld_positive_pixels"]),
         ),
-        "folds": fold_details,
-        "arms": {},
-    }
-    for key in arm_keys[1:]:
+        folds=fold_details,
+        arms={},
+    )
+    for name in arms:
         s = evaluate_holdout.pooled_summary(
-            {"R0": terms_by_arm["R0"], key: terms_by_arm[key]},
-            draws=1000, seed=520810, candidate=key,
+            {"R0": terms["R0"], name: terms[name]}, draws=1000, seed=520810, candidate=name
         )
-        row = s["scores"][key]
-        diff = s["paired_differences"]["R0"]
-        out["arms"][key] = dict(
+        row, diff = s["scores"][name], s["paired_differences"]["R0"]
+        out["arms"][name] = dict(
             dti=round(float(row["dti"]), 6),
             ci95=[round(float(x), 6) for x in row["ci95"]],
             delta_vs_R0=round(float(diff["delta"]), 6),
@@ -263,233 +216,182 @@ def main() -> int:
     ap.add_argument("--stamp", default="20261023")
     ap.add_argument("--no-write", action="store_true")
     args = ap.parse_args()
-
     t0 = time.time()
-    print("[1/8] Verifying bridge, parent, and manifest SHA-256 pins...", flush=True)
+
+    print("[1/7] verifying pins", flush=True)
     pins = verify_pins()
     manifest_pins = verify_manifest_pins(PINNED_INPUTS)
 
-    print("[2/8] Rebuilding R0 byte-for-byte + verifying unmasked d28 lineage...", flush=True)
+    print("[2/7] rebuilding R0 byte-exactly", flush=True)
     g = g57grid.load_grid(BRIDGE)
     foot, cat = np.asarray(g.footprint, bool), np.asarray(g.catalogue, bool)
-    base_d28_solo = read(
-        PARENT_FILE.parent / "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
-    )
-    rebuild = rebuild_parent(g, base_d28_solo)
+    d28 = (read(PINNED_INPUTS["scored_d28_unscored"]) > 0.5) & foot
+    rebuild = rebuild_parent(g, d28)
     if not (rebuild["content_identical"] and rebuild["byte_identical_sha"]):
-        raise SystemExit(f"Parent byte-exact rebuild gate FAILED: {rebuild}")
+        raise SystemExit(f"R0 rebuild gate FAILED: {rebuild}")
     parent = (read(PARENT_FILE) > 0) & foot
     if int(parent.sum()) != N_DOTS_R0 or sha256(PARENT_FILE) != PARENT_SHA:
         raise SystemExit(f"R0 verification mismatch: dots={int(parent.sum())}")
-    print(f"      R0 verified: {int(parent.sum())} dots, byte-exact sha256={rebuild['rebuilt_sha256'][:16]}...", flush=True)
     edt_cat = ndi.distance_transform_edt(~cat)
-    d28 = (read(PINNED_INPUTS["scored_d28_unscored"]) > 0.5) & foot
     if not np.array_equal(d28 & (edt_cat > 2.0), parent):
-        raise SystemExit("Lineage verification failed: d28 & (edt_cat > 2.0) != R0")
-    ridge = ridge_union_from_pins(foot)
+        raise SystemExit("lineage verification failed: d28 & (edt_cat > 2.0) != R0")
+    print(f"      R0 {int(parent.sum())} dots, byte-exact {rebuild['rebuilt_sha256'][:16]}...", flush=True)
 
-    print("[3/8] Unique-credit surface + down4 byte-exact regression anchor...", flush=True)
-    u_cred_r0, u_cred_info = mass_econ.marginal_credit(parent)
-    anchor_dots, a_src, _, a_stats = C5.relocate_cvband_down(
-        parent, foot, edt_cat, ridge, n_move=1506, unique_credit_dots=u_cred_r0,
-    )
-    a_cv = a_stats["cv_1km_variant"]["density_cv_occupied"]
-    if not (0.51 <= a_cv <= 0.59):
-        raise SystemExit(f"anchor down4 CV {a_cv} left the [0.51, 0.59] band")
-    profile = serialization_profile(None)
-    probe_dir = Path(tempfile.mkdtemp())
-    anchor_probe = probe_dir / "anchor.tif"
-    with rasterio.open(anchor_probe, "w", **profile) as dst:
-        dst.write(np.where(foot, anchor_dots.astype(np.float32), np.float32(0.0)).astype(np.float32), 1)
-    anchor_sha = sha256(anchor_probe)
-    shutil.rmtree(probe_dir, ignore_errors=True)
-    if anchor_sha != ANCHOR_ZEROS_SHA:
-        raise SystemExit(
-            f"REGRESSION ANCHOR FAILED: rebuilt down4 zeros sha256 {anchor_sha} != released {ANCHOR_ZEROS_SHA}; "
-            "the rebuild path diverges from the released artifact - STOP, do not approximate."
-        )
-    print(f"      down4 anchor byte-exact: {anchor_sha[:16]}... (CV {a_cv:.4f})", flush=True)
+    h19_5 = (read(PINNED_INPUTS["scored_h19_5"]) > 0.5) & foot
+    h19_4 = (read(PINNED_INPUTS["scored_h19_4"]) > 0.5) & foot
+    h16_1 = (read(PINNED_INPUTS["scored_h16_1"]) > 0.5) & foot
+    ridge_union = (h19_5 | h19_4 | h16_1) & foot
 
-    print("[4/8] Building down2 / down6 rungs + binary-searching the downmax ceiling...", flush=True)
+    print("[3/7] building 3 dose/scale variants + ordering control", flush=True)
+    u_cred, u_cred_info = mass_econ.marginal_credit(parent)
     specs = {
-        "b5km-cvband-down2": dict(n_move=753, pct_of_dots=2.00),
-        "b5km-cvband-down6": dict(n_move=2259, pct_of_dots=6.00),
+        "cvband-down5": dict(frac=0.05, block_px=10, ranked=True),
+        "cvband-down6": dict(frac=0.06, block_px=10, ranked=True),
+        "cvband-down3": dict(frac=0.03, block_px=10, ranked=True),
+        "CONTROL-cvband-down6-randcredit": dict(frac=0.06, block_px=10, ranked=False),
     }
     built: dict[str, dict] = {}
-    src_sets: dict[str, np.ndarray] = {}
-    for key, spec in specs.items():
-        dots, src, dst, st = C5.relocate_cvband_down(
-            parent, foot, edt_cat, ridge, n_move=spec["n_move"], unique_credit_dots=u_cred_r0,
-        )
-        built[key] = dict(spec=spec, dots=dots, stats=st)
-        src_sets[key] = src
-    n_max, max_stats = max_feasible_downmax(parent, foot, edt_cat, ridge, u_cred_r0)
-    dots_m, src_m, dst_m, st_m = C5.relocate_cvband_down(
-        parent, foot, edt_cat, ridge, n_move=n_max, unique_credit_dots=u_cred_r0,
-    )
-    built["b5km-cvband-downmax"] = dict(
-        spec=dict(n_move=n_max, pct_of_dots=round(100.0 * n_max / N_DOTS_R0, 2),
-                  ceiling_search=dict(max_feasible_n_move=n_max,
-                                      capacity_note="1-2-dot sparse-ridge destination pool ceiling "
-                                                    "under >= sqrt(8) spacing; binary-searched"),
-                  stats_at_ceiling_cv=max_stats["cv_1km_variant"]["density_cv_occupied"] if max_stats else None),
-        dots=dots_m, stats=st_m,
-    )
-    src_sets["b5km-cvband-downmax"] = src_m
-
-    order = ["b5km-cvband-down2", "b5km-cvband-down6", "b5km-cvband-downmax"]
-    # All five source sets (down2 < down4-anchor < down6 < downmax) must lie on ONE
-    # common deterministic removal sequence: the master sequence is downmax's.
-    master_src = src_sets["b5km-cvband-downmax"]
-    nesting = {}
-    chain = {"b5km-cvband-down2": (src_sets["b5km-cvband-down2"], None),
-             "b5km-cvband-down4(anchor)": (a_src, None),
-             "b5km-cvband-down6": (src_sets["b5km-cvband-down6"], None)}
-    for key, (s, _) in chain.items():
-        m = len(s)
-        ok = m <= len(master_src) and np.array_equal(master_src[:m], s)
-        nesting[key] = dict(n_removed=m, exact_prefix_of_downmax_master_sequence=bool(ok))
-        if not ok:
-            raise SystemExit(f"NESTING BROKEN for {key}: source set is not a prefix of the downmax removal sequence")
-    print("      source-prefix nesting verified: down2 < down4(anchor) < down6 < downmax", flush=True)
-
-    for key, card in built.items():
-        st = card["stats"]
+    for name, spec in specs.items():
+        n_move = int(round(spec["frac"] * N_DOTS_R0))
+        if spec["ranked"]:
+            dots, src, dst, st = C5.relocate_cvband_down(
+                parent, foot, edt_cat, ridge_union,
+                n_move=n_move, km_block_px=spec["block_px"], unique_credit_dots=u_cred,
+            )
+        else:
+            dots, src, dst, st = C5.relocate_cvband_down_shuffled(
+                parent, foot, edt_cat, ridge_union,
+                n_move=n_move, km_block_px=spec["block_px"], seed=CONTROL_SEED,
+                unique_credit_dots=u_cred,
+            )
         if not st["count_fixed"] or st["n_dots"] != N_DOTS_R0:
-            raise SystemExit(f"{key}: count not fixed at {N_DOTS_R0}")
-        if not (MIN_PCT_CHANGED <= st["pct_changed"] <= MAX_PCT_CHANGED):
-            raise SystemExit(f"{key}: pct_changed={st['pct_changed']}% outside [1%, 50%]")
-        if np.any(card["dots"] & cat):
-            raise SystemExit(f"{key}: positive mass on catalogue")
+            raise SystemExit(f"{name}: count not fixed at {N_DOTS_R0}")
+        if not (MIN_PCT <= st["pct_changed"] <= MAX_PCT):
+            raise SystemExit(f"{name}: pct_changed={st['pct_changed']} outside [1,50]")
+        if np.any(dots & cat):
+            raise SystemExit(f"{name}: positive mass on catalogue")
         if st["min_added_cat_clearance_px"] is None or st["min_added_cat_clearance_px"] <= 3.0:
-            raise SystemExit(f"{key}: newly emitted pixels violate >3.0 px clearance")
+            raise SystemExit(f"{name}: new mass violates >3.0 px clearance")
         if st["min_pair_distance_variant_px"] < st["min_pair_distance_parent_px"] - 1e-6:
-            raise SystemExit(f"{key}: tightened parent's minimum dot spacing")
-        if st["added_on_ancestor_ridge_fraction"] < 1.0:
-            raise SystemExit(f"{key}: added dots left the ancestor ridge union")
+            raise SystemExit(f"{name}: tightened R0's minimum spacing")
+        if st["n_added"] != n_move or st["n_removed"] != n_move:
+            raise SystemExit(f"{name}: relocation not symmetric ({st['n_removed']}/{st['n_added']})")
+        built[name] = dict(spec=spec, dots=dots, stats=st, src=src, dst=dst, n_move=n_move)
         print(
-            f"      {key:22s}: moved={st['n_added']} ({st['pct_changed']:.2f}% changed), "
-            f"1km_CV={st['cv_1km_variant']['density_cv_occupied']:.4f}, "
-            f"ridge_frac={st['added_on_ancestor_ridge_fraction']:.3f}, "
-            f"min_cat_px={st['min_added_cat_clearance_px']:.3f}",
+            f"      {name:34s} moved={st['n_added']} ({st['pct_changed']:.2f}% chg) "
+            f"1kmCV={st['cv_1km_variant']['density_cv_occupied']:.4f} "
+            
+            f"min_cat={st['min_added_cat_clearance_px']:.3f}",
             flush=True,
         )
 
-    print("[5/8] Running report-only instruments (canary, SGMC MODEL, fold-fair PROXY)...", flush=True)
-    bd = ax_bands.load_bands()
-    bd["tmi_grad"] = ax_bands.gradient_magnitude(bd["tmi_up150"], fill_value=0.0)
-    tmi_u8_masked = np.where((bd["tmi_up150"] > 0) & foot, bd["tmi_up150"], np.nan)
-    prior_5km = C5.faulds_5km_block_prior(foot, cat, ridge, tmi_u8_masked, block_px=50)
+    # dose ladder nesting: the ranked 1 km arms must be prefix-nested (same algorithm, more pops)
+    s3, s5, s6 = (built["cvband-down3"]["src"], built["cvband-down5"]["src"],
+                  built["cvband-down6"]["src"])
+    nesting = dict(
+        down3_sources_prefix_of_down5=bool(
+            len(s3) <= len(s5) and np.array_equal(np.asarray(s3), np.asarray(s5)[: len(s3)])
+        ),
+        down5_sources_prefix_of_down6=bool(
+            len(s5) <= len(s6) and np.array_equal(np.asarray(s5), np.asarray(s6)[: len(s5)])
+        ),
+    )
+    print(f"      dose-ladder nesting: {nesting}", flush=True)
 
+    print("[4/7] report-only instruments (canary + SGMC MODEL)", flush=True)
     surrogate, sgmc_info = sgmc_surrogate(cat, foot)
+    quads = quadrant_masks(foot)
+    credit_map = np.zeros(parent.shape, dtype=np.float32)
+    ys_p, xs_p = np.nonzero(parent)
+    credit_map[ys_p, xs_p] = (u_cred.astype(np.float32) / 9.3803)
+    dens1 = C5.expand_blocks_to_pixels(
+        C5._block_sum_padded(parent.astype(np.float32), 10)  # noqa: SLF001 - same-module helper
+        / np.maximum(C5._block_sum_padded(foot.astype(np.float32), 10), 1.0),  # noqa: SLF001
+        foot.shape, 10,
+    ).astype(np.float32)
     canary_features = {
-        "prior_5km_px": prior_5km["prior_px"],
-        "cat_tips_junc_15km": prior_5km["cat_loci_map"],
-        "ridge_tips_junc_5km": prior_5km["rdg_loci_map"],
-        "tmi_agc": prior_5km["tmi_agc"],
-        "tmi_grad": bd["tmi_grad"],
+        "ridge_union_px": ridge_union.astype(np.float32),
+        "unique_credit_parent": credit_map,
+        "block_density_1km_parent": dens1,
     }
     canaries = run_leakage_canary(canary_features, foot, cat, surrogate, edt_cat)
-    worst_auc = max(v["max_auc"] for v in canaries.values())
-    print(f"      Leakage canary max single-feature AUC = {worst_auc:.4f} (threshold <= 0.90)", flush=True)
-    if worst_auc > 0.90:
-        raise SystemExit(f"STOP: single-feature leakage canary reached AUC {worst_auc:.4f} > 0.90")
+    worst = max(v["max_auc"] for v in canaries.values())
+    print(f"      leakage canary max single-feature AUC = {worst:.4f} (stop if > 0.90)", flush=True)
+    if worst > 0.90:
+        raise SystemExit(f"STOP: leakage canary AUC {worst:.4f} > 0.90")
 
-    quads = quadrant_masks(foot)
-    model = {
-        key: evaluate_surrogate(parent, card["dots"], surrogate, foot, cat, quads)
-        for key, card in built.items()
-    }
-    for key, m in model.items():
+    model = {k: evaluate_surrogate(parent, v["dots"], surrogate, foot, cat, quads) for k, v in built.items()}
+    for k, m in model.items():
         print(
-            f"      MODEL SGMC {key:22s}: delta={m['all']['delta']:+.6f} "
-            f"(quads +:{m['sign_replication']['n_positive']}/4 "
-            f"[{m['sign_replication']['quadrant_range'][0]:+.5f}..{m['sign_replication']['quadrant_range'][1]:+.5f}], "
-            f"jitter6px mean={m['jitter_6px_ensemble']['mean_delta']:+.6f})",
+            f"      MODEL SGMC {k:34s} delta={m['all']['delta']:+.6f} "
+            f"(quads +{m['sign_replication']['n_positive']}/4, jitter6px {m['jitter_6px_ensemble']['mean_delta']:+.6f})",
             flush=True,
         )
 
-    proxy_fold_fair = run_fold_fair_proxy_dose(
-        d28, foot, cat, ridge_union=ridge, tmi_up150=tmi_u8_masked,
-        dose_fractions={
-            "b5km-cvband-down4": 1506 / N_DOTS_R0,
-            "b5km-cvband-down2": 753 / N_DOTS_R0,
-            "b5km-cvband-down6": 2259 / N_DOTS_R0,
-        },
-    )
-    for k, pv in proxy_fold_fair["arms"].items():
+    print("[5/7] fold-fair catalogue hide-and-recover PROXY (report only)", flush=True)
+    proxy = fold_fair_proxy(d28, foot, cat, ridge_union, specs)
+    for k, pv in proxy["arms"].items():
         print(
-            f"      PROXY fold-fair {k:22s}: DTI={pv['dti']:.6f}, "
-            f"delta_vs_R0={pv['delta_vs_R0']:+.6f}, CI95={pv['delta_ci95']}, n_truth={pv['n_truth']}",
+            f"      PROXY {k:34s} delta={pv['delta_vs_R0']:+.6f} CI95={pv['delta_ci95']}",
             flush=True,
         )
-    proxy_static = {"R0": proxy_dti(parent.astype(np.float32), cat, foot)}
-    for key, card in built.items():
-        proxy_static[key] = proxy_dti(card["dots"].astype(np.float32), cat, foot)
 
-    print("[6/8] Enforcing MUST gates & writing GeoTIFF twins + receipts...", flush=True)
+    print("[6/7] MUST gates, twins on disk, receipts", flush=True)
     out_dir = ROOT / args.out_dir
-    own_values = set(built.keys()) | {"b5km-cvband-down4"}
     existing_shas: set[str] = set()
-    if (ROOT / "ledger/submissions.csv").exists():
-        with open(ROOT / "ledger/submissions.csv", newline="", encoding="utf-8") as fh:
+    ledger_csv = ROOT / "ledger" / "submissions.csv"
+    own_values = set(SLUG)
+    if ledger_csv.exists():
+        with open(ledger_csv, newline="", encoding="utf-8") as fh:
             for row in csv.DictReader(fh):
-                if (
-                    row.get("sha256")
-                    and not (
-                        row.get("axis", "").upper() == AXIS
-                        and row.get("value", "") in own_values
-                        and not row.get("receipt_score")
-                    )
+                if row.get("sha256") and not (
+                    row.get("axis", "").upper() == AXIS and row.get("value", "") in own_values and not row.get("receipt_score")
                 ):
                     existing_shas.add(row["sha256"])
     existing_shas |= {sha256(p) for p in FLEET.glob("*.tif")}
     if (ROOT / "docs" / "downloads").is_dir():
         existing_shas |= {sha256(p) for p in (ROOT / "docs" / "downloads").glob("*.tif")}
+    if out_dir.is_dir():
+        existing_shas |= {sha256(p) for p in out_dir.glob("*.tif")}
 
-    git_sha = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False
-    ).stdout.strip()
-    slug_map = {
-        "b5km-cvband-down2": "b5kmdown2",
-        "b5km-cvband-down6": "b5kmdown6",
-        "b5km-cvband-downmax": "b5kmdownmax",
-    }
-    written_receipts = []
-    ledger_entries = []
-    for key in order:
-        card = built[key]
+    profile = serialization_profile(None)
+    git_sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    receipts, ledger_entries = [], []
+
+    for name, card in built.items():
         dots, st = card["dots"], card["stats"]
         field_zeros = np.where(foot, dots.astype(np.float32), np.float32(0.0)).astype(np.float32)
-
-        probe_dir = Path(tempfile.mkdtemp())
-        probe = probe_dir / "probe.tif"
+        probe = Path(tempfile.mkdtemp()) / "probe.tif"
         with rasterio.open(probe, "w", **profile) as dst:
             dst.write(field_zeros, 1)
         sha8 = sha256(probe)[:8]
-        shutil.rmtree(probe_dir, ignore_errors=True)
-
-        cid = f"{PARENT_ID}-conc{slug_map[key]}-{args.stamp}-{sha8}"
+        shutil.rmtree(probe.parent, ignore_errors=True)
+        role = "control" if name.startswith("CONTROL") else "candidate"
+        cid = f"{PARENT_ID}-{SLUG[name]}-{args.stamp}-{sha8}"
         zeros_path = out_dir / f"{cid}-zeros.tif"
         nan_path = out_dir / f"{cid}.tif"
 
-        m_all = model[key]["all"]
-        m_sr = model[key]["sign_replication"]
-        p_ff = proxy_fold_fair["arms"][key]
+        m_all = model[name]["all"]
+        m_sr = model[name]["sign_replication"]
+        p_ff = proxy["arms"][name]
+        cv1 = st["cv_1km_variant"]["density_cv_occupied"]
+        cv2 = C5.block_density_stats(dots, foot, 20)["density_cv_occupied"]
         predicted = (
-            f"{m_all['delta']:+.4f} (quadrant range {m_sr['quadrant_range'][0]:+.4f}.."
-            f"{m_sr['quadrant_range'][1]:+.4f}; {m_sr['n_positive']}/4 quadrants positive; "
-            f"fold-fair PROXY {p_ff['delta_vs_R0']:+.4f}, CI95 [{p_ff['delta_ci95'][0]:+.4f},"
-            f"{p_ff['delta_ci95'][1]:+.4f}], n={p_ff['n_truth']}). MODEL: SGMC-extra surrogate, not a score."
+            f"{m_all['delta']:+.4f} MODEL (SGMC off-catalogue surrogate; quadrant range "
+            f"{m_sr['quadrant_range'][0]:+.4f}..{m_sr['quadrant_range'][1]:+.4f}; "
+            f"{m_sr['n_positive']}/4 quadrants positive; jitter6px mean "
+            f"{model[name]['jitter_6px_ensemble']['mean_delta']:+.4f}); "
+            f"fold-fair PROXY {p_ff['delta_vs_R0']:+.4f} "
+            f"[{p_ff['delta_ci95'][0]:+.4f}, {p_ff['delta_ci95'][1]:+.4f}], n={p_ff['n_truth']}. "
+            f"Not a score."
         )
         note = (
-            f"R0 {PARENT_ID}; CONC {key}: {st['n_added']} ridge dots moved "
-            f"({st['pct_changed']:.2f}% chg, 1km CV {st['cv_1km_variant']['density_cv_occupied']:.3f}); "
-            f"pred {m_all['delta']:+.4f} MODEL"
+            f"R0 {PARENT_ID}; CONC {name}: {st['n_added']} ridge dots moved "
+            f"({st['pct_changed']:.2f}% chg; 1km CV {cv1:.3f}); pred {m_all['delta']:+.4f} MODEL"
         )[:140]
 
         if args.no_write:
-            written_receipts.append(dict(id=cid, note=note, predicted_change=predicted, dry_run=True))
+            receipts.append(dict(id=cid, note=note, predicted_change=predicted, dry_run=True))
             continue
 
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -497,55 +399,41 @@ def main() -> int:
         nan_sha = write_with_profile(nan_path, nan_arr, float("nan"))
         z_sha = write_with_profile(zeros_path, field_zeros, None)
         if z_sha[:8] != sha8:
-            raise SystemExit(f"{key}: probed sha8 {sha8} != written {z_sha[:8]}")
-
+            raise SystemExit(f"{name}: probed sha8 {sha8} != written {z_sha[:8]}")
         v_zero = validate(zeros_path, foot, cat)
-        rep_zero = format_report(zeros_path, BRIDGE / "sample_submission.tif", footprint=foot)
+        rep = format_report(zeros_path, BRIDGE / "sample_submission.tif", footprint=foot)
         v_nan = validate(nan_path, foot, cat)
-        nan_fail = [k2 for k2, ok in v_nan["checks"].items() if not ok and k2 not in NAN_POLICY_CHECKS]
-        if not v_zero["all_checks_passed"] or not rep_zero["ok"]:
-            raise SystemExit(f"{key}: zeros twin failed MUST gates: {rep_zero['problems']}")
+        nan_fail = [k for k, ok in v_nan["checks"].items() if not ok and k not in NAN_POLICY_CHECKS]
+        if not v_zero["all_checks_passed"] or not rep["ok"]:
+            raise SystemExit(f"{name}: zeros twin failed MUST gates: {rep['problems']}")
         if nan_fail:
-            raise SystemExit(f"{key}: NaN twin failed in-footprint gates: {nan_fail}")
-
-        disk_z = read(zeros_path)
-        disk_n = read(nan_path)
+            raise SystemExit(f"{name}: NaN twin failed in-footprint gates: {nan_fail}")
+        disk_z, disk_n = read(zeros_path), read(nan_path)
         if not np.array_equal(disk_z > 0.5, dots) or not np.array_equal(np.isfinite(disk_n) & (disk_n > 0.5), dots):
-            raise SystemExit(f"{key}: on-disk re-read mismatch against in-memory dot set")
+            raise SystemExit(f"{name}: on-disk re-read mismatch")
         if not np.all(np.isnan(disk_n[~foot])) or np.any(np.isnan(disk_n[foot])):
-            raise SystemExit(f"{key}: NaN twin outside/inside footprint contract violated")
+            raise SystemExit(f"{name}: NaN contract violated")
         if z_sha in existing_shas or nan_sha in existing_shas:
-            raise SystemExit(f"{key}: exact sha256 collision with existing ledger/fleet file")
+            raise SystemExit(f"{name}: exact sha256 collision with an existing file")
         existing_shas |= {z_sha, nan_sha}
 
         receipt = dict(
             id=cid,
+            role=role,
             parent=PARENT_ID,
             axis=AXIS,
-            value=card["spec"].get("value", key),
-            role="candidate",
+            value=name,
             n_dots=int(dots.sum()),
             pct_changed=st["pct_changed"],
-            dot_digest=__import__("src.gems86.prune", fromlist=["prune"]).dot_digest(dots)
-            if False else C5_DOT_DIGEST(dots),
+            dot_digest=PRUNE.dot_digest(dots),
+            preregistered=PREREG[name],
             concentration_stats=st,
-            zeros=dict(
-                file=zeros_path.name,
-                sha256=z_sha,
-                bytes=zeros_path.stat().st_size,
-                primary_for_upload=True,
-                validator=v_zero,
-                format_report_ok=rep_zero["ok"],
-            ),
-            nan=dict(
-                file=nan_path.name,
-                mode="nan",
-                sha256=nan_sha,
-                bytes=nan_path.stat().st_size,
-                in_footprint_checks_pass=not nan_fail,
-                failed_checks=nan_fail,
-                policy_note="brief v2 sections 6/7 spec form (NaN outside footprint); -zeros is portal fallback",
-            ),
+            cv_2km_variant=C5.block_density_stats(dots, foot, 20),
+            zeros=dict(file=zeros_path.name, sha256=z_sha, bytes=zeros_path.stat().st_size,
+                       primary_for_upload=True, validator=v_zero, format_report_ok=rep["ok"]),
+            nan=dict(file=nan_path.name, mode="nan", sha256=nan_sha, bytes=nan_path.stat().st_size,
+                     in_footprint_checks_pass=not nan_fail, failed_checks=nan_fail,
+                     policy_note="brief v2 §6/§7 spec form; -zeros is the portal fallback"),
             submission_name=cid[:140],
             note=note,
             predicted_live_change=predicted,
@@ -554,117 +442,53 @@ def main() -> int:
             evidence_class="MODEL",
             approved_for_weekly_slot=False,
             submission_slots_used=0,
-            provenance=dict(
-                input_pins=pins,
-                manifest_pins=manifest_pins,
-                parent_rebuild=rebuild,
-                down4_regression_anchor=dict(id=ANCHOR_ID, zeros_sha256=anchor_sha, matched=True),
-                git_sha=git_sha,
-            ),
+            provenance=dict(input_pins=pins, manifest_pins=manifest_pins, parent_rebuild=rebuild, git_sha=git_sha),
             generated_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         )
-        zeros_path.with_suffix(".json").write_text(
-            json.dumps(receipt, indent=2, allow_nan=False, default=_json_default) + "\n", encoding="utf-8"
-        )
-        written_receipts.append(receipt)
+        zeros_path.with_suffix(".json").write_text(json.dumps(receipt, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        receipts.append(receipt)
+        ledger_entries.append(dict(
+            id=cid, site="GEMSDOE86", axis=AXIS, value=name,
+            status="BUILT" if role == "candidate" else "CONTROL",
+            n_dots=int(dots.sum()), pct_changed=st["pct_changed"], sha8=sha8, parent=PARENT_ID,
+            encoding="zeros", sha256_zeros=z_sha, sha256_nan=nan_sha,
+            predicted_change=predicted, source_url=f"releases/{zeros_path.name}",
+            receipt_score="", receipt_date="", dot_digest=receipt["dot_digest"],
+            files=[f"releases/{nan_path.name}", f"releases/{zeros_path.name}"], form_note=note,
+            gate_all_pass=True,
+            proxy=dict(value=p_ff["dti"], delta_vs_r0=p_ff["delta_vs_R0"], ci95=p_ff["delta_ci95"],
+                       n_withheld_positive_pixels=p_ff["n_truth"], class_="PROXY",
+                       note=proxy["contamination"]),
+        ))
+        print(f"      {cid}: gates PASS zeros={z_sha[:8]} nan={nan_sha[:8]} 1kmCV={cv1:.4f} 2kmCV={cv2:.4f}", flush=True)
 
-        ledger_entries.append(
-            dict(
-                id=cid,
-                site="GEMSDOE86",
-                axis=AXIS,
-                value=key,
-                status="BUILT",
-                n_dots=int(dots.sum()),
-                pct_changed=st["pct_changed"],
-                sha8=sha8,
-                parent=PARENT_ID,
-                encoding="zeros",
-                sha256_zeros=z_sha,
-                sha256_nan=nan_sha,
-                predicted_change=predicted,
-                source_url=f"releases/{zeros_path.name}",
-                receipt_score="",
-                receipt_date="",
-                dot_digest=receipt["dot_digest"],
-                files=[f"releases/{nan_path.name}", f"releases/{zeros_path.name}"],
-                form_note=note,
-                gate_all_pass=True,
-                proxy=dict(
-                    value=p_ff["dti"],
-                    delta_vs_r0=p_ff["delta_vs_R0"],
-                    ci95=p_ff["delta_ci95"],
-                    n_withheld_positive_pixels=p_ff["n_truth"],
-                    class_="PROXY",
-                    note=proxy_fold_fair["contamination"],
-                ),
-            )
-        )
-        print(f"      {cid}: MUST gates PASS | zeros={z_sha[:8]} | nan={nan_sha[:8]}", flush=True)
-
-    print("[7/8] Writing master evidence card and ledger/variants_concentration_dose.json...", flush=True)
+    print("[7/7] writing evidence card + ledger JSON", flush=True)
     summary = dict(
         generated_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         elapsed_seconds=round(time.time() - t0, 2),
         axis=AXIS,
-        axis_assignment=AXIS_ASSIGNMENT,
-        parent=dict(
-            id=PARENT_ID,
-            n_dots=N_DOTS_R0,
-            claimed_live_dti=0.2778,
-            claimed_evidence_class="CLAIM",
-            rebuild=rebuild,
-            d28_lineage_exact=True,
-            unique_kernel_credit_summary=u_cred_info,
-        ),
-        down4_regression_anchor=dict(
-            id=ANCHOR_ID, zeros_sha256=ANCHOR_ZEROS_SHA, rebuilt_zeros_sha256=anchor_sha,
-            byte_identical=anchor_sha == ANCHOR_ZEROS_SHA, cv_1km=a_cv,
-        ),
-        dose_ladder=dict(
-            block_px=10,
-            cv_1km={"R0": a_stats["cv_1km_parent"]["density_cv_occupied"],
-                    **{k: built[k]["stats"]["cv_1km_variant"]["density_cv_occupied"] for k in order},
-                    "b5km-cvband-down4(anchor)": a_cv},
-            source_prefix_nesting=nesting,
-            downmax_ceiling=built["b5km-cvband-downmax"]["spec"]["ceiling_search"],
-        ),
-        variants=written_receipts,
+        axis_assignment="SELF-ASSIGNED (brief v2 §1). Extends PR #47's only CONCENTRATION arm positive on both instruments.",
+        parent=dict(id=PARENT_ID, n_dots=N_DOTS_R0, claimed_live_dti=0.2778, claimed_evidence_class="CLAIM",
+                    rebuild=rebuild, d28_lineage_exact=True, unique_kernel_credit_summary=u_cred_info),
+        preregistration=dict(file="evidence/concentration-dose-mechanism.md", predictions=PREREG,
+                             note="written before any build in this session ran"),
+        dose_ladder_nesting=nesting,
+        variants=receipts,
         report_only_instruments=dict(
-            note="Brief v2 section 6: report-only instruments; no candidate was gated or tuned on them.",
+            note="brief v2 §6: report-only, never gates, never a score",
             leakage_canary=canaries,
             sgmc_surrogate_info=sgmc_info,
             sgmc_model=model,
-            hide_and_recover_proxy_fold_fair=proxy_fold_fair,
-            hide_and_recover_proxy_static=proxy_static,
+            hide_and_recover_proxy_fold_fair=proxy,
+            hide_and_recover_proxy_static={k: proxy_dti(parent.astype(np.float32), cat, foot) for k in ("R0",)},
         ),
         submission_slots_used=0,
     )
     if not args.no_write:
-        EVIDENCE_JSON.write_text(json.dumps(summary, indent=2, allow_nan=False, default=_json_default) + "\n", encoding="utf-8")
-        VARIANTS_JSON.write_text(json.dumps(ledger_entries, indent=2, allow_nan=False, default=_json_default) + "\n", encoding="utf-8")
-        print(f"      Wrote {EVIDENCE_JSON.relative_to(ROOT)} and {VARIANTS_JSON.relative_to(ROOT)}", flush=True)
-
-    print(f"[8/8] DONE in {time.time() - t0:.0f}s", flush=True)
+        EVIDENCE_JSON.write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        VARIANTS_JSON.write_text(json.dumps(ledger_entries, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        print(f"      wrote {EVIDENCE_JSON.relative_to(ROOT)} and {VARIANTS_JSON.relative_to(ROOT)}", flush=True)
     return 0
-
-
-def C5_DOT_DIGEST(dots: np.ndarray) -> str:
-    from gems86 import prune as PRUNE
-
-    return PRUNE.dot_digest(dots)
-
-
-def _json_default(o):
-    if isinstance(o, (np.bool_,)):
-        return bool(o)
-    if isinstance(o, (np.integer,)):
-        return int(o)
-    if isinstance(o, (np.floating,)):
-        return float(o)
-    if isinstance(o, np.ndarray):
-        return o.tolist()
-    raise TypeError(f"not JSON serializable: {type(o)}")
 
 
 if __name__ == "__main__":

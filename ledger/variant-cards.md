@@ -276,6 +276,15 @@ Full mechanism cards & PR #37 forensic audit: `evidence/concentration-5km-mechan
 
 # CONCENTRATION down-dose ladder — 2026-10-23 (second CONCENTRATION session, `arena/4822aa3b-gemsdoe86`)
 
+> **Post-merge reconciliation (IR-86-CONC-15).** The concurrent PR #50 session independently built the same
+> down-mechanism ladder (`cvband-down3/5/6` + random-credit control) and merged first. This session's `down6`
+> is **byte-identical** to PR #50's `conc6` (`1ed78e0f…`) and is carried as `BUILT-DUPLICATE`; its ledger row
+> here is a reproducibility witness, not a slot candidate. The two rungs unique to this session are `down2`
+> (below PR #50's lowest rung) and `downmax` (the exact 2,381-move pool ceiling, confirming PR #50's
+> `IR-86-CONC-12` capacity cap). PR #50's ordering control additionally shows the lowest-unique-credit
+> *ranking* buys only ≈ +0.0007 of `conc6`'s +0.0022 (the rest is generic dispersal) — read every card below
+> with that discount. IR items formerly numbered CONC-12 here are renumbered CONC-15 (12/13/14 taken on main).
+
 Axis self-assigned per brief v2 §1. Parent **R0** = `h33-h33-2-b2-20261004-e5eb6e7e`, 37,654 unit
 dots, 0.2778 **CLAIM**; rebuilt byte-exactly again this session (`c55bafc4…b6fa9`). The released
 `down4` file was rebuilt **byte-exactly** before anything new was written (`8aab97b6…`, 1 km CV
