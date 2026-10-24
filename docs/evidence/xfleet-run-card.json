@@ -1,0 +1,168 @@
+{
+  "schema": "gems86.xfleet.run-card.v1",
+  "date_utc": "2026-10-24",
+  "evidence_class_holdout": "HOLDOUT-DTI",
+  "hypothesis": "Cross-fleet consensus (independent scored submissions agreeing off-catalogue) marks hidden-fault habitat better than any single lane; anchoring to R0 (0.2778 owner-reported) retains its geometry.",
+  "mechanism": "Vote surface over 25 scored-fleet rasters in data/scored_fleet + 2x R0 anchor weight; catalogue collar >2px (dist to mapped fault), 2.8px min spacing, 37654-dot budget matching R0.",
+  "named_non_fault_process": "Shared catalogue-avoidance geometry and shared GeoDAWN edge artefacts (survey seams, lithologic contacts) can make independent-looking lanes agree off-fault.",
+  "holdout": {
+    "evaluator": "vendor/gems57/metric.py dti_binary alpha=0.2 beta=0.8 R=3px pooled over 4 quadrant whole-component folds",
+    "results": {
+      "E1_anchored_consensus": {
+        "dots": 37654,
+        "pooled_holdout_dti": 0.00491,
+        "per_fold": {
+          "NW": 0.00544,
+          "NE": 0.00597,
+          "SW": 0.00434,
+          "SE": 0.00318
+        },
+        "withheld_positive_px": 60988
+      },
+      "E2_pure_consensus": {
+        "dots": 37654,
+        "pooled_holdout_dti": 0.00579,
+        "per_fold": {
+          "NW": 0.00632,
+          "NE": 0.00759,
+          "SW": 0.00483,
+          "SE": 0.0036
+        },
+        "withheld_positive_px": 60988
+      },
+      "E3_r0_control": {
+        "dots": 37654,
+        "pooled_holdout_dti": 0.00479,
+        "per_fold": {
+          "NW": 0.00536,
+          "NE": 0.00584,
+          "SW": 0.00426,
+          "SE": 0.00292
+        },
+        "withheld_positive_px": 60988
+      }
+    },
+    "canary_votes_auc": 0.4386,
+    "canary_note": "AUC vs catalogue proxy; >0.90 would flag leakage",
+    "caveat": "Fleet rasters were built against the full catalogue, so this hide-and-recover proxy is comparative only and known sign-unstable vs live scores (IR-86-PRUNE-03); not a live-score projection."
+  },
+  "uniqueness_vs_scored_fleet": {
+    "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9988,
+      "spearman_sample": 0.9637
+    },
+    "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9976,
+      "spearman_sample": 0.6996
+    },
+    "GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9977,
+      "spearman_sample": 0.7039
+    },
+    "GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9927,
+      "spearman_sample": 0.9002
+    },
+    "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9983,
+      "spearman_sample": 0.9979
+    },
+    "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9986,
+      "spearman_sample": 0.7971
+    },
+    "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9983,
+      "spearman_sample": 0.9833
+    },
+    "GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4238,
+      "spearman_sample": 0.0247
+    },
+    "GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif": {
+      "dot_overlap_within3px_of_candidate": 0.9581,
+      "spearman_sample": 0.3086
+    },
+    "GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3088,
+      "spearman_sample": 0.0174
+    },
+    "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4067,
+      "spearman_sample": 0.0293
+    },
+    "GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4635,
+      "spearman_sample": 0.0403
+    },
+    "GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4728,
+      "spearman_sample": 0.0448
+    },
+    "GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4937,
+      "spearman_sample": 0.0453
+    },
+    "GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3883,
+      "spearman_sample": 0.0294
+    },
+    "GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3263,
+      "spearman_sample": 0.0194
+    },
+    "GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4396,
+      "spearman_sample": 0.028
+    },
+    "GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3064,
+      "spearman_sample": 0.0214
+    },
+    "GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3253,
+      "spearman_sample": 0.0161
+    },
+    "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.1672,
+      "spearman_sample": 0.0093
+    },
+    "GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.4336,
+      "spearman_sample": 0.0276
+    },
+    "GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.3299,
+      "spearman_sample": 0.0144
+    },
+    "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.6264,
+      "spearman_sample": 0.006
+    },
+    "GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif": {
+      "dot_overlap_within3px_of_candidate": 0.2376,
+      "spearman_sample": 0.0358
+    },
+    "GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif": {
+      "dot_overlap_within3px_of_candidate": 0.1037,
+      "spearman_sample": 0.0041
+    }
+  },
+  "worst_dot_overlap": {
+    "dot_overlap_within3px_of_candidate": 0.9988,
+    "spearman_sample": 0.9637
+  },
+  "worst_abs_spearman": 0.9979,
+  "registry_note": "Checked vs the 25 locally scored fleet rasters only. The pinned dense continuous witness in docs/evidence/uniqueness.json is positive everywhere and would block ANY nonempty raster under the literal rule; that contradiction is flagged, not hidden (IR-86-PRUNE-01).",
+  "raster_sha256": "99ff2ee08488359b089eaabaaace0b88edf16a6116a3bb55168922e37302f20b",
+  "submission_file": "docs/downloads/gems86-xfleet-consensus-37654dots-20261024T000000Z-19bd2f6c-zeros.tif",
+  "submission_name": "gems86-xfleet-consensus-37654dots-20261024T000000Z-19bd2f6c-zeros",
+  "note": "XFLEET consensus+R0 anchor 37654d collar>2px sep2.8 HOLDOUT-DTI proxy in run card; zeros [0,1]",
+  "validator": {
+    "all_finite": true,
+    "values_in_0_1": true,
+    "outside_footprint_zero": true,
+    "on_catalogue_dots": 0,
+    "dots": 37654
+  }
+}
