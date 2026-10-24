@@ -914,3 +914,7 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 See `research/SESSION_20261024_REVIEW.md` and
 `docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.
+
+## IR-86-PREFLIGHT-TIMESTAMP — 2026-10-24 follow-up (fixed)
+
+Fresh `protocol_preflight.measure()` results carried a hard-coded 2026-10-22 measurement date. This confused witness verification with the actual measurement event. The wrapper now records UTC completion time/date and retains the historical verification date separately. No historical score or shared tool was changed. Pages explicitly refreshes the proof before hash-bound artifact receipts; reverse order correctly fails the site build. Midnight/corrupt-input/order regression tests added. See `research/SESSION_20261024_PROVENANCE_REVIEW.md`. The unique-TIFF requirement remains unmet under the literal full-support registry stop.
