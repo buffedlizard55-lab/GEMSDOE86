@@ -19,9 +19,16 @@
       "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
       "status": "RETRIEVED_2026_10_24_HTTP_200",
       "verified_facts": [
-        "USGS GeoDAWN Data Release (March 4, 2024; Jonathan M. Glen & Tait E. Earney; DOI https://doi.org/10.5066/P93LGLVQ; CC0 1.0 Universal public domain).",
+        "USGS GeoDAWN Data Release (March 4, 2024; Jonathan M. Glen & Tait E. Earney; DOI https://doi.org/10.5066/P93LGLVQ; ScienceBase item https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7; CC0 1.0 Universal public domain).",
         "149,030 line-km across 51,857 sq km in four blocks (north to south: Winnemucca, Fallon, Hawthorne, Tonopah), flown Nov 1, 2021 - Nov 20, 2022 under USGS EarthMRI + DOE GTO alongside coordinated USGS 3DEP airborne lidar.",
         "Area 1 (Clayton Valley Li-clay/brine focus): 100 m / 150 m flight height, E-W flight lines (90 deg azimuth) at 200 m spacing, N-S tie lines (180 deg azimuth) at 2000 m spacing; Area 2 (geothermal focus): 150 m / 200 m flight height, E-W flight lines at 400 m spacing, N-S tie lines at 4000 m spacing, 22 deg max climb/descent drape."
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada",
+      "status": "OBSERVED_HTTP_404_LOST_BISON_2026_10_24",
+      "verified_facts": [
+        "Legacy USGS GGGSC science-center URL from the owner prompt returns USGS Error 404 ('Lost Bison — Page/File Not Found') on 2026-10-24; superseded by the official USGS GeoDAWN Data Release page above and DOI https://doi.org/10.5066/P93LGLVQ."
       ]
     },
     {

@@ -669,13 +669,9 @@ upload the human chooses to make.
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
 
-## 2026-10-24 — safety review, no new scientific submission
+## 2026-10-24 — 92-site ledger sync, 19-band pixel physics audit & preflight hardening (`arena/d7b214a5-gemsdoe86`)
 
-An Arena.ai coding agent reviewed the standing request and existing source/evidence,
-remeasured pinned historical registry and artifact bytes, repaired orchestration
-preflight bypasses, added current negative-audit receipt/hash checks and regression
-tests, and documented evidence limitations and next steps. No new model, surface,
-dots, TIFF, official submission, selector choice or score was generated. Official
-reference GitHub files and owner H33 HTML were reread at pinned Git identities;
-other official websites were not newly fetched under the restricted host access.
-See `research/SESSION_20261024_REVIEW.md` for the three-pass record.
+An Arena.ai coding agent executed a three-pass verification and repository update on branch `arena/d7b214a5-gemsdoe86`:
+- **AI wrote / updated:** `research/REQUEST_20261024.md`, `README.md`, `PROMPT.md`, `registry/prior_scores.csv`, `ledger/submissions.csv`, and `ledger/DEDUPE.md` (recording the two newly supplied unscored artifact stems for `GEMSDOE89` and `GEMSDOE90` with `score=""`); `scripts/verify_band_physics.py` and `docs/evidence/band-physics-verification-20261024.json` (proving `IR-86-BAND6-TC-MISLABEL-20261024` and `IR-86-BAND11-18-GRAV-VECTOR-20261024` across `5.15M–5.16M` footprint pixels); `registry/h86c_hypotheses.json`, `research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md`, `research/H33_INTERPRETATION_REVIEW.md`, `research/SESSION_20261024_REVIEW.md`, and `IRREGULARITIES.md`; normalized `scripts/experiment.py`, `scripts/run_experiment.py`, `scripts/run_h86.py`, and `scripts/run_lane.py` + `tests/test_builder_preflight.py` (`41` CLI builders + `8` imported orchestrators); refreshed `docs/evidence/source-recheck-20261024.json`, `docs/evidence/review-source-checks.json`, `docs/evidence/fleet-feed.json`, `docs/evidence/all-artifacts-registry.json`, `docs/evidence/release-readiness.json`, `docs/evidence/latest-review-run-card.json`, and `docs/*.html`.
+- **What the AI did not do:** No new model experiment (`experiments_run = 0`), no new candidate surface or `.tif` (`new_candidate_generated = false`), no DrivenData scraping or login, and no submission slot consumed (`submission_slots_used = 0`). All 10 historical research TIFFs remain explicitly labeled `DO NOT SUBMIT` under the dual literal saturation stop (`17GEMSDOE` and `13GEMSDOE`).
+
