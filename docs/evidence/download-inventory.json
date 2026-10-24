@@ -1,77 +1,83 @@
 {
-  "scope": "Existing artifacts merged from concurrent sessions; all negative, no competition clearance.",
-  "artifacts": [
-    {
-      "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
-      "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
-      "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
-      "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-      "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
-      "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
-      "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
-      "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
-      "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
-      "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
-      "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
-      "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
-      "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    }
-  ]
+ "scope": "Existing artifacts merged from concurrent sessions; all negative, no competition clearance.",
+ "artifacts": [
+  {
+   "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+   "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+   "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+   "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+   "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+   "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+   "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+   "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+   "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
+   "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+   "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
+   "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+   "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.tif",
+   "sha256": "f4a5f90aecbe90baeceb4dd916e2b555344e7752cd4e17ca81b1aac3cd861e6a",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  }
+ ]
 }

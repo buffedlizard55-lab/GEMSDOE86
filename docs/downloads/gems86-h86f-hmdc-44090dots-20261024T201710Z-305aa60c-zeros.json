@@ -1,0 +1,131 @@
+{
+  "file": "gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.tif",
+  "sha256": "f4a5f90aecbe90baeceb4dd916e2b555344e7752cd4e17ca81b1aac3cd861e6a",
+  "bytes": 139844,
+  "submission_name": "gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c",
+  "note": "H86F-HMDC trough-gated hydrothermal LOQO-HGB 44090dots B2 HOLDOUT-DTI 0.0734 v2 n=11321 UNSCORED",
+  "note_chars": 96,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.tif",
+    "bytes": 139844,
+    "sha256": "f4a5f90aecbe90baeceb4dd916e2b555344e7752cd4e17ca81b1aac3cd861e6a",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.tif",
+    "bytes": 139844,
+    "sha256": "f4a5f90aecbe90baeceb4dd916e2b555344e7752cd4e17ca81b1aac3cd861e6a",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "n_nonzero": 44090,
+    "mass": 44090.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.zip",
+  "zip_sha256": "b4bd2a8b73c4ab0973157e509d4730c43c758be695ed1935932c4c5a4af8454c",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86F-HMDC",
+    "winner_arm": "h86f_hmdc_44090",
+    "budget": 44090,
+    "content_digest8": "305aa60c",
+    "holdout_dti": 0.0733792923420289,
+    "holdout_ci95": [
+      0.05733302001162974,
+      0.09127253368092016
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2"
+  }
+}

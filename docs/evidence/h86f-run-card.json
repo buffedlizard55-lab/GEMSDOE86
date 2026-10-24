@@ -1,0 +1,186 @@
+{
+ "schema": "gems86.h86f-run-card.v1",
+ "lane": "H86F-HMDC (trough-gated hydrothermal LOQO-HGB, zero-catalogue)",
+ "generated_utc": "2026-10-24T20:19:58.262430+00:00",
+ "preregistration": "registry/preregistration_h86f.json",
+ "hypothesis": "Blind geothermal fault conduits missing from the USGS/INGENIOUS catalogue are recoverable from signed magnetic valley-curvature troughs (magnetite destruction) gated by cond_surf x dilatation concordance and pairwise co-linear GDR-1391 vent alignments.",
+ "mechanism": "Frangi dark-vesselness troughs on RTP (Band 2) + tmi_vg (Band 9); positive-part z(cond_surf) x z(geod_dilaterate) concordance; chained pairwise vent segments (hot springs, volcanic vents, sinter, 2m hits) raw + trough-and-concordance-gated; fused with the 38-feature label-free substrate in LOQO-HGB (no SPBT, no catalogue context); 300 m decimated emission at 44090 dots, >2px off catalogue.",
+ "named_non_fault_process": "Reversed-polarity volcanic flows / felsic tuffs; saline playa pans; E-W GeoDAWN tie-line troughs.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "design": "buffered whole components, seed 20, LOQO, 20 km physical-block bootstrap",
+  "withheld_positives": 11321,
+  "value": 0.0733792923420289,
+  "ci95": [
+   0.05733302001162974,
+   0.09127253368092016
+  ]
+ },
+ "holdout_source": "docs/evidence/h86f_results.json",
+ "region_hide_diagnostic": {
+  "evidence_class": "HOLDOUT-DTI",
+  "design": "region-hide (non-gating diagnostic)",
+  "scores": {
+   "h86f_hmdc_44090": {
+    "dti": 0.03904679553931425,
+    "ci95": [
+     0.031142347389062294,
+     0.04758645066562077
+    ]
+   },
+   "substrate_only_44090": {
+    "dti": 0.03471800912225765,
+    "ci95": [
+     0.02754892413343121,
+     0.04319298872660821
+    ]
+   },
+   "fixed_h33_b2": {
+    "dti": 0.0067081038868157,
+    "ci95": [
+     0.005952603618169398,
+     0.00740863528020119
+    ]
+   },
+   "spaced_random": {
+    "dti": 0.014341319510288057,
+    "ci95": [
+     0.012608573151184903,
+     0.016119225881934776
+    ]
+   }
+  }
+ },
+ "correlation_overlap_vs_registry": {
+  "worst_nondegenerate_dot_overlap": 0.8600136085280109,
+  "worst_nondegenerate_submission": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+  "worst_abs_rho_final_dots": 0.1848570916939438,
+  "worst_abs_rho_preplacement_surface": 0.8856841713946473,
+  "degenerate_excluded": 3,
+  "literal_worst_overlap": 1.0,
+  "rasters_checked": 53,
+  "evidence": "docs/evidence/h86f_uniqueness.json"
+ },
+ "raster_sha256": "f4a5f90aecbe90baeceb4dd916e2b555344e7752cd4e17ca81b1aac3cd861e6a",
+ "validator_output": {
+  "all_checks_passed": true,
+  "n_nan_inside_footprint": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "emitted_dots": 44090
+ },
+ "gates": {
+  "G1_format": {
+   "passed": true,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   }
+  },
+  "G2_canary": {
+   "passed": true,
+   "max_fusion_discriminative_auc": 0.5867945823396049,
+   "max_all_incl_controls": 0.5867945823396049,
+   "limit": 0.9
+  },
+  "G3_holdout_vs_controls": {
+   "passed": true,
+   "candidate": 0.0733792923420289,
+   "candidate_ci95": [
+    0.05733302001162974,
+    0.09127253368092016
+   ],
+   "best_honest_control": "substrate_only_44090",
+   "best_control_dti": 0.06418830819742007,
+   "paired_delta": 0.009190984144608838,
+   "paired_delta_ci95": [
+    0.0014832503272945898,
+    0.01653553291829539
+   ]
+  },
+  "G4_holdout_best": {
+   "passed": false,
+   "folds_match_prereg_bar": true,
+   "candidate": 0.0733792923420289,
+   "candidate_ci95": [
+    0.05733302001162974,
+    0.09127253368092016
+   ],
+   "current_best": "H86C-KSLB E3_kslb_noisyor_44k (docs/evidence/lane86c_results.json, identical instrument)",
+   "current_best_dti": 0.1240634961614658,
+   "current_best_ci95": [
+    0.1079703374809469,
+    0.140329759708305
+   ]
+  },
+  "G5_sgmc_proxy": {
+   "passed": true,
+   "candidate_final_file": 0.1047000496510009,
+   "spaced_random": 0.058198302155529576,
+   "fixed_h33_b2": 0.0928930494744682,
+   "note": "AUXILIARY-PROXY only; never a score."
+  },
+  "G6_uniqueness": {
+   "passed": false,
+   "worst_nondegenerate_dot_overlap": 0.8600136085280109,
+   "worst_nondegenerate_submission": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "worst_abs_rho_final_dots": 0.1848570916939438,
+   "worst_abs_rho_preplacement_surface": 0.8856841713946473,
+   "identical_bytes_vs": [],
+   "degenerate_excluded": 3,
+   "literal_worst_overlap": 1.0,
+   "literal_worst_submission": "dense-witness.tif",
+   "shared_like_for_like_worst_dot_overlap": 0.9995690632796552,
+   "shared_like_for_like_worst_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "note": "Degeneracy-scoped reading per preregistration (halo_cover>=0.99 or support>0.20 excluded from dot-overlap only; rho applies to all; thresholds unchanged; no vendor change). Literal + shared like-for-like readings reported unchanged."
+  }
+ },
+ "gates_failed": [
+  "G4_holdout_best",
+  "G6_uniqueness"
+ ],
+ "submission_name": "gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c",
+ "note": "H86F-HMDC trough-gated hydrothermal LOQO-HGB 44090dots B2 HOLDOUT-DTI 0.0734 v2 n=11321 UNSCORED",
+ "note_chars": 96,
+ "submission_file": "docs/downloads/gems86-h86f-hmdc-44090dots-20261024T201710Z-305aa60c-zeros.tif",
+ "verdict": "negative",
+ "submission_ready": false,
+ "safe_to_submit": false,
+ "approved_for_weekly_slot": false,
+ "decision": "DO NOT SUBMIT",
+ "decision_reason": "Automated gates failed: G4_holdout_best, G6_uniqueness. Generated and format-valid, but not cleared for a weekly slot.",
+ "experiments_run": 3,
+ "submission_slots_used": 0,
+ "elapsed_s": 169.46091771125793
+}
