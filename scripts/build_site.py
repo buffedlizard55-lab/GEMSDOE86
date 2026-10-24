@@ -29,7 +29,8 @@ def link(path: str) -> str:
 
 
 def page(title: str, active: str, body: str) -> str:
-    nav = (("index.html", "Downloads"), ("executive-summary.html", "How to submit"),
+    nav = (("index.html", "Downloads"), ("submit.html", "⬇ New SPT candidate"),
+           ("executive-summary.html", "How to submit"),
            ("evidence.html", "Validation"), ("hypotheses.html", "Research queue"),
            ("fleet.html", "Project feed"), ("sources.html", "Sources"))
     navigation = "".join(f'<a href="{url}"' + (' aria-current="page"' if url == active else '') + f'>{label}</a>' for url, label in nav)

@@ -1,0 +1,113 @@
+{
+  "schema": "gems86.session-negative.v1",
+  "date_utc": "2026-10-24",
+  "hypothesis": "H86C-MMT: Cross-fault magnetic marker translation (still provisional, NOT RUN this session either; unchanged top-ranked candidate from registry/h86c_hypotheses.json)",
+  "mechanism": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse magnetic markers, consistent in adjacent windows, and a weaker zero-shift match. Keep both signed slip directions rather than assuming one regional sense of slip.",
+  "named_non_fault_process": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "UNIVERSAL_LITERAL_BLOCKER",
+    "preplacement_surface": null,
+    "new_final_dots": null,
+    "inherited_final_artifacts_remeasured": true,
+    "registry_complete": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "universal_forward_overlap": 1.0,
+    "allowed_overlap_limit": 0.7,
+    "evidence": "docs/evidence/all-artifacts-registry.json",
+    "reproduced_independently_this_session": true,
+    "reproduction_command": "python scripts/protocol_preflight.py",
+    "reproduction_output": "docs/evidence/protocol-preflight.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "session_activity": {
+    "summary": "Registry-integrity and compliance session: no model experiment, no dot placement, no new TIFF. Reconciled registry/prior_scores.csv and registry/site_targets.json against the 2026-10-24 owner request (7 score corrections + 4 new unscored site rows for GEMSDOE89-92, all verified against the request text line-by-line before being written), refreshed the 92-repository GitHub-metadata feed, rebuilt the generated ledger/site, and discovered + documented a new compliance finding (IR-86-ACCESS-01: DrivenData's Terms of Use prohibit automated access by any tool, independent of robots.txt).",
+    "registry_corrections": [
+      {
+        "site": "GEMSDOE78",
+        "field": "score",
+        "from": "NO SCORE SUPPLIED",
+        "to": "0.1564"
+      },
+      {
+        "site": "GEMSDOE79",
+        "field": "score",
+        "from": "NO SCORE SUPPLIED",
+        "to": "0.0005"
+      },
+      {
+        "site": "GEMSDOE82",
+        "field": "score",
+        "from": "NO SCORE SUPPLIED",
+        "to": "0.1886"
+      },
+      {
+        "site": "GEMSDOE83",
+        "field": "score",
+        "from": "NO SCORE SUPPLIED",
+        "to": "0.0573"
+      },
+      {
+        "site": "GEMSDOE84",
+        "field": "artifact+score",
+        "from": "NO ARTIFACT OR SCORE SPECIFIED IN PROMPT",
+        "to": "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros / 0.0132"
+      },
+      {
+        "site": "GEMSDOE85",
+        "field": "artifact+score",
+        "from": "NO ARTIFACT OR SCORE SPECIFIED IN PROMPT",
+        "to": "gemsdoe85-hjcd-ventbridge-submod-zeros / 0.1110"
+      },
+      {
+        "site": "GEMSDOE87",
+        "field": "artifact+score",
+        "from": "NO ARTIFACT OR SCORE SPECIFIED IN PROMPT",
+        "to": "h87-h87-cmgep-20261022T060000Z-8f394f43 / 0.0500"
+      },
+      {
+        "site": "GEMSDOE76",
+        "field": "score (second row)",
+        "from": "NO SCORE SUPPLIED",
+        "to": "0.2343 (gems76-ptcf-tiltworm-submod39k-...)"
+      },
+      {
+        "site": "GEMSDOE89..GEMSDOE92",
+        "field": "new rows",
+        "from": "absent",
+        "to": "added, NO ARTIFACT OR SCORE SPECIFIED IN PROMPT"
+      }
+    ],
+    "max_owner_reported_score_after_corrections": {
+      "site": "GEMSDOE32",
+      "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "score": 0.2778,
+      "unchanged_by_corrections": true
+    },
+    "new_irregularity": "IR-86-ACCESS-01",
+    "experiments_run": 0,
+    "submission_slots_used": 0
+  },
+  "submission_name": null,
+  "note": "Protocol STOP unchanged: every nonempty allowed candidate overlaps a full-support prior (reproduced fresh this session). No new TIF, model experiment or slot used. Registry/ledger corrected; new ToU finding logged.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission."
+}

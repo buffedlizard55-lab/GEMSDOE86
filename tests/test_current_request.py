@@ -10,14 +10,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
-    current = readme.split("<!-- CURRENT_REQUEST_20261023_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261023_END -->", 1)[0]
+    current = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261024_END -->", 1)[0]
     earlier = readme.split("<!-- OWNER_PROMPT_ARCHIVE_START -->", 1)[1].split("<!-- OWNER_PROMPT_ARCHIVE_END -->", 1)[0]
-    assert current.strip() == (ROOT / "research/REQUEST_20261023.md").read_text().strip()
+    assert current.strip() == (ROOT / "research/REQUEST_20261024.md").read_text().strip()
     assert earlier.strip() == (ROOT / "research/OWNER_PROMPT.md").read_text().strip()
 
 
 def test_every_named_current_project_and_reported_submission_is_traceable():
-    prompt = (ROOT / "research/REQUEST_20261023.md").read_text()
+    prompt = (ROOT / "research/REQUEST_20261024.md").read_text()
     named = set(re.findall(r"https://buffedlizard55-lab\.github\.io/([^/\s]+)/", prompt))
     targets = strict_json(ROOT / "registry/site_targets.json")["sites"]
     assert named == {t["repository"].split("/")[-1] for t in targets}
@@ -43,9 +43,9 @@ def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_train
 
 
 def test_current_review_and_readme_deliverable_links_exist():
-    readme = (ROOT / "README.md").read_text().split("<!-- CURRENT_REQUEST_20261023_START -->", 1)[0]
+    readme = (ROOT / "README.md").read_text().split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[0]
     for relative in re.findall(r"\]\(([^():#\s]+)(?:#[^)]*)?\)", readme):
         assert (ROOT / relative).is_file(), relative
-    review = (ROOT / "research/SESSION_20261023_REVIEW.md").read_text()
+    review = (ROOT / "research/SESSION_20261024_REGISTRY_REVIEW.md").read_text()
     assert "highest-priority new-TIFF requirement is unmet" in review
     assert "Pass 1" in review and "Pass 2" in review and "Pass 3" in review

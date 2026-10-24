@@ -1,15 +1,20 @@
 # Standing project prompt (condensed historical archive)
 
-**Read the latest README decision and its complete 2026-10-23 request archive first.**
-The repeated 2026-10-24 request follows the same standing protocol. Current remeasurement:
-`docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
-The current request is also in `research/REQUEST_20261023.md`; the earlier request remains in
-`research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
-verified results. A pinned full-positive registry witness currently makes the literal overlap
-rule unsatisfiable for every nonempty candidate. Scientific CLIs must stop before fitting or
-placement; do not bypass that gate, relabel an old TIFF as new, or claim the unmet unique-TIFF
-requirement has been completed. `scripts/audit_release.py` checks all historical downloads;
-`docs/evidence/session-20261023-run-card.json` records the current negative outcome.
+**Read the current README decision and its complete 2026-10-24 request archive first.**
+The current request is also in `research/REQUEST_20261024.md` (the 2026-10-23 request remains on
+disk at `research/REQUEST_20261023.md`, no longer the embedded "current" one); the original,
+permanent request remains in `research/OWNER_PROMPT.md`. Scores and access claims inside these
+archives are user input, not verified results. A pinned full-positive registry witness currently
+makes the literal overlap rule unsatisfiable for every nonempty candidate. Scientific CLIs must
+stop before fitting or placement; do not bypass that gate, relabel an old TIFF as new, or claim the
+unmet unique-TIFF requirement has been completed. `scripts/audit_release.py` checks all historical
+downloads; `docs/evidence/session-20261024-run-card.json` records the current negative outcome
+(`docs/evidence/session-20261023-run-card.json` is the prior one). Do not send any automated
+request to any `drivendata.org` URL (`IR-86-ACCESS-01`, `AGENTS.md` rule 9).
+Also see `docs/evidence/latest-review-run-card.json` (a separate, concurrently-produced fresh
+UTC-timestamped remeasurement receipt) and `research/SESSION_20261024_REVIEW.md` /
+`research/SESSION_20261024_REGISTRY_REVIEW.md` (this project's two same-day 2026-10-24 reviews,
+kept under distinct filenames because two sessions worked concurrently).
 
 ---
 
