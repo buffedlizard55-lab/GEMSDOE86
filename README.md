@@ -2,6 +2,8 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): one-radius dot spacing does not prevent kernel overlap; collar predictions can recover hidden truth; cross-project density comparisons are not causal evidence. Four synthetic regression tests now guard these distinctions. No new TIFF or upload authorization is implied.
+
 **No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
 
 - [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
