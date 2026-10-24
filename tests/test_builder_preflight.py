@@ -5,7 +5,10 @@ fit, placement, cache or TIFF is constructed. Pure numerical helpers stay usable
 """
 import ast
 import importlib
+import os
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 
@@ -15,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = """
 build_axis_variants build_concentration5_axis build_concentration_sign
 build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
-build_r0_trackb build_snap_variants build_spt build_xfleet
+build_r0_trackb build_snap_variants build_spt build_xfleet gen_tip_final
 run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_prune_ladder run_relief_axis run_relief_source
@@ -69,3 +72,17 @@ def test_root_import_and_guard_precede_parser_io_and_placement(name):
     assert ast.unparse(body[2]) == "require_feasible()"
     assert not any(a.arg in {"skip_literal_preflight", "force", "bypass"}
                    for a in main.args.args + main.args.kwonlyargs)
+
+
+@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py"])
+def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
+    env = os.environ.copy()
+    env.pop("PYTHONPATH", None)
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / name)], cwd=ROOT, env=env,
+        text=True, capture_output=True, timeout=30,
+    )
+    output = result.stdout + result.stderr
+    assert result.returncode != 0
+    assert "training_features.tif" not in output
+    assert "STOP_LITERAL_OVERLAP_UNSATISFIABLE" in output or "sample_submission.tif" in output

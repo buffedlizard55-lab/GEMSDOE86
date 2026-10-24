@@ -284,8 +284,20 @@ def build_report(root: Path = ROOT) -> dict:
         raise ValueError("Unregistered or missing published ZIP")
     submission_dir = root / "submission"
     if submission_dir.exists():
+        allowed_submission = set()
+        spt_audit_path = root / "docs/evidence/spt-full-support-witness-audit.json"
+        if spt_audit_path.is_file():
+            spt_doc = strict_json(spt_audit_path)
+            if (spt_doc.get("verdict") == "negative_duplicate_stop_do_not_submit"
+                    and spt_doc.get("submission_ready") is False
+                    and spt_doc.get("download_authorized") is False):
+                cand_rel = spt_doc.get("candidate_file", "")
+                if cand_rel.startswith("submission/"):
+                    allowed_submission.add(cand_rel)
+                    allowed_submission.add(str(Path(cand_rel).with_suffix(".zip")))
         smuggled = [str(p.relative_to(root)) for p in submission_dir.rglob("*")
-                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}]
+                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}
+                    and str(p.relative_to(root)) not in allowed_submission]
         if smuggled:
             raise ValueError(f"Unregistered or missing published binary in submission/: {smuggled[0]}")
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]

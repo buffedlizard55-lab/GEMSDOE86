@@ -1,0 +1,44 @@
+{
+  "schema": "gems86.h86-tiprelay.v2",
+  "status": "REVOKED_DO_NOT_SUBMIT",
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_file_present": false,
+  "revocation_irregularity_id": "IR-86-TIPRELAY-01",
+  "hypothesis": "H86-TIPRELAY: blind along-strike tip continuation + relay splay hypothesis (revoked PR #63 diagnostic)",
+  "mechanism": "Historical PR #63 relocated 30% of GEMSDOE32 h33-h33-2-b2 dots by random 3-7 px offsets (+/-30 deg) along distance-to-catalogue gradient while retaining 70% of H33 dots verbatim.",
+  "named_non_fault_process": "Pediment-marginal erosional scarps, fluvial terrace risers, range-front colluvial wedges, lateral-spread headscarps",
+  "revocation_reasons": [
+    "DUPLICATE_OF_GEMSDOE32_AND_GEMSDOE28: Direct read-only measurement via gems57.uniqueness.compare_to_registry yields my_dots_within_3px_of_theirs = 0.850799 (> 0.70) vs GEMSDOE32 h33-h33-2-b2 and 0.851038 (> 0.70) vs GEMSDOE28 h27-4-r1-solo-d2-8 (duplicate_by_overlap = true).",
+    "LITERAL_WITNESS_OVERLAP_100PCT: Direct measurement against pinned 17GEMSDOE dense-witness.tif yields my_dots_within_3px_of_theirs = 1.0 (> 0.70).",
+    "NO_HOLDOUT_VALIDATION_AND_PROJECTION_AS_SCORE: PR #63 ran zero spatially-blocked holdout evaluation (PROJECTION_NOT_HOLDOUT) and zero leakage canaries.",
+    "SITE_AND_AUDIT_BYPASS: PR #63 added an unregistered TIFF/ZIP to docs/downloads/ with a 'tiprelay' exclusion hack in scripts/audit_release.py and hand-edited HTML pages that broke scripts/build_site.py --check, scripts/check_site.py, and scripts/audit_downloads.py."
+  ],
+  "evidence_class": "HOLDOUT-DTI",
+  "holdout_dti": {
+    "status": "NOT_RUN_REVOKED",
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "vs_17GEMSDOE_dense_witness": {
+      "my_dots_within_3px_of_theirs": 1.0,
+      "duplicate_by_overlap": true
+    },
+    "vs_GEMSDOE32_h33_2_b2": {
+      "my_dots_within_3px_of_theirs": 0.850799,
+      "spearman_full_footprint": 0.706926,
+      "duplicate_by_overlap": true
+    },
+    "vs_GEMSDOE28_h27_4_d2_8": {
+      "my_dots_within_3px_of_theirs": 0.851038,
+      "spearman_full_footprint": 0.683872,
+      "duplicate_by_overlap": true
+    }
+  },
+  "revoked_raster_sha256": "c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3",
+  "submission_name": "gems86-h86-tiprelay-37654-20261024T070000Z",
+  "note": "REVOKED DO NOT SUBMIT: H86-TIPRELAY failed sparse R0 3px overlap (0.8508 > 0.70) and literal witness overlap (1.0), with zero holdout run."
+}

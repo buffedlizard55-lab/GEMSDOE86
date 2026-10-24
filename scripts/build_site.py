@@ -30,8 +30,9 @@ def link(path: str) -> str:
 
 def page(title: str, active: str, body: str) -> str:
     nav = (("index.html", "Downloads"), ("executive-summary.html", "How to submit"),
-           ("evidence.html", "Validation"), ("hypotheses.html", "Research queue"),
-           ("fleet.html", "Project feed"), ("sources.html", "Sources"))
+           ("submit.html", "Submission status"), ("evidence.html", "Validation"),
+           ("hypotheses.html", "Research queue"), ("fleet.html", "Project feed"),
+           ("sources.html", "Sources"))
     navigation = "".join(f'<a href="{url}"' + (' aria-current="page"' if url == active else '') + f'>{label}</a>' for url, label in nav)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -244,15 +245,16 @@ def fvmb_archive(report: dict) -> str:
 
 
 def submit_gate(report: dict, review: dict) -> str:
-    return page("Submission gate & SPT revocation", "executive-summary.html", f'''<p class="eyebrow">Automated submission safety gate · IR-86-SPT-02</p><h1>DO NOT SUBMIT:<br>PR #60 SPT candidate revoked.</h1>
-<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT · VERDICT NEGATIVE</span><p>An earlier commit (<code>2538214</code>, PR #60) published a hand-edited page at this URL advertising an unregistered <code>submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif</code> export. Automated forensic review on <time>{e(review['registry_measured_utc'])}</time> revoked that artifact and removed the unregistered binary from <code>submission/</code>.</p>
-<a class="btn" href="executive-summary.html">Open official submission guide &amp; audit status →</a><a class="btn secondary" href="evidence/spt-run-card.json">View revoked SPT forensic card</a></div>
-<h2>Why PR #60's SPT export was revoked (<code>IR-86-SPT-02</code>)</h2>
-<ol><li><strong>100% overlap with pinned registry witness:</strong> Direct measurement of SHA-256 <code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code> against <code>17GEMSDOE</code> (<code>ab0a0a62...</code>) yielded <code>my_dots_within_3px_of_theirs = 1.0 &gt; 0.70</code> (<code>duplicate_by_overlap = true</code>).</li>
-<li><strong>Single-feature canary below coin-flip (<code>AUC = 0.4947</code>):</strong> The cross-fleet throw-vote surface had no positive discrimination for mapped fault traces on the footprint (<code>0.4947 &lt; 0.50</code>).</li>
-<li><strong>Withheld test-fold collar leakage:</strong> <code>build_spt.py</code> masked <code>dist_cat &gt; 2.0</code> using the full <code>existing_faults.tif</code> raster (including withheld test folds with zero buffer), selectively deleting R0's dots near hidden test faults (<code>0.00526</code> vs <code>0.00479</code>).</li>
-<li><strong>Prose vs code mismatch:</strong> <code>research/SPT_20261024.md</code> claimed signed paired-throw on <code>training_features.tif</code> bands 15/13/12 was run, whereas <code>scripts/build_spt.py</code> never opened <code>training_features.tif</code> and exported with <code>SPT_PENALTY=0</code> while claiming <code>surface-penalised</code> in its note.</li>
-<li><strong>Bypassed shared preflight &amp; inventory:</strong> Both <code>scripts/build_spt.py</code> and <code>scripts/build_xfleet.py</code> are now gated behind <code>protocol_preflight.require_feasible()</code>, and <code>audit_release.py</code> + <code>check_site.py</code> block unregistered binaries in <code>submission/</code>.</li></ol>
+    return page("Submission gate & candidate revocations", "submit.html", f'''<p class="eyebrow">Automated submission safety gate · IR-86-SPT-02 &amp; IR-86-TIPRELAY-01</p><h1>DO NOT SUBMIT:<br>Concurrent SPT &amp; TIPRELAY candidates revoked.</h1>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT · VERDICT NEGATIVE</span><p>Concurrent commits published unregistered candidates (<code>SPT</code> in PR #60 and <code>H86-TIPRELAY</code> in PR #63) claiming submission readiness. Automated forensic review on <time>{e(review['registry_measured_utc'])}</time> verified that both violate mandatory uniqueness and holdout gates; neither is authorized for download as a competition upload.</p>
+<a class="btn" href="executive-summary.html">Open official submission guide &amp; audit status →</a><a class="btn secondary" href="evidence/spt-full-support-witness-audit.json">Open SPT witness audit JSON</a></div>
+<h2>1. Why PR #60's SPT candidate is blocked (<code>IR-86-SPT-02</code>)</h2>
+<ol><li><strong>100% overlap with pinned registry witness:</strong> Direct measurement of SHA-256 <code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code> against <code>17GEMSDOE</code> (<code>ab0a0a62...</code>) yields <code>candidate_dot_overlap_within_3px_of_witness = 1.0 &gt; 0.70</code> (<a href="evidence/spt-full-support-witness-audit.json">witness audit</a> · <a href="evidence/spt-run-card.json">run card</a>).</li>
+<li><strong>Single-feature canary below coin-flip (<code>AUC = 0.4947</code>) &amp; withheld-fold collar leak:</strong> The throw-vote surface had no positive fault discrimination on the footprint and masked <code>dist_cat &gt; 2.0</code> using the full <code>existing_faults.tif</code> catalogue.</li>
+<li><strong>Preflight enforced:</strong> Both <code>scripts/build_spt.py</code> and <code>scripts/build_xfleet.py</code> now stop at <code>protocol_preflight.require_feasible()</code> before loading features.</li></ol>
+<h2>2. Why PR #63's H86-TIPRELAY candidate was revoked (<code>IR-86-TIPRELAY-01</code>)</h2>
+<ol><li><strong>85.08% 3-px dot overlap against sparse <code>GEMSDOE32</code> <code>h33-h33-2-b2</code> (<code>&gt; 70%</code> limit):</strong> Even before checking the continuous witness (<code>100%</code> overlap), SHA-256 <code>c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3</code> copied 70% of <code>H33</code> verbatim and overlapped <code>85.08%</code> with <code>GEMSDOE32</code> and <code>85.10%</code> with <code>GEMSDOE28</code> (<a href="evidence/h86-tiprelay-run-card.json">revoked TIPRELAY card</a>).</li>
+<li><strong>Zero holdout evaluation:</strong> Reported <code>PROJECTION_NOT_HOLDOUT</code> with no spatially-blocked evaluation or leakage canary, and added a <code>tiprelay</code> exclusion backdoor to <code>audit_release.py</code> that broke <code>check_site.py</code> and <code>build_site.py --check</code>. That unregistered binary and backdoor have been removed, and <code>scripts/gen_tip_final.py</code> is now gated behind <code>require_feasible()</code>.</li></ol>
 <p>All {report['artifact_count']} preserved historical research rasters remain available for audit-only inspection on <a href="index.html#downloads">Downloads</a>, and the exact DrivenData portal procedure (<code>[0, 1]</code> range check, unique name, and <code>&lt;= 140</code>-char note) is documented on <a href="executive-summary.html">How to submit</a>.</p>''')
 
 
@@ -266,6 +268,21 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or feed["targets_sha256"] != sha256(root / "registry/site_targets.json")):
         raise ValueError("Fleet feed is stale relative to its ledger/target inputs")
     registry = strict_json(root / "docs/evidence/all-artifacts-registry.json")
+    spt_audit = strict_json(root / "docs/evidence/spt-full-support-witness-audit.json")
+    spt_card = strict_json(root / "docs/evidence/spt-run-card.json")
+    candidate_file = root / spt_audit["candidate_file"]
+    if not candidate_file.is_file():
+        raise ValueError("SPT candidate is missing from the audit archive")
+    spt_receipt = strict_json(candidate_file.with_suffix(".json"))
+    if (sha256(candidate_file) != spt_audit["candidate_file_sha256"]
+            or spt_receipt != spt_card
+            or "download_url" in spt_card
+            or spt_card["raster_sha256"] != spt_audit["candidate_file_sha256"]
+            or spt_audit["candidate_dot_overlap_within_3px_of_witness"] <= spt_audit["literal_overlap_limit"]
+            or spt_audit["verdict"] != "negative_duplicate_stop_do_not_submit"
+            or spt_card["verdict"] != "negative"
+            or spt_card["submission_ready"] is not False):
+        raise ValueError("SPT candidate is stale or violates the literal full-support witness stop")
     review = strict_json(root / "docs/evidence/latest-review-run-card.json")
     if (review["release_report_sha256"] != sha256(root / "docs/evidence/release-readiness.json")
             or review["registry_measurement_sha256"] != sha256(root / "docs/evidence/all-artifacts-registry.json")

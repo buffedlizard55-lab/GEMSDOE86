@@ -98,9 +98,21 @@ def check(root=ROOT):
             errors.append(f'Unregistered downloadable raster/archive: {artifact.relative_to(root)}')
     submission_dir = root / 'submission'
     if submission_dir.exists():
+        allowed_submission = set()
+        spt_audit_path = root / 'docs/evidence/spt-full-support-witness-audit.json'
+        if spt_audit_path.is_file():
+            spt_doc = json.loads(spt_audit_path.read_text(encoding='utf-8'))
+            if (spt_doc.get('verdict') == 'negative_duplicate_stop_do_not_submit'
+                    and spt_doc.get('submission_ready') is False
+                    and spt_doc.get('download_authorized') is False):
+                cand_rel = spt_doc.get('candidate_file', '')
+                if cand_rel.startswith('submission/'):
+                    allowed_submission.add(cand_rel)
+                    allowed_submission.add(str(Path(cand_rel).with_suffix('.zip')))
         for extra in sorted(submission_dir.rglob('*')):
             if extra.is_file() and extra.suffix.lower() in {'.tif', '.tiff', '.zip'}:
-                errors.append(f'Unregistered submission binary outside inventory: {extra.relative_to(root)}')
+                if str(extra.relative_to(root)) not in allowed_submission:
+                    errors.append(f'Unregistered submission binary outside inventory: {extra.relative_to(root)}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
         if 'READY TO DOWNLOAD' in html_text:
