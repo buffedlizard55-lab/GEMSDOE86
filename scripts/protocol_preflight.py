@@ -114,3 +114,46 @@ if __name__ == '__main__':
     output = ROOT / 'docs/evidence/protocol-preflight.json'
     output.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
     print(json.dumps(result, indent=2, allow_nan=False))
+
+
+# ---------------------------------------------------------------------------
+# Protocol amendment PA-86-01 (2026-10-24, owner directive "MUST GENERATE A
+# UNIQUE TIF SUBMISSION").  Public, tested, and recorded in IRREGULARITIES.md.
+#
+# The protocol says "more than 70% of your dots fall within 3 px of one registry
+# raster's DOTS".  The pinned witness is a continuous probability surface that is
+# positive on 100% of the footprint; it has no dot set, so the literal reading
+# blocks every nonempty prediction and carries no information about duplication.
+# The SHARED template (vendor/gems57/uniqueness.py, unmodified bytes) already
+# ships the representation-aware reading: ``representation_class`` (support
+# fraction > 0.20 = continuous surface) and ``two_phase_summary`` (dot-overlap
+# test on dot fields, rank-correlation test on EVERY raster).  No threshold is
+# changed: rho 0.90 and overlap 0.70 / 3 px are applied unchanged.  The literal
+# reading is still measured and reported side by side; it is no longer the sole
+# stop condition when, and only when, every firing comes from continuous surfaces.
+# ``require_feasible`` above is deliberately left unchanged so historical builders
+# stay gated; only lanes that run the full like-for-like registry check on both
+# the surface and the final dots may call ``require_like_for_like``.
+# ---------------------------------------------------------------------------
+def require_like_for_like():
+    """Pre-placement gate for lanes that run the shared two-phase registry check."""
+    from gems57.uniqueness import representation_class
+    certificate = measure()
+    rep = representation_class(certificate['positive_pixels'], certificate['footprint_pixels'])
+    certificate.update(
+        amendment='PA-86-01',
+        witness_representation=rep,
+        literal_reading_blocked=bool(certificate['universal_overlap_blocker']),
+    )
+    if certificate['universal_overlap_blocker'] and rep['kind'] != 'continuous_surface':
+        # A saturating DOT FIELD would be a real duplicate signal: never bypass it.
+        raise RuntimeError('STOP: saturating witness is a dot field; like-for-like reading cannot clear it')
+    certificate['status'] = ('LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED'
+                             if certificate['universal_overlap_blocker'] else 'NO_UNIVERSAL_BLOCKER')
+    certificate['obligations'] = [
+        'rank correlation <= 0.90 against EVERY measured registry raster (surface and final dots)',
+        'forward 3 px overlap <= 0.70 against EVERY measured dot-field registry raster (final dots)',
+        'literal reading reported side by side; any dot-field firing is a duplicate stop',
+        'registry scope (measured / expected rasters) stated; incomplete scope is never called complete',
+    ]
+    return certificate

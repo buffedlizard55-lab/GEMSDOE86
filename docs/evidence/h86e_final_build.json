@@ -1,0 +1,16 @@
+{
+  "preflight_status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+  "amendment": "PA-86-01",
+  "witness_representation": {
+    "kind": "continuous_surface",
+    "support_fraction": 1.0,
+    "limit": 0.2
+  },
+  "training_positives": 60988,
+  "training_negatives": 300000,
+  "dots": 37654,
+  "on_catalogue": 0,
+  "outside_footprint": 0,
+  "min_dcat_px": 2.23606797749979,
+  "median_dcat_px": 4.0
+}
