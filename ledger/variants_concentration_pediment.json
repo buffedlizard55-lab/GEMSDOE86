@@ -1,0 +1,110 @@
+[
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown2p5-20261023-9fb6bfc9",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b5km-ped-down2p5",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 4.9981,
+    "sha8": "9fb6bfc9",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "9fb6bfc932045f3e6422e56e96db94a0845c496a5ae0efc880adb660bdb23630",
+    "sha256_nan": "e6450007b3e7858b93823a8b16374a97473cfa2c96837a70ec2acaaca94c372b",
+    "predicted_change": "+0.0007 (quadrant range -0.0005..+0.0021; 3/4 quadrants positive; fold-fair PROXY +0.0012, CI95 [+0.0001,+0.0023], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown2p5-20261023-9fb6bfc9-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "bf83cd391bef597dbd24cca806a221fec89046b3715ca19ac1ad659f085b3218",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown2p5-20261023-9fb6bfc9.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown2p5-20261023-9fb6bfc9-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-ped-down2p5: 941 ridge dots moved (5.00% chg); pred +0.0007 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.09726,
+      "delta_vs_r0": 0.001173,
+      "ci95": [
+        5.4e-05,
+        0.002295
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0 and all candidate arms see only f.visible per fold)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmnonpeddown2p5-20261023-57cc867c",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b5km-nonped-down2p5",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 4.9981,
+    "sha8": "57cc867c",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "57cc867c5f32fec1acebfe9d169b83f73a7c047e2143bbdee9d648305bf7b927",
+    "sha256_nan": "400525a06c4aa81e370c213738a39f0078b0076fdcd5bb1ca8cc6faddab293dc",
+    "predicted_change": "+0.0013 (quadrant range +0.0009..+0.0017; 4/4 quadrants positive; fold-fair PROXY +0.0004, CI95 [-0.0004,+0.0013], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmnonpeddown2p5-20261023-57cc867c-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "2b22f929b8032842372e136c3de80f6d0e56b370c87e9ab5878c7a855ab14e27",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmnonpeddown2p5-20261023-57cc867c.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmnonpeddown2p5-20261023-57cc867c-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-nonped-down2p5: 941 ridge dots moved (5.00% chg); pred +0.0013 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.096529,
+      "delta_vs_r0": 0.000442,
+      "ci95": [
+        -0.000359,
+        0.00126
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0 and all candidate arms see only f.visible per fold)"
+    }
+  },
+  {
+    "id": "h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown5-20261023-161b002e",
+    "site": "GEMSDOE86",
+    "axis": "CONCENTRATION",
+    "value": "b5km-ped-down5",
+    "status": "BUILT",
+    "n_dots": 37654,
+    "pct_changed": 9.9963,
+    "sha8": "161b002e",
+    "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+    "encoding": "zeros",
+    "sha256_zeros": "161b002e5601719bfaa2074047145684ecb179c7b9b9bbbb10f0288ee33ed375",
+    "sha256_nan": "11dc154d1caf856683039e4f33e72c89db3cc6066c77b7c9f17a999797083095",
+    "predicted_change": "+0.0017 (quadrant range +0.0003..+0.0041; 4/4 quadrants positive; fold-fair PROXY +0.0014, CI95 [+0.0001,+0.0026], n=11321). MODEL: SGMC-extra surrogate, not a score.",
+    "source_url": "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown5-20261023-161b002e-zeros.tif",
+    "receipt_score": "",
+    "receipt_date": "",
+    "dot_digest": "535c366ffc47ce1c355513f3df4037cae3650035dc31c69c1cd1a3aa71534940",
+    "files": [
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown5-20261023-161b002e.tif",
+      "releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmpeddown5-20261023-161b002e-zeros.tif"
+    ],
+    "form_note": "R0 h33-h33-2-b2-20261004-e5eb6e7e; CONC b5km-ped-down5: 1882 ridge dots moved (10.00% chg); pred +0.0017 MODEL",
+    "gate_all_pass": true,
+    "proxy": {
+      "value": 0.097462,
+      "delta_vs_r0": 0.001376,
+      "ci95": [
+        7.1e-05,
+        0.002628
+      ],
+      "n_withheld_positive_pixels": 11321,
+      "class_": "PROXY",
+      "note": "NONE (R0 and all candidate arms see only f.visible per fold)"
+    }
+  }
+]

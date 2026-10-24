@@ -176,7 +176,12 @@ def test_committed_evidence_and_ledger_invariants():
 
 
 def _local_conc5_zeros() -> list[Path]:
-    return sorted(RELEASES.glob("*-concb5km*-zeros.tif")) if RELEASES.is_dir() else []
+    # Only the 5 km session's three arms (up8/up4/cvband-down4); later CONCENTRATION
+    # sessions (e.g. the pediment arms) have their own on-disk receipts/tests.
+    return sorted(
+        p for p in RELEASES.glob("*-concb5km*-zeros.tif")
+        if any(s in p.name for s in ("b5kmup8", "b5kmup4", "b5kmdown4"))
+    ) if RELEASES.is_dir() else []
 
 
 @pytest.mark.skipif(not _local_conc5_zeros(), reason="CONCENTRATION 5 km TIFFs are gitignored in CI")

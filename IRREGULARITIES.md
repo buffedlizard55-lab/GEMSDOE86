@@ -694,3 +694,32 @@ scale-matched concentration test targets `10 km` blocks rather than `1 km` or `5
 
 **Observed.** Earlier sessions (`IR-86-SPACING-05`, `IR-86-CONC-09`) saw artificial `+0.014` `PROXY` inflation because static `R0` was already masked at `d_cat > 2.0 px` around held-out faults while relocated dots stepped back inside `2..3 px` of withheld traces. Using unmasked `scored_d28_unscored` (`ab023001...`), `R0 == d28 & footprint & (edt_cat > 2.0)` holds pixel-for-pixel (`0` differing cells). Rebuilding fold-fair `R0_f = d28 & footprint & (edt(f.visible) > 2.0)` and recomputing priors/clearances strictly from `f.visible` inside each buffered whole-component fold (`n = 11,321` withheld positives, `141` 20 km spatial clusters) restores symmetric fold-fair `R0 = 0.0961` and puts `concb5kmdown4` positive (`+0.0008`, `95% CI [-0.0004, +0.0018]`) while `concb5kmup8` is negative (`-0.0026`), matching SGMC's sign. **Decision:** record symmetric `d28` `PROXY` as `REPORT-ONLY` (`evidence_class = PROXY`), never a gate or score.
 
+
+## IR-86-CONC-12 — pre-registered pediment refinement of `concb5kmdown4` FAILS its SGMC falsifier; instruments split; no slot change
+
+**Observed** (session 15, `evidence/concentration_pediment_axis_20261023.json`, R0 rebuilt byte-exactly first):
+SLOT_PLAN proposal 2 (`IR-86-TRACKB-08`) was built as three dose-controlled destination splits of the
+slot-2 arm's shave: `concb5kmpeddown2p5` (941 dots, 5.00 % chg, 100 % in-window), `concb5kmnonpeddown2p5`
+(941 dots, 100 % out-window, attribution control), `concb5kmpeddown5` (1,882 dots, 10.00 % chg,
+55.6 % in-window). The truth-free pediment window (3DEP `relief_local` 10–40 m, > 1 km from the RELIEF
+regime front; 18.8 % of the footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules, so
+the pair is dose-matched at 2.5 % of R0, not `concb5kmdown4`'s 4 %.
+
+1. **SGMC MODEL falsifier fired:** at the identical dose the non-pediment complement beats the
+   pediment arm (+0.0013 vs +0.0007; per-moved-dot 1.3e-6 vs 0.7e-6; REF `concb5kmdown4` +0.0015
+   replicates the recorded value exactly). As far as mapped-fault truth can tell, the slot-2 arm's
+   gain is **generic sparse-ridge coverage**, not the thin-alluvium concealed-fault prior.
+2. **The symmetric fold-fair d28 PROXY orders the arms oppositely** (+0.0012 in-window vs +0.0004
+   out-window, CIs straddling/near zero), so the attribution is *split*, not resolved. Both
+   instruments stay REPORT-ONLY; no arm clears the 0.01 live-evidence floor (max |Δ| = 0.0017).
+3. **Dose** is near-linear on SGMC (+0.0007 → +0.0017) but the 2× dose pushes the 1 km CV to 0.5013,
+   below the empirical 0.51–0.59 band edge.
+4. **10 km CV definition pinned:** `IR-86-TRACKB-08`'s numbers (R0 = 0.570) reproduce exactly
+   (0.5699) only under fully-covered 100 px blocks; the unfiltered occupied-block definition gives
+   0.736. Both are now reported by `gems86.concentration_pediment.cv_report` so future scale-matched
+   tests cannot mix the two definitions.
+
+**Decision.** Slot 2 stays `concb5kmdown4` (8aab97b6) exactly as ranked; the three pediment arms are
+recorded `BUILT` audit artifacts and are **never upload candidates**. Any future pediment-restricted
+CONCENTRATION design is capped at ~2.8 % of R0's dots by destination capacity. Cost: none beyond
+build time; rasters stay gitignored.

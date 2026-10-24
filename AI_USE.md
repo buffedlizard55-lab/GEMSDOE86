@@ -465,3 +465,33 @@ throwaway probe slot on `SPACING-alongstrike`.
   remaining, R0's live `0.2778` receipt, portal encoding preference, and deadline confirmation remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
 
+
+## 2026-10-23 — Pediment-window CONCENTRATION attribution session (branch `arena/f29e1689-gemsdoe86`, self-assigned axis)
+
+**Axis self-assignment:** with all 7 brief-v2 axes reconciled in SLOT_PLAN.md and slots 1–4 candidates
+already BUILT, the only pre-registered *unbuilt* Phase-1 experiment left was proposal 2 (the
+pediment-window refinement/attribution of `concb5kmdown4`); the AI picked CONCENTRATION for that
+reason and built exactly the pre-registered design, with one measured deviation it decided itself:
+the pediment-restricted destination pool caps at **1,045** moved dots, so the attribution pair is
+dose-matched at **941 dots (2.5 % of R0, 5.00 % changed)** instead of the parent arm's 1,506. The
+AI also chose the falsifier hierarchy (SGMC MODEL first, d28 PROXY second) exactly as SLOT_PLAN
+pre-registered it — nothing was retuned after measuring.
+
+**What the AI wrote:** `src/gems86/concentration_pediment.py` (+ `dest_filter`/`dest_prefer`
+kwargs on `relocate_cvband_down`, byte-identical defaults), `scripts/run_concentration_pediment.py`,
+`tests/test_concentration_pediment.py` (6 unit + 1 on-disk receipt test), three count-fixed
+variants + twins + JSON receipts under `releases/` (gitignored), `ledger/variants_concentration_pediment.json`
+→ `ledger/submissions.csv` (161 rows via the single generator), `evidence/concentration_pediment_axis_20261023.json`,
+`evidence/concentration-pediment-mechanism.md`, IR-86-CONC-12, and the SLOT_PLAN/README/SUBMIT edits.
+
+**Measured verdict the human can veto:** the SGMC falsifier fired (non-pediment complement
++0.0013 > pediment +0.0007 at the same dose; REF `concb5kmdown4` +0.0015 replicated), while the
+fold-fair d28 PROXY orders the arms oppositely (+0.0012 vs +0.0004). The AI's decision from that
+split: **no slot change** — slot 2 stays `concb5kmdown4`; the three pediment arms are audit-only,
+never uploads. The 10 km CV definition was pinned to IR-86-TRACKB-08 (full-cover blocks; R0 0.5699).
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no submission, no credential
+handling, no new slot consumption (submission_slots_used = 0). No PROXY/MODEL number is written as
+a score. **Human inputs still required:** TOP_PUBLIC + date, rolling-week quota left, R0's live
+receipt, verified deadline, accepted outside-footprint encoding, and receipt scores/dates for any
+upload the human chooses to make.

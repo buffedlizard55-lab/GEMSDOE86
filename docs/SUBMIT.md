@@ -5,21 +5,28 @@ were not supplied. The human alone submits, from one registered entity, one file
 Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
-## Current slot order after CONCENTRATION sign + 5 km arms — **supersedes older headings below**
+## Current slot order after the 5 km ridge + pediment sessions — **supersedes older headings below**
 
-The count-fixed sign pair has the largest decision separation (≈0.056), but its five truth models
-are uncalibrated and every number remains MODEL. The MASS instrument audit separately shows that
-mass-changing reads are partly mass readings; neither audit licenses an automatic upload.
+Ranking per [SLOT_PLAN.md](../SLOT_PLAN.md) after `IR-86-CONC-10/11/12`: the off-ridge sign pair
+(`dens15`/`spr15`) is **retired** (0 % on ancestor ridges; both lose on real SGMC), and the
+pre-registered pediment refinement of slot 2 was **built and rejected** — at the dose-matched 941
+dots the non-pediment complement beats the pediment arm on SGMC (+0.0013 vs +0.0007) while the d28
+`PROXY` orders them oppositely, so the pediment arms are audit artifacts, never uploads
+(`IR-86-CONC-12`).
 
-1. **CONCENTRATION `dens15`** — `releases/sign86/gems86-h33-2b2-concdens15-20261023-f8e7ae42-zeros.tif`
-   (+0.026 MODEL, −0.011…+0.047; exact name/note/hash in the sign section below).
-2. **CONCENTRATION `spr15`** — `releases/sign86/gems86-h33-2b2-concspr15-20261023-6d452f96-zeros.tif`
-   (−0.030 MODEL, −0.064…+0.011). Slots 1+2 are **one sign experiment**, not two expected gains.
+1. **RELIEF `frontp15`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif`
+   (+0.0017 MODEL, 3/4 quads `+`; full card in the fallback section below).
+2. **CONCENTRATION `b5km-cvband-down4`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-concb5kmdown4-20261023-8aab97b6-zeros.tif`
+   (+0.0015 MODEL, 4/4 quads `+`, +0.0008 PROXY; 1,506 dots / 8.00 % chg, count fixed, 100 %
+   ancestor-ridge, 1 km CV 0.6235 → 0.5162; hashes in `releases/…-8aab97b6-zeros.json`).
 3. **PRUNE `le3p000`** — `releases/h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif`
-   (+0.004 MODEL, mass-confounded; historical 0.2708→0.2778 direction is CLAIM only).
+   (+0.004 MODEL, mass-confounded; card in the Slot 3 section below).
 
-RELIEF `frontp15/frontm10` is the fallback pair. Original `b1km-move15` and SPACING are later
-probes. The new 5 km arms are audit artifacts, not substitutes for the sign pair.
+`RELIEF-frontm10` (−0.0089, 4/4 quads `−`) is the pure-slope pairing option for slot 2; SPACING
+`sp-strike16` (+0.0020 MODEL) is the wk-2 diagnostic if slots 1–3 return inside ±0.005. The MASS-econ
+session's three files remain **NOT for upload**; the pediment trio
+(`…concb5kmpeddown2p5…9fb6bfc9`, `…concb5kmnonpeddown2p5…57cc867c`, `…concb5kmpeddown5…161b002e`)
+likewise — every predicted |Δ| ≤ 0.002 MODEL, far under the 0.01 evidence floor.
 
 **The MASS-econ session's three files are NOT for upload** (mass-changing on an instrument that
 cannot rank mass). If one is ever used, it must be `plus10pct-extend`, never the control:
