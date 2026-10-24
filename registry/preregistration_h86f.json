@@ -1,0 +1,196 @@
+{
+ "budget": {
+  "experiments_max": 3,
+  "note": "E1 canaries, E2 single-channel arms, E3 LOQO fusion + ablation + diagnostics. Region-hide diagnostic reuses E3 masks (no new fits). Promotion to a weekly slot is a separate selector step; this session spends 0 slots."
+ },
+ "data": {
+  "ban": [
+   "CSV/DBF column dist_known_fault_px (label-derived) is never read; allowed wellspring columns: row,col,temp_c,geothermquartz_c,geothermchalc_c; vents: row,col; sinter: Long_deg_NAD83,Lat_deg_NAD83; 2m DBF: F2mDAB + point coords. Asserted in code."
+  ],
+  "catalogue_features": "NONE. Strictly zero-catalogue lane: no distance/density/tip/relay feature derived from existing_faults.tif enters any surface, model, or emission rank. Distances to the catalogue are used ONLY for (a) the B2 emission collar (d>2px allowed mask, identical to H33/KSLB/H86E), (b) the neg_dist_visible control arm, (c) leakage-canary sampling masks. This is the halo-avoidance design (H86E-CCTX failed G6 at 0.8538 vs the GMC halo control).",
+  "externals": [
+   ".cache/external/lidar_scarp_features_u8.tif bands [1,3,9,10,12]",
+   ".cache/external/topo_10m_derived_100m_u8.tif bands [1,5,6,8]",
+   ".cache/external/geodawn_rad_u8.tif bands [1,2,3,4]",
+   ".cache/external/geodawn_extensions_u8.tif bands [1,2,3,4]",
+   ".cache/external/dem10_chi_100m_i16.tif band [1]",
+   "data/external/gdr_wellspring_in_footprint.csv (hot subset T>=37C or quartz/chalc>=110C)",
+   "data/external/gdr_volcanic_vents_in_footprint.csv",
+   "data/external/paleo_geothermal_regional.zip/Paleo_geothermal_final.csv (in-footprint)",
+   "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip (F2mDAB>0 hits)"
+  ],
+  "paths": {
+   "externals": ".cache/external/*.tif (H86E layout, SHA-verified by scripts/restore_data.py)",
+   "gdr": "data/external/* (SHA-verified by scripts/restore_h86d_data.py)",
+   "training_features": "data/bridge/training_features.tif AND data/training_features.tif (sha256 4371c82e..., verified 2026-10-24)"
+  }
+ },
+ "duplicate_stop": {
+  "action": "Log duplicate, verdict negative (duplicate_stop), file NOT published to docs/downloads, run card records the firing raster and overlap. No weekly slot is touched either way.",
+  "registry_scope": "data/scored_fleet/*.tif + data/fleet_new/*.tif (H73-MVH, H85-HJCD, H87-STFD, hash-verified vs README SHA256) + data/scored/*.tif (incl. 13GEMSDOE stride-5 lattice, H19-5/H19-4/H16-1 ancestors, d1.5/d2.8, Hedge) + docs/downloads/*.tif (12 prior GEMSDOE86 lanes) + data/registry/dense-witness.tif (17GEMSDOE ab0a0a62...) + GEMSDOE87-BMTD if fetchable. Deduplicated by sha256. Indexed local registry, never organizer-complete.",
+  "rule": "Shared thresholds unchanged: rank-correlation (Spearman) > 0.90 on the pre-placement surface AND on final dots vs ANY registry raster, or forward 3px dot-overlap > 0.70 vs any NON-DEGENERATE registry dot field, is a duplicate. Degenerate-for-dot-overlap = halo_cover >= 0.99 (fraction of allowed cells within 3px of support, measured with the shared _near operator) OR support_fraction > 0.20 (shared DENSE_SUPPORT_FRACTION). Rank-correlation still applies to degenerate rasters. Byte/pixel identity vs any raster is a duplicate. All rows reported; excluded rasters listed with measured coverage."
+ },
+ "experiments": {
+  "E1_canary": {
+   "gate": "G2: max single-feature discriminative AUC over FUSION features < 0.90, else stop all modeling.",
+   "spec": "Seed-20 hidden positives vs 300,000 sampled negatives (region & ~masked_known & ~hidden & footprint, rng seed 7, identical to H86E E1). ROC-AUC per feature (46 rows: 43 fusion + 3 controls)."
+  },
+  "E2_single_channel": {
+   "arms": {
+    "anti_ridge_rtp": "POLARITY CONTROL: dome-ness (negative-curvature) ridge operator on RTP, same emission. Tests that trough polarity (not generic curvature) matters.",
+    "conc_unweighted_spbt": null,
+    "fixed_d28_leaked_ref": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (leaked ancestor REFERENCE ONLY, never a promotion comparator).",
+    "neg_dist_visible": "rank(-distance_to_seed20_visible) (catalogue-proximity control; expected strong on this instrument, anti-live per H86E forensics).",
+    "shuffled_vent_corr": "NULL CONTROL: same corridor operator on N uniform-random footprint points (seed 11, N = vent count). Tests that vent LOCATIONS matter.",
+    "spaced_random": "uniform rng surface (seed 7).",
+    "trough_mag": "rank(max(trough_rtp, trough_tvg)).",
+    "vent_corr_gated": "rank(trough-and-cond-gated pairwise vent corridor density).",
+    "vent_logdist": "rank(-log1p(dist_to_any_vent)).",
+    "xcond_dilat": "rank(cond_surf x dilaterate concordance)."
+   },
+   "budget_dots": 37654,
+   "gate": "None (characterization). Reported with pooled DTI + paired 95% CIs.",
+   "spec": "Each surface rank-transformed over footprint, emit_decimated tile_px=3, prefix 37654, allowed = footprint & dist_to_seed20_visible > 2px. Pooled HOLDOUT-DTI (gems57-pooled-hide-v2, 1000 draws, seed 1) on the seed-20 buffered-component folds."
+  },
+  "E3_fusion": {
+   "ablation": "substrate_only_44090 (38 features, no HMDC) isolates the marginal HMDC contribution; paired delta vs candidate reported.",
+   "arms": [
+    "h86f_hmdc_44090 (candidate: OOF fusion surface)",
+    "substrate_only_44090 (ablation)",
+    "spaced_random, neg_dist_visible, trough_mag, vent_corr_gated (E2 carryover at 44090 for paired comparison)",
+    "fixed_d28_leaked_ref, fixed_h33_b2 (leaked references only)"
+   ],
+   "budget_dots": 44090,
+   "diagnostics_non_gating": [
+    "SGMC off-catalogue auxiliary proxy (final file + OOF reading; rewards unknown mix; never a score)",
+    "Region-hide diagnostic (Suite-Q-like): hide ALL catalogue per quadrant (uneroded quadrant cap footprint region, no buffer, fixed masks), evaluate {candidate, ablation, h33_fixed, spaced_random} with gems57.evaluate_holdout + pooled_summary. Mimics organizer regional chunking. First live-aligned instrument reading in this repo; does not replace the protocol holdout."
+   ],
+   "gate": "G3 (beats best honest control with paired CI>0) and G4 (beats KSLB 0.1241).",
+   "spec": "Leave-one-quadrant-out HistGradientBoosting (max_iter=300, lr=0.06, max_leaf_nodes=63, min_samples_leaf=40, l2=1.0; seeds 0-3 per fold; 160k negatives/fold sampled d>1px off full catalogue, identical to H86E E3) over 43 label-free features. OOF surface sqrt(), emit_decimated tile 3, prefix 44090, seed-20 B2 allowed mask. Final model refit on full catalogue (250k negatives, seed 99) for the submission surface only (never scored on holdout)."
+  }
+ },
+ "gates": {
+  "G1_format": {
+   "pass": "shared gems57.validate all_checks_passed on the serialized TIF (single-band float32, EPSG:32611, 3730x3292, pinned transform, all-finite [0,1], 0 outside footprint, 0 on catalogue) + template format_report ok + one-TIFF ZIP roundtrip."
+  },
+  "G2_canary": {
+   "pass": "E1 max discriminative AUC over the 43 fusion features < 0.90."
+  },
+  "G3_holdout_vs_controls": {
+   "pass": "E3 candidate pooled DTI > best honest control (spaced_random, neg_dist_visible, trough_mag, vent_corr_gated, substrate_only) AND paired delta 95% CI excludes 0."
+  },
+  "G4_holdout_best": {
+   "bar": "H86C-KSLB E3_kslb_noisyor_44k buffered-whole-components LOQO DTI 0.1240634961614658 [0.1079703374809469, 0.140329759708305], n=11321, docs/evidence/lane86c_results.json, identical folds (buffered_component_draw seed 20, hide_frac 0.20, buffer 3px). Fold identity verified by withheld count = 11321 and receipt comparison before any comparison is made.",
+   "pass": "E3 candidate pooled DTI > 0.1240634961614658."
+  },
+  "G5_sgmc_proxy": {
+   "note": "AUXILIARY-PROXY only; never a score. Kept byte-identical to H86E G5 (no gate-shopping): SGMC-extra truth = derived_sgmc_faults_100m_u8 & footprint & ~catalogue; DTI via gems57.metric.dti_exact.",
+   "pass": "final-file SGMC DTI > spaced_random SGMC DTI AND > fixed_h33_b2 SGMC DTI."
+  },
+  "G6_uniqueness": {
+   "pass": "(a) max forward 3px overlap vs NON-DEGENERATE registry dot fields <= 0.70 on final dots; (b) max |Spearman| <= 0.90 vs every registry raster on the pre-placement surface AND on final dots; (c) no identical file bytes / identical decoded predictions. Degenerate list + halo_cover numbers + explicit overlaps vs H73-MVH, H85-HJCD, H87-STFD, H33-2-B2, d2.8, GMC controls reported in docs/evidence/h86f_uniqueness.json. Firing on a degenerate witness alone is reported, never promoted, never a duplicate."
+  }
+ },
+ "hypotheses_ranked": [
+  {
+   "cost": "Medium: Hessian troughs + concordance + pairwise corridors + GDR parsing + LOQO-HGB (~60-90 min CPU, proven H86E-class pipeline).",
+   "difference_from_repo": "No GEMSDOE86 lane extracts signed magnetic valley-curvature troughs (CTHB used positive ridges; GFCO/KSLB unsigned magnitudes/tilts), none couples cond_surf x geodetic dilatation, none builds pairwise inter-vent segments (CTHB used isotropic vent halos; H86D planes are INPUTS reused, not the lane). Zero catalogue features (vs CCTX/CTHB/H73-bridges).",
+   "expected_dti": "First testing priority by geothermal-mission fit x feasibility; no measured or projected gain. Realistic base rates: label-free substrate ~0.09-0.10, KSLB bar 0.1241 is hard; HMDC channels are subset detectors. A negative is a first-class deliverable.",
+   "external_data": "None (all inputs SHA-pinned in-sandbox).",
+   "id": "H86F-HMDC",
+   "layers": [
+    "competition rtp (Band 2, GeoDAWN DOI 10.5066/P93LGLVQ)",
+    "competition tmi_vg (Band 9)",
+    "competition cond_surf (Band 17)",
+    "competition geod_dilaterate (Band 8) + geod_shearrate (Band 7, context)",
+    "competition det_elev (Band 12) for upslope advection check only",
+    "GDR 1391 CC-BY-4.0: hot wellspring subset, volcanic vents, paleo sinter CSV, 2m-probe F2mDAB hits (DOI 10.15121/1881483)",
+    "label-free substrate: 19 bands + 6 gradients + 13 LiDAR/topo/radiometric/chi externals"
+   ],
+   "name": "Trough-gated hydrothermal magnetite-destruction and vent-alignment corridors (THIS SESSION)",
+   "non_fault_mimic": "Reversed-polarity volcanic flows / felsic tuffs (primary susceptibility lows); saline playa pans (cond high, dilatation ~0, suppressed by the product gate); E-W GeoDAWN tie-line troughs (suppressed by acquisition-block cross-check + strike-diversity requirement).",
+   "novelty_vs_fleet": "H73-MVH uses vent logdists + Radon16 occupancy + ventxcondxK witness + tilt/worms/shallow-residual magnetics (verified in src/gems73/mvh_features.py 2026-10-24; NO valley-curvature trough operator, NO dilatation coupling, NO pairwise inter-vent segments, and it uses catalogue-derived relay-bridge mechanics). H85-HJCD uses 2m-T + sinter + chi + GEO-Pb-16 + ray integrals (no troughs, no condxdilatation). Empirical overlap vs both rasters is measured; >0.70 = duplicate-stop.",
+   "physical_signature": "(1) Signed magnetic valley-curvature: Hessian eigendecomposition of sigma=1.5px-smoothed RTP and tmi_vg; trough-ness = positive larger-eigenvalue lobe with cross-strike anisotropy, max over the two bands. (2) Clay-cap dilatation concordance: positive-part z-score product z(cond_surf)+ x z(geod_dilaterate)+, sigma=2px. (3) Pairwise vent corridors: Bresenham segments between hot-vent points 1-6 km apart, retained only if a third vent continues the alignment within a 2px strip over 120px (collinear triple; amendment A1: 8 strikes tile the circle so chaining carries the co-linear constraint), segment-density smoothed sigma=1.5px, reported raw AND gated by (trough > footprint median AND concordance > footprint median).",
+   "rank": 1,
+   "status": "RUN_THIS_SESSION",
+   "why_unmapped": "Blind geothermal fault conduits under alluvial/clay cover lose their surface scarp (det_elev_slope muted) while hydrothermal magnetite destruction keeps a linear magnetic trough, smectite-illite clay keeps cond_surf high inside dilating crust, and sinters/springs/2m anomalies align along the feeder even where no Holocene scarp was mapped. Tested by enrichment on withheld whole components, NOT assumed."
+  },
+  {
+   "cost": "Medium-high: corridor seeding + two-sided phase correlation + strike-consistency test + controls (~60 min after substrate exists).",
+   "difference_from_repo": "No lane correlates flank marker profiles; GFCO/CTHB use gradient magnitudes and cross-gradients, never lateral translation estimation.",
+   "expected_dti": "Second priority; subset detector (transfer faults only); no measured gain.",
+   "external_data": "None (competition bands + mirrored radiometrics).",
+   "id": "H86E-MMT",
+   "layers": [
+    "rtp (Band 2)",
+    "analytical magnetic tilt atan2(100*B9, B3+1) (unit-corrected per IR87-028)",
+    "tc (Band 6, radiometric TC) as surficial-wash veto only"
+   ],
+   "name": "Cross-corridor magnetic marker translation (NEXT SESSION)",
+   "non_fault_mimic": "Flight-line drape seams; basalt flow margins.",
+   "physical_signature": "Two-sided cross-corridor profile phase-lag on RTP/tilt marker ridges across +-700 m flanks; nonzero lateral translation consistent across adjacent strike windows; zero-shift + phase-scrambled controls.",
+   "rank": 2,
+   "status": "NOT_RUN_BUDGET",
+   "why_unmapped": "Transfer/accommodation faults offset buried volcanic markers without range-front scarps."
+  },
+  {
+   "cost": "High: lineament-field tip extraction + gap testing + saddle concordance (~90+ min, new operators).",
+   "difference_from_repo": "CTHB/H73 relay features are catalogue-derived (fold-visible tips); no lane detects relay gaps from the lineament field alone without touching the catalogue.",
+   "expected_dti": "Third priority; matches hidden-linkage statistics but unproven operators; no measured gain.",
+   "external_data": "None.",
+   "id": "H86F-RELAY-LF",
+   "layers": [
+    "det_elev (Band 12), det_elev_slope (Band 19)",
+    "iso_grav_anom (Band 13)",
+    "rtp (Band 2)",
+    "LiDAR/topo externals"
+   ],
+   "name": "Label-free relay-ramp linkage from lineament-field tips (FUTURE)",
+   "non_fault_mimic": "Drainage-divide saddles; shutter-ridge gaps from landslides.",
+   "physical_signature": "En-echelon filament tips from DoG filament field; inter-tip gaps 0.3-2 km tested for ramp saddles (det_elev col) + gravity saddle + magnetic continuity; polarity-scrambled gap control.",
+   "rank": 3,
+   "status": "NOT_RUN_BUDGET",
+   "why_unmapped": "Relay ramps/linkage strands between mapped tips are the likeliest catalogue-missing short segments; hidden whole components are enriched in small linkages."
+  },
+  {
+   "external_data": "USGS ScienceBase Electrical Conductance Maps of the Great Basin (doi 10.5066/P9TWT2LU) + Heat Flow Maps (doi 10.5066/P9BZPVUC), public domain. OBTAINABILITY CHECK 2026-10-24: sandbox egress allowlist = github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org ONLY (environment brief). doi.org/sciencebase unreachable from sandbox compute; no mirror pinned in-repo. -> NOT VIABLE this session.",
+   "id": "H86E-MTCS",
+   "name": "Multi-depth 3D MT conductance x heat flow (BLOCKED: external data)",
+   "rank": 4,
+   "status": "NOT_VIABLE_THIS_SESSION"
+  },
+  {
+   "external_data": "USGS 3DEP 1 m bare-earth DEM tiles indexed by competition 1m_DEM_links.csv (login-walled; only OCR-recovered list in GEMSDOE24). OBTAINABILITY CHECK 2026-10-24: tile hosts outside sandbox egress allowlist; ~700 tiles x native resolution exceeds 2 h CPU budget. -> NOT VIABLE this session.",
+   "id": "H86E-WCS",
+   "name": "Native 1 m 3DEP micro-scarp persistence (BLOCKED: external data + budget)",
+   "rank": 5,
+   "status": "NOT_VIABLE_THIS_SESSION"
+  }
+ ],
+ "lane_paragraph": "H86F-HMDC (strictly zero-catalogue hydrothermal fault discovery). Signed magnetic valley-curvature troughs (Hessian eigendecomposition of RTP Band 2 and tmi_vg Band 9) mark magnetite-destruction corridors; surface-conductivity (cond_surf Band 17) x geodetic-dilatation (Band 8) positive concordance marks clay-capped dilational upflow zones; pairwise co-linear GDR-1391 hot-vent segments (hot springs T>=37C or quartz/chalc>=110C, volcanic vents, in-footprint paleo sinter, 2m-probe F2mDAB hits; 1-6 km pairs on 8 strikes), reported raw and trough-and-concordance-gated, mark breach corridors; fused with the label-free competition-band/gradient + LiDAR/topo/radiometric/chi substrate (43 features, no SPBT channel, no catalogue context) in leave-one-quadrant-out HistGradientBoosting; 300 m decimated emission at 44,090 dots with a >2px catalogue collar via the shared emitter and fail-closed writer. Controls: polarity-flipped ridge operator, shuffled-vent corridors, spaced random, visible-distance, leaked d2.8/h33 references. Mimics: reversed-polarity volcanics, playa brines, tie-line troughs.",
+ "preregistered_utc": "2026-10-24T19:40:00Z",
+ "protocol_notes": {
+  "ir_new": [
+   "IR-86-H86F-01 (owner-mandate generation without require_feasible, H86E precedent IR-86-H86E-01; literal reading still measured and reported)",
+   "IR-86-UNIQ-SCOPE-02 (degeneracy-scoped G6: halo_cover>=0.99 or support>0.20 rasters excluded from dot-overlap ONLY, rho still applies, all rows reported; thresholds unchanged; no vendor change)"
+  ],
+  "require_feasible": "run_h86f.py/finalize_h86f.py do NOT call protocol_preflight.require_feasible() (owner highest-urgency mandate to generate a unique TIF; the literal full-support stop makes any generation impossible). Instead: preregistered gates G1-G6 decide; the literal reading is measured with the shared tools and reported unchanged; no weekly slot is spent (selector step separate, quota unknown, no DrivenData auth). Follows the H86E precedent exactly.",
+  "shared_tools": "gems57.holdout.buffered_component_draw, gems57.evaluate_holdout (gems57-pooled-hide-v2), gems57.emit.emit_decimated/emit_prefix, gems57.submission_writer.write_submission, gems57.validate, gems57.uniqueness (dot_overlap, surface_rho, two_phase_summary), gems57.metric, gems57.grid \u2014 all hash-verified vs research/template_pin.json (60GEMSDOE b99591ee...). No vendor change. No private metric/writer/evaluator.",
+  "thresholds": "0.90 rho / 0.70 overlap / 0.90 canary / KSLB 0.1241 bar \u2014 all unchanged from the standing protocol and H86E gates."
+ },
+ "schema": "gems86.preregistration-h86f.v1",
+ "site_rendering_branches": {
+  "negative": "Current machinery unchanged: artifact #13 appended to docs/downloads + download-inventory (approved_for_weekly_slot false, status DO NOT SUBMIT) + registry/artifact_cards.json + docs/evidence/h86f-run-card.json (verdict negative) + h86f_uniqueness.json + h86f_results.json; audit_release --measure-registry; build_site rebuild (hero gains an H86F paragraph from the run card); count assertions 12->13 in tests.",
+  "promote": "Preregistered minimal extension (implemented ONLY if all of G1-G6 pass): audit_release tolerates card verdict promote-to-selector with all authorization flags False; artifact status PROMOTE-TO-SELECTOR (selector step required), safe_to_submit False, approved_for_weekly_slot False; report decision SELECTOR DECISION REQUIRED when any promote artifact exists (else DO NOT SUBMIT); site hero/banner render from report decision; latest-review-run-card updated to the session card. Thresholds, literal witness measurement, and the no-slot-spent rule are untouched. Full spec implemented verbatim from this preregistration; no post-hoc gate edits."
+ },
+ "verdict_rule": "promote-to-selector-only iff G1 AND G2 AND G3 AND G4 AND G5 AND G6 all pass; else negative (duplicate_stop if G6 fires on a non-degenerate raster; failed_gates listed otherwise). Decision strings: 'PROMOTE-TO-SELECTOR (selector step still required)' or 'DO NOT SUBMIT'. submission_ready/safe_to_submit/approved_for_weekly_slot remain False in ALL cases this session (no selector run, no quota evidence). submission_slots_used = 0.",
+ "amendments": [
+  {
+   "id": "A1",
+   "date_utc": "2026-10-24",
+   "timing": "BEFORE any experiment output (code review caught a vacuous constraint during implementation).",
+   "change": "Corridor segments require a collinear-third-vent chain (strip 2px, chain radius 120px, third point >10px from both endpoints). Reason: 8 azimuths tile the circle, so 'sharing one of 8 strikes' alone is vacuous for pairs; the chain requirement restores the preregistered co-linear intent. Pair search via exact-euclidean KD-tree (replaces Bresenham line-walking, which was both too strict at +-0px and slow); segments still rasterized with Bresenham. Strike tolerance remains +-11.25 deg implicitly via the strip geometry.",
+   "gates_affected": "none (operator clarification only)"
+  }
+ ]
+}
