@@ -2,6 +2,9 @@
 
 > **2026-10-24 MANDATORY GATE STATUS: `DO NOT SUBMIT` (`safe_to_submit: false`, `submission_slots_used: 0`).** All **12** published research GeoTIFFs in `docs/downloads/` pass local format/range checks (`[0, 1]`, `0` NaN, `EPSG:32611`, `3730×3292`, `100 m` grid) and **all 12 fail the mandatory literal uniqueness gate (`100.0%` 3-px overlap vs `17GEMSDOE`)**. All **45 CLI builders + 8 imported orchestrators** (including concurrent `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `experiment`, `run_experiment`, `run_h86`, and `run_lane`) are gated behind `protocol_preflight.require_feasible()`.
 
+
+> **2026-10-24 GAPRES session:** new unique TIF `docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif` (sha256 `0af386ec…`, 37,654 dots, 0.000 3-px overlap vs 26 local dotted fleet rasters, format-valid [0,1]/EPSG:32611/3730×3292) — **🔴 DO NOT SUBMIT**: HOLDOUT-DTI 0.0000 (n=22,641, gems57-pooled-hide-v2) < h33 same-instrument 0.0044. See `research/GAPRES_SESSION_20261024.md` + `docs/evidence/gapres-run-card.json`. No slot used.
+
 ## Latest session — 2026-10-24 H86E & parallel reviews (`d7b214a5`, `dcbb8404` & `647e6683`): automated verdict 🔴 DO NOT SUBMIT
 
 [H86E session report](research/H86E_SESSION_20261024.md): under the owner's explicit
