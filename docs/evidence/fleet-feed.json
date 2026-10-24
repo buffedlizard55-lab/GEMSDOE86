@@ -1,8 +1,8 @@
 {
   "schema": "gems86.fleet-feed.v1",
   "evidence_class": "REPOSITORY-METADATA",
-  "refresh_started_utc": "2026-10-24T19:22:36+00:00",
-  "refreshed_utc": "2026-10-24T19:22:54+00:00",
+  "refresh_started_utc": "2026-10-24T19:27:44+00:00",
+  "refreshed_utc": "2026-10-24T19:28:00+00:00",
   "targets_sha256": "9a81839530e571ec4663b2ce246b4641d69a65f4feadda149ae23e4e13852a71",
   "owner_ledger_sha256": "ec77f3ae0f1be7cd8ab47ca77da86acc983a02487773d1c155a35059158c3a20",
   "projects_requested": 92,
@@ -14537,12 +14537,12 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "6aecaf514387d89f7583654437aae80602582419",
-      "tree_sha": "e6159e1165cf05e0a8db2038c3df7167a397a0de",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/tree/6aecaf514387d89f7583654437aae80602582419",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE88/git/trees/e6159e1165cf05e0a8db2038c3df7167a397a0de?recursive=1",
-      "source_commit_date": "2026-10-24T19:19:27Z",
-      "current_tree_tif_count": 25,
+      "commit_sha": "cf2d38ebec01c454b985ab70ba31fbab5b552ab7",
+      "tree_sha": "7c31d4ba4c7b9b9607248d15c78038e5350180f3",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/tree/cf2d38ebec01c454b985ab70ba31fbab5b552ab7",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE88/git/trees/7c31d4ba4c7b9b9607248d15c78038e5350180f3?recursive=1",
+      "source_commit_date": "2026-10-24T19:25:05Z",
+      "current_tree_tif_count": 27,
       "tif_git_objects": [
         {
           "path": "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
@@ -14553,6 +14553,11 @@
           "path": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "3f3a7eee2ef5e2c31069758fe7d0432b0a55da36",
           "git_blob_bytes": 146348
+        },
+        {
+          "path": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "cae0b8ff49491b54fdaeee7a8c867cbd1bfb3c6e",
+          "git_blob_bytes": 114474
         },
         {
           "path": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
@@ -14650,6 +14655,11 @@
           "git_blob_bytes": 1545542
         },
         {
+          "path": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "cae0b8ff49491b54fdaeee7a8c867cbd1bfb3c6e",
+          "git_blob_bytes": 114474
+        },
+        {
           "path": "submissions/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "5094071b4bebd87f536e0b53b094c12a2339d178",
           "git_blob_bytes": 143314
@@ -14670,7 +14680,7 @@
           "git_blob_bytes": 147469
         }
       ],
-      "published_download_tif_count": 14,
+      "published_download_tif_count": 15,
       "tree_truncated": false
     },
     {
@@ -15130,11 +15140,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "5c42dd106642dea2372ea8e27bc5a16a515dbb2c",
-      "tree_sha": "c3470d75ba95a59e984e2c52a9a2b9e293186193",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/tree/5c42dd106642dea2372ea8e27bc5a16a515dbb2c",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE91/git/trees/c3470d75ba95a59e984e2c52a9a2b9e293186193?recursive=1",
-      "source_commit_date": "2026-10-24T19:04:45Z",
+      "commit_sha": "48577576b40c370d748205cace73ff5437670b65",
+      "tree_sha": "779420734eff26dbc5c114e591bf458e28fbb020",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/tree/48577576b40c370d748205cace73ff5437670b65",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE91/git/trees/779420734eff26dbc5c114e591bf458e28fbb020?recursive=1",
+      "source_commit_date": "2026-10-24T19:26:48Z",
       "current_tree_tif_count": 11,
       "tif_git_objects": [
         {
