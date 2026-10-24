@@ -67,7 +67,7 @@ def downloads(artifacts: list[dict]) -> str:
     return "\n".join(result)
 
 
-def home(report: dict, fleet: dict, registry: dict) -> str:
+def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
@@ -75,6 +75,7 @@ def home(report: dict, fleet: dict, registry: dict) -> str:
 <h1>Download the research.<br><span class="subtle">Do not spend a submission slot.</span></h1>
 <p class="lede">The downloadable GeoTIFFs pass automated local format checks, but the mandatory uniqueness rule blocks every nonempty candidate. A new hash is not a unique scientific submission.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <strong>DO NOT SUBMIT</strong> any current file.</p>
+<p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Why blocked &amp; how submission works →</a></div></section>
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Submission-approved files</span><strong>None</strong><small>Every candidate remains negative. No selector or portal operation was run.</small></div>
@@ -244,6 +245,13 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or feed["targets_sha256"] != sha256(root / "registry/site_targets.json")):
         raise ValueError("Fleet feed is stale relative to its ledger/target inputs")
     registry = strict_json(root / "docs/evidence/all-artifacts-registry.json")
+    review = strict_json(root / "docs/evidence/latest-review-run-card.json")
+    if (review["release_report_sha256"] != sha256(root / "docs/evidence/release-readiness.json")
+            or review["registry_measurement_sha256"] != sha256(root / "docs/evidence/all-artifacts-registry.json")
+            or review["registry_measured_utc"] != registry["measured_utc"]
+            or review["verdict"] != "negative" or review["submission_ready"] is not False
+            or review["new_candidate_generated"] is not False):
+        raise ValueError("Current review is stale or contradicts the negative release audit; remeasure registry")
     sources = strict_json(root / "docs/evidence/source-review-20261023.json")
     plan = strict_json(root / "registry/h86c_hypotheses.json")
     with (root / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
@@ -253,7 +261,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
                    reason="No selector decision. Different historical holdout designs cannot be ranked by their maxima.",
                    release_readiness="../evidence/release-readiness.json")
     return {
-        "docs/index.html": home(report, feed, registry),
+        "docs/index.html": home(report, feed, registry, review),
         "docs/executive-summary.html": executive(report, sources),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan),

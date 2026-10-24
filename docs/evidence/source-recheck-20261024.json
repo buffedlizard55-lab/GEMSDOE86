@@ -1,0 +1,43 @@
+{
+  "schema": "gems86.scoped-source-recheck.v1",
+  "observed_date_utc": "2026-10-24",
+  "retrieval_method": "gh api GitHub contents/blob endpoints; decoded Git object identities checked locally",
+  "scope": "Only the named GitHub files were reread. No claim of current DrivenData leaderboard, account quota, data access, exhaustive literature verification or organizer-confirmed score.",
+  "sources": [
+    {
+      "id": "OFFICIAL-REFERENCE",
+      "class": "OFFICIAL_REFERENCE_CODE",
+      "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "readme_blob": "a8814f99c395d12a8e1c3731c738e61d7dca06b5",
+      "notebook_blob": "d45bf7bdb1d31a22caa38371ad195c2f6eb965ae",
+      "notebook_sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "observed": [
+        "README offers CPU-only and GPU options; GPU is faster, not mandatory.",
+        "Notebook trains a U-Net with Monte Carlo patch splits and TverskyLoss(alpha=0.2, beta=0.8)."
+      ],
+      "limits": "Training loss and random patch splits are not the requested buffered segment evaluator or a new-fault generalization certificate."
+    },
+    {
+      "id": "H33-PAGE",
+      "class": "OWNER_PROJECT_PAGE_NOT_ORGANIZER_RECEIPT",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/078f3cea1bc75d15beb81b095ab488a912327a5d/docs/index.html",
+      "blob": "c9811e55ca8e1cba26ecd4c2cfa7262de924861a",
+      "sha256": "1211654a536dfe9c3e903fbf0080996e21bf92995cd7061715480b0683e7782f",
+      "observed_excerpt": "projected 0.2747; UNSCORED",
+      "observed": [
+        "Page identifies H33-2-B2 as flank B=2 pruning; names the 37,654-dot zero-exterior file.",
+        "The string 0.2778 was absent from the retrieved page.",
+        "Page labels its quoted Note as 177/200 characters, exceeding this project's 140-character note limit."
+      ],
+      "limits": "Absence of the owner-reported result here neither disproves a later submission nor confirms one. Page format claims are not independently validated by rereading HTML."
+    },
+    {
+      "id": "OTHER-OFFICIAL-SOURCES",
+      "class": "HISTORICAL_OBSERVATIONS_NOT_RECHECKED",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "evidence": "docs/evidence/source-review-20261023.json",
+      "limits": "Network access in this session is restricted to the allowed GitHub/package hosts. DrivenData, USGS, GDR, NLR and Dropbox bytes were not newly retrieved. Historical excerpts keep their original date and scope."
+    }
+  ]
+}

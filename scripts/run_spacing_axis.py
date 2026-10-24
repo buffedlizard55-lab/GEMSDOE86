@@ -491,6 +491,10 @@ def sgmc_control(arms: dict, g, dist_cat: np.ndarray) -> dict:
 
 # ---------------------------------------------------------------- main
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-write", action="store_true")
     ap.add_argument("--stamp", default=None)

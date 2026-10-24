@@ -294,6 +294,10 @@ def sgmc_control(g: PC.Grids, cands: dict[str, np.ndarray]) -> dict:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--measure", action="store_true")

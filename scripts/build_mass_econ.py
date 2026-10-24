@@ -310,6 +310,10 @@ def canary(parent: np.ndarray, arms: dict[str, np.ndarray], ctx: dict) -> dict:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-surrogate", action="store_true")
     a = ap.parse_args()

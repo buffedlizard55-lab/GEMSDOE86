@@ -635,6 +635,10 @@ def _write_geologist_dossier(
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     print("[1/7] Verifying SHA-256 of all pinned manifest inputs and template66 tools ...")
     verified_inputs = verify_all_inputs()
 

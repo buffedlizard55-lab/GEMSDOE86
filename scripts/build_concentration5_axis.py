@@ -544,6 +544,10 @@ def validate_only() -> int:
 
 
 def main() -> int:
+    # Historical variant builders obey the same literal pre-placement stop.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--validate-only", action="store_true")
     args = ap.parse_args()

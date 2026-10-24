@@ -667,3 +667,15 @@ upload the human chooses to make.
 * **Human decided / must supply:** nothing supplied in-session (`TOP_PUBLIC` + date, rolling-week
   quota remaining, R0's live `0.2778` receipt, verified deadline, portal encoding preference remain
   human-supplied). Zero submissions made; zero DrivenData / Dropbox requests; zero credential access.
+
+
+## 2026-10-24 — safety review, no new scientific submission
+
+An Arena.ai coding agent reviewed the standing request and existing source/evidence,
+remeasured pinned historical registry and artifact bytes, repaired orchestration
+preflight bypasses, added current negative-audit receipt/hash checks and regression
+tests, and documented evidence limitations and next steps. No new model, surface,
+dots, TIFF, official submission, selector choice or score was generated. Official
+reference GitHub files and owner H33 HTML were reread at pinned Git identities;
+other official websites were not newly fetched under the restricted host access.
+See `research/SESSION_20261024_REVIEW.md` for the three-pass record.
