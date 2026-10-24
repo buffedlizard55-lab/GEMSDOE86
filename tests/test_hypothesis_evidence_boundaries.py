@@ -1,28 +1,32 @@
-"""Planning evidence safeguards, not model or holdout validation."""
+"""The archived preregistration remains historical; live status lives in the current queue."""
 import json
 from pathlib import Path
 
-PLAN = json.loads((Path(__file__).resolve().parents[1] / 'registry/h86c_hypotheses.json').read_text())
+ROOT = Path(__file__).resolve().parents[1]
+HISTORICAL = json.loads((ROOT / 'registry/h86c_hypotheses.json').read_text())
 
 
-def test_planning_cannot_be_read_as_measured_improvement():
-    assert 'untested hypotheses' in PLAN['evidence_boundary']
-    assert PLAN['experiments_run'] == 0
-    for h in PLAN['hypotheses']:
+def test_archived_preregistration_cannot_be_mistaken_for_current_experiment_history():
+    assert HISTORICAL["record_type"] == "historical_preregistration_snapshot"
+    assert HISTORICAL["current_register"] == "registry/untried_hypotheses_20261024.json"
+    assert "not a statement of current experiment history" in HISTORICAL["historical_status_note"]
+    assert 'untested hypotheses' in HISTORICAL['evidence_boundary']
+    assert HISTORICAL['experiments_run'] == 0
+    for h in HISTORICAL['hypotheses']:
         assert h['holdout_dti'] is None
         assert h['ci95'] is None
         assert h['status'].startswith('NOT_RUN')
 
 
-def test_external_sources_require_actual_obtainability_check():
-    for h in PLAN['hypotheses']:
+def test_external_sources_in_original_preregistration_require_obtainability_notes():
+    for h in HISTORICAL['hypotheses']:
         if h['external_data_required']:
             assert h['obtainability'].startswith('NOT_VERIFIED_THIS_SESSION')
             assert h['data_readiness'].startswith('NOT_VIABLE_YET')
 
 
 def test_magnetic_minimum_curvature_sign_and_nonunique_interpretation():
-    signature = PLAN['hypotheses'][2]['signature']
+    signature = HISTORICAL['hypotheses'][2]['signature']
     assert 'positive cross-strike second derivative of rtp' in signature
     assert 'negative second derivative of -rtp' in signature
     assert 'not diagnostic' in signature
@@ -32,7 +36,7 @@ def test_magnetic_minimum_curvature_sign_and_nonunique_interpretation():
     assert -values[0] + 2 * values[1] - values[2] < 0
 
 
-def test_uncertain_band_semantics_not_silently_assumed():
-    assert 'Do not use tc until' in PLAN['hypotheses'][1]['signature']
-    assert 'Exclude tc until' in PLAN['hypotheses'][3]['signature']
-    assert 'must not be treated as independent' in PLAN['hypotheses'][0]['why_unmapped']
+def test_uncertain_band_semantics_not_silently_assumed_in_historical_register():
+    assert 'Do not use tc until' in HISTORICAL['hypotheses'][1]['signature']
+    assert 'Exclude tc until' in HISTORICAL['hypotheses'][3]['signature']
+    assert 'must not be treated as independent' in HISTORICAL['hypotheses'][0]['why_unmapped']

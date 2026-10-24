@@ -69,15 +69,21 @@ def test_checked_in_feed_covers_named_targets_without_score_promotion():
     assert all(c["evidence_class"].startswith("OWNER-REPORTED") for c in scores)
 
 
-def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability():
+def test_current_untried_hypotheses_do_not_invent_validation_or_data_obtainability():
     import re
     from src.gems86.io import BANDS
-    plan = strict_json(ROOT / "registry/h86c_hypotheses.json")
-    assert 3 <= len(plan["hypotheses"]) <= 5
-    assert plan["experiments_run"] == 0
+    plan = strict_json(ROOT / "registry/untried_hypotheses_20261024.json")
+    assert plan["schema"] == "gems86.current-untried-hypotheses.v1"
+    assert [h["id"] for h in plan["hypotheses"]] == [
+        "H86E-MMT", "H86E-SPBT-LAPLACE", "H86E-HMDC", "H86E-MTCS", "H86E-WCS"
+    ]
+    assert plan["experiments_run_this_review"] == plan["submission_slots_used"] == 0
+    assert plan["current_protocol_status"]["status"] == "STOP_LITERAL_OVERLAP_UNSATISFIABLE"
+    assert plan["current_protocol_status"]["preplacement_surface_constructed"] is False
+    assert plan["current_protocol_status"]["candidate_dots_placed"] is False
     for row in plan["hypotheses"]:
         assert row["holdout_dti"] is row["ci95"] is None
-        assert row["status"].startswith("NOT_RUN")
+        assert row["status"].startswith(("NOT_RUN", "UNTESTED"))
         for field in ("layers", "signature", "why_unmapped", "difference_from_repo", "non_fault_mimic", "implementation_cost"):
             assert row[field]
         if row["external_data_required"]:
@@ -88,6 +94,13 @@ def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability()
         assert "tc (Band 6) magnetic tilt zero-crossings" not in text_blob
         for key, band_str in re.findall(r"\b([a-z0-9_]+)\s*\(Band\s+(\d+)\b", text_blob):
             assert BANDS[int(band_str)] == key, f"Band mismatch in {row['id']}: Band {band_str} is {BANDS[int(band_str)]}, not {key}"
+
+
+def test_original_hypothesis_register_is_clearly_historical():
+    historical = strict_json(ROOT / "registry/h86c_hypotheses.json")
+    assert historical["record_type"] == "historical_preregistration_snapshot"
+    assert historical["current_register"] == "registry/untried_hypotheses_20261024.json"
+    assert "did not implement" in historical["historical_status_note"]
 
 
 def test_band_physics_verification_receipt_blocks_header_mislabels():

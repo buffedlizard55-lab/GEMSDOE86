@@ -13,6 +13,7 @@
     "ci95": null
   },
   "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
     "status": "UNIVERSAL_LITERAL_BLOCKER",
     "preplacement_surface": null,
     "new_final_dots": null,

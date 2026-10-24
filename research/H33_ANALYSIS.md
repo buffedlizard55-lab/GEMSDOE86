@@ -7,9 +7,9 @@
 
 The pinned `GEMSDOE28` parent (`40,199` dots; owner-reported 0.2708) and `GEMSDOE32` `h33-h33-2-b2` (`37,654` dots; owner-reported 0.2778) rasters differ in **0 cells across all 12,279,160 grid pixels** after deleting the 2,545 dots in the 1.0 < d_cat ≤ 2.0 mapped-fault collar.
 
-In other words, H33 = GEMSDOE28 minus its 2-pixel catalogue collar, with all other dots held identical. The score moved from 0.2708 to 0.2778 (+0.0070 owner-reported) purely by removing 2,545 low-credit dots from the mapped-fault collar.
+In other words, the H33 raster is exactly GEMSDOE28 minus its 2-pixel catalogue collar, with all other dots held identical. The supplied owner-reported values differ by +0.0070, but neither is backed here by an organizer receipt; the raster comparison does not establish what caused a score change. `tests/test_h33_raster_identity.py` now binds this artifact-identity result to the source TIFF hashes.
 
-## 2. Mechanism: coverage-efficient emission, not a new geological discovery
+## 2. Plausible mechanism: coverage-efficient emission, not an established score cause
 
 The official metric is the asymmetric Distance-Weighted Tversky Index (DTI) with α = 0.2 (false-positive weight) and β = 0.8 (false-negative weight), evaluated with a 300 m triangular kernel (3 px radius at 100 m resolution):
 
@@ -25,7 +25,7 @@ Two algebraic facts explain H33:
 
 **(b) Collar pruning removes low-credit mass.** Dots within 1–2 px of a mapped trace sit on known faults. If the organizer's hidden truth already covers those cells, nearby dots add little T but add F. Deleting them (H33's collar deletion) lowers F with little T loss, raising DTI. Conversely, if a collar dot was the *only* cover of a real unmapped parallel fault, deleting it loses T and hurts.
 
-So H33's 0.2778 is explained by **coverage-efficient emission**: retain high-value lineament field, thin redundant prediction mass at the 300 m kernel scale, prune mass near mapped faults when it adds little credit. No new layer was discovered.
+A plausible mechanism for why such a raster transformation could matter under this metric is **coverage-efficient emission**: retain a high-value lineament field, thin redundant prediction mass at the 300 m kernel scale, and prune mass near mapped faults when it adds little credit. The supplied score is unverified, and this raster-only comparison cannot attribute it to that mechanism. No new layer was discovered by the pixel comparison.
 
 ## 3. Can we score higher than 0.2778?
 
@@ -57,4 +57,4 @@ This prevents the class of invalid numerical output that triggers "Predicted val
 
 ## Verdict
 
-H33's 0.2778 is plausibly explained by coverage-efficient emission (collar pruning + kernel-scale thinning), not by a new geological layer. Beating it requires a gate-compliant, holdout-validated method plus an organizer receipt — none established here. Concurrent PR #80's protocol-bypassing `faulthalo` binary (`IR-86-FAULTHALO-01`) has been revoked; all preserved historical research TIFFs remain audit-only (`DO NOT SUBMIT`).
+The H33 raster transformation is exactly reproducible, and coverage-efficient emission is a plausible—but unproven—mechanism for a score change; the supplied `0.2778` remains OWNER-REPORTED. Beating it is not established. Any future claim requires an authorized gate-compliant candidate, spatially blocked holdout evidence, and an organizer receipt—none is available here. The current untried hypotheses and their source limits are in `registry/untried_hypotheses_20261024.json` and `docs/evidence/hypothesis-data-availability-20261024.json`. Concurrent PR #80's protocol-bypassing `faulthalo` binary (`IR-86-FAULTHALO-01`) has been revoked; all preserved historical research TIFFs remain audit-only (`DO NOT SUBMIT`).

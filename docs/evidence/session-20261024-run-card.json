@@ -1,8 +1,8 @@
 {
   "schema": "gems86.session-negative.v1",
   "date_utc": "2026-10-24",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement–Laplace-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "Oriented cross-strike antisymmetric step operator at L in {300, 600, 1200} m pairing positive sediment-thickness step (+Delta depth_to_base_surf, hanging-wall basin thickening) with antiparallel residual gravity step (-Delta iso_grav_anom) AND across-strike dipole sign flip of the footprint-masked, Gaussian-regularized (sigma = 400-600 m) Laplace second vertical gravity derivative g_zz = -(d(Band 18)/dx_east - d(Band 11)/dy_north) along the identical normal vector n(theta), gated on low surface topographic slope (det_elev_slope < 25th percentile) and thin magnetic horizontal-gradient crest alignment (tmi_hg).",
+  "hypothesis": "H86E-SPBT-LAPLACE: Signed paired-throw plus Laplace-gravity-curvature extension (NOT RUN; distinct from the standalone SPBT base tested later)",
+  "mechanism": "Proposed extension: pair signed basement-depth and gravity flank steps, then add a footprint-masked, spatially regularized Laplace vertical gravity-curvature dipole g_zz = -(d_x Band 18 - d_y Band 11). The archived H86E standalone SPBT E1-E2 tested signed basement/gravity flank concordance without this Laplace-curvature term; those negative base-method results do not validate or falsify this unrun extension. Gravity bands and their derivatives share source ancestry.",
   "named_non_fault_process": "Unfaulted paleovalley channels incised into bedrock, buried caldera ring margins, or lateral alluvial-fan facies density wedges (USGS OFR 99-383).",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
@@ -49,5 +49,13 @@
     "release_audit": "PASS: every inherited artifact checked; all remain DO NOT SUBMIT",
     "site_integrity": "PASS: generated site and links checked",
     "fresh_github_project_feed": "PASS: all named repositories snapshotted; metadata only"
-  }
+  },
+  "hypothesis_id": "H86E-SPBT-LAPLACE",
+  "related_tested_base_method": {
+    "hypothesis_id": "H86E-SPBT-BASE",
+    "status": "TESTED_NEGATIVE_AS_STANDALONE",
+    "included_laplace_curvature": false,
+    "evidence_file": "research/H86E_SESSION_20261024.md"
+  },
+  "plan_scope": "Historical preregistration card for the untested Laplace-curvature extension; not a current run result or statement that the standalone SPBT was untested."
 }

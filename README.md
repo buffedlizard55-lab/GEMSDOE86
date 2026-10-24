@@ -2,19 +2,22 @@
 
 > **2026-10-24 MANDATORY GATE STATUS: `DO NOT SUBMIT` (`safe_to_submit: false`, `submission_slots_used: 0`).** All **12** published research GeoTIFFs in `docs/downloads/` pass local format/range checks (`[0, 1]`, `0` NaN, `EPSG:32611`, `3730×3292`, `100 m` grid) and **all 12 fail the mandatory literal uniqueness gate (`100.0%` 3-px overlap vs `17GEMSDOE`)**. All **45 CLI builders + 8 imported orchestrators** (including concurrent `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `experiment`, `run_experiment`, `run_h86`, and `run_lane`) are gated behind `protocol_preflight.require_feasible()`.
 
-## Latest session — 2026-10-24 H86E & parallel reviews (`d7b214a5`, `dcbb8404` & `647e6683`): automated verdict 🔴 DO NOT SUBMIT
+## Current continuation — 2026-10-24: no new TIFF, no experiment, no slot
+
+- **Requested new unique competition TIFF: UNMET.** The restored witness covers `5,106,385 / 5,106,385` allowed pixels; any nonempty candidate therefore has `1.0` forward overlap, above the unchanged `0.70` limit. The mandatory preflight stopped before a surface or dots were built. The historical TIFFs remain audit-only.
+- **H33 (`0.2778`) remains OWNER-REPORTED and unverified.** Pixel forensics show the H33 raster is exactly its `GEMSDOE28` parent after deleting `2,545` positives at catalogue distance `<= 2 px`; this explains the file transformation, not the score or its cause. `tests/test_h33_raster_identity.py` binds that result to the source TIFF hashes.
+- **SPBT distinction:** the standalone signed paired-throw basement/gravity method was tested without the Laplace-curvature term and reported negative: weighted `HOLDOUT-DTI 0.0280`, 95% CI `[0.0143, 0.0435]`, `gems57-pooled-hide-v2`, `11,321` withheld positives; polarity-scrambled control `HOLDOUT-DTI 0.0314`, 95% CI `[0.0202, 0.0438]`, and spaced-random control `HOLDOUT-DTI 0.0333`, 95% CI `[0.0284, 0.0377]`, on the same evaluator and withheld set. The separate SPBT-Laplace extension remains untested and blocked; it is not the standalone method renamed.
+- **Current qualitative untried queue (no numeric forecast):** `H86E-MMT`, `H86E-SPBT-LAPLACE`, `H86E-HMDC`, `H86E-MTCS`, `H86E-WCS`. Only MMT is the top research priority; it has not been validated because of the protocol stop.
+- **Data access is bounded, not assumed:** the official-source receipt is dated; GDR GitHub mirror metadata lists the sinter and 2 m temperature archives, but the bytes were not restored or SHA-checked in this continuation. The MT grids and native 1 m LiDAR tiles are not verified as locally obtainable. See the [current queue](registry/untried_hypotheses_20261024.json) and [data-availability audit](docs/evidence/hypothesis-data-availability-20261024.json).
+- **Three-pass verification complete:** `pytest -q` reports **541 passed, 24 skipped, 41 subtests passed**; release remeasurement, generated-site checks, site/download audits, unit tests, validators, and protocol/registry proof reproductions pass. These verify code, files, and the negative stop—not a new scientific result or submission clearance.
+
+## Previous session — 2026-10-24 H86E & parallel reviews (`d7b214a5`, `dcbb8404` & `647e6683`): automated verdict 🔴 DO NOT SUBMIT
 
 [H86E session report](research/H86E_SESSION_20261024.md): under the owner's explicit
 generate-and-auto-validate mandate (IR-86-H86E-01), a byte-unique, format-valid
 GeoTIFF was generated — `docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif`
 (sha256 `c26ebb29…`, 44,090 dots, registered in the 12-artifact audit-only inventory). **Do not upload it.** Its automated gates
-([run card](docs/evidence/h86e-run-card.json)) fail G4 (HOLDOUT-DTI 0.1037 < KSLB
-0.1241 on the identical instrument), G5 (SGMC auxiliary proxy 0.0718 < h33 0.0929)
-and G6 (85.4% dot overlap vs the GMC catalogue-halo control, plus 100.0% vs `17GEMSDOE`). An unregularized
-signed paired-throw baseline (SPBT without Laplace `g_zz` / `sigma=400-600 m` regularization) scored HOLDOUT-DTI 0.0310
-vs spaced random 0.0333 (SGMC proxy 0.0144). No weekly slot was used; no leaderboard
-improvement is claimed; every score-like number remains labelled HOLDOUT-DTI /
-AUXILIARY-PROXY / OWNER-REPORTED.
+([run card](docs/evidence/h86e-run-card.json)) fail G4: CCTX **HOLDOUT-DTI `0.1037`**, 95% CI `[0.0854, 0.1216]`, versus KSLB **HOLDOUT-DTI `0.1241`**, 95% CI `[0.1080, 0.1403]` (both `gems57-pooled-hide-v2`, `11,321` withheld positives); G5: **AUXILIARY-PROXY** `0.0718` versus fixed-H33 `0.0929` (not HOLDOUT-DTI); and G6: **REGISTRY-MEASUREMENT** overlap `85.4%` versus the GMC catalogue-halo control and `100.0%` versus `17GEMSDOE`. The standalone signed paired-throw baseline (without Laplace `g_zz` curvature) recorded weighted `HOLDOUT-DTI 0.0280`, 95% CI `[0.0143, 0.0435]`; the separate unweighted-concordance arm was `HOLDOUT-DTI 0.0310`, 95% CI `[0.0168, 0.0476]`; the polarity-scrambled control was `HOLDOUT-DTI 0.0314`, 95% CI `[0.0202, 0.0438]`; and spaced random was `HOLDOUT-DTI 0.0333`, 95% CI `[0.0284, 0.0377]` (all `gems57-pooled-hide-v2`, `11,321` withheld positives). The SGMC auxiliary proxy was `0.0144`. The distinct Laplace-curvature extension was not part of E1-E2 and remains untested. No weekly slot was used; no leaderboard improvement is claimed; every score-like number remains labelled HOLDOUT-DTI / AUXILIARY-PROXY / OWNER-REPORTED.
 
 **Parallel-session reviews (`d7b214a5`, `dcbb8404` & `647e6683`):** Pixel-level physics verification (`docs/evidence/band-physics-verification-20261024.json`) proved Band 6 (`tc`) is GeoDAWN Radiometric Total Count (`TC`, `r = +0.997140`, `min = +2.9534`, 0 zero-crossings) rather than magnetic tilt (`r = +0.012796`) and `(+Band 18, -Band 11)` is the signed 2-D horizontal gravity gradient vector (`IR-86-BAND6-TC-MISLABEL-20261024`, `IR-86-BAND11-18-GRAV-VECTOR-20261024`); concurrent PR #77 (`SWCON`, `IR-86-SWCON-01`) and PR #80 (`FAULTHALO`, `IR-86-FAULTHALO-01`) were forensically audited and revoked to `DO NOT SUBMIT`. [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
 
@@ -42,7 +45,7 @@ AUXILIARY-PROXY / OWNER-REPORTED.
 
 <!-- CURRENT_STATE_START -->
 
-## CURRENT STATE — 2026-10-23 (rev. F: rev. D/E + pediment-window attribution BUILT — SGMC falsifier fired, no slot change)
+## HISTORICAL STATE SNAPSHOT — 2026-10-23 (rev. F; superseded by the current continuation above)
 
 | Field | Value |
 |---|---|
@@ -66,7 +69,7 @@ AUXILIARY-PROXY / OWNER-REPORTED.
 
 <!-- CURRENT_STATE_END -->
 
-## CURRENT STATE (2026-10-23, PRUNE ladder — second session)
+## HISTORICAL SESSION SNAPSHOT (2026-10-23, PRUNE ladder — second session)
 
 | field | value |
 |---|---|
@@ -86,11 +89,11 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 
 - **[Open the download dashboard](https://buffedlizard55-lab.github.io/GEMSDOE86/)** · [executive summary / exact submission procedure](docs/executive-summary.html) · [PR #60 revocation gate](docs/submit.html).
 - **[Machine-readable all-file validator](docs/evidence/release-readiness.json)** · [all final-dot registry measurements](docs/evidence/all-artifacts-registry.json) · [current negative JSON card](docs/evidence/latest-review-run-card.json).
-- **[Full 92-project feed](docs/fleet.html)** · [official sources and observation limits](docs/sources.html) · [five ranked, untested hypotheses](registry/h86c_hypotheses.json) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md).
+- **[Full 92-project feed](docs/fleet.html)** · [official sources and observation limits](docs/sources.html) · [current five-item untried queue](registry/untried_hypotheses_20261024.json) · [archived original preregistration](registry/h86c_hypotheses.json) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md).
 
 ### Latest review — 2026-10-24
 
-The **92-project** repository-metadata feed (`GEMSDOE` through `GEMSDOE92`, including `113` `OWNER-REPORTED` score claims across `86` repos plus `2` newly prompt-named unscored entries on `GEMSDOE89` and `GEMSDOE90`) was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, generated no new authorized submission and used no submission slot. PR #60's unregistered `submission/` export (`SPT`, `sha256: 26cf2d39...`) was forensically audited and revoked (`IR-86-SPT-02`), and the newly prompt-named `GEMSDOE89` (`sha256: 715c8b86...`, `99.92%` 3-px overlap vs binary `13GEMSDOE`, `100.0%` vs `17GEMSDOE`) and `GEMSDOE90` (`sha256: e1e91be2...`, `98.35%` vs binary `13GEMSDOE`, `100.0%` vs `17GEMSDOE`) artifacts were forensically audited (`IR-86-FLEET-GEMS89-90-20261024`). Full three-pass inspection, PhD analysis of `GEMSDOE32` (`0.2778`), pixel-level 19-band physics audit, ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
+The **92-project** repository-metadata feed (`GEMSDOE` through `GEMSDOE92`, including `113` `OWNER-REPORTED` score claims across `86` repos plus `2` newly prompt-named unscored entries on `GEMSDOE89` and `GEMSDOE90`) was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, generated no new authorized submission and used no submission slot. PR #60's unregistered `submission/` export (`SPT`, `sha256: 26cf2d39...`) was forensically audited and revoked (`IR-86-SPT-02`), and the newly prompt-named `GEMSDOE89` (`sha256: 715c8b86...`, `99.92%` 3-px overlap vs binary `13GEMSDOE`, `100.0%` vs `17GEMSDOE`) and `GEMSDOE90` (`sha256: e1e91be2...`, `98.35%` vs binary `13GEMSDOE`, `100.0%` vs `17GEMSDOE`) artifacts were forensically audited (`IR-86-FLEET-GEMS89-90-20261024`). Full three-pass inspection, PhD analysis of `GEMSDOE32` (`0.2778` `OWNER-REPORTED`), pixel-level 19-band physics audit, ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
 
 ## Outcome of the current review
 
@@ -125,18 +128,21 @@ With weighted recovered truth `T`, false-positive mass `F`, fixed truth count `N
 
 No improvement over the owner's competition result is demonstrated here. Initial competition truth consists of new expert-mapped faults absent from the supplied catalogue; recovering withheld catalogue faults is an imperfect proxy. Fault probability also does not establish a geothermal vent, open permeability, heat supply, fluid saturation or an economic resource.
 
-### Next geological hypotheses, ranked before implementation
+### Current five untried hypotheses
 
-Qualitative expected information gain per implementation cost, **not predicted DTI**:
+This qualitative ranking is based on fault-mechanism fit, current evidence, data readiness, and cost—not a numerical DTI forecast. The top research priority is **H86E-MMT**, but it was not validated: the mandatory pre-placement stop prevented construction or a holdout run.
 
-1. **`H86E-SPBT` — Signed paired-throw basement–gravity concordance under low-relief alluvial cover** — `depth_to_base_surf` (Band 15), `iso_grav_anom` (Band 13), `det_elev` (Band 12), `det_elev_slope` (Band 19), and `tmi_hg` (Band 3) antisymmetric flank profiles requiring matching hanging-wall downthrown polarity beneath flat basin fill. Mimics: unfaulted erosional paleovalley walls and caldera moats. Low–medium cost; untested (`NOT_RUN_PROTOCOL_STOP`).
-2. **`H86E-MMT` — Cross-corridor GeoDAWN magnetic marker-horizon phase-correlation offset** — `rtp` (Band 2), `tc` (Band 6), `tmi_hg` (Band 3), and mirrored `geodawn_rad_u8.tif` K/Th/U split-window flank phase correlation seeking laterally translated transverse volcanic markers across oblique basin accommodation zones (vetoing `090°` E–W flight-line and `180°` N–S tie-line seam azimuths). Mimics: intrusive contacts, primary lava-flow lobe edges, and GeoDAWN survey seams. Medium–high cost; untested (`NOT_RUN_PROTOCOL_STOP`).
-3. **`H86E-HMDC` — Hydrothermal magnetite-destruction trough & pairwise paleo-vent/sinter strike-alignment corridor** — `rtp` (Band 2), `tmi_vg` (Band 9), `cond_surf` (Band 17), `geod_dilaterate` (Band 8), and `geod_shearrate` (Band 7) coupled to GitHub-pinned GDR 1391 `paleo_geothermal_regional.zip` (`726` sinter/tufa mounds), `2m_temperature_probe` (`3,800` probes), and Quaternary volcanic vents to trace negative flanking-shoulder magnetite-destruction troughs along pairwise vent geodesics (contrasting with `H86D-CTHB`'s positive magnetic ridges and isotropic radial halos). Mimics: reversed-polarity flows and primary low-susceptibility felsic tuffs. Medium cost; untested (`NOT_RUN_PROTOCOL_STOP`).
-4. **`H86E-MTCS` — Multi-depth 3D MT conductance contrast × conductive heat-flow & transtensional dilatancy bridge** — external free official USGS 5-depth (`2–200 km`) 3D MT conductance (`10.5066/P9TWT2LU`) + USGS conductive heat flow (`10.5066/P9BZPVUC`) contrasted against single-band `cond_surf` (Band 17) inside `geod_dilaterate` (Band 8) > 0 to separate deep blind hydrothermal conduits from shallow playa brines. Mimics: Paleozoic graphitic/sulfidic black shales. Medium–high cost; **not viable yet** (`NOT_VIABLE_YET`) until ScienceBase rasters are mirrored inside the sandbox allowlist.
-5. **`H86E-WCS` — Watershed-crossing 1-m 3DEP LiDAR micro-scarp curvature persistence** — signed `5–25 m` cross-strike profile steps on native `1 m` USGS 3DEP DEMs across independent drainage divides (`1m_DEM_links.csv` in Official Rules PDF; `det_elev` Band 12, `det_elev_slope` Band 19). Mimics: Lake Lahontan paleoshorelines, fluvial terraces, and road embankments. High cost; **not viable yet** (`NOT_VIABLE_YET`) until native 1-m DEM tile summaries are mirrored.
+1. **`H86E-MMT` — Cross-corridor magnetic-marker translation** — competition `rtp` (Band 2), `tmi_hg` (Band 3), `tmi_vg` (Band 9), and radiometric `tc` (Band 6) as a surficial-contact control. Test coherent, nonzero two-sided magnetic-marker translation across candidate corridors against zero-shift and phase-scrambled controls. Blind faults may offset buried markers without a prominent scarp. Mimics include intrusive contacts, lava-flow boundaries, remanence, and survey seams. Medium-high cost; native stack/cache absent locally.
+2. **`H86E-SPBT-LAPLACE` — Paired-throw plus Laplace-gravity-curvature extension** — Bands 15, 13, 18, 11, 12, 19, and 3. This is explicitly distinct from the standalone signed paired-throw SPBT tested in H86E E1-E2, which omitted Laplace curvature and was reported negative against controls. The extension adds a regularized `g_zz` dipole test; the gravity terms share source ancestry, so they are not independent evidence. Blind basin faults are a hypothesis; paleovalley margins, caldera boundaries, inversion artifacts, and resampling noise are mimics. Medium-high cost; untested and blocked.
+3. **`H86E-HMDC` — Hydrothermal magnetic-trough / paleo-sinter corridors** — competition RTP, magnetic tilt, surface conductivity, geodetic strain, plus GDR 1391 paleo-sinter and 2 m temperature-probe archives. Alteration may mark concealed conduits, but the target is faults, not geothermal deposits; run point-location controls and per-feature leakage canaries. Saline playas, low-susceptibility tuffs, remanence, and survey seams are mimics. The official GDR listing and pinned mirror metadata are recorded, but raw bytes were not restored or SHA-checked here; not viable now.
+4. **`H86E-MTCS` — Multi-depth magnetotelluric conductance × conductive heat flow** — official USGS DOIs `10.5066/P9TWT2LU` and `10.5066/P9BZPVUC`, combined only after verifying native coverage, depth bins, resolution, and license. Could distinguish deep conduits from shallow brines; graphitic/sulfidic units and basin brines are mimics. High cost; raw products and required metadata are unverified, so not viable yet.
+5. **`H86E-WCS` — Native 1 m 3DEP watershed-crossing scarps** — test signed micro-scarp persistence across independent divides against 100 m terrain controls. Shoreline benches, terraces, channels, and roads mimic faults. High cost; the tile-link CSV and native tiles are absent. A mirrored derived feature is not native 1 m data; not viable yet.
 
-[Full layer/transform/novelty/obtainability register](registry/h86c_hypotheses.json) · [blind geothermal vent synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [2026-10-24 scientific review and three-pass verification](research/SESSION_20261024_REVIEW.md) · [earlier 2026-10-23 review](research/SESSION_20261023_REVIEW.md).
-The top candidate **was not validated**: the mandatory pre-placement stop prevents a compliant experiment. This is an explicit negative deliverable, not a claim that the requested unique file was produced.
+**Already tested, not untried:** standalone `H86E-SPBT-BASE` is negative in the archived `HOLDOUT-DTI`; `H86E-CCTX` was tested but not promoted. The current SPBT-Laplace extension remains untested and must not be conflated with its base. The 2026-10-24 H33 score claim remains unverified; exact raster ancestry is not score causality.
+
+[Current five-item queue](registry/untried_hypotheses_20261024.json) · [data-availability audit](docs/evidence/hypothesis-data-availability-20261024.json) · [archived original preregistration](registry/h86c_hypotheses.json) · [H86E experiment record](research/H86E_SESSION_20261024.md) · [geothermal vent synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [2026-10-24 scientific review](research/SESSION_20261024_REVIEW.md).
+
+No candidate in the current queue has a measured HOLDOUT-DTI or a projected score. A new unique competition TIFF remains **unmet**; no surface, dots, experiment, or slot were used in this continuation.
 
 ## What changed in this review
 

@@ -388,8 +388,8 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
         mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
         holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_PROTOCOL_STOP",
                          evaluator_version="gems57-pooled-hide-v2", withheld_positives=None, value=None, ci95=None),
-        correlation_overlap_vs_registry=dict(status="UNIVERSAL_LITERAL_BLOCKER",
-            preplacement_surface=None, new_final_dots=None,
+        correlation_overlap_vs_registry=dict(evidence_class="REGISTRY-MEASUREMENT",
+            status="UNIVERSAL_LITERAL_BLOCKER", preplacement_surface=None, new_final_dots=None,
             inherited_final_artifacts_remeasured=report["all_final_artifacts_remeasured"],
             registry_complete=False, witness_sha256=report["witness_sha256"],
             universal_forward_overlap=report["witness_positive_support_allowed_fraction"],
@@ -418,11 +418,29 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
     measured = datetime.fromisoformat(registry["measured_utc"])
     if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
         raise ValueError("Registry measurement must carry a UTC timestamp")
-    card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
-                registry_measured_utc=registry["measured_utc"],
-                scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-                release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
-                registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
+    plan_path = root / "registry/untried_hypotheses_20261024.json"
+    plan = strict_json(plan_path)
+    if plan.get("schema") != "gems86.current-untried-hypotheses.v1" or not plan.get("hypotheses"):
+        raise ValueError("Current untried-hypothesis register is missing or invalid")
+    top = plan["hypotheses"][0]
+    source_audit_path = inside(root, plan["source_availability_audit"])
+    source_audit = strict_json(source_audit_path)
+    if source_audit.get("schema") != "gems86.hypothesis-data-access-audit.v1":
+        raise ValueError("Current hypothesis source-availability audit is missing or invalid")
+    card.update(
+        schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+        hypothesis_id=top["id"],
+        hypothesis=f"{top['id']}: {top['name']} ({top['status']}; current research priority, NOT RUN)",
+        mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
+        current_hypothesis_status=top["status"],
+        current_hypothesis_register=str(plan_path.relative_to(root)),
+        hypothesis_register_sha256=sha256(plan_path),
+        source_availability_audit=plan["source_availability_audit"],
+        source_availability_audit_sha256=sha256(source_audit_path),
+        registry_measured_utc=registry["measured_utc"],
+        scope="Fresh byte/format and final-artifact witness audit plus qualitative H33 research-queue clarification. No new scientific experiment, surface, dots or submission.",
+        release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
+        registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
     return card
 
 

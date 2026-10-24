@@ -20,6 +20,10 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["date_utc"] == datetime.fromisoformat(registry["measured_utc"]).date().isoformat()
     assert archived["date_utc"] == "2026-10-23"
     assert card["registry_measured_utc"] == registry["measured_utc"]
+    assert card["hypothesis_id"] == "H86E-MMT"
+    assert card["current_hypothesis_status"] == "NOT_RUN_PROTOCOL_STOP"
+    assert card["hypothesis_register_sha256"] == audit_release.sha256(ROOT / "registry/untried_hypotheses_20261024.json")
+    assert card["source_availability_audit_sha256"] == audit_release.sha256(ROOT / "docs/evidence/hypothesis-data-availability-20261024.json")
     assert card["raster_sha256"] is card["submission_name"] is None
     assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
@@ -41,6 +45,8 @@ def test_measurement_timestamp_requires_explicit_utc(timestamp):
 @pytest.mark.parametrize("change", [
     {"release_report_sha256": "stale"},
     {"registry_measurement_sha256": "stale"},
+    {"hypothesis_register_sha256": "stale"},
+    {"source_availability_audit_sha256": "stale"},
     {"registry_measured_utc": "2000-01-01T00:00:00+00:00"},
     {"verdict": "promote"},
     {"submission_ready": True},
@@ -54,6 +60,8 @@ def test_site_rejects_stale_or_optimistic_current_review(tmp_path, monkeypatch, 
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
+        "registry/untried_hypotheses_20261024.json",
+        "docs/evidence/hypothesis-data-availability-20261024.json",
     ):
         target = tmp_path / rel
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -91,6 +99,8 @@ def test_site_rejects_spt_download_url(tmp_path, monkeypatch):
         "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
+        "registry/untried_hypotheses_20261024.json",
+        "docs/evidence/hypothesis-data-availability-20261024.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.json",
     ):
@@ -113,6 +123,8 @@ def test_site_rejects_optimistic_spt_witness_audit(tmp_path, monkeypatch):
         "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
+        "registry/untried_hypotheses_20261024.json",
+        "docs/evidence/hypothesis-data-availability-20261024.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.json",
     ):

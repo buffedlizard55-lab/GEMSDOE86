@@ -149,5 +149,8 @@
     "Use the pinned shared evaluate_holdout.py and submission_writer.py unchanged; report pooled HOLDOUT-DTI with evaluator version, withheld-positive pixel count, physical-block 95% CI, and paired delta vs H86D-CTHB and fold-fair R0.",
     "At most 3 experiments or 2 hours per session; negative results are first-class deliverables, and promotion to a DrivenData weekly submission slot remains a separate selector step."
   ],
-  "evidence_boundary": "All physical signatures, catalogue-missing rationales and benefit rankings below are untested hypotheses, not verified discoveries or expected scores. Official URLs identify prospective sources, not fresh verification of their contents. Owner mirrors do not authenticate organizer data."
+  "evidence_boundary": "All physical signatures, catalogue-missing rationales and benefit rankings below are untested hypotheses, not verified discoveries or expected scores. Official URLs identify prospective sources, not fresh verification of their contents. Owner mirrors do not authenticate organizer data.",
+  "record_type": "historical_preregistration_snapshot",
+  "historical_status_note": "This file preserves the original five-candidate preregistration and its then-current experiments_run=0 / NOT_RUN statuses; those statuses are not a statement of current experiment history. The H86E archive later tested the standalone signed paired-throw basement/gravity method without Laplace gravity curvature and reported it negative. That test did not implement the distinct Laplace-curvature extension described by the original H86E-SPBT candidate. See registry/untried_hypotheses_20261024.json for the current five-item queue and explicit separation of the tested base method from the untested extension.",
+  "current_register": "registry/untried_hypotheses_20261024.json"
 }

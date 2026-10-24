@@ -1,0 +1,108 @@
+{
+  "schema": "gems86.hypothesis-data-access-audit.v1",
+  "evidence_class": "SOURCE-AVAILABILITY-METADATA",
+  "checked_date_utc": "2026-10-24",
+  "scope": "Read-only data-availability checks for the current untried-hypothesis queue. No source raster or archive bytes were downloaded by these checks; repository metadata and prior dated official-source receipts are not byte authentication.",
+  "local_checkout": {
+    "data_training_features_tif_present": false,
+    "shared_feature_cache_present": false,
+    "data_external_directory_present": false,
+    "protocol_inputs_restored": true,
+    "meaning": "The bridge/grid inputs and dense registry witness are present. They do not replace the actual shared feature cache or required feature rasters."
+  },
+  "official_source_observations": {
+    "receipt_file": "docs/evidence/source-recheck-20261024.json",
+    "retrieval_date_utc": "2026-10-24",
+    "observations": [
+      {
+        "source": "USGS GeoDAWN airborne magnetic and radiometric data release",
+        "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "doi": "https://doi.org/10.5066/P93LGLVQ",
+        "prior_receipt_status": "RETRIEVED_2026_10_24_HTTP_200",
+        "data_status_in_this_checkout": "COMPETITION_FEATURE_RASTER_AND_SHARED_CACHE_ABSENT",
+        "qualification": "The official source listing is dated evidence. It does not make the missing competition feature stack available in this workspace. Automated access to drivendata.org remains prohibited by repository policy."
+      },
+      {
+        "source": "DOE Geothermal Data Repository, INGENIOUS regional compilation",
+        "url": "https://gdr.openei.org/submissions/1391",
+        "doi": "https://doi.org/10.15121/1881483",
+        "prior_receipt_status": "RETRIEVED_2026_10_24",
+        "license_as_recorded_in_source_receipt": "CC BY 4.0",
+        "qualification": "The official page was previously observed to list the resources below. Raw bytes were not retrieved or rehashed in this continuation."
+      },
+      {
+        "source": "USGS Great Basin INGENIOUS project links for MT conductance and conductive heat flow",
+        "url": "https://gbcge.org/current-projects/ingenious/",
+        "prior_receipt_status": "RETRIEVED_2026_10_24",
+        "qualification": "The project page was previously observed to link the cited DOIs. The binary products, exact grid resolution, coverage, depth intervals, and licenses were not verified in this continuation."
+      },
+      {
+        "source": "USGS 3D Elevation Program",
+        "url": "https://www.usgs.gov/3d-elevation-program",
+        "qualification": "Identified as the official prospective source. Native 1 m tile bytes and the competition tile-link CSV were not present or retrieved in this continuation."
+      }
+    ]
+  },
+  "github_mirror_metadata_only": [
+    {
+      "candidate": "H86E-HMDC",
+      "official_source_url": "https://gdr.openei.org/submissions/1391",
+      "repository": "buffedlizard55-lab/60GEMSDOE",
+      "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "path": "data/external/paleo_geothermal_regional.zip",
+      "api_listed_bytes": 84008,
+      "git_blob_sha1": "7881d086124767309900658cca3df7c7ab697b55",
+      "manifest_expected_sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+      "manifest_file": "research/h86d_extended_manifest.json",
+      "raw_bytes_downloaded_or_sha256_checked_here": false,
+      "status": "PINNED_MIRROR_ENTRY_METADATA_REACHABLE_BYTES_NOT_RESTORED"
+    },
+    {
+      "candidate": "H86E-HMDC",
+      "official_source_url": "https://gdr.openei.org/submissions/1391",
+      "repository": "buffedlizard55-lab/60GEMSDOE",
+      "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+      "path": "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "api_listed_bytes": 1080530,
+      "git_blob_sha1": "d7bf3d37b2b0ee288c1914c025443e9f4237eac0",
+      "manifest_expected_sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+      "manifest_file": "research/h86d_extended_manifest.json",
+      "raw_bytes_downloaded_or_sha256_checked_here": false,
+      "status": "PINNED_MIRROR_ENTRY_METADATA_REACHABLE_BYTES_NOT_RESTORED"
+    },
+    {
+      "candidate": "H86E-WCS",
+      "official_source_url": "https://www.usgs.gov/3d-elevation-program",
+      "repository": "buffedlizard55-lab/GEMSDOE24",
+      "commit": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/lidar_scarp_features_u8.tif",
+      "api_listed_bytes": 36943606,
+      "git_blob_sha1": "da733b53147efad5c141ffdb96e469ec5b4da8b8",
+      "manifest_expected_sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "manifest_file": "research/h86d_extended_manifest.json",
+      "raw_bytes_downloaded_or_sha256_checked_here": false,
+      "is_native_1m_dem_tile": false,
+      "status": "DERIVED_FEATURE_MIRROR_ENTRY_METADATA_REACHABLE_NATIVE_TILES_NOT_RESTORED"
+    }
+  ],
+  "not_obtained": [
+    {
+      "candidate": "H86E-MTCS",
+      "official_doi_links": [
+        "https://doi.org/10.5066/P9TWT2LU",
+        "https://doi.org/10.5066/P9BZPVUC"
+      ],
+      "raw_grids_present_or_retrieved": false,
+      "depth_bins_resolution_coverage_and_license_verified": false,
+      "status": "OFFICIAL_DOI_LINKS_IDENTIFIED_BINARY_DATA_NOT_VERIFIED_NOT_VIABLE_YET"
+    },
+    {
+      "candidate": "H86E-WCS",
+      "official_data_link": "https://www.usgs.gov/3d-elevation-program",
+      "competition_tile_link_csv_present": false,
+      "native_1m_tiles_present_or_retrieved": false,
+      "status": "OFFICIAL_SOURCE_IDENTIFIED_NATIVE_TILE_AVAILABILITY_NOT_VERIFIED_NOT_VIABLE_YET"
+    }
+  ],
+  "conclusion": "No candidate is currently data-ready for execution in this checkout. The MMT and SPBT-Laplace extension use competition-native bands but lack the actual local feature raster/shared cache. HMDC has addressable pinned-mirror metadata for two GDR inputs, but neither raw archive was restored or hash-verified here. MTCS and native-tile WCS are not viable yet because the needed official bytes and resolution/coverage details have not been verified. None was tested because protocol_preflight stops before feature construction."
+}

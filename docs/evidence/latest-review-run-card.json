@@ -1,9 +1,9 @@
 {
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-24",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
-  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts (USGS OFR 99-383).",
+  "hypothesis": "H86E-MMT: Cross-corridor GeoDAWN magnetic-marker translation with radiometric contact control (NOT_RUN_PROTOCOL_STOP; current research priority, NOT RUN)",
+  "mechanism": "Test label-free, strike-windowed phase correlation of RTP and analytical magnetic-tilt marker profiles on opposite sides of candidate corridors. Require a consistent, nonzero lateral translation across adjacent strike windows, matched marker polarity/shape, and continuity through the corridor; compare against zero-shift and phase-scrambled controls. Use Band 6 Total Count only to flag radiometric/alluvial boundaries without a matching magnetic-marker offset. Estimate survey-seam directions from acquisition metadata rather than assuming a fixed azimuth. The magnetic products share acquisition/source ancestry and are not independent measurements.",
+  "named_non_fault_process": "Intrusive contacts, primary volcanic-flow terminations, remanent-polarity changes, and GeoDAWN flight-line/tie-line leveling seams.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",
@@ -13,6 +13,7 @@
     "ci95": null
   },
   "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
     "status": "UNIVERSAL_LITERAL_BLOCKER",
     "preplacement_surface": null,
     "new_final_dots": null,
@@ -107,8 +108,14 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T19:06:20+00:00",
-  "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "3d107eae9858ff24911937f3f698f12f3e9246b646e7dc646b24a2e013e468b9",
-  "registry_measurement_sha256": "6a6d7dfcfb404bd07ee9171e77739cdc8c1ec7fe2b51e2415afa7afd9dda2d9c"
+  "hypothesis_id": "H86E-MMT",
+  "current_hypothesis_status": "NOT_RUN_PROTOCOL_STOP",
+  "current_hypothesis_register": "registry/untried_hypotheses_20261024.json",
+  "hypothesis_register_sha256": "ffe86b3f31d3347e299a24cd7120009a06f4eee674bc8a5e6e065f3783477e7f",
+  "source_availability_audit": "docs/evidence/hypothesis-data-availability-20261024.json",
+  "source_availability_audit_sha256": "b9a6753af35664b4e9e12e90339c7ac53024e60bb1f2a1fa2b4d85fff6cec36b",
+  "registry_measured_utc": "2026-10-24T19:53:17+00:00",
+  "scope": "Fresh byte/format and final-artifact witness audit plus qualitative H33 research-queue clarification. No new scientific experiment, surface, dots or submission.",
+  "release_report_sha256": "6e5742330eb3524c86dd3cb04c7a2486ceac7ee079f027c2b70ad119f896b857",
+  "registry_measurement_sha256": "25b161d6a70d4c1f9d799e0fb813bc7d5f17c7b166160078c87477baa8dc66b0"
 }

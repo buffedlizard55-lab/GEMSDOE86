@@ -78,11 +78,13 @@ def test_current_review_and_readme_deliverable_links_exist():
     assert "Pass 1" in review24 and "Pass 2" in review24 and "Pass 3" in review24
 
 
-def test_current_session_card_is_complete_negative_and_not_presented_as_a_download():
+def test_historical_session_card_separates_laplace_extension_from_tested_spbt_base():
     card = strict_json(ROOT / "docs/evidence/session-20261024-run-card.json")
-    hypotheses = strict_json(ROOT / "registry/h86c_hypotheses.json")["hypotheses"]
-    assert card["hypothesis"].startswith(f"{hypotheses[0]['id']}: ")
-    assert "H86C-MMT" not in card["hypothesis"]
+    assert card["hypothesis_id"] == "H86E-SPBT-LAPLACE"
+    assert "distinct from the standalone SPBT base tested later" in card["hypothesis"]
+    assert card["related_tested_base_method"]["hypothesis_id"] == "H86E-SPBT-BASE"
+    assert card["related_tested_base_method"]["status"] == "TESTED_NEGATIVE_AS_STANDALONE"
+    assert card["related_tested_base_method"]["included_laplace_curvature"] is False
     assert card["verdict"] == "negative"
     assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"
