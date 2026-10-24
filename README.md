@@ -1,5 +1,20 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+
+**This session generated a new unique TIFF and the automated gates rejected it.** Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
+
+| Gate (no human inspection) | Result |
+|---|---|
+| Format (CRS/shape/transform, float32, 0 NaN, [0,1], 0 dots on faults) | PASS — `gems86-h86e-ridf-hgbthin-37654dots-20261024-zeros.tif`, sha256 `543a59d7…7fb1` |
+| HOLDOUT-DTI vs R0 fold-fair (gems57-pooled-hide-v2, 11,321 withheld positives) | **FAIL** — 0.0811 [0.0650, 0.0972] vs 0.0961 [0.0830, 0.1089]; paired Δ −0.0150 [−0.0280, −0.0019] |
+| Surface rank correlation ≤ 0.90 | **FAIL** — 0.9045 vs 17GEMSDOE E-proba-multiscale |
+| Final-dot overlap ≤ 70 % vs informative dot fields (PA-86-02) | **FAIL** — 64 informative dot-field firings over 682 measured registry rasters |
+| Verdict | `negative`, duplicate — **DO NOT SUBMIT**; 0 weekly slots used |
+| Historical H86C-KSLB (holdout best 0.1241) re-audited on the same 682 rasters | **FAIL** — 12 informative dot-field firings (PA-86-02) → DO NOT SUBMIT ([measurement](docs/evidence/kslb_pa86_chance_overlap.json)) |
+
+Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged.
+
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
 

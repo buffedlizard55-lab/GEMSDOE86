@@ -68,9 +68,33 @@ def downloads(artifacts: list[dict]) -> str:
     return "\n".join(result)
 
 
-def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4) -> str:
+def h86e_answer(card: dict, kslb: dict | None) -> str:
+    """Top-of-page answer box rendered from docs/evidence/h86e-run-card.json (no hand-typed numbers)."""
+    h = card["holdout_dti"]
+    r = card["registry"]
+    c1, r0, d = h["candidate_E1"], h["R0_foldfair"], h["paired_delta_vs_R0_foldfair"]
+    pa = r["final_dots_pa86_02"]
+    k = ""
+    if kslb is not None:
+        k = (f'<li><strong>Historical H86C-KSLB re-audited on the full registry (PA-86-02):</strong> '
+             f'{kslb["informative_firings"]} informative dot-field overlap firing(s), worst rank correlation '
+             f'{kslb["worst_spearman_any_raster"]:.3f} → <strong>{"ELIGIBLE FOR SELECTOR" if kslb["gate_pass"] else "DO NOT SUBMIT"}</strong>. '
+             f'<a href="evidence/kslb_pa86_chance_overlap.json">measurement</a></li>')
+    return f'''<section class="callout" id="h86e"><span class="badge bad">IS ANY FILE OK TO SUBMIT RIGHT NOW? NO</span>
+<h2>2026-10-24: a new unique TIFF was generated and automatically rejected</h2>
+<p><code>{e(card["submission_name"])}.tif</code> (sha256 <code>{e(card["raster_sha256"][:16])}…</code>) passes every format check
+(CRS/shape/transform match, 0 NaN, values in [0,1], {card["validator"]["checks"]["zero_dots_on_mapped_catalogue"] and "0 dots on mapped faults"}),
+but the automated gates say <strong>{e(card["submit_decision"])}</strong>:</p>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives): candidate {c1["dti"]:.4f} [{c1["ci95"][0]:.4f}, {c1["ci95"][1]:.4f}] vs R0 fold-fair {r0["dti"]:.4f} [{r0["ci95"][0]:.4f}, {r0["ci95"][1]:.4f}]; paired delta {d["delta"]:+.4f} [{d["ci95"][0]:+.4f}, {d["ci95"][1]:+.4f}] — worse, CI excludes zero.</li>
+<li><strong>Lane drift (surface):</strong> rank correlation {r["surface_worst_spearman"]:.4f} &gt; 0.90 with <code>{e(r["surface_worst_spearman_submission"])}</code>.</li>
+<li><strong>Lane drift (final dots):</strong> {pa["informative_firings"]} informative forward-overlap firings &gt; 70% against non-space-filling dot fields ({r["rasters_measured"]} registry rasters measured).</li>{k}</ul>
+<p>Verdict <strong>{e(card["verdict"])}</strong> (duplicate = {str(card["duplicate"]).lower()}). The file is kept out of the download list. <a href="evidence/h86e-run-card.json">Run card</a> · <a href="{REPO}/blob/main/research/H86E_RIDF_REVIEW.md">Scientific review, H33 answer and next steps</a></p></section>'''
+
+
+def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
+{answer}
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED</span>
 <h1>Download the research.<br><span class="subtle">Do not spend a submission slot.</span></h1>
@@ -92,10 +116,11 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def executive(report: dict, sources: dict) -> str:
+def executive(report: dict, sources: dict, answer: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>DO NOT SUBMIT</strong></td></tr>' for a in report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{answer}
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 <h2>Current downloads — audit only, no submission authorized</h2>
@@ -298,9 +323,15 @@ def render(root: Path = ROOT) -> dict[str, str]:
     summary.update(featured_research_artifact=None, current_comparable_holdout_best=None,
                    reason="No selector decision. Different historical holdout designs cannot be ranked by their maxima.",
                    release_readiness="../evidence/release-readiness.json")
+    card86e = strict_json(root / "docs/evidence/h86e-run-card.json")
+    kslb_path = root / "docs/evidence/kslb_pa86_chance_overlap.json"
+    kslb = strict_json(kslb_path) if kslb_path.exists() else None
+    if card86e["verdict"] != "negative" or card86e["submission_ready"] is not False:
+        raise ValueError("H86E card must stay negative unless a selector step is recorded")
+    answer = h86e_answer(card86e, kslb)
     return {
-        "docs/index.html": home(report, feed, registry, review, len(plan["hypotheses"])),
-        "docs/executive-summary.html": executive(report, sources),
+        "docs/index.html": home(report, feed, registry, review, len(plan["hypotheses"]), answer),
+        "docs/executive-summary.html": executive(report, sources, answer),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan),

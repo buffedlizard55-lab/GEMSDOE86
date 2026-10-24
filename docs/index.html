@@ -5,6 +5,15 @@
 <body><a class="skip" href="#main">Skip to content</a>
 <header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html" aria-current="page">Downloads</a><a href="executive-summary.html">How to submit</a><a href="submit.html">Submission status</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
 <main id="main">
+<section class="callout" id="h86e"><span class="badge bad">IS ANY FILE OK TO SUBMIT RIGHT NOW? NO</span>
+<h2>2026-10-24: a new unique TIFF was generated and automatically rejected</h2>
+<p><code>gems86-h86e-ridf-hgbthin-37654dots-20261024-zeros.tif</code> (sha256 <code>543a59d7dd8dd29f…</code>) passes every format check
+(CRS/shape/transform match, 0 NaN, values in [0,1], 0 dots on mapped faults),
+but the automated gates say <strong>DO NOT SUBMIT</strong>:</p>
+<ul><li><strong>HOLDOUT-DTI</strong> (gems57-pooled-hide-v2, 11,321 withheld positives): candidate 0.0811 [0.0650, 0.0972] vs R0 fold-fair 0.0961 [0.0830, 0.1089]; paired delta -0.0150 [-0.0280, -0.0019] — worse, CI excludes zero.</li>
+<li><strong>Lane drift (surface):</strong> rank correlation 0.9045 &gt; 0.90 with <code>17GEMSDOE:docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif</code>.</li>
+<li><strong>Lane drift (final dots):</strong> 64 informative forward-overlap firings &gt; 70% against non-space-filling dot fields (682 registry rasters measured).</li><li><strong>Historical H86C-KSLB re-audited on the full registry (PA-86-02):</strong> 12 informative dot-field overlap firing(s), worst rank correlation 0.093 → <strong>DO NOT SUBMIT</strong>. <a href="evidence/kslb_pa86_chance_overlap.json">measurement</a></li></ul>
+<p>Verdict <strong>negative</strong> (duplicate = true). The file is kept out of the download list. <a href="evidence/h86e-run-card.json">Run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86E_RIDF_REVIEW.md">Scientific review, H33 answer and next steps</a></p></section>
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED</span>
 <h1>Download the research.<br><span class="subtle">Do not spend a submission slot.</span></h1>

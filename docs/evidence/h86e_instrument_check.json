@@ -1,0 +1,185 @@
+{
+ "evidence_class": "HOLDOUT-DTI (as-is, NOT fold-fair) vs OWNER-REPORTED LB",
+ "split": "buffered whole-component LOQO seed 20",
+ "spearman_lb_vs_holdout": 0.24156963461415631,
+ "p_value": 0.3502582033964056,
+ "n": 17,
+ "finding": "Rasters built with the full catalogue exclude the withheld truth and its collar, so the catalogue-hide instrument cannot rank them; H33 (LB 0.2778) scores 0.0037 as-is. Instrument-to-LB validity is unestablished.",
+ "rows": [
+  {
+   "file": "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+   "lb": 0.2708,
+   "holdout_raw": 0.029067173563199197,
+   "holdout_visible_collar": 0.028613464563421405,
+   "n": 40199
+  },
+  {
+   "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "lb": 0.271,
+   "holdout_raw": 0.02708236322219311,
+   "holdout_visible_collar": 0.026810122294614123,
+   "n": 37660
+  },
+  {
+   "file": "GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+   "lb": 0.2707,
+   "holdout_raw": 0.027022858012577117,
+   "holdout_visible_collar": 0.026749894927940134,
+   "n": 37860
+  },
+  {
+   "file": "GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.09426149619871005,
+   "holdout_visible_collar": 0.09866891735811568,
+   "n": 46090
+  },
+  {
+   "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "lb": 0.2778,
+   "holdout_raw": 0.003698680598708719,
+   "holdout_visible_collar": 0.003698680598708719,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "lb": 0.2632,
+   "holdout_raw": 0.053078293662446124,
+   "holdout_visible_collar": 0.053818199011574336,
+   "n": 41865
+  },
+  {
+   "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "lb": 0.275,
+   "holdout_raw": 0.0038035928867696657,
+   "holdout_visible_collar": 0.0038035928867696657,
+   "n": 38854
+  },
+  {
+   "file": "GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+   "lb": 0.2376,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 40000
+  },
+  {
+   "file": "GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+   "lb": 0.2303,
+   "holdout_raw": 0.009548366614954293,
+   "holdout_visible_collar": 0.009548366614954293,
+   "n": 54864
+  },
+  {
+   "file": "GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+   "lb": 0.1152,
+   "holdout_raw": 0.008108560185929623,
+   "holdout_visible_collar": 0.008108560185929623,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+   "lb": null,
+   "holdout_raw": 0.012452234646349572,
+   "holdout_visible_collar": 0.012452234646349572,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+   "lb": 0.1917,
+   "holdout_raw": 0.016321788862966317,
+   "holdout_visible_collar": 0.016321788862966317,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+   "lb": 0.1627,
+   "holdout_raw": 0.0003308549216960961,
+   "holdout_visible_collar": 0.0003308549216960961,
+   "n": 36800
+  },
+  {
+   "file": "GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+   "lb": 0.2343,
+   "holdout_raw": 0.001496682754862507,
+   "holdout_visible_collar": 0.001496682754862507,
+   "n": 39200
+  },
+  {
+   "file": "GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+   "lb": 0.1555,
+   "holdout_raw": 0.000720217992079472,
+   "holdout_visible_collar": 0.000720217992079472,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 40000
+  },
+  {
+   "file": "GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 36500
+  },
+  {
+   "file": "GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+   "lb": 0.0943,
+   "holdout_raw": 0.0007744148880266178,
+   "holdout_visible_collar": 0.0007744148880266178,
+   "n": 51667
+  },
+  {
+   "file": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+   "lb": 0.0041,
+   "holdout_raw": 0.09184060419256848,
+   "holdout_visible_collar": 0.09184060419256848,
+   "n": 44090
+  },
+  {
+   "file": "GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+   "lb": 0.1886,
+   "holdout_raw": 0.0039157194091365335,
+   "holdout_visible_collar": 0.0039157194091365335,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+   "lb": 0.0573,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.0,
+   "holdout_visible_collar": 0.0,
+   "n": 90000
+  },
+  {
+   "file": "GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+   "lb": null,
+   "holdout_raw": 0.01822444286225979,
+   "holdout_visible_collar": 0.01822444286225979,
+   "n": 37654
+  },
+  {
+   "file": "GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+   "lb": null,
+   "holdout_raw": 0.05417394581089112,
+   "holdout_visible_collar": 0.056910168309369555,
+   "n": 37654
+  }
+ ]
+}

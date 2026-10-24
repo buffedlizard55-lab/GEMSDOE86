@@ -916,3 +916,13 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 See `research/SESSION_20261024_REVIEW.md` and
 `docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.
+
+
+## 2026-10-24 — H86E-RIDF session
+
+- **PA-86-01 (amendment, public):** the 17GEMSDOE witness is a continuous surface (support fraction 1.0); the shared template's `two_phase_summary` like-for-like reading is used for new lanes via `require_like_for_like()`. Literal reading still reported. A saturating dot field still stops.
+- **PA-86-02 (amendment, public):** an overlap firing against a raster whose own 3 px halo covers > 70 % of the allowed area is non-informative (a random dot set would fire); rho ≤ 0.90 then decides. Firings with halo coverage ≤ 70 % remain hard stops.
+- **IR-86-H86E-01:** the surface registry check ran after placement rather than before; result (rho 0.9045 > 0.90, stop) unchanged.
+- **IR-86-H86E-02:** first R0 comparator used GEMSDOE28 `r1-solo` (excludes dots near the full catalogue) → 0.0286; corrected to GEMSDOE25 `dotted-h19-5-d2-8` → 0.0961 (reproduces the KSLB card exactly).
+- **IR-86-H86E-03:** catalogue-hide holdout cannot score fleet rasters built with the full catalogue (H33 = 0.0037 as-is); holdout–LB alignment unvalidated (Spearman 0.24, n = 17, owner-reported LB).
+- **IR-86-H86E-04:** two registry inventory entries are not on the competition grid (14GEMSDOE horse-ensemble transform; 7GEMSDOE qfaults prior u8) and were recorded as errors, so the scan is not "complete".
