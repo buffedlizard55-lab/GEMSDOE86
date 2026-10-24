@@ -2,7 +2,7 @@
 
 ## Parallel-session review on main — 2026-10-24 (`dcbb8404` & `647e6683`)
 
-**DO NOT SUBMIT — no new unique TIFF is authorized (`verdict: "negative"`).** Concurrent PR #77 (`SWCON`, `510fdb6`, `sha256: 5576b15c...`) broke `main`'s CI/Pages deploy and was forensically audited and revoked (`IR-86-SWCON-01`: `100.0%` forward 3-px overlap vs `17GEMSDOE`, **`99.78%` (`37,570 / 37,654 > 70%`)** vs discrete binary dotted `13GEMSDOE` refuting its "dotted-registry pass" claim, below-chance canary `AUC = 0.4046`, missing `ci95 = null`, `HOLDOUT-DTI = 0.00746`, blending 33 prior submissions instead of geological features, and bypassing `protocol_preflight.require_feasible()`). [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
+**DO NOT SUBMIT — no new unique TIFF is authorized (`verdict: "negative"`).** Concurrent PR #77 (`SWCON`, `510fdb6`, `sha256: 5576b15c...`) and PR #80 (`FAULTHALO`, `3c98290`, `sha256: 8a66c57c...`) were forensically audited and revoked (`IR-86-SWCON-01`: `100.0%` forward 3-px overlap vs `17GEMSDOE`, **`99.78%` (`37,570 / 37,654 > 70%`)** vs discrete binary dotted `13GEMSDOE`, below-chance canary `AUC = 0.4046`, missing `ci95 = null`, `HOLDOUT-DTI = 0.00746`; `IR-86-FAULTHALO-01`: bypassed `protocol_preflight.require_feasible()` to emit `4,210,938` cells with `99.88%` overlap vs binary `13GEMSDOE` and `100.0%` vs `17GEMSDOE`, zero geological bands, `HOLDOUT-DTI = NOT_RUN`). [Three-pass review](research/SESSION_20261024_647E6683.md): five proposals untested; no slot used.
 
 [Scientific interpretation correction](research/H33_INTERPRETATION_REVIEW.md): kernel coverage can overlap despite one-radius dot spacing; collar predictions can recover hidden truth. Four synthetic metric tests guard these claims. No new submission was generated.
 
@@ -149,7 +149,7 @@ python3 -m venv .venv
 
 The restorer obtains hash-pinned owner mirrors and a historical comparison witness through GitHub. This is **not** organizer-authenticated data acquisition, not the actual shared feature cache, and not a new prediction. Large data and caches remain ignored. `requirements-lock.txt` records the tested environment; `requirements.txt` is the broader compatibility specification.
 
-`make submission` and every scientific CLI remain blocked by the literal preflight. Concurrent FVMB work added a `download_competition_data.sh` mirror-restoration wrapper and `prepare_h86_fvmb_data.py`; the quoted `prepare_data.py` still does not exist. The new cache-builder/pipeline CLIs are also now blocked before construction or fitting; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
+`make submission` and every scientific CLI remain blocked by the literal preflight. `download_competition_data.sh` and `scripts/prepare_data.py` are implemented and verified against the restored competition grid (auditing EPSG:32611, 3730x3292 shape, 100 m transform, footprint valid pixels, and writing `data/prepared_manifest.json`). The candidate-builder/pipeline CLIs remain safely blocked before construction or fitting under the literal preflight; these files are not a recovered shared template stack. Data placement is not the single remaining blocker, and a GPU is not an absolute training prerequisite in the official reference.
 
 ## Verification and deployment scope
 
