@@ -83,10 +83,11 @@ qualifiers.
 - Re-ran `scripts/audit_release.py --measure-registry`: all `10/10` inherited published TIFFs
   passed the local on-disk format/integrity checks, while all remain explicitly negative and
   unauthorized under the registry stop. A format pass is not submission approval.
-- Refreshed the repository-metadata feed: `92/92` named GitHub project trees were snapshotted;
-  the refresh obtained `0` organizer receipts. This is current GitHub metadata, not a live
-  DrivenData score/quota feed.
-- Rechecked two immutable GitHub source documents with `scripts/review_sources.py`. The official
+- Refreshed the repository-metadata feed at `2026-10-24T18:19:07+00:00`: `92/92` named GitHub
+  project trees were snapshotted; the refresh obtained `0` organizer receipts. This is current
+  GitHub metadata, not a live DrivenData score/quota feed.
+- Rechecked two immutable GitHub source documents at `2026-10-24T18:19:14+00:00` with
+  `scripts/review_sources.py`. The official
   reference README's retrieved Git blob matches the archived bytes and explicitly supports a
   CPU-only path. The GEMSDOE32 owner audit also matches its pinned archived bytes, but is classified
   `OWNER-ARTIFACT-NOT-ORGANIZER-RECEIPT`; it contains `UNSCORED` wording and a projected-score field.
@@ -94,7 +95,7 @@ qualifiers.
 
 ## Pass 3 — review the implementation and verify outputs
 
-- Full tests: **491 passed, 24 skipped, 4 rasterio pending-deprecation warnings, 41 subtests**.
+- Full tests: **492 passed, 24 skipped, 4 rasterio pending-deprecation warnings, 41 subtests**.
   The skipped tests require gitignored historical release rasters or restored experiment inputs;
   they are not successful experiments and do not validate the missing feature cache.
 - `scripts/build_site.py`, `scripts/build_site.py --check`, `scripts/check_site.py`,
