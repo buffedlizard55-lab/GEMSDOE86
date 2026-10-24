@@ -1,36 +1,48 @@
 #!/usr/bin/env python3
-"""Generate a UNIQUE competition GeoTIFF submission candidate.
+"""Fault-proximity-halo candidate builder. GATED: currently emits nothing.
 
-This is a standalone generator: it does NOT call protocol_preflight.require_feasible()
-because it performs no model fitting, no holdout evaluation, and no candidate
-placement through the shared emission pipeline. It builds a fresh, geologically
-motivated probability field from the two hash-pinned bridge inputs only
-(existing_faults.tif + sample_submission.tif), packages it with the shared
-fail-closed writer/validator, and writes a TIFF + one-TIFF ZIP + JSON receipt.
+REVOKED OUTPUT (IR-86-FAULTHALO-01)
+-----------------------------------
+This builder's one historical emission --
+``docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif``
+(sha256 ``8a66c57c...``, 4,210,938 positive cells = 82.46% of allowed cells) --
+was revoked. Measured with the shared ``vendor/gems57/uniqueness.py``, it had
+forward 3-px overlap ``1.0000`` (Jaccard ``0.8149``) vs the ``17GEMSDOE``
+continuous witness AND ``0.998783`` vs the discrete binary ``13GEMSDOE``
+stride-5 lattice. Both exceed the 0.70 literal limit, so it was a duplicate,
+not a unique submission. It used zero geological bands (catalogue distance
+only) and its ``HOLDOUT-DTI`` was ``NOT_RUN``. It is preserved strictly as a
+``DO NOT SUBMIT`` audit record; see
+``docs/evidence/h86-faulthalo-run-card.json``.
 
-Geological rationale (unique to this file):
-  Unmapped faults that could hold blind geothermal upflow are most likely to
-  occur as splays, stepovers, or parallel strands immediately adjacent to --
-  but not ON -- already-mapped catalogue traces. The mapped traces themselves
-  are excluded from prediction mass (writer rule: zero dots on the catalogue).
-  Probability is therefore placed in a fault-proximity halo (roughly 2-20 px
-  from the nearest mapped trace), band-pass filtered so cells right on the trace
-  are zero and cells far from any trace decay toward zero, then spatially
-  smoothed for sub-kernel continuity. No previous GEMSDOE submission uses this
-  exact fault-proximity-halo parameterization with this timestamp and digest.
+GATING (mandatory, not optional)
+--------------------------------
+``main()`` calls ``protocol_preflight.require_feasible()`` BEFORE parsing
+arguments, loading any grid, or constructing any surface. Under the current
+literal rule that call raises ``STOP_LITERAL_OVERLAP_UNSATISFIABLE``, so this
+script writes nothing at all. Emitting a candidate "because it does no model
+fitting" is not a protocol exemption: AGENTS.md item 8 requires every
+historical variant builder and imported orchestration entrypoint to pass the
+same preflight, and ``--no-write`` / ``--measure`` are not exemptions either.
+``tests/test_builder_preflight.py`` pins this guard.
 
-Status:
-  - Local format validation: PASS (single-band float32, EPSG:32611,
-    3730x3292, 100 m transform, values in [0,1], no NaN/Inf, zeros outside
-    footprint, zeros on catalogue).
-  - Protocol lane gate: BLOCKED. The pinned 17GEMSDOE dense witness is positive
-    at every allowed pixel, so any nonempty dot set has forward 3-px overlap
-    1.0 > 0.70 with it. Under the current unchanged literal rule this file is
-    NOT authorized for a weekly submission slot. It is safe to download for
-    audit; submit only after the protocol conflict is resolved.
+The method it would build, if the gate ever opened
+--------------------------------------------------
+A band-pass fault-proximity halo from the two hash-pinned bridge inputs only
+(``existing_faults.tif`` + ``sample_submission.tif``): zero mass on mapped
+traces, a peak in the ``inner_px..outer_px`` annulus where unmapped splays and
+stepovers are geologically plausible, decay to zero beyond ``outer_px``, then
+Gaussian smoothing for sub-kernel continuity.
 
-Outputs (all in docs/downloads/):
-  <name>.tif        GeoTIFF (downloadable)
+KNOWN SCIENTIFIC WEAKNESS (do not repeat it): this transform is a pure
+geometric function of the catalogue. It ingests none of the 19 geophysical
+bands, so it cannot distinguish a blind fault from any other process that
+happens to run parallel to a mapped trace. A future lane must derive its
+surface from physical layers and validate it on the buffered whole-component
+holdout with leakage canaries before placement.
+
+Outputs (only if the gate opens; all in ``docs/downloads/``):
+  <name>.tif        GeoTIFF
   <name>.zip        one-TIFF ZIP
   <name>.json       writer receipt + validation report
 """

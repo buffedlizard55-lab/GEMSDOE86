@@ -78,7 +78,67 @@ def test_root_import_and_guard_precede_parser_io_and_placement(name):
                    for a in main.args.args + main.args.kwonlyargs)
 
 
-@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py"])
+BYPASS_CLAIMS = (
+    "does not call protocol_preflight",
+    "does not call require_feasible",
+    "do not call require_feasible",
+    "no preflight",
+    "without preflight",
+    "skips preflight",
+    "bypasses preflight",
+    "is not gated",
+    "stays ungated",
+)
+
+# A sentence carrying one of these markers documents a *revoked* bypass rather
+# than asserting a live one, so it must not trip the test. Without this the test
+# would forbid the very history that makes the guard auditable.
+REVOCATION_MARKERS = (
+    "revoked", "superseded", "no longer", "earlier revision", "an earlier",
+    "has since", "was removed", "now calls", "now call", "not a protocol exemption",
+)
+
+
+def _sentences(text: str) -> list[str]:
+    """Split prose on sentence boundaries, keeping the delimiter out."""
+    import re
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+
+
+@pytest.mark.parametrize("name", BUILDERS)
+def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
+    """Prose must not contradict the enforced guard (IR-86-SPT-02 defect class).
+
+    ``generate_unique_submission.py`` and ``run_h86e.py`` each shipped a
+    docstring asserting the script "does NOT call
+    protocol_preflight.require_feasible()" while ``main()`` did call it -- the
+    misrepresented-prose-vs-code defect that revoked PR #60's SPT candidate
+    (IR-86-SPT-02) and PR #80's FAULTHALO (IR-86-FAULTHALO-01). Every builder in
+    BUILDERS is pinned by the tests above to call ``require_feasible()``, so a
+    docstring *asserting* a live bypass is always stale.
+
+    Sentence-scoped, skipping sentences that mark the bypass as revoked, so
+    documenting the history stays possible (IR-86-PROSE-CODE-01).
+    """
+    text = (ROOT / "scripts" / (name + ".py")).read_text()
+    docstring = ast.get_docstring(ast.parse(text)) or ""
+    offending = []
+    for sentence in _sentences(docstring):
+        lowered = sentence.lower()
+        if any(marker in lowered for marker in REVOCATION_MARKERS):
+            continue
+        claims = [c for c in BYPASS_CLAIMS if c in lowered]
+        if claims:
+            offending.append((sentence[:120], claims))
+    assert not offending, (
+        f"{name}.py docstring asserts a live preflight bypass {offending} but main() "
+        f"is required to call require_feasible(); fix the prose, never the guard. "
+        f"If the sentence documents a revoked bypass, mark it with one of "
+        f"{REVOCATION_MARKERS}."
+    )
+
+
+@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py", "build_gems86_swcon.py", "generate_unique_submission.py"])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()
     env.pop("PYTHONPATH", None)
