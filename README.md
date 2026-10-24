@@ -5,6 +5,8 @@
 
 ## Latest review — 2026-10-24: DO NOT SUBMIT
 
+[Session f2817423 three-pass audit](research/SESSION_20261024_F2817423.md): corrected stale preflight measurement dates, added UTC-midnight regression tests, and remeasured all inherited downloads. No new TIFF or submission authorization; the unique-TIFF requirement remains unmet.
+
 [Independent d50d503b three-pass review](research/SESSION_20261024_D50D503B.md): no new TIFF or weekly slot; literal overlap blocker reconfirmed.
 
 [Additional three-pass download-gate review](research/SESSION_20261024_DOWNLOAD_GATE.md): incomplete or duplicate registry scans now explicitly block optimistic readiness flags in the independent download validator. All ten inherited artifacts were remeasured; no new TIFF or slot authorization was produced.
