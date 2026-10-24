@@ -49,3 +49,20 @@ def test_current_review_and_readme_deliverable_links_exist():
     review = (ROOT / "research/SESSION_20261023_REVIEW.md").read_text()
     assert "highest-priority new-TIFF requirement is unmet" in review
     assert "Pass 1" in review and "Pass 2" in review and "Pass 3" in review
+
+
+def test_current_session_card_is_complete_negative_and_not_presented_as_a_download():
+    card = strict_json(ROOT / "docs/evidence/session-20261024-run-card.json")
+    assert card["verdict"] == "negative"
+    assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"
+    assert card["holdout_dti"]["value"] is None and card["holdout_dti"]["ci95"] is None
+    assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
+    assert len(card["note"]) <= 140
+    assert not card["new_candidate_generated"] and not card["submission_ready"]
+    assert card["experiments_run"] == card["submission_slots_used"] == 0
+    for relative in ("research/SESSION_20261024_REVIEW.md", "docs/evidence/release-readiness.json",
+                     "docs/evidence/all-artifacts-registry.json", "docs/evidence/fleet-feed.json"):
+        assert (ROOT / relative).is_file()

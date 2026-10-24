@@ -1,17 +1,27 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Submit — GEMSDOE86 SPT candidate</title><link rel="stylesheet" href="assets/site.css"></head><body><main id="main">
-<p class="eyebrow">DOE GEMS Prize · new unique submission generated 2026-10-24</p>
-<h1>✅ READY TO DOWNLOAD — SPT candidate</h1>
-<p><strong>gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif</strong><br>SHA-256 <code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code></p>
-<p>Automated validation, no human inspection: single-band float32 · EPSG:32611 · 3730×3292 · transform matches sample submission · <strong>all values finite and in [0,1]</strong> (zeros outside footprint — fixes the “Predicted values must be in range [0, 1]” error class) · 37,654 dots · 0 dots on mapped faults. HOLDOUT-DTI proxy 0.00526 vs R0 control 0.00479 (same folds); worst 3px overlap vs 25 scored fleet rasters 0.5056 (limit 0.70); canary AUC 0.495. No organizer-confirmed score exists; live score is not guaranteed.</p>
-<div class="actions"><a class="btn" href="https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE86/main/submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif" download>⬇ Download submission TIFF</a>
-<a class="btn secondary" href="https://raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE86/main/submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.zip" download>⬇ One-TIFF ZIP</a></div>
-<p><strong>Submission name:</strong> <code>gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros</code><br>
-<strong>Note (paste into DrivenData Note field):</strong> <code>SPT signed basement+gravity throw-consistency, surface-penalised; 37654d collar&gt;2 sep2.8 zeros [0,1]</code></p>
-<h2>How to submit (executive summary)</h2><ol>
-<li>Download the TIFF (or ZIP) above and verify the SHA-256 matches.</li>
-<li>Open DrivenData competition 306 → <em>New submission</em>.</li>
-<li>Choose the downloaded <code>.tif</code> file, paste the Note above, click <em>Create</em>.</li>
-<li>Keep the organizer receipt; only a receipt makes a score ORGANIZER-CONFIRMED.</li></ol>
-<p>Evidence: <a href="evidence/spt-run-card.json">run card</a> · <a href="evidence/spt-independent-validation.json">independent validator</a> · <a href="index.html">all other downloads (DO NOT SUBMIT — audit only)</a></p>
-</main></body></html>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submission status — GEMSDOE86</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a><a href="submit.html" aria-current="page">Submission status</a></nav></header>
+<main id="main">
+<p class="eyebrow">Automated review of the concurrently merged SPT candidate</p>
+<h1>⛔ DO NOT SUBMIT</h1>
+<div class="callout"><strong>No download link or authorization is provided for the SPT TIFF; do not use it for competition submission.</strong> The TIFF remains in the repository solely for audit provenance.
+<p>A later literal-rule audit compared its final dots with the pinned full-support registry witness. <strong>REGISTRY-MEASUREMENT:</strong> candidate-dot overlap within 3 px = <strong>1.0</strong>, exceeding the unchanged <strong>0.70</strong> limit. The witness is positive across the allowed domain, so the candidate fails even though an earlier comparison against only 25 scored-fleet rasters reported a lower maximum.</p>
+<p>This is a duplicate-stop under the supplied protocol, not a claim that every scientific surface is identical. No full registry clearance is claimed.</p></div>
+<h2>Candidate identity — audit only</h2>
+<dl><dt>Submission name (not approved)</dt><dd><code>gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros</code></dd>
+<dt>Note (identity only; do not paste into DrivenData)</dt><dd><code>SPT signed basement+gravity throw-consistency, surface-penalised; 37654d collar&gt;2 sep2.8 zeros [0,1]</code></dd>
+<dt>SHA-256</dt><dd><code>26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342</code></dd></dl>
+<h2>Why the previous promotion is withdrawn</h2>
+<ul><li>The earlier uniqueness figure was computed against a restricted scored-fleet subset and omitted the pinned full-support witness; the literal protocol requires comparison against any registry raster.</li>
+<li>The SPT builder's holdout evaluation used a catalogue-derived exclusion collar computed from the full catalogue, did not show fold-visible-only derivation or exact masking of visible faults, and reports no 95% confidence interval. Its number is therefore not accepted as protocol-compliant HOLDOUT-DTI.</li>
+<li>No pre-placement surface rank-correlation measurement is available. The final-dot overlap is independently measured and alone exceeds the stop threshold.</li>
+<li>Local GeoTIFF formatting cannot override a uniqueness or scientific-evidence failure. No selector decision, weekly slot, or organizer receipt exists.</li></ul>
+<p><a href="evidence/spt-full-support-witness-audit.json">Open literal witness audit</a> · <a href="evidence/spt-run-card.json">Open amended SPT card</a> · <a href="evidence/latest-review-run-card.json">Open latest repository audit</a> · <a href="executive-summary.html">Submission procedure and project-wide stop</a></p>
+</main>
+<footer><strong>Local validation ≠ organizer acceptance.</strong> Do not submit this candidate.</footer>
+</body></html>
