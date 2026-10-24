@@ -6,7 +6,7 @@ Why this script exists
 The brief expects ``ledger/submissions.csv`` and, if absent, a rebuild from
 ``ledger/raw_paste.txt``.  Neither existed; the only committed transcription of
 the team's submission history is ``registry/prior_scores.csv`` (itself
-transcribed from ``research/REQUEST_20261023.md``, owner-supplied text).  Two
+transcribed from ``research/REQUEST_20261024.md``, owner-supplied text).  Two
 sessions on 2026-10-23 seeded a ledger independently.  This module is the single
 generator so the file cannot drift; it reproduces the schema introduced by
 ``scripts/build_r0_prune.py`` (``LEDGER_FIELDS``) and adds every candidate that
@@ -178,7 +178,7 @@ def build_rows() -> list[dict]:
     order: list[str] = []
     for row in source_rows:
         name = (row.get("submission") or "").strip()
-        # e.g. GEMSDOE84..88: a site with no named artifact. Keep it visible so
+        # e.g. GEMSDOE89..92: a site with no named artifact. Keep it visible so
         # the ledger is not mistaken for a complete inventory.
         key = fingerprint(name) if name else "site:" + (row.get("site") or "").lower()
         if key not in groups:

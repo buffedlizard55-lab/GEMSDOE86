@@ -1,0 +1,61 @@
+{
+  "schema": "gems86.spt-legacy-audit.v1",
+  "evidence_class": "LOCAL-ARTIFACT-AND-REGISTRY-MEASUREMENT",
+  "scope": "One pre-existing PR #60 raster outside Pages. Format passes; historical holdout/uniqueness claims do not establish submission readiness.",
+  "file": "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
+  "sha256": "26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342",
+  "bytes": 267158,
+  "zip_sha256": "a65283188fe1ddfed17a748554da9f3cfe7142c7d8279e6b5c33a5ef67a31e22",
+  "original_card_sha256": "10aa9e54a11660e48db376a47c72d98b5d4a3124e804e227e1992da4b61dc0b2",
+  "corrected_card_sha256": "26156fbb1c42d356069455db31e770dbd9759adf49ce3966efeb2a8e0b40c54d",
+  "proof_sha256": "89e842174df0d1efc24098d9a41742152e273e06ffc22f8b352ac32d675c9dd0",
+  "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "validator": {
+    "checks": {
+      "shared_tools_pinned": true,
+      "local_validator_pass": true,
+      "template_format_pass": true,
+      "valid_mask_inside_footprint": true,
+      "no_nodata_tag": true,
+      "nonempty_predictions_all_in_allowed_domain": true,
+      "zip_only_this_tif": true,
+      "zip_bytes_equal_tif": true,
+      "zip_crc_pass": true,
+      "corrected_card_is_negative": true,
+      "universal_overlap_proof_bound": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "nan_inside_footprint": 0,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "positive_pixels": 37654,
+    "shared_writer_used": false,
+    "all_checks_passed": true,
+    "organizer_acceptance": null
+  },
+  "registry": {
+    "surface_preplacement": null,
+    "registry_complete": false,
+    "final_dots_forward_overlap_3px": 1.0,
+    "overlap_limit": 0.7,
+    "spearman_full_footprint": 0.009411845173808513,
+    "reason": "Pinned dense registry witness covers every allowed pixel; every nonempty subset has forward overlap 1.0 (>0.70)."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_VALIDATED_FOR_THIS_RASTER",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Historical folds used a full-catalogue collar and no buffered visible-only placement, paired physical-block CI or shared holdout evaluator. The stored scalar is only an in-sample diagnostic."
+  },
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false,
+  "new_raster_generated": false,
+  "submission_slots_used": 0,
+  "witness_measured_utc": "2026-10-24T07:39:00+00:00"
+}

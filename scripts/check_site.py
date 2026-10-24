@@ -112,6 +112,22 @@ def check(root=ROOT):
         summary = json.loads(summary_path.read_text())
         if any(summary.get(key) is not False for key in ('submission_ready', 'safe_to_submit')):
             errors.append('Summary contradicts negative publication state')
+    legacy_page = root / 'docs/submit.html'
+    if legacy_page.is_file():
+        html = legacy_page.read_text(encoding='utf-8')
+        if ('DO NOT SUBMIT' not in html or 'READY TO DOWNLOAD' in html
+                or 'raw.githubusercontent.com/buffedlizard55-lab/GEMSDOE86/main/submission/' in html):
+            errors.append('Legacy SPT page contains an unsafe release claim or direct upload link')
+        card_path = root / 'docs/evidence/spt-run-card.json'
+        try:
+            card = json.loads(card_path.read_text())
+            if (card.get('verdict') != 'negative' or card.get('submission_ready') is not False
+                    or card.get('approved_for_weekly_slot') is not False
+                    or card.get('safe_to_submit') is not False
+                    or card.get('download_url') is not None):
+                errors.append('Legacy SPT run card contradicts negative publication state')
+        except (OSError, ValueError, TypeError):
+            errors.append('Missing or invalid legacy SPT negative run card')
     return errors
 
 

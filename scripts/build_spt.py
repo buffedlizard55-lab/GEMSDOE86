@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
-"""GEMSDOE86-SPT: signed paired-throw consistency (basement step x gravity step,
-same downthrown sign, surface-step penalised). Bands 15/13/12 of pinned
-training_features.tif. Emission identical to R0 control: collar>2px, sep 2.8px,
-37654 dots. Holdout = 4 quadrant whole-component folds, gems57 dti_binary pooled."""
+"""RETIRED historical SPT builder. Retained for source forensics only.
+
+PR #60 emitted a raster before literal registry/surface clearance and evaluated
+it with a full-catalogue collar. It bypassed the shared holdout/writer and has
+no valid paired holdout CI. See docs/evidence/spt-legacy-audit.json. Do not rerun
+this file even if a later protocol revision makes other lanes feasible.
+"""
 import hashlib, json, sys, zipfile
 from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.protocol_preflight import require_feasible
+require_feasible()  # Mandatory before any feature/score/dot computation, including imports.
+raise RuntimeError("RETIRED_SPT_BUILDER: historical holdout/writer are not protocol compliant")
+
+# Preserved unreachable source for historical audit; never a private writer fork.
 import numpy as np, rasterio
 from scipy import ndimage as ndi
 ROOT=Path(__file__).resolve().parents[1]

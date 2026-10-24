@@ -1,0 +1,101 @@
+{
+  "schema": "gems86.current-untested-hypotheses.v1",
+  "date_utc": "2026-10-24",
+  "scope": "Three untried mechanisms only. PR #60 already tried signed paired throw; its cached in-sample proxy and optimistic status have been retired. The literal registry gate stops all new candidate construction.",
+  "ranking_basis": "Qualitative expected information gain for new-fault discrimination per implementation cost; not a numerical prediction of DTI improvement.",
+  "novelty_scope": "Compared with checked-in H86 and merged SPT source, not an exhaustive claim against every public or private sibling raster. Scientific novelty does not imply competition uniqueness.",
+  "experiments_run": 0,
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86C-MMT",
+      "name": "Cross-fault magnetic marker translation",
+      "layers": [
+        "competition rtp",
+        "competition tmi"
+      ],
+      "signature": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse magnetic markers, consistent in adjacent windows, and a weaker zero-shift match. Keep both signed slip directions rather than assuming one regional sense of slip.",
+      "why_unmapped": "A buried shear zone may truncate and displace a pre-existing magnetic marker even without a mapped surface trace. Searching the image rather than extrapolating catalogue tips makes this capable in principle of finding off-catalogue structures.",
+      "difference_from_repo": "GFCO compares TMI with upward-continued TMI and constructs visible-tip/relay priors; GMC compares gradients between different physical fields. Neither estimates along-fault displacement of transverse markers in two flanks of the same magnetic image. The concurrently merged WVB lane uses local-wavenumber/depth concordance and fault-valve coupling, not flank-to-flank along-fault marker translation.",
+      "non_fault_mimic": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+      "expected_dti_gain": "Highest qualitative priority, very uncertain; no measured gain or score projection.",
+      "implementation_cost": "Medium-high: oriented flank extraction, bounded phase correlation, uncertainty and seam controls.",
+      "external_data_required": false,
+      "data_readiness": "NOT_READY: the raw mirrored core can be restored, but the required shared cached stack is not present. Do not rebuild a substitute under this protocol.",
+      "official_basis": [
+        "https://pubs.usgs.gov/pp/1658/pdf/ch5.pdf",
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      ],
+      "status": "NOT_RUN_PROTOCOL_STOP",
+      "holdout_dti": null,
+      "ci95": null,
+      "date_scope": "Re-reviewed 2026-10-24 after merged SPT trial; still untested"
+    },
+    {
+      "rank": 2,
+      "id": "H86-MBGR",
+      "name": "Basement\u2013gravity forward-residual displacement",
+      "layers": [
+        "competition iso_grav_anom (band 13)",
+        "competition depth_to_base_surf (band 15)"
+      ],
+      "signature": "Fit a spatially cross-fitted, low-frequency forward gravity response of basement depth using only training-region rock-density priors. Test line-like *residual* changes in its signed transverse gradient that persist when the physical model is refitted without the test block; compare against unmodeled raw gravity edges and same-sign paired steps.",
+      "why_unmapped": "A buried displaced interface can leave a localized gravity misfit even when an exposed scarp or mapped surface trace is absent; a catalogue-independent residual test can search covered basins rather than extrapolating known tips.",
+      "difference_from_repo": "H86-RMRB regressed radiometric K~Th+U against RTP, not a gravity forward-response residual. PR #60 SPT intersected raw signed basement/gravity flank steps using the full-catalogue collar; this instead asks whether a cross-fitted physical forward model fails locally and does not reuse its trial as a novel method.",
+      "non_fault_mimic": "Variation in basin-fill density, inverse-model artifacts and igneous contacts; if the basement depth was derived from the same gravity measurements, the residual is circular and cannot be interpreted as independent confirmation.",
+      "expected_dti_gain": "Second qualitative information opportunity if independent provenance is confirmed; no numeric forecast or holdout score.",
+      "implementation_cost": "Medium-high: verify inversion lineage and units, physically constrained forward model, spatial refits, residual/seam and density-null controls.",
+      "external_data_required": false,
+      "data_readiness": "NOT_READY: must establish whether basement depth was inverted from this gravity band and restore actual shared cached features; if input independence is impossible, retire before testing.",
+      "official_basis": [
+        "https://pubs.usgs.gov/of/1999/0383/",
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/"
+      ],
+      "status": "NOT_RUN_PROTOCOL_AND_PROVENANCE_STOP",
+      "holdout_dti": null,
+      "ci95": null
+    },
+    {
+      "rank": 3,
+      "id": "H86C-WCS",
+      "name": "Watershed-crossing scarp persistence",
+      "layers": [
+        "official USGS 3DEP bare-earth 1 m DEM",
+        "competition det_elev for regional detrending"
+      ],
+      "signature": "Measure signed scarp steps that retain strike and down-side polarity across independently delineated drainage divides. Reject candidates that only follow a channel, constant-elevation shoreline, road bench, or one alluvial fan boundary.",
+      "why_unmapped": "A small tectonic scarp may be missed in regional mapping; persistence across unrelated catchments is evidence beyond a single ridge or lineament.",
+      "difference_from_repo": "GFCO uses scarplet collinearity, piedmont hinges, valley chains and relief deconfounding. It does not condition the signed step on independent watershed topology across divides. WVB uses relief-normalized scarps and shoreline controls, not independently delineated watershed topology.",
+      "non_fault_mimic": "Paleolake shorelines, fluvial terraces and road cuts. Drainage divides alone cannot distinguish these from a fault.",
+      "expected_dti_gain": "Third qualitative priority; physically useful discriminant but expensive and geographically incomplete until DEM coverage is verified. No score projection.",
+      "implementation_cost": "High: native-resolution DEM acquisition, hydrologic conditioning, catchments and raster aggregation.",
+      "external_data_required": true,
+      "free_official_source_needed": "USGS 3DEP 1 m bare-earth DEM products referenced by the competition's 1m_DEM_links.csv, not a resampled 100 m proxy.",
+      "official_basis": [
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+      ],
+      "obtainability": "Official metadata and the competition description were retrieved through the page-fetch service on 2026-10-23. Neither the authenticated CSV nor the required native DEM tiles were acquired here. Metadata reachability is not data obtainability.",
+      "data_readiness": "NOT_VIABLE_YET: no native DEM bytes, license-specific product manifest, complete coverage audit, or shared cached watershed stack. Not offered as a runnable experiment.",
+      "status": "NOT_RUN_MISSING_DATA_AND_PROTOCOL_STOP",
+      "holdout_dti": null,
+      "ci95": null
+    }
+  ],
+  "required_validation_after_blockers_are_resolved": [
+    "Assign one method lane; restore and hash-verify the actual shared cached feature stack and a current complete accessible registry.",
+    "Preserve the literal rho and overlap limits; do not exempt a dense prior without an explicitly revised protocol.",
+    "Freeze buffered whole-component folds and fixed budgets before using withheld labels. Derive every catalogue feature only from fold-visible faults.",
+    "Feature-alone and combined canaries precede any trusted result. AUC above 0.90 stops the run; include constant, shuffled and polarity-scrambled controls.",
+    "Use the pinned shared evaluate_holdout.py and submission_writer.py. Report pooled HOLDOUT-DTI with evaluator hashes, withheld-positive count, physical-block 95% CI and paired delta against the strongest rerunnable matched control.",
+    "Do not compare maxima from different fold designs as a current holdout best. A positive paired result and all uniqueness gates are required before separate slot selection.",
+    "At most three experiments or two hours; a negative result is a deliverable. No organizer submission is authorized by this plan."
+  ],
+  "retired_from_previous_register": {
+    "id": "H86C-SPT",
+    "reason": "Implemented as H-SPT in merged PR #60; a full-catalogue collar and incomplete uniqueness gate make its archive non-promotable.",
+    "review": "docs/evidence/spt-legacy-audit.json"
+  },
+  "experiments_run_this_review": 0,
+  "scores_projected": false
+}

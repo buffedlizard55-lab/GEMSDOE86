@@ -21,6 +21,7 @@ submission:
 # Audit all files; do not silently choose the newest candidate with ls/head.
 audit:
 	$(PY) scripts/audit_release.py --measure-registry
+	$(PY) scripts/audit_legacy_spt.py --write
 
 # Retain the independently merged all-download integrity audit and its commands.
 verify-downloads:
@@ -42,6 +43,7 @@ test:
 verify:
 	$(PY) scripts/build_site.py --check
 	$(PY) scripts/check_site.py
+	$(PY) scripts/audit_legacy_spt.py
 	$(PY) scripts/audit_downloads.py
 	$(PY) -m pytest -q
 

@@ -31,8 +31,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/restore_protocol_data.py --include-registry
-      - name: Recheck every inherited TIFF, ZIP, receipt and final-dot stop
-        run: python scripts/audit_release.py --measure-registry
+      - name: Recheck published downloads, historic SPT exception and final-dot stop
+        run: |
+          python scripts/audit_release.py --measure-registry
+          python scripts/audit_legacy_spt.py --write
       - name: Refresh named-project Git metadata (partial failures stay explicit)
         env:
           GH_TOKEN: ${{ github.token }}
@@ -52,6 +54,7 @@ jobs:
           path: |
             docs/evidence/release-readiness.json
             docs/evidence/all-artifacts-registry.json
+            docs/evidence/spt-legacy-audit.json
             docs/evidence/session-20261023-run-card.json
             docs/evidence/fleet-feed.json
       - uses: actions/configure-pages@v5

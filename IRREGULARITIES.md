@@ -914,3 +914,46 @@ reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, a
 
 See `research/SESSION_20261024_REVIEW.md` and
 `docs/evidence/source-recheck-20261024.json` for exact scope and unresolved blockers.
+
+## IR-86-SPT-READY-01 — Historical SPT upload page falsely promoted an unapproved raster (2026-10-24)
+
+**Observed and corrected, not a new experiment.** Merged PR #60 committed
+`docs/submit.html` with a green “READY TO DOWNLOAD” upload procedure and
+`docs/evidence/spt-run-card.json` plus the adjacent `submission/*.json` with
+`submission_ready=true` / `verdict=promote-candidate`. The existing generated
+homepage, shared protocol proof and ten-file release audit all said **DO NOT
+SUBMIT**. The SPT candidate was tested only against 25 scored-fleet rasters;
+its stage-one pre-placement surface, full accessible registry and reproducible
+buffered visible-only holdout were not supplied. `scripts/build_spt.py` computed
+its catalogue exclusion from **all faults** before the per-quadrant scoring
+folds and wrote its TIFF with a private writer; the reported 0.00526 vs 0.00479
+is an in-sample diagnostic, not HOLDOUT-DTI. The archived note says “surface-
+penalised,” the card says penalty 0 and the source defaults to 0.5; the setting
+cannot be established from serialized predictions alone.
+
+Fresh readback of the unchanged TIFF (`26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342`)
+and ZIP with shared pinned validators passed every local file-format/byte check
+(single band, float32, EPSG:32611, exact reference grid, [0,1], zero NaN
+inside, zero outside/known-fault dots). The **full-support** hash-pinned
+registry prior gives 3-pixel forward overlap **1.0**, greater than **0.70**;
+Spearman on the full footprint is `0.009411845173808513`. The low correlation
+cannot override the disjunctive overlap failure. This is a one-witness negative
+measurement, not a complete registry scan or portal acceptance.
+
+The original JSON is preserved byte-exactly in
+`research/upstream/spt-original-run-card.json` (sha256 `10aa9e54a11660e48db376a47c72d98b5d4a3124e804e227e1992da4b61dc0b2`).
+Both active SPT cards now explicitly say negative / do not submit and label the
+historical proxy as invalid for promotion. `scripts/build_spt.py` stops before
+loading data, even if the generic preflight might one day pass. The formerly
+handwritten `docs/submit.html` is now generated as a negative warning, with no
+raw upload links. `scripts/audit_legacy_spt.py` and adversarial tests verify
+this **off-dashboard** eleventh artifact independently of the ten published
+Pages downloads. See `docs/evidence/spt-legacy-audit.json`,
+`research/SESSION_20261024_SPT_CORRECTION.md`, and
+`docs/evidence/session-20261024-spt-correction-run-card.json`.
+
+**Remaining:** a shared, explicitly authorized representation-aware uniqueness
+protocol, actual shared feature cache and complete raster registry, then a new
+visible-only, buffered, paired holdout; no score or weekly slot was used by this
+correction. Do not use the unchanged SPT TIFF just because its TIFF bytes pass
+format checks.

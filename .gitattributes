@@ -1,0 +1,2 @@
+# CSV generator intentionally emits RFC-style CRLF; do not flag CR as trailing space.
+ledger/submissions.csv whitespace=cr-at-eol

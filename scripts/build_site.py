@@ -16,6 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_release import build_report, strict_json, sha256, session_card  # noqa: E402
+from scripts.audit_legacy_spt import check_snapshot as check_legacy_spt  # noqa: E402
 
 REPO = "https://github.com/buffedlizard55-lab/GEMSDOE86"
 
@@ -67,6 +68,19 @@ def downloads(artifacts: list[dict]) -> str:
     return "\n".join(result)
 
 
+def legacy_notice(legacy: dict) -> str:
+    """Replace the previously optimistic direct-URL upload guide with a stop."""
+    return page("Legacy SPT correction", "executive-summary.html", f'''
+<p class="eyebrow">Correction of a historical release claim</p>
+<h1>SPT file: <strong>DO NOT SUBMIT</strong>.</h1>
+<div class="callout"><span class="badge bad">NOT CLEARED · NO COMPETITION UPLOAD</span>
+<p>A former page described this TIFF as ready to submit. That claim was wrong. This page is generated from a byte-checked negative review, not a human-inspection placeholder. No upload link or recommendation is offered.</p>
+<p><strong>Existing research file (not generated in this review):</strong> <code>{e(Path(legacy['file']).name)}</code><br>SHA-256: <code>{e(legacy['sha256'])}</code>.</p>
+<p>The original TIFF and ZIP pass local numerical and grid checks, including finite values in [0,1], but their dots have <strong>{legacy['registry']['final_dots_forward_overlap_3px']:.0%} forward 3-pixel overlap</strong> with one pinned registry prior, above the {legacy['registry']['overlap_limit']:.0%} stop. A 25-file subset check cannot clear a file against the full registry.</p>
+<p>The archived 0.00526 / 0.00479 figures used the full catalogue to place dots before evaluating held faults; they are <strong>not a valid visible-only HOLDOUT-DTI or an organizer score</strong>. No paired physical-block 95% confidence interval or pre-placement surface check is available. The builder used a private writer rather than the shared submission writer and has been retired.</p>
+<p><a href="evidence/spt-legacy-audit.json">Automated TIFF/ZIP/registry audit</a> · <a href="evidence/spt-run-card.json">Corrected negative run card</a> · <a href="executive-summary.html">Actual submission procedure and gating</a></p></div>''')
+
+
 def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
@@ -77,6 +91,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict) -> str:
 <p><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <strong>DO NOT SUBMIT</strong> any current file.</p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Why blocked &amp; how submission works →</a></div></section>
+<section class="callout"><span class="badge bad">IMPORTANT: LEGACY SPT PAGE CORRECTED</span><p>A separate earlier SPT page described an off-dashboard TIFF as ready. Its TIFF passes local format checks but fails the literal registry-overlap rule; its in-sample diagnostic is not a valid holdout. <a href="submit.html">Read the corrected DO NOT SUBMIT notice</a>.</p></section>
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Submission-approved files</span><strong>None</strong><small>Every candidate remains negative. No selector or portal operation was run.</small></div>
 <div><span>New experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This audit stopped before modeling or placement, as required.</small></div></div>
@@ -97,6 +112,7 @@ def executive(report: dict, sources: dict) -> str:
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<p><strong>Correction:</strong> a separate historical SPT upload guide was unsafe. Its 11th, off-dashboard raster is <a href="submit.html">DO NOT SUBMIT</a>, despite passing local [0,1] checks. It is reviewed separately in <a href="evidence/spt-legacy-audit.json">the automatic legacy audit</a>, not silently counted among the ten downloads below.</p>
 <h2>Current downloads — audit only, no submission authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
 <p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
@@ -156,11 +172,11 @@ def hypotheses(plan: dict) -> str:
 <dt>Named non-fault mimic</dt><dd>{e(h['non_fault_mimic'])}</dd><dt>Expected value / implementation cost</dt><dd>{e(h['expected_dti_gain'])} {e(h['implementation_cost'])}</dd>
 <dt>Data / viability</dt><dd>{e(h['data_readiness'])} {e(h.get('obtainability', 'No new external product is proposed as acquired.'))}</dd></dl><p>{sources}</p></article>''')
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
-    return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
-<div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p></div>
+    return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Untried hypotheses · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
+<div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p><p>The older plan included SPT as untried; <a href="submit.html">SPT was subsequently tried and its optimistic release status has been withdrawn</a>.</p></div>
 <p>{e(plan['ranking_basis'])} {e(plan['novelty_scope'])}</p>{''.join(sections)}
 <h2>Validation plan after blockers are resolved</h2><ol>{steps}</ol>
-<p><a href="{REPO}/blob/main/registry/h86c_hypotheses.json">Machine-readable hypothesis register</a> · <a href="{REPO}/blob/main/research/SESSION_20261023_REVIEW.md">Scientific critique</a> · <a href="research.html">Physical rationale and limitations</a></p>''')
+<p><a href="{REPO}/blob/main/registry/hypotheses_20261024.json">Current machine-readable hypothesis register</a> · <a href="{REPO}/blob/main/registry/h86c_hypotheses.json">Archived earlier plan</a> · <a href="research.html">Physical rationale and limitations</a></p>''')
 
 
 def fleet_page(feed: dict, ledger: list[dict]) -> str:
@@ -196,13 +212,14 @@ def source_page(observations: dict) -> str:
 def irregularities(report: dict) -> str:
     items = "".join(f'<li>{e(item)}</li>' for item in report["limitations"])
     return page("Limitations and irregularities", "irregularities.html", f'''<p class="eyebrow">Explicitly unresolved</p><h1>No silent exceptions.<br>No invented score.</h1><ol>{items}</ol>
-<h2>Defects found in this review</h2><ul><li>An imported model caller could bypass the mandatory preflight with a boolean parameter. That escape hatch was removed; regression tests require a stop before feature building.</li>
+<h2>Defects found in the reviews</h2><ul><li>The inherited PR #60 <a href="submit.html">SPT upload page</a> incorrectly said READY and its card called an in-sample diagnostic HOLDOUT-DTI. Both are withdrawn; <a href="evidence/spt-legacy-audit.json">the separate byte/registry audit</a> proves the file passes format but fails literal uniqueness.</li>
+<li>An imported model caller could bypass the mandatory preflight with a boolean parameter. That escape hatch was removed; regression tests require a stop before feature building.</li>
 <li>The inherited site compared nonidentical holdout instruments as a repository-wide “highest holdout.” That wording was removed. The automated view labels each design and confidence interval separately.</li>
 <li>The inherited headline byte and note-character counts disagreed with the serialized GFCO receipt. Counts now come directly from every actual file and receipt on each build.</li>
 <li>The old source ledger conflated the owner's H33 reported result with a different historical projection. The supplied result is retained as OWNER-REPORTED, not mislabeled as either confirmed or fabricated.</li>
 <li>A static-site inventory path check accidentally depended on the last traversed HTML path. It now checks the publication root directly, including when there is no HTML input.</li></ul>
 <p>The historical scientific cards and TIFF bytes are preserved. This audit does not retroactively certify earlier experiments, erase protocol overruns or change thresholds.</p>
-<p><a href="evidence/session-20261023-run-card.json">Negative run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261023_REVIEW.md">Three-pass review and next actions</a></p>''')
+<p><a href="evidence/session-20261024-spt-correction-run-card.json">Current negative run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_SPT_CORRECTION.md">Current three-pass correction</a> · <a href="evidence/session-20261023-run-card.json">Prior run card</a></p>''')
 
 
 def scientific_context() -> str:
@@ -252,8 +269,9 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or review["verdict"] != "negative" or review["submission_ready"] is not False
             or review["new_candidate_generated"] is not False):
         raise ValueError("Current review is stale or contradicts the negative release audit; remeasure registry")
+    legacy = check_legacy_spt(root)  # verifies off-dashboard TIFF and withdrawn card, fail closed
     sources = strict_json(root / "docs/evidence/source-review-20261023.json")
-    plan = strict_json(root / "registry/h86c_hypotheses.json")
+    plan = strict_json(root / "registry/hypotheses_20261024.json")
     with (root / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
         ledger = list(csv.DictReader(stream))
     summary = {k: report[k] for k in ("schema", "audit_ok", "decision", "submission_ready", "safe_to_submit", "artifact_count", "locally_valid_artifacts", "new_candidate_generated", "experiments_run", "submission_slots_used")}
@@ -262,6 +280,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
                    release_readiness="../evidence/release-readiness.json")
     return {
         "docs/index.html": home(report, feed, registry, review),
+        "docs/submit.html": legacy_notice(legacy),
         "docs/executive-summary.html": executive(report, sources),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan),

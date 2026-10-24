@@ -29,3 +29,8 @@
    `audit_release.py --measure-registry` also writes `latest-review-run-card.json`
    with actual UTC measurement time and report/registry hashes; HTML-only rebuilds
    must not manufacture freshness or relabel historical model results.
+9. PR #60's historical SPT raster is an off-dashboard, format-valid **negative** artifact.
+   Its old positive upload page/card was withdrawn; run `scripts/audit_legacy_spt.py`
+   and `scripts/build_site.py --check`. Never rerun the retired builder or use its
+   full-catalogue proxy as HOLDOUT-DTI. The file and original card are preserved for
+   forensics, not offered for a weekly submission slot.

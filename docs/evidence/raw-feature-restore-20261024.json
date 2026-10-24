@@ -1,0 +1,23 @@
+{
+  "schema": "gems86.raw-feature-mirror-check.v1",
+  "date_utc": "2026-10-24",
+  "evidence_class": "DATA-MEASUREMENT",
+  "method": [
+    ".venv/bin/python scripts/restore_protocol_data.py --include-features --include-registry",
+    "Hard-link the verified raw TIFF to ignored data/bridge/training_features.tif",
+    "bash scripts/download_competition_data.sh --verify-only"
+  ],
+  "source": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/c0c06ac82178f26b94fce3397036ef8f12a2f3a0/data/bridge",
+  "manifest": "research/upstream/data_manifest.json",
+  "file_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "file_bytes": 418912844,
+  "raster_bands": 19,
+  "raster_crs": "EPSG:32611",
+  "raster_shape": [3730, 3292],
+  "band_2": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+  "band_14": "tmi - Total magnetic intensity - total strength of magnetic field",
+  "organizer_authenticated": false,
+  "shared_cached_feature_stack_restored": false,
+  "persisted_in_git": false,
+  "scope": "A hash-pinned owner mirror of the raw core was restored without a competition login; this does not reproduce the template's cached feature stack, establish official origin or authorize an experiment. Both local copies are ignored and may be absent on the next runner."
+}
