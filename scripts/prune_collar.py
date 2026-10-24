@@ -527,6 +527,9 @@ def coverage_control(cands: dict[str, np.ndarray], catalogue: np.ndarray,
 
 # -------------------------------------------------------------------------- main
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true", help="build releases/ and ledger/variants.json")
     ap.add_argument("--measure", action="store_true",

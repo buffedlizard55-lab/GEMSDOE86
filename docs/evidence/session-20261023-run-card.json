@@ -2,8 +2,8 @@
   "schema": "gems86.session-negative.v1",
   "date_utc": "2026-10-23",
   "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf and a negative step in iso_grav_anom must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev scarp relief is muted by basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
-  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; inversion artifacts.",
+  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and a negative step in iso_grav_anom (Band 13) must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev (Band 12) and det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
+  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",

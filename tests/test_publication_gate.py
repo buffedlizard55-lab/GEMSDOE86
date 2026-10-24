@@ -187,6 +187,22 @@ class PublicationTests(unittest.TestCase):
                     main()
                 build.assert_not_called()
 
+    def test_tampered_quarantined_submission_bytes_fail_site_check(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.fixture(root)
+            shutil.copyfile(ROOT / 'docs/evidence/spt-full-support-witness-audit.json',
+                            root / 'docs/evidence/spt-full-support-witness-audit.json')
+            shutil.copytree(ROOT / 'submission', root / 'submission')
+            self.assertEqual(check(root), [])
+            spt_doc = json.loads((root / 'docs/evidence/spt-full-support-witness-audit.json').read_text())
+            cand_tif = root / spt_doc['candidate_file']
+            with zipfile.ZipFile(cand_tif.with_suffix('.zip'), 'w') as z:
+                z.writestr(cand_tif.name, b'tampered')
+            self.assertTrue(any('Quarantined submission ZIP payload differs' in err for err in check(root)))
+            cand_tif.write_bytes(b'tampered')
+            self.assertTrue(any('Quarantined submission TIFF SHA differs' in err for err in check(root)))
+
 
 if __name__ == '__main__':
     unittest.main()

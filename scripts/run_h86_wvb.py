@@ -903,11 +903,9 @@ def build_registry_index() -> dict:
 
 
 def main() -> int:
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
-    from scripts import protocol_preflight
-
-    protocol_preflight.require_feasible()
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t_start = time.time()
     print("[1/7] Loading grid & building 24-channel zero-catalogue H86-WVB static physics stack...")
     grid = GRID.load_grid(DATA_DIR)

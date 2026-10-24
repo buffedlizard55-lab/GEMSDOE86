@@ -29,3 +29,7 @@
    `audit_release.py --measure-registry` also writes `latest-review-run-card.json`
    with actual UTC measurement time and report/registry hashes; HTML-only rebuilds
    must not manufacture freshness or relabel historical model results.
+9. Never fetch or scrape `drivendata.org` via automated tools (DrivenData Terms of
+   Use prohibit automated/robot/spider access; only human browser receipts may
+   supply `ORGANIZER-CONFIRMED` scores or remaining weekly quota). Verify every
+   `training_features.tif` band index against `src/gems86/io.py` (`BANDS`).

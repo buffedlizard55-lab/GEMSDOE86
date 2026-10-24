@@ -564,8 +564,7 @@ def full_fleet_uniqueness_audit(
 
 
 def main() -> int:
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
     t_start = time.time()

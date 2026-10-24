@@ -1,8 +1,10 @@
-# Manual submission card — no automatic submission
+# Manual submission card — no automatic submission (`DO NOT SUBMIT`)
 
-**Status: BUILT; not slot-approved.** `TOP_PUBLIC`, remaining quota and R0's submission receipt
+> **2026-10-24 MANDATORY PROTOCOL OVERRIDE (`DO NOT SUBMIT`):** Under the standing Parallel-Run Protocol (`PROMPT.md` / `AGENTS.md` / `scripts/protocol_preflight.py`), the SHA-pinned `17GEMSDOE` continuous witness (`sha256: ab0a0a62...`) covers `100.0%` (`5,106,385 / 5,106,385`) of allowed off-catalogue footprint cells within `3 px` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`), and **no file in this repository is authorized for DrivenData upload** (`safe_to_submit: false`, `submission_slots_used: 0`). All historical rebuild scripts referenced below (`scripts/run_prune_ladder.py`, `scripts/run_relief_axis.py`, `scripts/run_concentration_10km.py`, etc.) now halt at `require_feasible()` before candidate construction (`IR-86-20261024-01`). For the active machine-checked portal guide and gate status, see [`executive-summary.html`](executive-summary.html) and [`submit.html`](submit.html). The 2026-10-23 `R0`-perturbation notes below are retained strictly as historical research context.
+
+**Status: BUILT (historical 2026-10-23 archive); NOT slot-approved (`DO NOT SUBMIT`).** `TOP_PUBLIC`, remaining quota and R0's submission receipt
 were not supplied. The human alone submits, from one registered entity, one file per slot.
-Full plan and decision tree: [SLOT_PLAN.md](../SLOT_PLAN.md). Release TIFFs are local-only and
+Full plan and decision tree: [SLOT_PLAN.md](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/SLOT_PLAN.md). Release TIFFs are local-only and
 gitignored (unchecked data-use terms); hashes below are the authority.
 
 ## 2026-10-23 session 3 (`arena/aee7c83d`) — CONCENTRATION surface extension: **probe only, does not change the slot order**
@@ -25,7 +27,7 @@ bytes): EPSG:32611, 3,730 × 3,292, single float32 band, transform
 NaN (spec form) or 0 (`-zeros`) outside, 0 dots on catalogue pixels, 0 dots outside the footprint,
 37,654 dots, added mass ≥ 3.1623 px from the catalogue, parent 2.8284 px spacing floor never tightened.
 **Predicted live Δ ≈ 0.000…+0.003 (bracket [−0.002, +0.007]) — below the 0.01 floor; use only as the
-spare-slot probe in [SLOT_PLAN.md](../SLOT_PLAN.md).**
+spare-slot probe in [SLOT_PLAN.md](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/SLOT_PLAN.md).**
 
 ## 2026-10-23 session (`arena/f29e1689`, PR #56) — pediment-window attribution: **audit only, never upload**
 
@@ -192,7 +194,7 @@ Notes are 99–106 chars each and are stored inside each `-zeros.json` receipt a
 
 ## MASS variants — built and gated, **not recommended for a slot** (both predicted negative)
 
-Upload, if the human overrules the default in [SLOT_PLAN.md](../SLOT_PLAN.md), the `-zeros`
+Upload, if the human overrules the default in [SLOT_PLAN.md](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/SLOT_PLAN.md), the `-zeros`
 twin; the `-nan` twin carries identical dots. TIFFs are local-only and gitignored.
 
 | Variant | Primary file (NaN outside) | sha256 | Fallback (zeros) | sha256 |
@@ -495,7 +497,7 @@ per-arm mechanism card are in `releases/<id>-zeros.json` and
 `evidence/relief-source-mechanism.md`.
 
 **Upload order (unchanged by this session):** Slot 1 `PRUNE-le3p000` → Slot 2 `concb5kmdown4` →
-Slot 3 `RELIEF-frontp15`. See [SLOT_PLAN.md](../SLOT_PLAN.md).
+Slot 3 `RELIEF-frontp15`. See [SLOT_PLAN.md](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/SLOT_PLAN.md).
 
 ## Down-dose rungs session files (PR #55, post-collision reconciliation)
 
@@ -522,7 +524,7 @@ rebuilt byte-exactly (`8aab97b6…`) before any new file was written.
 
 ## CONCENTRATION 10 km arms (built 2026-10-23, session `arena/a681fdaf-gemsdoe86`) — week-2 alt only; Slots 1–3 unchanged
 
-Pre-registered (`registry/preregistration_conc10.json`); rebuild via `.venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 && .venv/bin/python scripts/run_concentration_10km.py`. **None displaces Slots 1–3** as re-ranked in [SLOT_PLAN.md](../SLOT_PLAN.md) rev. H (`PRUNE-le3p000`, `conc6`, `RELIEF-frontp15` demoted; spares `conc5dose`, then PR #53 `surfext10`); the stale `dens15`/`spr15` ordering at the top of this file stays retired per `IR-86-CONC-10`. `concb10kmdown8` is a week-2 spare behind `conc5dose`/`surfext10`, **only if Slot 2 (`conc6`) returns ≥ +0.005**; `concb10kmup8` is retired — do not upload.
+Pre-registered (`registry/preregistration_conc10.json`); rebuild via `.venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 && .venv/bin/python scripts/run_concentration_10km.py`. **None displaces Slots 1–3** as re-ranked in [SLOT_PLAN.md](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/SLOT_PLAN.md) rev. H (`PRUNE-le3p000`, `conc6`, `RELIEF-frontp15` demoted; spares `conc5dose`, then PR #53 `surfext10`); the stale `dens15`/`spr15` ordering at the top of this file stays retired per `IR-86-CONC-10`. `concb10kmdown8` is a week-2 spare behind `conc5dose`/`surfext10`, **only if Slot 2 (`conc6`) returns ≥ +0.005**; `concb10kmup8` is retired — do not upload.
 
 | Arm | Upload path (`-zeros.tif` fallback; `.tif` NaN twin adjacent) | `-zeros.tif` SHA-256 | `.tif` (NaN-outside) SHA-256 | Form name | Form note (≤ 140 ch) |
 |---|---|---|---|---|---|
