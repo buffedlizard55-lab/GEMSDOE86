@@ -800,7 +800,37 @@ different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and 
 grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
 rather than the 6-cell design with basin.
 
-## IR-86-CONC-15 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
+## IR-86-CONC-15 — the SGMC-extra instrument rewards *outward movement* for CONCENTRATION arms, not lineaments
+
+**Observed.** The SGMC surrogate's truth is `SGMC − catalogue`, so a dot in the mapped-fault collar can
+never earn credit there, while the organiser states new truth *can* lie within 300 m of a known trace —
+and R0 is built almost entirely of such dots. Measured on this session's three arms
+(`evidence/concentration_surfext_axis_20261023.json` → `instrument_confound`): `surfext10`'s added mass
+sits **21.7 px** from SGMC-extra truth versus **22.6 px** for the mass it removed (the treatment moved
+mass *toward* SGMC truth) yet beats its matched control by only **+0.0012 MODEL**; the control moved
+mass *away* (22.8 px) and still scored **+0.0047 MODEL** in 4/4 quadrants. The fold-fair PROXY is biased
+the opposite way, since it can only reward mass near *withheld catalogue* traces — exactly what surface
+extension gives up (`−0.00003` treatment vs `−0.0008` control).
+**Decision.** CONCENTRATION MODEL deltas are not compared across arms with different
+catalogue-distance profiles; every arm is read against a matched control, never against zero, and a
+positive SGMC delta alone is not evidence of lineament knowledge. This is the same instrument failure
+mode already recorded for RELIEF (`IR-86-RELIEF-04`) and for the CV band (`IR-86-CONC-13`).
+
+## IR-86-CONC-16 — R0 is saturated on its own evidence surface; the headroom is *off* that surface
+
+**Observed.** Confirms and localises `IR-86-CONC-12`'s ≈6.4 % capacity cap. Measured on the pinned
+inputs before any candidate was built: all 37,654 R0 dots lie on the `H19-5` ancestor surface, and under
+the parent's own constraints (`> 3.0 px` from the catalogue, `>= 2.8284 px` from every dot) only **90**
+legal free cells remain on that surface — the merged cvband rule's within-surface destination capacity
+is ~2,400 dots. `H19-4 | H16-1` minus `H19-5` is 35,954 px of near-equal owner-reported quality
+(`0.1894` / `0.1855` vs `0.1922`, all CLAIM) carrying **zero** parent mass, with 8,671 legal free cells
+(6,456 placeable greedily).
+**Decision.** Future CONCENTRATION/SPACING sessions must state the free-slot count before building;
+within-surface reallocation is treated as closed, and the open headroom is surface extension
+(`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
+`EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
+0.000…+0.003, below the evidence floor).
+## IR-86-CONC-17 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.
