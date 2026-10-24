@@ -27,6 +27,21 @@ NaN (spec form) or 0 (`-zeros`) outside, 0 dots on catalogue pixels, 0 dots outs
 **Predicted live Δ ≈ 0.000…+0.003 (bracket [−0.002, +0.007]) — below the 0.01 floor; use only as the
 spare-slot probe in [SLOT_PLAN.md](../SLOT_PLAN.md).**
 
+## 2026-10-23 session (`arena/f29e1689`, PR #56) — pediment-window attribution: **audit only, never upload**
+
+The pediment refinement of the dispersal rule was built and **fails its SGMC falsifier**
+(`IR-86-CONC-18`): at the dose-matched 941 dots the non-pediment complement beats the pediment arm
+(+0.0013 vs +0.0007 MODEL; REF `concb5kmdown4` +0.0015 replicated), the d28 `PROXY` orders oppositely
+(+0.0012 vs +0.0004), and the truth-free pediment window caps at 1,045 moved dots. Slots are
+unchanged. The three files below exist for audit only (all count-fixed 37,654, all MUST gates PASS,
+zeros sha256 in each `-zeros.json`):
+
+| Role | file (`releases/`) | `-zeros.tif` sha256 |
+|---|---|---|
+| **audit only — never upload** | `…-concb5kmpeddown2p5-20261023-9fb6bfc9-zeros.tif` | `9fb6bfc9…` |
+| **audit only — never upload** | `…-concb5kmnonpeddown2p5-20261023-57cc867c-zeros.tif` | `57cc867c…` |
+| **audit only — never upload** | `…-concb5kmpeddown5-20261023-161b002e-zeros.tif` | `161b002e…` |
+
 ## Slot order after the 2026-10-23 sessions (latest) — **supersedes everything below**
 
 **Status: BUILT; not slot-approved.** No `RECEIPT` row exists for any file. Ordering logic, in one
@@ -507,7 +522,7 @@ rebuilt byte-exactly (`8aab97b6…`) before any new file was written.
 
 ## CONCENTRATION 10 km arms (built 2026-10-23, session `arena/a681fdaf-gemsdoe86`) — week-2 alt only; Slots 1–3 unchanged
 
-Pre-registered (`registry/preregistration_conc10.json`); rebuild via `.venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 && .venv/bin/python scripts/run_concentration_10km.py`. **None displaces Slots 1–3** as re-ranked in [SLOT_PLAN.md](../SLOT_PLAN.md) rev. G (`PRUNE-le3p000`, `conc6`, `RELIEF-frontp15` demoted; spares `conc5dose`, then PR #53 `surfext10`); the stale `dens15`/`spr15` ordering at the top of this file stays retired per `IR-86-CONC-10`. `concb10kmdown8` is a week-2 spare behind `conc5dose`/`surfext10`, **only if Slot 2 (`conc6`) returns ≥ +0.005**; `concb10kmup8` is retired — do not upload.
+Pre-registered (`registry/preregistration_conc10.json`); rebuild via `.venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16 && .venv/bin/python scripts/run_concentration_10km.py`. **None displaces Slots 1–3** as re-ranked in [SLOT_PLAN.md](../SLOT_PLAN.md) rev. H (`PRUNE-le3p000`, `conc6`, `RELIEF-frontp15` demoted; spares `conc5dose`, then PR #53 `surfext10`); the stale `dens15`/`spr15` ordering at the top of this file stays retired per `IR-86-CONC-10`. `concb10kmdown8` is a week-2 spare behind `conc5dose`/`surfext10`, **only if Slot 2 (`conc6`) returns ≥ +0.005**; `concb10kmup8` is retired — do not upload.
 
 | Arm | Upload path (`-zeros.tif` fallback; `.tif` NaN twin adjacent) | `-zeros.tif` SHA-256 | `.tif` (NaN-outside) SHA-256 | Form name | Form note (≤ 140 ch) |
 |---|---|---|---|---|---|

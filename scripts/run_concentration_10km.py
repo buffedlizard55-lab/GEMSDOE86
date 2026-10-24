@@ -11,7 +11,7 @@ narrow occupied-block-density CV band at 10 km while the 0.1152 lidar file
 sits far outside it, and ``SLOT_PLAN.md`` logged ``CONCENTRATION-10km`` as an
 unbuilt proposal.  All three ``(CONCENTRATION, b10km-*)`` keys here are new.
 
-One correction measured before building (``IR-86-CONC-18``): with this repo's
+One correction measured before building (``IR-86-CONC-19``): with this repo's
 canonical ``block_density_stats`` (occupied blocks, density = dots/footprint
 cells), R0's 10 km CV is **0.736**, not 0.570 — above the 0.51-0.59 band under
 either complete-block or padded-block accounting.  The dispersal (down)
@@ -525,7 +525,7 @@ def main() -> int:
                 "IR-86-TRACKB-08 reports R0 10 km CV = 0.570; canonical "
                 "block_density_stats (occupied blocks, density per footprint cell) "
                 "measures 0.736 complete-block / 0.733 padded-block this session. "
-                "See IR-86-CONC-18.")),
+                "See IR-86-CONC-19.")),
         variants=written_receipts,
         null_control_not_promoted={
             "CONTROL-b10km-rand8": dict(

@@ -830,6 +830,38 @@ within-surface reallocation is treated as closed, and the open headroom is surfa
 (`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
 `EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
 0.000…+0.003, below the evidence floor).
+
+## IR-86-CONC-18 — the pediment refinement of the dispersal rule FAILS its SGMC falsifier; instruments split; no slot change
+
+**Observed** (session `arena/f29e1689`, `evidence/concentration_pediment_axis_20261023.json`; R0 rebuilt
+byte-exactly first). The pre-rev-E SLOT_PLAN's pediment proposal (former proposal 2, `IR-86-TRACKB-08`
+line) was built as three destination-regime splits of the `concb5kmdown4` shave: `concb5kmpeddown2p5`
+(941 dots, 5.00 % chg, 100 % in-window), `concb5kmnonpeddown2p5` (941 dots, 100 % out-window,
+attribution control), `concb5kmpeddown5` (1,882 dots, 10.00 % chg, 55.6 % in-window). The truth-free
+pediment window (3DEP `relief_local` 10–40 m, > 1 km from the RELIEF regime front; 18.8 % of the
+footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules — a *window-specific* capacity
+beside `IR-86-CONC-12`/`16`'s within-surface caps — so the pair is dose-matched at 2.5 % of R0.
+
+1. **SGMC MODEL falsifier fired:** at the identical dose the non-pediment complement beats the
+   pediment arm (+0.0013 vs +0.0007; REF `concb5kmdown4` +0.0015 replicates the recorded value
+   exactly). As far as mapped-fault truth can tell, the dispersal gain is **generic sparse-ridge
+   coverage**, not the thin-alluvium concealed-fault prior.
+2. **Displacement is matched** (mean 1,612.7 vs 1,630.8 px; median 1,597.3 vs 1,582.3), so
+   `IR-86-CONC-15`'s outward-movement bias is common-mode across the pair and cannot explain the
+   ped/nonped gap — but it inflates both vs R0, which is why the quoted read is arm-vs-arm, not
+   arm-vs-zero.
+3. **The symmetric fold-fair d28 `PROXY` orders the arms oppositely** (+0.0012 in-window vs +0.0004
+   out-window, CIs straddling/near zero): the attribution is *split*, not resolved. No arm clears the
+   0.01 live-evidence floor (max |Δ| = 0.0017).
+4. **Dose** is near-linear on SGMC (+0.0007 → +0.0017 at 2×) but the 2× dose pushes the 1 km CV to
+   0.5013, below the (already demoted, `IR-86-CONC-13`) CV-band's lower edge.
+
+**Decision.** No slot change: slots stay exactly as rev E ranks them (`le3p000`, `conc6`/`concb5kmdown6`,
+`frontp15`). The three pediment arms are recorded `BUILT` audit artifacts and are **never upload
+candidates**. Any future pediment-restricted CONCENTRATION design is capped at ~2.8 % of R0's dots by
+destination capacity. The 10 km CV definition was pinned to `IR-86-TRACKB-08` (fully-covered 100 px
+blocks: R0 = 0.5699 vs 0.736 unfiltered — both now reported by
+`gems86.concentration_pediment.cv_report`).
 ## IR-86-CONC-17 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
 
 **Observed.** This session (`arena/4822aa3b-gemsdoe86`, PR #55) and the concurrent PR #50 session
@@ -856,7 +888,7 @@ per rev. D). No slot was spent; the exact-hash duplicate is kept in the ledger r
 because two independent byte-identical builds is evidence the down-mechanism dose ladder is
 reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, axis, value)".
 
-## IR-86-CONC-18 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
+## IR-86-CONC-19 — IR-86-TRACKB-08's "R0 10 km CV = 0.570, inside 0.51–0.59" does not reproduce under the canonical block-density definition
 
 **Observed.** `IR-86-TRACKB-08` and `SLOT_PLAN.md` proposal 2 state that at 10 km (100 px) every top-scoring file sits inside CV `0.547–0.570` with `R0 = 0.570`. Measuring R0 this session with the repo's canonical `gems86.concentration_5km.block_density_stats` (occupied blocks; density = dots / footprint cells per block) gives **0.7360** (complete blocks, 538 occupied) and **0.7331** (padded blocks, 547 occupied); count-CV variants give 0.6434 / 0.6422. No variant of the canonical definition reproduces 0.570, so the TRACKB session's 10 km numbers must come from a different (unrecorded) block accounting — e.g. a different occupied/valid rule or density normalisation.
 **Decision.** Treat the *qualitative* TRACKB-08 observation (leaders cluster tightly at 10 km; the 0.1152 lidar file is an outlier) as unreplicated until re-measured under one stated definition, and do not quote `0.547–0.570` as a target band at 10 km. This session's 10 km builds therefore report CVs under the canonical definition only (R0 0.7360 → down4 0.5182, down8 0.4956, up8 0.5450) and the slot argument for dispersal rests on the two instruments, not on band membership. **Cost:** the "10 km CV law" cannot currently justify a slot by itself; re-measuring the 10 historical fleet files under the canonical definition is a zero-slot task for a future session.

@@ -608,6 +608,37 @@ throwaway probe slot on `SPACING-alongstrike`.
   rolling-week quota remaining, R0's live `0.2778` receipt, the accepted outside-footprint encoding
   and the deadline confirmation all remain human inputs. Zero submissions, zero portal requests, zero
   credentials read or stored.
+
+## 2026-10-23 — Pediment-window CONCENTRATION attribution session (branch `arena/f29e1689-gemsdoe86`, self-assigned axis)
+
+**Axis self-assignment:** with slots 1–4 candidates BUILT on `main`, the AI picked the only
+pre-registered *unbuilt* Phase-1 experiment left at its branch point (the pediment-window refinement
+of `concb5kmdown4`, then SLOT_PLAN proposal 2) and built exactly the pre-registered design, with one
+measured deviation it decided itself: the pediment-restricted destination pool caps at **1,045** moved
+dots, so the attribution pair is dose-matched at **941 dots (5.00 % changed)** instead of the parent
+arm's 1,506. After two concurrent-main merges (rev E + PR #55), the entry was renumbered
+`IR-86-CONC-18` (12–17 taken) and the verdict re-read against `IR-86-CONC-15`'s instrument confound:
+the pair's displacement is matched (1,613 vs 1,631 px), so the outward-movement bias is common-mode
+and the arm-vs-arm comparison stands.
+
+**What the AI wrote:** `src/gems86/concentration_pediment.py` (+ `dest_filter`/`dest_prefer` kwargs
+on `relocate_cvband_down`, byte-identical defaults, regression-tested), `scripts/run_concentration_pediment.py`,
+`tests/test_concentration_pediment.py`, three count-fixed variants + twins + JSON receipts
+(gitignored TIFFs), `ledger/variants_concentration_pediment.json` → `ledger/submissions.csv` via the
+single generator, `evidence/concentration_pediment_axis_20261023.json`,
+`evidence/concentration-pediment-mechanism.md`, `IR-86-CONC-18`, and SLOT_PLAN rev F / README /
+SUBMIT reconciliation edits.
+
+**Measured verdict the human can veto:** SGMC falsifier fired (non-pediment +0.0013 > pediment
++0.0007; REF +0.0015 replicated), d28 `PROXY` orders oppositely (+0.0012 vs +0.0004) → instruments
+split; **no slot change** (rev E ranking stands); the three pediment arms are audit-only. The 10 km CV
+definition was pinned to `IR-86-TRACKB-08` (full-cover blocks; R0 0.5699).
+
+**What the AI did not do:** no DrivenData access, no leaderboard read, no submission, no credential
+handling, no slot consumption (`submission_slots_used = 0`). No PROXY/MODEL number is written as a
+score. **Human inputs still required:** TOP_PUBLIC + date, rolling-week quota left, R0's live
+receipt, verified deadline, accepted outside-footprint encoding, and receipt scores/dates for any
+upload the human chooses to make.
 ## 2026-10-23 — CONCENTRATION 10 km fault-system session (branch `arena/a681fdaf-gemsdoe86`, self-assigned axis)
 
 * **AI wrote:** `registry/preregistration_conc10.json` (predictions recorded before any instrument ran),

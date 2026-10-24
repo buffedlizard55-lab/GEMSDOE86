@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (rev. G: rev. F + CONCENTRATION completed at 10 km fault-system scale)
+# SLOT PLAN — 2026-10-23 (rev. H: prior rev + CONCENTRATION completed at 10 km, PR #54)
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -7,7 +7,7 @@ portal clock; ~5.9 wk ⇒ ~17 slots max, minus the final pick). Parent **R0 = `h
 `ledger/submissions.csv`). `TOP_PUBLIC`, rolling-week quota left and R0's receipt are **UNSUPPLIED**.
 Live `|Δ| < 0.01` = no evidence.
 
-## What the two 2026-10-23 sessions changed
+## What the 2026-10-23 sessions changed
 
 **A. `CONCENTRATION` is monotone in dose and partly generic dispersal (PR #50).** `conc3` `+0.0013` →
 `conc5dose` `+0.0018` → `conc6` `+0.0022 MODEL` (4/4 quadrants; `+0.0013` PROXY) while 1 km occupied
@@ -51,7 +51,9 @@ a 20k–80k `|G|` band). Rearranging 2–6k existing dots has produced `|Δ| ≤
 instrument across all three sessions. Wk 1–3 below still test the three best reallocations because they
 are already built and cost nothing but slots; everything after that should fund new evidence.
 
-**D. `CONCENTRATION` at 10 km agrees, weaker; up closed at every scale (PR #54 session).** Pre-registered 100 px arms: `b10km-down8` `+0.0003 MODEL` (jitter `+0.0010`) / `+0.0012 PROXY` vs random-block control `-0.0009`; prefix `b10km-down4` splits sign (`-0.0010` / `+0.0005`). Neither displaces Slot 2 or the spares. `b10km-ridge-up8` (`-0.0009` = control; `-0.0075 PROXY`, CI excludes 0) retires upward concentration at 1, 5 and 10 km. `IR-86-CONC-18`: canonical R0 occupied-10 km CV is `0.736`, not `0.570` (`IR-86-TRACKB-08` unreplicated) — cite no 10 km CV band until the fleet is re-measured under one definition.
+**E. The pediment refinement of the dispersal rule is BUILT and fails its SGMC falsifier (this session, `IR-86-CONC-18`).** The truth-free pediment window (3DEP `relief_local` 10–40 m, > 1 km off the RELIEF regime front; 18.8 % of the footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules, so the attribution pair is dose-matched at 941 dots (5.00 % chg) with matched displacement (mean 1,613 vs 1,631 px, making `IR-86-CONC-15`'s outward-movement bias common-mode). At that dose the **non-pediment complement beats the pediment arm on SGMC (+0.0013 vs +0.0007**; REF `concb5kmdown4` +0.0015 replicated exactly**)** while the fold-fair d28 `PROXY` orders them oppositely (+0.0012 vs +0.0004): instruments split, attribution unresolved, **no slot change** — `concb5kmpeddown2p5` / `concb5kmnonpeddown2p5` / `concb5kmpeddown5` are audit-only. Card: `evidence/concentration-pediment-mechanism.md`.
+
+**10 km addendum (PR #54).** Pre-registered 100 px arms: `b10km-down8` `+0.0003 MODEL` (jitter `+0.0010`) / `+0.0012 PROXY` vs control `-0.0009`; prefix `b10km-down4` splits sign. Neither displaces Slot 2 or the spares; `…-concb10kmdown8-20261023-780f8509-zeros.tif` is the next spare only if Slot 2 `≥ +0.005`. `b10km-ridge-up8` (`-0.0009` = control; `-0.0075 PROXY`, CI excludes 0) retires upward concentration at 1, 5 and 10 km — never upload `concb10kmup8`. `IR-86-CONC-19`: canonical R0 occupied-10 km CV is `0.736`, not `0.570`.
 
 ## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
 
@@ -60,10 +62,10 @@ are already built and cost nothing but slots; everything after that should fund 
 | **1** | `h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b-zeros.tif` | delete 2,171 dots (`5.77 %`) in the `2.0 < d_cat ≤ 3.0 px` collar; 35,483 dots | `+0.0040` — largest lever, and its Δrelief-index ≈ 0 so the bias in §B cannot manufacture it (partly mass-confounded, `IR-86-MASS-04`) | `≥ +0.010`: collar halo is real drag → next slot probes `4.0 px` and combines with Slot 2. `≤ −0.005`: keep the 2 px collar, close PRUNE. Flat: run Slot 2. |
 | **2** | `h33-h33-2-b2-20261004-e5eb6e7e-conc6-20261023-1ed78e0f-zeros.tif` *(replaces `concb5kmdown4`)* | 2,259 dots (`12.0 %` changed) shaved from `≥3`-dot 1 km clusters onto sparse-block ancestor ridges; 1 km CV `0.6235 → 0.4840`; count fixed | `+0.0022` (4/4 quads, `+0.0007` above its own dispersal control), `+0.0013 PROXY` | `≥ +0.010`: density-cap dispersal is a real lever → 6 % is the ceiling, so combine rather than dose up. `≤ −0.005`: dispersal is neutral-to-negative on private chunks → close CONCENTRATION. |
 | **3** | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f-zeros.tif` *(demoted)* | 5,648 dots (`15.0 %`) piedmont → range-front, count fixed | `+0.0017` headline, but **unbiased prior `0 ± 0.005`**: the headline is the instrument's relief gradient (§B) | `≥ +0.010`: the front destination beats the instrument's own gradient → restore RELIEF and combine. `≤ −0.005`: close RELIEF. Inside `±0.010`: close as unmeasurable at this effect size. |
-| 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. `…-concb10kmdown8-20261023-780f8509-zeros.tif` (`+0.0003`/`+0.0012`) is the next spare behind these, only if Slot 2 `≥ +0.005`. |
+| 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. |
 | 4b (spare alternate) | `…-CONC-surfext10-20261023-fe814da5-zeros.tif` (PR #53) | 3,765 dots (`20.0 %` chg) off saturated `H19-5` onto `H19-4\|H16-1`, count fixed | `+0.0059` MODEL (**−0.00003** PROXY; only `+0.0012` above its own off-union control) | Use **instead of** 4 only if the aim is to test whether unmapped ground on the other two ancestor surfaces holds new truth: `≥ +0.010` → escalate to `surfext15`; `≤ −0.005` → retire the family. Never upload `surfext10ctl`. |
 
-**Never upload:** `concb10kmup8` (`-0.0009` / `-0.0075 PROXY`); the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
+**Never upload:** the three pediment arms (`concb5kmpeddown2p5` 9fb6bfc9, `concb5kmnonpeddown2p5` 57cc867c, `concb5kmpeddown5` 161b002e — audit-only, `IR-86-CONC-18`); the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
 `dens15`/`spr15` (`−0.0006`/`−0.0013`), `b5km-move10/15/20` (`−0.0066…−0.0150`), `concb5kmup4/8`
 (`−0.0005`/`−0.0007`); all MASS arms; all SNAP arms; `trackb-cull1dot`; every `BUILT-DUPLICATE` /
 `withdrawn` row.
