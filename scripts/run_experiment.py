@@ -404,5 +404,14 @@ def run():
     return run_card
 
 
-if __name__ == "__main__":
+def main(argv=None) -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()  # STOP before fitting or placement; missing evidence is not a pass.
+    _ = argv
     print(json.dumps(run(), indent=2, allow_nan=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

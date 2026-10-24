@@ -17,27 +17,30 @@ Corrections applied to the generated homepage and earlier session report:
 
 `tests/test_scientific_interpretation.py` checks all four statements with synthetic arrays and the unchanged shared `gems57.metric` implementation. These are **SYNTHETIC-METRIC-CHECKS**, not HOLDOUT-DTI, model experiments, projections, or organizer results. No synthetic scalar is presented as a competition score.
 
-## Ranked research plan (unchanged; not run)
+## Ranked research plan (5 scoped hypotheses; not run)
 
-The previously registered candidates in `registry/h86c_hypotheses.json` remain the plan, ranked qualitatively by plausible upside and implementation cost, **not numerical expected score gain**:
+The five pre-registered candidates in `registry/h86c_hypotheses.json` (`H86E-SPBT`, `H86E-MMT`, `H86E-HMDC`, `H86E-MTCS`, `H86E-WCS`) remain the plan, ranked qualitatively by competition-data self-sufficiency, verified band physics (`docs/evidence/band-physics-verification-20261024.json`), and implementation cost — **never by unmeasured numeric score projections**:
 
-1. Signed basement-depth / isostatic-gravity paired throw beneath low-relief cover. Low–medium cost; paleovalley margins are the non-fault mimic.
-2. Two-sided magnetic-marker phase translation. Medium–high cost; survey seams and primary volcanic boundaries are mimics.
-3. MT conductance × geodetic dilatancy. Not viable in this sandbox until official grids are obtainable and pinned; saline playas are a mimic.
-4. Watershed-crossing native LiDAR micro-scarps. Not viable until official tiles are obtainable and pinned; shoreline benches and terrace risers are mimics. The earlier multi-hour estimate must not override the two-hour session budget.
+1. **`H86E-SPBT` — Signed paired-throw basement–Laplace-gravity concordance beneath low-relief cover:** Pairs antiparallel cross-strike steps in `depth_to_base_surf` (Band 15) and `iso_grav_anom` (Band 13) with the exact Laplace vertical gravity curvature zero-crossing $g_{zz} = -(\partial_x\text{B18} - \partial_y\text{B11})$ reconstructed from the pixel-verified signed horizontal gravity vector `(Band 18, -Band 11)` inside low-slope (`det_elev_slope` Band 19) basin interiors. Low cost; paleovalley margins and caldera rings are non-fault mimics.
+2. **`H86E-MMT` — Cross-fault magnetic marker translation & competition-native radiometric `TC` contact decoupling:** Two-sided cross-corridor profile phase-lag on `rtp` (Band 2) and analytical magnetic tilt $\theta_{\text{mag}} = \arctan2(\text{Band 9},\, \text{Band 3})$, using competition-native `tc` (Band 6, pixel-verified GeoDAWN Airborne Radiometric Total Count `TC`, `r = +0.997140`) to reject surficial alluvial-fan gamma-ray wash boundaries. Medium cost; flight-line drape seams and basalt flow margins are mimics.
+3. **`H86E-HMDC` — Hydrothermal magnetite-destruction & conductive clay-cap dilational corridor:** Pairs narrow linear magnetic-susceptibility troughs (`rtp` Band 2, `tmi_vg` Band 9) with elevated `cond_surf` (Band 17), radiometric `tc` (Band 6) alteration contrast, and active transtensional strain (`geod_dilaterate` Band 8, `geod_shearrate` Band 7), optionally enriched by CC-BY-4.0 GDR-1391 sinter/2-m temperature probe compilations. Low–medium cost; saline playa pans are mimics.
+4. **`H86E-MTCS` — Multi-depth 3D MT conductance × convective heat-flow residual sharpened onto analytical magnetic tilt zero-crossings:** Uses USGS `10.5066/P9TWT2LU` + `10.5066/P9BZPVUC` sharpened onto $\theta_{\text{mag}} = \arctan2(\text{Band 9},\, \text{Band 3}) = 0$ (correcting the invalid Band 6 zero-crossing operator flagged in `IR-86-BAND6-TC-MISLABEL-20261024`). Not viable inside this sandbox until external ScienceBase grids are mirrored and pinned; graphitic shales are mimics.
+5. **`H86E-WCS` — Multi-azimuth wavelet micro-scarp continuity on native 1-m USGS 3DEP LiDAR:** Tracks sub-meter scarps across `>= 3` drainage interfluves on native 1-m 3DEP DEM tiles. Not viable inside this sandbox until external 3DEP tiles are mirrored within the two-hour session budget; Lake Lahontan shorelines and terrace risers are mimics.
 
-Specific layers, physical signatures, catalogue-missing rationale and repository novelty are documented in `SESSION_20261024_REVIEW.md`. These are hypotheses, not established fault-discovery facts. The top candidate was **not** run: the mandatory preflight stops before fitting or placement. Existing historical holdout outcomes must not be relabeled as validation of these hypotheses.
+Specific layers, physical signatures, catalogue-missing rationale, cross-fleet novelty (including newly merged `GEMSDOE89`..`GEMSDOE92`), and repository novelty are documented in `SESSION_20261024_REVIEW.md` and `GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md`. The top candidate was **not** run: the mandatory preflight stops before fitting or placement. Existing historical holdout outcomes must not be relabeled as validation of these hypotheses.
 
 ## Sources and access boundaries
 
 - Official reference repository: https://github.com/drivendataorg/gems-prize-reference-solution
 - Immutable archived official README: https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md
 - Official competition problem description: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- Official rules URL supplied by the user: https://docs.nlr.gov/docs/fy26osti/96647.pdf
-- Prospective official regional data: https://gdr.openei.org/submissions/1391
-- Prospective official MT release: https://doi.org/10.5066/P9TWT2LU
+- Official rules PDF (DOE/NLR September 2026): https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- Official USGS GeoDAWN data release (`DOI 10.5066/P93LGLVQ`): https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and *(note: legacy prompt link `https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada` returns USGS HTTP 404)*
+- Official UNR GBCGE INGENIOUS project page: https://gbcge.org/current-projects/ingenious/
+- Official DOE GDR Submission 1391 (`DOI 10.15121/1881483`, CC-BY-4.0): https://gdr.openei.org/submissions/1391
+- Prospective official MT & Heat Flow releases: https://doi.org/10.5066/P9TWT2LU and https://doi.org/10.5066/P9BZPVUC
 
-Only permitted GitHub source bytes were rechecked in this session using `scripts/review_sources.py`. Direct portal, PDF, DOI and GDR verification was **not performed this session** because those hosts are outside the sandbox allowlist. Earlier verification assertions are dated historical evidence, not a fresh independent source check. Mirrored competition rasters are hash-pinned owner mirrors, not organizer-authenticated data. The official reference README explicitly supports CPU-only execution; GPU access is not universally required.
+Permitted GitHub source bytes were rechecked via `scripts/review_sources.py`, and non-DrivenData official reference pages (`docs.nlr.gov`, `usgs.gov`, `doi.org/10.5066/P93LGLVQ`, `gbcge.org`, `gdr.openei.org`, `epsg.io`, `en.wikipedia.org`) were re-verified on `2026-10-24` in `docs/evidence/source-recheck-20261024.json` (never scraping `drivendata.org` per `AGENTS.md` Rule 9). Mirrored competition rasters remain hash-pinned owner mirrors, not organizer-authenticated data. The official reference README explicitly supports CPU-only execution; GPU access is not universally required.
 
 ## Three-pass record
 

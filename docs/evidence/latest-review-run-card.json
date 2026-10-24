@@ -2,9 +2,9 @@
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-24",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
-  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and a negative step in iso_grav_anom (Band 13) must share the same downthrown polarity along >=900 m strike continuity, weighted higher where det_elev (Band 12) and det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and compared against a polarity-scrambled control at identical 300 m submodular emission budget.",
-  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts.",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
+  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
+  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts (USGS OFR 99-383).",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",
@@ -32,8 +32,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 12,
-    "local_format_pass": 12,
+    "checked": 13,
+    "local_format_pass": 13,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -96,6 +96,11 @@
         "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
         "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+        "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -110,8 +115,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T19:35:06+00:00",
+  "registry_measured_utc": "2026-10-24T19:44:07+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "bb826e95b936ef4b53a23948339ac2da837bda00dd01da30a62af708e64451b3",
-  "registry_measurement_sha256": "7552546a906c65443bff29920e15e70e217549a74615dfa90e79263a003d9817"
+  "release_report_sha256": "35c413e0c8f78df37c60b3d288b7f7124f5fba329e853e04491f4907a0f072bb",
+  "registry_measurement_sha256": "690cac473414f464d3de48dc4d5f525a3a62944d52705ed600a3f1b7914262d2"
 }

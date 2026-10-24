@@ -17,15 +17,15 @@ from scripts import protocol_preflight
 ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = """
 build_axis_variants build_concentration5_axis build_concentration_sign
-build_gems86_swcon build_mass_axis build_mass_econ build_r0_prune build_r0_snap
-build_r0_spacing build_r0_trackb build_snap_variants build_spt build_submission
-build_xfleet finalize_h86e
-gen_tip_final generate_unique_submission h86b_features h86c_features h86d_features prepare_h86_fvmb_data
-prune_collar run_concentration_10km run_concentration_5km
+build_gems86_swcon build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
+build_r0_trackb build_snap_variants build_spt build_submission build_xfleet
+experiment finalize_h86e gen_tip_final generate_unique_submission h86b_features h86c_features h86d_features
+prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
-run_concentration_surfext run_h86_fvmb_pipeline run_h86_wvb run_h86e run_lane86
-run_lane86b run_lane86c run_lane86d run_prune_ladder run_relief_axis
-run_relief_source run_snap_axis run_spacing_axis run_trackb_axis
+run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
+run_h86_wvb run_h86e run_lane run_lane86 run_lane86b run_lane86c run_lane86d
+run_prune_ladder run_relief_axis run_relief_source run_snap_axis
+run_spacing_axis run_trackb_axis
 """.split()
 IMPORTED_ORCHESTRATORS = [
     ("experiment", "run", ("full",)),
@@ -90,8 +90,8 @@ BYPASS_CLAIMS = (
     "stays ungated",
 )
 
-# A sentence carrying one of these markers is documenting a *revoked* bypass,
-# not asserting a live one, so it must not trip the test. Without this the test
+# A sentence carrying one of these markers documents a *revoked* bypass rather
+# than asserting a live one, so it must not trip the test. Without this the test
 # would forbid the very history that makes the guard auditable.
 REVOCATION_MARKERS = (
     "revoked", "superseded", "no longer", "earlier revision", "an earlier",
@@ -114,11 +114,11 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     protocol_preflight.require_feasible()" while ``main()`` did call it -- the
     misrepresented-prose-vs-code defect that revoked PR #60's SPT candidate
     (IR-86-SPT-02) and PR #80's FAULTHALO (IR-86-FAULTHALO-01). Every builder in
-    BUILDERS is pinned by the two tests above to call ``require_feasible()``, so
-    a docstring *asserting* a live bypass is always stale.
+    BUILDERS is pinned by the tests above to call ``require_feasible()``, so a
+    docstring *asserting* a live bypass is always stale.
 
-    The check is sentence-scoped and skips sentences that explicitly mark the
-    bypass as revoked, so documenting the history stays possible (IR-86-PROSE-CODE-01).
+    Sentence-scoped, skipping sentences that mark the bypass as revoked, so
+    documenting the history stays possible (IR-86-PROSE-CODE-01).
     """
     text = (ROOT / "scripts" / (name + ".py")).read_text()
     docstring = ast.get_docstring(ast.parse(text)) or ""
