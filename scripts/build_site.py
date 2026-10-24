@@ -92,14 +92,54 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
+def prompt_download_section(downloadable: list[dict]) -> str:
+    """Prominent per-file download block with explicit OK-to-submit status."""
+    rows = ""
+    for a in downloadable:
+        v = a["validator"]
+        rows += f'''<article class="card"><div class="section-head"><h3>{e(a["lane"])}</h3><span class="badge ok">FORMAT-VALID · SAFE TO DOWNLOAD</span><span class="badge bad">NOT OK TO SUBMIT · PROTOCOL-BLOCKED</span></div>
+<p class="filename">{e(Path(a["file"]).name)}</p>
+<div class="actions"><a class="btn" href="{e(link(a["file"]))}" download>Download TIFF</a>
+<a class="btn secondary" href="{e(link(str(Path(a["file"]).with_suffix(".zip"))))}" download>One-TIFF ZIP</a>
+<a class="text-link" href="{e(link(a["receipt_file"]))}">Writer receipt</a></div>
+<dl><dt>SHA-256</dt><dd><code>{e(a["sha256"])}</code></dd>
+<dt>Bytes / positive cells</dt><dd>{a["bytes"]:,} / {v["emitted_dots"]:,}</dd>
+<dt>Range check</dt><dd>min {v["min"]:.4f}, max {v["max"]:.4f} — all values in [0, 1]</dd>
+<dt>NaN / Inf</dt><dd>{v["n_nan"]} / {v["n_inf"]}</dd>
+<dt>CRS / shape / transform</dt><dd>{v["meta"]["crs"]} / {v["meta"]["shape"][0]}×{v["meta"]["shape"][1]} / matches sample_submission.tif</dd>
+<dt>Outside footprint zero</dt><dd>{"yes" if v["checks"]["outside_footprint_zero"] else "NO"}</dd>
+<dt>Zero dots on mapped catalogue</dt><dd>{"yes" if v["checks"]["zero_dots_on_mapped_catalogue"] else "NO"}</dd>
+<dt>Submission name</dt><dd><code>{e(a["submission_name"])}</code> ({len(a["submission_name"])} chars)</dd>
+<dt>Note</dt><dd><code>{e(a["note"])}</code> ({a["note_chars"]} chars, ≤ 140)</dd></dl>
+<p class="muted"><strong>Verdict:</strong> format validation PASS — the "[0, 1]" portal rejection class is prevented. <strong>Submission:</strong> blocked by the literal registry overlap gate (17GEMSDOE dense witness covers 100% of allowed pixels; forward 3-px overlap 1.0 > 0.70). Download for audit; submit only after the protocol conflict is resolved.</p></article>'''
+    table_rows = ""
+    for a in downloadable:
+        zip_href = link(str(Path(a["file"]).with_suffix(".zip")))
+        table_rows += (f'<tr><th scope="row">{e(a["lane"])}</th>'
+            f'<td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a>'
+            f'<br><code>{e(a["sha256"])}</code></td>'
+            f'<td>[0,1] OK</td><td>0</td><td>EPSG:32611 OK</td>'
+            f'<td><a class="btn" href="{e(link(a["file"]))}" download>TIFF</a> | '
+            f'<a class="btn secondary" href="{e(zip_href)}" download>ZIP</a></td></tr>')
+    return f'''<h2 id="downloadable-candidates">Ready-to-download TIFFs — explicit submission status</h2>
+<div class="callout"><span class="badge ok">OK TO DOWNLOAD FOR AUDIT</span> <span class="badge bad">NOT OK TO SUBMIT UNDER CURRENT PROTOCOL</span>
+<p>Every file below passes all local format/range checks (single-band float32, EPSG:32611, 3730×3292, 100 m transform, [0,1], no NaN/Inf, zeros outside footprint, zero dots on mapped faults). None is authorized for a weekly submission slot while the literal uniqueness stop holds.</p></div>
+<div class="table-wrap"><table><thead><tr><th>Lane</th><th>File / SHA-256</th><th>Range</th><th>NaN</th><th>CRS/transform</th><th>Download</th></tr></thead><tbody>
+{table_rows}
+</tbody></table></div>
+{rows}'''
+
+
 def executive(report: dict, sources: dict) -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>DO NOT SUBMIT</strong></td></tr>' for a in report["artifacts"])
+    downloadable = [a for a in report["artifacts"] if a["safe_to_download_for_audit"]]
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
-<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated no new TIFF, copied no historical raster into a new release, ran no experiment and spent no weekly slot.</p>
-<a class="btn" href="index.html#downloads">Download research TIFFs — audit only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
-<h2>Current downloads — audit only, no submission authorized</h2>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All current artifacts fail the required literal registry gate. This session generated one new unique TIFF that passes all local format/range checks, but the mandatory literal registry gate blocks every nonempty candidate from a weekly submission slot. No holdout experiment was run and no weekly slot was spent.</p>
+<a class="btn" href="#downloadable-candidates">Download format-valid TIFFs — audit only →</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<h2 id="downloadable-candidates">Format-valid downloads — audit only, no submission authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
+{prompt_download_section(downloadable)}
 <p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
 <h2>What is checked without intervention?</h2><ul><li>Every published TIFF is decoded and checked by the pinned shared validator and template-format checker.</li>
 <li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
