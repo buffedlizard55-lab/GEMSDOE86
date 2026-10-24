@@ -190,13 +190,27 @@ def test_raw_name_and_note_lengths_include_padding(release_copy):
     assert not report["audit_ok"]
 
 
-@pytest.mark.parametrize("extra", ["docs/downloads/nested/extra.TIFF", "docs/extra.TIF", "docs/downloads/extra.ZIP"])
+@pytest.mark.parametrize("extra", [
+    "docs/downloads/nested/extra.TIFF",
+    "docs/extra.TIF",
+    "docs/downloads/extra.ZIP",
+    "submission/extra.TIF",
+    "submission/extra.ZIP",
+])
 def test_unregistered_public_files_cannot_hide_in_subdirectories_or_uppercase(release_copy, extra):
     path = release_copy / extra
-    path.parent.mkdir(exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(b"unregistered")
     with pytest.raises(ValueError, match="Unregistered or missing published"):
         audit.build_report(release_copy)
+
+
+def test_optimistic_unlinked_sidecar_card_fails_release_audit(release_copy):
+    sidecar = release_copy / "docs/evidence/rogue-spt-run-card.json"
+    sidecar.write_text('{"verdict": "promote-candidate", "submission_ready": true}\n', encoding="utf-8")
+    report = audit.build_report(release_copy)
+    assert not report["audit_ok"]
+    assert not report["safe_to_submit"]
 
 
 def test_receipt_symlink_cannot_escape_public_download_directory(release_copy):

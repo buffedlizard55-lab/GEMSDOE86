@@ -60,7 +60,7 @@ def test_failed_and_truncated_requests_stay_explicit():
 def test_checked_in_feed_covers_named_targets_without_score_promotion():
     targets = strict_json(ROOT / "registry/site_targets.json")
     feed = strict_json(ROOT / "docs/evidence/fleet-feed.json")
-    assert feed["projects_requested"] == len(targets["sites"]) == 88
+    assert feed["projects_requested"] == len(targets["sites"]) == 92
     assert {p["repository"] for p in feed["projects"]} == {t["repository"] for t in targets["sites"]}
     assert feed["owner_ledger_sha256"] == sha256(ROOT / "registry/prior_scores.csv")
     assert feed["organizer_receipts_obtained"] == feed["submission_slots_used"] == 0

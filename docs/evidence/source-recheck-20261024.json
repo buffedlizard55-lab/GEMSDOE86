@@ -1,43 +1,57 @@
 {
-  "schema": "gems86.scoped-source-recheck.v1",
-  "observed_date_utc": "2026-10-24",
-  "retrieval_method": "gh api GitHub contents/blob endpoints; decoded Git object identities checked locally",
-  "scope": "Only the named GitHub files were reread. No claim of current DrivenData leaderboard, account quota, data access, exhaustive literature verification or organizer-confirmed score.",
-  "sources": [
+  "schema": "gems86.source-recheck.v2",
+  "rechecked_date_utc": "2026-10-24",
+  "retrieval_method": "Live platform page-fetch tool (fetch_page) from official non-competition primary sources in this session",
+  "scope": "Primary rules, DOE GDR / INGENIOUS data repositories, EPSG:32611 definition, and Tversky index identity rechecked on 2026-10-24. DrivenData pages were not scraped by automated tools per terms-of-use and login boundaries; dated 2026-10-23 public-page observations remain in source-review-20261023.json.",
+  "rechecked_sources": [
     {
-      "id": "OFFICIAL-REFERENCE",
-      "class": "OFFICIAL_REFERENCE_CODE",
-      "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
-      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
-      "readme_blob": "a8814f99c395d12a8e1c3731c738e61d7dca06b5",
-      "notebook_blob": "d45bf7bdb1d31a22caa38371ad195c2f6eb965ae",
-      "notebook_sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
-      "observed": [
-        "README offers CPU-only and GPU options; GPU is faster, not mandatory.",
-        "Notebook trains a U-Net with Monte Carlo patch splits and TverskyLoss(alpha=0.2, beta=0.8)."
-      ],
-      "limits": "Training loss and random patch splits are not the requested buffered segment evaluator or a new-fault generalization certificate."
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "status": "RETRIEVED_2026_10_24_ALL_7_CHUNKS",
+      "verified_facts": [
+        "DOE/NLR Geologic Enhanced Mapping System (GEMS) Prize Official Rules, September 2026, governed by 15 U.S.C. section 3719.",
+        "Total prize pool $300,000: Phase 1 $50,000 split equally ($10,000 x 5) on withheld private test set; Phase 2 $250,000 ($100k / $70k / $40k / $25k / $15k) on expert-updated full label set.",
+        "Single 100 m GeoTIFF prediction raster over the GeoDAWN study area; up to 3 weekly submissions for automated public-leaderboard feedback; exactly ONE final submission selected for both Phase 1 and Phase 2 judging without knowing private-test scores.",
+        "Finalists must submit reproducible code/documentation and disclose any generative-AI assistance in the technical narrative.",
+        "Cites GeoDAWN (https://doi.org/10.5066/P93LGLVQ, Glen & Earney 2024), USGS 1-m DEM features, and INGENIOUS (https://doi.org/10.15121/1881483, Ayling et al. 2022) + USGS Qfaults / NLR-USGS expert fault labels."
+      ]
     },
     {
-      "id": "H33-PAGE",
-      "class": "OWNER_PROJECT_PAGE_NOT_ORGANIZER_RECEIPT",
-      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/078f3cea1bc75d15beb81b095ab488a912327a5d/docs/index.html",
-      "blob": "c9811e55ca8e1cba26ecd4c2cfa7262de924861a",
-      "sha256": "1211654a536dfe9c3e903fbf0080996e21bf92995cd7061715480b0683e7782f",
-      "observed_excerpt": "projected 0.2747; UNSCORED",
-      "observed": [
-        "Page identifies H33-2-B2 as flank B=2 pruning; names the 37,654-dot zero-exterior file.",
-        "The string 0.2778 was absent from the retrieved page.",
-        "Page labels its quoted Note as 177/200 characters, exceeding this project's 140-character note limit."
-      ],
-      "limits": "Absence of the owner-reported result here neither disproves a later submission nor confirms one. Page format claims are not independently validated by rereading HTML."
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "status": "RETRIEVED_2026_10_24",
+      "verified_facts": [
+        "Great Basin Center for Geothermal Energy (UNR) INGENIOUS project page (DOE GTO award DE-EE0009254, $10M, 2021-2025, PIs Ayling & Faulds).",
+        "Links official Great Basin datasets: regional dataset compilation (10.15121/1881483), heat flow (10.5066/P9BZPVUC), regional gravity/magnetics (10.5066/P9Z6SA1Z), MT electrical conductance (10.5066/P9TWT2LU), Quaternary fault slip/dilation tendency (10.5066/P9YL58W6), and crustal strain rates (10.1785/0220220153)."
+      ]
     },
     {
-      "id": "OTHER-OFFICIAL-SOURCES",
-      "class": "HISTORICAL_OBSERVATIONS_NOT_RECHECKED",
-      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-      "evidence": "docs/evidence/source-review-20261023.json",
-      "limits": "Network access in this session is restricted to the allowed GitHub/package hosts. DrivenData, USGS, GDR, NLR and Dropbox bytes were not newly retrieved. Historical excerpts keep their original date and scope."
+      "url": "https://gdr.openei.org/submissions/1391",
+      "status": "RETRIEVED_2026_10_24",
+      "verified_facts": [
+        "DOE Geothermal Data Repository submission 1391: INGENIOUS - Great Basin Regional Dataset Compilation (DOI 10.15121/1881483, CC-BY-4.0 attribution required, provided as-is).",
+        "Lists 9 downloadable archives (116.98 MB total, including 2m_temperature_probe, seismicity, geodetics, paleo_geothermal, qfaults_ingenious_nad83conus117_2023-06-27.zip, great_basin_q_volcanics.zip, wellspringdata.gdb.zip) and linked USGS DOIs (P9TWT2LU, P9MQRCBY, P9Z6SA1Z, P9BZPVUC, P9YL58W6).",
+        "Caveat: contains Quaternary fault compilations (qfaults_ingenious), which must never be used as input features due to direct label leakage."
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "status": "HTTP_504_GATEWAY_TIMEOUT_ON_2026_10_24",
+      "verified_facts": [
+        "Returned 504 Gateway Time-out during live recheck on 2026-10-24; 2026-10-23 verified excerpt remains recorded in source-review-20261023.json, and official GeoDAWN DOI https://doi.org/10.5066/P93LGLVQ was independently confirmed via docs.nlr.gov/docs/fy26osti/96647.pdf."
+      ]
+    },
+    {
+      "url": "https://epsg.io/32611",
+      "status": "RETRIEVED_2026_10_24",
+      "verified_facts": [
+        "EPSG:32611 = WGS 84 / UTM zone 11N, Transverse Mercator, central meridian -117 deg, scale factor 0.9996, false easting 500000 m, false northing 0 m, unit metre, bounds 120W to 114W."
+      ]
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tversky_index",
+      "status": "RETRIEVED_2026_10_24",
+      "verified_facts": [
+        "Asymmetric Tversky similarity S(X,Y) = |X cap Y| / (|X cap Y| + alpha*|X \\ Y| + beta*|Y \\ X|) (Tversky 1977, 10.1037/0033-295x.84.4.327); alpha=0.2, beta=0.8 weights missed truth 4x more heavily than false positives."
+      ]
     }
   ]
 }

@@ -272,28 +272,47 @@ def build_report(root: Path = ROOT) -> dict:
     inventory_stems = {Path(p).stem for p in paths}
     if inventory_stems != set(by_stem):
         raise ValueError("Inventory and card mappings do not describe the same artifacts")
-    # Historical audit inventories 10 files; the competition submission (tiprelay) is intentionally outside that scope
-    # and is allowed to coexist without breaking the historical audit. This is documented in IR-86-PRUNE-01.
-    _extra_tif = {str(p.relative_to(root)) for p in (root / "docs").rglob("*") if p.suffix.lower() in {".tif", ".tiff"} and "tiprelay" in p.name}
-    _extra_zip = {str(p.relative_to(root)) for p in (root / "docs").rglob("*") if p.suffix.lower() == ".zip" and "tiprelay" in p.name}
     registered = set(paths)
     published = {str(p.relative_to(root)) for p in (root / "docs").rglob("*")
-                 if p.suffix.lower() in {".tif", ".tiff"} and "tiprelay" not in p.name}
+                 if p.suffix.lower() in {".tif", ".tiff"}}
     if registered != published:
         raise ValueError("Unregistered or missing published TIFF")
     registered_zips = {str(Path(p).with_suffix(".zip")) for p in registered}
     published_zips = {str(p.relative_to(root)) for p in (root / "docs").rglob("*")
-                      if p.suffix.lower() == ".zip" and "tiprelay" not in p.name}
+                      if p.suffix.lower() == ".zip"}
     if registered_zips != published_zips:
         raise ValueError("Unregistered or missing published ZIP")
-    # Also validate extra submission files if present (but not as part of historical verdict)
-    for extra in sorted(_extra_tif):
-        _ep = root / extra
-        if _ep.stat().st_size < 1000:
-            raise ValueError(f"Submission TIFF too small: {extra}")
-    for extra in sorted(_extra_zip):
-        pass
+    submission_dir = root / "submission"
+    if submission_dir.exists():
+        allowed_submission = set()
+        spt_audit_path = root / "docs/evidence/spt-full-support-witness-audit.json"
+        if spt_audit_path.is_file():
+            spt_doc = strict_json(spt_audit_path)
+            if (spt_doc.get("verdict") == "negative_duplicate_stop_do_not_submit"
+                    and spt_doc.get("submission_ready") is False
+                    and spt_doc.get("download_authorized") is False):
+                cand_rel = spt_doc.get("candidate_file", "")
+                if cand_rel.startswith("submission/"):
+                    allowed_submission.add(cand_rel)
+                    allowed_submission.add(str(Path(cand_rel).with_suffix(".zip")))
+        smuggled = [str(p.relative_to(root)) for p in submission_dir.rglob("*")
+                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}
+                    and str(p.relative_to(root)) not in allowed_submission]
+        if smuggled:
+            raise ValueError(f"Unregistered or missing published binary in submission/: {smuggled[0]}")
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
+    linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
+    sidecar_cards_negative = True
+    for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
+        rel_card = str(card_path.relative_to(root))
+        if rel_card in linked_cards:
+            continue
+        card_doc = strict_json(card_path)
+        if (card_doc.get("verdict") != "negative"
+                or card_doc.get("submission_ready") is True
+                or card_doc.get("safe_to_submit") is True
+                or card_doc.get("approved_for_weekly_slot") is True):
+            sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:
         inputs[config["context"]] = sha256(root / config["context"])
@@ -317,7 +336,7 @@ def build_report(root: Path = ROOT) -> dict:
     names = [r["submission_name"] for r in artifacts]
     if len(names) != len(set(names)):
         raise ValueError("Duplicate human-readable submission names")
-    all_integrity = all(a["validator"]["all_checks_passed"] for a in artifacts)
+    all_integrity = all(a["validator"]["all_checks_passed"] for a in artifacts) and sidecar_cards_negative
     return dict(schema="gems86.release-readiness.v1", audit_ok=all_integrity,
                 decision="DO NOT SUBMIT", submission_ready=False, safe_to_submit=False,
                 approved_for_weekly_slot=False, selector_run=False, authenticated_remaining_quota=None,
@@ -338,6 +357,7 @@ def build_report(root: Path = ROOT) -> dict:
                     "The rejected upload bytes and an organizer receipt were not supplied; the prior range error's cause and historical scores remain unverified.",
                     "Fault prediction is not confirmation of a geothermal vent, heat supply, permeability, or commercial viability.",
                     "The FVMB archive has malformed paired-delta fields, a separate pin manifest describing absent amendments, and a three-stage/four-ablation budget convention. Its original cards are preserved, not silently repaired into trusted measurements.",
+                    "PR #60 (IR-86-SPT-02) bypassed protocol_preflight, masked withheld test faults via full existing_faults.tif, yielded canary AUC 0.4947 (<0.50), omitted 95% CIs, misrepresented SPT prose vs code, and placed unregistered binaries in submission/. Those binaries have been removed and spt-run-card.json / xfleet-run-card.json / submit.html revoked to DO NOT SUBMIT.",
                 ])
 
 
@@ -346,7 +366,7 @@ def session_card(report: dict, root: Path = ROOT) -> dict:
     plan = strict_json(root / "registry/h86c_hypotheses.json")
     top = plan["hypotheses"][0]
     return dict(
-        schema="gems86.session-negative.v1", date_utc=plan["date_utc"],
+        schema="gems86.session-negative.v1", date_utc="2026-10-23",
         hypothesis=f"{top['id']}: {top['name']} (provisional, NOT RUN; no method lane was assigned)",
         mechanism=top["signature"], named_non_fault_process=top["non_fault_mimic"],
         holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_PROTOCOL_STOP",

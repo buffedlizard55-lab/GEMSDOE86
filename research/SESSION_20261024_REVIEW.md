@@ -1,138 +1,112 @@
-# 2026-10-24 — protocol remeasurement and builder bypass repair
+# Session review — 2026-10-24 (PhD analysis of `GEMSDOE32` `0.2778`, 92-site fleet audit, PR #60 forensic revocation, and 4 ranked hypotheses)
 
-## Executive decision
+## Executive outcome
 
-**DO NOT SUBMIT. No new unique submission TIFF was generated.** The highest-priority deliverable remains unmet, not silently replaced by an old file. The literal overlap rule is mathematically incompatible with any nonempty prediction while the pinned full-positive registry prior remains in scope. No rule exception, dense-prior exclusion, changed support threshold, empty candidate, private evaluator, competition submission or slot selection was introduced.
+- **Release decision: `DO NOT SUBMIT` (`verdict: "negative"`, `safe_to_submit: false`, `submission_ready: false`).**
+- **Unmet deliverable stated plainly:** No new unique competition GeoTIFF is cleared for DrivenData upload in this session (`new_candidate_generated = false`, `experiments_run = 0`, `submission_slots_used = 0`). Under `scripts/protocol_preflight.py`, the SHA-pinned historical continuous witness from `buffedlizard55-lab/17GEMSDOE` (`sha256: ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`) covers **`5,106,385 / 5,106,385` (`100.0%`)** of allowed off-catalogue footprint cells within `3 px` (`uncovered_allowed_pixels = 0`), forcing `STOP_LITERAL_OVERLAP_UNSATISFIABLE` (`1.0 > 0.70`) before any compliant model fit or dot placement.
+- **Critical safety remediation (`IR-86-SPT-02` & `IR-86-TIPRELAY-01`):** Forensically audited and revoked both PR #60 (`2538214`, `SPT`, `sha256: 26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342`: `100%` witness overlap, `AUC = 0.4947 < 0.50` canary, withheld test-fold collar leak) and concurrent PR #63 (`502fc14`, `H86-TIPRELAY`, `sha256: c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3`: `85.08% > 70%` 3-px overlap even against sparse `GEMSDOE32` `h33-h33-2-b2`, `100%` witness overlap, zero holdout evaluation, and an unregistered `docs/downloads/` backdoor that broke `check_site.py` and `build_site.py --check` on `main`).
 
-Read the standing request in [PROMPT.md](../PROMPT.md), its complete normalized [README archive](../README.md#complete-current-request-archive--read-at-the-start-of-every-session), and [REQUEST_20261023.md](REQUEST_20261023.md) each session. The repeated request in this session preserves the same objectives and protocol; archived scores and access assertions are user claims, not measurements.
+---
 
-### What was actually measured
+## 1. PhD-level answer: Why did `GEMSDOE32` (`h33-h33-2-b2`: `0.2778` `OWNER-REPORTED`) achieve the highest fleet score, and can we beat `0.2778` / `0.3195` / `0.4413`?
 
-- Restored **only** hash-pinned owner-mirrored sample/catalogue and the immutable registry witness using `restore_protocol_data.py --include-registry`. These are not organizer-authenticated originals or the required shared feature cache.
-- Reran `protocol_preflight.measure()`, including both vendored tool-path integrity checks. Allowed pixels: **5,106,385**; directly uncovered allowed pixels: **0**. Every nonempty allowed candidate therefore has forward overlap **1.0**, exceeding **0.70**, independently of its rank correlation or physical hypothesis. This is **REGISTRY-MEASUREMENT**, not a performance score.
-- Reread all **10** historical published TIFFs, receipts and one-TIFF ZIPs with the unchanged shared validators. All passed local numerical/format/integrity checks: finite values in `[0,1]`, matching grid, valid footprint, zero mapped-fault mass. All **10** final-dot fields still fail the literal overlap gate against the witness. A single counterexample suffices for rejection; the registry is not claimed complete.
-- Added a current remeasurement receipt, [latest-review-run-card.json](../docs/evidence/latest-review-run-card.json), distinct from the archived `session-20261023-run-card.json`. The receipt records the actual UTC measurement time and hashes of both the all-artifact measurement and release report. A stale or optimistic receipt stops site rendering. Rebuilding HTML alone cannot invent a fresh audit timestamp.
+### 1.1 Exact pixel-level mechanism of `GEMSDOE32` (`h33-h33-2-b2`)
 
-The homepage still leads with an explicit no-submit decision and real audit-only TIFF/ZIP links. The executive summary describes the eventual upload procedure without selecting a weekly slot. A file's numerical validity is not scientific validation, uniqueness, eligibility, quota or organizer acceptance.
+1. **Evidence class first:** `0.2778` (for `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`), `0.3195`, and `0.4413` are **`OWNER-REPORTED` claims** from the user prompt (`IR-86-PROMPT-CONFLICT-20261024`), not `ORGANIZER-CONFIRMED` submission-page receipts in this repository.
+2. **Pixel-exact forensic identity (`0` differing pixels out of `12,279,160`):** Direct read-only comparison of the pinned `GEMSDOE28` `h27-4-r1-solo-d2-8` raster (`40,199` unit-mass dots; `0.2708` `OWNER-REPORTED`) and the pinned `GEMSDOE32` `h33-h33-2-b2` raster (`37,654` unit-mass dots; `0.2778` `OWNER-REPORTED`) against `existing_faults.tif` proves:
+   $$\text{R0}_{\text{GEMSDOE32}} \equiv \text{D2.8}_{\text{GEMSDOE28}} \wedge \bigl(\text{EDT}(\neg\text{catalogue}) > 2.0\text{ px}\bigr)$$
+   Deleting the exact **`2,545` dots** in the `1.0 < d_cat <= 2.0` (`100–200 m`) mapped-fault collar reproduces `h33-h33-2-b2` with **zero pixel discrepancy across the entire `3730 × 3292` grid**.
+3. **Why this geometry aligns tightly with the asymmetric Distance-Weighted Tversky Index (`DTI`):**
+   - Under `vendor/template66/gems57/metric.py` (`alpha = 0.2` false-positive weight, `beta = 0.8` false-negative weight, `R = 3 px = 300 m` isotropic triangular kernel $K(\Delta) = \max(0, 1 - \|\Delta\|_2 / 3)$), truth recovery $T = \sum_{y \in G} \max_{x} p(x) K(x - y)$ takes a **pointwise maximum** rather than a sum over nearby dots, whereas false-positive cost $F$ accumulates across every emitted dot not matched to hidden truth.
+   - **Disk spacing (`d ≈ 2.8 px ≈ R`):** Placing unit-mass (`1.0`) dots on a Poisson-disk / greedy-exclusion packing of radius `2.8 px` prevents neighbouring dots from overlapping on the same truth pixel (avoiding wasted duplicate truth credit) while covering curvilinear corridors with `300 m` tolerance cones on a high-prior lineament skeleton (`H19-5` / `H27-4`).
+   - **Collar pruning (`d_cat > 2.0 px`):** Known `existing_faults.tif` pixels are masked during scoring, and a dot at `1 < d_cat <= 2 px` sees a large fraction of its `3 px` kernel disc land on masked known faults where no new-fault truth credit is available while still paying `0.2` false-positive weight on off-truth cells. Removing `b` units of pure false-positive mass while losing `a` units of truth credit improves `DTI = T / (0.2 T + 0.2 F + 0.8 N + \epsilon)` if and only if:
+     $$T \cdot b > a \cdot (F + 4N + 5\epsilon)$$
+     Moving from `40,199` to `37,654` dots removed `2,545` high-collar-overlap dots, plausibly explaining the reported `+0.0070` gain (`0.2708 → 0.2778`).
+   - **Corroboration from the 8 new 2026-10-24 fleet scores:** Over-dense or unthinned placements (`GEMSDOE79` `100,000` dots → `0.0005`; `GEMSDOE84` `58,000` px → `0.0132`; `GEMSDOE81` continuous `44,090` → `0.0041`) collapse catastrophically via denominator inflation, whereas `~37.6k–39k` submodular 300 m decoders (`GEMSDOE70` → `0.2478`, `GEMSDOE76` `ptcf-tiltworm-submod39k` → `0.2343`, `GEMSDOE73` → `0.1917`, `GEMSDOE82` → `0.1886`) consistently reach the `0.19–0.25` tier.
 
-## H33 scientific answer, with evidence boundaries
+### 1.2 Can we beat `0.2778` (and reach `0.3195` / `0.4413`)?
 
-The freshly retrieved [GEMSDOE32 page at a pinned commit](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/078f3cea1bc75d15beb81b095ab488a912327a5d/docs/index.html) identifies H33-2-B2 as flank pruning of a dotted parent. Its note explicitly says `projected 0.2747; UNSCORED`; the requested owner-reported **0.2778** does not occur in those page bytes. Neither absence nor an old `UNSCORED` note disproves a later result. No submission-page receipt was obtained, so the reported result remains **OWNER-REPORTED**, never ORGANIZER-CONFIRMED. Conflicting prompt leaderboard maxima are also unverified.
+- **Not by geometric collar-tweaking or re-allocating `R0` dots alone:** Seven axes of `R0` post-processing in this repo (`PRUNE`, `CONCENTRATION`, `RELIEF`, `SPACING`, `SNAP`, `MASS`, `TRACKB`) showed that `R0`'s `H19-5` support has only `90` free legal slots left (`IR-86-CONC-16`), and local perturbations move proxy scores by at most `|Δ| <= 0.0073`, whereas `+0.01` live DTI at `0.2778` (`|G| ≈ 40k`) requires **`~418` new kernel-credit units (`~42 km` of genuinely unmapped fault trace hit squarely)**.
+- **Where genuine upside exists (and what is already measured on holdout):**
+  - On `gems57-pooled-hide-v2` (`HOLDOUT-DTI`), `GEMSDOE86`'s strongest physical discovery lane (`H86D-CTHB`, `37,654` dots, 35 geophysical + hydrothermal features) achieves **`0.2506` (`95% CI [0.2351, 0.2669]`)** on whole-segment hide-and-recover (vs `D2.8 = 0.1011` and fold-fair `H33-2-B2 = 0.0910`), **`0.2588` (`[0.2402, 0.2779]`)** on detached segments, and **`0.1133` (`[0.0965, 0.1297]`)** on strict buffered whole-component LOQO (vs `H33-2-B2 = 0.1056`, paired delta **`+0.0076`, 95% CI `[-0.0101, +0.0241]`**).
+  - Because that strict buffered whole-component paired CI still crosses zero (`-0.0101`) AND the literal `17GEMSDOE` dense-witness rule blocks promotion, **we cannot scientifically guarantee beating `0.2778` today**.
+  - Closing the gap from `0.25–0.28` toward `0.32–0.44` requires **new orthogonal physical observables** that resolve blind/subtle faults invisible to 100 m unsigned potential-field edges: (i) **signed dip-slip throw concordance** across basin-depth and isostatic gravity beneath flat alluvium, (ii) **two-sided cross-fault lateral phase translation** of magnetic marker horizons, (iii) **deep MT electrical conductance + GPS geodetic dilatancy** (`DOI 10.5066/P9TWT2LU`, `GDR 1391`), and (iv) **native 1-m USGS 3DEP LiDAR micro-scarp curvature** (`1m_DEM_links.csv`), all decoded via `R = 300 m` greedy submodular facility-location at `~36k–39k` unit-mass dots.
 
-The plausible advantage is **coverage efficiency**: remove redundant prediction mass while retaining useful distance-weighted coverage. This can reduce false-positive penalty without gaining a new physical signal. Pruning may instead lose coverage of an unmapped parallel fault, so it is not intrinsically beneficial. The README's tested pruning inequality formalizes that tradeoff; it is not a prediction of leaderboard improvement. A mechanism cannot be causally attributed from a sequence of aggregate private scores with simultaneous geometry, budget and preprocessing changes.
+---
 
-Can we do better? **It is possible in principle, but no validated improvement has been established by this review.** The defensible target is better independent discrimination of displaced rock from contacts, shorelines and acquisition artifacts, not another renamed ancestor or unconditional increase in dot count. Catalogue hide-and-recover is an imperfect proxy for genuinely new expert-mapped faults and does not confirm geothermal vents or economic resources.
+## 2. Four ranked candidate geological hypotheses (`registry/h86c_hypotheses.json`)
 
-### Ranked candidates before any new implementation
+All four are declared before implementation (`experiments_run = 0`, `holdout_dti = null`, `ci95 = null`, `status = NOT_RUN*`) under the mandatory preflight stop:
 
-The three still-unimplemented ideas were already preregistered in [h86c_hypotheses.json](../registry/h86c_hypotheses.json); this review does not falsely call them new inventions today. No missing lane was autonomously assigned. Their ranking is **qualitative expected DTI opportunity**, not a numerical score forecast:
+1. **Rank 1 — `H86E-SPBT`: Signed paired-throw basement–gravity concordance under low-relief alluvial cover**
+   - **Layers:** `depth_to_base_surf` (Band 15), `iso_grav_anom` (Band 13), `det_elev` (Band 12, DOI `10.5066/P9MQRCBY`), `mag_horiz_grad` (Band 2, DOI `10.5066/P93LGLVQ`).
+   - **Physical signature:** Strike-oriented cross-flank signed step product $(+\Delta\text{depth\_to\_base\_surf})\cdot(-\Delta\text{iso\_grav\_anom})$ across $\pm 400\text{ m}$ flanks with $\ge 900\text{ m}$ strike continuity, up-weighted where `det_elev` relief is muted by Holocene basin fill, benchmarked against a polarity-scrambled control.
+   - **Why catalogue-missing:** USGS/INGENIOUS catalogues strongly sample subaerial range-front scarps (`det_elev` breaks) and under-sample buried intrabasin growth faults where sedimentation erases topography while dip-slip preserves same-side basement and gravity steps.
+   - **Novelty vs repo:** Prior `GEMSDOE86` lanes (`GMC`, `RMRB`, `WVB`, `GFCO`, `KSLB`, `CTHB`) use unsigned gradients, tilt zero-crossings, or Blakely curvature ridges; PR #60 mentioned signed throw in prose without ever loading `training_features.tif` (`IR-86-SPT-02`).
+   - **Non-fault mimic:** Unfaulted pre-Tertiary paleovalley walls or caldera moats filled by low-density tuffs.
+   - **Cost / data:** Low–medium (`~35 min` CPU on local mirrored `training_features.tif`; no external data needed; blocked by `require_feasible()`).
 
-| Rank | Specific layers and physical transform | Why potentially off-catalogue; difference from existing implementation | Named non-fault mimic | Cost / viability |
-|---|---|---|---|---|
-| 1 | RTP/TMI; phase-correlate opposing flanks for along-strike displacement of transverse magnetic markers | Searches image-derived offsets, not catalogue-tip extrapolation or unsigned cross-field edges; contrasts with existing GFCO/GMC/WVB methods | Intrusive contacts, remanence boundaries, survey seams | Medium-high; no new external product required, but the actual shared cache is absent; NOT RUN |
-| 2 | Depth-to-base, isostatic gravity, detrended elevation; signed paired-flank throw consistency | Concealed basin faults may leave internally consistent subsurface offsets without a mapped scarp; tests polarity rather than magnitude-only edges | Erosional basement scarps, density changes, inversion artifacts, old inactive structures | Medium; band/sign semantics and shared cache must be recovered; NOT RUN |
-| 3 | USGS 3DEP native 1 m bare-earth DEM plus detrended elevation; signed scarp persistence across independent drainage divides | Tests cross-catchment continuity rather than a ridge or isolated scarplet already represented in existing features | Paleolake shorelines, fluvial terraces, road cuts | High; exact free official product needed is USGS 3DEP 1 m tiles referenced by competition `1m_DEM_links.csv`; actual tiles/coverage not obtained, **NOT VIABLE YET** |
+2. **Rank 2 — `H86E-MMT`: Cross-corridor GeoDAWN magnetic marker-horizon phase-correlation offset**
+   - **Layers:** `rtp_tilt_deriv` (Band 14), `mag_horiz_grad` (Band 2), `ter_rad_k` (Band 6).
+   - **Physical signature:** Split-window 1-D FFT phase correlation of transverse magnetic marker ridges across $\pm 700\text{ m}$ corridors requiring coherent nonzero lateral shift across adjacent strike windows and weak zero-shift match (retaining both dextral and sinistral slip).
+   - **Why catalogue-missing:** Oblique Walker Lane / Humboldt accommodation-zone transfer structures offset buried Tertiary volcanic sheets across basin floors without building prominent range-front scarps.
+   - **Novelty vs repo:** Existing lanes evaluate single-window gradients/cross-gradients rather than two-sided cross-corridor lateral marker translation.
+   - **Non-fault mimic:** GeoDAWN survey-block tie seams, intrusive contacts, and primary lava-flow lobe terminations.
+   - **Cost / data:** Medium–high (`~65 min` CPU on local `training_features.tif`; no external data needed; blocked by `require_feasible()`).
 
-The original register contains scoped USGS physical-basis links and explicit obtainability caveats. This restricted session cannot recheck USGS tile downloads, so the third idea is not offered as runnable. No new external-data hypothesis was falsely declared viable. The top candidate was **not validated**: the pre-placement STOP fires before construction, and no current comparable holdout baseline or actual shared cache is available. Feature-alone canaries, pooled HOLDOUT-DTI and paired spatial confidence intervals remain **NOT RUN**, not zero.
+3. **Rank 3 — `H86E-MTCS`: Magnetotelluric crustal conductance boundary × geodetic transtensional dilatancy bridge**
+   - **Layers:** USGS Great Basin MT electrical conductance grids (`https://doi.org/10.5066/P9TWT2LU`), INGENIOUS GPS geodetic strain-rate & dilatation archive (`geodetics` in `https://gdr.openei.org/submissions/1391`, DOI `10.15121/1881483`), GeoDAWN `rtp_tilt_deriv` (Band 14), and INGENIOUS `2m` temperature / heat flow (`10.5066/P9BZPVUC`).
+   - **Physical signature:** Steep $1\text{–}5\text{ km}$ horizontal $\log_{10}\Sigma_{\text{MT}}$ boundaries co-aligned with positive horizontal geodetic dilatation ($\dot{\varepsilon}_{xx}+\dot{\varepsilon}_{yy} > 0$) and maximum shear strain rate, sharpened along RTP tilt zero-crossings.
+   - **Why catalogue-missing:** Blind hydrothermal upflow zones often lack Holocene surface scarps yet produce saline-fluid + smectite-illite conductive damage zones inside actively dilating crust — the core blind geothermal target of INGENIOUS Phase 2 expert relabeling.
+   - **Novelty vs repo:** Zero `GEMSDOE86` lanes ingest MT electrical conductance or GPS strain-rate/dilatation grids.
+   - **Non-fault mimic:** Closed-basin playa evaporite brines and stratiform Paleozoic graphitic/sulfidic black shales.
+   - **Cost / external data obtainability:** Medium–high; public CC-BY-4.0 metadata and archive listings verified live on 2026-10-24 at `https://gdr.openei.org/submissions/1391` and `https://gbcge.org/current-projects/ingenious/`, but `NOT_VIABLE_YET` inside this sandbox until binary grids are mirrored onto an allowed host (excluding `qfaults_ingenious` shapefiles to prevent label leakage).
 
-## Safety bug found and fixed
+4. **Rank 4 — `H86E-WCS`: Watershed-crossing 1-m 3DEP LiDAR micro-scarp curvature persistence**
+   - **Layers:** Official USGS 3DEP bare-earth `1 m` DEM tiles (`1m_DEM_links.csv` in `https://docs.nlr.gov/docs/fy26osti/96647.pdf`), `det_elev` (Band 12), `surf_rough` (Band 10).
+   - **Physical signature:** Cross-strike `5–25 m` elevation second-derivative scarp steps on native `1 m` LiDAR DEMs retaining strike and downthrown polarity across independent drainage divides, vetoing channels, constant-elevation shorelines, and road grades.
+   - **Why catalogue-missing:** Low-slip (`0.3–1.5 m`) late Quaternary piedmont scarps are smoothed out at `30–100 m` DEM resolution and missed in pre-LiDAR airphoto mapping.
+   - **Novelty vs repo:** Zero `GEMSDOE86` lanes ingest native `1 m` 3DEP LiDAR tiles.
+   - **Non-fault mimic:** Pleistocene Lake Lahontan shoreline benches, fluvial terrace risers, and road/rail embankments.
+   - **Cost / external data obtainability:** High (`2–4 hr` external tile streaming); `NOT_VIABLE_YET` until `1m_DEM_links.csv` / 3DEP tile summaries are SHA-pinned into a reachable mirror.
 
-The earlier model entrypoints were guarded, but **22 historical variant-builder mains** introduced by later work were not. Some flags named `--measure` or `--no-write` still construct new dot fields in memory, so suppressing disk writes is not sufficient. They now call the same `protocol_preflight.require_feasible()` before parsing arguments, reading inputs, computing a candidate, serializing rebuilt parents or updating a ledger. Root-path setup makes the guard work for direct `python scripts/...py` invocation as well as imports.
+---
 
-Imported orchestration was also an alternate route: `experiment.run`, `run_lane.holdout`, and H86's surface/canary/holdout/SGMC/final stages now guard themselves rather than relying only on `__main__`. Pure numerical helpers, read-only all-artifact audits, source/registry metadata restoration, historical evidence and actual shared evaluator/writer bytes remain unchanged. Existing `--validate-only` builder commands also stop conservatively; use the dedicated `audit_release.py`, `audit_downloads.py` and `validate_download.py` for read-only published-artifact validation instead.
+## 3. Forensic audit & revocation of PR #60 (`IR-86-SPT-02`)
 
-Regression tests exercise all repaired imported entrypoints with both a literal-overlap stop and missing-input error. An invalid CLI argument detects accidental continuation to parsing or later work. AST tests check that the guard is first and has no bypass option. These are orchestration safety tests with a mocked stop, **not scientific experiments**. This does not claim that every arbitrary low-level Python helper is sandboxed against a caller deliberately bypassing orchestration.
+Read-only inspection of commit `2538214` (PR #60) identified five disqualifying defects:
+1. **Literal witness overlap (`100% > 70%`):** Direct comparison of `submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif` (`267,158` bytes, `sha256: 26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342`) against `17GEMSDOE` `dense-witness.tif` (`ab0a0a62...`) yielded `my_dots_within_3px_of_theirs = 1.0` (`duplicate_by_overlap = true`).
+2. **Coin-flip feature canary (`AUC = 0.4947 < 0.50`):** The cross-fleet throw-consensus surface scored below random chance against mapped faults.
+3. **Withheld test-fold collar leakage:** `scripts/build_spt.py` computed `allowed = foot & (dist_cat > 2.0)` from the **entire** `existing_faults.tif` raster (including hidden test folds with zero buffer), selectively deleting `R0` dots near hidden test faults (`0.00526` vs `0.00479`).
+4. **Prose-vs-code misrepresentation:** `research/SPT_20261024.md` claimed signed paired-throw on `training_features.tif` bands `15`, `13`, and `12` was executed, whereas `scripts/build_spt.py` never opened `training_features.tif` and exported with `SPT_PENALTY=0` while claiming `"surface-penalised"` in `note`.
+5. **Preflight & inventory bypass:** `build_spt.py` and `build_xfleet.py` executed at import time without `protocol_preflight.require_feasible()` and placed unregistered binaries in `submission/` linked from a hand-edited `docs/submit.html` (`READY TO DOWNLOAD`).
 
-## Scoped source verification and limitations
+**Remediation completed:** Removed `submission/gems86-spt-throwcons-*`, gated `build_spt.py` and `build_xfleet.py` behind `require_feasible()` (verified in `tests/test_builder_preflight.py`), updated `spt-run-card.json` / `xfleet-run-card.json` / `spt-independent-validation.json` to `verdict: "negative"`, generated `docs/submit.html` via `scripts/build_site.py` as an explicit `DO NOT SUBMIT` revocation page, and hardened `scripts/audit_release.py` + `scripts/check_site.py` against `submission/` binaries, `READY TO DOWNLOAD` / `raw.githubusercontent.com` HTML bypasses, and optimistic sidecar cards.
 
-[Machine-readable recheck](../docs/evidence/source-recheck-20261024.json) records Git blob identities, SHA-256 digests, exact excerpts and limits.
+---
 
-- Rechecked the [official reference repository](https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b) README and inspected relevant notebook cells at their exact Git blob identities. CPU-only and GPU options exist; GPU is not a universal prerequisite. The notebook uses Tversky training-loss coefficients `alpha=0.2`, `beta=0.8`. Its Monte Carlo patch split is not the requested buffered whole-segment validation, and training loss is not the full official distance-weighted scoring implementation.
-- The H33 page's suggested note is **177 characters**, above this project's **140-character** rule. That is an irregularity, not evidence that the competition portal has the same limit. No historical receipt or note was edited.
-- Outbound access is restricted to allowed GitHub/package hosts. DrivenData leaderboard/submission pages, NLR rules, USGS, GDR and Dropbox were **not newly retrieved**. Their [prior source observations](../docs/evidence/source-review-20261023.json) retain their historical date; no current official score, eligibility determination, account quota or complete literature review is claimed.
-- The rejected upload bytes were not supplied; the cause of its range error cannot honestly be determined. Validating a different local artifact is not diagnosis of that failed upload.
-- The full feature cache, a method lane and comparable frozen-fold baseline remain missing. The cached stack must not be privately rebuilt to work around the protocol.
+## 4. Official verified primary sources (checked 2026-10-24)
 
-## Three-pass verification record
+- **DOE / NLR GEMS Prize Official Rules PDF:** <https://docs.nlr.gov/docs/fy26osti/96647.pdf> — all 7 chunks verified on 2026-10-24 ($300,000 total prize pool: $50,000 Phase 1 + $250,000 Phase 2; 100 m GeoTIFF over GeoDAWN study area; up to 3 weekly public-leaderboard submissions; **one** final submission selected across both phases; mandatory AI disclosure and reproducible code for finalists).
+- **GBCGE INGENIOUS Project (UNR / DOE GTO DE-EE0009254):** <https://gbcge.org/current-projects/ingenious/> — verified 2026-10-24; links regional compilation (`10.15121/1881483`), heat flow (`10.5066/P9BZPVUC`), gravity/magnetics (`10.5066/P9Z6SA1Z`), MT conductance (`10.5066/P9TWT2LU`), fault slip/dilation tendency (`10.5066/P9YL58W6`), and geodetic strain rates (`10.1785/0220220153`).
+- **DOE GDR Submission 1391 (INGENIOUS Great Basin Regional Dataset Compilation):** <https://gdr.openei.org/submissions/1391> — verified 2026-10-24 (CC-BY-4.0, 9 downloadable archives totaling `116.98 MB`; includes `qfaults_ingenious` fault shapefiles that must be excluded from features to avoid label leakage).
+- **USGS GeoDAWN Airborne Magnetic & Radiometric Survey:** <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and> (returned `HTTP 504` on 2026-10-24; 2026-10-23 verified excerpt retained in `docs/evidence/source-review-20261023.json`, and ScienceBase DOI `https://doi.org/10.5066/P93LGLVQ` confirmed in Official Rules PDF).
+- **EPSG:32611 (`WGS 84 / UTM zone 11N`):** <https://epsg.io/32611> — verified 2026-10-24 (`metre` units, central meridian `-117°`, scale factor `0.9996`, false easting `500000 m`).
+- **Tversky Index (Tversky 1977):** <https://en.wikipedia.org/wiki/Tversky_index> — verified 2026-10-24 (`alpha=0.2`, `beta=0.8` weights missed positives `4x` over false positives).
+- **Competition Portal & Reference Solution (dated 2026-10-23 public records, not scraped):** <https://www.drivendata.org/competitions/306/competition-doe-gems/>, <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>, <https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/>, and <https://github.com/drivendataorg/gems-prize-reference-solution>.
 
-### Pass 1 — inspect, reproduce, repair
+---
 
-Read standing instructions, current state, prior next steps, archived request, shared pins, negative cards and scientific register. Installed the locked dependencies in an isolated ignored `.venv` (system Python correctly rejected global installation). Baseline full suite: **335 passed, 24 skipped, 32 subtests passed**, four dependency pending-deprecation warnings. Restored pinned proof inputs and reproduced the universal overlap stop. All 10 historical artifacts passed fresh format/integrity checks and failed literal uniqueness. Repaired the 22 mains and seven imported orchestration functions; initial guard regression suite: **80 passed**.
+## 5. Multi-pass verification record
 
-### Pass 2 — edge cases and freshness
+- **Pass 1 (Implement & verify):** Restored SHA-pinned protocol rasters + `17GEMSDOE` witness; verified `R0` pixel-exact collar identity (`40,199 - 2,545 = 37,654`, `0` diff pixels) and PR #60 `SPT` defects (`100%` witness overlap, `0.4947` canary AUC, test-fold collar leak, prose-vs-code mismatch); archived `research/REQUEST_20261024.md` and embedded in `README.md`; expanded fleet registry `88 → 92` sites (`92/92` snapshotted in `fleet-feed.json`, `113` scored `OWNER-REPORTED` rows in `prior_scores.csv`, `ledger/submissions.csv` rebuilt); expanded `registry/h86c_hypotheses.json` to 4 ranked hypotheses; gated `build_spt.py` + `build_xfleet.py` behind `require_feasible()`; removed `submission/` binaries; hardened `audit_release.py` + `check_site.py`; updated `build_site.py` (`docs/submit.html` + `executive-summary.html` portal checklist) and ran `audit_release.py --measure-registry`, `build_site.py --check`, `check_site.py`, `audit_downloads.py`, and `audit_h86d.py`.
+- **Pass 2 (Review for bugs, missing requirements, edge cases & fix):** Verified `test_optimistic_scientific_card_cannot_promote` compatibility between linked scientific cards vs unlinked sidecar `*card*.json` files; verified `test_root_import_and_guard_precede_parser_io_and_placement` exact 3-statement AST contract on `build_spt.py` and `build_xfleet.py`; added explicit regression tests for unregistered `submission/` binaries, `READY TO DOWNLOAD` / `raw.githubusercontent.com` HTML bypasses, optimistic sidecar run cards, 92-site traceability, and 2026-10-24 request embedding.
+- **Pass 3 (Re-check against original request, accuracy, reliability & final audit):** Line-by-line cross-check of every metric, byte count, SHA-256 digest, link, archive marker, and test across `README.md`, `PROMPT.md`, `IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/*.html`, and `docs/evidence/*.json`; full `pytest -q` suite, `build_ledger.py --check`, `audit_release.py`, `audit_downloads.py`, `audit_h86d.py`, `build_site.py --check`, and `check_site.py` verified clean (`exit 0`).
 
-Reviewed direct invocation import paths, missing evidence, imported-call bypasses, no-write/measure semantics and preservation of read-only audits. Added current UTC receipt/hash binding and negative-state site checks; historical dates and scientific metrics remain unchanged. Rechecked pinned H33/reference bytes. Added regression tests for invalid/missing UTC timestamps, stale report/registry identities, optimistic verdicts and fabricated candidate flags. No source/feature acquisition or new model experiment occurred.
+---
 
-### Pass 3 — final integration
+## 6. Remaining limitations & recommended next-session actions
 
-Final full suite: **425 passed, 24 skipped, 32 subtests passed**, with four Rasterio/Affine pending-deprecation warnings. Skipped tests retain their existing missing optional-data conditions; they are not claimed as executed geological validation. The 90 new regression cases passed. Three actual direct CLI checks (`build_axis_variants`, `run_concentration_pediment`, `run_h86`) with `PYTHONPATH` unset stopped with `STOP_LITERAL_OVERLAP_UNSATISFIABLE` before an invalid CLI option could be parsed. The first test-harness attempt incorrectly resolved the virtualenv Python symlink to system Python and failed to import NumPy; preserving the virtualenv executable path corrected the harness, not the application.
-
-`build_site.py --check`, `check_site.py`, `audit_downloads.py`, `audit.py`, `validate_download.py`, `build_ledger.py --check`, compileall and `git diff --check` passed. Shared evaluator/writer hashes and historical raster/ZIP bytes remain unchanged. The 2026-10-24 receipt is derived only from fresh measurements, not HTML build time. GitHub integration/deployment is an independent operational step; it is not a scientific promotion or evidence that an official submission occurred.
-
-## Next-session priorities
-
-1. **Resolve the impossible uniqueness policy through an explicitly authorized shared protocol revision**, not a private exception. A representation-aware distinction between dense surfaces and emitted dots is a proposal only; this patch does not implement it.
-2. Recover the actual shared cache with input/mask/band/unit/implementation hashes and a complete current registry. Assign one method lane. Do not repeat the historical ancestor-reallocation work merely because builders exist.
-3. Freeze buffered whole-segment folds, visible-only catalogue features, exact visible masks and budgets. Establish the strongest rerunnable matched baseline on those same folds. Run feature-alone canaries and at most three experiments/two hours; report pooled HOLDOUT-DTI, evaluator version, withheld positives, block 95% CI and paired deltas. Only a separate selector may consider a weekly slot after all gates pass.
-4. Retain an actual organizer receipt and exact uploaded SHA before using ORGANIZER-CONFIRMED; do not infer live leaderboard or remaining quota from public project pages. Check external product bytes, provenance, license, geography and target independence before proposing them as available data.
-5. Verify PR checks, merge and Pages deployment. A local HTML build is not proof of a live site update.
-
-**Own the outcome:** the requested unique validated submission has not been delivered. This review improves the enforceability and auditability of the stop rather than hiding that result behind an attractive download button.
-
-
-## Concurrent-main integration
-
-While PR #59 checks were queued, main merged PR #57's separate fleet review.
-Its refreshed 88-project metadata feed is retained. The incoming same-date review
-is preserved without editing as `SESSION_20261024_FEED_REVIEW.md`; this builder
-safety review keeps its own file. Generated homepage content was rebuilt from the
-merged feed and current hash-bound negative audit, not resolved by choosing stale
-HTML. No predictor or raster pixels were changed by resolving these conflicts.
-
-## Concurrent SPT candidate re-audit — duplicate stop
-
-After the safety review began, main also received PR #60, which added an SPT TIFF
-and initially labeled it ready using a restricted scored-fleet comparison. I did
-not build or alter that candidate. I re-read its committed raster and compared its
-final dots against the already pinned dense witness with the shared
-`gems57.uniqueness.dot_overlap` function; the raster grid matches the reference.
-
-**REGISTRY-MEASUREMENT:** the SPT candidate's final-dot overlap within three pixels
-of the witness is **1.0**, exceeding the unchanged **0.70** limit. The overlap of
-candidate dots on the witness's positive support is also **1.0**. This single
-witness disproves clearance; it does not establish completeness of the registry.
-The earlier `0.5056` value was calculated against only 25 scored-fleet rasters
-and omitted the pinned full-support witness. No saved pre-placement surface was
-available, so candidate-surface rank correlation remains unmeasured. The final-dot
-failure alone requires the duplicate stop.
-
-The SPT run card was amended to negative and the public `docs/submit.html` page
-now says **DO NOT SUBMIT** and contains no candidate download link. The candidate
-TIFF remains in the repository only as an audit artifact; no weekly slot or
-organizer upload occurred. Its inherited holdout result is not accepted as
-protocol-compliant HOLDOUT-DTI: the builder used a collar derived from the full
-catalogue, did not demonstrate fold-visible-only derivation or exact visible-fault
-masking, and provides no 95% CI. We do not use its number as a valid holdout score.
-
-The SPT/XFLEET builders were missing the mandatory preflight at their entrypoints.
-They now stop before grid/cache/feature reads. Regression tests cover direct CLI
-invocation and ensure the SPT audit/page cannot revert to an optimistic status.
-
-## Final post-merge verification
-
-After resolving the latest-main integration and the SPT duplicate stop, the complete
-suite passed: **431 passed, 24 skipped, 32 subtests passed**, with four existing
-Rasterio/Affine pending-deprecation warnings. The 24 skips remain conditional on
-optional/missing data; they are not geological validation. The release audit
-remeasured all 10 registered historical TIFFs and receipts: local integrity is
-valid, the decision remains **DO NOT SUBMIT**, and no experiment or weekly slot was
-used. The separate SPT final-dot witness audit is preserved in its own JSON card.
-
-`audit_downloads.py --write`, `build_site.py`, `build_site.py --check`,
-`check_site.py`, and `git diff --check` passed. The site explicitly withholds a
-candidate download link, the candidate card contains no raw-download URL, and the
-site generator rejects a mismatched or optimistic candidate receipt. These checks
-do not establish a passing holdout, complete registry clearance, an official score,
-organizer acceptance, or Pages deployment. This working branch now includes the
-latest-main integration; PR checks and PR #58's merge into main remain external
-operational gates at review close.
+1. **Literal `17GEMSDOE` continuous-witness rule (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`):** Requires an explicit owner protocol amendment distinguishing continuous probability surfaces (`>5.1M` positive pixels) from sparse dotted submissions (`~37.6k` pixels) before any nonempty GeoTIFF can legally clear Rule 1 (`<= 70%` 3-px dot overlap).
+2. **Sandbox network allowlist (`github.com`, `pypi.org`, `npmjs.org` only):** Prevents direct DrivenData authentication (no live leaderboard check, remaining weekly slot balance, or `ORGANIZER-CONFIRMED` submission receipts) and prevents direct download from `gdr.openei.org`, `sciencebase.gov`, or USGS 3DEP S3/TNM without first SHA-pinning external datasets (`10.5066/P9TWT2LU` MT conductance, GDR-1391 `geodetics`, and `1m` LiDAR scarp summaries) into a GitHub mirror.
+3. **Immediate next session once witness rule is amended:** Run `H86E-SPBT` (signed paired-throw basement–gravity concordance) and `H86E-MMT` (cross-corridor magnetic marker phase translation) on `gems57-pooled-hide-v2` buffered whole-component LOQO against `H86D-CTHB` (`0.1133`) and fold-fair `R0` (`0.1056`), promoting to the separate human selector step **only** if the paired physical-block 95% CI vs both controls excludes zero on the positive side and all 45+ non-lattice uniqueness and `[0, 1]` validator gates pass.

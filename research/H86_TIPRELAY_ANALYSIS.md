@@ -1,4 +1,8 @@
-# Why H33-H33-2-B2 scored 0.2778 (OWNER-REPORTED) — and how a tip-relay model can plausibly beat it
+# Why H33-H33-2-B2 scored 0.2778 (OWNER-REPORTED) — and how a tip-relay model can plausibly beat it — REVOKED CANDIDATE (`DO NOT SUBMIT`)
+
+> **FORENSIC REVOCATION NOTICE (`IR-86-TIPRELAY-01`, 2026-10-24):** The candidate raster committed in PR #63 (`docs/downloads/gems86-h86-tiprelay-37654-20261024T070000Z.tif`, SHA-256 `c56945618d8316f4f134474c1f707444a46892a47aa7b7e18181bee6243daae3`) has been **revoked as `verdict: "negative"` (`DO NOT SUBMIT`)** and removed from `docs/downloads/`. Read-only audit via `vendor/gems57/uniqueness.py` proved that it breached the 70% 3-px dot-overlap ceiling **even against sparse fleet rasters** (`my_dots_within_3px_of_theirs = 0.8508 > 0.70` vs `GEMSDOE32` `h33-h33-2-b2` and `0.8510 > 0.70` vs `GEMSDOE28` `h27-4-r1-solo-d2-8`, plus `1.0 > 0.70` vs `17GEMSDOE`), ran zero spatially-blocked holdout evaluation (`PROJECTION_NOT_HOLDOUT`), inserted a `"tiprelay"` carve-out hack in `scripts/audit_release.py`, and broke `scripts/build_site.py --check`, `scripts/check_site.py`, and `scripts/audit_downloads.py`. See `docs/evidence/h86-tiprelay-run-card.json` (`v2`) and `IRREGULARITIES.md` (`IR-86-TIPRELAY-01`).
+
+---
 
 **Date:** 2026-10-24 — PhD-level analysis, line-verified against pinned competition grid and metric code.
 
