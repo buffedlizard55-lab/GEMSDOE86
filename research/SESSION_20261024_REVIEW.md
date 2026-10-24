@@ -41,7 +41,7 @@
 
 ## 2. Five ranked candidate geological hypotheses (`registry/h86c_hypotheses.json`)
 
-All five are declared before implementation (`experiments_run = 0`, `holdout_dti = null`, `ci95 = null`, `status = NOT_RUN*`), with every `training_features.tif` band index verified directly against the GeoTIFF headers (`src/gems86/io.py`):
+This review ran no new experiments (`experiments_run = 0`); the five exact proposals below have no new HOLDOUT-DTI values (`holdout_dti = null`, `ci95 = null`, `status = NOT_RUN*`). Important qualification: the related standalone, unregularized SPBT-v1 family was already tested and falsified in the earlier H86E E1–E2 session; only the narrower low-relief, regularized-Laplace-g_zz extension described here remains untested. Every `training_features.tif` band index below was verified directly against the GeoTIFF headers (`src/gems86/io.py`):
 
 1. **Rank 1 — `H86E-SPBT`: Signed paired-throw basement–Laplace-gravity concordance under low-relief alluvial cover**
    - **Layers:** `depth_to_base_surf` (Band 15), `iso_grav_anom` (Band 13, DOI `10.5066/P9Z6SA1Z`), signed horizontal gravity vector `(+Band 18 iso_grav_anom_hg = +∂g/∂x_east, -Band 11 iso_grav_anom_vg = +∂g/∂y_north)`, `det_elev` (Band 12, DOI `10.5066/P9MQRCBY`), `det_elev_slope` (Band 19), `tmi_hg` (Band 3, DOI `10.5066/P93LGLVQ`).

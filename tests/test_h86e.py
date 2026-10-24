@@ -40,6 +40,17 @@ def test_h86e_raster_matches_card_and_note_limits():
     assert v["emitted_dots"] == 44090
 
 
+def test_site_distinguishes_byte_identity_from_registry_uniqueness():
+    home = (ROOT / "docs/index.html").read_text()
+    report = (ROOT / "research/H86E_SESSION_20261024.md").read_text()
+    assert "byte-distinct research GeoTIFF" in home
+    assert "not unique under the registry gate" in home
+    assert "DO NOT SUBMIT" in home
+    assert "a new unique GeoTIFF" not in home
+    assert "does **not** satisfy the requirement for a registry-unique" in report
+    assert "The request for a new" in report and "registry-unique, submission-cleared TIF remains unmet" in report
+
+
 def test_h86e_holdout_is_labelled_with_ci_and_design():
     h = _card()["holdout_dti"]
     assert h["evidence_class"] == "HOLDOUT-DTI"

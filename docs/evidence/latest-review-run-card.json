@@ -2,7 +2,7 @@
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-24",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (planned g_zz/low-relief extension; standalone SPBT-v1 was previously negative; exact extension NOT RUN; no method lane assigned)",
   "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
   "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts (USGS OFR 99-383).",
   "holdout_dti": {
@@ -115,8 +115,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T19:44:07+00:00",
+  "registry_measured_utc": "2026-10-24T19:55:25+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "35c413e0c8f78df37c60b3d288b7f7124f5fba329e853e04491f4907a0f072bb",
-  "registry_measurement_sha256": "690cac473414f464d3de48dc4d5f525a3a62944d52705ed600a3f1b7914262d2"
+  "release_report_sha256": "a4fe0a9a1b8884f1fc912747b81e2455eb1ea440b0bb5cad4bb171dee15ad767",
+  "registry_measurement_sha256": "377b0cabf9da0ff2436c9ef80edc7ee207a8162b7d0f170b1ff36f5dfdfe6f33"
 }
