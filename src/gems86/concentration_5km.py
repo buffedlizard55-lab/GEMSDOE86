@@ -468,6 +468,8 @@ def relocate_cvband_down(
     min_clearance_px: float = 3.0,
     min_spacing_px: float = math.sqrt(8.0) - 1e-6,
     unique_credit_dots: np.ndarray | None = None,
+    dest_filter: np.ndarray | None = None,
+    dest_prefer: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, Any]]:
     """Sign-flip arm: shave over-concentrated blocks into sparse ridge-bearing blocks.
 
@@ -475,6 +477,14 @@ def relocate_cvband_down(
     ``0.51-0.59`` empirical top-scorer band while preserving count, ``> 3.0 px``
     catalogue clearance, ``>= sqrt(8)`` inter-dot spacing, and 100% ancestor-ridge
     placement.
+
+    ``dest_filter`` (optional) restricts the destination candidate pool to a
+    pre-computed boolean mask (e.g. the truth-free pediment window); the removal
+    loop is untouched, so sources stay identical to the unfiltered arm.
+    ``dest_prefer`` (optional) reorders the destination scan so masked cells are
+    filled first (dose arms spill over into the rest of the pool only after the
+    preferred cells are exhausted). Both default to ``None`` == the historical
+    byte-identical behaviour asserted by the unit tests.
     """
     parent = np.asarray(parent_dots, dtype=bool) & np.asarray(footprint, dtype=bool)
     foot = np.asarray(footprint, dtype=bool)
@@ -535,10 +545,22 @@ def relocate_cvband_down(
         & (edt > float(min_clearance_px))
         & (edt_sim >= float(min_spacing_px))
     )
+    if dest_filter is not None:
+        df = np.asarray(dest_filter, dtype=bool)
+        if df.shape != cand_mask.shape:
+            raise ValueError("dest_filter must share the grid shape")
+        cand_mask &= df
     c_ys, c_xs = np.nonzero(cand_mask)
     c_cnt = np.repeat(np.repeat(c_cur, km_block_px, axis=0), km_block_px, axis=1)[c_ys, c_xs]
     c_gap = edt_sim[c_ys, c_xs]
-    c_order = np.lexsort((c_xs, c_ys, -np.round(c_gap, 4), c_cnt))
+    if dest_prefer is None:
+        c_order = np.lexsort((c_xs, c_ys, -np.round(c_gap, 4), c_cnt))
+    else:
+        dp = np.asarray(dest_prefer, dtype=bool)
+        if dp.shape != cand_mask.shape:
+            raise ValueError("dest_prefer must share the grid shape")
+        # lexsort: LAST key is primary -> preferred cells are scanned first
+        c_order = np.lexsort((c_xs, c_ys, -np.round(c_gap, 4), c_cnt, -dp[c_ys, c_xs].astype(np.int64)))
 
     half = int(math.ceil(float(min_spacing_px)))
     added: list[tuple[int, int]] = []

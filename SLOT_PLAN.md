@@ -1,4 +1,4 @@
-# SLOT PLAN — 2026-10-23 (rev. E: rev. D + CONCENTRATION surface extension and the reallocation budget)
+# SLOT PLAN — 2026-10-23 (rev. F: rev. E + the pediment-window attribution, BUILT, SGMC falsifier fired)
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -7,7 +7,7 @@ portal clock; ~5.9 wk ⇒ ~17 slots max, minus the final pick). Parent **R0 = `h
 `ledger/submissions.csv`). `TOP_PUBLIC`, rolling-week quota left and R0's receipt are **UNSUPPLIED**.
 Live `|Δ| < 0.01` = no evidence.
 
-## What the two 2026-10-23 sessions changed
+## What the 2026-10-23 sessions changed
 
 **A. `CONCENTRATION` is monotone in dose and partly generic dispersal (PR #50).** `conc3` `+0.0013` →
 `conc5dose` `+0.0018` → `conc6` `+0.0022 MODEL` (4/4 quadrants; `+0.0013` PROXY) while 1 km occupied
@@ -51,6 +51,8 @@ a 20k–80k `|G|` band). Rearranging 2–6k existing dots has produced `|Δ| ≤
 instrument across all three sessions. Wk 1–3 below still test the three best reallocations because they
 are already built and cost nothing but slots; everything after that should fund new evidence.
 
+**E. The pediment refinement of the dispersal rule is BUILT and fails its SGMC falsifier (this session, `IR-86-CONC-18`).** The truth-free pediment window (3DEP `relief_local` 10–40 m, > 1 km off the RELIEF regime front; 18.8 % of the footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules, so the attribution pair is dose-matched at 941 dots (5.00 % chg) with matched displacement (mean 1,613 vs 1,631 px, making `IR-86-CONC-15`'s outward-movement bias common-mode). At that dose the **non-pediment complement beats the pediment arm on SGMC (+0.0013 vs +0.0007**; REF `concb5kmdown4` +0.0015 replicated exactly**)** while the fold-fair d28 `PROXY` orders them oppositely (+0.0012 vs +0.0004): instruments split, attribution unresolved, **no slot change** — `concb5kmpeddown2p5` / `concb5kmnonpeddown2p5` / `concb5kmpeddown5` are audit-only. Card: `evidence/concentration-pediment-mechanism.md`.
+
 ## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
 
 | Slot | Candidate (`releases/<id>`) | Edit vs R0 | Predicted Δ (MODEL, not a score) | Decision rule on live `RECEIPT` Δ vs 0.2778 |
@@ -61,7 +63,7 @@ are already built and cost nothing but slots; everything after that should fund 
 | 4 (spare) | `…-conc5dose-20261023-a2f8aaad-zeros.tif` | 1,883 dots (`10.0 %`), CV `0.4998` | `+0.0018` MODEL / `+0.0010` PROXY | Paired dose point for Slot 2 only if Slot 2 returns a positive but sub-0.01 Δ. |
 | 4b (spare alternate) | `…-CONC-surfext10-20261023-fe814da5-zeros.tif` (PR #53) | 3,765 dots (`20.0 %` chg) off saturated `H19-5` onto `H19-4\|H16-1`, count fixed | `+0.0059` MODEL (**−0.00003** PROXY; only `+0.0012` above its own off-union control) | Use **instead of** 4 only if the aim is to test whether unmapped ground on the other two ancestor surfaces holds new truth: `≥ +0.010` → escalate to `surfext15`; `≤ −0.005` → retire the family. Never upload `surfext10ctl`. |
 
-**Never upload:** the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
+**Never upload:** the three pediment arms (`concb5kmpeddown2p5` 9fb6bfc9, `concb5kmnonpeddown2p5` 57cc867c, `concb5kmpeddown5` 161b002e — audit-only, `IR-86-CONC-18`); the three new `int2*` RELIEF arms; `conc6rand` (`CONTROL`); `conc15` (`−0.0071`),
 `dens15`/`spr15` (`−0.0006`/`−0.0013`), `b5km-move10/15/20` (`−0.0066…−0.0150`), `concb5kmup4/8`
 (`−0.0005`/`−0.0007`); all MASS arms; all SNAP arms; `trackb-cull1dot`; every `BUILT-DUPLICATE` /
 `withdrawn` row.
