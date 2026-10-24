@@ -1,35 +1,35 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **No. DO NOT SUBMIT any current TIFF.** All **14** registered downloads pass local byte/format checks, but all fail the unchanged literal registry gate against a pinned full-support witness; the accessible registry scan remains incomplete. Weekly slots used: 0.
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
-**Pre-existing PR #92 artifact — audit download only, not generated in this review:** `docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` (SHA-256 `94591f4c…683cc5`). Its archived **HOLDOUT-DTI** is `0.00037` (95% CI `[0.00025, 0.00051]`; `gems57-pooled-hide-v2`; 11,321 withheld positives); the release audit did not rerun this holdout, and the sidecar does not establish a matched-control improvement. The fresh pinned-witness **REGISTRY-MEASUREMENT** reports Spearman `-0.0133`, forward 3-px overlap `1.0000`, `unique=false`, `stop_required=true` (one witness only; not a complete registry scan). The local like-for-like diagnostic is not uniqueness clearance. The file is downloadable for audit only and is **not authorized for submission**. See the generated [Downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads), [How to submit](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html), and current [release report](docs/evidence/release-readiness.json).
+**Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
 
-### Latest post-rebase review — PR #92 artifact reconciliation
+- TIFF: [`docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif)
+- ZIP: [`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip)
+- SHA-256: `c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6`
+- Writer receipt: [`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.json`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.json)
+- Full run card: [`docs/evidence/h86e-mmt-run-card.json`](docs/evidence/h86e-mmt-run-card.json)
 
-**DO NOT SUBMIT. No new TIFF, model experiment, or competition slot in this review.** After rebasing onto main, the release inventory contained **14** published research TIFFs but only **13** artifact-card mappings. The missing mapping was the pre-existing PR #92 blind-geothermal TIFF. It is now explicitly joined to its archived sidecar, with its limited scope preserved; the all-artifact release report, site, and download audit are regenerated from that consistent inventory. All **14** files pass local format/identity checks and fail the literal full-support-witness gate. This repository measures one immutable witness, not a complete registry; one witness is enough to reject, never clear, a candidate. See the [current release report](docs/evidence/release-readiness.json), [all-artifact registry measurement](docs/evidence/all-artifacts-registry.json), and [current negative run card](docs/evidence/latest-review-run-card.json).
-
-The PR #92 sidecar records **HOLDOUT-DTI 0.00037** (95% CI `[0.00025, 0.00051]`, evaluator `gems57-pooled-hide-v2`, 11,321 withheld positives); that result was not rerun here and has no matched-baseline delta in the sidecar. Its local like-for-like diagnostic is limited to locally present dot fields, not a complete uniqueness clearance. The fresh literal measurement against the pinned full-support witness is `forward_overlap_3px = 1.0`, `unique = false`, `stop_required = true`. The candidate remains downloadable for audit only and must not be described as unique or submission-ready. This review did not generate or promote it.
-
-### Earlier independent review — session 4d79b443
-
-**DO NOT SUBMIT. No new TIFF or competition slot.** That earlier audit rechecked **13** published research TIFFs before PR #92 was merged: all locally format-valid, all rejected by the literal overlap rule. [Three-pass review and four additional, untested research sketches](research/SESSION_20261024_4D79B443.md).
-
-Fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence and arbitrary self exclusion; restored surface-check-before-placement ordering and gated/import-safe RIDF writing. New reports bind exact array and registry identities and return nonzero on a failed gate. Shared evaluator/writer bytes and protocol thresholds are unchanged. Older dated summaries below remain historical, not new authorization.
-
-**Every archived research file in this repository is DO NOT SUBMIT.** The H86E-RIDF session generated a new unique TIFF, and the automated gates rejected it. The concurrent H86E-CCTX TIFF (below) also fails its gates. Details: [research/H86E_RIDF_REVIEW.md](research/H86E_RIDF_REVIEW.md) · [run card](docs/evidence/h86e-ridf-run-card.json) · [site](https://buffedlizard55-lab.github.io/GEMSDOE86/).
-
-| Gate (no human inspection) | Result |
+| Automated gate (no human inspection) | Result |
 |---|---|
-| Format (CRS/shape/transform, float32, 0 NaN/inf, [0,1], 0 dots on faults) | **PASS** — `gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif` |
-| HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) | **0.00037 [0.00025, 0.00051]** — archived sidecar result; not rerun here; no matched-control delta established |
-| Scoped REGISTRY-MEASUREMENT: PA-86-01 like-for-like diagnostic vs 12 local dot fields | Sidecar reports 0 overlap firings, worst overlap 0.306 and worst Spearman 0.017; scoped local diagnostic only, not complete registry clearance |
-| Literal REGISTRY-MEASUREMENT against the pinned full-support witness | Forward 3-px overlap **1.0000**, `unique=false`, `stop_required=true`; one-witness scan is incomplete but sufficient to reject |
-| Organizer-confirmed score | **none** — no submission-page receipt; weekly slots used: 0 |
-| Verdict | `FORMAT-VALID · AUDIT DOWNLOAD ONLY · DO NOT SUBMIT`; do not call this candidate unique or organizer-confirmed |
+| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, `[0,1]`, 0 NaN/Inf, 44,090 positive cells, 0 mapped-catalogue positives |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives) | **FAIL** — candidate `0.0290` 95% CI `[0.0206, 0.0381]` vs preregistered R0 `0.0339` `[0.0160, 0.0503]`; paired Δ `−0.0049` `[−0.0240, +0.0149]` |
+| `LEAKAGE-CANARY` | **PASS** — maximum discriminative AUC `0.5321`, below the `0.90` stop threshold |
+| Pre-placement surface registry check | **NOT CLEARANCE** — 685 inventory entries enumerated; 2 grid/CRS-incompatible entries are explicitly recorded; surface comparison did not authorize placement |
+| Final dots / `PA-86-02` | **FAIL** — 6 informative dot-field overlap firings; gate `false` |
+| Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
-**How to submit** (once a slot is authorized): download the TIFF above → DrivenData "New submission" → select the `.tif` (or the single-TIFF `.zip`) → paste the ≤140-char note → retain the organizer receipt → classify the score as ORGANIZER-CONFIRMED only from that receipt. See `docs/executive-summary.html`.
+The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its holdout numbers are `HOLDOUT-DTI`, not leaderboard scores; owner-reported `GEMSDOE32` `0.2778` remains an unverified claim, and no projection is made. Read the [current machine-checked site](docs/index.html), [executive submission guide](docs/executive-summary.html), [three-to-five-hypothesis preregistration](research/H86E_MMT_PREREGISTRATION.md), [three-pass H86E-MMT review](research/H86E_MMT_REVIEW_20261024.md), and [current feed/evidence](docs/evidence/release-readiness.json).
 
-Key findings: the catalogue-hide holdout cannot rank the fleet's best rasters (H33 = 0.0037 as-is; Spearman vs owner-reported LB 0.24, n = 17), so instrument–leaderboard alignment is the top open problem; owner-reported scores associate with distal (> 3.2 km from mapped faults), sloping-terrain dots. Protocol amendments PA-86-01/02 are public, tested, and keep thresholds unchanged. Negative results are deliverables.
+**Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
+
+Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **15** published research TIFFs, including H86E-MMT and the blind-geothermal lane.
+
+## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
+
+A separate mainline lane generated [`gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif`](docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif), SHA-256 `94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5`. It is locally format-valid and byte-unique within its 13-raster archived comparison, but its **HOLDOUT-DTI** is `0.0003726` 95% CI `[0.0002465, 0.0005139]` (`gems57-pooled-hide-v2`, 11,321 withheld positives), so it is negative and not an organizer-confirmed scorer. It was not generated in this review; its scope is preserved as a separate lane; no slot was used.
+
+The independent registry-integrity review [`SESSION_20261024_4D79B443.md`](research/SESSION_20261024_4D79B443.md) fixed incomplete-registry false passes, invalid-array coercion, unbound chance-overlap evidence, arbitrary self-exclusion, surface-check-before-placement ordering, and import-safe RIDF writing. The later [Arena review](research/SESSION_20261024_ARENA_REVIEW.md) records the same fail-closed boundary. Shared evaluator/writer bytes and thresholds remain unchanged. Its additional research sketches are not validated results.
 
 ## SWCON (PR #77): revoked on main, and confirmed by an independent measurement
 

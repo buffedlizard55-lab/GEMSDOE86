@@ -1,0 +1,61 @@
+{
+  "schema": "gems86.h86e-mmt-preregistration.v1",
+  "lane": "H86E-MMT",
+  "status": "frozen_design_with_process_irregularity",
+  "process_irregularity": "Standalone preregistration file was added after the original scaffolding and execution; no post-hoc result changed the arms, thresholds, split, or budget.",
+  "arms": [
+    {
+      "rank": 1,
+      "id": "E1_mmt_tc_decoupled",
+      "hypothesis": "A buried accommodation-zone or oblique Walker Lane fault translates magnetic marker horizons without a mapped surface scarp.",
+      "layers": ["Band 2 rtp", "Band 3 tmi_hg", "Band 6 tc", "Band 9 tmi_vg"],
+      "transform": "Eight oblique directional gradients at non-zero 200-600 m lags, zero-lag registration subtraction, survey-axis downweighting, TC quietness decoupling.",
+      "non_fault_mimic": "Unfaulted lithologic/intrusive contact, remanent volcanic polarity, or flight-line/tie-line leveling seam.",
+      "uncatalogued_rationale": "Buried or covered faults can translate a magnetic contact without a mapped Quaternary scarp; catalogue masking is only for holdout/emission control.",
+      "novelty": "Cross-corridor phase/translation statistic, distinct from existing edge, halo, catalogue-context, GMC, SPBT, gravity-vector, and concentration lanes.",
+      "cost": "medium",
+      "official_data": "Pinned 19-band owner mirror; official GeoDAWN and USGS magnetic semantics retained for review"
+    },
+    {
+      "rank": 2,
+      "id": "E2_mmt_translation",
+      "hypothesis": "The non-zero-lag magnetic marker translation is useful without TC decoupling.",
+      "layers": ["Band 2 rtp", "Band 3 tmi_hg", "Band 9 tmi_vg"],
+      "transform": "Same preregistered directional translated-marker response without the TC quietness factor.",
+      "non_fault_mimic": "Lithologic contact or survey seam with phase-shifted magnetic response.",
+      "uncatalogued_rationale": "A covered structural offset can be magnetic-only and absent from the visible-fault catalogue.",
+      "novelty": "Ablation/control isolating the translation signal from radiometric decoupling.",
+      "cost": "medium",
+      "official_data": "Pinned 19-band owner mirror; no external layer acquired"
+    },
+    {
+      "rank": 3,
+      "id": "E3_mmt_edge_control",
+      "hypothesis": "A translation-informed response must outperform a conventional magnetic edge control if phase translation is causal.",
+      "layers": ["Band 2 rtp", "Band 3 tmi_hg", "Band 9 tmi_vg"],
+      "transform": "Directional edge/control response at the same emission budget, without non-zero-lag translation.",
+      "non_fault_mimic": "Unfaulted magnetic lithologic boundary.",
+      "uncatalogued_rationale": "The control is deliberately non-catalogue-dependent but tests whether the claimed buried-fault mechanism adds information beyond edges.",
+      "novelty": "Preregistered negative control, not a new submission strategy.",
+      "cost": "low",
+      "official_data": "Pinned 19-band owner mirror; no external layer acquired"
+    },
+    {
+      "rank": 4,
+      "id": "H3_gravity_basement_throw_future",
+      "hypothesis": "Signed gravity and basement-depth polarity concordance reveals covered faults with muted surface relief.",
+      "layers": ["Band 11 iso_grav_anom_vg", "Band 13 iso_grav_anom", "Band 15 depth_to_base_surf", "Band 18 iso_grav_anom_hg", "Band 19 det_elev_slope"],
+      "transform": "Paired signed steps, regularized gravity curvature, long-strike continuity, and relief suppression.",
+      "non_fault_mimic": "Paleovalley margin, caldera moat wall, or gravity-basement inversion artifact.",
+      "uncatalogued_rationale": "Buried basement faults need not have surface scarps or catalogue traces.",
+      "novelty": "Distinct future mechanism; not executed in this lane.",
+      "cost": "high",
+      "official_data": "Pinned bands plus official USGS interpretation sources; not executed"
+    }
+  ],
+  "budget": {"max_arms": 3, "max_hours": 2, "dots": 44090},
+  "holdout": {"evaluator": "gems57-pooled-hide-v2", "hidden_whole_components": true, "buffer_px": 3, "alpha": 0.2, "beta": 0.8, "kernel_m": 300, "catalogue_from_visible_faults_only": true, "visible_faults_masked_pixel_exact": true},
+  "leakage_discriminative_auc_stop": 0.9,
+  "registry": {"rho_stop": 0.9, "forward_overlap_stop": 0.7, "final_pa86_informative_firing_is_hard_stop": true},
+  "promotion": "negative unless the candidate beats the preregistered controls with recorded 95% CI, passes leakage, surface/final-dot registry, local format, and selector gates"
+}

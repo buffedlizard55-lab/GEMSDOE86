@@ -94,7 +94,14 @@
       "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
     },
     {
-      "lane": "PR #92 blind off-catalogue geothermal candidate (archived; audit only)",
+      "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
+      "card": "docs/evidence/h86e-mmt-run-card.json",
+      "context": "docs/evidence/h86e-mmt-run-card.json",
+      "holdout_kind": "h86e_mmt",
+      "stem": "gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros"
+    },
+    {
+      "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
       "card": null,
       "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
       "holdout_kind": "blindgeothermal_candidate",

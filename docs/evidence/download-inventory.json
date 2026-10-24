@@ -1,5 +1,5 @@
 {
-  "scope": "Existing artifacts merged from concurrent sessions; all are DO NOT SUBMIT, with no competition clearance. | Pre-existing PR #92 blind-geothermal artifact is format-valid; its HOLDOUT-DTI is archived, its like-for-like registry diagnostic is local-only, and the current pinned-witness measurement triggers the literal stop. Not generated or authorized by this review.",
+  "scope": "Existing artifacts plus current H86E-MMT and blind-geothermal lanes; all negative, no competition clearance.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -76,6 +76,12 @@
     {
       "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
       "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+      "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     },

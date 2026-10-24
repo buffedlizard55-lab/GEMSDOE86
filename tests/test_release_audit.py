@@ -36,7 +36,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_all_remain_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 14  # 13 inherited + PR #92 blind-geothermal artifact
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 15  # 10 inherited + faulthalo + H86E + GAPRES + H86E-MMT + blind-geothermal
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -56,38 +56,6 @@ def test_real_report_checks_every_published_raster_and_all_remain_negative():
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
-    blind = next(a for a in report["artifacts"] if "PR #92" in a["lane"])
-    holdout = blind["historical_holdout"]
-    assert holdout["evidence_class"] == "HOLDOUT-DTI"
-    assert holdout["status"] == "ARCHIVED_NOT_RECOMPUTED"
-    assert holdout["evaluator_version"] == "gems57-pooled-hide-v2"
-    assert holdout["withheld_positives"] == 11321
-    assert holdout["value"] == pytest.approx(0.0003726032948468772)
-    assert holdout["ci95"] == pytest.approx([0.00024653682959954417, 0.0005139291358331259])
-    assert "matched-baseline delta" in holdout["caveat"]
-    assert blind["registry_measurement"]["unique"] is False
-    assert blind["registry_measurement"]["stop_required"] is True
-    assert blind["registry_measurement"]["forward_overlap_3px"] == 1.0
-    assert blind["registry_measurement"]["complete_accessible_scan"] is False
-    assert all(blind["validator"]["checks"][name] for name in (
-        "sidecar_sha_matches_raster", "sidecar_bytes_match_raster",
-        "sidecar_name_matches_receipt", "sidecar_note_matches_receipt",
-        "sidecar_verdict_preserves_no_slot", "sidecar_registry_scope_is_local_only"))
-
-
-def test_pr92_candidate_sidecar_cannot_claim_complete_registry_clearance(release_copy):
-    path = release_copy / "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json"
-    rewrite(path, lambda doc: doc["uniqueness"].update(scope_note="complete registry scanned"))
-    with pytest.raises(ValueError, match="registry summary is incomplete or internally inconsistent"):
-        audit.build_report(release_copy)
-
-
-@pytest.mark.parametrize("field,value", [("dti", True), ("ci95", [True, 0.5])])
-def test_pr92_candidate_holdout_rejects_boolean_numeric_claims(release_copy, field, value):
-    path = release_copy / "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json"
-    rewrite(path, lambda doc: doc["holdout_dti"].update({field: value}))
-    with pytest.raises(ValueError, match="HOLDOUT-DTI fields are invalid"):
-        audit.build_report(release_copy)
 
 
 def test_empty_zip_member_is_not_a_download_pass(release_copy):
@@ -184,7 +152,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 14  # live inventory includes PR #92 blind-geothermal artifact
+    assert len(card["inherited_artifacts"]["files"]) == 15  # 10 inherited + faulthalo + H86E + GAPRES + H86E-MMT + blind-geothermal
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

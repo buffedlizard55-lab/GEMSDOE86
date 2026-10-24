@@ -1,7 +1,7 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-24T22:59:21+00:00",
+  "measured_utc": "2026-10-24T23:39:26+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
   "proof_sha256": "e5ffd6a53c488a4c153ba92fc6674360fdabd7c9d9204c2d861d217225754829",
@@ -124,6 +124,15 @@
       "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
       "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
       "spearman_full_footprint": -0.032156074627723054,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+      "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
+      "spearman_full_footprint": 0.0037831860336788475,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,
