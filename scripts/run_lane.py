@@ -171,7 +171,8 @@ def _dilate(mask: np.ndarray, px: int) -> np.ndarray:
     return ndi.binary_dilation(np.asarray(mask, bool), iterations=px)
 
 
-if __name__ == "__main__":
+def main(argv=None) -> int:
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()  # No model experiments under an unsatisfiable protocol.
     ap = argparse.ArgumentParser()
@@ -181,6 +182,11 @@ if __name__ == "__main__":
     ap.add_argument("--ratios", default="4,6,8,10,12")
     ap.add_argument("--no-line-filter", action="store_true")
     ap.add_argument("--tag", default="")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
     holdout(tuple(a.arms.split(",")), tuple(float(x) for x in a.ratios.split(",")), a.model,
             use_line_filter=not a.no_line_filter, tag=a.tag)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

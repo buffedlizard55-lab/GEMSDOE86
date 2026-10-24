@@ -516,21 +516,28 @@ def stage_card(holdout_tag_main: str, holdout_tag_sens: str | None):
     return card
 
 
-if __name__ == '__main__':
+def main(argv=None) -> int:
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()  # All further stages stop under the certified literal conflict.
-    stage = sys.argv[1]
+    args = list(sys.argv[1:] if argv is None else argv)
+    stage = args[0]
     if stage == 'surface':
         build_surface()
     elif stage == 'canary':
         stage_canary()
     elif stage == 'holdout':
-        run_holdout(int(sys.argv[2]), sys.argv[3])
+        run_holdout(int(args[1]), args[2])
     elif stage == 'final':
-        stage_final(int(sys.argv[2]), sys.argv[3])
+        stage_final(int(args[1]), args[2])
     elif stage == 'sgmc':
         stage_sgmc()
     elif stage == 'card':
-        stage_card(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else None)
+        stage_card(args[1], args[2] if len(args) > 2 else None)
     else:
         raise SystemExit(f'unknown stage {stage}')
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

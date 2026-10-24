@@ -1,7 +1,7 @@
 # Standing project prompt (condensed historical archive)
 
 **Read the latest README decision and its complete 2026-10-24 request archive first.**
-The 2026-10-24 request expands the named fleet to 92 projects (`GEMSDOE` through `GEMSDOE92`, adding 8 newly reported owner scores across `GEMSDOE76`..`GEMSDOE87`) while retaining the exact same standing protocol. Current remeasurement:
+The 2026-10-24 request expands the named fleet to 92 projects (`GEMSDOE` through `GEMSDOE92`, adding 8 newly reported owner scores across `GEMSDOE76`..`GEMSDOE87` plus unscored artifact stems for `GEMSDOE89` and `GEMSDOE90`, with 4 bare `:` sites `GEMSDOE86`, `GEMSDOE88`, `GEMSDOE91`, `GEMSDOE92`) while retaining the exact same standing protocol. Current remeasurement:
 `docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
 The current request is archived verbatim in `research/REQUEST_20261024.md`; the 2026-10-23 request remains in `research/REQUEST_20261023.md`, and the earlier request remains in
 `research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
@@ -63,7 +63,7 @@ https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
 
 See below for more links and information related to the competition:
 - https://github.com/drivendataorg/gems-prize-reference-solution
-- https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada *(note: returns USGS HTTP 404; working official USGS GeoDAWN release is https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and / DOI https://doi.org/10.5066/P93LGLVQ)*
 - https://gbcge.org/current-projects/ingenious/
 - https://epsg.io/32611
 - https://en.wikipedia.org/wiki/Tversky_index

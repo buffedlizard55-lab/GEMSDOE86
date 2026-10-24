@@ -11,9 +11,9 @@
 
 **No new unique submission TIFF was generated; that requirement remains unmet.** The literal registry rule still blocks every nonempty allowed prediction. No weekly slot was used, no shared tool fork or dense-prior exemption was introduced, and no leaderboard improvement is claimed.
 
-- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
-- Repaired **37 CLI builder/feature/pipeline commands (adding `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and normalizing all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, and **revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`)** (`SPT`: `100%` literal witness overlap, `0.4947` coin-flip canary AUC, test-fold collar leak, quarantined outside `docs/` with SHA/ZIP verification; `H86-TIPRELAY`: `85.08% > 70%` 3-px overlap vs sparse `GEMSDOE32` `h33-h33-2-b2` + `100%` witness overlap + zero holdout run + `audit_release.py` backdoor removed). `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
-- Synchronized the **92-project fleet feed (`GEMSDOE` through `GEMSDOE92`)** with all **113 `OWNER-REPORTED` score entries** (`92 / 92` GitHub trees snapshotted in [docs/evidence/fleet-feed.json](docs/evidence/fleet-feed.json); `0` organizer receipts).
+- [Fresh automated run card](docs/evidence/latest-review-run-card.json) · [pixel-verified 19-band physics receipt](docs/evidence/band-physics-verification-20261024.json) · [PR #60 SPT revocation forensic card](docs/evidence/spt-run-card.json) · [three-pass review, H33 answer, ranked hypotheses and next steps](research/SESSION_20261024_REVIEW.md) · [geothermal vent discovery synthesis](research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md) · [scoped source recheck](docs/evidence/source-recheck-20261024.json).
+- Repaired **41 CLI builder/feature/pipeline commands (normalizing `experiment`, `run_experiment`, `run_h86`, `run_lane`, `prune_collar`, `build_spt`, `build_xfleet`, `gen_tip_final`, and all lane/feature runners) and eight imported orchestration entrypoints** that could construct candidate surfaces/dots without the mandatory preflight, **verified the pixel-level physics of all 19 `training_features.tif` bands** (`IR-86-BAND6-TC-MISLABEL-20261024`: Band 6 `tc` is GeoDAWN Radiometric Total Count `TC` [`r = +0.997140`], not magnetic tilt [`r = +0.012796`]; `IR-86-BAND11-18-GRAV-VECTOR-20261024`: `(+Band 18, -Band 11)` is the signed 2-D horizontal gravity gradient vector), and **revoked concurrent PR #60 (`IR-86-SPT-02`) and PR #63 (`IR-86-TIPRELAY-01`)** (`SPT`: `100%` literal witness overlap, `0.4947` coin-flip canary AUC, test-fold collar leak, quarantined outside `docs/` with SHA/ZIP verification; `H86-TIPRELAY`: `85.08% > 70%` 3-px overlap vs sparse `GEMSDOE32` `h33-h33-2-b2` + `100%` witness overlap + zero holdout run + `audit_release.py` backdoor removed). `--no-write` / `--measure` is not a protocol exemption. Dedicated read-only artifact audits remain available.
+- Synchronized the **92-project fleet feed (`GEMSDOE` through `GEMSDOE92`)** with all **113 `OWNER-REPORTED` score entries** plus the **2 newly supplied unscored artifact stems (`GEMSDOE89`, `GEMSDOE90`) and 4 bare `:` sites** (`92 / 92` GitHub trees snapshotted in [docs/evidence/fleet-feed.json](docs/evidence/fleet-feed.json); `0` organizer receipts).
 - All **10** historical TIFFs were freshly reread and pass local format/integrity checks; all fail literal overlap. They remain **audit-only downloads**, not a substitute new submission. A current UTC receipt is hash-bound to this measurement and release report; rebuilding the site alone cannot refresh it.
 - **Read the standing prompt and complete 2026-10-24 request archive below every session.** The 2026-10-24 request retains these objectives; its score/access assertions remain unverified user claims. Earlier current-state tables below are dated historical context, not overriding upload authorization.
 
@@ -25,7 +25,7 @@
 | Field | Value |
 |---|---|
 | Parent | **R0** = `h33-h33-2-b2` (GEMSDOE32 `h33-h33-2-b2-20261004-e5eb6e7e`), sha256 `c55bafc4…b6fa9`, 37,654 unit-mass dots, zero catalogue mass. Rebuilt **byte-exactly** again this session from pinned `GEMSDOE28` (`ab023001…`, `d_cat > 2.0` → 0 differing pixels). Live **0.2778 is CLAIM**, not RECEIPT. |
-| Best receipt / TOP_PUBLIC / slots | **0 `RECEIPT` rows** in `ledger/submissions.csv` (176 rows); `TOP_PUBLIC` **UNSUPPLIED**; rolling-week quota left **UNSUPPLIED**; 2026-12-03 deadline **UNVERIFIED**. Zero slots used. One entity, ≤ 3 scored/rolling week, 1 blind final pick. |
+| Best receipt / TOP_PUBLIC / slots | **0 `RECEIPT` rows** in `ledger/submissions.csv` (180 rows); `TOP_PUBLIC` **UNSUPPLIED**; rolling-week quota left **UNSUPPLIED**; 2026-12-03 deadline **UNVERIFIED**. Zero slots used. One entity, ≤ 3 scored/rolling week, 1 blind final pick. |
 | Built | **53 `BUILT`**, plus `BUILT-DUPLICATE`, `CONTROL`, `WITHDRAWN` rows across all 7 axes; zero auto-approved. Release TIFFs stay gitignored; JSON receipts, sha256 digests, mechanism cards and the ledger are tracked (`python scripts/build_ledger.py --check`). |
 | **CONCENTRATION dose ladder — concurrent session (`arena/60ecf1c8`, PR #50)** | Three count-fixed `cvband-down` arms: **`conc3` `+0.0013`**, **`conc5dose` `+0.0018`**, **`conc6` `+0.0022 MODEL`** (`4/4` quadrants, PROXY `+0.0013`), monotone in dose while 1 km occupied CV falls `0.5377 → 0.4998 → 0.4840` (so the `0.51–0.59` band is a correlate, `IR-86-CONC-13`); the matched ordering control takes `+0.0015`, so the credit ranking buys only ≈ `+0.0007`. Axis is capacity-capped at ≈ 6.4 % of R0 (`IR-86-CONC-12`). |
 | **RELIEF source factorial — this session (`arena/ada3049e`, PR #51, agent-chosen axis)** | Three count-fixed arms varying the **source** at fixed destination and the **destination** at fixed source, pre-registered in `evidence/relief-source-mechanism.md` before the build: **`int2front-15pct` `c543e779` (`−0.0057 MODEL`)**, **`int2front-10pct` `4471a74b` (`−0.0038`)**, **`int2pied-15pct` `295eaf92` (`−0.0118`)**. All pass every MUST gate in both encodings after disk re-read (37,654 dots, EPSG:32611, 3730×3292, float32, [0,1], 0 NaN inside, 0 catalogue mass, new cells ≥ 3.1623 px off catalogue). **The pre-registered sign was falsified**; none is slot-recommended. Run card `evidence/relief_source_20261023.json`. |
@@ -68,7 +68,7 @@ The goal is a genuinely new, validated competition GeoTIFF—not a renamed prior
 
 ### Latest review — 2026-10-24
 
-The **92-project** repository-metadata feed (`GEMSDOE` through `GEMSDOE92`, including 8 newly supplied `OWNER-REPORTED` scores across `GEMSDOE76`..`GEMSDOE87`) was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, verified no new raster bytes, generated no new TIFF and used no submission slot. PR #60's unregistered `submission/` export (`SPT`, `sha256: 26cf2d39...`) was forensically audited and revoked (`IR-86-SPT-02`). The mandatory preflight again stops before candidate construction because one pinned historical registry witness covers the entire allowed non-catalogue support under the unchanged literal rule. Full three-pass inspection, PhD analysis of `GEMSDOE32` (`0.2778`), ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
+The **92-project** repository-metadata feed (`GEMSDOE` through `GEMSDOE92`, including 8 newly supplied `OWNER-REPORTED` scores across `GEMSDOE76`..`GEMSDOE87` plus unscored artifact stems for `GEMSDOE89` and `GEMSDOE90` and 4 bare `:` sites) was refreshed from current Git trees; this refresh obtained **zero organizer receipts**, verified no new raster bytes, generated no new TIFF and used no submission slot. PR #60's unregistered `submission/` export (`SPT`, `sha256: 26cf2d39...`) was forensically audited and revoked (`IR-86-SPT-02`). The mandatory preflight again stops before candidate construction because one pinned historical registry witness covers the entire allowed non-catalogue support under the unchanged literal rule. Full three-pass inspection, PhD analysis of `GEMSDOE32` (`0.2778`), pixel-level 19-band physics audit, ranked hypotheses, source links, verification results, limitations and the negative run card are in [the 2026-10-24 review](research/SESSION_20261024_REVIEW.md). The refreshed [fleet feed](docs/fleet.html) is current Git metadata, not a live leaderboard or submission service.
 
 ## Outcome of the current review
 
@@ -485,7 +485,7 @@ h51-km-faultzone-20261006-zeros: 0.0106
 
 ....
 
-https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html
+https://buffedlizard55-lab.github.io/GEMSDOE49/
 
 gate_ortho_w0.25-40k-20261006T213721Z-nan: 0.2376
 
@@ -551,7 +551,7 @@ h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros: 0.0984
 
 ....
 
-https://buffedlizard55-lab.github.io/GEMSDOE41/
+https://buffedlizard55-lab.github.io/GEMSDOE41/docs/index.html
 
 h42-submission-primary: 0.0245
 
@@ -819,13 +819,13 @@ https://buffedlizard55-lab.github.io/GEMSDOE88/
 
 https://buffedlizard55-lab.github.io/GEMSDOE89/
 
-:
+gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros:
 
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE90/
 
-:
+gems90-cnc-35000dots-20261024T084324Z:
 
 ....
 
@@ -840,6 +840,24 @@ https://buffedlizard55-lab.github.io/GEMSDOE92/
 :
 
 ....
+
+I think it makes sense that in order for a submission to be validated that it needs to pass certain high scoring validation gates before confirming whether a file is unique and can be submitted for scoring.
+
+The following is the leaderboard for the competition:
+
+https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+
+See below for more links and information related to the competition:
+
+https://github.com/drivendataorg/gems-prize-reference-solution
+
+https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada
+
+https://gbcge.org/current-projects/ingenious/
+
+https://epsg.io/32611
+
+https://en.wikipedia.org/wiki/Tversky_index
 
 We need to quickly look at the results and results from the GEMSDOE websites above.
 

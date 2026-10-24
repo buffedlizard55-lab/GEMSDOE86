@@ -170,6 +170,7 @@ def _dilate(mask: np.ndarray, px: int) -> np.ndarray:
 
 
 def main() -> None:
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()  # STOP before training/placement; missing evidence is not a pass.
     ap = argparse.ArgumentParser()

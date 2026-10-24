@@ -1,9 +1,9 @@
 {
   "schema": "gems86.session-negative.v1",
   "date_utc": "2026-10-24",
-  "hypothesis": "H86C-MMT: cross-fault magnetic marker translation (provisional; NOT RUN; no method lane was assigned)",
-  "mechanism": "For label-free candidate line orientations, phase-correlate magnetic texture on opposite flanks. Require an along-line translation of transverse markers consistent in adjacent windows, with a weaker zero-shift match; retain both signed slip directions.",
-  "named_non_fault_process": "Unfaulted intrusive contacts with unrelated texture; acquisition-block seams and remanent magnetization changes.",
+  "hypothesis": "H86E-SPBT: Signed paired-throw basement–Laplace-gravity concordance under low-relief alluvial cover (provisional, NOT RUN; no method lane was assigned)",
+  "mechanism": "Oriented cross-strike antisymmetric step operator at L in {300, 600, 1200} m pairing positive sediment-thickness step (+Delta depth_to_base_surf, hanging-wall basin thickening) with antiparallel residual gravity step (-Delta iso_grav_anom) AND across-strike dipole sign flip of the footprint-masked, Gaussian-regularized (sigma = 400-600 m) Laplace second vertical gravity derivative g_zz = -(d(Band 18)/dx_east - d(Band 11)/dy_north) along the identical normal vector n(theta), gated on low surface topographic slope (det_elev_slope < 25th percentile) and thin magnetic horizontal-gradient crest alignment (tmi_hg).",
+  "named_non_fault_process": "Unfaulted paleovalley channels incised into bedrock, buried caldera ring margins, or lateral alluvial-fan facies density wedges (USGS OFR 99-383).",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "status": "NOT_RUN_PROTOCOL_STOP",

@@ -32,6 +32,27 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     assert sum(1 for r in ledger if r["score"]) == 113
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
+    by_site = {}
+    for row in ledger:
+        by_site.setdefault(row["site"], []).append(row)
+    assert by_site["GEMSDOE89"] == [{
+        "site": "GEMSDOE89",
+        "submission": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+        "score": "",
+        "evidence_class": "ARTIFACT NAMED IN PROMPT; NO SCORE SUPPLIED",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE89/",
+    }]
+    assert by_site["GEMSDOE90"] == [{
+        "site": "GEMSDOE90",
+        "submission": "gems90-cnc-35000dots-20261024T084324Z",
+        "score": "",
+        "evidence_class": "ARTIFACT NAMED IN PROMPT; NO SCORE SUPPLIED",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE90/",
+    }]
+    for bare_site in ("GEMSDOE86", "GEMSDOE88", "GEMSDOE91", "GEMSDOE92"):
+        assert len(by_site[bare_site]) == 1
+        assert by_site[bare_site][0]["submission"] == ""
+        assert by_site[bare_site][0]["score"] == ""
 
 
 def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_training():
@@ -70,6 +91,8 @@ def test_current_session_card_is_complete_negative_and_not_presented_as_a_downlo
     assert len(card["note"]) <= 140
     assert not card["new_candidate_generated"] and not card["submission_ready"]
     assert card["experiments_run"] == card["submission_slots_used"] == 0
+    top_id = strict_json(ROOT / "registry/h86c_hypotheses.json")["hypotheses"][0]["id"]
+    assert card["hypothesis"].startswith(top_id + ":")
     for relative in ("research/SESSION_20261024_REVIEW.md", "docs/evidence/release-readiness.json",
                      "docs/evidence/all-artifacts-registry.json", "docs/evidence/fleet-feed.json"):
         assert (ROOT / relative).is_file()
