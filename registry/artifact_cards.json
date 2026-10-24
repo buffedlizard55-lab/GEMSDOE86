@@ -85,6 +85,27 @@
       "context": "docs/evidence/h86-faulthalo-run-card.json",
       "holdout_kind": "unvalidated_variant",
       "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
+    },
+    {
+      "lane": "H86-TSR tip-splay + relay-gap + oriented lineament \u2014 COMPETITION-VALID (holdout-negative)",
+      "card": "docs/evidence/h86-tsr-run-card.json",
+      "context": "docs/evidence/h86-tsr-run-card.json",
+      "holdout_kind": "tsr_tip_relay",
+      "stem": "gems86-tsr-tiprelay-dotted37654-20261024T191925Z-9a8f8498-zeros"
+    },
+    {
+      "lane": "TSR ablation \u2014 gap-balanced 40px halo",
+      "card": "docs/evidence/h86-tsr-gap-run-card.json",
+      "context": "docs/evidence/h86-tsr-gap-run-card.json",
+      "holdout_kind": "tsr_gap",
+      "stem": "gems86-tsr-gap37654-20261024T192234Z-5e10b482-zeros"
+    },
+    {
+      "lane": "TSR ablation \u2014 tight 5px halo + 2px packing (dot-field duplicate vs cont-poisson)",
+      "card": "docs/evidence/h86-tsr-tight-run-card.json",
+      "context": "docs/evidence/h86-tsr-tight-run-card.json",
+      "holdout_kind": "tsr_tight",
+      "stem": "gems86-tsr-tight37654-20261024T192613Z-188bf8e0-zeros"
     }
   ]
 }

@@ -1,0 +1,84 @@
+{
+  "schema": "gems86.current-review.v1",
+  "date_utc": "2026-10-24",
+  "hypothesis": "H86-TSR: Catalogue tip-splay + relay-gap + oriented NNE/NW lineament (37,654 dots, 3px Poisson-disk inhibit, 5px halo)",
+  "mechanism": "Tip-enhanced halo exp(-(d_cat-5)^2/18) x exp(-d_tip/25) where d_cat=distance to nearest mapped fault (2-15px) and d_tip=distance to skeleton endpoints (6,949 tips), plus relay density (12px Gaussian) and oriented Gabor lineaments (015deg/320deg). Emission via shared gems57.emit_decimated 3px + emit_prefix 37654, zero dots on catalogue, zeros outside footprint.",
+  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley walls or caldera moat walls with tuffaceous basin fill; piedmont erosional scarps and GeoDAWN 090deg/180deg flight-line residuals.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "MEASURED_NEGATIVE",
+    "evaluator_version": "gems57-pooled-hide-v2 (buffered whole components, buffer 3px, boundary 12px, hide_frac 0.20, seeds 20,21)",
+    "withheld_positives": 45260,
+    "value": 0.0,
+    "ci95": [
+      0,
+      0
+    ],
+    "control_H33_holdout_dti": 0.0047,
+    "paired_delta_vs_H33": -0.0047
+  },
+  "leakage_canary": {
+    "feature_dist_to_visible_AUC": 0.7937,
+    "feature_dist_to_tip_AUC": 0.8142,
+    "threshold": 0.9,
+    "verdict": "PASS (AUC <0.90)"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "DOT_FIELD_UNIQUE_LITERAL_CONTINUOUS_SURFACE_FIRING",
+    "new_final_dots": 37654,
+    "registry_complete": false,
+    "scored_fleet_checked": 25,
+    "max_forward_overlap_3px_vs_scored_fleet": 0.4376,
+    "overlap_vs_H33_h33_2_b2": 0.1575,
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9,
+    "dot_field_unique": true,
+    "support_fraction": 0.007286874781441169,
+    "representation": "dot_field",
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "literal_forward_overlap": 1.0
+  },
+  "raster_sha256": "f7d6684e5b715fe1d0d2b279d9c4267ffab14d0a2d7c57cd9c8c70b837eaf9d6",
+  "validator_output": {
+    "status": "PASS",
+    "file": "docs/downloads/gems86-tsr-tight37654-20261024T192613Z-188bf8e0-zeros.tif",
+    "bytes": 126143,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_checks_passed": true,
+    "n_nan": 0,
+    "min": 0,
+    "max": 1,
+    "emitted_positive_pixels": 37654
+  },
+  "submission_name": "gems86-tsr-tight37654-20261024T192613Z-188bf8e0-zeros",
+  "note": "TSR tight 5px halo tip+line 2px pack 37654 DTI 0.0000 vs H33 0.0047 188bf8e0",
+  "note_chars": 76,
+  "verdict": "negative",
+  "competition_valid": true,
+  "competition_note": "Passes DrivenData validator: values in [0,1], EPSG:32611, 3730x3292, 100m. Will not trigger 'Predicted values must be in range [0,1]' error.",
+  "experiments_run": 3,
+  "submission_slots_used": 0,
+  "registry_measured_utc": "2026-10-24T19:19:25+00:00",
+  "scope": "One TSR candidate (37,654 dots) vs 25 scored-fleet dot fields. Holdout = build_holdout hide_frac 0.20 seeds 20,21 (45,260 withheld). Leakage PASS. Literal gate fires on continuous-surface witness; dot-field reading PASS.",
+  "experiments": [
+    {
+      "id": "exp1-TSR-halo-2-18px",
+      "holdout_dti": 0.0,
+      "overlap_vs_H33": 0.1575,
+      "verdict": "negative"
+    },
+    {
+      "id": "exp2-TSR-gap-40px",
+      "holdout_dti": 0.0,
+      "overlap_vs_H33": 0.149,
+      "verdict": "negative"
+    },
+    {
+      "id": "exp3-OLIN-oriented-Gabor",
+      "holdout_dti": 0.0,
+      "verdict": "negative"
+    }
+  ]
+}

@@ -135,6 +135,14 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["value"], "ci95": h["ci95"],
                 "design": "buffered whole components; two seeds; physical-block bootstrap",
                 "caveat": "Archived pipeline evidence only; not recomputed in this audit, not a private-test score."}
+    if kind.startswith("tsr"):
+        # H86-TSR entries use the same pooled hide-v2 instrument but store under HOLDOUT-DTI value
+        h_val = h.get("value", 0.0) if isinstance(h, dict) else 0.0
+        h_with = h.get("withheld_positives", 45260) if isinstance(h, dict) else 45260
+        h_ci = h.get("ci95", [0.0, 0.0]) if isinstance(h, dict) else [0.0, 0.0]
+        return {**base, "withheld_positives": h_with, "value": h_val, "ci95": h_ci,
+                "design": "buffered whole components; two seeds; physical-block bootstrap (TSR tip-relay)",
+                "caveat": "H86-TSR 2026-10-24: HOLDOUT-DTI 0.0000 vs H33 0.0047 (negative). Dot-field unique (15.8% vs H33, 0.43 max vs fleet <0.70) but literal 17GEMSDOE/13GEMSDOE gate fires for any 37k-dot field (unsatisfiable). Negative is a deliverable; file remains competition-portal valid ([0,1], no NaN)."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

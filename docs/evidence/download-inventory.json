@@ -1,5 +1,5 @@
 {
-  "scope": "Existing artifacts merged from concurrent sessions; all negative, no competition clearance.",
+  "scope": "15 artifacts (12 historical + 3 TSR ablations 2026-10-24, all negative, no promotion). One file is competition-portal valid ([0,1], no NaN) and dot-field unique, but holdout-negative.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -70,6 +70,24 @@
     {
       "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
       "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-tsr-tiprelay-dotted37654-20261024T191925Z-9a8f8498-zeros.tif",
+      "sha256": "7aba7f41c762113c3e83be947d189a8cd8876d19fe399949a6d1a273c6466221",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-tsr-gap37654-20261024T192234Z-5e10b482-zeros.tif",
+      "sha256": "65f50080747b3bd077df6522264cb4da0bfe6e69b36465fb95d1fe0f4497c07c",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-tsr-tight37654-20261024T192613Z-188bf8e0-zeros.tif",
+      "sha256": "f7d6684e5b715fe1d0d2b279d9c4267ffab14d0a2d7c57cd9c8c70b837eaf9d6",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     }
