@@ -4,6 +4,7 @@ This is not a model experiment, candidate validation, or registry clearance.
 The shared saturation_certificate is reused unchanged. A second direct-support
 check makes the observed full-footprint coverage independently auditable.
 """
+from datetime import datetime, timezone
 from pathlib import Path
 import hashlib
 import json
@@ -71,6 +72,8 @@ def measure(data_dir=None):
                                         expected_grid=(g.shape, g.crs, g.transform))
     if direct_uncovered == 0 and not certificate['universal_overlap_blocker']:
         raise AssertionError('Direct-support oracle contradicts shared certificate')
+    # Timestamp a completed measurement, not the historical source snapshot.
+    measured_utc = datetime.now(timezone.utc)
     certificate.update(
         witness_file='data/' + pin['dest'],
         witness_source=f"https://api.github.com/repos/{pin['repo']}/git/blobs/{pin['blob']}",
@@ -86,7 +89,8 @@ def measure(data_dir=None):
         witness_range_inside_footprint=range_inside,
         witness_grid_matches=True,
         witness_validity_mask_covers_footprint=True,
-        measured_date_utc='2026-10-22',
+        measured_date_utc=measured_utc.date().isoformat(),
+        measured_utc=measured_utc.isoformat(),
         candidate_generated=False,
         thresholds_unchanged=True,
         dense_surface_exemption=False,
