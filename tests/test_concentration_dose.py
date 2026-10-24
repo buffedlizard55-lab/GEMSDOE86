@@ -146,12 +146,10 @@ def test_committed_evidence_and_ledger_invariants():
 
 def _local_dose_zeros() -> list[Path]:
     rel = ROOT / "releases"
-    # Only this session's three dose arms; later CONCENTRATION sessions
-    # (pediment etc.) have their own on-disk receipts/tests.
-    return sorted(
-        p for p in rel.glob("*-conc*-20261023-*-zeros.tif")
-        if any(s in p.name for s in ("conc3-", "conc5dose", "conc6-"))
-    ) if rel.is_dir() else []
+    ids = ("conc3-20261023-ffb47d4b", "conc5dose-20261023-a2f8aaad",
+            "conc6-20261023-1ed78e0f", "conc6rand-20261023-a6838dc2")
+    return [rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif" for i in ids
+            if (rel / f"h33-h33-2-b2-20261004-e5eb6e7e-{i}-zeros.tif").is_file()]
 
 
 @pytest.mark.skipif(not _local_dose_zeros(), reason="release TIFFs are gitignored in CI")

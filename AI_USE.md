@@ -437,6 +437,36 @@ throwaway probe slot on `SPACING-alongstrike`.
 * **Human must supply:** `TOP_PUBLIC`, remaining rolling-week slots, live receipts for R0 and any
   uploaded slot, verified final deadline, and the single blind final submission decision.
 
+## 2026-10-23 — CONCENTRATION down-dose ladder session (branch `arena/4822aa3b-gemsdoe86`, self-assigned axis)
+
+* **Post-merge (PR #55):** resolved the concurrent-session collision with PR #50 (`IR-86-CONC-17`): kept main's `run_concentration_dose.py`/`variants_concentration_dose.json` under their names, renamed this session's to `*_rungs.*`, marked `down6` `BUILT-DUPLICATE` (byte-identical to `conc6`, `1ed78e0f…`), and renumbered the CV-band irregularity to `IR-86-CONC-17`.
+
+* **AI wrote:** `scripts/run_concentration_dose.py`, `tests/test_concentration_dose.py`,
+  `evidence/concentration_dose_axis_20261023.json`, `ledger/variants_concentration_dose.json`,
+  regenerated `ledger/submissions.csv` via `scripts/build_ledger.py` (generator list extended),
+  appended the dose section to `ledger/variant-cards.md`, and updated `SLOT_PLAN.md` (Slot 2
+  upgrade + pool-extension proposal), `README.md` (`CURRENT STATE` block only), `docs/SUBMIT.md`
+  (slot order + new file cards), `IRREGULARITIES.md` (`IR-86-CONC-12`), and local gitignored
+  release TIFFs + tracked JSON receipts under `releases/`.
+* **AI audited & decided:** self-assigned `AXIS = CONCENTRATION` (the only arm positive on both
+  instruments had a one-point dose curve); verified manifest pins (9 restored inputs, sha256),
+  rebuilt R0 byte-exactly (`c55bafc4…`), rebuilt the released `down4` byte-exactly (`8aab97b6…`)
+  as a regression anchor before writing anything new; built `down2`/`down6`/`downmax`
+  (source-prefix-nested, count-fixed, 100% ancestor-ridge, >3.0 px clearance); measured the
+  monotone-then-ceiling dose curve; retired the 0.51–0.59 CV band as a target and upgraded Slot 2
+  to `concb5kmdown6`. Zero submissions; zero DrivenData/Dropbox contact; zero credentials.
+* **Exact reproduction:**
+  ```bash
+  python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+  .venv/bin/python scripts/restore_axis_inputs.py --ids scored_h19_5 scored_h19_4 scored_h16_1 scored_d28_unscored ext_derived_sgmc_faults_100m_u8 ext_geodawn_extensions_u8 ext_geodawn_extensions_json ext_topo_10m_derived_100m_u8 ext_dem10_chi_100m_i16
+  .venv/bin/python scripts/run_concentration_dose.py
+  .venv/bin/python scripts/build_ledger.py --json && .venv/bin/python scripts/build_ledger.py --check
+  .venv/bin/python -m pytest -q
+  ```
+* **Human decided / must supply:** nothing supplied in-session (`TOP_PUBLIC`, rolling-week quota
+  remaining, R0's live `0.2778` receipt, portal encoding preference, deadline confirmation remain
+  human-supplied). The human vetoes the Slot 2 upgrade and chooses upload order.
+
 ## 2026-10-23 — CONCENTRATION 5 km ridge & CV-band session (branch `arena/69392a35-gemsdoe86`, self-assigned axis)
 
 * **AI wrote:** `src/gems86/concentration_5km.py`, `scripts/run_concentration_5km.py`,
@@ -586,17 +616,17 @@ pre-registered *unbuilt* Phase-1 experiment left at its branch point (the pedime
 of `concb5kmdown4`, then SLOT_PLAN proposal 2) and built exactly the pre-registered design, with one
 measured deviation it decided itself: the pediment-restricted destination pool caps at **1,045** moved
 dots, so the attribution pair is dose-matched at **941 dots (5.00 % changed)** instead of the parent
-arm's 1,506. After merging `origin/main` (rev E), the entry was renumbered `IR-86-CONC-17` (12–16
-taken) and the verdict re-read against the new `IR-86-CONC-15` instrument confound: the pair's
-displacement is matched (1,613 vs 1,631 px), so the outward-movement bias is common-mode and the
-arm-vs-arm comparison stands.
+arm's 1,506. After two concurrent-main merges (rev E + PR #55), the entry was renumbered
+`IR-86-CONC-18` (12–17 taken) and the verdict re-read against `IR-86-CONC-15`'s instrument confound:
+the pair's displacement is matched (1,613 vs 1,631 px), so the outward-movement bias is common-mode
+and the arm-vs-arm comparison stands.
 
 **What the AI wrote:** `src/gems86/concentration_pediment.py` (+ `dest_filter`/`dest_prefer` kwargs
 on `relocate_cvband_down`, byte-identical defaults, regression-tested), `scripts/run_concentration_pediment.py`,
 `tests/test_concentration_pediment.py`, three count-fixed variants + twins + JSON receipts
-(gitignored TIFFs), `ledger/variants_concentration_pediment.json` → `ledger/submissions.csv` (170
-rows via the single generator), `evidence/concentration_pediment_axis_20261023.json`,
-`evidence/concentration-pediment-mechanism.md`, `IR-86-CONC-17`, and SLOT_PLAN rev F / README /
+(gitignored TIFFs), `ledger/variants_concentration_pediment.json` → `ledger/submissions.csv` via the
+single generator, `evidence/concentration_pediment_axis_20261023.json`,
+`evidence/concentration-pediment-mechanism.md`, `IR-86-CONC-18`, and SLOT_PLAN rev F / README /
 SUBMIT reconciliation edits.
 
 **Measured verdict the human can veto:** SGMC falsifier fired (non-pediment +0.0013 > pediment

@@ -800,6 +800,34 @@ different axis (a mass-controlled test at ≤ 5.35 %, which is a MASS edit, and 
 grounds was never built, and the factorial is therefore 4-cell (interior/piedmont × front/piedmont)
 rather than the 6-cell design with basin.
 
+<<<<<<< HEAD
+## IR-86-CONC-17 — concurrent-session collision: two independent sessions built the same down-dose ladder; one build is byte-identical
+
+**Observed.** This session (`arena/4822aa3b-gemsdoe86`, PR #55) and the concurrent PR #50 session
+(`arena/60ecf1c8`) both self-assigned CONCENTRATION, both extended the `b5km-cvband-down4` dose
+curve, and both named their artifacts `run_concentration_dose.py` / `variants_concentration_dose.json`.
+PR #50 merged first (with `cvband-down3` `ffb47d4b`, `cvband-down5` `a2f8aaad`, `cvband-down6`
+`1ed78e0f`, and a `CONTROL-cvband-down6-randcredit` `a6838dc2`). On merging origin/main for PR #55,
+this session's `b5km-cvband-down6` proved **byte-identical** to PR #50's `conc6` (same zeros sha256
+`1ed78e0f…`) — the same deterministic pipeline and dose from two independent runs, which is itself
+a reproducibility datum. This session's other two rungs are new: `b5km-cvband-down2` (`f0ee647f`,
+753 moves — a point below PR #50's lowest rung) and `b5km-cvband-downmax` (`d4a42664`, 2,381 moves —
+the exact binary-searched sparse-ridge destination-pool ceiling), which confirm `IR-86-CONC-12`'s
+"≈ 6.4 % of R0" capacity cap with the precise number (2,381 = 6.32 %) and show the marginal 122
+moves past `conc6` cost more than they bought (`+0.0020` vs `+0.0022` MODEL, both 4/4 quadrants).
+This item was first drafted as "IR-86-CONC-12" before main's numbering was known; 12/13/14 are
+taken (`IR-86-CONC-14` is PR #50's own canary item), so it is renumbered here.
+
+**Decision.** This session's `down6` is recorded `BUILT-DUPLICATE` (house pattern:
+`gems86-h33-2b2-prune3` `collar3px`), pointing at PR #50's `conc6` BUILT row; files renamed to
+`scripts/run_concentration_dose_rungs.py`, `tests/test_concentration_dose_rungs.py`,
+`ledger/variants_concentration_dose_rungs.json`, `evidence/concentration_dose_axis_20261023.json`;
+`down2`/`downmax` recorded `BUILT` as curve brackets, not slot candidates (Slot 2 stays `conc6`
+per rev. D). No slot was spent; the exact-hash duplicate is kept in the ledger rather than deleted,
+because two independent byte-identical builds is evidence the down-mechanism dose ladder is
+reproducible, and the brief's dedupe rule is "exact hash and repeated (parent, axis, value)".
+
+=======
 ## IR-86-CONC-15 — the SGMC-extra instrument rewards *outward movement* for CONCENTRATION arms, not lineaments
 
 **Observed.** The SGMC surrogate's truth is `SGMC − catalogue`, so a dot in the mapped-fault collar can
@@ -830,17 +858,18 @@ within-surface reallocation is treated as closed, and the open headroom is surfa
 (`H19-4 | H16-1` ground, or a new evidence surface) — carried in `SLOT_PLAN.md` as
 `EVIDENCE-OFFSURFACE` and tested at probe strength by `b5km-surfext-down10` (predicted live Δ ≈
 0.000…+0.003, below the evidence floor).
+>>>>>>> origin/main
 
-## IR-86-CONC-17 — the pediment refinement of `concb5kmdown4` FAILS its SGMC falsifier; instruments split; no slot change
+## IR-86-CONC-18 — the pediment refinement of the dispersal rule FAILS its SGMC falsifier; instruments split; no slot change
 
 **Observed** (session `arena/f29e1689`, `evidence/concentration_pediment_axis_20261023.json`; R0 rebuilt
 byte-exactly first). The pre-rev-E SLOT_PLAN's pediment proposal (former proposal 2, `IR-86-TRACKB-08`
-line) was built as three destination-regime splits of the slot-2 arm's shave: `concb5kmpeddown2p5`
+line) was built as three destination-regime splits of the `concb5kmdown4` shave: `concb5kmpeddown2p5`
 (941 dots, 5.00 % chg, 100 % in-window), `concb5kmnonpeddown2p5` (941 dots, 100 % out-window,
 attribution control), `concb5kmpeddown5` (1,882 dots, 10.00 % chg, 55.6 % in-window). The truth-free
 pediment window (3DEP `relief_local` 10–40 m, > 1 km from the RELIEF regime front; 18.8 % of the
-footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules — a *second*, window-specific
-capacity beside `IR-86-CONC-12`/`16`'s within-surface caps — so the pair is dose-matched at 2.5 % of R0.
+footprint) **caps at 1,045 moved dots** under the > 3 px / √8 px rules — a *window-specific* capacity
+beside `IR-86-CONC-12`/`16`'s within-surface caps — so the pair is dose-matched at 2.5 % of R0.
 
 1. **SGMC MODEL falsifier fired:** at the identical dose the non-pediment complement beats the
    pediment arm (+0.0013 vs +0.0007; REF `concb5kmdown4` +0.0015 replicates the recorded value
@@ -848,16 +877,17 @@ capacity beside `IR-86-CONC-12`/`16`'s within-surface caps — so the pair is do
    coverage**, not the thin-alluvium concealed-fault prior.
 2. **Displacement is matched** (mean 1,612.7 vs 1,630.8 px; median 1,597.3 vs 1,582.3), so
    `IR-86-CONC-15`'s outward-movement bias is common-mode across the pair and cannot explain the
-   ped/nonped gap — but it does inflate both vs R0, which is why the arm-vs-arm comparison (not
-   arm-vs-zero) is the quoted read.
+   ped/nonped gap — but it inflates both vs R0, which is why the quoted read is arm-vs-arm, not
+   arm-vs-zero.
 3. **The symmetric fold-fair d28 `PROXY` orders the arms oppositely** (+0.0012 in-window vs +0.0004
    out-window, CIs straddling/near zero): the attribution is *split*, not resolved. No arm clears the
    0.01 live-evidence floor (max |Δ| = 0.0017).
 4. **Dose** is near-linear on SGMC (+0.0007 → +0.0017 at 2×) but the 2× dose pushes the 1 km CV to
    0.5013, below the (already demoted, `IR-86-CONC-13`) CV-band's lower edge.
 
-**Decision.** No slot change: slots stay exactly as rev E ranks them (`le3p000`, `conc6`, `frontp15`).
-The three pediment arms are recorded `BUILT` audit artifacts and are **never upload candidates**. Any
-future pediment-restricted CONCENTRATION design is capped at ~2.8 % of R0's dots by destination
-capacity. The 10 km CV definition was pinned to `IR-86-TRACKB-08` (fully-covered 100 px blocks:
-R0 = 0.5699 vs 0.736 unfiltered — both now reported by `gems86.concentration_pediment.cv_report`).
+**Decision.** No slot change: slots stay exactly as rev E ranks them (`le3p000`, `conc6`/`concb5kmdown6`,
+`frontp15`). The three pediment arms are recorded `BUILT` audit artifacts and are **never upload
+candidates**. Any future pediment-restricted CONCENTRATION design is capped at ~2.8 % of R0's dots by
+destination capacity. The 10 km CV definition was pinned to `IR-86-TRACKB-08` (fully-covered 100 px
+blocks: R0 = 0.5699 vs 0.736 unfiltered — both now reported by
+`gems86.concentration_pediment.cv_report`).

@@ -271,3 +271,97 @@ Full mechanism cards & PR #37 forensic audit: `evidence/concentration-5km-mechan
 - **Predicted sign and size.** **`-0.0005 MODEL`** (`2/4` quadrants positive), symmetric fold-fair **`+0.0002 PROXY`** (`95% CI [-0.0026, +0.0027]`). Do not spend a slot.
 - **Falsifier.** Live `Δ >= +0.005` while `b5km-ridge-up8` is negative.
 
+
+---
+
+# CONCENTRATION down-dose ladder — 2026-10-23 (second CONCENTRATION session, `arena/4822aa3b-gemsdoe86`)
+
+> **Post-merge reconciliation (IR-86-CONC-17).** The concurrent PR #50 session independently built the same
+> down-mechanism ladder (`cvband-down3/5/6` + random-credit control) and merged first. This session's `down6`
+> is **byte-identical** to PR #50's `conc6` (`1ed78e0f…`) and is carried as `BUILT-DUPLICATE`; its ledger row
+> here is a reproducibility witness, not a slot candidate. The two rungs unique to this session are `down2`
+> (below PR #50's lowest rung) and `downmax` (the exact 2,381-move pool ceiling, confirming PR #50's
+> `IR-86-CONC-12` capacity cap). PR #50's ordering control additionally shows the lowest-unique-credit
+> *ranking* buys only ≈ +0.0007 of `conc6`'s +0.0022 (the rest is generic dispersal) — read every card below
+> with that discount. IR items formerly numbered CONC-12 here are renumbered CONC-15 (12/13/14 taken on main).
+
+Axis self-assigned per brief v2 §1. Parent **R0** = `h33-h33-2-b2-20261004-e5eb6e7e`, 37,654 unit
+dots, 0.2778 **CLAIM**; rebuilt byte-exactly again this session (`c55bafc4…b6fa9`). The released
+`down4` file was rebuilt **byte-exactly** before anything new was written (`8aab97b6…`, 1 km CV
+0.5162) — the rebuild path is anchored to the released artifact, not to a description of it.
+Code: `scripts/run_concentration_dose.py`; run card: `evidence/concentration_dose_axis_20261023.json`;
+unit tests: `tests/test_concentration_dose.py`.
+
+**Why only the down direction.** `down4` is the one arm in 10 CONCENTRATION ledger rows positive on
+both instruments; `up4`/`up8` are measured flat-to-negative, `MASS` is closed (`IR-86-MASS-03`),
+`SNAP` is negative in three sessions, PRUNE/RELIEF/SPACING ladders are built. The down curve had
+exactly one point. This session adds the two dose brackets and the pool ceiling, all
+source-prefix-nested on one deterministic removal sequence (`down2 ⊂ down4 ⊂ down6 ⊂ downmax`;
+verified programmatically), count fixed at 37,654, every added dot on the
+`H19-5 | H19-4 | H16-1` ancestor-ridge union at `> 3.0 px` catalogue clearance and `>= √8 px`
+spacing, 1 km blocks (`block_px = 10`).
+
+## The measured dose-response curve (MODEL = off-catalogue SGMC surrogate; PROXY = symmetric fold-fair d28, n=11,321)
+
+| arm | dots moved (% chg) | 1 km CV (0.6235 at R0) | MODEL Δ (quads) | jitter ±6 px | PROXY Δ [CI95] |
+|---|---:|---:|---:|---:|---|
+| `down2` (`f0ee647f`) | 753 (4.00 %) | 0.5611 | **+0.0012** (4/4 +) | +0.0015 | +0.0001 [−0.0006, +0.0008] |
+| `down4` anchor (`8aab97b6`, prior session) | 1,506 (8.00 %) | 0.5162 | +0.0015 (4/4 +) | +0.0020 | +0.0008 [−0.0004, +0.0018] |
+| `down6` (`1ed78e0f`) | 2,259 (12.00 %) | 0.4840 | **+0.0022** (4/4 +) | +0.0028 | **+0.0013** [−0.0004, +0.0028] |
+| `downmax` (`d4a42664`) | 2,381 (12.65 %) | 0.4789 | +0.0020 (4/4 +) | +0.0026 | +0.0013 [−0.0004, +0.0028] |
+
+Leakage canary max single-feature AUC 0.7222 ≤ 0.90 (unchanged from the 5 km session). Every MODEL
+figure is the surrogate's own read, not a score; all sit below the 0.01 live-evidence floor.
+
+### 1. `b5km-cvband-down2` — 753 dots moved (`f0ee647f`)
+- **Hypothesis.** If the 0.51–0.59 CV band marks an optimum, the band-interior rung should capture
+  most of the achievable gain at half the down4 displacement cost.
+- **Mechanism.** Same shave rule, half dose: the 753 lowest-unique-credit dots leave the densest
+  `>= 3`-dot 1 km blocks for unused ancestor-ridge cells in 1–2-dot blocks. Sources are the exact
+  first half of the down4 removal sequence.
+- **Mimic.** Lahontan shorelines, basalt flow margins and fan scarps on `H19-4 | H16-1` in sparse
+  basin blocks.
+- **Predicted / measured.** Band-optimum hypothesis predicted ≈ down4; measured **+0.0012 MODEL**
+  (4/4) and **+0.0001 PROXY** — about 3/4 of down4's MODEL gain at half the dose, i.e. the curve is
+  close to linear here and the band interior is *not* a plateau peak.
+- **Falsifier.** Live `<= −0.005` while down4 is flat would say even small dispersal off the
+  incumbent CV is charged for; that would rehabilitate the band as a hard edge, not an optimum.
+
+### 2. `b5km-cvband-down6` — 2,259 dots moved (`1ed78e0f`) — **best CONCENTRATION arm on both instruments**
+- **Hypothesis.** If the gain is monotonically driven by converting sub-kernel overlap into fresh
+  ridge coverage (not by landing inside a CV band), one-and-a-half times the down4 dose keeps
+  paying after the CV has left `0.51–0.59` through the bottom.
+- **Mechanism.** Same rule at 6 % of dots; CV crosses the band bottom (`0.5162 → 0.4840`). This is
+  the rung that *separates the two hypotheses*: band vs monotone.
+- **Mimic.** As (1), plus quadrangle mapping density in mineralized ranges for the ancestor-ridge
+  half of the story.
+- **Predicted / measured.** Monotone hypothesis predicted `>= down4`; measured **+0.0022 MODEL**
+  (4/4, quadrant range +0.0005..+0.0045; jitter +0.0028) and **+0.0013 PROXY**
+  [−0.0004, +0.0028] — the largest SGMC read of any non-PRUNE arm in the ledger and positive on
+  both instruments with 4/4 agreement.
+- **Falsifier.** Live `<= −0.005` vs R0 falsifies monotone spreading and says unmapped faults
+  cluster tighter than CV 0.48; live flat while `down2` gains would say only the first ~1,000 moves
+  buy real coverage.
+
+### 3. `b5km-cvband-downmax` — 2,381 dots moved (`d4a42664`) — the pool ceiling, not a tuned dose
+- **Hypothesis.** The curve should stop paying where the mechanism runs out of destinations.
+- **Mechanism.** `n_move` binary-searched to the largest dose the 1–2-dot sparse-ridge destination
+  pool absorbs at `>= √8` spacing: **2,381 moves (12.65 % chg, CV 0.4789)**. The ceiling is a
+  structural fact any Week 4–5 composite must respect; extending it means relaxing the destination
+  rule (a different value, proposed in `SLOT_PLAN.md`, not built here).
+- **Mimic.** As (1). Additionally the 122 moves beyond down6 draw from progressively less-sparse
+  destination blocks — the marginal-destination-quality decay this rung is built to expose.
+- **Predicted / measured.** Predicted `>= down6` if destination quality still holds, `< down6` if
+  the pool decays; measured **+0.0020 MODEL** (4/4) — *below* down6 by 0.0002, i.e. the last ~120
+  placements cost more than they bought. Per fold, the fold-fair proxy's ceiling fell back to the
+  6 % dose in all 4 folds (recorded per fold in the run card), so its PROXY is identical to down6's
+  by construction, not by coincidence.
+- **Falsifier.** Live `> down6 + 0.005` would say the fold-scale ceiling is not the live ceiling
+  and the pool-extension value is worth building; live `<= −0.005` folds both down-rungs beyond
+  down4.
+
+**Instrument verdict (report-only, brief §6).** The `0.51–0.59` CV band does not mark the optimum
+on either instrument: the curve is monotone through the band bottom and saturates at the
+destination-pool ceiling. `IR-86-CONC-02`'s suspicion is now measured: the band is a recipe
+correlation, not a target. The CONCENTRATION slot candidate upgrades from `down4` to **`down6`**;
+`downmax` is the ceiling witness, not a slot candidate.
