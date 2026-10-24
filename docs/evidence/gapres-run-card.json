@@ -1,0 +1,228 @@
+{
+ "schema": "gems86.run-card.v1",
+ "lane": "GEMS86-GAPRES",
+ "hypothesis": "Gaps (>3px from every fleet dot, >2px from catalogue) inside high smoothed multi-fleet vote density lie on collectively-traced but unsampled lineaments.",
+ "mechanism": "Gaussian(sigma=2px) fleet-vote density; greedy 3px-spaced maxima on allowed gap pixels; binary unit dots, zeros outside footprint.",
+ "named_non_fault_process": "Common-mode lithologic contacts / survey lineaments traced by all fleet methods for non-fault reasons.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2 (holdout.evaluate, alpha=0.2 beta=0.8 300m triangular)",
+  "value": 0.0,
+  "ci95_fold_percentile": [
+   0.0,
+   0.0
+  ],
+  "withheld_positives": 22641,
+  "baseline_h33_same_instrument": 0.004384809290509451,
+  "beats_baseline": false,
+  "ci95": [
+   0.0,
+   0.0
+  ]
+ },
+ "leakage_canary": {
+  "feature": "smoothed fleet vote alone",
+  "auc_vs_withheld": 0.6318470516516962,
+  "leakage_flag_gt_0.90": false,
+  "caveat": "Fleet rasters were built with the full catalogue, so this holdout is a conservative proxy, not organizer truth."
+ },
+ "correlation_overlap_vs_registry": {
+  "scope": "26 local dotted rasters in data/scored_fleet (binary)",
+  "registry_complete": false,
+  "worst_dot_overlap_3px": 0.0,
+  "worst_abs_surface_spearman_sample200k": 0.14056396684644992,
+  "rows": [
+   {
+    "file": "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.13734587085859137
+   },
+   {
+    "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.12947288341505084
+   },
+   {
+    "file": "GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.12971820872993023
+   },
+   {
+    "file": "GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.14056396684644992
+   },
+   {
+    "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.13336654504845788
+   },
+   {
+    "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.1377604777725101
+   },
+   {
+    "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.1340257297121869
+   },
+   {
+    "file": "GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.09037453995576296
+   },
+   {
+    "file": "GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.11744898571452808
+   },
+   {
+    "file": "GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.07311227173456915
+   },
+   {
+    "file": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.10457169130644875
+   },
+   {
+    "file": "GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.09860503189510963
+   },
+   {
+    "file": "GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.09492547528060047
+   },
+   {
+    "file": "GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.12192095524624869
+   },
+   {
+    "file": "GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.11262416632788674
+   },
+   {
+    "file": "GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.08046227682152242
+   },
+   {
+    "file": "GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.11254025742075328
+   },
+   {
+    "file": "GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.08346967347761619
+   },
+   {
+    "file": "GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.12649492026719897
+   },
+   {
+    "file": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.08423768332620511
+   },
+   {
+    "file": "GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.11909827881276899
+   },
+   {
+    "file": "GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.09265788763265483
+   },
+   {
+    "file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.062381378512175185
+   },
+   {
+    "file": "GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.11668485216441456
+   },
+   {
+    "file": "GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    "dot_overlap_3px": 0.0,
+    "surface_spearman_sample": 0.08859475855621722
+   }
+  ],
+  "literal_dense_witness_note": "Continuous 17GEMSDOE witness (support>0 ~= footprint) gives overlap 1.0 for ANY nonempty dots; literal rule unsatisfiable - see IRREGULARITIES IR-86-GAPRES-01."
+ },
+ "raster_sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+ "dots": 37654,
+ "validator_output": {
+  "file": "/home/user/GEMSDOE86/docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+  "bytes": 824258,
+  "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "lzw"
+  },
+  "band_description": [
+   "predicted_new_fault_probability"
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "emitted_positive_pixels": 37654,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 37654,
+  "footprint_fraction": 0.007286874781441169
+ },
+ "submission_name": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f",
+ "note": "GAPRES fleet-gap interp 37654dots HOLDOUT-DTI 0.0000 v2 n=22641 UNSCORED",
+ "note_chars": 72,
+ "verdict": "negative",
+ "decision": "DO NOT SUBMIT",
+ "submission_slots_used": 0,
+ "generated_utc": "20261024T192023Z"
+}

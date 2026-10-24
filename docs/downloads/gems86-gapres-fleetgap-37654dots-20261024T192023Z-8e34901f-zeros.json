@@ -1,0 +1,75 @@
+{
+ "file": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+ "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+ "bytes": 824258,
+ "submission_name": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f",
+ "note": "GAPRES fleet-gap interp 37654dots HOLDOUT-DTI 0.0000 v2 n=22641 UNSCORED",
+ "note_chars": 72,
+ "validator": {
+  "file": "/home/user/GEMSDOE86/docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+  "bytes": 824258,
+  "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "lzw"
+  },
+  "band_description": [
+   "predicted_new_fault_probability"
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "emitted_positive_pixels": 37654,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 37654,
+  "footprint_fraction": 0.007286874781441169
+ },
+ "zip_file": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.zip",
+ "zip_sha256": "b138bfbd0614faf08721260af9a24bc114d7062f0f1f979eb804d3da5ad8b9f8",
+ "approved_for_weekly_slot": false,
+ "promoted": false,
+ "submission_slots_used": 0,
+ "status": "DO NOT SUBMIT - automated gates in docs/evidence/gapres-run-card.json",
+ "metadata": {
+  "lane": "GEMS86-GAPRES",
+  "budget": 37654,
+  "content_digest8": "8e34901f"
+ }
+}
