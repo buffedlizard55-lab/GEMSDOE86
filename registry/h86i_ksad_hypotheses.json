@@ -1,0 +1,96 @@
+{
+  "schema": "gems86.hypothesis-queue.v1",
+  "session_date": "2026-10-25",
+  "lane_prefix": "H86I",
+  "frozen_before_implementation": true,
+  "governing_constraints": {
+    "holdout_instrument": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, buffered_component_draw seed=20, hide_frac=0.20, buffer_px=3, 11321 withheld positive pixels, 20 km physical blocks)",
+    "max_experiments": 3,
+    "max_wallclock_hours": 2.0,
+    "single_feature_canary_auc_max": 0.90,
+    "registry_spearman_rho_max": 0.90,
+    "registry_forward_overlap_3px_max": 0.70,
+    "weekly_submission_slots_authorized": 0,
+    "band_map_authority": "src/gems86/io.py (BANDS + BAND_PHYSICS_VERIFIED) and scripts/restore_data.py (EXTERNAL_PINS)"
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86I-1",
+      "lane_code": "H86I-KSAD",
+      "title": "Kostrov-Byerlee Azimuthal Slip/Dilation Tendency, Roest Upward-Continued Structural-Index Persistence & SAR Cover-Propensity Dinkelbach Submodular K3 Allocation",
+      "status": "SELECTED_FOR_PREREGISTERED_3_ARM_VALIDATION",
+      "data_viability": "VIABLE_IN_SANDBOX (100% SHA-256 verified: native 19-band training_features.tif + public-domain USGS 3DEP 1m/10m & GeoDAWN derived grids pinned in scripts/restore_data.py:EXTERNAL_PINS from official USGS DOI 10.5066/P93LGLVQ & USGS 3DEP)",
+      "specific_layers": [
+        "Competition Band 8 (geod_dilaterate), Band 7 (geod_shearrate), Band 4 (geod_2ndinv)",
+        "Competition Band 18 (iso_grav_anom_hg = +dg/dx_east), Band 11 (iso_grav_anom_vg = +dg/drow_south = -dg/dy_north), Band 13 (iso_grav_anom), Band 15 (depth_to_base_surf)",
+        "Competition Band 2 (rtp), Band 3 (tmi_hg), Band 9 (tmi_vg), Band 14 (tmi), Band 6 (tc, verified GeoDAWN Radiometric Total Count), Band 17 (cond_surf), Band 10 (deq_n100a15), Band 16 (ieq_n100a15), Band 12 (det_elev), Band 19 (det_elev_slope)",
+        "SHA-pinned USGS GeoDAWN derived grids: geodawn_extensions_u8.tif (TMI_up150, ThK, UK, UTh) and geodawn_rad_u8.tif (K, Th, U)",
+        "SHA-pinned USGS 3DEP 1m/10m derived grids: lidar_scarp_features_u8.tif (step_max, ex_max, downface_max, upface_max, coh100, valid), topo_10m_derived_100m_u8.tif (curv_prof_absmax, hs_lineament, aspect_coherence, slope_p90, relief_local), dem10_chi_100m_i16.tif (ksn_max_m0.9, step_max_x1000, step_min_x1000, log10_area_m2_x1000, zmean_m)",
+        "Fold-visible fault catalogue mask vis_cat only (withheld whole components + 3 px buffer strictly excluded; outer training labels restricted to Leave-One-Quadrant-Out eroded quad != q)"
+      ],
+      "physical_signature_and_transform": "Combines four coupled physical operators with exact DTI fractional programming: (1) Roest-Nabighian 3-D magnetic analytic signal sqrt(B3^2 + B9^2) paired with 150 m harmonic upward-continuation depth-persistence |grad TMI_up150| / (|grad TMI| + tau) and vector-consistent Laplace vertical gravity curvature g_zz = -(d_col B18 + d_row B11) to separate deep subvertical basement fault steps from shallow volcanic float; (2) Morris-Byerlee-Kostrov azimuthal slip and dilation tendency tensor projection resolving regional Great Basin WNW-ESE extension (optimal normal strike N22E) and Walker Lane/Humboldt shear onto the multi-physics spin-2 structural strike director (T_d = geod_dilaterate_+ * cos^2(theta - 22 deg), T_s = geod_shearrate * sin^2(2*(theta - 22 deg))); (3) 1-m LiDAR unilateral facing polarity |downface - upface|/(downface + upface + 12)*coh100, sentinel-clean (> -32000) 10-m fluvial k_sn & chi-step transient knickzones, potassic K-vs-Th hydrothermal alteration residual, and absolute-elevation zmean_m (1180-1345 m ASL) contour-parallel Lake Lahontan shoreline suppression; and (4) Selected-At-Random (SAR) alluvial exposure-propensity inverse weighting + Elkan (2001) Bayes subsampling odds recalibration decoded by Minoux-exact Dinkelbach Submodular K3-Supremum Expected-DTI Allocation.",
+      "why_unmapped_faults_are_caught": "USGS/INGENIOUS Quaternary fault omissions cluster in three regimes directly targeted here: (a) low-relief Holocene alluvial aprons/playas where SAR inverse exposure propensity boosts deep upward-continued magnetic/gravity steps, (b) oblique ENE/NW transfer and accommodation-zone splays captured by Riedel shear tendency T_s, fluvial k_sn knickpoints, and unilateral 1-m LiDAR micro-scarps, and (c) multi-kilometer blind relays where probability-adaptive submodular K3-envelope allocation spaces dots at ~4.2-5.0 px along moderate-confidence strands instead of burning dots at fixed 2.8 px.",
+      "named_non_fault_mimic": "(1) Pleistocene Lake Lahontan wave-cut shorelines (1,180-1,345 m ASL), suppressed via zmean_m contour-parallelism; (2) symmetric V-shaped fluvial gullies, suppressed via unilateral 1-m LiDAR |downface - upface| polarity; (3) surficial basalt float and E-W (090 deg) GeoDAWN flight-line leveling seams, suppressed via 150 m upward-continuation attenuation and low normal dilation tendency T_d(90 deg) = 0.14.",
+      "how_it_differs_from_repo_and_fleet": "H86F-EWCS (0.1723) used only 100 m native bands, isotropic strain invariants, in-quadrant visible training, uncalibrated subsampled tree probabilities, 3.0 px collar, and fixed 2.8 px greedy disc thinning. H86C-KSLB (0.1241) misread Band 6 as magnetic tilt and Band 11/18 as vertical gravity tilt, and lacked Pollard-Segall elastic tip/stepover/shadow fields, Morris-Byerlee tensor projection, Roest upward-continuation persistence, SAR cover propensity, and Dinkelbach submodular K3 allocation.",
+      "expected_dti_improvement_rank": 1,
+      "implementation_cost": "Low-Medium (~18 min wall-clock on 2 vCPUs, < 1.1 GiB peak RSS via float16 memmap streaming and 2-second Minoux lazy-greedy submodular allocator)"
+    },
+    {
+      "rank": 2,
+      "id": "H86I-2",
+      "lane_code": "H86I-EULER3D",
+      "title": "Thompson-Reid 3-D Vector-Gravity & Analytic-Signal Euler Deconvolution Structural-Index (N=0 vs N=2) Source-Lineation Clustering",
+      "status": "PREREGISTERED_DEFERRED_BUDGET_CAP",
+      "data_viability": "VIABLE_IN_SANDBOX (100% native SHA-pinned competition bands)",
+      "specific_layers": [
+        "Competition Band 13 (iso_grav_anom), pixel-verified Band 18 (+dg/dx_east) & -Band 11 (+dg/dy_north), FFT wavenumber vertical derivative g_z",
+        "Competition Band 14 (tmi), Band 3 (tmi_hg), Band 9 (tmi_vg)",
+        "Competition Band 15 (depth_to_base_surf)"
+      ],
+      "physical_signature_and_transform": "Solves Reid et al. (1990) 3-D Euler homogeneity equations in sliding 9x9 windows for structural index N=0.0 (fault contact with finite throw) versus N=2.0 (line/dike/channel), retaining tight spray-convergent horizontal source clusters (x0, y0) whose inverted source depth z0 agrees within +-35% of Band 15 depth_to_base_surf.",
+      "why_unmapped_faults_are_caught": "Recovers the true horizontal surface-projection locus of dipping blind intrabasin normal faults where potential-field gradient peaks are displaced 300-900 m downdip from the sub-alluvial fault trace.",
+      "named_non_fault_mimic": "Non-tectonic Mesozoic pluton/wallrock contacts or pre-Cenozoic thrust ramps lacking Quaternary reactivation.",
+      "how_it_differs_from_repo_and_fleet": "Zero GEMSDOE86 lanes implement 3-D Euler deconvolution; sibling GEMSDOE40 tested scalar magnetic Euler without vector-gravity (B18, -B11) wavenumber g_z cross-validation or N=0 vs N=2 structural-index rejection.",
+      "expected_dti_improvement_rank": 2,
+      "implementation_cost": "Medium (~30 min sliding windowed SVD across 5.17M pixels)"
+    },
+    {
+      "rank": 3,
+      "id": "H86I-3",
+      "lane_code": "H86I-THCD",
+      "title": "Peclet Advective-Conductive Thermal & Geothermometer Outflow Plume Back-Projection onto Basement Hinges",
+      "status": "PREREGISTERED_DEFERRED_BUDGET_CAP",
+      "data_viability": "VIABLE_IN_SANDBOX (DOE GDR-1391 INGENIOUS CC-BY-4.0 tables SHA-pinned in research/h86d_extended_manifest.json + zmean_m + Bands 15, 17; dist_known_fault_px strictly forbidden)",
+      "specific_layers": [
+        "Official DOE GDR-1391 2m_temperature_probe_INGENIOUS_regional_data.zip, geochem_INGENIOUS_updated_20230515.csv (excluding dist_known_fault_px), paleo_geothermal_regional.zip",
+        "USGS 3DEP dem10_chi_100m_i16.tif Band 5 (zmean_m topographic hydraulic-head proxy)",
+        "Competition Band 15 (depth_to_base_surf) and Band 17 (cond_surf)"
+      ],
+      "physical_signature_and_transform": "Replaces isotropic Gaussian smoothing of shallow 2 m temperature and Na-K-Ca/silica geothermometer anomalies with an upslope Peclet advection-dispersion adjoint operator oriented up hydraulic gradient (-grad zmean_m) onto Band 15 pediment hinge lines and Band 17 clay-cap margins.",
+      "why_unmapped_faults_are_caught": "Lateral groundwater flow shifts Great Basin geothermal outflow plumes 1-6 km down-gradient into mid-playa discharge marshes; adjoint upslope back-projection relocates the signal onto the concealed upflow fault conduit.",
+      "named_non_fault_mimic": "Stratigraphically confined warm artesian aquifers discharging at alluvial-fan toe facies pinchouts without fault permeability.",
+      "how_it_differs_from_repo_and_fleet": "H86C-KSLB and H86D-CTHB smoothed GDR-1391 points isotropically (sigma=8-22 px), misplacing anomaly peaks down-gradient of upflow faults; no repo or sibling lane performs hydraulic-head Peclet adjoint back-projection.",
+      "expected_dti_improvement_rank": 3,
+      "implementation_cost": "Medium (~25 min anisotropic Green's-function integration)"
+    },
+    {
+      "rank": 4,
+      "id": "H86I-4",
+      "lane_code": "H86I-INSAR-VERT",
+      "title": "NASA/USGS OPERA Sentinel-1 Ascending/Descending Vertical-vs-East InSAR Phase-Gradient Aquifer-Barrier Dislocation",
+      "status": "NOT_VIABLE_IN_SANDBOX_YET",
+      "data_viability": "NOT_VIABLE_IN_SANDBOX_YET: Official NASA JPL / USGS OPERA L3 Surface Displacement (OPERA_L3_DISP-S1_V1) is free open US Government data at ASF DAAC (https://asf.alaska.edu/datasets/daac/opera/), but sandbox outbound network access is restricted to github.com/pypi.org/npmjs.org and no SHA-pinned competition-grid OPERA mirror exists in the repository.",
+      "specific_layers": [
+        "External NASA/USGS OPERA_L3_DISP-S1_V1 ascending & descending LOS velocity rasters decomposed into vertical u_dot_z and east u_dot_e",
+        "Competition Band 8 (geod_dilaterate), Band 17 (cond_surf), Band 15 (depth_to_base_surf)"
+      ],
+      "physical_signature_and_transform": "High-pass spatial gradient |grad u_dot_z| across < 500 m corridors to detect sharp poroelastic hydraulic-head steps and aseismic creep across concealed fault gouge barriers invisible to ~20 km GPS kriging (Bands 4, 7, 8).",
+      "why_unmapped_faults_are_caught": "Playa-hosted blind faults (Dixie Valley / Brady's analogues) have zero 1 m LiDAR scarp relief due to active playation but produce sharp InSAR phase-velocity steps where clay-rich fault cores compartmentalize seasonal aquifer deformation.",
+      "named_non_fault_mimic": "Concentric agricultural or mine dewatering subsidence bowls pinned at stratigraphic aquitard pinchouts.",
+      "how_it_differs_from_repo_and_fleet": "No GEMSDOE86 or 92-site fleet submission incorporates Sentinel-1 OPERA InSAR displacement gradients; native geodetic bands are smooth kriged GPS strain rates.",
+      "expected_dti_improvement_rank": 4,
+      "implementation_cost": "Blocked in current sandbox by outbound host allowlist (requires upstream GitHub release mirror + competition external-data rule sign-off before execution)"
+    }
+  ]
+}
