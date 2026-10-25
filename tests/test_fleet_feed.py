@@ -89,6 +89,13 @@ def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability()
         for key, band_str in re.findall(r"\b([a-z0-9_]+)\s*\(Band\s+(\d+)\b", text_blob):
             assert BANDS[int(band_str)] == key, f"Band mismatch in {row['id']}: Band {band_str} is {BANDS[int(band_str)]}, not {key}"
 
+    plan86m = strict_json(ROOT / "registry/h86m_hypotheses.json")
+    assert 3 <= len(plan86m["hypotheses"]) <= 5
+    for row in plan86m["hypotheses"]:
+        assert row.get("holdout_dti") is row.get("ci95") is None and "projected_score" not in row
+        for key, band_str in re.findall(r"\b([a-z0-9_]+)\s*\(Band\s+(\d+)\b", " ".join(row["layers"])):
+            assert BANDS[int(band_str)] == key
+
 
 def test_band_physics_verification_receipt_blocks_header_mislabels():
     receipt = strict_json(ROOT / "docs/evidence/band-physics-verification-20261024.json")

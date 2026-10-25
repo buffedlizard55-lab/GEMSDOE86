@@ -1,9 +1,9 @@
 # Standing project prompt (condensed historical archive)
 
 **Current decision (2026-10-25): DO NOT SUBMIT ANY FILE.** The current all-artifact audit measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. H86G-EDTI's earlier like-for-like `promote` card is historical, not current authorization. No new TIFF, experiment, or slot was created in the current review.
-**Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first.** This condensed historical document is not
-a replacement for that archive. Preserve `REQUEST_20261024.md`,
+**Read the latest README decision and the COMPLETE current requests in
+`research/REQUEST_20261025_REV2.md` and `research/REQUEST_20261025.md` first.** This condensed historical document is not
+a replacement for those archives. Preserve `REQUEST_20261025.md`, `REQUEST_20261024.md`,
 `REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 
 The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.

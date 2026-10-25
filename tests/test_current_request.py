@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
+    current25_rev2 = readme.split("<!-- CURRENT_REQUEST_20261025_REV2_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_REV2_END -->", 1)[0]
+    assert current25_rev2.strip() == (ROOT / "research/REQUEST_20261025_REV2.md").read_text().strip()
     current25 = readme.split("<!-- CURRENT_REQUEST_20261025_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_END -->", 1)[0]
     assert current25.strip() == (ROOT / "research/REQUEST_20261025.md").read_text().strip()
     current24 = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261024_END -->", 1)[0]
@@ -36,7 +38,7 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 115  # two new owner claims, never a retroactive archive edit
+    assert sum(1 for r in ledger if r["score"]) == 118  # +2 in 2026-10-25 request + 3 in 2026-10-25 rev2 request; historical archives untouched
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
@@ -106,6 +108,7 @@ def test_current_session_card_is_complete_negative_and_not_presented_as_a_downlo
 
 def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims():
     for name, digest in {
+        "REQUEST_20261025.md": "78d915d603d209371f8aa8cff22706c2b4bdc45a8b3232eaf5a4a55c2cce4dc2",
         "REQUEST_20261024.md": "0a232bf7981e146813478d591fc554d59323fb5631b101f529546f8bdffb031e",
         "REQUEST_20261023.md": "f97442adbbdf3efb16a515445f9ec6a28283188053d95a63b443e5b34afa97db",
         "OWNER_PROMPT.md": "70c0e08c6d465b4d56654066d9f5e3dc1fdcdec971dd5b81d29fb94b14a7e3c0",
@@ -114,7 +117,11 @@ def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims(
     current = (ROOT / "research/REQUEST_20261025.md").read_text()
     scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", current, re.M)
     assert len(scores) == 117  # duplicate H33 mentions are retained as supplied
+    rev2 = (ROOT / "research/REQUEST_20261025_REV2.md").read_text()
+    rev2_scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", rev2, re.M)
+    assert len(rev2_scores) == 120  # +3 new GEMSDOE91/GEMSDOE92 owner claims in rev2
     with (ROOT / "registry/prior_scores.csv").open(newline="") as stream:
         rows = list(csv.DictReader(stream))
-    assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in scores)
+    assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in rev2_scores)
     assert "REQUEST_20261025.md" in (ROOT / "PROMPT.md").read_text()
+    assert "REQUEST_20261025_REV2.md" in (ROOT / "PROMPT.md").read_text()

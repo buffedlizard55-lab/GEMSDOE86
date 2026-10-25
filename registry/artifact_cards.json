@@ -218,6 +218,20 @@
       "context": "docs/evidence/h86k-stdp-run-card.json",
       "holdout_kind": "h86k_stdp",
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
+    },
+    {
+      "lane": "H86L-FMC fleet minority-consensus interstitial discovery (HOLDOUT-DTI 0.0000 [0.0000, 0.0000]; canary AUC 0.4361; 0.8864 3-px overlap vs GEMSDOE63; negative DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86l-fmc-run-card.json",
+      "context": "docs/evidence/h86l-fmc-run-card.json",
+      "holdout_kind": "h86l_fmc",
+      "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
+    },
+    {
+      "lane": "H86M-SLCQ adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + eroded footprint-median 4-fold LOQO + 6-ring survival Dinkelbach-CELF (HOLDOUT-DTI 0.1527 [0.1364, 0.1679] beating E3 +0.0150 [+0.0009, +0.0282] & H86C-KSLB 0.1241; SGMC-PROXY-DTI 0.0967 / blind E2 0.1131 beating GEMSDOE32 H33 0.0937; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-slcq-run-card.json",
+      "context": "docs/evidence/h86m-slcq-run-card.json",
+      "holdout_kind": "h86m_slcq",
+      "stem": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros"
     }
   ]
 }

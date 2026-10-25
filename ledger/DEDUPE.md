@@ -1,6 +1,6 @@
 # Ledger dedupe record
 
-Source: `registry/prior_scores.csv` (119 rows). Collapsed to 112 groups by the rules in `scripts/build_ledger.py`.
+Source: `registry/prior_scores.csv` (120 rows). Collapsed to 113 groups by the rules in `scripts/build_ledger.py`.
 
 | kept | merged rows |
 |---|---|

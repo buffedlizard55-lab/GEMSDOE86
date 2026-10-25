@@ -196,6 +196,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86l_fmc":
+        ho = context.get("holdout", {})
+        cand = ho.get("candidate") if isinstance(ho, dict) else None
+        if not isinstance(cand, dict) or cand.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86L-FMC card lacks normalized HOLDOUT-DTI")
+        if context.get("verdict") != "negative" or context.get("submission_slots_used", 0) != 0:
+            raise ValueError("H86L-FMC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": cand["evaluator_version"],
+                "withheld_positives": cand["withheld_positive_pixels"],
+                "value": cand["dti"], "ci95": cand["ci95"],
+                "design": "buffered whole components (fleet minority-consensus post-processing; leakage-suspect negative)",
+                "caveat": "Inherited H86L-FMC fleet minority-consensus lane (PR #150, registered to resolve IR-H); HOLDOUT-DTI is 0.0000 [0.0000, 0.0000], canary AUC 0.4361, and 3-px dot overlap fires at 0.8864 vs GEMSDOE63. DO NOT SUBMIT; no slot used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -351,6 +364,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_slcq":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751) and 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
