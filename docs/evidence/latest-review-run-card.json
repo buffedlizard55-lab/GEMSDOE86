@@ -1,6 +1,6 @@
 {
   "schema": "gems86.current-review.v1",
-  "date_utc": "2026-10-24",
+  "date_utc": "2026-10-25",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
   "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (planned g_zz/low-relief extension; standalone SPBT-v1 was previously negative; exact extension NOT RUN; no method lane assigned)",
   "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
@@ -125,8 +125,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-24T23:58:27+00:00",
+  "registry_measured_utc": "2026-10-25T00:51:18+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "944b607b5b3235ec3f31b4984355a18126399ee1252a32a7d52dd352b6ec07ce",
-  "registry_measurement_sha256": "1631506a4488f2cc3323dec1b11e2961be6fb60bbc89205622da2c40a849f64a"
+  "release_report_sha256": "df5654cf03c4f9ebce6485f5426c284c036d43803e9343786881708b7313b162",
+  "registry_measurement_sha256": "5d91dd95be0e2a8381c90849d3d52458051073e80913ccde943bfadf7ab18d17"
 }

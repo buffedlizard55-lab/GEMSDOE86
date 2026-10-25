@@ -54,6 +54,14 @@ def find_file(dirs: list[Path], filenames: list[str]) -> Path | None:
     return None
 
 
+def _rel_or_str(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return str(resolved)
+
+
 def prepare(
     data_dir: Path | None = None,
     work_dir: Path | None = None,
@@ -63,12 +71,12 @@ def prepare(
     if data_dir is None:
         data_dirs = [ROOT / "data", ROOT / "data" / "bridge"]
     else:
-        data_dirs = [Path(data_dir)]
+        data_dirs = [Path(data_dir).resolve()]
 
     if work_dir is None:
         work_dir = ROOT / ".cache" / "gems_work"
     else:
-        work_dir = Path(work_dir)
+        work_dir = Path(work_dir).resolve()
 
     bands_dir = work_dir / "bands"
     bands_dir.mkdir(parents=True, exist_ok=True)
@@ -181,11 +189,16 @@ def prepare(
             "unique_footprint_pixels_with_any_sentinel": int(any_sentinel_in_foot.sum()),
         },
         "source_paths": {
-            "sample_submission": str(tmpl_path.relative_to(ROOT)),
-            "existing_faults": str(lab_path.relative_to(ROOT)),
-            "training_features": str(feat_path.relative_to(ROOT)) if feat_path else None,
+            "sample_submission": _rel_or_str(tmpl_path),
+            "existing_faults": _rel_or_str(lab_path),
+            "training_features": _rel_or_str(feat_path) if feat_path else None,
         },
         "source_hashes": source_hashes,
+        "pins_verified": {
+            key: source_hashes[key] == PINS[f"{key}.tif"]
+            for key in source_hashes
+            if f"{key}.tif" in PINS
+        },
         "bands": band_stats,
     }
 
