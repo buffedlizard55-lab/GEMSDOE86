@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "session_date_utc": "2026-10-25",
+  "session_branch": "arena/95a42d60-gemsdoe86",
+  "declared_before_implementation": true,
+  "protocol_lane_selection": "H86I-SACD",
+  "budget_cap": {
+    "max_experiments": 3,
+    "max_wall_hours": 2.0,
+    "weekly_submission_slots_authorized_in_worker_lane": 0
+  },
+  "band_physics_verification": {
+    "source_module": "src/gems86/io.py",
+    "verified_native_bands": {
+      "1": "mag_anom",
+      "2": "rtp",
+      "3": "tmi_hg",
+      "4": "geod_2ndinv",
+      "5": "iso_grav_anom_slope",
+      "6": "tc (GeoDAWN Radiometric Total Count TC; r=+0.997140 vs geodawn_rad_u8 TC; NOT magnetic tilt)",
+      "7": "geod_shearrate",
+      "8": "geod_dilaterate",
+      "9": "tmi_vg",
+      "10": "deq_n100a15",
+      "11": "iso_grav_anom_vg (signed southward +d(B13)/drow_south = -dg/dy_north, r=+0.938102)",
+      "12": "det_elev",
+      "13": "iso_grav_anom",
+      "14": "tmi",
+      "15": "depth_to_base_surf",
+      "16": "ieq_n100a15",
+      "17": "cond_surf",
+      "18": "iso_grav_anom_hg (signed eastward +dg/dx_east, r=+0.948186)",
+      "19": "det_elev_slope"
+    },
+    "verified_external_usgs_cc0_pins": {
+      "lidar_scarp_features_u8.tif": "d580bb8b2c4338181446c8e0f105b5d8b2189957964df7c18a11df89d01a85c9",
+      "topo_10m_derived_100m_u8.tif": "a6398d9941621d33f14a8df74eb2bc4c63a19b2e83c2670a6af9ed3b85978d9f",
+      "dem10_chi_100m_i16.tif": "8897ba9c00df0d2e84601b0a6950317976b33cb2011898b062ab337645e980ad",
+      "geodawn_rad_u8.tif": "c22420f76c74a49078556ab43043934098e6ec1fb9d4a627f8de7a61bd3d49cd",
+      "geodawn_extensions_u8.tif": "a35a9c6d63b72be4105196215bc8eb7a3c4dc4358a512a21b9d659783134332b"
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "H86I-SACD",
+      "rank": 1,
+      "selected_for_validation": true,
+      "title": "Spin-2 Coulomb-Projected Strike Concordance, Jacobsen Upward-Continuation Depth-Attenuation & Bekker-Davis Alluvial-Burial Propensity Submodular Max-Cover",
+      "layers": [
+        "Native training_features.tif Bands 2 (rtp), 3 (tmi_hg), 9 (tmi_vg), 14 (tmi), 13 (iso_grav_anom), 18 (iso_grav_anom_hg = +dg/dx_east), 11 (iso_grav_anom_vg = +dg/drow_south), 15 (depth_to_base_surf), 6 (tc), 17 (cond_surf), 4/7/8 (geod_2ndinv, geod_shearrate, geod_dilaterate), 10/16 (deq_n100a15, ieq_n100a15), 12/19 (det_elev, det_elev_slope)",
+        "SHA-pinned USGS 3DEP 1 m LiDAR lidar_scarp_features_u8.tif (step_max, lapneg_max, coh100, strike, valid) and 10 m topo_10m_derived_100m_u8.tif (curv_prof_absmax, aspect_coherence, hs_lineament, relief_local, dem_mean)",
+        "SHA-pinned USGS 3DEP 10 m fluvial dem10_chi_100m_i16.tif (step_max_x1000, ksn_max_m0.9)",
+        "SHA-pinned USGS GeoDAWN geodawn_rad_u8.tif (K, Th, U) and geodawn_extensions_u8.tif (ThK, UTh, TMI_up150)",
+        "Fold-visible fault mask vis_cat strictly outside the 3-px buffered whole-component holdout collar (nested cross-component split inside training folds)"
+      ],
+      "physical_signature": "Project a 2-D spin-2 Coulomb failure-strike director field (cos 2*theta_stress, sin 2*theta_stress) outward from fold-visible fault terminations (collinear propagation cone + Pollard-Segall +/-27 deg tensile wing-crack lobes + opposing-tip releasing stepover chords) and take signed spin-2 directional inner products cos 2(theta_obs - theta_stress) in [-1, +1] against three independent label-free physical directors: (1) Lahontan-deconfounded 1 m LiDAR / 10 m 3DEP scarp strike, (2) vector-consistent Laplace vertical gravity curvature hinge strike g_zz = -(d_col B18 + d_row B11) = 0, and (3) analytical Verduzco magnetic tilt zero-crossing strike atan2(B9, B3) = 0. Pair with Jacobsen (1987) shallow-to-150 m upward-continuation magnetic gradient attenuation ln((|grad B14|+eps)/(|grad TMI_up150|+eps)), GeoDAWN K/Th and U/Th hydrothermal alteration enrichment, Bekker-Davis (2020) label-free alluvial-burial exposure propensity calibration, and Minoux lazy-greedy submodular 300 m triangular-kernel expected-TP_w dot allocation.",
+      "why_missing_from_catalogue": "USGS QFDB and INGENIOUS reconnaissance mapping rely heavily on aerial photography and 30-100 m DEMs, causing systematic recall collapse across Holocene alluvial fan aprons, thin pediments, and playa interiors (low exposure propensity c(x)) where <1.5 m scarps are diffused at 100 m resolution or buried completely. Spin-2 Coulomb strike concordance recovers unmapped splay/relay continuations expressed in 1 m LiDAR micro-scarps, shallow-attenuating magnetic contacts, K/Th adularia-illite alteration, and Laplace g_zz density steps while actively vetoing transverse Pleistocene shorelines and E-W survey leveling seams (cos 2*Delta_theta < 0).",
+      "non_fault_mimic": "Shallow subvertical Tertiary mafic dike swarms or welded ash-flow tuff cooling joints striking subparallel to regional NNE Basin-and-Range extension beneath thin piedmont veneers, and Pleistocene Lake Lahontan highstand bars (~1,330 m) where shoreline strike locally parallels range-front fault strike.",
+      "difference_from_repo": "H86F-EWCS (0.1723) used only 100 m training_features.tif planes (zero 1 m LiDAR, zero 10 m 3DEP/chi, zero GeoDAWN K/Th/U or TMI_up150 upward-continuation depth filtering), scalar elastic tip halos with zero spin-2 strike-director alignment, unweighted PU sampling without Bekker-Davis burial propensity, and pointwise disc_thin instead of exact 300 m triangular-kernel submodular expected-TP_w allocation. H86C-KSLB (0.1241) treated Band 6 (tc) as magnetic tilt and lacked Laplace vector gravity, elastic crack mechanics, and spin-2 concordance.",
+      "expected_dti_improvement_rank": 1,
+      "implementation_cost": "Medium (~20 min total CPU across 3 arms on 2 cores, <1.0 GiB RSS via float16 memmap)",
+      "external_data_status": "VIABLE_NOW (all 5 external USGS CC0 1.0 rasters restored and SHA-256-verified in .cache/external/ via scripts/download_competition_data.sh --with-external)"
+    },
+    {
+      "id": "H86I-BHGD",
+      "rank": 2,
+      "selected_for_validation": false,
+      "title": "Biharmonic Thin-Plate Basement Flexure (nabla^4 z_b) Coupled with Transverse Fluvial Delta-Chi Divide Piracy Across Blind Relay Ramps",
+      "layers": [
+        "Native Band 15 (depth_to_base_surf), Band 18 (+dg/dx_east), Band 11 (+dg/drow_south), Band 12 (det_elev)",
+        "SHA-pinned USGS 3DEP dem10_chi_100m_i16.tif (step_max_x1000, ksn_max_m0.9, log10_area_m2_x1000)"
+      ],
+      "physical_signature": "Compute biharmonic elastic plate bending-moment divergence nabla^2(nabla^2 B15) of Cenozoic basin-floor depth to isolate narrow blind hanging-wall rollover monoclines, intersected with cross-divide fluvial chi-step jumps (step_max_x1000) and normalized channel steepness knickpoints (ksn_max_m0.9) driven by active blind relay tilting.",
+      "why_missing_from_catalogue": "Blind normal faults terminating 200-600 m beneath unconsolidated fanglomerate fold the overlying fan surface into 0.5-2 km wide monoclines invisible to scarp-based airphoto mapping, yet reorganize ephemeral channel steepness and drainage divide chi equilibrium.",
+      "non_fault_mimic": "Differential compaction flexure of Plio-Pleistocene lacustrine clays over buried paleotopographic bedrock ridges, and lithologically controlled knickzones on resistant silicic volcanic ledges.",
+      "difference_from_repo": "H86H-2 proposed biharmonic nabla^4 B15 paired with sparse GDR 2-m thermal probes (never implemented); H86C-KSLB used raw chi/ksn z-scores without thin-plate basement flexure coupling.",
+      "expected_dti_improvement_rank": 2,
+      "implementation_cost": "Low-Medium (~15 min CPU)",
+      "external_data_status": "VIABLE_NOW (deferred to preserve single-lane 3-experiment session budget)"
+    },
+    {
+      "id": "H86I-RGDW",
+      "rank": 3,
+      "selected_for_validation": false,
+      "title": "Rotational Geodetic Strain-Vorticity vs Dilatation Partitioning Across Walker Lane Accommodation Zones",
+      "layers": [
+        "Native Band 4 (geod_2ndinv), Band 7 (geod_shearrate), Band 8 (geod_dilaterate), Band 10 (deq_n100a15), Band 16 (ieq_n100a15), Band 2 (rtp), Band 3 (tmi_hg), Band 9 (tmi_vg)"
+      ],
+      "physical_signature": "Formulate dimensionless transtension kinematic partitioning W_k = (B7 - |B8|) / (B4 + eps) and its spatial gradient |grad W_k| focused onto analytical Verduzco magnetic tilt zero-crossings atan2(B9, B3) = 0 and declustered microseismic lineaments (B10, B16).",
+      "why_missing_from_catalogue": "ENE/WNW strike-slip and oblique Walker Lane accommodation faults (e.g. Carson/Olinghouse/Humboldt transfer zones) accommodate horizontal shear with minimal vertical throw, producing muted topographic scarps and systematic catalogue omissions despite sharp basement magnetic truncations.",
+      "non_fault_mimic": "Long-wavelength GPS kriging transitions between sparse geodetic stations and postseismic viscoelastic relaxation halos from 1915 Pleasant Valley / 1954 Dixie Valley-Fairview Peak ruptures.",
+      "difference_from_repo": "Prior lanes used only scalar sums or products of Bands 4, 7, and 8; none formulated the dimensionless shear-vs-dilatation partitioning gradient |grad W_k| to target low-throw strike-slip accommodation zones.",
+      "expected_dti_improvement_rank": 3,
+      "implementation_cost": "Low (~12 min CPU; coarser spatial specificity due to ~15-25 km GPS station spacing)",
+      "external_data_status": "VIABLE_NOW (deferred to preserve single-lane 3-experiment session budget)"
+    },
+    {
+      "id": "H86I-INSAR",
+      "rank": 4,
+      "selected_for_validation": false,
+      "title": "Sentinel-1 Ascending/Descending InSAR Vertical & East-West Interseismic Creep-Gradient Dislocations",
+      "layers": [
+        "External NASA ASF DAAC ARIA / COMET LiCSAR Sentinel-1 2015-2025 ascending + descending LOS velocity & coherence GeoTIFFs (100 m)",
+        "Native Band 7 (geod_shearrate), Band 8 (geod_dilaterate), Band 12 (det_elev), Band 17 (cond_surf), Band 19 (det_elev_slope)"
+      ],
+      "physical_signature": "Invert ascending and descending Sentinel-1 InSAR LOS velocities for 100 m vertical (v_U) and east-west (v_E) creep rates, mask agricultural/playa decorrelation, and apply a 300 m cross-strike step filter along electrical conductivity boundaries (Band 17) and magnetic tilt zero-crossings.",
+      "why_missing_from_catalogue": "Detects active aseismic fault creep, geothermal reservoir pore-pressure compartments, and blind groundwater-barrier fault steps across flat basin floors at 100 m resolution (100x finer than GPS Bands 4/7/8) with zero surface scarp.",
+      "non_fault_mimic": "Agricultural groundwater-pumping subsidence bowl margins (e.g. Fallon, Lovelock, Mason Valley) and seasonal smectite clay hydration/desiccation rings around playa margins.",
+      "difference_from_repo": "Zero lanes in GEMSDOE86 or sibling GEMSDOE repositories ingest satellite InSAR velocity or coherence rasters.",
+      "expected_dti_improvement_rank": 4,
+      "implementation_cost": "High (multi-track Sentinel-1 stitching + atmospheric phase screen removal)",
+      "external_data_status": "NOT_VIABLE_YET (requires NASA ASF DAAC https://search.asf.alaska.edu/ or COMET LiCSAR https://comet.nerc.ac.uk/COMET-LiCS-portal/; outbound network is restricted to GitHub/PyPI/npm and no SHA-pinned InSAR grid exists on the pinned GitHub data mirrors)"
+    }
+  ]
+}

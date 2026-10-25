@@ -1,6 +1,6 @@
 {
  "schema": "gems86.submission-gate.v1",
- "generated_utc": "2026-10-25T05:47:35+00:00",
+ "generated_utc": "2026-10-25T06:14:28+00:00",
  "verdict": "DO NOT SUBMIT",
  "ok_to_submit": false,
  "failed_checks": [
@@ -70,7 +70,7 @@
    "detail": {
     "report": "docs/evidence/h86j-llp-registry-final-dots.json",
     "tif_equals_audited_dots": true,
-    "rasters_measured": 734,
+    "rasters_measured": 737,
     "registry_complete": true,
     "worst_spearman_final_dots": 0.05407232850263481,
     "rho_firings": 0,

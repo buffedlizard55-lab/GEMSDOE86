@@ -105,7 +105,7 @@ same-split record is H86F-EWCS at 0.1723. **The promote rule fails, so the verdi
 - The full-catalogue λ was emitted by E[k] spacing-greedy (≥2.8 px, collar >2 px).
 - The budget rule (MODEL projection, never a score) chose **44,090 dots**. The emulator curve is
   flat from 37,654 to 44,090.
-- Uniqueness was measured on the surface and the final dots against 734 hash-bound rasters (655
+- Uniqueness was measured on the surface and the final dots against 737 hash-bound rasters (re-measured after merging main, the candidate itself excluded) (655
   pinned registry blobs plus local and codeload extras), with PA-86-02 chance correction; the
   results are in the run card.
 - The shared writer and validator ran, and then the automated gate. The gate prints **DO NOT

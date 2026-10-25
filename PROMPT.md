@@ -1,6 +1,7 @@
 # Standing project prompt (condensed historical archive)
 
 **Latest lane: H86J-LLP (2026-10-25, `research/H86J_LLP_REVIEW.md`). The automated gate (`scripts/submission_gate.py` → `docs/evidence/submission-gate.json`) says DO NOT SUBMIT for its new unique TIFF. The protocol holdout puts the live-calibrated candidate below random (0.0370 vs 0.0475), and the rebuilt H33 recipe below random as well (0.0286). The owner must decide on the holdout rule (review §6). Every session: run the gate on the newest run card and read its single-line verdict first.**
+**Current decision (2026-10-25): DO NOT SUBMIT ANY FILE.** The current all-artifact audit measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. H86G-EDTI's earlier like-for-like `promote` card is historical, not current authorization. No new TIFF, experiment, or slot was created in the current review.
 **Previous lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — historical like-for-like promote; selector action/upload still separate, 0 slots used.**
 **Read the latest README decision and the COMPLETE current request in
 `research/REQUEST_20261025.md` first.** This condensed historical document is not
@@ -9,7 +10,7 @@ a replacement for that archive. Preserve `REQUEST_20261024.md`,
 
 The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
 Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 18 historical audit-only TIFFs, all blocked.
+the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
 The named fleet remains 92 projects. The current request adds owner claims
 `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
 They were unscored in the 2026-10-24 archive; that historical record is not

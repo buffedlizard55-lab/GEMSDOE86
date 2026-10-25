@@ -19,7 +19,7 @@ ran exactly three experiments, all within the 2 h budget:
 - **E0/E1:** fleet assembly (102 rasters), leakage canary (max 0.8044), and an LLP fit with LOSO CV:
   Spearman 0.855, accepted.
 - **E2:** protocol holdout. Candidate 0.0370 vs HGB 0.1373 and random 0.0475, so **negative**.
-- **E3:** final 44,090-dot TIFF. Uniqueness was measured against 734 rasters; then the shared
+- **E3:** final 44,090-dot TIFF. Uniqueness was measured against 737 rasters (re-measured after merging main); then the shared
   writer and validator ran, followed by the gate.
 
 **3. A single automated gate** ([`scripts/submission_gate.py`](../scripts/submission_gate.py)). It
@@ -46,7 +46,7 @@ compared by pixel position. Before this, every lane failed `registry_complete_fo
 | LLP analytic gradient vs finite differences | max relative error 5.5e-8 (`tests/test_h86j_llp.py`) |
 | `fleet.coverage` vs shared `metric.max_cover` | identical on a synthetic grid |
 | H86G-H collar-3 holdout re-run | **0.1689**, exactly H86G's published number (an independent reproduction of the shared evaluator path) |
-| Registry index | 734/734 measured, 0 errors, `registry_complete_for_index = true` |
+| Registry index | 737/737 measured after the merge with main (734/734 before), 0 errors, `registry_complete_for_index = true` |
 | Writer/validator | single-band float32, EPSG:32611, 3730×3292, sample transform, 0 NaN/Inf, values {0, 1}, 0 dots on catalogue, ZIP byte-identical |
 | Gate on tampered SHA / missing evidence | fails closed (unit tests) |
 

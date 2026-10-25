@@ -172,6 +172,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
                 "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
+    if kind == "h86j_mpc":
+        hn = context.get("holdout_dti_normalized")
+        if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86J-MPC card lacks normalized HOLDOUT-DTI")
+        if (context.get("verdict") != "negative" or context.get("decision") != "DO NOT SUBMIT"
+                or context.get("submission_slots_used") != 0
+                or context.get("gates", {}).get("sgmc_proxy_beats_H33_paired_ci") is not False):
+            raise ValueError("H86J-MPC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
+                "design": hn.get("design", "OOF visible construction"),
+                "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -285,6 +298,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."}
+    if kind == "h86i_sacd":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86I-SACD strict spatial LOQO (quad != fold_i) lane result; the run card is the authoritative experiment receipt. Candidate E1 (0.0832 [0.0673, 0.0997]) and pure cover-blind subsurface E3 (0.0843 [0.0693, 0.0995]) trail scalar pointwise E2 (0.1055 [0.0878, 0.1257]), with 0/691 Spearman rho > 0.90 firings and 0/367 discrete <=50k-dot overlap firings (31.17% vs GEMSDOE32), while literal 17GEMSDOE saturation, 2 off-grid registry rows, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
     if kind == "h86j_llp":
         gate = strict_json(ROOT / "docs/evidence/submission-gate.json")
         if (context.get("verdict") != "negative" or context.get("submission_slots_used") != 0
@@ -297,7 +317,7 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "paired_delta": h["candidate_minus_best"]["delta"],
                 "paired_delta_ci95": h["candidate_minus_best"]["ci95"],
                 "design": "buffered whole components seed 20, OOF visible construction, 37,654 dots, E[k] spacing-greedy, visible collar 2 px (H86J E2)",
-                "caveat": "Current H86J-LLP lane. The live-score emulator is accepted (LOSO Spearman 0.855 over 102 OWNER-REPORTED fleet scores), but on the protocol holdout the candidate (0.0370) trails random (0.0475) and the HGB catalogue posterior (0.1373); the rebuilt H33 recipe also scores below random (0.0286). Automated gate: DO NOT SUBMIT (S3). No slot used."}
+                "caveat": "Current H86J-LLP lane. The live-score emulator is accepted (LOSO Spearman 0.855 over 102 OWNER-REPORTED fleet scores), but on the protocol holdout the candidate (0.0370) trails random (0.0475) and the HGB catalogue posterior (0.1373); the rebuilt H33 recipe also scores below random (0.0286). Automated gate: DO NOT SUBMIT (U3 dense dot-field overlap, S3 holdout). No slot used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
@@ -436,7 +456,7 @@ def measure_all_registry(root: Path = ROOT) -> dict:
                          unique=result["unique"], stop_required=result["stop_required"],
                          complete_accessible_scan=result["complete_accessible_scan"]))
     return dict(schema="gems86.all-artifacts-registry.v1", evidence_class="REGISTRY-MEASUREMENT",
-                measured_utc=datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                measured_utc="2026-10-25T04:07:18+00:00",
                 witness_sha256=pin["sha256"], witness_source=cert["witness_source"],
                 proof_sha256=sha256(root / "docs/evidence/protocol-preflight.json"),
                 registry_rasters_measured=1, registry_complete=False,
@@ -563,6 +583,20 @@ def build_report(root: Path = ROOT) -> dict:
                 or row["complete_accessible_scan"] is not False):
             raise ValueError("Final-dot measurements drifted or contradict the mandatory stop")
         artifact["registry_measurement"] = row
+        # The pinned witness is a sufficient negative under the unchanged
+        # literal-support rule: every allowed pixel is positive in the witness,
+        # so any nonempty candidate has forward overlap 1.0 > 0.70. Preserve a
+        # lane's historical scientific verdict separately, but the current
+        # downloadable artifact decision must remain fail-closed.
+        artifact["historical_lane_verdict"] = artifact["verdict"]
+        artifact["literal_registry_stop"] = True
+        artifact["verdict"] = "negative"
+        artifact["status"] = (
+            "DO NOT SUBMIT — literal witness overlap "
+            f"{row['forward_overlap_3px']:.1f} > 0.70"
+        )
+        artifact["safe_to_submit"] = False
+        artifact["approved_for_weekly_slot"] = False
     inputs[str(registry_path.relative_to(root))] = sha256(registry_path)
     names = [r["submission_name"] for r in artifacts]
     if len(names) != len(set(names)):

@@ -9,9 +9,18 @@ sys.path.insert(0, str(ROOT / 'vendor'))
 
 
 def check_pins():
-    pin = json.loads((ROOT / 'research/template_pin.json').read_text())
-    return all((ROOT / p).is_file() and hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == h
-               for p, h in pin['files'].items())
+    """Check both effective import paths using the release audit's shared guard.
+
+    A missing or malformed pin is a stop, not permission to run a preflight
+    against only the remaining vendored copy.
+    """
+    sys.path.insert(0, str(ROOT))
+    from scripts.audit_release import verify_shared_pins
+    try:
+        checks = verify_shared_pins(ROOT)
+    except (OSError, ValueError, KeyError, TypeError):
+        return False
+    return bool(checks) and all(checks.values())
 
 
 def run(*, data_dir=None, write=True):

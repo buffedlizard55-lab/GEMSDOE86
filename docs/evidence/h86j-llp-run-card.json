@@ -206,7 +206,7 @@
    "gate_pass": true,
    "worst_spearman": 0.30483560916127994,
    "worst_spearman_submission": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-plausibility-126ca59c2801.tif",
-   "rasters": 734
+   "rasters": 737
   },
   "final_dots": {
    "report": "docs/evidence/h86j-llp-registry-final-dots.json",
@@ -217,7 +217,7 @@
    "worst_forward_overlap_dot_field_submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
    "literal_worst_forward_overlap": 1.0,
    "literal_worst_submission": "17GEMSDOE:docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
-   "rasters": 734
+   "rasters": 737
   },
   "chance_overlap": {
    "report": "docs/evidence/h86j-llp-pa86-chance-overlap.json",
@@ -225,12 +225,15 @@
    "informative_firings": 12
   },
   "summary": {
-   "evidence_class": "REGISTRY-MEASUREMENT (734 hash-bound rasters: 655 pinned inventory incl. 4 PA-86-03 pixel-grid derivatives, local downloads, scored fleet, codeload scored extras)",
+   "evidence_class": "REGISTRY-MEASUREMENT (737 hash-bound rasters after merging main: 655 pinned inventory incl. 4 PA-86-03 pixel-grid derivatives, local downloads incl. H86I-SACD/H86J-MPC/UNIQUEDOT-DAMAGERING, scored fleet, codeload scored extras; the candidate itself excluded)",
    "worst_spearman_surface": 0.30483560916127994,
    "worst_spearman_final_dots": 0.05407232850263481,
    "forward_overlap_vs_h33": 0.3636,
    "forward_overlap_vs_h86g_edti": 0.2732,
    "forward_overlap_vs_h86f_ewcs": 0.0448,
+   "forward_overlap_vs_uniquedot": 0.0121,
+   "forward_overlap_vs_h86j_mpc": 0.1739,
+   "forward_overlap_vs_h86i_sacd": 0.0495,
    "worst_forward_overlap_sparse_le_60k": {
     "value": 0.4963,
     "submission": "GEMSDOE48:docs/downloads/GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-nan-outside.tif",

@@ -32,6 +32,21 @@ proportions. This is the first lane in the repo to use live scores as supervisio
 protocol holdout (0.0286 vs 0.0475). This confirms IR-86-H86G-INSTRUMENT without the as-is-leakage
 objection. The owner must choose a holdout rule; the options are in `research/H86J_LLP_REVIEW.md` §6.
 
+## IR-86-MAIN-INVENTORY-DROP-20261025 — main's PR #131 merge dropped the H86I-SACD and H86J-MPC artifacts from the release inventory; repaired here
+
+At `origin/main` `d015d21`, `docs/downloads/` publishes 24 TIFFs, but
+`docs/evidence/download-inventory.json` and `registry/artifact_cards.json` list only 22 of them.
+The H86I-SACD and H86J-MPC entries added by PR #130 (`c1c6e72`) were lost when PR #131 resolved its
+merge with its own inventory. As a result, `scripts/audit_release.py` on main fails with
+"Unregistered or missing published TIFF".
+
+The merge of this branch restores both entries verbatim from `c1c6e72` and adds H86J-LLP, for 25
+registered artifacts. All release evidence was then regenerated with
+`audit_release.py --measure-registry`, `audit_downloads.py --write` and `build_site.py`, and the
+test counts were updated to match. H86J-LLP's uniqueness was re-measured against the merged
+registry: 737 rasters including the three new main TIFFs, with the candidate excluded. Its results
+are unchanged: worst ρ 0.305 (surface) and 0.054 (dots), and the same 12 dense-field firings.
+
 ## IR-86-DISKFULL-20261025 — a full disk silently corrupted one evidence array; the gate's SHA binding caught it and a deterministic recompute restored it byte-exactly
 
 **What filled the disk.** `scripts/restore_data.py` defaults to `--dest data/bridge`, so it put a
@@ -76,7 +91,7 @@ The derivatives are written once to the git-ignored `data/registry_ongrid/` and 
 each tagged with `derived_from_sha256`. This adds 4 comparisons; it removes none. The shared
 comparator (`vendor/gems57/uniqueness.py`) and the thresholds (ρ 0.90, overlap 0.70) are unchanged.
 The same index now also includes the 39 codeload-fetched scored rasters (`data/scored_ext/`). Total:
-734 hash-bound rasters, none missing.
+734 hash-bound rasters, none missing; after merging main, 737.
 
 ## IR-86-LITERAL-WITNESS-DISPOSITION-20261025 — explicit disposition of the literal full-support witness
 
@@ -1297,9 +1312,20 @@ and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
 `registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
 pair); a fleet-refresh session should ledger them and regenerate the feed.
 
+## IR-86-PUBLICATION-AUTH-09C7FC42 (2026-10-25)
+
+Homepage, executive summary, README and build success output said H86G-EDTI was OK to
+submit while its card explicitly denied safe_to_submit and weekly-slot approval, and
+literal release audit failed. Corrected publication instructions to research-only;
+historical amended-gate promotion and binary bytes unchanged. Added regression checks
+rejecting positive upload instructions in the negative-state publisher. See
+`research/SESSION_09C7FC42_REVIEW.md`. No new TIFF, model experiment or portal operation.
+
+
 ## IR-86-085C2B7A — promotion was displayed as upload permission (2026-10-25)
 
 The generated homepage/executive guide and current README said to submit H86G-EDTI even though its scientific card records `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the release audit retains the literal witness stop. Fixed the source generator, regenerated pages and exposed the promoted-for-review identity in `docs/data/summary.json` without changing historical scientific evidence. Regression tests forbid the unsafe direct-upload phrases. No new raster, model experiment or slot. See `research/SESSION_085C2B7A_REVIEW.md`.
+
 ## IR-86-HVFD-COLLAR-ABLATION-20261025 — 2026-10-25 (`H86I-HVFD` 3-arm Dual-Regime Noisy-OR & `buffer_px=3` vs unbuffered collar ablation)
 
 Contemporaneously preregistered lane `H86I-HVFD` (`research/H86I_HVFD_PREREGISTRATION.json`,
@@ -1319,3 +1345,53 @@ trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.104
 vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
+## IR-F548F465 — hash identity is not registry uniqueness (2026-10-25)
+
+`verify_submission_tif.py` printed “unique by pinned digest” after a format/hash check.
+Corrected to format/identity only, with explicit DO NOT SUBMIT and no inferred
+holdout, registry or slot clearance. Added clean fail-closed handling and tests
+for malformed receipts and ZIPs. See `research/SESSION_F548F465_REVIEW.md`.
+
+## IR-86-H86F-EWCS-TRANSQUAD-PU-20261025 — `scripts/run_h86f_ewcs.py` sampled PU training rows across all 4 quadrants rather than strict `quad != fold_i`
+
+Forensic line-by-line inspection of `scripts/run_h86f_ewcs.py` (`line 519`) during
+session `95a42d60` confirmed that while `vis = f["visible"] & fp` properly stripped
+all `11,321` withheld positive pixels and their `3-px` feature collar globally (`0`
+hidden-truth label leakage), `sample_nested_pu(static_mm, s_keys, vis, fp, e_keys, ...)`
+drew visible training positives and unlabeled background rows from the full footprint
+`fp` (including the held-out quadrant `quad == fold_i`) and emitted four full-map
+`37,654`-dot allocations rather than restricting classifier training to the three
+out-of-quadrant regions `fp & (quad != fold_i)`.
+**Decision:** The archived `H86F-EWCS` run card (`docs/evidence/h86f-ewcs-run-card.json`)
+is left untouched per `AGENTS.md` Rule 9, its trans-quadrant PU scope is documented
+explicitly in `H86I-SACD`'s comparator table and on `irregularities.html`, and the new
+`H86I-SACD` runner (`scripts/run_h86i_sacd.py`) enforces strict spatial
+Leave-One-Quadrant-Out training (`train_region = fp & (quad != fold_i)`).
+
+## IR-86-H86I-SACD-01 (2026-10-25) — H86I-SACD executed under strict spatial LOQO (`0/367` `<=50k`-dot firings, `0/691` Spearman firings), auto-marked DO NOT SUBMIT (`verdict = "negative"`)
+
+Session `95a42d60` preregistered four untried hypotheses (`registry/h86i_hypotheses.json`,
+`research/H86I_SACD_PREREGISTRATION.json`) prior to any holdout evaluation and executed
+Rank-1 `H86I-SACD` (*Spin-2 Coulomb-Projected Strike Concordance, Jacobsen
+Upward-Continuation Depth-Attenuation & Bekker-Davis Alluvial-Burial Propensity
+Submodular Max-Cover*) across 3 fixed arms (`<= 3` experiment / `<= 2` hour budget,
+`1,323.96 s` wall time). All `33` features passed single-feature ROC-AUC leakage
+canaries (`max = 0.7639 <= 0.90`). Under strict `quad != fold_i` LOQO (`11,321`
+withheld positives, `1,000` paired `20 km` block-bootstrap draws), scalar unweighted
+pointwise `E2` achieved `HOLDOUT-DTI = 0.1055 [0.0878, 0.1257]` (beating `R0_D25`
+`0.0931` and `R0_D28` `0.0273`), whereas `E1` (`0.0832 [0.0673, 0.0997]`) and pure
+cover-blind subsurface `E3` (`0.0843 [0.0693, 0.0995]`) trailed `E2` (`paired delta =
+-0.0223 [-0.0352, -0.0104]`) due to Fold-0 forced inter-quadrant quantile equalization
+over-allocating dots into lower-density `NE` (`10,797` dots) and submodular plateau
+clustering on broad diffuse basin posteriors. Full post-merge `v2` registry scans (`691 / 693`
+valid competition-grid rasters including `H86G-EDTI`, `H86I-RKSC`, and `H86I-HVFD`, `0` missing)
+confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap firings
+(`31.17%` vs `GEMSDOE32` `h33-h33-2-b2`, `55.60%` vs `H86F-EWCS`), while failing closed on
+`17GEMSDOE` saturation, space-filling lattices, and `2` off-grid upstream rows (`PA-86-02`
+`FAILED_CLOSED_NO_REPORT`).
+**Decision:** The unique `[0, 1]` GeoTIFF (`docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif`,
+SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
+strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
+`0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
+`protocol_preflight.require_feasible()` (`58` CLI builders + `8` imported orchestrators).
