@@ -40,7 +40,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"]) == 40
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"]) == 41
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
