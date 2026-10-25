@@ -1,5 +1,15 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**
+
+**OK to submit: NO.** No GeoTIFF was written. `safe_to_submit` is false, `approved_for_weekly_slot` is false, and no weekly slot was used. There is no authorized filename and no note to paste.
+
+The frozen hypothesis was that a catalogue-missing fault keeps a magnetic and gravity edge after the expected edge of the *visible* faults is subtracted. On the shared evaluator `gems57-pooled-hide-v2` (11,321 withheld positives, 1,000 physical-block draws), HOLDOUT-DTI for that residual was **0.0313 [0.0230, 0.0395]**. The raw-edge control was **0.0367 [0.0272, 0.0457]**. The paired difference was **−0.0054 [−0.0082, −0.0026]**, entirely below zero. These are HOLDOUT-DTI values, not organizer scores.
+
+The final 37,654 dots were also a duplicate: **70.13%** fell within 3 pixels of `GEMSDOE46`'s 37,654-dot corroborated raster, whose own 3-pixel halo covers only 19.65% of the footprint. The protocol stops there. No file was written to dodge that stop.
+
+Pages: [download decision](docs/index.html) · [how to submit, and why not now](docs/executive-summary.html) · [run card](docs/evidence/h86l-vfgr-run-card.json) · [three-pass review](research/SESSION_20261025_H86L_VFGR_REVIEW.md). The standing request remains in [PROMPT.md](PROMPT.md) and below. Read it at the start of work.
+
 ## Latest executed strict-LOQO lane — 2026-10-25 (`H86K-STDP`, session `8114f7b4`): **NEGATIVE — DO NOT SUBMIT** (audit-only GeoTIFF generated & auto-validated; `0` slots spent)
 
 - **Immediate human-free submission answer:** **NO — `DO NOT SUBMIT` (`verdict = "negative"`, `submission_ready = false`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`).** [`gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif) · [`one-TIFF ZIP`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.zip) · [`writer receipt`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.json) (`3ac7fa1d...`, `37,654` unit dots, `0` NaN/Inf, values strictly in `[0, 1]`, `0` mapped-catalogue dots, `110`-char note `H86K-STDP Salem-pullback+geotherm LOQO DCELF (HOLDOUT 0.1380, SGMC 0.1133); v2 gate fail-closed; DO NOT SUBMIT`) is **100% locally format-valid for audit download (`31/31` artifacts pass), yet fail-closed `DO NOT SUBMIT` without human intervention**.
