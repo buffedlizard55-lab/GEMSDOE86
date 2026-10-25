@@ -120,7 +120,7 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 withheld_positives=None, value=None, ci95=None)
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
-                "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
+                "caveat": "No HOLDOUT-DTI is assigned to this exported variant by the release audit; a score from another configuration or a leakage-suspect diagnostic must not be inherited as its validation."}
     if kind == "blindgeothermal_candidate":
         if context.get("evidence_class") != "RUN-CARD":
             raise ValueError("Archived blind-geothermal candidate lacks its original run-card evidence class")

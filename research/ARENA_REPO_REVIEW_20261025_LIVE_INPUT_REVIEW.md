@@ -94,3 +94,10 @@ The following review links were already catalogued in the repository; this sessi
 ## Run card
 
 See [`docs/evidence/session-live-input-review-run-card.json`](../docs/evidence/session-live-input-review-run-card.json) for the machine-readable card. Its verdict is **negative**: the request's candidate generation, holdout, uniqueness and submission-authorization requirements were not satisfied.
+
+
+## Post-review integration addendum — main advanced during PR review
+
+After the three-pass review and its original verification, `main` advanced to `b49a373` with the separate H86L-FMC negative/audit-only TIFF and exposed an existing registration gap (IR-H). This branch now registers that TIFF and run card in the inventory/card map without granting it a validated HOLDOUT-DTI score or upload status. The refreshed local release/download audits report **32/32** format/integrity checks passing; the current decision is still **DO NOT SUBMIT**. This is accounting and publication-gate repair only. H86L-FMC's leakage-suspect holdout diagnostic (0.0000) and duplicate-overlap failure (0.886) remain negative evidence from upstream, not an experiment or candidate produced by this review.
+
+The live-input audit was refreshed at `2026-10-25T16:54:42Z`: the native training TIFF remains absent, 0/21 prepared-array paths are hash-verified, and the shared feature cache remains unestablished. The protocol preflight still blocks every nonempty candidate under the unchanged witness overlap rule. The original review's test counts and registry measurement remain historical to its pre-integration run; post-integration checks are recorded in the PR and current generated evidence.
