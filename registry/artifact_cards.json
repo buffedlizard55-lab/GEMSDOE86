@@ -169,6 +169,13 @@
       "context": "docs/evidence/h86i-sacd-run-card.json",
       "holdout_kind": "h86i_sacd",
       "stem": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros"
+    },
+    {
+      "lane": "H86I-RLMS Riedel-listric + 3DEP 1m/10m + GeoDAWN K/eTh submodular PU (3DEP/GeoDAWN +0.0264 over native19, overall 0.1257 < EWCS 0.1723, DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-rlms-run-card.json",
+      "context": "docs/evidence/h86i-rlms-run-card.json",
+      "holdout_kind": "h86i_rlms",
+      "stem": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros"
     }
   ]
 }

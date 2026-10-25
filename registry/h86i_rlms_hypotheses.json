@@ -1,0 +1,173 @@
+{
+  "schema": "gems86.h86i-hypothesis-queue.v1",
+  "session_branch": "arena/6bbd9586-gemsdoe86",
+  "frozen_utc": "2026-10-25T03:38:00+00:00",
+  "precedence": "Proposed, ranked, and frozen BEFORE any H86I feature construction, PU training, holdout DTI evaluation, or candidate raster generation.",
+  "lane_assignment": "H86I-RLMS",
+  "protocol_constraints": {
+    "single_method_lane": "H86I-RLMS",
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "canary_auc_limit": 0.90,
+    "surface_spearman_limit": 0.90,
+    "dot_overlap_3px_limit": 0.70,
+    "current_same_split_best_lane": "H86F-EWCS",
+    "current_same_split_best_holdout_dti": 0.17232456905148233
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86I-RLMS",
+      "title": "Riedel-Listric Multi-Scale Submodular Blind-Fault Continuation (Up-Dip Hanging-Wall Projection + Spin-2 Nematic Director Coherence + 3DEP 1m/10m Micro-Scarp/Chi + GeoDAWN K/eTh + 80/20 OOF Submodular Kernel Allocation)",
+      "status": "SELECTED_FOR_EXECUTION",
+      "layers": [
+        {"band": 1, "name": "mag_anom"},
+        {"band": 2, "name": "rtp"},
+        {"band": 3, "name": "tmi_hg"},
+        {"band": 4, "name": "geod_2ndinv"},
+        {"band": 5, "name": "iso_grav_anom_slope"},
+        {"band": 6, "name": "tc"},
+        {"band": 7, "name": "geod_shearrate"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"band": 9, "name": "tmi_vg"},
+        {"band": 10, "name": "deq_n100a15"},
+        {"band": 11, "name": "iso_grav_anom_vg"},
+        {"band": 12, "name": "det_elev"},
+        {"band": 13, "name": "iso_grav_anom"},
+        {"band": 14, "name": "tmi"},
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 16, "name": "ieq_n100a15"},
+        {"band": 17, "name": "cond_surf"},
+        {"band": 18, "name": "iso_grav_anom_hg"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_pinned_sources": [
+        {
+          "path": ".cache/external/lidar_scarp_features_u8.tif",
+          "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+          "official_source": "USGS 3D Elevation Program (3DEP) 1 m LiDAR DEM scarp planes (706/716 tiles; Band 12 valid mask respected via IEEE NaN missing-value routing)",
+          "official_url": "https://www.usgs.gov/3d-elevation-program",
+          "license": "Public Domain (USGS CC0 1.0)"
+        },
+        {
+          "path": ".cache/external/topo_10m_derived_100m_u8.tif",
+          "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+          "official_source": "USGS 3DEP 1/3 arc-second (10 m) seamless DEM sub-pixel curvature & lineament coherence on EPSG:32611 100 m grid",
+          "official_url": "https://www.usgs.gov/3d-elevation-program",
+          "license": "Public Domain (USGS CC0 1.0)"
+        },
+        {
+          "path": ".cache/external/dem10_chi_100m_i16.tif",
+          "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+          "official_source": "USGS 3DEP 10 m fluvial chi-step & normalized channel steepness k_sn disequilibrium on EPSG:32611 100 m grid",
+          "official_url": "https://www.usgs.gov/3d-elevation-program",
+          "license": "Public Domain (USGS CC0 1.0)"
+        },
+        {
+          "path": ".cache/external/geodawn_rad_u8.tif",
+          "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+          "official_source": "USGS GeoDAWN Airborne Radiometric K, eTh, eU, TC Compilation (DOI 10.5066/P93LGLVQ)",
+          "official_url": "https://doi.org/10.5066/P93LGLVQ",
+          "license": "Public Domain (USGS CC0 1.0)"
+        },
+        {
+          "path": ".cache/external/geodawn_extensions_u8.tif",
+          "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+          "official_source": "USGS GeoDAWN Radiometric Ratio & Upward-Continued TMI Extensions (DOI 10.5066/P93LGLVQ)",
+          "official_url": "https://doi.org/10.5066/P93LGLVQ",
+          "license": "Public Domain (USGS CC0 1.0)"
+        }
+      ],
+      "physical_signature": "Resolves four compounding blind-fault failure modes in H86F-EWCS: (1) Basin-and-Range listric/planar 45-60 deg dipping normal faults displace their 0.5-1.1 km deep Cenozoic basin density contrast (Bands 5, 11, 13, 15, 18) and smectite/brine MT plume (Band 17) horizontally into the hanging wall by 500-1100 m (5-11 px, outside the 300 m DTI kernel), so bilinear up-dip projection along +n_HW maps deep gravity/conductivity anomalies back onto the emergent footwall trace; (2) branch-cut-free spin-2 nematic structure directors (cos 2psi, sin 2psi) across Laplace gravity g_zz, Miller magnetic tilt (Bands 3, 9), RTP/TMI remanence contrast (Bands 1, 2, 14), basement depth (Band 15), 1 m LiDAR scarps, and diffused fold-visible fault strikes enforce kinematic strike alignment and Riedel R-shear relay obliquity while vetoing uncorroborated E-W airborne flight-line corrugations; (3) sub-pixel 1 m 3DEP LiDAR micro-scarps, 10 m profile curvature/fluvial chi knickpoints, Cordell compaction-stripped sub-playa horst steps, and GeoDAWN K/eTh adularia-illite metasomatic enrichment detect degraded piedmont and playa traces; and (4) 5-fold (80%->20%, 3 px buffered-component) out-of-fold PU calibration + Minoux lazy-greedy submodular 300 m triangular-kernel allocation replaces H86F-EWCS's scale-mismatched 50/50 split and pointwise Poisson-disc thinning at exact matched 37,654-dot cardinality.",
+      "why_blind_not_mapped": "Pre-3DEP USGS/INGENIOUS Quaternary fault compilations missed (a) sub-meter Holocene/Late-Pleistocene scarps across active canyon-mouth alluvial fans only resolvable in 1 m LiDAR / 10 m profile curvature, (b) buried range-front and intrabasinal horst faults whose gravity/MT expressions are shifted 500-1100 m into the hanging wall away from the sub-alluvial trace, and (c) hydrothermal upflow accommodation zones marked by K/eTh adularia-illite alteration and RTP magnetite destruction rather than bedrock cliffs.",
+      "non_fault_mimic": "Pleistocene Lake Lahontan (~1,335 m) and Lake Bonneville wave-cut shoreline beach ridges, E-W USGS GeoDAWN airborne survey leveling seams, and partial 3DEP 1 m LiDAR tile boundaries (explicitly mitigated via Lahontan iso-elevation contour veto, spin-2 E-W flight-line veto, and IEEE NaN missing-value routing on non-LiDAR tiles).",
+      "falsifier": "Falsified if E1_rlms_full_submodular fails to beat both its unprojected/disc-thinned ablation E3 and the reproduced same-split repository record H86F-EWCS (HOLDOUT-DTI 0.172325) with a positive paired 20 km spatial-block bootstrap 95% CI on gems57-pooled-hide-v2 (11,321 withheld positives).",
+      "novelty": "First GEMSDOE86 lane to combine hanging-wall down-dip -> footwall up-dip spatial back-projection of gravity/MT/throw fields, branch-cut-free spin-2 nematic multi-physics director phase-locking + Riedel relay obliquity, NaN-routed 1 m 3DEP LiDAR + 10 m fluvial chi + GeoDAWN K/eTh metasomatism, 80/20 buffered-component OOF PU calibration, and exact Minoux lazy-greedy submodular 300 m triangular-kernel allocation at fixed 37,654-dot budget.",
+      "expected_holdout_potential": "Highest directional potential in the H86I queue: targets numerator TP_w directly via sub-kernel footwall alignment, sub-pixel micro-scarp resolution, 80/20 OOF density calibration, and exact 300 m triangular-kernel submodular crest packing at matched 37,654-dot mass.",
+      "implementation_cost": "Medium (~20 minutes wall-clock on 2 vCPUs, <750 MB peak RSS via float16 memmap streaming; zero new network downloads beyond SHA-pinned .cache/external/ rasters)."
+    },
+    {
+      "rank": 2,
+      "id": "H86I-CHTD",
+      "title": "Conjugate Horsetail & Transfer-Zone Damage Dilatancy via Tensorial Strain-Rate Eigen-Decomposition",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET",
+      "layers": [
+        {"band": 3, "name": "tmi_hg"},
+        {"band": 4, "name": "geod_2ndinv"},
+        {"band": 7, "name": "geod_shearrate"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"band": 9, "name": "tmi_vg"},
+        {"band": 10, "name": "deq_n100a15"},
+        {"band": 16, "name": "ieq_n100a15"},
+        {"band": 17, "name": "cond_surf"}
+      ],
+      "external_pinned_sources": [],
+      "physical_signature": "Decomposes horizontal GPS strain rates into principal eigenvalues (eps1, eps2) = 0.5*Band8 +/- Band7 and kinematic transtensional regime angle phi_kin = atan2(Band8, 2*Band7) to separate Walker Lane dextral wrench transfer zones from pure Basin-and-Range normal extension, gating horsetail splay and accommodation-zone brecciation where microseismic swarm productivity (Bands 10, 16) coincides with positive volumetric opening (eps1 > 0, eps2 < 0) and deep MT fluid interconnectivity (Band 17).",
+      "why_blind_not_mapped": "Walker Lane / Basin-and-Range transfer zones and horsetail terminations partition slip across dozens of sub-millimeter/yr buried strands across valley floors without building discrete range-front scarps, yet host ~22% of blind Great Basin geothermal systems (Faulds & Hinz 2015).",
+      "non_fault_mimic": "Broad 25-40 km GPS station interpolation lobes and mining dewatering or geothermal reinjection induced microseismicity.",
+      "falsifier": "Falsified if standalone or incremental HOLDOUT-DTI over scalar strain invariants has a 95% paired spatial-block bootstrap CI overlapping or below zero.",
+      "novelty": "Prior WVB and EWCS lanes used only scalar sqrt(shear * dilat) without principal eigenvalue regime angle phi_kin or wrench-to-extensional horsetail termination gating.",
+      "expected_holdout_potential": "Moderate positive complementary lift inside transtensional accommodation corridors, bounded standalone by the ~20 km spatial wavelength of GPS strain-rate grids.",
+      "implementation_cost": "Low (~15 minutes, native 19-band features only)."
+    },
+    {
+      "rank": 3,
+      "id": "H86I-PBLS",
+      "title": "Paleohydrologic Boiling-Zone Sinter/Travertine & Shallow 2-m Thermal Plume Up-Hydraulic-Head Inversion",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET",
+      "layers": [
+        {"band": 2, "name": "rtp"},
+        {"band": 12, "name": "det_elev"},
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 17, "name": "cond_surf"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_pinned_sources": [
+        {
+          "path": "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+          "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+          "official_source": "DOE Geothermal Data Repository (GDR) Submission 1391: 3,800 shallow 2-m temperature probes (Coolbaugh/Sladek GBCGE)",
+          "official_url": "https://gdr.openei.org/submissions/1391",
+          "license": "CC BY 4.0"
+        },
+        {
+          "path": "data/external/paleo_geothermal_regional.zip",
+          "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+          "official_source": "DOE Geothermal Data Repository (GDR) Submission 1391: 726 paleo-geothermal sinter, travertine & tufa deposits",
+          "official_url": "https://gdr.openei.org/submissions/1391",
+          "license": "CC BY 4.0"
+        }
+      ],
+      "physical_signature": "Inverts advective Peclet-number shallow groundwater outflow plumes: buoyant hydrothermal fluids exit blind fault conduits at the water table and flow laterally down hydraulic head (-grad smoothed topography), displacing shallow 2-m thermal anomalies and carbonate/silica spring aprons 0.5-3 km down-slope of the blind feeder fault; anisotropic up-head Wiener back-projection coupled with RTP magnetite-destruction troughs (Band 2) and MT clay caps (Band 17) recovers the linear feeder structure.",
+      "why_blind_not_mapped": "Hydrothermal silica/carbonate self-sealing cements and armors blind feeder faults (e.g., Bradys, Desert Peak, McGinness Hills) under Quaternary alluvium while only displaced lateral outflow plumes reach the surface.",
+      "non_fault_mimic": "Long-distance lateral thermal outflow confined in permeable Quaternary basalt or paleochannel gravels, and wave-precipitated pluvial Lake Lahontan shoreline tufa towers.",
+      "falsifier": "Falsified if up-head Peclet back-projection fails to outperform symmetric radial thermal/sinter halos on gems57-pooled-hide-v2.",
+      "novelty": "CTHB used isotropic radial spring/sinter proximity halos (which placed dots on displaced outflow aprons rather than up-head feeder faults); H86H-BPTG proposed elastic plate biharmonic flexure rather than hydraulic-head Peclet plume inversion.",
+      "expected_holdout_potential": "High precision inside active/paleo hydrothermal districts (~10% of footprint), lower footprint-wide recall on cold blind Quaternary faults.",
+      "implementation_cost": "Medium (~45 minutes including point-survey spatial sampling bias correction)."
+    },
+    {
+      "rank": 4,
+      "id": "H86I-SGBD",
+      "title": "Spectral Cordell Compaction-Stripped Intrabasinal Horst & Detachment Step Inversion",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET",
+      "layers": [
+        {"band": 5, "name": "iso_grav_anom_slope"},
+        {"band": 11, "name": "iso_grav_anom_vg"},
+        {"band": 12, "name": "det_elev"},
+        {"band": 13, "name": "iso_grav_anom"},
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 18, "name": "iso_grav_anom_hg"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_pinned_sources": [],
+      "physical_signature": "Fits a multi-exponential Cordell (1973) sediment-compaction gravity law to Band 15 depth_to_base_surf and strips the smooth basin-fill compaction bowl from Band 13 iso_grav_anom, isolating short-wavelength (100-500 m) residual horizontal gravity gradient ridges over dense Paleozoic/Mesozoic intrabasinal horst blocks beneath zero-relief playas.",
+      "why_blind_not_mapped": "Intrabasinal horst-bounding faults beneath active evaporite playas (e.g., Carson Sink, Dixie Valley, Salt Wells) have <0.2 deg surface slope and rapid seasonal sedimentation that completely erases geomorphic scarps.",
+      "non_fault_mimic": "Unfaulted buried Mesozoic plutons, dense Miocene basaltic sills interbedded in basin fill, and sparse gravity station interpolation artifacts across unroaded playas.",
+      "falsifier": "Falsified if compaction-stripped residual gradients fail to improve sub-playa (slope < 1 deg) hidden-fault recovery over raw Band 5 iso_grav_anom_slope.",
+      "novelty": "GFCO used wavenumber upward continuation and GZZD used source-free Laplace vertical curvature; neither inverted the non-linear Cordell sediment-compaction density-depth relation against Band 15.",
+      "expected_holdout_potential": "Moderate standalone gain concentrated in flat basin interiors (<1 deg slope).",
+      "implementation_cost": "Low (~20 minutes, pure native bands)."
+    }
+  ]
+}
