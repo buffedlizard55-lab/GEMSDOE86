@@ -120,6 +120,13 @@
       "context": "docs/evidence/h86f-gzzd-run-card.json",
       "holdout_kind": "h86f_gzzd",
       "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-hvfd-run-card.json",
+      "context": "docs/evidence/h86i-hvfd-run-card.json",
+      "holdout_kind": "h86i_hvfd",
+      "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
     }
   ]
 }

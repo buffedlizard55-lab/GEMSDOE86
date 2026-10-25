@@ -28,11 +28,13 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src"), str(ROOT / "vendor")]
 from gems57 import emit, evaluate_holdout as EH, grid, holdout  # noqa: E402
 from gems57 import submission_writer, validate  # noqa: E402
 from gems86_pcc.features import build_polarity_features, feature_names, rank01  # noqa: E402
+from scripts import protocol_preflight  # noqa: E402
 from scripts.protocol_preflight import require_like_for_like  # noqa: E402
 
 BUDGET = 44_090
 SEED = 20
 FEATURE_TIF = ROOT / "data/training_features.tif"
+R0_G25 = ROOT / "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
 D28 = ROOT / "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
 H33 = ROOT / "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
 OUT_DIR = ROOT / "docs/downloads"
@@ -193,7 +195,34 @@ def rho_firings(report: dict) -> int | None:
     return None if value is None else int(value)
 
 
+def holdout_binary_control(
+    dots: np.ndarray, folds: list[dict], fp: np.ndarray, collar_px: float = 2.0
+) -> tuple[np.ndarray, dict]:
+    """Evaluate a pre-thinned binary dot control on holdout folds without re-decimating zero ties."""
+    terms = []
+    per_fold = {}
+    base = np.asarray(dots, dtype=bool) & fp
+    for fold in folds:
+        vis = np.asarray(fold["visible"], dtype=bool)
+        allowed = fp & ~vis & (ndi.distance_transform_edt(~vis) > collar_px)
+        emitted = (base & allowed).astype(np.float32)
+        result, block_terms = EH.evaluate(emitted, fold, fp, block_side=200)
+        terms.append(block_terms)
+        per_fold[fold["name"]] = {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": EH.VERSION,
+            "dti": result["dti"],
+            "n_truth": result["n_truth"],
+            "emitted": result["n_emitted"],
+            "collar_px": float(collar_px),
+        }
+    return np.sum(terms, axis=0), per_fold
+
+
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.time()
     preregistration = require_preregistration()
     preflight = require_like_for_like()
@@ -231,6 +260,10 @@ def main() -> int:
                 terms, per = holdout_arm(load_binary(path).astype(np.float32), folds, fp, BUDGET)
                 holdout_terms[label] = terms
                 holdout_per_fold[label] = per
+        if R0_G25.is_file():
+            terms, per = holdout_binary_control(load_binary(R0_G25), folds, fp, collar_px=2.0)
+            holdout_terms["R0_G25_foldfair_collar"] = terms
+            holdout_per_fold["R0_G25_foldfair_collar"] = per
     pooled = None
     if holdout_terms:
         pooled = EH.pooled_summary(holdout_terms, draws=1000, seed=86_1025, candidate=CANDIDATE)

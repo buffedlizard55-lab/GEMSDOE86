@@ -1089,3 +1089,38 @@ valid competition-grid rasters including `H86F-GZZD` and `H86F-PCC`) and **halts
 dot placement and before GeoTIFF serialization** (`final_dots_placed = False`, `candidate_tif_serialized = False`).
 Also added `holdout_binary_control` (`GEMSDOE25` `91eae1ca42ec...`, `d_vis > 2.0 px`, `HOLDOUT-DTI = 0.096086`)
 to `scripts/run_h86e_mmt.py` and gated `write_h86e_tif` (`52` CLI builders in `tests/test_builder_preflight.py`).
+
+
+## IR-86-PCC-PSTD-MAIN-PREFLIGHT-20261025 — 2026-10-25 (`run_h86f_pcc.py` & `run_h86h_pstd.py` `require_feasible()` at `main()` and `R0_G25_foldfair_collar` comparator)
+
+`scripts/run_h86f_pcc.py` and `scripts/run_h86h_pstd.py` invoked `protocol_preflight.require_like_for_like()`
+inside their lane helper functions without calling `require_feasible()` at the start of `main()` and were not
+listed in `tests/test_builder_preflight.py::BUILDERS`; additionally, `scripts/run_h86f_pcc.py` only computed the
+post-pruned `R0_D28_visible_collar` control (`0.0286`) rather than the unpruned 44,090-dot `GEMSDOE25`
+`R0_G25_foldfair_collar` control (`0.0961`), and `src/gems86_pstd/features.py::_rank01` used
+`scipy.stats.rankdata(vals, method="average")` instead of `method="min"` (`(r - 1.0) / max(n - 1, 1)`).
+**Decision:** Added `require_feasible()` at the start of `main()` in `scripts/run_h86f_pcc.py`,
+`scripts/run_h86h_pstd.py`, and `scripts/run_h86i_hvfd.py` (`55` CLI builders + `8` imported orchestrators in
+`tests/test_builder_preflight.py`); added `holdout_binary_control()` (`R0_G25_foldfair_collar`) to
+`scripts/run_h86f_pcc.py` while preserving historical `docs/evidence/h86f-pcc-run-card.json` unedited; and
+updated `src/gems86_pstd/features.py::_rank01` to `method="min"`.
+
+
+## IR-86-HVFD-COLLAR-ABLATION-20261025 — 2026-10-25 (`H86I-HVFD` 3-arm Dual-Regime Noisy-OR & `buffer_px=3` vs unbuffered collar ablation)
+
+Contemporaneously preregistered lane `H86I-HVFD` (`research/H86I_HVFD_PREREGISTRATION.json`,
+`scripts/run_h86i_hvfd.py`, `docs/evidence/h86i-hvfd-run-card.json`) generated audit-only GeoTIFF
+`docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif` (`sha256:
+0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58`, `37,654` unit dots, `15/15` local format
+checks PASS). While `E1_hvfd_blind_vent_conduit` (`0.0475` `[0.0364, 0.0585]`) beat all prior zero-catalogue
+algebraic lanes (`0.0290–0.0327`) by `+45%` to `+64%` and `E2_hvfd_foldfair_vent_relay_noisyor` (`0.1013`
+`[0.0886, 0.1139]`) beat fold-fair `R0_G25_foldfair_collar` (`0.0961` `[0.0828, 0.1090]`), `E2` (`37,654` dots,
+`d_vis > 2.0 px`) trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.1040`
+`[0.0917, 0.1166]`, paired `E2 - E3 = -0.0027` `[-0.0054, -0.0003]`) on `buffer_px=3` whole-component holdout
+as well as the 48-feature supervised GBDT archived same-split best `H86C-KSLB` (`0.1241` `[0.1080, 0.1403]`).
+Furthermore, although `H86I-HVFD` has `rho_firings = 0` (`worst_spearman = 0.0625`) and `<= 58.59% < 70%` 3-px
+forward overlap against all `468` sparse (`<= 100k` dot) registry submissions (`21.20%` vs `h33-2-b2`), it
+measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and encounters the `2`
+off-grid historical inventory rows (`errors = 2`), so it is automatically marked `verdict: "negative"`,
+`decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
