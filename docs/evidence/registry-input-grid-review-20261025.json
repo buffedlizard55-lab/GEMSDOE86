@@ -1,14 +1,14 @@
 {
   "schema": "gems86.registry-input-grid-review.v1",
   "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
-  "measured_utc": "2026-10-25T02:39:47+00:00",
-  "registry_index_sha256": "0ac9a7dff75303a8053f18b5b3633d64a2d90c6e2b3eabdeb005dad519f2f7eb",
+  "measured_utc": "2026-10-25T13:44:25+00:00",
+  "registry_index_sha256": "26005ec6a9d01067138363110b54366c7a0cab080a46eff042069fd1df45b2e0",
   "inventory_rasters_missing": [],
-  "indexed_rasters_expected": 690,
-  "indexed_rasters_present": 690,
-  "byte_verified_rasters": 690,
+  "indexed_rasters_expected": 700,
+  "indexed_rasters_present": 700,
+  "byte_verified_rasters": 700,
   "byte_coverage_complete": true,
-  "grid_compatible_rasters": 688,
+  "grid_compatible_rasters": 698,
   "grid_incompatible_or_invalid_rasters": 2,
   "all_grids_compatible": false,
   "incompatible_or_invalid_records": [
@@ -24572,6 +24572,330 @@
       "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
     },
     {
+      "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 158155,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+      "measured_bytes": 158155,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 136478,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+      "measured_bytes": 136478,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 136667,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+      "measured_bytes": 136667,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 138155,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d",
+      "measured_bytes": 138155,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 137860,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+      "measured_bytes": 137860,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 120211,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f",
+      "measured_bytes": 120211,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 139489,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
+      "measured_bytes": 139489,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 159505,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+      "measured_bytes": 159505,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 133861,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94",
+      "measured_bytes": 133861,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
       "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
       "sources": [
         "GEMSDOE86-local:docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif"
@@ -24583,6 +24907,42 @@
       "probability_values_checked": false,
       "measured_sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
       "measured_bytes": 133010,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 121380,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+      "measured_bytes": 121380,
       "grid": {
         "shape": [
           3730,
