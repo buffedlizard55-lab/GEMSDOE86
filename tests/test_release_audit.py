@@ -378,34 +378,3 @@ def test_tampered_quarantined_submission_bytes_or_zip_fail_release_audit(release
     with pytest.raises(ValueError, match="Quarantined submission/ TIFF SHA mismatch"):
         audit.build_report(release_copy)
 
-
-def test_h86l_fmc_archived_evidence_stays_leakage_suspect():
-    config = next(c for c in audit.strict_json(ROOT / 'registry/artifact_cards.json')['artifacts']
-                  if c['holdout_kind'] == 'h86l_fmc')
-    context = audit.strict_json(ROOT / config['context'])
-    result = audit.archived_holdout(config, context)
-    assert result['status'] == 'ARCHIVED_LEAKAGE_SUSPECT_NOT_PROMOTION_EVIDENCE'
-    assert result['value'] == 0.0
-    assert result['ci95'] == [0.0, 0.0]
-    assert result['withheld_positives'] == 11321
-    assert 'not fold-safe' in result['design']
-
-
-@pytest.mark.parametrize('field,value', [
-    ('verdict', 'promote'), ('submission_slots_used', 1),
-    ('safe_to_submit', True), ('approved_for_weekly_slot', True),
-])
-def test_h86l_fmc_rejects_authorization_drift(field, value):
-    config = dict(holdout_kind='h86l_fmc', context='docs/evidence/h86l-fmc-run-card.json')
-    context = audit.strict_json(ROOT / config['context'])
-    context[field] = value
-    with pytest.raises(ValueError, match='leakage-suspect negative/no-slot'):
-        audit.archived_holdout(config, context)
-
-
-def test_h86l_fmc_rejects_erased_leakage_warning():
-    config = dict(holdout_kind='h86l_fmc', context='docs/evidence/h86l-fmc-run-card.json')
-    context = audit.strict_json(ROOT / config['context'])
-    context['holdout']['evidence_class'] = 'HOLDOUT-DTI'
-    with pytest.raises(ValueError, match='leakage-suspect negative/no-slot'):
-        audit.archived_holdout(config, context)

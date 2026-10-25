@@ -1,5 +1,5 @@
 {
-  "scope": "All registered published research TIFFs, including H86L-FMC. Inventory registration is audit-only, not scientific promotion or upload authorization.",
+  "scope": "All registered published research artifacts; format validity is not scientific promotion, registry clearance or slot authorization. No selector ran.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",

@@ -220,7 +220,7 @@
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
     },
     {
-      "lane": "H86L-FMC fleet minority consensus (negative; full-catalogue ancestry leakage; duplicate)",
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
       "card": "docs/evidence/h86l-fmc-run-card.json",
       "context": "docs/evidence/h86l-fmc-run-card.json",
       "holdout_kind": "h86l_fmc",

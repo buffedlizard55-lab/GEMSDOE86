@@ -16,8 +16,8 @@
   "shared_tool_hashes_match": true,
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
-    "docs/evidence/download-inventory.json": "97b35f2c0cc9f38d4c3f6bb16816b0e48b45f4625a85738e87188d9d4638dd9c",
-    "registry/artifact_cards.json": "0accb8da2dd16a3d5caf85bc1b9587c8b71d9691a8a5679f4cc59b359d05268e",
+    "docs/evidence/download-inventory.json": "fdc19ff06632c2b96b36d98e299f3c567b81f535e6364814049c0371590f7a16",
+    "registry/artifact_cards.json": "5a0c95b22eeedb95db032e58c1cb979cb0764838b594264c1e2254fbb2e82813",
     "docs/evidence/protocol-preflight.json": "3f0a91d35f6a43b75b0493ce9f75c78416797a76521d8e40b0f5677a8a81ff20",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
@@ -49,7 +49,7 @@
     "docs/evidence/h86k-psc-run-card.json": "6d1edab1d43daef315f656aa07b249e6cec6bd783a84a73cd1f1312f00778a89",
     "docs/evidence/h86k-stdp-run-card.json": "fe2d0c2701e9b0226f56360426a5cf56ec98998ca08d739ce901f55be172ea4a",
     "docs/evidence/h86l-fmc-run-card.json": "14e3f737d59ae910cccdcf46a1701462acb9407463baeb7ebec84379aff7de1d",
-    "docs/evidence/all-artifacts-registry.json": "b31c6b0649eb64502e9c51a5102b85bce2e5ca85ecec0d7ba525577c29ede3b4"
+    "docs/evidence/all-artifacts-registry.json": "d5ff6cc8adc4c09254f0e27df81499f6a91c00f4c50a9fbaa746c988e8a39020"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -3411,7 +3411,7 @@
       "literal_registry_stop": true
     },
     {
-      "lane": "H86L-FMC fleet minority consensus (negative; full-catalogue ancestry leakage; duplicate)",
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
       "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
       "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
       "bytes": 148836,
@@ -3498,8 +3498,8 @@
           0.0,
           0.0
         ],
-        "design": "Archived fleet-as-is on hidden components; not fold-safe hide-and-recover",
-        "caveat": "Fleet inputs were constructed using the full catalogue. Passing the AUC canary cannot remove this ancestry leakage. The archived HOLDOUT-DTI is not promotion evidence; the archived dot-overlap gate also failed. DO NOT SUBMIT; no slot used."
+        "design": "Fleet derived with full catalogue; not fold-visible hide-and-recover evidence",
+        "caveat": "Archived H86L-FMC result, not recomputed. Passing a feature canary does not cure fleet-ancestry leakage. Final-dot overlap exceeded the registry limit. Publication registration and format validity do not establish uniqueness, performance or slot authorization. DO NOT SUBMIT."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,

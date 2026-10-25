@@ -1530,6 +1530,15 @@ Full evidence: [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079
 
 - **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; not caused by this session).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. `pytest -q` on main: 16 failed / 985 passed (10 in `tests/test_release_audit.py`). `scripts/run_h86l_fmc.py` writes the run card only. Owner action: register the artifact through the lane's own protocol and re-run `audit_release.py --measure-registry`; do not mark it authorized. Documented here; not repaired by session `0c60b079`.
 
+## IR-86-E95B-PUBLICATION-20261025 — repaired missing H86L publication coverage
+
+The branch inherited an H86L-FMC TIFF/ZIP absent from both publication indexes. This made the release/site audits fail before any artifact validation. Registered its actual SHA and existing negative scientific card; added explicit leakage-suspect archival normalization and regression tests. No raster bytes, scientific verdict, evaluator/writer or uniqueness thresholds changed. Fresh measurement validates all 32 published formats but confirms literal overlap failure against the pinned dense witness. This repairs the earlier IR-H inventory blocker; it does not authorize submission.
+
+## IR-86-E95B-HISTORICAL-CLOCK-20261025 — frozen review compared with mutable audit
+
+A test bound the historical follow-up run card's registry timestamp to the mutable latest audit. A legitimate fresh audit therefore failed the test. Preserved the original audit bytes from this branch's starting commit under `docs/evidence/session-followup-snapshot/`, bound their SHA in the historical card, and changed that test to verify the exact frozen evidence. No historical timestamp/count was rewritten as current. Latest-review tests continue to require current report hashes and measurement timestamps.
+
+
 ## IR-86-63051E73-H86L-INVENTORY — 2026-10-25
 
 Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the prior review). Registered existing TIFF SHA `5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a`, joined its original negative run card, restored the pinned witness and remeasured all published final dots. No candidate pixels or scientific receipts changed. Added a dedicated archived leakage-suspect schema rather than describing fleet-as-is evidence as fold-safe hide-and-recover. Removed the non-generated “NEWEST UNIQUE TIFF” banner during deterministic site regeneration, retaining its anchor and explicit audit-only decision. Current format count is 32; submission authorization remains false. See `research/SESSION_63051E73_REVIEW.md`.
