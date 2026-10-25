@@ -166,12 +166,12 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
             raise ValueError("H86G-EDTI card lacks normalized HOLDOUT-DTI")
         if (context.get("verdict") != "promote" or context.get("submission_slots_used") != 0
                 or not all((context.get("gates") or {}).values())):
-            raise ValueError("H86G-EDTI card is not in its promote/no-slot state")
-        return {**base, "status": "CURRENT_LANE_PROMOTE_LIKE_FOR_LIKE",
+            raise ValueError("H86G-EDTI historical card no longer matches its archived lane record")
+        return {**base, "status": "ARCHIVED_HISTORICAL_PROMOTE_NOT_CURRENT_CLEARANCE",
                 "evaluator_version": hn["evaluator_version"],
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
-                "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
-                "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
+                "design": "buffered whole components, OOF visible construction (Amendment A2); historical lane record, not a current selector result",
+                "caveat": "The preserved H86G-EDTI card records a like-for-like promote under its scoped PA-86-01 reading. That historical lane verdict is superseded for current release decisions by the independently measured literal full-support witness stop. Its HOLDOUT-DTI and SGMC-PROXY-DTI are not current clearance, not organizer-confirmed, and not leaderboard projections; no slot was picked by this audit."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -302,9 +302,7 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
             and bool(receipt["note"].strip()) and len(receipt["note"]) <= 140,
         receipt_note_count_matches=receipt.get("note_chars") == len(receipt.get("note", "")),
         inventory_explicitly_negative=entry.get("approved_for_weekly_slot") is False
-            and ("DO NOT SUBMIT" in entry.get("status", "")
-                 or (config.get("holdout_kind") == "h86g_edti"
-                     and entry.get("status", "").startswith("PROMOTE"))),
+            and entry.get("status") == "DO NOT SUBMIT",
     )
     with rasterio.open(tif) as src:
         checks["no_nodata_tag"] = src.nodata is None
@@ -322,20 +320,27 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
             config["holdout_kind"] == "blindgeothermal_candidate"
             and receipt.get("evidence_class") == "RUN-CARD"
         )
+    if config.get("holdout_kind") == "h86g_edti":
+        checks["receipt_current_disposition_is_negative"] = (
+            receipt.get("current_disposition") == "DO NOT SUBMIT"
+            and receipt.get("current_disposition_reason") == "STOP_LITERAL_OVERLAP_UNSATISFIABLE")
+        checks["receipt_preserves_historical_decision"] = (
+            receipt.get("historical_decision") == "OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)"
+            and receipt.get("decision") == "DO NOT SUBMIT — current literal witness stop supersedes historical like-for-like promotion")
     context = strict_json(inside(root, config["context"]))
     if config["card"]:
         card = strict_json(inside(root, config["card"]))
         checks["sha_matches_scientific_card"] = card["raster_sha256"] == file_sha
         if config.get("holdout_kind") == "h86g_edti":
-            # PA-86-01 promote lane: like-for-like gates recorded as passing in
-            # the card; slot approval and organizer acceptance stay false here.
-            checks["scientific_card_is_negative"] = (
+            # Preserve the historical lane card without treating its scoped
+            # promote verdict as current release authorization.
+            checks["scientific_card_matches_archived_promote_record"] = (
                 card.get("verdict") == "promote"
                 and all((card.get("gates") or {}).values())
+                and card.get("submission_ready") is True
                 and card.get("submission_slots_used") == 0)
-            checks["scientific_card_does_not_authorize"] = (
-                card.get("submission_ready") is True
-                and card.get("safe_to_submit") is False
+            checks["scientific_card_records_no_slot_approval"] = (
+                card.get("safe_to_submit") is False
                 and card.get("approved_for_weekly_slot") is False)
         else:
             checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
@@ -379,10 +384,7 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                                on_catalogue_positive=report["on_catalogue_positive_pixels"], meta=report["meta"]),
                 historical_holdout=archived_holdout(config, context),
                 safe_to_download_for_audit=passed, safe_to_submit=False,
-                approved_for_weekly_slot=False,
-                verdict=("promote" if config.get("holdout_kind") == "h86g_edti" else "negative"),
-                status=("PROMOTE — OK TO SUBMIT (selector-ready)"
-                        if config.get("holdout_kind") == "h86g_edti" else "DO NOT SUBMIT"))
+                approved_for_weekly_slot=False, verdict="negative", status="DO NOT SUBMIT")
 
 
 def measure_all_registry(root: Path = ROOT) -> dict:
@@ -511,18 +513,22 @@ def build_report(root: Path = ROOT) -> dict:
                     raise ValueError(f"Invalid quarantined submission/ ZIP: {cand_zip.name}") from exc
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
     # Check every sidecar, including mapped cards (mapping field is `card`, not
-    # `source_card`; a linkage typo must not create a skip path). A promote card
-    # passes only with all gates true and no slot/organizer authorization.
+    # `source_card`; a linkage typo must not create a skip path). H86G's one
+    # historical promote card is preserved only as an explicitly superseded
+    # archive; it is never counted as a current candidate or selector decision.
     sidecar_cards_negative = True
     for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
         card_doc = strict_json(card_path)
-        promote_ok = (card_doc.get("verdict") == "promote"
-                      and all((card_doc.get("gates") or {}).values())
-                      and card_doc.get("submission_slots_used") == 0
-                      and card_doc.get("submission_ready") is True
-                      and card_doc.get("safe_to_submit") is False
-                      and card_doc.get("approved_for_weekly_slot") is False)
-        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
+        h86g_archive_ok = (
+            card_path.name == "h86g-edti-run-card.json"
+            and card_doc.get("verdict") == "promote"
+            and all((card_doc.get("gates") or {}).values())
+            and card_doc.get("submission_ready") is True
+            and card_doc.get("safe_to_submit") is False
+            and card_doc.get("approved_for_weekly_slot") is False
+            and card_doc.get("submission_slots_used") == 0
+            and card_doc.get("preflight_pa86_01", {}).get("literal_reading_blocked") is True)
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or h86g_archive_ok):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

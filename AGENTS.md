@@ -34,11 +34,13 @@
    supply `ORGANIZER-CONFIRMED` scores or remaining weekly quota). Verify every
    `training_features.tif` band index against `src/gems86/io.py` (`BANDS`).
 
-10. Protocol amendments PA-86-01 / PA-86-02 (2026-10-24, owner directive to generate a unique TIFF):
-    new lanes may call `protocol_preflight.require_like_for_like()` instead of `require_feasible()`
-    ONLY if they then run `scripts/check_h86e_registry.py` on the surface (rho) and final dots and
-    `scripts/pa86_chance_overlap.py` (informative overlap firings are hard stops). Thresholds are
-    unchanged; `require_feasible()` still gates every historical builder. See IRREGULARITIES.md.
+10. Historical protocol amendments PA-86-01 / PA-86-02 (2026-10-24) allowed scoped
+    like-for-like diagnostics but did not waive or redefine the literal full-support overlap rule.
+    Any such diagnostics must still run `scripts/check_h86e_registry.py` on the surface (rho) and
+    final dots and `scripts/pa86_chance_overlap.py`; all informative overlap firings are hard stops.
+    The current pinned witness proves that every nonempty allowed prediction has literal forward
+    overlap 1.0 (> 0.70), so no lane can use a scoped/partial comparison to obtain current clearance.
+    Historical builders remain gated by `protocol_preflight.require_feasible()`. See IRREGULARITIES.md.
 
 11. Registry-candidate evidence must bind the source `.npy` hash, shared decoded hash,
     full comparison rows and indexed registry identity. Never grant a gate pass on
@@ -47,17 +49,21 @@
     Surface checks precede placement, final-dot checks precede serialization, and
     a PA diagnostic pass never overrides a failing literal submission gate.
 
-12. H86G-EDTI (2026-10-25) is the first `promote` lane: its single candidate
-    (`gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`, sha256
-    `ba8b731f...`) passed canary, SGMC-proxy paired-CI (selection only),
-    OOF catalogue-hide floor, like-for-like uniqueness vs 43 local registry
-    dot-fields, and the fail-closed format writer. Never rebrand its numbers:
-    SGMC-PROXY-DTI is not a score, the 55k budget came from disclosed post-hoc
-    Amendment A4, `safe_to_submit`/`approved_for_weekly_slot` stay false until
-    an organizer receipt is logged in `ledger/submissions.csv`. The catalogue-
-    hide whole-component instrument anti-correlates with owner-reported live
-    ordering (E1b table in `research/H86G_EDTI_REVIEW.md`); never select a
-    live candidate on it alone, and never compare an OOF arm number to a
-    shipped raster's as-is number. `audit_release.py` knows this lane via
-    `holdout_kind="h86g_edti"`; the literal full-support witness stop and all
-    thresholds are unchanged.
+12. H86G-EDTI's 2026-10-25 `promote` is a preserved historical lane verdict under its
+    scoped like-for-like interpretation, not current release authorization. The original
+    TIFF bytes and scientific run card are retained unchanged; the adjacent identity receipt
+    carries a transparent current-disposition addendum. Never rebrand its numbers: the
+    `SGMC-PROXY-DTI` is a selection instrument, not a score; the 55k budget came from disclosed
+    post-hoc Amendment A4; its `HOLDOUT-DTI` is OOF visible construction and is not a live
+    leaderboard result. The present literal full-support proof supersedes the old promote for
+    every current decision. `safe_to_submit` and `approved_for_weekly_slot` remain false.
+    `audit_release.py` validates the historic card only as an archive and emits
+    `DO NOT SUBMIT` for H86G and every other inherited artifact.
+
+13. The current inventory, release report, landing page, executive summary, submission-status
+    page, download audit, and README must agree: every inherited TIFF is **DO NOT SUBMIT** and
+    audit-only; no weekly slot is authorized. Generated-site checks reject positive/ambiguous
+    badges, calls to upload, or any inventory status other than the exact negative state. Never
+    treat a local format pass, an archived `promote`, a new byte hash, or an incomplete registry
+    scan as submission clearance. Preserve historical cards and explain their scope rather than
+    silently rewriting scores or experimental results.

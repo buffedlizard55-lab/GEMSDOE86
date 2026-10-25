@@ -48,14 +48,37 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
         assert artifact["validator"]["all_checks_passed"]
         assert artifact["registry_measurement"]["forward_overlap_3px"] == 1.0
         assert artifact["safe_to_download_for_audit"]
-        assert not artifact["safe_to_submit"]
+        assert artifact["safe_to_submit"] is False
+        assert artifact["approved_for_weekly_slot"] is False
+        assert artifact["verdict"] == "negative"
+        assert artifact["status"] == "DO NOT SUBMIT"
         assert artifact["note_chars"] == len(artifact["note"]) <= 140
+    h86g = next(a for a in report["artifacts"] if "h86g-edti" in a["file"])
+    assert h86g["historical_holdout"]["status"] == "ARCHIVED_HISTORICAL_PROMOTE_NOT_CURRENT_CLEARANCE"
+    assert h86g["historical_holdout"]["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert "superseded" in h86g["historical_holdout"]["caveat"]
+    assert h86g["validator"]["checks"]["receipt_current_disposition_is_negative"]
+    assert h86g["validator"]["checks"]["receipt_preserves_historical_decision"]
     offcat = next(a for a in report["artifacts"] if "offcat" in a["file"])
     assert offcat["historical_holdout"]["value"] is None
     gfco = next(a for a in report["artifacts"] if "gfco" in a["file"])
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
+
+
+def test_historical_h86g_status_cannot_be_restored_from_inventory(release_copy):
+    inventory = release_copy / "docs/evidence/download-inventory.json"
+    data = audit.strict_json(inventory)
+    entry = next(row for row in data["artifacts"] if "h86g-edti" in row["file"])
+    entry["status"] = "PROMOTE — selector-ready"
+    inventory.write_text(json.dumps(data))
+    report = audit.build_report(release_copy)
+    h86g = next(a for a in report["artifacts"] if "h86g-edti" in a["file"])
+    assert h86g["validator"]["checks"]["inventory_explicitly_negative"] is False
+    assert h86g["status"] == "DO NOT SUBMIT"
+    assert h86g["safe_to_submit"] is False
+    assert report["audit_ok"] is False
 
 
 def test_empty_zip_member_is_not_a_download_pass(release_copy):

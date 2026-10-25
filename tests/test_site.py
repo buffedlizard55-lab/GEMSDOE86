@@ -14,26 +14,33 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    assert "CURRENT DECISION: DO NOT SUBMIT · NO FILE AUTHORIZED" in html
+    assert "H86G-EDTI is a preserved historical lane, not a current clearance" in html
+    assert "HISTORICAL TIFF — AUDIT DOWNLOAD ONLY" in html
+    assert "Download TIFF — audit only · DO NOT SUBMIT" in html
+    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" not in html
+    assert "IS THIS FILE OK TO SUBMIT? YES" not in html
+    assert "submit this file" not in html.casefold()
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
 
 def test_h33_claim_and_holdout_scores_show_evidence_class_and_context():
     html = (DOCS / "index.html").read_text()
-    # Fleet-page scores are owner claims, not organizer-confirmed results.
-    assert "0.2778</code> OWNER-REPORTED; not organizer-confirmed" in html
-    assert "0.3195</code> and <code>0.4413</code> current-leaderboard values are OWNER-REPORTED and unverified" in html
-    # Every visible holdout score includes its evaluator, withheld-positive count,
-    # and interval; the paired delta is explicitly labeled as holdout evidence.
-    assert "<strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives)" in html
-    assert "<code>H86D-CTHB</code> = <code>0.1133</code>, 95% CI <code>[0.0965, 0.1297]</code>" in html
-    assert "<code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0936, 0.1166]</code>" in html
-    assert "paired HOLDOUT-DTI delta = <code>+0.0076</code>, 95% CI <code>[-0.0101, +0.0241]</code>" in html
-    assert "Do not infer a leaderboard projection from holdout results." in html
+    # The claimed live value is explicitly unverified and the pixel lineage is
+    # separated from any causal/leaderboard inference.
+    assert "The supplied <code>0.2778</code>" in html
+    assert "<strong>OWNER-REPORTED</strong>, not ORGANIZER-CONFIRMED" in html
+    assert "removes exactly 2,545 dots" in html and "does not establish that causal balance" in html
+    assert "<code>0.3195</code> and <code>0.4413</code>" in html
+    assert "No result here establishes that any candidate beats 0.2778" in html
+    # The visible historic H86G performance value retains its full evidence class,
+    # evaluator, withheld-positive count, CI and non-organizer caveat.
+    assert "HOLDOUT-DTI (historical card; not rerun here)" in html
+    assert "gems57-pooled-hide-v2, 11,321 withheld positives" in html
+    assert "0.0631, 95% CI [0.0468, 0.0806]" in html
+    assert "This is not organizer-confirmed" in html
+    assert "not a private-test or leaderboard projection" in html
 
 
 def test_zip_contains_single_tiff():

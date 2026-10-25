@@ -1,49 +1,17 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
+## Current release decision — 2026-10-25
 
-Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
+> **DO NOT SUBMIT. No file is authorized for a weekly slot.** All **20** published research TIFFs are inherited audit-only artifacts; 20/20 pass local byte, format and ZIP checks, which do not establish scientific uniqueness, organizer acceptance, or submission approval. No new candidate was generated, no experiment was run, and no slot was used in the current review.
+>
+> **Why:** the pinned `17GEMSDOE` registry witness has positive support over all **5,106,385** allowed cells. Under the unchanged literal overlap rule, every nonempty prediction has **REGISTRY-MEASUREMENT forward overlap 1.0**, above the **0.70** limit. The protocol preflight status is `STOP_LITERAL_OVERLAP_UNSATISFIABLE`; it rejects but cannot certify a complete registry scan. H86G-EDTI's former like-for-like `promote` verdict is preserved as historical evidence and explicitly superseded for current release status. It is not currently safe to submit.
 
-Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
+- **H33 (0.2778):** OWNER-REPORTED, not ORGANIZER-CONFIRMED. Pixel-exact lineage confirms it removes 2,545 dots from its 40,199-dot parent at catalogue distances √2–2 px, with no additions. That is consistent with pruning low-credit prediction mass under asymmetric DTI, but does not prove why the reported score changed. No holdout or proxy result is a leaderboard projection. [H33 analysis](research/H33_ANALYSIS.md).
+- **Research queue:** four genuinely distinct, qualitative proposals are recorded in [`registry/h86g_hypotheses.json`](registry/h86g_hypotheses.json), with named bands, physical signatures, non-fault mimics, novelty, costs and falsifiers. Highest-ranked CSPA is **NOT RUN**; no method lane is assigned, the actual shared template cache is absent, and the literal gate stops before any candidate placement or holdout. A weekly slot remains out of scope until blockers are resolved.
+- **Current review:** [three-pass status reconciliation, source limits, hypotheses and handoff](research/SESSION_20261025_STATUS_RECONCILIATION.md). The [current machine release report](docs/evidence/release-readiness.json), [literal-stop proof](docs/evidence/protocol-preflight.json), [negative run card](docs/evidence/latest-review-run-card.json), and [audit-only downloads](docs/index.html) are synchronized. The pre-existing PR #92 artifact is retained for audit, **not generated in this review**.
+- **Official-source links:** [source page and observation limits](docs/sources.html), [DOE GEMS reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), and [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf). Repository source observations are dated; non-GitHub pages and the authenticated competition portal were not freshly checked in this review. No DrivenData score/quota scraping occurred.
 
-Fresh repository recheck (2026-10-25; full 802-test suite passed after refreshing generated audit evidence; no candidate or slot): [recheck, H33 interpretation, and handoff](research/SESSION_20261025_ARENA_RECHECK.md).
-
-Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
-
-Independent repository review (2026-10-25; three passes; no model run or TIFF generated): [H33 forensic explanation, four queued geological hypotheses, current workspace audit, blockers, and negative run card](research/SESSION_20261025_ARENA_REVIEW.md). Machine-readable scoped evidence: [current local registry audit](docs/evidence/session-review-20261025/registry-input-grid-review.json) and [full review verification bundle](research/SESSION_20261025_ARENA_REVIEW.md#verification-run-record). Current local registry inventory differs from the earlier dated 690-file scan; the review preserves both measurements and flags the discrepancy.
-
-Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
-
-## ✅ IS ANY FILE OK TO SUBMIT RIGHT NOW? **YES — EXACTLY ONE.** (automated decision, 2026-10-25, H86G-EDTI; supersedes the dated negative reviews below for this one file only)
-
-**Submit this file (selector action):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
-Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
-Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
-
-| Automated gate (no human inspection) | Result |
-|---|---|
-| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1} (the portal "[0, 1]" error class is excluded on these bytes), 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical |
-| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` |
-| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
-| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
-| Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` — OK TO DOWNLOAD AND SUBMIT as the selector action; 0 slots used here; live score unknowable until an organizer receipt** |
-
-**Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
-
-## Current independent review — 2026-10-25 (session `cf73474c`)
-
-[Open all 18 audit-only TIFF downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads). **None is approved for submission.**
-
-**DO NOT SUBMIT. No new candidate or weekly slot in this review.** The highest-priority unique submission requirement is **not satisfied**: the unchanged literal overlap stop still rejects every nonempty allowed raster, and the request does not specify a method lane. A format-valid download is not uniqueness clearance. The existing audit-only downloads below are not generated by this review and are not substitutes for a new compliant submission.
-
-- Autonomous data placement **completed**: `bash scripts/download_competition_data.sh` restored the pinned native feature TIFF; `python scripts/prepare_data.py` prepared all 19 native bands. All three input CRS/shape/transforms, band counts and hashes now gate preparation before output. This is **not** restoration of the actual shared template feature stack.
-- A complete native-band array generation is now staged with hashes and rollback for ordinary failures; local preparers are serialized. This does not claim cross-directory crash atomicity.
-- Fixed archive extraction to verify every requested raster **before** publication and reject missing/duplicate members without replacing existing targets. Added strict value/CI/positive-count/evaluator checks for every normalized historical HOLDOUT-DTI schema; impossible evidence can no longer inherit a valid-TIFF badge.
-- **REGISTRY-INPUT-MEASUREMENT:** restored all 655 pinned inventory entries; 690 indexed files including local extras are byte-verified, but 2 incompatible grids remain blockers. The new read-only GZZD/PCC mutual final-dot audit is limited evidence, never full-registry clearance.
-- The dated session card now binds immutable source-revision snapshots, not daily live-audit hashes. The read-only frozen-card check also runs in the Pages pipeline, so a refresh cannot silently redate this historical review.
-- The current request's `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749` are transcribed as **OWNER-REPORTED**, never organizer-confirmed. Prior request archives and scientific run cards remain unchanged.
-- [Four ranked, untested native-layer hypotheses](registry/h86g_hypotheses.json), [three-pass review and handoff](research/SESSION_20261025_CF73474C_REVIEW.md), [native-data/shared-cache evidence](docs/evidence/session-cf73474c-data.json). The top CSPA idea remains **NOT RUN** under the binding preflight; no holdout number is invented.
+The original user request remains embedded below as an **archive**, not as permission to bypass current safety gates. Read [the standing project guidance](AGENTS.md) and [PROMPT.md](PROMPT.md) before any future experiment. Earlier request archives and historical scientific cards are retained with their original evidence labels.
 
 <details>
 <summary>Complete current request (2026-10-25; user claims, not verified evidence)</summary>

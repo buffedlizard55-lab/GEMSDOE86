@@ -51,12 +51,23 @@ def test_shipped_candidate_card_receipt_consistency():
     assert digest == card["raster_sha256"]
     receipt = json.loads(tif.with_suffix(".json").read_text())
     assert receipt["sha256"] == digest
-    assert receipt["gate_verdict"] == "promote"
+    assert receipt["gate_verdict"] == "promote"  # immutable historical lane verdict
+    assert receipt["historical_gate_verdict"] == "promote"
+    assert receipt["historical_decision"] == "OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)"
+    assert receipt["current_disposition"] == "DO NOT SUBMIT"
+    assert receipt["current_disposition_reason"] == "STOP_LITERAL_OVERLAP_UNSATISFIABLE"
+    assert receipt["decision"].startswith("DO NOT SUBMIT")
     assert card["sgmc_proxy"]["candidate"]["dti"] > card["sgmc_proxy"]["H33_as_is_dti"]
     assert card["sgmc_proxy"]["paired_delta_vs_H33_as_is"]["ci95"][0] > 0
-    assert card["uniqueness"]["gate_pass"] is True
+    assert card["uniqueness"]["gate_pass"] is True  # historical scoped like-for-like result
     assert card["uniqueness"]["max_spearman"] <= 0.90
     assert card["uniqueness"]["max_forward_3px_overlap_dot_fields"] <= 0.70
+    # Preserve the same card's explicitly opposite literal-support evidence;
+    # the scoped lane pass never erased its one failing continuous-witness row.
+    assert card["preflight_pa86_01"]["literal_reading_blocked"] is True
+    assert card["uniqueness"]["max_forward_3px_overlap_literal_incl_continuous"] == pytest.approx(0.8915454545454545)
+    assert card["uniqueness"]["literal_overlap_firings_incl_continuous"] == 1
+    assert "Literal full-support reading" in card["decision_reason"]
 
 
 def test_shipped_raster_is_binary_grid_locked():

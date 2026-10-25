@@ -54,8 +54,12 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
         assert(layout.scroll <= layout.width, `Horizontal page overflow at ${width}px on ${file}: ${JSON.stringify(layout)}`);
       }
       await page.goto(new URL("index.html", base).href);
-      assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), artifactCount);
-      assert.equal(await page.getByRole("link", { name: "One-TIFF ZIP — audit only", exact: true }).count(), artifactCount);
+      const auditTiffLinks = page.locator("#downloads").getByRole("link", {
+        name: "Download TIFF — audit only · DO NOT SUBMIT", exact: true });
+      const auditZipLinks = page.locator("#downloads").getByRole("link", {
+        name: "One-TIFF ZIP — audit only · DO NOT SUBMIT", exact: true });
+      assert.equal(await auditTiffLinks.count(), artifactCount);
+      assert.equal(await auditZipLinks.count(), artifactCount);
       await page.locator("article.artifact details").first().locator("summary").click();
       await page.getByRole("button", { name: "Copy hash", exact: true }).first().click();
       await page.waitForFunction(() => {
@@ -63,7 +67,7 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
         return button.textContent === "Copied" || button.textContent === "Select text to copy";
       });
       const downloadPromise = page.waitForEvent("download");
-      await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).first().click();
+      await auditTiffLinks.first().click();
       const download = await downloadPromise;
       const inventory = JSON.parse(fs.readFileSync(path.join(root, "docs/evidence/download-inventory.json"), "utf8"));
       const expected = inventory.artifacts[0];
@@ -88,7 +92,8 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();
     await page.goto(new URL("index.html", base).href);
-    assert.equal(await page.getByRole("link", { name: "Download TIFF — audit only", exact: true }).count(), artifactCount);
+    assert.equal(await page.locator("#downloads").getByRole("link", {
+      name: "Download TIFF — audit only · DO NOT SUBMIT", exact: true }).count(), artifactCount);
     assert((await page.locator("main").textContent()).includes("DO NOT SUBMIT"));
     report.without_javascript_decision_and_downloads_work = true;
     await context.close();

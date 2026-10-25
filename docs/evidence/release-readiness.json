@@ -16,9 +16,9 @@
   "shared_tool_hashes_match": true,
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
-    "docs/evidence/download-inventory.json": "06d674c23c40cf7bbf9c13575cf6969af5d9ff3a3eea8f1d929f5fd3a15924cd",
-    "registry/artifact_cards.json": "fce67d519a9e3793bd14dd41f09442ff5e8b19a1e20819d7dcfc7e6bc734ec9b",
-    "docs/evidence/protocol-preflight.json": "e1175967f05b4483ceb47b0191c7e9776e470afde49c8e7ef5609e74dd0d83fa",
+    "docs/evidence/download-inventory.json": "166707e42ce902b227c39fd8152d27fa051283a1d41b6e1c6234967e4cbb01ad",
+    "registry/artifact_cards.json": "2fba0246866af1dbcb6461e6e744dd76ad16f8ac935ca8202f91162f081b19e9",
+    "docs/evidence/protocol-preflight.json": "4422592c18c1cdd1fdfeed7150960d945d01210a62ade84ad688c40ec57ce64e",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -38,7 +38,7 @@
     "docs/evidence/h86f-ewcs-run-card.json": "758d17a7ade8897fb0ae64ef4ff4a6d9e272d49c3a5c403f90dccc0f979c34a2",
     "docs/evidence/h86g-edti-run-card.json": "2d6e1f2b56ad37819d58b1579b38877c6a4eb9c566060cf9c551c2ce451b6155",
     "docs/evidence/h86i-rksc-run-card.json": "59dd570f20d0559a30f004610b543dc76ab05877edd6b93f9929b8451abfe27d",
-    "docs/evidence/all-artifacts-registry.json": "de855cd5f58bd115495ee4c0d5b0f3382170a8d9893060202b6564e413acb2c1"
+    "docs/evidence/all-artifacts-registry.json": "d05374da07c16d1d1a83986e2f03a4b8ce0f1ed8c00fe45ef118d2ff5e2d1fa1"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -1968,7 +1968,7 @@
       }
     },
     {
-      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (historical like-for-like promote; current DO NOT SUBMIT, 2026-10-25)",
       "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
       "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
       "bytes": 158155,
@@ -2012,9 +2012,11 @@
           "zip_payload_equals_tif": true,
           "zip_crc_passed": true,
           "zip_sha_matches_receipt": true,
+          "receipt_current_disposition_is_negative": true,
+          "receipt_preserves_historical_decision": true,
           "sha_matches_scientific_card": true,
-          "scientific_card_is_negative": true,
-          "scientific_card_does_not_authorize": true
+          "scientific_card_matches_archived_promote_record": true,
+          "scientific_card_records_no_slot_approval": true
         },
         "all_checks_passed": true,
         "min": 0.0,
@@ -2046,7 +2048,7 @@
       },
       "historical_holdout": {
         "evidence_class": "HOLDOUT-DTI",
-        "status": "CURRENT_LANE_PROMOTE_LIKE_FOR_LIKE",
+        "status": "ARCHIVED_HISTORICAL_PROMOTE_NOT_CURRENT_CLEARANCE",
         "source": "docs/evidence/h86g-edti-run-card.json",
         "evaluator_version": "gems57-pooled-hide-v2",
         "withheld_positives": 11321,
@@ -2055,14 +2057,14 @@
           0.04682562753071773,
           0.08060528797857537
         ],
-        "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
-        "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."
+        "design": "buffered whole components, OOF visible construction (Amendment A2); historical lane record, not a current selector result",
+        "caveat": "The preserved H86G-EDTI card records a like-for-like promote under its scoped PA-86-01 reading. That historical lane verdict is superseded for current release decisions by the independently measured literal full-support witness stop. Its HOLDOUT-DTI and SGMC-PROXY-DTI are not current clearance, not organizer-confirmed, and not leaderboard projections; no slot was picked by this audit."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
-      "verdict": "promote",
-      "status": "PROMOTE \u2014 OK TO SUBMIT (selector-ready)",
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
         "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",

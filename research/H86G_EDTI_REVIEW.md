@@ -1,4 +1,8 @@
-# H86G-EDTI review — why 0.2778, whether it can be beaten, and the new unique TIFF
+# H86G-EDTI review — historical lane evidence (current status superseded)
+
+> **Current release status: DO NOT SUBMIT.** This review preserves the original H86G lane analysis and scoped like-for-like `promote` verdict as historical evidence. The later current-release audit measures the pinned full-support witness as a literal blocker for every nonempty raster; the live per-artifact report, inventory, homepage and executive summary now mark this TIFF **DO NOT SUBMIT / audit-only**. No weekly slot is authorized. Do not treat the historical recommendation below as current advice. See the [current release report](../docs/evidence/release-readiness.json), [literal-stop proof](../docs/evidence/protocol-preflight.json), and [status reconciliation review](SESSION_20261025_STATUS_RECONCILIATION.md).
+
+---
 
 **Date:** 2026-10-25 (UTC) · **Lane:** H86G-EDTI · **Verdict: `promote`** (first in this repo)
 **Candidate:** `docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif`

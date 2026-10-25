@@ -22,7 +22,7 @@ class PublicationTests(unittest.TestCase):
     def fixture(self, root):
         (root / 'docs/evidence').mkdir(parents=True)
         (root / 'docs/downloads').mkdir()
-        (root / 'index.html').write_text('<a href="docs/index.html">Site</a>')
+        (root / 'index.html').write_text('<h1>DO NOT SUBMIT</h1><a href="docs/index.html">Site</a>')
         (root / 'docs/index.html').write_text('<h1>DO NOT SUBMIT</h1>')
         (root / 'docs/evidence/run-card.json').write_text(json.dumps({'submission_ready': False, 'verdict': 'negative'}))
         entry = copy.deepcopy(json.loads((ROOT / 'docs/evidence/download-inventory.json').read_text())['artifacts'][0])
@@ -43,6 +43,10 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(audit_downloads.render(actual), (ROOT / audit_downloads.PAGE).read_text())
         self.assertEqual(actual['artifact_count'], 20)  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS + H86G-EDTI + H86I-RKSC (2026-10-25)
         self.assertFalse(actual['safe_to_submit'])
+        h86g = next(a for a in actual['artifacts'] if 'h86g-edti' in a['file'])
+        self.assertTrue(h86g['checks']['h86g_current_disposition_negative'])
+        self.assertTrue(h86g['checks']['h86g_historical_decision_preserved'])
+        self.assertTrue(h86g['checks']['h86g_current_decision_not_historical'])
         card = audit_downloads.review_card(actual)
         self.assertEqual(card, json.loads((ROOT / audit_downloads.CARD).read_text()))
         self.assertEqual(card['verdict'], 'negative')
@@ -78,9 +82,18 @@ class PublicationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); entry, _ = self.fixture(root)
             for changes in ({'approved_for_weekly_slot': 0}, {'approved_for_weekly_slot': True},
-                            {'status': 'DO NOT SUBMIT / actually ready'}, {'sha256': 'invalid'}):
+                            {'status': 'DO NOT SUBMIT / actually ready'}, {'status': 'PROMOTE'},
+                            {'sha256': 'invalid'}):
                 self.inventory(root, [{**entry, **changes}])
                 self.assertTrue(check(root))
+
+    def test_current_status_page_rejects_positive_upload_copy(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            (root / 'docs/executive-summary.html').write_text(
+                '<h1>DO NOT SUBMIT</h1><p>Submit this file now.</p>')
+            errors = check(root)
+            self.assertTrue(any('contradictory positive submission copy' in error for error in errors))
 
     def test_zip_required_even_when_not_linked_and_must_match_payload(self):
         with tempfile.TemporaryDirectory() as tmp:

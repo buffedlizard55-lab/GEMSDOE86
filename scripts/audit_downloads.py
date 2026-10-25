@@ -104,6 +104,15 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
             receipt_not_promoted=receipt.get('promoted') is False,
             receipt_no_slot_approval=receipt.get('approved_for_weekly_slot') is False,
         )
+        if path.stem.startswith('gems86-h86g-edti-'):
+            checks.update(
+                h86g_current_disposition_negative=receipt.get('current_disposition') == 'DO NOT SUBMIT'
+                    and receipt.get('current_disposition_reason') == 'STOP_LITERAL_OVERLAP_UNSATISFIABLE',
+                h86g_historical_decision_preserved=receipt.get('historical_decision') ==
+                    'OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)',
+                h86g_current_decision_not_historical=receipt.get('decision') ==
+                    'DO NOT SUBMIT — current literal witness stop supersedes historical like-for-like promotion',
+            )
     for key in ('submission_name', 'note'):
         text = receipt.get(key)
         checks[key + '_valid_length'] = isinstance(text, str) and bool(text.strip()) and len(text) <= 140

@@ -132,7 +132,7 @@
       {
         "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
         "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
-        "verdict": "promote"
+        "verdict": "negative"
       },
       {
         "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
@@ -152,8 +152,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T03:36:35+00:00",
+  "registry_measured_utc": "2026-10-25T04:06:52+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "6d47b23ffc2d15de710cc05e19a01e31a5460f717ffffd35414455fd1bed36aa",
-  "registry_measurement_sha256": "de855cd5f58bd115495ee4c0d5b0f3382170a8d9893060202b6564e413acb2c1"
+  "release_report_sha256": "6e4fb318590fc1419d965043f627b099b0dbf22728560119f215c2495f62c0d1",
+  "registry_measurement_sha256": "d05374da07c16d1d1a83986e2f03a4b8ce0f1ed8c00fe45ef118d2ff5e2d1fa1"
 }

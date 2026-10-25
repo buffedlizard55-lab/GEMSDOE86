@@ -182,11 +182,18 @@
     "footprint_fraction": 0.010643706192682432
   },
   "gate_verdict": "promote",
-  "decision": "OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)",
+  "decision": "DO NOT SUBMIT — current literal witness stop supersedes historical like-for-like promotion",
   "gates": {
     "canary_leakage": true,
     "sgmc_proxy_beats_H33_paired_ci": true,
     "catalogue_hide_floor_vs_H33": true,
     "uniqueness_local_registry": true
-  }
+  },
+  "historical_decision": "OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)",
+  "historical_gate_verdict": "promote",
+  "current_disposition": "DO NOT SUBMIT",
+  "current_disposition_reason": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+  "current_disposition_date_utc": "2026-10-25",
+  "current_disposition_source": "docs/evidence/protocol-preflight.json",
+  "current_disposition_scope": "Current release status only; historical TIFF bytes and scientific run card are preserved unchanged. No selector action or weekly slot is authorized."
 }

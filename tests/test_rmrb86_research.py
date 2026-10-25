@@ -50,11 +50,14 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(np.isfinite(clean).all())
         self.assertTrue(((clean >= 0) & (clean <= 1)).all())
 
-    def test_site_leads_with_unambiguous_decision_and_download(self):
+    def test_site_leads_with_global_negative_decision_and_audit_download(self):
         html = (ROOT / "docs/index.html").read_text()
-        self.assertIn("ONE SELECTOR-READY FILE (H86G-EDTI)", html)
+        self.assertIn("CURRENT DECISION: DO NOT SUBMIT", html)
+        self.assertIn("NO FILE AUTHORIZED", html)
+        self.assertIn("DO NOT SUBMIT", html)
         self.assertIn("SAFE TO DOWNLOAD FOR AUDIT", html)
-        self.assertIn("DO-NOT-SUBMIT.tif", html)
+        self.assertNotIn("ONE SELECTOR-READY FILE (H86G-EDTI)", html)
+        self.assertNotIn("submit this file", html.casefold())
 
 
 if __name__ == "__main__":

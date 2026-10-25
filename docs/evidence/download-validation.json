@@ -1377,6 +1377,9 @@
         "receipt_zip_hash_matches": true,
         "receipt_not_promoted": true,
         "receipt_no_slot_approval": true,
+        "h86g_current_disposition_negative": true,
+        "h86g_historical_decision_preserved": true,
+        "h86g_current_decision_not_historical": true,
         "submission_name_valid_length": true,
         "note_valid_length": true,
         "receipt_note_length_matches": true

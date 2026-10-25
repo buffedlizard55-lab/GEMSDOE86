@@ -52,10 +52,8 @@ def load_inventory(root):
         if not isinstance(entry.get('sha256'), str) or not re.fullmatch('[0-9a-f]{64}', entry['sha256']):
             raise ValueError(f'Invalid SHA256: {relative}')
         status = entry.get('status')
-        if entry.get('approved_for_weekly_slot') is not False or not (
-                status == 'DO NOT SUBMIT'
-                or (isinstance(status, str) and status.startswith('PROMOTE'))):
-            raise ValueError('Inventory requires DO NOT SUBMIT (or recorded PROMOTE lane) status and false slot approval')
+        if entry.get('approved_for_weekly_slot') is not False or status != 'DO NOT SUBMIT':
+            raise ValueError('Every published inventory entry must be DO NOT SUBMIT with false slot approval')
         registered[target] = entry
     return registered
 
@@ -74,6 +72,24 @@ def check(root=ROOT):
             if (not target.is_relative_to(root) or not target.is_file()
                     or (path.is_relative_to(root / 'docs') and not target.is_relative_to(root / 'docs'))):
                 errors.append(f'{path.relative_to(root)}: broken or escaping local link {url}')
+    safety_pages = ('index.html', 'docs/index.html', 'docs/executive-summary.html',
+                    'docs/submit.html', 'docs/download-status.html')
+    positive_copy = (
+        'one selector-ready file', 'one file is ok to submit',
+        'current decision: submit only', 'submit this file',
+        'ok to submit after separate selector step',
+        'promote — ok to submit', 'promote - ok to submit',
+    )
+    for relative in safety_pages:
+        path = root / relative
+        if not path.is_file():
+            continue  # small adversarial fixtures need not render every production page
+        text = path.read_text(encoding='utf-8').casefold()
+        if 'do not submit' not in text:
+            errors.append(f'{relative}: current safety page omits the DO NOT SUBMIT decision')
+        for phrase in positive_copy:
+            if phrase in text:
+                errors.append(f'{relative}: contradictory positive submission copy: {phrase}')
     try:
         registered = load_inventory(root)
     except (OSError, ValueError, KeyError, TypeError) as exc:

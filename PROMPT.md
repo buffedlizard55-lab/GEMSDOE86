@@ -1,31 +1,12 @@
-# Standing project prompt (condensed historical archive)
+# Standing project prompt (historical archive and current-state summary)
 
-**Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used).**
-**Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first.** This condensed historical document is not
-a replacement for that archive. Preserve `REQUEST_20261024.md`,
-`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
+**Current decision (2026-10-25): DO NOT SUBMIT.** The live release audit marks every published artifact as audit-only; the 20 inherited TIFFs pass local byte/format checks but none is authorized for a weekly slot. A pinned full-support `17GEMSDOE` witness covers every allowed cell, so the unchanged literal overlap test rejects every nonempty raster. H86G-EDTI's earlier scoped like-for-like promote is historical and superseded for current clearance; its original scientific run card remains unchanged.
 
-The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
-Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 18 historical audit-only TIFFs, all blocked.
-The named fleet remains 92 projects. The current request adds owner claims
-`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
-They were unscored in the 2026-10-24 archive; that historical record is not
-retroactively changed. Current release remeasurement is
-`docs/evidence/latest-review-run-card.json`.
+Read the current [README](README.md), [three-pass status reconciliation](research/SESSION_20261025_STATUS_RECONCILIATION.md), and complete request archive at `research/REQUEST_20261025.md`. The two earlier request archives and `OWNER_PROMPT.md` are preserved byte-for-byte. Scores supplied in prompts are owner claims until bound to an organizer receipt.
 
-The native 19-band TIFF was restored and prepared, but this is **not** restoration
-of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
-there is no assigned method paragraph in the current request. The immutable
-full-positive witness still makes the literal overlap rule unsatisfiable for
-every nonempty candidate. Stop before fitting or placement. Do not bypass the
-gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
-or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
-CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
-model cards, download status, evaluator/writer pins and slot separation remain
-binding. Scores and access claims in request archives are user input, not
-verified evidence.
+The latest four geology proposals in `registry/h86g_hypotheses.json` are unrun, qualitative, and unassigned. The actual shared template cache is absent. Do not fit, evaluate, place dots, generate a new TIFF, or use a slot while the literal stop and missing lane/cache remain. Do not reinterpret old artifacts as new candidates. Preserve the required shared feature/evaluator/writer, spatial holdout, exact visible-fault masking, per-feature leakage checks, three-experiment/two-hour budget, and negative-evidence labeling when prerequisites are resolved.
+
+The rest of this file retains the user-supplied strategy request and historical project prompt. Its urgent TIFF request is an archive, not permission to bypass current protocol stops. Automated DrivenData scraping remains prohibited by `AGENTS.md`; do not infer portal score, quota, or acceptance without an organizer receipt.
 
 ---
 

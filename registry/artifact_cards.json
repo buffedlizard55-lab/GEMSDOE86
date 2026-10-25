@@ -129,7 +129,7 @@
       "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
     },
     {
-      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (historical like-for-like promote; current DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86g-edti-run-card.json",
       "context": "docs/evidence/h86g-edti-run-card.json",
       "holdout_kind": "h86g_edti",

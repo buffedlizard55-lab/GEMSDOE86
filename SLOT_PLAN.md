@@ -1,15 +1,10 @@
-# SLOT PLAN — 2026-10-24 (rev. I: 92-site fleet sync + PR #60 SPT revocation, `DO NOT SUBMIT` active)
+# SLOT PLAN — historical archive; no current slot is authorized
 
-> **2026-10-24 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`), **zero files in this repository are currently authorized for portal upload**, and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate has been revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
+> **Current binding safety notice (2026-10-25): DO NOT SUBMIT.** The live release report sets every one of the 20 inherited TIFFs to `DO NOT SUBMIT`; none is authorized for portal upload. The pinned full-support witness forces literal forward overlap 1.0, above the unchanged 0.70 limit. No slot has been selected or used in the current review. All planning material below is historical context only and must not be executed as a current selector plan.
 
-**2026-10-25 addendum (H86G-EDTI):** one candidate is now selector-ready under PA-86-01
-like-for-like gates — `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`
-(sha256 `ba8b731f...`, SGMC-PROXY-DTI 0.1223 vs H33-as-is 0.0954, paired Δ +0.0269
-[+0.0028, +0.0518] post-selection descriptive; HOLDOUT-DTI OOF 0.0631). It is the
-recommended next single slot **if** the selector spends one; receipt decision
-rule (±0.01 vs the 0.2778 OWNER-REPORTED claim) is in
-`research/H86G_EDTI_REVIEW.md`. The literal-witness notice above is unchanged
-for every other file, and the R0-axis probes below remain archived spares.
+> PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate remains revoked (`IR-86-SPT-02`). Historical R0-axis notes and slot scenarios remain archived; `submission_slots_used = 0` for this review.
+
+**Historical H86G-EDTI note (superseded):** an earlier version of this plan described the lane as a like-for-like `promote` and recommended a slot under a scoped PA-86-01 reading. That was not current literal-gate clearance. The original H86G run card is preserved as historical evidence; the current audit and inventory now say **DO NOT SUBMIT**. See the [current negative release report](docs/evidence/release-readiness.json), [literal-stop proof](docs/evidence/protocol-preflight.json), and [three-pass status review](research/SESSION_20261025_STATUS_RECONCILIATION.md).
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -66,7 +61,9 @@ are already built and cost nothing but slots; everything after that should fund 
 
 **10 km addendum (PR #54).** Pre-registered 100 px arms: `b10km-down8` `+0.0003 MODEL` (jitter `+0.0010`) / `+0.0012 PROXY` vs control `-0.0009`; prefix `b10km-down4` splits sign. Neither displaces Slot 2 or the spares; `…-concb10kmdown8-20261023-780f8509-zeros.tif` is the next spare only if Slot 2 `≥ +0.005`. `b10km-ridge-up8` (`-0.0009` = control; `-0.0075 PROXY`, CI excludes 0) retires upward concentration at 1, 5 and 10 km — never upload `concb10kmup8`. `IR-86-CONC-19`: canonical R0 occupied-10 km CV is `0.736`, not `0.570`.
 
-## Next weekly slots (one file per slot, human uploads; `-zeros` twin unless the portal rejects zeros)
+## Archived slot scenarios (historical; not authorized for execution)
+
+The following dated experiments and candidate names are preserved for provenance. They are not current recommendations, do not spend a slot, and do not override the binding literal stop above.
 
 | Slot | Candidate (`releases/<id>`) | Edit vs R0 | Predicted Δ (MODEL, not a score) | Decision rule on live `RECEIPT` Δ vs 0.2778 |
 |---:|---|---|---|---|
