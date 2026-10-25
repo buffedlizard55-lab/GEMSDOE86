@@ -14,11 +14,8 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # H86G-EDTI has a historical PROMOTE verdict, but its machine card explicitly
-    # leaves upload safety and weekly-slot approval false. The public site must not
-    # convert a research promotion into permission to submit.
+    # H86G-EDTI has a historical PROMOTE verdict, not upload authorization.
     assert "NO FILE CURRENTLY AUTHORIZED FOR UPLOAD" in html
-    assert "PROMOTE CANDIDATE — SELECTOR APPROVAL PENDING" in html
     assert "IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED" in html
     assert "Download one-TIFF ZIP — review only, do not submit" in html
     assert "SUBMIT THIS FILE" not in html
@@ -53,3 +50,28 @@ def test_zip_contains_single_tiff():
         names = bundle.namelist()
         assert names == [card["raster_name"]]
         assert bundle.getinfo(names[0]).file_size > 100_000
+
+
+def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
+    """A PROMOTE label cannot contradict the card's false slot permissions."""
+    card = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert card["verdict"] == "promote"
+    assert card["safe_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False
+    for flag in ("safe_to_submit", "approved_for_weekly_slot", "selector_run"):
+        assert summary[flag] is False
+    promoted = summary["promoted_for_selector_review"]
+    assert promoted["raster_sha256"] == card["raster_sha256"]
+    assert promoted["safe_to_submit"] is False
+    assert promoted["approved_for_weekly_slot"] is False
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        assert "IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED" in html
+        assert "safe_to_submit=false" in html
+        assert "approved_for_weekly_slot=false" in html
+        for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
+                       "submit this file", "OK to download and submit",
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI",
+                       "DOWNLOAD → SUBMIT"):
+            assert unsafe not in html

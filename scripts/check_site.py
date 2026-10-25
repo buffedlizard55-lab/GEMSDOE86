@@ -144,7 +144,8 @@ def check(root=ROOT):
                 promote = json.loads(h86g_card.read_text(encoding='utf-8'))
                 if promote.get('safe_to_submit') is False or promote.get('approved_for_weekly_slot') is False:
                     unsafe_ctas = ('SUBMIT THIS FILE', 'DOWNLOAD → SUBMIT', 'OK TO SUBMIT? YES',
-                                   'Submit only the H86G-EDTI')
+                                   'Submit only the H86G-EDTI', 'OK to download and submit',
+                                   'One file is OK to submit')
                     if any(text in html_text for text in unsafe_ctas):
                         errors.append('Homepage authorizes H86G-EDTI despite false submission/slot flags')
                     if 'NO FILE CURRENTLY AUTHORIZED FOR UPLOAD' not in html_text:
