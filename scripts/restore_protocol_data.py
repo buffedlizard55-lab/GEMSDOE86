@@ -6,9 +6,41 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+
+
+def _is_rest_rate_limited(exc: subprocess.CalledProcessError) -> bool:
+    return bool(exc.stderr and b"API rate limit exceeded" in exc.stderr)
+
+
+def _git_fetch_blob(repo: str, blob: str) -> bytes:
+    with tempfile.TemporaryDirectory(prefix="gems86_gitblob_") as td:
+        subprocess.run(["git", "init", "-q", td], check=True)
+        subprocess.run(
+            ["git", "-C", td, "fetch", "-q", "--depth=1", f"https://github.com/{repo}.git", blob],
+            check=True,
+            timeout=900,
+        )
+        raw = subprocess.check_output(["git", "-C", td, "cat-file", "blob", blob], timeout=600)
+    identity = hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+    if identity != blob:
+        raise ValueError("Git smart-HTTP blob object identity mismatch")
+    return raw
+
+
+def _git_fetch_path(repo: str, ref: str, path: str) -> bytes:
+    with tempfile.TemporaryDirectory(prefix="gems86_gitpath_") as td:
+        subprocess.run(["git", "init", "-q", td], check=True)
+        subprocess.run(
+            ["git", "-C", td, "fetch", "-q", "--filter=blob:none", "--depth=1", f"https://github.com/{repo}.git", ref],
+            check=True,
+            timeout=900,
+        )
+        raw = subprocess.check_output(["git", "-C", td, "show", f"FETCH_HEAD:{path}"], timeout=600)
+    return raw
 
 
 def write_blob(repo, blob, stream):
@@ -17,10 +49,20 @@ def write_blob(repo, blob, stream):
     Raw TIFF streaming works in some gh builds but fails with "transform:
     short source buffer" on the hosted runner. JSON/base64 is portable; Git
     object identity plus the final SHA256/size pins still authenticate bytes.
+    When concurrent org sessions exhaust GitHub's 5,000 req/hr REST API quota,
+    fall back strictly on ``API rate limit exceeded`` to Git smart-HTTP blob
+    transport verified against the identical Git SHA-1 object identity.
     """
-    response = subprocess.run(['gh', 'api', f'repos/{repo}/git/blobs/{blob}',
-                               '-H', 'Accept: application/vnd.github+json'],
-                              capture_output=True, check=True)
+    try:
+        response = subprocess.run(['gh', 'api', f'repos/{repo}/git/blobs/{blob}',
+                                   '-H', 'Accept: application/vnd.github+json'],
+                                  capture_output=True, check=True)
+    except subprocess.CalledProcessError as exc:
+        if not _is_rest_rate_limited(exc):
+            raise
+        raw = _git_fetch_blob(repo, blob)
+        stream.write(raw)
+        return
     obj = json.loads(response.stdout)
     if obj.get('encoding') != 'base64' or obj.get('sha') != blob:
         raise ValueError('Unexpected Git blob identity or encoding')
@@ -32,8 +74,15 @@ def write_blob(repo, blob, stream):
 
 
 def write_path(repo, ref, path, stream):
-    blob = subprocess.check_output(['gh', 'api',
-        f'repos/{repo}/contents/{path}?ref={ref}', '--jq', '.sha']).decode().strip()
+    try:
+        blob = subprocess.check_output(['gh', 'api',
+            f'repos/{repo}/contents/{path}?ref={ref}', '--jq', '.sha'],
+            stderr=subprocess.PIPE).decode().strip()
+    except subprocess.CalledProcessError as exc:
+        if not _is_rest_rate_limited(exc):
+            raise
+        stream.write(_git_fetch_path(repo, ref, path))
+        return
     write_blob(repo, blob, stream)
 
 

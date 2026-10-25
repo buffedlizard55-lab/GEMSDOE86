@@ -23,7 +23,7 @@ experiment finalize_h86e gen_tip_final generate_unique_submission build_unique_s
 prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
-run_h86_wvb run_h86e run_h86e_mmt run_h86e_ridf run_h86f_ewcs run_h86f_gzzd run_h86f_pcc run_h86g_edti run_h86h_pstd run_h86i_hvfd run_h86i_ksad run_h86i_rksc run_h86i_rlms run_h86i_sacd run_h86j_csgd run_h86j_tvhs run_lane run_lane86 run_lane86b run_lane86c run_lane86d
+run_h86_wvb run_h86e run_h86e_mmt run_h86e_ridf run_h86f_ewcs run_h86f_gzzd run_h86f_pcc run_h86g_edti run_h86h_pstd run_h86i_hvfd run_h86i_ksad run_h86i_rksc run_h86i_rlms run_h86i_sacd run_h86j_csgd run_h86j_mcsp run_h86j_tvhs run_lane run_lane86 run_lane86b run_lane86c run_lane86d
 run_prune_ladder run_relief_axis run_relief_source run_snap_axis
 run_spacing_axis run_trackb_axis write_h86e_tif
 """.split()
@@ -153,6 +153,7 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     "run_h86f_ewcs.py",
     "run_h86i_ksad.py",
     "run_h86j_tvhs.py",
+    "run_h86j_mcsp.py",
 ])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()

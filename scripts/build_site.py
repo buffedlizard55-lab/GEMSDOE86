@@ -611,6 +611,43 @@ def h86i_rksc_answer(card: dict) -> str:
 <p><a href="evidence/h86i-rksc-run-card.json">Full H86I-RKSC run card</a> · <a href="evidence/h86i-rksc-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86i-rksc-registry-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86I_RKSC_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_RKSC_REVIEW.md">PhD H33 (0.2778) proof &amp; 3-pass review</a></p></section>'''
 
 
+def h86j_mcsp_answer(card: dict, section_id: str = "h86j-mcsp") -> str:
+    """Contemporaneously preregistered H86J-MCSP lane receipt (unique audit TIFF generated)."""
+    h = card["holdout_dti"]
+    c = h["candidate"]
+    e2 = h["all_arms"]["E2_mcsp_blind_celf"]
+    e3 = h["all_arms"]["E3_mcsp_amp_staticek_ablation"]
+    r0 = h["R0_D28_visible_collar"]
+    comps = h["same_split_comparators"]
+    kslb = comps["H86C_KSLB_E3_44k"]
+    r0_d25 = comps["R0_D25_fold_fair_44k"]
+    edti = comps["H86G_EDTI_L_55k"]
+    sgmc = card["sgmc_off_catalogue_diagnostic"]
+    sg_s = sgmc["scores"]
+    sg_d = sgmc["paired_differences_vs_candidate"]
+    reg = card["correlation_overlap_vs_registry"]
+    surface = reg["surface_preplacement"]
+    final = reg["final_dots"]
+    disc = reg["comparable_discrete_100k_diagnostic"]
+    kc = disc["key_comparators"]
+    lc = h["leakage_canary_summary"]
+    v = card["validator_output"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="{e(section_id)}"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>2026-10-25 latest unique TIFF (H86J-MCSP): Riesz monogenic + blind geothermal corroboration + 4-fold LOQO + exact CELF submodular allocation</h2>
+<p><code>{e(name)}.tif</code> is a newly generated, byte- and pixel-unique single-band GeoTIFF (SHA-256 <code>{e(card["raster_sha256"])}</code>, {v["positive_pixels"]:,} positive cells at 2.8 px CELF spacing, 0 NaN, values strictly in [0, 1]). <strong>Automated gate decision: {e(card["decision"])} (verdict: <code>{e(card["verdict"])}</code>; <code>safe_to_submit = false</code>; <code>approved_for_weekly_slot = false</code>; <code>0</code> weekly slots used; research download only).</strong></p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only, DO NOT SUBMIT</a>
+<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives, strict 4-fold spatial Leave-One-Quadrant-Out training with zero raw regional levels and 10 m DEM LiDAR-swath debiasing): candidate <code>E1_mcsp_dual_celf</code> achieves <strong>{c["dti"]:.4f} [{c["ci95"][0]:.4f}, {c["ci95"][1]:.4f}]</strong>, beating pure catalogue-blind <code>E2_mcsp_blind_celf</code> (<strong>{e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]</strong> — +57% over <code>H86G-EDTI</code> @37,654 <code>0.0535</code> and +33% over @55,000 <code>{edti["dti"]:.4f}</code>), scalar-amplitude/static-<code>E[k]</code> ablation <code>E3</code> ({e3["dti"]:.4f} [{e3["ci95"][0]:.4f}, {e3["ci95"][1]:.4f}], paired Δ {h["paired_differences"]["E3_mcsp_amp_staticek_ablation"]["delta"]:+.4f} [{h["paired_differences"]["E3_mcsp_amp_staticek_ablation"]["ci95"][0]:+.4f}, {h["paired_differences"]["E3_mcsp_amp_staticek_ablation"]["ci95"][1]:+.4f}]), fold-fair <code>R0</code> ({r0_d25["dti"]:.4f} [{r0_d25["ci95"][0]:.4f}, {r0_d25["ci95"][1]:.4f}]), <code>R0_D28_visible_collar</code> ({r0["dti"]:.4f}), and same-split <code>H86C-KSLB</code> ({kslb["dti"]:.4f} [{kslb["ci95"][0]:.4f}, {kslb["ci95"][1]:.4f}]).</li>
+<li><strong>SGMC-PROXY-DTI</strong> (read-only diagnostic on {sgmc["off_catalogue_positive_pixels"]:,} off-catalogue USGS SGMC fault pixels &gt; 3 px from <code>existing_faults.tif</code>; never a training input or organizer score): whereas pure 3-layer <code>H86J-MPC</code> trailed its amplitude control (<code>0.0658</code> vs <code>0.1089</code>), coupling monogenic phase congruency with <code>TMI_up150</code> wavenumber decay, geothermal fault-intersection/metasomatism, and exact CELF at 37,654 dots lifts <code>E1</code> to <strong>{sg_s["E1_mcsp_dual_celf"]["dti"]:.4f} [{sg_s["E1_mcsp_dual_celf"]["ci95"][0]:.4f}, {sg_s["E1_mcsp_dual_celf"]["ci95"][1]:.4f}]</strong> and pure-blind <code>E2</code> to <strong>{sg_s["E2_mcsp_blind_celf"]["dti"]:.4f} [{sg_s["E2_mcsp_blind_celf"]["ci95"][0]:.4f}, {sg_s["E2_mcsp_blind_celf"]["ci95"][1]:.4f}]</strong>, beating scalar/static-<code>E[k]</code> ablation <code>E3</code> ({sg_s["E3_mcsp_amp_staticek_ablation"]["dti"]:.4f}, paired Δ <strong>{sg_d["E3_mcsp_amp_staticek_ablation"]["delta"]:+.4f} [{sg_d["E3_mcsp_amp_staticek_ablation"]["ci95"][0]:+.4f}, {sg_d["E3_mcsp_amp_staticek_ablation"]["ci95"][1]:+.4f}]</strong>), in-quadrant <code>H86F-EWCS</code> ({sg_s["H86F_EWCS_37654_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H86F_EWCS_37654_as_is"]["delta"]:+.4f} [{sg_d["H86F_EWCS_37654_as_is"]["ci95"][0]:+.4f}, {sg_d["H86F_EWCS_37654_as_is"]["ci95"][1]:+.4f}]</strong>), and equal-budget <code>GEMSDOE32</code> <code>H33</code> ({sg_s["H33_GEMSDOE32_as_is"]["dti"]:.4f}).</li>
+<li><strong>LEAKAGE-CANARY:</strong> <strong>PASS</strong> — {lc["features_tested"]} static + fold-visible planes audited; worst discriminative AUC is <code>{lc["max_discriminative_auc"]:.4f} &lt;= 0.90</code> (<code>{e(lc["max_discriminative_auc_feature"])}</code>, 0 flags).</li>
+<li><strong>REGISTRY-MEASUREMENT ({final["registry_rasters_measured"]}/{final["registry_rasters_expected"]} indexed rasters, 0 missing):</strong> pre-placement surface worst Spearman <code>{surface["worst_spearman_full_footprint"]:.4f} &lt;= 0.90</code> (<code>0</code> rho firings); across all {disc["rasters_checked"]} local discrete &lt;=100k-dot submissions, worst 3-px dot overlap is <strong>{disc["worst_forward_overlap_3px"]:.4f} &lt;= 0.70</strong> (<code>0</code> firings: <strong>{kc["GEMSDOE32_H33"]["forward_overlap_3px"]:.4f}</strong> vs <code>GEMSDOE32</code>, <strong>{kc["H86J_MPC"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86J-MPC</code>, <strong>{kc["H86J_CSGD"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86J-CSGD</code>, <strong>{kc["H86J_TVHS"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86J-TVHS</code>). Full-registry v2 fails closed on high-support lattices/surfaces (<code>17GEMSDOE</code>, <code>13GEMSDOE</code>) and 2 off-grid rows (<code>14GEMSDOE</code>, <code>7GEMSDOE</code>), and catalogue-hide paired Δ vs <code>E3</code> spans zero, so verdict remains <code>negative</code> (<code>DO NOT SUBMIT</code>).</li></ul>
+<dl><dt>Submission name — audit reference only (DO NOT UPLOAD)</dt><dd><code id="{e(section_id)}-name">{e(name)}</code> <button data-copy-target="{e(section_id)}-name" type="button">Copy name</button></dd>
+<dt>Note ({card["note_chars"]} characters)</dt><dd><code id="{e(section_id)}-note">{e(card["note"])}</code> <button data-copy-target="{e(section_id)}-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence/h86j-mcsp-run-card.json">Full H86J-MCSP run card</a> · <a href="evidence/h86j-mcsp-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86j-mcsp-registry-final-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86J_MCSP_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86J_MCSP_REVIEW.md">PhD H33 (0.2778) + NE survey-bias proof &amp; 3-pass review</a></p></section>'''
+
+
 def h86j_mpc_answer(card: dict) -> str:
     """Latest preregistered H86J-MPC lane receipt (unique audit TIFF; hypothesis falsified)."""
     hn = card["holdout_dti_normalized"]
@@ -806,7 +843,30 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "") -> str:
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None) -> str:
+    block86j_mcsp = ""
+    if h86j_mcsp_prereg and mcsp_card:
+        cards_mcsp = []
+        e1_j = mcsp_card["holdout_dti"]["candidate"]
+        e2_j = mcsp_card["holdout_dti"]["all_arms"]["E2_mcsp_blind_celf"]
+        sg_j = mcsp_card["sgmc_off_catalogue_diagnostic"]["scores"]["E1_mcsp_dual_celf"]
+        for ch in h86j_mcsp_prereg["ranked_hypotheses"]:
+            st_m = (
+                f"EXECUTED NEGATIVE UNDER STRICT V2 GATE (LOQO HOLDOUT-DTI {e1_j['dti']:.4f}, pure-blind E2 {e2_j['dti']:.4f}, SGMC-PROXY-DTI {sg_j['dti']:.4f}; audit-only DO NOT SUBMIT)"
+                if ch["rank"] == 1
+                else f"{ch['status']} (incorporated as component operator inside H86J-MCSP)"
+            )
+            layer_list = [f"B{ly['band']} {ly['name']}" for ly in ch["layers"]] + list(ch.get("external_pinned_layers", []))
+            cards_mcsp.append(f'''<article class="card"><p class="eyebrow">H86J-MCSP Rank {ch['rank']} · {e(ch['id'])} · {e(st_m)}</p><h2>{e(ch['name'])}</h2>
+<dl><dt>Specific layers</dt><dd>{e('; '.join(layer_list))}</dd><dt>Physical signature &amp; transform</dt><dd>{e(ch['physical_signature'])}</dd>
+<dt>Why missing from USGS/INGENIOUS catalogue?</dt><dd>{e(ch['why_catalogue_missing'])}</dd><dt>Novelty vs repository</dt><dd>{e(ch['novelty_vs_repo'])}</dd>
+<dt>Named non-fault mimic</dt><dd>{e(ch['named_non_fault_mimic'])}</dd><dt>Expected DTI rank &amp; cost</dt><dd>{e(ch['expected_dti_improvement_qualitative'])} · {e(ch['implementation_cost'])}</dd>
+<dt>Official data obtainability</dt><dd>100% SHA-256-verified in native training_features.tif + .cache/external/ (USGS GeoDAWN / 3DEP 1 m LiDAR / 10 m USGS DEM; zero new unpinned downloads).</dd></dl></article>''')
+        block86j_mcsp = (
+            '<section id="h86j-mcsp-hypotheses"><h2>2026-10-25 H86J-MCSP Preregistered Hypothesis Queue (Session ba54d9a2 · Monogenic-Geothermal + 4-Fold LOQO + Exact CELF)</h2>'
+            '<p>Declared prior to implementation in <a href="' + REPO + '/blob/main/research/H86J_MCSP_PREREGISTRATION.md"><code>H86J_MCSP_PREREGISTRATION.md</code></a> and <a href="' + REPO + '/blob/main/registry/h86j_mcsp_hypotheses.json"><code>registry/h86j_mcsp_hypotheses.json</code></a> (<a href="evidence/h86j-mcsp-run-card.json">run card</a>).</p>'
+            + "".join(cards_mcsp) + "</section>"
+        )
     block86j = ""
     if plan86j:
         cards86j = []
@@ -949,6 +1009,7 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
 <div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-TVHS</code> achieved strict-LOQO <code>E1 = 0.0983 [0.0800, 0.1159]</code>, zero-catalogue blind <code>E2 = 0.0626 [0.0475, 0.0778]</code>, and unweighted strict-LOQO <code>E3 = 0.1214 [0.1060, 0.1350]</code>, <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
+{block86j_mcsp}
 {tvhs_queue}
 {block86j}
 {rlms_queue}
@@ -1365,6 +1426,22 @@ def render(root: Path = ROOT) -> dict[str, str]:
                 or sha256(csgd_tif) != csgd_card["raster_sha256"]):
             raise ValueError("H86J-CSGD card must stay negative, within 3-arm budget, slot-free, and bound to its raster")
         csgd_banner = h86j_csgd_answer(csgd_card)
+    mcsp_path = root / "docs/evidence/h86j-mcsp-run-card.json"
+    mcsp_card = strict_json(mcsp_path) if mcsp_path.is_file() else None
+    mcsp_banner = ""
+    if mcsp_card is not None:
+        mcsp_tif = root / mcsp_card["submission_file"]
+        if (mcsp_card["verdict"] != "negative" or mcsp_card["decision"] != "DO NOT SUBMIT"
+                or mcsp_card["submission_ready"] is not False
+                or mcsp_card["safe_to_submit"] is not False
+                or mcsp_card["approved_for_weekly_slot"] is not False
+                or mcsp_card["submission_slots_used"] != 0
+                or mcsp_card["experiments_run"] != 3
+                or sha256(mcsp_tif) != mcsp_card["raster_sha256"]):
+            raise ValueError("H86J-MCSP card must stay negative, within 3-arm budget, slot-free, and bound to its raster")
+        mcsp_banner = h86j_mcsp_answer(mcsp_card, section_id="h86j-mcsp-banner")
+    h86j_mcsp_path = root / "research/H86J_MCSP_PREREGISTRATION.json"
+    h86j_mcsp_prereg = strict_json(h86j_mcsp_path) if h86j_mcsp_path.is_file() else None
     review_notice = current_review_notice(session_data, registry_inputs, concurrent)
     new_queue = new_hypothesis_queue(new_plan)
     answer = (tvhs_html + rlms_html + ksad_html + lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
@@ -1378,14 +1455,15 @@ def render(root: Path = ROOT) -> dict[str, str]:
                         + (len(hvfd_prereg["ranked_hypotheses"]) if hvfd_prereg else 0)
                         + (len(plan86i["hypotheses"]) if plan86i else 0)
                         + (len(plan86i_ksad["hypotheses"]) if plan86i_ksad else 0)
-                        + (len(plan86j["hypotheses"]) if plan86j else 0))
-    combined_banner = tvhs_banner + csgd_banner + sacd_banner
+                        + (len(plan86j["hypotheses"]) if plan86j else 0)
+                        + (len(h86j_mcsp_prereg["ranked_hypotheses"]) if h86j_mcsp_prereg else 0))
+    combined_banner = mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

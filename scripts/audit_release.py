@@ -326,6 +326,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86J-TVHS strict out-of-quadrant LOQO lane result; the run card is the authoritative experiment receipt. Blind E2 (0.0626) beats H86I-KSAD blind E3 (0.0624) and H86I-HVFD blind E1 (0.0475), and unweighted native LOQO E3 reaches 0.1214 [0.1060, 0.1350] at 37,654 dots, but exposure-propensity Dual-Expert candidate E1 (0.0983 [0.0800, 0.1159], beating R0_D28 0.0931) trails E3 and archived LOQO KSLB (0.1241), and literal/completeness/dot-overlap registry gates fail closed; DO NOT SUBMIT; no slot was used."}
+    if kind == "h86j_mcsp":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86J-MCSP lane result; the run card is the authoritative experiment receipt. Under strict 4-fold spatial Leave-One-Quadrant-Out training with zero raw regional levels and 10m DEM LiDAR-swath debiasing, E1 achieves HOLDOUT-DTI 0.1463 [0.1280, 0.1647] (pure-blind E2 = 0.0839 [0.0669, 0.1009], scalar/static-E[k] ablation E3 = 0.1380 [0.1236, 0.1529]) and SGMC-PROXY-DTI 0.0999 [0.0826, 0.1168] (beating E3 0.0760 by +0.0239 [+0.0086, +0.0381], H86F-EWCS 0.0819 by +0.0180 [+0.0034, +0.0328], and equal-budget GEMSDOE32 H33 0.0937), with 0/690 Spearman rho > 0.90 firings (max 0.6364) and 0/51 local discrete <=100k-dot firings > 0.70 (max 0.5964), but full 692-entry v2 literal/completeness gates fail closed and paired delta vs E3 on catalogue-hide spans zero; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

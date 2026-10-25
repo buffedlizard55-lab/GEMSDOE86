@@ -1,0 +1,142 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86J-MCSP",
+  "frozen_utc": "2026-10-25T04:08:00Z",
+  "title": "Monogenic Cross-Spectral Phase-Congruent Structural Conduit + Out-of-Quadrant Geothermal Fault-Intersection Specialist with Exact Submodular CELF Kernel Allocation",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "emitted_dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0,
+    "post_hoc_budget_tuning_permitted": false
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86J-MCSP",
+      "status": "SELECTED_FOR_VALIDATION",
+      "name": "Monogenic Cross-Spectral Phase-Congruent Structural Conduit + Out-of-Quadrant Geothermal Fault-Intersection Specialist with Exact Submodular CELF Kernel Allocation",
+      "layers": [
+        {"band": 2, "name": "rtp"},
+        {"band": 3, "name": "tmi_hg"},
+        {"band": 4, "name": "geod_2ndinv"},
+        {"band": 6, "name": "tc"},
+        {"band": 7, "name": "geod_shearrate"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"band": 9, "name": "tmi_vg"},
+        {"band": 10, "name": "deq_n100a15"},
+        {"band": 11, "name": "iso_grav_anom_vg"},
+        {"band": 12, "name": "det_elev"},
+        {"band": 13, "name": "iso_grav_anom"},
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 16, "name": "ieq_n100a15"},
+        {"band": 17, "name": "cond_surf"},
+        {"band": 18, "name": "iso_grav_anom_hg"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_pinned_layers": [
+        "geodawn_extensions_u8.tif (ThK, UK, UTh, TMI_up150)",
+        "geodawn_rad_u8.tif (K, Th, U, TC)",
+        "lidar_scarp_features_u8.tif (step_max, cross_max, coh100, downface_max, upface_max, lapneg_max, lappos_max; valid and strike excluded)",
+        "topo_10m_derived_100m_u8.tif (curv_prof_absmax, hs_lineament, aspect_coherence, slope_p90, relief_local)",
+        "dem10_chi_100m_i16.tif (step_max_x1000, step_min_x1000, ksn_max_m0.9, log10_area_m2_x1000, zmean_m)"
+      ],
+      "physical_signature": "2-D Riesz-transform monogenic phase congruency across dyadic scales sigma in {1.5, 3.0, 6.0} px on RTP and isostatic gravity (strictly invariant to contrast amplitude), TMI-vs-TMI_up150 upward-continuation structural decay, hydrothermal magnetite-destruction troughs inside gravity phase steps, Hessian-eccentricity conductive fault-gouge necks, Lahontan-deconfounded K/Th-U/Th metasomatic gradients, structure-tensor fault-intersection determinant (det J / tr J), and 3DEP LiDAR/fluvial-chi scarps fused via 4-fold Leave-One-Quadrant-Out (LOQO) spatial cross-fitting with fold-visible Pollard-Segall crack-tip lobes and allocated by exact CELF submodular marginal kernel credit.",
+      "why_catalogue_missing": "Mapped USGS/INGENIOUS traces over-represent high-relief bedrock range fronts where amplitude gradients are strong. Concealed intra-basin accommodation faults, blind geothermal stepovers (>75% of Great Basin hydrothermal systems lack surface springs; Faulds & Hinz 2015), and weakly magnetized tuff/alluvium relays attenuate potential-field amplitude 5x-20x while preserving multi-scale Riesz odd-symmetry phase alignment, linear smectite/brine conductance necks, and K/U metasomatic halos.",
+      "novelty_vs_repo": "First executable 2-D Riesz monogenic phase congruency + TMI_up150 vertical attenuation + structure-tensor fault-intersection geothermal conduit model in GEMSDOE86; strips all raw regional elevation/gravity/magnetic background levels to prevent mountain-range memorization, enforces strict 4-fold LOQO spatial cross-fitting on both blind and kinematic specialists, and replaces static E[k] spacing-greedy / tile decimation with exact O(N log N) heap-accelerated CELF submodular marginal DTI-numerator updates.",
+      "named_non_fault_mimic": "Buried Tertiary caldera ring-fracture walls or welded ash-flow tuff cooling-unit pinch-outs altered by fossil Miocene epithermal systems, and Pleistocene Lake Lahontan highstand (~1,330 m) wave-cut benches adjacent to saline playas.",
+      "expected_dti_improvement_qualitative": "Highest expected joint gain on both OOF buffered whole-component HOLDOUT-DTI and off-catalogue SGMC-PROXY-DTI at fixed 37,654-dot fleet budget by eliminating regional-level overfitting and sub-kernel double counting.",
+      "implementation_cost": "Medium (pure CPU NumPy/SciPy/scikit-learn + O(N log N) heapq CELF; ~8-12 min runtime, zero new unpinned external downloads)."
+    },
+    {
+      "rank": 2,
+      "id": "H86J-WCA",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "name": "Upward-Continuation Wavenumber Attenuation Structural Index (TMI vs TMI_up150) for Intra-Graben Faults",
+      "layers": [
+        {"band": 2, "name": "rtp"},
+        {"band": 13, "name": "iso_grav_anom"},
+        {"band": 14, "name": "tmi"},
+        {"band": 15, "name": "depth_to_base_surf"}
+      ],
+      "external_pinned_layers": [
+        "geodawn_extensions_u8.tif (Band 4: TMI_up150)"
+      ],
+      "physical_signature": "Logarithmic vertical decay rate z0 * d/dz ln|grad TMI| between flight-level RTP/TMI and 150 m upward-continued TMI_up150 to isolate sub-vertical fault-contact structural indices (N ~ 0.5-1.0) from surficial basalt clinker (N >= 2.5) and deep plutons (N -> 0).",
+      "why_catalogue_missing": "Intra-graben synthetic/antithetic accommodation faults beneath 100-400 m basin fill have zero topographic expression.",
+      "novelty_vs_repo": "Avoids noisy third-order Euler deconvolution derivatives (GEMSDOE40: 0.0355-0.0984) by using exact upward-continuation attenuation; core attenuation operator folded into H86J-MCSP.",
+      "named_non_fault_mimic": "Shallow sub-vertical Miocene basaltic feeder dikes.",
+      "expected_dti_improvement_qualitative": "Moderate standalone; high value as an orthogonal depth-discrimination plane inside a multi-physics specialist.",
+      "implementation_cost": "Low."
+    },
+    {
+      "rank": 3,
+      "id": "H86J-KCSN",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "name": "Anisotropic Drainage-Divide Chi-Asymmetry Coupled with Crustal Transtensional Strain-Rate Alignment",
+      "layers": [
+        {"band": 4, "name": "geod_2ndinv"},
+        {"band": 7, "name": "geod_shearrate"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"band": 12, "name": "det_elev"}
+      ],
+      "external_pinned_layers": [
+        "dem10_chi_100m_i16.tif (step_max_x1000, step_min_x1000, ksn_max_m0.9)"
+      ],
+      "physical_signature": "Cross-divide fluvial chi-step asymmetry gated by active geodetic transtensional shear-dilation product to detect distributed Walker Lane / Humboldt tilt-block boundaries lacking continuous scarps.",
+      "why_catalogue_missing": "Distributed transtensional shear zones accommodate slip across unmapped bedrock-pediment block tilts.",
+      "novelty_vs_repo": "Couples cross-divide chi disequilibrium with GPS/InSAR strain invariants rather than raw chi thresholding (60GEMSDOE: 0.0351).",
+      "named_non_fault_mimic": "Differential bedrock erodibility across unfaulted granite-tuff contacts.",
+      "expected_dti_improvement_qualitative": "Low-to-moderate standalone because uplift transients span 1-3 km across strike, wider than the 300 m kernel.",
+      "implementation_cost": "Low-medium."
+    },
+    {
+      "rank": 4,
+      "id": "H86J-ECFN",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "name": "Hessian-Eccentricity Conductive Fault-Gouge Necking Deconfounded from Isotropic Evaporite Playas",
+      "layers": [
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 17, "name": "cond_surf"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_pinned_layers": [
+        "geodawn_rad_u8.tif (K, Th, U)"
+      ],
+      "physical_signature": "Linear negative-curvature ridges of electrical conductivity weighted by Hessian eigenvalue eccentricity (|lambda_1| - |lambda_2|)/(|lambda_1| + |lambda_2|) and suppressed on zero-slope deep-basin centers.",
+      "why_catalogue_missing": "Active hydrothermal brine/smectite conduits in basin interiors (Brady/Dixie Valley style) are buried by Holocene playa silt.",
+      "novelty_vs_repo": "Explicit Hessian eccentricity gating rejects equant saline playas that confounded earlier conductivity models (GEMSDOE65: 0.0431); incorporated as a specialist feature inside H86J-MCSP.",
+      "named_non_fault_mimic": "Linear clay-filled axial river paleochannels.",
+      "expected_dti_improvement_qualitative": "Low standalone due to coarse conductivity resolution, moderate synergistic lift at fault intersections.",
+      "implementation_cost": "Low."
+    }
+  ],
+  "arms": [
+    {
+      "id": "E1_mcsp_dual_celf",
+      "role": "primary_candidate",
+      "description": "Dual-regime Noisy-OR fusion S = 1 - (1 - 0.50 * P_blind)(1 - 0.65 * P_kin) of 4-fold LOQO translation-invariant monogenic-geothermal blind specialist P_blind and 4-fold LOQO + nested cross-component elastic fracture-mechanics specialist P_kin, emitted at 37,654 dots via exact heapq CELF submodular marginal kernel credit (min_spacing 2.8 px, collar > 3.0 px).",
+      "weights": {"alpha_blind": 0.50, "alpha_kin": 0.65, "blind_hgb_blend": 0.55, "blind_corrob_blend": 0.45}
+    },
+    {
+      "id": "E2_mcsp_blind_celf",
+      "role": "ablation_catalogue_blind",
+      "description": "Pure catalogue-blind specialist P_blind (22 translation-invariant monogenic, geothermal-conduit, radiometric, and 3DEP scarp planes, 4-fold LOQO cross-fitted + amplitude-invariant corroboration; zero catalogue-geometry inputs) emitted at 37,654 dots via exact CELF submodular marginal kernel credit (min_spacing 2.8 px, collar > 3.0 px)."
+    },
+    {
+      "id": "E3_mcsp_amp_staticek_ablation",
+      "role": "ablation_no_monogenic_geotherm_no_celf",
+      "description": "Control ablation replacing monogenic phase congruency, TMI_up150 attenuation, geothermal vent intersection/conductance/metasomatism, and anisotropic wing-crack/stepover mechanics with standard scalar amplitude gradients + isotropic tip distance halo, and replacing exact CELF submodular updates with static E[k] spacing-greedy at identical 37,654-dot budget and 3.0 px collar."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "registry_spearman_max": 0.90,
+    "registry_dot_overlap_3px_max": 0.70,
+    "holdout_evaluator": "gems57-pooled-hide-v2",
+    "holdout_seed": 20,
+    "holdout_withheld_positives": 11321,
+    "fail_closed_on_incomplete_v2_registry_or_literal_witness": true
+  }
+}
