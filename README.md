@@ -1,16 +1,17 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ✅ NEWEST TIFF (2026-10-25, H86M-LT, session `ecc314b3`): **PROMOTE — OK TO SUBMIT under every H86M machine gate** (slot choice remains yours)
+## H86M-LT upstream candidate — lane verdict **PROMOTE**; global submission **NOT AUTHORIZED**
 
-- **Download this file:** [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) · [ZIP](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip) · [lane page](docs/h86m-lt.html) · [run card](docs/evidence/h86m-lt-run-card.json) · [review & H33 forensics](research/H86M_LT_REVIEW.md)
-- SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`; 37,654 binary dots, values exactly {0,1} (fixes the "[0, 1]" portal error class); format validator **15/15 PASS**; name for the form: `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros`; note (≤140): `H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat>3; auto-validated; see run card`.
-- **Unique:** full restored registry scan (655 rasters, 414 dot-fields): max 3-px forward overlap **0.649 ≤ 0.70**, max correlation **0.159 ≤ 0.90**, surface 0.556 — 0 duplicate firings ([evidence](docs/evidence/h86m-lt-full-registry-uniqueness.json)).
-- **Why it should beat 0.2778 (owner-reported h33):** leaderboard tomography fits hidden-fault density to the fleet's 29 owner-reported live scores through the exact DTI algebra (K≈15.5k, honest LOO-MAE 0.0190); expected-DTI projections (never scores): primary belief **0.3317 vs h33-model 0.2660**, second **0.3515 vs 0.2685**, coarsest tied **0.2714 vs 0.2716**; SGMC-PROXY-DTI 0.1136 vs h33 0.0954. `approved_for_weekly_slot=false`, 0 slots used — submitting spends *your* weekly slot; only an organizer receipt can confirm the live score. Repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (documented unsatisfiable); this lane's operative gates are the PA-86 like-for-like checks above. Inventory registration in the generated index is pending a new `audit_release` holdout-kind branch (see review Limitations).
-## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
+- The upstream H86M-LT lane reports a candidate at [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) (SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`), with its [run card](docs/evidence/h86m-lt-run-card.json), [full-registry uniqueness scan](docs/evidence/h86m-lt-full-registry-uniqueness.json), and [review](research/H86M_LT_REVIEW.md). The lane reports `verdict=promote` under its own PA-86 gates; it explicitly leaves `approved_for_weekly_slot=false` and uses zero slots.
+- **This is not repo-wide submission clearance.** The candidate is now registered as audit-only, but the fresh release audit validates **36/36** TIFFs and still returns **DO NOT SUBMIT**: the pinned literal continuous-support witness overlaps every nonempty allowed raster at 1.0, over the 0.70 stop. The separate [release overlay](docs/evidence/h86m-lt-release-overlay.json) preserves the upstream lane card unchanged and binds it to a global no-submit decision. Do not upload this file based solely on the lane's promote label.
+- The reported H86M-LT evidence is leaderboard-score tomography and projected DTI fitted to owner-reported fleet scores, not the requested whole-segment buffered hide-and-recover HOLDOUT-DTI. Projections are not organizer scores; the owner-reported H33 score remains unverified. Treat the candidate's fit/holdout method and the continuous-vs-discrete registry interpretation as limitations requiring review.
+- **36** published research TIFFs are registered and locally format-audited; all are research/audit-only, including PR #92. The review in this branch generated **no new candidate** or experiment. Its three-pass software audit and negative JSON run card are [here](research/SESSION_ARENA_REPO_REVIEW_20261025_CURRENT.md) and [here](docs/evidence/session-arena-3d912985-run-card.json). The [H86M-LT review](research/H86M_LT_REVIEW.md) describes the separate upstream work.
+- **Final three-pass checks:** 1025 passed, 24 skipped, 48 warnings, 58 subtests; frozen card, 36-file download audit, generated site, links and release audit pass. The live input inspection still finds the native feature TIFF, prepared arrays and shared cache missing.
+## Historical branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 
 This review generated **no new candidate** or weekly submission. **35** published TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
 
-## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
+## Historical review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
 
 **No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.
 
@@ -25,9 +26,9 @@ This review generated **no new candidate** or weekly submission. **35** publishe
 - Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
 
 The older snapshot below is historical; its H86L publication failure has been repaired in this review.
-## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
+## Historical review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
 
-## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**
+## Historical upstream no-file lane — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**
 
 **OK to submit: NO.** No GeoTIFF was written by this session. `safe_to_submit` is false, `approved_for_weekly_slot` is false, and no weekly slot was used. There is no authorized filename and no note to paste.
 

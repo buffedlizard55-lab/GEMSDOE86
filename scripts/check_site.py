@@ -9,9 +9,12 @@ import json
 import re
 import zipfile
 from pathlib import Path
+import sys
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.h86m_lt_release_guard import valid_h86m_lt_release_overlay
 
 
 class Links(HTMLParser):
@@ -159,6 +162,10 @@ def check(root=ROOT):
                         errors.append('Homepage authorizes H86G-EDTI despite false submission/slot flags')
                     if 'NO FILE AUTHORIZED' not in html_text or 'DO NOT SUBMIT' not in html_text:
                         errors.append('Homepage must state that no file is authorized and submissions are prohibited')
+        if html_file == root / 'docs/h86m-lt.html':
+            if ('DO NOT SUBMIT' not in html_text or 'audit-only' not in text
+                    or 'not authorized' not in text):
+                errors.append('H86M-LT lane page must clearly deny global upload authorization and label downloads audit-only')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
             errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
     canonical_card = root / 'docs/evidence/run-card.json'
@@ -177,12 +184,18 @@ def check(root=ROOT):
             and card.get('approved_for_weekly_slot') is False
             and card.get('safe_to_submit') is False
         )
-        if card.get('verdict') != 'negative' and not promote_ok:
+        h86m_lt_promote_archived = (
+            card_file == root / 'docs/evidence/h86m-lt-run-card.json'
+            and valid_h86m_lt_release_overlay(root)
+        )
+        if card.get('verdict') != 'negative' and not promote_ok and not h86m_lt_promote_archived:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         for key in ('submission_ready', 'approved_for_weekly_slot', 'safe_to_submit'):
-            if key in card and card[key] is not False and not (promote_ok and key == 'submission_ready'):
+            allowed_h86m_lane_flag = h86m_lt_promote_archived and key == 'safe_to_submit'
+            if key in card and card[key] is not False and not (
+                    (promote_ok and key == 'submission_ready') or allowed_h86m_lane_flag):
                 errors.append(f'{card_file.name}: {key} must be false')
     summary_path = root / 'docs/data/summary.json'
     if summary_path.is_file():

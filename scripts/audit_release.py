@@ -22,6 +22,7 @@ import rasterio
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "vendor")]
 from gems57 import gates, grid, validate  # noqa: E402
+from scripts.h86m_lt_release_guard import valid_h86m_lt_release_overlay  # noqa: E402
 
 
 def sha256(path: Path) -> str:
@@ -97,9 +98,9 @@ def archived_holdout(config: dict, context: dict) -> dict:
             or not (version == expected or (version.startswith(expected + " (") and version.endswith(")")))):
         raise ValueError(f"Invalid archived HOLDOUT-DTI evaluator: {config['context']}")
     fields = (result.get("value"), result.get("ci95"), result.get("withheld_positives"))
-    if result.get("status") == "NOT_VALIDATED_FOR_THIS_VARIANT":
+    if result.get("status") in {"NOT_VALIDATED_FOR_THIS_VARIANT", "NOT_RUN_ALTERNATE_EVIDENCE_DESIGN"}:
         if any(value is not None for value in fields):
-            raise ValueError("Unvalidated variant cannot inherit another configuration's HOLDOUT-DTI")
+            raise ValueError("Unvalidated or alternate-design evidence cannot be normalized as HOLDOUT-DTI")
     else:
         value, ci, n = fields
         if (not number(value, 0.0, 1.0) or not interval(ci, 0.0, 1.0)
@@ -118,6 +119,12 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_lt_tomography":
+        if not valid_h86m_lt_release_overlay(ROOT):
+            raise ValueError("H86M-LT promotion requires its pinned fail-closed global-release overlay")
+        return {**base, "status": "NOT_RUN_ALTERNATE_EVIDENCE_DESIGN",
+                "design": "Leaderboard-score tomography fitted to owner-reported fleet scores; no whole-segment buffered hide-and-recover HOLDOUT-DTI was run for this candidate",
+                "caveat": "The source lane card retains its PA-86 promote verdict, but the release overlay explicitly denies repo-wide submission authorization. Expected DTI values are projections from owner-reported scores, not organizer results. The unchanged literal continuous-support witness triggers the global DO NOT SUBMIT stop; no slot was approved or used."}
     if kind == "h86m_unvalidated":
         h = context.get("holdout_dti", {})
         if (context.get("lane") != "H86M-DAMAGERING"
@@ -460,6 +467,17 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 card.get("submission_ready") is True
                 and card.get("safe_to_submit") is False
                 and card.get("approved_for_weekly_slot") is False)
+        elif config.get("holdout_kind") == "h86m_lt_tomography":
+            # Preserve the original lane-local promote card byte-for-byte. The
+            # separate pinned overlay records why it is globally audit-only.
+            checks["scientific_card_lane_verdict_preserved"] = (
+                card.get("verdict") == "promote"
+                and (card.get("full_registry_uniqueness") or {}).get("pass") is True
+                and card.get("submission_slots_used") == 0)
+            checks["global_release_overlay_blocks_submission"] = (
+                valid_h86m_lt_release_overlay(root)
+                and card.get("safe_to_submit") is True
+                and card.get("approved_for_weekly_slot") is False)
         else:
             checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
             checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
@@ -503,8 +521,10 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 historical_holdout=archived_holdout(config, context),
                 safe_to_download_for_audit=passed, safe_to_submit=False,
                 approved_for_weekly_slot=False,
-                verdict=("promote" if config.get("holdout_kind") == "h86g_edti" else "negative"),
-                status=("PROMOTE — OK TO SUBMIT (selector-ready)"
+                verdict=("promote" if config.get("holdout_kind") in {"h86g_edti", "h86m_lt_tomography"} else "negative"),
+                status=("PROMOTE — lane-local only; global release overlay still blocks submission"
+                        if config.get("holdout_kind") == "h86m_lt_tomography" else
+                        "PROMOTE — OK TO SUBMIT (selector-ready)"
                         if config.get("holdout_kind") == "h86g_edti" else "DO NOT SUBMIT"))
 
 
@@ -645,7 +665,11 @@ def build_report(root: Path = ROOT) -> dict:
                       and card_doc.get("submission_ready") is True
                       and card_doc.get("safe_to_submit") is False
                       and card_doc.get("approved_for_weekly_slot") is False)
-        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
+        h86m_lt_promote_archived = (
+            card_path == root / "docs/evidence/h86m-lt-run-card.json"
+            and valid_h86m_lt_release_overlay(root))
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc))
+                or promote_ok or h86m_lt_promote_archived):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

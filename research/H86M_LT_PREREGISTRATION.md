@@ -127,4 +127,3 @@ promotion requires (i) a *material* win under the primary (best honest-LOO) beli
 Δ > −max LOO-MAE (0.0244, E2b lam=0). Exact deltas are always reported; a tie under a
 coarse belief is never written as a win. E3-v3's deterministic dot set is re-issued
 under this restated gate with no placement change.
-
