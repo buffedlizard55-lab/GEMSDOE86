@@ -1,11 +1,16 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ✅ NEWEST TIFF (2026-10-25, H86M-LT, session `ecc314b3`): **PROMOTE — OK TO SUBMIT under every H86M machine gate** (slot choice remains yours)
+## Current review — 2026-10-25 (`arena/57139348-gemsdoe86`): **DO NOT SUBMIT**
 
-- **Download this file:** [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) · [ZIP](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip) · [lane page](docs/h86m-lt.html) · [run card](docs/evidence/h86m-lt-run-card.json) · [review & H33 forensics](research/H86M_LT_REVIEW.md)
-- SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`; 37,654 binary dots, values exactly {0,1} (fixes the "[0, 1]" portal error class); format validator **15/15 PASS**; name for the form: `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros`; note (≤140): `H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat>3; auto-validated; see run card`.
-- **Unique:** full restored registry scan (655 rasters, 414 dot-fields): max 3-px forward overlap **0.649 ≤ 0.70**, max correlation **0.159 ≤ 0.90**, surface 0.556 — 0 duplicate firings ([evidence](docs/evidence/h86m-lt-full-registry-uniqueness.json)).
-- **Why it should beat 0.2778 (owner-reported h33):** leaderboard tomography fits hidden-fault density to the fleet's 29 owner-reported live scores through the exact DTI algebra (K≈15.5k, honest LOO-MAE 0.0190); expected-DTI projections (never scores): primary belief **0.3317 vs h33-model 0.2660**, second **0.3515 vs 0.2685**, coarsest tied **0.2714 vs 0.2716**; SGMC-PROXY-DTI 0.1136 vs h33 0.0954. `approved_for_weekly_slot=false`, 0 slots used — submitting spends *your* weekly slot; only an organizer receipt can confirm the live score. Repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (documented unsatisfiable); this lane's operative gates are the PA-86 like-for-like checks above. Inventory registration in the generated index is pending a new `audit_release` holdout-kind branch (see review Limitations).
+**36** published research TIFFs are locally format-valid, audit-only downloads. This session generated **no new candidate**.
+
+**Download available, upload NOT cleared.** The inherited H86M-LT TIFF is now registered as an audit-only download. Its earlier “OK TO SUBMIT” claim was unsupported: it has no required buffered hide-and-recover validation or CI, and its surface registry checker uses Pearson rather than rank correlation. No new TIFF was generated or copied in this review, and no weekly slot was spent.
+
+- [Download dashboard](docs/index.html) · [submission guide](docs/executive-summary.html) · [LT audit-only file and evidence](docs/h86m-lt.html).
+- [Three-pass review and ranked hypotheses](research/SESSION_57139348_REVIEW.md) · [negative run card](docs/evidence/session-57139348-run-card.json).
+- Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
+- Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
+
 ## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 
 This review generated **no new candidate** or weekly submission. **35** published TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
