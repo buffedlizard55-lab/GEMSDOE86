@@ -65,16 +65,28 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
 def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     card = load("docs/evidence/session-20261025-followup-run-card.json")
     preflight = load("docs/evidence/protocol-preflight.json")
-    registry = load("docs/evidence/all-artifacts-registry.json")
+    # A dated review binds its original bytes, not a later refreshed audit.
+    # Live timestamp/hash binding is separately tested in test_current_review.py.
+    import hashlib
+    source = card["registry_measurement_source"]
+    source_path = (ROOT / source["file"]).resolve()
+    assert source_path.is_relative_to((ROOT / "docs/evidence/session-followup-snapshot").resolve())
+    assert hashlib.sha256(source_path.read_bytes()).hexdigest() == source["sha256"]
+    registry = load(source["file"])
     assert card["hypothesis"].startswith("BMR:")
     assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["status"] == "NOT_RUN_NO_LANE_ASSIGNED_AND_PROTOCOL_STOP"
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
     assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
     assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
-    assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
+    # This is a historical, immutable follow-up. A later --measure-registry
+    # refreshes the current proof and registry timestamps without rerunning the
+    # archived follow-up or falsifying its measurement clock.
     from datetime import datetime
-    assert datetime.fromisoformat(card["correlation_overlap_vs_registry"]["registry_measurement_utc"]) <= datetime.fromisoformat(registry["measured_utc"])
+    assert (datetime.fromisoformat(card["correlation_overlap_vs_registry"]["witness_measured_utc"])
+            <= datetime.fromisoformat(preflight["measured_utc"]))
+    assert (datetime.fromisoformat(card["correlation_overlap_vs_registry"]["registry_measurement_utc"])
+            <= datetime.fromisoformat(registry["measured_utc"]))
     assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False

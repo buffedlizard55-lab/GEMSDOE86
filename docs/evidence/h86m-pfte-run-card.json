@@ -3225,5 +3225,33 @@
       "literal reading reported side by side; any dot-field firing is a duplicate stop",
       "registry scope (measured / expected rasters) stated; incomplete scope is never called complete"
     ]
+  },
+  "post_merge_concurrent_siblings_audit": {
+    "merged_origin_main_commit": "3deca67",
+    "total_published_research_tiffs_after_merge": 37,
+    "concurrent_siblings_3px_forward_overlap": {
+      "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros": {
+        "sha256": "fa7418e878069bfba32e34d0d926e2ba55d7b542f7465cc26ed507a17d478bf2",
+        "forward_overlap_3px": 0.0842938333244808,
+        "gate_pass": true
+      },
+      "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros": {
+        "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+        "forward_overlap_3px": 0.13074308174430338,
+        "gate_pass": true
+      },
+      "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros": {
+        "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+        "forward_overlap_3px": 0.19966006267594414,
+        "gate_pass": true
+      },
+      "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros": {
+        "sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+        "forward_overlap_3px": 0.36822117172146387,
+        "sgmc_proxy_dti_reported": 0.1136,
+        "pfte_e2_sgmc_proxy_dti_advantage": 0.007372094462739264,
+        "gate_pass": true
+      }
+    }
   }
 }

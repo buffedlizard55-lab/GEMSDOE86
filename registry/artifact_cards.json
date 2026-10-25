@@ -220,14 +220,42 @@
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
     },
     {
-      "lane": "H86L-FMC fleet minority-consensus 2-8/25 off-catalogue Poisson-disc emission (HOLDOUT-DTI 0.0000 leakage-suspect; 88.64% > 70% 3-px overlap vs GEMSDOE63; negative DO NOT SUBMIT, 2026-10-25)",
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
       "card": "docs/evidence/h86l-fmc-run-card.json",
       "context": "docs/evidence/h86l-fmc-run-card.json",
       "holdout_kind": "h86l_fmc",
       "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
     },
     {
-      "lane": "H86M-PFTE 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF (SGMC-PROXY-DTI 0.1210 [0.1024, 0.1407] all-time 37,654-dot repo high beating H33 +0.0273 [+0.0066, +0.0485], E3 +0.0419 [+0.0199, +0.0646], MCSP +0.0211, FMC +0.0208, STDP +0.0077; blind LOQO HOLDOUT-DTI 0.0734, kinematic E1 0.1310 halted by Rule 1 0.7041 vs STDP; 0/702 surface rho > 0.90, 0/460 discrete <=90k overlap > 0.70; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "lane": "H86M-BMR basement gravity mass-balance residual (HOLDOUT-DTI 0.0220 [0.0086,0.0384], 11321 withheld, beaten by raw-gravity control; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-bmr-run-card.json",
+      "context": "docs/evidence/h86m-bmr-run-card.json",
+      "holdout_kind": "h86m_bmr",
+      "stem": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros"
+    },
+    {
+      "lane": "H86M-CNT conductivity-neck x dilatation (HOLDOUT-DTI 0.0408 [0.0257,0.0575], 11321 withheld, paired CIs vs controls cross zero; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-cnt-run-card.json",
+      "context": "docs/evidence/h86m-cnt-run-card.json",
+      "holdout_kind": "h86m_cnt",
+      "stem": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros"
+    },
+    {
+      "lane": "H86M-DAMAGERING off-catalogue damage-zone ring (HOLDOUT-DTI not run; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-damagering-run-card.json",
+      "context": "docs/evidence/h86m-damagering-run-card.json",
+      "holdout_kind": "h86m_unvalidated",
+      "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT leaderboard-tomography belief emission over 29 owner-reported scores (HOLDOUT-DTI not run; SGMC-PROXY-DTI 0.1136; PR #165 promote revoked per IR-86M-03; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
+      "context": "docs/evidence/h86m-lt-run-card.json",
+      "holdout_kind": "h86m_lt_unvalidated",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
+    },
+    {
+      "lane": "H86M-PFTE 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF (SGMC-PROXY-DTI 0.1210 [0.1024, 0.1407] all-time 37,654-dot repo high beating H33 +0.0273 [+0.0066, +0.0485], E3 +0.0419 [+0.0199, +0.0646], MCSP +0.0211, FMC +0.0208, LT +0.0074, STDP +0.0077; blind LOQO HOLDOUT-DTI 0.0734, kinematic E1 0.1310 halted by Rule 1 0.7041 vs STDP; 0/702 surface rho > 0.90, 0/464 discrete <=90k overlap > 0.70; fail-closed DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86m-pfte-run-card.json",
       "context": "docs/evidence/h86m-pfte-run-card.json",
       "holdout_kind": "h86m_pfte",

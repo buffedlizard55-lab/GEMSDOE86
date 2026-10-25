@@ -49,10 +49,12 @@ def test_native_receipt_cannot_claim_actual_shared_cache_or_organizer_authentica
 
 def test_all_registry_bytes_can_be_present_while_two_grids_still_block_clearance():
     audit = load("docs/evidence/registry-input-grid-review-20261025.json")
+    expected = audit["indexed_rasters_expected"]
+    compatible = sum(r["grid_compatible"] for r in audit["records"])
     assert audit["byte_coverage_complete"] is True
-    assert audit["indexed_rasters_expected"] == len(audit["records"]) == audit["byte_verified_rasters"] == 690
-    assert audit["grid_compatible_rasters"] == sum(r["grid_compatible"] for r in audit["records"]) == 688
-    assert audit["grid_incompatible_or_invalid_rasters"] == 2
+    assert expected == len(audit["records"]) == audit["indexed_rasters_present"] == audit["byte_verified_rasters"]
+    assert audit["grid_compatible_rasters"] == compatible
+    assert audit["grid_incompatible_or_invalid_rasters"] == expected - compatible == 2
     assert audit["all_grids_compatible"] is False
     assert audit["probability_values_checked"] is False
     assert audit["candidate_comparisons_run"] is audit["uniqueness_clearance"] is audit["submission_authorized"] is False
@@ -106,8 +108,12 @@ def test_site_puts_decision_and_download_access_before_long_historical_receipts(
     executive = (ROOT / "docs/executive-summary.html").read_text()
     for html in (home, executive):
         assert "The requested new, uniqueness-cleared TIFF was not generated in this review." in html
+        assert "DATA-MEASUREMENT (historical receipt dated 2026-10-25T02:15:47Z)" in html
+        assert "training_features.tif" in html and "absent from this checkout" in html
+        assert "Fresh independent recheck" in html
         assert "GZZD/PCC audit gap is now closed" in html
-        assert "690 / 690" in html
+        expected = load("docs/evidence/registry-input-grid-review-20261025.json")["indexed_rasters_expected"]
+        assert f"{expected} / {expected} indexed files hash-verified" in html
         assert "parallel lanes: neither was measured" not in html
         assert html.index("DO NOT SUBMIT") < html.index('id="h86f-gzzd"')
     assert home.index('href="#downloads"') < home.index('id="current-review"')

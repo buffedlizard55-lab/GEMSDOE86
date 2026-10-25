@@ -60,6 +60,13 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+def gdsc_zip_filename_matches(receipt_value, expected_zip_ref):
+    """Accept only the receipt basename or the exact inventory-relative ZIP path."""
+    expected = Path(expected_zip_ref).as_posix()
+    actual = Path(str(receipt_value or '')).as_posix()
+    return actual in {expected, Path(expected).name}
+
+
 def audit_artifact(path, entry, sample, footprint, catalogue):
     """Inspect bytes directly; the adjacent JSON may be a writer receipt or archived run card."""
     receipt = json.loads(path.with_suffix('.json').read_text())
@@ -72,6 +79,13 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         no_nodata = src.nodata is None
     is_run_card = (receipt.get('evidence_class') == 'RUN-CARD'
                    and path.name.startswith('gems86-blindgeothermal-dilation-'))
+    is_gdsc_sidecar = receipt.get('metadata', {}).get('lane') == 'GDSC'
+    gdsc_card = None
+    if is_gdsc_sidecar:
+        card_path = ROOT / 'docs/evidence/gdsc-run-card.json'
+        if not card_path.is_file():
+            raise ValueError(f'{path.name}: linked GDSC run card is missing')
+        gdsc_card = json.loads(card_path.read_text())
     zip_path = path.with_suffix('.zip')
     with zipfile.ZipFile(zip_path) as bundle:
         zip_one_exact_tif = bundle.namelist() == [path.name]
@@ -97,6 +111,17 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
             receipt_not_promoted=receipt.get('verdict') == 'format-valid; not organizer-confirmed; weekly slot not used',
             receipt_no_slot_approval=receipt.get('submission_slots_used') == 0,
         )
+    elif is_gdsc_sidecar:
+        expected_zip_ref = Path(entry['file']).with_suffix('.zip').as_posix()
+        checks.update(
+            gdsc_run_card_sidecar_schema_recognized=True,
+            receipt_zip_filename_matches=gdsc_zip_filename_matches(receipt.get('zip_file'), expected_zip_ref),
+            receipt_zip_hash_matches=receipt.get('zip_sha256') == digest(zip_path),
+            receipt_not_promoted=(gdsc_card.get('verdict') == 'negative'
+                                  and gdsc_card.get('safe_to_submit') is False),
+            receipt_no_slot_approval=(gdsc_card.get('approved_for_weekly_slot') is False
+                                      and gdsc_card.get('submission_slots_used') == 0),
+        )
     else:
         checks.update(
             receipt_zip_filename_matches=receipt.get('zip_file') == zip_path.name,
@@ -113,12 +138,15 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         raise ValueError(f'{path.name}: failed checks: {failed}')
     return dict(file=entry['file'], sha256=sha, bytes=path.stat().st_size,
                 zip_file=str(Path(entry['file']).with_suffix('.zip')),
-                zip_sha256=digest(zip_path), sidecar_kind='archived run-card sidecar' if is_run_card else 'writer receipt',
+                zip_sha256=digest(zip_path),
                 submission_name=receipt['submission_name'], note=receipt['note'],
                 note_chars=len(receipt['note']), positive_pixels=local['emitted_positive_pixels'],
                 min=local['min'], max=local['max'], n_nan=local['n_nan'], n_infinite=local['n_infinite'],
                 grid=local['meta'], checks=checks, all_checks_passed=True,
-                safe_to_submit=False, status='NOT_ASSESSED_BY_FORMAT_AUDIT')
+                safe_to_submit=False, status='NOT_ASSESSED_BY_FORMAT_AUDIT',
+                sidecar_kind=('archived run-card sidecar' if is_run_card else
+                              'GDSC run-card-linked writer receipt' if is_gdsc_sidecar else
+                              'writer receipt'))
 
 
 def audit(root=ROOT):

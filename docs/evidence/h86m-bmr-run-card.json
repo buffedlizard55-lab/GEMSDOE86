@@ -1,0 +1,193 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane_id": "H86M-BMR",
+  "generated_utc": "2026-10-25T16:56:40.531184+00:00",
+  "hypothesis": "A buried basement step leaves a localized gravity residual after a slab forward model of basement depth (bands 13/15) absorbs broad basin relief; its residual gradient marks concealed faults.",
+  "mechanism": "Unsupervised lstsq slab fit grav~a*depth_smooth+b at sigma 3/8px (no labels); surface=0.6*rank|grad resid3|+0.4*rank|grad resid8|; greedy 2.8px emission, 37654 dots, >3px off catalogue.",
+  "named_non_fault_mimic": "Lateral sediment-density changes and smoothing/circularity errors in gravity-derived band 15.",
+  "forward_model_coef": {
+    "sigma3": [
+      1.7650306273030665,
+      -2.9193904177926403e-38
+    ],
+    "sigma8": [
+      2.2405185108922114,
+      -1.1218299821541894e-37
+    ]
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.022020874714874586,
+      "ci95": [
+        0.008561936659615743,
+        0.03835682280557083
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 299.13799838246206,
+      "fpw": 22338.3234003333,
+      "fnw": 11021.86200161754
+    },
+    "controls": {
+      "E0_raw_grav": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03642460788801768,
+        "ci95": [
+          0.024779134148580153,
+          0.04883986274891042
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 560.6508605652518,
+        "fpw": 31115.801574350986,
+        "fnw": 10760.349139434746
+      },
+      "E1_depth_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.028947143008947393,
+        "ci95": [
+          0.014875095243168704,
+          0.044291523999614744
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 449.796436083234,
+        "fpw": 31958.920241380303,
+        "fnw": 10871.20356391677
+      }
+    },
+    "paired_differences_vs_candidate": {
+      "E0_raw_grav": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.014403733173143092,
+        "ci95": [
+          -0.02566854462702886,
+          -0.002489829696733024
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "E1_depth_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.006926268294072807,
+        "ci95": [
+          -0.01343479743306385,
+          0.0003266941673801799
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    }
+  },
+  "leakage_canary": {
+    "single_feature_auc": {
+      "bmr_resid_grad_s3": 0.5358,
+      "bmr_resid_grad_s8": 0.5276,
+      "ctrl_raw_grav_grad": 0.5267,
+      "ctrl_depth_grad": 0.538
+    },
+    "gate_le_0.90": true
+  },
+  "correlation_overlap_vs_registry": {
+    "max_surface_spearman_abs": 0.06712671234789824,
+    "worst_surface": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+    "max_dot_spearman_abs": 0.056045315827895764,
+    "worst_dot": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+    "max_overlap3": 0.5138365113932118,
+    "worst_overlap": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "n_registry_measured": 57,
+    "method": "surface Spearman on shared 300k footprint sample vs every raster; dot phi (=Spearman, binary); overlap=frac candidate dots <=3px of other dots, dot-fields only (support<=20% footprint, PA-86-01)"
+  },
+  "preflight_PA-86-01": {
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "literal_reading_blocked": true,
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    }
+  },
+  "gates": {
+    "paired_ci_low_gt_0_vs_E0": false,
+    "paired_ci_low_gt_0_vs_E1": false,
+    "canary_all_auc_le_0.90": true,
+    "surface_spearman_abs_le_0.90": true,
+    "dot_spearman_abs_le_0.90": true,
+    "overlap3_le_0.70": true,
+    "budget_exact": true,
+    "zero_dots_on_catalogue": true
+  },
+  "raster_sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "bytes": 108110,
+    "sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z",
+  "submission_note_le140": "H86M-BMR basement gravity mass-residual dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT",
+  "note_chars": 92,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "dots": 37654,
+  "input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "runtime_s": 104.7
+}
