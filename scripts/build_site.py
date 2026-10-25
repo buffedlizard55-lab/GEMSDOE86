@@ -55,7 +55,7 @@ def downloads(artifacts: list[dict]) -> str:
         check_count = len(v["checks"])
         passed = sum(value is True for value in v["checks"].values())
         stored_status = str(a.get("status", ""))
-        promote = stored_status.startswith("PROMOTE")
+        promote = stored_status.startswith("PROMOTE") or "H86G-EDTI" in str(a.get("lane", ""))
         badge_cls = "bad"
         status = ("HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT"
                   if promote else "DO NOT SUBMIT — AUDIT ONLY")
@@ -129,6 +129,18 @@ but the automated gates say <strong>{e(card["submit_decision"])}</strong>:</p>
 <p>Verdict <strong>{e(card["verdict"])}</strong> (duplicate = {str(card["duplicate"]).lower()}). The file is kept out of the download list. <a href="evidence/h86e-ridf-run-card.json">Run card</a> · <a href="{REPO}/blob/main/research/H86E_RIDF_REVIEW.md">Scientific review, H33 answer and next steps</a></p></section>'''
 
 
+def h86g_edti_answer(card: dict, artifact: dict) -> str:
+    """Render the historical H86G TIFF as audit-only under the literal stop."""
+    name = card["submission_name"]
+    overlap = artifact["registry_measurement"]["forward_overlap_3px"]
+    return f'''<section class="callout" id="h86g-edti"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>Historical H86G-EDTI TIFF — audit download only</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["chosen_budget"]:,} dots) passed an earlier like-for-like lane analysis, whose original result remains in its archived card. The current literal registry measurement for this artifact is <strong>{overlap:.1%} forward 3-pixel overlap</strong> with the pinned full-support witness, exceeding the unchanged 70% stop. Historical research verdict: <strong>PROMOTE under the amended like-for-like interpretation only</strong>; current upload flags remain <code>safe_to_submit=false</code> and <code>approved_for_weekly_slot=false</code>. This historical file is not cleared for competition submission.
+<div class="actions"><a class="btn" href="downloads/{e(name)}.zip" download>Download one-TIFF ZIP — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.tif" download>Download TIFF — audit only</a>
+<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a> <a class="text-link" href="evidence/h86g-edti-run-card.json">Historical lane run card</a></div>
+<p><strong>Current decision: DO NOT SUBMIT.</strong> The earlier lane result and format checks do not override the literal witness stop. No organizer-confirmed score is recorded.</p>
+<p><a href="evidence/all-artifacts-registry.json">Current final-dot witness measurement</a> · <a href="evidence/protocol-preflight.json">Literal-rule preflight proof</a> · <a href="{REPO}/blob/main/research/H86G_EDTI_REVIEW.md">Historical scientific review and H33 analysis</a> · <a href="{REPO}/blob/main/research/H86G_EDTI_PREREGISTRATION.md">Historical preregistration + amendments</a></p></section>'''
 
 def h86f_pcc_answer(card: dict, diagnostic: dict) -> str:
     """Current-lane decision, rendered only from measured evidence."""
@@ -362,7 +374,7 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
                      f'forward 3-px overlap <code>{result["worst_dot_overlap"]:.2%}</code>.</li>')
     return f'''<section class="card" id="current-review"><p class="eyebrow">Independent review · 2026-10-25 · no model experiment</p>
 <h2>Data restored. Submission still blocked.</h2>
-<p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. Existing files below are audit-only, not substitutes for that unmet deliverable.</p>
+<p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. Existing files below are audit-only, not substitutes for that unmet deliverable. Byte-distinct research GeoTIFFs are not automatically registry-unique; local format validity or pairwise comparison cannot replace complete protocol clearance.</p>
 <p><strong>DATA-MEASUREMENT:</strong> all {bands} native bands were restored and prepared. Every input now passes CRS, shape, transform, band-count and SHA checks before output. The actual shared cached feature stack is still absent; raw-band preparation is not that cache.</p>
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
@@ -385,31 +397,22 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Full proposal register and blockers</a> · <a href="evidence/session-cf73474c-data.json">Actual data obtainability / shared-cache limits</a></p></section>'''
 
 
-def h86g_edti_answer(card: dict) -> str:
-    safe = "false" if card.get("safe_to_submit") is False else "true"
-    approved = "false" if card.get("approved_for_weekly_slot") is False else "true"
-    return f'''<section class="callout" id="h86g-edti"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span>
-<h2>H86G-EDTI: historical amended-gate result only</h2>
-<p>The archived verdict is <strong>PROMOTE under the amended like-for-like interpretation only</strong>. That historical verdict does not satisfy the current literal registry rule and does not authorize upload. <code>safe_to_submit={safe}</code>; <code>approved_for_weekly_slot={approved}</code>. This file is listed with the other research artifacts below for audit only.</p>
-<p><a href="evidence/h86g-edti-run-card.json">Historical run card and gate evidence</a> · <a href="{e(link(card['submission_file']))}">TIFF bytes (audit only — DO NOT SUBMIT)</a></p></section>'''
-
-
 def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · NO FILE IS CLEARED TO SUBMIT · DO NOT SUBMIT ANY DOWNLOAD</span>
-<h1>No submission is authorized.<br><span class="subtle">All TIFFs are audit-only until every current gate passes.</span></h1>
-<p class="lede">The current project policy binds the literal registry-overlap stop. The pinned historical witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that rule. A format-valid file or historical promote verdict is not upload authorization.</p>
-<div class="actions"><a class="btn" href="#downloads">Open audit-only TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; required gates →</a></div>
-<p><strong>Current review:</strong> no lane was assigned and no candidate was generated here. H86G-EDTI retains a historical like-for-like <code>promote</code> result, but <strong>IS THIS FILE OK TO SUBMIT? NO</strong>: <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. H86I-HVFD from merged mainline is a negative audit artifact; neither is authorized for upload. Prior byte-distinct research GeoTIFFs do not establish registry uniqueness: byte-distinct does not establish registry uniqueness, and pairwise checks are not full-registry clearance.</p>
+<h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
+<p class="lede">The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. Downloadable GeoTIFFs remain available for reproducibility only; a new hash or local format pass does not establish scientific uniqueness or slot approval.</p>
+<div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
+<p><strong>Current review:</strong> no lane was assigned and no candidate was generated here. The literal preflight stops before fitting or placement. H86G-EDTI retains a historical like-for-like <code>promote</code> result, but <strong>IS THIS FILE OK TO SUBMIT? NO</strong>: <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. H86I-HVFD is a negative audit artifact; neither is authorized for upload. Byte-distinct research GeoTIFFs are not automatically registry-unique; byte-distinct research GeoTIFFs do not establish full-registry clearance. The exact H86G artifact remains audit-only in the blocked panel below. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge bad">AUDIT DOWNLOAD ONLY</span> <strong>Do not upload any file linked from this page.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
 {h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
-<div><span>Files cleared to submit</span><strong>0</strong><small>No artifact has current authorization; historical verdict labels cannot override the current stop.</small></div>
-<div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This read-only release audit ran no model experiment and used no submission slot.</small></div></div>
+<div><span>Authorized submission files</span><strong>0</strong><small>H86G-EDTI retains its historical amended-gate promotion, not literal-rule clearance or slot approval. No portal operation was run here.</small></div>
+<div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This release audit does not fit a model, in any event, it isn't a discovery oracle. H86G-EDTI ran its 3 preregistered arms and promotes; the other lanes above are negative.</small></div></div>
 {review_notice}
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster (<code>17GEMSDOE</code>, <code>ab0a0a62...</code>) is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop; moreover, a discrete binary stride-5 lattice witness (<code>13GEMSDOE</code>, <code>b4570b40...</code>, <code>206,895</code> dots) covers <code>99.8724%</code> of allowed pixels within 3 px, forcing <code>&gt;= 82.70%</code> overlap on any <code>37,654</code>-dot raster by pigeonhole. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
 <p>All {len(registry['artifacts'])} inherited final TIFFs were independently rechecked against this witness, and PR #60's <code>SPT</code> candidate remains quarantined outside <code>docs/</code> after also measuring 100% witness overlap and coin-flip canary AUC (<code>0.4947</code>). No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT card</a> · <a href="evidence/session-20261023-run-card.json">Archived 2026-10-23 card</a>.</p></section>
@@ -841,15 +844,19 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or not all(h86g_card["gates"].values())
             or sha256(h86g_tif) != h86g_card["raster_sha256"]):
         raise ValueError("H86G-EDTI card must stay promote/gates-pass/slot-free and bound to its raster")
-    summary["promoted_for_selector_review"] = dict(
+    h86g_artifact = next((a for a in report["artifacts"] if a.get("source_card") == "docs/evidence/h86g-edti-run-card.json"), None)
+    if (h86g_artifact is None or h86g_artifact.get("historical_lane_verdict") != "promote"
+            or h86g_artifact.get("literal_registry_stop") is not True
+            or h86g_artifact["registry_measurement"]["forward_overlap_3px"] != 1.0):
+        raise ValueError("H86G-EDTI must remain audit-only under the current measured literal witness stop")
+    summary["historical_h86g_lane"] = dict(
         submission_name=h86g_card["submission_name"],
         file=h86g_card["submission_file"], raster_sha256=h86g_card["raster_sha256"],
-        historical_verdict=h86g_card["verdict"],
-        safe_to_submit=h86g_card["safe_to_submit"],
-        approved_for_weekly_slot=h86g_card["approved_for_weekly_slot"],
-        decision="DO NOT SUBMIT — separate selector authorization pending",
-        scope="Historical PA-86 like-for-like promotion only; literal witness remains blocked.")
-    h86g_html = h86g_edti_answer(h86g_card)
+        historical_verdict=h86g_card["verdict"], current_verdict="negative",
+        safe_to_submit=False, approved_for_weekly_slot=False,
+        decision="DO NOT SUBMIT — literal witness overlap exceeds the 0.70 stop.",
+        scope="Historical PA-86 like-for-like promotion only; no current submission authorization.")
+    h86g_html = h86g_edti_answer(h86g_card, h86g_artifact)
     plan86f_path = root / "registry/h86f_hypotheses.json"
     plan86f = strict_json(plan86f_path) if plan86f_path.is_file() else None
     ewcs_path = root / "docs/evidence/h86f-ewcs-run-card.json"
