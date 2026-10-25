@@ -1,0 +1,65 @@
+{
+  "schema": "gems86.review-run-card.v1",
+  "session_branch": "arena/c003fde3-gemsdoe86",
+  "date_utc": "2026-10-25",
+  "evidence_class": "RUN-CARD",
+  "hypothesis": "No assigned method lane. Three ranked, unrun hypotheses remain in registry/followup_hypotheses_20261025.json; no candidate was selected or built.",
+  "mechanism": "Not tested. The current review audited existing files, the pinned protocol witness, and input availability only.",
+  "named_non_fault_process": "Not applicable: no candidate mechanism was tested. The top queued proposal (BMR) names lateral sediment-density changes, errors/smoothing in gravity-derived basement depth, and model-edge ringing as mimics.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_STOP_AND_MISSING_INPUTS",
+    "evaluator_version": null,
+    "planned_evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURE_OR_CANDIDATE",
+    "features_tested": 0,
+    "max_auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap_3px": null,
+    "pinned_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_domain_pixels": 5106385,
+    "witness_uncovered_allowed_pixels": 0,
+    "witness_coverage_fraction": 1.0,
+    "implied_overlap_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "registry_complete": false,
+    "scope": "A single pinned witness proves the literal stop but does not establish full-registry uniqueness or completeness; no new candidate surface/dots were measured."
+  },
+  "workspace_inputs": {
+    "evidence_class": "INPUT-INTEGRITY-MEASUREMENT",
+    "measured_utc": "2026-10-25T16:09:46.723336+00:00",
+    "training_features_tif_available": false,
+    "prepared_band_arrays_present": 0,
+    "prepared_band_arrays_expected": 21,
+    "shared_template_feature_stack_available": false,
+    "sample_submission_sha256_verified": true,
+    "existing_faults_sha256_verified": true,
+    "note": "These are current workspace observations. Historical preparation receipts do not establish present availability."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "No new raster; protocol stop and inputs missing. DO NOT SUBMIT.",
+  "note_chars": 63,
+  "verdict": "negative",
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "requirement_unmet": "The requested unique TIFF was not generated because every nonempty allowed candidate fails the literal overlap stop; holdout validation is also blocked by missing native/shared-cache inputs."
+}
