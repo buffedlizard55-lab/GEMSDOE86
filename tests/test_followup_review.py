@@ -19,7 +19,7 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
     assert queue["common_data_requirement"]["actual_shared_feature_stack_restored"] is False
     assert [item["rank"] for item in queue["hypotheses"]] == [1, 2, 3]
     assert all(item["status"] == "NOT_RUN_PROTOCOL_STOP" for item in queue["hypotheses"])
-    assert [item["id"] for item in queue["hypotheses"]] == ["BMR", "GSST", "CNT"]
+    assert [item["id"] for item in queue["hypotheses"]] == ["H86N-MTCS", "H86N-SPBT", "H86N-CHTD"]
     for hypothesis in queue["hypotheses"]:
         assert hypothesis["physical_signature"]
         assert hypothesis["catalogue_missing_rationale"]
@@ -38,6 +38,13 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
     assert "H86J-CSGD" in excluded
     assert "H86J-MPC" in excluded
     assert "H86K-PSC" in excluded
+    assert "H86M-BMR" in excluded
+    assert "H86M-CNT" in excluded
+    assert "H86N-EQL" in excluded
+    assert "H86N-GSST" in excluded
+    assert "H86M-PFTE" in excluded
+    assert "H86M-BMGS" in excluded
+    assert "H86M-SLCQ" in excluded
     assert "GDSC" in excluded
     assert "GEMSDOE52" in " ".join(row["evidence"] for row in queue["excluded_as_already_tried"])
 
@@ -45,13 +52,19 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
 def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
     hypotheses = (ROOT / "docs/hypotheses.html").read_text(encoding="utf-8")
     home = (ROOT / "docs/index.html").read_text(encoding="utf-8")
-    assert "2026-10-25 follow-up: three unrun native-band hypotheses" in hypotheses
+    assert "2026-10-25 current queue: three checkout-scoped native-band proposals" in hypotheses
     assert "H86J-CSGD subsequently implemented" in hypotheses
     assert "H86J-MPC implemented and evaluated" in hypotheses
     assert "H86K-PSC implemented saddle persistence" in hypotheses
-    assert "New proposal 1 · BMR · NOT RUN" in hypotheses
-    assert "New proposal 3 · CNT · NOT RUN" in hypotheses
-    assert "New proposal 4 · CNT · NOT RUN" not in hypotheses
+    assert "New proposal 1 · H86N-MTCS · NOT RUN" in hypotheses
+    assert "New proposal 2 · H86N-SPBT · NOT RUN" in hypotheses
+    assert "New proposal 3 · H86N-CHTD · NOT RUN" in hypotheses
+    assert "New proposal 1 · H86N-EQL · NOT RUN" not in hypotheses
+    assert "New proposal 2 · H86N-GSST · NOT RUN" not in hypotheses
+    assert "New proposal 1 · BMR · NOT RUN" not in hypotheses
+    assert "New proposal 3 · CNT · NOT RUN" not in hypotheses
+    assert "H86M-PFTE" in hypotheses and "H86M-BMGS" in hypotheses
+    assert "H86M-BMR" in hypotheses and "H86M-CNT" in hypotheses
     assert "New proposal 1 · H86G-CSPA · NOT RUN" not in hypotheses
     assert "New proposal 2 · H86G-MPC · NOT RUN" not in hypotheses
     assert "Latest follow-up run card" in home

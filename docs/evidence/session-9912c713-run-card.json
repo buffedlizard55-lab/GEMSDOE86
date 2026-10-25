@@ -1,0 +1,45 @@
+{
+  "schema": "gems86.session-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "hypothesis": "No geological lane was assigned or executed. This review tested the repository's current submission-readiness and artifact-publication controls, not a new geological hypothesis.",
+  "mechanism": "The current literal uniqueness protocol is unsatisfiable for every nonempty allowed candidate because one pinned historical witness has positive support across the full allowed footprint. The witness is a sufficient negative counterexample, not a complete uniqueness certification.",
+  "named_non_fault_process": "Not evaluated: no geological candidate surface or dots were constructed.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "status": "NOT_RUN_NO_LANE_ASSIGNED"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap": null,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "forward_overlap_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_stop_threshold": 0.7,
+    "registry_scope": "one pinned witness measured; the accessible registry inventory is incomplete; this rejects but does not certify uniqueness"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "evidence_class": "FORMAT-VALIDATION",
+    "artifact_count": 36,
+    "locally_valid_artifact_count": 36,
+    "h86m_lt_values_in_range_0_1": true,
+    "h86m_lt_has_nan_or_inf": false,
+    "h86m_lt_crs": "EPSG:32611",
+    "h86m_lt_shape": [3730, 3292],
+    "h86m_lt_transform_matches_sample_template": true,
+    "important_limit": "Local file-format/range validation only; it does not authorize upload or establish scientific improvement."
+  },
+  "submission_name": null,
+  "note": "Review only; no new TIFF, geological experiment, or slot. Existing downloads are audit-only.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0
+}

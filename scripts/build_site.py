@@ -871,7 +871,7 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
 <p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
-<p><strong>Follow-up code and research review (2026-10-25):</strong> this follow-up produced no TIFF, experiment, or slot. Main concurrently merged PR #145 (GDSC) and PR #147 (H86K-PSC); both research TIFFs remain <strong>DO NOT SUBMIT</strong> under the literal witness stop. The request still lacks an assigned method paragraph and the shared cache remains absent. H86G-CSPA/MPC and H86K-PSC are no longer untried; GDSC is an executed lane with a missing 95% CI. The current three-item queue excludes these and the earlier variogram submission. This review also adds the missing early preflight to historical H86K, fixes the audit's stale timestamp, and narrows the H33 causal claim. No file is authorized.</p>
+<p><strong>Follow-up code and research review (2026-10-25):</strong> this follow-up produced no TIFF, experiment, or slot. Main concurrently merged PR #145 (GDSC) and PR #147 (H86K-PSC); both research TIFFs remain <strong>DO NOT SUBMIT</strong> under the literal witness stop. The request still lacks an assigned method paragraph and the shared cache remains absent. H86G-CSPA/MPC, H86K-PSC, H86M-BMR, H86M-CNT and GDSC are executed lanes and are excluded from the active queue; GDSC's archived result lacks a 95% CI. The current three-item queue also excludes the earlier variogram submission. This review also adds the missing early preflight to historical H86K, fixes the audit's stale timestamp, and narrows the H33 causal claim. No file is authorized.</p>
 <p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Fresh independent recheck: three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
 
 
@@ -889,15 +889,15 @@ def new_hypothesis_queue(plan: dict) -> str:
         f'<li><code>{e(item["method"])}</code>: {e(item["disposition"])}</li>'
         for item in plan["excluded_as_already_tried"]
     )
-    return f'''<section id="new-hypotheses"><h2>2026-10-25 follow-up: three unrun native-band hypotheses</h2>
+    return f'''<section id="new-hypotheses"><h2>2026-10-25 current queue: three checkout-scoped native-band proposals</h2>
 <p>{e(plan['ranking_basis'])}</p><p>{e(plan['scope_note'])}</p>
-<p><strong>Not an experiment or lane assignment:</strong> all three proposals remain unrun under the protocol stop. They use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
+<p><strong>Not an experiment or lane assignment:</strong> all three remaining proposals are unrun under the protocol stop. H86N-EQL and H86N-GSST, H86M-BMR/CNT, PFTE/BMGS, and SLCQ are recorded below as executed methods, not new candidates. These proposals use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
 <h3>Previously attempted methods excluded from the untried queue</h3><ul>{excluded}</ul>{''.join(rows)}
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
 def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
-    """Current-session H86N-GSST negative lane + H86M-LT registration repair."""
+    """Current-session H86N-GSST negative lane + H86M-LT disposition link."""
     if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
             or card.get("submission_ready") is not False
             or card.get("approved_for_weekly_slot") is not False
@@ -914,19 +914,28 @@ def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
     stem = f"{name}-zeros"
     lt_html = ""
     if lt_card is not None:
-        if (lt_card.get("verdict") != "negative" or lt_card.get("safe_to_submit") is not False
+        if (lt_card.get("schema") != "gems86.current-artifact-disposition.v1"
+                or lt_card.get("artifact") != "H86M-LT leaderboard tomography"
+                or lt_card.get("historical_lane_verdict") != "promote"
+                or lt_card.get("verdict") != "negative"
+                or lt_card.get("decision") != "DO NOT SUBMIT"
+                or lt_card.get("holdout_dti") is not None
+                or lt_card.get("safe_to_submit") is not False
                 or lt_card.get("approved_for_weekly_slot") is not False
                 or lt_card.get("submission_slots_used") != 0):
-            raise ValueError("H86M-LT card must stay a no-slot negative")
-        lt_name = lt_card["submission_name"]
-        lt_disp = lt_card.get("review_disposition", "DO NOT SUBMIT")
+            raise ValueError("H86M-LT current disposition must preserve history without granting authorization")
+        lt_filename = Path(lt_card["file"]).name
+        lt_disp = lt_card["decision"]
         lt_html = (
             f'<li><strong>Reconciled PR #165 artifact (<code>H86M-LT</code>):</strong> '
-            f'<a href="downloads/{e(lt_name)}.tif" download><code>{e(lt_name)}.tif</code></a> '
-            f'(SHA-256 <code>{e(lt_card["raster_sha256"])}</code>) is registered for audit download only and '
-            f'demoted to <strong>DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, '
-            f'<code>{e(lt_disp)}</code>, literal witness overlap <code>1.0 &gt; 0.70</code>). '
-            f'<a href="h86m-lt.html">Lane status</a> · <a href="evidence/h86m-lt-run-card.json">H86M-LT run card</a>.</li>'
+            f'<a href="downloads/{e(lt_filename)}" download><code>{e(lt_filename)}</code></a> '
+            f'(SHA-256 <code>{e(lt_card["raster_sha256"])}</code>) is registered for audit download only. '
+            f'The historical lane-level <code>promote</code> is preserved, but the current disposition is '
+            f'<strong>DO NOT SUBMIT</strong> (<code>{e(lt_disp)}</code>, no comparable HOLDOUT-DTI, '
+            f'literal witness overlap <code>1.0 &gt; 0.70</code>). '
+            f'<a href="h86m-lt.html">Lane status</a> · '
+            f'<a href="evidence/h86m-lt-current-disposition.json">current disposition</a> · '
+            f'<a href="evidence/h86m-lt-run-card.json">historical run card</a>.</li>'
         )
     return f'''<section class="callout" id="h86n-gsst"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: NEGATIVE)</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
 <h2>2026-10-25 Current Session (H86N-GSST): unique GeoTIFF generated &amp; machine-validated; hypothesis falsified on holdout</h2>
@@ -1960,7 +1969,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         vfgr_banner += h86m_damagering_answer(h86m_card)
     gsst_path = root / "docs/evidence/h86n-gsst-run-card.json"
     gsst_card = strict_json(gsst_path) if gsst_path.is_file() else None
-    lt_path = root / "docs/evidence/h86m-lt-run-card.json"
+    lt_path = root / "docs/evidence/h86m-lt-current-disposition.json"
     lt_card = strict_json(lt_path) if lt_path.is_file() else None
     if gsst_card is not None:
         vfgr_banner = h86n_gsst_answer(gsst_card, lt_card) + vfgr_banner

@@ -104,15 +104,23 @@ def test_h86n_preregistration_and_run_card_invariants():
     assert tif_path.is_file() and zip_path.is_file() and rcp_path.is_file()
 
 
-def test_h86m_lt_reconciled_negative_registration():
+def test_h86m_lt_historical_card_and_current_disposition_are_separate():
     lt_card = json.loads((ROOT / "docs/evidence/h86m-lt-run-card.json").read_text())
-    assert lt_card["verdict"] == "negative"
+    current = json.loads((ROOT / "docs/evidence/h86m-lt-current-disposition.json").read_text())
+    assert lt_card["verdict"] == "promote"
     assert lt_card["safe_to_submit"] is False
     assert lt_card["approved_for_weekly_slot"] is False
     assert lt_card["submission_slots_used"] == 0
     assert "holdout_dti" not in lt_card
-    assert "DO NOT SUBMIT" in lt_card["review_disposition"]
+    assert current["historical_lane_verdict"] == "promote"
+    assert current["verdict"] == "negative"
+    assert current["decision"] == "DO NOT SUBMIT"
+    assert current["holdout_dti"] is None
+    assert current["safe_to_submit"] is False
 
     lt_html = (ROOT / "docs/h86m-lt.html").read_text()
     assert "DO NOT SUBMIT" in lt_html
     assert "is this file ok to submit? yes" not in lt_html.lower()
+    home = (ROOT / "docs/index.html").read_text()
+    assert "historical lane-level" in home
+    assert "current disposition is" in home

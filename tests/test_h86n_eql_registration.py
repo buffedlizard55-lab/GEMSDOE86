@@ -46,15 +46,19 @@ def test_eql_run_card_is_measured_negative_no_slot():
     assert "DO NOT SUBMIT" in card["submission_note_le140"]
 
 
-def test_lt_card_merged_publication_state_is_negative_no_slot():
-    # Parallel session 57139348 (PR #166) repaired the same LT failure on main
-    # by downgrading the card to a negative unvalidated archive; at merge that
-    # accepted state was kept over this session's addendum approach.
+def test_lt_historical_promotion_is_separate_from_current_negative_disposition():
+    # Preserve the historical lane result, but gate the artifact using the
+    # separately registered current protocol disposition.
     card = json.loads((ROOT / "docs/evidence/h86m-lt-run-card.json").read_text())
-    assert card["verdict"] == "negative"
+    assert card["verdict"] == "promote"
     assert card["safe_to_submit"] is False
     assert card["approved_for_weekly_slot"] is False
     assert card["submission_slots_used"] == 0
+    current = json.loads((ROOT / "docs/evidence/h86m-lt-current-disposition.json").read_text())
+    assert current["historical_lane_verdict"] == "promote"
+    assert current["verdict"] == "negative"
+    assert current["decision"] == "DO NOT SUBMIT"
+    assert current["holdout_dti"] is None
     page = (ROOT / "docs/h86m-lt.html").read_text()
     assert "IS THIS FILE OK TO SUBMIT? YES" not in page
     assert "DO NOT SUBMIT" in page
