@@ -87,7 +87,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
@@ -159,7 +159,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
@@ -231,7 +231,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
@@ -303,7 +303,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
@@ -375,7 +375,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
@@ -447,7 +447,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
@@ -519,7 +519,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
@@ -591,7 +591,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
@@ -663,7 +663,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
@@ -735,7 +735,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
@@ -807,7 +807,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
@@ -879,7 +879,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
@@ -951,7 +951,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
@@ -1023,7 +1023,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
@@ -1095,7 +1095,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
@@ -1167,7 +1167,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
@@ -1239,7 +1239,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
@@ -1311,7 +1311,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
@@ -1383,7 +1383,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
@@ -1455,7 +1455,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
@@ -1527,7 +1527,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     },
     {
       "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
@@ -1599,7 +1599,7 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "DO NOT SUBMIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
     }
   ]
 }
