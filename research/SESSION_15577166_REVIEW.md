@@ -4,7 +4,7 @@
 
 **DO NOT SUBMIT any file.** No new candidate, geological experiment, or weekly slot was created or used in this review. The request contains no single method paragraph assigning this session a lane, despite the parallel-run protocol requiring one. The existing stop is also decisive: the pinned witness covers every allowed cell, so the literal 3-pixel forward-overlap rule yields 1.0 for every nonempty allowed prediction, exceeding 0.70. A stop cannot be overridden by a locally valid TIFF, a partial-registry uniqueness result, or a score projection.
 
-This review reproduced a publication-integrity defect: an inherited H86M-LT TIFF had a standalone page saying “YES — submit,” although it was absent from the canonical indexes and current release audit. A parallel branch integrated the equivalent fail-closed repair as PR #166 during this review; after syncing to current `main`, this branch retains the independent review and ranked research queue rather than duplicating that implementation. The TIFF bytes were not changed. Its historical projection figures remain projections, not HOLDOUT-DTI or ORGANIZER-CONFIRMED scores.
+This review reproduced a publication-integrity defect: an inherited H86M-LT TIFF had a standalone page saying “YES — submit,” although it was absent from the canonical indexes and current release audit. A parallel branch integrated the equivalent fail-closed repair as [PR #166](https://github.com/buffedlizard55-lab/GEMSDOE86/pull/166) during this review; after syncing to current `main`, this branch retains the independent review and ranked research queue rather than duplicating that implementation. The TIFF bytes were not changed. Its historical projection figures remain projections, not HOLDOUT-DTI or ORGANIZER-CONFIRMED scores.
 
 ## Pass 1 — reproduce and inspect
 
@@ -68,7 +68,7 @@ Ranks are qualitative research priority, **not score projections**. These method
 - `scripts/build_site.py` and `scripts/build_site.py --check`: **PASS**.
 - `scripts/check_site.py`: **PASS**, link/inventory/ZIP integrity and negative-state safety.
 - Focused regression suite after updates: **94 passed, 39 subtests passed**.
-- Full suite after all edits: **1,022 passed, 24 skipped, 48 warnings, 58 subtests passed** (`pytest -q`, 429.04 s). `scripts/review_repository.py --timeout 900` completed all seven software/evidence checks successfully; this establishes repository-check completion, not model training readiness or submission authorization.
+- Final synced-tree suite: **1,029 passed, 24 skipped, 48 warnings, 58 subtests passed** (`pytest -q`, 434.94 s). `scripts/review_repository.py --timeout 900` completed all seven software/evidence checks successfully at 2026-10-25T18:54:07Z; this establishes repository-check completion, not model training readiness or submission authorization.
 
 ## Run card — this repository review
 
