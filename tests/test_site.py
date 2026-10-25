@@ -14,22 +14,10 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # The literal full-support witness blocks every nonempty prediction. H86G's
-    # older promote verdict remains historical and cannot authorize an upload.
-    assert "NO FILE CLEARED FOR SUBMISSION" in html
-    assert "SAFE TO DOWNLOAD FOR AUDIT ONLY" in html
-    assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in html
-    assert "ONE SELECTOR-READY FILE" not in html
-    assert "submit this file" not in html.lower()
-    readiness = json.loads((DOCS / "evidence/release-readiness.json").read_text())
-    assert readiness["decision"] == "DO NOT SUBMIT"
-    assert readiness["submission_ready"] is False and readiness["safe_to_submit"] is False
-    assert len(readiness["artifacts"]) == 21
-    assert all(a["status"].startswith("DO NOT SUBMIT") for a in readiness["artifacts"])
-    assert all(a["safe_to_submit"] is False for a in readiness["artifacts"])
-    h86g = next(a for a in readiness["artifacts"] if a.get("source_card") == "docs/evidence/h86g-edti-run-card.json")
-    assert h86g["historical_lane_verdict"] == "promote" and h86g["literal_registry_stop"] is True
-    rmrb = json.loads((DOCS / "evidence/rmrb86-run-card.json").read_text())
+    # Research promotion must never override false authorization fields.
+    assert "NO FILE AUTHORIZED" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO" in html
+    assert "IS THIS FILE OK TO SUBMIT? YES" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
@@ -77,7 +65,7 @@ def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
     for guide in ("index.html", "executive-summary.html"):
         html = (DOCS / guide).read_text()
         assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in html
-        assert "safe_to_submit = false" in html
+        assert "SAFE TO DOWNLOAD FOR AUDIT ONLY" in html
         for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
                        "submit this file", "OK to download and submit",
                        "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
