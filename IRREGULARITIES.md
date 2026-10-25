@@ -1456,3 +1456,28 @@ PASS, `0` slots used):
 
 **Fix.** `src/gems86_mcsp/features.py::_put_lidar_debiased` omits `lidar_valid` completely and substitutes robust-z / quantile-matched 10 m USGS DEM scarp curvature (`topo10_curv_lineament` / `topo_slope_10m`) outside acquired 3DEP swaths, eliminating `0` and `NaN` survey-boundary cues across all `5,167,373` footprint pixels, while `scripts/restore_protocol_data.py` adds Git smart-HTTP blob-fetch fallback gated strictly on `b"API rate limit exceeded"` in `stderr`.
 
+
+## IR-86-LIVE-INPUT-RECEIPTS-20261025 — tracked receipts outlive ignored workspace data
+
+**Observed in session 679d92e7.** `data/prepared_manifest.json` records a historical
+19-band preparation (`has_features=true`), but neither native feature TIFF copy
+nor any of its 21 prepared arrays is present in this fresh checkout. The recorded
+lane mmap is also absent; its size-only receipt would not establish a verified
+shared-template cache even if restored. These are current input-integrity
+measurements, not evidence that the historical preparation never happened.
+
+**Fix.** `scripts/audit_workspace_inputs.py` inspects current file hashes/lengths,
+checks both TIFF locations and exact array identities, distinguishes lane-cache
+presence from the shared-cache contract, and fails `--require-native` for
+missing/corrupt native inputs. The three-pass software reviewer runs it without
+rebuilding caches or touching model artifacts. A successful inspection is not
+training/submission clearance. Snapshot: `research/session-679d92e7-inputs.json`.
+The earlier prompt's “single remaining blocker is data placement” is incomplete:
+the independently remeasured literal overlap blocker and scientific/registry
+requirements remain. No new TIFF or weekly slot was created to mask this gap.
+
+**Interpretation correction.** Two current README summaries overstated H33's
+private-score causation and gave an invalid simplified collar-pruning formula.
+They now distinguish support identity from hidden-truth performance, and state
+the exact inequality with *weighted FP mass reduction*, not raw deleted-dot
+count. Owner request and historical source archives were preserved byte-for-byte.
