@@ -265,9 +265,9 @@
       "complete_accessible_scan": false
     },
     {
-      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
-      "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
-      "spearman_full_footprint": 0.0037967686626548024,
+      "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+      "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+      "spearman_full_footprint": 0.015512339842867583,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

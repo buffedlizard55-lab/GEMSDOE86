@@ -1,0 +1,40 @@
+{
+  "artifact": "releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif",
+  "revalidated_utc": "2026-10-25",
+  "session": "arena/234c24b9-gemsdoe86 (repo review pass)",
+  "independent_recheck": {
+    "sha256": "e4d00084b219e210c10e5ccd539ab1ee1a3c2315ac6188f40b2a256e90f9aa11",
+    "sha256_matches_run_card": true,
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "crs_shape_transform_match_sample_submission": true,
+    "all_finite_no_nan_no_inf": true,
+    "unique_values": [0.0, 1.0],
+    "values_in_[0,1]": true,
+    "positives": 40000,
+    "positives_on_catalogue": 0
+  },
+  "holdout_from_run_card": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22641,
+    "stc_pooled": 0.04278965807144906,
+    "stc_ci95_fold_bootstrap": [0.038276471338929655, 0.0465859467073476],
+    "tmi_hg_only_control_pooled": 0.04576821377196935,
+    "canary_max_auc": 0.5380555769534496,
+    "promotion_rule": "FAILED: stc < tmi_hg_only control"
+  },
+  "organizer_confirmed_score": null,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "slots_used": 0,
+  "note": "H86K-STC coherence x coincident mag/grav edge, 40k dotted; audit only unless run card promotes",
+  "irregularities": [
+    "IR-86-H86K-SITE-20261025: H86K artifact was committed only under releases/h86k/ and absent from docs/downloads + download-inventory.json; scripts/check_site.py fail-closed rejects unregistered downloads, so it was NOT copied to the Pages download area in this pass.",
+    "IR-86-H86K-RERUN-20261025: scripts/run_h86k.py reads data/bridge/training_features.tif, which is gitignored/restored-only and absent in this checkout; the lane is not rerunnable here without scripts/restore_data.py restoring the pinned 19-band stack.",
+    "IR-86-H86K-RECEIPT-PATH-20261025: releases/h86k/*.json validator.file still points at the pre-move docs/downloads/ path; hashes/bytes still match the releases/ copy (re-verified above)."
+  ]
+}

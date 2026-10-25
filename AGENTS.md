@@ -86,3 +86,9 @@
     `0 / 636` informative dot-field firings on the full 690-raster restored scan
     (`E2` cover-blind ablation `HOLDOUT-DTI = 0.1577`; `E1` SAR-debiased `0.0613`)
     and remains explicitly `negative` (`DO NOT SUBMIT`, 0 slots used).
+
+16. Historical preparation receipts are not current workspace capability. Run
+    `python scripts/audit_workspace_inputs.py` (or `--require-native` for a
+    fail-closed native-TIFF presence/hash gate) before describing training inputs
+    as available. This read-only inspection never establishes shared-cache
+    provenance, scientific improvement, registry uniqueness or upload approval.

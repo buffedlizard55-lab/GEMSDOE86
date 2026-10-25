@@ -1,0 +1,14 @@
+{
+  "evidence_class": "RASTER-LINEAGE-MEASUREMENT",
+  "scope": "Full-grid positive support; no hidden truth or organizer score used.",
+  "h33_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+  "h33_positive_pixels": 37654,
+  "parent_positive_pixels": 40199,
+  "removed_positive_pixels": 2545,
+  "added_positive_pixels": 0,
+  "reconstruction_differing_cells": 0,
+  "formula": "parent_support AND NOT (1 < catalogue_distance_px <= 2)",
+  "score_status": "OWNER-REPORTED_ONLY_NOT_VERIFIED",
+  "new_candidate_generated": false
+}

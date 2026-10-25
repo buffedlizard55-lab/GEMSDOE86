@@ -16,8 +16,8 @@
   "shared_tool_hashes_match": true,
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
-    "docs/evidence/download-inventory.json": "8700587e5e112eb5c3f436f9ad245a4d32d6347f237c9c4e54d6a9dc666c3fb4",
-    "registry/artifact_cards.json": "1aeb2df7258929d5da2c66ef3b6e2be5361af7b73360b8c1d5317710b1429430",
+    "docs/evidence/download-inventory.json": "2bc7436eb2cca24f1b6a4fb724bdb8a4fce391551c33c93d48137a8000a42bb5",
+    "registry/artifact_cards.json": "e53425e98e90ecaa73a3550c769d0bec19801b161579845f4a097e7750ca1c2f",
     "docs/evidence/protocol-preflight.json": "0027bc3286188fce5c39e74b8503ea79537aa2a891cf9e4cbfbeb9fce30d86e0",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
@@ -46,8 +46,7 @@
     "docs/evidence/h86j-csgd-run-card.json": "0dc851052b42ee00872af6cb0aff17c0dc6f7e5d3fc9c4c768f1df7c5550a566",
     "docs/evidence/h86j-tvhs-run-card.json": "16aa35faa7b1b049b10c703b67fd37fe66d5941ad7fd4647210dc4e544c365dd",
     "docs/evidence/h86j-mcsp-run-card.json": "0d6b2e8cb22525d503d1e7ac8b5ead0b878e0111d719a861e8ed905d9790dd4b",
-    "docs/evidence/h86k-psc-run-card.json": "6d1edab1d43daef315f656aa07b249e6cec6bd783a84a73cd1f1312f00778a89",
-    "docs/evidence/all-artifacts-registry.json": "dfec74cf1924a4e51b6e31b3fc56cbc7dfdaf929e91111a559e79c59fe41c850"
+    "docs/evidence/all-artifacts-registry.json": "7d06f8414a2a19c8b06dab3ce2a7921de293c09d73e8d850f6d0a37588aeaf43"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -3089,17 +3088,17 @@
       "literal_registry_stop": true
     },
     {
-      "lane": "H86K-PSC persistent potential-field saddle connectors x ridge junction, CELF (HOLDOUT-DTI 0.0467; paired CI vs ridge crosses zero; negative DO NOT SUBMIT, 2026-10-25)",
-      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
-      "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
-      "bytes": 147992,
-      "zip_file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.zip",
-      "zip_sha256": "949719a55c5dedcfdc9179c50e16cbb16179f1ca1eb251a15a149cbde9022d5e",
-      "receipt_file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.json",
-      "source_card": "docs/evidence/h86k-psc-run-card.json",
-      "submission_name": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z",
-      "note": "H86K-PSC saddle-persist CELF 37654d HOLDOUT-DTI 0.0467; zeros finite [0,1]; verdict negative",
-      "note_chars": 92,
+      "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+      "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+      "bytes": 818874,
+      "zip_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
+      "zip_sha256": "2406c340f7e7dd521dea34959ddea52a4b594e125dc7ca2767a4bfdc876d57d9",
+      "receipt_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.json",
+      "source_card": "docs/evidence/gdsc-run-card.json",
+      "submission_name": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros",
+      "note": "GDSC geod_2ndinv x dilaterate+ x basin-wt, 37654d 2.8px Poisson, b2 collar; HOLDOUT screen only [0,1] zeros",
+      "note_chars": 107,
       "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
       "validator": {
         "checks": {
@@ -3162,22 +3161,18 @@
             -100.0,
             4508550.0
           ],
-          "profile_compress": "deflate"
+          "profile_compress": "lzw"
         }
       },
       "historical_holdout": {
         "evidence_class": "HOLDOUT-DTI",
-        "status": "CURRENT_LANE_NEGATIVE",
-        "source": "docs/evidence/h86k-psc-run-card.json",
+        "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+        "source": "evidence/run_card.json",
         "evaluator_version": "gems57-pooled-hide-v2",
-        "withheld_positives": 11321,
-        "value": 0.04665769922745757,
-        "ci95": [
-          0.03804462814312614,
-          0.05502393472892113
-        ],
-        "design": "buffered whole-component LOQO v2 (seed 20, hide 0.20, buffer 3px); arms E2/E1/C1",
-        "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."
+        "withheld_positives": null,
+        "value": null,
+        "ci95": null,
+        "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,
@@ -3185,9 +3180,9 @@
       "verdict": "negative",
       "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
-        "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
-        "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
-        "spearman_full_footprint": 0.0037967686626548024,
+        "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+        "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+        "spearman_full_footprint": 0.015512339842867583,
         "forward_overlap_3px": 1.0,
         "unique": false,
         "stop_required": true,

@@ -199,6 +199,13 @@
       "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
     },
     {
+      "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "card": "docs/evidence/gdsc-run-card.json",
+      "context": "evidence/run_card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros"
+    },
+    {
       "lane": "H86K-PSC persistent potential-field saddle connectors x ridge junction, CELF (HOLDOUT-DTI 0.0467; paired CI vs ridge crosses zero; negative DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86k-psc-run-card.json",
       "context": "docs/evidence/h86k-psc-run-card.json",
