@@ -1,6 +1,6 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
+Latest decision: **DO NOT SUBMIT ANY FILE.** The current registry witness measures 100% forward overlap for every registered nonempty TIFF; no new candidate or slot was created. This repository review also removed a stale H86G “submit” banner and regenerated the site from the fail-closed release audit. See [current review and handoff](research/SESSION_20261025_CF73474C_REVIEW.md), [this three-pass code review](research/SESSION_20261025_ARENA_CODE_REVIEW.md), [latest negative run card](docs/evidence/latest-review-run-card.json), and [all-artifact registry measurement](docs/evidence/all-artifacts-registry.json). Earlier safety reviews and historical H86G lane results are preserved, not current authorization.
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
@@ -14,22 +14,15 @@ Independent repository review (2026-10-25; three passes; no model run or TIFF ge
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## ✅ IS ANY FILE OK TO SUBMIT RIGHT NOW? **YES — EXACTLY ONE.** (automated decision, 2026-10-25, H86G-EDTI; supersedes the dated negative reviews below for this one file only)
+## ⛔ IS ANY FILE CLEARED TO SUBMIT RIGHT NOW? **NO — DO NOT SUBMIT ANY FILE.**
 
-**Submit this file (selector action):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
-Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
-Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
+The current all-artifact release audit blocks every nonempty TIFF under the unchanged literal registry-overlap rule. The pinned `17GEMSDOE` witness is positive at every allowed pixel; measured forward overlap for each registered download is `1.0`, exceeding the `0.70` stop. This is a **REGISTRY-MEASUREMENT**, sufficient to reject but not a complete uniqueness scan. The H86G-EDTI raster is available only as a historical audit download; its older `promote` lane verdict does not override this current stop. No candidate from the latest review was created, no model experiment was run, and no weekly slot was used.
 
-| Automated gate (no human inspection) | Result |
-|---|---|
-| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1} (the portal "[0, 1]" error class is excluded on these bytes), 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical |
-| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` |
-| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
-| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
-| Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` — OK TO DOWNLOAD AND SUBMIT as the selector action; 0 slots used here; live score unknowable until an organizer receipt** |
+- Current downloadable artifacts: [audit-only downloads](docs/index.html#downloads); do **not** submit them.
+- Current decision and per-file checks: [release-readiness report](docs/evidence/release-readiness.json), [all-artifact witness measurements](docs/evidence/all-artifacts-registry.json), and [protocol preflight proof](docs/evidence/protocol-preflight.json).
+- H86G's earlier scientific record is preserved as historical evidence: [H86G review](research/H86G_EDTI_REVIEW.md) / [run card](docs/evidence/h86g-edti-run-card.json). It is not current upload authorization.
 
-**Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
+The current session's negative run card is [latest-review-run-card.json](docs/evidence/latest-review-run-card.json); the detailed three-pass repository review is [session cf73474c](research/SESSION_20261025_CF73474C_REVIEW.md). The user-supplied leaderboard figures are not organizer receipts. No live score is inferred from a holdout or proxy.
 
 ## Current independent review — 2026-10-25 (session `cf73474c`)
 

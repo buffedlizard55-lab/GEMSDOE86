@@ -43,8 +43,8 @@ def test_h86e_raster_matches_card_and_note_limits():
 def test_site_distinguishes_byte_identity_from_registry_uniqueness():
     home = (ROOT / "docs/index.html").read_text()
     report = (ROOT / "research/H86E_SESSION_20261024.md").read_text()
-    assert "byte-distinct research GeoTIFF" in home
-    assert "not unique under the registry gate" in home
+    assert "Byte-distinct research GeoTIFFs are not automatically registry-unique" in home
+    assert "current full-support witness measurement blocks it" in home
     assert "DO NOT SUBMIT" in home
     assert "a new unique GeoTIFF" not in home
     assert "does **not** satisfy the requirement for a registry-unique" in report

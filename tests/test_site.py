@@ -14,10 +14,22 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    # Current literal full-support witness stop applies to every nonempty file.
+    # The old H86G lane verdict remains archival and must not authorize upload.
+    assert "NO FILE CLEARED FOR SUBMISSION" in html
+    assert "DO NOT SUBMIT" in html
+    assert "H86G-EDTI artifact retains its historical like-for-like lane verdict" in html
+    assert "Download one-TIFF ZIP — audit only, DO NOT SUBMIT" in html
+    assert "submit this file" not in html.lower()
+    readiness = json.loads((DOCS / "evidence/release-readiness.json").read_text())
+    assert readiness["decision"] == "DO NOT SUBMIT"
+    assert readiness["submission_ready"] is False
+    assert readiness["safe_to_submit"] is False
+    assert all(a["status"].startswith("DO NOT SUBMIT") for a in readiness["artifacts"])
+    assert all(a["safe_to_submit"] is False for a in readiness["artifacts"])
+    h86g = next(a for a in readiness["artifacts"] if a.get("source_card") == "docs/evidence/h86g-edti-run-card.json")
+    assert h86g["historical_lane_verdict"] == "promote"
+    assert h86g["literal_registry_stop"] is True
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
