@@ -1,0 +1,209 @@
+{
+ "lane": "H86M-LT leaderboard tomography + DTI-optimal emission",
+ "hypothesis": "Corroboration patterns (B>=5 near-votes on C>=2 line supports, exact-AB>=3, dcat>3) identify hidden-fault density; belief fit to 29 OWNER-REPORTED live scores through exact DTI algebra + marginal-bar emission beats best single member in expectation.",
+ "mechanism": "DTI=T/(0.8K+0.2(T+n-M)); pruning non-crediting mass and emitting only above the exact marginal bar raises precision-weighted coverage. h33 = D28 minus 2545 collar dots (pixel-exact) is the same mechanism in miniature.",
+ "named_mimic": "Lithologic magnetic/gravity contacts and GeoDAWN flight-line seams shared across feature-derived submissions (correlated false votes); dike swarms in RTP.",
+ "evidence_class_note": "All live input scores OWNER-REPORTED (registry/prior_scores.csv, no organizer receipts). Expected DTIs are PROJECTIONS under fitted belief, never scores. SGMC numbers are SGMC-PROXY-DTI (exact vendor metric vs USGS SGMC off-catalogue faults). Catalogue hide-and-recover not used for promotion: candidate is off-catalogue by construction and the instrument anti-correlates with live ordering (repo E1b).",
+ "tomography": {
+  "K_fit": 15516.456176996864,
+  "fit_rmse": 0.020763626151264817,
+  "excluded": "poisson81 (local binary inconsistent with reported 0.0041 under all models; predicted 0.084)",
+  "h33_model_predicted_dti": 0.26602423457691915,
+  "h33_owner_reported": 0.2778,
+  "candidate_expected_dti_groupbelief": 0.33169393228899896,
+  "candidate_expected_dti_pixelbelief": 0.3739473223686218,
+  "alternate_beliefs": {
+   "e2d_param": {
+    "candidate_expected_dti": 0.3515469343455501,
+    "h33_model": 0.2684609001694273
+   },
+   "e2b_coarse_free": {
+    "candidate_expected_dti": 0.2713703978082983,
+    "h33_model": 0.27157672251614384
+   }
+  },
+  "deltas_vs_h33_model": [
+   {
+    "belief": "e2e_monotone_group",
+    "delta": 0.06566969771207981,
+    "candidate": 0.33169393228899896,
+    "h33_model": 0.26602423457691915
+   },
+   {
+    "belief": "e2d_param",
+    "delta": 0.08308603417612281,
+    "candidate": 0.3515469343455501,
+    "h33_model": 0.2684609001694273
+   },
+   {
+    "belief": "e2b_coarse_free",
+    "delta": -0.0002063247078455399,
+    "candidate": 0.2713703978082983,
+    "h33_model": 0.27157672251614384
+   }
+  ],
+  "materiality": {
+   "primary_requires_delta_gt": 0.019,
+   "no_material_loss_requires_delta_gt": -0.0244,
+   "primary_material_win": true,
+   "no_material_loss": true,
+   "note": "Amendment C: LOO-MAE instrument error; a tie under a coarse belief is not a win."
+  }
+ },
+ "sgmc_proxy": {
+  "candidate": {
+   "tp": 6586.815965402313,
+   "fp": 34882.12948265637,
+   "fn": 55535.18403459769,
+   "n_truth": 62122,
+   "n_emitted": 37654,
+   "dti": 0.11358265543913723,
+   "coverage": 0.10603032686330628
+  },
+  "comparators": {
+   "h33": 0.09538611460482532,
+   "anderson": 0.09676998666077825,
+   "p5": 0.11263470224792611,
+   "gateortho": 0.1333742182724658,
+   "ptcf": 0.08691885304208409,
+   "cvarlw": 0.1304495241739087,
+   "dotted28": 0.09417442916119363
+  },
+  "quadrants": {
+   "q0": {
+    "candidate": 0.12884830396941915,
+    "h33": 0.10189219324354262,
+    "sgmc_px": 23130
+   },
+   "q1": {
+    "candidate": 0.0943784177379646,
+    "h33": 0.0990513078619515,
+    "sgmc_px": 23192
+   },
+   "q2": {
+    "candidate": 0.13892448081121728,
+    "h33": 0.10768598598950381,
+    "sgmc_px": 2353
+   },
+   "q3": {
+    "candidate": 0.11111643231075595,
+    "h33": 0.07358555614781703,
+    "sgmc_px": 13447
+   }
+  },
+  "truth_px": 62122
+ },
+ "leakage_canary": {
+  "belief_auc_vs_sgmc": 0.6214571623430203,
+  "threshold": 0.9
+ },
+ "correlation_overlap_vs_registry": {
+  "registry_files": 69,
+  "dotfields": 58,
+  "max_forward_overlap_3px": 0.6400382429489563,
+  "max_spearman_binary": 0.11256700446599595,
+  "pass_le_070_le_090": true,
+  "rows_file": ".cache/h86m/registry_rows.json (copied to evidence)"
+ },
+ "raster_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+ "validator": {
+  "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
+  "bytes": 145735,
+  "sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  },
+  "band_description": [
+   null
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "emitted_positive_pixels": 37654,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 37654,
+  "footprint_fraction": 0.007286874781441169
+ },
+ "submission_name": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros",
+ "note": "H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat>3; auto-validated; see run card",
+ "note_chars": 106,
+ "dots": 37654,
+ "greedy": {
+  "n": 37654,
+  "T": 7455.6845703125,
+  "M": 9420.720576962456,
+  "K": 16000.0009765625,
+  "expected_dti_belief": 0.3739473223686218,
+  "n_bar_stop_equivalent": 14080,
+  "binding_ratios": [
+   0.5060551335847453,
+   0.5699261698624316,
+   0.5656503957082912,
+   0.5699261698624316,
+   0.5656503957082912,
+   0.5610293727094067,
+   0.5614808519679184,
+   0.5718648749136878,
+   0.5643490731396399,
+   0.5664205662081054,
+   0.5650926860360121,
+   0.6399851277420725,
+   0.5414033037658682
+  ]
+ },
+ "verdict": "promote",
+ "safe_to_submit": true,
+ "approved_for_weekly_slot": false,
+ "submission_slots_used": 0,
+ "selector_note": "Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
+ "full_registry_uniqueness": {
+  "registry_files": 655,
+  "measured": 655,
+  "dotfields": 414,
+  "max_forward_overlap_3px": 0.6489881553088649,
+  "max_pearson_dots": 0.1594770703332588,
+  "max_pearson_surface": 0.5560123221902681,
+  "firings_forward_gt_070": 0,
+  "evidence": "docs/evidence/h86m-lt-full-registry-uniqueness.json",
+  "pa86_chance_note": "No forward-overlap firing >0.70 exists, so no PA-86-02 informative-firing hard stop can trigger; chance-overlap test is moot for this candidate.",
+  "pass": true
+ }
+}
