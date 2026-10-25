@@ -8,7 +8,7 @@ Latest review ([session 9662ee55](research/SESSION_9662EE55_REVIEW.md)): hardene
 
 **One-command three-pass verification:** after installing `requirements-lock.txt` in `.venv`, run `.venv/bin/python scripts/review_repository.py`. It checks releases, tests, evidence, site and downloads, recording `.cache/repository-review.json`; a software PASS never authorizes an upload. [Latest implementation review, ranked hypotheses, blockers and next steps](research/SESSION_1D3F3532_REVIEW.md). **No new TIFF generated; DO NOT SUBMIT.** The full standing request remains in [PROMPT.md](PROMPT.md) and [the current request archive](research/REQUEST_20261025.md); read them before starting work.
 
-**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI has a historical amended-gate `PROMOTE` result only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. All downloads are audit-only; this safety review generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
 
 **Latest independent review on this Arena branch (2026-10-25): NEGATIVE; no new TIFF, experiment, or slot.** The literal full-support registry witness blocks all non-empty candidate rasters; no shared cached feature stack or lane assignment is present. See [three-pass review, ranked untested hypotheses, H33 evidence, and next blockers](research/SESSION_20261025_ARENA_43838D43_REVIEW.md) and its [machine-readable run card](docs/evidence/arena-43838d43-run-card.json). Existing audit-only downloads are not new submissions and remain **DO NOT SUBMIT**.
 
@@ -30,26 +30,15 @@ Final environment and quality recheck (2026-10-25): [839 tests passed; site chec
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO — DO NOT SUBMIT.**
+## ⛔ Is any file OK to submit right now? **NO — DO NOT SUBMIT ANY DOWNLOAD**
 
-Publication safety correction (session `09c7fc42`): H86G-EDTI’s historical amended-gate promotion is preserved, but does not pass the current literal registry rule or authorize a weekly slot. Its card records `safe_to_submit=false` and `approved_for_weekly_slot=false`. [Three-pass review](research/SESSION_09C7FC42_REVIEW.md). No new TIFF was generated in that review session.
+The current project policy binds the literal `0.70` overlap stop. The pinned historical registry witness has positive support on every allowed pixel, so every non-empty candidate necessarily fails that rule. **Format-valid, byte-distinct, or local amended-gate results are not full-registry clearance or upload authorization.** No slot is selected or used.
 
-**Existing research download only — DO NOT SUBMIT:** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
-Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
-Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
+H86G-EDTI retains a historical amended-gate `PROMOTE` verdict only; its run card says `safe_to_submit=false` and `approved_for_weekly_slot=false`. H86I-SACD and H86J-MPC are newer, generated research TIFFs with negative scientific/control outcomes and/or incomplete literal-registry clearance; neither is approved for submission. Every linked TIFF is audit-only. See the [current negative run card](docs/evidence/latest-review-run-card.json), [literal-stop proof](docs/evidence/protocol-preflight.json), and [three-pass safety review and handoff](research/SESSION_20261025_ARENA_B5040_REVIEW.md).
 
-| Automated gate (no human inspection) | Result |
-|---|---|
-| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1} (the portal "[0, 1]" error class is excluded on these bytes), 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical |
-| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` |
-| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
-| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
-| Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **Historical amended-gate `promote` only — DO NOT SUBMIT under the literal rule; no slot approval; live score unknown** |
+**H33 interpretation:** pixel-forensics supports the hypothesis that the supplied `0.2778` owner-reported result benefited from pruning 2,545 catalogue-adjacent dots from an H19-5/D2.8 lineage. This is not proof of portal-score causation or evidence a new method will beat it. See [H33 interpretation](research/H33_INTERPRETATION_REVIEW.md). HOLDOUT-DTI is not a leaderboard projection.
 
-**Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
-
-### Latest lane H86J-MPC (2026-10-25): unique TIFF generated — **NEGATIVE, DO NOT SUBMIT**
+### H86J-MPC (2026-10-25): locally distinct TIFF emitted — **NEGATIVE, NOT UNIQUENESS-CLEARED, DO NOT SUBMIT**
 
 A new physically distinct TIFF **was** generated and machine-validated end-to-end (no human inspection): amplitude-invariant monogenic phase-congruency *step* surfaces on RTP + gravity + DEM, frozen in [`research/H86J_MPC_PREREGISTRATION.md`](research/H86J_MPC_PREREGISTRATION.md) (5 ranked untried hypotheses, 3-experiment budget, 44,090-dot budget fixed before any scoring). The hypothesis then failed its own preregistered gates — **negative results are deliverables, and no weekly slot was spent**. No current file is authorized to submit: H86G-EDTI retains only its historical amended-gate promotion (`safe_to_submit=false`).
 

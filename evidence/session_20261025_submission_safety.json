@@ -1,0 +1,68 @@
+{
+  "schema": "gems86.session-review-run-card.v1",
+  "session_date_utc": "2026-10-25",
+  "current_status": "DO_NOT_SUBMIT_ANY_DOWNLOAD",
+  "hypothesis": {
+    "status": "PROPOSALS_ONLY_NO_LANE_ASSIGNED",
+    "top_qualitative_proposal": "H86G-CSPA local cross-spectral gravity-magnetic admittance breaks",
+    "mechanism": "A spatially persistent change in local gravity-magnetic cross-spectrum, coherence, or scale-dependent admittance might reveal concealed density/magnetization juxtaposition; no candidate feature was computed.",
+    "named_non_fault_process": "Unfaulted lithologic juxtaposition, source-depth changes, remanent volcanic magnetization, or survey-resolution mismatch.",
+    "proposal_register": "registry/h86g_hypotheses.json"
+  },
+  "h33_analysis": {
+    "owner_reported_value": 0.2778,
+    "evidence_class": "OWNER-REPORTED_NOT_ORGANIZER-CONFIRMED",
+    "source": "research/H33_INTERPRETATION_REVIEW.md",
+    "interpretation": "Pixel-lineage analysis reports removal of 2545 predictions in a 1–2 px catalogue-distance collar from the D2.8 parent; plausible finite-budget marginal-coverage/false-positive mechanism, not causal proof or a leaderboard projection."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2 (planned; not run)",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT_RUN_PROTOCOL_STOP"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_forward_overlap_3px": null,
+    "candidate_generated": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_covered_allowed_fraction": 1.0,
+    "literal_overlap_limit": 0.70,
+    "uncovered_allowed_pixels": 0,
+    "meaning": "Witness-only universal blocker measurement; not a candidate uniqueness scan or registry clearance.",
+    "registry_scope": "Historical evidence snapshots disagree (690/690 vs 43/698); neither is asserted as complete current candidate clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "No candidate generated; every project download is audit-only. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "code_review_changes": [
+    "scripts/build_site.py",
+    "scripts/check_site.py",
+    "tests/test_site.py",
+    "tests/test_h86e.py",
+    "tests/test_rmrb86_research.py",
+    "README.md",
+    "docs/index.html (generated)",
+    "docs/executive-summary.html (generated)"
+  ],
+  "witness_preflight_receipt": "evidence/session_20261025_submission_safety_preflight.json",
+  "validation": {
+    "site_build": "PASS",
+    "site_check": "PASS",
+    "download_audit": "PASS: 20 existing TIFFs revalidated; none authorized",
+    "focused_tests": "PASS: 255 tests",
+    "full_tests": "PASS: 823 passed, 24 skipped, 42 dependency warnings, 41 subtests"
+  }
+}

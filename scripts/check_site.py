@@ -161,6 +161,13 @@ def check(root=ROOT):
                         errors.append('Homepage must state that no file is authorized and submissions are prohibited')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
             errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
+        if html_file.name in {'index.html', 'executive-summary.html'}:
+            unsafe_markers = ('SUBMIT THIS FILE', 'CURRENT DECISION: SUBMIT ONLY',
+                              'ONE SELECTOR-READY FILE', 'DOWNLOAD → SUBMIT')
+            if any(marker in html_text for marker in unsafe_markers):
+                errors.append(f'Current download page advertises an unauthorized submission: {html_file.name}')
+            if 'DO NOT SUBMIT' not in html_text:
+                errors.append(f'Current download page lacks an explicit negative submission state: {html_file.name}')
     canonical_card = root / 'docs/evidence/run-card.json'
     if not canonical_card.is_file():
         errors.append('Missing canonical run card')

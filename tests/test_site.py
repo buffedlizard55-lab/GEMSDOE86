@@ -15,9 +15,13 @@ def test_download_links_and_fail_closed_decision():
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
     # Research promotion must never override false authorization fields.
-    assert "NO FILE AUTHORIZED" in html
+    assert "NO FILE IS CLEARED TO SUBMIT" in html
+    assert "Do not upload any file linked from this page" in html
+    assert "HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" in html
+    assert "Download TIFF — audit only; DO NOT SUBMIT" in html
     assert "IS THIS FILE OK TO SUBMIT? NO" in html
     assert "IS THIS FILE OK TO SUBMIT? YES" not in html
+    assert "ONE SELECTOR-READY FILE" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 

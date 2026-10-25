@@ -52,8 +52,10 @@ class ResearchTests(unittest.TestCase):
 
     def test_site_leads_with_unambiguous_decision_and_download(self):
         html = (ROOT / "docs/index.html").read_text()
-        self.assertIn("NO FILE AUTHORIZED", html)
-        self.assertIn("SAFE TO DOWNLOAD FOR AUDIT", html)
+        self.assertIn("NO FILE IS CLEARED TO SUBMIT", html)
+        self.assertIn("Do not upload any file linked from this page", html)
+        self.assertIn("HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT", html)
+        self.assertIn("byte-distinct research GeoTIFFs", html)
         self.assertIn("DO-NOT-SUBMIT.tif", html)
 
 
