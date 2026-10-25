@@ -1,7 +1,7 @@
 # Repository review — Arena branch `arena/b5040e9c-gemsdoe86`
 
-**Date:** 2026-10-25 UTC  
-**Scope:** three-pass repository / release-page review; no model fitting, raster placement, new TIFF, organizer login, or weekly-slot selection.  
+**Date:** 2026-10-25 UTC<br>
+**Scope:** three-pass repository / release-page review; no model fitting, raster placement, new TIFF, organizer login, or weekly-slot selection.<br>
 **Outcome:** negative for a *new* candidate this review. H86G-EDTI retains a historical `PROMOTE` result under PA-86-01, but current upload authorization is **DO NOT SUBMIT** (`safe_to_submit=false`, `approved_for_weekly_slot=false`) because the literal registry gate remains blocking. H86G-EDTI was not re-run here.
 
 ## Pass 1 — inspect current evidence and implementation

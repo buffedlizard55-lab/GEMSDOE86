@@ -563,6 +563,20 @@ def build_report(root: Path = ROOT) -> dict:
                 or row["complete_accessible_scan"] is not False):
             raise ValueError("Final-dot measurements drifted or contradict the mandatory stop")
         artifact["registry_measurement"] = row
+        # The pinned witness is a sufficient negative under the unchanged
+        # literal-support rule: every allowed pixel is positive in the witness,
+        # so any nonempty candidate has forward overlap 1.0 > 0.70. Preserve a
+        # lane's historical scientific verdict separately, but the current
+        # downloadable artifact decision must remain fail-closed.
+        artifact["historical_lane_verdict"] = artifact["verdict"]
+        artifact["literal_registry_stop"] = True
+        artifact["verdict"] = "negative"
+        artifact["status"] = (
+            "DO NOT SUBMIT — literal witness overlap "
+            f"{row['forward_overlap_3px']:.1f} > 0.70"
+        )
+        artifact["safe_to_submit"] = False
+        artifact["approved_for_weekly_slot"] = False
     inputs[str(registry_path.relative_to(root))] = sha256(registry_path)
     names = [r["submission_name"] for r in artifacts]
     if len(names) != len(set(names)):
