@@ -1,0 +1,426 @@
+{
+  "schema_version": 1,
+  "prepared_utc": "2026-10-25T02:15:46+00:00",
+  "grid": {
+    "epsg": 32611,
+    "height": 3730,
+    "width": 3292,
+    "total_cells": 12279160,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "pixel_size_m": [
+      100.0,
+      100.0
+    ]
+  },
+  "counts": {
+    "footprint_valid_pixels": 5167373,
+    "outside_footprint_pixels": 7111787,
+    "positive_catalogue_label_pixels": 60988,
+    "negative_in_footprint_pixels": 5106385,
+    "has_features": true,
+    "total_sentinel_band_pixels_inside_footprint": 58171,
+    "unique_footprint_pixels_with_any_sentinel": 3073
+  },
+  "source_paths": {
+    "sample_submission": "data/sample_submission.tif",
+    "existing_faults": "data/existing_faults.tif",
+    "training_features": "data/training_features.tif"
+  },
+  "source_hashes": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "input_grid_checks": {
+    "sample_submission": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 1,
+      "crs_shape_transform_match": true
+    },
+    "existing_faults": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 1,
+      "crs_shape_transform_match": true
+    },
+    "training_features": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 19,
+      "crs_shape_transform_match": true
+    }
+  },
+  "shared_template_feature_stack": false,
+  "preparation_scope": "Hash-verified native bands only, not the shared cached feature stack or submission authorization.",
+  "pins_verified": {
+    "sample_submission": true,
+    "existing_faults": true,
+    "training_features": true
+  },
+  "bands": [
+    {
+      "index": 1,
+      "name": "mag_anom",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -1052.0047607421875,
+      "p05": -204.36949157714844,
+      "median": -57.68793487548828,
+      "p95": 162.7369384765625,
+      "max": 2109.447509765625
+    },
+    {
+      "index": 2,
+      "name": "rtp",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -2786.299560546875,
+      "p05": -332.47589111328125,
+      "median": -137.22166442871094,
+      "p95": 153.74588012695312,
+      "max": 4508.76025390625
+    },
+    {
+      "index": 3,
+      "name": "tmi_hg",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.004909869749099016,
+      "p05": 1.6395492553710938,
+      "median": 13.155465126037598,
+      "p95": 93.85163116455078,
+      "max": 2200.4365234375
+    },
+    {
+      "index": 4,
+      "name": "geod_2ndinv",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 1.2000000476837158,
+      "p05": 2.5,
+      "median": 19.90778923034668,
+      "p95": 46.20000076293945,
+      "max": 87.45342254638672
+    },
+    {
+      "index": 5,
+      "name": "iso_grav_anom_slope",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0013825353235006332,
+      "p05": 0.02875160053372383,
+      "median": 0.10218460857868195,
+      "p95": 0.27035272121429443,
+      "max": 0.6517290472984314
+    },
+    {
+      "index": 6,
+      "name": "tc",
+      "finite_in_footprint": 5164300,
+      "sentinel_in_footprint": 3073,
+      "min": 2.9534237384796143,
+      "p05": 11.806571960449219,
+      "median": 18.481700897216797,
+      "p95": 25.58231544494629,
+      "max": 88.56654357910156
+    },
+    {
+      "index": 7,
+      "name": "geod_shearrate",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0,
+      "p05": 0.0,
+      "median": 9.699999809265137,
+      "p95": 29.143348693847656,
+      "max": 54.400001525878906
+    },
+    {
+      "index": 8,
+      "name": "geod_dilaterate",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -16.5,
+      "p05": -2.850332498550415,
+      "median": 5.5,
+      "p95": 19.200000762939453,
+      "max": 34.52448272705078
+    },
+    {
+      "index": 9,
+      "name": "tmi_vg",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -7.650597095489502,
+      "p05": -0.2846248149871826,
+      "median": -0.008997071534395218,
+      "p95": 0.31916630268096924,
+      "max": 20.510923385620117
+    },
+    {
+      "index": 10,
+      "name": "deq_n100a15",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.0,
+      "p05": 180.8000030517578,
+      "median": 622.7999877929688,
+      "p95": 8631.3828125,
+      "max": 4962515.0
+    },
+    {
+      "index": 11,
+      "name": "iso_grav_anom_vg",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -18.164581298828125,
+      "p05": -2.696582317352295,
+      "median": -0.07213491946458817,
+      "p95": 2.606743335723877,
+      "max": 12.578903198242188
+    },
+    {
+      "index": 12,
+      "name": "det_elev",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -589.9837036132812,
+      "p05": -330.6675109863281,
+      "median": -75.57621002197266,
+      "p95": 450.23626708984375,
+      "max": 1469.9127197265625
+    },
+    {
+      "index": 13,
+      "name": "iso_grav_anom",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -45.75756072998047,
+      "p05": -26.093978881835938,
+      "median": -7.26103401184082,
+      "p95": 7.737759590148926,
+      "max": 24.232954025268555
+    },
+    {
+      "index": 14,
+      "name": "tmi",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -2178.27783203125,
+      "p05": -298.6368713378906,
+      "median": -124.8157730102539,
+      "p95": 140.07701110839844,
+      "max": 4506.14111328125
+    },
+    {
+      "index": 15,
+      "name": "depth_to_base_surf",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -14.837310791015625,
+      "p05": 6.208613395690918,
+      "median": 316.3645324707031,
+      "p95": 1881.2606201171875,
+      "max": 7135.306640625
+    },
+    {
+      "index": 16,
+      "name": "ieq_n100a15",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 236.8000030517578,
+      "p05": 312.5,
+      "median": 755.7000122070312,
+      "p95": 2723.60009765625,
+      "max": 7869.5
+    },
+    {
+      "index": 17,
+      "name": "cond_surf",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.1937037855386734,
+      "p05": 1.8359887599945068,
+      "median": 2.885897636413574,
+      "p95": 3.9114627838134766,
+      "max": 4.969292640686035
+    },
+    {
+      "index": 18,
+      "name": "iso_grav_anom_hg",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": -15.441243171691895,
+      "p05": -3.3952438831329346,
+      "median": 0.037620771676301956,
+      "p95": 3.296633005142212,
+      "max": 12.856057167053223
+    },
+    {
+      "index": 19,
+      "name": "det_elev_slope",
+      "finite_in_footprint": 5164312,
+      "sentinel_in_footprint": 3061,
+      "min": 0.001103136339224875,
+      "p05": 0.16759774088859558,
+      "median": 3.749262809753418,
+      "p95": 25.336517333984375,
+      "max": 62.64591598510742
+    }
+  ],
+  "prepared_arrays": [
+    {
+      "file": ".cache/gems_work/bands/01_mag_anom.npy",
+      "sha256": "6a023e7b67ce37dd555cdfd809acb7de8f1051f5c3372bcc5367080d199c894c",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/02_rtp.npy",
+      "sha256": "9ff3809b83ca83bc5a7fe45e4859703b1f1c152970b142b340b7bb8f4918edd3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/03_tmi_hg.npy",
+      "sha256": "d897a433f887cbb1c01c46b46c5ec8250062ba25cce801a7ce33afb138216f10",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/04_geod_2ndinv.npy",
+      "sha256": "eee2e47e3649fa58ccf14d62610e07a82b90a298ff1a3837a08ab42a5397cc28",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/05_iso_grav_anom_slope.npy",
+      "sha256": "378e6a217109c207584df698c265340ac23aafad4586fcaa754daec0faa3f050",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/06_tc.npy",
+      "sha256": "cb972e81a4345f84c9d99b74e166503d9753e66dc5c584c9f20dd021a7416dda",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/07_geod_shearrate.npy",
+      "sha256": "7b56e0571da4460566ca7819d040e4e9fe4b6827fc672157478beea4185e11d1",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/08_geod_dilaterate.npy",
+      "sha256": "3162ac9ce138b948ebbb17dd9f161c23519bcdf3cf374a20791551aaa21f24e3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/09_tmi_vg.npy",
+      "sha256": "62e8abca6d8ce3d4cbf847aacdcf46a9df01bc441bd454e96971900190b2f25b",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/10_deq_n100a15.npy",
+      "sha256": "82bfb707064d7bab4f7a5827724484756286738fea11d9a4300ff018483df743",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/11_iso_grav_anom_vg.npy",
+      "sha256": "8d804a9d5f23d6a1d5219eccf07af51d83b0f52623482e568c7d062e8f7272c3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/12_det_elev.npy",
+      "sha256": "df112b7feebed7f5924a9f9bd2ee66422225f776079a3fa74bdd79b816830c75",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/13_iso_grav_anom.npy",
+      "sha256": "9a1f600a9096148a34258b5165f8c179890d23668e3620d227cc5baab1839811",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/14_tmi.npy",
+      "sha256": "8f2cabc32745b7fceff83b3f96caef1d395cff0dec04be5a2e4952363241166e",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/15_depth_to_base_surf.npy",
+      "sha256": "81284c6255784b257f853a6c0ae3e27d5d5c0d3085de3bf8901e29916ea16b1b",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/16_ieq_n100a15.npy",
+      "sha256": "419e51d65c99ca0697a9a0abfd5356ea8e4301c64edfb3ce354d03e3fe196640",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/17_cond_surf.npy",
+      "sha256": "d30c43c106dcfe2245020bcd8bba52f320288718572c603eb173c8857c987803",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/18_iso_grav_anom_hg.npy",
+      "sha256": "0ccf700b456340fffbb97357b872f772d0b0393d7c5b11683956a4fccdc99e94",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/19_det_elev_slope.npy",
+      "sha256": "df23d987bd55514ce63cee57ec3e00b2d49eb5e385c4c83875a3ebd7f9ba4c57",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/_footprint.npy",
+      "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "bytes": 12279288
+    },
+    {
+      "file": ".cache/gems_work/bands/_labels.npy",
+      "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "bytes": 12279288
+    }
+  ],
+  "publication": {
+    "complete_array_set_staged": true,
+    "rollback_on_exception": true,
+    "local_preparers_serialized": true,
+    "crash_atomic_across_cache_and_manifest": false,
+    "scope": "Native bands only; not the actual shared template cached feature stack"
+  }
+}
