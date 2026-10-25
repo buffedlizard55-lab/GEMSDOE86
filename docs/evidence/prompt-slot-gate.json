@@ -1,0 +1,83 @@
+{
+  "schema": "gems86.prompt-slot-gate.v1",
+  "decision": "DO_NOT_SUBMIT_UNDER_CURRENT_REQUEST",
+  "evidence_class": "PROMPT-GATE-REVIEW",
+  "candidate_lane": "H86G-EDTI",
+  "hypothesis": "Off-catalogue multiline lineament corroboration over the pinned potential-field + LiDAR + topography stack, signed by a catalogue-signature HGB posterior and emitted by expected-kernel-credit spacing-greedy behind a 3 px catalogue collar, recovers unmapped fault trace more DTI-efficiently than the H19-5-ancestor dotted field behind the owner-reported 0.2778 mechanism.",
+  "mechanism": "L: mean footprint-rank of 8 independent edge detectors (RTP/gravity/DEM gradient magnitudes, analytic signal, LiDAR step/cross, topo lineament/curvature) times a detector-agreement weight. H: HistGradientBoosting on 68 pinned features with zero catalogue-derived inputs. LH = rank(L) x (0.35 + 0.65 rank(H)). Dots ranked by E[k] = surface (*) triangular 300 m kernel (vendor gems57.emit.expected_credit), spacing >= 2.8 px.",
+  "named_non_fault_process": "Unfaulted lithologic contacts and volcanic-flow boundaries; see the preregistration for the full named mimic set.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": 11321,
+    "value": 0.06311676646014856,
+    "ci95": [
+      0.04682562753071773,
+      0.08060528797857537
+    ],
+    "current_same_evaluator_same_count_incumbent": {
+      "evidence_class": "HOLDOUT-DTI",
+      "lane": "H86F-EWCS",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_count": 11321,
+      "value": 0.17232456905148233,
+      "ci95": [
+        0.15295644923310786,
+        0.18979291320276231
+      ],
+      "comparison_note": "Same evaluator and withheld-positive count; this cross-lane contrast is descriptive, not a paired significance test. H86G-EDTI does not demonstrate that it beats the incumbent."
+    },
+    "paired_delta_vs_best_H86G_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.008598618131518417,
+      "ci95": [
+        -0.01529825982865551,
+        0.037001596001105926
+      ],
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "local_dot_field_count": 43,
+    "surface_max_spearman_local_scope": 0.06999161506779053,
+    "final_dot_forward_overlap_3px_local_scope": 0.6849636363636363,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "local_gate_pass": true,
+    "full_registry_clearance": false,
+    "inventory_rasters": 690,
+    "grid_compatible_rasters": 688,
+    "incompatible_or_invalid_rasters": 2,
+    "scope_note": "Candidate comparisons are against the pinned local dot-field subset. The 690-file byte/grid inventory is not a candidate uniqueness pass; incompatible rows remain blockers."
+  },
+  "shared_feature_cache_restored": false,
+  "raster_sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+  "validator_output": {
+    "class": "local-format-validation; not organizer acceptance",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "single_band": true,
+    "all_local_checks_passed": true
+  },
+  "submission_name": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros",
+  "note": "H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked",
+  "weekly_slot_authorized": false,
+  "organizer_confirmed_score": null,
+  "reasons_not_approved": [
+    "The candidate HOLDOUT-DTI point estimate does not exceed the current same-evaluator, same-withheld-count repository incumbent; a paired superiority test against that incumbent is absent.",
+    "The actual shared template cached feature stack is not present; native raw bands are not an authorized substitute under the request.",
+    "The pinned registry inventory is not fully cleared: incompatible/invalid rows remain and this is not a complete candidate comparison."
+  ],
+  "verdict": "negative",
+  "evidence_sha256": {
+    "docs/evidence/h86g-edti-run-card.json": "2d6e1f2b56ad37819d58b1579b38877c6a4eb9c566060cf9c551c2ce451b6155",
+    "docs/evidence/h86f-ewcs-run-card.json": "758d17a7ade8897fb0ae64ef4ff4a6d9e272d49c3a5c403f90dccc0f979c34a2",
+    "docs/evidence/session-cf73474c-data.json": "e4bf9233ede205ef3012bf5ab6771c0d04c9eb3971f1f19e483ed5321829376c",
+    "docs/evidence/registry-input-grid-review-20261025.json": "fd359878c3d645684cf4019837533951db9f5f16593b2ff583f876b5877fed05",
+    "docs/evidence/h86g-edti-registry.json": "ef7cd7b9dc6d59c590e340ef3825bcc8ecb0c0f351911a700487ee625ee7e9f4",
+    "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d"
+  }
+}
