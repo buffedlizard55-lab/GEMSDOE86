@@ -26,7 +26,7 @@
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform_match": null,
-    "inherited_local_artifacts_valid": 32,
+    "inherited_local_artifacts_valid": 33,
     "inherited_artifact_scope": "format/ZIP and one pinned witness only; not a new candidate or full uniqueness clearance",
     "evidence": "docs/evidence/release-readiness.json"
   },

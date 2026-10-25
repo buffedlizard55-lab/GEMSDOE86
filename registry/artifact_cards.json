@@ -199,7 +199,7 @@
       "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
     },
     {
-      "lane": "GDSC Geodetic Dilatational Strain Corridor — geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
       "card": "docs/evidence/gdsc-run-card.json",
       "context": "evidence/run_card.json",
       "holdout_kind": "unvalidated_variant",
@@ -220,11 +220,18 @@
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
     },
     {
-      "lane": "H86L-FMC fleet minority-consensus (negative, leakage-suspect)",
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
       "card": "docs/evidence/h86l-fmc-run-card.json",
       "context": "docs/evidence/h86l-fmc-run-card.json",
-      "holdout_kind": "h86l_fmc_leakage_suspect",
+      "holdout_kind": "h86l_fmc",
       "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
+    },
+    {
+      "lane": "H86M-DAMAGERING catalogue ring (unvalidated; negative archive)",
+      "card": "docs/evidence/h86m-damagering-run-card.json",
+      "context": "docs/evidence/h86m-damagering-run-card.json",
+      "holdout_kind": "h86m_unvalidated",
+      "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     }
   ]
 }
