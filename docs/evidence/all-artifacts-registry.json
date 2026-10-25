@@ -7,6 +7,7 @@
   "proof_sha256": "3f0a91d35f6a43b75b0493ce9f75c78416797a76521d8e40b0f5677a8a81ff20",
   "registry_rasters_measured": 1,
   "registry_complete": false,
+  "note": "H86M row added 2026-10-25 session arena/2093d164-gemsdoe86: measured against locally present registry rasters only (pinned full-support witness raster is not present in this checkout); forward overlap vs faulthalo fault-halo surface = 1.0; worst dots-vs-faulthalo Spearman 0.04912956200146729 over the footprint.",
   "preplacement_surfaces_measured": false,
   "new_candidate_generated": false,
   "experiments_run": 0,
@@ -286,6 +287,15 @@
       "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
       "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
       "spearman_full_footprint": 0.06249311919206335,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.tif",
+      "sha256": "9a1eda169fc595a4f4c5ee3c218057ee4c8bf9613906277f1b016421f2621fe1",
+      "spearman_full_footprint": 0.04912956200146729,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

@@ -186,6 +186,12 @@
       "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.tif",
+      "sha256": "9a1eda169fc595a4f4c5ee3c218057ee4c8bf9613906277f1b016421f2621fe1",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

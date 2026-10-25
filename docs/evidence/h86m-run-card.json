@@ -1,0 +1,172 @@
+{
+  "evidence_class": "RUN-CARD",
+  "lane": "H86M-blind-stepperjunction-offtrace-propensity",
+  "raster_sha256": "9a1eda169fc595a4f4c5ee3c218057ee4c8bf9613906277f1b016421f2621fe1",
+  "generated_utc": "20261025T170146Z",
+  "protocol": "parallel-run protocol (lane / reuse / evidence class / leakage canary / run card / budget)",
+  "hypothesis": "Blind geothermal systems in the northern Great Basin localize at dilatational fault step-overs, intersections and relay ramps that lie OFF the mapped USGS/INGENIOUS catalogue traces; the catalogue maps traces but not blind tips, buried jogs or unmapped splays, so an off-catalogue structural field targets faults missing from the catalogue.",
+  "mechanism": "Catalogue-geometry-only field built from existing_faults.tif: exponential off-trace decay halo exp(-d_cat/3 px) on the 100 m grid (300 m scale), catalogue pixels masked pixel-exactly to zero, multiplied by multi-scale junction/step-over excess density (fault density in a 2.1 km window minus the same in a 1.1 km window, floored at zero), restricted to the scored footprint and normalized to [0, 1]; the top 37,654 allowed cells are emitted as binary dots. DTI notation (alpha 0.2, beta 0.8, 300 m triangular kernel) matches the competition metric; no labels and no model are used.",
+  "named_non_fault_mimic": "Piedmont / range-front alluvial topography or volcanic-center alteration can produce junction-like lineament patterns without a fault; the geometry-only field carries no radiometric/topo training signal, so there is no label-leakage route by construction, but this non-fault process remains the alternative explanation.",
+  "differ_from_repo": "No 19-band fit, no logistic/HGB model, no dot-budget sweep, no submodular / SAR / phase-congruency machinery — pure public catalogue geometry with off-trace masking at equal 37,654-dot budget; distinct from every executed GEMSDOE86 lane.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "computable_locally": false,
+    "reason": "Truth folds (withheld whole fault segments) require the DrivenData training features/labels, which are behind login and absent from this checkout (scripts/download_competition_data.sh + scripts/prepare_data.py blocker documented in README.md). No HOLDOUT-DTI number is reported or projected; nothing here is a leaderboard projection or score."
+  },
+  "leakage_canary": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "computable_locally": false,
+    "reason": "No truth folds available locally; no model is fit and no labels are used, so there is no label-leakage route by construction. Per-protocol single-feature AUC screening is deferred to a machine with the restored feature stack.",
+    "auc_above_0_90_flag": false
+  },
+  "registry_measurement": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "protocol_rule_1": "lane rule 1: rank-correlation > 0.90 with any registry raster, or > 70% of dots within 3 px of one registry raster's dots => logged as duplicate and lane stopped",
+    "scope": "locally accessible rasters only (docs/downloads, data/scored_fleet, submission, releases); not the organizer registry; incomplete accessible scan; 59 rasters hash-verified and measured",
+    "registry_rasters_checked": 59,
+    "complete_accessible_scan": false,
+    "surface_pre_placement": {
+      "worst_spearman_full_footprint": 0.5209447346266846,
+      "worst_spearman_submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros",
+      "rho_limit": 0.90,
+      "rho_firings": 0,
+      "surface_verdict": "pass (no lane drift on the surface)"
+    },
+    "final_dots": {
+      "my_dots": 37654,
+      "worst_forward_overlap_3px": 1.0,
+      "worst_overlap_submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros",
+      "overlap_limit": 0.70,
+      "forward_overlap_firings": 2,
+      "worst_dot_field_overlap_3px": 0.8809157061666755,
+      "worst_dot_field_overlap_submission": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+      "worst_jaccard_dot_sets": 0.025463656417658433,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "fired_rasters": [
+        {
+          "submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros",
+          "repo": "local:GEMSDOE86",
+          "forward_overlap_3px": 1.0,
+          "spearman_full_footprint": -0.051759274116995255,
+          "their_dots": 4210938,
+          "representation": "continuous_surface",
+          "fires_literal_overlap": true
+        },
+        {
+          "submission": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+          "repo": "local:GEMSDOE86",
+          "forward_overlap_3px": 0.8809157061666755,
+          "spearman_full_footprint": -0.007947941240407864,
+          "their_dots": 44090,
+          "representation": "dot_field",
+          "fires_literal_overlap": true,
+          "fires_like_for_like_overlap": true
+        }
+      ]
+    },
+    "two_phase_reading": {
+      "literal_reading": {
+        "duplicate": true,
+        "forward_overlap_firings": 2,
+        "rho_firings": 0,
+        "worst_forward_overlap": 1.0,
+        "worst_rho": 0.04268689773343943
+      },
+      "like_for_like_reading": {
+        "duplicate": true,
+        "dot_field_rasters": 58,
+        "continuous_surface_rasters": 1,
+        "worst_forward_overlap_dot_fields": 0.8809157061666755,
+        "worst_forward_overlap_dot_field_submission": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+        "forward_overlap_firings": 1
+      }
+    },
+    "verdict": "duplicate-logged-lane-stopped",
+    "reason": "Protocol rule 1 fired on the final dots: 88.09% of dots fall within 3 px of GEMSDOE81's dot field (> 0.70) and 100% within 3 px of the faulthalo continuous surface; the surface pre-placement check passed (worst rho 0.5209 <= 0.90). Lane H86M is logged as a duplicate and stopped; no dots were moved and no second method was substituted in this session."
+  },
+  "raster": {
+    "file": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.tif",
+    "zip_file": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.zip",
+    "receipt_file": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.json",
+    "sha256": "9a1eda169fc595a4f4c5ee3c218057ee4c8bf9613906277f1b016421f2621fe1",
+    "zip_sha256": "3d2afb3c984be08b0649d17fed2429fc6d72bd86681844871333141cf06f3c13",
+    "bytes": 104270,
+    "shape": [3730, 3292],
+    "crs": "EPSG:32611",
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "emitted_dots": 37654,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "nan_pixels": 0,
+    "infinite_pixels": 0
+  },
+  "validator": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "template_report": {
+      "path": "docs/downloads/gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros.tif",
+      "bytes": 104270,
+      "sha256": "9a1eda169fc595a4f4c5ee3c218057ee4c8bf9613906277f1b016421f2621fe1",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [243350.0, 4135550.0, 572550.0, 4508550.0],
+      "ref_bounds": [243350.0, 4135550.0, 572550.0, 4508550.0],
+      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+      "nodata": null,
+      "blocksize": [256, 256],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    }
+  },
+  "submission": {
+    "name": "gems86-h86m-stepperjunction-37654dots-20261025T170146Z-ae44300f-zeros",
+    "note": "H86M blind stepover-junction off-trace propensity, 37,654 catalogue-masked dots; audit only, holdout not local, DO NOT SUBMIT",
+    "note_chars": 125,
+    "approved_for_weekly_slot": false,
+    "promoted": false,
+    "submission_slots_used": 0,
+    "status": "locally validated only; not organizer acceptance or slot approval"
+  },
+  "verdict": "negative",
+  "verdict_reason": "Registry duplicate logged per protocol rule 1 (lane stopped); HOLDOUT-DTI not computable locally (training data behind login); format-valid and pixel-unique vs the 59 locally accessible registry rasters; not submission-authorized; 0 weekly slots used; download for audit only."
+}
