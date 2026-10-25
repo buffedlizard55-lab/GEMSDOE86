@@ -239,8 +239,11 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind in {"h86m_bmr", "h86m_cnt"}:
-        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
+    # NOTE: H86M-LT is handled by the merged `h86m_lt_unvalidated` branch above
+    # (PR #166, session 57139348); session 92f9e0e8's parallel `h86m_lt` branch
+    # was removed at merge time so exactly one LT normalization path exists.
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
         cand = h.get("candidate") or {}

@@ -1,5 +1,10 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ CURRENT DECISION (2026-10-25, session `92f9e0e8`): **DO NOT SUBMIT ANY FILE** — newest TIFF H86N-EQL is a measured negative
+
+- **New unique TIFF generated this session (audit only):** [`gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif`](docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif) · [ZIP](docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.zip) · [lane page](docs/h86n-eql.html) · [run card](docs/evidence/h86n-eql-run-card.json) · [preregistration](research/H86N_EQA_PREREGISTRATION.md) · [session review](research/SESSION_20261025_92F9E0E8_REVIEW.md). SHA-256 `5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a`; 37,654 binary dots, values exactly {0,1}; **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld) **0.0306 [0.0175, 0.0455]**, paired Δ vs isotropic-density control **−0.0050 [−0.0301, +0.0200]** and vs RTP-gradient control **−0.0123 [−0.0311, +0.0074]** — the preregistered anisotropy hypothesis was not supported, so **verdict `negative`, DO NOT SUBMIT, 0 slots used**. All **37** published research TIFFs (including PR #92) are audit-only downloads. The new file is byte/pixel-unique vs the 61 locally measured rasters (max forward 3-px overlap 0.579 ≤ 0.70); uniqueness is not performance.
+- **H86M-LT irregularity (found independently here; repaired on main by parallel session `57139348`, PR #166):** LT was simultaneously "OK TO SUBMIT" (README/lane page) and "DO NOT SUBMIT" (generated site), unregistered, with `safe_to_submit=true`, so `check_site.py` failed. The merged state registers LT as a negative audit-only archive (see the `57139348` review below); this session kept that merged LT state and added only the EQL lane on top. **No file is authorized for a weekly slot.**
+
 ## Current review — 2026-10-25 (`arena/57139348-gemsdoe86`): **DO NOT SUBMIT**
 
 **36** published research TIFFs are locally format-valid, audit-only downloads. This session generated **no new candidate**.
