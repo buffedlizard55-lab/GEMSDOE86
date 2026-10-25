@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 28,
-    "local_format_pass": 28,
+    "checked": 29,
+    "local_format_pass": 29,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -178,6 +178,11 @@
         "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
         "sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+        "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -194,6 +199,6 @@
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
   "registry_measured_utc": "2026-10-25T04:07:18+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "f57c19f1130337a208164c4a74f92aa1af3ba7ad6b2e27ebdc23ea4043e0cfb2",
-  "registry_measurement_sha256": "693b6b6f372a7dfd009a130b2c54b583b6d0d85aa3498432bace65125a0cb230"
+  "release_report_sha256": "0e5f18c7bfabc29f4ebe1cc328ddbb66ef294d409375fbd8855e75611ec89d12",
+  "registry_measurement_sha256": "7d06f8414a2a19c8b06dab3ce2a7921de293c09d73e8d850f6d0a37588aeaf43"
 }
