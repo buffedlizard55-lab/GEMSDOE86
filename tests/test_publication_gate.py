@@ -111,17 +111,6 @@ class PublicationTests(unittest.TestCase):
                 z.writestr(new.name, new.read_bytes())
             self.assertEqual(check(root), [])
 
-    def test_h86m_lt_historical_promote_is_allowed_only_with_fail_closed_flags(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp); self.fixture(root)
-            card_path = root / 'docs/evidence/h86m-lt-run-card.json'
-            shutil.copyfile(ROOT / 'docs/evidence/h86m-lt-run-card.json', card_path)
-            self.assertEqual(check(root), [])
-            card = json.loads(card_path.read_text())
-            card['safe_to_submit'] = True
-            card_path.write_text(json.dumps(card))
-            self.assertTrue(any('safe_to_submit must be false' in error for error in check(root)))
-
     def test_summary_and_card_cannot_claim_readiness_even_with_a_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); entry, _ = self.fixture(root)

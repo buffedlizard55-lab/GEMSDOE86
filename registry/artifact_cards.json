@@ -1,6 +1,6 @@
 {
   "schema": "gems86.artifact-card-index.v1",
-  "scope": "Explicit joins between the download inventory and archived scientific evidence. Research promotion is not upload authorization or selector choice.",
+  "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision.",
   "artifacts": [
     {
       "lane": "GMC catalogue-following control",
@@ -248,10 +248,10 @@
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     },
     {
-      "lane": "H86M-LT historical tomography candidate (research promote; current literal stop, DO NOT SUBMIT)",
+      "lane": "H86M-LT leaderboard tomography (unvalidated archive; DO NOT SUBMIT)",
       "card": "docs/evidence/h86m-lt-run-card.json",
       "context": "docs/evidence/h86m-lt-run-card.json",
-      "holdout_kind": "h86m_lt",
+      "holdout_kind": "h86m_lt_unvalidated",
       "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
     }
   ]

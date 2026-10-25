@@ -1,21 +1,15 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Current reconciled status (2026-10-25): **DO NOT SUBMIT · 36 audit-only TIFFs**
+## Current review — 2026-10-25 (`arena/57139348-gemsdoe86`): **DO NOT SUBMIT**
 
-**No new candidate was generated in this reconciliation. No selector was run and no weekly slot was used or authorized.** **36** published research TIFFs are registered for local audit-download only; none is upload-authorized. The H86M-LT TIFF inherited from parallel work is now registered for local audit-download only; it is not authorized for upload. Its historical lane card says `promote`, but the current all-artifact release decision is **DO NOT SUBMIT**: the pinned full-support witness measures 3-pixel overlap **1.0 > 0.70**, triggering the unchanged literal stop. `safe_to_submit=false`, `submission_ready=false`, and `approved_for_weekly_slot=false`.
+**36** published research TIFFs are locally format-valid, audit-only downloads. This session generated **no new candidate**.
 
-- [Current all-artifact release audit](docs/evidence/release-readiness.json) · [download inventory](docs/evidence/download-inventory.json) · [submission guide](docs/executive-summary.html) · [H86M-LT status page](docs/h86m-lt.html).
-- H86M-LT's prior like-for-like scan (overlap 0.649) is not the applicable literal-witness comparison and does not clear that stop. Its expected-DTI figures are projections based on owner-reported inputs, not competition scores; SGMC-PROXY-DTI is a separate diagnostic. No comparable HOLDOUT-DTI or organizer-confirmed result is supplied for this variant.
-- The artifact is available only as a local reproducibility/audit download. Do not use its historical writer note or treat format validation as upload approval. The reconciliation did not change its TIFF pixels or claim to validate its scientific performance.
+**Download available, upload NOT cleared.** The inherited H86M-LT TIFF is now registered as an audit-only download. Its earlier “OK TO SUBMIT” claim was unsupported: it has no required buffered hide-and-recover validation or CI, and its surface registry checker uses Pearson rather than rank correlation. The current all-artifact audit independently measures **1.0** 3-pixel overlap with the pinned witness, exceeding the unchanged **0.70** stop; the prior 0.649 like-for-like scan has a different scope and cannot clear it. No new TIFF was generated or copied in this review, and no weekly slot was spent.
 
-## H86M-LT historical research lane (parallel work; current status supersedes its archived promotion wording)
-
-The lane-specific historical verdict was **PROMOTE**. The repository-level decision is now **DO NOT SUBMIT** as stated above; those are distinct statuses. The metrics below are preserved for traceability, not as submission clearance:
-
-- Audit-download only: [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) · [matching ZIP](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip) · [status page](docs/h86m-lt.html) · [run card](docs/evidence/h86m-lt-run-card.json) · [review & H33 forensics](research/H86M_LT_REVIEW.md).
-- SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`; 37,654 binary dots; local format validation passed. This does not establish upload acceptance or scientific validity.
-- The historical like-for-like restored-registry report states 655 rasters / 414 dot-fields, max overlap 0.649 and max correlation 0.159. The current literal pinned-witness audit is a separate mandatory gate: overlap 1.0, above 0.70, so stop. Neither scan should be presented as organizer validation.
-- Historical tomography reports expected-DTI projections 0.3317 / 0.3515 / 0.2714 under alternative beliefs versus a modeled h33 comparator, plus a separate SGMC proxy diagnostic; these are not scores. All source scores were owner-reported; no organizer receipt exists. No HOLDOUT-DTI is validated for this variant.
+- [Download dashboard](docs/index.html) · [submission guide](docs/executive-summary.html) · [LT audit-only file and evidence](docs/h86m-lt.html).
+- [Three-pass review and ranked hypotheses](research/SESSION_57139348_REVIEW.md) · [PR #162 integration and final verification](research/SESSION_20261025_63E03D62_REVIEW.md) · [negative run card](docs/evidence/session-57139348-run-card.json).
+- Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
+- Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
 
 ## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 

@@ -1578,6 +1578,12 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
 
-## IR-86-H86M-LT-RECONCILIATION (2026-10-25, PR #162 conflict resolution)
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
 
-Latest main published H86M-LT before registering its TIFF/ZIP/receipt in the shared inventory/card index and exposed “PROMOTE / YES” upload language plus `safe_to_submit=true`, despite this repository's literal overlap stop. The branch now registers the existing bytes (SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`) for **audit download only**, adds an explicit non-comparable/no-HOLDOUT-DTI archive branch, and sets its current `submission_ready`, `safe_to_submit`, and `approved_for_weekly_slot` flags false. The historical lane-level `promote` and like-for-like evidence are retained and labeled as distinct from repository authorization. The current literal witness audit measures 3-pixel overlap 1.0 > 0.70; release decision remains **DO NOT SUBMIT**, selector not run, zero slots used. Its owner-reported-score projections and SGMC proxy remain diagnostics, not competition scores; no organizer receipt was supplied. No TIFF pixels, scientific measurements, evaluator, writer, threshold, or slot state were changed. The older IR-86-H86M-INVENTORY entry above records the original main-branch failure and is superseded by this registration/reconciliation.
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
