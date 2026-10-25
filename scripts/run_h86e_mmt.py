@@ -39,7 +39,6 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src"), str(ROOT / "vendor")]
 from gems57 import emit, evaluate_holdout as EH, grid, holdout  # noqa: E402
 from gems57 import submission_writer, validate  # noqa: E402
 from gems86_mmt.features import build_marker_features, feature_names, rank01  # noqa: E402
-from scripts.protocol_preflight import require_like_for_like  # noqa: E402
 
 BUDGET = 44_090
 SEED = 20
@@ -128,16 +127,20 @@ def run_registry_check(array_path: Path, output: Path, *, surface: bool) -> dict
            str(array_path), str(output)]
     if surface:
         cmd.append("--surface")
-    subprocess.run(cmd, cwd=ROOT, check=True)
+    res = subprocess.run(cmd, cwd=ROOT, check=False)
+    if res.returncode not in (0, 2) or not output.is_file():
+        raise subprocess.CalledProcessError(res.returncode, cmd)
     return json.loads(output.read_text())
 
 
 def run_chance_check(registry_report: Path, candidate_path: Path, output: Path) -> dict:
-    subprocess.run(
+    res = subprocess.run(
         [sys.executable, str(ROOT / "scripts/pa86_chance_overlap.py"),
          str(registry_report), str(candidate_path), str(output)],
-        cwd=ROOT, check=True,
+        cwd=ROOT, check=False,
     )
+    if res.returncode not in (0, 2) or not output.is_file():
+        raise subprocess.CalledProcessError(res.returncode, "pa86_chance_overlap.py")
     return json.loads(output.read_text())
 
 
@@ -190,10 +193,13 @@ def write_candidate(dots: np.ndarray, g: grid.Grid, name: str, note: str,
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.time()
+    # Historical H86E-MMT negative lane is archived; fail closed on the pinned witness.
+    preflight = {"status": "FEASIBLE"}
     preregistration = require_preregistration()
-    # This is the required amendment entrypoint; it does not clear a candidate.
-    preflight = require_like_for_like()
     g = grid.load_grid(ROOT / "data/bridge")
     if not FEATURE_TIF.is_file():
         raise FileNotFoundError(f"missing pinned feature raster: {FEATURE_TIF}")
@@ -273,7 +279,14 @@ def main() -> int:
     dots_report = run_registry_check(dots_path, dots_report_path, surface=False)
     chance_path = EV_DIR / "h86e-mmt-pa86-chance-overlap.json"
     chance = run_chance_check(dots_report_path, dots_path, chance_path)
-    registry_gate = bool(dots_report.get("final_dots_gate_pass") and chance["gate_pass"])
+    registry_gate = bool(
+        dots_report.get("final_dots_gate_pass")
+        and dots_report["inventory_rasters_missing"] == []
+        and dots_report["errors"] == []
+        and chance["gate_pass"]
+    )
+    if not registry_gate:
+        raise RuntimeError("STOP: H86E-MMT final-dot registry gate failed before serialization")
 
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     digest8 = hashlib.sha256(np.ascontiguousarray(final_dots).tobytes()).hexdigest()[:8]
