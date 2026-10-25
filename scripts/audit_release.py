@@ -74,19 +74,6 @@ def explicit_no_authorization(card: dict) -> bool:
                for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
 
 
-def revoked_historical_promote(card: dict) -> bool:
-    """Accept a historical research-promotion label only with an explicit revoke record."""
-    auth = card.get("release_authorization") or {}
-    return (card.get("verdict") == "promote"
-            and card.get("publication_status") == "DO NOT SUBMIT — audit download only"
-            and card.get("submission_slots_used") == 0
-            and card.get("safe_to_submit") is False
-            and card.get("approved_for_weekly_slot") is False
-            and auth.get("safe_to_submit") is False
-            and auth.get("approved_for_weekly_slot") is False
-            and "not permission to upload" in auth.get("reason", ""))
-
-
 def archived_holdout(config: dict, context: dict) -> dict:
     """Normalize known schemas, then reject invalid performance evidence.
 
@@ -131,20 +118,16 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
-    if kind == "h86m_lt_archived_no_hide_recover":
-        revocation = context.get("release_authorization", {})
+    if kind == "h86m_lt_unvalidated":
         if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
-                or context.get("verdict") != "promote"
-                or context.get("safe_to_submit") is not False
-                or context.get("approved_for_weekly_slot") is not False
+                or context.get("verdict") != "negative"
+                or not explicit_no_authorization(context)
                 or context.get("submission_slots_used") != 0
-                or revocation.get("safe_to_submit") is not False
-                or revocation.get("approved_for_weekly_slot") is not False
-                or "not permission to upload" not in revocation.get("reason", "")):
-            raise ValueError("H86M-LT must preserve its scientific verdict while explicitly revoking upload authorization")
+                or "holdout_dti" in context):
+            raise ValueError("H86M-LT must remain unvalidated and unauthorized")
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
-                "design": "Fleet-score tomography / SGMC-PROXY-DTI diagnostics; no catalogue-hide HOLDOUT-DTI",
-                "caveat": "The original H86M-LT 'promote' verdict is a historical scientific selection label, not upload authorization. This artifact is registered for audit only. The lane card explicitly records safe_to_submit=false and approved_for_weekly_slot=false; the current global release audit and immutable full-support witness stop remain binding. Expected-DTI values are projections and SGMC-PROXY-DTI is not a score. No hide-and-recover HOLDOUT-DTI is reported here. DO NOT SUBMIT."}
+                "design": "Aggregate owner-reported score tomography; no buffered hide-and-recover evaluation",
+                "caveat": "Fitted projections and SGMC-PROXY-DTI are not HOLDOUT-DTI. Post-outcome gate amendments, missing per-feature canaries, and Pearson rather than Spearman surface checks prevent clearance. Historical registry measurements were not recomputed. DO NOT SUBMIT."}
     if kind == "h86m_unvalidated":
         h = context.get("holdout_dti", {})
         if (context.get("lane") != "H86M-DAMAGERING"
@@ -256,8 +239,11 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind in {"h86m_bmr", "h86m_cnt"}:
-        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
+    # NOTE: H86M-LT is handled by the merged `h86m_lt_unvalidated` branch above
+    # (PR #166, session 57139348); session 92f9e0e8's parallel `h86m_lt` branch
+    # was removed at merge time so exactly one LT normalization path exists.
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
         cand = h.get("candidate") or {}
@@ -428,6 +414,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_pfte":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-PFTE lane result; the run card is the authoritative experiment receipt. 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF at 37,654 dots achieves an all-time 37,654-dot repository high on blind off-catalogue SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407], beating GEMSDOE32 H33 (+0.0273 [+0.0066, +0.0485]), unstripped scalar ablation E3 (+0.0419 [+0.0199, +0.0646]), H86F-EWCS (+0.0391 [+0.0188, +0.0603]), H86J-MCSP (+0.0211 [+0.0007, +0.0402]), and H86L-FMC (+0.0208 [+0.0004, +0.0422]) with 95% CIs strictly above zero and outscoring H86M-LT (0.1136) and H86K-STDP (0.1133), with strict pure-blind 4-fold LOQO HOLDOUT-DTI = 0.0734 [0.0591, 0.0882] (kinematic arm E1 reached 0.1310 [0.1141, 0.1476] with Fold NE 0.1436 vs E3 0.1185, halted before GeoTIFF serialization by Protocol Rule 1 due to 0.7041 > 0.70 3-px dot overlap vs H86K-STDP), 0/702 continuous surface Spearman firings > 0.90 (max 0.4795), and 0/464 discrete <=90k-dot firings > 0.70 (max 0.6244; 0.0843-0.3682 vs concurrent BMR/CNT/DAMAGERING/LT), while full v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
@@ -487,16 +480,6 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 card.get("submission_ready") is True
                 and card.get("safe_to_submit") is False
                 and card.get("approved_for_weekly_slot") is False)
-        elif config.get("holdout_kind") == "h86m_lt_archived_no_hide_recover":
-            checks["scientific_card_is_negative"] = (
-                card.get("verdict") == "promote"
-                and card.get("publication_status") == "DO NOT SUBMIT — audit download only"
-                and card.get("submission_slots_used") == 0)
-            checks["scientific_card_does_not_authorize"] = (
-                card.get("safe_to_submit") is False
-                and card.get("approved_for_weekly_slot") is False
-                and card.get("release_authorization", {}).get("safe_to_submit") is False
-                and card.get("release_authorization", {}).get("approved_for_weekly_slot") is False)
         else:
             checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
             checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
@@ -682,9 +665,7 @@ def build_report(root: Path = ROOT) -> dict:
                       and card_doc.get("submission_ready") is True
                       and card_doc.get("safe_to_submit") is False
                       and card_doc.get("approved_for_weekly_slot") is False)
-        revoked_promote_ok = revoked_historical_promote(card_doc)
-        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc))
-                or promote_ok or revoked_promote_ok):
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

@@ -1,5 +1,7 @@
 # Repository review — 2026-10-25 — `arena/295a5d50-gemsdoe86`
 
+> **Chronology:** The initial three-pass review and 36-artifact audit below were completed before this branch merged the newly advanced `origin/main` (PR #173). The merged tree adds H86M-PFTE and H86N-EQL artifacts. The final integrated checks at the end of this document cover the 38-artifact tree; dated 36-artifact measurements are retained as a prior snapshot, not relabeled as current.
+
 ## Executive decision
 
 **DO NOT SUBMIT. No new TIFF was generated. No experiment or weekly slot was used.** The request contains no single assigned method paragraph for this parallel-run lane, which is a protocol stop. The current workspace also lacks `training_features.tif` and the shared cached feature stack. The initial release audit exposed an unregistered published H86M-LT TIFF/ZIP and an unsafe historical `safe_to_submit=true` flag. I reconciled that artifact as audit-only, preserved its historical scientific result, and made the shared full-artifact audit pass. The resulting global release decision remains `DO NOT SUBMIT`.
@@ -85,6 +87,12 @@ No automated fetch of DrivenData was attempted; repository policy expressly forb
 4. Reconcile the literal full-support uniqueness witness under an explicit protocol amendment; never privately change the threshold or bypass a failing stop. Run surface correlation before placement and final-dot 3-pixel overlap against the complete, valid registry.
 5. Re-run the complete release, site, link and test audits on the final tree. A passing format/range check is only one gate and must not be labelled upload authorization.
 6. Keep any future leaderboard result as `ORGANIZER-CONFIRMED` only when copied from a submission-page receipt. Keep all projections, proxy metrics, and holdout results labelled separately.
+
+## Post-integration review of the current merged tree
+
+After this lane's commit was pushed, `origin/main` advanced (PR #173) and the current branch merged that upstream state before PR review. The integrated repository now includes H86M-PFTE and H86N-EQL and has **38** published TIFFs, not 36. I kept upstream's newer research and generated-site artifacts rather than overwriting them with this branch's older generated pages. The new queue files continue to mark other work as deferred/unrun; this review did not start a parallel experiment or take a slot.
+
+Final current-tree facts: `scripts/audit_workspace_inputs.py` still reports `training_features.tif` absent, all prepared feature arrays absent, and `shared_template_feature_stack=false`. `scripts/audit_release.py --measure-registry` passes integrity for **38/38**, while the global decision remains **DO NOT SUBMIT** and `registry_complete=false` for the one-witness stop audit. `scripts/audit_downloads.py --write`, `build_site.py`, `build_site.py --check`, and `check_site.py` all pass with all downloads labelled audit-only. The full integrated test suite passed: **1048 passed, 24 skipped, 48 warnings, 58 subtests passed** (475.86 seconds). The initial post-merge full-suite run caught two stale branch-local tests that assumed 36 artifacts and the superseded H86M-LT card schema; the assertions now track the 38-artifact merged registry and current `h86m_lt_unvalidated` fail-closed rule, and a targeted rerun passed (36 tests). The three hypotheses above are an unrun native-band shortlist, not a selector or a claim to have ranked every proposal from the newly merged branches; the newest merged scientific reviews should also be consulted before assigning a future lane.
 
 ## Official / primary links for manual review
 

@@ -40,7 +40,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"]) == 36
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"]) == 38
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -72,15 +72,15 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert not lt["safe_to_submit"] and not lt["approved_for_weekly_slot"]
 
 
-def test_h86m_lt_historical_promote_requires_explicit_revocation():
+def test_h86m_lt_archived_tomography_cannot_be_promoted():
     config = next(c for c in audit.strict_json(ROOT / "registry/artifact_cards.json")["artifacts"]
-                  if c["holdout_kind"] == "h86m_lt_archived_no_hide_recover")
+                  if c["holdout_kind"] == "h86m_lt_unvalidated")
     card = audit.strict_json(ROOT / config["context"])
     normalized = audit.archived_holdout(config, card)
     assert normalized["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
     assert normalized["value"] is normalized["ci95"] is normalized["withheld_positives"] is None
     card["safe_to_submit"] = True
-    with pytest.raises(ValueError, match="explicitly revoking upload authorization"):
+    with pytest.raises(ValueError, match="unvalidated and unauthorized"):
         audit.archived_holdout(config, card)
 
 
