@@ -1,7 +1,7 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-25T19:44:34.284625+00:00",
+  "measured_utc": "2026-10-25T20:02:43.499505+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
   "proof_sha256": "816c206726054b2833f27aff043f907042ae3b40713362273c2c763bf078b646",
@@ -340,6 +340,33 @@
       "file": "docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
       "sha256": "5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a",
       "spearman_full_footprint": 0.002676885895410169,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+      "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+      "spearman_full_footprint": 0.03780589192909954,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+      "sha256": "ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2",
+      "spearman_full_footprint": -0.007028245832489462,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.tif",
+      "sha256": "7c7662e53df2f02cf9a6d3193a7f7d5d61e0b01b18c3d6b0a5de6a4676a583cb",
+      "spearman_full_footprint": 0.060827198684057907,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

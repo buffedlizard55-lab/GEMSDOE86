@@ -3,8 +3,8 @@
   "created_date_utc": "2026-10-25",
   "lane_assignment": null,
   "status": "PROPOSALS_ONLY_NOT_AUTHORIZED_OR_IMPLEMENTED",
-  "scope_note": "Three checkout-scoped exact candidates remain in the queue after reclassifying executed BMR and continuous CNT as tried. Not a claim of global novelty across the literature or the GEMSDOE fleet. Candidate ranking is qualitative information gain versus cost, not a score projection. No candidate is authorized: there is no assigned method paragraph, no actual shared feature cache, and the current literal witness stop remains binding.",
-  "ranking_basis": "Qualitative information gain and geological specificity per implementation cost, with penalties for confounding and proximity to executed methods. This is not a projected score or an authorization to run.",
+  "scope_note": "Three checkout-scoped native-band proposals remain after excluding the executed H86N-EQL and H86N-GSST lanes and earlier executed candidates. This is not a claim of global novelty across the literature or fleet. Ranking is qualitative information gain versus cost, not a score projection. No candidate is assigned or authorized: the actual shared feature cache and current native inputs are absent, and the unchanged literal-witness stop remains binding.",
+  "ranking_basis": "Qualitative information gain and geological specificity per implementation cost, with penalties for confounding, catalogue dependence, overlap with executed methods, and uncertainty in physical-layer interpretation. This is not a projected score or authorization to run.",
   "excluded_as_already_tried": [
     {
       "method": "Persistent potential-field saddle connectors / saddle-ridge (H86K-PSC)",
@@ -37,9 +37,29 @@
       "disposition": "Already executed in H86M-BMR; negative. HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.0086, 0.0384]) = 0.0220. Do not relabel as untried; historical result is not recomputed here."
     },
     {
-      "method": "Continuous high-pass conductivity neck \u00d7 dilatation (CNT)",
+      "method": "Continuous high-pass conductivity neck × dilatation (CNT)",
       "evidence": "scripts/run_h86m_cnt.py and docs/evidence/h86m-cnt-run-card.json",
       "disposition": "Already executed in H86M-CNT; negative. HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.0257, 0.0575]) = 0.0408. The threshold-persistence CTP proposal is a close, unvalidated refinement, not a rename of this result."
+    },
+    {
+      "method": "H86N-EQL earthquake-lineation anisotropy (earlier EQA proposal)",
+      "evidence": "research/H86N_EQA_PREREGISTRATION.md and docs/evidence/h86n-eql-run-card.json",
+      "disposition": "Already executed as H86N-EQL; HOLDOUT-DTI was negative against both frozen controls. Do not rerun unchanged or relabel EQA as new."
+    },
+    {
+      "method": "H86N-GSST gravity step-versus-compact-source profile shape test",
+      "evidence": "research/H86N_GSST_PREREGISTRATION.md and docs/evidence/h86n-gsst-run-card.json",
+      "disposition": "Already executed as H86N-GSST; negative paired control result. The same gravity template comparison is not untried."
+    },
+    {
+      "method": "H86M-PFTE 3-D Cordell–Parker gravity tensor, strike-guided thermal barrier, and comonotonic tube-survival lane",
+      "evidence": "research/H86M_PFTE_PREREGISTRATION.md and docs/evidence/h86m-pfte-run-card.json",
+      "disposition": "Already executed in the integrated main tree; retain its measured disposition and do not repeat or reclassify as untried."
+    },
+    {
+      "method": "H86M-BMGS basement multi-geometry seismic/gravity lane",
+      "evidence": "research/H86M_BMGS_PREREGISTRATION.md and docs/evidence/h86m-bmgs-run-card.json",
+      "disposition": "Already executed in the integrated main tree; retain its measured disposition and do not repeat or reclassify as untried."
     }
   ],
   "common_data_requirement": {
@@ -51,87 +71,111 @@
   "hypotheses": [
     {
       "rank": 1,
-      "id": "GSST",
-      "name": "Gravity step-versus-compact-source shape test",
-      "layers": [
-        {
-          "band": 13,
-          "name": "iso_grav_anom"
-        },
-        {
-          "band": 5,
-          "name": "iso_grav_anom_slope"
-        },
-        {
-          "band": 11,
-          "name": "iso_grav_anom_vg"
-        },
-        {
-          "band": 18,
-          "name": "iso_grav_anom_hg"
-        }
-      ],
-      "physical_signature": "At several frozen scales, compare normalized horizontal derivative width and signed east/south gradient patterns with simple extended-step and compact-source responses. Band 11 is a verified signed southward directional derivative and Band 18 a signed eastward derivative; neither should be treated as a conventional vertical-gravity derivative. Band 5 is the horizontal gradient magnitude.",
-      "catalogue_missing_rationale": "An extended buried basement step could generate a coherent cross-strike response that is not captured by a single gradient maximum; rejecting compact-source-like anomalies may favor long, concealed discontinuities without using catalogue distance.",
-      "novelty": "A 2026-10-23 review proposed the source-shape comparison, but no explicit step-versus-compact likelihood or response-ratio model was found in scripts/ or src/. H86F-GZZD and H86H-PSTD use gravity derivatives/tensors, and H86K-PSC now uses Hessian saddle/ridge topology, but none implements this explicit competing-source model comparison.",
-      "non_fault_mimic": "An elongated intrusive contact, basin-margin facies change, or overlapping compact sources that happen to form a linear gradient corridor.",
-      "expected_holdout_potential": "Highest of this remaining qualitative queue, but low-to-medium confidence; this is not a projected DTI or leaderboard score.",
-      "implementation_cost": "Medium; requires scale-matched forward templates, verified coordinate/sign conventions, and sensitivity analysis to source depth and bandwidth.",
-      "falsifier": "Step-source likelihood fails to outperform compact/contact controls on paired spatial-block HOLDOUT-DTI or changes rank materially across reasonable filter scales.",
-      "status": "NOT_RUN_PROTOCOL_STOP"
-    },
-    {
-      "rank": 2,
-      "id": "EQA",
-      "name": "Microseismic density-lineation tensor",
-      "layers": [
-        {
-          "band": 10,
-          "name": "deq_n100a15"
-        },
-        {
-          "band": 16,
-          "name": "ieq_n100a15"
-        },
-        {
-          "band": 7,
-          "name": "geod_shearrate"
-        }
-      ],
-      "physical_signature": "Estimate local orientation coherence and anisotropic scale from the two seismic-density fields, then test whether persistent lineations align with independently measured geodetic shear. Freeze smoothing, orientation windows and nulls before evaluation.",
-      "catalogue_missing_rationale": "An active but unmapped structure may host aligned microseismicity without a clear surface scarp; a lineation statistic could retain geometry where amplitude/proximity summaries are diffuse.",
-      "novelty": "A source search found seismicity used in broader strain/conduit feature fusions (including H86I-RKSC), but did not find a standalone orientation-coherence candidate built from Bands 10/16. This is checkout-scoped only; it does not establish novelty across every GEMSDOE site. Verify original band smoothing/semantics before preregistration.",
-      "non_fault_mimic": "Induced geothermal microseismic swarms, volcanic seismicity, and gridding/interpolation anisotropy.",
-      "expected_holdout_potential": "Low qualitative potential: the competition bands are derived density/intensity products and may be too smoothed to preserve fault-scale orientation.",
-      "implementation_cost": "Medium-high; requires verified layer semantics, angular nulls, fold-safe preprocessing, and comparison with both seismicity and shear-only controls.",
-      "falsifier": "Orientation coherence does not add paired spatial-block HOLDOUT-DTI over density-only and shear-only controls, or is unstable to plausible windows/null orientations.",
-      "status": "NOT_RUN_PROTOCOL_STOP"
-    },
-    {
-      "rank": 3,
-      "id": "CTP",
-      "name": "Threshold-persistent conductivity neck topology",
+      "id": "H86N-MTCS",
+      "name": "Seismicity-to-conductance down-dip phase offset",
       "layers": [
         {
           "band": 17,
           "name": "cond_surf"
         },
         {
+          "band": 16,
+          "name": "ieq_n100a15"
+        },
+        {
+          "band": 10,
+          "name": "deq_n100a15"
+        },
+        {
+          "band": 15,
+          "name": "depth_to_base_surf"
+        },
+        {
           "band": 8,
           "name": "geod_dilaterate"
+        }
+      ],
+      "physical_signature": "Directed 200-800 m cross-strike offset, along +grad(depth_to_base), between the seismicity ridge and the shallow conductance (smectite-cap) ridge — the geometric signature of a 50-65 deg dipping permeable fault.",
+      "catalogue_missing_rationale": "Blind intrabasin geothermal faults under zero-relief playas have no scarp; the dipping-plane offset between deep seismicity and shallow alteration cap is their predicted fingerprint.",
+      "novelty": "Preregistered-deferred as H86I-2_MTCS in research/H86I_RKSC_PREREGISTRATION.md; never executed. H86M-CNT used conductance neck topology without directed seismic phase offset.",
+      "non_fault_mimic": "Lateral facies-controlled conductance fronts offset from unrelated seismicity by chance alignment.",
+      "expected_holdout_potential": "Low-moderate; physically specific but the catalogue-hide instrument may under-reward blind-basin geometry (withheld catalogue faults are mapped, hence surface-expressed).",
+      "implementation_cost": "Medium (directed cross-correlation along local basement-dip azimuth).",
+      "falsifier": "Offset score fails vs zero-offset co-location control in paired CI.",
+      "status": "NOT_RUN_PROTOCOL_STOP"
+    },
+    {
+      "rank": 2,
+      "id": "H86N-SPBT",
+      "name": "Spin-2 seismic tensor x conductance-gradient alignment under transtension",
+      "layers": [
+        {
+          "band": 16,
+          "name": "ieq_n100a15"
+        },
+        {
+          "band": 10,
+          "name": "deq_n100a15"
+        },
+        {
+          "band": 17,
+          "name": "cond_surf"
+        },
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
         },
         {
           "band": 7,
           "name": "geod_shearrate"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
         }
       ],
-      "physical_signature": "Track connectivity and neck-width persistence across a frozen conductivity-threshold filtration, and require independent strain consistency. Compare with conductivity-only, strain-only and randomized-neck controls.",
-      "catalogue_missing_rationale": "A covered fluid pathway could connect conductive regions without a mapped surface scarp; persistence of a narrow connection is intended to distinguish a corridor from a broad conductivity high.",
-      "novelty": "H86M-CNT already tested a continuous high-pass conductivity-neck score multiplied by positive dilatation and was negative. A threshold-persistence/topological statistic is a distinct representation, but is a close refinement, not a wholly new concept. No exact threshold-filtration implementation was found in the scanned source. The H86K-CNT reserve proposal and external fleet require review before calling this novel.",
-      "non_fault_mimic": "Saline playa deposits, clay-rich paleochannels, or interpolation bottlenecks connecting conductive patches.",
-      "expected_holdout_potential": "Low, with high confounding risk; only worthwhile if persistent topology adds information beyond H86M-CNT controls.",
-      "implementation_cost": "Medium; requires multi-threshold connected-component tracking, neck-width calibration, and spatially randomized nulls.",
-      "falsifier": "Persistent neck features fail to beat conductivity-only and strain-only controls on paired spatial-block HOLDOUT-DTI, or topology changes materially under the frozen plausible threshold range.",
+      "physical_signature": "Angular concordance between the seismicity structure-tensor orientation and conductance-gradient orientation, weighted by transtensional strain (shear x dilatation).",
+      "catalogue_missing_rationale": "Nascent transtensional accommodation zones (Walker Lane) have minimal throw but aligned seismicity and fluid-conductivity boundaries.",
+      "novelty": "Deferred as H86I-3_SPBT; H86I-SACD used spin-2 Coulomb concordance on potential fields, not seismic-conductance tensor alignment. Overlaps EQL's tensor machinery, hence ranked below it.",
+      "non_fault_mimic": "Regional strain-aligned joint sets and survey-grid anisotropies shared by both fields.",
+      "expected_holdout_potential": "Low-moderate; two weak fields multiplied can vanish, but a win would be highly specific.",
+      "implementation_cost": "Medium.",
+      "falsifier": "Alignment product fails vs either single-field control in paired CI.",
+      "status": "NOT_RUN_PROTOCOL_STOP"
+    },
+    {
+      "rank": 3,
+      "id": "H86N-CHTD",
+      "name": "Transtensional regime-angle gated horsetail splays",
+      "layers": [
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
+        },
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        },
+        {
+          "band": 3,
+          "name": "tmi_hg"
+        },
+        {
+          "band": 9,
+          "name": "tmi_vg"
+        }
+      ],
+      "physical_signature": "Principal strain-rate eigendecomposition (e1,e2)=B8/2 +/- B7 and regime angle atan2(B8,2B7) gating magnetic lineaments into wrench vs extensional horsetail families.",
+      "catalogue_missing_rationale": "Transfer zones partition slip onto buried basin-floor strands without range-front scarps.",
+      "novelty": "Preregistered-not-run as H86I-CHTD (research/SESSION_H86I_RLMS_REVIEW_20261025.md); GDSC/WVB used scalar strain only, no regime angle. Ranked last: geodetic bands are very smooth at 100 m grid, limiting dot-level information.",
+      "non_fault_mimic": "Smooth interpolation artifacts of the GPS strain grid masquerading as corridors.",
+      "expected_holdout_potential": "Low at pixel scale; mostly a regional gate.",
+      "implementation_cost": "Low-medium.",
+      "falsifier": "Regime-gated surface fails vs ungated magnetic-edge control in paired CI.",
       "status": "NOT_RUN_PROTOCOL_STOP"
     }
   ],

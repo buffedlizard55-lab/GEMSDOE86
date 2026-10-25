@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
+    current25_rev2 = readme.split("<!-- CURRENT_REQUEST_20261025_REV2_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_REV2_END -->", 1)[0]
+    assert current25_rev2.strip() == (ROOT / "research/REQUEST_20261025_REV2.md").read_text().strip()
     current25 = readme.split("<!-- CURRENT_REQUEST_20261025_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_END -->", 1)[0]
     assert current25.strip() == (ROOT / "research/REQUEST_20261025.md").read_text().strip()
     current24 = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261024_END -->", 1)[0]
@@ -36,21 +38,29 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 115  # two new owner claims, never a retroactive archive edit
+    assert sum(1 for r in ledger if r["score"]) == 118  # 113 + 2 (89/90) + 3 (91x2/92) owner claims, never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
         "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
         "gems90-cnc-35000dots-20261024T084324Z",
     }
-    # They were unscored in this immutable archive; the CURRENT request supplies
-    # two numbers. Record their date/source without rewriting historical input.
+    # They were unscored in this immutable archive; subsequent 2026-10-25 requests
+    # supplied owner-reported numbers for 89/90 and then 91/92.
     updated = {"gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros": "0.0301",
                "gems90-cnc-35000dots-20261024T084324Z": "0.0749"}
+    rev2_updated = {
+        "gems91-s17-cwpc-20261025T052212Z-bf21d9a4bd-zeros": "0.1367",
+        "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros": "0.1823",
+        "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros": "0.0255",
+    }
     for row in ledger:
         if row["submission"] in unscored_named:
             assert row["score"] == updated[row["submission"]]
             assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-25 request")
+        if row["submission"] in rev2_updated:
+            assert row["score"] == rev2_updated[row["submission"]]
+            assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-25 rev2 request")
     with (ROOT / "ledger/submissions.csv").open(newline="") as stream:
         canonical_ledger = list(csv.DictReader(stream))
     canonical_by_name = {r["name"]: r for r in canonical_ledger}

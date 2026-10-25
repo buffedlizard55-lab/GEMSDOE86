@@ -1,0 +1,31 @@
+# Lane `H86M-BMGS` Preregistration (Frozen Before Model Implementation)
+
+- **Lane ID:** `H86M-BMGS`
+- **Frozen UTC:** `2026-10-25T17:25:00Z`
+- **Branch:** `arena/94cbed2d-gemsdoe86`
+- **Ranked Hypothesis Queue:** `registry/h86m_bmgs_hypotheses.json` (`4` candidate hypotheses: `H86M-BMGS`, `H86M-BFLI`, `H86M-ORTF`, `H86M-OPERA`)
+- **Machine-Readable Preregistration:** `research/H86M_BMGS_PREREGISTRATION.json`
+
+## 1. Scientific Motivation & Empirical Diagnosis Across `GEMSDOE` through `GEMSDOE92`
+
+1. **Why `GEMSDOE32` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `0.2778` `OWNER-REPORTED`) led the 92-site fleet:**
+   Under 300 m (`R = 3.0 px`) Distance-weighted Tversky Index (`alpha = 0.2`, `beta = 0.8`), `TP_w` evaluates a pixelwise **supremum** (`max`) over the 29-offset triangular kernel disk around each hidden truth pixel, whereas `FP_w` evaluates a **linear sum** over every positive prediction pixel weighted by `1 - K_3(p, G)`. Continuous ridges (`H19-5`, `0.1579`/`0.1922`) pay `5–9x` linear `FP_w` for virtually zero additional `max`-disk `TP_w`; decimating to `d_min ~= 2.8 px` unit dots (`GEMSDOE28`, `40,199` dots -> `0.2708`) and deleting `2,545` near-catalogue collar dots in `1 < d_cat <= 2 px` (`GEMSDOE32` `H33`, `37,654` dots -> `0.2778`) removed sub-breakeven `FP_w` mass (`k < alpha * DTI ~= 0.056`) while placing **`69.8%` of dots `> 1 km` off-catalogue** onto genuine unmapped geophysical lineaments.
+2. **Three newly diagnosed structural failure modes in recent lanes (`GEMSDOE91`, `GEMSDOE92`, `H86K-STDP`):**
+   - **Unconstrained up-dip pullback failure (`GEMSDOE92` `LISTRICDIP` = `0.0255` `OWNER-REPORTED`; `H86K-STDP` `HOLDOUT-DTI` = `0.1380`):** Shifting all potential-field steps along `-grad Z_b` by `5–28 px` (`GEMSDOE92`) or up to `8 px` (`H86K-STDP`) displaces steep strike-slip (`80–90 deg` Walker Lane / Humboldt zone) and vertical intrabasin horst faults outside the `3.0 px` (`300 m`) DTI kernel. `H86M-BMGS` retains **unshifted (`0 px`) odd-step basement/magnetic planes** and restricts kinematic pullback strictly to `<= 3.0 px` gated by positive geodetic dilatation over shear (`Band 8 > Band 7`) on shallow (`exp(-Z_b / 900 m)`) normal-fault margins.
+   - **High-floor quantile calibration dilution (`H86K-STDP`):** Mapping median background scores to `sigmoid(-4.55) ~= 0.0105` injected `~0.145` expected kernel mass into featureless valley background pixels, dulling ridge selectivity relative to `H86I-KSAD` (`0.1599`). `H86M-BMGS` restores exact **Elkan (2001) Bayes subsampling odds** (`r = N_neg_pool / N_neg_sampled`) with zero-label quadrant-median log-odds alignment so background probability stays `~0.0005–0.001` while fault crests reach `0.45–0.75`.
+   - **Near-catalogue PU halo crowding (`GEMSDOE91` `S17-LFTG` = `0.1823` `OWNER-REPORTED`, `IR-91-S17-LFTG-01`):** In-sample PU trees fed elastic distance/lobe features alongside geophysical features crowd `~68.5%` of dots into `< 1 km` near-catalogue halos (`31.5%` far-field). `H86M-BMGS` trains a pure **24-plane cover-blind specialist** (excluding both catalogue features and raw 100 m DEM `Bands 12, 19`), sharpens curvilinear 1-D fault strands along the 8-azimuth `GSST` geophysical strike `theta_hat`, and evaluates both fused `E1` and 100% zero-catalogue `E2`.
+
+## 2. Single-Lane Method Summary (`BMR` + `GSST` + `CNT` + Axial Strand Dinkelbach-CELF)
+
+1. **Out-of-Quadrant Spectral Basement Mass-Balance Gravity Residual (`BMR`):** Fits strictly out-of-quadrant (`quad != q`, zero fault labels) 2-D FFT upward-continued Athy-compacted basin-fill templates (`Band 15` at `z = 200 m, 800 m`, `Z_b^2 / (Z_b + 1200 m)`, and `z = 4000 m` regional `Band 13`) against `Band 13` (`iso_grav_anom`), extracting `bmr_resid_grad_z100`, `bmr_laplace_gzz_s2`, and `bmr_vector_discordance` against verified `(Band 18, -Band 11)`.
+2. **8-Azimuth Quadrature Odd-Step vs Even-Dike Phase Asymmetry (`GSST`):** Applies paired steerable odd-step `O_theta` and even-ridge `E_theta` filters across 8 azimuths (`sigma = 2.0, 4.5 px`) on flight-seam-vetoed `Band 2` (`rtp`) and `r_BMR`, computing `relu(|O_theta| - 0.85|E_theta|)` to suppress Northern Nevada Rift mafic dikes while extracting local geophysical strike `theta_hat`, cross-field spin-2 coherence, and Garland Poisson step jumps.
+3. **Transtensional Conductance-Neck Bridge (`CNT`):** Isolates narrow anisotropic `Band 17` (`cond_surf`) ridge-minus-trough necks and cross-strike horst-margin conductivity steps gated by transtensional geodetic strain (`Band 8`, `Band 7`) and de-weighted in flat closed-basin playa centers.
+4. **Seam-Free Radiometrics, Up-Hydraulic-Head GDR `#1391` Geothermal Advection & Quantile-Debiased 3DEP Scarps:** Integrates flight-seam-vetoed GeoDAWN `K/eTh` and `eU/eTh` steps, up-hydraulic-head Fournier silica/cation disequilibrium + `3,800` 2-m probes + `726` paleo-sinter/volcanic vents (`dist_known_fault_px` hard-banned), and 10-m quantile-debiased 1-m LiDAR scarp height/polarity + fluvial `chi` knickzones.
+5. **Axial Geodesic Strand Coherence & Exact 6-Ring Survival Dinkelbach-CELF:** Sharpens Elkan-calibrated log-odds along local geophysical strike `theta_hat` (`L = 7 px`) and allocates `37,654` unit dots (`d_min = 2.8 px`, `collar > 3.0 px`) via Exact 6-Ring Bernoulli Survival Supremum Self-Credit Dinkelbach-CELF.
+
+## 3. Preregistered Arms (`<= 3` Experiments) & Hard Gates
+
+- **`E1_bmgs_strand_dinkelbach_celf`:** Primary candidate fusing `P_blind_strand` with cross-component 4-fold LOQO fracture mechanics via Noisy-OR + Exact 6-Ring Dinkelbach-CELF (`37,654` dots).
+- **`E2_bmgs_blind_zero_catalogue`:** 100% zero-catalogue blind specialist (`0` catalogue inputs at inference) + Exact 6-Ring Dinkelbach-CELF (`37,654` dots).
+- **`E3_raw_grav_iso_staticek_ablation`:** Matched `37,654`-dot strict-LOQO ablation removing `BMR`, `GSST`, `CNT`, axial strand coherence, and 6-ring Dinkelbach-CELF.
+- **Hard Gates:** Single-feature leakage canary `max(AUC, 1-AUC) <= 0.90`; pre-placement surface `Spearman <= 0.90` and final-dots 3-px overlap `<= 0.70` across the full 655-blob restored registry (`PA-86-01`/`PA-86-02`); strict fail-closed `DO NOT SUBMIT` (`safe_to_submit = false`, `approved_for_weekly_slot = false`, `0` weekly slots used) whenever literal full-support witness or incomplete-grid blockers remain active.

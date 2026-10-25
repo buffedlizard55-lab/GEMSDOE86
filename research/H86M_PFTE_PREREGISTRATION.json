@@ -1,0 +1,90 @@
+{
+  "schema": "gems86.lane_preregistration.v1",
+  "lane_id": "H86M-PFTE",
+  "frozen_utc": "2026-10-25T16:30:00Z",
+  "git_branch": "arena/2ea5b025-gemsdoe86",
+  "hypotheses_registry": "registry/h86m_hypotheses.json",
+  "selected_hypothesis_id": "H86M-PFTE",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "target_dots": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0
+  },
+  "static_features": [
+    "parker3d_marussi_diff_curv",
+    "parker3d_hyperbolic_contact_saddle",
+    "parker3d_beiki_curv_tilt_sharp",
+    "parker3d_laplace_gzz_step",
+    "updip_pullback_marussi_curv",
+    "updip_pullback_contact_saddle",
+    "baranov_pseudograv_cross_decouple",
+    "baranov_hydro_demag_conduit",
+    "updip_pullback_rtp_beiki_sharp",
+    "tmi_up150_depth_persistence",
+    "mt_cond_across_strike_gouge",
+    "kostrov_transtens_obliquity_hp",
+    "aseismic_strain_creep_deficit",
+    "hypocenter_ramp_swarm_hp",
+    "peclet_across_strike_geotherm_diseq",
+    "peclet_across_strike_probe2m_wall",
+    "paleo_sinter_travertine_corridor",
+    "rad_tc_kth_metasomatic_step",
+    "rad_uth_redox_front_seamfree",
+    "marussi_conjugate_fault_intersect",
+    "lidar1m_scarp_swath_debiased",
+    "lidar1m_dipole_swath_debiased",
+    "topo10_piedmont_break_lahontan_clean",
+    "chi10_cross_watershed_knick"
+  ],
+  "ablation_control_features": [
+    "unstripped_grav_slope_b5",
+    "unstripped_rtp_gradmag_s2",
+    "unstripped_depth_gradmag_s3",
+    "unstripped_elev_slope_b19",
+    "unstripped_lidar_step_debiased",
+    "unstripped_topo10_slope_p90",
+    "unstripped_strain_2ndinv_hp",
+    "isotropic_geotherm_blur"
+  ],
+  "fold_visible_elastic_features": [
+    "wing_crack_lobe",
+    "collinear_tip_cone",
+    "stepover_bridge",
+    "broadside_stress_shadow"
+  ],
+  "arms": [
+    {
+      "arm_id": "E1_pfte_comonotonic_dcelf",
+      "role": "Primary candidate",
+      "description": "Full 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + strike-guided Peclet thermal/geochemical barrier + Kostrov transtensional obliquity + 4-fold LOQO dual-regime Noisy-OR + 3-strand Frechet-comonotonic fault-tube survival Dinkelbach-CELF at 37,654 dots (d_min=2.8 px, d_cat>3.0 px)."
+    },
+    {
+      "arm_id": "E2_pfte_blind_comonotonic_dcelf",
+      "role": "Pure catalogue-blind physical discovery arm",
+      "description": "Zero fold-visible catalogue geometry in features; pure 4-fold LOQO PFTE physical/geothermal specialist + 3-strand Frechet-comonotonic fault-tube survival Dinkelbach-CELF at 37,654 dots (d_min=2.8 px, d_cat>3.0 px)."
+    },
+    {
+      "arm_id": "E3_unstripped_scalar_indep_ablation",
+      "role": "Controlled mechanism falsifier",
+      "description": "Replaces 3-D Cordell-Parker stripping, Marussi eigensystem, Baranov decoupling, strike-guided Peclet barriers, and comonotonic tube survival with unstripped scalar slopes + isotropic thermal blur + static E[k] Poisson-disc spacing at 37,654 dots (d_min=2.8 px, d_cat>3.0 px)."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_max": 0.90,
+    "discrete_dot_overlap_3px_max": 0.70,
+    "holdout_evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "submission_writer": "vendor/template66/gems57/submission_writer.py",
+    "banned_columns": [
+      "dist_known_fault_px"
+    ],
+    "verified_band_overrides_enforced": {
+      "5": "iso_grav_anom_slope = hypot(B11, B18)",
+      "6": "tc = GeoDAWN Radiometric Total Count (NOT magnetic tilt)",
+      "11": "iso_grav_anom_vg = +d(B13)/drow_south = -d(B13)/dy_north",
+      "18": "iso_grav_anom_hg = +d(B13)/dx_east"
+    }
+  }
+}
