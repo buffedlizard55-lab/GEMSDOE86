@@ -2,7 +2,9 @@
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
-Latest three-pass repository review (2026-10-25; no new experiment or TIFF; tests/release checks pass; status remains **DO NOT SUBMIT**): [review and next steps](research/SESSION_20261025_REPO_REVIEW.md).
+Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
+
+Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
