@@ -61,3 +61,13 @@
     shipped raster's as-is number. `audit_release.py` knows this lane via
     `holdout_kind="h86g_edti"`; the literal full-support witness stop and all
     thresholds are unchanged.
+
+13. H86J-MPC (2026-10-25) is a `negative` lane: pure monogenic phase-congruency
+    step ranking (`src/gems86_mpc/`, preregistration
+    `research/H86J_MPC_PREREGISTRATION.md`, frozen 44,090-dot budget) was
+    falsified by its own amplitude control (SGMC-PROXY-DTI 0.1089 vs 0.0658
+    @44,090; run card `docs/evidence/h86j-mpc-run-card.json`,
+    `holdout_kind="h86j_mpc"` → `CURRENT_LANE_NEGATIVE`). Never rebrand the
+    AMP-GRADMAG control as a candidate (it is an EDTI-L-lineage 3-detector
+    subset) and never re-run unchanged pure PC; a hybrid amplitude×phase
+    gate or phase-symmetry lane needs a fresh preregistration.
