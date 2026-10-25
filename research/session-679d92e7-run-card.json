@@ -1,0 +1,120 @@
+{
+  "schema": "gems86.independent-session-run-card.v1",
+  "session": "679d92e7",
+  "measured_utc": "2026-10-25T13:32:58.173069+00:00",
+  "hypothesis": "Bispectral phase closure of buried RTP/gravity contacts (ranked proposal only; not implemented)",
+  "mechanism": "Tapered local third-order phase coupling with amplitude-matched phase-scrambled controls; no candidate constructed.",
+  "named_non_fault_process": "Intrusive lithologic contacts and survey interpolation seams",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_AND_INPUT_STOP",
+    "evaluator_version": null,
+    "planned_evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN",
+    "auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface": null,
+    "final_dots": null,
+    "registry_complete": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "universal_overlap_for_nonempty_allowed_candidate": 1.0,
+    "literal_overlap_limit": 0.7,
+    "scope": "Fresh hash-pinned universal witness proof only; no new candidate correlation or full-registry clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_artifacts_format_pass": 28,
+    "inherited_artifacts_checked": 28
+  },
+  "submission_name": null,
+  "note": "No new TIFF: literal overlap and missing shared-cache gates remain. Research downloads only; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "requirement_unmet": "No new unique submission-cleared TIFF generated.",
+  "evidence_sha256": {
+    "research/session-679d92e7-inputs.json": "04ffe4e4542e9550756993fd31a7a3142c00babb0060d852bef499f9bff978c9",
+    "research/session-679d92e7-witness.json": "584aea01fb6c21f5b6abae60d990908edbc6d0f1199c96848ac1ccf80f6620e3",
+    "research/session-679d92e7-sources.json": "d8cbdd13543f8199eb50d058ffab4ff36d6ea01d01a47f07a8d7525cf2b795be",
+    "research/session-679d92e7-h33-lineage.json": "81ccd89d81a65f8bab536748c6336a2a2d9c4768572cdf438683aa133b378a4b",
+    "scripts/audit_workspace_inputs.py": "b42a832cbad701afea4a037ba69180beef85bca4ee104e57e43393fd926af5d8",
+    "tests/test_audit_workspace_inputs.py": "edf8538204d3ab4da99fdc01fe8369c5306692f011e0fed34a71fa2ec29a5adc"
+  },
+  "software_review": {
+    "evidence_class": "SOFTWARE-TEST-MEASUREMENT",
+    "full_suite_passed": 975,
+    "full_suite_skipped": 24,
+    "full_suite_subtests_passed": 58,
+    "post_collection_symlink_cycle_fix_focused_passed": 32,
+    "checks": [
+      {
+        "name": "pass1-release",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "b13b604ec26e6def03b7cba613768d2c35a7a90d269eb8a7abd1743c80ad2563",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass2-tests",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "2005c51e55e66667efa121fefdc301e4652d7936784d2adf35ce084d97e0962e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass3-frozen-evidence",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "98b646b26bd6534f557bdb4af86553ecc564b20e13a5122e71659d54b4805278",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass3-generated-site",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "06a340af20c1bc8c276742f6f4d2fadd907caf1a3a33730b57bf68d45aa6ac6c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass3-site-links",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "b4eacaeff197b05f2b3b83dbf25e3116dd3483f2b22630757b463a2b8e238565",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass3-downloads",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "3497c7e56abdc19e05b91a4dec6a03fe184798b3cf0535bed8e54891df3f47d9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "pass3-live-inputs",
+        "status": "PASS",
+        "returncode": 0,
+        "stdout_sha256": "dd465932a2381c7792b617295b630f9238f461c3dad1a6132edc75915145eac1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "software_review_passed": true,
+    "strict_native_command_exit_code": 1,
+    "training_readiness_established": false,
+    "scope": "Full suite collected before final symlink-cycle regression; focused 32-test supplement covers that fix. Neither is scientific validation."
+  }
+}
