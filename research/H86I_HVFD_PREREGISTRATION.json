@@ -1,0 +1,169 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane": "H86I-HVFD",
+  "title": "Hydrothermal-Vent Thermal-Wall, Paleo-Sinter & Bi-Harmonic Basement Flexure Gated Fault-Valve Discovery (HVFD)",
+  "status": "frozen_before_lane_computation",
+  "frozen_utc": "2026-10-25T02:15:00Z",
+  "candidate_arm": "E2_hvfd_foldfair_vent_relay_noisyor",
+  "budget": {
+    "max_arms": 3,
+    "max_hours": 2,
+    "dots_primary": 37654,
+    "dots_ablation": 44090
+  },
+  "holdout": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "design": "buffered_component_draw",
+    "seed": 20,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "withheld_positive_pixels": 11321,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_m": 300,
+    "bootstrap_block_px": 200,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 861025,
+    "same_split_historical_best": {
+      "lane": "H86C-KSLB",
+      "arm": "E3_kslb_noisyor_44k",
+      "dti": 0.1241361533881829,
+      "ci95": [
+        0.10795957161890878,
+        0.14031161803404156
+      ],
+      "source": "docs/evidence/lane86c_results.json"
+    },
+    "fold_fair_r0_control": {
+      "name": "R0_G25_foldfair_collar",
+      "source_file": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "source_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "visible_collar_px": 2.0,
+      "expected_dti": 0.09608619416803546
+    }
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86I-1_HVFD",
+      "name": "Hydrothermal-Vent Thermal-Wall, Paleo-Sinter & Bi-Harmonic Basement Flexure Gated Fault-Valve Discovery",
+      "selected_for_validation": true,
+      "layers": [
+        "DOE GDR-1391 2m_temperature_probe_INGENIOUS_regional_data.zip (3,800 probes, F2mDAB above background, SHA256 1301f70d...)",
+        "DOE GDR-1391 paleo_geothermal_regional.zip (726 silica sinter, travertine & tufa vent deposits, SHA256 faffcf69...)",
+        "DOE GDR-1391 gdr_wellspring_in_footprint.csv (27,092 wells/springs: row, col, temp_c, geothermquartz_c, geothermchalc_c; dist_known_fault_px strictly banned)",
+        "DOE GDR-1391 gdr_volcanic_vents_in_footprint.csv (21 Quaternary vents: row, col; dist_known_fault_px strictly banned)",
+        "training_features.tif Band 15 depth_to_base_surf, Band 18 iso_grav_anom_hg (+dg/dx_east), Band 11 iso_grav_anom_vg (+dg/drow_south)",
+        "training_features.tif Band 2 rtp, Band 9 tmi_vg, Band 17 cond_surf, Bands 4/7/8 geodetic strain, Bands 10/16 seismicity, Bands 12/19 det_elev & slope",
+        "USGS 3DEP lidar_scarp_features_u8.tif, topo_10m_derived_100m_u8.tif, dem10_chi_100m_i16.tif, and USGS GeoDAWN geodawn_rad_u8.tif + acquisition_block_id_100m.tif",
+        "Fold-visible fault network only (fold['visible'] inside holdout; g.catalogue only after pre-placement surface check for live emission)"
+      ],
+      "transform": "Couples (1) a 2-m shallow temperature probe lateral thermal-wall gradient |grad T_2m| (sigma=400 m) + survey-deconfounded F2mDAB plume + 726 paleo-sinter/travertine/tufa vents + 300 m upslope-advected quartz/chalcedony geothermometer excess + MT 2000m clay-cap flank gradient + GeoDAWN K/eTh & eU/eTh alteration, (2) bi-harmonic basement plate flexure |nabla^4 z_b| co-activated with Laplace vertical gravity curvature g_zz = -(d_x B18 + d_row B11) and Poisson magnetite-destruction residual max(0, alpha*z(g_zz) - z(M_z)), deconfounded for Lahontan/Bonneville shorelines and GeoDAWN block seams, and (3) 1 m LiDAR / 10 m DEM / fluvial chi scarplet chains; fused in E2 via Dual-Regime Noisy-OR with strictly fold-visible inter-component relay bridges (two_host_frame C1!=C2), crack-tip cones, and bend hinges, emitted with Euclidean r=2.8 px disc thinning and h33-2-b2 d>2.0 px collar at 37,654 dots.",
+      "non_fault_mimic": "Down-gradient lateral thermal outflow plumes in permeable alluvial fans (mitigated by |grad T_2m| thermal-wall gradient and 300 m upslope advection along +grad DEM); Pleistocene Lake Lahontan (1270, 1332 m) and Bonneville (1463, 1552 m) wave-cut shoreline benches; unfaulted circular Mesozoic pluton contacts and GeoDAWN survey-block stitch seams; flat-lying conductive playa evaporites.",
+      "uncatalogued_rationale": "USGS/INGENIOUS Quaternary surface mapping misses intrabasin accommodation zones, buried stepover relay breaches, and piedmont synthetic splays beneath Holocene fan/playa veneer. Buoyant hydrothermal fluids ascend along these exact unmapped dilated basement fractures, depositing silica sinter/travertine mounds, creating sharp lateral 2-m thermal walls |grad T_2m|, altering magnetite to pyrite along bi-harmonic basement flexure hinges, and nucleating inside stepover relays and fault tips.",
+      "novelty": "First lane in GEMSDOE86 to compute the lateral thermal-wall gradient |grad T_2m| of the 3,800 GDR-1391 2-m probes coupled with 726 paleo-sinter/tufa vents, bi-harmonic basement plate flexure |nabla^4 z_b|, and Laplace g_zz Poisson magnetite-destruction residuals, and first to pair that hydrothermal-conduit physics with a clean 3-arm ablation separating (E1) pure zero-catalogue blind conduit physics, (E2) fold-fair Noisy-OR coupling with visible relay/tip/bend traps under h33-2-b2's d>2.0 px collar (37,654 dots), and (E3) unpruned d>1.5 px collar at 44,090 dots.",
+      "cost": "Low-Moderate (~45 s total runtime on CPU; zero external network fetches beyond already-pinned local mirrors).",
+      "official_data": "Verified and SHA-256-pinned locally from DOE GDR Submission 1391 (https://gdr.openei.org/submissions/1391, DOI 10.15121/1881483, CC-BY-4.0), USGS 3DEP (https://www.usgs.gov/3d-elevation-program, CC0 1.0), and USGS GeoDAWN (https://doi.org/10.5066/P93LGLVQ)."
+    },
+    {
+      "rank": 2,
+      "id": "H86I-2_RGPC",
+      "name": "Split-Window Directional Radon-Gabor Phase-Coherence Across Alluvial Fan Pediments",
+      "selected_for_validation": false,
+      "layers": [
+        "USGS 3DEP lidar_scarp_features_u8.tif (Bands 1, 3, 6, 11) and topo_10m_derived_100m_u8.tif (Bands 6, 7, 8)",
+        "training_features.tif Band 2 rtp, Band 6 tc, Band 18 iso_grav_anom_hg, Band 11 iso_grav_anom_vg"
+      ],
+      "transform": "Multi-wavelength quadrature log-Gabor filter bank (wavelengths 300, 600, 1200 m across 12 azimuths) measuring amplitude-invariant cross-modal Fourier phase congruency cos(phi_scarp - phi_gravmag) across 1 m LiDAR / 10 m DEM scarplets and potential-field horizontal gradients.",
+      "non_fault_mimic": "Eolian sand-dune trains, braided distributary channels on alluvial fans, and flight-line acquisition corrugations.",
+      "uncatalogued_rationale": "Distributed en-echelon fault splays in unconsolidated pediment gravels have sub-meter vertical relief that falls below single-scale slope thresholds, but preserve scale-invariant Fourier phase alignment with underlying basement potential-field steps.",
+      "novelty": "Replaces single-scale Gaussian Hessian eigenvalues and box collinearity filters with multi-frequency quadrature log-Gabor phase congruency.",
+      "cost": "Moderate (~180 s for 36 complex 2D FFT convolutions across 3730x3292); deferred behind H86I-1 within the 3-experiment budget.",
+      "official_data": "Available in local SHA-256-pinned USGS 3DEP and competition rasters."
+    },
+    {
+      "rank": 3,
+      "id": "H86I-3_BPMC",
+      "name": "Anisotropic Biot Poromechanics & Fluid-Overpressure Mohr-Coulomb Reactivation Potential",
+      "selected_for_validation": false,
+      "layers": [
+        "training_features.tif Bands 4, 7, 8 (geodetic strain invariants), Bands 10, 16 (seismicity), Band 14 (heatflow), Band 15 (depth_to_base_surf), Band 17 (cond_surf)",
+        "DOE GDR-1391 gdr_wellspring_in_footprint.csv (geothermquartz_c, geothermchalc_c, geothermcat_c)"
+      ],
+      "transform": "Resolves GPS strain rate tensor onto local potential-field strike theta to compute shear/normal traction ratio tau(theta) / (sigma_n(theta) - alpha_Biot * P_f), where pore-fluid overpressure P_f is estimated from multi-solute chemical geothermometer enthalpy excess and conductive heat flow trapped beneath high-conductance smectite clay caps.",
+      "non_fault_mimic": "Broad regional GPS strain smoothing kernels (~25 km) and non-tectonic conductive playa brines.",
+      "uncatalogued_rationale": "Critically stressed blind faults with low surface slip rates remain unscarped until localized hydrothermal fluid overpressure P_f reduces effective normal stress into the Byerlee failure envelope (Sibson 1994).",
+      "novelty": "Explicitly projects the 2D geodetic strain tensor onto local geophysical strike and couples Biot pore-pressure reduction from chemical geothermometers.",
+      "cost": "Low (~30 s), but coarse ~25 km GPS strain resolution limits standalone 300 m spatial localization compared to H86I-1.",
+      "official_data": "Available in local SHA-256-pinned competition and GDR-1391 datasets."
+    },
+    {
+      "rank": 4,
+      "id": "H86I-4_MTPT",
+      "name": "Full-Tensor 3D Magnetotelluric Impedance Phase-Tensor Skew (beta_MT) & Tipper Induction Vectors",
+      "selected_for_validation": false,
+      "layers": [
+        "USGS/USArray 3D MT EDI station impedance tensors Z(omega) and geomagnetic transfer functions T(omega) (periods 0.1-1000 s)",
+        "training_features.tif Band 17 cond_surf and Band 15 depth_to_base_surf"
+      ],
+      "transform": "Caldwell-Bibby-Brown (2004) galvanic-distortion-invariant MT phase tensor Phi = X^-1 Y skew angle beta_MT = 0.5*atan((Phi_12 - Phi_21)/(Phi_11 + Phi_22)) and Parkinson real induction arrows pointing into steep 3D sub-vertical conductive fault-fluid conduits at 2-8 km depth.",
+      "non_fault_mimic": "1D/2D flat-lying conductive playa evaporites and smectite basin fill (where |beta_MT| ~ 0 deg) vs 3D sub-vertical fault-fluid channels (|beta_MT| > 5 deg).",
+      "uncatalogued_rationale": "Scalar 2000 m conductivity (Band 17) conflates horizontal stratigraphic clay layers with vertical hydrothermal fault conduits; only the full 2x2 complex MT phase tensor skew and vertical magnetic tipper isolate 3D vertical fracture permeability.",
+      "novelty": "Uses full complex impedance phase-tensor skew and tipper vectors rather than scalar Band 17 conductivity.",
+      "cost": "NOT_VIABLE_IN_SANDBOX_YET: requires fetching raw MT EDI station archives from USGS ScienceBase / IRIS SPUD (sciencebase.gov / ds.iris.edu), which are blocked by the sandbox outbound host allowlist.",
+      "official_data": "NOT_VIABLE_IN_SANDBOX_YET (external host blocked in sandbox; documented per protocol)."
+    }
+  ],
+  "arms": [
+    {
+      "id": "E1_hvfd_blind_vent_conduit",
+      "role": "zero-catalogue blind physical baseline",
+      "layers": [
+        "DOE GDR-1391 2m_temperature_probe, paleo_geothermal, gdr_wellspring (no dist_known_fault_px), gdr_volcanic_vents (no dist_known_fault_px)",
+        "training_features.tif Bands 2, 4, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19",
+        "USGS 3DEP lidar_scarp_features_u8, topo_10m_derived_100m_u8, dem10_chi_100m_i16, GeoDAWN geodawn_rad_u8, acquisition_block_id_100m"
+      ],
+      "transform": "P_blind = rank01((0.36 * V_vent + 0.34 * C_pot + 0.30 * G_scarp) * (1 - 0.45 * M_mimic)); emitted via Euclidean r=2.8 px disc thinning at 37,654 dots with d_vis > 2.0 px collar.",
+      "non_fault_mimic": "Lahontan/Bonneville shorelines, unfaulted pluton contacts, GeoDAWN stitch seams, down-fan thermal outflow.",
+      "uncatalogued_rationale": "Tests how much withheld fault recovery comes purely from zero-catalogue hydrothermal-vent + potential-field curvature + 3DEP/LiDAR scarp physics without any visible-fault network geometry.",
+      "novelty": "Combines |grad T_2m| thermal walls, 726 paleo-sinter vents, upslope geothermometers, |nabla^4 z_b| basement flexure, and Laplace g_zz Poisson magnetite destruction into a single zero-catalogue conduit surface.",
+      "cost": "~25 s",
+      "official_data": "100% local SHA-256-pinned official public/competition layers; zero catalogue input."
+    },
+    {
+      "id": "E2_hvfd_foldfair_vent_relay_noisyor",
+      "role": "preregistered candidate",
+      "layers": [
+        "All E1_hvfd_blind_vent_conduit zero-catalogue physical/hydrothermal layers",
+        "Fold-visible fault network (fold['visible'] inside holdout; g.catalogue after pre-placement surface check for live artifact)"
+      ],
+      "transform": "Dual-Regime Noisy-OR posterior S_HVFD = 1 - (1 - P_link)*(1 - 0.55 * P_blind^1.35), where P_link = clip(P_blind^0.58 * M_trap * (0.75 + 0.25 * V_vent), 0, 1) and M_trap combines strictly fold-visible two-host relay bridges (C1!=C2), crack-tip propagation cones, and releasing-bend hinge splays (all clamped at d_vis >= 3.5 px); emitted with Euclidean r=2.8 px disc thinning and h33-2-b2 d>2.0 px collar at 37,654 dots.",
+      "non_fault_mimic": "Isotropic fault-halo inflation and shoreline/pluton/seam mimics (prevented by clamping d_vis >= 3.5 px in M_trap, enforcing d_vis > 2.0 px collar per h33-2-b2 forensics, and gating M_trap by P_blind^0.58 and V_vent).",
+      "uncatalogued_rationale": "Unmapped Great Basin geothermal faults preferentially breach stepover relays, crack tips, and releasing bends of the visible fault network where hydrothermal fluids and potential-field curvature co-activate.",
+      "novelty": "Couples GDR-1391 hydrothermal-vent thermal walls + paleo-sinter + bi-harmonic basement flexure with strictly fold-visible structural traps under h33-2-b2's 37,654-dot d>2.0 px collar geometry.",
+      "cost": "~40 s",
+      "official_data": "100% local SHA-256-pinned official public/competition layers + fold-visible catalogue mask."
+    },
+    {
+      "id": "E3_hvfd_collar_ablation_44090",
+      "role": "collar-and-budget ablation control",
+      "layers": [
+        "Identical S_HVFD surface as E2_hvfd_foldfair_vent_relay_noisyor"
+      ],
+      "transform": "Emits from the identical S_HVFD surface using Euclidean r=2.8 px disc thinning at the unpruned R0/GEMSDOE25 budget of 44,090 dots with d_vis > 1.5 px collar instead of h33-2-b2's 37,654 dots and d_vis > 2.0 px collar.",
+      "non_fault_mimic": "Near-trace 1.5-2.0 px collar false-positive mass identified in the H33-2-B2 vs GEMSDOE28 forensics theorem.",
+      "uncatalogued_rationale": "Directly tests the H86F-GZZD Review Next Step #5 hypothesis: isolating the geological surface from the h33-2-b2 sqrt(2)..2.0 px collar-pruning & 37,654-dot budget effect.",
+      "novelty": "Cleanly separates the HVFD geological surface contribution from the h33-2-b2 collar/budget emission geometry on the exact same holdout split.",
+      "cost": "~5 s incremental",
+      "official_data": "Same as E2."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.9,
+    "surface_max_spearman_rho": 0.9,
+    "final_dots_max_overlap_3px": 0.7,
+    "require_zero_missing_inventory_rasters": true,
+    "require_complete_zero_error_registry_for_promote": true,
+    "require_holdout_beat_kslb_with_separated_ci_for_promote": true
+  }
+}

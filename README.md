@@ -31,6 +31,21 @@ The current request-level gate is [`docs/evidence/prompt-slot-gate.json`](docs/e
 
 **Why H33 (0.2778 OWNER-REPORTED) led:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px—coverage-efficient dotted emission, not a new geological layer ([forensics](docs/evidence/h86f-h33-forensics.json)). H86G tests independent multiline corroboration, an HGB catalogue-signature diagnostic, and expected-kernel-credit spacing-greedy emission behind a wider 3 px collar ([H86G review](research/H86G_EDTI_REVIEW.md)). Its proxy improvement does not override the stricter request-level blockers.
 
+### Latest hydrothermal-vent & basement-flexure lane (2026-10-25): H86I-HVFD — AUDIT DOWNLOAD ONLY (`DO NOT SUBMIT`)
+
+Before any lane computation ran, four geological hypotheses (`H86I-1..H86I-4`) were frozen in [`research/H86I_HVFD_PREREGISTRATION.md`](research/H86I_HVFD_PREREGISTRATION.md) ([machine-readable JSON](research/H86I_HVFD_PREREGISTRATION.json)). Top candidate **`H86I-1` (`H86I-HVFD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid + external DOE GDR-1391 (`3,800` 2-m temperature probes, `726` paleo-sinter/travertine/tufa vents, wells/springs geothermometers) + USGS 3DEP 1-m LiDAR/10-m DEM/$\chi$ scarplets + USGS GeoDAWN radiometrics ([PhD review & 3-pass audit](research/SESSION_20261025_H86I_HVFD_REVIEW.md)):
+
+- **TIFF (safe to download for audit only — DO NOT SUBMIT):** [`docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif) (`1,148,595` bytes; SHA-256 `0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58`)
+- **Single-TIFF ZIP (audit only — DO NOT SUBMIT):** [`docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip) (`946,356` bytes; SHA-256 `3f9fbcc6bf2ca93ef0846e9b47aec78bc89cd3096476800d5ed44a6327610616`)
+- **Writer receipt & run card:** [`gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.json`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.json) · [`docs/evidence/h86i-hvfd-run-card.json`](docs/evidence/h86i-hvfd-run-card.json) · [`h86i-hvfd-registry-surface.json`](docs/evidence/h86i-hvfd-registry-surface.json) · [`h86i-hvfd-registry-final-dots.json`](docs/evidence/h86i-hvfd-registry-final-dots.json)
+- **Portal note (`121` chars <= 140, unused):** `H86I-HVFD 2m-probe+sinter+biharm-flexure+relay NoisyOR 37654d r=2.8px d>2px; HOLDOUT-DTI=0.1013; audit-only DO NOT SUBMIT`
+- **`HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 1,000 paired block-bootstrap draws):**
+  - `E1_hvfd_blind_vent_conduit` (100% zero-catalogue blind hydrothermal-vent + bi-harmonic flexure + 3DEP/LiDAR conduit surface, 37,654 dots): **`0.0475` `[0.0364, 0.0585]`** (+45% to +94% over all prior zero-catalogue algebraic lanes `H86I-RKSC = 0.0245`, `H86E-MMT = 0.0290`, `H86F-GZZD = 0.0303`, `H86H-PSTD = 0.0314`, `H86F-PCC = 0.0327`).
+  - `E2_hvfd_foldfair_vent_relay_noisyor` (Candidate TIFF, 37,654 dots, $d_{\text{vis}} > 2.0\text{ px}$): **`0.1013` `[0.0886, 0.1139]`** — **beats fold-fair `R0_G25_foldfair_collar` (`0.0961` `[0.0828, 0.1090]`, paired Δ `+0.0052` `[−0.0098, +0.0208]`)**, `R0_D28_foldfair_collar` (`0.0286`), and `H33_foldfair_collar` (`0.0037`).
+  - `E3_hvfd_collar_ablation_44090` (Same `S_HVFD` surface at 44,090 dots & $d_{\text{vis}} > 1.5\text{ px}$ collar): **`0.1040` `[0.0917, 0.1166]`** (paired `E2 − E3 = −0.0027` `[−0.0054, −0.0003]`), and both trail `H86C-KSLB` (`0.1241`).
+- **`LEAKAGE-CANARY`:** **PASS** — all 18 features below `0.90` (`max_discriminative_auc = 0.8136` on `trap_endpoint_cone`; max zero-catalogue static feature AUC = `0.6184` on `lidar_dem10_chi_scarp`).
+- **`REGISTRY-MEASUREMENT`:** `byte_unique = true`, `pixel_unique = true`, `rho_firings = 0` on both surface (`worst Spearman = 0.3050`) and final dots (`worst Spearman = 0.0625`); across all **468 sparse ($\le 100\text{k}$ dot) submissions**, max 3-px overlap is **`0.5859 < 0.70`** (`21.20%` vs `h33-2-b2`), but literal full-support `17GEMSDOE` (`1.0000`), dense lattice `13GEMSDOE` (`0.9995`), and `2` off-grid historical inventory entries keep `verdict = "negative"` (`DO NOT SUBMIT`, `0` slots used).
+
 ## Current independent review — 2026-10-25 (session `cf73474c`)
 
 [Open all 18 audit-only TIFF downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads). **None is approved for submission.**
@@ -972,7 +987,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13/17/18/19-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **20** published research TIFFs, including H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **21** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 
