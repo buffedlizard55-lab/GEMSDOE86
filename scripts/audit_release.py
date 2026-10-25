@@ -196,6 +196,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86l_fmc":
+        ho = context.get("holdout", {})
+        cand = ho.get("candidate", {}) if isinstance(ho, dict) else {}
+        if cand.get("evidence_class") != "HOLDOUT-DTI" or cand.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86L-FMC card lacks normalized HOLDOUT-DTI candidate receipt")
+        if context.get("verdict") != "negative" or context.get("submission_slots_used") != 0:
+            raise ValueError("H86L-FMC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": cand["evaluator_version"],
+                "withheld_positives": cand["withheld_positive_pixels"],
+                "value": cand["dti"], "ci95": cand["ci95"],
+                "design": "buffered whole components (LEAKAGE-SUSPECT: 25-raster fleet built with full catalogue)",
+                "caveat": "H86L-FMC fleet minority-consensus (support 2-8/25, >3px off-catalogue); HOLDOUT-DTI 0.0000 [0.0000, 0.0000] and 88.64% > 70% 3-px discrete overlap duplicate vs GEMSDOE63. Registered post-merge from PR #150 so Pages/release audits account for all published TIFFs; DO NOT SUBMIT; no slot used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -351,6 +364,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_pfte":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-PFTE lane result; the run card is the authoritative experiment receipt. 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF at 37,654 dots achieves an all-time 37,654-dot repository high on blind off-catalogue SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407], beating GEMSDOE32 H33 (+0.0273 [+0.0066, +0.0485]), unstripped scalar ablation E3 (+0.0419 [+0.0199, +0.0646]), H86F-EWCS (+0.0391 [+0.0188, +0.0603]), H86J-MCSP (+0.0211 [+0.0007, +0.0402]), and H86L-FMC (+0.0208 [+0.0004, +0.0422]) with 95% CIs strictly above zero and outscoring H86K-STDP (+0.0077), with strict pure-blind 4-fold LOQO HOLDOUT-DTI = 0.0734 [0.0591, 0.0882] (kinematic arm E1 reached 0.1310 [0.1141, 0.1476] with Fold NE 0.1436 vs E3 0.1185, halted before GeoTIFF serialization by Protocol Rule 1 due to 0.7041 > 0.70 3-px dot overlap vs H86K-STDP), 0/702 continuous surface Spearman firings > 0.90 (max 0.4795), and 0/460 discrete <=90k-dot firings > 0.70 (max 0.6244), while full 704-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

@@ -47,6 +47,9 @@ def greedy(support, eligible, budget, spacing):
     dots = np.zeros(support.shape, bool); dots[oy, ox] = True; return dots
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time(); stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     g = grid.load_grid(ROOT / "data/bridge"); fp, cat = g.footprint, g.catalogue
     fleet_files = sorted((ROOT / "data/scored_fleet").glob("*.tif"))
