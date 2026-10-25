@@ -1457,6 +1457,21 @@ PASS, `0` slots used):
 **Fix.** `src/gems86_mcsp/features.py::_put_lidar_debiased` omits `lidar_valid` completely and substitutes robust-z / quantile-matched 10 m USGS DEM scarp curvature (`topo10_curv_lineament` / `topo_slope_10m`) outside acquired 3DEP swaths, eliminating `0` and `NaN` survey-boundary cues across all `5,167,373` footprint pixels, while `scripts/restore_protocol_data.py` adds Git smart-HTTP blob-fetch fallback gated strictly on `b"API rate limit exceeded"` in `stderr`.
 
 
+## IR-86-H86K-SITE/RERUN/RECEIPT-PATH-20261025 — H86K artifact not on Pages, not rerunnable in fresh checkout, stale receipt path
+
+**Observed (2026-10-25 review session `arena/234c24b9`).** (1) The H86K-STC candidate
+(`releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif`, sha256 `e4d00084…a11`)
+exists only under `releases/h86k/`; it is absent from `docs/downloads/` and
+`docs/evidence/download-inventory.json`, so the Pages site does not offer it. Copying it into
+`docs/downloads/` makes `scripts/check_site.py` fail closed ("Unregistered downloadable
+raster/archive") — that guard was NOT bypassed; proper publication requires registering the
+artifact through `scripts/build_site.py`/inventory generation. (2) `scripts/run_h86k.py` reads
+`data/bridge/training_features.tif`, which is gitignored and restored-only; it is absent in this
+checkout, so the lane cannot be rerun here until `scripts/restore_data.py` restores the pinned
+19-band stack. (3) `releases/h86k/*.json:validator.file` still references the pre-move
+`docs/downloads/…` path; byte hash/size were independently re-verified against the `releases/`
+copy (`docs/evidence/h86k-revalidation-20261025.json`) and match. Verdict unchanged: negative,
+DO NOT SUBMIT, 0 slots.
 ## IR-86-LIVE-INPUT-RECEIPTS-20261025 — tracked receipts outlive ignored workspace data
 
 **Observed in session 679d92e7.** `data/prepared_manifest.json` records a historical
