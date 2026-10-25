@@ -174,6 +174,12 @@
       "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+      "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

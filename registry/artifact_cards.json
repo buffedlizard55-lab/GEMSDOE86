@@ -204,6 +204,13 @@
       "context": "evidence/run_card.json",
       "holdout_kind": "unvalidated_variant",
       "stem": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros"
+    },
+    {
+      "lane": "H86K-PSC persistent potential-field saddle connectors x ridge junction, CELF (HOLDOUT-DTI 0.0467; paired CI vs ridge crosses zero; negative DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86k-psc-run-card.json",
+      "context": "docs/evidence/h86k-psc-run-card.json",
+      "holdout_kind": "h86k_psc",
+      "stem": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros"
     }
   ]
 }
