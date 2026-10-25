@@ -1,14 +1,31 @@
-# Standing project prompt (current status + preserved request archive)
+# Standing project prompt (condensed historical archive)
 
-**Current decision (2026-10-25): DO NOT SUBMIT ANY FILE.** The latest all-artifact audit locally validated 36/36 published TIFFs, but each nonempty raster measures 1.0 forward overlap against the pinned full-support witness under the unchanged literal rule (REGISTRY-MEASUREMENT; limit 0.70). This is sufficient to reject, not to certify full-registry uniqueness. No new TIFF, geological experiment, or slot was created in the current review.
+**Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
+**Read the latest README decision and the COMPLETE current request in
+`research/REQUEST_20261025.md` first (supplemented by `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
+a replacement for that archive. Preserve `REQUEST_20261024.md`,
+`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 
-**Read `README.md` and the complete current owner request in `research/REQUEST_20261025.md` before work.** This summary does not replace the archived request. Preserve `REQUEST_20261024.md`, `REQUEST_20261023.md`, and `OWNER_PROMPT.md` byte-for-byte.
+The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
+Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
+the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
+The named fleet remains 92 projects. The current request adds owner claims
+`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
+They were unscored in the 2026-10-24 archive; that historical record is not
+retroactively changed. Current release remeasurement is
+`docs/evidence/latest-review-run-card.json`.
 
-The current three-pass review is `research/SESSION_9912C713_REVIEW.md`, with machine card `docs/evidence/session-9912c713-run-card.json`. The H86M-LT lane's earlier `promote` verdict is historical only; its current artifact disposition is negative and its download page says **DO NOT SUBMIT**. Do not use an old local format/like-for-like gate as an exception to the current literal witness stop.
-
-The current input audit finds `training_features.tif`, all 21 prepared native-band arrays, and the actual shared cached feature stack missing. Hash-pinned owner mirrors of the sample-grid template and existing-fault mask are present, but are not organizer-authenticated. The request supplies no assigned single-method paragraph; BMR and CNT have already been executed and recorded as negative, and must not be rebranded as untried. Do not fit/place a candidate, rebuild a private cache, or spend a weekly slot until these blockers are resolved.
-
-The latest release audit is generated at `docs/evidence/release-readiness.json`; the generated download audit is `docs/evidence/download-validation.json`. The user-supplied score claims in archived prompts are not organizer receipts. Preserve evidence classes and do not state projections as scores.
+The native 19-band TIFF was restored and prepared, but this is **not** restoration
+of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
+there is no assigned method paragraph in the current request. The immutable
+full-positive witness still makes the literal overlap rule unsatisfiable for
+every nonempty candidate. Stop before fitting or placement. Do not bypass the
+gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
+or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
+CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
+model cards, download status, evaluator/writer pins and slot separation remain
+binding. Scores and access claims in request archives are user input, not
+verified evidence.
 
 ---
 

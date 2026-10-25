@@ -1,18 +1,28 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Current decision (2026-10-25): **DO NOT SUBMIT ANY FILE**
+## ⛔ CURRENT DECISION (2026-10-25, session `92f9e0e8`): **DO NOT SUBMIT ANY FILE** — newest TIFF H86N-EQL is a measured negative
 
-This review generated **no new candidate**, experiment, or competition slot. The unique-TIFF submission goal is **not met**; historical research rasters are audit downloads only. **FORMAT-VALIDATION:** **36** published research TIFFs pass local format checks (36/36); that does not authorize upload, including the inherited PR #92 artifact.
+- **New unique TIFF generated this session (audit only):** [`gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif`](docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif) · [ZIP](docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.zip) · [lane page](docs/h86n-eql.html) · [run card](docs/evidence/h86n-eql-run-card.json) · [preregistration](research/H86N_EQA_PREREGISTRATION.md) · [session review](research/SESSION_20261025_92F9E0E8_REVIEW.md). SHA-256 `5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a`; 37,654 binary dots, values exactly {0,1}; **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld) **0.0306 [0.0175, 0.0455]**, paired Δ vs isotropic-density control **−0.0050 [−0.0301, +0.0200]** and vs RTP-gradient control **−0.0123 [−0.0311, +0.0074]** — the preregistered anisotropy hypothesis was not supported, so **verdict `negative`, DO NOT SUBMIT, 0 slots used**. All **37** published research TIFFs (including PR #92) are audit-only downloads. The new file is byte/pixel-unique vs the 61 locally measured rasters (max forward 3-px overlap 0.579 ≤ 0.70); uniqueness is not performance.
+- **H86M-LT historical/current split:** the prior lane-level `promote` result remains preserved in its historical run card; it did not establish the required buffered whole-segment HOLDOUT-DTI. The separate current disposition is negative, audit-only, and **DO NOT SUBMIT** ([current disposition](docs/evidence/h86m-lt-current-disposition.json), [historical run card](docs/evidence/h86m-lt-run-card.json), [status page](docs/h86m-lt.html)). The earlier page/dashboard authorization inconsistency was repaired in PR #166; no file is authorized for a weekly slot.
 
-- **H86M-LT is historical, not currently authorized.** Its old lane-level “promote” result did not establish the required buffered whole-segment HOLDOUT-DTI and cannot override the current literal registry stop. Its page now says **DO NOT SUBMIT**; the TIFF remains available only for audit: [status page](docs/h86m-lt.html) · [current disposition](docs/evidence/h86m-lt-current-disposition.json) · [historical run card](docs/evidence/h86m-lt-run-card.json).
-- **Current `REGISTRY-MEASUREMENT`:** the pinned historical witness has positive support on all **5,106,385 allowed pixels** (witness SHA-256 `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`). Every nonempty allowed candidate therefore has forward overlap **1.0**, exceeding the unchanged **0.70** stop. This one-witness result is sufficient to reject, not to certify full-registry uniqueness.
-- **Current input audit:** `training_features.tif`, the 21 prepared arrays, and the actual shared template feature cache are missing. Hash-pinned owner mirrors of the sample grid and existing-fault mask are not organizer-authenticated feature data. No geological experiment or HOLDOUT-DTI was run in this review.
-- **No score improvement is claimed.** The prompt’s H33 `0.2778` and leaderboard `0.3195` / `0.4413` claims have no organizer receipt in this checkout; historical projections are not scores. See the [three-pass repository review](research/SESSION_9912C713_REVIEW.md) and [machine run card](docs/evidence/session-9912c713-run-card.json).
-- **Current design status:** no single method paragraph was assigned; do not fit or place a new candidate, rename an old raster, or spend a weekly slot until the protocol stop, shared-cache provenance, and holdout requirements are resolved.
+## Current review — 2026-10-25 (`arena/57139348-gemsdoe86`): **DO NOT SUBMIT**
 
-### Historical H86M-LT result (superseded; not upload authorization)
+**36** published research TIFFs are locally format-valid, audit-only downloads. This session generated **no new candidate**.
 
-The following is preserved as an archival account of a prior lane-level result. Its separate like-for-like checks and expected-DTI projections were never organizer-confirmed and are overridden for current download/submission decisions by the fail-closed literal-witness policy above. Do not use its “promote” label as permission to submit.
+**Download available, upload NOT cleared.** The inherited H86M-LT TIFF is now registered as an audit-only download. Its earlier “OK TO SUBMIT” claim was unsupported: it has no required buffered hide-and-recover validation or CI, and its surface registry checker uses Pearson rather than rank correlation. No new TIFF was generated or copied in this review, and no weekly slot was spent.
+
+- [Download dashboard](docs/index.html) · [submission guide](docs/executive-summary.html) · [LT audit-only file and evidence](docs/h86m-lt.html).
+- [Three-pass review and ranked hypotheses](research/SESSION_57139348_REVIEW.md) · [negative run card](docs/evidence/session-57139348-run-card.json).
+- [Independent H33 forensic review, future hypothesis ranking, and review run card](research/SESSION_15577166_REVIEW.md) · [machine-readable review card](docs/evidence/session-15577166-run-card.json).
+- Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
+- Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
+
+## Parallel review reconciliation — session `d135ebf9`
+
+The parallel review independently found the same H86M-LT publication failures.
+Reused its shared archive fix rather than retaining a private implementation.
+[Additional three-pass review, ranked refinements and access limits](research/SESSION_D135EBF9_REVIEW.md).
+No new candidate was generated and no weekly slot used.
 
 ## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 
@@ -174,14 +184,14 @@ Read the full standing request embedded below and [the complete archived request
 - **Key positive external-physics discovery (`E1 − E2`):** Adding SHA-pinned official **USGS 3DEP 1-m LiDAR scarp planes + 10-m stream-power `chi` + USGS GeoDAWN airborne `K/eTh`** produced a **statistically significant `+0.0264 [+0.0162, +0.0371]` paired `HOLDOUT-DTI` gain** over matched native-19 `E2` (`0.1257` vs `0.0993`), positive in **all 4 spatial quadrants** (`NW +0.0161`, `NE +0.0318`, `SW +0.0147`, `SE +0.0419`) and **beating `H86F-EWCS` on Basin-and-Range `SE` (`0.1666` vs `0.1566`)**. Replacing soft submodular self-credit (`eta=0.042`) with hard `2.8 px` Poisson-disc spacing (`E3`) restored `SW` Walker Lane from `0.0860` to `0.1853` (pooled `0.1551`; `IR-86-H86I-RLMS-01`).
 - **GEMSDOE32 explanation (bounded, not a leaderboard forecast):** Fresh pixel-support comparison confirms H33 has 37,654 positive pixels and is exactly its 40,199-pixel D28 parent minus 2,545 pixels in `1 < d_cat <= 2 px` ([measurement](research/session-679d92e7-h33-lineage.json)). The reported `0.2778` and parent `0.2708` are **OWNER-REPORTED**, not organizer-confirmed. DTI rewards maximum local truth credit and penalizes summed false-positive mass, so removing low-marginal-credit dots can help; it can also hurt when those dots recover hidden faults. Neither a universally optimal spacing nor a causal explanation of the private score follows from these files. See [the exact pruning inequality and limitations](research/SESSION_679D92E7_REVIEW.md#what-h33-actually-proves).
 
-### Data Provenance & Official Source Inventory (pins are not proof of current file presence)
+### Auditable Data & Official Source Inventory
 
 | Dataset / Official Resource | Official Trusted Link | Workspace Pin / SHA-256 | Audit Status |
 |---|---|---|---|
 | DrivenData DOE GEMS Competition & Submission Spec | https://www.drivendata.org/competitions/306/competition-doe-gems/ | `data/bridge/sample_submission.tif` (`2176d08e485aa2cd...`) | Verified (`EPSG:32611`, `3730×3292`, `float32`, `[0, 1]`) |
 | Official DOE GEMS Prize Rules (NREL/NLR `96647.pdf`, §1.1 & §3.4–3.6) | https://docs.nlr.gov/docs/fy26osti/96647.pdf | [`docs/evidence/source-recheck-20261024.json`](docs/evidence/source-recheck-20261024.json) | Verified (`3` submissions/week; `1` final pick) |
 | Official INGENIOUS Reference Code (`DifferentiableTverskyLoss`) | https://github.com/gb-ingenious/INGENIOUS_libs | [`docs/evidence/review-source-checks.json`](docs/evidence/review-source-checks.json) | Byte-verified via GitHub API |
-| Great Basin INGENIOUS Play Fairway Stack (GBCGE / OpenEI GDR `#1617`) | https://gdr.openei.org/submissions/1617 | Historical `training_features.tif` pin (`4371c82e...`); `data/bridge/existing_faults.tif` (`7ba308cc...`) | Native feature TIFF is currently missing; mask mirror is hash-verified but not organizer-authenticated. See the live input audit at the top of this README. |
+| Great Basin INGENIOUS Play Fairway Stack (GBCGE / OpenEI GDR `#1617`) | https://gdr.openei.org/submissions/1617 | Historical `training_features.tif` pin (`4371c82e...`); `data/bridge/existing_faults.tif` (`7ba308cc...`) | Native feature TIFF currently missing; mask mirror is hash-verified but not organizer-authenticated. See current input audit and shared-cache blockers above. |
 | USGS Quaternary Fault and Fold Database | https://www.usgs.gov/programs/earthquake-hazards/faults | Fold-masked in `existing_faults.tif` | Audited (`max canary AUC = 0.7949 <= 0.90`) |
 | USGS 3D Elevation Program (3DEP) 1-m LiDAR Scarps & 10-m DEM / Fluvial `chi` | https://www.usgs.gov/3d-elevation-program · https://apps.nationalmap.gov/downloader/ | `.cache/external/lidar_scarp_features_u8.tif` (`d580bb8b...`), `topo_10m_derived_100m_u8.tif` (`a6398d99...`), `dem10_chi_100m_i16.tif` (`8897ba9c...`) | SHA-verified (`+0.0264` paired `HOLDOUT-DTI` with GeoDAWN) |
 | USGS GeoDAWN Airborne Radiometric `K`, `eTh`, `eU`, `TC` & TMI Extensions | https://doi.org/10.5066/P93LGLVQ · https://www.usgs.gov/centers/gggsc/science/geodawn-geophysical-data-acquisition-western-nevada | `.cache/external/geodawn_rad_u8.tif` (`c22420f7...`), `geodawn_extensions_u8.tif` (`a35a9c6d...`) | SHA-verified (`scripts/restore_data.py::EXTERNAL_PINS`) |
