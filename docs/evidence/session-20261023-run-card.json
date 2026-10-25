@@ -32,8 +32,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 28,
-    "local_format_pass": 28,
+    "checked": 29,
+    "local_format_pass": 29,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -175,6 +175,11 @@
       {
         "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
         "sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
+        "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
         "verdict": "negative"
       }
     ],
