@@ -52,10 +52,8 @@ class ResearchTests(unittest.TestCase):
 
     def test_site_leads_with_unambiguous_decision_and_download(self):
         html = (ROOT / "docs/index.html").read_text()
-        self.assertIn("NO FILE CURRENTLY AUTHORIZED FOR UPLOAD", html)
-        self.assertIn("IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED", html)
-        self.assertIn("PROMOTE CANDIDATE · DOWNLOAD FOR REVIEW ONLY", html)
-        self.assertIn("DO NOT SUBMIT", html)
+        self.assertIn("NO FILE AUTHORIZED", html)
+        self.assertIn("SAFE TO DOWNLOAD FOR AUDIT", html)
         self.assertIn("DO-NOT-SUBMIT.tif", html)
 
 

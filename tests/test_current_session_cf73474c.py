@@ -112,7 +112,7 @@ def test_site_puts_decision_and_download_access_before_long_historical_receipts(
         assert html.index("DO NOT SUBMIT") < html.index('id="h86f-gzzd"')
     assert home.index('href="#downloads"') < home.index('id="current-review"')
     assert home.index('id="downloads"') < home.index('id="h86f-gzzd"')
-    assert executive.index("Download research TIFFs — audit/review only") < executive.index('id="h86f-gzzd"')
+    assert executive.index("Download research TIFFs — audit only (all files)") < executive.index('id="h86f-gzzd"')
 
 
 def test_legacy_pages_root_redirect_is_negative_not_a_false_uniqueness_claim():

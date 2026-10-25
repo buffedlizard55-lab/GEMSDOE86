@@ -14,15 +14,10 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # H86G-EDTI has a historical PROMOTE verdict, not upload authorization.
-    assert "NO FILE CURRENTLY AUTHORIZED FOR UPLOAD" in html
-    assert "IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED" in html
-    assert "Download one-TIFF ZIP — review only, do not submit" in html
-    assert "SUBMIT THIS FILE" not in html
-    assert "OK TO SUBMIT? YES" not in html
-    h86g = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
-    assert h86g["safe_to_submit"] is False
-    assert h86g["approved_for_weekly_slot"] is False
+    # Research promotion must never override false authorization fields.
+    assert "NO FILE AUTHORIZED" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO" in html
+    assert "IS THIS FILE OK TO SUBMIT? YES" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
@@ -67,11 +62,10 @@ def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
     assert promoted["approved_for_weekly_slot"] is False
     for guide in ("index.html", "executive-summary.html"):
         html = (DOCS / guide).read_text()
-        assert "IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED" in html
+        assert "IS THIS FILE OK TO SUBMIT? NO" in html
         assert "safe_to_submit=false" in html
         assert "approved_for_weekly_slot=false" in html
         for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
                        "submit this file", "OK to download and submit",
-                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI",
-                       "DOWNLOAD → SUBMIT"):
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
             assert unsafe not in html

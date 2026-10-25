@@ -55,11 +55,12 @@ def downloads(artifacts: list[dict]) -> str:
         check_count = len(v["checks"])
         passed = sum(value is True for value in v["checks"].values())
         promote = str(a.get("status", "")).startswith("PROMOTE")
-        badge_cls = "ok" if promote else "bad"
-        btn1 = "Download TIFF — selector review only" if promote else "Download TIFF — audit only"
-        btn2 = "One-TIFF ZIP — selector review only" if promote else "One-TIFF ZIP — audit only"
-        visible_status = "PROMOTE CANDIDATE — SELECTOR APPROVAL PENDING" if promote else a["status"]
-        result.append(f'''<article class="card artifact"><div class="section-head"><h3>{e(a['lane'])}</h3><span class="badge {badge_cls}">{e(visible_status)}</span></div>
+        badge_cls = "bad"
+        status = ("DO NOT SUBMIT — historical amended-gate research promotion"
+                  if promote else a["status"])
+        btn1 = "Download TIFF — audit only"
+        btn2 = "One-TIFF ZIP — audit only"
+        result.append(f'''<article class="card artifact"><div class="section-head"><h3>{e(a['lane'])}</h3><span class="badge {badge_cls}">{e(status)}</span></div>
 <p class="filename">{e(Path(a['file']).name)}</p>
 <p class="muted">FORMAT-VALIDATION · {a['bytes']:,} bytes · {v['emitted_dots']:,} positive cells · {passed}/{check_count} local checks pass</p>
 <div class="actions"><a class="btn" href="{e(link(a['file']))}" download>{btn1}</a>
@@ -126,29 +127,29 @@ but the automated gates say <strong>{e(card["submit_decision"])}</strong>:</p>
 
 
 def h86g_edti_answer(card: dict) -> str:
-    """Current-lane decision: first like-for-like PROMOTE in this repo."""
+    """Historical research promotion is not literal-rule or weekly-slot authorization."""
     sg = card["sgmc_proxy"]; cand = sg["candidate"]; delta = sg["paired_delta_vs_H33_as_is"]
     hn = card["holdout_dti_normalized"]
     ch = card["holdout_dti"]["candidate"]
     leakage = max(v["discriminative_auc"] for v in card["leakage_canaries"].values())
     u = card["uniqueness"]; v = card["validator_output"]; name = card["submission_name"]
-    return f'''<section class="callout" id="h86g-edti"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED</span><span class="badge ok">PROMOTE CANDIDATE · DOWNLOAD FOR REVIEW ONLY</span></div>
-<h2>H86G-EDTI — research candidate, not upload-authorized</h2>
-<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["chosen_budget"]:,} dots) passed the historical <strong>local like-for-like</strong> checks (PA-86-01) and has a <strong>PROMOTE</strong> verdict for separate selector review. This does <strong>not</strong> authorize upload: the machine card sets <code>safe_to_submit=false</code> and <code>approved_for_weekly_slot=false</code>, the literal full-support witness gate remains blocked, and no selector approval is recorded. Do not submit this or any other file based on this page.</p>
-<div class="actions"><a class="btn" href="downloads/{e(name)}.zip" download>⬇ Download one-TIFF ZIP — review only, do not submit</a>
-<a class="btn secondary" href="downloads/{e(name)}.tif" download>Download TIFF — review only, do not submit</a>
+    return f'''<section class="callout" id="h86g-edti"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">DOWNLOAD FOR RESEARCH ONLY</span></div>
+<h2>Existing H86G-EDTI TIFF — downloadable, not authorized for submission</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["chosen_budget"]:,} dots) is the first lane in this repository to pass <strong>every registered like-for-like gate</strong> (PA-86-01). Historical research verdict: <strong>PROMOTE under the amended like-for-like interpretation only</strong>. The literal registry gate remains blocked; the card records <code>safe_to_submit=false</code> and <code>approved_for_weekly_slot=false</code>. This does not meet the current request’s unchanged literal rule. <strong>DO NOT SUBMIT any current file.</strong> No slot was used here; portal acceptance and live score are unknown.</p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.zip" download>⬇ Download one-TIFF ZIP — research only</a>
+<a class="btn secondary" href="downloads/{e(name)}.tif" download>Download TIFF directly</a>
 <a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a> <a class="text-link" href="evidence/h86g-edti-run-card.json">Full run card</a></div>
-<ol class="steps"><li><strong>No portal upload is authorized.</strong> The official DrivenData page and weekly quota are not accessible to this repository, and no selector receipt approves this exact raster SHA.</li>
-<li>For internal audit only, the ZIP contains exactly this single TIFF. Local checks report single-band float32, EPSG:32611, 3730×3292, values exactly 0/1; this excludes out-of-range values on these bytes but does not establish competition eligibility.</li>
-<li>The candidate name and note below are retained as identity metadata only, not instructions to submit.</li>
-<li><strong>STOP:</strong> do not upload unless a separate selector first resolves all protocol blockers and records approval for this exact SHA.</li></ol>
+<p><strong>Future portal procedure only — not authorization to upload this file.</strong> First resolve the literal gate and obtain a separate selector decision. No manual inspection is being substituted for validation.</p><ol class="steps"><li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official DrivenData submission page</a> → <em>New submission</em>. Check your remaining weekly quota there (this repo cannot see it).</li>
+<li><strong>File to submit:</strong> choose <code>{e(name)}.zip</code> (contains exactly this one TIFF) or the <code>.tif</code> itself. It is single-band float32, EPSG:32611, 3730×3292, values exactly 0/1 — the local range check passes on these exact bytes; this is not a guarantee of portal acceptance.</li>
+<li><strong>Note:</strong> paste the {card["note_chars"]}-character note below (copy button).</li>
+<li><strong>STOP until a separate selector records quota and authorization for this exact SHA.</strong> Only after authorization, submit once and keep the submission-page receipt (submission ID + score) — only that receipt makes any number ORGANIZER-CONFIRMED.</li></ol>
 <ul><li><strong>SGMC-PROXY-DTI</strong> (selection instrument only; truth = pinned USGS SGMC faults &gt;3 px off catalogue, {sg["positives"]:,} px): candidate {cand["dti"]:.4f} [{cand["ci95"][0]:.4f}, {cand["ci95"][1]:.4f}] vs H33-as-is {sg["H33_as_is_dti"]:.4f}; paired delta {delta["delta"]:+.4f} [{delta["ci95"][0]:+.4f}, {delta["ci95"][1]:+.4f}] (post-selection descriptive, Amendment A4). This proxy reproduces the owner-reported live ordering across 8 scored fleet rasters; it is not a leaderboard score or projection.</li>
 <li><strong>HOLDOUT-DTI</strong> ({e(hn["evaluator_version"])}, {hn["n_truth"]:,} withheld positives, OOF visible construction): {ch["dti"]:.4f} [{ch["ci95"][0]:.4f}, {ch["ci95"][1]:.4f}], above the H33 visible-collar control floor.</li>
 <li><strong>LEAKAGE-CANARY:</strong> max discriminative AUC {leakage:.4f} across 68 features, below the 0.90 stop.</li>
 <li><strong>UNIQUENESS (like-for-like, 43 local registry dot-fields):</strong> max Spearman {u["max_spearman"]:.4f} (limit 0.90); max forward 3-px overlap {u["max_forward_3px_overlap_dot_fields"]:.1%} (limit 70%); 0 firings. Literal reading vs the continuous full-support 17GEMSDOE witness remains blocked for every nonempty candidate and is reported unchanged in the run card.</li>
 <li><strong>LOCAL-FORMAT-VALIDATION:</strong> all checks passed = {str(v["all_checks_passed"]).upper()} (no NaN/Inf anywhere, range [0,1], zeros outside footprint, zero dots on mapped faults, CRS/shape/transform identical to the sample submission).</li></ul>
-<dl><dt>Candidate identity (not upload authorization)</dt><dd><code id="h86g-name">{e(name)}</code> <button data-copy-target="h86g-name" type="button">Copy name</button></dd>
-<dt>Reference note ({card["note_chars"]} characters; not an upload instruction)</dt><dd><code id="h86g-note">{e(card["note"])}</code> <button data-copy-target="h86g-note" type="button">Copy note</button></dd></dl>
+<dl><dt>Submission name</dt><dd><code id="h86g-name">{e(name)}</code> <button data-copy-target="h86g-name" type="button">Copy name</button></dd>
+<dt>Note ({card["note_chars"]} characters)</dt><dd><code id="h86g-note">{e(card["note"])}</code> <button data-copy-target="h86g-note" type="button">Copy note</button></dd></dl>
 <p><a href="evidence/h86g-edti-run-card.json">Run card (JSON)</a> · <a href="evidence/h86g-edti-registry.json">Registry uniqueness rows</a> · <a href="{REPO}/blob/main/research/H86G_EDTI_REVIEW.md">Scientific review: why 0.2778, and how this lane attacks it</a> · <a href="{REPO}/blob/main/research/H86G_EDTI_PREREGISTRATION.md">Preregistration + amendments A1–A4</a></p></section>'''
 
 def h86f_pcc_answer(card: dict, diagnostic: dict) -> str:
@@ -410,17 +411,17 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
-<span class="badge bad">NO FILE CURRENTLY AUTHORIZED FOR UPLOAD · H86G-EDTI IS REVIEW-ONLY</span>
-<h1>No file is approved to submit.<br><span class="subtle">All downloads are for audit/review only.</span></h1>
-<p class="lede">The historical <strong>H86G-EDTI</strong> research TIFF passed recorded local like-for-like checks and has a PROMOTE verdict for separate selector review. It is <strong>not upload-authorized</strong>: its card sets <code>safe_to_submit=false</code> and <code>approved_for_weekly_slot=false</code>, and the literal full-support witness gate remains blocked. Every other downloadable GeoTIFF is also unapproved. Local format validity is not competition clearance.</p>
+<span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
+<h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
+<p class="lede">The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. Downloadable GeoTIFFs remain available for reproducibility only; a new hash or local format pass does not establish scientific uniqueness or slot approval.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
-<p><strong>Historical H86G-EDTI verdict: PROMOTE candidate, selector action pending</strong> — its panel below provides evidence and review-only downloads. No file is currently authorized for upload. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). Machine-readable evidence records the holdout, leakage canary, scoped registry measurements, ZIP, SHA-256 and local-format checks; none replaces selector approval.</p>
-<p><span class="badge bad">DOWNLOADS FOR REVIEW ONLY</span> <strong>Do not submit H86G-EDTI or any other file based on this page.</strong></p>
+<p><strong>Current lane H86G-EDTI (2026-10-25): PROMOTE</strong> — historical amended-gate verdict only; see the blocked panel below for the exact file, note and conditional portal steps. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
+<p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
 {h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
-<div><span>Promote candidates awaiting selector approval</span><strong>1</strong><small>H86G-EDTI passed recorded like-for-like checks but is not upload-authorized; its literal full-support witness gate remains blocked.</small></div>
+<div><span>Authorized submission files</span><strong>0</strong><small>H86G-EDTI retains its historical amended-gate promotion, not literal-rule clearance or slot approval. No portal operation was run here.</small></div>
 <div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This release audit does not fit a model, in any event, it isn't a discovery oracle. H86G-EDTI ran its 3 preregistered arms and promotes; the other lanes above are negative.</small></div></div>
 {review_notice}
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster (<code>17GEMSDOE</code>, <code>ab0a0a62...</code>) is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop; moreover, a discrete binary stride-5 lattice witness (<code>13GEMSDOE</code>, <code>b4570b40...</code>, <code>206,895</code> dots) covers <code>99.8724%</code> of allowed pixels within 3 px, forcing <code>&gt;= 82.70%</code> overlap on any <code>37,654</code>-dot raster by pigeonhole. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
@@ -445,10 +446,10 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
 {h86g_html}
-<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}), but format validity is not release authorization. The mandatory <em>literal</em> registry reading is blocked by a continuous full-support witness. H86G-EDTI retains a historical PROMOTE verdict for like-for-like selector review, but its run card sets <code>safe_to_submit=false</code> and <code>approved_for_weekly_slot=false</code>; no selector approval is recorded. No weekly slot was used.</p>
-<a class="btn" href="index.html#downloads">Download research TIFFs — audit/review only</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). That historical research promotion does not override the literal stop or authorize upload. The card explicitly records safe_to_submit=false and approved_for_weekly_slot=false; this audit spent no weekly slot.</p>
+<a class="btn" href="index.html#downloads">Download research TIFFs — audit only (all files)</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 {review_notice}
-<h2>Current downloads — audit/review only; no file authorized for upload</h2>
+<h2>Current downloads — all research only; none authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
 <p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
 <details class="card"><summary>Earlier negative lane receipts and measured HOLDOUT-DTI context</summary>
@@ -940,7 +941,7 @@ def main(argv=None) -> int:
     if stale:
         print("Stale generated files: " + ", ".join(stale), file=sys.stderr)
         return 1
-    print("Evidence-generated site: PASS; 1 promoted-for-selector-review download (H86G-EDTI); no file authorized for upload.")
+    print("Evidence-generated site: PASS; all downloads research only; no file authorized for submission.")
     return 0
 
 
