@@ -3213,6 +3213,51 @@
           "forward_overlap_3px": 0.36644181229085887
         }
       }
+    },
+    "post_merge_concurrent_main_tiffs": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "rasters_checked": 5,
+      "rho_firings_over_0p90": 0,
+      "overlap_3px_firings_over_0p70": 0,
+      "worst_surface_spearman": 0.04661298389353222,
+      "worst_forward_overlap_3px": 0.3376799277633186,
+      "rows": [
+        {
+          "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": -0.021695542997406243,
+          "dots_spearman": 0.0021567907042123317,
+          "forward_overlap_3px": 0.06596908694959366
+        },
+        {
+          "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": 0.0052102109920037845,
+          "dots_spearman": 0.0054741063950531415,
+          "forward_overlap_3px": 0.10668189302597333
+        },
+        {
+          "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+          "their_dots": 40000,
+          "surface_spearman": 0.02106485402939154,
+          "dots_spearman": 0.00014344089374063578,
+          "forward_overlap_3px": 0.18351303978328995
+        },
+        {
+          "file": "docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": 0.04661298389353222,
+          "dots_spearman": 0.008844927177681618,
+          "forward_overlap_3px": 0.3376799277633186
+        },
+        {
+          "file": "docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": -0.012318822742552369,
+          "dots_spearman": 0.004618024926449079,
+          "forward_overlap_3px": 0.08163807298029425
+        }
+      ]
     }
   },
   "raster_sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",

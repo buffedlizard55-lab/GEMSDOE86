@@ -1,0 +1,84 @@
+{
+  "schema": "gems86.hypothesis-queue.v1",
+  "created_date_utc": "2026-10-25",
+  "session": "arena/92f9e0e8-gemsdoe86",
+  "scope_note": "Five candidate geological hypotheses checked against every executed lane/run card in this checkout on 2026-10-25 (H86..H86M incl. BMR/CNT/LT). 'Untried' = proposed at most in a prior preregistration/followup queue, never executed as a lane here. Not a claim of global novelty across the 92-site fleet or literature. No score projection is made.",
+  "ranking_basis": "Qualitative expected spatially-blocked HOLDOUT-DTI information gain per implementation cost, weighted by fleet-independence (uniqueness headroom), catalogue-blindness of inputs, and separability of the named mimic. Research-priority ordering only.",
+  "common_data_requirement": {
+    "new_external_data_required": false,
+    "layers": "All five use only native bands of the hash-pinned training_features.tif (sha256 4371c82e...), restored in-sandbox this session via scripts/restore_data.py; band indices verified against src/gems86/io.py BANDS.",
+    "external_check_optional": "USGS ComCat FDSN event service (https://earthquake.usgs.gov/fdsnws/event/1/) is free/official if band 10/16 semantics need an independent rebuild; NOT required for rank-invariant transforms below."
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86N-EQL",
+      "name": "Earthquake-lineation anisotropy (structure-tensor coherence of seismicity fields)",
+      "layers": [{"band": 10, "name": "deq_n100a15"}, {"band": 16, "name": "ieq_n100a15"}],
+      "physical_signature": "Structure-tensor coherence c=(l1-l2)/(l1+l2) of the log-seismicity density (derivative sigma 1.5 px, integration sigma 6 px ~600 m) multiplied by log-density: high only where seismicity is both present and linearly organized at fault-segment scale. Rank transforms make the lane invariant to the bands' unverified units.",
+      "catalogue_missing_rationale": "An unmapped active fault under basin fill or young volcanics can host a microseismic lineation while leaving no scarp, magnetic or gravity step for catalogue compilation to see; the catalogue was built from surface mapping, not seismicity alignment.",
+      "difference_from_implemented": "No executed lane uses bands 10/16 as the primary signal or tests seismicity anisotropy; prior lanes list them only as scalar features inside generic stacks (grep evidence in preregistration). Ranked top in research/H86M_LT_REVIEW.md after BMR was executed negative by the parallel H86M session.",
+      "non_fault_mimic": "Geothermal-field induced-seismicity clusters and quarry/blast alignments: clusters are radial (low coherence), which the anisotropy gate is designed to reject; residual risk stays named.",
+      "expected_holdout_potential": "Low-to-moderate absolute, highest per cost: signal is sparse/smooth, but it is the only completely fleet-independent physical channel left, so uniqueness headroom is maximal and a paired win vs density-alone would be real information.",
+      "implementation_cost": "Low (two FFT-free Gaussian tensor passes on prepared bands; ~minutes CPU).",
+      "falsifier": "Paired HOLDOUT-DTI difference vs the isotropic-density control (same bands, no coherence) has 95% CI including or below 0, or canary AUC > 0.90.",
+      "status": "SELECTED_THIS_SESSION_PREREGISTERED"
+    },
+    {
+      "rank": 2,
+      "id": "H86N-GSST",
+      "name": "Gravity step-vs-compact-source profile shape test",
+      "layers": [{"band": 13, "name": "iso_grav_anom"}, {"band": 5, "name": "iso_grav_anom_slope"}, {"band": 11, "name": "iso_grav_anom_vg"}, {"band": 18, "name": "iso_grav_anom_hg"}],
+      "physical_signature": "Cross-strike profile classification: a faulted basement offset is an anti-symmetric step, a dike/compact body a symmetric bump; score = step-template minus bump-template likelihood at frozen scales using the pixel-verified signed derivatives (B11=+d/drow_south, B18=+d/dx_east).",
+      "catalogue_missing_rationale": "Buried basement steps under fill produce the step signature without surface expression; rejecting bump-like sources attacks the dike mimic that vote/tomography lanes cannot separate.",
+      "difference_from_implemented": "Queued as GSST in registry/followup_hypotheses_20261025.json, never executed; H86F-GZZD/H86H-PSTD use tensor invariants, H86M-BMR a slab residual — none compares competing source-shape templates.",
+      "non_fault_mimic": "Elongated lithologic contacts and overlapping compact sources forming a linear corridor.",
+      "expected_holdout_potential": "Moderate; gravity is a proven catalogue-correlated channel, but shape separation may mostly re-rank known edges (uniqueness headroom smaller than EQL).",
+      "implementation_cost": "Medium (profile extraction along candidate ridges, depth/bandwidth sensitivity).",
+      "falsifier": "Step-likelihood fails to beat gradient-magnitude control in paired HOLDOUT-DTI CI.",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET"
+    },
+    {
+      "rank": 3,
+      "id": "H86N-MTCS",
+      "name": "Seismicity-to-conductance down-dip phase offset",
+      "layers": [{"band": 17, "name": "cond_surf"}, {"band": 16, "name": "ieq_n100a15"}, {"band": 10, "name": "deq_n100a15"}, {"band": 15, "name": "depth_to_base_surf"}, {"band": 8, "name": "geod_dilaterate"}],
+      "physical_signature": "Directed 200-800 m cross-strike offset, along +grad(depth_to_base), between the seismicity ridge and the shallow conductance (smectite-cap) ridge — the geometric signature of a 50-65 deg dipping permeable fault.",
+      "catalogue_missing_rationale": "Blind intrabasin geothermal faults under zero-relief playas have no scarp; the dipping-plane offset between deep seismicity and shallow alteration cap is their predicted fingerprint.",
+      "difference_from_implemented": "Preregistered-deferred as H86I-2_MTCS in research/H86I_RKSC_PREREGISTRATION.md; never executed. H86M-CNT used conductance neck topology without directed seismic phase offset.",
+      "non_fault_mimic": "Lateral facies-controlled conductance fronts offset from unrelated seismicity by chance alignment.",
+      "expected_holdout_potential": "Low-moderate; physically specific but the catalogue-hide instrument may under-reward blind-basin geometry (withheld catalogue faults are mapped, hence surface-expressed).",
+      "implementation_cost": "Medium (directed cross-correlation along local basement-dip azimuth).",
+      "falsifier": "Offset score fails vs zero-offset co-location control in paired CI.",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET"
+    },
+    {
+      "rank": 4,
+      "id": "H86N-SPBT",
+      "name": "Spin-2 seismic tensor x conductance-gradient alignment under transtension",
+      "layers": [{"band": 16, "name": "ieq_n100a15"}, {"band": 10, "name": "deq_n100a15"}, {"band": 17, "name": "cond_surf"}, {"band": 4, "name": "geod_2ndinv"}, {"band": 7, "name": "geod_shearrate"}, {"band": 8, "name": "geod_dilaterate"}],
+      "physical_signature": "Angular concordance between the seismicity structure-tensor orientation and conductance-gradient orientation, weighted by transtensional strain (shear x dilatation).",
+      "catalogue_missing_rationale": "Nascent transtensional accommodation zones (Walker Lane) have minimal throw but aligned seismicity and fluid-conductivity boundaries.",
+      "difference_from_implemented": "Deferred as H86I-3_SPBT; H86I-SACD used spin-2 Coulomb concordance on potential fields, not seismic-conductance tensor alignment. Overlaps EQL's tensor machinery, hence ranked below it.",
+      "non_fault_mimic": "Regional strain-aligned joint sets and survey-grid anisotropies shared by both fields.",
+      "expected_holdout_potential": "Low-moderate; two weak fields multiplied can vanish, but a win would be highly specific.",
+      "implementation_cost": "Medium.",
+      "falsifier": "Alignment product fails vs either single-field control in paired CI.",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET"
+    },
+    {
+      "rank": 5,
+      "id": "H86N-CHTD",
+      "name": "Transtensional regime-angle gated horsetail splays",
+      "layers": [{"band": 4, "name": "geod_2ndinv"}, {"band": 7, "name": "geod_shearrate"}, {"band": 8, "name": "geod_dilaterate"}, {"band": 3, "name": "tmi_hg"}, {"band": 9, "name": "tmi_vg"}],
+      "physical_signature": "Principal strain-rate eigendecomposition (e1,e2)=B8/2 +/- B7 and regime angle atan2(B8,2B7) gating magnetic lineaments into wrench vs extensional horsetail families.",
+      "catalogue_missing_rationale": "Transfer zones partition slip onto buried basin-floor strands without range-front scarps.",
+      "difference_from_implemented": "Preregistered-not-run as H86I-CHTD (research/SESSION_H86I_RLMS_REVIEW_20261025.md); GDSC/WVB used scalar strain only, no regime angle. Ranked last: geodetic bands are very smooth at 100 m grid, limiting dot-level information.",
+      "non_fault_mimic": "Smooth interpolation artifacts of the GPS strain grid masquerading as corridors.",
+      "expected_holdout_potential": "Low at pixel scale; mostly a regional gate.",
+      "implementation_cost": "Low-medium.",
+      "falsifier": "Regime-gated surface fails vs ungated magnetic-edge control in paired CI.",
+      "status": "NOT_RUN_SINGLE_LANE_BUDGET"
+    }
+  ]
+}

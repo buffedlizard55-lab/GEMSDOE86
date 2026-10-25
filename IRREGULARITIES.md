@@ -1,6 +1,12 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-H86L-01 — visible-fault edge residual lost to its control and duplicated GEMSDOE46 (2026-10-25)
+
+`scripts/run_h86l_vfgr.py` ran the frozen three-arm design and stopped before writing a TIFF. HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) was 0.0313 [0.0230, 0.0395] for the residual and 0.0367 [0.0272, 0.0457] for the raw-edge control. The paired interval was entirely below zero. Final dots overlapped `GEMSDOE46:SUBMISSION-GEMSDOE46-dfa-corroborated.tif` at 0.7013 with that raster’s halo covering only 0.1965 of the footprint. **Decision: DO NOT SUBMIT. No file, no slot.**
+
+Two related facts are not the duplicate itself. First, `depth_to_base_surf` is negative on part of the footprint (minimum −14.84). The basement-mass control still fit and still lost. Second, `registry_complete` is false with 0 missing inventory files because some measured rows fail the grid check, including known off-grid historical rasters. That is fail-closed, not a claim that the 655-file restore failed. The restore receipt said 655 verified.
+
 ## IR-86-RKSC-01 — H86I-RKSC generated a unique audit-only GeoTIFF (0 rho firings, 0 sparse-dot overlap firings) and failed closed on holdout & off-grid registry rows (2026-10-25)
 
 Before any lane code was written, four untried geological hypotheses (`H86I-1..H86I-4`) were frozen in `research/H86I_RKSC_PREREGISTRATION.json` (`sha256: 83300b29…`) and `research/H86I_RKSC_PREREGISTRATION.md`. `scripts/run_h86i_rksc.py` executed the top candidate (`H86I-RKSC`: Lahontan-Deconfounded Piedmont Scarp Profile-Curvature Dipole coupled with GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step and Seismic-Conductance Conduit, excluding all gravity and magnetic bands) and serialized `docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif` (`sha256: 9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba`, `44,090` dots, `0` NaN, values in `[0, 1]`). **Decision: `DO NOT SUBMIT` (`verdict: "negative"`, `safe_to_submit: false`, `submission_slots_used: 0`).** On `gems57-pooled-hide-v2` (`seed=20`, `11,321` withheld positives), `E1_rksc_full` (`0.0245 [0.0185, 0.0304]`) beat both internal ablations (`E2 = 0.0235 [0.0174, 0.0294]` and Lahontan-uncorrected K-depleted negative control `E3 = 0.0142 [0.0093, 0.0196]`, `+72.5%` relative lift), but trailed fold-fair 2-px `R0` (`0.0961 [0.0829, 0.1094]`), 3-px `R0` (`0.0931 [0.0798, 0.1067]`), and same-split `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`). Across `687 / 689` valid registry rasters, pre-placement surface worst Spearman is `0.2633 <= 0.90` (`0` rho firings) and final-dot worst Spearman is `0.0395 <= 0.90` (`0` overlap firings against any sparse `<=60,000`-dot submission), but `16` space-filling lattice/composite rasters (`13GEMSDOE`, `15GEMSDOE`, `GEMSDOE48`) and continuous witness `17GEMSDOE` exceed `0.70` 3-px overlap and `scripts/pa86_chance_overlap.py` fails closed on the `2` off-grid historical rows (`14GEMSDOE`, `7GEMSDOE`). Following execution, `scripts/run_h86i_rksc.py` is gated behind `protocol_preflight.require_feasible()` in `tests/test_builder_preflight.py`.
@@ -1528,16 +1534,96 @@ Full evidence: [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079
 - IR-86L-01: shared cached feature stack absent (.cache/training_features.tif not in checkout); native-band lanes BMR/GSST blocked until restore_data.py runs with authorised access.
 - IR-86L-02: fleet minority-consensus surface anti-predictive on hide-and-recover holdout (canary AUC 0.436, HOLDOUT-DTI 0.0000); candidate also fires 3px-overlap duplicate gate (0.886 vs GEMSDOE63). Verdict negative, DO NOT SUBMIT. See research/SESSION_20261025_H86L_FMC_REVIEW.md.
 
-- **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; resolved in session `99fb007b`).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. **Resolution (`arena/99fb007b-gemsdoe86`):** Registered `H86L-FMC` (`holdout_kind="h86l_fmc"`, `status="DO NOT SUBMIT"`, `approved_for_weekly_slot=false`) and re-ran `audit_release.py --measure-registry` + `audit_downloads.py --write` without altering `H86L-FMC`'s bytes or negative verdict.
+- **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; not caused by this session).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. `pytest -q` on main: 16 failed / 985 passed (10 in `tests/test_release_audit.py`). `scripts/run_h86l_fmc.py` writes the run card only. Owner action: register the artifact through the lane's own protocol and re-run `audit_release.py --measure-registry`; do not mark it authorized. Documented here; not repaired by session `0c60b079`.
+
+## IR-86-H86M-POISSON81 (2026-10-25, session `ecc314b3`, H86M-LT) — scored-fleet file/score mismatch suspect
+
+`data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif`
+(binary, 44,090 dots, median d_cat 2.2 px) carries owner-reported live score **0.0041**, but every
+tomography fit (E2b/E2c/E2d/E2e) predicts **0.043–0.084** for these exact dots — the largest
+residual in the fleet by an order of magnitude. Either (a) the submitted bytes differed from this
+local binary (the stem says "cont", suggesting a continuous raster was submitted and this is a
+thresholded derivative), or (b) the organizer masks a >300 m catalogue buffer that penalizes this
+collar-hugging raster far beyond the other fits' collar behaviour. H86M-LT excluded it from
+belief fitting and hard-excluded `d_cat <= 3 px` from emission under either explanation.
+Owner action: confirm which filename was actually uploaded for the 0.0041 receipt; do not use
+this raster/score pair as a calibration anchor until resolved. Evidence:
+`docs/evidence/h86m-lt-tomography.json`, `research/H86M_LT_REVIEW.md`.
+
+## IR-86-H86M-INVENTORY (2026-10-25, session `ecc314b3`) — new artifact not yet in generated index
+
+The H86M-LT TIFF/ZIP/receipt are published under `docs/downloads/` with a standalone lane page
+(`docs/h86m-lt.html`, same pattern as `docs/h86k-psc.html`) but are **not** registered in
+`docs/evidence/download-inventory.json`, because `scripts/audit_release.py` has no
+`holdout_kind` branch for a tomography-LOO lane (it raises on unsupported kinds) and its status
+rendering is DO NOT SUBMIT for every kind except `h86g_edti`. Registering correctly requires a
+reviewed shared-audit branch + `build_site.py` regeneration; this session reports it instead of
+smuggling a private fork (protocol rule 2). Main already fails `check_site`/`build_site --check`
+and 16 pytest cases over the analogous H86L-FMC gap (IR-H above); H86M adds one more unregistered
+artifact to the same known failure class.
+## IR-86-E95B-PUBLICATION-20261025 — repaired missing H86L publication coverage
+
+The branch inherited an H86L-FMC TIFF/ZIP absent from both publication indexes. This made the release/site audits fail before any artifact validation. Registered its actual SHA and existing negative scientific card; added explicit leakage-suspect archival normalization and regression tests. No raster bytes, scientific verdict, evaluator/writer or uniqueness thresholds changed. Fresh measurement validates all 32 published formats but confirms literal overlap failure against the pinned dense witness. This repairs the earlier IR-H inventory blocker; it does not authorize submission.
+
+## IR-86-E95B-HISTORICAL-CLOCK-20261025 — frozen review compared with mutable audit
+
+A test bound the historical follow-up run card's registry timestamp to the mutable latest audit. A legitimate fresh audit therefore failed the test. Preserved the original audit bytes from this branch's starting commit under `docs/evidence/session-followup-snapshot/`, bound their SHA in the historical card, and changed that test to verify the exact frozen evidence. No historical timestamp/count was rewritten as current. Latest-review tests continue to require current report hashes and measurement timestamps.
+
+
+## IR-86-63051E73-H86L-INVENTORY — 2026-10-25
+
+Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the prior review). Registered existing TIFF SHA `5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a`, joined its original negative run card, restored the pinned witness and remeasured all published final dots. No candidate pixels or scientific receipts changed. Added a dedicated archived leakage-suspect schema rather than describing fleet-as-is evidence as fold-safe hide-and-recover. Removed the non-generated “NEWEST UNIQUE TIFF” banner during deterministic site regeneration, retaining its anchor and explicit audit-only decision. Current format count is 32; submission authorization remains false. See `research/SESSION_63051E73_REVIEW.md`.
+
+## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
+
+PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (found independently; repair superseded at merge by PR #166)
+
+On this branch's starting commit (`3deca67`), H86M-LT violated the repo's own publication
+guard in four measured ways: (1) its TIFF/ZIP were absent from
+`docs/evidence/download-inventory.json` and `registry/artifact_cards.json` (the gap already
+flagged as IR-86-H86M-INVENTORY); (2) `docs/h86m-lt.html` carried the banned instruction
+"IS THIS FILE OK TO SUBMIT? YES"; (3) its run card set `safe_to_submit=true` with no
+`submission_ready`/`gates` fields; (4) README's headline said "OK TO SUBMIT" while the
+generated site said "NO FILE AUTHORIZED · DO NOT SUBMIT" — so `scripts/check_site.py`
+failed on main (exit 1, reproduced this session). Session `92f9e0e8` first repaired this locally (registration + run-card publication
+addendum preserving the PA-86 PROMOTE); in parallel, session `57139348` repaired the
+same failure on main (PR #166) by downgrading the card to a negative unvalidated
+archive (`h86m_lt_unvalidated`). At merge, main's already-accepted LT state was kept
+and this session's parallel LT branch/addendum was removed, leaving exactly one LT
+normalization path; only the H86N-EQL lane was layered on top (37 artifacts). No raster
+bytes or thresholds changed in either repair; no slot was authorized or used.
+
+## IR-86-92F9E0E8-PRIOR-SCORES — 2026-10-25 (open, data re-pin needed)
+
+The 2026-10-25 `92f9e0e8` request adds owner-reported claims for GEMSDOE91 (0.1367,
+0.1823) and GEMSDOE92 (0.0255), but `registry/prior_scores.csv` still carries
+"NO ARTIFACT OR SCORE SPECIFIED IN PROMPT" placeholder rows for those sites and its
+SHA-256 is pinned into the generated fleet feed (`owner_ledger_sha256`). The claims are
+archived verbatim in `research/REQUEST_20261025_92F9E0E8.md`; transcribing them into the
+CSV requires a deliberate feed re-pin/regeneration pass, deliberately not smuggled into
+this session's lane change. They remain unverified claims either way (no organizer
+receipts).
+
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
+
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
 
 ## IR-86M-20261025-REV2 — Three new unverified `OWNER-REPORTED` score claims + `GEMSDOE92` future-rounded filename timestamp (2026-10-25)
 
-The 2026-10-25 Rev2 request (`research/REQUEST_20261025_REV2.md`; earlier `research/REQUEST_20261025.md` kept byte-frozen) adds three owner-reported submission claims: `GEMSDOE91` `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367` and `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`, plus `GEMSDOE92` `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. Live GitHub API inspection confirmed those exact filenames in `buffedlizard55-lab/GEMSDOE91` and `buffedlizard55-lab/GEMSDOE92`, while noting that `GEMSDOE92`'s filename carries a rounded `20261025T190000Z` UTC timestamp ahead of its GitHub commit time (`17:04Z`). All three are recorded strictly as `OWNER-REPORTED (2026-10-25 rev2 request, unverified)` in `registry/prior_scores.csv` (`118` non-empty rows across `90` scored repos; `0` organizer receipts). Also clarified `IR-86L-01`/`IR-86-0C60B079-G`: while `.gov`/`doi.org` hosts are egress-blocked, all 19 native bands, 11 external USGS/GeoDAWN/GDR-1391/SGMC products, and 722 registry rasters are 100% restorable and SHA-256-verifiable inside the sandbox via `codeload.github.com` (`scripts/download_competition_data.sh --include-registry --with-external`).
+The 2026-10-25 Rev2 request (`research/REQUEST_20261025_REV2.md`; earlier `research/REQUEST_20261025.md` kept byte-frozen) adds three owner-reported submission claims: `GEMSDOE91` `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367` and `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`, plus `GEMSDOE92` `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. Live GitHub API inspection confirmed those exact filenames in `buffedlizard55-lab/GEMSDOE91` and `buffedlizard55-lab/GEMSDOE92`, while noting that `GEMSDOE92` carries a rounded `20261025T190000Z` UTC timestamp ahead of its GitHub commit time (`17:04Z`). All three are recorded strictly as `OWNER-REPORTED (2026-10-25 rev2 request, unverified)` in `registry/prior_scores.csv` (`118` non-empty rows across `90` scored repos; `0` organizer receipts).
 
 ## IR-86M-STDP-QUAD-SEAM — Prior `H86K-STDP` LOQO helper split at bounding-box `H//2=1865` instead of footprint median `ym=936` (`92.9 km` seam shift) (2026-10-25)
 
-**Observed during `H86M-SLCQ` implementation.** `vendor/gems57/holdout.py::quadrant_ids(footprint)` splits the diagonal NW–SE Great Basin footprint at its valid-pixel median `(ym=936, xm=1504)` (`~25%` of valid pixels per fold), whereas `src/gems86_stdp/model.py::quadrant_grid(shape)` split at the raster bounding-box midpoint `(H//2=1865, W//2=1646)`—shifting the N–S seam southward by `929 rows = 92.9 km` and placing rows `936..1864` of `SW`/`SE` inside `H86K-STDP`'s northern training splits. **Resolution:** Archived `H86K-STDP` code and receipts remain untouched for audit provenance; `src/gems86_slcq/model.py::true_footprint_quadrants` matches `gems57.holdout.quadrant_ids` pixel-exactly (`tests/test_h86m_slcq.py::test_true_footprint_quadrants_matches_gems57_holdout`) and adds a `12 px` (`1.2 km`) training-domain erosion (`2.4 km` total spatial dead-zone from `folds[q]["region"]`).
+`vendor/gems57/holdout.py::quadrant_ids(footprint)` splits the diagonal NW–SE Great Basin footprint at its valid-pixel median `(ym=936, xm=1504)` (`~25%` of valid pixels per fold), whereas `src/gems86_stdp/model.py::quadrant_grid(shape)` split at bounding-box midpoint `(H//2=1865, W//2=1646)` (`929 rows = 92.9 km` southward shift). Archived `H86K-STDP` receipts remain untouched; `src/gems86_slcq/model.py::true_footprint_quadrants` matches `gems57.holdout.quadrant_ids` pixel-exactly and erodes training domains by `12 px` (`2.4 km` total dead-zone from `folds[q]["region"]`).
 
 ## IR-86M-SLCQ-01 — `H86M-SLCQ` generated a unique `15/15` validated GeoTIFF (`HOLDOUT-DTI = 0.1527`, paired `E1 - E3 = +0.0150 [+0.0009, +0.0282]`, `SGMC = 0.0967` / blind `0.1131`) and failed closed `DO NOT SUBMIT` (2026-10-25)
 
-`scripts/run_h86m_slcq.py` executed the top preregistered lane (`research/H86M_SLCQ_PREREGISTRATION.json`, `registry/h86m_hypotheses.json`) and wrote [`docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif`](docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif) (`sha256: c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d`, `37,654` unit dots, `15/15` format checks PASS, `43/43` leakage canaries PASS with `max AUC = 0.7943 <= 0.90`). Under strict eroded footprint-median 4-fold LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives), `E1` achieved **`0.1527 [0.1364, 0.1679]`** (blind `E2 = 0.0755 [0.0620, 0.0888]`, pixel-local ablation `E3 = 0.1377 [0.1215, 0.1530]`, paired `E1 - E3 = +0.0150 [+0.0009, +0.0282] > 0`) and off-catalogue `SGMC-PROXY-DTI = 0.0967` (`E2 = 0.1131` vs `GEMSDOE32 H33 = 0.0937` and `E3 = 0.0743`), with `0/702` surface Spearman `rho > 0.90` firings (`max = 0.5751`) and `0/460` comparable `<=90k`-dot discrete 3-px overlap firings `> 0.70` (`max = 0.6632`; `0.2999` vs `GEMSDOE32 H33`). Automatically set `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, `0` weekly slots used because full `v2` gates fail closed on continuous witness `17GEMSDOE` (`1.0000`), `19` space-filling lattices, `11` `180k–624k`-dot dense archive ribbons, `2` off-grid rows (`14GEMSDOE`, `7GEMSDOE`), and slight 95% CI overlap (`0.1364` vs `0.1403`) with `44,090`-dot `H86C-KSLB`. See [`research/SESSION_20261025_H86M_SLCQ_REVIEW.md`](research/SESSION_20261025_H86M_SLCQ_REVIEW.md) and [`docs/evidence/h86m-slcq-run-card.json`](docs/evidence/h86m-slcq-run-card.json).
+`scripts/run_h86m_slcq.py` executed the top preregistered lane (`research/H86M_SLCQ_PREREGISTRATION.json`, `registry/h86m_hypotheses.json`) and wrote [`docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif`](docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif) (`sha256: c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d`, `37,654` unit dots, `15/15` format checks PASS, `43/43` leakage canaries PASS with `max AUC = 0.7943 <= 0.90`). Under strict eroded footprint-median 4-fold LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives), `E1` achieved **`0.1527 [0.1364, 0.1679]`** (blind `E2 = 0.0755 [0.0620, 0.0888]`, pixel-local ablation `E3 = 0.1377 [0.1215, 0.1530]`, paired `E1 - E3 = +0.0150 [+0.0009, +0.0282] > 0`) and off-catalogue `SGMC-PROXY-DTI = 0.0967` (`E2 = 0.1131` vs `GEMSDOE32 H33 = 0.0937` and `E3 = 0.0743`), with `0/702` surface Spearman `rho > 0.90` firings (`max = 0.5751`), `0/460` comparable `<=90k`-dot discrete 3-px overlap firings `> 0.70` (`max = 0.6632`; `0.2999` vs `GEMSDOE32 H33`), and `0/5` firings vs concurrent `H86M`/`H86N` TIFFs (`max = 0.3377`). Automatically set `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, `0` weekly slots used under literal `17GEMSDOE` (`1.0000`), space-filling/dense archive ribbons, and `2` off-grid rows (`14GEMSDOE`, `7GEMSDOE`). See [`research/SESSION_20261025_H86M_SLCQ_REVIEW.md`](research/SESSION_20261025_H86M_SLCQ_REVIEW.md) and [`docs/evidence/h86m-slcq-run-card.json`](docs/evidence/h86m-slcq-run-card.json).

@@ -118,6 +118,29 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_lt_unvalidated":
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("verdict") != "negative"
+                or not explicit_no_authorization(context)
+                or context.get("submission_slots_used") != 0
+                or "holdout_dti" in context):
+            raise ValueError("H86M-LT must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Aggregate owner-reported score tomography; no buffered hide-and-recover evaluation",
+                "caveat": "Fitted projections and SGMC-PROXY-DTI are not HOLDOUT-DTI. Post-outcome gate amendments, missing per-feature canaries, and Pearson rather than Spearman surface checks prevent clearance. Historical registry measurements were not recomputed. DO NOT SUBMIT."}
+    if kind == "h86m_unvalidated":
+        h = context.get("holdout_dti", {})
+        if (context.get("lane") != "H86M-DAMAGERING"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or h.get("status") != "NOT_RUN_NO_PUBLIC_LABELS"
+                or any(h.get(k) is not None for k in ("value", "ci95", "withheld_positives"))):
+            raise ValueError("H86M archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
+                "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."}
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
@@ -155,6 +178,26 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": n, "value": value, "ci95": ci,
                 "design": "candidate-sidecar holdout; fold construction and result not recomputed by this audit",
                 "caveat": "Pre-existing PR #92 artifact, not generated in this review. Its HOLDOUT-DTI is archived, with no matched-baseline delta established here. Its local like-for-like registry summary is scoped to locally present rasters and cannot clear the complete-registry gate; the fresh pinned full-support witness measurement below triggers the unchanged literal stop. Not organizer-confirmed or authorized for submission."}
+    if kind == "h86l_fmc":
+        # Registration repairs publication coverage; it must not launder a fleet
+        # built from the full catalogue into leakage-safe hide-and-recover proof.
+        h = context.get("holdout", {})
+        candidate = h.get("candidate", {})
+        if (context.get("lane_id") != "H86L-FMC"
+                or context.get("verdict") != "negative"
+                or not explicit_no_authorization(context)
+                or context.get("submission_slots_used") != 0
+                or h.get("evidence_class") != "HOLDOUT-DTI (LEAKAGE-SUSPECT: fleet built with full catalogue)"
+                or candidate.get("evidence_class") != "HOLDOUT-DTI"
+                or candidate.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or context.get("gates", {}).get("overlap3_le_0.70") is not False):
+            raise ValueError("H86L-FMC archive must preserve leakage-suspect, duplicate, negative/no-slot evidence")
+        return {**base, "status": "ARCHIVED_LEAKAGE_SUSPECT_NOT_PROMOTION_EVIDENCE",
+                "evaluator_version": candidate["evaluator_version"],
+                "withheld_positives": candidate.get("withheld_positive_pixels"),
+                "value": candidate.get("dti"), "ci95": candidate.get("ci95"),
+                "design": "Fleet derived with full catalogue; not fold-visible hide-and-recover evidence",
+                "caveat": "Archived H86L-FMC result, not recomputed. Passing a feature canary does not cure fleet-ancestry leakage. Final-dot overlap exceeded the registry limit. Publication registration and format validity do not establish uniqueness, performance or slot authorization. DO NOT SUBMIT."}
     if kind == "gmc_control":
         return {**base, "withheld_positives": context["withheld_positive_pixels"],
                 "value": context["holdout_dti"], "ci95": context["holdout_ci95"],
@@ -196,19 +239,26 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind == "h86l_fmc":
-        ho = context.get("holdout", {})
-        cand = ho.get("candidate") if isinstance(ho, dict) else None
-        if not isinstance(cand, dict) or cand.get("evaluator_version") != "gems57-pooled-hide-v2":
-            raise ValueError("H86L-FMC card lacks normalized HOLDOUT-DTI")
-        if context.get("verdict") != "negative" or context.get("submission_slots_used", 0) != 0:
-            raise ValueError("H86L-FMC card is not in its measured negative/no-slot state")
+    # NOTE: H86M-LT is handled by the merged `h86m_lt_unvalidated` branch above
+    # (PR #166, session 57139348); session 92f9e0e8's parallel `h86m_lt` branch
+    # was removed at merge time so exactly one LT normalization path exists.
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
+        # block lives at holdout.candidate; all are measured negatives.
+        h = context.get("holdout") or {}
+        cand = h.get("candidate") or {}
+        value, ci, n = cand.get("dti"), cand.get("ci95"), cand.get("withheld_positive_pixels")
+        if (context.get("verdict") != "negative" or context.get("submission_slots_used") != 0
+                or h.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or not isinstance(value, (int, float)) or not 0 <= value <= 1
+                or not isinstance(ci, list) or len(ci) != 2 or ci[0] > ci[1]
+                or not isinstance(n, int) or n <= 0):
+            raise ValueError(f"{kind} run card is not in its measured negative/no-slot state")
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
-                "evaluator_version": cand["evaluator_version"],
-                "withheld_positives": cand["withheld_positive_pixels"],
-                "value": cand["dti"], "ci95": cand["ci95"],
-                "design": "buffered whole components (fleet minority-consensus post-processing; leakage-suspect negative)",
-                "caveat": "Inherited H86L-FMC fleet minority-consensus lane (PR #150, registered to resolve IR-H); HOLDOUT-DTI is 0.0000 [0.0000, 0.0000], canary AUC 0.4361, and 3-px dot overlap fires at 0.8864 vs GEMSDOE63. DO NOT SUBMIT; no slot used."}
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": n, "value": value, "ci95": ci,
+                "design": "buffered whole components; visible-only collar in folds; physical-block bootstrap",
+                "caveat": "Measured negative lane (H86L-FMC holdout is additionally leakage-suspect by fleet ancestry). DO NOT SUBMIT; no slot used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -370,7 +420,7 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": h["withheld_positive_pixels"],
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
-                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751) and 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
+                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/5 firings vs concurrent H86M/H86N TIFFs (max 0.3377), while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
