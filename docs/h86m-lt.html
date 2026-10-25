@@ -5,10 +5,10 @@
 <p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
 <h1>H86M-LT — new unique GeoTIFF (2026-10-25)</h1>
 <section class="callout">
-<span class="badge ok">IS THIS FILE OK TO SUBMIT? YES — verdict: PROMOTE (passes every H86M machine gate below; no human inspection used)</span>
+<span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (required holdout and rank-correlation gates not established)</span>
 <span class="badge">WEEKLY SLOT: not spent by this project — the slot choice is yours (selector step, check the weekly cap on the submission page)</span>
-<h2>Download the submission file</h2>
-<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — the submission file</a>
+<h2>Download the research archive</h2>
+<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — audit only</a>
 <a class="btn secondary" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip" download>One-TIFF ZIP (same file)</a>
 <a href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.json">Writer receipt</a> ·
 <a href="evidence/h86m-lt-run-card.json">JSON run card</a></p>
@@ -19,7 +19,8 @@
 <dt>Note for the submission form (≤140 chars)</dt><dd><code>H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat&gt;3; auto-validated; see run card</code></dd>
 <dt>Dots</dt><dd>37,654 binary pixels (values exactly 0/1 — this fixes the portal error “Predicted values must be in range [0, 1]”)</dd>
 </dl>
-<h2>Machine validation (all automatic)</h2>
+<p><strong>Review correction:</strong> Historical promotion is withdrawn. Fleet-score projections and SGMC proxy results are not the required buffered segment HOLDOUT-DTI; Pearson surface correlation does not establish the required Spearman gate. No new experiment or weekly submission was performed.</p>
+<h2>Historical machine validation (not upload authorization)</h2>
 <ul>
 <li><strong>Format 15/15 PASS:</strong> single-band float32, EPSG:32611, 3730×3292 @100 m, transform identical to sample submission, 0 NaN / 0 Inf / no sentinels, range [0,1], zeros outside footprint, 0 dots on mapped faults.</li>
 <li><strong>Unique — full registry:</strong> scanned against all 655 restored registry rasters (414 dot-fields): max 3-px forward overlap <strong>0.649 ≤ 0.70</strong>, max correlation <strong>0.159 ≤ 0.90</strong>, belief-surface correlation 0.556 — zero duplicate firings. Evidence: <a href="evidence/h86m-lt-full-registry-uniqueness.json">full-registry scan</a>.</li>

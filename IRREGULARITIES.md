@@ -1577,3 +1577,17 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 ## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-LT-UPLOAD-CLEARANCE-D135EBF9 (2026-10-25)
+
+The inherited H86M-LT README/page claimed “OK TO SUBMIT” and its card set
+`safe_to_submit=true`, but it lacked the requested buffered-segment HOLDOUT-DTI
+and was absent from the release inventory. Its archived continuous-surface
+comparison used Pearson, not required Spearman rank correlation. No inference
+of unique submission readiness is warranted. Withdrew clearance, preserved
+numerical history and TIFF/ZIP bytes, registered the negative archive, and
+remeasured 36 inherited rasters against the pinned literal witness. That is
+not a new candidate or complete-registry clearance. See
+`research/SESSION_D135EBF9_REVIEW.md`. All shared format/publication checks now
+pass; full regression: 1033 passed, 24 skipped, 48 warnings, 58 subtests passed.
+No weekly slot used. Missing shared cache and lane assignment remain blockers.
