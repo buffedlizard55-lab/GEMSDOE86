@@ -1,9 +1,12 @@
 """Read-only review facts must not become a fabricated candidate or score."""
 import hashlib
 from pathlib import Path
+import shutil
+
+import pytest
 
 from scripts.audit_release import strict_json
-from scripts.build_review_card import build_card
+from scripts.build_review_card import SNAPSHOT, build_card, main as review_card_main
 from src.gems86.io import BANDS
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,3 +121,47 @@ def test_legacy_pages_root_redirect_is_negative_not_a_false_uniqueness_claim():
     assert "DO NOT SUBMIT" in root
     assert "generated a new unique GeoTIFF" not in root
     assert "No new submission was generated" in root
+
+
+def test_frozen_card_survives_live_daily_audit_refresh_without_rebranding(tmp_path):
+    shutil.copytree(ROOT / SNAPSHOT, tmp_path / SNAPSHOT)
+    expected = build_card(ROOT)
+    # Only immutable evidence is needed. New live audit clocks, changed counts
+    # and even a future assigned lane must not rewrite this historical review.
+    for rel in ("docs/evidence/protocol-preflight.json", "docs/evidence/release-readiness.json",
+                "docs/evidence/all-artifacts-registry.json", "registry/h86g_hypotheses.json"):
+        target = tmp_path / rel
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text('{"measured_utc":"2099-01-01T00:00:00+00:00","artifact_count":999,"lane_assignment":"future"}')
+    assert build_card(tmp_path) == expected
+    assert expected["evidence_source_revision"] == "5aabaf2fa780e9e589c40ca58d9819a55280ce54"
+    assert len(expected["original_input_snapshots"]) == 9
+    assert expected["measured_registry_utc"].startswith("2026-10-25")
+    assert expected["verdict"] == "negative"
+
+
+@pytest.mark.parametrize("defect", ["hash", "missing", "escape"])
+def test_frozen_card_rejects_missing_tampered_or_escaping_evidence(tmp_path, defect):
+    shutil.copytree(ROOT / SNAPSHOT, tmp_path / SNAPSHOT)
+    manifest_path = tmp_path / SNAPSHOT / "manifest.json"
+    manifest = strict_json(manifest_path)
+    first = next(iter(manifest["sources"].values()))
+    path = tmp_path / first["file"]
+    if defect == "hash":
+        path.write_bytes(path.read_bytes() + b"\n")
+    elif defect == "missing":
+        path.unlink()
+    else:
+        first["file"] = "outside.json"
+        (tmp_path / "outside.json").write_text("{}")
+        import json
+        manifest_path.write_text(json.dumps(manifest))
+    with pytest.raises((OSError, ValueError)):
+        build_card(tmp_path)
+
+
+def test_frozen_card_cli_check_is_read_only():
+    path = ROOT / "docs/evidence/session-cf73474c-run-card.json"
+    before = path.read_bytes()
+    assert review_card_main(["--check"]) == 0
+    assert path.read_bytes() == before

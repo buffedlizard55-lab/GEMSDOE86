@@ -1,6 +1,6 @@
 {
   "schema": "gems86.ui-smoke.v1",
-  "observed_utc": "2026-10-25T02:53:28.852Z",
+  "observed_utc": "2026-10-25T03:06:46.417Z",
   "scope": "One-time local Chromium UI checks at the recorded page hashes, not organizer acceptance, external link verification, scientific clearance, or a continuously refreshed browser test.",
   "origin": "http://127.0.0.1:8000",
   "browser_version": "153.0.8010.0",
@@ -25,9 +25,9 @@
     }
   ],
   "page_sha256": {
-    "index.html": "02ffa6bad8d7f4e4e0902de478cd97d9c3dd862183ad0308850071babc971a76",
+    "index.html": "ed877801d305a4cae87e87d895e7db7b432e7302f023239c58c69e27196dd256",
     "executive-summary.html": "66f772909f6410a0ca1db0c3a64237cf64be90f237f9167c88fe31e2094130eb",
-    "submit.html": "b72f9db55226dac46531faef07fd4413bee6bc0089f6729ceb4386665104bb7c",
+    "submit.html": "67bb699b8176a4952ca8dfe916d924ec247504f82b3dcb36bc11ac534603c74a",
     "evidence.html": "61464f3a9b0d45ca6a4c07cf917c52ca7075b3927916068b749985885a7f10a7",
     "hypotheses.html": "beb2338caa2f0b79c5436b803c79eb027106e949cab85f4cfbbd001082d34e67",
     "fleet.html": "4b656dd43295efc57a969804318f70a027efc5dbec5997869a2fe79d27e13f77",
