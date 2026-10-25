@@ -51,8 +51,11 @@ def load_inventory(root):
             raise ValueError(f'Duplicate inventory path: {relative}')
         if not isinstance(entry.get('sha256'), str) or not re.fullmatch('[0-9a-f]{64}', entry['sha256']):
             raise ValueError(f'Invalid SHA256: {relative}')
-        if entry.get('approved_for_weekly_slot') is not False or entry.get('status') != 'DO NOT SUBMIT':
-            raise ValueError('Negative inventory requires exact DO NOT SUBMIT status and false slot approval')
+        status = entry.get('status')
+        if entry.get('approved_for_weekly_slot') is not False or not (
+                status == 'DO NOT SUBMIT'
+                or (isinstance(status, str) and status.startswith('PROMOTE'))):
+            raise ValueError('Inventory requires DO NOT SUBMIT (or recorded PROMOTE lane) status and false slot approval')
         registered[target] = entry
     return registered
 
@@ -143,12 +146,20 @@ def check(root=ROOT):
         if not card_file.is_file():
             continue
         card = json.loads(card_file.read_text())
-        if card.get('verdict') != 'negative':
+        promote_ok = (
+            card.get('verdict') == 'promote'
+            and card.get('submission_ready') is True
+            and all((card.get('gates') or {}).values())
+            and card.get('submission_slots_used') == 0
+            and card.get('approved_for_weekly_slot') is False
+            and card.get('safe_to_submit') is False
+        )
+        if card.get('verdict') != 'negative' and not promote_ok:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         for key in ('submission_ready', 'approved_for_weekly_slot', 'safe_to_submit'):
-            if key in card and card[key] is not False:
+            if key in card and card[key] is not False and not (promote_ok and key == 'submission_ready'):
                 errors.append(f'{card_file.name}: {key} must be false')
     summary_path = root / 'docs/data/summary.json'
     if summary_path.is_file():

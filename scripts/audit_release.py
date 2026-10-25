@@ -116,6 +116,18 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": context["holdout_dti"], "ci95": context["holdout_ci95"],
                 "design": "buffered whole components; one seed",
                 "caveat": "Historical configuration only. Hidden-positive counts were used for the prior and dot budget; not an independent promotion benchmark."}
+    if kind == "h86g_edti":
+        hn = context.get("holdout_dti_normalized")
+        if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86G-EDTI card lacks normalized HOLDOUT-DTI")
+        if (context.get("verdict") != "promote" or context.get("submission_slots_used") != 0
+                or not all((context.get("gates") or {}).values())):
+            raise ValueError("H86G-EDTI card is not in its promote/no-slot state")
+        return {**base, "status": "CURRENT_LANE_PROMOTE_LIKE_FOR_LIKE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
+                "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
+                "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -232,7 +244,9 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
             and bool(receipt["note"].strip()) and len(receipt["note"]) <= 140,
         receipt_note_count_matches=receipt.get("note_chars") == len(receipt.get("note", "")),
         inventory_explicitly_negative=entry.get("approved_for_weekly_slot") is False
-            and "DO NOT SUBMIT" in entry.get("status", ""),
+            and ("DO NOT SUBMIT" in entry.get("status", "")
+                 or (config.get("holdout_kind") == "h86g_edti"
+                     and entry.get("status", "").startswith("PROMOTE"))),
     )
     with rasterio.open(tif) as src:
         checks["no_nodata_tag"] = src.nodata is None
@@ -254,9 +268,21 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
     if config["card"]:
         card = strict_json(inside(root, config["card"]))
         checks["sha_matches_scientific_card"] = card["raster_sha256"] == file_sha
-        checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
-        checks["scientific_card_does_not_authorize"] = all(
-            card.get(field) is not True for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+        if config.get("holdout_kind") == "h86g_edti":
+            # PA-86-01 promote lane: like-for-like gates recorded as passing in
+            # the card; slot approval and organizer acceptance stay false here.
+            checks["scientific_card_is_negative"] = (
+                card.get("verdict") == "promote"
+                and all((card.get("gates") or {}).values())
+                and card.get("submission_slots_used") == 0)
+            checks["scientific_card_does_not_authorize"] = (
+                card.get("submission_ready") is True
+                and card.get("safe_to_submit") is False
+                and card.get("approved_for_weekly_slot") is False)
+        else:
+            checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
+            checks["scientific_card_does_not_authorize"] = all(
+                card.get(field) is not True for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
     if config["holdout_kind"] == "blindgeothermal_candidate":
         method = context.get("method", {})
         uniqueness = context.get("uniqueness", {})
@@ -296,7 +322,10 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                                on_catalogue_positive=report["on_catalogue_positive_pixels"], meta=report["meta"]),
                 historical_holdout=archived_holdout(config, context),
                 safe_to_download_for_audit=passed, safe_to_submit=False,
-                approved_for_weekly_slot=False, verdict="negative", status="DO NOT SUBMIT")
+                approved_for_weekly_slot=False,
+                verdict=("promote" if config.get("holdout_kind") == "h86g_edti" else "negative"),
+                status=("PROMOTE — OK TO SUBMIT (selector-ready)"
+                        if config.get("holdout_kind") == "h86g_edti" else "DO NOT SUBMIT"))
 
 
 def measure_all_registry(root: Path = ROOT) -> dict:
@@ -424,7 +453,7 @@ def build_report(root: Path = ROOT) -> dict:
                 except zipfile.BadZipFile as exc:
                     raise ValueError(f"Invalid quarantined submission/ ZIP: {cand_zip.name}") from exc
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
-    linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
+    linked_cards = {c["card"] for c in configs if c.get("card")}
     sidecar_cards_negative = True
     for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
         rel_card = str(card_path.relative_to(root))

@@ -120,6 +120,13 @@
       "context": "docs/evidence/h86f-gzzd-run-card.json",
       "holdout_kind": "h86f_gzzd",
       "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "card": "docs/evidence/h86g-edti-run-card.json",
+      "context": "docs/evidence/h86g-edti-run-card.json",
+      "holdout_kind": "h86g_edti",
+      "stem": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros"
     }
   ]
 }

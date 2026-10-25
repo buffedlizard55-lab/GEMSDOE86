@@ -1,6 +1,6 @@
 # Standing project prompt (condensed historical archive)
 
-**Read the latest README decision and its complete 2026-10-24 request archive first.** Latest RIDF lane: `research/H86E_RIDF_REVIEW.md` (new TIFF generated, automatically rejected: negative + duplicate). New lanes use PA-86-01/02 (AGENTS.md rule 10).
+**Read the latest README decision and its complete 2026-10-24 request archive first.** Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used). Earlier RIDF lane: `research/H86E_RIDF_REVIEW.md` (negative + duplicate). New lanes use PA-86-01/02 (AGENTS.md rule 10).
 The 2026-10-24 request expands the named fleet to 92 projects (`GEMSDOE` through `GEMSDOE92`, adding 8 newly reported owner scores across `GEMSDOE76`..`GEMSDOE87` plus unscored artifact stems for `GEMSDOE89` and `GEMSDOE90`, with 4 bare `:` sites `GEMSDOE86`, `GEMSDOE88`, `GEMSDOE91`, `GEMSDOE92`) while retaining the exact same standing protocol. Current remeasurement:
 `docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
 The current request is archived verbatim in `research/REQUEST_20261024.md`; the 2026-10-23 request remains in `research/REQUEST_20261023.md`, and the earlier request remains in

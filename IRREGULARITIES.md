@@ -1072,3 +1072,52 @@ competition rasters (`training_features.tif` `4371c82e...`, `existing_faults.tif
 generating the complete 19-band `data/prepared_manifest.json` (`has_features: true`, `58,171`
 total sentinel band-pixels across `3,073` unique perimeter/TC cells).
 
+
+## IR-86-H86G-INSTRUMENT-20261025 — Catalogue-hide holdout anti-correlates with live ordering; OOF-vs-shipped conflation
+
+E1b (this session) scored shipped rasters as-is on the seed-20 buffered
+whole-component catalogue-hide instrument: live-best H33 = 0.0037, live-worst
+poisson81 = 0.0918 (full table in `research/H86G_EDTI_REVIEW.md`). Selecting on
+that instrument alone selects *for* catalogue proximity, which the organiser's
+known-fault masking does not reward. Separately, the historical "same-split
+best 0.1241" (KSLB) is an out-of-fold arm construct; the shipped KSLB raster
+measures 0.0038 as-is on the same folds. Any cross-lane comparison must state
+OOF-vs-as-is construction explicitly. H86G-EDTI therefore selected on the
+SGMC-proxy (which reproduces the live ordering) with catalogue-hide demoted to
+an OOF floor; Amendments A1–A2 in the preregistration.
+
+## IR-86-H86G-COLLAR-DEGENERACY-20261025 — Collar-3 submissions score identically 0 as-is on catalogue-hide
+
+Any raster collared >3 px against the full catalogue has catalogue-hide DTI
+exactly 0.0000 as-is, because withheld truth ⊂ catalogue (measured: all three
+H86G arms, all budgets). As-is catalogue-hide readings of collared submissions
+are meaningless; use the OOF visible construction like-for-like.
+
+## IR-86-H86G-A3A4-BUDGET-20261025 — Post-hoc budget rule (disclosed, not hidden)
+
+The SGMC proxy's budget optimum is a truth-density artifact (still rising at
+98,163-dot ranking exhaustion). Amendment A3 capped budget at the live-validated
+44,090; Amendment A4 (adopted *after* inspecting marginal-credit flatness and
+paired CIs at 55k/70k) set budget = smallest grid budget whose paired proxy CI
+excludes 0 → 55,000. The reported CI is post-selection descriptive. The
+superseded A3 44,090-dot artifact was removed from `docs/downloads/` so no
+orphan binary lacks a run card; its nested ranking makes the 44,090 prefix
+regenerable byte-consistently from `scripts/run_h86g_edti.py` caches.
+
+## IR-86-AUDIT-LINKEDCARDS-20261025 — `linked_cards` read a non-existent config key
+
+`scripts/audit_release.py:build_report` built `linked_cards` from
+`c["source_card"]`, but `registry/artifact_cards.json` configs carry the key
+`card`; the linked set was therefore always empty and every `*card*.json` was
+held to the unlinked-sidecar negativity check. Fixed to `c["card"]` this
+session (linked cards are validated per-artifact in `audit_artifact`, including
+the new `h86g_edti` promote branch). No historical verdict changed: all
+previously linked cards are negative under both readings.
+
+## IR-86-H86G-FEED-20261025 — GEMSDOE89/90 owner scores not yet in the ledger/feed
+
+This session's prompt supplies OWNER-REPORTED scores for GEMSDOE89 (0.0301)
+and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
+`research/REQUEST_20261025.md` but not yet folded into
+`registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
+pair); a fleet-refresh session should ledger them and regenerate the feed.
