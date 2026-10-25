@@ -118,6 +118,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_unvalidated":
+        h = context.get("holdout_dti", {})
+        if (context.get("lane") != "H86M-DAMAGERING"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or h.get("status") != "NOT_RUN_NO_PUBLIC_LABELS"
+                or any(h.get(k) is not None for k in ("value", "ci95", "withheld_positives"))):
+            raise ValueError("H86M archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
+                "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."}
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}

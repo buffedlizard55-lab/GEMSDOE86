@@ -225,6 +225,13 @@
       "context": "docs/evidence/h86l-fmc-run-card.json",
       "holdout_kind": "h86l_fmc",
       "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
+    },
+    {
+      "lane": "H86M-DAMAGERING inherited catalogue-ring export (no holdout; audit only)",
+      "card": "docs/evidence/h86m-damagering-run-card.json",
+      "context": "docs/evidence/h86m-damagering-run-card.json",
+      "holdout_kind": "h86m_unvalidated",
+      "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     }
   ]
 }
