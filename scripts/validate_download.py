@@ -11,20 +11,35 @@ from pathlib import Path
 import numpy as np, rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor"))
+sys.path[:0] = [str(ROOT), str(ROOT / "vendor")]
 from gems57 import grid as G  # pinned constants only; no data files read
+from scripts.audit_release import inside, sha256, strict_json, verify_shared_pins
+
+
+def require_shared_tools(root: Path) -> None:
+    """Reject either vendored tree drifting, including the actually imported grid."""
+    pins = strict_json(root / 'research/template_pin.json')['files']
+    if (not all(verify_shared_pins(root).values())
+            or sha256(Path(G.__file__)) != pins['vendor/gems57/grid.py']):
+        raise ValueError('Shared tool SHA drift; independent validation cannot proceed')
 
 
 def validate() -> dict:
-    card = json.loads((ROOT / "docs/evidence/run-card.json").read_text())
-    tif = ROOT / card["submission_file"]
+    require_shared_tools(ROOT)
+    card = strict_json(inside(ROOT, 'docs/evidence/run-card.json'))
+    # Treat evidence as untrusted input: never read an arbitrary filesystem path
+    # or a sibling/private raster simply because a run card names it.
+    tif = inside(ROOT, card['submission_file'], directory='docs/downloads')
+    if tif.suffix.lower() not in {'.tif', '.tiff'}:
+        raise ValueError('Published candidate must be a TIFF')
+    zpath = inside(ROOT, str(tif.with_suffix('.zip').relative_to(ROOT)), directory='docs/downloads')
     sha = hashlib.sha256(tif.read_bytes()).hexdigest()
     checks: dict[str, bool] = {}
     checks["sha256_matches_run_card"] = sha == card["raster_sha256"]
     checks["note_le_140_chars"] = len(card["note"]) <= 140
     checks["experiments_within_budget_3"] = card.get("experiments_run", 99) <= 3
     # Shared uniqueness checker verdict must be reported verbatim, never paraphrased.
-    lane = json.loads((ROOT / "docs/evidence/lane86_results.json").read_text())
+    lane = strict_json(inside(ROOT, 'docs/evidence/lane86_results.json'))
     uniq = lane["final_uniqueness"]
     recorded = card['correlation_overlap_vs_registry']
     checks['uniqueness_checker_verbatim'] = bool(
@@ -52,7 +67,6 @@ def validate() -> dict:
     checks["values_in_0_1"] = bool(a.min() >= 0.0 and a.max() <= 1.0)
     checks["no_sentinels"] = bool(not ((a < -1e30) | (a == -9999)).any())
     checks["dots_match_run_card"] = int((a > 0).sum()) == int(card["validator"]["dots"])
-    zpath = tif.with_suffix(".zip")
     with zipfile.ZipFile(zpath) as z:
         checks["zip_contains_only_this_tif"] = z.namelist() == [tif.name]
         checks['zip_tif_bytes_equal_registered_tif'] = bool(
