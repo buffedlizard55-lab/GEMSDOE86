@@ -119,16 +119,15 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
     if kind == "h86m_lt_unvalidated":
-        h = context.get("holdout_dti", {})
-        if (context.get("verdict") != "negative"
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("verdict") != "negative"
                 or not explicit_no_authorization(context)
                 or context.get("submission_slots_used") != 0
-                or h.get("status") != "NOT_RUN_REQUIRED_DESIGN"
-                or any(h.get(k) is not None for k in ("value", "ci95", "withheld_positives", "evaluator_version"))):
-            raise ValueError("H86M-LT archive must remain unvalidated and unauthorized")
+                or "holdout_dti" in context):
+            raise ValueError("H86M-LT must remain unvalidated and unauthorized")
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
-                "design": "Fleet-score tomography, not buffered segment hide-and-recover; evaluator_version names the required instrument, not an executed evaluation",
-                "caveat": "Owner-reported score fitting and SGMC proxy evaluation do not establish HOLDOUT-DTI improvement. Historical registry evidence uses Pearson surface correlation, not the required rank correlation. DO NOT SUBMIT."}
+                "design": "Aggregate owner-reported score tomography; no buffered hide-and-recover evaluation",
+                "caveat": "Fitted projections and SGMC-PROXY-DTI are not HOLDOUT-DTI. Post-outcome gate amendments, missing per-feature canaries, and Pearson rather than Spearman surface checks prevent clearance. Historical registry measurements were not recomputed. DO NOT SUBMIT."}
     if kind == "h86m_unvalidated":
         h = context.get("holdout_dti", {})
         if (context.get("lane") != "H86M-DAMAGERING"

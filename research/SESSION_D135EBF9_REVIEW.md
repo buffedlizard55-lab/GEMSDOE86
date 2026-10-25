@@ -4,7 +4,7 @@
 
 No new TIFF, geological experiment, or weekly submission was made. The requested unique, scientifically validated new submission remains **unmet**, not silently replaced with a renamed existing raster. No single method paragraph was supplied for the parallel lane. Current workspace inspection also finds missing native training inputs and no authenticated shared feature cache. These are execution blockers, not evidence that a hypothesis is negative.
 
-The newest inherited H86M-LT TIFF remains an easy [audit download](../docs/h86m-lt.html). Registration now makes the standard release audit cover all 36 published research TIFFs. Its previous `safe_to_submit=true` claim is withdrawn. Original numerical projections remain in its run card for reproducibility, with `historical_verdict=promote`; current verdict is negative, not upload-authorized. No raster or ZIP bytes were changed.
+The newest inherited H86M-LT TIFF remains an easy [audit download](../docs/h86m-lt.html). Registration now makes the standard release audit cover all 36 published research TIFFs. Its previous `safe_to_submit=true` claim is withdrawn. Original numerical projections remain in its run card for reproducibility, with its original promotion preserved in `historical_promotion_claim`; current verdict is negative, not upload-authorized. No raster or ZIP bytes were changed.
 
 ## Why H33 may have outperformed related submissions
 
@@ -50,3 +50,16 @@ Shared release audit, download byte/ZIP audit, `build_site.py --check`,
 `check_site.py`, and `git diff --check` passed. Full suite: **1033 passed,
 24 skipped, 48 warnings, 58 subtests passed**. Skips are not passes; warnings
 include rasterio Affine multiplication deprecation. No scientific model was run.
+
+### Parallel merge reconciliation
+
+Main advanced during verification with an independent implementation of the same
+archive repair (session 57139348). Reused its shared normalization and tests rather
+than maintaining a fork. It stores missing HOLDOUT-DTI as an absent field and
+preserves the original claim in `historical_promotion_claim`. Regenerated publication
+evidence after reconciliation; the pre-merge 1033-test count above describes this
+branch before reuse, not an assertion of the reconciled suite count.
+
+Reconciled final suite: **1029 passed, 24 skipped, 48 warnings, 58 subtests passed**.
+Release audit with witness remeasurement, regenerated download audit/site and site
+checker passed after adopting the upstream shared implementation.

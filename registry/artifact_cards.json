@@ -248,7 +248,7 @@
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     },
     {
-      "lane": "H86M-LT leaderboard tomography (unvalidated archive)",
+      "lane": "H86M-LT leaderboard tomography (unvalidated archive; DO NOT SUBMIT)",
       "card": "docs/evidence/h86m-lt-run-card.json",
       "context": "docs/evidence/h86m-lt-run-card.json",
       "holdout_kind": "h86m_lt_unvalidated",

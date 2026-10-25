@@ -1,20 +1,22 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Current review (2026-10-25): **DO NOT SUBMIT**
+## Current review — 2026-10-25 (`arena/57139348-gemsdoe86`): **DO NOT SUBMIT**
 
-**36** published research TIFFs are now registered; all are audit-only, including PR #92. This review generated **no new candidate**.
+**36** published research TIFFs are locally format-valid, audit-only downloads. This session generated **no new candidate**.
 
-The newest inherited TIFF, [H86M-LT](docs/h86m-lt.html), is downloadable **for audit only**.
-Its range/format checks do not establish scientific improvement or upload approval.
-The previous “OK TO SUBMIT” claim is withdrawn: its fleet-score projections are not
-buffered fault-segment HOLDOUT-DTI, and its surface comparison used Pearson rather
-than the required rank correlation. No new TIFF was generated in this review.
-[Review, research priorities and limitations](research/SESSION_D135EBF9_REVIEW.md).
+**Download available, upload NOT cleared.** The inherited H86M-LT TIFF is now registered as an audit-only download. Its earlier “OK TO SUBMIT” claim was unsupported: it has no required buffered hide-and-recover validation or CI, and its surface registry checker uses Pearson rather than rank correlation. No new TIFF was generated or copied in this review, and no weekly slot was spent.
 
-Start every session with the [standing owner prompt](PROMPT.md), reproduced in this
-README's archived request sections, and [AGENTS.md](AGENTS.md). Maximize P(Win) by
-rejecting unsupported promotion; Own the Outcome by preserving negative evidence
-and fixing publication inconsistencies rather than spending unvalidated slots.
+- [Download dashboard](docs/index.html) · [submission guide](docs/executive-summary.html) · [LT audit-only file and evidence](docs/h86m-lt.html).
+- [Three-pass review and ranked hypotheses](research/SESSION_57139348_REVIEW.md) · [negative run card](docs/evidence/session-57139348-run-card.json).
+- Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
+- Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
+
+## Parallel review reconciliation — session `d135ebf9`
+
+The parallel review independently found the same H86M-LT publication failures.
+Reused its shared archive fix rather than retaining a private implementation.
+[Additional three-pass review, ranked refinements and access limits](research/SESSION_D135EBF9_REVIEW.md).
+No new candidate was generated and no weekly slot used.
 
 ## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 

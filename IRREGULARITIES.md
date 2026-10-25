@@ -1578,16 +1578,12 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
 
-## IR-86-LT-UPLOAD-CLEARANCE-D135EBF9 (2026-10-25)
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
 
-The inherited H86M-LT README/page claimed “OK TO SUBMIT” and its card set
-`safe_to_submit=true`, but it lacked the requested buffered-segment HOLDOUT-DTI
-and was absent from the release inventory. Its archived continuous-surface
-comparison used Pearson, not required Spearman rank correlation. No inference
-of unique submission readiness is warranted. Withdrew clearance, preserved
-numerical history and TIFF/ZIP bytes, registered the negative archive, and
-remeasured 36 inherited rasters against the pinned literal witness. That is
-not a new candidate or complete-registry clearance. See
-`research/SESSION_D135EBF9_REVIEW.md`. All shared format/publication checks now
-pass; full regression: 1033 passed, 24 skipped, 48 warnings, 58 subtests passed.
-No weekly slot used. Missing shared cache and lane assignment remain blockers.
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
