@@ -1,0 +1,9 @@
+{
+  "audit_ok": true,
+  "decision": "DO NOT SUBMIT",
+  "artifact_count": 21,
+  "locally_valid_artifacts": 21,
+  "all_final_artifacts_remeasured": true,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

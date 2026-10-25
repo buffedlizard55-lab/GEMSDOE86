@@ -67,7 +67,7 @@ trace hit squarely; reallocations of H33's own dots measure |Δ| ≤ 0.0073.
 
 ## Q2 — Can we generate a submission that scores higher than 0.2778?
 
-Possibly — H86G-EDTI (already selector-ready) is the repo's designed attempt
+Possibly — H86G-EDTI (historical amended-gate promote; not currently authorized on main) is the repo's designed attempt
 (independent multiline surface, SGMC-PROXY-DTI 0.1223 vs H33 0.0954, only 26%
 dot overlap with H33), but **no number in this repo is a live score** and the
 0.3195/0.4413 "leaderboard high" claims in the prompt are OWNER-REPORTED and

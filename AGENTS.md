@@ -71,3 +71,8 @@
     AMP-GRADMAG control as a candidate (it is an EDTI-L-lineage 3-detector
     subset) and never re-run unchanged pure PC; a hybrid amplitude×phase
     gate or phase-symmetry lane needs a fresh preregistration.
+
+14. Scientific `promote` / `submission_ready` is not upload authorization. Keep homepage,
+    executive guide, README and summary aligned with `safe_to_submit` and
+    `approved_for_weekly_slot`; both are currently false. Do not restore “submit this
+    file” buttons from historical promotion prose. See `research/SESSION_085C2B7A_REVIEW.md`.
