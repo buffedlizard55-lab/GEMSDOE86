@@ -53,5 +53,10 @@
   "unique_tiff_requirement_satisfied": false,
   "experiments_run": 0,
   "submission_slots_used": 0,
-  "requirement_unmet": "No unique new TIFF can pass the unchanged literal overlap threshold while the pinned witness covers every allowed cell; no lane was assigned and the actual shared feature stack is absent."
+  "requirement_unmet": "No unique new TIFF can pass the unchanged literal overlap threshold while the pinned witness covers every allowed cell; no lane was assigned and the actual shared feature stack is absent.",
+  "registry_measurement_source": {
+    "file": "docs/evidence/session-followup-snapshot/all-artifacts-registry.json",
+    "sha256": "6bae21acf374f99191d8919b01c1458c1e7a81832ef1e56c40476f75184d0832",
+    "scope": "Frozen measurement used by this historical review; not the mutable latest registry audit."
+  }
 }
