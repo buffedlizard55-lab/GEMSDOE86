@@ -1,5 +1,9 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
+
+This review generated **no new candidate** or weekly submission. **35** published TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
+
 ## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
 
 **No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.

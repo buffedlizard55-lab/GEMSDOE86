@@ -79,8 +79,14 @@ def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
     assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
     assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
-    assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
-    assert card["correlation_overlap_vs_registry"]["registry_measurement_utc"] == registry["measured_utc"]
+    # This is a historical, immutable follow-up. A later --measure-registry
+    # refreshes the current proof and registry timestamps without rerunning the
+    # archived follow-up or falsifying its measurement clock.
+    from datetime import datetime
+    assert (datetime.fromisoformat(card["correlation_overlap_vs_registry"]["witness_measured_utc"])
+            <= datetime.fromisoformat(preflight["measured_utc"]))
+    assert (datetime.fromisoformat(card["correlation_overlap_vs_registry"]["registry_measurement_utc"])
+            <= datetime.fromisoformat(registry["measured_utc"]))
     assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False
