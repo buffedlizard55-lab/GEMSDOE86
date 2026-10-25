@@ -1,0 +1,8 @@
+# H86K-PSC review (2026-10-25) — 3-pass, negative result
+Hypotheses ranked in registry/h86k_psc_hypotheses.json (5; PSC rank1 run, DSV/CNT reserves, UCA/RAD reserves marked adjacent-tried in MCSP).
+Why H33 (owner-reported 0.2778, NOT organizer-confirmed): repo forensic = parent 40,199-dot raster minus 2,545 dots in 2px catalogue collar, none added. DTI alpha=0.2 penalizes FP mass, so pruning redundant dots can raise score if kernel-credit loss is small. Causal score attribution is not proven.
+Pass1: PSC Exp1 0.0371 [0.0297,0.0443] vs ridge 0.0403 — falsified standalone. Canary bug (mask excluded hidden pixels -> NaN AUC) found & fixed.
+Pass2: Exp2 saddle x ridge 0.0467 [0.038,0.055], 11,321 withheld, gems57-pooled-hide-v2; paired vs E1 +0.0095 [+0.0021,+0.0166], vs ridge +0.0064 [-0.0062,+0.0183] crosses zero -> strict verdict negative (script gate corrected & rerun, deterministic sha 57267b72...).
+Pass3: full registry restored (655 blobs); surface rho 0.336, final-dot rho 0.031 excl self, sparse dot-field max 3px overlap 0.526, 0 firings >0.70 (699/701, 2 incompatible disclosed). Format re-read: finite, [0,1], EPSG:32611 3730x3292, nodata None. audit_release, audit_downloads (29 TIFFs), check_site PASS.
+Root cause of portal "[0,1]" error: sample_submission.tif has nodata=NaN (7,111,787 NaN cells); -nan variants inherit NaN. New file uses zeros mode (all finite). Irregularity flagged: none new; literal 17GEMSDOE witness still fires on any nonempty candidate (reported, not hidden).
+Next: do not spend a slot. Stronger lanes need catalogue-aware fold-visible features beating H86J-MCSP 0.1463 on same instrument.

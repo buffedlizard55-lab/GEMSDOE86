@@ -1,5 +1,9 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Latest lane H86K-PSC (2026-10-25): **NEGATIVE — DO NOT SUBMIT** (unique audit TIFF, 0 slots)
+
+- **OK to submit? NO.** New unique TIFF [`gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif`](docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif) (SHA-256 `57267b72…`, 37,654 dots) is **format-valid** (all-finite zeros mode, min 0/max 1, 0 NaN — this fixes the portal “Predicted values must be in range [0, 1]” rejection caused by NaN-outside `-nan` files) and unique in the disclosed 53-raster measured scope (worst ρ 0.022, worst 3-px overlap 0.372), with canary PASS (max AUC 0.548). **HOLDOUT-DTI = 0.0467 [0.038, 0.055]** (gems57-pooled-hide-v2, 11,321 withheld) beats pure-saddle E1 (paired Δ +0.0095 [+0.0021,+0.0166]) but its paired Δ vs the ridge control crosses zero, so verdict = `negative`, `safe_to_submit=false`, `approved_for_weekly_slot=false`. Full status/download: [docs/h86k-psc.html](docs/h86k-psc.html) · [run card](docs/evidence/h86k-psc-run-card.json).
+
 ## Current independent repository review (2026-10-25)
 
 **DO NOT SUBMIT any current TIFF.** The read-only review verified 28/28 inherited artifacts for local format/integrity only; all remain blocked from competition use. The literal full-support registry witness covers every allowed cell, no method paragraph is assigned, and the required shared derived feature cache is absent. No experiment or slot was used. See [the three-pass review, ranked research queue, verification commands, and next-step blockers](research/ARENA_REPO_REVIEW_20261025.md). The request itself remains archived in [PROMPT.md](PROMPT.md) and [research/REQUEST_20261025.md](research/REQUEST_20261025.md); never treat owner-reported leaderboard claims as organizer receipts.

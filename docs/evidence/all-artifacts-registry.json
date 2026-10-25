@@ -263,6 +263,15 @@
       "unique": false,
       "stop_required": true,
       "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+      "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+      "spearman_full_footprint": 0.0037967686626548024,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
     }
   ],
   "scope": "Rechecks all inherited final TIFFs against one immutable witness, not the full registry. Sufficient to reject, never to clear or rank candidates."

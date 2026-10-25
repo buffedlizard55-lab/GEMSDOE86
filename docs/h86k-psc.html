@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H86K-PSC submission status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><main id="main" style="max-width:900px;margin:2rem auto;padding:0 1rem">
+<p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
+<h1>H86K-PSC — new unique GeoTIFF (2026-10-25)</h1>
+<section class="callout">
+<span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: negative)</span>
+<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span>
+<h2>Download (audit only)</h2>
+<p><a class="btn" href="downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a href="downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.json">Writer receipt</a> ·
+<a href="evidence/h86k-psc-run-card.json">JSON run card</a></p>
+<dl>
+<dt>File</dt><dd><code>gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif</code></dd>
+<dt>SHA-256</dt><dd><code>57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d</code></dd>
+<dt>Unique submission name (audit reference only, DO NOT UPLOAD)</dt><dd><code>gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z</code></dd>
+<dt>Portal note (≤140 chars, audit reference only)</dt><dd><code>H86K-PSC saddle-persist CELF 37654d HOLDOUT-DTI 0.0467; zeros finite [0,1]; verdict negative</code></dd>
+</dl>
+</section>
+<h2>Why the earlier portal error “Predicted values must be in range [0, 1]” happens</h2>
+<p>The pinned <code>sample_submission.tif</code> itself carries NaN outside the footprint (nodata=NaN), and any
+<code>-nan</code> diagnostic variant inherits NaN cells. A range checker that tests every cell rejects NaN as not in
+[0, 1]. This lane therefore uses the writer's <strong>zeros mode only</strong>: every one of the 12,279,160 cells is finite,
+min = 0.0, max = 1.0, nodata = none, 0 NaN / 0 Inf — independently re-read from disk. That fixes the format rejection;
+it does <em>not</em> make the file scientifically submittable.</p>
+<h2>Automated validation (no human inspection)</h2>
+<ul>
+<li>Format/range: PASS (single band float32, EPSG:32611, 3730×3292, exact sample transform, values in [0,1], 0 dots on catalogue).</li>
+<li>Leakage canary: PASS — max single-feature AUC 0.548 ≤ 0.90.</li>
+<li>HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives): E2 saddle×ridge <strong>0.0467 [0.038, 0.0550]</strong>; beats pure saddle E1 0.0371 (paired Δ +0.0095 [+0.0021, +0.0166]) but vs gradient-ridge control 0.0403 paired Δ +0.0064 [−0.0062, +0.0183] crosses zero → does not clear the promotion bar.</li>
+<li>Uniqueness (full restored registry: 699/701 rasters measured, 2 incompatible disclosed): worst surface Spearman ρ = 0.336, worst final-dot ρ = 0.031 (excluding candidate self-match), sparse dot-field max 3-px overlap = 0.526 with 0 firings &gt; 0.70. Literal continuous-witness reading (17GEMSDOE full-support) still fires on any nonempty candidate and is reported in the registry reports, not hidden.</li>
+<li>Verdict: <strong>negative — DO NOT SUBMIT, 0 weekly slots used, approved_for_weekly_slot = false.</strong> Promotion/slot selection is a separate step.</li>
+</ul>
+<h2>Why H33 (owner-reported 0.2778) scored higher — and why this does not beat it</h2>
+<p>Archived forensic work in this repo shows H33 is the parent 40,199-dot raster with 2,545 dots inside the 2-px catalogue
+collar removed and no dots added: pruning redundant false-positive mass under the DTI denominator (α=0.2 on FP) can raise the
+score if lost kernel credit is small. That is a raster-measurement result, not causal proof of the owner-reported score, and
+no number here is ORGANIZER-CONFIRMED. H86K-PSC is deliberately catalogue-blind at &gt;3 px, so it cannot exploit that
+catalogue-adjacent kernel credit; its holdout (0.0467) is far below catalogue-aware lanes (e.g. H86J-MCSP 0.1463 on a different
+instrument). Claiming it would beat 0.2778 would be a projection, not a score — so it is not promoted.</p>
+<p>Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem/format</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> ·
+<a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></p>
+</main></body></html>

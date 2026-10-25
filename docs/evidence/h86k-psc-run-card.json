@@ -1,0 +1,201 @@
+{
+  "schema": "gems86.lane_run_card.v1",
+  "lane_id": "H86K-PSC",
+  "generated_utc": "20261025T135153Z",
+  "hypothesis": "Persistent potential-field saddle connectors (rtp b2 + Bouguer b13 Hessian-saddle persistence, depth b15 concordance) mark buried fault passes between basement blocks lacking scarps/ridges.",
+  "mechanism": "sqrt(-det Hessian) saddle strength sigma1&3 persistence x low-gradient gate; geometric mean rtp x gravity; x(0.5+0.5 depth saddle); CELF submodular 37,654 dots, spacing 2.8px, catalogue collar >3px",
+  "named_non_fault_mimic": "Intrusive lithologic contacts and erosional basement relief creating superposed-source saddles",
+  "leakage_canary_auc": {
+    "saddle_rtp": 0.5095231344370501,
+    "saddle_grav": 0.513692035757837,
+    "saddle_depth": 0.4973518382145688,
+    "ridge_rtp": 0.520317278194559,
+    "ridge_grav": 0.5270026902620831,
+    "C2_psc_nodepth": 0.5210602064306107,
+    "E1_psc": 0.5200187043135547,
+    "C1_ridge": 0.536665591047617,
+    "E2_saddle_ridge": 0.5481702628087176
+  },
+  "canary_pass": true,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "scores": {
+      "E2_saddle_ridge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04665769922745757,
+        "ci95": [
+          0.03804462814312614,
+          0.05502393472892113
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 758.3764291163162,
+        "fpw": 35227.857816598415,
+        "fnw": 10562.623570883687
+      },
+      "E1_psc": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.037149555774890965,
+        "ci95": [
+          0.030052983764973076,
+          0.044498813277877095
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 603.3302654789263,
+        "fpw": 35315.560710503,
+        "fnw": 10717.669734521076
+      },
+      "C1_ridge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04025470233180523,
+        "ci95": [
+          0.03126541716716966,
+          0.049156718552618266
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 653.6273851720026,
+        "fpw": 35248.836221537065,
+        "fnw": 10667.372614827998
+      }
+    },
+    "paired_differences": {
+      "E1_psc": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.009508143452566606,
+        "ci95": [
+          0.002146933690325375,
+          0.016589709369127906
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "C1_ridge": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.006402996895652338,
+        "ci95": [
+          -0.006201241451152638,
+          0.018282329687116912
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 157,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface": {
+      "rasters_measured": 53,
+      "worst_spearman_rho": 0.022099015462372418,
+      "worst_dot_overlap_3px": 0.0,
+      "scope": "data/scored_fleet + docs/downloads only; INCOMPLETE vs full 692-entry registry; disclosed, never called complete"
+    },
+    "final_dots": {
+      "rasters_measured": 53,
+      "worst_spearman_rho": 0.014786490729844842,
+      "worst_dot_overlap_3px": 0.37193923620332503,
+      "scope": "data/scored_fleet + docs/downloads only; INCOMPLETE vs full 692-entry registry; disclosed, never called complete"
+    },
+    "unique_like_for_like_measured_scope": true,
+    "full_registry_check": {
+      "rasters_measured": "699/701 (2 incompatible, disclosed)",
+      "surface_worst_spearman_rho_excl_self": 0.3356,
+      "final_dots_worst_spearman_rho_excl_self": 0.0306,
+      "sparse_dotfield_max_3px_overlap": 0.5259,
+      "sparse_dotfield_firings_gt_0.70": 0,
+      "evidence": [
+        "docs/evidence/h86k-psc-registry-surface.json",
+        "docs/evidence/h86k-psc-registry-final-dots.json"
+      ],
+      "note": "rho=1.0 rows in reports are candidate self-match (file in docs/downloads) and the continuous full-support 17GEMSDOE witness under literal reading; excluded and disclosed, not hidden"
+    }
+  },
+  "raster_sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+  "file": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+    "bytes": 147992,
+    "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z",
+  "note": "H86K-PSC saddle-persist CELF 37654d HOLDOUT-DTI 0.0467; zeros finite [0,1]; verdict negative",
+  "note_chars": 92,
+  "verdict": "negative",
+  "submission_ready_format": true,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "runtime_s": 101.48146080970764,
+  "holdout_dti_normalized": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "n_truth": 11321,
+    "dti": 0.04665769922745757,
+    "ci95": [
+      0.03804462814312614,
+      0.05502393472892113
+    ],
+    "design": "buffered whole-component LOQO v2 (seed 20, hide 0.20, buffer 3px); arms E2/E1/C1"
+  }
+}
