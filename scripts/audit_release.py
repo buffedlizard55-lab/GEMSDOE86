@@ -242,8 +242,8 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     # NOTE: H86M-LT is handled by the merged `h86m_lt_unvalidated` branch above
     # (PR #166, session 57139348); session 92f9e0e8's parallel `h86m_lt` branch
     # was removed at merge time so exactly one LT normalization path exists.
-    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
-        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql", "h86n_gsst"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL, H86N-GSST): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
         cand = h.get("candidate") or {}
@@ -414,13 +414,20 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_pfte":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-PFTE lane result; the run card is the authoritative experiment receipt. 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF at 37,654 dots achieves an all-time 37,654-dot repository high on blind off-catalogue SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407], beating GEMSDOE32 H33 (+0.0273 [+0.0066, +0.0485]), unstripped scalar ablation E3 (+0.0419 [+0.0199, +0.0646]), H86F-EWCS (+0.0391 [+0.0188, +0.0603]), H86J-MCSP (+0.0211 [+0.0007, +0.0402]), and H86L-FMC (+0.0208 [+0.0004, +0.0422]) with 95% CIs strictly above zero and outscoring H86M-LT (0.1136) and H86K-STDP (0.1133), with strict pure-blind 4-fold LOQO HOLDOUT-DTI = 0.0734 [0.0591, 0.0882] (kinematic arm E1 reached 0.1310 [0.1141, 0.1476] with Fold NE 0.1436 vs E3 0.1185, halted before GeoTIFF serialization by Protocol Rule 1 due to 0.7041 > 0.70 3-px dot overlap vs H86K-STDP), 0/702 continuous surface Spearman firings > 0.90 (max 0.4795), and 0/464 discrete <=90k-dot firings > 0.70 (max 0.6244; 0.0843-0.3682 vs concurrent BMR/CNT/DAMAGERING/LT), while full v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     if kind == "h86m_slcq":
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
                 "evaluator_version": h["evaluator_version"],
                 "withheld_positives": h["withheld_positive_pixels"],
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
-                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/5 firings vs concurrent H86M/H86N TIFFs (max 0.3377), while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
+                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/7 firings vs concurrent H86M/H86N TIFFs, while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

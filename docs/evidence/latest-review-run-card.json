@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 38,
-    "local_format_pass": 38,
+    "checked": 40,
+    "local_format_pass": 40,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -225,6 +225,16 @@
         "verdict": "negative"
       },
       {
+        "file": "docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+        "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+        "sha256": "ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2",
+        "verdict": "negative"
+      },
+      {
         "file": "docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
         "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
         "verdict": "negative"
@@ -242,8 +252,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T19:25:57.702976+00:00",
+  "registry_measured_utc": "2026-10-25T19:46:58.946878+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "be7a5dd6ae63ecf7beb146b993f0b17b2169a09ae81ba1d867220c1d9497ac9f",
-  "registry_measurement_sha256": "1651847cf1f98b346daa3dcd2f35fc4869f3b6978803da11bf0c56056e6d4d9d"
+  "release_report_sha256": "bbfff7236786df4e2e97a2b988dc7433f17160f3d989fb2f6e7832d70abcfe33",
+  "registry_measurement_sha256": "5a5369d9088549604fed0b4810a72cf13b44903b9212dc0d82f3d595a88c752a"
 }

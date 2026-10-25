@@ -14,7 +14,7 @@ Declared **prior to any `H86M` feature, model, or allocator implementation**, in
 
 ## 2. Four Candidate Untried Geological Hypotheses (Ranked Before Implementation)
 
-Full machine-readable specification: [`registry/h86m_hypotheses.json`](../registry/h86m_hypotheses.json).
+Full machine-readable specification: [`registry/h86m_slcq_hypotheses.json`](../registry/h86m_slcq_hypotheses.json).
 
 1. **Rank 1 — `H86M-SLCQ` (Selected for Holdout Validation):** *Dip-Adaptive Salem Tilt-Contact Pullback $\widehat{\cot\delta}(x,y)$ $\times$ Steerable 8-Azimuth Log-Cauchy Step-vs-Dike Symmetry + Fold-Safe Out-of-Quadrant Basement Mass-Balance Residual (`BMR`) & Up-Head Geothermal Conduit Discovery with 5-Fold (`80/20` Hide-Matched) Strict LOQO & Exact 6-Ring Survival Dinkelbach-CELF.*
 2. **Rank 2 — `H86M-GSST` (Self-Contained Native Backup):** *Analytical 2-D Cauchy Fault-Step vs 3-D Compact-Pluton Source-Shape Likelihood Ratio Across Four Upward-Continuation Altitudes (`Bands 5, 11, 13, 18` + `Bands 2, 3, 9`).*

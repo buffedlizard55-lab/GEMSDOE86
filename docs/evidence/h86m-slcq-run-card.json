@@ -6,7 +6,7 @@
   "preregistration": {
     "path": "research/H86M_SLCQ_PREREGISTRATION.json",
     "markdown": "research/H86M_SLCQ_PREREGISTRATION.md",
-    "hypotheses_registry": "registry/h86m_hypotheses.json",
+    "hypotheses_registry": "registry/h86m_slcq_hypotheses.json",
     "sha256": "d538d3c7cb3cf97090c8ad77e754f731a7efe66f3a30cd9d6762046361496edb"
   },
   "hypothesis": "Dip-Adaptive Salem Tilt-Contact Pullback x Steerable 8-Azimuth Log-Cauchy Step-vs-Dike Symmetry + Fold-Safe Parker-Bouguer Basement Mass-Balance Residual (BMR) & Up-Head Geothermal Conduit Discovery with 5-Fold (80/20 Hide-Matched) Strict LOQO & Exact 6-Ring Survival Dinkelbach-CELF",
@@ -3216,11 +3216,11 @@
     },
     "post_merge_concurrent_main_tiffs": {
       "evidence_class": "REGISTRY-MEASUREMENT",
-      "rasters_checked": 5,
+      "rasters_checked": 7,
       "rho_firings_over_0p90": 0,
       "overlap_3px_firings_over_0p70": 0,
-      "worst_surface_spearman": 0.04661298389353222,
-      "worst_forward_overlap_3px": 0.3376799277633186,
+      "worst_surface_spearman": 0.0741817035467039,
+      "worst_forward_overlap_3px": 0.400355871886121,
       "rows": [
         {
           "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
@@ -3251,11 +3251,25 @@
           "forward_overlap_3px": 0.3376799277633186
         },
         {
+          "file": "docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": 0.0741817035467039,
+          "dots_spearman": 0.048973746018496765,
+          "forward_overlap_3px": 0.400355871886121
+        },
+        {
           "file": "docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
           "their_dots": 37654,
           "surface_spearman": -0.012318822742552369,
           "dots_spearman": 0.004618024926449079,
           "forward_overlap_3px": 0.08163807298029425
+        },
+        {
+          "file": "docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": 0.007040362834512794,
+          "dots_spearman": 0.009701008646285638,
+          "forward_overlap_3px": 0.12776863015881446
         }
       ]
     }

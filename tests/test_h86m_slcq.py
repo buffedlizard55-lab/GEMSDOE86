@@ -196,7 +196,7 @@ def test_five_fold_80_20_component_partition_and_cover_noisy_or():
 
 
 def test_h86m_preregistration_and_hypothesis_contracts():
-    hyp = json.loads((ROOT / "registry/h86m_hypotheses.json").read_text(encoding="utf-8"))
+    hyp = json.loads((ROOT / "registry/h86m_slcq_hypotheses.json").read_text(encoding="utf-8"))
     pre = json.loads((ROOT / "research/H86M_SLCQ_PREREGISTRATION.json").read_text(encoding="utf-8"))
     assert hyp["declared_before_implementation"] is True
     assert pre["declared_before_implementation"] is True

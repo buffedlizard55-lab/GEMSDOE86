@@ -702,7 +702,7 @@ def run_pa86_lane() -> int:
         "preregistration": {
             "path": "research/H86M_SLCQ_PREREGISTRATION.json",
             "markdown": "research/H86M_SLCQ_PREREGISTRATION.md",
-            "hypotheses_registry": "registry/h86m_hypotheses.json",
+            "hypotheses_registry": "registry/h86m_slcq_hypotheses.json",
             "sha256": sha256(PREREGISTRATION_PATH),
         },
         "hypothesis": prereg["protocol"]["single_method_lane"],
