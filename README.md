@@ -1,5 +1,14 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
+
+- **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.
+- **Why no new TIFF:** the shared feature stack is absent (`scripts/audit_workspace_inputs.py`), so nothing can be validated against a holdout; and the uniqueness rule is undefined for the dense probability rasters that the official reference solution writes.
+- **Review, verified commands and numbers, and the blockers:** [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079_REVIEW.md) · run card [`research/session-0c60b079-run-card.json`](research/session-0c60b079-run-card.json).
+- **Verified this session (pre-merge tree):** test suite `1001 passed, 24 skipped`; H33 = parent minus 2,545 in-footprint dots (0 added), but the pair also differs in 7,111,787 NaN-vs-zero cells; the vendored metric treats NaN as 0.
+- **Post-merge state (main `0c05e70`, identical on this branch):** `scripts/check_site.py` and `scripts/build_site.py --check` **FAIL** because the H86L-FMC TIFF/ZIP from PR #150 is not registered in `docs/evidence/download-inventory.json`; `pytest` shows **16 failed / 985 passed** (same count on main). This predates this session and is not caused by it. Repair belongs to the H86L owner (IR-H in `IRREGULARITIES.md`).
+- **Needed from you:** (1) place the competition training features and labels into `data/bridge/` from a logged-in DrivenData download; (2) an owner decision on how to define the dot set for dense rasters; (3) the filename that produced the "[0, 1]" portal error.
+
 ## ⛔ NEWEST TIFF (2026-10-25, H86L-FMC): **DO NOT SUBMIT** — unique file generated & machine-validated, hypothesis FALSIFIED
 
 - **OK to submit? NO.** [`gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif`](docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif) (SHA-256 `5bacedbe...`, 37,654 binary dots, values exactly {0,1}, validator 15/15 PASS) is **audit-download only**: HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) = **0.0000**, canary AUC 0.436, 3-px overlap 0.886 > 0.70 vs GEMSDOE63 (duplicate gate). `verdict="negative"`, `safe_to_submit=false`, 0 slots. [Run card](docs/evidence/h86l-fmc-run-card.json) · [Review & ranked hypotheses](research/SESSION_20261025_H86L_FMC_REVIEW.md) · Site banner: [docs/index.html#h86l-fmc](docs/index.html)

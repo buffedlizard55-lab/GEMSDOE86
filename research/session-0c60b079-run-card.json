@@ -1,0 +1,100 @@
+{
+  "session": "0c60b079",
+  "branch": "arena/0c60b079-gemsdoe86",
+  "date_utc": "2026-10-25",
+  "lane": "none assigned; no method paragraph in this request (PROMPT.md lane rule not satisfiable)",
+  "hypothesis": "No new hypothesis tested. Session tested whether a unique GEMS TIFF can be validated in this sandbox.",
+  "mechanism": "Not tested. Candidate mechanisms are listed in the review only, as unvalidated.",
+  "named_nonfault_mimic": "Not tested for a new lane. Repo queue mimics: Pleistocene Lake Lahontan shorelines (H86I-KSAD, per README).",
+  "holdout_dti": {
+    "value": null,
+    "status": "NOT_MEASURED",
+    "reason": "native features and shared template feature stack absent (audit_workspace_inputs.py)"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT_MEASURED",
+    "reason": "no candidate raster; witness registry/dense-witness.tif absent locally"
+  },
+  "raster_sha256": null,
+  "reference_raster_sha256": {
+    "h33_owner_reported_0.2778": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_GEMSDOE28_h27-4_owner_reported_0.2708": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+    "h86g_format_check_file": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+    "sample_submission_format_ref": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults_catalogue": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "validator_output": {
+    "candidate": "none generated",
+    "existing_audit_only_file": "scripts/verify_submission_tif.py exit 0 on docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif; format-only; DO NOT SUBMIT",
+    "range_scan_31_published_tifs": "all finite in [0,1], 0 NaN, EPSG:32611, 3730x3292"
+  },
+  "h33_measurements": {
+    "owner_reported_scores_unverified": {
+      "H33": 0.2778,
+      "parent_GEMSDOE28_h27-4-r1": 0.2708
+    },
+    "dots_parent": 40199,
+    "dots_h33": 37654,
+    "removed_inside_footprint": 2545,
+    "added": 0,
+    "parent_nan_cells": 7111787,
+    "h33_nan_cells": 0,
+    "footprint_cells": 5167373
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_chars": 0,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "bypass_used": false,
+  "drivendata_fetched": false,
+  "irregularities": [
+    "IR-A dense-raster gate semantics",
+    "IR-B H33 vs parent NaN/zeros encoding",
+    "IR-C portal [0,1] error unreproduced; -1 sentinel hypothesis",
+    "IR-D unverified leaderboard claims 0.4413 and 0.3195",
+    "IR-E witness absent locally",
+    "IR-F eligibility and generative-AI disclosure are user actions",
+    "IR-G DEM/GeoDAWN/DOI/DrivenData unreachable",
+    "IR-H main publish-gate failure from PR #150 (inherited, not repaired here)"
+  ],
+  "official_sources": [
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://github.com/drivendataorg/gems-prize-reference-solution (commit aebe92f7c8a990f0e3443451b7a825d9afd6336b)",
+    "https://doi.org/10.15121/1881483 (INGENIOUS labels, cited in rules; not fetched, unreachable)",
+    "https://doi.org/10.5066/P93LGLVQ (GeoDAWN, cited in rules; not fetched, unreachable)",
+    "https://epsg.io/32611"
+  ],
+  "test_suite_pre_merge": {
+    "command": "pytest -q",
+    "passed": 1001,
+    "skipped": 24,
+    "failed": 0
+  },
+  "post_merge": {
+    "main_commit": "0c05e70",
+    "tests_branch": {
+      "passed": 985,
+      "failed": 16,
+      "skipped": 24
+    },
+    "tests_main": {
+      "passed": 985,
+      "failed": 16,
+      "skipped": 24
+    },
+    "check_site_exit": 1,
+    "build_site_check_exit": 1,
+    "failing_artifacts": [
+      "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+      "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.zip"
+    ],
+    "introduced_by_this_session": false,
+    "irregularity": "IR-H",
+    "audit_release_exit": 1
+  }
+}
