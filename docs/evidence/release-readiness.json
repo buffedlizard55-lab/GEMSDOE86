@@ -17,8 +17,8 @@
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
     "docs/evidence/download-inventory.json": "0c2cf3c7d6f4fd04b0fa4fe13d3f7238c253f1eb7e7c72f48e4306f3d4f28f06",
-    "registry/artifact_cards.json": "b02e7bc55d91d34395099407b5908f90d5842ca63f4e9ba9c28c2cf787513ce3",
-    "docs/evidence/protocol-preflight.json": "dfb0bea7fd85105d16b73ad531362fae8a2c6c55e4ad7c820cd55fe7da2a9891",
+    "registry/artifact_cards.json": "ce3e1ff5e3ba2ec0b8529c2b0f305a13184c4963fa7d942cff391eca14701ae3",
+    "docs/evidence/protocol-preflight.json": "68cbba20739815b0a04f6300734e9c706c9f81b6be381c0d3f667938adda9a59",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -52,7 +52,7 @@
     "docs/evidence/h86m-bmr-run-card.json": "8cf50000353e263f1b464e3562091c5cf8241ef84e59f2d67520757a23288e7f",
     "docs/evidence/h86m-cnt-run-card.json": "1581aa70b4eac0536bd6b74bbfe6cbd7e109e83b695a0108a65c6c88cfefde3d",
     "docs/evidence/h86m-damagering-run-card.json": "9da6a255fcd64c60dd3f72fe9473e9ac0965aaf58a2d568e630c68efb71eb560",
-    "docs/evidence/all-artifacts-registry.json": "8cfe7335a3fa30d9cb26ec90354784e5db1e1d1c5cc6689a69870fe9ebf28753"
+    "docs/evidence/all-artifacts-registry.json": "620f5027a1b091e516131efa76074d7c7baeefb0b0d0a7a17d900c84d3008a6d"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -3822,7 +3822,8 @@
         "withheld_positives": null,
         "value": null,
         "ci95": null,
-        "caveat": "No HOLDOUT-DTI is assigned to this exported variant by the release audit; a score from another configuration or a leakage-suspect diagnostic must not be inherited as its validation."
+        "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
+        "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,

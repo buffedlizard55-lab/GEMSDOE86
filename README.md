@@ -1,14 +1,21 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## This branch's three-pass workspace review — 2026-10-25: **DO NOT SUBMIT**
+## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
 
-No candidate TIFF, geological experiment, or weekly-slot selection was produced by this review. No method paragraph was assigned, the shared feature cache is not established, and the pinned full-support witness blocks every nonempty candidate under the unchanged literal overlap gate. The live input audit found the training TIFF missing from both locations and 0/21 prepared-array paths hash-verified. Existing-fault and sample-grid files are integrity-verified owner mirrors, not organizer-authenticated inputs. No file is authorized for upload.
+**No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.
 
-- [Three-pass review: H33 assessment, evidence limits, ranked unrun hypotheses, citations and blockers](research/ARENA_REPO_REVIEW_20261025_LIVE_INPUT_REVIEW.md) · [review run card](docs/evidence/session-live-input-review-run-card.json) · [live input audit](docs/evidence/current-workspace-inputs.json) · [literal witness proof](docs/evidence/protocol-preflight.json).
-- A fresh release audit currently checks **35** published research TIFFs for local format/integrity only; this does not imply scientific validity, uniqueness clearance, or upload authorization. Re-run `make audit`, `make site`, and `make verify` after any artifact change.
-- The H86L-FMC TIFF on `main` is a separate negative/audit-only artifact, not generated or authorized by this review. The full request is archived below and in `research/REQUEST_20261025.md`.
+- Reproduced and repaired the inherited H86L-FMC inventory/card omission, then reconciled with parallel PR #156 and reused its repair instead of bypassing the failing audits. All **35** published research TIFFs and their ZIP partners pass the shared local-format/integrity audit; this is not submission approval.
+- Restored the hash-pinned historical witness and remeasured every final TIFF against it. Each fails the literal overlap gate; the witness is not official training data or a candidate.
+- H86L-FMC's archived holdout stays **leakage-suspect, not promotion evidence**. Passing a single-feature canary cannot undo full-catalogue fleet ancestry.
+- PR #158 subsequently added an unevaluated H86M catalogue-ring TIFF. Repaired its missing card mapping, remeasured all 33 files, and explicitly rejected its archived “leakage structurally impossible” claim. No holdout is inferred.
+- PR #157 subsequently added BMR and CNT negative experiments. These are now **already tried**, not new proposals. All 35 inherited outputs remain DO NOT SUBMIT; this session changed no TIFF pixels.
+- Final integrated verification: **41 focused tests passed**; shared release and download audits pass for **35** files; site, link and frozen-review checks pass. No final-tree full-suite pass is claimed.
+- Earlier verification before PR #158: reconciled suite **1015 passed, 24 skipped**; final H86L regression module **13 passed**. Release, download, generated-site and frozen-review checks pass.
+- [Current review, ranked research queue and limitations](research/SESSION_63051E73_REVIEW.md) · [Live inputs](research/session-63051e73-inputs.json) · [Run card](research/session-63051e73-run-card.json).
+- Earlier branch-specific three-pass review, with its original live-input snapshot and run card, remains available as a historical record: [review](research/ARENA_REPO_REVIEW_20261025_LIVE_INPUT_REVIEW.md) · [run card](docs/evidence/session-live-input-review-run-card.json). The later 63051e73 review and current release evidence supersede its timestamps and artifact counts.
+- Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
 
-
+The older snapshot below is historical; its H86L publication failure has been repaired in this review.
 ## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
 
 ## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**
@@ -23,7 +30,7 @@ Pages: [download decision](docs/index.html) · [how to submit, and why not now](
 
 ## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`): **DO NOT SUBMIT**
 
-- At the E95B35A0 review snapshot, **33** published research TIFFs and their one-TIFF ZIPs passed local format/integrity checks. Upstream main subsequently added H86M BMR, CNT, and DAMAGERING; the fresh audit linked above rechecks the current **35**-artifact inventory. All are **audit downloads only**. This session generated **no new candidate** and used no weekly slot.
+- Revalidated **33** published research TIFFs and their one-TIFF ZIPs: local format, [0,1] range, finite values, CRS, shape, transform and integrity pass. All are **audit downloads only**, including PR #92 and H86L-FMC. This session generated **no new candidate** and used no weekly slot.
 - Fixed H86L-FMC's missing publication registration without changing its TIFF or its negative/leakage-suspect evidence. The earlier inventory failure below is historical and repaired in this review.
 - Restored the pinned historical dense witness and remeasured all final artifacts: every nonempty allowed dot set fails the literal overlap rule. The native feature raster and required shared cache remain absent. No score improvement or unique submission has been established.
 - [Review, ranked research proposals, sources and limitations](research/SESSION_E95B35A0_REVIEW.md) · [Current machine decision](docs/evidence/release-readiness.json) · [Session run card](docs/evidence/session-e95b35a0-run-card.json) · [Submission guide](docs/executive-summary.html).
