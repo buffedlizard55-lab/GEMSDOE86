@@ -28,6 +28,10 @@ def rank_norm(a, valid):
     out[valid] = r / max(v.size-1, 1); return out
 
 def main():
+    # Historical candidate builder: fail closed before touching feature or holdout data.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     g = load_grid(ROOT/"data/bridge"); fp, cat = g.footprint, g.catalogue
     rtp = read_band(ROOT/"data/bridge/training_features.tif", "rtp").astype(np.float64)
     feats_raw = {}

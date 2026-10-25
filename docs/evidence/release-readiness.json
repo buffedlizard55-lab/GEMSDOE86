@@ -18,7 +18,7 @@
   "input_evidence_sha256": {
     "docs/evidence/download-inventory.json": "af5524c41bd441a913291f85e35e8e3432a37c36d5073ec7800391a31c6eba9e",
     "registry/artifact_cards.json": "cf9519d2485efe4f498687f7bb98d6448edf5ebcafb61956b6b304bf5a36679f",
-    "docs/evidence/protocol-preflight.json": "73fa6163247e4c3b55ef0ceebda8780d851eb282ea5e119570b47d4a3897249c",
+    "docs/evidence/protocol-preflight.json": "ade88725121679a28b23a977bf00b8b7da682538c40e7b2ebc7ef6627487d216",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -47,7 +47,7 @@
     "docs/evidence/h86j-tvhs-run-card.json": "16aa35faa7b1b049b10c703b67fd37fe66d5941ad7fd4647210dc4e544c365dd",
     "docs/evidence/h86j-mcsp-run-card.json": "0d6b2e8cb22525d503d1e7ac8b5ead0b878e0111d719a861e8ed905d9790dd4b",
     "docs/evidence/h86k-psc-run-card.json": "6d1edab1d43daef315f656aa07b249e6cec6bd783a84a73cd1f1312f00778a89",
-    "docs/evidence/all-artifacts-registry.json": "87363eebf035acac99ea3c11421a64f9f6221b499ce2f91a14d379f7b1eea540"
+    "docs/evidence/all-artifacts-registry.json": "74ae48354075ba77a21bcda92d0814c40f29fa53615e890b7c7a065a30397832"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",

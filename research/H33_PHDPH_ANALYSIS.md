@@ -15,11 +15,11 @@ This is a **RASTER-MEASUREMENT**, not causal proof of score gain.
 
 DTI = T / (0.2·T + 0.2·F + 0.8·|G| + ε) with 300 m triangular kernel (3 px). For each truth cell, kernel credit is **max** over covering dots, not sum. Pruning condition: ΔDTI > 0 ⇔ T·b > a·(F + 4|G| + 5ε) where b = saved false-positive mass, a = lost truth credit. Collar dots near mapped faults have low marginal a (truth already near mapped faults is masked) but contribute to F, so deleting them raises DTI if they are redundant or mis-placed. Dots covering blind relay tips would lose T and hurt.
 
-H33's gain (+0.0070 owner-reported) is consistent with **coverage-efficient thinning at kernel scale**, not a new geophysical discovery.
+H33's owner-reported difference (+0.0070) is consistent with **coverage-efficient thinning at kernel scale**, but neither the pixel edit nor the algebra establishes that pruning caused the difference or will generalize. A dot at catalogue distance 1–2 px is outside the exact mapped pixels and may still cover a withheld fault; the deletion raster alone does not measure either lost truth credit `a` or saved false-positive mass `b`.
 
 ## 3. Why 0.2778 is not a ceiling & what could beat it (information-theoretic)
 
-Budget arithmetic at DTI 0.2778 with |G|≈40k gives T≈10,963, D≈39,464. +0.01 DTI needs ~418 kernel-credit units ≈ 42 km of blind fault trace hit squarely. All previous reallocations (PRUNE, CONCENTRATION, RELIEF) delivered |Δ| ≤0.0073 on most generous instrument — below the +0.01 evidence floor.
+A previous back-of-envelope conversion from 0.2778 to implied truth credit and false-positive mass assumes an owner-reported value and an unverified hidden-truth count (`|G|≈40k`). It is not a score or a leaderboard projection and is not used to set a gain threshold here. Without organizer truth or a controlled same-split evaluation, the number of useful prediction cells or trace kilometres needed for a live improvement is unknown.
 
 To beat H33, a submission must:
 1. Add **new independent evidence** of blind faults (not re-shuffle H33's H19-5 ridge field)
@@ -34,16 +34,18 @@ No prior lane satisfied all five; H33's own holdout is 0.0961 [0.0830,0.1089] (g
 
 Historical fleet used NaN outside footprint (7.1M cells) and occasionally unclipped regression outputs / -3.4e38 sentinels. The portal strictly checks finite [0,1]. Our writer enforces mode="zeros" (0 outside, clipped [0,1], no NaN/Inf, binary dots) so this class of error cannot recur. Format pass ≠ organizer acceptance.
 
-## 5. Ranked hypotheses for next DTI lift (all require free, official data on disk)
+## 5. Historical pre-run ranking for a possible DTI lift (not the current untried queue)
 
-| Rank | Hypothesis (layers) | Physical signature & why it catches catalogue-missing faults | Difference from repo | Non-fault mimic | Expected lift / Cost |
+This ranking was written before the GDSC experiment. PR #145 later implemented GDSC; its run card records raw HOLDOUT-DTI 0.00532 on `gems57-pooled-hide-v2` with 11,318 withheld positives but no 95% CI. It is a negative, audit-only lane, not a current untried proposal or a leaderboard projection. The live current queue is in [`registry/followup_hypotheses_20261025.json`](../registry/followup_hypotheses_20261025.json).
+
+| Rank at preregistration | Hypothesis (layers) | Physical signature & why it catches catalogue-missing faults | Difference from repo | Non-fault mimic | Expected lift / Cost |
 |------|---------------------|--------------------------------------------------------------|----------------------|-----------------|----------------------|
 | 1 | **GDSC — Geodetic Dilatational Strain Corridor** — Bands 4 (geod_2ndinv), 7 (shearrate), 8 (dilaterate) | Positive dilatation + high second invariant ridge under low-relief basin fill (det_elev_slope muted) marks active transtensional jogs/stepovers whose scarps are erased by Lahontan lake beds. GPS strain sees creep without scarp. | No prior lane used pure GPS strain as primary (all used magnetics/gravity/DEM ridges). | Irrigation subsidence, playa contraction | High incremental (novel physics) / Low cost (~5 min CPU) |
 | 2 | **IGFC — Isostatic Gravity Fabric Curvature** — Bands 13, 11, 18, 5 | Regularized Laplace g_zz zero-crossing + gradient-magnitude ridge, strike-continuous ≥900 m, coincident with basement depth step (Band 15) polarity, weighted where slope muted. Basement step persists under cover. | FVMB used single-altitude wavenumber; this uses masked, regularized Laplace with polarity control. | Paleovalley margins, inversion artifacts | Medium-high / Medium (derivatives at σ=400 m) |
 | 3 | **RLH — Radiometric Leach Halo** — Band 6 (TC) + external K/Th/U | TC depletion halo paired with K/Th enrichment rim (adularia/illite) along linear corridor indicates hydrothermal leaching. Surface geochemistry survives burial. | Prior radiometric used simple margins, not paired depletion/enrichment dipole + 6 km corridor. | Lithologic contacts, agricultural K | Medium / Low-medium |
 | 4 | **CNC — Conductivity-Neck Conditioned on Dilatation** — Band 17 (cond_surf) × Band 8, vetoed by detrended elev | Narrow threshold-persistent conductive neck between broader conductive basins, gated to positive dilatation; hot saline fault fluid vs stagnant playa brine. | CTHB used pointwise cond; this is persistent topology + strain gating (H86G-CNT proposed, never run). | Saline playa, clay paleochannel | Medium (confounded) / Medium |
 
-Selection for implementation: **GDSC Rank 1** (highest expected lift, lowest cost, zero new external data, fully official DOI 10.5066/P9Z6SA1Z & 10.5066/P93LGLVQ provenienced bands).
+Historical selection: **GDSC Rank 1** was chosen for testing at the time this pre-run ranking was written. It has since been implemented; the available raw HOLDOUT-DTI lacks a 95% CI and its run card verdict is negative. Do not interpret the former rank or expected-lift label as a present recommendation.
 
 ## 6. Sources (verified, not hallucinated)
 

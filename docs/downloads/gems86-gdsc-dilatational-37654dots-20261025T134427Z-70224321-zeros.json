@@ -1,6 +1,6 @@
 {
   "file": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
-  "zip_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
+  "zip_file": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
   "bytes": 818874,
   "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
   "zip_sha256": "2406c340f7e7dd521dea34959ddea52a4b594e125dc7ca2767a4bfdc876d57d9",
@@ -85,5 +85,8 @@
     ],
     "method": "robust-normalized strain product + basin sigmoid, score-sorted Poisson-disc thinning"
   },
-  "generated_utc": "2026-10-25T13:44:27.691664+00:00"
+  "generated_utc": "2026-10-25T13:44:27.691664+00:00",
+  "promoted": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false
 }

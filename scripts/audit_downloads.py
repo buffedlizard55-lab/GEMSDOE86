@@ -60,6 +60,13 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+def gdsc_zip_filename_matches(receipt_value, expected_zip_ref):
+    """Accept only the receipt basename or the exact inventory-relative ZIP path."""
+    expected = Path(expected_zip_ref).as_posix()
+    actual = Path(str(receipt_value or '')).as_posix()
+    return actual in {expected, Path(expected).name}
+
+
 def audit_artifact(path, entry, sample, footprint, catalogue):
     """Inspect bytes directly; the adjacent JSON may be a writer receipt or archived run card."""
     receipt = json.loads(path.with_suffix('.json').read_text())
@@ -108,7 +115,7 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         expected_zip_ref = Path(entry['file']).with_suffix('.zip').as_posix()
         checks.update(
             gdsc_run_card_sidecar_schema_recognized=True,
-            receipt_zip_filename_matches=Path(str(receipt.get('zip_file', ''))).as_posix() == expected_zip_ref,
+            receipt_zip_filename_matches=gdsc_zip_filename_matches(receipt.get('zip_file'), expected_zip_ref),
             receipt_zip_hash_matches=receipt.get('zip_sha256') == digest(zip_path),
             receipt_not_promoted=(gdsc_card.get('verdict') == 'negative'
                                   and gdsc_card.get('safe_to_submit') is False),

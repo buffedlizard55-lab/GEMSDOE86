@@ -27,6 +27,13 @@ class DownloadTests(unittest.TestCase):
         shutil.copyfile((ROOT / card['submission_file']).with_suffix('.zip'), tif.with_suffix('.zip'))
         return card, tif
 
+    def test_gdsc_zip_reference_accepts_only_basename_or_exact_inventory_path(self):
+        expected = 'docs/downloads/candidate.zip'
+        self.assertTrue(audit_downloads.gdsc_zip_filename_matches('candidate.zip', expected))
+        self.assertTrue(audit_downloads.gdsc_zip_filename_matches(expected, expected))
+        self.assertFalse(audit_downloads.gdsc_zip_filename_matches('../candidate.zip', expected))
+        self.assertFalse(audit_downloads.gdsc_zip_filename_matches('other.zip', expected))
+
     def test_gdsc_writer_receipt_is_bound_to_negative_run_card(self):
         report = audit_downloads.audit(ROOT)
         artifact = next(row for row in report['artifacts'] if 'gdsc-dilatational' in row['file'])

@@ -482,7 +482,7 @@ def measure_all_registry(root: Path = ROOT) -> dict:
                          unique=result["unique"], stop_required=result["stop_required"],
                          complete_accessible_scan=result["complete_accessible_scan"]))
     return dict(schema="gems86.all-artifacts-registry.v1", evidence_class="REGISTRY-MEASUREMENT",
-                measured_utc=datetime.now(timezone.utc).isoformat(),
+                measured_utc=cert["measured_utc"],
                 witness_sha256=pin["sha256"], witness_source=cert["witness_source"],
                 proof_sha256=sha256(root / "docs/evidence/protocol-preflight.json"),
                 registry_rasters_measured=1, registry_complete=False,

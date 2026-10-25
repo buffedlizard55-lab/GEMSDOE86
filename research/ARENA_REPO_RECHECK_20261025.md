@@ -1,4 +1,6 @@
-# GEMSDOE86 independent recheck — 2026-10-25
+# GEMSDOE86 independent recheck — 2026-10-25 (superseded snapshot through PR #147)
+
+> **Historical snapshot notice:** This review predates the PR #148 synchronization. Its 701/701 registry-input count and 15:07 three-pass result are retained as historical evidence. The current follow-up review records the later 702/702 input measurement (700 compatible, 2 incompatible) and final 15:51 three-pass run: [`ARENA_REPO_REVIEW_20261025_FOLLOWUP.md`](ARENA_REPO_REVIEW_20261025_FOLLOWUP.md).
 
 ## Decision
 
