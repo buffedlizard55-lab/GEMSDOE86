@@ -6,7 +6,7 @@
   "safe_to_submit": false,
   "verdict": "negative",
   "all_checks_passed": true,
-  "artifact_count": 28,
+  "artifact_count": 29,
   "shared_tool_hashes": {
     "gems57.grid": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
     "gems57.gates": "7c57f70dbba58bb1112df4193a3de56516af0f981970d4b943b394f99b573dae",
@@ -23,7 +23,6 @@
       "bytes": 213861,
       "zip_file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.zip",
       "zip_sha256": "0567c16807f43712346fe0035ead8f54e03e8b06a5a51cb4f30343383f84640d",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros",
       "note": "GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]",
       "note_chars": 107,
@@ -87,7 +86,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
@@ -95,7 +95,6 @@
       "bytes": 195987,
       "zip_file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip",
       "zip_sha256": "880a015b2544c176c403a302a1ac5fe2abef6f46caf46c6d534f98b03e7dda1e",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros",
       "note": "GEMSDOE86 GMC cross-gradient + line-matched posterior; 90568 dots, 3px-spaced, EPSG:32611, all-finite [0,1]",
       "note_chars": 107,
@@ -159,7 +158,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
@@ -167,7 +167,6 @@
       "bytes": 134369,
       "zip_file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip",
       "zip_sha256": "52aa21b130229672afd7d281acf4b0ae8076795def1644664377d6f83d515a42",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros",
       "note": "H86-1 edge2of5 dotted B2 38000dots | HOLDOUT-DTI 0.0463 pooled-hide-v2 n=22893 | UNSCORED",
       "note_chars": 89,
@@ -231,7 +230,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
@@ -239,7 +239,6 @@
       "bytes": 188877,
       "zip_file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip",
       "zip_sha256": "08e65b784d5aa38826c00ab9e5c0d48be1d0440f762088e9bef147f2e420a1f7",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86-rmrb-60000dots-20261022T225314Z",
       "note": "H86 radiometric mixing-residual boundary x RTP edge persistence, 60000 dots, catalogue+2px masked; HOLDOUT screen only",
       "note_chars": 118,
@@ -303,7 +302,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
@@ -311,7 +311,6 @@
       "bytes": 133010,
       "zip_file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip",
       "zip_sha256": "1f115bd8a7afe0ac65cc85224a988d9f4a5bfc3ec34e8732d07c9e6dee9c1ca9",
-      "sidecar_kind": "writer receipt",
       "submission_name": "RMRB-86 K-Th-U residual boundary + RTP persistence; 37,654 dots",
       "note": "RMRB-86: K~Th+U residual boundaries gated by persistent RTP edges; HGB, 37,654 dots, 2 px catalogue collar.",
       "note_chars": 107,
@@ -375,7 +374,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
@@ -383,7 +383,6 @@
       "bytes": 145410,
       "zip_file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip",
       "zip_sha256": "707d1c9c5627d4df31b2de13b9a8c53512e9b24a4e04cdacf8957ef879463641",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b",
       "note": "H86B-GFCO LOQO geotherm-diseq+mag-contact-offset+LiDAR x tip/relay, 44090 dots d>2px, zeros",
       "note_chars": 91,
@@ -447,7 +446,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
@@ -455,7 +455,6 @@
       "bytes": 136026,
       "zip_file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.zip",
       "zip_sha256": "b5c38a4a4a8664003b7a4601c926f0093ae791ae292222f7f5d0e8d627d5281e",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros",
       "note": "GEMS86 H86-WVB wavenumber+geotherm+scarp+valve submod300 37654d HOLDOUT-DTI=0.1579 [0,1] zeros",
       "note_chars": 94,
@@ -519,7 +518,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
@@ -527,7 +527,6 @@
       "bytes": 146282,
       "zip_file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip",
       "zip_sha256": "5c14d8f91dc49a5810fe228190c2bdc7ca22fc97faa2f76d44474d02787ebe12",
-      "sidecar_kind": "writer receipt",
       "submission_name": "GEMS86-H86-FVMB-TRIDINK-38400",
       "note": "H86-FVMB iSPI dip-pullback + Sibson fault-valve + \u00b122deg wingcrack SAR-PU + TriRegime Dinkelbach; 38400d; HOLDOUT-DTI 0.1458",
       "note_chars": 124,
@@ -591,7 +590,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
@@ -599,7 +599,6 @@
       "bytes": 142387,
       "zip_file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.zip",
       "zip_sha256": "9c93183e84e7e7ab3413762f9b9a25833c157074941f038fdd4edbade2c22260",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555",
       "note": "H86C-KSLB Lahontan-deconf 10m+LiDAR+ksn+Blakely NoisyOR LOQO, 44090 dots d>2px, zeros",
       "note_chars": 85,
@@ -663,7 +662,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
@@ -671,7 +671,6 @@
       "bytes": 140584,
       "zip_file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip",
       "zip_sha256": "a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
       "note": "GEMS86 H86-CTHB LOQO contact-trunc+2mDAB/sinter+relay submod 37654d HOLDOUT-DTI=0.2506 [0,1] zeros",
       "note_chars": 98,
@@ -735,7 +734,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
@@ -743,7 +743,6 @@
       "bytes": 831854,
       "zip_file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.zip",
       "zip_sha256": "4513f246ffed77bd7e1596edfceecc90aee662287657c498af7aec9c0647f19e",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a",
       "note": "H86E-CCTX cat-context LOQO-HGB+SPBTchan 44090dots B2 HOLDOUT-DTI 0.1037 v2 n=11321 UNSCORED",
       "note_chars": 91,
@@ -807,7 +806,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
@@ -815,7 +815,6 @@
       "bytes": 14741959,
       "zip_file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.zip",
       "zip_sha256": "c2ccb4ffd46af164bcb1c76b873f1f4008d0d163c1a0106adfa7227c4c9b3450",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros",
       "note": "GEMSDOE86 fault-proximity halo: prob beside mapped faults, not on them; 4,210,938 pos cells; EPSG:32611 100m; [0,1]; zeros off-footprint.",
       "note_chars": 137,
@@ -879,7 +878,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
@@ -887,7 +887,6 @@
       "bytes": 824258,
       "zip_file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.zip",
       "zip_sha256": "b138bfbd0614faf08721260af9a24bc114d7062f0f1f979eb804d3da5ad8b9f8",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f",
       "note": "GAPRES fleet-gap interp 37654dots HOLDOUT-DTI 0.0000 v2 n=22641 UNSCORED",
       "note_chars": 72,
@@ -951,7 +950,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
@@ -959,7 +959,6 @@
       "bytes": 123383,
       "zip_file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip",
       "zip_sha256": "d9149474dcf6cec4b7861af3b1e841e8d1e1cace5a79d653ad7d64a9c343b250",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros",
       "note": "H86E-MMT magnetic marker translation + TC decoupling; HOLDOUT-DTI negative or selector review required; no slot used",
       "note_chars": 116,
@@ -1023,7 +1022,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
@@ -1031,7 +1031,6 @@
       "bytes": 127953,
       "zip_file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.zip",
       "zip_sha256": "0ef9c046488723799383d4e0da5b9c57130721bcd06afe6b393071b538683e3a",
-      "sidecar_kind": "archived run-card sidecar",
       "submission_name": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros",
       "note": "Blind off-catalogue geothermal propensity (dilation+TC+gravity+basement); dots off mapped faults. Format-valid; see run card.",
       "note_chars": 125,
@@ -1095,7 +1094,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "archived run-card sidecar"
     },
     {
       "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
@@ -1103,7 +1103,6 @@
       "bytes": 126662,
       "zip_file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.zip",
       "zip_sha256": "75a995ec272dcf3f7be71f9ae5e4315e3a59af5383c10a4b13edc8911876ee32",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros",
       "note": "H86F-PCC signed grav-RTP-basement polarity, survey-axis veto; holdout is not a leaderboard score; no slot used",
       "note_chars": 110,
@@ -1167,7 +1166,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
@@ -1175,7 +1175,6 @@
       "bytes": 141454,
       "zip_file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.zip",
       "zip_sha256": "7fc3b2e0cc875a3e76d3e1ef24351d6dbea07503e7d1f1a5f4fc03b5e22048e2",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros",
       "note": "H86F-GZZD Laplace gzz dipole polarity-concordant; see run card gates; no slot used",
       "note_chars": 82,
@@ -1239,7 +1238,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
@@ -1247,7 +1247,6 @@
       "bytes": 137947,
       "zip_file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.zip",
       "zip_sha256": "6a6f744a3ecdce9cabcee029377478f7cd0ba3bf98e6738d08d36a502f6ba262",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros",
       "note": "H86F-EWCS elastic wing-crack+harmonic PU (HOLDOUT-DTI 0.1723); registry gate fail-closed; DO NOT SUBMIT; 0 slots",
       "note_chars": 112,
@@ -1311,7 +1310,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
@@ -1319,7 +1319,6 @@
       "bytes": 158155,
       "zip_file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip",
       "zip_sha256": "51fcf074ec42c5db1720fe5d6ae2b743cda2dda853e91b9797ced25073c6a3e9",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros",
       "note": "H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked",
       "note_chars": 113,
@@ -1383,7 +1382,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
@@ -1391,7 +1391,6 @@
       "bytes": 136667,
       "zip_file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.zip",
       "zip_sha256": "70e817880fc1aab76136b4f8d0d61e0ecc936894cdd45f18c493a022b50bb0d1",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros",
       "note": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconf piedmont scarp dipole; see run card gates; no slot used",
       "note_chars": 106,
@@ -1455,7 +1454,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
@@ -1463,7 +1463,6 @@
       "bytes": 136478,
       "zip_file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip",
       "zip_sha256": "3f9fbcc6bf2ca93ef0846e9b47aec78bc89cd3096476800d5ed44a6327610616",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros",
       "note": "H86I-HVFD 2m-probe+sinter+biharm-flexure+relay NoisyOR 37654d r=2.8px d>2px; HOLDOUT-DTI=0.1013; audit-only DO NOT SUBMIT",
       "note_chars": 121,
@@ -1527,7 +1526,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
@@ -1535,7 +1535,6 @@
       "bytes": 121380,
       "zip_file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.zip",
       "zip_sha256": "6c11ef6c1c42a60971efd582668068b619dd07ab6376cfe7320c7222e5c97bf1",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros",
       "note": "Off-catalogue damage-zone ring 3.0-8.0px from catalogue, one-dot-per-2.8px-cell, 25000 dots; zero catalogue mass; local format-valid only",
       "note_chars": 137,
@@ -1599,7 +1598,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
@@ -1607,7 +1607,6 @@
       "bytes": 159505,
       "zip_file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.zip",
       "zip_sha256": "2473e68f421af5f7c67f7a86351581af26c61b6570ab14e18ff504a5ad778cf8",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros",
       "note": "H86J-MPC monogenic phase-congruency step (RTP+grav+DEM) E[k] spacing collar3 44090d; SGMC-proxy selected; no slot pre-picked",
       "note_chars": 124,
@@ -1671,7 +1670,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
@@ -1679,7 +1679,6 @@
       "bytes": 137860,
       "zip_file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.zip",
       "zip_sha256": "ee8589a992ee9583b3b83fa7a33b52b95497fe0f0be90bba6ad771767ab4f989",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros",
       "note": "H86I-SACD spin2+submod PU (HOLDOUT-DTI 0.0832); registry gate fail-closed; DO NOT SUBMIT; 0 slots",
       "note_chars": 97,
@@ -1743,7 +1742,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
@@ -1751,7 +1751,6 @@
       "bytes": 138155,
       "zip_file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.zip",
       "zip_sha256": "fb5130fd39844907d2fe6f71bc70ec620471d7ff24c1bdec7dbfe73d2d637027",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros",
       "note": "H86I-RLMS Riedel-listric submodular PU (HOLDOUT-DTI 0.1257); registry fail-closed; DO NOT SUBMIT; 0 slots",
       "note_chars": 105,
@@ -1815,7 +1814,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
@@ -1823,7 +1823,6 @@
       "bytes": 120211,
       "zip_file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.zip",
       "zip_sha256": "87f4cc5b94194a09b265d0e8607273190392cb9a29ffcd3c110c8f9acd42a851",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros",
       "note": "H86J-CSGD SAR cross-spectral+GDR conduit PU (HOLDOUT-DTI 0.0613); literal gate fail-closed; DO NOT SUBMIT; 0 slots",
       "note_chars": 114,
@@ -1887,7 +1886,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
@@ -1895,7 +1895,6 @@
       "bytes": 133861,
       "zip_file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.zip",
       "zip_sha256": "5012f41e5c539a464ea823eaa1d8da7373d7f484fd168c764cbb2124bb1e8c3f",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros",
       "note": "H86J-TVHS GGT2D+GDR1391+LiDAR LOQO PU E[k] (37654d, HOLDOUT-DTI 0.0983); literal gate blocked; DO NOT SUBMIT",
       "note_chars": 108,
@@ -1959,7 +1958,8 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
     },
     {
       "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
@@ -1967,7 +1967,6 @@
       "bytes": 139489,
       "zip_file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.zip",
       "zip_sha256": "22256d1001feaa2a6b0dcf90c883453ef987f1460576e2724a8bfe4bd543e67b",
-      "sidecar_kind": "writer receipt",
       "submission_name": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros",
       "note": "H86J-MCSP monogenic+geotherm LOQO CELF (HOLDOUT 0.1463, SGMC 0.0999); v2 gate fail-closed; DO NOT SUBMIT",
       "note_chars": 104,
@@ -2031,7 +2030,81 @@
       },
       "all_checks_passed": true,
       "safe_to_submit": false,
-      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT"
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "writer receipt"
+    },
+    {
+      "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+      "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+      "bytes": 818874,
+      "zip_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
+      "zip_sha256": "2406c340f7e7dd521dea34959ddea52a4b594e125dc7ca2767a4bfdc876d57d9",
+      "submission_name": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros",
+      "note": "GDSC geod_2ndinv x dilaterate+ x basin-wt, 37654d 2.8px Poisson, b2 collar; HOLDOUT screen only [0,1] zeros",
+      "note_chars": 107,
+      "positive_pixels": 37654,
+      "min": 0.0,
+      "max": 1.0,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "grid": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "lzw"
+      },
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true,
+        "shared_template_format_pass": true,
+        "in_footprint_valid_mask": true,
+        "no_nodata_tag": true,
+        "hash_matches_inventory": true,
+        "receipt_hash_matches": true,
+        "receipt_filename_matches": true,
+        "receipt_byte_count_matches": true,
+        "zip_one_exact_tif": true,
+        "zip_payload_equals_tif": true,
+        "zip_crc_passed": true,
+        "gdsc_run_card_sidecar_schema_recognized": true,
+        "receipt_zip_filename_matches": true,
+        "receipt_zip_hash_matches": true,
+        "receipt_not_promoted": true,
+        "receipt_no_slot_approval": true,
+        "submission_name_valid_length": true,
+        "note_valid_length": true,
+        "receipt_note_length_matches": true
+      },
+      "all_checks_passed": true,
+      "safe_to_submit": false,
+      "status": "NOT_ASSESSED_BY_FORMAT_AUDIT",
+      "sidecar_kind": "GDSC run-card-linked writer receipt"
     }
   ]
 }

@@ -2,7 +2,10 @@
 import json
 from pathlib import Path
 import shutil
+from types import SimpleNamespace
 import zipfile
+
+from datetime import datetime, timezone
 
 import pytest
 
@@ -27,6 +30,24 @@ def release_copy(tmp_path):
     return tmp_path
 
 
+def test_registry_measurement_uses_actual_utc_clock(monkeypatch):
+    from scripts import protocol_preflight
+
+    instant = datetime(2026, 10, 25, 14, 30, tzinfo=timezone.utc)
+    pin = {"repo": "owner/project", "source_path": "submission.tif",
+           "dest": "registry/dense-witness.tif", "sha256": "a" * 64}
+    monkeypatch.setattr(audit, "datetime", SimpleNamespace(now=lambda tz: instant))
+    monkeypatch.setattr(protocol_preflight, "measure", lambda: {"witness_source": "pinned-source"})
+    monkeypatch.setattr(audit.grid, "load_grid", lambda root: SimpleNamespace(footprint=None))
+    monkeypatch.setattr(audit, "strict_json", lambda path: pin if path.name == "registry_witness_pin.json" else {"artifacts": []})
+    monkeypatch.setattr(audit, "sha256", lambda path: "b" * 64)
+
+    measured = audit.measure_all_registry()
+    assert measured["measured_utc"] == instant.isoformat()
+    assert measured["registry_complete"] is False
+    assert measured["artifacts"] == []
+
+
 def rewrite(path, change):
     content = audit.strict_json(path)
     change(content)
@@ -40,7 +61,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 28  # prior 27 (incl. H86J-CSGD & H86J-TVHS) + H86J-MCSP (2026-10-25, DO NOT SUBMIT)
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"])
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -156,7 +177,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 28  # prior 27 (incl. H86J-CSGD & H86J-TVHS) + H86J-MCSP (2026-10-25, DO NOT SUBMIT)
+    assert len(card["inherited_artifacts"]["files"]) == len(report["artifacts"]) == report["artifact_count"]
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

@@ -42,7 +42,7 @@ def page(title: str, active: str, body: str) -> str:
 <header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a>{navigation}</nav></header>
 <main id="main">{body}</main>
 <footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
-<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}">Source code</a> ·
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}/blob/main/research/SESSION_679D92E7_REVIEW.md">Live-input review &amp; next steps</a> · <a href="{REPO}">Source code</a> ·
 <a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>
 '''
 

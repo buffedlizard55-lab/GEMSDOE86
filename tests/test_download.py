@@ -10,7 +10,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts import validate_download
+from scripts import audit_downloads, validate_download
 
 
 class DownloadTests(unittest.TestCase):
@@ -26,6 +26,17 @@ class DownloadTests(unittest.TestCase):
         shutil.copyfile(ROOT / card['submission_file'], tif)
         shutil.copyfile((ROOT / card['submission_file']).with_suffix('.zip'), tif.with_suffix('.zip'))
         return card, tif
+
+    def test_gdsc_writer_receipt_is_bound_to_negative_run_card(self):
+        report = audit_downloads.audit(ROOT)
+        artifact = next(row for row in report['artifacts'] if 'gdsc-dilatational' in row['file'])
+        checks = artifact['checks']
+        self.assertTrue(checks['gdsc_run_card_sidecar_schema_recognized'])
+        self.assertTrue(checks['receipt_zip_filename_matches'])
+        self.assertTrue(checks['receipt_zip_hash_matches'])
+        self.assertTrue(checks['receipt_not_promoted'])
+        self.assertTrue(checks['receipt_no_slot_approval'])
+        self.assertFalse(artifact['safe_to_submit'])
 
     def test_actual_download_format_and_readonly_behavior(self):
         path = ROOT / 'docs/evidence/run-card.json'

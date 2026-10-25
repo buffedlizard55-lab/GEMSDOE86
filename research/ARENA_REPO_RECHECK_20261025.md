@@ -13,7 +13,7 @@ This is a fresh read-only review and remeasurement, not a new scientific result.
 - Read `PROMPT.md`, `README.md`, `AGENTS.md`, and `research/REQUEST_20261025.md`. The long-term request to make an upload-ready unique TIFF conflicts with the same request's literal overlap rule and the current verified stop. It does not supply one lane-specific method paragraph. The latter is a binding prerequisite; old preregistrations are not a new lane assignment.
 - Rechecked H33 lineage from the hash-pinned raster comparison in `docs/evidence/concurrent-artifact-review-20261025.json`: the parent raster has 40,199 dots; H33 has 37,654; H33 is exactly the parent after 2,545 catalogue-collar dots are removed (zero additions). This is a **RASTER-MEASUREMENT**, not a score measurement or causal experiment.
 - The plausible metric mechanism is precision/mass control: with a distance-weighted Tversky score (shared pinned `vendor/gems57/metric.py`; `alpha=0.2`, `beta=0.8`, 300 m triangular kernel), a removed prediction that had little marginal hidden-truth credit can reduce false-positive mass more than it reduces true-positive credit. Because mapped fault pixels are masked but surrounding kernel cells are not, collar dots may still recover nearby unmapped faults; therefore collar removal is not guaranteed to help. The raster edit explains *what changed*. It does not establish that the edit caused the owner-reported score increase.
-- The auditable answer is therefore: H33's observed edit is a targeted catalogue-collar pruning of an existing sparse prediction, not evidence for a new geothermal mechanism. Its reported `0.2778` is plausible under the metric if the pruned dots were mostly low-incremental-credit predictions. Whether it is actually the top result cannot be established from owner-provided scores, especially given the request's conflicting `0.3195` and `0.4413` claims.
+- The auditable answer is therefore: H33's observed edit is a targeted catalogue-collar pruning of an existing sparse prediction, not evidence for a new geothermal mechanism. Its reported `0.2778` is plausible under the metric if the pruned dots were mostly low-incremental-credit predictions. A higher score is possible in principle, but **no result in this checkout establishes that we can beat it**. Whether it is actually the top result cannot be established from owner-provided scores, especially given the request's conflicting `0.3195` and `0.4413` claims.
 
 ### Pass 2 — run gates, detect regressions, repair, and verify
 
@@ -41,7 +41,11 @@ The first audit attempt was correctly rejected because the inherited final-dot p
 
 The first full test run found two stale assumptions in `tests/test_current_session_cf73474c.py` (fixed registry size `690` and matching display string). Updated them to assert the measured audit counts and generated-page count dynamically. The tests now enforce that the inventory totals agree, both incompatible records remain blocking, and the UI publishes the byte-verification count. This is a repository regression fix, not a change to the protocol threshold or science.
 
-Final automated checks:
+After this recheck, `origin/main` advanced and integrated a separate GDSC research TIFF (PR #145). It was not generated in this review. I re-audited the merged release: **29/29** artifacts are locally format-valid, but all remain `DO NOT SUBMIT`; the GDSC card is negative and the same literal witness blocks it. The current base also introduced a live input audit; `scripts/audit_workspace_inputs.py --require-native` independently confirms that `training_features.tif`, all 21 prepared arrays, and the lane cache are missing, then fails closed with exit code 1 (the read-only form without `--require-native` exits 0 but records these blockers). The merged registry input audit is now 701/701 indexed rasters byte-verified, 699 compatible and 2 incompatible; this is snapshot coverage, not public-fleet completeness. This remeasurement supersedes the pre-integration 28-artifact/700-input counts below without changing this review's no-candidate/no-slot result.
+
+The merged GDSC sidecar uses a path-qualified ZIP name and carries its non-promotion decision in a linked run card rather than in the writer receipt's legacy fields. The shared `audit_downloads.py` previously rejected that valid local sidecar shape; extended the common audit to verify the exact inventory ZIP path/hash and the linked run card's negative/no-slot fields. No TIFF or receipt bytes were rewritten. A regression test now covers the schema. Also fixed a hard-coded historical timestamp in `audit_release.measure_all_registry()` so a `--measure-registry` run records actual UTC time; its synthetic-clock regression passes.
+
+Automated checks before the base-branch integration (28-artifact snapshot):
 
 ```text
 .venv/bin/python -m pytest -q
@@ -57,6 +61,19 @@ Final automated checks:
 git diff --check
   PASS.
 ```
+
+Post-merge, the first three-pass CI replay found one additional stale assertion (`tests/test_publication_gate.py` still expected 28 artifacts). It was changed to compare the measured artifact count to the inventory length; this is the same evidence-driven fix as the two earlier 690-to-700 test corrections. The corrected final one-command review passed:
+
+```text
+.venv/bin/python scripts/review_repository.py --timeout 600
+  PASS: software_review_passed=true; all 7 release/test/frozen/site/link/download/live-input checks passed.
+  pytest: 978 passed, 24 skipped, 58 subtests passed; 48 Rasterio pending-deprecation warnings.
+  release audit: 29/29 local format/integrity checks; verdict DO NOT SUBMIT; 0 experiments and 0 slots.
+  downloads audit: 29/29 TIFFs/receipts passed; no upload authorization inferred.
+  live-input audit: software inspection passed, while native input/readiness remains false; feature TIFF, prepared arrays and shared cache are absent.
+```
+
+The separate `scripts/audit_workspace_inputs.py --require-native` check is expected to exit 1 because the pinned `training_features.tif` is missing. This is an availability blocker, not a model result. `scripts/audit_release.py --measure-registry` now records its actual UTC remeasurement time rather than replaying the historical `04:07` timestamp; the timestamp regression test and the fresh page timestamp both pass.
 
 ### Pass 3 — scientific proposals, external data, and edge cases
 
