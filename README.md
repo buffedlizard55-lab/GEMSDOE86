@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+Latest session fb9725b9: [three-pass review and preflight integrity repair](research/SESSION_FB9725B9_REVIEW.md). Both vendored evaluator/writer paths are now checked by session preflight. **DO NOT SUBMIT; no new TIFF generated.** [Negative run card](research/session-fb9725b9-run-card.json).
+
 Latest focused checker review: [session f548f465](research/SESSION_F548F465_REVIEW.md). Corrected the false “unique by pinned digest” claim and added malformed-artifact regression tests. **DO NOT SUBMIT; no new TIFF or slot.**
 
 Latest review ([session 9662ee55](research/SESSION_9662EE55_REVIEW.md)): hardened the independent download validator against untrusted paths/JSON and shared-tool drift; rechecked the pinned registry witness and H33 source documents. **DO NOT SUBMIT; no new TIFF or weekly slot.** [Negative run card](research/session-9662ee55-run-card.json). The complete owner request remains embedded below and in [the current request archive](research/REQUEST_20261025.md); read it at every session start.
