@@ -242,8 +242,8 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     # NOTE: H86M-LT is handled by the merged `h86m_lt_unvalidated` branch above
     # (PR #166, session 57139348); session 92f9e0e8's parallel `h86m_lt` branch
     # was removed at merge time so exactly one LT normalization path exists.
-    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
-        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql", "h86n_gsst"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL, H86N-GSST): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
         cand = h.get("candidate") or {}

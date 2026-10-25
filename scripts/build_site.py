@@ -818,6 +818,51 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
+def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
+    """Current-session H86N-GSST negative lane + H86M-LT registration repair."""
+    if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
+            or card.get("submission_ready") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86N-GSST card must stay a no-slot negative")
+    h = card["holdout"]
+    cand = h["candidate"]
+    e0 = h["controls"]["E0_raw_grav_slope"]
+    e2 = h["controls"]["E2_compact_curv"]
+    d0 = h["paired_differences_vs_candidate"]["E0_raw_grav_slope"]
+    d2 = h["paired_differences_vs_candidate"]["E2_compact_curv"]
+    uni = card["correlation_overlap_vs_registry"]
+    name = card["submission_name"]
+    stem = f"{name}-zeros"
+    lt_html = ""
+    if lt_card is not None:
+        if (lt_card.get("verdict") != "negative" or lt_card.get("safe_to_submit") is not False
+                or lt_card.get("approved_for_weekly_slot") is not False
+                or lt_card.get("submission_slots_used") != 0):
+            raise ValueError("H86M-LT card must stay a no-slot negative")
+        lt_name = lt_card["submission_name"]
+        lt_disp = lt_card.get("review_disposition", "DO NOT SUBMIT")
+        lt_html = (
+            f'<li><strong>Reconciled PR #165 artifact (<code>H86M-LT</code>):</strong> '
+            f'<a href="downloads/{e(lt_name)}.tif" download><code>{e(lt_name)}.tif</code></a> '
+            f'(SHA-256 <code>{e(lt_card["raster_sha256"])}</code>) is registered for audit download only and '
+            f'demoted to <strong>DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, '
+            f'<code>{e(lt_disp)}</code>, literal witness overlap <code>1.0 &gt; 0.70</code>). '
+            f'<a href="h86m-lt.html">Lane status</a> · <a href="evidence/h86m-lt-run-card.json">H86M-LT run card</a>.</li>'
+        )
+    return f'''<section class="callout" id="h86n-gsst"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: NEGATIVE)</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>2026-10-25 Current Session (H86N-GSST): unique GeoTIFF generated &amp; machine-validated; hypothesis falsified on holdout</h2>
+<p><code>{e(stem)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["dots"]:,} binary dots in <code>{{0.0, 1.0}}</code>, <code>0</code> NaN/Inf, <code>EPSG:32611</code>, <code>3730×3292</code> @ <code>100 m</code>, <code>0</code> mapped-catalogue dots) was generated and machine-validated with zero human intervention. <strong>OK to submit: NO — DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, <code>approved_for_weekly_slot=false</code>, <code>submission_slots_used=0</code>).</p>
+<ul>
+<li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {cand["withheld_positive_pixels"]:,} withheld positives, 1,000 physical-block bootstrap draws): candidate <code>H86N_GSST</code> = <strong>{cand["dti"]:.4f} [{cand["ci95"][0]:.4f}, {cand["ci95"][1]:.4f}]</strong> vs raw gravity-slope control <code>E0_raw_grav_slope</code> = <strong>{e0["dti"]:.4f} [{e0["ci95"][0]:.4f}, {e0["ci95"][1]:.4f}]</strong> (paired Δ = <strong>{d0["delta"]:+.4f} [{d0["ci95"][0]:+.4f}, {d0["ci95"][1]:+.4f}]</strong>) and compact-curvature control <code>E2_compact_curv</code> = <strong>{e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]</strong> (paired Δ = <strong>{d2["delta"]:+.4f} [{d2["ci95"][0]:+.4f}, {d2["ci95"][1]:+.4f}]</strong>).</li>
+<li><strong>Leakage canary &amp; local like-for-like uniqueness ({uni["n_registry_measured"]} local rasters):</strong> max feature canary AUC = <strong>{max(card["leakage_canary"]["single_feature_auc"].values()):.4f} &le; 0.90</strong>; max surface |Spearman| = <strong>{uni["max_surface_spearman_abs"]:.4f} &le; 0.90</strong>; max binary dot |Spearman| = <strong>{uni["max_dot_spearman_abs"]:.4f} &le; 0.90</strong>; max 3-px dot-field overlap = <strong>{uni["max_overlap3"]:.4f} &le; 0.70</strong> (vs <code>{e(uni["worst_overlap"])}</code>); literal full-support witness <code>17GEMSDOE</code> overlap = <strong>1.0 &gt; 0.70</strong>.</li>
+<li><strong>Submission name &amp; note (audit reference only, &le;140 chars):</strong> name <code>{e(name)}</code> · note ({card["note_chars"]} chars) <code>{e(card["submission_note_le140"])}</code></li>
+{lt_html}
+</ul>
+<p><a class="btn" href="downloads/{e(stem)}.tif" download>Download H86N-GSST TIFF — audit only</a> · <a class="btn secondary" href="downloads/{e(stem)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="downloads/{e(stem)}.json">Writer receipt</a> · <a href="evidence/h86n-gsst-run-card.json">H86N-GSST run card</a> · <a href="{REPO}/blob/main/research/H86N_GSST_PREREGISTRATION.md">Frozen preregistration</a> · <a href="{REPO}/blob/main/registry/h86n_gsst_hypotheses.json">4-hypothesis register</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86N_GSST_REVIEW.md">Three-pass review &amp; H33 forensics</a></p>
+</section>'''
+
+
 def h86m_damagering_answer(card: dict) -> str:
     """Concurrent published TIFF with no holdout. Submission stays forbidden."""
     if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
@@ -1742,6 +1787,12 @@ def render(root: Path = ROOT) -> dict[str, str]:
     h86m_card = strict_json(h86m_path) if h86m_path.is_file() else None
     if h86m_card is not None:
         vfgr_banner += h86m_damagering_answer(h86m_card)
+    gsst_path = root / "docs/evidence/h86n-gsst-run-card.json"
+    gsst_card = strict_json(gsst_path) if gsst_path.is_file() else None
+    lt_path = root / "docs/evidence/h86m-lt-run-card.json"
+    lt_card = strict_json(lt_path) if lt_path.is_file() else None
+    if gsst_card is not None:
+        vfgr_banner = h86n_gsst_answer(gsst_card, lt_card) + vfgr_banner
     combined_banner = pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
