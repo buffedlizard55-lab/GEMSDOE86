@@ -47,8 +47,8 @@ def test_native_receipt_cannot_claim_actual_shared_cache_or_organizer_authentica
 def test_all_registry_bytes_can_be_present_while_two_grids_still_block_clearance():
     audit = load("docs/evidence/registry-input-grid-review-20261025.json")
     assert audit["byte_coverage_complete"] is True
-    assert audit["indexed_rasters_expected"] == len(audit["records"]) == audit["byte_verified_rasters"] == 689
-    assert audit["grid_compatible_rasters"] == sum(r["grid_compatible"] for r in audit["records"]) == 687
+    assert audit["indexed_rasters_expected"] == len(audit["records"]) == audit["byte_verified_rasters"] == 690
+    assert audit["grid_compatible_rasters"] == sum(r["grid_compatible"] for r in audit["records"]) == 688
     assert audit["grid_incompatible_or_invalid_rasters"] == 2
     assert audit["all_grids_compatible"] is False
     assert audit["probability_values_checked"] is False
@@ -91,7 +91,7 @@ def test_session_card_is_reproducible_and_leaves_unmeasured_fields_empty():
     assert registry["universal_witness_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert registry["uncovered_allowed_cells"] == 0
     assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
-    assert card["validator_output"]["inherited_artifact_format_passes"] == card["validator_output"]["inherited_artifact_count"] == 17
+    assert card["validator_output"]["inherited_artifact_format_passes"] == card["validator_output"]["inherited_artifact_count"] == 18
     assert card["raster_sha256"] is card["submission_name"] is None
     assert card["unique_tiff_requirement_satisfied"] is card["new_candidate_generated"] is card["submission_ready"] is False
     assert card["experiments_run"] == card["submission_slots_used"] == 0
@@ -104,7 +104,7 @@ def test_site_puts_decision_and_download_access_before_long_historical_receipts(
     for html in (home, executive):
         assert "The requested new, uniqueness-cleared TIFF was not generated in this review." in html
         assert "GZZD/PCC audit gap is now closed" in html
-        assert "689 / 689" in html
+        assert "690 / 690" in html
         assert "parallel lanes: neither was measured" not in html
         assert html.index("DO NOT SUBMIT") < html.index('id="h86f-gzzd"')
     assert home.index('href="#downloads"') < home.index('id="current-review"')

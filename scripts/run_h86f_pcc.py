@@ -194,6 +194,9 @@ def rho_firings(report: dict) -> int | None:
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.time()
     preregistration = require_preregistration()
     preflight = require_like_for_like()

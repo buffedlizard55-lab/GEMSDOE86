@@ -252,6 +252,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86F-GZZD lane result; the run card is the authoritative experiment receipt. The candidate trails its unsigned-edge control and the same-split historical best, the registry scan is incomplete (2 grid-incompatible rows) with dot-field firings, and PA-86-02 failed closed; no slot was used."}
+    if kind == "h86f_ewcs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-EWCS lane result; the run card is the authoritative experiment receipt. HOLDOUT-DTI (0.1723 [0.1530, 0.1898]) beats its isotropic-tip/cover-blind controls and same-split H86C-KSLB (0.1241) with separated 95% CIs, with 0/687 Spearman rho > 0.90 firings and 0 discrete <=50k-dot firings (26.96% vs GEMSDOE32), but registry completeness (2 grid-incompatible rows), >56k-dot space-filling firings, literal 17GEMSDOE saturation, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
@@ -579,6 +586,15 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
     if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
         raise ValueError("Registry measurement must carry a UTC timestamp")
     card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+                # This is a fresh audit, not a scientific lane. Do not inherit the
+                # historical session card's planned SPBT hypothesis as if it were
+                # selected or tested in the current review.
+                hypothesis="No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
+                mechanism="None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
+                named_non_fault_process="Not applicable: no candidate mechanism was tested.",
+                holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_NO_LANE_ASSIGNED",
+                                 evaluator_version="gems57-pooled-hide-v2", withheld_positives=None,
+                                 value=None, ci95=None),
                 # date_utc means something different here than in the archived
                 # session card, so its basis must be restated rather than inherited.
                 date_utc_basis=("Date of this registry remeasurement (registry_measured_utc). "
@@ -587,6 +603,10 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
                 scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
                 release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
                 registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
+    card["holdout_dti"]["status"] = "NOT_RUN_NO_LANE_ASSIGNED"
+    card["correlation_overlap_vs_registry"]["evidence_class"] = "REGISTRY-MEASUREMENT"
+    card["correlation_overlap_vs_registry"]["measurement_scope"] = (
+        "Inherited full-support continuous witness direct-support overlap; not a candidate surface or final-dot PA measurement.")
     return card
 
 

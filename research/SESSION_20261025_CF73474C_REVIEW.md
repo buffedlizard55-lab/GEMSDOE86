@@ -2,7 +2,7 @@
 
 ## Decision / unmet requirement
 
-**DO NOT SUBMIT. The highest-priority new, unique competition-TIFF requirement is unmet.** No TIFF, renamed historical copy, model experiment or weekly slot was created/used in this independent review. The existing 17 downloads are historical, audit-only artifacts, not a replacement deliverable.
+**DO NOT SUBMIT. The highest-priority new, unique competition-TIFF requirement is unmet.** No TIFF, renamed historical copy, model experiment or weekly slot was created/used in this independent review. The existing 18 downloads are historical, audit-only artifacts, not a replacement deliverable.
 
 The unchanged literal preflight is mathematically incompatible with a nonempty compliant prediction: the pinned `17GEMSDOE` witness supports every one of the **5,106,385 allowed cells**, making every nonempty allowed candidate's forward overlap **1.0 > 0.70**. These are **REGISTRY-MEASUREMENT** counts/fractions, not model performance. A witness can reject; it cannot certify full-registry clearance. There is also no assigned single-method paragraph, and the actual template cached feature stack remains absent. These are stops, not an invitation to invent a lane or privately change support semantics.
 
@@ -10,7 +10,7 @@ Primary machine-readable receipts:
 
 - [Current independent negative card](../docs/evidence/session-cf73474c-run-card.json)
 - [Native data / actual shared-cache obtainability](../docs/evidence/session-cf73474c-data.json)
-- [689-file registry byte/grid audit](../docs/evidence/registry-input-grid-review-20261025.json)
+- [690-file registry byte/grid audit](../docs/evidence/registry-input-grid-review-20261025.json)
 - [Concurrent final-dot comparison and H33 lineage remeasurement](../docs/evidence/concurrent-artifact-review-20261025.json)
 - [Release/format audit](../docs/evidence/release-readiness.json) and [all inherited artifacts against witness](../docs/evidence/all-artifacts-registry.json)
 - [Complete current request](REQUEST_20261025.md); previous request archives are byte-preserved.
@@ -41,6 +41,8 @@ T*b > a*(F + 4*K + 5*epsilon).
 Here `K` is the total scored truth count, **not** false negatives. Redundant low-credit dots may be worth pruning, but a dot near a mapped fault can still recover a different, unmasked hidden fault. The 2-pixel collar is not a zero-credit certificate. Separations near one kernel radius do not make kernel disks disjoint; two radius-R disks can overlap out to 2R. More dots may help or hurt, depending on incremental credit. Existing synthetic metric counterexamples are retained; no private metric fork was created.
 
 The archived same-split comparison remains **HOLDOUT-DTI**, evaluator `gems57-pooled-hide-v2`, seed 20, **11,321 withheld positives**: fold-fair R0 **0.0961**, 95% CI **[0.0830, 0.1089]**; KSLB **0.1241**, 95% CI **[0.1080, 0.1403]**. These are historical, not rerun here; neither is an organizer result, and a local improvement cannot be converted to a private leaderboard projection. A new method must rerun the strongest comparable control, not merely beat a weaker historical R0.
+
+**Concurrent-main update (PR #104, integrated before final publication):** the inherited H86F-EWCS card reports **HOLDOUT-DTI 0.1723**, 95% CI **[0.1530, 0.1898]**, evaluator `gems57-pooled-hide-v2`, **11,321 withheld positives**. It is a stronger reported local result than KSLB and must be included among future rerunnable matched controls; it is not a newly measured result of this review, not an organizer result, and not clearance. Its paired improvement versus its preregistered isotropic-tip control is recorded separately in its card; the KSLB comparison must not be called our fresh paired experiment. The EWCS TIFF/ZIP/card and the no-TIFF H86H-PSTD result were preserved on merging `2b0c086` from main. The final shared release audit now covers **18/18** artifacts and the input-grid audit **690** indexed files (**688 compatible**, **2 incompatible**). Their archived registry receipts keep their original snapshot sizes; they are not relabelled as new scans.
 
 ### Reproduction limitation discovered
 
@@ -87,7 +89,7 @@ Heat-flow anomalies, sinter and warm probes are geothermal-resource/permeability
 - Found an incomplete-publication edge in the initial preparation patch; fixed it. A complete array generation is staged, local POSIX preparers are serialized, and ordinary write/source-mutation/cache-rename/manifest-rename failures restore the previous cache and manifest. Array hashes are recorded. **Cross-directory crash atomicity is not claimed**; a process/host crash between replacements remains a limitation.
 - Confirmed a later grid-only run must not leave stale feature arrays from an earlier full run. Regression tests cover that case, malformed input metadata/pins, source mutation and all publication failure points with and without a previous generation. Removed deprecated affine multiplication from synthetic tests.
 - Removed the misleading `card`/`source_card` skip logic: every sidecar remains subject to negative-state checks; mapped cards are additionally bound to TIFF bytes. Present authorization flags must be exact JSON `false`, not a truthy string, integer or null.
-- Restored **all 655 pinned historical inventory entries (728,345,463 bytes)**. The independent input audit then measured **689 unique indexed files including local extras**, all byte-verified, with **687 compatible grids and 2 incompatible**. This is REGISTRY-INPUT-MEASUREMENT, not a full candidate scan or a complete current organizer registry.
+- Restored **all 655 pinned historical inventory entries (728,345,463 bytes)**. The independent input audit then measured **690 unique indexed files including local extras**, all byte-verified, with **688 compatible grids and 2 incompatible**. This is REGISTRY-INPUT-MEASUREMENT, not a full candidate scan or a complete current organizer registry.
   - `14GEMSDOE` horse ensemble has the correct EPSG/shape but **wrong affine origin** `(500000, 4500000)` instead of `(243350, 4508550)`.
   - The `7GEMSDOE`/`GEMSDOE22` Qfaults prior has the correct CRS/affine/shape but **3 bands**, not 1.
   - Neither record was silently excluded, resampled or repaired. Their existence still blocks a valid complete uniqueness scan.
@@ -112,21 +114,26 @@ Final command outcomes are recorded in the verification record below. A green re
 
 ## Verification record
 
-All three passes are complete. Final local outcomes (2026-10-25):
+All three passes are complete. Pre-integration code/UI checks passed; final combined checks after main integration are recorded below (2026-10-25):
 
 | Check | Outcome / scope |
 |---|---|
 | `scripts/protocol_preflight.py` | Measured immutable witness stop; zero uncovered allowed cells; no rule change. |
-| `scripts/audit_release.py --measure-registry` | **PASS audit consistency**, all **17/17** inherited TIFF/receipt/ZIP local checks; **DO NOT SUBMIT**. No model or slot. |
-| `scripts/audit_registry_inputs.py` | **689/689** files byte-verified; **2 incompatible grids** retained as blockers; no probability-value or candidate clearance. |
+| `scripts/audit_release.py --measure-registry` | **PASS audit consistency**, all **18/18** inherited TIFF/receipt/ZIP local checks; **DO NOT SUBMIT**. No model or slot. |
+| `scripts/audit_registry_inputs.py` | **690/690** files byte-verified; **2 incompatible grids** retained as blockers; no probability-value or candidate clearance. |
 | `scripts/audit_concurrent_artifacts.py` | Both inherited final-dot directions and exact H33 lineage measured using pinned shared comparator; no new prediction. |
 | `scripts/build_site.py --check` | **PASS**, deterministic evidence-generated site. |
 | `scripts/check_site.py` | **PASS**, local links, registered binaries and negative-state safety. |
-| `scripts/audit_downloads.py` | **PASS**, **17/17** local format/receipt checks, no authorized submission. |
-| `.venv/bin/python -m pytest -q` | **775 passed, 24 skipped, 41 subtests passed** in **325.78 s**. Skips are not evidence of model validation. **42** pending affine-operator warnings originate in the pinned Rasterio dependency, not new synthetic transform code. |
-| Chromium 153 UI smoke | **PASS** at **1440×1000** and **390×1000**, **11 pages** each; no overflow, local HTTP errors or JS errors; **17** TIFF/ZIP links per format, downloaded TIFF SHA matched, **92-row** fleet filter worked, and decision/downloads survived JS disabled. Dated page/asset hashes: `docs/evidence/ui-smoke-20261025.json`. |
+| `scripts/audit_downloads.py` | **PASS**, **18/18** local format/receipt checks, no authorized submission. |
+| `.venv/bin/python -m pytest -q` | **802 passed, 24 skipped, 41 subtests passed** in **344.40 s**, after integration of `2b0c086` (prior isolated suite: 775 passed). Skips are not evidence of model validation. **42** pending affine-operator warnings originate in the pinned Rasterio dependency, not new synthetic transform code. |
+| Chromium 153 UI smoke | **PASS** at **1440×1000** and **390×1000**, **11 pages** each; no overflow, local HTTP errors or JS errors; **18** TIFF/ZIP links per format matched the combined inventory, downloaded TIFF SHA matched, **92-row** fleet filter worked, and decision/downloads survived JS disabled. Dated page/asset hashes: `docs/evidence/ui-smoke-20261025.json`. |
 | `git -c core.whitespace=cr-at-eol diff --check` | **PASS**; existing CSV CRLF convention preserved rather than rewriting unrelated ledger rows. |
 
 The first full-suite run caught a wording regression in the guard distinguishing a byte-distinct file from registry uniqueness. The distinction was restored, the focused test passed, and the full suite above was rerun successfully. The legacy root redirect's false historical “new unique” claim was also removed and regression-tested. Root redirect behavior and local browser success are not proof of remote Pages deployment or organizer acceptance.
 
 No thresholds, shared evaluator/writer bytes, historical model cards, request archives or downloadable raster bytes were changed. No optimizer, selector, account login or submission upload ran. PR/merge and remote check results are reported in the final handoff, not fabricated here.
+
+
+### Concurrent-main reconciliation
+
+Main advanced to `2b0c086` while the initial suite ran. Preserved the EWCS/PSTD code, preregistrations, cards, new EWCS bytes and four other session reviews; no lane was rerun. Merged both new receipt renderers and their negative-state guards into the download-first UI, preserving the new H86G planning section. Corrected a copied PSTD sentence that had called an ablation ordering proof of hydrothermal causation; numerical archived evidence remains unchanged. Refreshed 18-artifact/690-input receipts and 92-project feed. Final combined full-suite/browser outcomes are the 802-pass/18-artifact results in the table above, not the earlier 775-test result. [Code/UI verification receipt](../docs/evidence/session-cf73474c-verification.json) binds the actual Python source hashes, locked dependencies, dated browser receipt and release report. The 24 skips concern ignored/unbuilt prototype release rasters and unrestored historical R0 experiment inputs; none was rebuilt to bypass a stop or relabelled as validation. The combined browser run also caught a 7-pixel mobile overflow from a newly merged long hypothesis heading. Added real heading/status word wrapping (not page clipping), then reran all 11 pages at both viewports successfully.

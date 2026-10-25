@@ -120,6 +120,13 @@
       "context": "docs/evidence/h86f-gzzd-run-card.json",
       "holdout_kind": "h86f_gzzd",
       "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86F-EWCS elastic wing-crack + harmonic tilt-depth/Laplace PU (holdout-positive 0.1723, registry-blocked DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86f-ewcs-run-card.json",
+      "context": "docs/evidence/h86f-ewcs-run-card.json",
+      "holdout_kind": "h86f_ewcs",
+      "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
     }
   ]
 }

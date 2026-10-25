@@ -6,6 +6,8 @@ a replacement for that archive. Preserve `REQUEST_20261024.md`,
 `REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 
 The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
+Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
+the combined inventory now contains 18 historical audit-only TIFFs, all blocked.
 The named fleet remains 92 projects. The current request adds owner claims
 `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
 They were unscored in the 2026-10-24 archive; that historical record is not

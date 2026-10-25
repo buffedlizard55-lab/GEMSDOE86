@@ -2,12 +2,12 @@
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-25",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (planned g_zz/low-relief extension; standalone SPBT-v1 was previously negative; exact extension NOT RUN; no method lane assigned)",
-  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
-  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts (USGS OFR 99-383).",
+  "hypothesis": "No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
+  "mechanism": "None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
+  "named_non_fault_process": "Not applicable: no candidate mechanism was tested.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
-    "status": "NOT_RUN_PROTOCOL_STOP",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED",
     "evaluator_version": "gems57-pooled-hide-v2",
     "withheld_positives": null,
     "value": null,
@@ -22,7 +22,9 @@
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
     "universal_forward_overlap": 1.0,
     "allowed_overlap_limit": 0.7,
-    "evidence": "docs/evidence/all-artifacts-registry.json"
+    "evidence": "docs/evidence/all-artifacts-registry.json",
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "measurement_scope": "Inherited full-support continuous witness direct-support overlap; not a candidate surface or final-dot PA measurement."
   },
   "raster_sha256": null,
   "validator_output": {
@@ -32,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 17,
-    "local_format_pass": 17,
+    "checked": 18,
+    "local_format_pass": 18,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -121,6 +123,11 @@
         "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
         "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
+        "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -135,8 +142,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T02:19:15+00:00",
+  "registry_measured_utc": "2026-10-25T02:40:35+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "af0f7d1d5352c2c14a936e570a95d8eb286a62ad80a1b99abe52f6825846957c",
-  "registry_measurement_sha256": "2c4e413114b4e933336b830d05b835ce9f86cee46bd0e8f4dfca3cc9ed4bff36"
+  "release_report_sha256": "2ce7b5881f0aa558a169404d6424d584ba611d7013c54617c9e46e7f5fd0e97b",
+  "registry_measurement_sha256": "e9d490dae167cf71752d45319f9d2df9258eff34dad91e532d6d83c4fafd6b2e"
 }

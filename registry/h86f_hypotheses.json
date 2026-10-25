@@ -1,0 +1,105 @@
+{
+  "schema": "gems86.h86f-hypotheses.v1",
+  "date_utc": "2026-10-24",
+  "scope": "Four newly formulated candidate geological hypotheses for Session H86F, distinct from all 15 published GEMSDOE86 research lanes, the 5 H86E queue entries in registry/h86c_hypotheses.json, the 4 qualitative sketches in research/SESSION_20261024_4D79B443.md, and audited sibling repository lanes through GEMSDOE92.",
+  "ranking_basis": "Ranked qualitatively by expected off-catalogue fault recovery on buffered whole-segment holdout, competition-raster self-sufficiency using pixel-verified band physics (src/gems86/io.py; docs/evidence/band-physics-verification-20261024.json), and CPU implementation cost within the <=3-experiment / <=2-hour session cap. Never a leaderboard score projection.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86F-EWCS",
+      "name": "Pollard-Segall Elastic Wing-Crack & Stepover Coulomb Transfer minus Broadside Stress-Shadow x Verduzco Harmonic Tilt-Depth & Vector Laplace g_zz Concordance",
+      "layers": [
+        "competition signed horizontal gravity gradient vector (+Band 18 iso_grav_anom_hg = +dg/dx_east, -Band 11 iso_grav_anom_vg = +dg/dy_north) and Band 13 iso_grav_anom (USGS DOI 10.5066/P9Z6SA1Z)",
+        "competition Band 2 rtp, Band 3 tmi_hg, and Band 9 tmi_vg (USGS GeoDAWN DOI 10.5066/P93LGLVQ)",
+        "competition Band 8 geod_dilaterate, Band 7 geod_shearrate, Band 4 geod_2ndinv, Band 17 cond_surf, Band 10 deq_n100a15, Band 16 ieq_n100a15, Band 15 depth_to_base_surf, Band 6 tc (verified GeoDAWN Radiometric Total Count), Band 12 det_elev, Band 19 det_elev_slope",
+        "fold-visible fault mask ONLY (vis_cat per buffered quadrant fold; zero access to withheld segments)"
+      ],
+      "signature": "Combine (1) Verduzco et al. (2004) analytical magnetic tilt-depth sharpness |grad theta_mag| * exp(-(theta_mag / 0.35)^2) where theta_mag = atan2(Band 9, Band 3) (inverse depth h^-1 to top of truncated magnetic basement, replacing mislabeled Band 6), (2) source-free potential-field Laplace vertical gravity curvature g_zz = -(d_col Band 18 + d_row Band 11) = -(d_x_east g_x + d_y_north g_y) zero-crossing steepness at sigma in {300 m, 600 m}, and (3) fold-visible Pollard & Segall (1987) off-axis tensile wing-crack lobes (|alpha| ~ 15-42 deg forward of visible fault terminations) + opposing-tip releasing-stepover bridges (high scalar tip density with cancelling propagation vectors) MINUS mid-segment broadside elastic stress-shadow zones (300 m < d_vis <= 2.0 km perpendicular to interior fault tangents), trained via fold-fair positive-unlabeled HistGradientBoosting and decoded at 2.8 px Poisson-disc spacing.",
+      "why_unmapped": "USGS Qfaults and INGENIOUS surface-trace compilations terminate where range-front or transfer faults plunge beneath Holocene alluvial fans and playas. In linear elastic fracture mechanics, broadside flanks of long mapped segments sit in an elastic stress-release shadow whereas forward off-axis wing-crack lobes and opposing-tip stepover ramps concentrate tensile opening stress, driving shallow basement truncation (high |grad theta_mag| at theta_mag=0 and Laplace g_zz=0), smectite alteration (Band 17), and microseismicity (Band 16) even where surface slope (Band 19) is flat.",
+      "difference_from_repo": "H86C-KSLB and H86D-CTHB treated Band 6 (tc) as magnetic tilt ('mag_tc_z') and Band 11 as vertical gravity gradient prior to IR-86-BAND6-TC-MISLABEL-20261024 and IR-86-BAND11-18-GRAV-VECTOR-20261024, and used unsigned tip cones without broadside elastic stress-shadow suppression. H86E-SPBT proposed 1-D antisymmetric flank steps; H86E-MMT tested unsupervised cross-corridor phase lags (HOLDOUT-DTI 0.0290); H86E-RIDF used isotropic Hessian DEM/RTP gradients without tilt-depth, Laplace g_zz, or fold-visible crack-tip mechanics.",
+      "non_fault_mimic": "Steep unfaulted Mesozoic pluton or caldera-wall intrusive contacts adjacent to mapped fault terminations, or Pleistocene Lake Lahontan shoreline benches underlain by shallow volcanic flows.",
+      "expected_dti_gain": "Rank 1 priority for immediate spatially-blocked holdout testing: self-contained on hash-pinned competition mirrors, corrects verified Band 6 / Band 11-18 physics in a supervised fold-fair PU architecture, and directly tests asymmetric wing-crack vs broadside stress-shadow transfer. No leaderboard score projection.",
+      "implementation_cost": "Low-medium (~4 min CPU, <1.5 GiB RAM, 3 preregistered arms ongems57-pooled-hide-v2).",
+      "external_data_required": false,
+      "obtainability": "VERIFIED_LOCAL_MIRROR: uses hash-pinned 19-band training_features.tif and existing_faults.tif mirrors (not organizer-authenticated; not the absent template .cache stack).",
+      "data_readiness": "READY_FOR_HOLDOUT_ONLY: holdout validation and v2 surface registry measurement run cleanly; literal 17GEMSDOE saturation and 2 incompatible registry-index rows still govern pre-placement stop.",
+      "official_basis": [
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "https://gdr.openei.org/submissions/1391"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "H86F-GDFB",
+      "name": "Garland-Poisson Gravity-Magnetic Hessian Eigenvector Misalignment & Discrete Gravity-Curl Seam Veto for Magnetite-Destruction Fault Cores",
+      "layers": [
+        "competition Band 18 (+dg/dx_east), Band 11 (+dg/dy_south), and Band 13 iso_grav_anom",
+        "competition Band 2 rtp, Band 3 tmi_hg, and Band 9 tmi_vg",
+        "competition Band 8 geod_dilaterate and Band 17 cond_surf"
+      ],
+      "signature": "Under Garland's (1951) Poisson relation, a homogeneous unfaulted lithologic contact with uniform density-to-magnetization contrast produces co-axial horizontal gravity curvature and RTP magnetic Hessian principal axes (psi_grav || psi_mag). Compute sin^2(psi_grav - psi_mag) weighted by |g_h| * |grad RTP| inside dilatant crust (Band 8 > 0) and high shallow conductivity (Band 17), while vetoing non-conservative gridding seams via discrete curl |d_x(-Band 11) - d_y(Band 18)|.",
+      "why_unmapped": "Hydrothermal fluid circulation along blind Great Basin fault cores destroys primary host-rock magnetite (converting titanomagnetite to pyrite/smectite/chlorite) while preserving or silica-indurating bulk density contrast across the structural offset, decoupling magnetic and gravity tensor orientations along scarpless intrabasin conduits.",
+      "difference_from_repo": "GMC used scalar cross-gradients |grad Band 13 x grad Band 2| without vector-verified Bands 18/11 curvature tensors, discrete curl seam vetoing, or dilatant/conductivity coupling; H86E-HMDC targeted RTP troughs + external GDR vent points rather than Poisson tensor axis rotation.",
+      "non_fault_mimic": "Unfaulted reversely magnetized Cenozoic basalt flows unconformably draping dense Paleozoic carbonate blocks.",
+      "expected_dti_gain": "Rank 2 qualitative priority: physically isolates hydrothermally altered fault cores from unaltered plutonic contacts using competition-only bands. No score projection.",
+      "implementation_cost": "Low-medium (~15 min CPU for multi-scale spin-2 tensor eigendecomposition and buffered LOQO validation).",
+      "external_data_required": false,
+      "obtainability": "VERIFIED_LOCAL_MIRROR: requires only hash-pinned competition training_features.tif.",
+      "data_readiness": "DEFERRED_BUDGET: held behind Rank 1 H86F-EWCS to stay strictly within the 3-experiment single-lane session cap.",
+      "official_basis": [
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "https://pubs.usgs.gov/fs/fs-0236-95/fs-236-95.pdf",
+        "https://gdr.openei.org/submissions/1391"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "H86F-PFSB",
+      "name": "Piedmont Alluvial-Fan Burial-Apron Censoring Propensity Gate (GeoDAWN Radiometric TC Fan-Detritus Plumes x Piedmont Concavity) for Scarpless PU Extrapolation",
+      "layers": [
+        "competition Band 6 tc (pixel-verified GeoDAWN Airborne Radiometric Total Count, r = +0.997140)",
+        "competition Band 12 det_elev and Band 19 det_elev_slope",
+        "competition Band 15 depth_to_base_surf, Bands 18 & 11 horizontal gravity vector, Band 17 cond_surf, Band 10 deq_n100a15, and Band 16 ieq_n100a15"
+      ],
+      "signature": "Model the observational censoring propensity c(x) of aerial-photo/scarp fault catalogs directly: active piedmont debris-flow fan aprons exhibit long-wavelength profile concavity (Laplacian of Band 12 > 0 downslope of steep range fronts), low local slope (Band 19 < 3 deg), and smooth high-TC potassic/felsic fan-wash plumes (Band 6 tc high, |grad tc| low). Apply Bekker-Davis Selected-At-Random / propensity-weighted positive-unlabeled reweighting P(fault | x) = P(labelled | x) / c(x) to upweight subsurface basement/gravity/conductivity ridges specifically where canyon-mouth fan aggradation erases surface scarps.",
+      "why_unmapped": "Mapped Nevada range-front faults systematically exhibit 1-8 km artificial catalog gaps across major canyon mouths and coalescing bajadas where Holocene debris-flow sedimentation rates exceed scarp recurrence intervals, even though the master fault is continuous at 200-1000 m depth.",
+      "difference_from_repo": "Prior PU lanes (H86C-KSLB, H86D-CTHB, H86E-RIDF, GEMSDOE82) assumed spatially uniform label-observation propensity c; SESSION_20261024_4D79B443 sketched TC-magnetic conditional independence rather than canyon-mouth fan-burial propensity correction.",
+      "non_fault_mimic": "Unfaulted buried pediment bedrock ledges or paleochannel thalwegs beneath potassium-rich rhyolitic alluvial fans.",
+      "expected_dti_gain": "Rank 3 qualitative priority: directly corrects positive-unlabeled catalog-censoring bias across alluvial aprons without external downloads. No score projection.",
+      "implementation_cost": "Medium (~25 min CPU for two-stage propensity + subsurface PU estimation with strict fold-visible label masking).",
+      "external_data_required": false,
+      "obtainability": "VERIFIED_LOCAL_MIRROR: requires only hash-pinned competition training_features.tif and fold-visible labels.",
+      "data_readiness": "DEFERRED_BUDGET: held for next session to respect single-lane 3-experiment budget.",
+      "official_basis": [
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "https://gbcge.org/current-projects/ingenious/"
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "H86F-USGS-3DGF",
+      "name": "External Borehole-Constrained USGS Great Basin 3D Hydrogeologic Framework Basin-Fill Thickness Residual to Break Gravity-Basement Circularity",
+      "layers": [
+        "external USGS Great Basin 3D Hydrogeologic Framework Cenozoic basin-fill thickness & carbonate-rock surface grids (USGS SIR 2010-5193 / ScienceBase DOI 10.5066/P9..., public domain)",
+        "competition Band 15 depth_to_base_surf, Band 13 iso_grav_anom, Bands 18 & 11 horizontal gravity vector, and Bands 7 & 8 geodetic strain rates"
+      ],
+      "signature": "Difference borehole- and seismic-refraction-constrained Cenozoic basin-fill thickness grids from competition Band 15 (gravity-derived Jachens-Moring basement depth) and extract narrow (<1.5 km) linear thickness-residual steps aligned with geodetic transtensional strain (Bands 7 & 8) to detect intrabasin horst-graben faults under-resolved by smooth regional gravity inversion.",
+      "why_unmapped": "Intrabasin synthetic/antithetic fault blocks beneath thick Quaternary valley fill lack surface scarps and are smoothed together by regional 2-km gravity-basement inversion (USGS OFR 99-383), whereas oil/geothermal/water well lithologic intercepts resolve sharp subsurface bedrock steps.",
+      "difference_from_repo": "Breaks the shared Jachens-Moring gravity-inversion ancestry between Band 13 and Band 15 flagged in H86E-SPBT; distinct from H86E-MTCS (3D MT conductance + heat flow) and H86E-WCS (1-m 3DEP LiDAR).",
+      "non_fault_mimic": "Differential compaction over buried Miocene volcanic edifices, paleovalleys, or sparse borehole kriging artifacts around isolated geothermal fields.",
+      "expected_dti_gain": "Rank 4 qualitative priority: high independence value once mirrored, but requires external archive ingestion and borehole-clustering canary checks. No score projection.",
+      "implementation_cost": "High: ScienceBase archive mirroring, EPSG:32611 reprojection, borehole-location leakage audit, and buffered holdout validation.",
+      "external_data_required": true,
+      "free_official_source_needed": "USGS Scientific Investigations Report 2010-5193 / ScienceBase Great Basin Cenozoic Hydrogeologic Framework digital grids (Heilweil & Brooks 2011; public domain).",
+      "obtainability": "NOT_VERIFIED_THIS_SESSION: USGS ScienceBase and pubs.usgs.gov download hosts are outside this sandbox's outbound allowlist; no archive bytes or coverage claims are fabricated here.",
+      "data_readiness": "NOT_VIABLE_YET: external framework grids are not mirrored in this checkout and require SHA-pinned acquisition before testing.",
+      "official_basis": [
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        "https://gdr.openei.org/submissions/1391",
+        "https://epsg.io/32611"
+      ]
+    }
+  ]
+}

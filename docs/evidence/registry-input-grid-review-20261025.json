@@ -1,14 +1,14 @@
 {
   "schema": "gems86.registry-input-grid-review.v1",
   "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
-  "measured_utc": "2026-10-25T02:08:48+00:00",
-  "registry_index_sha256": "10e18e823839007c152e6996b331e81baa2165488c1b76b09b1a3666e9bceb0e",
+  "measured_utc": "2026-10-25T02:39:47+00:00",
+  "registry_index_sha256": "0ac9a7dff75303a8053f18b5b3633d64a2d90c6e2b3eabdeb005dad519f2f7eb",
   "inventory_rasters_missing": [],
-  "indexed_rasters_expected": 689,
-  "indexed_rasters_present": 689,
-  "byte_verified_rasters": 689,
+  "indexed_rasters_expected": 690,
+  "indexed_rasters_present": 690,
+  "byte_verified_rasters": 690,
   "byte_coverage_complete": true,
-  "grid_compatible_rasters": 687,
+  "grid_compatible_rasters": 688,
   "grid_incompatible_or_invalid_rasters": 2,
   "all_grids_compatible": false,
   "incompatible_or_invalid_records": [
@@ -24439,6 +24439,42 @@
       "probability_values_checked": false,
       "measured_sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
       "measured_bytes": 123383,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
+    {
+      "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 137947,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
+      "measured_bytes": 137947,
       "grid": {
         "shape": [
           3730,

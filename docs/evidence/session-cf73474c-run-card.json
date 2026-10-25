@@ -3,7 +3,7 @@
   "session": "cf73474c",
   "date_utc": "2026-10-25",
   "evidence_class": "RUN-CARD",
-  "measured_registry_utc": "2026-10-25T02:19:15+00:00",
+  "measured_registry_utc": "2026-10-25T02:40:35+00:00",
   "hypothesis": "H86G-CSPA: Local cross-spectral gravity-magnetic admittance breaks (ranked proposal only; not implemented or authorized)",
   "mechanism": "Within tapered, overlapping windows, estimate gravity-magnetic cross-spectrum, coherence and scale-dependent admittance. Test a spatially persistent change in the relationship across a corridor against within-window phase-scrambled controls. Define numerical windows, frequency bands and regularization only in a future authorized preregistration, before any holdout evaluation.",
   "non_fault_mimic": "Unfaulted lithologic juxtaposition, source-depth changes, remanent volcanic magnetization, and mismatched survey resolution.",
@@ -33,9 +33,9 @@
     "forward_overlap_limit": 0.7,
     "allowed_cells": 5106385,
     "uncovered_allowed_cells": 0,
-    "registry_files_byte_verified": 689,
+    "registry_files_byte_verified": 690,
     "registry_grid_incompatible_or_invalid": 2,
-    "scope": "Witness rejects any nonempty allowed candidate; 689-file byte/grid audit is not candidate clearance. Candidate surface and final dots do not exist."
+    "scope": "Witness rejects any nonempty allowed candidate; 690-file byte/grid audit is not candidate clearance. Candidate surface and final dots do not exist."
   },
   "raster_sha256": null,
   "validator_output": {
@@ -43,8 +43,8 @@
     "new_raster_no_nan_inside_footprint": null,
     "new_raster_values_in_0_1": null,
     "new_raster_crs_shape_transform_match": null,
-    "inherited_artifact_format_passes": 17,
-    "inherited_artifact_count": 17,
+    "inherited_artifact_format_passes": 18,
+    "inherited_artifact_count": 18,
     "inherited_artifact_decision": "DO NOT SUBMIT",
     "organizer_acceptance_confirmed": false
   },
@@ -64,11 +64,11 @@
     "registry/h86g_hypotheses.json": "4c72bf3e1176c0249144db9df810165148939fe5f7ceb3d8e7b3bb0710399b33",
     "data/prepared_manifest.json": "1ad8adfb6e71af13c3a7e3460e50332dce7968130ce6292132ffb88f10053f13",
     "docs/evidence/session-cf73474c-data.json": "e4bf9233ede205ef3012bf5ab6771c0d04c9eb3971f1f19e483ed5321829376c",
-    "docs/evidence/registry-input-grid-review-20261025.json": "86763b88989ed6292f2f40c77d83b4c190ebe830c172401a62a1ab027f36e8f7",
-    "docs/evidence/concurrent-artifact-review-20261025.json": "15c9e0edfa09616fd019aec9d910434b9b674a590ae74e7a1c8af46303839f8a",
-    "docs/evidence/protocol-preflight.json": "967a2ca8871a74e8bb1871049c7356f6fe8801d933426140ae5a615e01a8a045",
-    "docs/evidence/release-readiness.json": "af0f7d1d5352c2c14a936e570a95d8eb286a62ad80a1b99abe52f6825846957c",
-    "docs/evidence/all-artifacts-registry.json": "2c4e413114b4e933336b830d05b835ce9f86cee46bd0e8f4dfca3cc9ed4bff36"
+    "docs/evidence/registry-input-grid-review-20261025.json": "fd359878c3d645684cf4019837533951db9f5f16593b2ff583f876b5877fed05",
+    "docs/evidence/concurrent-artifact-review-20261025.json": "b51db41756bf8bdffca333d96cb04fe95c835b35221c839acea17db917af7155",
+    "docs/evidence/protocol-preflight.json": "e7f2a51ca60c6a1d6090fbe0593d71fb0dcbb884fab81c8ba9952497c4398818",
+    "docs/evidence/release-readiness.json": "2ce7b5881f0aa558a169404d6424d584ba611d7013c54617c9e46e7f5fd0e97b",
+    "docs/evidence/all-artifacts-registry.json": "e9d490dae167cf71752d45319f9d2df9258eff34dad91e532d6d83c4fafd6b2e"
   },
   "limitations": [
     "No single-method lane assigned.",
