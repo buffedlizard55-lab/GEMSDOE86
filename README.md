@@ -1,8 +1,24 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-**Independent review (branch `4b49f82f`):** [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md). All existing downloads remain **DO NOT SUBMIT**. No new candidate or slot was used; the literal overlap rule, amendment authority, missing shared cache, and unassigned method lane remain explicit blockers.
+Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear the later H86F-PCC file.
+
+## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-25)
+
+The new file is easy to download and is **not** cleared for the portal:
+
+- TIFF (audit only): [`docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif`](docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif)
+- ZIP: [`gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.zip`](docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.zip)
+- SHA-256: `7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be`
+- Name, do not upload: `gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros`
+- Note, do not upload: `H86F-PCC signed grav-RTP-basement polarity, survey-axis veto; holdout is not a leaderboard score; no slot used`
+- Run card: [`docs/evidence/h86f-pcc-run-card.json`](docs/evidence/h86f-pcc-run-card.json)
+- Review: [`research/H86F_PCC_REVIEW.md`](research/H86F_PCC_REVIEW.md)
+
+**HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives): candidate `0.0327`, 95% CI `[0.0237, 0.0436]`. Same-split historical KSLB comparator `0.1241` `[0.1080, 0.1403]`. Paired delta versus the R0 visible-collar control `−0.0011` `[−0.0199, +0.0192]`. **LEAKAGE-CANARY** maximum discriminative AUC `0.550`. Local format passes, including values in `[0, 1]`, so this file would not reproduce the portal error “Predicted values must be in range [0, 1]”. Format validity is not permission to upload. `0.2778`, `0.3195` and `0.4413` remain **OWNER-REPORTED**, not organizer-confirmed. No slot was used.
+
+## Previous automated decision, 2026-10-24, also **NO**
 
 **Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
 
@@ -23,13 +39,13 @@
 
 The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its holdout numbers are `HOLDOUT-DTI`, not leaderboard scores; owner-reported `GEMSDOE32` `0.2778` remains an unverified claim, and no projection is made. Read the [current machine-checked site](docs/index.html), [executive submission guide](docs/executive-summary.html), [session `86569dcd` PhD forensic review & untried hypotheses](research/SESSION_20261024_86569DCD_REVIEW.md), [session `86569dcd` negative run card](docs/evidence/session-20261024-86569dcd-run-card.json), [verified 19-band prepared manifest](data/prepared_manifest.json), [three-to-five-hypothesis preregistration](research/H86E_MMT_PREREGISTRATION.md), [three-pass H86E-MMT review](research/H86E_MMT_REVIEW_20261024.md), and [current feed/evidence](docs/evidence/release-readiness.json).
 
-## Latest repository review — 2026-10-24: no new TIFF; **DO NOT SUBMIT**
+## Prior repository review — 2026-10-24, before H86F-PCC: **DO NOT SUBMIT**
 
 The current review completed three passes and reran the full suite (**640 passed, 24 skipped, 42 warnings, 41 subtests**) plus release and static-site checks. A read-only integrity preflight confirms that a pinned full-support witness covers every allowed cell under the request's literal overlap definition; the complete registry is not present, so this is a negative stop, never uniqueness clearance. No new candidate was generated: the current request does not assign one method lane, the actual shared feature cache is absent, and no complete contemporary registry is restored. Existing GeoTIFFs are downloadable for audit only, not cleared for competition upload. See [the full three-pass repository review](research/ARENA_REPO_REVIEW_20261024.md) and the [current release-readiness inventory](docs/evidence/release-readiness.json).
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **15** published research TIFFs, including H86E-MMT and the blind-geothermal lane.
+Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **16** published research TIFFs, including the negative H86F-PCC lane, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 

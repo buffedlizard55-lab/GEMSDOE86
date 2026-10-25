@@ -32,8 +32,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 15,
-    "local_format_pass": 15,
+    "checked": 16,
+    "local_format_pass": 16,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -111,6 +111,11 @@
         "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
         "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+        "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -125,8 +130,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T00:51:18+00:00",
+  "registry_measured_utc": "2026-10-25T00:59:05+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "df5654cf03c4f9ebce6485f5426c284c036d43803e9343786881708b7313b162",
-  "registry_measurement_sha256": "5d91dd95be0e2a8381c90849d3d52458051073e80913ccde943bfadf7ab18d17"
+  "release_report_sha256": "b7ba5a6b6d6f4fbf3153e4941828c295d54d4d2c24ea08fda49dcbfeeb5192ac",
+  "registry_measurement_sha256": "ea675e22f75009766904135121974354c99389ac20d9503b35f27befc2ff84fa"
 }
