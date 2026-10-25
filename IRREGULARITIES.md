@@ -1135,6 +1135,86 @@ despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
 `tests/test_builder_preflight.py::BUILDERS`, and `docs/evidence/h86e-mmt-registry-surface.json` now records
 `"surface_gate_pass": false` with an explicit archive note.
 
+## IR-86-H86F-INQUAD-TRAINING-20261025 — `H86F-EWCS` (`0.1723`) trained on in-quadrant visible components rather than strict outer Leave-One-Quadrant-Out (`quad != q`)
+
+Line-by-line audit of `scripts/run_h86f_ewcs.py` (`line 528`) against
+`vendor/gems57/holdout.py` (`buffered_component_draw` docstring, `lines 269-271`) and
+`scripts/run_lane86c.py` (`line 206`) identified a training-domain asymmetry between
+the repository's two leading same-split holdout benchmarks on `gems57-pooled-hide-v2`
+(`seed=20`, `hide_frac=0.20`, `buffer_px=3`, `11,321` withheld positive pixels):
+`H86C-KSLB` (`0.124063 [0.107970, 0.140330]`) restricted training labels to
+`train_dom = binary_erosion(quad != q, iterations=12) & footprint` (strict outer
+Leave-One-Quadrant-Out), whereas `H86F-EWCS` (`0.172325 [0.152956, 0.189793]`)
+sampled visible positive and negative training pixels across all 4 quadrants (`vis`,
+which still strictly excludes all `11,321` withheld whole-component pixels plus their
+`3 px` context collar, so zero withheld truth leaked, but allows tree splits to learn
+in-quadrant visible background statistics). Re-evaluating the exact `H86F-EWCS`
+architecture under strict outer Leave-One-Quadrant-Out (`C1_H86F_EWCS_strict_loqo_ctrl`
+in `docs/evidence/h86i-ksad-run-card.json`) yields **`HOLDOUT-DTI = 0.133311`
+(`95% CI [0.117836, 0.150210]`)**, showing `+0.039014` (`+390 bps`) of the `0.172325`
+score came from in-quadrant visible training. Under identical strict outer LOQO,
+`H86I-KSAD` achieves **`0.155275 [0.139633, 0.171839]` (`E1`)** and **`0.159867
+[0.145895, 0.174249]` (`E2`)**, beating `C1_H86F_EWCS_strict_loqo_ctrl` with a
+strictly positive paired `20 km` block-bootstrap 95% CI (`+0.021964 [+0.003838, +0.040503]`
+for `E1`).
+**Decision:** Never compare in-quadrant visible `HOLDOUT-DTI` (`0.1723`) directly against
+strict-LOQO `HOLDOUT-DTI` (`0.1241`, `0.1333`, `0.1553`, `0.1599`) without labeling the
+outer training domain (`AGENTS.md` Rule 6).
+
+## IR-86-DEM10-CHI-SENTINEL-20261025 — Raw `int16` `-32768` non-channel sentinels in `dem10_chi_100m_i16.tif`
+
+Direct pixel inspection of SHA-pinned `.cache/external/dem10_chi_100m_i16.tif`
+(`8897ba9c...` in `scripts/restore_data.py:EXTERNAL_PINS`) showed Bands 1-4
+(`step_max_x1000`, `step_min_x1000`, `ksn_max_m0.9`, `log10_area_m2_x1000`) store
+`-32768` (`int16` minimum, `median = -32768.0` across the footprint) at off-channel
+hillslope cells without declaring a GeoTIFF `nodata` tag that `np.isfinite` would filter,
+whereas Band 5 (`zmean_m`) stores true absolute elevation in meters ASL (`1032..3141 m`,
+`100.0%` valid). Unmasked smoothing across `-32768` creates spurious step artifacts along
+drainage margins.
+**Decision:** `src/gems86_ksad/physics.py` explicitly masks `val > -32000` with
+normalized Gaussian channel weights before computing reach-relative $k_{sn}$ and
+$\chi$-step knickzone features, while using `zmean_m` directly for Pleistocene Lake
+Lahontan (`1,180-1,345 m ASL`) contour-parallelism deconfounding.
+
+## IR-86-H86I-KSAD-OVERLAP-STOP-20261025 — `H86I-KSAD` sets repo strict-LOQO holdout record (`0.1553` / `0.1599`), then halts fail-closed BEFORE GeoTIFF serialization on `71.31%` informative discrete fleet overlap
+
+`scripts/run_h86i_ksad.py` executed the frozen 3-arm preregistered `H86I-KSAD` lane
+(`research/H86I_KSAD_PREREGISTRATION.json`, `registry/h86i_ksad_hypotheses.json`) within the
+`<= 3` experiment / `<= 2` hour budget (`32/32` single-feature leakage canaries passed,
+`max_discriminative_auc = 0.8074 <= 0.90`). Pre-placement `v2` surface audit across
+`688 / 690` compatible registry rasters (`docs/evidence/h86i-ksad-registry-surface.json`)
+recorded `0` Spearman `rho > 0.90` firings (`worst_spearman = 0.6344`). However,
+pre-serialization `v2` final-dot audit of `E1`'s `28,197` Dinkelbach-stopped dots
+(`docs/evidence/h86i-ksad-registry-final-dots.json`) caught **3 genuinely informative
+discrete dot-field forward 3-px overlaps `> 0.70`**: `71.31%` against
+`GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif`
+(`36,500` dots, measured 3-px chance halo `c = 14.65% << 70%`) and `70.19%` against
+`GEMSDOE43:gems43-sup01-hgb21-sep40-n40000` (`40,000` dots, `c = 18.45% << 70%`), in
+addition to the 2 off-grid registry rows (`688/690` compatible) and literal `17GEMSDOE`
+full-support witness saturation.
+**Decision:** Per Parallel-Run Protocol Rule 1 and `AGENTS.md` Rules 10-11 (*"final-dot
+checks precede serialization"* and *"informative overlap firings are hard stops"*), the
+runner halted fail-closed **before writing a duplicate GeoTIFF**, wrote the complete
+negative deliverable `docs/evidence/h86i-ksad-run-card.json` (`verdict = "negative"`,
+`decision = "DO NOT SUBMIT"`, `0` weekly slots used), and locked `scripts/run_h86i_ksad.py`
+behind `protocol_preflight.require_feasible()` (`55` CLI builders + `8` imported
+orchestrators in `tests/test_builder_preflight.py`).
+
+## IR-86-RELEASE-AUDIT-TMP-20261025 — `tests/test_release_audit.py::release_copy` copied untracked 400 MB `training_features.tif` into `/tmp` 20+ times when native data were restored
+
+**Observed.** In CI (`ubuntu-24.04`), `data/bridge/` contains only the two Git-tracked bridge
+rasters (`existing_faults.tif` `416 KB` and `sample_submission.tif` `1.6 MB`). After running
+`bash scripts/download_competition_data.sh` locally, `data/bridge/training_features.tif`
+(`400 MB`, gitignored) is also present. `tests/test_release_audit.py::release_copy` called
+`shutil.copytree(ROOT / "data/bridge", ...)` without excluding `training_features.tif`, even
+though `scripts/audit_release.py` never opens `training_features.tif`. Across 20+ fixtures
+and pytest's retained temporary directories, that copied `> 8 GB` into `/tmp` and exhausted
+sandbox disk (`Errno 28: No space left on device`).
+**Decision.** Excluded `training_features.tif` in `tests/test_release_audit.py::release_copy`
+(`shutil.ignore_patterns("__pycache__", "training_features.tif")`); all 27 tests in
+`tests/test_release_audit.py` now pass cleanly whether or not `training_features.tif` is
+present locally.
+
 ## IR-86-H86G-INSTRUMENT-20261025 — Catalogue-hide holdout anti-correlates with live ordering; OOF-vs-shipped conflation
 
 E1b (this session) scored shipped rasters as-is on the seed-20 buffered
@@ -1274,7 +1354,7 @@ confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overla
 SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
 strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
 `0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
-`protocol_preflight.require_feasible()` (`59` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_rlms.py`).
+`protocol_preflight.require_feasible()` (`60` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_ksad.py` and `scripts/run_h86i_rlms.py`).
 
 ## IR-86-H86I-RLMS-01 — `H86I-RLMS` official 3DEP 1m/10m + GeoDAWN `K/eTh` physics improved `HOLDOUT-DTI` by `+0.0264` across all 4 quadrants, while unconstrained submodular `eta=0.042` clumping degraded Walker Lane `SW`
 
