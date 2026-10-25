@@ -1,7 +1,12 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-> **AUDIT-ONLY DOWNLOAD — DO NOT SUBMIT.** The GDSC TIFF is locally format-valid and byte-distinct, but its scientific lane verdict is negative and it fails the literal full-support witness gate (`1.0 > 0.70`). It is **not authorized for upload** (`safe_to_submit=false`, `approved_for_weekly_slot=false`); this is not an organizer acceptance or portal score. The format writer checks the values-in-[0,1] requirement on disk, but that does not establish leaderboard performance or upload authorization.
-> **Audit files:** [TIFF](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif) · [one-TIFF ZIP](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip) · [writer receipt](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.json) · [GDSC run card](docs/evidence/gdsc-run-card.json) · [executive submission guide](docs/executive-summary.html). Download only for research/audit; **do not submit**.
+## Latest audited lane H86K-PSC (2026-10-25): **NEGATIVE — DO NOT SUBMIT**
+
+The base-branch H86K-PSC run is a distinct, format-valid research artifact, not an upload authorization. Its recorded HOLDOUT-DTI is 0.0467 [0.0380, 0.0550] (gems57-pooled-hide-v2; 11,321 withheld positives); its paired difference versus the ridge control is +0.0064 with 95% CI [−0.0062, +0.0183], which crosses zero, so it did not satisfy the preregistered promotion rule. It has `safe_to_submit=false`, `approved_for_weekly_slot=false`, and used 0 slots. See the [lane page](docs/h86k-psc.html), [run card](docs/evidence/h86k-psc-run-card.json), and [audit TIFF](docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif). Format validity does not imply promotion or organizer acceptance.
+
+## Inherited GDSC lane: **NEGATIVE — DO NOT SUBMIT**
+
+The GDSC artifact is separately format-valid and byte-distinct, but its scientific result was negative and the literal full-support witness blocks promotion. It is not authorized for upload (`safe_to_submit=false`, `approved_for_weekly_slot=false`). The on-disk [TIFF](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif), [ZIP](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip), [writer receipt](docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.json), and [run card](docs/evidence/gdsc-run-card.json) are audit/research downloads only. The format writer checks values in [0,1]; that does not establish leaderboard performance, unique registry clearance, upload authorization, or organizer acceptance.
 ## ⛔ HIGHEST-VISIBILITY SUBMISSION ANSWER — H86K-STC (2026-10-25, this review session)
 
 **IS IT OK TO SUBMIT? NO — DO NOT SUBMIT.** The newest unique TIF,
@@ -19,7 +24,7 @@ Portal name (≤64 ch): `gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zer
 `H86K-STC coherence x coincident mag/grav edge, 40k dotted; audit only unless run card promotes`.
 Flagged: `IR-86-H86K-SITE/RERUN/RECEIPT-PATH-20261025` in `IRREGULARITIES.md`.
 
-## Current workspace review — 2026-10-25 (`679d92e7`): **DO NOT SUBMIT**
+## Earlier workspace review — 2026-10-25 (`679d92e7`, before H86K-PSC integration): **DO NOT SUBMIT**
 
 **No new TIFF was generated in this session. The unique, submission-cleared TIFF requirement remains unmet.** The merged base now contains **29** published research TIFFs (28 inherited plus the GDSC artifact); all pass local format audit, but none is authorized for upload. This review generated no new TIFF. Existing [TIFF/ZIP downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads) and the [executive submission guide](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html) remain audit-only.
 
@@ -29,7 +34,7 @@ Read the full standing request embedded below and [the complete archived request
 
 ## Current independent repository review (2026-10-25)
 
-**Audit state: DO NOT SUBMIT any file.** The current release audit verifies 29/29 artifacts for local format/integrity only. Current registry-input coverage is 701/701 indexed rasters (699 compatible, 2 incompatible); it is not proof of public-fleet completeness. The inherited GDSC raster is distinct in a limited 25-raster comparison but is not cleared against the full registry; the pinned full-support witness blocks every nonempty candidate under the literal 70% rule. No experiment or slot was used by this review. See [the fresh three-pass recheck, ranked proposals, verification commands, and blockers](research/ARENA_REPO_RECHECK_20261025.md) and the [earlier integrated review](research/ARENA_REPO_REVIEW_20261025.md). The request remains archived in [PROMPT.md](PROMPT.md) and [research/REQUEST_20261025.md](research/REQUEST_20261025.md); owner-reported leaderboard claims are not organizer receipts.
+**Audit state: DO NOT SUBMIT any file.** The current repository contains **30** published research TIFFs; the release audit verifies 30/30 for local format/integrity only. Current registry-input coverage is 701/701 indexed rasters (699 compatible, 2 incompatible); it is not proof of public-fleet completeness. The inherited GDSC and H86K-PSC rasters are not upload-authorized; the pinned full-support witness blocks every nonempty candidate under the literal 70% rule. This recheck ran no new experiment and used no slot; H86K-PSC is an upstream run, not a result from this recheck. See [the fresh three-pass recheck, ranked proposals, verification commands, and blockers](research/ARENA_REPO_RECHECK_20261025.md) and the [earlier integrated review](research/ARENA_REPO_REVIEW_20261025.md). The request remains archived in [PROMPT.md](PROMPT.md) and [research/REQUEST_20261025.md](research/REQUEST_20261025.md); owner-reported leaderboard claims are not organizer receipts.
 
 ## Inherited GDSC lane (base-branch update): **NEGATIVE — DO NOT SUBMIT**
 

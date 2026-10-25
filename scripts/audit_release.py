@@ -185,6 +185,17 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "OOF visible construction"),
                 "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."}
+    if kind == "h86k_psc":
+        hn = context.get("holdout_dti_normalized")
+        if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86K-PSC card lacks normalized HOLDOUT-DTI")
+        if context.get("verdict") != "negative" or context.get("submission_slots_used") != 0:
+            raise ValueError("H86K-PSC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
+                "design": hn.get("design", "buffered whole components"),
+                "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
