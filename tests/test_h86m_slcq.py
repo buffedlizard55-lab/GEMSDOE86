@@ -226,4 +226,3 @@ def test_true_footprint_quadrants_matches_gems57_holdout():
     assert np.array_equal(q_slcq, q_gems)
     for q in range(4):
         assert 500 <= int((q_slcq == q).sum()) <= 700  # Balanced ~25% split (vs 0 in SW/SE for H//2=50!)
-

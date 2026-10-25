@@ -25,7 +25,7 @@ def test_measurement_uses_current_utc_not_historical_snapshot(instant):
     source.read.return_value = footprint.astype('float32') * .5
     source.__enter__.return_value = source
     with (patch('scripts.audit_release.verify_shared_pins', return_value={'synthetic': True}),
-          patch.object(protocol_preflight, 'verify_file'),
+          patch.object(protocol_preflight, 'verify_file') as verify,
           patch.object(protocol_preflight.grid, 'load_grid', return_value=grid),
           patch.object(protocol_preflight.rasterio, 'open', return_value=source),
           patch.object(protocol_preflight, 'saturation_certificate',
@@ -34,6 +34,10 @@ def test_measurement_uses_current_utc_not_historical_snapshot(instant):
         clock.now.return_value = instant
         result = protocol_preflight.measure()
     clock.now.assert_called_once_with(timezone.utc)
+    # Competition grid and witness are mirrored under data/bridge; a canonical
+    # historical-witness archive is retained separately under data/registry.
+    assert verify.call_args_list[1].args[0] == protocol_preflight.ROOT / 'data/bridge/sample_submission.tif'
+    assert verify.call_args_list[3].args[0] == protocol_preflight.ROOT / 'data/bridge/registry/dense-witness.tif'
     assert result['measured_utc'] == instant.isoformat()
     assert result['measured_date_utc'] == instant.date().isoformat()
     assert result['status'] == 'STOP_LITERAL_OVERLAP_UNSATISFIABLE'

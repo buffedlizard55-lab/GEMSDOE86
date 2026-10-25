@@ -223,7 +223,9 @@ def build_rows() -> list[dict]:
 
 def render(rows: list[dict]) -> str:
     buf = io.StringIO()
-    w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\r\n")
+    # Keep repository CSV text deterministic with LF endings so incremental
+    # entries pass git whitespace checks and round-trip identically everywhere.
+    w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\n")
     w.writeheader()
     for r in rows:
         w.writerow({k: r.get(k, "") for k in COLUMNS})

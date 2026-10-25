@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -126,15 +127,32 @@ def restore_registry_witness():
     dest.parent.mkdir(parents=True, exist_ok=True)
     if dest.exists():
         verify_file(dest, pin['sha256'], pin['bytes'])
-        return dest
-    tmp = dest.with_suffix('.partial')
-    try:
-        with tmp.open('wb') as stream:
-            write_blob(pin['repo'], pin['blob'], stream)
-        verify_file(tmp, pin['sha256'], pin['bytes'])
-        tmp.replace(dest)
-    finally:
-        tmp.unlink(missing_ok=True)
+    else:
+        tmp = dest.with_suffix('.partial')
+        try:
+            with tmp.open('wb') as stream:
+                write_blob(pin['repo'], pin['blob'], stream)
+            verify_file(tmp, pin['sha256'], pin['bytes'])
+            tmp.replace(dest)
+        finally:
+            tmp.unlink(missing_ok=True)
+
+    # The shared protocol grid is loaded from data/bridge and its preflight
+    # expects the pinned witness alongside that grid. Keep the canonical
+    # archived copy under data/registry too, and publish a hash-checked mirror.
+    bridge_dest = ROOT / 'data' / 'bridge' / pin['dest']
+    bridge_dest.parent.mkdir(parents=True, exist_ok=True)
+    if bridge_dest.exists():
+        verify_file(bridge_dest, pin['sha256'], pin['bytes'])
+    else:
+        bridge_tmp = bridge_dest.with_suffix('.partial')
+        try:
+            with dest.open('rb') as src, bridge_tmp.open('wb') as dst:
+                shutil.copyfileobj(src, dst)
+            verify_file(bridge_tmp, pin['sha256'], pin['bytes'])
+            bridge_tmp.replace(bridge_dest)
+        finally:
+            bridge_tmp.unlink(missing_ok=True)
     return dest
 
 

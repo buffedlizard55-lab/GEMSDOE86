@@ -61,6 +61,7 @@ This session generated **no new TIFF** and used **0 slots**. It fixed the `data/
 - [Independent H33 forensic review, future hypothesis ranking, and review run card](research/SESSION_15577166_REVIEW.md) · [machine-readable review card](docs/evidence/session-15577166-run-card.json).
 - Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
 - Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
+- [This Arena branch's three-pass review and ranked hypotheses](research/SESSION_ARENA_295A5D50_REVIEW.md) · [run card](research/session-arena-295a5d50-run-card.json). The report distinguishes its 36-artifact pre-PR #173 snapshot from the final 41-artifact integrated audit.
 
 ## Parallel review reconciliation — session `d135ebf9`
 

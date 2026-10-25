@@ -47,6 +47,8 @@ def measure(data_dir=None):
     source_id = pin['repo'].split('/')[-1] + ':' + pin['source_path']
     if len(match) != 1 or source_id not in match[0]['sources'] or match[0]['blob'] != pin['blob']:
         raise ValueError('Witness is not bound to the pinned registry record')
+    # Keep the pinned witness beside the bridge-grid mirrors consumed by the
+    # shared evaluator; restore_protocol_data also retains its canonical archive.
     witness = data_dir / pin['dest']
     for path, sha, size in (
         (data_dir / 'sample_submission.tif', grid.SHA256_SAMPLE_SUBMISSION, None),

@@ -267,4 +267,3 @@ def test_h86m_pfte_serialized_artifact_run_card_and_site_banner():
     index_html = (root / "docs/index.html").read_text(encoding="utf-8")
     assert 'id="h86m-pfte-banner"' in index_html
     assert card["raster_sha256"] in index_html
-

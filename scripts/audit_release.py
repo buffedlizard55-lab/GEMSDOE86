@@ -552,6 +552,8 @@ def measure_all_registry(root: Path = ROOT) -> dict:
     cert = measure()  # verifies witness, inventory membership, size, SHA and grid
     g = grid.load_grid(root / "data" / "bridge")
     pin = strict_json(root / "research/registry_witness_pin.json")
+    # The bridge mirror keeps the witness beside the pinned grid inputs, while
+    # restore_protocol_data also retains the canonical archival copy.
     records = [dict(repo=pin["repo"], submission=pin["source_path"],
                     file=str(root / "data" / "bridge" / pin["dest"]), sha256=pin["sha256"])]
     rows = []
