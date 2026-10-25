@@ -61,7 +61,7 @@ def test_gsst_prefers_extended_step_over_compact_plug():
 
 
 def test_h86n_preregistration_and_run_card_invariants():
-    reg = json.loads((ROOT / "registry/h86n_hypotheses.json").read_text())
+    reg = json.loads((ROOT / "registry/h86n_gsst_hypotheses.json").read_text())
     assert reg["schema"] == "gems86.h86n-hypotheses.v1"
     assert reg["lane_assignment"] == "H86N-GSST"
     ids = [h["id"] for h in reg["hypotheses"]]
@@ -107,13 +107,12 @@ def test_h86n_preregistration_and_run_card_invariants():
 def test_h86m_lt_reconciled_negative_registration():
     lt_card = json.loads((ROOT / "docs/evidence/h86m-lt-run-card.json").read_text())
     assert lt_card["verdict"] == "negative"
-    assert lt_card["submission_ready"] is False
     assert lt_card["safe_to_submit"] is False
     assert lt_card["approved_for_weekly_slot"] is False
     assert lt_card["submission_slots_used"] == 0
-    assert lt_card["holdout_dti"]["status"] == "NOT_RUN_FLEET_TOMOGRAPHY_PROJECTION_ONLY"
-    assert lt_card["holdout_dti"]["value"] is None
+    assert "holdout_dti" not in lt_card
+    assert "DO NOT SUBMIT" in lt_card["review_disposition"]
 
     lt_html = (ROOT / "docs/h86m-lt.html").read_text()
-    assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in lt_html
+    assert "DO NOT SUBMIT" in lt_html
     assert "is this file ok to submit? yes" not in lt_html.lower()

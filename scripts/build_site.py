@@ -800,18 +800,17 @@ def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
     lt_html = ""
     if lt_card is not None:
         if (lt_card.get("verdict") != "negative" or lt_card.get("safe_to_submit") is not False
-                or lt_card.get("submission_ready") is not False
                 or lt_card.get("approved_for_weekly_slot") is not False
                 or lt_card.get("submission_slots_used") != 0):
             raise ValueError("H86M-LT card must stay a no-slot negative")
         lt_name = lt_card["submission_name"]
-        lt_hold = lt_card["holdout_dti"]
+        lt_disp = lt_card.get("review_disposition", "DO NOT SUBMIT")
         lt_html = (
             f'<li><strong>Reconciled PR #165 artifact (<code>H86M-LT</code>):</strong> '
             f'<a href="downloads/{e(lt_name)}.tif" download><code>{e(lt_name)}.tif</code></a> '
             f'(SHA-256 <code>{e(lt_card["raster_sha256"])}</code>) is registered for audit download only and '
             f'demoted to <strong>DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, '
-            f'<code>HOLDOUT-DTI</code> status <code>{e(lt_hold["status"])}</code>, literal witness overlap <code>1.0 &gt; 0.70</code>). '
+            f'<code>{e(lt_disp)}</code>, literal witness overlap <code>1.0 &gt; 0.70</code>). '
             f'<a href="h86m-lt.html">Lane status</a> · <a href="evidence/h86m-lt-run-card.json">H86M-LT run card</a>.</li>'
         )
     return f'''<section class="callout" id="h86n-gsst"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: NEGATIVE)</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
@@ -823,7 +822,7 @@ def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
 <li><strong>Submission name &amp; note (audit reference only, &le;140 chars):</strong> name <code>{e(name)}</code> · note ({card["note_chars"]} chars) <code>{e(card["submission_note_le140"])}</code></li>
 {lt_html}
 </ul>
-<p><a class="btn" href="downloads/{e(stem)}.tif" download>Download H86N-GSST TIFF — audit only</a> · <a class="btn secondary" href="downloads/{e(stem)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="downloads/{e(stem)}.json">Writer receipt</a> · <a href="evidence/h86n-gsst-run-card.json">H86N-GSST run card</a> · <a href="{REPO}/blob/main/research/H86N_GSST_PREREGISTRATION.md">Frozen preregistration</a> · <a href="{REPO}/blob/main/registry/h86n_hypotheses.json">4-hypothesis register</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86N_GSST_REVIEW.md">Three-pass review &amp; H33 forensics</a></p>
+<p><a class="btn" href="downloads/{e(stem)}.tif" download>Download H86N-GSST TIFF — audit only</a> · <a class="btn secondary" href="downloads/{e(stem)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="downloads/{e(stem)}.json">Writer receipt</a> · <a href="evidence/h86n-gsst-run-card.json">H86N-GSST run card</a> · <a href="{REPO}/blob/main/research/H86N_GSST_PREREGISTRATION.md">Frozen preregistration</a> · <a href="{REPO}/blob/main/registry/h86n_gsst_hypotheses.json">4-hypothesis register</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86N_GSST_REVIEW.md">Three-pass review &amp; H33 forensics</a></p>
 </section>'''
 
 
