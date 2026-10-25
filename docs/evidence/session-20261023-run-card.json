@@ -32,8 +32,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 17,
-    "local_format_pass": 17,
+    "checked": 18,
+    "local_format_pass": 18,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -120,6 +120,11 @@
       {
         "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
         "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T022520Z-c0f71390-zeros.tif",
+        "sha256": "fddcc0aa40685262f59e7dfe83f44a8177bf97e79e042648af55d78540912b9c",
         "verdict": "negative"
       }
     ],

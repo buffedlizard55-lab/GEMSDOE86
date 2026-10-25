@@ -1,0 +1,345 @@
+{
+  "schema": "gems86.h86f-warp-run-card.v1",
+  "lane": "H86F-WARP",
+  "generated_utc": "2026-10-25T02:25:21.823169+00:00",
+  "preregistration": {
+    "document": "research/H86F_WARP_PREREGISTRATION.md",
+    "machine_readable": "research/H86F_WARP_PREREGISTRATION.json",
+    "frozen_utc": "2026-10-25T02:15:00Z",
+    "arm_ids": [
+      "E1_warp_persistent",
+      "E2_warp_single",
+      "E3_slope_control"
+    ]
+  },
+  "hypothesis": "Pre-Quaternary bedrock faults retain 300-600 m broad flexural warp after Holocene scarp degraded below Qfaults mapping; signed LoG curvature dipole with strike persistence detects the warp.",
+  "mechanism": "Gaussian LoG sigma3+6 on Band12 det_elev; 8-azimuth dipole pairing at \u00b12..4 px flanks sqrt(clip(plus*-minus,0)); 9-px strike smoothing; max over azimuths/scales \u00d7 inverse-slope weight; rank01; 3-px decimated emission at 44090 dots d>2px off catalogue",
+  "named_non_fault_process": "Hogback dip slopes, Lake Lahontan paleoshorelines/pluvial treads, lithologic dip-slope breaks, bedding-plane flexures",
+  "source_layers": [
+    "training_features.tif Band 12 det_elev (DOI 10.5066/P9MQRCBY)",
+    "training_features.tif Band 19 det_elev_slope (gradient of Band12)"
+  ],
+  "band_physics_qc": {
+    "evidence_class": "BAND-PHYSICS-QC",
+    "log_s3_std_interior": 2.065232515335083,
+    "log_s6_std_interior": 0.8058668375015259,
+    "slope_mean_interior": 7.408612251281738,
+    "footprint_pixels": 5167373,
+    "finite_check": true
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "E1_warp_persistent": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.035840963826194026,
+        "ci95": [
+          0.027446227794235948,
+          0.04498468028088742
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 603.3658442859045,
+        "fpw": 38285.293017770186,
+        "fnw": 10717.634155714095
+      },
+      "E2_warp_single": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.035741375547378995,
+        "ci95": [
+          0.02742414584821436,
+          0.04503651412703968
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 601.6776792518226,
+        "fpw": 38285.35239963181,
+        "fnw": 10719.322320748177
+      },
+      "E3_slope_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.013290497064008746,
+        "ci95": [
+          0.007574939910209155,
+          0.020403203505610396
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 231.09206571253975,
+        "fpw": 41423.74272713629,
+        "fnw": 11089.907934287461
+      }
+    },
+    "best_comparable_control": "E2_warp_single",
+    "paired_differences": {
+      "E2_warp_single": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 9.958827881503124e-05,
+        "ci95": [
+          -0.00017747465392133223,
+          0.0004014967579383983
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "E3_slope_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.02255046676218528,
+        "ci95": [
+          0.012616905947764486,
+          0.03301810027569156
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 155,
+      "draws": 1000,
+      "seed": 861025,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "withheld_positive_pixels": 11321,
+    "candidate": {
+      "dti": 0.035840963826194026,
+      "ci95": [
+        0.027446227794235948,
+        0.04498468028088742
+      ],
+      "withheld_positive_pixels": 11321,
+      "design": "H86F-WARP broad-warp 3-arm pooled 200px blocks"
+    },
+    "design": "buffered whole components; pooled hide fraction 0.20; physical-block bootstrap 200px; alpha0.2 beta0.8 R300m",
+    "paired_delta_vs_best_preregistered_control": {
+      "delta": 0.02255046676218528,
+      "ci95": [
+        -0.01,
+        0.05
+      ]
+    }
+  },
+  "leakage_canary": {
+    "warp_persistent": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.5661708946500603,
+      "discriminative_auc": 0.5661708946500603,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    "warp_single": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.5645798705944705,
+      "discriminative_auc": 0.5645798705944705,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    "slope_control": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.5584521069987928,
+      "discriminative_auc": 0.5584521069987928,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    "log_loG_s3": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.5344123136943144,
+      "discriminative_auc": 0.5344123136943144,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    "log_loG_s6": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.523337393339811,
+      "discriminative_auc": 0.523337393339811,
+      "threshold": 0.9,
+      "leakage_flag": false
+    },
+    "slope_weight": {
+      "evidence_class": "LEAKAGE-CANARY",
+      "auc": 0.4363356770603304,
+      "discriminative_auc": 0.5636643229396696,
+      "threshold": 0.9,
+      "leakage_flag": false
+    }
+  },
+  "canary_max_discriminative_auc": 0.5661708946500603,
+  "canary_stop": false,
+  "preflight": {
+    "amendment": "PA-86-01",
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "literal_blocked": true,
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    }
+  },
+  "surface_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "runner_returncode": 1,
+    "registry_rasters_expected": 698,
+    "registry_rasters_measured": 43,
+    "registry_errors": [],
+    "registry_complete_for_index": false,
+    "complete_accessible_scan": false,
+    "worst_spearman_full_footprint": 0.09974360365724558,
+    "worst_spearman_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+    "worst_dot_overlap": 0.851301431219567,
+    "worst_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+    "literal_gate_pass": false,
+    "two_phase": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "rasters_checked": 43,
+      "rasters_expected": 698,
+      "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+      "footprint_cells": 5167373,
+      "dense_support_fraction": 0.2,
+      "thresholds": {
+        "rho": 0.9,
+        "forward_overlap": 0.7,
+        "jaccard": 0.5
+      },
+      "literal_reading": {
+        "worst_spearman_full_footprint": 0.09974360365724558,
+        "worst_spearman_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+        "worst_forward_overlap": 0.851301431219567,
+        "worst_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "forward_overlap_firings": 1,
+        "rho_firings": 0,
+        "duplicate": true,
+        "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+      },
+      "like_for_like_reading": {
+        "dot_field_rasters": 42,
+        "continuous_surface_rasters": 1,
+        "worst_forward_overlap_dot_fields": 0.47168652911269904,
+        "worst_forward_overlap_dot_field_submission": "GEMSDOE86-local:data/scored_fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "worst_reverse_overlap": 1.0,
+        "worst_reverse_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+        "worst_jaccard": 0.6749288497106596,
+        "worst_jaccard_submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "forward_overlap_firings": 0,
+        "duplicate": false,
+        "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+      },
+      "literal_firings": [
+        {
+          "submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+          "repo": "GEMSDOE86-local",
+          "representation": "continuous_surface",
+          "forward_overlap": 0.851301431219567,
+          "their_dots": 4210938
+        }
+      ]
+    },
+    "scope": "Pinned inventory plus local extras only; not all current projects or organizer submissions."
+  },
+  "surface_stop": false,
+  "final_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "runner_returncode": 1,
+    "registry_rasters_expected": 698,
+    "registry_rasters_measured": 43,
+    "registry_errors": [],
+    "registry_complete_for_index": false,
+    "complete_accessible_scan": false,
+    "worst_spearman_full_footprint": 0.1199348125209219,
+    "worst_spearman_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+    "worst_dot_overlap": 0.8299841233839873,
+    "worst_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+    "literal_gate_pass": false,
+    "two_phase": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "rasters_checked": 43,
+      "rasters_expected": 698,
+      "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+      "footprint_cells": 5167373,
+      "dense_support_fraction": 0.2,
+      "thresholds": {
+        "rho": 0.9,
+        "forward_overlap": 0.7,
+        "jaccard": 0.5
+      },
+      "literal_reading": {
+        "worst_spearman_full_footprint": 0.1199348125209219,
+        "worst_spearman_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+        "worst_forward_overlap": 0.8299841233839873,
+        "worst_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "forward_overlap_firings": 1,
+        "rho_firings": 0,
+        "duplicate": true,
+        "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+      },
+      "like_for_like_reading": {
+        "dot_field_rasters": 42,
+        "continuous_surface_rasters": 1,
+        "worst_forward_overlap_dot_fields": 0.689498752551599,
+        "worst_forward_overlap_dot_field_submission": "GEMSDOE86-local:data/scored_fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "worst_reverse_overlap": 0.454547516443638,
+        "worst_reverse_overlap_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+        "worst_jaccard": 0.06805876866801516,
+        "worst_jaccard_submission": "GEMSDOE86-local:docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T020558Z-13fd58f3-zeros.tif",
+        "forward_overlap_firings": 0,
+        "duplicate": false,
+        "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+      },
+      "literal_firings": [
+        {
+          "submission": "GEMSDOE86-local:docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+          "repo": "GEMSDOE86-local",
+          "representation": "continuous_surface",
+          "forward_overlap": 0.8299841233839873,
+          "their_dots": 4210938
+        }
+      ]
+    },
+    "scope": "Pinned inventory plus local extras only; not all current projects or organizer submissions."
+  },
+  "final_stop_rho": false,
+  "final_stop_overlap": true,
+  "pa86_chance_overlap": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "amendment": "PA-86-02",
+    "status": "FAILED_CLOSED_NO_REPORT",
+    "gate_pass": false,
+    "runner_returncode": 1,
+    "stderr_tail": "Traceback (most recent call last):\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 162, in <module>\n    raise SystemExit(main(sys.argv[1:]))\n                     ^^^^^^^^^^^^^^^^^^\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 111, in main\n    phase = validate_report_binding(report, argv[1], g, index, missing, exclude=exclude)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 62, in validate_report_binding\n    raise ValueError(\"Incomplete registry cannot pass\")\nValueError: Incomplete registry cannot pass\n",
+    "stdout_tail": "",
+    "note": "pa86 refused (binding/completeness); recorded verbatim"
+  },
+  "informative_overlap_firings": -1,
+  "dot_field_overlap_firings": 0,
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "min": 0.0,
+    "max": 1.0,
+    "shape": null
+  },
+  "raster_sha256": "fddcc0aa40685262f59e7dfe83f44a8177bf97e79e042648af55d78540912b9c",
+  "raster_path": "docs/downloads/gems86-h86f-warp-broadwarp-44090dots-20261025T022520Z-c0f71390-zeros.tif",
+  "submission_name": "gems86-h86f-warp-broadwarp-44090dots-20261025T022520Z-c0f71390-zeros",
+  "note": "H86F-WARP broad-warp LoG dipole s3+s6 x slope weight; 44090 dots d>2px; zeros outside",
+  "note_length": 85,
+  "dots": 44090,
+  "elapsed_s": 202.82447457313538,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT",
+  "safe_to_submit": false,
+  "slots_used": 0,
+  "evidence_class_notes": "All numbers labelled HOLDOUT-DTI (gems57-pooled-hide-v2) with 95% CI pooled 200-px blocks, never ORGANIZER-CONFIRMED or projected leaderboard score. Literal 100% witness overlap reported side-by-side per PA-86-01; like-for-like gate requires dot-field overlap <=0.70 and rho <=0.90."
+}

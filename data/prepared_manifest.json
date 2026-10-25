@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "prepared_utc": "2026-10-25T00:43:53+00:00",
+  "prepared_utc": "2026-10-25T02:00:44+00:00",
   "grid": {
     "epsg": 32611,
     "height": 3730,
@@ -29,9 +29,9 @@
     "unique_footprint_pixels_with_any_sentinel": 3073
   },
   "source_paths": {
-    "sample_submission": ".cache/bridge/sample_submission.tif",
-    "existing_faults": ".cache/bridge/existing_faults.tif",
-    "training_features": ".cache/bridge/training_features.tif"
+    "sample_submission": "data/sample_submission.tif",
+    "existing_faults": "data/existing_faults.tif",
+    "training_features": "data/training_features.tif"
   },
   "source_hashes": {
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",

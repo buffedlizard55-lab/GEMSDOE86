@@ -208,6 +208,29 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86F-GZZD lane result; the run card is the authoritative experiment receipt. The candidate trails its unsigned-edge control and the same-split historical best, the registry scan is incomplete (2 grid-incompatible rows) with dot-field firings, and PA-86-02 failed closed; no slot was used."}
+    if kind == "h86f_warp":
+        # H86F-WARP broad-warp lane — current experiment, like-for-like unique (0 dot firings) but HOLDOUT-negative vs historical best
+        h = context["holdout_dti"]
+        cand = h.get("candidate") or h.get("scores", {}).get("E1_warp_persistent")
+        # New run card stores scores dict with E1/E2/E3; use E1 as candidate
+        if cand is None:
+            raise ValueError("H86F-WARP run card missing candidate/score")
+        # cand may be {dti, ci95} or the scores entry
+        val = cand.get("dti") if isinstance(cand, dict) and "dti" in cand else cand.get("value")
+        ci = cand.get("ci95") if isinstance(cand, dict) and "ci95" in cand else None
+        if val is None or ci is None:
+            # fallback to reading holdout_dti.scores.E1_warp_persistent
+            scores = h.get("scores", {})
+            e1 = scores.get("E1_warp_persistent") if isinstance(scores, dict) else None
+            if isinstance(e1, dict):
+                val = e1.get("dti")
+                ci = e1.get("ci95")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h.get("evaluator_version", "gems57-pooled-hide-v2"),
+                "withheld_positives": h.get("withheld_positive_pixels") or h.get("withheld_positives"),
+                "value": val, "ci95": ci,
+                "design": h.get("design", "H86F-WARP broad-warp 3-arm pooled 200px blocks"),
+                "caveat": "Current H86F-WARP lane. Like-for-like 0 dot-field firings (worst 0.69 <0.70) but HOLDOUT-DTI-negative vs same-split historical best 0.1241 (candidate 0.036 [0.027,0.045] vs slope control 0.013). Not organizer-confirmed; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

@@ -120,6 +120,13 @@
       "context": "docs/evidence/h86f-gzzd-run-card.json",
       "holdout_kind": "h86f_gzzd",
       "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86F-WARP broad-warp LoG dipole under low-relief cover (current lane, 2026-10-25)",
+      "card": "docs/evidence/h86f-warp-run-card.json",
+      "context": "docs/evidence/h86f-warp-run-card.json",
+      "holdout_kind": "h86f_warp",
+      "stem": "gems86-h86f-warp-broadwarp-44090dots-20261025T022520Z-c0f71390-zeros"
     }
   ]
 }

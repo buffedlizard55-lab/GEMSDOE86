@@ -1,0 +1,23 @@
+{
+  "schema": "gems86.h86f-warp-preregistration.v1",
+  "lane": "H86F-WARP",
+  "status": "frozen_before_lane_computation",
+  "frozen_utc": "2026-10-25T02:15:00Z",
+  "base_commit": "000a3bd2eabe0b663abfaed8948920f441459e34",
+  "lane_resolution": "The supplied prompt contains no separate single method paragraph assigning this session a lane. Exactly one lane is selected and frozen here before any H86F-WARP surface, fit, canary, holdout or placement computation. PA-86-01/02 obligations apply (AGENTS.md rule 10).",
+  "ranked_hypotheses": [
+    {"rank": 1, "id": "H86F-WARP", "name": "Broad-warp detrended-elevation profile-curvature sign-flip persistence", "layers": ["training_features.tif Band 12 det_elev (DOI 10.5066/P9MQRCBY)", "training_features.tif Band 19 det_elev_slope"], "cost": "low", "expected": "highest qualitative priority"},
+    {"rank": 2, "id": "H86F-SLB", "name": "Geodetic strain-localization boundary", "layers": ["Band 4 geod_2ndinv", "Bands 7/8"], "cost": "low", "expected": "diffuse"},
+    {"rank": 3, "id": "H86F-HMDC-LITE", "name": "Hydrothermal magnetite-destruction trough", "layers": ["Bands 2,9,17,6 plus GDR 1391"], "cost": "medium-high", "expected": "NOT VIABLE YET"},
+    {"rank": 4, "id": "H86F-GVCD-STILL", "name": "Single-scale gzz dipole without gate", "layers": ["Bands 11,18,13"], "cost": "low-medium", "expected": "negative"},
+    {"rank": 5, "id": "H86F-ASIG", "name": "Analytic signal amplitude", "layers": ["Bands 14,3,9,6"], "cost": "low", "expected": "saturated"}
+  ],
+  "arms": [
+    {"rank": 1, "id": "E1_warp_persistent", "layers": ["Band 12 det_elev", "Band 19 det_elev_slope"], "budget": 44090},
+    {"rank": 2, "id": "E2_warp_single", "layers": ["Band 12 det_elev", "Band 19 det_elev_slope"], "budget": 44090},
+    {"rank": 3, "id": "E3_slope_control", "layers": ["Band 19 det_elev_slope"], "budget": 44090}
+  ],
+  "budget": {"max_arms": 3, "max_hours": 2, "dots": 44090},
+  "holdout": {"alpha": 0.2, "beta": 0.8, "kernel_m": 300, "hide_frac": 0.2, "buffer_px": 3, "evaluator": "gems57-pooled-hide-v2"},
+  "thresholds": {"rho": 0.9, "overlap_3px": 0.7, "canary_auc": 0.9}
+}
