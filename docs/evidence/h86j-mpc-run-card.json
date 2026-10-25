@@ -1,0 +1,1019 @@
+{
+ "schema": "gems86.h86j-mpc-run-card.v1",
+ "lane": "H86J-MPC",
+ "generated_utc": "2026-10-25T04:17:20.919013+00:00",
+ "preregistration": {
+  "document": "research/H86J_MPC_PREREGISTRATION.md",
+  "machine_readable": "research/H86J_MPC_PREREGISTRATION.json",
+  "document_sha256": "9d7dc56106d51059e61936a7a126afd6a6c107809966e4f2925a9ad66417b9fa",
+  "json_sha256": "6955d1df88ea7e77bbbd30d149faec639a58684f252cd1e5c180c760bc49c997"
+ },
+ "hypothesis": "Catalogue-missing faults offset weak magnetic/gravity/DEM markers whose cross-scale Fourier phase remains congruent while gradient amplitude ranks them below shallow noise; a monogenic log-Gabor phase-congruency STEP response (odd symmetry) recovers that buried trace DTI-efficiently where amplitude multiline detectors (H19-5 lineage, EDTI-L) miss it.",
+ "mechanism": "Per field (B2 rtp, B13 iso_grav, B12 det_elev): log-Gabor scales 4/8/16/32 px (grav 8/16/32/64), sigmaonf 0.55; even sum E and Riesz odd vector sum O give PC=sqrt(E^2+|O|^2)/(sum A_s+eps), stepness=|O|/energy; surface = EDTI-form corroboration of footprint ranks of PC_step. Dots: E[k]=surface (*) triangular 300 m ranking, spacing >=2.8 px, collar >3 px, frozen 44,090 dots (vendor/EDTI emission reused, no fork).",
+ "named_non_fault_process": "Unfaulted lithologic step contacts and lava-flow fronts (true potential-field/DEM steps), and GeoDAWN flight-line seams / interpolation ringing (phase-congruent non-geology).",
+ "non_fault_mimic": "Unfaulted lithologic step contacts, lava-flow fronts, survey seams.",
+ "chosen_arm": "MPC-TRI",
+ "chosen_budget": 44090,
+ "chosen_config": "collar3_spacing_frozen",
+ "evidence_classes": "HOLDOUT-DTI = gems57-pooled-hide-v2 (alpha 0.2, beta 0.8, 300 m triangular) OOF visible construction. SGMC-PROXY-DTI = same formula vs pinned USGS SGMC faults >3 px off catalogue; SELECTION ONLY, never a leaderboard projection. 0.2778/0.3195/0.4413 are OWNER-REPORTED without organizer receipts; this lane has no ORGANIZER-CONFIRMED number.",
+ "preflight_pa86_01": {
+  "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+  "literal_reading_blocked": true
+ },
+ "h33_forensics": {
+  "evidence_class": "MEASUREMENT (pinned bytes in this checkout)",
+  "h33_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+  "h33_dots": 37654,
+  "parent_dots": 40199,
+  "h33_is_exact_subset_of_parent": true,
+  "added_dots": 0,
+  "removed_dots": 2545,
+  "removed_dcat_values_px": [
+   1.4142135623730951,
+   2.0
+  ],
+  "h33_nn_spacing_px_min": 2.8284271247461903,
+  "h33_dots_on_catalogue": 0,
+  "h33_dots_outside_footprint": 0,
+  "owner_reported_scores": {
+   "parent_d28": 0.2708,
+   "h33": 0.2778,
+   "evidence_class": "OWNER-REPORTED (no organizer receipt)"
+  },
+  "interpretation": "Re-measured in H86J E1: the 0.2708->0.2778 step deletes collar dots and changes nothing else; coverage-efficient emission under the 300 m triangular-kernel DTI, not a new geological layer."
+ },
+ "leakage_canaries": {
+  "mag_pc_step": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5138415677354768,
+   "discriminative_auc": 0.5138415677354768,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "mag_pc": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.4995403247651857,
+   "discriminative_auc": 0.5004596752348143,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "mag_stepness": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5154017532314578,
+   "discriminative_auc": 0.5154017532314578,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "mag_pc_line": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.4854109678179195,
+   "discriminative_auc": 0.5145890321820805,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "mag_log_amp": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5243600082442659,
+   "discriminative_auc": 0.5243600082442659,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "mag_gradmag_s1p5": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5338214062361982,
+   "discriminative_auc": 0.5338214062361982,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_pc_step": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5046149595147661,
+   "discriminative_auc": 0.5046149595147661,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_pc": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5233837062391427,
+   "discriminative_auc": 0.5233837062391427,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_stepness": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.49551637443688723,
+   "discriminative_auc": 0.5044836255631128,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_pc_line": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5084005391160968,
+   "discriminative_auc": 0.5084005391160968,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_log_amp": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5270290613314489,
+   "discriminative_auc": 0.5270290613314489,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "grav_gradmag_s1p5": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5279857649500928,
+   "discriminative_auc": 0.5279857649500928,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_pc_step": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5146743944881194,
+   "discriminative_auc": 0.5146743944881194,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_pc": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5091904194270236,
+   "discriminative_auc": 0.5091904194270236,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_stepness": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5112977485793363,
+   "discriminative_auc": 0.5112977485793363,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_pc_line": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.49083176383122806,
+   "discriminative_auc": 0.5091682361687719,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_log_amp": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5352673705208609,
+   "discriminative_auc": 0.5352673705208609,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  },
+  "dem_gradmag_s1p5": {
+   "evidence_class": "LEAKAGE-CANARY",
+   "auc": 0.5749139600447546,
+   "discriminative_auc": 0.5749139600447546,
+   "threshold": 0.9,
+   "leakage_flag": false,
+   "n_positive": 11321,
+   "n_negative_sampled": 300000
+  }
+ },
+ "controls_point": {
+  "H33_as_is": {
+   "catalogue_hide_point_as_is": 0.003698680598708719,
+   "per_fold": {
+    "NW": {
+     "dti": 0.0033190361096884797,
+     "n_truth": 1923,
+     "emitted": 8458
+    },
+    "NE": {
+     "dti": 0.004407926168167087,
+     "n_truth": 2367,
+     "emitted": 9629
+    },
+    "SW": {
+     "dti": 0.0031089001997361824,
+     "n_truth": 3781,
+     "emitted": 10184
+    },
+    "SE": {
+     "dti": 0.004072828198897818,
+     "n_truth": 3250,
+     "emitted": 7074
+    }
+   },
+   "sgmc_proxy_point": 0.09538611460482532,
+   "sgmc_coverage": 0.0888193667711875,
+   "dots_total": 37654
+  },
+  "D28_parent_as_is": {
+   "catalogue_hide_point_as_is": 0.029067173563199197,
+   "per_fold": {
+    "NW": {
+     "dti": 0.02549212506256011,
+     "n_truth": 1923,
+     "emitted": 8938
+    },
+    "NE": {
+     "dti": 0.030629238180089745,
+     "n_truth": 2367,
+     "emitted": 10295
+    },
+    "SW": {
+     "dti": 0.02499106855918896,
+     "n_truth": 3781,
+     "emitted": 10748
+    },
+    "SE": {
+     "dti": 0.03553151037475094,
+     "n_truth": 3250,
+     "emitted": 7706
+    }
+   },
+   "sgmc_proxy_point": 0.09529485537964633,
+   "sgmc_coverage": 0.08951311560685181,
+   "dots_total": 40199
+  },
+  "EDTI_as_is": {
+   "catalogue_hide_point_as_is": 0.0,
+   "per_fold": {
+    "NW": {
+     "dti": 0.0,
+     "n_truth": 1923,
+     "emitted": 7995
+    },
+    "NE": {
+     "dti": 0.0,
+     "n_truth": 2367,
+     "emitted": 6860
+    },
+    "SW": {
+     "dti": 0.0,
+     "n_truth": 3781,
+     "emitted": 19070
+    },
+    "SE": {
+     "dti": 0.0,
+     "n_truth": 3250,
+     "emitted": 17810
+    }
+   },
+   "sgmc_proxy_point": 0.12226598576664015,
+   "sgmc_coverage": 0.12089999688002685,
+   "dots_total": 55000
+  }
+ },
+ "budget_curves": {
+  "MPC-MAG": {
+   "ranking_dots_available": 106397,
+   "ranking_dots_available_oof": 106157,
+   "budgets": {
+    "37654": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.05761037180365173,
+     "sgmc_coverage": 0.05343110716292067,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04548190439662192,
+     "per_fold": {
+      "NW": {
+       "dti": 0.03435098160614723,
+       "n_truth": 1923,
+       "emitted": 7899
+      },
+      "NE": {
+       "dti": 0.04066841246772959,
+       "n_truth": 2367,
+       "emitted": 10493
+      },
+      "SW": {
+       "dti": 0.04747488274473855,
+       "n_truth": 3781,
+       "emitted": 9702
+      },
+      "SE": {
+       "dti": 0.0559874750831785,
+       "n_truth": 3250,
+       "emitted": 7891
+      }
+     }
+    },
+    "44090": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.06552544516276636,
+     "sgmc_coverage": 0.06219331363370402,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04847821018975059,
+     "per_fold": {
+      "NW": {
+       "dti": 0.03964773303725665,
+       "n_truth": 1923,
+       "emitted": 9274
+      },
+      "NE": {
+       "dti": 0.04144510627303748,
+       "n_truth": 2367,
+       "emitted": 12176
+      },
+      "SW": {
+       "dti": 0.051600928880451875,
+       "n_truth": 3781,
+       "emitted": 11430
+      },
+      "SE": {
+       "dti": 0.05830435862214634,
+       "n_truth": 3250,
+       "emitted": 9232
+      }
+     }
+    },
+    "55000": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.07898588345164688,
+     "sgmc_coverage": 0.07788037272331558,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.053084409847814165,
+     "per_fold": {
+      "NW": {
+       "dti": 0.04089382185007009,
+       "n_truth": 1923,
+       "emitted": 11577
+      },
+      "NE": {
+       "dti": 0.043882562521271866,
+       "n_truth": 2367,
+       "emitted": 15175
+      },
+      "SW": {
+       "dti": 0.058697929599900334,
+       "n_truth": 3781,
+       "emitted": 14304
+      },
+      "SE": {
+       "dti": 0.06516465368666079,
+       "n_truth": 3250,
+       "emitted": 11441
+      }
+     }
+    }
+   },
+   "surface_max_spearman": 0.04024819135943291,
+   "surface_rho_ok": true
+  },
+  "MPC-DUAL": {
+   "ranking_dots_available": 104710,
+   "ranking_dots_available_oof": 104436,
+   "budgets": {
+    "37654": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.052279330420974046,
+     "sgmc_coverage": 0.04843772020568208,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.03910669258903743,
+     "per_fold": {
+      "NW": {
+       "dti": 0.031500240742865115,
+       "n_truth": 1923,
+       "emitted": 8034
+      },
+      "NE": {
+       "dti": 0.034862376135829154,
+       "n_truth": 2367,
+       "emitted": 10812
+      },
+      "SW": {
+       "dti": 0.03622567904106485,
+       "n_truth": 3781,
+       "emitted": 9874
+      },
+      "SE": {
+       "dti": 0.05248496543038101,
+       "n_truth": 3250,
+       "emitted": 7713
+      }
+     }
+    },
+    "44090": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.060253340815729035,
+     "sgmc_coverage": 0.05713093574412679,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04083542926727091,
+     "per_fold": {
+      "NW": {
+       "dti": 0.031695640916716644,
+       "n_truth": 1923,
+       "emitted": 9506
+      },
+      "NE": {
+       "dti": 0.03749101881899913,
+       "n_truth": 2367,
+       "emitted": 12649
+      },
+      "SW": {
+       "dti": 0.039089935456285495,
+       "n_truth": 3781,
+       "emitted": 11498
+      },
+      "SE": {
+       "dti": 0.0534332343275592,
+       "n_truth": 3250,
+       "emitted": 8988
+      }
+     }
+    },
+    "55000": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.07269131100675606,
+     "sgmc_coverage": 0.0715866762226228,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.044342254894900957,
+     "per_fold": {
+      "NW": {
+       "dti": 0.034612848183697746,
+       "n_truth": 1923,
+       "emitted": 12002
+      },
+      "NE": {
+       "dti": 0.03774423574438951,
+       "n_truth": 2367,
+       "emitted": 15672
+      },
+      "SW": {
+       "dti": 0.04592169484271042,
+       "n_truth": 3781,
+       "emitted": 14255
+      },
+      "SE": {
+       "dti": 0.05716510624365438,
+       "n_truth": 3250,
+       "emitted": 11197
+      }
+     }
+    }
+   },
+   "surface_max_spearman": 0.048435721304319675,
+   "surface_rho_ok": true
+  },
+  "MPC-TRI": {
+   "ranking_dots_available": 104850,
+   "ranking_dots_available_oof": 104599,
+   "budgets": {
+    "37654": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.05725865522669593,
+     "sgmc_coverage": 0.05309109518476455,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04076052140579837,
+     "per_fold": {
+      "NW": {
+       "dti": 0.033811293450985845,
+       "n_truth": 1923,
+       "emitted": 8558
+      },
+      "NE": {
+       "dti": 0.027008506460509004,
+       "n_truth": 2367,
+       "emitted": 10749
+      },
+      "SW": {
+       "dti": 0.0478631399418289,
+       "n_truth": 3781,
+       "emitted": 9366
+      },
+      "SE": {
+       "dti": 0.05124935753937372,
+       "n_truth": 3250,
+       "emitted": 7590
+      }
+     }
+    },
+    "44090": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.06583235739187059,
+     "sgmc_coverage": 0.062470497962890205,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04527653661804185,
+     "per_fold": {
+      "NW": {
+       "dti": 0.036155253757735095,
+       "n_truth": 1923,
+       "emitted": 9979
+      },
+      "NE": {
+       "dti": 0.031106543798802795,
+       "n_truth": 2367,
+       "emitted": 12488
+      },
+      "SW": {
+       "dti": 0.05065062715674525,
+       "n_truth": 3781,
+       "emitted": 11048
+      },
+      "SE": {
+       "dti": 0.06032221240935182,
+       "n_truth": 3250,
+       "emitted": 8946
+      }
+     }
+    },
+    "55000": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.07904318392777614,
+     "sgmc_coverage": 0.07791112030552048,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.04955546746949436,
+     "per_fold": {
+      "NW": {
+       "dti": 0.03717114033413615,
+       "n_truth": 1923,
+       "emitted": 12422
+      },
+      "NE": {
+       "dti": 0.035689951296731845,
+       "n_truth": 2367,
+       "emitted": 15472
+      },
+      "SW": {
+       "dti": 0.05737914244420601,
+       "n_truth": 3781,
+       "emitted": 13906
+      },
+      "SE": {
+       "dti": 0.06471564423910528,
+       "n_truth": 3250,
+       "emitted": 11138
+      }
+     }
+    }
+   },
+   "surface_max_spearman": 0.053218421173052366,
+   "surface_rho_ok": true
+  }
+ },
+ "ablations": {
+  "AMP-GRADMAG": {
+   "ranking_dots_available": 100668,
+   "ranking_dots_available_oof": 100306,
+   "budgets": {
+    "44090": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.10891248581642318,
+     "sgmc_coverage": 0.10365645330670083,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.057839181087845644,
+     "per_fold": {
+      "NW": {
+       "dti": 0.06910575453420768,
+       "n_truth": 1923,
+       "emitted": 11053
+      },
+      "NE": {
+       "dti": 0.03660453030634847,
+       "n_truth": 2367,
+       "emitted": 6321
+      },
+      "SW": {
+       "dti": 0.04948478776761109,
+       "n_truth": 3781,
+       "emitted": 13705
+      },
+      "SE": {
+       "dti": 0.07411889808868144,
+       "n_truth": 3250,
+       "emitted": 9307
+      }
+     }
+    }
+   }
+  },
+  "MPC-LINE": {
+   "ranking_dots_available": 105331,
+   "ranking_dots_available_oof": 105109,
+   "budgets": {
+    "44090": {
+     "evidence_class_sgmc": "SGMC-PROXY-DTI (point, selection only)",
+     "sgmc_proxy_dti": 0.06399419374798047,
+     "sgmc_coverage": 0.060718899647925206,
+     "evidence_class_holdout": "HOLDOUT-DTI (point, pooled terms, OOF visible construction)",
+     "catalogue_hide_dti_oof": 0.037354101094173676,
+     "per_fold": {
+      "NW": {
+       "dti": 0.02662431022831688,
+       "n_truth": 1923,
+       "emitted": 9039
+      },
+      "NE": {
+       "dti": 0.03669892046763203,
+       "n_truth": 2367,
+       "emitted": 11823
+      },
+      "SW": {
+       "dti": 0.043691214633945916,
+       "n_truth": 3781,
+       "emitted": 11001
+      },
+      "SE": {
+       "dti": 0.03857913885707918,
+       "n_truth": 3250,
+       "emitted": 9492
+      }
+     }
+    }
+   }
+  }
+ },
+ "sgmc_proxy": {
+  "evaluator": "shared gems57 term machinery, relabelled",
+  "positives": 62122,
+  "candidate": {
+   "evidence_class": "SGMC-PROXY-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.06583235739187052,
+   "ci95": [
+    0.06059588731191891,
+    0.07094163358021152
+   ],
+   "withheld_positive_pixels": 62122,
+   "tpw": 3880.792274450663,
+   "fpw": 42379.29424401045,
+   "fnw": 58241.20772554937
+  },
+  "paired_delta_vs_H33_as_is": {
+   "evidence_class": "SGMC-PROXY-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": -0.029553757212954834,
+   "ci95": [
+    -0.04267761885874142,
+    -0.015610641772418164
+   ],
+   "withheld_positive_pixels": 62122
+  },
+  "paired_delta_vs_EDTI_as_is_55000_budget_caveat": {
+   "evidence_class": "SGMC-PROXY-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": -0.05643362837476959,
+   "ci95": [
+    -0.08112466012433411,
+    -0.031050450205724514
+   ],
+   "withheld_positive_pixels": 62122
+  },
+  "H33_as_is_dti": 0.09538611460482535,
+  "pooled": {
+   "evidence_class": "SGMC-PROXY-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_radius_m": 300.0,
+   "pooled": true,
+   "scores": {
+    "E2_candidate_chosen": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.06583235739187052,
+     "ci95": [
+      0.06059588731191891,
+      0.07094163358021152
+     ],
+     "withheld_positive_pixels": 62122,
+     "tpw": 3880.792274450663,
+     "fpw": 42379.29424401045,
+     "fnw": 58241.20772554937
+    },
+    "H33_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.09538611460482535,
+     "ci95": [
+      0.08468694718519876,
+      0.10675398765154069
+     ],
+     "withheld_positive_pixels": 62122,
+     "tpw": 5517.636702559715,
+     "fpw": 35220.77352594684,
+     "fnw": 56604.363297440315
+    },
+    "D28_parent_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.09529485537964634,
+     "ci95": [
+      0.08469060928022777,
+      0.10648030644297429
+     ],
+     "withheld_positive_pixels": 62122,
+     "tpw": 5560.7337677288515,
+     "fpw": 37715.90271633802,
+     "fnw": 56561.266232271184
+    },
+    "EDTI_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.1222659857666401,
+     "ci95": [
+      0.09845259587963391,
+      0.1448199001985332
+     ],
+     "withheld_positive_pixels": 62122,
+     "tpw": 7510.549606181031,
+     "fpw": 51141.23089319052,
+     "fnw": 54611.45039381902
+    }
+   },
+   "best_comparable_control": "EDTI_as_is",
+   "paired_differences": {
+    "H33_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.029553757212954834,
+     "ci95": [
+      -0.04267761885874142,
+      -0.015610641772418164
+     ],
+     "withheld_positive_pixels": 62122
+    },
+    "D28_parent_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.029462497987775824,
+     "ci95": [
+      -0.042595379854043616,
+      -0.015614917528897928
+     ],
+     "withheld_positive_pixels": 62122
+    },
+    "EDTI_as_is": {
+     "evidence_class": "SGMC-PROXY-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.05643362837476959,
+     "ci95": [
+      -0.08112466012433411,
+      -0.031050450205724514
+     ],
+     "withheld_positive_pixels": 62122
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 161,
+    "draws": 1000,
+    "seed": 861025,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+   }
+  }
+ },
+ "holdout_dti": {
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "candidate": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.04527653661804185,
+   "ci95": [
+    0.03785681717802446,
+    0.05279323227946211
+   ],
+   "withheld_positive_pixels": 11321,
+   "tpw": 798.4577200100058,
+   "fpw": 42093.20451602719,
+   "fnw": 10522.542279989993
+  },
+  "H33_visible_collar_dti": 0.03486014207822705,
+  "pooled": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_radius_m": 300.0,
+   "pooled": true,
+   "scores": {
+    "E2_candidate_chosen": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.04527653661804185,
+     "ci95": [
+      0.03785681717802446,
+      0.05279323227946211
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 798.4577200100058,
+     "fpw": 42093.20451602719,
+     "fnw": 10522.542279989993
+    },
+    "H33_visible_collar": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.03486014207822705,
+     "ci95": [
+      0.016464007064717696,
+      0.0528308746525984
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 609.9980877491287,
+     "fpw": 41598.19950287992,
+     "fnw": 10711.001912250873
+    },
+    "D28_visible_collar": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.03462304313355242,
+     "ci95": [
+      0.016539427709455854,
+      0.05208027202019913
+     ],
+     "withheld_positive_pixels": 11321,
+     "tpw": 605.7449032106265,
+     "fpw": 41587.38714351183,
+     "fnw": 10715.255096789379
+    }
+   },
+   "best_comparable_control": "H33_visible_collar",
+   "paired_differences": {
+    "H33_visible_collar": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": 0.010416394539814806,
+     "ci95": [
+      -0.007587730525219712,
+      0.02989670928531021
+     ],
+     "withheld_positive_pixels": 11321
+    },
+    "D28_visible_collar": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": 0.010653493484489435,
+     "ci95": [
+      -0.006864292796156704,
+      0.029564859324528642
+     ],
+     "withheld_positive_pixels": 11321
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 157,
+    "draws": 1000,
+    "seed": 861025,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+   }
+  }
+ },
+ "uniqueness": {
+  "scope": "Every pinned local registry dot-field raster present in this checkout (data/scored_fleet + docs/downloads + submission), listed row-by-row with SHA-256. Continuous full-support non-submission grids in the historical upstream inventory are handled by the PA-86-01 preflight certificate (literal reading reported, never hidden); under the literal support reading they block every nonempty candidate regardless of mechanism.",
+  "thresholds": {
+   "rho_max": 0.9,
+   "dot_overlap_3px_max": 0.7
+  },
+  "my_dots": 44090,
+  "max_spearman": 0.053218421173052366,
+  "max_forward_3px_overlap_dot_fields": 0.5382853254706282,
+  "max_forward_3px_overlap_literal_incl_continuous": 0.8402585620322068,
+  "rho_firings": 0,
+  "overlap_firings": 0,
+  "literal_overlap_firings_incl_continuous": 1,
+  "gate_pass": true
+ },
+ "uniqueness_rows_file": "docs/evidence/h86j-mpc-registry.json",
+ "surface_registry_file": "docs/evidence/h86j-mpc-registry-surface.json",
+ "gates": {
+  "canary_leakage": true,
+  "sgmc_proxy_beats_H33_paired_ci": false,
+  "catalogue_hide_floor_vs_H33": true,
+  "falsifiers_amplitude_and_line": false,
+  "uniqueness_local_registry": true
+ },
+ "raster_sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+ "validator_output": {
+  "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+  "bytes": 159505,
+  "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  },
+  "band_description": [
+   null
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.003590636420994997,
+  "emitted_positive_pixels": 44090,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 44090,
+  "footprint_fraction": 0.00853238192791579
+ },
+ "submission_name": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros",
+ "submission_file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+ "zip_file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.zip",
+ "note": "H86J-MPC monogenic phase-congruency step (RTP+grav+DEM) E[k] spacing collar3 44090d; SGMC-proxy selected; no slot pre-picked",
+ "note_chars": 124,
+ "verdict": "negative",
+ "decision": "DO NOT SUBMIT",
+ "submission_slots_used": 0,
+ "runtime_seconds": 89.64801239967346,
+ "submission_ready": false,
+ "safe_to_submit": false,
+ "approved_for_weekly_slot": false,
+ "experiments_run": 3,
+ "duplicate": false,
+ "organizer_confirmed": null,
+ "holdout_dti_normalized": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti": 0.04527653661804185,
+  "ci95": [
+   0.03785681717802446,
+   0.05279323227946211
+  ],
+  "n_truth": 11321,
+  "design": "OOF visible construction (EDTI Amendment A2 form); primary selector SGMC-PROXY-DTI in sgmc_proxy block"
+ },
+ "correlation_overlap_vs_registry": {
+  "max_spearman_surface": 0.053218421173052366,
+  "max_forward_3px_overlap_dot_fields": 0.5382853254706282,
+  "gate_pass": true,
+  "rows_file": "docs/evidence/h86j-mpc-registry.json"
+ }
+}
