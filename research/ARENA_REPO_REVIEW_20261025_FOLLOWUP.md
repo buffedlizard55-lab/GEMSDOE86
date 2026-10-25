@@ -118,6 +118,14 @@ After merging the next main update, the current indexed registry-input snapshot 
 
 Final local three-pass runner on the synchronized tree: `.venv/bin/python scripts/review_repository.py --timeout 600` measured `2026-10-25T15:51:56.218601+00:00`, `software_review_passed=true`, all seven release/test/frozen/site/link/download/live-input stages PASS. Pytest: **992 passed, 24 skipped, 58 subtests passed**, 48 Rasterio pending-deprecation warnings. The native feature TIFF, all 21 prepared arrays, and the required shared feature cache remain absent; no candidate or scientific experiment was created. Site and download audits explicitly retain the negative upload state.
 
+## Post-PR #149 lane and registry update — 2026-10-25
+
+PR #149 added upstream H86K-STDP; it was not run by this follow-up. The run card labels its result **HOLDOUT-DTI 0.1380 [0.1223, 0.1545]**, evaluator `gems57-pooled-hide-v2`, 11,321 withheld positives. Its paired difference versus the preregistered E3 control is **+0.0070 [−0.0086, +0.0224]**, crossing zero; the run-card verdict is negative and `safe_to_submit=false`, `approved_for_weekly_slot=false`. The run card records three experiment arms and zero slots. Its local uniqueness reports are bounded to 698 compatible rasters (two incompatible, disclosed); its negative state also remains blocked by the unchanged pinned continuous witness. No leaderboard or organizer-confirmed score follows from the holdout result.
+
+The post-PR #149 indexed registry-input audit now measures **703/703** listed rasters byte-verified, **701** grid-compatible and **2** incompatible/invalid (`docs/evidence/registry-input-grid-review-20261025.json`, `2026-10-25T15:57:15Z`). The latest format audit verifies **31/31** downloadable TIFFs/receipts. These are local integrity/snapshot measurements only; the global state remains **DO NOT SUBMIT**. This follow-up itself remains no-TIFF/no-experiment/no-slot; the newer STDP lane is upstream evidence.
+
+The final synchronized three-pass rerun, `.venv/bin/python scripts/review_repository.py --timeout 600`, measured `2026-10-25T16:11:10.752856+00:00` and passed all seven software/evidence/site/download/live-input stages (`software_review_passed=true`). Full suite: **1,003 passed, 24 skipped, 58 subtests passed**, 48 Rasterio pending-deprecation warnings. Release audit: 31/31 local format/integrity-valid, **DO NOT SUBMIT**, 0 experiments/slots recorded for this review. The live-input stage confirms readiness is still false: native `training_features.tif`, all prepared arrays, and shared cache are absent. No candidate was made and no organizer score was confirmed.
+
 ## Machine run card
 
 The authoritative follow-up card is [`docs/evidence/session-20261025-followup-run-card.json`](../docs/evidence/session-20261025-followup-run-card.json). It records a negative review, not a candidate result.

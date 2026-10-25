@@ -229,7 +229,8 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 30  # 28 prior artifacts plus merged GDSC and H86K-PSC; all remain DO NOT SUBMIT
+    assert len(card["inherited_artifacts"]["files"]) == report["artifact_count"] == len(report["artifacts"])
+
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

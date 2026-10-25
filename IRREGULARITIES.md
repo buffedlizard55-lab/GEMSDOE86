@@ -1456,6 +1456,15 @@ PASS, `0` slots used):
 
 **Fix.** `src/gems86_mcsp/features.py::_put_lidar_debiased` omits `lidar_valid` completely and substitutes robust-z / quantile-matched 10 m USGS DEM scarp curvature (`topo10_curv_lineament` / `topo_slope_10m`) outside acquired 3DEP swaths, eliminating `0` and `NaN` survey-boundary cues across all `5,167,373` footprint pixels, while `scripts/restore_protocol_data.py` adds Git smart-HTTP blob-fetch fallback gated strictly on `b"API rate limit exceeded"` in `stderr`.
 
+## IR-86-MCSP-PRIOR-ALIGN-SIGN-20261025 & IR-86-MCSP-UNIFORM-RANK-CELF-20261025 — Inverted `LOQO` Elkan prior alignment (`Fold NE E2 = 0.0024`) and Uniform-`rank01` CELF dispersion uncovered and repaired in `H86K-STDP`
+
+**Observed.** Forensic audit of `src/gems86_mcsp/model.py` prior to `H86K-STDP` preregistration identified two compounding defects:
+1. `_prior_align_prob` divided quadrant `q`'s predicted odds by the complement training positive rate `pf / (1 - pf)`. Because `NE` Nevada has the lowest mapped `existing_faults.tif` density (`9.21‰`) despite the highest off-catalogue USGS `SGMC` bedrock fault density (`22.49‰`), its training complement (`NW + SW + SE`) has `pf > pg`, which **penalized `NE` odds further** and collapsed `Fold NE` blind `E2` to `0.0024`.
+2. `rank01_on_mask` mapped raw probabilities to a Uniform `[0, 1]` surface (`mean = 0.50`) before `celf_allocate_dots`, causing CELF to trade high-probability fault crests for broad `0.85`-rank mountain aprons to avoid kernel overlap.
+
+**Fix.** Without mutating archived `H86J-MCSP` receipts, `src/gems86_stdp/model.py::calibrate_quadrant_sparse_posterior` standardizes out-of-quadrant log-odds using only unlabelled within-quadrant `(median, P90)` statistics (`0` held-out label leakage) and maps to a convex sparse posterior `sigmoid(-4.55 + 1.65 * z_q)` (`~1.05%` median base rate), paired with `src/gems86_stdp/dinkelbach_celf.py::exact_six_ring_self_credit` + Dinkelbach fractional-programming CELF. On identical `37,654` dots, `Fold NE` blind `E2` jumped **`28.5x` (`0.0024 -> 0.0685`)** and `Fold NE E1` jumped **`+71.5%` (`0.0828 -> 0.1420`)**, while `H86K-STDP` (`E1 = 0.1133`, `E2 = 0.1151`) became the first `37,654`-dot candidate in repository history to beat `GEMSDOE32` `H33` (`+0.0196 [+0.0047, +0.0355]`) and `H86J-MCSP` (`+0.0134 [+0.0002, +0.0261]`) on `SGMC-PROXY-DTI` with strictly positive paired 95% CIs (`verdict = "negative"`, `DO NOT SUBMIT` under full 700-entry `v2` literal/completeness gates; `0` slots used).
+
+
 
 ## IR-86-H86K-SITE/RERUN/RECEIPT-PATH-20261025 — H86K artifact not on Pages, not rerunnable in fresh checkout, stale receipt path
 

@@ -1,0 +1,92 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86K",
+  "frozen_utc": "2026-10-25T13:55:00Z",
+  "git_branch": "arena/8114f7b4-gemsdoe86",
+  "protocol_compliance": {
+    "frozen_before_implementation": true,
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "leakage_canary_auc_limit": 0.90,
+    "surface_spearman_limit": 0.90,
+    "dot_overlap_3px_limit": 0.70,
+    "evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "writer": "vendor/template66/gems57/submission_writer.py"
+  },
+  "hypotheses": [
+    {
+      "id": "H86K-STDP",
+      "rank": 1,
+      "status": "SELECTED_FOR_VALIDATION",
+      "name": "Multi-Altitude Salem-Fairhead Tilt-Zero Dip-Migration Up-Dip Pullback + Aseismic Geothermal Creep-Deficit & Up-Hydraulic-Head Disequilibrium Conduit Discovery with Exact 6-Ring Survival Dinkelbach-CELF Allocation",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 3 (tmi_hg), 4 (geod_2ndinv), 5 (iso_grav_anom_slope), 6 (tc, verified GeoDAWN Total Count), 7 (geod_shearrate), 8 (geod_dilaterate), 9 (tmi_vg), 10 (deq_n100a15), 11 (iso_grav_anom_vg), 12 (det_elev), 13 (iso_grav_anom), 15 (depth_to_base_surf), 16 (ieq_n100a15), 17 (cond_surf), 18 (iso_grav_anom_hg), 19 (det_elev_slope)",
+        ".cache/external/geodawn_rad_u8.tif (Bands 1-4: K, Th, U, TC; SHA256 c22420f7...)",
+        ".cache/external/geodawn_extensions_u8.tif (Bands 1, 3, 4: ThK, UTh, TMI_up150; SHA256 a35a9c6d...)",
+        ".cache/external/acquisition_block_id_100m.tif (GeoDAWN survey-block seam veto; SHA256 2c0785c4...)",
+        ".cache/external/lidar_scarp_features_u8.tif (USGS 3DEP 1m LiDAR scarps, quantile-debiased on missing swaths via 10m DEM; SHA256 d580bb8b...)",
+        ".cache/external/topo_10m_derived_100m_u8.tif & dem10_chi_100m_i16.tif (USGS 3DEP 10m curvature & fluvial chi; SHA256 a6398d99..., 8897ba9c...)",
+        ".cache/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391 3,800 2-m probes; SHA256 1301f70d...)",
+        ".cache/external/paleo_geothermal_regional.zip (DOE GDR #1391 726 sinter/travertine/tufa vents; SHA256 faffcf69...)",
+        ".cache/external/gdr_wellspring_in_footprint.csv & gdr_volcanic_vents_in_footprint.csv (DOE GDR #1391 geothermometry & vents, dist_known_fault_px strictly excluded; SHA256 122718e6..., f91bafba...)"
+      ],
+      "physical_signature": "2-D FFT harmonic upward-continued Salem-Fairhead (2007) tilt-angle zero-contour sharpness and lateral dip-migration (z0=100 m vs z1=400 m) warped up-dip along footwall-directed (-grad Z_b) vectors by Z_b*cot(60 deg) onto near-surface fault emergence; coupled with hanging-wall rollover keystone curvature, aseismic geodetic-minus-seismic creep deficit, up-hydraulic-head advected Fournier silica/cation thermal disequilibrium (max(T_qtz, T_chalc, T_cat) - T_meas) + 2-m probe thermal walls + paleo-sinter vents, GeoDAWN survey-seam-vetoed K/eTh & U/eTh steps, quadrant-IQR-calibrated 4-fold LOQO cross-fitting, and exact 6-ring Bernoulli survival supremum self-credit Dinkelbach fractional-programming CELF allocation.",
+      "why_off_catalogue": "Normal and transtensional Great Basin faults dip 50-65 deg beneath alluvial basins of depth Z_b (median 316 m, p99 3.4 km), displacing subsurface gravity/magnetic/MT steps 400-800 m (4-8 px, outside the 300 m DTI kernel) basinward of the unmapped near-surface fault trace, while shallow groundwater smears hot geothermal upflow down-slope into cold/warm wells that retain high silica/cation geothermometer disequilibrium without surface hot springs or aerial-photo scarps.",
+      "non_fault_mimic": "Gently dipping Tertiary welded ash-flow tuff cooling-unit pinch-outs on basin margins, airborne GeoDAWN flight-block leveling seams (vetoed via acquisition_block_id_100m.tif), down-slope non-fault alluvial outflow plumes (mitigated via up-hydraulic-head back-projection), and Pleistocene Lake Lahontan (~1,330 m / ~1,205 m) wave-cut shorelines bordering conductive playas.",
+      "differs_from_repo": "First lane in GEMSDOE86 or the 92-repo fleet to implement (1) multi-altitude FFT Salem tilt-zero lateral dip-migration, (2) bilinear hanging-wall-to-footwall up-dip potential-field & conductive-gouge pullback onto surface emergence, (3) aseismic geodetic strain-energy minus microseismic catalog deficit + GeoDAWN flight-seam veto, (4) quadrant-IQR calibrated convex probabilities fixing H86J-MCSP's inverted NE prior-alignment and uniform-rank CELF dispersion bugs, and (5) exact 6-ring Bernoulli survival supremum self-credit inside a submodular Dinkelbach fractional-programming CELF allocator.",
+      "expected_dti_gain_rank": 1,
+      "implementation_cost": "Medium (~22 min CPU, <900 MiB RAM via float16 memmaps; 100% SHA-pinned data already obtainable in sandbox)"
+    },
+    {
+      "id": "H86K-CWQA",
+      "rank": 2,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Steerable 8-Azimuth Log-Cauchy Quadrature Wavelet Step-vs-Dike Symmetry Phase & Garland Poisson Magnetization-to-Density Ratio Jump",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 11 (iso_grav_anom_vg), 13 (iso_grav_anom), 14 (tmi), 18 (iso_grav_anom_hg)",
+        ".cache/external/geodawn_extensions_u8.tif (Band 4: TMI_up150)",
+        ".cache/external/acquisition_block_id_100m.tif"
+      ],
+      "physical_signature": "Directional 8-azimuth log-Cauchy quadrature filter bank separating odd-symmetric fault-step phase (phi = +-pi/2) from even-symmetric volcanic dike/channel phase (phi = 0, pi) in RTP and gravity simultaneously, gated by lateral discontinuities in Garland's (1951) Poisson ratio d_z(RTP) / (laplacian_H(Grav) + eps).",
+      "why_off_catalogue": "Northern Nevada Rift Miocene mafic dike swarms generate strong even-symmetric magnetic ridges that trigger isotropic gradient and Riesz monogenic detectors; odd-phase quadrature symmetry suppresses dikes while preserving low-throw concealed basement fault steps under volcanic cover.",
+      "non_fault_mimic": "Steep intrusive pluton-wall contacts (Mesozoic granodiorite stocks juxtaposed against Triassic metasediments).",
+      "differs_from_repo": "H86J-MPC and H86J-MCSP used orientation-pooled isotropic Riesz transforms rather than steerable 8-azimuth log-Cauchy odd-vs-even symmetry phase coupled with Garland Poisson ratio jumps.",
+      "expected_dti_gain_rank": 2,
+      "implementation_cost": "Low-Medium (2-D FFT directional filter bank; obtainable on existing stack)"
+    },
+    {
+      "id": "H86K-BFAH",
+      "rank": 3,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Listric Hanging-Wall Rollover Tensile Fiber-Bending Inversion & Paired Antithetic Keystone Graben Predictor",
+      "layers": [
+        "training_features.tif Bands 12 (det_elev), 13 (iso_grav_anom), 15 (depth_to_base_surf), 17 (cond_surf), 19 (det_elev_slope)",
+        ".cache/external/topo_10m_derived_100m_u8.tif",
+        ".cache/external/dem10_chi_100m_i16.tif"
+      ],
+      "physical_signature": "Directional second derivative -d^2(Z_b)/dn^2 of Cenozoic basin thickness along dip-normal transects 1.5-4.5 km basinward of range-front master faults (Xiao & Suppe 1992 rollover mechanics), isolating tensile fiber-strain maxima where blind antithetic keystone graben faults nucleate.",
+      "why_off_catalogue": "Master range-front scarps are mapped in existing_faults.tif (and masked to zero credit), whereas paired intrabasin antithetic rollover faults 1.5-4.5 km under valley-floor playfairways host major Great Basin blind geothermal upflow zones (Dixie Valley, Bradys, McGinness Hills) with subdued surface relief.",
+      "non_fault_mimic": "Differential compaction synclines draped over buried paleo-topographic bedrock highs.",
+      "differs_from_repo": "H86I-HVFD computed isotropic biharmonic nabla^4(Z_b); no repo lane has modeled directional Xiao-Suppe rollover fiber curvature at 1.5-4.5 km hanging-wall standoff.",
+      "expected_dti_gain_rank": 3,
+      "implementation_cost": "Low (obtainable on existing stack; core scalar hinge proxy incorporated into H86K-STDP plane 9)"
+    },
+    {
+      "id": "H86K-NVGS",
+      "rank": 4,
+      "status": "DEFERRED_EXTERNAL_SOURCE_EGRESS_BLOCKED",
+      "name": "USGS/NBMG ASTER Shortwave-Infrared (SWIR) Al-OH & Hydrated Opal-A/Chalcedony Steam-Heated Blind-Fault Alteration Lineaments",
+      "layers": [
+        "External official public-domain source required: USGS Scientific Investigations Map 3476 / ScienceBase Release DOI https://doi.org/10.5066/P9BA3684 (Rockwell et al. 2021, ASTER SWIR/TIR mineral index rasters for the Great Basin, CC0 Public Domain)",
+        "training_features.tif Bands 2 (rtp), 13 (iso_grav_anom), 17 (cond_surf)"
+      ],
+      "physical_signature": "Linear ridge eccentricity of 2.20 um Al-OH (argillic kaolinite/alunite/illite) and 2.25 um Si-OH (hydrated opal-A/chalcedony) SWIR absorption depth over low-relief alluvial fans, tracing vapor-zone H2S/CO2 steam-condensate leakage above blind geothermal faults.",
+      "why_off_catalogue": "Dry blind faults above deep boiling water tables lack hot springs and large scarps, yet acid-sulfate vapor alteration bleaches surface soils along unmapped fault traces.",
+      "non_fault_mimic": "Detrital montmorillonite-rich wash aprons eroded from altered Tertiary volcanic tuffs.",
+      "differs_from_repo": "No lane in GEMSDOE86 has ingested SWIR phyllosilicate/opaline hyperspectral mineral indices; GeoDAWN gamma-ray K/Th/U measures radioelement nuclear decay rather than OH/Si-O vibrational absorption.",
+      "external_source_obtainability": "Official free public-domain USGS release (https://doi.org/10.5066/P9BA3684), obtainable on any unrestricted workstation, but NOT directly downloadable inside this sandbox because outbound egress is restricted to github.com/codeload.github.com/api.github.com/pypi.org/npmjs.org and no SHA-pinned ASTER SWIR raster mirror exists in buffedlizard55-lab/*. Explicitly deferred per protocol rather than approximated.",
+      "expected_dti_gain_rank": 4,
+      "implementation_cost": "High (requires external workstation download + EPSG:32611 100 m warping)"
+    }
+  ]
+}
