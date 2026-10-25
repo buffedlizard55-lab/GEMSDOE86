@@ -1616,6 +1616,31 @@ uses Pearson, not Spearman, and reconstructs missing ignored cache source with e
 Post-placement gate amendments are exploratory, not independent validation.
 See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
 
+
+## IR-86-96FC6D48-PREFLIGHT-LAYOUT — 2026-10-25
+
+`scripts/protocol_preflight.measure()` defaulted `data_dir` to `ROOT/"data"` and
+`scripts/audit_release.measure_all_registry()` called `grid.load_grid(root/"data")` with the
+witness record at `root/"data"/pin["dest"]`, but the SHA-pinned grid (`sample_submission.tif`,
+`existing_faults.tif`) is committed under `data/bridge/` (see `vendor/gems57/grid.py` DATA_DIR
+and `tests/conftest.py` BRIDGE). `audit_release.py --measure-registry` therefore crashed with
+FileNotFoundError in a fresh checkout before any measurement. Fixed once in `scripts/`
+(`protocol_preflight.py`, `audit_release.py`, and the same stale layout in the operative PA-86
+checkers `check_h86e_registry.py` / `pa86_chance_overlap.py`); the vendored template was not
+modified. The pinned witness was restored from the pinned 17GEMSDOE blob
+`374c88b1da2b803e2ed160de467fd71ae114010d` into gitignored `data/bridge/registry/`
+(SHA-256 `ab0a0a62...`, 25,065,181 bytes). Thresholds, evaluator, and witness identity are
+unchanged. `tests/test_h86i_rlms.py` probed the old `data/` layout to select the expected error
+class; updated to probe the real pinned paths.
+
+## IR-86-96FC6D48-H86MLT-REGISTRATION — 2026-10-25
+
+Session `96fc6d48` independently reproduced the PR #165 H86M-LT publication omission
+(registered on main by parallel session `57139348`, PR #166) and re-verified the raster from
+disk bytes (SHA-256 `4067382c...`, ZIP byte-identity, EPSG:32611 3730x3292, values exactly
+{0,1}, 37,654 positives). This branch's parallel card-supersession and page rewrite were
+discarded at merge in favour of main's `h86m_lt_unvalidated` handling; both sessions reached
+the identical DO NOT SUBMIT state. See `research/SESSION_20261025_96FC6D48_REVIEW.md`.
 ## IR-86M-02 (`arena/2ea5b025-gemsdoe86`, 2026-10-25) — Automated Parallel-Run Protocol Rule 1 stop caught `H86M-PFTE` Arm `E1` (`0.7041 > 0.70` vs `H86K-STDP`) prior to GeoTIFF serialization
 
 - **Observed during `scripts/run_h86m_pfte.py` Step [5/6].** Preregistered kinematic+blind Arm #1 `E1_pfte_comonotonic_dcelf` (`alpha_kin = 0.68`, `HOLDOUT-DTI = 0.1310 [0.1141, 0.1476]`, `Fold NE = 0.1436` vs `E3 = 0.1185`, `SGMC-PROXY-DTI = 0.1166`) passed continuous surface Spearman across all `702` indexed rasters (`worst_spearman = 0.5657 <= 0.90`, `0` firings) and `459 / 460` discrete `<=90k`-dot submissions, **except** `0.704069 > 0.70` 3-px dot overlap against `H86K-STDP` (`3ac7fa1d...`) driven by shared `compute_elastic_fields` fold-visible fracture lobes.
@@ -1630,9 +1655,11 @@ Inspection of `training_features.tif` (`4371c82e...`) against `sample_submission
 
 Executed the preregistered `H86N-GSST` lane (`scripts/run_h86n_gsst.py`, `src/gems86_gsst/features.py`). On `gems57-pooled-hide-v2` (`11,321` withheld positives, `1,000` physical-block draws), `H86N_GSST` achieved `HOLDOUT-DTI = 0.0310 [0.0210, 0.0423]`, trailing `E0_raw_grav_slope` (`0.0349 [0.0238, 0.0473]`, paired $\Delta = -0.0039\ [-0.0078, -0.0001]$) and `E2_compact_curv` (`0.0407 [0.0305, 0.0529]`, paired $\Delta = -0.0097\ [-0.0229, +0.0033]$). Recorded `verdict = "negative"`, `safe_to_submit = false`, `submission_ready = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0` in `docs/evidence/h86n-gsst-run-card.json`.
 
-## IR-86M-20261025-REV2 — Three new unverified `OWNER-REPORTED` score claims + `GEMSDOE92` future-rounded filename timestamp (2026-10-25)
+## IR-86M-BMGS-20261025 (session `94cbed2d`) — `GEMSDOE91`/`GEMSDOE92` (`REV2`) fleet forensics & log-odds strand-crush defect fixed
 
-The 2026-10-25 Rev2 request (`research/REQUEST_20261025_REV2.md`; earlier `research/REQUEST_20261025.md` kept byte-frozen) adds three owner-reported submission claims: `GEMSDOE91` `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367` and `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`, plus `GEMSDOE92` `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. Recorded strictly as `OWNER-REPORTED (2026-10-25 rev2 request, unverified)` in `registry/prior_scores.csv` (`118` non-empty rows across `90` scored repos; `0` organizer receipts).
+Full evidence: [`research/SESSION_20261025_H86M_BMGS_REVIEW.md`](research/SESSION_20261025_H86M_BMGS_REVIEW.md) · [`docs/evidence/h86m-bmgs-run-card.json`](docs/evidence/h86m-bmgs-run-card.json).
+- **1. `GEMSDOE91` (`0.1823` `OWNER-REPORTED`) halo-crowding vs `GEMSDOE92` (`0.0255` `OWNER-REPORTED`) uniform pullback over-shift:** Forensic comparison across the newly supplied rev-2 fleet entries confirmed that in-sample PU models crowd `68.5%` of dots into `< 1 km` near-catalogue halos (vs `69.8%` `> 1 km` far-field in `GEMSDOE32` `H33`), while uniform `50°` up-dip pullback (`5–28 px`) shifts steep strike-slip (`80°–90°`) and horst contacts completely outside the `300 m` (`3 px`) DTI kernel.
+- **2. `IR-86M-STRAND-LOGODDS-20261025` (caught & fixed in Pass 2):** Averaging log-odds (`logit p`) along a `7×7` directional stencil acts as a geometric mean of odds that multiplicatively crushes curved 1-px fault crests whenever stencil endpoints touch desert background (`p ~ 0.0005`). Replaced in `src/gems86_bmgs/model.py` with additive probability-space 8-azimuth strand reinforcement (`>= 0.70 * p_bayes` floor regression-tested in `tests/test_h86m_bmgs.py`). Unified `H86M-BMGS` achieved `HOLDOUT-DTI = 0.1310 [0.1121, 0.1509]` (`6x` single-feature `H86M-BMR` `0.0220`, `4.2x` `H86N-GSST` `0.0310`, `3.2x` `H86M-CNT` `0.0408`) and `SGMC-PROXY-DTI = 0.1082` (`E2` blind `0.1111` at `70.21%` far-field `> 1 km`), with `0.0820–0.4101` 3-px overlap vs all parallel `H86M`/`H86N` rasters (`0.6351` vs `H86K-STDP` — clearing the `0.70` stop that halted `H86M-PFTE` `E1`); remains `verdict = "negative"` (`DO NOT SUBMIT`, `0` weekly slots used).
 
 ## IR-86M-STDP-QUAD-SEAM — Prior `H86K-STDP` LOQO helper split at bounding-box `H//2=1865` instead of footprint median `ym=936` (`92.9 km` seam shift) (2026-10-25)
 
@@ -1640,4 +1667,4 @@ The 2026-10-25 Rev2 request (`research/REQUEST_20261025_REV2.md`; earlier `resea
 
 ## IR-86M-SLCQ-01 — `H86M-SLCQ` generated a unique `15/15` validated GeoTIFF (`HOLDOUT-DTI = 0.1527`, paired `E1 - E3 = +0.0150 [+0.0009, +0.0282]`, `SGMC = 0.0967` / blind `0.1131`) and failed closed `DO NOT SUBMIT` (2026-10-25)
 
-`scripts/run_h86m_slcq.py` executed `research/H86M_SLCQ_PREREGISTRATION.json` (`registry/h86m_slcq_hypotheses.json`) and wrote [`docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif`](docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif) (`sha256: c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d`, `37,654` unit dots, `15/15` format checks PASS, `43/43` leakage canaries PASS with `max AUC = 0.7943 <= 0.90`, `0/702` surface Spearman `rho > 0.90` firings, `0/460` comparable `<=90k`-dot discrete 3-px overlap firings `> 0.70`, and `0/7` firings vs concurrent `H86M`/`H86N` TIFFs). Automatically set `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, `0` weekly slots used under literal `17GEMSDOE` (`1.0000`), space-filling/dense archive ribbons, and `2` off-grid rows (`14GEMSDOE`, `7GEMSDOE`). See [`research/SESSION_20261025_H86M_SLCQ_REVIEW.md`](research/SESSION_20261025_H86M_SLCQ_REVIEW.md) and [`docs/evidence/h86m-slcq-run-card.json`](docs/evidence/h86m-slcq-run-card.json).
+`scripts/run_h86m_slcq.py` executed `research/H86M_SLCQ_PREREGISTRATION.json` (`registry/h86m_slcq_hypotheses.json`) and wrote [`docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif`](docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif) (`sha256: c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d`, `37,654` unit dots, `15/15` format checks PASS, `43/43` leakage canaries PASS with `max AUC = 0.7943 <= 0.90`, `0/702` surface Spearman `rho > 0.90` firings, `0/460` comparable `<=90k`-dot discrete 3-px overlap firings `> 0.70`, and `0/8` firings vs concurrent `H86M`/`H86N` TIFFs). Automatically set `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, `0` weekly slots used under literal `17GEMSDOE` (`1.0000`), space-filling/dense archive ribbons, and `2` off-grid rows (`14GEMSDOE`, `7GEMSDOE`). See [`research/SESSION_20261025_H86M_SLCQ_REVIEW.md`](research/SESSION_20261025_H86M_SLCQ_REVIEW.md) and [`docs/evidence/h86m-slcq-run-card.json`](docs/evidence/h86m-slcq-run-card.json).

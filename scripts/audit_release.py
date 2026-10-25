@@ -421,13 +421,20 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86M-PFTE lane result; the run card is the authoritative experiment receipt. 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF at 37,654 dots achieves an all-time 37,654-dot repository high on blind off-catalogue SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407], beating GEMSDOE32 H33 (+0.0273 [+0.0066, +0.0485]), unstripped scalar ablation E3 (+0.0419 [+0.0199, +0.0646]), H86F-EWCS (+0.0391 [+0.0188, +0.0603]), H86J-MCSP (+0.0211 [+0.0007, +0.0402]), and H86L-FMC (+0.0208 [+0.0004, +0.0422]) with 95% CIs strictly above zero and outscoring H86M-LT (0.1136) and H86K-STDP (0.1133), with strict pure-blind 4-fold LOQO HOLDOUT-DTI = 0.0734 [0.0591, 0.0882] (kinematic arm E1 reached 0.1310 [0.1141, 0.1476] with Fold NE 0.1436 vs E3 0.1185, halted before GeoTIFF serialization by Protocol Rule 1 due to 0.7041 > 0.70 3-px dot overlap vs H86K-STDP), 0/702 continuous surface Spearman firings > 0.90 (max 0.4795), and 0/464 discrete <=90k-dot firings > 0.70 (max 0.6244; 0.0843-0.3682 vs concurrent BMR/CNT/DAMAGERING/LT), while full v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_bmgs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-BMGS lane result; the run card is the authoritative experiment receipt. Out-of-quadrant FFT Athy basement mass-balance gravity residual + 8-azimuth steerable odd-step asymmetry + transtensional MT neck + dilatation-gated <=3px shallow pullback + Elkan-Bayes axial strand coherence + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves strict 12-px-eroded 4-fold LOQO HOLDOUT-DTI 0.1310 [0.1121, 0.1509] (+0.0113 over raw/isotropic/static-E[k] ablation E3 = 0.1197; 6x single-feature H86M-BMR 0.0220, 4.2x H86N-GSST 0.0310, 3.2x H86M-CNT 0.0408) and SGMC-PROXY-DTI 0.1082 [0.0862, 0.1319] (pure-blind E2 = 0.1111 with 70.21% far-field >1 km off-catalogue matching GEMSDOE32 H33's 69.8%; beating GEMSDOE32 H33 0.0937, H86J-MCSP 0.0999, H86F-EWCS 0.0819, and E3 0.0818), with 0/702 Spearman rho > 0.90 firings (max 0.5650) and 0 discrete <=90k-dot firings > 0.70 across all 467 discrete submissions including H86K-STDP (0.6351), H86J-MCSP (0.6369), H86M-PFTE (0.4101), H86M-LT (0.3632), GEMSDOE32 H33 (0.2974), and H86N-GSST (0.0935), while catalogue-hide trailing surface-DEM lanes and full v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     if kind == "h86m_slcq":
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
                 "evaluator_version": h["evaluator_version"],
                 "withheld_positives": h["withheld_positive_pixels"],
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
-                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/7 firings vs concurrent H86M/H86N TIFFs, while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
+                "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/8 firings vs concurrent H86M/H86N TIFFs, while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
@@ -543,10 +550,10 @@ def measure_all_registry(root: Path = ROOT) -> dict:
     if root.resolve() != ROOT:
         raise ValueError("Registry measurement requires this checkout's pinned inputs")
     cert = measure()  # verifies witness, inventory membership, size, SHA and grid
-    g = grid.load_grid(root / "data")
+    g = grid.load_grid(root / "data" / "bridge")
     pin = strict_json(root / "research/registry_witness_pin.json")
     records = [dict(repo=pin["repo"], submission=pin["source_path"],
-                    file=str(root / "data" / pin["dest"]), sha256=pin["sha256"])]
+                    file=str(root / "data" / "bridge" / pin["dest"]), sha256=pin["sha256"])]
     rows = []
     inventory = strict_json(root / "docs/evidence/download-inventory.json")
     for entry in inventory["artifacts"]:

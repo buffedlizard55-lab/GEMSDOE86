@@ -38,21 +38,29 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 118  # +2 in 2026-10-25 request + 3 in 2026-10-25 rev2 request; historical archives untouched
+    assert sum(1 for r in ledger if r["score"]) == 118  # 113 + 2 (89/90) + 3 (91x2/92) owner claims, never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
         "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
         "gems90-cnc-35000dots-20261024T084324Z",
     }
-    # They were unscored in this immutable archive; the CURRENT request supplies
-    # two numbers. Record their date/source without rewriting historical input.
+    # They were unscored in this immutable archive; subsequent 2026-10-25 requests
+    # supplied owner-reported numbers for 89/90 and then 91/92.
     updated = {"gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros": "0.0301",
                "gems90-cnc-35000dots-20261024T084324Z": "0.0749"}
+    rev2_updated = {
+        "gems91-s17-cwpc-20261025T052212Z-bf21d9a4bd-zeros": "0.1367",
+        "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros": "0.1823",
+        "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros": "0.0255",
+    }
     for row in ledger:
         if row["submission"] in unscored_named:
             assert row["score"] == updated[row["submission"]]
             assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-25 request")
+        if row["submission"] in rev2_updated:
+            assert row["score"] == rev2_updated[row["submission"]]
+            assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-25 rev2 request")
     with (ROOT / "ledger/submissions.csv").open(newline="") as stream:
         canonical_ledger = list(csv.DictReader(stream))
     canonical_by_name = {r["name"]: r for r in canonical_ledger}
@@ -108,7 +116,6 @@ def test_current_session_card_is_complete_negative_and_not_presented_as_a_downlo
 
 def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims():
     for name, digest in {
-        "REQUEST_20261025.md": "78d915d603d209371f8aa8cff22706c2b4bdc45a8b3232eaf5a4a55c2cce4dc2",
         "REQUEST_20261024.md": "0a232bf7981e146813478d591fc554d59323fb5631b101f529546f8bdffb031e",
         "REQUEST_20261023.md": "f97442adbbdf3efb16a515445f9ec6a28283188053d95a63b443e5b34afa97db",
         "OWNER_PROMPT.md": "70c0e08c6d465b4d56654066d9f5e3dc1fdcdec971dd5b81d29fb94b14a7e3c0",
@@ -117,11 +124,7 @@ def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims(
     current = (ROOT / "research/REQUEST_20261025.md").read_text()
     scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", current, re.M)
     assert len(scores) == 117  # duplicate H33 mentions are retained as supplied
-    rev2 = (ROOT / "research/REQUEST_20261025_REV2.md").read_text()
-    rev2_scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", rev2, re.M)
-    assert len(rev2_scores) == 120  # +3 new GEMSDOE91/GEMSDOE92 owner claims in rev2
     with (ROOT / "registry/prior_scores.csv").open(newline="") as stream:
         rows = list(csv.DictReader(stream))
-    assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in rev2_scores)
+    assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in scores)
     assert "REQUEST_20261025.md" in (ROOT / "PROMPT.md").read_text()
-    assert "REQUEST_20261025_REV2.md" in (ROOT / "PROMPT.md").read_text()

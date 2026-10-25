@@ -3216,11 +3216,11 @@
     },
     "post_merge_concurrent_main_tiffs": {
       "evidence_class": "REGISTRY-MEASUREMENT",
-      "rasters_checked": 7,
+      "rasters_checked": 8,
       "rho_firings_over_0p90": 0,
       "overlap_3px_firings_over_0p70": 0,
-      "worst_surface_spearman": 0.0741817035467039,
-      "worst_forward_overlap_3px": 0.400355871886121,
+      "worst_surface_spearman": 0.0951679956413418,
+      "worst_forward_overlap_3px": 0.5914112710469007,
       "rows": [
         {
           "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
@@ -3270,6 +3270,13 @@
           "surface_spearman": 0.007040362834512794,
           "dots_spearman": 0.009701008646285638,
           "forward_overlap_3px": 0.12776863015881446
+        },
+        {
+          "file": "docs/downloads/gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.tif",
+          "their_dots": 37654,
+          "surface_spearman": 0.0951679956413418,
+          "dots_spearman": 0.08928983268057046,
+          "forward_overlap_3px": 0.5914112710469007
         }
       ]
     }

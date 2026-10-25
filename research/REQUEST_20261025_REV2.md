@@ -1,4 +1,4 @@
-# Owner request — 2026-10-25 (Rev 2: GEMSDOE91 & GEMSDOE92 owner claims)
+# Owner request — 2026-10-25 (rev 2)
 
 Archived user input, not verified performance evidence. URLs and whitespace are normalized; repeated instructions and score claims are retained. This archive is not a lane assignment, a verified score receipt, or permission to waive any stop condition.
 
@@ -649,7 +649,7 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 https://buffedlizard55-lab.github.io/GEMSDOE91/
 
-gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367
+gems91-s17-cwpc-20261025T052212Z-bf21d9a4bd-zeros: 0.1367
 
 gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823
 
@@ -657,7 +657,7 @@ gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823
 
 https://buffedlizard55-lab.github.io/GEMSDOE92/
 
-gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255
+gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros:0.0255
 
 ....
 

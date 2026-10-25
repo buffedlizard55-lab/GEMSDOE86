@@ -236,6 +236,12 @@
       "approved_for_weekly_slot": false
     },
     {
+      "file": "docs/downloads/gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.tif",
+      "sha256": "7c7662e53df2f02cf9a6d3193a7f7d5d61e0b01b18c3d6b0a5de6a4676a583cb",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
       "file": "docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
       "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
       "status": "DO NOT SUBMIT",
