@@ -1,7 +1,7 @@
 {
   "schema": "gems86.session-review.v1",
   "date_utc": "2026-10-25",
-  "hypothesis": "BMR basement-interface gravity mass-balance residual (ranked next; no assigned method paragraph; NOT RUN)",
+  "hypothesis": "BMR basement-interface gravity mass-balance residual (ranked at start; concurrent mainline later ran BMR; NOT RUN in this review)",
   "mechanism": "Fold-safe broad basement response from native Band 15 subtracted from Band 13 gravity; test cross-strike residual against raw-gravity and basement-gradient controls. No candidate surface was built.",
   "named_non_fault_process": "Sediment-density gradients, gravity-derived basement-model smoothing and edge ringing",
   "holdout_dti": {
@@ -26,7 +26,7 @@
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform_match": null,
-    "inherited_local_artifacts_valid": 33,
+    "inherited_local_artifacts_valid": 35,
     "inherited_artifact_scope": "format/ZIP and one pinned witness only; not a new candidate or full uniqueness clearance",
     "evidence": "docs/evidence/release-readiness.json"
   },

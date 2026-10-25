@@ -227,7 +227,21 @@
       "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
     },
     {
-      "lane": "H86M-DAMAGERING catalogue ring (unvalidated; negative archive)",
+      "lane": "H86M-BMR basement gravity mass-balance residual (HOLDOUT-DTI 0.0220 [0.0086,0.0384], 11321 withheld, beaten by raw-gravity control; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-bmr-run-card.json",
+      "context": "docs/evidence/h86m-bmr-run-card.json",
+      "holdout_kind": "h86m_bmr",
+      "stem": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros"
+    },
+    {
+      "lane": "H86M-CNT conductivity-neck x dilatation (HOLDOUT-DTI 0.0408 [0.0257,0.0575], 11321 withheld, paired CIs vs controls cross zero; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-cnt-run-card.json",
+      "context": "docs/evidence/h86m-cnt-run-card.json",
+      "holdout_kind": "h86m_cnt",
+      "stem": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros"
+    },
+    {
+      "lane": "H86M-DAMAGERING catalogue-only ring (unvalidated negative archive)",
       "card": "docs/evidence/h86m-damagering-run-card.json",
       "context": "docs/evidence/h86m-damagering-run-card.json",
       "holdout_kind": "h86m_unvalidated",

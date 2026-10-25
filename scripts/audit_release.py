@@ -230,6 +230,23 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind in {"h86l_fmc", "h86m_bmr", "h86m_cnt"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
+        # block lives at holdout.candidate; all are measured negatives.
+        h = context.get("holdout") or {}
+        cand = h.get("candidate") or {}
+        value, ci, n = cand.get("dti"), cand.get("ci95"), cand.get("withheld_positive_pixels")
+        if (context.get("verdict") != "negative" or context.get("submission_slots_used") != 0
+                or h.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or not isinstance(value, (int, float)) or not 0 <= value <= 1
+                or not isinstance(ci, list) or len(ci) != 2 or ci[0] > ci[1]
+                or not isinstance(n, int) or n <= 0):
+            raise ValueError(f"{kind} run card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": n, "value": value, "ci95": ci,
+                "design": "buffered whole components; visible-only collar in folds; physical-block bootstrap",
+                "caveat": "Measured negative lane (H86L-FMC holdout is additionally leakage-suspect by fleet ancestry). DO NOT SUBMIT; no slot used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
