@@ -19,7 +19,14 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
     assert queue["common_data_requirement"]["actual_shared_feature_stack_restored"] is False
     assert [item["rank"] for item in queue["hypotheses"]] == [1, 2, 3]
     assert all(item["status"] == "NOT_RUN_PROTOCOL_STOP" for item in queue["hypotheses"])
-    assert [item["id"] for item in queue["hypotheses"]] == ["BMR", "GSST", "CNT"]
+    assert [item["id"] for item in queue["hypotheses"]] == ["GSST", "H86K-CWQA", "H86K-BFAH"]
+    excluded_methods = " ".join(row["method"] for row in queue["excluded_as_already_tried"])
+    assert "H86M-BMR" in excluded_methods
+    assert "H86M-CNT" in excluded_methods
+    bmr = next(row for row in queue["excluded_as_already_tried"] if "H86M-BMR" in row["method"])
+    cnt = next(row for row in queue["excluded_as_already_tried"] if "H86M-CNT" in row["method"])
+    assert "0.0220 [0.0086, 0.0384]" in bmr["disposition"]
+    assert "0.0408 [0.0257, 0.0575]" in cnt["disposition"]
     for hypothesis in queue["hypotheses"]:
         assert hypothesis["physical_signature"]
         assert hypothesis["catalogue_missing_rationale"]
@@ -49,8 +56,9 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
     assert "H86J-CSGD subsequently implemented" in hypotheses
     assert "H86J-MPC implemented and evaluated" in hypotheses
     assert "H86K-PSC implemented saddle persistence" in hypotheses
-    assert "New proposal 1 · BMR · NOT RUN" in hypotheses
-    assert "New proposal 3 · CNT · NOT RUN" in hypotheses
+    assert "New proposal 1 · GSST · NOT RUN" in hypotheses
+    assert "New proposal 2 · H86K-CWQA · NOT RUN" in hypotheses
+    assert "New proposal 3 · H86K-BFAH · NOT RUN" in hypotheses
     assert "New proposal 4 · CNT · NOT RUN" not in hypotheses
     assert "New proposal 1 · H86G-CSPA · NOT RUN" not in hypotheses
     assert "New proposal 2 · H86G-MPC · NOT RUN" not in hypotheses
@@ -65,7 +73,14 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
 def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     card = load("docs/evidence/session-20261025-followup-run-card.json")
     preflight = load("docs/evidence/protocol-preflight.json")
-    registry = load("docs/evidence/all-artifacts-registry.json")
+    # A dated review binds its original bytes, not a later refreshed audit.
+    # Live timestamp/hash binding is separately tested in test_current_review.py.
+    import hashlib
+    source = card["registry_measurement_source"]
+    source_path = (ROOT / source["file"]).resolve()
+    assert source_path.is_relative_to((ROOT / "docs/evidence/session-followup-snapshot").resolve())
+    assert hashlib.sha256(source_path.read_bytes()).hexdigest() == source["sha256"]
+    registry = load(source["file"])
     assert card["hypothesis"].startswith("BMR:")
     assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["status"] == "NOT_RUN_NO_LANE_ASSIGNED_AND_PROTOCOL_STOP"
@@ -74,6 +89,7 @@ def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
     assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
     assert card["correlation_overlap_vs_registry"]["registry_measurement_utc"] == registry["measured_utc"]
+    assert card["correlation_overlap_vs_registry"]["artifacts_locally_validated"] == 32
     assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False
