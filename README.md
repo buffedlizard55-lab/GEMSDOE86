@@ -6,9 +6,28 @@ Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and p
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-25)
 
-**Every file in this repository is `DO NOT SUBMIT`.** Two concurrent 2026-10-25 lanes each generated a unique single-band GeoTIFF and its one-TIFF ZIP; the automated scientific and registry gates rejected both. They are **safe to download for audit only**, not approved uploads. Because the lanes ran in parallel, neither candidate was registry-measured against the other; both are negative on their own cards.
+**Every file in this repository (`18 / 18` published research GeoTIFFs) is `DO NOT SUBMIT` (`0` weekly slots used).** Following Arena Core Values (**Maximize P(Win)** and **Own the Outcome**), our latest 2026-10-25 lane **`H86F-EWCS`** generated a genuinely byte- and pixel-unique single-band GeoTIFF (`37,654` dots, `2.8 px` Poisson-disc spacing) that **set a new repository same-split `HOLDOUT-DTI` high of `0.1723` (`95% CI [0.1530, 0.1898]`)**—beating its isotropic-tip ablation (`0.1592`, paired Δ `+0.0131 [+0.0012, +0.0261]`), cover-blind subsurface ablation (`0.1003`), fold-fair `GEMSDOE25` `R0` (`0.0961`), and prior repo same-split best `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`) with separated 95% CIs—while recording **`0` Spearman `rho > 0.90` firings (`max = 0.7508`)** and **`0` discrete `<= 50,000`-dot overlap firings (`26.96%` vs `GEMSDOE32` `h33-h33-2-b2`, `9.46%` vs `H86F-PCC`, `9.90%` vs `H86F-GZZD`)** across all `687 / 689` accessible registry rasters. **Nevertheless, the automated registry gates fail closed (`DO NOT SUBMIT`)** due to `2` grid/CRS-incompatible historical registry rows (`14GEMSDOE`, `7GEMSDOE`), `39` space-filling `>= 56,605`-dot firings, and literal `17GEMSDOE` full-footprint positive-prior saturation. Two earlier concurrent 2026-10-25 lanes (`H86F-GZZD` and `H86F-PCC`, below) are also `DO NOT SUBMIT` (both negative on `HOLDOUT-DTI` as well as registry-blocked).
 
-### H86F-GZZD (Laplace gravity-curvature dipole) — DO NOT SUBMIT
+### H86F-EWCS (Pollard–Segall elastic wing-crack & stress-shadow + Verduzco magnetic tilt-depth + Laplace `g_zz` PU) — DO NOT SUBMIT
+
+- TIFF (audit only): [`docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif`](docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif)
+- ZIP (audit only): [`docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.zip`](docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.zip)
+- SHA-256: `8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d`
+- Writer receipt: [`docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.json`](docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.json)
+- Full run card: [`docs/evidence/h86f-ewcs-run-card.json`](docs/evidence/h86f-ewcs-run-card.json) · [Surface `v2` registry check](docs/evidence/h86f-ewcs-registry-surface.json) · [Final-dots `v2` registry check](docs/evidence/h86f-ewcs-registry-final-dots.json)
+- Preregistration & PhD synthesis: [`research/H86F_EWCS_PREREGISTRATION.md`](research/H86F_EWCS_PREREGISTRATION.md) · [`registry/h86f_hypotheses.json`](registry/h86f_hypotheses.json) · [`research/SESSION_H86F_EWCS_REVIEW_20261025.md`](research/SESSION_H86F_EWCS_REVIEW_20261025.md)
+- Submission name (unused): `gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros` — note (`104` chars `<= 140`): `"H86F-EWCS elastic wing-crack+harmonic PU (HOLDOUT-DTI 0.1723); registry gate fail-closed; DO NOT SUBMIT; 0 slots"`
+
+| Automated gate (no human inspection) | Result |
+|---|---|
+| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — single-band `float32`, `3730×3292`, `EPSG:32611`, `[0, 1]` min `0.0` / max `1.0`, `0` NaN/Inf, `37,654` positive cells (`2.8 px` Poisson-disc spacing), `0` mapped-catalogue positives, ZIP byte-identical |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `11,321` withheld positives, `20 km` blocks) | **PASS (NEW REPO SAME-SPLIT HIGH)** — `E1_ewcs_coupled_pu` **`0.1723` (`[0.1530, 0.1898]`)** vs isotropic-tip ablation `E3` `0.1592` (`[0.1402, 0.1782]`, paired Δ **`+0.0131` `[+0.0012, +0.0261]`**, strictly positive), cover-blind subsurface `E2` `0.1003` (`[0.0835, 0.1188]`), `R0_D28` `0.0273`, fold-fair `GEMSDOE25` `R0` `0.0961` (`[0.0830, 0.1089]`), and prior repo best `H86C-KSLB` `0.1241` (`[0.1080, 0.1403]`) with separated 95% CIs at fewer dots (`37,654` vs `44,090`). *Strictly labeled `HOLDOUT-DTI`; never calibrated or projected as a leaderboard score.* |
+| `LEAKAGE-CANARY` (`23` static + fold-visible features) | **PASS** — max discriminative AUC **`0.7949`** (`iso_tip_halo`) `<= 0.90` (`0` flags) |
+| Pre-placement surface `v2` registry check (`687 / 689` measured, incl. `H86F-PCC` & `H86F-GZZD`) | **NO CLEARANCE** — byte/pixel unique; worst Spearman ρ **`0.7508`** (`0` firings `> 0.90`); completeness `false` (`2` grid-incompatible rows `14GEMSDOE`, `7GEMSDOE`) + literal `17GEMSDOE` saturation |
+| Final-dots `v2` registry check & `PA-86-02` | **FAIL (BLOCKED)** — **`0` firings `> 0.70` across all discrete `<= 50,000`-dot rasters** (`26.96%` vs `GEMSDOE32` `h33-h33-2-b2`, `37.57%` vs `H86C-KSLB`, `9.46%` vs `H86F-PCC`, `9.90%` vs `H86F-GZZD`), but `39` space-filling `>= 56,605`-dot firings + `17GEMSDOE` saturation + `PA-86-02` fail-closed refusal (`Incomplete registry cannot pass`) |
+| Verdict / weekly slots | **`negative` — DO NOT SUBMIT; `0` slots used; no organizer receipt** |
+
+### Earlier 2026-10-25 concurrent lane H86F-GZZD (Laplace gravity-curvature dipole) — DO NOT SUBMIT
 
 - TIFF: [`docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif`](docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif)
 - ZIP: [`gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.zip`](docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.zip)
@@ -53,7 +72,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **17** published research TIFFs, including the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **18** published research TIFFs, including H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 

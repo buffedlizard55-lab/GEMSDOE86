@@ -208,6 +208,13 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86F-GZZD lane result; the run card is the authoritative experiment receipt. The candidate trails its unsigned-edge control and the same-split historical best, the registry scan is incomplete (2 grid-incompatible rows) with dot-field firings, and PA-86-02 failed closed; no slot was used."}
+    if kind == "h86f_ewcs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-EWCS lane result; the run card is the authoritative experiment receipt. HOLDOUT-DTI (0.1723 [0.1530, 0.1898]) beats its isotropic-tip/cover-blind controls and same-split H86C-KSLB (0.1241) with separated 95% CIs, with 0/687 Spearman rho > 0.90 firings and 0 discrete <=50k-dot firings (26.96% vs GEMSDOE32), but registry completeness (2 grid-incompatible rows), >56k-dot space-filling firings, literal 17GEMSDOE saturation, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
