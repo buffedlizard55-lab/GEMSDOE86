@@ -2,7 +2,11 @@
 
 Latest review ([session 9662ee55](research/SESSION_9662EE55_REVIEW.md)): hardened the independent download validator against untrusted paths/JSON and shared-tool drift; rechecked the pinned registry witness and H33 source documents. **DO NOT SUBMIT; no new TIFF or weekly slot.** [Negative run card](research/session-9662ee55-run-card.json). The complete owner request remains embedded below and in [the current request archive](research/REQUEST_20261025.md); read it at every session start.
 
+**One-command three-pass verification:** after installing `requirements-lock.txt` in `.venv`, run `.venv/bin/python scripts/review_repository.py`. It checks releases, tests, evidence, site and downloads, recording `.cache/repository-review.json`; a software PASS never authorizes an upload. [Latest implementation review, ranked hypotheses, blockers and next steps](research/SESSION_1D3F3532_REVIEW.md). **No new TIFF generated; DO NOT SUBMIT.** The full standing request remains in [PROMPT.md](PROMPT.md) and [the current request archive](research/REQUEST_20261025.md); read them before starting work.
+
 **Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+
+**Latest independent review on this Arena branch (2026-10-25): NEGATIVE; no new TIFF, experiment, or slot.** The literal full-support registry witness blocks all non-empty candidate rasters; no shared cached feature stack or lane assignment is present. See [three-pass review, ranked untested hypotheses, H33 evidence, and next blockers](research/SESSION_20261025_ARENA_43838D43_REVIEW.md) and its [machine-readable run card](docs/evidence/arena-43838d43-run-card.json). Existing audit-only downloads are not new submissions and remain **DO NOT SUBMIT**.
 
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
@@ -16,13 +20,15 @@ Focused follow-on review in this session (2026-10-25; no new lane or TIFF select
 
 Independent repository review (2026-10-25; three passes; no model run or TIFF generated): [H33 forensic explanation, four queued geological hypotheses, current workspace audit, blockers, and negative run card](research/SESSION_20261025_ARENA_REVIEW.md). Machine-readable scoped evidence: [current local registry audit](docs/evidence/session-review-20261025/registry-input-grid-review.json) and [full review verification bundle](research/SESSION_20261025_ARENA_REVIEW.md#verification-run-record). Current local registry inventory differs from the earlier dated 690-file scan; the review preserves both measurements and flags the discrepancy.
 
+Final environment and quality recheck (2026-10-25): [839 tests passed; site checks and 21-artifact local audit passed; no TIFF/slot authorized](research/SESSION_20261025_ARENA_FINAL_RECHECK.md). This verifies code/evidence consistency, not scientific performance or competition acceptance.
+
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## IS ANY FILE AUTHORIZED TO SUBMIT RIGHT NOW? **NO — SELECTOR AUTHORIZATION PENDING.**
+## IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO — DO NOT SUBMIT.**
 
-H86G-EDTI retains its historical `promote` verdict for selector review. Its run card explicitly records `safe_to_submit=false` and `approved_for_weekly_slot=false`; the release audit retains the literal witness stop. Promotion is not upload authorization. See [this session’s safety review](research/SESSION_085C2B7A_REVIEW.md).
+Publication safety correction (session `09c7fc42`): H86G-EDTI’s historical amended-gate promotion is preserved, but does not pass the current literal registry rule or authorize a weekly slot. Its card records `safe_to_submit=false` and `approved_for_weekly_slot=false`. [Three-pass review](research/SESSION_09C7FC42_REVIEW.md). No new TIFF was generated in this session.
 
-**Download for selector review only (DO NOT UPLOAD yet):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
+**Existing research download only — DO NOT SUBMIT:** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
 Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
 Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
 
@@ -33,7 +39,7 @@ Portal steps: [executive summary](docs/executive-summary.html) / [scientific rev
 | `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
 | `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
 | Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` for selector review only — safe to download; NOT authorized to upload; 0 slots used here** |
+| Verdict / weekly slots | **Historical amended-gate `promote` only — DO NOT SUBMIT under the literal rule; no slot approval; live score unknown** |
 
 **Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
 
@@ -920,7 +926,6 @@ Before any implementation code was written, four untried geological hypotheses (
 | Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
 ### Concurrent 2026-10-25 lane: H86H-PSTD (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance) — HALTED FAIL-CLOSED (`DO NOT SUBMIT`)
->>>>>>> origin/main
 
 Before any implementation code was written, four untried geological hypotheses (`H86H-1..H86H-4`) were frozen in [`research/H86H_PSTD_PREREGISTRATION.md`](research/H86H_PSTD_PREREGISTRATION.md) ([machine-readable JSON](research/H86H_PSTD_PREREGISTRATION.json)). Top candidate **`H86H-1` (`H86H-PSTD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid and **halted fail-closed before full-footprint dot placement and before GeoTIFF serialization** per `AGENTS.md` Rule 11 ([run card](docs/evidence/h86h-pstd-run-card.json), [v2 bound surface report](docs/evidence/h86h-pstd-registry-surface.json), [PhD GEMSDOE32 analysis & 3-pass review](research/SESSION_20261024_H86H_PSTD_REVIEW.md)):
 

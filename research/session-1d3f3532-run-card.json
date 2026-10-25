@@ -1,0 +1,124 @@
+{
+  "schema": "gems86.three-pass-review.v1",
+  "measured_utc": "2026-10-25T04:25:45.148593+00:00",
+  "checks": [
+    {
+      "name": "pass1-release",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "scripts/audit_release.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "e9e8fe96b05e4a2efffc868421c391af7faf0adf03951322146309a1c7354623",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "{\n  \"audit_ok\": true,\n  \"decision\": \"DO NOT SUBMIT\",\n  \"artifact_count\": 21,\n  \"locally_valid_artifacts\": 21,\n  \"all_final_artifacts_remeasured\": true,\n  \"experiments_run\": 0,\n  \"submission_slots_used\": 0\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "pass2-tests",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "4668e4da5ebf3312c7416c41c5bf8509d10d31540708b071d40da59124097901",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": ".........ssss...................................................... [  7%]\n........................................................................ [ 15%]\n........................................................................ [ 24%]\n........................................................................ [ 32%]\n..........s.....s....s...s......s.............s......................... [ 40%]\n............................................................... [ 47%]\n.................................................................. [ 55%]\n........................................................................ [ 63%]\n....s..................................................ssssss........ [ 71%]\n..s................s....................................... [ 78%]\n........................................................................ [ 86%]\n...........................................s..s.s.................. [ 94%]\n...........................s..............s.....                         [100%]\n=============================== warnings summary ===============================\ntests/test_audit.py: 1 warning\ntests/test_h86b_gfco.py: 1 warning\ntests/test_registry_gate_integrity.py: 38 warnings\ntests/test_rmrb86_audit.py: 1 warning\ntests/test_writer.py: 1 warning\n  /home/user/GEMSDOE86/.venv/lib/python3.11/site-packages/rasterio/transform.py:178: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication\n    return Affine.translation(west, north) * Affine.scale(xsize, -ysize)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n847 passed, 24 skipped, 42 warnings, 41 subtests passed in 243.16s (0:04:03)\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "pass3-frozen-evidence",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "scripts/build_review_card.py",
+        "--check"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "98b646b26bd6534f557bdb4af86553ecc564b20e13a5122e71659d54b4805278",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "DO NOT SUBMIT (frozen review verified)\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "pass3-generated-site",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "scripts/build_site.py",
+        "--check"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "73b86df6e19cbe9e0b8d8d5fb720e23e80895862c183db8f195164eeab2c13ee",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "Evidence-generated site: PASS; 1 promoted-for-selector-review download (H86G-EDTI); no file authorized for upload.\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "pass3-site-links",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "scripts/check_site.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "b4eacaeff197b05f2b3b83dbf25e3116dd3483f2b22630757b463a2b8e238565",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "PASS: Pages links, registered TIFF/ZIP integrity and negative-state safety; not scientific clearance\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "pass3-downloads",
+      "command": [
+        "/home/user/GEMSDOE86/.venv/bin/python",
+        "scripts/audit_downloads.py"
+      ],
+      "status": "PASS",
+      "returncode": 0,
+      "stdout_sha256": "1d136b659ad4d5127588b75ffaf86b5920692983a18606d8360a6f27dac9ae3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_tail": "PASS: 21 research TIFFs and receipts revalidated; none authorized for submission\n",
+      "stderr_tail": ""
+    }
+  ],
+  "software_review_passed": true,
+  "evidence_sha256": {
+    "PROMPT.md": "57fc88fc11f152a77f617e85dd277e31c9aa24dd6e8d28d544ab178cff84172a",
+    "AGENTS.md": "a56d24b5e3f68be94f6a5432eec2d555437da4c6781c6df451022402d707d2ed",
+    "research/REQUEST_20261025.md": "78d915d603d209371f8aa8cff22706c2b4bdc45a8b3232eaf5a4a55c2cce4dc2",
+    "docs/evidence/release-readiness.json": "6faa6bad0fa034ca580af4fc4a5ba2b8eecc5bac692ab7e9bf1226be5336a04a"
+  },
+  "hypothesis": "No lane assigned; repository verification only",
+  "mechanism": "No candidate constructed",
+  "named_non_fault_process": "Not tested",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT_RUN_NO_NEW_CANDIDATE",
+    "complete": false
+  },
+  "raster_sha256": null,
+  "validator": {
+    "status": "NOT_RUN_NO_NEW_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "Three-pass software audit only; no new TIFF, scientific validation or weekly-slot authorization.",
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}
