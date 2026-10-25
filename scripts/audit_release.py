@@ -298,6 +298,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."}
+    if kind == "h86i_sacd":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86I-SACD strict spatial LOQO (quad != fold_i) lane result; the run card is the authoritative experiment receipt. Candidate E1 (0.0832 [0.0673, 0.0997]) and pure cover-blind subsurface E3 (0.0843 [0.0693, 0.0995]) trail scalar pointwise E2 (0.1055 [0.0878, 0.1257]), with 0/691 Spearman rho > 0.90 firings and 0/367 discrete <=50k-dot overlap firings (31.17% vs GEMSDOE32), while literal 17GEMSDOE saturation, 2 off-grid registry rows, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

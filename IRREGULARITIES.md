@@ -1197,6 +1197,7 @@ rejecting positive upload instructions in the negative-state publisher. See
 ## IR-86-085C2B7A — promotion was displayed as upload permission (2026-10-25)
 
 The generated homepage/executive guide and current README said to submit H86G-EDTI even though its scientific card records `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the release audit retains the literal witness stop. Fixed the source generator, regenerated pages and exposed the promoted-for-review identity in `docs/data/summary.json` without changing historical scientific evidence. Regression tests forbid the unsafe direct-upload phrases. No new raster, model experiment or slot. See `research/SESSION_085C2B7A_REVIEW.md`.
+
 ## IR-86-HVFD-COLLAR-ABLATION-20261025 — 2026-10-25 (`H86I-HVFD` 3-arm Dual-Regime Noisy-OR & `buffer_px=3` vs unbuffered collar ablation)
 
 Contemporaneously preregistered lane `H86I-HVFD` (`research/H86I_HVFD_PREREGISTRATION.json`,
@@ -1223,3 +1224,46 @@ encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is a
 Corrected to format/identity only, with explicit DO NOT SUBMIT and no inferred
 holdout, registry or slot clearance. Added clean fail-closed handling and tests
 for malformed receipts and ZIPs. See `research/SESSION_F548F465_REVIEW.md`.
+
+## IR-86-H86F-EWCS-TRANSQUAD-PU-20261025 — `scripts/run_h86f_ewcs.py` sampled PU training rows across all 4 quadrants rather than strict `quad != fold_i`
+
+Forensic line-by-line inspection of `scripts/run_h86f_ewcs.py` (`line 519`) during
+session `95a42d60` confirmed that while `vis = f["visible"] & fp` properly stripped
+all `11,321` withheld positive pixels and their `3-px` feature collar globally (`0`
+hidden-truth label leakage), `sample_nested_pu(static_mm, s_keys, vis, fp, e_keys, ...)`
+drew visible training positives and unlabeled background rows from the full footprint
+`fp` (including the held-out quadrant `quad == fold_i`) and emitted four full-map
+`37,654`-dot allocations rather than restricting classifier training to the three
+out-of-quadrant regions `fp & (quad != fold_i)`.
+**Decision:** The archived `H86F-EWCS` run card (`docs/evidence/h86f-ewcs-run-card.json`)
+is left untouched per `AGENTS.md` Rule 9, its trans-quadrant PU scope is documented
+explicitly in `H86I-SACD`'s comparator table and on `irregularities.html`, and the new
+`H86I-SACD` runner (`scripts/run_h86i_sacd.py`) enforces strict spatial
+Leave-One-Quadrant-Out training (`train_region = fp & (quad != fold_i)`).
+
+## IR-86-H86I-SACD-01 (2026-10-25) — H86I-SACD executed under strict spatial LOQO (`0/367` `<=50k`-dot firings, `0/691` Spearman firings), auto-marked DO NOT SUBMIT (`verdict = "negative"`)
+
+Session `95a42d60` preregistered four untried hypotheses (`registry/h86i_hypotheses.json`,
+`research/H86I_SACD_PREREGISTRATION.json`) prior to any holdout evaluation and executed
+Rank-1 `H86I-SACD` (*Spin-2 Coulomb-Projected Strike Concordance, Jacobsen
+Upward-Continuation Depth-Attenuation & Bekker-Davis Alluvial-Burial Propensity
+Submodular Max-Cover*) across 3 fixed arms (`<= 3` experiment / `<= 2` hour budget,
+`1,323.96 s` wall time). All `33` features passed single-feature ROC-AUC leakage
+canaries (`max = 0.7639 <= 0.90`). Under strict `quad != fold_i` LOQO (`11,321`
+withheld positives, `1,000` paired `20 km` block-bootstrap draws), scalar unweighted
+pointwise `E2` achieved `HOLDOUT-DTI = 0.1055 [0.0878, 0.1257]` (beating `R0_D25`
+`0.0931` and `R0_D28` `0.0273`), whereas `E1` (`0.0832 [0.0673, 0.0997]`) and pure
+cover-blind subsurface `E3` (`0.0843 [0.0693, 0.0995]`) trailed `E2` (`paired delta =
+-0.0223 [-0.0352, -0.0104]`) due to Fold-0 forced inter-quadrant quantile equalization
+over-allocating dots into lower-density `NE` (`10,797` dots) and submodular plateau
+clustering on broad diffuse basin posteriors. Full post-merge `v2` registry scans (`691 / 693`
+valid competition-grid rasters including `H86G-EDTI`, `H86I-RKSC`, and `H86I-HVFD`, `0` missing)
+confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap firings
+(`31.17%` vs `GEMSDOE32` `h33-h33-2-b2`, `55.60%` vs `H86F-EWCS`), while failing closed on
+`17GEMSDOE` saturation, space-filling lattices, and `2` off-grid upstream rows (`PA-86-02`
+`FAILED_CLOSED_NO_REPORT`).
+**Decision:** The unique `[0, 1]` GeoTIFF (`docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif`,
+SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
+strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
+`0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
+`protocol_preflight.require_feasible()` (`58` CLI builders + `8` imported orchestrators).
