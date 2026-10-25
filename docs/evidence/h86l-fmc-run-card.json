@@ -149,5 +149,13 @@
   "blockers": [
     "IR-86L-01: native feature stack (.cache/training_features.tif) absent in checkout; geological lanes BMR/GSST blocked.",
     "Fleet-ancestry leakage: holdout is an upper bound, not hide-and-recover evidence."
-  ]
+  ],
+  "file": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+  "bytes": 148836,
+  "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
+  "note": "H86L-FMC fleet minority-consensus 2-8/25, 37654 dots; leakage-suspect holdout; DO NOT SUBMIT",
+  "note_chars": 92,
+  "zip_file": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.zip",
+  "zip_sha256": "34d305e6bb970b894dbf91d721f77b23007b514b27898d2934b499b896a52f0d",
+  "promoted": false
 }

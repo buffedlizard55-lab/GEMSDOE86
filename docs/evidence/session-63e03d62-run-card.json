@@ -1,0 +1,66 @@
+{
+  "schema": "gems86.repository-review-run-card.v1",
+  "session": "63e03d62",
+  "date_utc": "2026-10-25",
+  "hypothesis": "No new geological hypothesis was selected: the owner request contains no assigned single-method paragraph, and the literal protocol preflight prohibits construction of any nonempty candidate.",
+  "mechanism": "No candidate surface or final dots were constructed. The review only repaired the registration and integrity-audit metadata for an already-existing H86L-FMC artifact.",
+  "named_non_fault_process": "Not tested; no geological candidate was evaluated.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "prior_h86l_holdout_context": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "value": 0.0,
+    "ci95": [0.0, 0.0],
+    "status": "HISTORICAL_ONLY_LEAKAGE_SUSPECT",
+    "source": "docs/evidence/h86l-fmc-run-card.json",
+    "not_a_result_of_this_review": true
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "UNIVERSAL_LITERAL_BLOCKER",
+    "candidate_surface_rho": null,
+    "candidate_final_dot_overlap_3px": null,
+    "pinned_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_forward_overlap_for_any_nonempty_allowed_candidate": 1.0,
+    "literal_overlap_limit": 0.7,
+    "final_artifacts_remeasured": 32,
+    "registry_rasters_measured_for_this_witness_pass": 1,
+    "registry_complete": false,
+    "measured_utc": "2026-10-25T17:04:03.176039+00:00",
+    "evidence": "docs/evidence/all-artifacts-registry.json",
+    "scope": "The pinned full-support witness is sufficient to reject any nonempty compliant candidate under the unchanged literal forward-overlap threshold; it is not candidate-specific uniqueness clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "historical_artifact_audit": {
+    "evidence_class": "LOCAL-FORMAT-AND-INTEGRITY",
+    "artifact_count": 32,
+    "all_passed": true,
+    "new_candidate_generated": false,
+    "h86l_file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+    "h86l_sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
+    "h86l_decision": "DO NOT SUBMIT; audit download only",
+    "evidence": "docs/evidence/download-validation.json"
+  },
+  "submission_name": null,
+  "note": "No TIFF created; audit registration repaired only. Literal 70% overlap rule blocks all nonempty candidates. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "requirement_unmet": "No new unique competition TIFF can be cleared under the supplied literal protocol; no lane was assigned and no new candidate was generated."
+}

@@ -172,6 +172,27 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
                 "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
+    if kind == "h86l_fmc":
+        h = context.get("holdout", {})
+        candidate = h.get("candidate", {}) if isinstance(h, dict) else {}
+        if (not isinstance(h, dict) or not isinstance(candidate, dict)
+                or context.get("lane_id") != "H86L-FMC"
+                or context.get("verdict") != "negative"
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or h.get("evidence_class") != "HOLDOUT-DTI (LEAKAGE-SUSPECT: fleet built with full catalogue)"
+                or candidate.get("evidence_class") != "HOLDOUT-DTI"
+                or h.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or candidate.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or candidate.get("withheld_positive_pixels") != h.get("withheld_positive_pixels")):
+            raise ValueError("H86L-FMC card lacks its explicitly leakage-suspect negative/no-slot holdout")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": candidate["evaluator_version"],
+                "withheld_positives": candidate["withheld_positive_pixels"],
+                "value": candidate["dti"], "ci95": candidate["ci95"],
+                "design": "archived fleet-consensus holdout; full-catalogue-derived fleet ancestry is leakage-suspect",
+                "caveat": "H86L-FMC run card explicitly marks the fleet-derived holdout leakage-suspect; it is not independent hide-and-recover evidence. The candidate scored 0.0000 and failed its paired H33 gate and 3-px overlap limit. The current literal witness also blocks all nonempty candidates. DO NOT SUBMIT; no slot was used."}
     if kind == "h86j_mpc":
         hn = context.get("holdout_dti_normalized")
         if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":

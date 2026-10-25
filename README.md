@@ -1,6 +1,15 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
+## Current branch review (2026-10-25, `arena/63e03d62-gemsdoe86`): **DO NOT SUBMIT**
+
+- **No new submission TIFF was generated in this review.** The current request has no assigned single-method paragraph, and the unchanged literal 70% overlap gate is unsatisfiable for any nonempty candidate against the pinned full-support witness. Do not upload any file from this repository.
+- **Current release audit:** **32** published research TIFFs are registered and pass the local format/integrity audit; every inherited final artifact is blocked by the pinned witness. This is not complete-registry uniqueness clearance, scientific validation, or organizer acceptance.
+- **Work completed:** repaired the audit registration for an already-existing H86L-FMC negative TIFF without changing its raster or model result. Its historical **HOLDOUT-DTI** is `gems57-pooled-hide-v2`, 11,321 withheld positives, 0.0000, 95% CI [0.0000, 0.0000]; the run card marks the fleet-derived holdout leakage-suspect. It remains **DO NOT SUBMIT**.
+- **Current blockers:** no competition `training_features.tif`, no prepared feature arrays, and no verifiable shared-template feature cache; no current lane assignment. No model experiments or weekly slots were used.
+- **Leaderboard claims:** the request's 0.3195 and 0.4413 values conflict and are unverified **OWNER-REPORTED** claims, not organizer-confirmed scores. H33 0.2778 also has no submission-page receipt in this checkout.
+- Full three-pass review: [`research/SESSION_20261025_63E03D62_REVIEW.md`](research/SESSION_20261025_63E03D62_REVIEW.md) · machine-readable run card: [`docs/evidence/session-63e03d62-run-card.json`](docs/evidence/session-63e03d62-run-card.json) · live measured no-lane card: [`docs/evidence/latest-review-run-card.json`](docs/evidence/latest-review-run-card.json) · [download audit](docs/download-status.html) · [submission instructions](docs/executive-summary.html).
+
+## Prior session snapshot (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
 
 - **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.
 - **Why no new TIFF:** the shared feature stack is absent (`scripts/audit_workspace_inputs.py`), so nothing can be validated against a holdout; and the uniqueness rule is undefined for the dense probability rasters that the official reference solution writes.

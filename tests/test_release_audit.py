@@ -60,6 +60,29 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
+    h86l = next(a for a in report["artifacts"] if "h86l-fmc" in a["file"])
+    assert h86l["historical_holdout"]["evidence_class"] == "HOLDOUT-DTI"
+    assert h86l["historical_holdout"]["value"] == 0.0
+    assert h86l["historical_holdout"]["withheld_positives"] == 11321
+    assert "leakage-suspect" in h86l["historical_holdout"]["design"]
+    assert h86l["historical_lane_verdict"] == "negative"
+    assert "DO NOT SUBMIT" in h86l["status"]
+
+
+def test_h86l_archive_is_registered_and_explicitly_non_authorized():
+    card = audit.strict_json(ROOT / "docs/evidence/h86l-fmc-run-card.json")
+    inventory = audit.strict_json(ROOT / "docs/evidence/download-inventory.json")["artifacts"]
+    config = audit.strict_json(ROOT / "registry/artifact_cards.json")["artifacts"]
+    entry = next(row for row in inventory if "h86l-fmc" in row["file"])
+    mapping = next(row for row in config if "h86l-fmc" in row["stem"])
+    assert entry["sha256"] == card["raster_sha256"] == card["sha256"]
+    assert entry["status"] == "DO NOT SUBMIT" and entry["approved_for_weekly_slot"] is False
+    assert mapping["holdout_kind"] == "h86l_fmc"
+    assert mapping["card"] == mapping["context"] == "docs/evidence/h86l-fmc-run-card.json"
+    assert card["verdict"] == "negative"
+    assert card["promoted"] is False
+    assert card["safe_to_submit"] is False and card["approved_for_weekly_slot"] is False
+    assert card["holdout"]["evidence_class"].startswith("HOLDOUT-DTI (LEAKAGE-SUSPECT")
 
 
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):
