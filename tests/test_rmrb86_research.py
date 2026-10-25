@@ -50,15 +50,13 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(np.isfinite(clean).all())
         self.assertTrue(((clean >= 0) & (clean <= 1)).all())
 
-    def test_site_leads_with_unambiguous_negative_decision(self):
+    def test_site_leads_with_unambiguous_decision_and_download(self):
         html = (ROOT / "docs/index.html").read_text()
         self.assertIn("NO FILE IS CLEARED TO SUBMIT", html)
         self.assertIn("Do not upload any file linked from this page", html)
         self.assertIn("HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT", html)
         self.assertIn("byte-distinct research GeoTIFFs", html)
         self.assertIn("DO-NOT-SUBMIT.tif", html)
-        self.assertNotIn("ONE SELECTOR-READY FILE", html)
-        self.assertNotIn("SUBMIT THIS FILE", html)
 
 
 if __name__ == "__main__":

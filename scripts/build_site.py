@@ -54,17 +54,20 @@ def downloads(artifacts: list[dict]) -> str:
         ident = f"artifact-{index}"
         check_count = len(v["checks"])
         passed = sum(value is True for value in v["checks"].values())
-        stored_verdict = str(a.get("status", ""))
-        historical_verdict = ("PROMOTE (historical like-for-like result; current authorization false)"
-                              if stored_verdict.startswith("PROMOTE") else stored_verdict)
-        decision_label = ("HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT"
-                          if stored_verdict.startswith("PROMOTE")
-                          else "DO NOT SUBMIT — AUDIT ONLY")
-        result.append(f'''<article class="card artifact"><div class="section-head"><h3>{e(a['lane'])}</h3><span class="badge bad">{e(decision_label)}</span></div>
+        stored_status = str(a.get("status", ""))
+        promote = stored_status.startswith("PROMOTE")
+        badge_cls = "bad"
+        status = ("HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT"
+                  if promote else "DO NOT SUBMIT — AUDIT ONLY")
+        historical = ("historical amended-gate verdict: PROMOTE; current authorization false"
+                      if promote else f"historical lane verdict: {stored_status}")
+        btn1 = "Download TIFF — audit only; DO NOT SUBMIT"
+        btn2 = "One-TIFF ZIP — audit only; DO NOT SUBMIT"
+        result.append(f'''<article class="card artifact"><div class="section-head"><h3>{e(a['lane'])}</h3><span class="badge {badge_cls}">{e(status)}</span></div>
 <p class="filename">{e(Path(a['file']).name)}</p>
-<p class="muted">FORMAT-VALIDATION · {a['bytes']:,} bytes · {v['emitted_dots']:,} positive cells · {passed}/{check_count} local checks pass · historical lane verdict: {e(historical_verdict)}</p>
-<div class="actions"><a class="btn" href="{e(link(a['file']))}" download>Download TIFF — audit only; DO NOT SUBMIT</a>
-<a class="btn secondary" href="{e(link(a['zip_file']))}" download>One-TIFF ZIP — audit only; DO NOT SUBMIT</a>
+<p class="muted">FORMAT-VALIDATION · {a['bytes']:,} bytes · {v['emitted_dots']:,} positive cells · {passed}/{check_count} local checks pass · {e(historical)}</p>
+<div class="actions"><a class="btn" href="{e(link(a['file']))}" download>{btn1}</a>
+<a class="btn secondary" href="{e(link(a['zip_file']))}" download>{btn2}</a>
 <a class="text-link" href="{e(link(a['receipt_file']))}">Writer receipt</a></div>
 <details><summary>File identity, short note &amp; validation</summary>
 <dl><dt>SHA-256</dt><dd><code id="{ident}-sha">{e(a['sha256'])}</code> <button data-copy-target="{ident}-sha" type="button">Copy hash</button></dd>
@@ -390,7 +393,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <h1>No submission is authorized.<br><span class="subtle">All TIFFs are audit-only until every current gate passes.</span></h1>
 <p class="lede">The current project policy binds the literal registry-overlap stop. The pinned historical witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that rule. A format-valid file or historical promote verdict is not upload authorization.</p>
 <div class="actions"><a class="btn" href="#downloads">Open audit-only TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; required gates →</a></div>
-<p><strong>Current review:</strong> no lane was assigned and no candidate was generated here. H86G-EDTI retains a historical like-for-like <code>promote</code> result, but <strong>IS THIS FILE OK TO SUBMIT? NOT YET</strong>: <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. H86I-HVFD from the merged mainline is also a negative audit artifact; neither is authorized for upload. Prior byte-distinct research GeoTIFFs are not cleared for submission: byte-distinct does not establish registry uniqueness, and pairwise checks are not full-registry clearance. The preflight and all download audits are linked below.</p>
+<p><strong>Current review:</strong> no lane was assigned and no candidate was generated here. H86G-EDTI retains a historical like-for-like <code>promote</code> result, but <strong>IS THIS FILE OK TO SUBMIT? NO</strong>: <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. H86I-HVFD from merged mainline is a negative audit artifact; neither is authorized for upload. Prior byte-distinct research GeoTIFFs do not establish registry uniqueness: byte-distinct does not establish registry uniqueness, and pairwise checks are not full-registry clearance.</p>
 <p><span class="badge bad">AUDIT DOWNLOAD ONLY</span> <strong>Do not upload any file linked from this page.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
@@ -419,10 +422,10 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
-<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>No artifact is cleared for upload. The literal registry stop is binding in the current project policy: the pinned witness covers every allowed cell, so any non-empty prediction exceeds the 70% overlap threshold. A format/range pass or a prior lane's “promote” verdict does not override that stop. H86G-EDTI status: <strong>IS THIS FILE OK TO SUBMIT? NOT YET</strong>; <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. The latest review generated no candidate and used no weekly slot.</p>
-<a class="btn" href="index.html#downloads">Download research TIFFs — audit only; do not submit</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). That historical research promotion does not override the literal stop or authorize upload. H86G-EDTI status: <strong>IS THIS FILE OK TO SUBMIT? NO</strong>; <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. This audit spent no weekly slot.</p>
+<a class="btn" href="index.html#downloads">Download research TIFFs — audit only (all files)</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 {review_notice}
-<h2>Current downloads — all audit-only, none authorized for submission</h2>
+<h2>Current downloads — all research only; none authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
 <p><a href="download-status.html">Independent all-download format audit</a> · <a href="evidence/download-validation.json">Its machine-readable report</a>. These format checks and the literal registry decision are separate gates; neither invents an organizer receipt.</p>
 <details class="card"><summary>Earlier negative lane receipts and measured HOLDOUT-DTI context</summary>

@@ -134,6 +134,15 @@ def check(root=ROOT):
                     errors.append(f'Invalid quarantined submission ZIP: {cand_zip.name}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
+        # This checker is a negative-state publication guard, not a selector.
+        # Research PROMOTE cards with false slot approval cannot authorize a CTA.
+        text = re.sub(r"<[^>]*>", " ", html_text)
+        text = " ".join(text.split()).casefold()
+        for claim in ("is this file ok to submit? yes", "one file is ok to submit",
+                      "submit this file", "current decision: submit only",
+                      "ok to download and submit", "one selector-ready file"):
+            if claim in text:
+                errors.append(f'Unauthorized submission instruction: {html_file.name}: {claim}')
         if 'READY TO DOWNLOAD' in html_text:
             errors.append(f'Contradictory READY TO DOWNLOAD banner during negative release state: {html_file.name}')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):

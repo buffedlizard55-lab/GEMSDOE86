@@ -1,6 +1,6 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI has a historical like-for-like `promote` verdict only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available for audit, but this safety review generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI has a historical like-for-like `promote` verdict only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads are audit-only; this safety review generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
 
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
@@ -18,13 +18,11 @@ Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and p
 
 ## ⛔ Is any file OK to submit right now? **NO — DO NOT SUBMIT ANY DOWNLOAD**
 
-The current project policy binds the literal `0.70` overlap stop. The pinned historical registry witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that literal overlap rule. **Format-valid is not registry-clear; historical “promote” labels are not upload authorization.** No submission slot is used or selected here.
+The current project policy binds the literal `0.70` overlap stop. The pinned historical registry witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that rule. **Format-valid is not registry-clear; historical “promote” labels are not upload authorization.** No submission slot is used or selected here.
 
-H86G-EDTI retains a historical like-for-like `promote` verdict; its run card says `safe_to_submit=false` and `approved_for_weekly_slot=false`. The merged-main H86I-HVFD artifact is also negative. Every TIFF linked from the site is for audit only; do not upload it.
+H86G-EDTI retains a historical like-for-like `promote` verdict; its run card says `safe_to_submit=false` and `approved_for_weekly_slot=false`. The H86I-HVFD artifact preserved from mainline is also negative. Every TIFF linked from the site is for audit only; do not upload it. See the [historical H86G run card](docs/evidence/h86g-edti-run-card.json), [current negative run card](docs/evidence/latest-review-run-card.json), [pinned literal-stop measurement](docs/evidence/protocol-preflight.json), and [submission-safety review and handoff](research/SESSION_20261025_SUBMISSION_SAFETY_REVIEW.md).
 
-Current automated status: [negative run card](docs/evidence/latest-review-run-card.json), [pinned literal-stop measurement](docs/evidence/protocol-preflight.json), [submission-safety review and handoff](research/SESSION_20261025_SUBMISSION_SAFETY_REVIEW.md), and [machine-readable run card](evidence/session_20261025_submission_safety.json). The current request's reported scores remain owner input unless an organizer receipt is recorded.
-
-**H33 interpretation:** the pixel-forensics note supports the hypothesis that the supplied `0.2778` owner-reported result benefited from pruning 2,545 low-marginal-coverage catalogue-adjacent dots from an H19-5/D2.8 lineage. This is not proof of why the portal score was high and is not evidence a new method will beat it. See [H33 interpretation and caveats](research/H33_INTERPRETATION_REVIEW.md). No HOLDOUT-DTI number is a leaderboard projection.
+**H33 interpretation:** the pixel-forensics note supports the hypothesis that the supplied `0.2778` owner-reported result benefited from pruning 2,545 low-marginal-coverage catalogue-adjacent dots from an H19-5/D2.8 lineage. This is not proof of portal-score causation or evidence a new method will beat it. See [H33 interpretation and caveats](research/H33_INTERPRETATION_REVIEW.md). No HOLDOUT-DTI result is a leaderboard projection.
 
 ### Latest hydrothermal-vent & basement-flexure lane (2026-10-25): H86I-HVFD — AUDIT DOWNLOAD ONLY (`DO NOT SUBMIT`)
 
