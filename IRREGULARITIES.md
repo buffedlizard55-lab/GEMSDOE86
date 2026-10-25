@@ -1523,3 +1523,9 @@ Full evidence: [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079
 - **E — Witness not local.** `registry/dense-witness.tif` (pinned in `research/registry_witness_pin.json`) is absent in this checkout; its 1.0 overlap is a prior receipt, not a re-measurement here.
 - **F — User actions.** Eligibility certification (rules §1.3) and generative-AI disclosure in the narrative (rules §3.2) are the user's to complete.
 - **G — Unreachable official hosts.** From this sandbox, `usgs.gov`, `doi.org` (GeoDAWN DOI `10.5066/P93LGLVQ`, INGENIOUS DOI `10.15121/1881483`), `drivendata.org` and `gbcge.org` return no response. Feature data cannot be obtained here.
+
+## IR-86L-01 / IR-86L-02 (2026-10-25, H86L-FMC session)
+- IR-86L-01: shared cached feature stack absent (.cache/training_features.tif not in checkout); native-band lanes BMR/GSST blocked until restore_data.py runs with authorised access.
+- IR-86L-02: fleet minority-consensus surface anti-predictive on hide-and-recover holdout (canary AUC 0.436, HOLDOUT-DTI 0.0000); candidate also fires 3px-overlap duplicate gate (0.886 vs GEMSDOE63). Verdict negative, DO NOT SUBMIT. See research/SESSION_20261025_H86L_FMC_REVIEW.md.
+
+- **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; not caused by this session).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. `pytest -q` on main: 16 failed / 985 passed (10 in `tests/test_release_audit.py`). `scripts/run_h86l_fmc.py` writes the run card only. Owner action: register the artifact through the lane's own protocol and re-run `audit_release.py --measure-registry`; do not mark it authorized. Documented here; not repaired by session `0c60b079`.

@@ -1,0 +1,53 @@
+{
+  "schema": "gems86.h86l-hypotheses.v1",
+  "created_utc": "2026-10-25",
+  "lane_id": "H86L-FMC",
+  "status": "PREREGISTERED_BEFORE_RUN",
+  "ranking_basis": "Expected HOLDOUT-DTI information gain per implementation cost, using only data verifiably present in this checkout (data/bridge + data/scored_fleet). No score projection.",
+  "hypotheses": [
+    {
+      "rank": 1, "id": "H86L-FMC",
+      "name": "Fleet minority-consensus disagreement ring",
+      "layers": ["data/scored_fleet/*.tif (25 owner-scored binary rasters, SHA-listed in run card)", "data/bridge/existing_faults.tif (collar only)"],
+      "physical_signature": "Per-pixel fleet support count S in [2,8] of 25 independent scored submissions: cells corroborated by a minority of independent methods but not the majority herd. Greedy 2.8 px Poisson-disc emission, highest support first.",
+      "catalogue_missing_rationale": "Independent methods built on different physics (LiDAR scarps, tilt worms, Euler, Radon) agreeing on an off-catalogue cell (>3 px from mapped faults) is cross-method corroboration of a possible unmapped fault; majority cells are already herd-covered.",
+      "differs_from_repo": "No prior lane in this repo emits from cross-fleet vote geometry; all prior lanes fit the native 19-band stack (absent here: .cache not restored).",
+      "non_fault_mimic": "Shared fleet ancestry (many rasters derive from H19-5/D28 surfaces) can manufacture fake corroboration; also common DEM artefacts.",
+      "implementation_cost": "Low (hours).",
+      "falsifier": "Pooled HOLDOUT-DTI paired CI vs H33 control crosses or is below zero, OR leakage canary AUC > 0.90, OR uniqueness gates fire (>0.90 Spearman / >70% dots within 3 px of one registry raster)."
+    },
+    {
+      "rank": 2, "id": "H86L-SOLO",
+      "name": "Single-fleet-member residual (anti-consensus)",
+      "layers": ["data/scored_fleet/*.tif"],
+      "physical_signature": "Cells with support exactly 1, restricted to the highest owner-reported member, spaced 2.8 px.",
+      "catalogue_missing_rationale": "A lone method may see a fault class all others miss.",
+      "differs_from_repo": "Not implemented; prior lanes never mined fleet residuals.",
+      "non_fault_mimic": "One method's idiosyncratic false positives dominate.",
+      "implementation_cost": "Low.", "falsifier": "Holdout paired CI vs H33 <= 0.",
+      "status": "NOT_RUN_BUDGET"
+    },
+    {
+      "rank": 3, "id": "BMR",
+      "name": "Basement-interface gravity mass-balance residual (queued from registry/followup_hypotheses_20261025.json)",
+      "layers": ["native band 13 iso_grav_anom", "native band 15 depth_to_base_surf"],
+      "physical_signature": "Forward-model band 15 basement relief into gravity, residual vs band 13.",
+      "catalogue_missing_rationale": "Buried basement step under basin fill without surface scarp.",
+      "differs_from_repo": "Proposed previously, never executed; NOT viable this session: training_features.tif / .cache feature stack absent in this checkout (flagged IR-86L-01).",
+      "non_fault_mimic": "Sediment density variation; band 15 is gravity-derived (circularity).",
+      "implementation_cost": "High.", "falsifier": "No paired holdout gain over raw-gravity control.",
+      "status": "BLOCKED_MISSING_FEATURE_STACK"
+    },
+    {
+      "rank": 4, "id": "GSST",
+      "name": "Gravity step-vs-compact source shape test (queued)",
+      "layers": ["native bands 13/5/11/18"],
+      "physical_signature": "Scale-matched step vs compact-source template likelihood ratio.",
+      "catalogue_missing_rationale": "Extended buried step vs isolated intrusive.",
+      "differs_from_repo": "Never executed; blocked by same missing stack as BMR.",
+      "non_fault_mimic": "Elongated intrusive contact.",
+      "implementation_cost": "Medium.", "falsifier": "No paired holdout gain over gradient control.",
+      "status": "BLOCKED_MISSING_FEATURE_STACK"
+    }
+  ]
+}

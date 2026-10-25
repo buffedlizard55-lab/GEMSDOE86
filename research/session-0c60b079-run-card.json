@@ -41,12 +41,6 @@
     "h33_nan_cells": 0,
     "footprint_cells": 5167373
   },
-  "test_suite": {
-    "command": "pytest -q",
-    "passed": 1001,
-    "skipped": 24,
-    "failed": 0
-  },
   "submission_name": null,
   "submission_note": null,
   "submission_note_chars": 0,
@@ -65,7 +59,8 @@
     "IR-D unverified leaderboard claims 0.4413 and 0.3195",
     "IR-E witness absent locally",
     "IR-F eligibility and generative-AI disclosure are user actions",
-    "IR-G DEM/GeoDAWN/DOI/DrivenData unreachable"
+    "IR-G DEM/GeoDAWN/DOI/DrivenData unreachable",
+    "IR-H main publish-gate failure from PR #150 (inherited, not repaired here)"
   ],
   "official_sources": [
     "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
@@ -73,5 +68,33 @@
     "https://doi.org/10.15121/1881483 (INGENIOUS labels, cited in rules; not fetched, unreachable)",
     "https://doi.org/10.5066/P93LGLVQ (GeoDAWN, cited in rules; not fetched, unreachable)",
     "https://epsg.io/32611"
-  ]
+  ],
+  "test_suite_pre_merge": {
+    "command": "pytest -q",
+    "passed": 1001,
+    "skipped": 24,
+    "failed": 0
+  },
+  "post_merge": {
+    "main_commit": "0c05e70",
+    "tests_branch": {
+      "passed": 985,
+      "failed": 16,
+      "skipped": 24
+    },
+    "tests_main": {
+      "passed": 985,
+      "failed": 16,
+      "skipped": 24
+    },
+    "check_site_exit": 1,
+    "build_site_check_exit": 1,
+    "failing_artifacts": [
+      "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+      "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.zip"
+    ],
+    "introduced_by_this_session": false,
+    "irregularity": "IR-H",
+    "audit_release_exit": 1
+  }
 }

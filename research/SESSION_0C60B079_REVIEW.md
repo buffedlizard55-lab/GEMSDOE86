@@ -75,3 +75,19 @@ These candidates are ordered by how well they target a fault-specific signature.
 ## Machine-readable card
 
 See `research/session-0c60b079-run-card.json`.
+
+## Post-merge verification (main moved during this session)
+
+Main gained PR #150 (H86L-FMC, `9a76c23`/`0c05e70`) while this branch was open, and the merge conflicted in `README.md` and `IRREGULARITIES.md`. Both sides were kept in full. After the merge:
+
+| Gate | Result on this branch | Result on `origin/main` (clean worktree) |
+|---|---|---|
+| `scripts/check_site.py` | EXIT 1: `Unregistered downloadable raster/archive: docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` | EXIT 1, same two lines |
+| `scripts/build_site.py --check` | EXIT 1: `ValueError: Unregistered or missing published TIFF` | EXIT 1, same error |
+| `pytest -q` | 16 failed, 985 passed, 24 skipped (10 failures in `tests/test_release_audit.py`) | 16 failed, 985 passed, 24 skipped |
+| `scripts/verify_submission_tif.py` (H86G) | EXIT 0 | not run |
+| `scripts/audit_release.py` | EXIT 1: `ValueError: Unregistered or missing published TIFF` | EXIT 1, same error |
+
+The failures are inherited from main. This session's changes are documentation only and do not change any test input. The H86L lane's runner (`scripts/run_h86l_fmc.py`) writes its run card but does not register its TIFF in `download-inventory.json` or `registry/artifact_cards.json`. Adding those records would be governance data for another lane's artifact, and `audit_release.py` would then have to measure it against the witness. I did not write them. This is listed as IR-H for the H86L owner.
+
+Note on exit codes: an earlier check used `| tail` and `${PIPESTATUS[0]}` inside a subshell. That read the wrong exit status and printed `EXIT 0` for a failing build. The corrected, unpiped runs above are the authoritative results.
