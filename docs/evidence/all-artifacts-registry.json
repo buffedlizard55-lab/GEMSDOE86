@@ -245,6 +245,15 @@
       "unique": false,
       "stop_required": true,
       "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
+      "sha256": "f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94",
+      "spearman_full_footprint": 0.1020239330636123,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
     }
   ],
   "scope": "Rechecks all inherited final TIFFs against one immutable witness, not the full registry. Sufficient to reject, never to clear or rank candidates."

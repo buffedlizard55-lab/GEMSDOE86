@@ -1403,7 +1403,7 @@ revealed **44 dot-field forward-3px overlap firings (> 0.70)** and **25 informat
 (`halo_coverage <= 0.70`) firings**, including sparse `GEMSDOE46:r11f` (`76.02%` at
 44,090 dots), `GEMSDOE41:h42` (`73.99%` at 40,000 dots), and `GEMSDOE46:r12` (`72.24%`
 at 37,654 dots). `scripts/run_h86g_edti.py::main` is now gated behind
-`protocol_preflight.require_feasible()` (`62` CLI builders + `8` imported orchestrators).
+`protocol_preflight.require_feasible()` (`63` CLI builders + `8` imported orchestrators).
 
 ## IR-86-CSGD-LITERAL-STOP-20261025 — H86J-CSGD achieves 0 / 636 informative dot-field firings on full registry, stays fail-closed negative
 
@@ -1418,3 +1418,34 @@ firings** across the full 690-raster restored scan (`0` Spearman firings, max `0
 Because `E1` trails `H86C-KSLB` (`0.1241`) and literal `17GEMSDOE` (`100%`) + 2 off-grid
 rows fail closed, `H86J-CSGD` is recorded as `verdict = "negative"` (`DO NOT SUBMIT`,
 `0` weekly slots used).
+
+## IR-86-EWCS-INQUADRANT-20261025 — `H86F-EWCS` (`0.1723`) trained GBDT on non-withheld faults inside the test quadrant; cross-confirmed with `IR-86-H86F-INQUAD-TRAINING-20261025`
+
+**Observed.** Forensic review of `scripts/run_h86f_ewcs.py` (lines 486–494) during `H86J-TVHS` preparation
+independently confirmed that `H86F-EWCS`'s GBDT positive training mask `pos_allowed = allowed & visible_faults`
+trained on non-withheld faults inside the test quadrant (`0.1723`), whereas strict out-of-quadrant LOQO
+(`train_mask = fp & (quad != q)`) yields `0.1214 [0.1060, 0.1350]` on `H86J-TVHS E3` (`37,654` dots) and
+`0.1333 [0.1178, 0.1502]` on `H86I-KSAD C1`. Recorded without mutating archived `h86f-ewcs-run-card.json`.
+
+## IR-86-TVHS-PROPENSITY-ABLATION-20261025 — 2026-10-25 (`H86J-TVHS` strict-LOQO Dual-Expert PU `E[k]`, spin-2 crest fix, post-merge 27-artifact audit, and fleet feed closure)
+
+**Observed.** Contemporaneously preregistered lane `H86J-TVHS` (`registry/h86j_tvhs_hypotheses.json`,
+`research/H86J_TVHS_PREREGISTRATION.{json,md}`, `src/gems86_tvhs/features.py`, `scripts/run_h86j_tvhs.py`,
+`docs/evidence/h86j-tvhs-run-card.json`) generated audit-only GeoTIFF
+`docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif` (`sha256:
+f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94`, `37,654` unit dots, `15/15` format checks
+PASS, `0` slots used):
+1. Pre-run synthetic test caught first-derivative crest cancellation (`0.0`) on symmetric 1-px X-junctions in
+   `compute_faulds_hinz_kinematic_fields`; fixed via second-derivative Gaussian Hessian spin-2 eigenvector
+   `_principal_axis_spin2(v, sigma=2.2)` (`1.0771` on X-junction vs `0.0040` on straight fault; locked by
+   `tests/test_h86j_tvhs.py`).
+2. Strict 4-quadrant out-of-quadrant LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives): `E1 = 0.0983
+   [0.0800, 0.1159]` (beating `R0_D28 = 0.0931`), zero-catalogue blind `E2 = 0.0626 [0.0475, 0.0778]` (beating
+   `H86I-KSAD E3 = 0.0624` and `H86I-HVFD E1 = 0.0475`), and unweighted strict-LOQO `E3 = 0.1214 [0.1060,
+   0.1350]`. Inverse exposure-propensity weighting (`w_sar` up to `2.5x`) + `0.34 * P_blind` floor diverted
+   ~23% of dots off surficial scarps into unmapped basin interiors (`paired E1 - E3 = -0.0231 [-0.0356,
+   -0.0118]`), and `3` discrete `<=60k`-dot registry rasters (`GEMSDOE43` `0.7278`, `GEMSDOE53` `0.8192`) plus
+   `13GEMSDOE`/`17GEMSDOE` and `2` off-grid rows failed full-registry uniqueness (`0/5` firings against concurrent
+   `H86J-CSGD`, `H86I-RLMS`, `H86I-SACD`, `H86J-MPC`, `UNIQUEDOT`, max `0.6137`).
+3. Verified closure of `IR-86-H86G-FEED-20261025` (`GEMSDOE89 = 0.0301`, `GEMSDOE90 = 0.0749` present as
+   `OWNER-REPORTED` in `registry/prior_scores.csv` and hash-bound `docs/evidence/fleet-feed.json`).
