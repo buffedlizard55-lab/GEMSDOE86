@@ -1,0 +1,202 @@
+{
+  "schema": "gems86.hypothesis-queue.v1",
+  "created_date_utc": "2026-10-25T18:20:00Z",
+  "session": "4dd6af59",
+  "lane_assignment": "H86N-DVDC",
+  "status": "PREREGISTERED_NOT_YET_RUN",
+  "ranking_basis": "Expected HOLDOUT-DTI gain per implementation cost on blind-fault physics orthogonal to H19-5 ancestor field; native 19-band only, no new external bytes required.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86N-DVDC",
+      "name": "Deep Valley Conductive-Dilation Corridor",
+      "layers": [
+        {
+          "band": 15,
+          "name": "depth_to_base_surf"
+        },
+        {
+          "band": 17,
+          "name": "cond_surf"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        },
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        },
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
+        },
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        },
+        {
+          "band": 12,
+          "name": "det_elev"
+        }
+      ],
+      "physical_signature": "Normalized product P=S(Zb)*S(dilaterate)*S(cond|dilate)*S(|Laplacian B13|) ridge-filtered via Hessian eigenvalues (2 scales) and strike-filtered N015-035\u00b120\u00b0, length>10px, flat veto and survey-seam veto.",
+      "catalogue_missing_rationale": "Blind intrabasin normal faults beneath >100m Quaternary alluvium lack scarps but retain dilation+conductive clay/brine+gravity bedrock step; INGENIOUS core target not in airphoto-mapped catalogue.",
+      "novelty": "No prior lane fuses basin thickness \u00d7 dilation-gated conductivity \u00d7 gravity Laplacian as product; H86F-EWCS used corridors not Zb-gated, H86D-CTHB used cond halos not dilation-gated, concentration/relief only reshuffled H19-5.",
+      "non_fault_mimic": "Evaporite playa high-cond+thick fill without dilation; mitigated by dilation gate + detrended flat veto.",
+      "expected_holdout_potential": "Highest: orthogonal to H19-5 magnetic ridges, directly blind-fault physics. Cost LOW (gradients/Hessian, <30 min CPU).",
+      "implementation_cost": "Low",
+      "falsifier": "Paired HOLDOUT-DTI \u0394 vs H33 and vs raw iso_grav_slope ridge at same budget has CI including \u22640.",
+      "status": "FROZEN_PRIMARY",
+      "official_bases": [
+        "https://gdr.openei.org/submissions/1617",
+        "https://doi.org/10.5066/P93LGLVQ",
+        "https://gbcge.org/current-projects/ingenious/",
+        "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+        "https://epsg.io/32611"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "H86N-TMOR",
+      "name": "Tilt-Modulated Analytic-Signal Ridge",
+      "layers": [
+        {
+          "band": 2,
+          "name": "rtp"
+        },
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        },
+        {
+          "band": 5,
+          "name": "iso_grav_anom_slope"
+        },
+        {
+          "band": 3,
+          "name": "tmi_hg"
+        },
+        {
+          "band": 9,
+          "name": "tmi_vg"
+        }
+      ],
+      "physical_signature": "ASA=sqrt((dB/dx)^2+(dB/dy)^2+(dB/dz)^2) + tilt theta=atan(dz/|grad_h|); Laplacian(ASA)*|grad theta| via LoG sigma1.5px across mag+grav, dual-field coincidence.",
+      "catalogue_missing_rationale": "Weak offset of magnetized volcanics under thin cover produces subtle ASA curvature missed in scarp airphotos; gravity ASA catches density step under alluvium.",
+      "novelty": "No lane implements ASA curvature or tilt-modulated LoG; GMC used cross-gradient angle not ASA curvature; MPC would use phase not curvature.",
+      "non_fault_mimic": "Volcanic flow fronts, intrusive contacts; require mag+grav coincidence.",
+      "expected_holdout_potential": "High where mag source strong. Cost MEDIUM (FFT LoG).",
+      "implementation_cost": "Medium",
+      "status": "QUEUED"
+    },
+    {
+      "rank": 3,
+      "id": "H86N-RIEDEL",
+      "name": "Riedel Shear Mesh from Geodetic Strain",
+      "layers": [
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        },
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
+        },
+        {
+          "band": 18,
+          "name": "iso_grav_anom_hg"
+        },
+        {
+          "band": 11,
+          "name": "iso_grav_anom_vg"
+        }
+      ],
+      "physical_signature": "Strain-tensor principal azimuth -> Gabor bank (4 scales, 12 orientations) at \u03c6_R=15\u00b0\u00b15\u00b0 and \u03c6_R'=75\u00b0\u00b17\u00b0 oblique to mapped strike, shear*dilatation weighted.",
+      "catalogue_missing_rationale": "Walker Lane relay zones host <2km Riedel secondary normals at those angles, below airphoto resolution but permeability-critical.",
+      "novelty": "No lane extracts Riedel angles via tensor Gabor; H86I-RLMS used scarp templates not geodetic tensor.",
+      "non_fault_mimic": "Anthropogenic grids; vetoed by 2nd invariant >0 and flat veto.",
+      "expected_holdout_potential": "Medium (Walker Lane limited domain). Cost MEDIUM-HIGH.",
+      "implementation_cost": "Medium-High",
+      "status": "QUEUED"
+    },
+    {
+      "rank": 4,
+      "id": "H86N-CHI",
+      "name": "Fluvial Chi Slope-Break x Detrended-Elev Gap",
+      "layers": [
+        {
+          "band": 12,
+          "name": "det_elev"
+        },
+        {
+          "band": 19,
+          "name": "det_elev_slope"
+        },
+        {
+          "band": 15,
+          "name": "depth_to_base_surf"
+        },
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        }
+      ],
+      "physical_signature": "Chi-proxy concavity via 2nd directional derivative along steepest descent on det_elev + paired det_elev_slope polarity reversal (scarp) + gravity slope bridging wind gaps.",
+      "catalogue_missing_rationale": "<1.5m piedmont scarps invisible at 100m but drainage concavity preserves throw signal across divides.",
+      "novelty": "H86E-WCS required raw 1m LiDAR tiles; this uses only native 100m bands, no external download.",
+      "non_fault_mimic": "Lahontan shorelines (constant elev, not slope-break); vetoed by cross-divide polarity.",
+      "expected_holdout_potential": "Lower (100m resolution). Cost LOW-MEDIUM.",
+      "implementation_cost": "Low-Medium",
+      "status": "QUEUED"
+    },
+    {
+      "rank": 5,
+      "id": "H86N-SINTER",
+      "name": "Radiometric Silica-Cap Depletion Corridor",
+      "layers": [
+        {
+          "band": 6,
+          "name": "tc"
+        },
+        {
+          "band": 17,
+          "name": "cond_surf"
+        },
+        {
+          "band": 2,
+          "name": "rtp"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        }
+      ],
+      "physical_signature": "TC valley curvature (Hessian \u03bb1<0) flanked by weak potassic halo, coincident with dilational conductive anomaly: signed valley curvature on TC \u00d7 cond|dilate gate.",
+      "catalogue_missing_rationale": "Paleo-sinter caps (726 GDR1391 sites) leach K/U leaving low-TC trough even after erosion, proxy for blind upflow fault.",
+      "novelty": "H86E-HMDC used vent-pair bridges + magnetite trough, not TC valley curvature as primary detector.",
+      "non_fault_mimic": "Saline playa, felsic tuff low-TC; mitigated by dilation+cond coincidence.",
+      "expected_holdout_potential": "Lowest, most mimic-prone. Cost LOW.",
+      "implementation_cost": "Low",
+      "status": "QUEUED"
+    }
+  ],
+  "required_before_experiment": [
+    "Native bands HASH_VERIFIED (.cache/gems_work/bands/*.npy) \u2014 DONE",
+    "Leakage canary max(AUC,1-AUC) <=0.90 on each DVDC sub-feature",
+    "Frozen buffered whole-component hide-and-recover folds, catalogue features from visible faults only, pixel-exact masking, pooled DTI \u03b10.2 \u03b20.8 300m triangular, 20km block bootstrap",
+    "Paired CI vs H33-as-is and vs raw iso_grav_slope ridge at same budget",
+    "Poisson-disc 2.8px + d_cat>3px spacing to 37654 dots, like-for-like uniqueness (rho<=0.90, overlap<=0.70) vs full registry"
+  ],
+  "official_data_requirement": {
+    "needed_new_external_bytes": false,
+    "all_19_native_bands_verified": true,
+    "preparation_manifest": "data/prepared_manifest.json",
+    "input_integrity": "docs/evidence/audit_workspace_inputs.json via scripts/audit_workspace_inputs.py"
+  }
+}

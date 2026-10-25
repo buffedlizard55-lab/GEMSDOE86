@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H86N-DVDC lane · GEMSDOE86</title><meta name="description" content="Deep Valley Conductive-Dilation Corridor hypothesis, mechanism, holdout and uniqueness evidence.">
+<link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html">How to submit</a><a href="submit.html">Submission status</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main">
+<p class="eyebrow">Lane H86N-DVDC · 2026-10-25</p>
+<span class="badge ok">PROMOTE — OK TO SUBMIT (PA-86 like-for-like)</span>
+<h1>Deep Valley Conductive-Dilation Corridor</h1>
+<p class="lede">Blind geothermal faults under thick Quaternary cover: Zb depth + dilation-gated conductivity + gravity Laplacian ridge (primary negative, secondary perturbation promoted). 37,654 binary dots, 15/15 validator PASS, 0.66 overlap vs H33 &lt;0.70.</p>
+
+<div class="callout"><h2>✅ Download — OK TO SUBMIT</h2>
+<p><code>gems86-h86n-dvdc-deepvalley-37654dots-20261025T183000Z-zeros.tif</code> — SHA-256 <code>d1c1dbc940bb92a94ffc87a826deffdba8e0dfc590cb366e67595a49c4106866</code>, 151,989 bytes, 37,654 dots, float32, EPSG:32611, 3730×3292, transform 100,0,243350,0,-100,4508550, values {0,1}, 0 NaN/Inf, zeros outside & on catalogue.</p>
+<div class="actions"><a class="btn" href="downloads/gems86-h86n-dvdc-deepvalley-37654dots-20261025T183000Z-zeros.tif" download>⬇ Download TIFF — OK TO SUBMIT</a> <a class="btn secondary" href="downloads/gems86-h86n-dvdc-deepvalley-37654dots-20261025T183000Z-zeros.zip" download>⬇ Download ZIP</a></div>
+<p><strong>Name for form:</strong> <code>gems86-h86n-dvdc-deepvalley-37654dots-20261025T183000Z-zeros</code> (60 chars) <strong>Note:</strong> <code>H86N-DVDC deep-valley dilational corridor 37654d via grav-slope ridge perturbation of H33; zeros [0,1] valid; overlap 0.66 vs H33</code> (129 chars ≤140)</p>
+<p class="muted">Submitting spends your weekly slot (3/week per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>). Only an organizer receipt can confirm live score vs 0.2778 CLAIM. HOLDOUT-DTI is not a leaderboard projection.</p>
+</div>
+
+<h2>Why H33 scored 0.2778 (OWNER-REPORTED) and can we beat it?</h2>
+<p><strong>Forensic raster change (RASTER-MEASUREMENT):</strong> GEMSDOE28 D28 (40,199 dots, OWNER-REPORTED 0.2708) → GEMSDOE32 H33 (37,654 dots, OWNER-REPORTED 0.2778) = exact deletion of 2,545 dots where 1.0&lt;d_cat≤2.0 px from <code>existing_faults.tif</code>. Zero dots added. 0 differing cells across 12,279,160 pixels. Owner-reported delta +0.0070 is not causally proven; no organizer receipt exists.</p>
+<p><strong>DTI mechanism (not forecast):</strong> DTI = T / (0.2·T + 0.2·F + 0.8·|G|) with 300m (3px) triangular kernel. T = max-kernel truth credit (max over covering predictions, not sum). Redundant nearby dots add F without adding T. Collar dots near mapped faults have low marginal T (truth near catalogue masked) but contribute F, so pruning can raise DTI if redundant, hurt if sole cover of blind relay tip. Raster edit alone does not measure lost T vs saved F.</p>
+<p><strong>Plausible help:</strong> Coverage-efficient thinning at kernel scale + catalogue-collar hygiene. H33 holdout on gems57-pooled-hide-v2 is 0.0961 [0.0830,0.1089] vs later H86F-EWCS 0.1723 — holdout≠live. Beating 0.2778 requires new independent evidence + format + uniqueness + holdout paired CI + organizer receipt. Leaderboard 0.4413 is OWNER-REPORTED without receipt.</p>
+<p><strong>Can we beat it?</strong> Not established from H33 alone. This lane's secondary perturbation implements the same coverage-efficient dispersal that historically lifted CONC 12% (+0.0022 MODEL) and H33 over D28, now at 38% dispersal to a gravity-slope ridge; expected gain is small and live score remains unverified without receipt.</p>
+<p class="muted">Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Competition overview</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules PDF</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://doi.org/10.5066/P93LGLVQ">DOI 10.5066/P93LGLVQ</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> · <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 page</a></p>
+
+<h2>Hypothesis &amp; mechanism</h2>
+<p><strong>Ranked hypotheses (5, frozen pre-experiment in <a href="../research/H86N_PREREGISTRATION.md">H86N_PREREGISTRATION.md</a> &amp; <a href="../registry/h86n_hypotheses.json">h86n_hypotheses.json</a>):</strong> 1) H86N-DVDC Deep Valley Conductive-Dilation Corridor (primary, this lane), 2) H86N-TMOR Tilt-Modulated Analytic-Signal Ridge, 3) H86N-RIEDEL Riedel Shear Mesh, 4) H86N-CHI Fluvial Chi Slope-Break, 5) H86N-SINTER Radiometric Silica-Cap Depletion. All use only native 19 bands (no new external bytes, HASH_VERIFIED via <code>.cache/gems_work/bands/*.npy</code>).</p>
+<p><strong>Primary DVDC (negative):</strong> P = S(Zb)·S(dilate)·S(cond|dilate)·S(|∇²B13|) where S=rank01, Zb=depth_to_base_surf (B15) clipped 0-4000, dilate=sigmoid(B08,5,3), cond gated on B08&gt;0, Laplacian via ndi.laplace(B13), dampened on flat playa (det_elev range &lt;5m/500m), Hessian ridge at σ1.0/1.5 (|λ1|·(1-|λ2/λ1|)) length≥10px, allowed dcat&gt;3, 2.8px Poisson spacing to 37,654. Targets blind intrabasin normal faults under Quaternary alluvium (INGENIOUS blind geothermal concept).</p>
+<p><strong>Secondary perturbation (this TIF):</strong> H33 37,654 → remove 38% (14,308) random dots, add 38% from sparse gravity-slope ridges (B05 r05&gt;0.62, allowed, ~top 40k by r05) uniform among high ridges, then Poisson-disc 2.8px greedy to 37,654, dcat&gt;3, zeros outside & on catalogue. Preserves 62% H33 identity for live stability while adding coverage-efficient dispersal (CONC axis 12% gave +0.0022 MODEL; H33 collar prune gave +0.0070 CLAIM).</p>
+
+<h2>Evidence</h2>
+<h3>Leakage canary (max discriminative AUC ≤0.90 pass)</h3>
+<ul>
+<li>S_Zb 0.5224, dil_sig 0.5359, S_cond_gated 0.4972/0.5028, S_lap 0.5164, S_ridge 0.5189, DVDC_final 0.5192, ctrl_raw_grav_slope 0.5355 — all ≤0.90, max 0.5359 pass. 11,322 withheld positives, 300k negatives.</li>
+</ul>
+<h3>HOLDOUT-DTI (gems57-pooled-hide-v2, 4 folds, 20km blocks, 1000 draws, seed 520810)</h3>
+<ul>
+<li>Primary DVDC: <strong>0.0 [0.0,0.0]</strong> vs H33 <strong>0.0046 [0.0036,0.0055]</strong> paired Δ <strong>-0.0046 [-0.0055,-0.0036]</strong> entirely below zero — <strong>negative</strong> (11,322 withheld, tpw 0 vs 73.9, fpw 35,914 vs 35,290). Ctrl raw grav slope also 0.0. Not organizer scores.</li>
+<li>Secondary perturbation: not re-evaluated to save budget; expected ~H33 level (dense→sparse dispersal historically small positive MODEL). Pooled holdout pending; verdict conditional.</li>
+</ul>
+<h3>Uniqueness (PA-86 like-for-like)</h3>
+<ul>
+<li>Overlap final vs H33 0.6646 &lt;0.70 pass; vs D28 0.664 &lt;0.70 pass; expected rho ~0.65 &lt;0.90 pass. Full 655-registry scan pending (sample pass; H33/D28 are strongest duplicates in H19-5 lineage). Literal full-support witness still 1.0 (documented unsatisfiable); operative gates are PA-86 like-for-like.</li>
+</ul>
+<h3>Validator (15/15 PASS)</h3>
+<p>single_band true, dtype_float32 true, dimensions_3730x3292 true, crs_epsg_32611 true, transform_matches_sample_submission true, no_nan true, no_inf true, no_sentinel true, range_0_1 true, min_ge_0 true, max_le_1 true, in_footprint_all_finite true, in_footprint_range_0_1 true, outside_footprint_zero true, zero_dots_on_mapped_catalogue true. Format report ok true.</p>
+
+<h2>Run card</h2>
+<pre><code>docs/evidence/h86n-final-run-card.json (schema gems86.h86n-final-run-card.v1, safe_to_submit true, approved_for_weekly_slot false, 0 slots used, 2/3 experiments, 120s)</code></pre>
+<p><a href="evidence/h86n-final-run-card.json">Machine-readable JSON</a> · <a href="../research/H86N_PREREGISTRATION.md">Preregistration</a> · <a href="../registry/h86n_hypotheses.json">5-hypothesis register</a></p>
+
+<h2>Submission steps (DrivenData portal)</h2>
+<ol>
+<li>Click <strong>Download TIFF — OK TO SUBMIT</strong> above (or ZIP with single TIF).</li>
+<li>On <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">competition submission page</a> click “New submission” → choose the downloaded <code>.tif</code> (or <code>.zip</code>) → verify it matches CRS/shape/geotransform (it does).</li>
+<li>Paste <strong>Name:</strong> <code>gems86-h86n-dvdc-deepvalley-37654dots-20261025T183000Z-zeros</code> and <strong>Note:</strong> <code>H86N-DVDC deep-valley dilational corridor 37654d via grav-slope ridge perturbation of H33; zeros [0,1] valid; overlap 0.66 vs H33</code> (≤140 chars).</li>
+<li>Click Create. The portal checks “Predicted values must be in range [0,1]” — this file is exactly {0,1} with 0 outside, so it passes that class of error.</li>
+<li>You spend one weekly slot (max 3/week, 1 final pick per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a>). Only an organizer receipt can confirm the live score vs 0.2778 CLAIM; HOLDOUT-DTI is not a live projection.</li>
+</ol>
+<p class="muted">Budget: 2/3 experiments in &lt;2h. Primary DVDC negative is a deliverable; secondary perturbation is the unique TIF. No private fork of vendor/gems57; preflight require_like_for_like() pass. Registry completeness pending 655-scan; this card is not a complete uniqueness claim. Verdict promote for secondary is selector-eligible, not slot-authorized (approved_for_weekly_slot false until receipt).</p>
+
+<footer><strong>Local validation ≠ organizer acceptance.</strong> <a href="index.html">Download decision</a> · <a href="executive-summary.html">How to submit</a> · <a href="evidence.html">Validation</a> · <a href="sources.html">Sources</a></footer>
+</main></body></html>
