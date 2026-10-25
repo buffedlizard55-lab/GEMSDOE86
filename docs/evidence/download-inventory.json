@@ -1,5 +1,5 @@
 {
-  "scope": "Existing artifacts plus H86F-PCC, H86E-MMT and blind-geothermal lanes; all negative, no competition clearance.",
+  "scope": "All 17 locally format-valid research artifacts are audit-only and DO NOT SUBMIT: 15 inherited lanes plus the two concurrent 2026-10-25 negative lanes H86F-PCC and H86F-GZZD. Neither new lane was measured against the other's candidate (parallel execution); both are HOLDOUT-DTI-negative and registry-failing on their own run cards. No selector ran; 0 slots used.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -94,6 +94,12 @@
     {
       "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
       "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+      "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     }

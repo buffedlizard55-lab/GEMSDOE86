@@ -33,6 +33,7 @@ class PrepareDataTests(unittest.TestCase):
             if manifest["counts"]["has_features"]:
                 self.assertTrue(pins["training_features"])
 
+
             self.assertTrue(out_manifest.is_file())
             saved = json.loads(out_manifest.read_text())
             self.assertEqual(saved["counts"]["footprint_valid_pixels"], 5167373)

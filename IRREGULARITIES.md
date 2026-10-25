@@ -982,6 +982,28 @@ The user generation mandate remains unmet; inherited PA interpretations do not
 establish that the stated literal overlap gate passed. The missing lane/cache and
 non-comparable holdout histories remain blockers.
 
+## IR-86-H86F-GZZD-01 (2026-10-25) — registry completeness trap measured blocking for a second lane; GZZD hypothesis falsified as run
+The H86F-GZZD lane (frozen preregistration `research/H86F_GZZD_PREREGISTRATION.json`)
+ran exactly three arms and both two-phase registry scans. Measured: 685 of 687
+indexed rasters, the same 2 grid/CRS-incompatible rows as H86E-MMT
+(`14GEMSDOE` horse-ensemble; `7GEMSDOE` qfaults prior), so
+`registry_complete_for_index=false` and `scripts/pa86_chance_overlap.py` failed
+closed with `ValueError: Incomplete registry cannot pass` (recorded
+FAILED_CLOSED_NO_REPORT in `docs/evidence/h86f-gzzd-run-card.json`). **Decision:**
+no private exclusion/bypass; PA-86-02 remains unsatisfiable until the protocol
+repairs or formally excludes those rows upstream. Scientific result is
+independently negative (HOLDOUT-DTI E1 0.0303 [0.0237, 0.0364] < unsigned-edge
+control 0.0321 and R0 0.0339; same-split best 0.1241), so the verdict does not
+depend on the registry trap. **Cost:** none to slots (0 used); the artifact is
+audit-only. Also recorded: (a) pre-placement worst surface rho 0.467 was vs a
+GEMSDOE24 `acquisition_block_id` external grid inside the registry — below the
+0.90 stop, but survey-block mimicry remains a live risk for gravity-compilation
+features; (b) this lane's frozen gate allowed an audit-only emission with 0
+missing + 0 rho firings despite completeness=false, while the patched
+`run_h86e_mmt.py` additionally requires zero registry errors before placement —
+divergence disclosed in `research/H86F_GZZD_REVIEW_20261025.md`; future lanes
+should adopt the stricter zero-error rule; (c) the shared writer left new
+download files at mode 600 (mkstemp), normalized to 644 without byte changes.
 ## IR-86-MMT-RANK01-TIE-20261024 — `gems86_mmt.features.rank01` row-major tie ramp corrupted `R0_D28_visible_collar` (`0.03386` vs true `R0` `0.09609`)
 
 In PR #93 (`src/gems86_mmt/features.py`), `rank01(a, footprint)` ordered values via
