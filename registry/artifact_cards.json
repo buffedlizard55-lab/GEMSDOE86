@@ -150,6 +150,13 @@
       "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
     },
     {
+      "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86j-mpc-run-card.json",
+      "context": "docs/evidence/h86j-mpc-run-card.json",
+      "holdout_kind": "h86j_mpc",
+      "stem": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros"
+    },
+    {
       "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86i-sacd-run-card.json",
       "context": "docs/evidence/h86i-sacd-run-card.json",
