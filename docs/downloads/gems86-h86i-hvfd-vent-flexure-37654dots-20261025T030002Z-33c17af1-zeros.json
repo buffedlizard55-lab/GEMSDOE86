@@ -1,0 +1,205 @@
+{
+  "file": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+  "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+  "bytes": 136478,
+  "submission_name": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros",
+  "note": "H86I-HVFD 2m-probe+sinter+biharm-flexure+relay NoisyOR 37654d r=2.8px d>2px; HOLDOUT-DTI=0.1013; audit-only DO NOT SUBMIT",
+  "note_chars": 121,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+    "bytes": 136478,
+    "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+    "bytes": 136478,
+    "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip",
+  "zip_sha256": "3f9fbcc6bf2ca93ef0846e9b47aec78bc89cd3096476800d5ed44a6327610616",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86I-HVFD",
+    "hypothesis": "Hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure gated fault-valve discovery",
+    "candidate_arm": "E2_hvfd_foldfair_vent_relay_noisyor",
+    "budget": 37654,
+    "radius_px": 2.8,
+    "collar_px": 2.0,
+    "feature_hashes": {
+      "t2m_thermal_wall_plume": "e4b18dddbc373d653c042516785308bce36de3f23f88884296d04733a8a5c70d",
+      "paleo_sinter_vent_halo": "5bb3ef5bb876ab385f4ba82c9bd931a1a57b52cb88f066f6ada2879a641886ca",
+      "upslope_geotherm_excess": "d7d235343df32d5981fd72ac0379b7b9e1a9361b3977ebe0ac28435774a6fc3d",
+      "claycap_rad_alteration": "c3b9687f2534c7cfce80a4bc7f7f2eee8f235858e6579a4fbdfd416301040b99",
+      "hvfd_vent_composite": "bdfece99871bba1f7ca7ecc4aaa6509067e7e2d1ca7002a2a5ef7325d34b7a42",
+      "biharmonic_basement_flexure": "22cf3aa42a3a26ef78dff2cf07fc9187d57bee4811ed83e9d7cf64dd0e4f76e3",
+      "laplace_gzz_hinge": "67aab8218fed8ed67c843d6b40a7a1a647ce78b056e3896001adf1e376381f40",
+      "poisson_mag_destruction": "404e61705a3fc61ea94d11fdfae53268423309b6c196193813c7587056ac8048",
+      "hvfd_potential_composite": "e0533381ce597ef6688bccd7b904aa7f4daa16b48bfb526c44885b8c6c1b23c5",
+      "lidar_dem10_chi_scarp": "9d934b0f4a227f307b2fa2ebf0a01136a9664b26c3cb4c956155234fd95b7bbf",
+      "coulomb_seismic_valve": "d250ba920a0337195131617f119f507e912e5a16ece901d8577680cb408a245e",
+      "hvfd_mimic_suppression": "9c60004b8a91293e3fdda63350baa8f585bc90b10954fbdb9c4841f467bdbf9f",
+      "hvfd_blind_conduit_surface": "46c8fca12bb168babd9070dc334e1fc237f570001a2edaa0b9416aa212113171",
+      "vis_tip_cone": "8ed56335e2f0adb5ab20fc09dc87b401faf18ef819bfc1769aa3c3cd5225b3aa",
+      "vis_relay_bridge": "c2cb4adc5ef2056f31593f4e94022d4ed32f72cd34a77b018e7a03468af9fe82",
+      "vis_bend_hinge": "4e6ef26f196d84974c25c5b88dcf7a702c2300863dec24e460b493e15f52b0cc",
+      "vis_vent_x_trap": "1dbf123e4cc8ad3d18f17ff9a502e42ce4e36747bbdaffe987d9e3c7883f7438",
+      "vis_trap_composite": "462f0882d575c9677cec4ed775fcdbf06fac26a64cfc9cd9925dac840e4eab3e"
+    },
+    "surface_sha256": "b8c4a600c72b00deade9c9fdc19cc81da0cb4f4bd6c4a9a8d5d2f37ba545932a",
+    "dots_sha256": "fca6cd638056899d19ae81f86ab51ea758d7fa1b68cb04da7336404ad6e2c2f2"
+  },
+  "independent_disk_validation": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+    "bytes": 136478,
+    "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  }
+}

@@ -278,6 +278,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-RKSC lane result; the run card is the authoritative experiment receipt. While E1 beats the Lahontan-uncorrected K-depleted control E3 and passes surface Spearman (0.2633 <= 0.90), it trails the fold-fair R0 control (0.0961) and same-split best H86C-KSLB (0.1241), and literal/PA-86-02 registry gates fail closed; no slot was used."}
+    if kind == "h86i_hvfd":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

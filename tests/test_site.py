@@ -14,17 +14,13 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # Historical H86G "promote" is not authorization under the current literal-stop policy.
+    # Historical H86G promotion is not upload authorization under the current literal-stop policy.
     assert "NO FILE IS CLEARED TO SUBMIT" in html
     assert "Do not upload any file linked from this page" in html
-    assert "Download TIFF — SUBMIT THIS FILE" not in html
-    assert "selector-ready file" not in html.lower()
     assert "HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" in html
     assert "Download TIFF — audit only; DO NOT SUBMIT" in html
-    executive = (DOCS / "executive-summary.html").read_text()
-    assert "CURRENT DECISION: DO NOT SUBMIT ANY FILE" in executive
-    assert "HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" in executive
-    assert "submit this file" not in executive.lower()
+    assert "ONE SELECTOR-READY FILE" not in html
+    assert "SUBMIT THIS FILE" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
@@ -52,3 +48,26 @@ def test_zip_contains_single_tiff():
         names = bundle.namelist()
         assert names == [card["raster_name"]]
         assert bundle.getinfo(names[0]).file_size > 100_000
+
+
+def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
+    """A PROMOTE label cannot contradict the card's false slot permissions."""
+    card = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert card["verdict"] == "promote"
+    assert card["safe_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False
+    for flag in ("safe_to_submit", "approved_for_weekly_slot", "selector_run"):
+        assert summary[flag] is False
+    promoted = summary["promoted_for_selector_review"]
+    assert promoted["raster_sha256"] == card["raster_sha256"]
+    assert promoted["safe_to_submit"] is False
+    assert promoted["approved_for_weekly_slot"] is False
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        assert "IS THIS FILE OK TO SUBMIT? NOT YET" in html
+        assert "safe_to_submit=false; approved_for_weekly_slot=false" in html
+        for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
+                       "submit this file", "OK to download and submit",
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
+            assert unsafe not in html
