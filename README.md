@@ -18,6 +18,8 @@ Focused follow-on review in this session (2026-10-25; no new lane or TIFF select
 
 Independent repository review (2026-10-25; three passes; no model run or TIFF generated): [H33 forensic explanation, four queued geological hypotheses, current workspace audit, blockers, and negative run card](research/SESSION_20261025_ARENA_REVIEW.md). Machine-readable scoped evidence: [current local registry audit](docs/evidence/session-review-20261025/registry-input-grid-review.json) and [full review verification bundle](research/SESSION_20261025_ARENA_REVIEW.md#verification-run-record). Current local registry inventory differs from the earlier dated 690-file scan; the review preserves both measurements and flags the discrepancy.
 
+Final environment and quality recheck (2026-10-25): [839 tests passed; site checks and 21-artifact local audit passed; no TIFF/slot authorized](research/SESSION_20261025_ARENA_FINAL_RECHECK.md). This verifies code/evidence consistency, not scientific performance or competition acceptance.
+
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
 ## IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO — DO NOT SUBMIT.**
