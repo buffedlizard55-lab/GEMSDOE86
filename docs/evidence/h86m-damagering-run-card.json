@@ -1,0 +1,97 @@
+{
+  "schema": "gems86.h86m-damagering-run-card.v1",
+  "lane": "H86M-DAMAGERING",
+  "generated_utc": "2026-10-25T17:01:47.397942+00:00",
+  "preflight": {
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    },
+    "literal_reading_blocked": true,
+    "obligations": [
+      "rank correlation <= 0.90 against EVERY measured registry raster (surface and final dots)",
+      "forward 3 px overlap <= 0.70 against EVERY measured dot-field registry raster (final dots)",
+      "literal reading reported side by side; any dot-field firing is a duplicate stop",
+      "registry scope (measured / expected rasters) stated; incomplete scope is never called complete"
+    ]
+  },
+  "hypothesis": "Off-catalogue damage-zone ring emission: blind faults missing from the USGS/INGENIOUS catalogue express as a damage-zone halo off mapped traces, not on them.",
+  "mechanism": "EDT distance from catalogue; keep ring; one dot per grid cell; binary dots on footprint; zero catalogue mass.",
+  "named_non_fault_process": "Alluvial fans, Lahontan shoreline/beach ridges, and lithologic contacts can mimic edge/scarp signatures.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_PUBLIC_LABELS",
+    "note": "training_features.tif / labels.tif require DrivenData login (not available in this sandbox); HOLDOUT-DTI (gems57-pooled-hide-v2, alpha 0.2, beta 0.8, 300 m triangular) cannot be computed without public truth.",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "status": "STRUCTURALLY_IMPOSSIBLE",
+    "note": "Method uses only the public catalogue + footprint (no training labels, no model fit, no feature-trained surface), so label leakage is structurally impossible; no feature-alone AUC to report."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "scope": "Locally accessible research TIFFs (docs/downloads + data/scored_fleet), candidate self-excluded; not the organizer registry and not a complete accessible scan.",
+    "rasters_checked": 57,
+    "complete_accessible_scan": false,
+    "worst_spearman_full_footprint": 0.10897551855307741,
+    "rho_limit": 0.9,
+    "rho_pass": true,
+    "worst_dot_overlap_all_rasters": 1.0,
+    "overlap_limit": 0.7,
+    "dot_field_overlap_firings": [],
+    "dot_field_overlap_firing_count": 0,
+    "worst_dot_field_overlap": 0.0,
+    "dot_field_unique": true,
+    "continuous_surface_overlaps": [
+      {
+        "submission": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "overlap": 1.0,
+        "their_dots": 4210938,
+        "support_fraction": 0.8149,
+        "representation": {
+          "kind": "continuous_surface",
+          "support_fraction": 0.8149088521382142,
+          "limit": 0.2
+        },
+        "rho": 0.10897551855307741
+      }
+    ],
+    "continuous_surface_overlap_count": 1,
+    "note": "Overlap firings against continuous-surface rasters (support > 0.20) are geometric coverage, not methodological duplication; those rasters are evaluated by rank correlation (rho), which passes (max 0.109). Dot-field overlap is the method-unique comparison."
+  },
+  "raster_sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+  "zip_sha256": "93638341fb534c5f1c6311008d4c9aad1486dff08f7b337de37d25644efbe0d2",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+    "bytes": 156583,
+    "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_inside_footprint": true,
+    "crs_shape_transform_match": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "emitted_positive_pixels": 40000,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+  },
+  "submission_name": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros",
+  "submission_file": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+  "zip_file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.zip",
+  "receipt_file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.json",
+  "note": "Off-catalogue damage-zone ring 12-25px from catalogue, one-dot-per-3.2px-cell, 40000 dots; zero catalogue mass; format-valid audit only",
+  "note_chars": 135,
+  "submission_slots_used": 0,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false,
+  "verdict": "negative",
+  "verdict_reason": "Format-valid audit-only TIFF, method-unique vs dot-field registry rasters (worst dot-field overlap below 0.70, worst rho below 0.90). HOLDOUT-DTI not run (no public labels in workspace); scoped (incomplete) registry only; no organizer receipt. Not submit-authorized."
+}
