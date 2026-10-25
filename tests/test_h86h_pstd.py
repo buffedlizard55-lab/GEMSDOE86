@@ -226,3 +226,16 @@ def test_mmt_holdout_binary_control_never_pads_zero_ties():
     assert int(example.sum()) == 2
     assert per_fold["Q0"]["emitted"] == 2
     assert not bool(example[10, 11])
+
+
+def test_pstd_rank01_tie_invariance():
+    from gems86_pstd.features import _rank01
+
+    fp = np.ones((20, 20), dtype=bool)
+    arr = np.zeros((20, 20), dtype=np.float32)
+    arr[2, 5] = 10.0
+    arr[18, 15] = 20.0
+    ranked = _rank01(arr, fp)
+    zero_mask = fp & (arr == 0.0)
+    assert np.all(ranked[zero_mask] == 0.0)
+    assert float(ranked[18, 15]) == pytest.approx(1.0)

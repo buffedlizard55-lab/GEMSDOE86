@@ -94,7 +94,7 @@ def test_session_card_is_reproducible_and_leaves_unmeasured_fields_empty():
     assert registry["universal_witness_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert registry["uncovered_allowed_cells"] == 0
     assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
-    assert card["validator_output"]["inherited_artifact_format_passes"] == card["validator_output"]["inherited_artifact_count"] == 18
+    assert card["validator_output"]["inherited_artifact_format_passes"] == card["validator_output"]["inherited_artifact_count"] == 18  # frozen cf73474c snapshot (PR #108); live inventory is 19 with H86G-EDTI
     assert card["raster_sha256"] is card["submission_name"] is None
     assert card["unique_tiff_requirement_satisfied"] is card["new_candidate_generated"] is card["submission_ready"] is False
     assert card["experiments_run"] == card["submission_slots_used"] == 0
@@ -112,7 +112,7 @@ def test_site_puts_decision_and_download_access_before_long_historical_receipts(
         assert html.index("DO NOT SUBMIT") < html.index('id="h86f-gzzd"')
     assert home.index('href="#downloads"') < home.index('id="current-review"')
     assert home.index('id="downloads"') < home.index('id="h86f-gzzd"')
-    assert executive.index("Download research TIFFs — audit only") < executive.index('id="h86f-gzzd"')
+    assert executive.index("Download research TIFFs — audit only (all files)") < executive.index('id="h86f-gzzd"')
 
 
 def test_legacy_pages_root_redirect_is_negative_not_a_false_uniqueness_claim():

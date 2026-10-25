@@ -37,10 +37,10 @@ def first_artifact(root):
     return audit.strict_json(root / "docs/evidence/download-inventory.json")["artifacts"][0]
 
 
-def test_real_report_checks_every_published_raster_and_all_remain_negative():
+def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 18  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS (2026-10-25, all DO NOT SUBMIT)
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 24  # prior 21 + UNIQUEDOT-DAMAGERING + restored H86I-SACD & H86J-MPC (lost in PR #131 merge)
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -156,7 +156,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 18  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS (2026-10-25, all DO NOT SUBMIT)
+    assert len(card["inherited_artifacts"]["files"]) == 24  # prior 21 + UNIQUEDOT-DAMAGERING + restored H86I-SACD & H86J-MPC (lost in PR #131 merge)
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

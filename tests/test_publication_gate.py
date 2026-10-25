@@ -35,13 +35,24 @@ class PublicationTests(unittest.TestCase):
     def inventory(self, root, entries):
         (root / 'docs/evidence/download-inventory.json').write_text(json.dumps({'artifacts': entries}))
 
+    def test_research_promotion_cannot_publish_upload_instruction(self):
+        for claim in ("IS THIS FILE OK TO SUBMIT? YES", "Submit this file",
+                      "One file is <strong>OK to submit</strong>",
+                      "CURRENT DECISION: SUBMIT ONLY H86G-EDTI"):
+            with self.subTest(claim=claim), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                self.fixture(root)
+                (root / 'docs/index.html').write_text(f'<p>{claim}</p>')
+                self.assertTrue(any('Unauthorized submission instruction' in e
+                                    for e in check(root)))
+
     def test_real_report_reproduces_without_mutating_model_cards(self):
         cards = {p: p.read_bytes() for p in (ROOT / 'docs/evidence').glob('*card.json')}
         actual = audit_downloads.audit()
         expected = json.loads((ROOT / audit_downloads.REPORT).read_text())
         self.assertEqual(actual, expected)
         self.assertEqual(audit_downloads.render(actual), (ROOT / audit_downloads.PAGE).read_text())
-        self.assertEqual(actual['artifact_count'], 18)  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS (2026-10-25, all DO NOT SUBMIT)
+        self.assertEqual(actual['artifact_count'], 24)  # prior 21 + UNIQUEDOT-DAMAGERING + restored H86I-SACD & H86J-MPC
         self.assertFalse(actual['safe_to_submit'])
         card = audit_downloads.review_card(actual)
         self.assertEqual(card, json.loads((ROOT / audit_downloads.CARD).read_text()))

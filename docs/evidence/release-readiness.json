@@ -10,15 +10,15 @@
   "new_candidate_generated": false,
   "experiments_run": 0,
   "submission_slots_used": 0,
-  "artifact_count": 18,
-  "locally_valid_artifacts": 18,
+  "artifact_count": 24,
+  "locally_valid_artifacts": 24,
   "method": "Read-only, all-artifact byte/ZIP/receipt validation using unchanged shared validators. This audit cannot promote or submit a file.",
   "shared_tool_hashes_match": true,
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
-    "docs/evidence/download-inventory.json": "31555887b437611aedcf299b07c23734e498b9ecd1ffd33b41cee9921d8517c7",
-    "registry/artifact_cards.json": "54136971221707df4b1a3d78e1030975a62f3c7bad5cc77de99af4d6dba5ae51",
-    "docs/evidence/protocol-preflight.json": "e1175967f05b4483ceb47b0191c7e9776e470afde49c8e7ef5609e74dd0d83fa",
+    "docs/evidence/download-inventory.json": "aee0eea1c444ab01b39cae072da396ef5b87009b12f0a85e154d84db9325b3fb",
+    "registry/artifact_cards.json": "78ae7197f93a7bdc0662858735c1a1ad4a337fe20c4e2a9c1ecd8c5c09c2a862",
+    "docs/evidence/protocol-preflight.json": "dff593503c6e7af7fc6db80e228a555dfe2109cd749c78357b632983eef5f1ee",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -36,7 +36,13 @@
     "docs/evidence/h86f-pcc-run-card.json": "747229ba0e39b1ee452766067a245c3887494011dbbad9aeeaa05df436c3cda5",
     "docs/evidence/h86f-gzzd-run-card.json": "3bb0634d2786f0e2f04c886f7cc5af1c49ae383ff0901fb9e7f63e68abf20531",
     "docs/evidence/h86f-ewcs-run-card.json": "758d17a7ade8897fb0ae64ef4ff4a6d9e272d49c3a5c403f90dccc0f979c34a2",
-    "docs/evidence/all-artifacts-registry.json": "86e6e64b8455d3dae5c75239854d9cae0ed431ba283843cc5c941951d78debb9"
+    "docs/evidence/h86g-edti-run-card.json": "2d6e1f2b56ad37819d58b1579b38877c6a4eb9c566060cf9c551c2ce451b6155",
+    "docs/evidence/h86i-rksc-run-card.json": "59dd570f20d0559a30f004610b543dc76ab05877edd6b93f9929b8451abfe27d",
+    "docs/evidence/h86i-hvfd-run-card.json": "51d16d58f4d2e5d130040de947929a0e872541b85537a0f1c5ac217fd94a3414",
+    "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json": "3e8224a70753b267932de8205eb039178b95f0c3f7349112bd58120ed4cb6003",
+    "docs/evidence/h86j-mpc-run-card.json": "7f1f2c1745331a68c0a1ff1e11279c1b18848cde890185a09cf7326037f0ec15",
+    "docs/evidence/h86i-sacd-run-card.json": "1835441760346d9ca7e6801e3dca03be80d1674369e06c880ac11bed1e026050",
+    "docs/evidence/all-artifacts-registry.json": "619204835ebb5b21688eed6b1f664731dea34694728c9ad7182e652a78c6814f"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -137,7 +143,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
         "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
@@ -146,7 +152,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "GMC off-catalogue variant",
@@ -239,7 +247,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
         "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
@@ -248,7 +256,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-1 edge corroboration",
@@ -345,7 +355,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
         "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
@@ -354,7 +364,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-RMRB unsupervised boundary",
@@ -451,7 +463,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
         "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
@@ -460,7 +472,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "RMRB-86 supervised residual",
@@ -557,7 +571,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
         "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
@@ -566,7 +580,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86B-GFCO multi-physics",
@@ -668,7 +684,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
         "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
@@ -677,7 +693,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-WVB wavenumber / fault-valve bridge",
@@ -779,7 +797,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
         "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
@@ -788,7 +806,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-FVMB dip-projected / fault-valve model",
@@ -885,7 +905,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
         "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
@@ -894,7 +914,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR",
@@ -996,7 +1018,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
         "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
@@ -1005,7 +1027,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular",
@@ -1107,7 +1131,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
         "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
@@ -1116,7 +1140,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E catalogue-context LOQO (SPBT channel)",
@@ -1213,7 +1239,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
         "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
@@ -1222,7 +1248,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
@@ -1312,7 +1340,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
         "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
@@ -1321,7 +1349,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "GEMS86-GAPRES fleet-gap interpolation",
@@ -1418,7 +1448,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
         "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
@@ -1427,7 +1457,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
@@ -1524,7 +1556,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
         "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
@@ -1533,7 +1565,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
@@ -1636,7 +1670,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
         "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
@@ -1645,7 +1679,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-PCC signed polarity-consistent basement step (concurrent negative lane, 2026-10-25)",
@@ -1742,7 +1778,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
         "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
@@ -1751,7 +1787,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-GZZD Laplace gravity-curvature dipole (current negative lane, 2026-10-25)",
@@ -1848,7 +1886,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
         "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
@@ -1857,7 +1895,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-EWCS elastic wing-crack + harmonic tilt-depth/Laplace PU (holdout-positive 0.1723, registry-blocked DO NOT SUBMIT, 2026-10-25)",
@@ -1954,7 +1994,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
         "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
@@ -1963,7 +2003,653 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
+      "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+      "bytes": 158155,
+      "zip_file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip",
+      "zip_sha256": "51fcf074ec42c5db1720fe5d6ae2b743cda2dda853e91b9797ced25073c6a3e9",
+      "receipt_file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.json",
+      "source_card": "docs/evidence/h86g-edti-run-card.json",
+      "submission_name": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros",
+      "note": "H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked",
+      "note_chars": 113,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 55000,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "CURRENT_LANE_PROMOTE_LIKE_FOR_LIKE",
+        "source": "docs/evidence/h86g-edti-run-card.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 11321,
+        "value": 0.06311676646014856,
+        "ci95": [
+          0.04682562753071773,
+          0.08060528797857537
+        ],
+        "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
+        "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
+        "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+        "spearman_full_footprint": 0.016262968358041946,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "promote",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
+      "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+      "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+      "bytes": 136667,
+      "zip_file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.zip",
+      "zip_sha256": "70e817880fc1aab76136b4f8d0d61e0ecc936894cdd45f18c493a022b50bb0d1",
+      "receipt_file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.json",
+      "source_card": "docs/evidence/h86i-rksc-run-card.json",
+      "submission_name": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros",
+      "note": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconf piedmont scarp dipole; see run card gates; no slot used",
+      "note_chars": 106,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 44090,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "CURRENT_LANE_NEGATIVE",
+        "source": "docs/evidence/h86i-rksc-run-card.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 11321,
+        "value": 0.02449890173154073,
+        "ci95": [
+          0.01849146829324473,
+          0.030420977915028215
+        ],
+        "design": "buffered whole-component quadrant draw, seed 20, hide fraction 0.20, visible-fault collar 3 px, pooled 200-px physical blocks",
+        "caveat": "Current H86I-RKSC lane result; the run card is the authoritative experiment receipt. While E1 beats the Lahontan-uncorrected K-depleted control E3 and passes surface Spearman (0.2633 <= 0.90), it trails the fold-fair R0 control (0.0961) and same-split best H86C-KSLB (0.1241), and literal/PA-86-02 registry gates fail closed; no slot was used."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+        "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+        "spearman_full_footprint": 0.005752757305070208,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
+      "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+      "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+      "bytes": 136478,
+      "zip_file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip",
+      "zip_sha256": "3f9fbcc6bf2ca93ef0846e9b47aec78bc89cd3096476800d5ed44a6327610616",
+      "receipt_file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.json",
+      "source_card": "docs/evidence/h86i-hvfd-run-card.json",
+      "submission_name": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros",
+      "note": "H86I-HVFD 2m-probe+sinter+biharm-flexure+relay NoisyOR 37654d r=2.8px d>2px; HOLDOUT-DTI=0.1013; audit-only DO NOT SUBMIT",
+      "note_chars": 121,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 37654,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "CURRENT_LANE_NEGATIVE",
+        "source": "docs/evidence/h86i-hvfd-run-card.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 11321,
+        "value": 0.10132679847599296,
+        "ci95": [
+          0.08855910685929504,
+          0.1138969522660965
+        ],
+        "design": "buffered whole-component quadrant draw, seed 20, hide fraction 0.20, visible-fault buffer 3 px, pooled 200-px (20 km) physical-block bootstrap (1,000 draws)",
+        "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+        "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+        "spearman_full_footprint": 0.062232482651982404,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "UNIQUEDOT-DAMAGERING off-catalogue damage-zone ring emission (2026-10-25)",
+      "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+      "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+      "bytes": 121380,
+      "zip_file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.zip",
+      "zip_sha256": "6c11ef6c1c42a60971efd582668068b619dd07ab6376cfe7320c7222e5c97bf1",
+      "receipt_file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "source_card": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "submission_name": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros",
+      "note": "Off-catalogue damage-zone ring 3.0-8.0px from catalogue, one-dot-per-2.8px-cell, 25000 dots; zero catalogue mass; local format-valid only",
+      "note_chars": 137,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 25000,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+        "source": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": null,
+        "value": null,
+        "ci95": null,
+        "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+        "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+        "spearman_full_footprint": 0.0643693148663789,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
+      "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+      "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+      "bytes": 159505,
+      "zip_file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.zip",
+      "zip_sha256": "2473e68f421af5f7c67f7a86351581af26c61b6570ab14e18ff504a5ad778cf8",
+      "receipt_file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.json",
+      "source_card": "docs/evidence/h86j-mpc-run-card.json",
+      "submission_name": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros",
+      "note": "H86J-MPC monogenic phase-congruency step (RTP+grav+DEM) E[k] spacing collar3 44090d; SGMC-proxy selected; no slot pre-picked",
+      "note_chars": 124,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 44090,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "CURRENT_LANE_NEGATIVE",
+        "source": "docs/evidence/h86j-mpc-run-card.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 11321,
+        "value": 0.04527653661804185,
+        "ci95": [
+          0.03785681717802446,
+          0.05279323227946211
+        ],
+        "design": "OOF visible construction (EDTI Amendment A2 form); primary selector SGMC-PROXY-DTI in sgmc_proxy block",
+        "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+        "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+        "spearman_full_footprint": -0.011772573228800525,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
+    },
+    {
+      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
+      "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
+      "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+      "bytes": 137860,
+      "zip_file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.zip",
+      "zip_sha256": "ee8589a992ee9583b3b83fa7a33b52b95497fe0f0be90bba6ad771767ab4f989",
+      "receipt_file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.json",
+      "source_card": "docs/evidence/h86i-sacd-run-card.json",
+      "submission_name": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros",
+      "note": "H86I-SACD spin2+submod PU (HOLDOUT-DTI 0.0832); registry gate fail-closed; DO NOT SUBMIT; 0 slots",
+      "note_chars": 97,
+      "validation_class": "FORMAT-VALIDATION: local all-finite zero-outside export policy, not organizer acceptance",
+      "validator": {
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true,
+          "template_format_report_passed": true,
+          "sha_matches_inventory": true,
+          "sha_matches_writer_receipt": true,
+          "receipt_filename_matches": true,
+          "receipt_bytes_match": true,
+          "name_1_to_140_chars": true,
+          "note_1_to_140_chars": true,
+          "receipt_note_count_matches": true,
+          "inventory_explicitly_negative": true,
+          "no_nodata_tag": true,
+          "validity_mask_covers_footprint": true,
+          "zip_one_exact_tif": true,
+          "zip_payload_equals_tif": true,
+          "zip_crc_passed": true,
+          "zip_sha_matches_receipt": true,
+          "sha_matches_scientific_card": true,
+          "scientific_card_is_negative": true,
+          "scientific_card_does_not_authorize": true
+        },
+        "all_checks_passed": true,
+        "min": 0.0,
+        "max": 1.0,
+        "n_nan": 0,
+        "n_inf": 0,
+        "emitted_dots": 37654,
+        "outside_footprint_positive": 0,
+        "on_catalogue_positive": 0,
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        }
+      },
+      "historical_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "status": "CURRENT_LANE_NEGATIVE",
+        "source": "docs/evidence/h86i-sacd-run-card.json",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 11321,
+        "value": 0.08321478623814557,
+        "ci95": [
+          0.06728743407668487,
+          0.09967901718834461
+        ],
+        "design": "strict spatial Leave-One-Quadrant-Out (quad != fold_i) on buffered whole-component draw (seed 20, hide_frac 0.20, buffer_px 3, visible collar 3.0 px), pooled 200-px (20 km) physical blocks, 1000 bootstrap draws",
+        "caveat": "Current H86I-SACD strict spatial LOQO (quad != fold_i) lane result; the run card is the authoritative experiment receipt. Candidate E1 (0.0832 [0.0673, 0.0997]) and pure cover-blind subsurface E3 (0.0843 [0.0693, 0.0995]) trail scalar pointwise E2 (0.1055 [0.0878, 0.1257]), with 0/691 Spearman rho > 0.90 firings and 0/367 discrete <=50k-dot overlap firings (31.17% vs GEMSDOE32), while literal 17GEMSDOE saturation, 2 off-grid registry rows, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."
+      },
+      "safe_to_download_for_audit": true,
+      "safe_to_submit": false,
+      "approved_for_weekly_slot": false,
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
+      "registry_measurement": {
+        "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
+        "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+        "spearman_full_footprint": 0.09749163735283402,
+        "forward_overlap_3px": 1.0,
+        "unique": false,
+        "stop_required": true,
+        "complete_accessible_scan": false
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     }
   ],
   "limitations": [
