@@ -26,7 +26,8 @@ A previously generated H86L-FMC TIFF was already in `docs/downloads/` but omitte
 
 ### Pass 3 — end-to-end verification and remaining blockers
 
-- Current release audit: 32/32 registered historical TIFFs passed local byte/format checks. All 32 inherited final artifacts were measured against the pinned witness; each had 1.0 forward overlap under the literal witness-support rule. This is a **REGISTRY-MEASUREMENT** sufficiency stop, not complete-registry uniqueness clearance and not a measurement of a new candidate.
+- At the initial review audit (17:04 UTC), 32/32 registered historical TIFFs passed local byte/format checks and were measured against the pinned witness. While the PR was open, `main` advanced to `6a859ed` through parallel research PRs; those independent commits add three further historical H86M rasters. I merged that updated `main` into this fixed session branch, then re-ran the release audit. The reconciled current inventory is 35/35; no scientific experiment was run by this review while reconciling the branches.
+- The fresh **REGISTRY-MEASUREMENT** rechecked all 35 inherited final artifacts against the pinned witness; each had 1.0 forward overlap under the literal witness-support rule. This is a sufficiency stop, not complete-registry uniqueness clearance and not a measurement of a new candidate.
 - Registry completeness remains false: only the pinned witness was measured in this current final-artifact pass; broader registry inputs include incompatible records already documented in the prior audit.
 - The current **HOLDOUT-DTI** is `NOT_RUN_NO_LANE_ASSIGNED`; withheld positives, value, and CI are null. No feature-alone canary was run because no candidate feature or lane was selected.
 - No new raster was written, so its SHA-256 and candidate validator results are not applicable. The H86L historical raster has its own format checks; this review does not authorize its upload.
@@ -61,12 +62,12 @@ Official links retained for independent review (not freshly fetched in this sess
 
 | Check | Result |
 |---|---|
-| `scripts/audit_release.py --measure-registry` | PASS; 32 historical TIFFs checked; decision remains DO NOT SUBMIT. |
-| `scripts/audit_downloads.py --write` | PASS; 32 registered TIFF/ZIP/receipt sets checked; format only. |
+| `scripts/audit_release.py --measure-registry` | PASS; after main reconciliation, all 35 inherited TIFFs checked; decision remains DO NOT SUBMIT. |
+| `scripts/audit_downloads.py --write` | PASS; 35 registered TIFF/ZIP/receipt sets checked; format only. |
 | `scripts/build_site.py --check` | PASS after evidence-driven rebuild. |
 | `scripts/check_site.py` | PASS; links, registered binary integrity, and negative-state safety. |
-| Focused tests | PASS; 52 tests and 22 subtests. |
-| Full test suite (final run) | **1004 passed, 24 skipped, 58 subtests passed** in 414.83 seconds. The earlier run identified two issues: the README count was stale, and a historical session test incorrectly compared its frozen timestamp to the new live registry clock. Both were corrected; no archived card was redated. |
+| Focused tests | PASS; initial focused run 52 tests / 22 subtests; post-merge focused run 47 tests. |
+| Full test suite (final post-merge run) | **1021 passed, 24 skipped, 58 subtests passed** in 430.84 seconds. An earlier full run exposed stale README/timestamp assertions and one overly specific H86L audit assertion; all were corrected without redating frozen evidence or changing scientific values. |
 | Python warnings | 48 existing Rasterio affine multiplication deprecation warnings; no new scientific model was run. |
 
 This is a negative review deliverable. It neither creates a leaderboard projection nor satisfies the requested new-TIFF requirement.

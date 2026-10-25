@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 32,
-    "local_format_pass": 32,
+    "checked": 35,
+    "local_format_pass": 35,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -198,6 +198,21 @@
         "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
         "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+        "sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+        "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+        "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -212,8 +227,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T17:04:03.176039+00:00",
+  "registry_measured_utc": "2026-10-25T17:53:30.424617+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "6943e1fa274606fbfa305a61cb9f2fcee0497cc78530abc1ac1205068e08b302",
-  "registry_measurement_sha256": "282a79c3bb85915bfdb96ee12ea16a75d9883248703ec735d845640a6968372d"
+  "release_report_sha256": "7cc96ebece6fe829af0605e68e86fadef2e44287e9ccae33a915eb2fe29f1305",
+  "registry_measurement_sha256": "c5905abe799e9fad37bac8b48ac666fab89273cccf84f1343c64e55519e01038"
 }

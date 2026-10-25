@@ -1,0 +1,63 @@
+{
+  "schema": "gems86.review-run-card.v1",
+  "generated_utc": "2026-10-25T16:58:27.761769+00:00",
+  "hypothesis": "No single method lane assigned; geological proposals remain unrun.",
+  "mechanism": "Read-only format/integrity and literal overlap audit; repair publication registration.",
+  "named_non_fault_process": "Not tested; proposed density-residual lane could be mimicked by lateral sediment-density changes.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_NO_LANE_AND_PROTOCOL_STOP",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface": null,
+    "candidate_final_dots": null,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "inherited_artifacts_measured": 32,
+    "forward_overlap_3px_each": 1.0,
+    "limit": 0.7,
+    "registry_complete": false,
+    "report": "docs/evidence/all-artifacts-registry.json",
+    "scope": "Single full-support witness proves literal failure, not full-registry clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NO_NEW_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_format_valid_artifacts": 32,
+    "report": "docs/evidence/download-validation.json"
+  },
+  "submission_name": null,
+  "note": "No new TIFF: literal overlap stop and missing shared cache. Repaired archive publication; all downloads audit-only.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "unique_tiff_requirement_satisfied": false,
+  "inputs_report": "docs/evidence/session-e95b35a0-inputs.json",
+  "verification": {
+    "pytest": {
+      "passed": 1015,
+      "skipped": 24,
+      "subtests_passed": 58
+    },
+    "release_audit": "PASS_NEGATIVE_SUBMISSION_DECISION",
+    "download_audit": "PASS",
+    "site_checks": "PASS",
+    "shared_template_changed": false,
+    "raster_bytes_changed": false
+  },
+  "evidence_sha256": {
+    "docs/evidence/release-readiness.json": "e0301b69d21b7646474cb14ac63ada07644b5480c1bc865360cba2162e400893",
+    "docs/evidence/all-artifacts-registry.json": "d5ff6cc8adc4c09254f0e27df81499f6a91c00f4c50a9fbaa746c988e8a39020",
+    "docs/evidence/download-validation.json": "aa89ffbc851bd9cbe636a76fe9098668947ff5466c685cc6347202c51d29208e",
+    "docs/evidence/session-e95b35a0-inputs.json": "3e2cffde0c27228403fb707908e8832c6b09fbdb284d666530964011563c2251"
+  }
+}

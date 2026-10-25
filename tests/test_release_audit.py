@@ -64,7 +64,8 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert h86l["historical_holdout"]["evidence_class"] == "HOLDOUT-DTI"
     assert h86l["historical_holdout"]["value"] == 0.0
     assert h86l["historical_holdout"]["withheld_positives"] == 11321
-    assert "leakage-suspect" in h86l["historical_holdout"]["design"]
+    assert "full catalogue" in h86l["historical_holdout"]["design"]
+    assert "not fold-visible" in h86l["historical_holdout"]["design"]
     assert h86l["historical_lane_verdict"] == "negative"
     assert "DO NOT SUBMIT" in h86l["status"]
 

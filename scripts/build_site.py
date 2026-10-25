@@ -781,23 +781,108 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
-def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "") -> str:
+def h86m_damagering_answer(card: dict) -> str:
+    """Concurrent published TIFF with no holdout. Submission stays forbidden."""
+    if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86M-DAMAGERING card must stay a no-slot negative")
+    hold = card["holdout_dti"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86m-damagering"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>Concurrent H86M-DAMAGERING TIFF — audit download only</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>) is a file from another session. <strong>OK to submit: NO.</strong> Its own card records HOLDOUT-DTI status <code>{e(hold["status"])}</code>. A format pass is not upload permission.</p>
+<p><strong>Note, audit reference only:</strong> <code>{e(card["note"])}</code></p>
+<p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86m-damagering-run-card.json">H86M-DAMAGERING run card</a></p>
+</section>'''
+
+
+def h86l_fmc_answer(card: dict) -> str:
+    """Concurrent published TIFF. Numbers come from its card; submission stays forbidden."""
+    if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86L-FMC card must stay a no-slot negative")
+    hold = card["holdout"]["candidate"]
+    paired = card["holdout"]["paired_vs_H33"]
+    overlap = card["correlation_overlap_vs_registry"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86l-fmc"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>Concurrent H86L-FMC TIFF — audit download only</h2>
+<p><code>{e(name)}-zeros.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["dots"]:,} dots) is a file from another session. <strong>OK to submit: NO.</strong> <code>safe_to_submit</code> is false and no weekly slot was used.</p>
+<ul>
+<li><strong>HOLDOUT-DTI</strong> ({e(hold["evaluator_version"])}, {hold["withheld_positive_pixels"]:,} withheld positives; the card labels this leakage-suspect): <strong>{hold["dti"]:.4f} [{hold["ci95"][0]:.4f}, {hold["ci95"][1]:.4f}]</strong>. Paired difference versus H33-as-is: {paired["delta"]:+.4f} [{paired["ci95"][0]:+.4f}, {paired["ci95"][1]:+.4f}].</li>
+<li><strong>Leakage canary AUC:</strong> {card["leakage_canary"]["auc"]:.4f}. <strong>Registry overlap reported by that lane:</strong> {overlap["max_overlap3"]:.4f} versus <code>{e(overlap["worst_overlap"])}</code>. That overlap is above 0.70.</li>
+<li><strong>Note, audit reference only:</strong> <code>{e(card["submission_note_le140"])}</code></li>
+</ul>
+<p><a href="downloads/{e(name)}-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}-zeros.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86l-fmc-run-card.json">H86L-FMC run card</a></p>
+</section>'''
+
+
+def h86l_vfgr_answer(card: dict) -> str:
+    """Current-session stop. Numbers are read from the run card; no TIFF exists."""
+    if card.get("submission_file") is not None or card.get("raster_sha256") is not None:
+        raise ValueError("H86L-VFGR stop card must not name a written raster")
+    if (card.get("verdict") != "negative" or card.get("decision") != "DO NOT SUBMIT"
+            or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("ok_to_submit_to_portal") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86L-VFGR card must stay a no-slot negative stop")
+    hold = card["holdout_dti"]
+    scores = hold["scores"]
+    e1 = scores["E1_vfgr"]
+    e2 = scores["E2_raw_edge"]
+    paired = hold["paired_differences"]["E2_raw_edge"]
+    dots = card["correlation_overlap_vs_registry"]["final_dots"]
+    surface = card["correlation_overlap_vs_registry"]["surface"]
+    hits = dots["informative_overlap_firings"]
+    hit_rows = "".join(
+        f"<li><code>{e(hit['repo'])}</code> · overlap {hit['overlap']:.4f} · "
+        f"chance halo {hit['halo_coverage']:.4f} · their dots {hit['their_dots']:,}</li>"
+        for hit in hits
+    )
+    return f'''<section class="callout" id="h86l-vfgr"><span class="badge bad">CURRENT SESSION: NO TIFF · DO NOT SUBMIT</span>
+<h2>Can this session be submitted? No.</h2>
+<p><strong>OK to submit to DrivenData: NO.</strong> No new GeoTIFF was written. <code>safe_to_submit</code> is false, <code>approved_for_weekly_slot</code> is false, and <code>submission_slots_used</code> is 0. There is no authorized filename and no note to paste.</p>
+<p>The frozen visible-fault edge residual was tested before any file was placed. Its own raw-edge control beat it. The final 37,654 dots also landed inside the 3-pixel halo of an earlier corroborated-edge raster often enough to trip the informative-overlap stop. Both facts independently forbid a submission file.</p>
+<ul>
+<li><strong>HOLDOUT-DTI</strong> ({e(hold["evaluator_version"])}, {e1["withheld_positive_pixels"]:,} withheld positives, 1,000 physical-block draws, seed 520810): candidate <code>E1_vfgr</code> = <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong>. Raw-edge control <code>E2</code> = {e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]. Paired difference E1 minus E2 = <strong>{paired["delta"]:+.4f} [{paired["ci95"][0]:+.4f}, {paired["ci95"][1]:+.4f}]</strong>, entirely below zero. This is not an organizer score and is not comparable to a different split.</li>
+<li><strong>Leakage canary:</strong> maximum single-feature AUC {max(card["leakage_canary_auc"].values()):.4f}, below the 0.90 stop.</li>
+<li><strong>Registry measurement</strong> ({dots["rasters_measured"]:,} local files; inventory rows missing: {dots["rasters_missing_from_pinned_inventory"]}): surface worst Spearman {surface["worst_spearman_rho"]:.4f} with {surface["rho_firings_above_0.90"]} firings above 0.90. Final dots: worst dot-field overlap {dots["worst_dot_field_overlap_3px"]:.4f}; <strong>{len(hits)} informative overlap firings</strong> (forward overlap above 0.70 and the other raster’s 3-pixel halo covering at most 70% of the footprint). The substantive collision is <code>GEMSDOE46</code>’s 37,654-dot corroborated raster.</li>
+</ul>
+<ul>{hit_rows}</ul>
+<p>Historical research TIFFs lower on this page remain downloadable for audit. Every one of them is still <strong>DO NOT SUBMIT</strong>. A local format pass does not authorize upload, and it does not explain the earlier portal message “Predicted values must be in range [0, 1]”; the rejected file was not in this checkout.</p>
+<p><a href="evidence/h86l-vfgr-run-card.json">H86L-VFGR run card</a> · <a href="{REPO}/blob/main/research/H86L_VFGR_PREREGISTRATION.md">Frozen preregistration</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86L_VFGR_REVIEW.md">Three-pass review</a> · <a href="executive-summary.html">Portal steps, for a future authorized file only</a></p>
+</section>'''
+
+
+def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "", vfgr_banner: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede">The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. Downloadable GeoTIFFs remain available for reproducibility only; a new hash or local format pass does not establish scientific uniqueness or slot approval.</p>
+<p class="lede"><strong>OK to submit: NO.</strong> This session wrote no TIFF. The H86L-VFGR candidate lost to its raw-edge control and duplicated an earlier corroborated-edge lane, so the writer stopped. A concurrent H86L-FMC file is downloadable for audit only and is also not authorized. The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. A local format pass does not establish scientific uniqueness or slot approval.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
 <p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
+{vfgr_banner}
 {h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Authorized submission files</span><strong>0</strong><small>H86G-EDTI retains its historical amended-gate promotion, not literal-rule clearance or slot approval. No portal operation was run here.</small></div>
 <div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This release audit does not fit a model, in any event, it isn't a discovery oracle. H86G-EDTI ran its 3 preregistered arms and promotes; the other lanes above are negative.</small></div></div>
 {sacd_banner}
+
+<section class="card" id="h86m"><h2>Newest unique TIFFs (2026-10-25, H86M) — ⛔ DO NOT SUBMIT · ✅ OK TO DOWNLOAD FOR AUDIT</h2>
+<p>Two new, byte- and pixel-unique single-band GeoTIFFs were generated and machine-validated with <strong>no human inspection</strong> (shared <code>gems57</code> writer + validator): values exactly <code>{0, 1}</code>, <code>0</code> NaN/Inf inside or outside the footprint, <code>EPSG:32611</code>, <code>3730×3292</code>, transform matching the sample submission. This is the fix class for the portal error <em>“Predicted values must be in range [0, 1]”</em>: never upload a raster derived from <code>existing_faults.tif</code> (its outside-footprint sentinel is <code>-1</code>) or a <code>-nan</code> variant; upload only a <code>-zeros</code> file whose validator output shows <code>min=0.0, max=1.0, n_nan=0</code>.</p>
+<ul>
+<li><a href="downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif" download><code>gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif</code></a> · SHA-256 <code>fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10</code> · <strong>HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) = 0.0220, 95% CI [0.0086, 0.0384]</strong> — beaten by its raw-gravity control (paired Δ −0.0144 [−0.0257, −0.0025]); verdict <strong>negative</strong>. Portal note stored in its writer receipt (≤140 chars): <code>H86M-BMR basement gravity mass-residual dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT</code>.</li>
+<li><a href="downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif" download><code>gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif</code></a> · SHA-256 <code>ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda</code> · <strong>HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) = 0.0408, 95% CI [0.0257, 0.0575]</strong> — paired CIs vs both controls cross zero; verdict <strong>negative</strong>. Portal note: <code>H86M-CNT conductivity-neck x dilatation dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT</code>.</li>
+</ul>
+<p>Uniqueness (PA-86-01 like-for-like, 57–58 locally measured registry rasters): max surface Spearman 0.067, max final-dot 3-px overlap 0.57 (≤0.70) — unique, but <strong>uniqueness is not a score</strong>. Neither file beat its controls, so <strong>DO NOT SUBMIT</strong> either and no weekly slot was used. No organizer-confirmed score exists for any file on this site; 0.2778 / 0.4413 / 0.3195 remain owner-reported. Full cards: <a href="evidence/h86m-bmr-run-card.json">BMR run card</a> · <a href="evidence/h86m-cnt-run-card.json">CNT run card</a>.</p></section>
 {review_notice}
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster (<code>17GEMSDOE</code>, <code>ab0a0a62...</code>) is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop; moreover, a discrete binary stride-5 lattice witness (<code>13GEMSDOE</code>, <code>b4570b40...</code>, <code>206,895</code> dots) covers <code>99.8724%</code> of allowed pixels within 3 px, forcing <code>&gt;= 82.70%</code> overlap on any <code>37,654</code>-dot raster by pigeonhole. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
 <p>All {len(registry['artifacts'])} inherited final TIFFs were independently rechecked against this witness, and PR #60's <code>SPT</code> candidate remains quarantined outside <code>docs/</code> after also measuring 100% witness overlap and coin-flip canary AUC (<code>0.4947</code>). No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT card</a> · <a href="evidence/session-20261023-run-card.json">Archived 2026-10-23 card</a>.</p></section>
@@ -814,16 +899,25 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "") -> str:
+def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "", vfgr_banner: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>{e(a["status"])}</strong></td></tr>' for a in report["artifacts"])
     n_valid = report["locally_valid_artifacts"]
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{vfgr_banner}
 {h86g_html}
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). That historical research promotion does not override the literal stop or authorize upload. The card explicitly records safe_to_submit=false and approved_for_weekly_slot=false; this audit spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only (all files)</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 {sacd_banner}
+
+<section class="card" id="h86m"><h2>Newest unique TIFFs (2026-10-25, H86M) — ⛔ DO NOT SUBMIT · ✅ OK TO DOWNLOAD FOR AUDIT</h2>
+<p>Two new, byte- and pixel-unique single-band GeoTIFFs were generated and machine-validated with <strong>no human inspection</strong> (shared <code>gems57</code> writer + validator): values exactly <code>{0, 1}</code>, <code>0</code> NaN/Inf inside or outside the footprint, <code>EPSG:32611</code>, <code>3730×3292</code>, transform matching the sample submission. This is the fix class for the portal error <em>“Predicted values must be in range [0, 1]”</em>: never upload a raster derived from <code>existing_faults.tif</code> (its outside-footprint sentinel is <code>-1</code>) or a <code>-nan</code> variant; upload only a <code>-zeros</code> file whose validator output shows <code>min=0.0, max=1.0, n_nan=0</code>.</p>
+<ul>
+<li><a href="downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif" download><code>gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif</code></a> · SHA-256 <code>fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10</code> · <strong>HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) = 0.0220, 95% CI [0.0086, 0.0384]</strong> — beaten by its raw-gravity control (paired Δ −0.0144 [−0.0257, −0.0025]); verdict <strong>negative</strong>. Portal note stored in its writer receipt (≤140 chars): <code>H86M-BMR basement gravity mass-residual dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT</code>.</li>
+<li><a href="downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif" download><code>gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif</code></a> · SHA-256 <code>ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda</code> · <strong>HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) = 0.0408, 95% CI [0.0257, 0.0575]</strong> — paired CIs vs both controls cross zero; verdict <strong>negative</strong>. Portal note: <code>H86M-CNT conductivity-neck x dilatation dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT</code>.</li>
+</ul>
+<p>Uniqueness (PA-86-01 like-for-like, 57–58 locally measured registry rasters): max surface Spearman 0.067, max final-dot 3-px overlap 0.57 (≤0.70) — unique, but <strong>uniqueness is not a score</strong>. Neither file beat its controls, so <strong>DO NOT SUBMIT</strong> either and no weekly slot was used. No organizer-confirmed score exists for any file on this site; 0.2778 / 0.4413 / 0.3195 remain owner-reported. Full cards: <a href="evidence/h86m-bmr-run-card.json">BMR run card</a> · <a href="evidence/h86m-cnt-run-card.json">CNT run card</a>.</p></section>
 {review_notice}
 <h2>Current downloads — all research only; none authorized</h2>
 <div class="table-wrap"><table><thead><tr><th>Historical lane</th><th>Direct TIFF / SHA-256</th><th>Decision</th></tr></thead><tbody>{audit_rows}</tbody></table></div>
@@ -892,7 +986,7 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None) -> str:
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "") -> str:
     block86k_stdp = ""
     if plan86k and stdp_card:
         cards_k = []
@@ -1084,6 +1178,7 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
 <dt>Data / viability</dt><dd>{e(h['data_readiness'])} {e(h.get('obtainability', 'No new external product is proposed as acquired.'))}</dd></dl><p>{sources}</p></article>''')
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
+{vfgr_html}
 <div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-TVHS</code> achieved strict-LOQO <code>E1 = 0.0983 [0.0800, 0.1159]</code>, zero-catalogue blind <code>E2 = 0.0626 [0.0475, 0.0778]</code>, and unweighted strict-LOQO <code>E3 = 0.1214 [0.1060, 0.1350]</code>, <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
 {block86k_stdp}
 {block86j_mcsp}
@@ -1551,13 +1646,24 @@ def render(root: Path = ROOT) -> dict[str, str]:
                         + (len(plan86j["hypotheses"]) if plan86j else 0)
                         + (len(h86j_mcsp_prereg["ranked_hypotheses"]) if h86j_mcsp_prereg else 0)
                         + (len(plan86k["hypotheses"]) if plan86k else 0))
+    vfgr_path = root / "docs/evidence/h86l-vfgr-run-card.json"
+    vfgr_card = strict_json(vfgr_path) if vfgr_path.is_file() else None
+    vfgr_banner = h86l_vfgr_answer(vfgr_card) if vfgr_card is not None else ""
+    fmc_path = root / "docs/evidence/h86l-fmc-run-card.json"
+    fmc_card = strict_json(fmc_path) if fmc_path.is_file() else None
+    if fmc_card is not None:
+        vfgr_banner += h86l_fmc_answer(fmc_card)
+    h86m_path = root / "docs/evidence/h86m-damagering-run-card.json"
+    h86m_card = strict_json(h86m_path) if h86m_path.is_file() else None
+    if h86m_card is not None:
+        vfgr_banner += h86m_damagering_answer(h86m_card)
     combined_banner = stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
-        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner),
-        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner),
+        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
+        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),
