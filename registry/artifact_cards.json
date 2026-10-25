@@ -199,7 +199,7 @@
       "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
     },
     {
-      "lane": "GDSC Geodetic Dilatational Strain Corridor — geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
       "card": "docs/evidence/gdsc-run-card.json",
       "context": "evidence/run_card.json",
       "holdout_kind": "unvalidated_variant",
@@ -281,6 +281,13 @@
       "context": "docs/evidence/h86m-bmgs-run-card.json",
       "holdout_kind": "h86m_bmgs",
       "stem": "gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros"
+    },
+    {
+      "lane": "H86M-SLCQ adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + eroded footprint-median 4-fold LOQO + 6-ring survival Dinkelbach-CELF (HOLDOUT-DTI 0.1527 [0.1364, 0.1679] beating E3 +0.0150 [+0.0009, +0.0282] & H86C-KSLB 0.1241; SGMC-PROXY-DTI 0.0967 / blind E2 0.1131 beating GEMSDOE32 H33 0.0937; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-slcq-run-card.json",
+      "context": "docs/evidence/h86m-slcq-run-card.json",
+      "holdout_kind": "h86m_slcq",
+      "stem": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros"
     }
   ]
 }

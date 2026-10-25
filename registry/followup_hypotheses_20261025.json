@@ -60,6 +60,11 @@
       "method": "H86M-BMGS basement multi-geometry seismic/gravity lane",
       "evidence": "research/H86M_BMGS_PREREGISTRATION.md and docs/evidence/h86m-bmgs-run-card.json",
       "disposition": "Already executed in the integrated main tree; retain its measured disposition and do not repeat or reclassify as untried."
+    },
+    {
+      "method": "H86M-SLCQ dip-adaptive Salem tilt-contact pullback + steerable step/dike symmetry + BMR/conduit Dinkelbach-CELF",
+      "evidence": "research/H86M_SLCQ_PREREGISTRATION.md and docs/evidence/h86m-slcq-run-card.json",
+      "disposition": "Already executed in the integrated main tree; its measured run card is negative and no weekly slot was used. This composite is not an untried proposal."
     }
   ],
   "common_data_requirement": {

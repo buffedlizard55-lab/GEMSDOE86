@@ -44,6 +44,7 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
     assert "H86N-GSST" in excluded
     assert "H86M-PFTE" in excluded
     assert "H86M-BMGS" in excluded
+    assert "H86M-SLCQ" in excluded
     assert "GDSC" in excluded
     assert "GEMSDOE52" in " ".join(row["evidence"] for row in queue["excluded_as_already_tried"])
 
