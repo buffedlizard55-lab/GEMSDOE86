@@ -243,6 +243,11 @@
       "passed": 1022,
       "skipped": 24,
       "scope": "Upstream merge began during last tests: not an immutable-final-tree full-suite claim."
+    },
+    "final_focused_suite": {
+      "passed": 41,
+      "failed": 0,
+      "scope": "Final integrated 35-file tree: archive registration, current review, historical snapshot, VFGR release."
     }
   },
   "verification": {
