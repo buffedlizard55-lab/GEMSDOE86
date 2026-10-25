@@ -44,7 +44,7 @@ def test_site_distinguishes_byte_identity_from_registry_uniqueness():
     home = (ROOT / "docs/index.html").read_text()
     report = (ROOT / "research/H86E_SESSION_20261024.md").read_text()
     assert "byte-distinct research GeoTIFF" in home
-    assert "not unique under the registry gate" in home
+    assert "byte-distinct does not establish registry uniqueness" in home
     assert "DO NOT SUBMIT" in home
     assert "a new unique GeoTIFF" not in home
     assert "does **not** satisfy the requirement for a registry-unique" in report

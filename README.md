@@ -14,22 +14,15 @@ Independent repository review (2026-10-25; three passes; no model run or TIFF ge
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## ✅ IS ANY FILE OK TO SUBMIT RIGHT NOW? **YES — EXACTLY ONE.** (automated decision, 2026-10-25, H86G-EDTI; supersedes the dated negative reviews below for this one file only)
+## ⛔ Is any file OK to submit right now? **NO — DO NOT SUBMIT ANY DOWNLOAD**
 
-**Submit this file (selector action):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
-Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
-Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
+The current project policy binds the literal `0.70` overlap stop. The pinned historical registry witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that literal overlap rule. No candidate-specific surface or final-dot scan can make this universal witness irrelevant without an explicitly authorized protocol change. **Format-valid is not registry-clear; historical “promote” labels are not current upload authorization.** No submission slot is used or selected here.
 
-| Automated gate (no human inspection) | Result |
-|---|---|
-| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1} (the portal "[0, 1]" error class is excluded on these bytes), 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical |
-| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` |
-| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
-| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
-| Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` — OK TO DOWNLOAD AND SUBMIT as the selector action; 0 slots used here; live score unknowable until an organizer receipt** |
+The H86G-EDTI run card retains its historical `promote` result under the previous PA-86-01 like-for-like interpretation; its own card still records `safe_to_submit: false` and `approved_for_weekly_slot: false`. It is not labeled as ready-to-submit by the current review. All TIFFs linked from the project are audit-only; do not upload them.
 
-**Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
+Current automated status and review: [negative run card](docs/evidence/latest-review-run-card.json), [pinned literal-stop measurement](docs/evidence/protocol-preflight.json), [current review and handoff](research/SESSION_20261025_ARENA_REVIEW.md), and [submission instructions](docs/executive-summary.html). The current request's reported scores remain owner input unless an organizer receipt is recorded. This review's implementation notes and three-pass checklist are in [the submission-safety review](research/SESSION_20261025_SUBMISSION_SAFETY_REVIEW.md) and [JSON run card](evidence/session_20261025_submission_safety.json).
+
+**H33 interpretation:** the pixel-forensics note supports the hypothesis that the supplied `0.2778` owner-reported result benefited from pruning 2,545 low-marginal-coverage catalogue-adjacent dots from an H19-5/D2.8 lineage. This is not proof of why the portal score was high and is not evidence a new method will beat it. See [H33 interpretation and caveats](research/H33_INTERPRETATION_REVIEW.md). No HOLDOUT-DTI number is a leaderboard projection.
 
 ## Current independent review — 2026-10-25 (session `cf73474c`)
 

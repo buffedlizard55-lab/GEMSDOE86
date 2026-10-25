@@ -14,10 +14,17 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    # Historical H86G "promote" is not authorization under the current literal-stop policy.
+    assert "NO FILE IS CLEARED TO SUBMIT" in html
+    assert "Do not upload any file linked from this page" in html
+    assert "Download TIFF — SUBMIT THIS FILE" not in html
+    assert "selector-ready file" not in html.lower()
+    assert "HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" in html
+    assert "Download TIFF — audit only; DO NOT SUBMIT" in html
+    executive = (DOCS / "executive-summary.html").read_text()
+    assert "CURRENT DECISION: DO NOT SUBMIT ANY FILE" in executive
+    assert "HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" in executive
+    assert "submit this file" not in executive.lower()
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
