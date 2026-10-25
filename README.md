@@ -1,5 +1,13 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
+
+- **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.
+- **Why no new TIFF:** the shared feature stack is absent (`scripts/audit_workspace_inputs.py`), so nothing can be validated against a holdout; and the uniqueness rule is undefined for the dense probability rasters that the official reference solution writes.
+- **Review, verified commands and numbers, and the blockers:** [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079_REVIEW.md) · run card [`research/session-0c60b079-run-card.json`](research/session-0c60b079-run-card.json).
+- **Verified this session:** test suite `1001 passed, 24 skipped`; H33 = parent minus 2,545 in-footprint dots (0 added), but the pair also differs in 7,111,787 NaN-vs-zero cells; the vendored metric treats NaN as 0.
+- **Needed from you:** (1) place the competition training features and labels into `data/bridge/` from a logged-in DrivenData download; (2) an owner decision on how to define the dot set for dense rasters; (3) the filename that produced the "[0, 1]" portal error.
+
 ## Latest executed strict-LOQO lane — 2026-10-25 (`H86K-STDP`, session `8114f7b4`): **NEGATIVE — DO NOT SUBMIT** (audit-only GeoTIFF generated & auto-validated; `0` slots spent)
 
 - **Immediate human-free submission answer:** **NO — `DO NOT SUBMIT` (`verdict = "negative"`, `submission_ready = false`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`).** [`gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif) · [`one-TIFF ZIP`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.zip) · [`writer receipt`](docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.json) (`3ac7fa1d...`, `37,654` unit dots, `0` NaN/Inf, values strictly in `[0, 1]`, `0` mapped-catalogue dots, `110`-char note `H86K-STDP Salem-pullback+geotherm LOQO DCELF (HOLDOUT 0.1380, SGMC 0.1133); v2 gate fail-closed; DO NOT SUBMIT`) is **100% locally format-valid for audit download (`31/31` artifacts pass), yet fail-closed `DO NOT SUBMIT` without human intervention**.
