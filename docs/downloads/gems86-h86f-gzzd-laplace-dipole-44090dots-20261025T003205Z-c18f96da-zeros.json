@@ -1,0 +1,201 @@
+{
+  "file": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+  "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+  "bytes": 141454,
+  "submission_name": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros",
+  "note": "H86F-GZZD Laplace gzz dipole polarity-concordant; see run card gates; no slot used",
+  "note_chars": 82,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+    "bytes": 141454,
+    "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+    "bytes": 141454,
+    "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "n_nonzero": 44090,
+    "mass": 44090.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.zip",
+  "zip_sha256": "7fc3b2e0cc875a3e76d3e1ef24351d6dbea07503e7d1f1a5f4fc03b5e22048e2",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86F-GZZD",
+    "hypothesis": "regularized Laplace gzz dipole over buried basement step + polarity concordance",
+    "budget": 44090,
+    "feature_hashes": {
+      "gzzd_concordant": "f7e85eccbc4b29a6db7a9173843f6f668335bd152a97ef461475d4523551f40a",
+      "gzzd_dipole": "a335980740689563f474b259b12a62d3c2e8ef797b0bde82a0581f33d5b10cf6",
+      "gzzd_edge_control": "beb9eac677ec49452c5dd07150a64b74a66cfec193bcd8dc077364ccc74ebc5b",
+      "gzzd_abs_gzz": "5e24dcc7207c9f11dbc9fc5a04f0bac305f02504620e06440df396edd8b54985",
+      "gzzd_polarity_gate": "4c8088ca6dda22ee2139fcf528501d6d4c32676658d5f16294bdf7d374350582"
+    },
+    "band_physics_qc": {
+      "evidence_class": "BAND-PHYSICS-QC",
+      "formula_image_coordinates": "gzz = -(d_x Band18 + d_row Band11)",
+      "sigma_px": 5.0,
+      "interior_erosion_px": 30,
+      "interior_pixels": 4728805,
+      "corr_gzz_vs_neg_laplacian_band13": 0.8951944450864479,
+      "fail_closed_below": 0.8
+    },
+    "surface_sha256": "a2545933a07c572aaaf5f18b05e2edcc574ad6ff64a2cc78d27bcc8eaa971782",
+    "dots_sha256": "77cae2bdab45e6e38da43a0752972ac1c3b1282935a595374c46239f5a03057f",
+    "registry_surface_evidence": "docs/evidence/h86f-gzzd-registry-surface.json",
+    "registry_final_evidence": "docs/evidence/h86f-gzzd-registry-final-dots.json",
+    "chance_overlap_evidence": "FAILED_CLOSED_NO_REPORT (see run card)"
+  },
+  "independent_disk_validation": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+    "bytes": 141454,
+    "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  }
+}

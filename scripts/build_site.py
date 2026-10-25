@@ -143,6 +143,37 @@ It passes the local format, footprint, catalogue-mask, ZIP and hash checks, but 
 <p><a href="evidence/h86e-mmt-run-card.json">Full H86E-MMT run card</a> · <a href="evidence/h86e-mmt-pa86-chance-overlap.json">PA-86-02 measurement</a> · <a href="evidence/h86e-mmt-registry-surface.json">surface gate</a>. <strong>SAFE TO DOWNLOAD FOR AUDIT; DO NOT SUBMIT.</strong></p></section>'''
 
 
+def h86f_gzzd_answer(card: dict) -> str:
+    """Current H86F-GZZD lane receipt; every number carries its evidence class."""
+    h = card["holdout_dti"]
+    c = h["candidate"]
+    r0 = h["R0_D28_visible_collar"]
+    e3 = h["all_arms"]["E3_gravmag_edge_control"]
+    best = h["current_holdout_best_same_split"]
+    reg = card["correlation_overlap_vs_registry"]
+    surface = reg["surface_preplacement"]
+    final = reg["final_dots"]
+    pa = reg["pa86_02"]
+    leakage = max(v["discriminative_auc"] for v in h["leakage_canary"].values())
+    like = final["two_phase"]["like_for_like_reading"]
+    if "informative_firings" in pa:
+        pa_text = f'{pa["informative_firings"]} informative overlap firing(s); gate pass is <strong>{str(pa["gate_pass"]).upper()}</strong>'
+    else:
+        pa_text = f'PA-86-02 failed closed ({e(pa.get("status", "no report"))}: incomplete registry cannot pass); gate pass is <strong>FALSE</strong>'
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86f-gzzd"><span class="badge bad">CURRENT LANE H86F-GZZD: DO NOT SUBMIT</span>
+<h2>2026-10-25: unique TIFF generated and auto-rejected — download for audit only</h2>
+<p><code>{e(name)}.tif</code> is a newly generated, byte-distinct single-band GeoTIFF
+(SHA-256 <code>{e(card["raster_sha256"][:16])}…</code>; {card["validator_output"]["positive_pixels"]:,} positive cells).
+<strong>Is it OK to submit? NO — verdict {e(card["verdict"])}; no selector ran and no weekly slot was used.</strong>
+It passes every local format check on its on-disk bytes (single-band float32, EPSG:32611, 3730×3292,
+values in [0, 1] with min {card["validator_output"]["min"]:.1f} / max {card["validator_output"]["max"]:.1f}, 0 NaN — the class of the portal “[0, 1]” error is excluded by the fail-closed writer), but the automated scientific gates reject it:</p>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives): candidate E1 {c["dti"]:.4f} [{c["ci95"][0]:.4f}, {c["ci95"][1]:.4f}] vs unsigned-edge control E3 {e3["dti"]:.4f} and R0 visible-collar control {r0["dti"]:.4f}; paired delta vs best control {h["paired_delta_vs_best_preregistered_control"]["delta"]:+.4f} [{h["paired_delta_vs_best_preregistered_control"]["ci95"][0]:+.4f}, {h["paired_delta_vs_best_preregistered_control"]["ci95"][1]:+.4f}]. Same-split historical best is {best["dti"]:.4f} — not beaten. These are HOLDOUT-DTI values, not leaderboard scores; no projection is made.</li>
+<li><strong>LEAKAGE-CANARY:</strong> maximum discriminative AUC across the five fields is {leakage:.4f}, below the 0.90 stop threshold (near chance: the gravity-dipole fields barely recover withheld catalogue segments).</li>
+<li><strong>REGISTRY-MEASUREMENT:</strong> pre-placement surface worst rank correlation {surface["worst_spearman_full_footprint"]:.3f} (0 firings above 0.90, so placement was allowed for audit), final-dots worst rank correlation {final["worst_spearman_full_footprint"]:.3f}; {like["forward_overlap_firings"]} like-for-like dot-field overlap firing(s) among {like["dot_field_rasters"]} dot fields; {pa_text}. The scan measured {final["registry_rasters_measured"]} of {final["registry_rasters_expected"]} indexed rasters with {len(final.get("registry_errors", []))} grid/CRS-incompatible rows, so completeness is <strong>FALSE</strong> and no uniqueness clearance exists.</li></ul>
+<p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86f-gzzd-run-card.json">Full run card</a> · <a href="evidence/h86f-gzzd-registry-surface.json">Surface registry check</a> · <a href="evidence/h86f-gzzd-registry-final-dots.json">Final-dots registry check</a> · <a href="{REPO}/blob/main/research/H86F_GZZD_PREREGISTRATION.md">Frozen preregistration &amp; ranked hypotheses</a></p></section>'''
+
+
 def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
@@ -152,7 +183,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <span class="badge bad">NOT SAFE TO SUBMIT · NO CANDIDATE AUTHORIZED</span>
 <h1>Download the research.<br><span class="subtle">Do not spend a submission slot.</span></h1>
 <p class="lede">The downloadable GeoTIFFs pass automated local format checks, but no candidate is authorized for a weekly slot. A new hash is not a unique scientific submission.</p>
-<p><strong>Current H86E session:</strong> a byte-distinct research GeoTIFF (the latest H86E-MMT magnetic-marker translation) is listed below as an audit-only download. Its full preregistered three-arm receipt is shown above; it is <strong>not unique under the registry gate and is not cleared for submission</strong>. No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final-dot registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
+<p><strong>Current lane (H86F-GZZD, 2026-10-25):</strong> a newly generated, byte-distinct research GeoTIFF (Laplace gravity-curvature dipole) is listed below as an audit-only download, with the earlier H86E-MMT lane beneath it. Its full preregistered three-arm receipt is shown above; it is <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong>. No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <strong>DO NOT SUBMIT</strong> any current file.</p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Why blocked &amp; how submission works →</a></div></section>
@@ -162,7 +193,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster (<code>17GEMSDOE</code>, <code>ab0a0a62...</code>) is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop; moreover, a discrete binary stride-5 lattice witness (<code>13GEMSDOE</code>, <code>b4570b40...</code>, <code>206,895</code> dots) covers <code>99.8724%</code> of allowed pixels within 3 px, forcing <code>&gt;= 82.70%</code> overlap on any <code>37,654</code>-dot raster by pigeonhole. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
 <p>All {len(registry['artifacts'])} inherited final TIFFs were independently rechecked against this witness, and PR #60's <code>SPT</code> candidate remains quarantined outside <code>docs/</code> after also measuring 100% witness overlap and coin-flip canary AUC (<code>0.4947</code>). No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT card</a> · <a href="evidence/session-20261023-run-card.json">Archived 2026-10-23 card</a>.</p></section>
 <section id="downloads"><p class="eyebrow">Immediate downloads · historical research artifacts</p><h2>TIFF + single-TIFF ZIP + identity receipt</h2>
-<p>Files below include the current H86E-MMT and concurrent blind-geothermal lane artifacts plus preserved historical lanes. Every download is safe only for audit/reproducibility; no file is selected, ranked, or authorized for a submission slot here.</p>
+<p>Files below include the current H86F-GZZD artifact, the H86E-MMT and concurrent blind-geothermal lane artifacts plus preserved historical lanes. Every download is safe only for audit/reproducibility; no file is selected, ranked, or authorized for a submission slot here.</p>
 {downloads(report['artifacts'])}</section>
 <section class="card"><h2>Why GEMSDOE32 (<code>0.2778</code> OWNER-REPORTED; not organizer-confirmed) led the fleet — and can we beat it?</h2><p>Pixel-exact forensic comparison of the pinned <code>GEMSDOE28</code> (<code>40,199</code> dots; <code>0.2708</code> OWNER-REPORTED) and <code>GEMSDOE32</code> <code>h33-h33-2-b2</code> (<code>37,654</code> dots; <code>0.2778</code> OWNER-REPORTED) rasters confirms <strong>0 differing cells across all 12,279,160 grid pixels</strong> after deleting the <code>2,545</code> dots in the <code>1.0 &lt; d_cat &lt;= 2.0</code> mapped-fault collar. <code>GEMSDOE36</code> (<code>0.2750</code> OWNER-REPORTED) contains <code>100%</code> of <code>R0</code> verbatim plus <code>1,200</code> extra dots (<code>97.40%</code> 3-px overlap); all owner-reported fleet entries above <code>0.2600</code> in the supplied inventory lie in this <code>H19-5/D2.8</code> lineage (<code>92.64%–100%</code> overlap). Under asymmetric 300 m Tversky (<code>alpha=0.2, beta=0.8</code>), <code>~2.8 px</code> disk spacing near the <code>3 px</code> kernel radius can reduce redundant prediction mass, but does not prevent kernel overlap; collar pruning may remove low-credit mass, though proximity to a mapped fault alone does not prove zero hidden-truth credit. Cross-project score comparisons (e.g., <code>GEMSDOE81</code> <code>44,090</code> unit dots and <code>0.0041</code> OWNER-REPORTED vs <code>GEMSDOE76</code> <code>0.2343</code> OWNER-REPORTED / <code>GEMSDOE70</code> <code>0.2478</code> OWNER-REPORTED) are descriptive associations, not controlled causal proofs. <strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives): <code>H86D-CTHB</code> = <code>0.1133</code>, 95% CI <code>[0.0965, 0.1297]</code>; <code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0936, 0.1166]</code>; paired HOLDOUT-DTI delta = <code>+0.0076</code>, 95% CI <code>[-0.0101, +0.0241]</code>. The paired CI crosses zero. The prompt's conflicting <code>0.3195</code> and <code>0.4413</code> current-leaderboard values are OWNER-REPORTED and unverified here; exceeding any reported value is not established. <strong>Do not infer a leaderboard projection from holdout results.</strong> <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H33_INTERPRETATION_REVIEW.md">Metric counterexamples and limits of the explanation</a>.</p>
 <p>No validated improvement over that competition result is authorized for upload while the literal witness stop holds. Our ranked research queue prioritizes <strong>signed paired-throw basement–gravity concordance, cross-corridor magnetic marker translation, hydrothermal magnetite-destruction &amp; vent-alignment corridors, 3D MT conductance × heat flow, and 1-m 3DEP LiDAR watershed-crossing scarps</strong>. <a href="hypotheses.html">{plan_count} ranked, scoped hypotheses →</a> · <a href="{REPO}/blob/main/research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md">Geothermal vent synthesis →</a></p></section>
@@ -428,7 +459,16 @@ def render(root: Path = ROOT) -> dict[str, str]:
         raise ValueError("H86E card must stay negative unless a selector step is recorded")
     swcon_path = root / "docs/evidence/swcon_pa86_chance_overlap.json"
     swcon = strict_json(swcon_path) if swcon_path.exists() else None
-    answer = h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card)
+    gzzd_card = strict_json(root / "docs/evidence/h86f-gzzd-run-card.json")
+    if (gzzd_card["verdict"] != "negative" or gzzd_card["decision"] != "DO NOT SUBMIT"
+            or gzzd_card["submission_ready"] is not False
+            or gzzd_card["safe_to_submit"] is not False
+            or gzzd_card["approved_for_weekly_slot"] is not False
+            or gzzd_card["submission_slots_used"] != 0
+            or gzzd_card["experiments_run"] != 3
+            or gzzd_card["raster_sha256"] is None):
+        raise ValueError("H86F-GZZD card must stay negative, slot-free and bound to its raster")
+    answer = h86f_gzzd_answer(gzzd_card) + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card)
     return {
         "docs/index.html": home(report, feed, registry, review, len(plan["hypotheses"]), answer),
         "docs/executive-summary.html": executive(report, sources, answer),

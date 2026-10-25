@@ -90,6 +90,12 @@
       "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+      "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

@@ -123,3 +123,15 @@ are already built and cost nothing but slots; everything after that should fund 
 **Human inputs still required:** `TOP_PUBLIC` + date · rolling-week slots left · verified deadline ·
 R0's `0.2778` portal receipt · accepted outside-footprint encoding (`.tif` NaN vs `-zeros` fallback) ·
 organizer uniqueness rule (`IR-86-PRUNE-01`).
+
+## 2026-10-25 — H86F-GZZD lane: 0 slots used, no selector action
+
+The H86F-GZZD lane (`docs/evidence/h86f-gzzd-run-card.json`) generated an audit-only,
+locally format-valid TIFF that is HOLDOUT-DTI-negative (E1 `0.0303` [0.0237, 0.0364] vs
+edge control `0.0321`, R0 `0.0339`, same-split best `0.1241`; evaluator
+`gems57-pooled-hide-v2`, 11,321 withheld positives) and registry-failing (685/687
+measured; PA-86-02 failed closed). **No selector ran and no weekly slot was consumed**
+(`submission_slots_used = 0`). Before any future slot can be considered: repair or
+formally exclude the two grid-incompatible registry rows upstream
+(IR-86-H86F-GZZD-01), obtain receipt-backed organizer scores for the h33 lineage, and
+present a candidate that beats same-split best HOLDOUT-DTI with a separated CI.

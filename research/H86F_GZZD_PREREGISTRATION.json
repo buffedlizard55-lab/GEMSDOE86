@@ -1,0 +1,125 @@
+{
+  "schema": "gems86.h86f-gzzd-preregistration.v1",
+  "lane": "H86F-GZZD",
+  "status": "frozen_before_lane_computation",
+  "frozen_utc": "2026-10-25T00:10:47Z",
+  "base_commit": "7d7da3f88b98fd75a51534456c9a034608d4029f",
+  "lane_resolution": "The supplied prompt contains no separate single method paragraph assigning this session a lane (same irregularity recorded since registry/preregistration.json). Exactly one lane is selected and frozen here before any H86F surface, fit, canary, holdout or placement computation. Read-only H33/fleet forensics and band-physics spot checks performed before this freeze are audits of pinned prior artifacts, not lane experiments; they are reported in docs/evidence/h86f-h33-forensics.json.",
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86F-GZZD",
+      "name": "Regularized Laplace gravity-curvature dipole over a buried basement step, with basement/gravity polarity concordance",
+      "layers": [
+        "training_features.tif Band 18 iso_grav_anom_hg (pixel-verified signed +dg/dx_east)",
+        "training_features.tif Band 11 iso_grav_anom_vg (pixel-verified signed +dg/drow_south = -dg/dy_north; NOT a vertical derivative)",
+        "training_features.tif Band 13 iso_grav_anom",
+        "training_features.tif Band 15 depth_to_base_surf",
+        "training_features.tif Band 5 iso_grav_anom_slope (control only; pixel-verified hypot(Band 11, Band 18))"
+      ],
+      "transform": "Footprint-masked Gaussian-regularized (sigma=5 px = 500 m) Laplace vertical gravity curvature in image coordinates gzz = -(d_x Band18 + d_row Band11), QC-checked against -Laplacian(Band 13) (measured r=+0.8952 at sigma=5 on the 30-px-eroded interior in the pre-freeze audit). For 8 strike azimuths, an antisymmetric flank-pairing response sqrt(clip(flank_plus * -flank_minus, 0, None)) (and reverse polarity) of gzz at +/-2..4 px across strike, strike-smoothed over 9 px; E1 multiplies by a preregistered soft polarity gate (1.0 if the Band 15 basement-depth flank step and Band 13 gravity flank step have opposite signs, else 0.25).",
+      "non_fault_mimic": "Unfaulted pre-Tertiary paleovalley margins or buried caldera moat walls infilled by low-density sediments; gravity-basement inversion artifacts. Band 15 and Band 13 share gravity-inversion ancestry (measured interior r=-0.6396), so polarity concordance is a sign gate, never independent additive evidence.",
+      "uncatalogued_rationale": "A basement fault buried under basin fill steps the density interface and therefore produces a paired gzz dipole with a zero crossing over the step even where Holocene cover has erased any scarp a photo/DEM mapper could catalogue. The USGS/INGENIOUS catalogue is Quaternary/surface-expression based; a pure subsurface step detector is blind to that selection.",
+      "novelty": "No executed lane in this repo computes the divergence of the signed (Band 18, -Band 11) gravity vector: prior lanes used Band 11/18 as scalar/vertical gradients under the embedded header labels, unsigned cross-gradients (GMC), raw flank steps without gzz (SPBT-v1, negative), or gravity scalars inside supervised stacks (GFCO/KSLB/CTHB/CCTX/RIDF). The gzz identity itself was only numerically verified (docs/evidence/band-physics-verification-20261024.json) and listed as an unrun SPBT extension in registry/h86c_hypotheses.json; this lane is that extension, reported as such, with the dipole-pairing (not step magnitude) as the test statistic.",
+      "cost": "low-medium (deterministic, no fitting, no external data)",
+      "official_data": "Competition-native bands only (owner mirror sha256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5, re-verified this session; not organizer-authenticated). Physics basis: USGS GeoDAWN DOI 10.5066/P93LGLVQ; Laplace equation in the source-free half-space.",
+      "expected_dti_rank_basis": "Highest qualitative priority: it is the only ranked candidate whose statistic is specific to a step (paired opposite-sign curvature lobes) rather than to any edge, it needs no external bytes, and gravity/basement bands are present at full footprint coverage. No numerical DTI gain is projected."
+    },
+    {
+      "rank": 2,
+      "id": "H86F-WARP",
+      "name": "Broad-warp detrended-elevation profile-curvature sign-flip persistence",
+      "layers": [
+        "training_features.tif Band 12 det_elev",
+        "training_features.tif Band 19 det_elev_slope"
+      ],
+      "transform": "Second directional derivative of Band 12 at sigma=3 and 6 px; require a signed curvature zero crossing with opposite-sign flanks persisting >=900 m along strike, explicitly at broader scale than 1-m lidar scarps.",
+      "non_fault_mimic": "Hogback dip slopes, pluvial shoreline treads, and lithologic dip-slope breaks.",
+      "uncatalogued_rationale": "Pre-Quaternary bedrock faults can retain a broad flexural warp after the discrete scarp has degraded below catalogue mapping thresholds.",
+      "novelty": "Prior topographic lanes use slope magnitude (Band 19), relief, or 1-m lidar sharp scarps; none tests a signed broad-warp curvature sign flip on Band 12 as a standalone surface.",
+      "cost": "low",
+      "official_data": "Competition-native bands only; no external data required.",
+      "expected_dti_rank_basis": "Cheap and topographic signals are historically strong, but the transform family (DEM curvature) is heavily represented in the fleet, so lane-drift (rho/overlap) risk is higher than for GZZD. Not run this session."
+    },
+    {
+      "rank": 3,
+      "id": "H86F-HMDC-LITE",
+      "name": "Hydrothermal magnetite-destruction trough with pairwise paleo-vent/sinter collinearity (competition-native subset)",
+      "layers": [
+        "training_features.tif Band 2 rtp",
+        "training_features.tif Band 17 cond_surf",
+        "training_features.tif Band 6 tc (pixel-verified radiometric Total Count)",
+        "DOE GDR 1391 paleo_geothermal / volcanic-vent point compilations (CC BY 4.0)"
+      ],
+      "transform": "Strike-continuous RTP minima with positive cross-strike second derivative and magnetic shoulders, co-located with Band 17 conductance and pairwise <=6 km collinear point alignments; phase/point-scrambled controls.",
+      "non_fault_mimic": "Remanent/reversed-polarity volcanic units, primary felsic lithology, playa clay conductance, survey seams.",
+      "uncatalogued_rationale": "Hydrothermal upflow along a blind fault destroys magnetite and deposits sinter at the surface without building a mappable scarp.",
+      "novelty": "Previously proposed as H86E-HMDC (registry/h86c_hypotheses.json rank 3) and never run; CTHB used radial point halos, not pairwise collinear geodesics or an RTP-trough (negative-polarity) statistic.",
+      "cost": "medium-high (point-set geometry + scrambled controls)",
+      "official_data": "Official source named: DOE GDR submission 1391, https://gdr.openei.org/submissions/1391 (CC BY 4.0). In-footprint wellspring/vent CSVs are SHA-pinned in research/h86d_extended_manifest.json (owner GitHub mirrors), but the paleo-sinter and 2-m probe archives were not re-obtained and hash-verified in THIS sandbox session, so this hypothesis is NOT proposed as viable to run here until those exact bytes are restored and pinned.",
+      "expected_dti_rank_basis": "Geothermally the most specific, but point compilations are sparse inside the footprint and implementation cost is the highest per expected covered truth cell. Not run this session."
+    },
+    {
+      "rank": 4,
+      "id": "H86F-SLB",
+      "name": "Geodetic strain-localization boundary (tensor-gradient ridge)",
+      "layers": [
+        "training_features.tif Band 4 geod_2ndinv",
+        "training_features.tif Band 7 geod_shearrate",
+        "training_features.tif Band 8 geod_dilaterate"
+      ],
+      "transform": "Gradient-magnitude ridge of the strain-rate second invariant with orientation coherence, i.e. the boundary between actively straining and rigid blocks, rather than the scalar strain value.",
+      "non_fault_mimic": "GPS/InSAR interpolation and smoothing artifacts; volcanic or anthropogenic deformation sources.",
+      "uncatalogued_rationale": "Interseismic strain concentrates on locked faults whether or not they have a mapped Quaternary trace.",
+      "novelty": "Bands 4/7/8 entered GFCO/KSLB/WVB and the blind-geothermal lane only as scalar values or rank averages; no lane uses a tensor-gradient localization ridge as the standalone statistic.",
+      "cost": "low",
+      "official_data": "Competition-native bands only (INGENIOUS strain compilation, DOI 10.1785/0220220153 via https://gbcge.org/current-projects/ingenious/).",
+      "expected_dti_rank_basis": "Lowest priority: geodetic strain grids are smooth at multi-kilometre scale relative to the 300 m metric kernel, so per-dot kernel credit is expected to be diffuse. Not run this session."
+    }
+  ],
+  "arms": [
+    {
+      "rank": 1,
+      "id": "E1_gzzd_concordant",
+      "hypothesis": "A buried basement step produces a paired regularized gzz dipole whose polarity agrees with the basement-depth/gravity flank steps.",
+      "layers": ["Band 11 iso_grav_anom_vg", "Band 18 iso_grav_anom_hg", "Band 13 iso_grav_anom", "Band 15 depth_to_base_surf"],
+      "transform": "gzz dipole pairing (8 azimuths, +/-2..4 px flanks, 9-px strike smoothing) times soft polarity gate (1.0 concordant / 0.25 discordant). Candidate arm.",
+      "non_fault_mimic": "Paleovalley or caldera-moat margin infilled by low-density sediment; inversion artifact.",
+      "uncatalogued_rationale": "Subsurface step detection is independent of surface scarp preservation and of the mapped catalogue.",
+      "novelty": "First executed divergence-of-signed-gravity-vector (gzz dipole) lane in this repo.",
+      "cost": "low-medium",
+      "official_data": "Pinned 19-band owner mirror only; no external layer acquired."
+    },
+    {
+      "rank": 2,
+      "id": "E2_gzzd_dipole",
+      "hypothesis": "The gzz dipole pairing alone, without basement/gravity polarity concordance, carries the signal.",
+      "layers": ["Band 11 iso_grav_anom_vg", "Band 18 iso_grav_anom_hg"],
+      "transform": "Identical dipole pairing to E1 with the polarity gate fixed at 1.0. Mechanism ablation.",
+      "non_fault_mimic": "Any paired density-edge curvature, including unfaulted contacts.",
+      "uncatalogued_rationale": "Ablation isolating whether polarity concordance adds information beyond step curvature.",
+      "novelty": "Preregistered ablation, not a separate submission strategy.",
+      "cost": "low-medium",
+      "official_data": "Pinned 19-band owner mirror only."
+    },
+    {
+      "rank": 3,
+      "id": "E3_gravmag_edge_control",
+      "hypothesis": "If dipole pairing is causal, it must beat the conventional unsigned gravity-gradient edge at identical budget and emission.",
+      "layers": ["Band 5 iso_grav_anom_slope"],
+      "transform": "Gaussian-smoothed (sigma=2 px) Band 5 magnitude as the ranking surface. Negative/edge control.",
+      "non_fault_mimic": "Unfaulted lithologic density contacts and broad basin margins.",
+      "uncatalogued_rationale": "Control is catalogue-blind by construction; it prices the added value of signed pairing over edge presence.",
+      "novelty": "Preregistered negative control, not a new submission strategy.",
+      "cost": "low",
+      "official_data": "Pinned 19-band owner mirror only."
+    }
+  ],
+  "budget": {"max_arms": 3, "max_hours": 2, "dots": 44090},
+  "emission": "Shared gems57.emit.emit_decimated (tile_px=3) on rank01(surface) + emit_prefix at 44090 dots; holdout allowed = footprint & (distance to visible catalogue > 3 px); final allowed = footprint & (distance to full catalogue > 3 px); binary unit dots; zeros outside footprint via the shared fail-closed writer (no clipping, no nodata tag).",
+  "holdout": {"evaluator": "gems57-pooled-hide-v2", "hidden_whole_components": true, "seed": 20, "hide_fraction": 0.2, "buffer_px": 3, "alpha": 0.2, "beta": 0.8, "kernel_m": 300, "catalogue_from_visible_faults_only": true, "visible_faults_masked_pixel_exact": true, "controls": ["R0_D28_visible_collar (fold-fair geometry control rebuilt on this split)", "historical same-split comparator E3_kslb_noisyor_44k from docs/evidence/lane86c_results.json (not re-run)"]},
+  "leakage_discriminative_auc_stop": 0.9,
+  "registry": {"rho_stop": 0.9, "forward_overlap_stop": 0.7, "radius_px": 3, "surface_check_before_placement": true, "surface_rho_firing_is_stop_before_placement": true, "incomplete_or_errored_registry_rows_never_pass": true, "final_pa86_informative_firing_is_hard_stop": true, "audit_tif_may_be_written_only_as_explicitly_negative_if_no_surface_rho_firing_but_completeness_fails": true},
+  "promotion": "verdict promote (to the separate human selector only, never a slot authorization) requires ALL of: candidate HOLDOUT-DTI beats the historical same-split best with separated 95% CIs; paired HOLDOUT-DTI delta vs the best preregistered control has 95% CI strictly > 0; every leakage canary <= 0.90; surface and final-dots registry gates pass on a complete error-free scan; PA-86-02 gate_pass true; shared writer + independent on-disk validator pass. Otherwise verdict negative and DO NOT SUBMIT. No weekly slot is used by this lane in any outcome.",
+  "evidence_labelling": "Every score-like number is HOLDOUT-DTI (evaluator version, withheld positives, 95% CI), LEAKAGE-CANARY, REGISTRY-MEASUREMENT, LOCAL-FORMAT-VALIDATION, or OWNER-REPORTED. No projection is written as a score. ORGANIZER-CONFIRMED is reserved for a submission-page receipt, which this lane does not obtain."
+}
