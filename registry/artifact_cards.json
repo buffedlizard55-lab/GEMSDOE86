@@ -127,6 +127,13 @@
       "context": "docs/evidence/h86f-ewcs-run-card.json",
       "holdout_kind": "h86f_ewcs",
       "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
+    },
+    {
+      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/365 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-sacd-run-card.json",
+      "context": "docs/evidence/h86i-sacd-run-card.json",
+      "holdout_kind": "h86i_sacd",
+      "stem": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros"
     }
   ]
 }

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "preregistered_utc": "2026-10-25T05:10:00Z",
+  "session_branch": "arena/95a42d60-gemsdoe86",
+  "lane_id": "H86I-SACD",
+  "declared_before_holdout_evaluation": true,
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "holdout_module": "vendor/gems57/holdout.py",
+    "metric_module": "vendor/gems57/metric.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split": {
+      "method": "buffered_component_draw",
+      "seed": 20,
+      "hide_frac": 0.20,
+      "buffer_px": 3,
+      "boundary_px": 12,
+      "expected_withheld_positive_pixels": 11321
+    },
+    "bootstrap": {
+      "n_boot": 1000,
+      "block_side_px": 200,
+      "block_side_km": 20.0,
+      "seed": 520810
+    },
+    "leakage_canary": {
+      "rule": "single-feature ROC-AUC on withheld positives vs negative footprint",
+      "max_symmetric_auc_threshold": 0.90
+    }
+  },
+  "preregistered_experiments": [
+    {
+      "arm_id": "E1_sacd_full_submod",
+      "role": "primary_candidate",
+      "dot_budget": 37654,
+      "visible_collar_px": 3.0,
+      "description": "Full H86I-SACD: multi-resolution native + SHA-pinned USGS 1 m LiDAR / 10 m 3DEP / fluvial chi / GeoDAWN K-Th-U & TMI_up150 static physics + fold-visible Pollard-Segall elastic tip fields + Spin-2 Coulomb-projected strike concordance (LiDAR/10 m scarp, Laplace g_zz, Verduzco magnetic tilt) + Bekker-Davis label-free alluvial-burial propensity PU weighting + Minoux 300 m triangular-kernel submodular expected-TP_w dot allocation."
+    },
+    {
+      "arm_id": "E2_sacd_scalar_unweighted_thin",
+      "role": "mechanistic_ablation_no_spin2_no_propensity_no_submod",
+      "dot_budget": 37654,
+      "visible_collar_px": 3.0,
+      "description": "Matched-collar ablation removing Spin-2 strike-director concordance, removing Bekker-Davis alluvial-burial propensity weighting, and replacing 300 m submodular kernel allocation with standard pointwise disc_thin(spacing=2.8) at identical 37,654-dot budget and 3.0-px collar."
+    },
+    {
+      "arm_id": "E3_sacd_cover_blind_subsurface",
+      "role": "cover_blind_ablation",
+      "dot_budget": 37654,
+      "visible_collar_px": 3.0,
+      "description": "Pure cover-blind subsurface + hydrothermal alteration + Spin-2 subsurface strike concordance (zero DEM/slope/LiDAR/10 m topo/fluvial chi surface scarps) with Bekker-Davis propensity and 300 m submodular kernel allocation at 37,654 dots and 3.0-px collar."
+    }
+  ],
+  "mandatory_same_split_comparators": [
+    "R0_D25_foldfair (GEMSDOE25 91eae1ca42ec... masked at fold-visible collar, zero extra model fits)",
+    "R0_D28_visible_collar (GEMSDOE28 ab0230015224... masked at fold-visible collar, zero extra model fits)",
+    "H86C-KSLB archived same-split benchmark (0.124063, 95% CI [0.107970, 0.140330])",
+    "H86F-EWCS archived same-split repo leader (0.172325, 95% CI [0.152956, 0.189793])"
+  ],
+  "registry_and_export_gates": {
+    "surface_before_placement": "scripts/check_h86e_registry.py --surface must confirm 0 Spearman rho > 0.90 firings across all valid competition-grid registry rasters before dot placement.",
+    "dots_before_serialization": "scripts/check_h86e_registry.py and scripts/pa86_chance_overlap.py must confirm byte_unique=True, pixel_unique=True, 0 Spearman rho > 0.90 firings, and 0 discrete non-space-filling (halo <= 0.70) 3-px overlap > 0.70 firings before GeoTIFF serialization.",
+    "fail_closed_submission_policy": "Because 17GEMSDOE covers 100.0% of allowed footprint pixels and 2 indexed upstream registry rows (14GEMSDOE, 7GEMSDOE) are off-grid, literal_gate_pass and registry_complete_for_index remain False; verdict MUST be recorded as 'negative', decision 'DO NOT SUBMIT', safe_to_submit=False, approved_for_weekly_slot=False, submission_slots_used=0."
+  }
+}

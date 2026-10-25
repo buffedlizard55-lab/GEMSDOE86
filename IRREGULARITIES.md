@@ -1131,3 +1131,47 @@ despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
 `tests/test_builder_preflight.py::BUILDERS` (now **54 CLI builders + 8 imported
 orchestrators**), and `docs/evidence/h86e-mmt-registry-surface.json` now records
 `"surface_gate_pass": false` with an explicit archive note.
+
+## IR-86-H86F-EWCS-TRANSQUAD-PU-20261025 — `scripts/run_h86f_ewcs.py` sampled PU training rows across all 4 quadrants rather than strict `quad != fold_i`
+
+Forensic line-by-line inspection of `scripts/run_h86f_ewcs.py` (`line 519`) during
+session `95a42d60` confirmed that while `vis = f["visible"] & fp` properly stripped
+all `11,321` withheld positive pixels and their `3-px` feature collar globally (`0`
+hidden-truth label leakage), `sample_nested_pu(static_mm, s_keys, vis, fp, e_keys, ...)`
+drew visible training positives and unlabeled background rows from the full footprint
+`fp` (including the held-out quadrant `quad == fold_i`) and emitted four full-map
+`37,654`-dot allocations rather than restricting classifier training to the three
+out-of-quadrant regions `fp & (quad != fold_i)`.
+**Decision:** The archived `H86F-EWCS` run card (`docs/evidence/h86f-ewcs-run-card.json`)
+is left untouched per `AGENTS.md` Rule 9, its trans-quadrant PU scope is documented
+explicitly in `H86I-SACD`'s comparator table and on `irregularities.html`, and the new
+`H86I-SACD` runner (`scripts/run_h86i_sacd.py`) enforces strict spatial
+Leave-One-Quadrant-Out training (`train_region = fp & (quad != fold_i)`).
+
+## IR-86-H86I-SACD-01 (2026-10-25) — H86I-SACD executed under strict spatial LOQO (`0/365` `<=50k`-dot firings, `0/688` Spearman firings), auto-marked DO NOT SUBMIT (`verdict = "negative"`)
+
+Session `95a42d60` preregistered four untried hypotheses (`registry/h86i_hypotheses.json`,
+`research/H86I_SACD_PREREGISTRATION.json`) prior to any holdout evaluation and executed
+Rank-1 `H86I-SACD` (*Spin-2 Coulomb-Projected Strike Concordance, Jacobsen
+Upward-Continuation Depth-Attenuation & Bekker-Davis Alluvial-Burial Propensity
+Submodular Max-Cover*) across 3 fixed arms (`<= 3` experiment / `<= 2` hour budget,
+`1,323.96 s` wall time). All `33` features passed single-feature ROC-AUC leakage
+canaries (`max = 0.7639 <= 0.90`). Under strict `quad != fold_i` LOQO (`11,321`
+withheld positives, `1,000` paired `20 km` block-bootstrap draws), scalar unweighted
+pointwise `E2` achieved `HOLDOUT-DTI = 0.1055 [0.0878, 0.1257]` (beating `R0_D25`
+`0.0931` and `R0_D28` `0.0273`), whereas `E1` (`0.0832 [0.0673, 0.0997]`) and pure
+cover-blind subsurface `E3` (`0.0843 [0.0693, 0.0995]`) trailed `E2` (`paired delta =
+-0.0223 [-0.0352, -0.0104]`) due to Fold-0 forced inter-quadrant quantile equalization
+over-allocating dots into lower-density `NE` (`10,797` dots) and submodular plateau
+clustering on broad diffuse basin posteriors. Full `v2` registry scans (`688 / 690`
+valid competition-grid rasters, `0` missing) confirmed `0` Spearman `rho > 0.90`
+firings (`worst = 0.7734` surface, `0.1022` dots) and `0 / 365` discrete `<= 50k`-dot
+overlap firings (`31.17%` vs `GEMSDOE32` `h33-h33-2-b2`, `55.60%` vs `H86F-EWCS`), while
+failing closed on `17GEMSDOE` saturation, space-filling lattices, and `2` off-grid
+upstream rows (`PA-86-02` `FAILED_CLOSED_NO_REPORT`).
+**Decision:** The unique `[0, 1]` GeoTIFF (`docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif`,
+SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
+strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
+`0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
+`protocol_preflight.require_feasible()` (`55` CLI builders + `8` imported orchestrators).
+
