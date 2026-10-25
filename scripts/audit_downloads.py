@@ -50,9 +50,9 @@ def review_card(report):
                        values_in_0_1=None, crs_shape_transform_match=None,
                        inherited_artifacts_local_format_pass=report['all_checks_passed'], report=REPORT),
         submission_name=None,
-        note='No new TIFF: protocol stop reproduced. H86G-EDTI promotion is separate; this audit selected no weekly slot.',
+        note='No new TIFF: protocol stop reproduced. H86G PROMOTE is historical; current upload authorization is DO NOT SUBMIT.',
         verdict='negative', safe_to_submit=False, experiments_run=0, submission_slots_used=0,
-        scope='Format/integrity audit only. No new model, surface or dots. This audit neither revokes nor grants the separately recorded H86G-EDTI PROMOTE verdict; no selector action or weekly slot was recorded.')
+        scope='Format/integrity audit only. No new model, surface or dots. H86G-EDTI retains a historical PA-86-01 PROMOTE verdict, but the current literal registry rule blocks upload; no selector action or weekly slot was recorded.')
 
 
 def digest(path):
@@ -181,11 +181,11 @@ def render(report):
 <title>Verified research downloads · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Evidence</a></nav></header><main>
 <h1>Verified research downloads — format audit, not a slot decision</h1>
-<p>This page only checks file bytes, GeoTIFF format and ZIP integrity; it did not select or authorize a weekly slot. The separate decision page lists H86G-EDTI as PROMOTE/selector-ready under its recorded like-for-like gates; this format audit does not revoke that verdict. No slot was picked here, and every other listed file remains audit-only. Local format checks alone do not establish geological skill, uniqueness, eligibility or organizer acceptance.</p>
+<p>This page checks file bytes, GeoTIFF format and ZIP integrity; it does not authorize a weekly slot. The current repository decision is <strong>DO NOT SUBMIT any file</strong>. H86G-EDTI retains a historical PA-86-01 PROMOTE verdict under a like-for-like reading, but does not pass the current literal registry rule; it is available for audit/reproducibility only. No slot was picked here. Local format checks alone do not establish geological skill, uniqueness, eligibility or organizer acceptance.</p>
 <p>This page is generated from actual TIFF bytes and adjacent writer receipts or archived run-card sidecars, not manually transcribed sizes or note lengths. The conservative export policy requires finite [0,1] values everywhere, exact sample geometry, valid in-footprint masks, no nodata tag, zero outside the footprint and zero on mapped faults. Inputs are hash-pinned owner mirrors, not authenticated organizer downloads.</p>
 <p><a href="index.html">Current per-file decision and H86G-EDTI download</a> · <a href="executive-summary.html">Submission steps</a> · <a href="evidence/download-validation.json">Full automated validation report</a> · <a href="evidence/protocol-preflight.json">Literal registry blocker proof</a> · <a href="evidence/session-review-run-card.json">This audit's negative no-slot run card</a></p>
 <p>Regenerate with <code>python scripts/audit_downloads.py --write</code>; verify without writes with <code>python scripts/audit_downloads.py</code>. CI reruns the byte checks before Pages publication. This is not a live leaderboard feed.</p>
-''' + '\n'.join(sections) + '\n</main><footer>Format PASS ≠ selector decision or organizer acceptance. This page did not select a weekly submission slot.</footer></body></html>\n'
+''' + '\n'.join(sections) + '\n</main><footer>Format PASS ≠ submission authorization or organizer acceptance. Current repository decision: DO NOT SUBMIT any file.</footer></body></html>\n'
 
 
 def main():
@@ -201,7 +201,7 @@ def main():
             path.write_text(content, encoding='utf-8')
         elif not path.is_file() or path.read_text(encoding='utf-8') != content:
             raise SystemExit(f'Stale or missing generated output: {relative}; run --write')
-    print(f"PASS: {report['artifact_count']} research TIFFs and receipts revalidated; no weekly slot selected by this format audit (H86G-EDTI decision is separate)")
+    print(f"PASS: {report['artifact_count']} research TIFFs and receipts revalidated; current repository decision remains DO NOT SUBMIT (format audit made no selector decision)")
 
 
 if __name__ == '__main__':

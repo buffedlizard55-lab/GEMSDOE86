@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-25 UTC  
 **Scope:** three-pass repository / release-page review; no model fitting, raster placement, new TIFF, organizer login, or weekly-slot selection.  
-**Outcome:** negative for a *new* candidate this review. The already-published H86G-EDTI file retains its separately recorded `PROMOTE` / selector-action status; it was not re-run or revoked here.
+**Outcome:** negative for a *new* candidate this review. H86G-EDTI retains a historical `PROMOTE` result under PA-86-01, but current upload authorization is **DO NOT SUBMIT** (`safe_to_submit=false`, `approved_for_weekly_slot=false`) because the literal registry gate remains blocking. H86G-EDTI was not re-run here.
 
 ## Pass 1 — inspect current evidence and implementation
 
@@ -18,19 +18,19 @@ The other prompt leaderboard values, including `0.3195` and `0.4413`, are also *
 
 ### Existing download decision
 
-The repository contains one previously generated, per-lane `PROMOTE` artifact: H86G-EDTI. Its identity, gates and selector procedure are documented in the README, executive summary and `docs/evidence/h86g-edti-run-card.json`. The README had a separate later review block saying “none approved” and “all files DO NOT SUBMIT,” which could be read as revoking H86G even though that review generated no candidate. The validation page also labelled H86G `DO NOT SUBMIT` while the homepage called it selector-ready. The format-only download audit used similarly broad “none authorized” language. These were publication/decision-scope inconsistencies, not new scientific evidence.
+The repository contains one previously generated H86G-EDTI artifact with a historical per-lane `PROMOTE` verdict under PA-86-01. It does not have current upload authorization: the latest mainline safety decision requires `DO NOT SUBMIT`, and its run card keeps `safe_to_submit=false` and `approved_for_weekly_slot=false`. A later read-only review generated no replacement and did not erase that historical scientific verdict; it correctly leaves the current upload decision blocked. This review initially found confusing cross-page wording, then latest mainline updates added an explicit no-upload banner and a negative H86I-HVFD artifact. We integrated those mainline safety updates instead of reintroducing an upload button. The remaining work here clarifies that format-only validation is not authorization.
 
 ## Pass 2 — correct release wording and verify behavior
 
 Updated the static-site generator and its tests so that:
 
 - The no-new-candidate review is explicitly scoped: it generated no replacement and did not revoke H86G-EDTI.
-- The evidence page labels H86G as **PROMOTE — separate selector action; no weekly slot selected**, and renders its recorded PA-86-01 like-for-like measurement separately from the literal continuous-support witness reading. It no longer presents the literal witness statistic as if it were the same comparator as the local dot-field gate.
-- The format-only audit identifies itself as **not a slot decision**, refers users to the separate candidate decision, and does not label every downloadable artifact “DO NOT SUBMIT.” Its run card remains negative with `safe_to_submit=false` and zero slots: the audit made no selector decision.
-- The executive summary explains that local format validation, the literal witness interpretation, H86G's per-lane `PROMOTE`, slot selection, and organizer confirmation are different statuses. The download page retains the H86G file identity and portal instructions.
+- The current decision page labels H86G as **historical PROMOTE, DO NOT SUBMIT** and displays its recorded PA-86-01 measurement separately from the literal continuous-support witness reading. Its historical like-for-like result is not presented as current literal-rule clearance.
+- The format-only audit identifies itself as a format check, not slot authorization, while explicitly pointing to the current global **DO NOT SUBMIT** decision. Its run card remains negative with `safe_to_submit=false` and zero slots.
+- The executive summary distinguishes local format validation, historical H86G `PROMOTE`, the current literal-rule block, slot authorization, and organizer confirmation. Downloads remain available for audit/reproducibility only.
 - README makes clear that the later review's negative result applies to a new candidate in that review and does not replace the previous H86G lane result.
 
-No TIFF, ZIP, scientific run card, score, threshold, shared-template file, or submission receipt was changed. A regression test checks that the cross-page H86G decision remains consistent and the latest review remains negative for new work.
+No TIFF, ZIP, scientific run card, score, threshold, shared-template file, or submission receipt was changed by this branch's review fixes. During PR preparation, main advanced and added the independent H86I-HVFD negative result and updated the no-upload policy; those upstream bytes and evidence were retained. A regression test now checks that H86G's historical verdict cannot be mistaken for current upload authorization.
 
 ## Pass 3 — re-check protocol and candidate hypotheses
 
@@ -38,7 +38,7 @@ No TIFF, ZIP, scientific run card, score, threshold, shared-template file, or su
 
 The complete current request contains the parallel-run protocol but **does not assign a single method paragraph/lane**. The existing shared preflight also measures a pinned registry witness with support across every allowed pixel; under the unchanged literal overlap rule, every nonempty allowed candidate is blocked. The permitted like-for-like PA-86-01 path is not permission to invent a lane: it requires a specified method and both surface and final-dot comparison against the required registry scope. The actual shared template cached feature stack is also absent; the restored native 19-band inputs are explicitly not that cache. Two indexed historical registry entries have incompatible grid/band metadata and remain unresolved. Accordingly, the new hypothesis proposals below remain **NOT RUN**. No new TIFF, holdout score, leakage AUC, candidate correlation, candidate overlap, candidate SHA, or submission name is claimed.
 
-The existing H86G file is not copied or renamed as a new result. Its prior run card reports **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives): `0.0631`, 95% CI `[0.0468, 0.0806]`. That is its historical hide-and-recover result, not a leaderboard score. H86G's documented promotion is a separate selector action; the project has no organizer receipt or current weekly-quota observation. Consult the linked card for the evidence scope and its caveats.
+The existing H86G file is not copied or renamed as a new result. Its prior run card reports **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld positives): `0.0631`, 95% CI `[0.0468, 0.0806]`. That is its historical hide-and-recover result, not a leaderboard score. H86G's documented promotion is a historical scientific verdict only; current upload authorization remains DO NOT SUBMIT. The project has no organizer receipt or current weekly-quota observation. Consult the linked card for the evidence scope and its caveats.
 
 ### Ranked hypotheses already in the repo (not new claims of literature novelty)
 
@@ -57,9 +57,9 @@ The source register identifies the official native raster description at the pin
 
 Executed after the wording corrections:
 
-- `.venv/bin/python -m pytest -q`: **825 passed, 24 skipped, 41 subtests passed**. Rasterio emitted 42 pending-deprecation warnings from its affine multiplication implementation.
-- `.venv/bin/python -m unittest discover -s tests -q`: **112 tests passed, 1 skipped**.
-- `scripts/build_site.py --check`, `scripts/check_site.py`, and `scripts/audit_downloads.py`: passed. The independent format audit re-read **20** registered TIFFs and their receipts/ZIPs; it did not make a selector decision.
+- `.venv/bin/python -m pytest -q` after integrating mainline: **842 passed, 24 skipped, 45 subtests passed**. Rasterio emitted 42 pending-deprecation warnings from its affine multiplication implementation.
+- `.venv/bin/python -m unittest discover -s tests -q`: **113 tests passed, 1 skipped**.
+- After integrating the mainline H86I-HVFD negative result, `scripts/build_site.py --check`, `scripts/check_site.py`, and `scripts/audit_downloads.py`: passed. The independent format audit re-read **21** registered TIFFs and their receipts/ZIPs; it did not make a selector decision.
 - `scripts/validate_download.py`: passed its local format checks for the archived RMRB control, but reported its uniqueness check false and holdout below its same-instrument incumbent; it remains explicitly negative and is **not** the current promoted artifact.
 - `git diff --check`: passed.
 
@@ -67,7 +67,7 @@ Residuals: no new submission can be validated without an explicit lane and resol
 
 ## Run card
 
-The machine-readable negative run card is [`SESSION_20261025_ARENA_B5040_RUN_CARD.json`](SESSION_20261025_ARENA_B5040_RUN_CARD.json). It records null for every unmeasured candidate property and links H86G-EDTI separately as an already promoted artifact, not a result of this review.
+The machine-readable negative run card is [`SESSION_20261025_ARENA_B5040_RUN_CARD.json`](SESSION_20261025_ARENA_B5040_RUN_CARD.json). It records null for every unmeasured candidate property and links H86G-EDTI separately as an already-promoted historical artifact, with the current `DO NOT SUBMIT` decision recorded explicitly; it is not a result of this review.
 
 ### Official / project links for manual review
 

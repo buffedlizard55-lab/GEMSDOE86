@@ -1,10 +1,12 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
-Current Arena-branch review (three passes; clarified the prior H86G selector-ready status versus later no-new-candidate audit; no new model/TIFF): [review](research/SESSION_20261025_ARENA_B5040_REVIEW.md) · [negative run card](research/SESSION_20261025_ARENA_B5040_RUN_CARD.json).
+Current Arena-branch review (three passes; distinguishes H86G's historical amended-gate PROMOTE from current DO NOT SUBMIT authorization; no new model/TIFF): [review](research/SESSION_20261025_ARENA_B5040_REVIEW.md) · [negative run card](research/SESSION_20261025_ARENA_B5040_RUN_CARD.json).
 
 Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
 
@@ -16,9 +18,11 @@ Independent repository review (2026-10-25; three passes; no model run or TIFF ge
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## ✅ IS ANY FILE OK TO SUBMIT RIGHT NOW? **YES — EXACTLY ONE.** (automated decision, 2026-10-25, H86G-EDTI; supersedes the dated negative reviews below for this one file only)
+## IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO — DO NOT SUBMIT.**
 
-**Submit this file (selector action):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
+Publication safety correction (session `09c7fc42`): H86G-EDTI’s historical amended-gate promotion is preserved, but does not pass the current literal registry rule or authorize a weekly slot. Its card records `safe_to_submit=false` and `approved_for_weekly_slot=false`. [Three-pass review](research/SESSION_09C7FC42_REVIEW.md). No new TIFF was generated in this session.
+
+**Existing research download only — DO NOT SUBMIT:** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
 Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
 Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
 
@@ -29,15 +33,30 @@ Portal steps: [executive summary](docs/executive-summary.html) / [scientific rev
 | `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
 | `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
 | Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` — OK TO DOWNLOAD AND SUBMIT as the selector action; 0 slots used here; live score unknowable until an organizer receipt** |
+| Verdict / weekly slots | **Historical amended-gate `promote` only — DO NOT SUBMIT under the literal rule; no slot approval; live score unknown** |
 
 **Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
 
+### Latest hydrothermal-vent & basement-flexure lane (2026-10-25): H86I-HVFD — AUDIT DOWNLOAD ONLY (`DO NOT SUBMIT`)
+
+Before any lane computation ran, four geological hypotheses (`H86I-1..H86I-4`) were frozen in [`research/H86I_HVFD_PREREGISTRATION.md`](research/H86I_HVFD_PREREGISTRATION.md) ([machine-readable JSON](research/H86I_HVFD_PREREGISTRATION.json)). Top candidate **`H86I-1` (`H86I-HVFD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid + external DOE GDR-1391 (`3,800` 2-m temperature probes, `726` paleo-sinter/travertine/tufa vents, wells/springs geothermometers) + USGS 3DEP 1-m LiDAR/10-m DEM/$\chi$ scarplets + USGS GeoDAWN radiometrics ([PhD review & 3-pass audit](research/SESSION_20261025_H86I_HVFD_REVIEW.md)):
+
+- **TIFF (safe to download for audit only — DO NOT SUBMIT):** [`docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif) (`1,148,595` bytes; SHA-256 `0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58`)
+- **Single-TIFF ZIP (audit only — DO NOT SUBMIT):** [`docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.zip) (`946,356` bytes; SHA-256 `3f9fbcc6bf2ca93ef0846e9b47aec78bc89cd3096476800d5ed44a6327610616`)
+- **Writer receipt & run card:** [`gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.json`](docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.json) · [`docs/evidence/h86i-hvfd-run-card.json`](docs/evidence/h86i-hvfd-run-card.json) · [`h86i-hvfd-registry-surface.json`](docs/evidence/h86i-hvfd-registry-surface.json) · [`h86i-hvfd-registry-final-dots.json`](docs/evidence/h86i-hvfd-registry-final-dots.json)
+- **Portal note (`121` chars <= 140, unused):** `H86I-HVFD 2m-probe+sinter+biharm-flexure+relay NoisyOR 37654d r=2.8px d>2px; HOLDOUT-DTI=0.1013; audit-only DO NOT SUBMIT`
+- **`HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 1,000 paired block-bootstrap draws):**
+  - `E1_hvfd_blind_vent_conduit` (100% zero-catalogue blind hydrothermal-vent + bi-harmonic flexure + 3DEP/LiDAR conduit surface, 37,654 dots): **`0.0475` `[0.0364, 0.0585]`** (+45% to +94% over all prior zero-catalogue algebraic lanes `H86I-RKSC = 0.0245`, `H86E-MMT = 0.0290`, `H86F-GZZD = 0.0303`, `H86H-PSTD = 0.0314`, `H86F-PCC = 0.0327`).
+  - `E2_hvfd_foldfair_vent_relay_noisyor` (Candidate TIFF, 37,654 dots, $d_{\text{vis}} > 2.0\text{ px}$): **`0.1013` `[0.0886, 0.1139]`** — **beats fold-fair `R0_G25_foldfair_collar` (`0.0961` `[0.0828, 0.1090]`, paired Δ `+0.0052` `[−0.0098, +0.0208]`)**, `R0_D28_foldfair_collar` (`0.0286`), and `H33_foldfair_collar` (`0.0037`).
+  - `E3_hvfd_collar_ablation_44090` (Same `S_HVFD` surface at 44,090 dots & $d_{\text{vis}} > 1.5\text{ px}$ collar): **`0.1040` `[0.0917, 0.1166]`** (paired `E2 − E3 = −0.0027` `[−0.0054, −0.0003]`), and both trail `H86C-KSLB` (`0.1241`).
+- **`LEAKAGE-CANARY`:** **PASS** — all 18 features below `0.90` (`max_discriminative_auc = 0.8136` on `trap_endpoint_cone`; max zero-catalogue static feature AUC = `0.6184` on `lidar_dem10_chi_scarp`).
+- **`REGISTRY-MEASUREMENT`:** `byte_unique = true`, `pixel_unique = true`, `rho_firings = 0` on both surface (`worst Spearman = 0.3050`) and final dots (`worst Spearman = 0.0625`); across all **468 sparse ($\le 100\text{k}$ dot) submissions**, max 3-px overlap is **`0.5859 < 0.70`** (`21.20%` vs `h33-2-b2`), but literal full-support `17GEMSDOE` (`1.0000`), dense lattice `13GEMSDOE` (`0.9995`), and `2` off-grid historical inventory entries keep `verdict = "negative"` (`DO NOT SUBMIT`, `0` slots used).
+
 ## Current independent review — 2026-10-25 (session `cf73474c`)
 
-This dated read-only review generated **no new candidate** and selected **no weekly slot**. Its 18-artifact audit snapshot is historical; the live inventory is refreshed separately. It does **not revoke** the earlier H86G-EDTI `PROMOTE` verdict above. H86G-EDTI remains the sole selector-ready file; this review adds no replacement candidate. Other research downloads remain audit-only.
+This dated read-only review generated **no new candidate** and selected **no weekly slot**. Its 18-artifact audit snapshot is historical; the live inventory is refreshed separately. It does **not erase** H86G-EDTI's historical `PROMOTE` result under PA-86-01, but that result is **not current upload authorization**: `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the current literal registry gate remains blocking. No file is currently approved to submit; the existing H86G download is research/audit only.
 
-The highest-priority *new* TIFF requirement was **not satisfied in this review**: the literal overlap stop is unchanged and no single method lane was assigned. A format-valid download is not uniqueness clearance. The [current download decision and automated gates](docs/index.html) distinguish the previously promoted H86G-EDTI from files that are only for audit.
+The highest-priority *new* TIFF requirement was **not satisfied in this review**: the literal overlap stop is unchanged and no single method lane was assigned. A format-valid download is not uniqueness clearance. The [current download decision and automated gates](docs/index.html) distinguish H86G's historical amended-gate result from current DO NOT SUBMIT status.
 
 - Autonomous data placement **completed**: `bash scripts/download_competition_data.sh` restored the pinned native feature TIFF; `python scripts/prepare_data.py` prepared all 19 native bands. All three input CRS/shape/transforms, band counts and hashes now gate preparation before output. This is **not** restoration of the actual shared template feature stack.
 - A complete native-band array generation is now staged with hashes and rollback for ordinary failures; local preparers are serialized. This does not claim cross-directory crash atomicity.
@@ -974,7 +993,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13/17/18/19-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **20** published research TIFFs, including H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **21** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 
