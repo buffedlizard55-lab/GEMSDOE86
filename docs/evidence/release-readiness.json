@@ -33,7 +33,7 @@
     "docs/evidence/gapres-run-card.json": "01d54a5f71c304ea4fb58718b398736ffe29d3da3261e6f893d9fcbee7b4585e",
     "docs/evidence/h86e-mmt-run-card.json": "fd0a0a6b1342729b1b5573328b7982f013710c7b974efb4692dd393817d6d5da",
     "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json": "8c4e88abe5e33b2197b20d014ba9f50957525c1b9f6cd3797fc8e8c8669c3f66",
-    "docs/evidence/all-artifacts-registry.json": "d3fbc54c22f4f6e53e18bf08e28d0094be3599597745d66e7434cd0e3d59f211"
+    "docs/evidence/all-artifacts-registry.json": "1631506a4488f2cc3323dec1b11e2961be6fb60bbc89205622da2c40a849f64a"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",

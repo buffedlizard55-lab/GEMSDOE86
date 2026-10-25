@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**Independent review (branch `4b49f82f`):** [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md). All existing downloads remain **DO NOT SUBMIT**. No new candidate or slot was used; the literal overlap rule, amendment authority, missing shared cache, and unassigned method lane remain explicit blockers.
+
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
 **Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
