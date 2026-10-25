@@ -4,6 +4,8 @@
 
 **Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
 
+**Latest independent review on this Arena branch (2026-10-25): NEGATIVE; no new TIFF, experiment, or slot.** The literal full-support registry witness blocks all non-empty candidate rasters; no shared cached feature stack or lane assignment is present. See [three-pass review, ranked untested hypotheses, H33 evidence, and next blockers](research/SESSION_20261025_ARENA_43838D43_REVIEW.md) and its [machine-readable run card](docs/evidence/arena-43838d43-run-card.json). Existing audit-only downloads are not new submissions and remain **DO NOT SUBMIT**.
+
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
