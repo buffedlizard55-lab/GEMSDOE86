@@ -1,5 +1,6 @@
 # Standing project prompt (condensed historical archive)
 
+**Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used).**
 **Read the latest README decision and the COMPLETE current request in
 `research/REQUEST_20261025.md` first.** This condensed historical document is not
 a replacement for that archive. Preserve `REQUEST_20261024.md`,

@@ -587,14 +587,14 @@
     "surface_preplacement": {
       "schema": "gems86.registry-candidate.v2",
       "report": "docs/evidence/h86i-sacd-registry-surface.json",
-      "report_sha256": "4c38d41673c7d13ea094351cb83d423b1e6667125355ef1ed713695b66d693dc",
+      "report_sha256": "f759e3e5c75a407aec5d47ada18edd7ca60aed020d05c2e2676500f8cc670fa3",
       "runner_returncode": 1,
       "candidate_source_sha256": "b4efe82d071ee1f0727b8436a19d0f5a92a92d3ba2d5c08dee22aa861881467e",
       "candidate_decoded_sha256": "30bfbfe4d63ef8f7536df3b0adf038e51b3e381bdc9f43726c06a098ed00cefb",
-      "registry_index_sha256": "0ac9a7dff75303a8053f18b5b3633d64a2d90c6e2b3eabdeb005dad519f2f7eb",
-      "registry_rasters_measured": 688,
-      "registry_rasters_checked": 688,
-      "registry_rasters_expected": 690,
+      "registry_index_sha256": "5c8036bb1cf5ff02538a6961d9196b7daa1a8455138e9255f7ceaa4c78910641",
+      "registry_rasters_measured": 691,
+      "registry_rasters_checked": 691,
+      "registry_rasters_expected": 693,
       "inventory_rasters_missing": [],
       "registry_errors": [
         {
@@ -622,8 +622,8 @@
       "literal_gate_pass": false,
       "two_phase": {
         "evidence_class": "REGISTRY-MEASUREMENT",
-        "rasters_checked": 688,
-        "rasters_expected": 690,
+        "rasters_checked": 691,
+        "rasters_expected": 693,
         "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
         "footprint_cells": 5167373,
         "dense_support_fraction": 0.2,
@@ -643,7 +643,7 @@
           "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
         },
         "like_for_like_reading": {
-          "dot_field_rasters": 634,
+          "dot_field_rasters": 637,
           "continuous_surface_rasters": 54,
           "worst_forward_overlap_dot_fields": 0.99871327243326,
           "worst_forward_overlap_dot_field_submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
@@ -1474,14 +1474,14 @@
     "final_dots": {
       "schema": "gems86.registry-candidate.v2",
       "report": "docs/evidence/h86i-sacd-registry-final-dots.json",
-      "report_sha256": "e124c43d75084e04b3c5eeaebdc9e59886c3493e073183210ab8583fa73335ab",
+      "report_sha256": "eb759f01eb1a1b9d5233667c255d546b3b12fa8d58bf282c56ba00bfcbf2c460",
       "runner_returncode": 1,
       "candidate_source_sha256": "d5da313a4774942bb61f04c71682fbb7101b2f03af7a470c5a3b0ff9a29b68d1",
       "candidate_decoded_sha256": "0544ef05ac371f54fe97b8a02407da145b470e6f8acde205cc3915bb089f9594",
-      "registry_index_sha256": "0ac9a7dff75303a8053f18b5b3633d64a2d90c6e2b3eabdeb005dad519f2f7eb",
-      "registry_rasters_measured": 688,
-      "registry_rasters_checked": 688,
-      "registry_rasters_expected": 690,
+      "registry_index_sha256": "5c8036bb1cf5ff02538a6961d9196b7daa1a8455138e9255f7ceaa4c78910641",
+      "registry_rasters_measured": 691,
+      "registry_rasters_checked": 691,
+      "registry_rasters_expected": 693,
       "inventory_rasters_missing": [],
       "registry_errors": [
         {
@@ -1509,8 +1509,8 @@
       "literal_gate_pass": false,
       "two_phase": {
         "evidence_class": "REGISTRY-MEASUREMENT",
-        "rasters_checked": 688,
-        "rasters_expected": 690,
+        "rasters_checked": 691,
+        "rasters_expected": 693,
         "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
         "footprint_cells": 5167373,
         "dense_support_fraction": 0.2,
@@ -1530,7 +1530,7 @@
           "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
         },
         "like_for_like_reading": {
-          "dot_field_rasters": 634,
+          "dot_field_rasters": 637,
           "continuous_surface_rasters": 54,
           "worst_forward_overlap_dot_fields": 0.9983003133797206,
           "worst_forward_overlap_dot_field_submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",

@@ -1,6 +1,15 @@
 # SLOT PLAN — 2026-10-24 (rev. I: 92-site fleet sync + PR #60 SPT revocation, `DO NOT SUBMIT` active)
 
-> **2026-10-24 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`), **zero files in this repository are currently authorized for portal upload**, and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate has been revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
+> **2026-10-25 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`, `artifact_count: 18`), **zero files in this repository are currently authorized for portal upload** (including the newly generated 2026-10-25 `H86I-HVFD` audit GeoTIFF `gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif`, `H86F-GZZD`, `H86F-PCC`, and `H86E-MMT`), and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate remains revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
+
+**2026-10-25 addendum (H86G-EDTI):** one candidate is now selector-ready under PA-86-01
+like-for-like gates — `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`
+(sha256 `ba8b731f...`, SGMC-PROXY-DTI 0.1223 vs H33-as-is 0.0954, paired Δ +0.0269
+[+0.0028, +0.0518] post-selection descriptive; HOLDOUT-DTI OOF 0.0631). It is the
+recommended next single slot **if** the selector spends one; receipt decision
+rule (±0.01 vs the 0.2778 OWNER-REPORTED claim) is in
+`research/H86G_EDTI_REVIEW.md`. The literal-witness notice above is unchanged
+for every other file, and the R0-axis probes below remain archived spares.
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`

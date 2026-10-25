@@ -1,0 +1,221 @@
+{
+  "file": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+  "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+  "bytes": 136667,
+  "submission_name": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros",
+  "note": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconf piedmont scarp dipole; see run card gates; no slot used",
+  "note_chars": 106,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+    "bytes": 136667,
+    "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+    "bytes": 136667,
+    "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "n_nonzero": 44090,
+    "mass": 44090.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.zip",
+  "zip_sha256": "70e817880fc1aab76136b4f8d0d61e0ecc936894cdd45f18c493a022b50bb0d1",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86I-RKSC",
+    "hypothesis": "Lahontan-deconfounded piedmont scarp profile-curvature dipole + GeoDAWN K/Th/U/TC provenance-metasomatism step + seismic-conductance conduit",
+    "budget": 44090,
+    "feature_hashes": {
+      "scarp_curvature_deconf": "5f96930f751658481887cfd56c4fe28cfddeba164d202605727cfa6b27a4bdc3",
+      "scarp_tensor_anisotropy": "1286e57ac19e068df270c195d1e6ca46e7d7cefe1baa8fe63f9aa05eca1ebc7c",
+      "rad_kth_metasomatism_index": "d0e05be4b52812696ab0b166c4b260af27c7bcc3561ae26342622b1cda8f3de5",
+      "rad_kth_step_concordant": "34d281020d64551954161e97311816f6e2590033cfa7d139ffb87d721a661277",
+      "rad_depleted_lahontan_control": "ccbedb3f120205e0f0f02fd43e6bd077cb402221124c5ad8c92737621ae6d568",
+      "seismic_upflow_gradient": "c55fbc13b8756e472b60d0cda703b3306144ca3046f1c7fdcda62e5527138b36",
+      "seismic_strain_conductance_gate": "d9c6c9f9e9ae6c4342d041c54a694b09b5a6a73131a79bc570ac9a370d1e9755"
+    },
+    "band_physics_qc": {
+      "evidence_class": "BAND-PHYSICS-QC",
+      "verified_bands": {
+        "4": "geod_2ndinv",
+        "6": "tc",
+        "7": "geod_shearrate",
+        "8": "geod_dilaterate",
+        "10": "deq_n100a15",
+        "12": "det_elev",
+        "16": "ieq_n100a15",
+        "17": "cond_surf",
+        "19": "det_elev_slope"
+      },
+      "geodawn_bands": {
+        "1": "K",
+        "2": "Th",
+        "3": "U",
+        "4": "TC"
+      },
+      "interior_erosion_px": 20,
+      "interior_pixels": 4875879,
+      "corr_band6_tc_vs_geodawn_b4_TC": 0.99731,
+      "corr_band6_tc_vs_geodawn_b1_K": 0.884481,
+      "corr_band6_tc_vs_geodawn_b2_Th": 0.91603,
+      "corr_band6_tc_vs_geodawn_b3_U": 0.717632,
+      "fail_closed_min_corr_geodawn_tc": 0.98
+    },
+    "surface_sha256": "18a9c7780bb7efdb6931a2fc03591ceacaa0180811a6d1be5bfeb578f539544f",
+    "dots_sha256": "9ce4e66a2845104ec06f3eb1bf48276622bbdc44965b31651a5f30732272008a",
+    "registry_surface_evidence": "docs/evidence/h86i-rksc-registry-surface.json",
+    "registry_final_evidence": "docs/evidence/h86i-rksc-registry-dots.json",
+    "chance_overlap_evidence": "docs/evidence/h86i-rksc-chance-overlap.json"
+  },
+  "independent_disk_validation": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+    "bytes": 136667,
+    "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  }
+}

@@ -52,7 +52,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_site_leads_with_unambiguous_decision_and_download(self):
         html = (ROOT / "docs/index.html").read_text()
-        self.assertIn("NOT SAFE TO SUBMIT", html)
+        self.assertIn("NO FILE AUTHORIZED", html)
         self.assertIn("SAFE TO DOWNLOAD FOR AUDIT", html)
         self.assertIn("DO-NOT-SUBMIT.tif", html)
 

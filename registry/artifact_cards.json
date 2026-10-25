@@ -129,7 +129,28 @@
       "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
     },
     {
-      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/365 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "card": "docs/evidence/h86g-edti-run-card.json",
+      "context": "docs/evidence/h86g-edti-run-card.json",
+      "holdout_kind": "h86g_edti",
+      "stem": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros"
+    },
+    {
+      "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-rksc-run-card.json",
+      "context": "docs/evidence/h86i-rksc-run-card.json",
+      "holdout_kind": "h86i_rksc",
+      "stem": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros"
+    },
+    {
+      "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-hvfd-run-card.json",
+      "context": "docs/evidence/h86i-hvfd-run-card.json",
+      "holdout_kind": "h86i_hvfd",
+      "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
+    },
+    {
+      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86i-sacd-run-card.json",
       "context": "docs/evidence/h86i-sacd-run-card.json",
       "holdout_kind": "h86i_sacd",

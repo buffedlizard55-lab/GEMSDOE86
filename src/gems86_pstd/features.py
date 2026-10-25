@@ -39,6 +39,7 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from scipy import ndimage as ndi
+from scipy.stats import rankdata
 
 NODATA_FLOOR = -1.0e37
 
@@ -81,15 +82,19 @@ def _robust_z(arr: np.ndarray, footprint: np.ndarray) -> np.ndarray:
 
 
 def _rank01(arr: np.ndarray, footprint: np.ndarray) -> np.ndarray:
+    """Tie-invariant percentile rank on [0, 1] inside footprint, 0 outside.
+
+    Uses ``scipy.stats.rankdata(..., method='min')`` so tied floor values (e.g.
+    zero-clipped rectifier tails) map uniformly to 0.0 across all rows rather
+    than receiving a north-to-south row-major index ramp.
+    """
     out = np.zeros(arr.shape, dtype=np.float32)
-    vals = arr[footprint]
+    vals = np.where(np.isfinite(arr[footprint]), arr[footprint], 0.0)
     n = vals.size
-    if n <= 1:
+    if n <= 1 or float(vals.max()) <= float(vals.min()):
         return out
-    order = np.argsort(vals, kind="mergesort")
-    ranks = np.empty(n, dtype=np.float32)
-    ranks[order] = np.linspace(0.0, 1.0, n, dtype=np.float32)
-    out[footprint] = ranks
+    ranks = (rankdata(vals, method="min").astype(np.float64) - 1.0) / float(n - 1)
+    out[footprint] = ranks.astype(np.float32)
     return out
 
 

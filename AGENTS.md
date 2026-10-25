@@ -46,3 +46,23 @@
     Old unbound H86E reports are archives; rerun them for any future gate decision.
     Surface checks precede placement, final-dot checks precede serialization, and
     a PA diagnostic pass never overrides a failing literal submission gate.
+
+12. H86G-EDTI (2026-10-25) is the first `promote` lane: its single candidate
+    (`gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`, sha256
+    `ba8b731f...`) passed canary, SGMC-proxy paired-CI (selection only),
+    OOF catalogue-hide floor, like-for-like uniqueness vs 43 local registry
+    dot-fields, and the fail-closed format writer. Never rebrand its numbers:
+    SGMC-PROXY-DTI is not a score, the 55k budget came from disclosed post-hoc
+    Amendment A4, `safe_to_submit`/`approved_for_weekly_slot` stay false until
+    an organizer receipt is logged in `ledger/submissions.csv`. The catalogue-
+    hide whole-component instrument anti-correlates with owner-reported live
+    ordering (E1b table in `research/H86G_EDTI_REVIEW.md`); never select a
+    live candidate on it alone, and never compare an OOF arm number to a
+    shipped raster's as-is number. `audit_release.py` knows this lane via
+    `holdout_kind="h86g_edti"`; the literal full-support witness stop and all
+    thresholds are unchanged.
+
+13. Scientific `promote` / `submission_ready` is not upload authorization. Keep homepage,
+    executive guide, README and summary aligned with `safe_to_submit` and
+    `approved_for_weekly_slot`; both are currently false. Do not restore “submit this
+    file” buttons from historical promotion prose. See `research/SESSION_085C2B7A_REVIEW.md`.

@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 19,
-    "local_format_pass": 19,
+    "checked": 22,
+    "local_format_pass": 22,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -130,6 +130,21 @@
         "verdict": "negative"
       },
       {
+        "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
+        "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+        "verdict": "promote"
+      },
+      {
+        "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+        "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+        "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+        "verdict": "negative"
+      },
+      {
         "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
         "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
         "verdict": "negative"
@@ -147,8 +162,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T04:11:29+00:00",
+  "registry_measured_utc": "2026-10-25T04:56:28+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "e65ea9a425a58979c7bc34c9983990da9fbb21b827407555e8e5671c38551f2e",
-  "registry_measurement_sha256": "51ecb73bc75fe92509316f40ac4e1834c0f2c6dd1f204878081bffc30bebfc21"
+  "release_report_sha256": "cb09f49a15196b7bfd32ee41a06a3cecc86e457891bdd77d53a06a3706d95421",
+  "registry_measurement_sha256": "dddffdcd8be862cfd5c815b3295094fc6a4819667143de77b67d3a6d9a25512e"
 }
