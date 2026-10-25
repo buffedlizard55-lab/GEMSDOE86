@@ -10,7 +10,26 @@ Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and p
 
 **Every file in this repository is `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used).**
 
-### Latest lane: H86H-PSTD (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance) — HALTED FAIL-CLOSED (`DO NOT SUBMIT`)
+### Latest unique TIFF lane: H86I-RKSC (GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step + Lahontan-Deconfounded Piedmont Scarp Dipole) — AUDIT ONLY (`DO NOT SUBMIT`)
+
+Before any implementation code was written, four untried geological hypotheses (`H86I-1..H86I-4`) were frozen in [`research/H86I_RKSC_PREREGISTRATION.md`](research/H86I_RKSC_PREREGISTRATION.md) ([machine-readable JSON](research/H86I_RKSC_PREREGISTRATION.json)). Top candidate **`H86I-1` (`H86I-RKSC`)** excludes all gravity and magnetic layers and tests whether degraded late-Quaternary piedmont/intrabasin scarps juxtapose GeoDAWN radiometric `K/Th/U/TC` provenance and K-metasomatic alteration across Lahontan-deconfounded profile-curvature hinges ([full run card](docs/evidence/h86i-rksc-run-card.json), [surface registry report](docs/evidence/h86i-rksc-registry-surface.json), [final-dots registry report](docs/evidence/h86i-rksc-registry-dots.json), [PhD H33 (`0.2778`) proof & 3-pass review](research/SESSION_20261025_H86I_RKSC_REVIEW.md)):
+
+- **TIFF (audit only, DO NOT SUBMIT):** [`docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif`](docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif) (`1,608,425` bytes; `44,090` emitted dots)
+- **Single-TIFF ZIP:** [`docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.zip`](docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.zip)
+- **Raster SHA-256:** `9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba`
+- **Writer receipt:** [`docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.json`](docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.json)
+- **Submission name (unused):** `gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros` — **Note (106 chars):** `"H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconf piedmont scarp dipole; see run card gates; no slot used"`
+
+| Automated gate (no human intervention) | Result |
+|---|---|
+| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — single-band `float32`, `3730×3292`, `EPSG:32611`, values in `[0, 1]` (`min = 0.0`, `max = 1.0`), `0` NaN/Inf, `44,090` positive cells, `0` mapped-catalogue positives, ZIP byte-identical |
+| `BAND-PHYSICS-QC` & `LEAKAGE-CANARY` | **PASS** — Band 6 (`tc`) verified at `r = +0.9973` vs GeoDAWN `TC`; worst single-feature discriminative AUC across all 7 planes is **`0.6640 <= 0.90`** (`scarp_tensor_anisotropy`) |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives) | **FAIL (`negative`)** — `E1_rksc_full` **`0.0245`** `[0.0185, 0.0304]` beats radiometric-scarp ablation `E2` (`0.0235` `[0.0174, 0.0294]`) and Lahontan-uncorrected K-depleted control `E3` (`0.0142` `[0.0093, 0.0196]`, `+72.5%` relative lift), **but trails fold-fair 2-px `R0` (`0.0961` `[0.0829, 0.1094]`, paired Δ `−0.0716` `[−0.0866, −0.0582]`), 3-px `R0` (`0.0931`), and same-split best `H86C-KSLB` (`0.1241` `[0.1080, 0.1403]`)** |
+| Pre-placement surface registry check (PA-86-01) | **0 RHO FIRINGS (`worst Spearman = 0.2633 <= 0.90`)** across `687 / 689` valid rasters (`2` off-grid historical rows fail CRS/grid checks → `surface_gate_pass = false`) |
+| Final dots / `PA-86-02` | **BYTE & PIXEL UNIQUE; 0 SPARSE-DOT OVERLAP FIRINGS (`worst Spearman = 0.0395 <= 0.90`, `worst Jaccard = 0.0140`)** — `16` space-filling lattice/composite rasters (`13GEMSDOE`, `15GEMSDOE`, `GEMSDOE48`) and continuous witness `17GEMSDOE` exceed `0.70` 3-px overlap; `pa86_chance_overlap.py` fails closed on the `2` off-grid rows (`gate_pass = false`) |
+| Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
+
+### Prior 2026-10-25 lane: H86H-PSTD (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance) — HALTED FAIL-CLOSED (`DO NOT SUBMIT`)
 
 Before any implementation code was written, four untried geological hypotheses (`H86H-1..H86H-4`) were frozen in [`research/H86H_PSTD_PREREGISTRATION.md`](research/H86H_PSTD_PREREGISTRATION.md) ([machine-readable JSON](research/H86H_PSTD_PREREGISTRATION.json)). Top candidate **`H86H-1` (`H86H-PSTD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid and **halted fail-closed before full-footprint dot placement and before GeoTIFF serialization** per `AGENTS.md` Rule 11 ([run card](docs/evidence/h86h-pstd-run-card.json), [v2 bound surface report](docs/evidence/h86h-pstd-registry-surface.json), [PhD GEMSDOE32 analysis & 3-pass review](research/SESSION_20261024_H86H_PSTD_REVIEW.md)):
 
@@ -65,7 +84,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **17** published research TIFFs, including the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **18** published research TIFFs, including H86I-RKSC, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 
@@ -79,7 +98,7 @@ Parallel sessions revoked SWCON (`5576b15c…374f`) and removed its binaries fro
 
 Three different 2026-10-24 sessions used the prefix "H86E": **H86E-MMT** (above, [`docs/evidence/h86e-mmt-run-card.json`](docs/evidence/h86e-mmt-run-card.json)), **H86E-RIDF** ([`docs/evidence/h86e-ridf-run-card.json`](docs/evidence/h86e-ridf-run-card.json)), and **H86E-CCTX** (below, [`docs/evidence/h86e-run-card.json`](docs/evidence/h86e-run-card.json)) are separate lanes, and all are `DO NOT SUBMIT`.
 
-> **2026-10-24 MANDATORY GATE STATUS: `DO NOT SUBMIT` (`safe_to_submit: false`, `submission_slots_used: 0`).** All **15** published research GeoTIFFs in `docs/downloads/` pass local format/range checks (`[0, 1]`, `0` NaN, `EPSG:32611`, `3730×3292`, `100 m` grid) and **all 15 fail the mandatory literal uniqueness gate (`100.0%` 3-px overlap vs `17GEMSDOE`)**. All **50 CLI builders + 8 imported orchestrators** (including `build_h86e_features`, `run_h86e_ridf`, `run_h86e_mmt`, `build_unique_submission`, `build_gems86_gapres`, `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `experiment`, `run_experiment`, `run_h86`, and `run_lane`) are gated behind `protocol_preflight.require_feasible()`.
+> **2026-10-24/25 MANDATORY GATE STATUS: `DO NOT SUBMIT` (`safe_to_submit: false`, `submission_slots_used: 0`).** All **18** published research GeoTIFFs in `docs/downloads/` pass local format/range checks (`[0, 1]`, `0` NaN, `EPSG:32611`, `3730×3292`, `100 m` grid) and **all 18 fail the mandatory literal uniqueness gate (`100.0%` 3-px overlap vs `17GEMSDOE`)**. All **51 CLI builders + 8 imported orchestrators** (including `run_h86i_rksc`, `run_h86f_gzzd`, `build_h86e_features`, `run_h86e_ridf`, `run_h86e_mmt`, `build_unique_submission`, `build_gems86_gapres`, `build_gems86_swcon`, `generate_unique_submission`, `run_h86e`, `finalize_h86e`, `experiment`, `run_experiment`, `run_h86`, and `run_lane`) are gated behind `protocol_preflight.require_feasible()`.
 
 
 > **2026-10-24 GAPRES session:** new unique TIF `docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif` (sha256 `0af386ec…`, 37,654 dots, 0.000 3-px overlap vs 26 local dotted fleet rasters, format-valid [0,1]/EPSG:32611/3730×3292) — **🔴 DO NOT SUBMIT**: HOLDOUT-DTI 0.0000 (n=22,641, gems57-pooled-hide-v2) < h33 same-instrument 0.0044. See `research/GAPRES_SESSION_20261024.md` + `docs/evidence/gapres-run-card.json`. No slot used.

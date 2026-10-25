@@ -1,7 +1,7 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-25T01:47:23+00:00",
+  "measured_utc": "2026-10-25T03:02:09+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
   "proof_sha256": "d7fe1e499ba586d99431ae5838a800ba9043df6be0032b6c460b9ded4ed128e4",
@@ -160,6 +160,15 @@
       "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
       "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
       "spearman_full_footprint": -0.004326024457814671,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+      "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+      "spearman_full_footprint": 0.005752757305070208,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

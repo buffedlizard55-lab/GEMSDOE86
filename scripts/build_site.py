@@ -224,6 +224,38 @@ values in [0, 1] with min {card["validator_output"]["min"]:.1f} / max {card["val
 <p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86f-gzzd-run-card.json">Full run card</a> · <a href="evidence/h86f-gzzd-registry-surface.json">Surface registry check</a> · <a href="evidence/h86f-gzzd-registry-final-dots.json">Final-dots registry check</a> · <a href="{REPO}/blob/main/research/H86F_GZZD_PREREGISTRATION.md">Frozen preregistration &amp; ranked hypotheses</a></p></section>'''
 
 
+def h86i_rksc_answer(card: dict) -> str:
+    """Latest contemporaneously preregistered H86I-RKSC lane receipt (unique audit TIFF generated)."""
+    h = card["holdout_dti"]
+    c = h["candidate"]
+    e2 = h["all_arms"]["E2_rksc_rad_scarp_only"]
+    e3 = h["all_arms"]["E3_rksc_lahontan_uncorrected_control"]
+    r0_ff = h["R0_GEMSDOE25_d28_fold_fair_2px"]
+    r0_c3 = h["R0_GEMSDOE25_d28_collar_3px"]
+    best = h["current_holdout_best_same_split"]
+    d_ff = h["paired_delta_vs_fold_fair_r0"]
+    reg = card["correlation_overlap_vs_registry"]
+    surface = reg["surface_preplacement"]
+    final = reg["final_dots"]
+    like = final["two_phase"]["like_for_like_reading"]
+    can = card["leakage_canary"]
+    v = card["validator_output"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86i-rksc"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>2026-10-25 latest unique TIFF (H86I-RKSC): GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole — audit only, do not upload</h2>
+<p><code>{e(name)}.tif</code> is a newly generated, byte- and pixel-unique single-band GeoTIFF (SHA-256 <code>{e(card["raster_sha256"])}</code>, {v["positive_pixels"]:,} positive cells, 0 NaN, values in [0, 1]). <strong>Automated gate decision: {e(card["decision"])} (verdict: <code>{e(card["verdict"])}</code>; <code>safe_to_submit = false</code>; <code>0</code> weekly slots used; no human intervention required).</strong></p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only, DO NOT SUBMIT</a>
+<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives, 1,000-draw paired 20 km physical-block bootstrap): candidate <code>E1_rksc_full</code> <strong>{c["dti"]:.4f}</strong> [{c["ci95"][0]:.4f}, {c["ci95"][1]:.4f}] beat radiometric-scarp ablation <code>E2</code> ({e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]) and Lahontan-uncorrected K-depleted negative control <code>E3</code> ({e3["dti"]:.4f} [{e3["ci95"][0]:.4f}, {e3["ci95"][1]:.4f}], +72.5% relative lift), <strong>but trailed fold-fair 2-px <code>R0</code> ({r0_ff["dti"]:.4f} [{r0_ff["ci95"][0]:.4f}, {r0_ff["ci95"][1]:.4f}], paired Δ {d_ff["delta"]:+.4f} [{d_ff["ci95"][0]:+.4f}, {d_ff["ci95"][1]:+.4f}]), 3-px <code>R0</code> ({r0_c3["dti"]:.4f}), and same-split historical best <code>H86C-KSLB</code> ({best["dti"]:.4f} [{best["ci95"][0]:.4f}, {best["ci95"][1]:.4f}])</strong>.</li>
+<li><strong>LEAKAGE-CANARY:</strong> <strong>PASS</strong> — worst single-field discriminative AUC across all 7 catalogue-blind feature planes is <code>{can["worst_discriminative_auc"]:.4f} &lt;= 0.90</code> (<code>{e(can["worst_field"])}</code>); Band 6 (<code>tc</code>) pixel-verified at <code>r = +0.9973</code> vs USGS GeoDAWN Total Count (<code>TC</code>).</li>
+<li><strong>REGISTRY-MEASUREMENT (687/689 valid rasters; 0 missing):</strong> pre-placement surface worst Spearman <code>{surface["worst_spearman_full_footprint"]:.4f} &lt;= 0.90</code> (<code>0</code> rho firings); final-dots worst Spearman <code>{final["worst_spearman_full_footprint"]:.4f} &lt;= 0.90</code> (<code>0</code> rho firings; <code>worst Jaccard = {like["worst_jaccard"]:.4f}</code>; <code>0</code> overlap firings against any sparse &lt;=60k-dot submission). However, <code>{like["forward_overlap_firings"]}</code> space-filling lattice/composite rasters (<code>13GEMSDOE</code>, <code>15GEMSDOE</code>, <code>GEMSDOE48</code>) and continuous witness <code>17GEMSDOE</code> exceed 0.70 3-px overlap, and <code>2</code> off-grid historical rows (<code>14GEMSDOE</code>, <code>7GEMSDOE</code>) cause <code>pa86_chance_overlap.py</code> to fail closed (<code>gate_pass = FALSE</code>).</li>
+<li><strong>LOCAL-FORMAT-VALIDATION:</strong> values in [0, 1] = {str(v["values_in_0_1"]).upper()} (min {v["min"]:.1f}, max {v["max"]:.1f}), no NaN inside footprint = {str(v["no_nan_inside_footprint"]).upper()}, CRS/shape/transform match = {str(v["crs_shape_transform_match"]).upper()}. Format validity never overrides a negative scientific or registry gate.</li></ul>
+<dl><dt>Submission name — audit reference only (DO NOT UPLOAD)</dt><dd><code id="h86i-name">{e(name)}</code> <button data-copy-target="h86i-name" type="button">Copy name</button></dd>
+<dt>Note ({card["note_chars"]} characters)</dt><dd><code id="h86i-note">{e(card["note"])}</code> <button data-copy-target="h86i-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence/h86i-rksc-run-card.json">Full H86I-RKSC run card</a> · <a href="evidence/h86i-rksc-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86i-rksc-registry-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86I_RKSC_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_RKSC_REVIEW.md">PhD H33 (0.2778) proof &amp; 3-pass review</a></p></section>'''
+
+
 def h86h_pstd_answer(card: dict) -> str:
     """Latest contemporaneously preregistered H86H-PSTD lane receipt (halted fail-closed per Rule 11)."""
     he = card["holdout_evaluation"]
@@ -345,7 +377,22 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, h86h_prereg: dict, pstd_card: dict) -> str:
+def hypotheses(plan: dict, h86h_prereg: dict, pstd_card: dict, h86i_prereg: dict | None = None, rksc_card: dict | None = None) -> str:
+    h86i_cards = []
+    if h86i_prereg and rksc_card:
+        e1_i = rksc_card["holdout_dti"]["candidate"]
+        r0_i = rksc_card["holdout_dti"]["R0_GEMSDOE25_d28_fold_fair_2px"]
+        for ch in h86i_prereg["candidate_hypotheses"]:
+            status_label = (
+                f"EXECUTED NEGATIVE (HOLDOUT-DTI {e1_i['dti']:.4f} vs fold-fair R0 {r0_i['dti']:.4f}; audit TIFF serialized, DO NOT SUBMIT)"
+                if ch["selected_for_validation"]
+                else ("DEFERRED (NOT VIABLE IN SANDBOX YET)" if "NOT_VIABLE" in ch["official_data_obtainability"] else "PREREGISTERED (DEFERRED BEHIND RANK 1)")
+            )
+            h86i_cards.append(f'''<article class="card"><p class="eyebrow">H86I Rank {ch['rank']} · {e(ch['id'])} · {e(status_label)}</p><h2>{e(ch['title'])}</h2>
+<dl><dt>Specific layers</dt><dd>{e('; '.join(ch['layers']))}</dd><dt>Physical signature &amp; transform</dt><dd>{e(ch['physical_signature'])}</dd>
+<dt>Why missing from USGS/INGENIOUS catalogue?</dt><dd>{e(ch['why_catches_unmapped_faults'])}</dd><dt>Novelty vs repository</dt><dd>{e(ch['difference_from_repo'])}</dd>
+<dt>Named non-fault mimic</dt><dd>{e(ch['named_non_fault_mimic'])}</dd><dt>Expected DTI rank &amp; cost</dt><dd>Rank {ch['expected_dti_rank']} · {e(ch['implementation_cost'])}</dd>
+<dt>Official data obtainability</dt><dd>{e(ch['official_data_obtainability'])}</dd></dl></article>''')
     e1 = pstd_card["holdout_evaluation"]["arms"]["E1_pstd_full"]
     r0 = pstd_card["holdout_evaluation"]["fold_fair_r0_control"]
     h86h_cards = []
@@ -369,8 +416,13 @@ def hypotheses(plan: dict, h86h_prereg: dict, pstd_card: dict) -> str:
 <dt>Named non-fault mimic</dt><dd>{e(h['non_fault_mimic'])}</dd><dt>Expected value / implementation cost</dt><dd>{e(h['expected_dti_gain'])} {e(h['implementation_cost'])}</dd>
 <dt>Data / viability</dt><dd>{e(h['data_readiness'])} {e(h.get('obtainability', 'No new external product is proposed as acquired.'))}</dd></dl><p>{sources}</p></article>''')
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
+    h86i_block = (
+        f'<h2>Contemporaneously preregistered H86I hypotheses (<a href="evidence/h86i-rksc-run-card.json">H86I-RKSC run card</a>)</h2>{"".join(h86i_cards)}'
+        if h86i_cards else ""
+    )
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
 <div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p></div>
+{h86i_block}
 <h2>Contemporaneously preregistered H86H hypotheses (<a href="evidence/h86h-pstd-run-card.json">H86H-1 run card</a>)</h2>
 {''.join(h86h_cards)}
 <h2>Archived earlier planning queue (registry/h86c_hypotheses.json)</h2>
@@ -576,9 +628,20 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or pstd_card["budget"]["experiments_run"] > 3):
         raise ValueError("H86H-PSTD card must stay negative, within 3-arm budget, and slot-free")
     h86h_prereg = strict_json(root / "research/H86H_PSTD_PREREGISTRATION.json")
+    rksc_card = strict_json(root / "docs/evidence/h86i-rksc-run-card.json")
+    if (rksc_card["verdict"] != "negative" or rksc_card["decision"] != "DO NOT SUBMIT"
+            or rksc_card["submission_ready"] is not False
+            or rksc_card["safe_to_submit"] is not False
+            or rksc_card["approved_for_weekly_slot"] is not False
+            or rksc_card["submission_slots_used"] != 0
+            or rksc_card["experiments_run"] != 3
+            or rksc_card["raster_sha256"] is None):
+        raise ValueError("H86I-RKSC card must stay negative, within 3-arm budget, slot-free, and bound to its raster")
+    h86i_prereg = strict_json(root / "research/H86I_RKSC_PREREGISTRATION.json")
     comp_path = root / "docs/evidence/h86e_comparator.json"
     comp = strict_json(comp_path) if comp_path.exists() else None
-    answer = (h86h_pstd_answer(pstd_card) + h86f_gzzd_answer(gzzd_card, comp)
+    answer = (h86i_rksc_answer(rksc_card) + h86h_pstd_answer(pstd_card)
+              + h86f_gzzd_answer(gzzd_card, comp)
               + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))
     return {
@@ -586,7 +649,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/executive-summary.html": executive(report, sources, answer),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, h86h_prereg, pstd_card),
+        "docs/hypotheses.html": hypotheses(plan, h86h_prereg, pstd_card, h86i_prereg, rksc_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

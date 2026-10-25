@@ -120,6 +120,13 @@
       "context": "docs/evidence/h86f-gzzd-run-card.json",
       "holdout_kind": "h86f_gzzd",
       "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-rksc-run-card.json",
+      "context": "docs/evidence/h86i-rksc-run-card.json",
+      "holdout_kind": "h86i_rksc",
+      "stem": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros"
     }
   ]
 }
