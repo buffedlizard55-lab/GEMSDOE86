@@ -1,5 +1,5 @@
 {
- "scope": "21 locally format-valid research artifacts: 15 inherited lanes plus the 2026-10-25 lanes H86F-PCC, H86F-GZZD, H86F-EWCS, H86G-EDTI, H86I-RKSC, and H86I-HVFD. No selector ran; 0 slots used. GDSC added 2026-10-25. H86L-FMC, H86M-BMR and H86M-CNT added 2026-10-25 (all DO NOT SUBMIT negatives).",
+ "scope": "All registered research artifacts; local format validity is not scientific or weekly-slot authorization.",
  "artifacts": [
   {
    "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",

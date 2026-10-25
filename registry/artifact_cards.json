@@ -248,7 +248,7 @@
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     },
     {
-      "lane": "H86M-LT leaderboard-tomography belief emission over 29 owner-reported scores (HOLDOUT-DTI not run; SGMC-PROXY-DTI 0.1136; PR #165 promote revoked per IR-86M-03; DO NOT SUBMIT, 2026-10-25)",
+      "lane": "H86M-LT leaderboard tomography (unvalidated archive; DO NOT SUBMIT)",
       "card": "docs/evidence/h86m-lt-run-card.json",
       "context": "docs/evidence/h86m-lt-run-card.json",
       "holdout_kind": "h86m_lt_unvalidated",
