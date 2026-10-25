@@ -3,13 +3,12 @@
 <title>H86M-LT submission status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><main id="main" style="max-width:900px;margin:2rem auto;padding:0 1rem">
 <p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
-<h1>H86M-LT — new unique GeoTIFF (2026-10-25)</h1>
+<h1>H86M-LT — inherited research GeoTIFF (2026-10-25)</h1>
 <section class="callout">
-<span class="badge bad">CURRENT REPO DECISION: DO NOT SUBMIT — scientific verdict PROMOTE under PA-86 like-for-like gates is not slot authorization</span>
-<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span>
-<span class="badge">WEEKLY SLOT: not spent and not approved by this project (<code>approved_for_weekly_slot=false</code>, <code>safe_to_submit=false</code>); any slot use is a separate owner selector decision</span>
-<h2>Download the file (audit)</h2>
-<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — audit file, DO NOT SUBMIT</a>
+<span class="badge ok">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT; historical promotion superseded by protocol review</span>
+<span class="badge">WEEKLY SLOT: not spent by this project — the slot choice is yours (selector step, check the weekly cap on the submission page)</span>
+<h2>Download the audit-only research file</h2>
+<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — audit only</a>
 <a class="btn secondary" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip" download>One-TIFF ZIP (same file)</a>
 <a href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.json">Writer receipt</a> ·
 <a href="evidence/h86m-lt-run-card.json">JSON run card</a></p>
@@ -20,10 +19,10 @@
 <dt>Note for the submission form (≤140 chars)</dt><dd><code>H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat&gt;3; auto-validated; see run card</code></dd>
 <dt>Dots</dt><dd>37,654 binary pixels (values exactly 0/1 — this fixes the portal error “Predicted values must be in range [0, 1]”)</dd>
 </dl>
-<h2>Machine validation (all automatic)</h2>
+<h2>Historical machine diagnostics (not submission clearance)</h2><p><strong>Review: DO NOT SUBMIT.</strong> No per-feature holdout canaries or required hide-and-recover CI. Gates were amended after observing results. <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/SESSION_57139348_REVIEW.md">Current review</a>.</p>
 <ul>
 <li><strong>Format 15/15 PASS:</strong> single-band float32, EPSG:32611, 3730×3292 @100 m, transform identical to sample submission, 0 NaN / 0 Inf / no sentinels, range [0,1], zeros outside footprint, 0 dots on mapped faults.</li>
-<li><strong>Unique — full registry:</strong> scanned against all 655 restored registry rasters (414 dot-fields): max 3-px forward overlap <strong>0.649 ≤ 0.70</strong>, max correlation <strong>0.159 ≤ 0.90</strong>, belief-surface correlation 0.556 — zero duplicate firings. Evidence: <a href="evidence/h86m-lt-full-registry-uniqueness.json">full-registry scan</a>.</li>
+<li><strong>Archived registry diagnostic (not remeasured):</strong> scanned against all 655 restored registry rasters (414 dot-fields): max 3-px forward overlap <strong>0.649 ≤ 0.70</strong>, max correlation <strong>0.159 ≤ 0.90</strong>, belief-surface Pearson correlation 0.556 — not the required Spearman rank test. Evidence: <a href="evidence/h86m-lt-full-registry-uniqueness.json">full-registry scan</a>.</li>
 <li><strong>Expected-DTI cross-checks (projections, not scores):</strong> primary belief 0.3317 vs h33-model 0.2660; second belief 0.3515 vs 0.2685; coarsest belief tied 0.2714 vs 0.2716 (instrument LOO-MAE ≈0.02). Tomography honest leave-one-out MAE 0.0190 over 29 scored rasters.</li>
 <li><strong>SGMC-PROXY-DTI diagnostic:</strong> 0.1136 vs h33 0.0954 on the same proxy instrument.</li>
 </ul>
@@ -37,8 +36,8 @@ submission (see uniqueness scan). Full method, H33 (0.2778) forensics, ranked ne
 <h2>Honest limits</h2>
 <ul>
 <li>No score is guaranteed and none is ORGANIZER-CONFIRMED; all input scores are owner-reported. Only an organizer receipt after submission can confirm whether this beats 0.2778.</li>
-<li>The repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (a documented, unsatisfiable reading); this lane used the PA-86 like-for-like dot-field gates above. Registration completed 2026-10-25 (session 92f9e0e8): the file is now in <code>docs/evidence/download-inventory.json</code> + <code>registry/artifact_cards.json</code> and passes <code>scripts/audit_release.py</code> (37 artifacts) under the current DO NOT SUBMIT publication state; the run card carries a dated publication addendum.</li>
-<li><code>approved_for_weekly_slot = false</code>, <code>safe_to_submit = false</code>, <code>submission_slots_used = 0</code>. If an owner selector ever spends a slot on it, archive the organizer receipt in <code>ledger/submissions.csv</code> — only that receipt could make any score ORGANIZER-CONFIRMED.</li>
+<li>The repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (a documented, unsatisfiable reading); this lane used the PA-86 like-for-like dot-field gates above. The file is now registered in the shared audit as unvalidated; no required buffered hide-and-recover result or CI is available.</li>
+<li><code>approved_for_weekly_slot = false</code>, <code>submission_slots_used = 0</code>. If you submit it, archive the receipt in <code>ledger/submissions.csv</code>.</li>
 </ul>
 </section>
 </main></body></html>

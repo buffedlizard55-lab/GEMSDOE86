@@ -11,9 +11,10 @@ slots. Request archive: `research/REQUEST_20261025_92F9E0E8.md`.
 (`gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif`, SHA-256
 `5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a`) and its preregistered
 hypothesis was **not supported** on the spatially blocked holdout, so the file is an
-audit-only negative deliverable. Separately, the repo's publication state was repaired:
-H86M-LT is now registered and consistently labelled (scientific PA-86 PROMOTE preserved;
-`safe_to_submit=false`, no slot authorized), and `check_site.py` passes again.
+audit-only negative deliverable. Separately, the repo's contradictory H86M-LT publication
+state (found independently here) was repaired on main in parallel by session `57139348`
+(PR #166, LT downgraded to a negative unvalidated archive); at merge that accepted state
+was kept and only the EQL lane was layered on top, and `check_site.py` passes again.
 `approved_for_weekly_slot=false` everywhere; 0 slots used.
 
 ## Why did h33 score 0.2778 (owner-reported), and can we beat it?
@@ -78,14 +79,16 @@ that is a new hypothesis requiring fresh preregistration — do not re-run EQL u
 
 ## Repo review findings repaired (Pass 1–2)
 
-1. **Publication contradiction (IR-86-92F9E0E8-H86M-PUBLICATION).** On `main`:
-   `check_site.py` failed (exit 1) — H86M-LT TIFF/ZIP unregistered; lane page said
-   "OK TO SUBMIT? YES"; run card `safe_to_submit=true`; README headline contradicted the
-   generated index. Registered LT + EQL (37 artifacts), added reviewed `h86m_lt` /
-   `h86n_eql` branches to `scripts/audit_release.py`, added a dated publication addendum
-   to the LT card (scientific content untouched), aligned lane page + README.
-   `audit_release --measure-registry`, `audit_downloads --write`, `build_site`,
-   `check_site` all PASS after repair.
+1. **Publication contradiction (IR-86-92F9E0E8-H86M-PUBLICATION).** At this branch's
+   starting commit, `check_site.py` failed (exit 1) — H86M-LT TIFF/ZIP unregistered;
+   lane page said "OK TO SUBMIT? YES"; run card `safe_to_submit=true`; README headline
+   contradicted the generated index. This session repaired it locally (registration +
+   addendum preserving the PA-86 PROMOTE), but parallel session `57139348` merged its
+   own repair first (PR #166: card downgraded to negative `h86m_lt_unvalidated`
+   archive, with the additional valid critiques that LT lacks buffered hide-and-recover
+   CIs and its surface checker used Pearson, not Spearman). The merge kept main's LT
+   state, removed this session's parallel LT branch, and layered only EQL on top
+   (37 artifacts). Full audit chain re-run to PASS after the merge.
 2. **`scripts/verify_submission_tif.py` ignores its CLI argument** and always verifies
    the pinned H86G-EDTI file (by design as a pinned-byte guard, but the interface is a
    footgun: passing another TIFF silently verifies H86G instead). Flagged here; not

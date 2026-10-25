@@ -248,10 +248,10 @@
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
     },
     {
-      "lane": "H86M-LT leaderboard tomography + DTI-optimal emission (scientific PA-86 like-for-like PROMOTE in its run card; no catalogue HOLDOUT-DTI by design; current publication state DO NOT SUBMIT, 2026-10-25)",
-      "card": null,
+      "lane": "H86M-LT leaderboard tomography (unvalidated archive; DO NOT SUBMIT)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
       "context": "docs/evidence/h86m-lt-run-card.json",
-      "holdout_kind": "h86m_lt",
+      "holdout_kind": "h86m_lt_unvalidated",
       "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
     },
     {

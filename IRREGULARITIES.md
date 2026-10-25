@@ -1578,7 +1578,7 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
 
-## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (repaired)
+## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (found independently; repair superseded at merge by PR #166)
 
 On this branch's starting commit (`3deca67`), H86M-LT violated the repo's own publication
 guard in four measured ways: (1) its TIFF/ZIP were absent from
@@ -1587,16 +1587,13 @@ flagged as IR-86-H86M-INVENTORY); (2) `docs/h86m-lt.html` carried the banned ins
 "IS THIS FILE OK TO SUBMIT? YES"; (3) its run card set `safe_to_submit=true` with no
 `submission_ready`/`gates` fields; (4) README's headline said "OK TO SUBMIT" while the
 generated site said "NO FILE AUTHORIZED · DO NOT SUBMIT" — so `scripts/check_site.py`
-failed on main (exit 1, reproduced this session). Repair (session `92f9e0e8`): registered
-the artifact with a reviewed `h86m_lt` branch in `scripts/audit_release.py` (no catalogue
-HOLDOUT-DTI exists for this lane; tomography projections are never relabelled), added a
-dated publication addendum to the run card (`safe_to_submit=false`,
-`submission_ready=true` in the H86G-EDTI format-ready sense, Amendment-C `gates`; the
-scientific PA-86 PROMOTE verdict and all measurements are preserved verbatim), aligned the
-lane page and README headline to the binding `DO NOT SUBMIT` publication state, and
-re-ran `audit_release --measure-registry`, `audit_downloads --write`, `build_site` and
-`check_site` to PASS over 37 artifacts. No raster bytes, thresholds, evaluator/writer or
-scientific verdict changed; no slot was authorized or used.
+failed on main (exit 1, reproduced this session). Session `92f9e0e8` first repaired this locally (registration + run-card publication
+addendum preserving the PA-86 PROMOTE); in parallel, session `57139348` repaired the
+same failure on main (PR #166) by downgrading the card to a negative unvalidated
+archive (`h86m_lt_unvalidated`). At merge, main's already-accepted LT state was kept
+and this session's parallel LT branch/addendum was removed, leaving exactly one LT
+normalization path; only the H86N-EQL lane was layered on top (37 artifacts). No raster
+bytes or thresholds changed in either repair; no slot was authorized or used.
 
 ## IR-86-92F9E0E8-PRIOR-SCORES — 2026-10-25 (open, data re-pin needed)
 
@@ -1608,3 +1605,13 @@ archived verbatim in `research/REQUEST_20261025_92F9E0E8.md`; transcribing them 
 CSV requires a deliberate feed re-pin/regeneration pass, deliberately not smuggled into
 this session's lane change. They remain unverified claims either way (no organizer
 receipts).
+
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
+
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.

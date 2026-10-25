@@ -22,7 +22,7 @@ def test_eql_and_lt_registered_in_both_indexes():
     idx = json.loads((ROOT / "registry/artifact_cards.json").read_text())
     inv_files = {a["file"] for a in inv["artifacts"]}
     idx_stems = {a["stem"]: a for a in idx["artifacts"]}
-    for stem, kind in ((EQL_STEM, "h86n_eql"), (LT_STEM, "h86m_lt")):
+    for stem, kind in ((EQL_STEM, "h86n_eql"), (LT_STEM, "h86m_lt_unvalidated")):
         assert f"docs/downloads/{stem}.tif" in inv_files
         assert idx_stems[stem]["holdout_kind"] == kind
         entry = next(a for a in inv["artifacts"] if a["file"].endswith(stem + ".tif"))
@@ -46,15 +46,15 @@ def test_eql_run_card_is_measured_negative_no_slot():
     assert "DO NOT SUBMIT" in card["submission_note_le140"]
 
 
-def test_lt_card_publication_state_aligned_science_preserved():
+def test_lt_card_merged_publication_state_is_negative_no_slot():
+    # Parallel session 57139348 (PR #166) repaired the same LT failure on main
+    # by downgrading the card to a negative unvalidated archive; at merge that
+    # accepted state was kept over this session's addendum approach.
     card = json.loads((ROOT / "docs/evidence/h86m-lt-run-card.json").read_text())
-    assert card["verdict"] == "promote"  # scientific PA-86 verdict preserved
+    assert card["verdict"] == "negative"
     assert card["safe_to_submit"] is False
     assert card["approved_for_weekly_slot"] is False
     assert card["submission_slots_used"] == 0
-    add = card["publication_addendum_20261025_92f9e0e8"]
-    assert add["original_safe_to_submit"] is True
-    assert add["current_publication_state"] == "DO_NOT_SUBMIT"
     page = (ROOT / "docs/h86m-lt.html").read_text()
     assert "IS THIS FILE OK TO SUBMIT? YES" not in page
     assert "DO NOT SUBMIT" in page
