@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 32,
-    "local_format_pass": 32,
+    "checked": 33,
+    "local_format_pass": 33,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -195,6 +195,11 @@
         "verdict": "negative"
       },
       {
+        "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+        "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+        "verdict": "negative"
+      },
+      {
         "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
         "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
         "verdict": "negative"
@@ -212,12 +217,11 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T17:01:47.738088+00:00",
+  "registry_measured_utc": "2026-10-25T17:21:53.565294+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "5278b1c32e586e4046c292258fc19719ad8c560daec4215c00e60b97c1988c44",
-  "registry_measurement_sha256": "b31c6b0649eb64502e9c51a5102b85bce2e5ca85ecec0d7ba525577c29ede3b4",
+  "release_report_sha256": "ef6bbed54a72992314222b6fa0d42a3bccd10b44df588a96108f0d919e4e4871",
+  "registry_measurement_sha256": "c265e47bc7405d3e3122662e5e078bce1e05f8b90370d42e69396883018a159b",
   "session": "63051e73",
-  "measured_utc": "2026-10-25T17:10:56.323385+00:00",
   "unique_tiff_requirement_satisfied": false,
   "software_tests": {
     "reconciled_full_suite": {
@@ -229,10 +233,13 @@
       "passed": 13,
       "failed": 0
     },
-    "scope": "New homepage regression added after full-suite collection; separately verified in the 13-test module."
+    "scope": "New homepage regression added after full-suite collection; separately verified in the 13-test module.",
+    "post_pr158_focused_suite": {
+      "passed": 39,
+      "failed": 0
+    },
+    "final_integrated_suite": "RUNNING"
   },
-  "reconciliation": "Reused PR #156 shared archive schema and snapshot. No private evaluator or duplicate inventory implementation.",
-  "audit_measurement_scope": "This card retains the session 17:01 UTC measurement; current published evidence was reconciled with main PR #156.",
   "verification": {
     "audit_release": true,
     "build_site_check": true,
@@ -240,5 +247,7 @@
     "audit_downloads": true,
     "frozen_review": true,
     "git_diff_check": true
-  }
+  },
+  "reconciliation": "Reused PR #156 shared archive schema and snapshot. No private evaluator or duplicate inventory implementation.",
+  "audit_measurement_scope": "Final integrated audit: 33 inherited files after PR #158; one pinned witness sufficient to reject, never registry completeness."
 }

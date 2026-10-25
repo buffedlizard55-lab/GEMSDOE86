@@ -71,3 +71,16 @@ def test_generated_home_preserves_h86l_audit_anchor_without_uniqueness_claim():
     assert 'not fold-safe hide-and-recover evidence' in panel
     assert 'NEWEST UNIQUE TIFF' not in panel
     assert 'evidence/h86l-fmc-run-card.json' in panel
+
+
+def test_inherited_h86m_export_has_no_trusted_holdout_or_canary():
+    config = {'holdout_kind': 'h86m_unvalidated',
+              'context': 'docs/evidence/h86m-damagering-run-card.json'}
+    context = json.loads((ROOT / config['context']).read_text())
+    result = archived_holdout(config, context)
+    assert result['status'] == 'NOT_VALIDATED_FOR_THIS_VARIANT'
+    assert result['value'] is result['ci95'] is result['withheld_positives'] is None
+    assert 'not accepted' in result['caveat']
+    context['holdout_dti']['value'] = 0.5
+    with pytest.raises(ValueError, match='must remain unvalidated'):
+        archived_holdout(config, context)
