@@ -1,0 +1,140 @@
+{
+  "file": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
+  "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
+  "bytes": 141343,
+  "submission_name": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros",
+  "note": "H86M-SLCQ adaptive-Salem+LogCauchy+BMR LOQO DCELF (HOLDOUT 0.1527, SGMC 0.0967); v2 fail-closed; DO NOT SUBMIT",
+  "note_chars": 110,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
+    "bytes": 141343,
+    "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
+    "bytes": 141343,
+    "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.zip",
+  "zip_sha256": "dc0c627dbfc240e40de2122f44e5f3912d74b9613a4c71de4c469854c55d5985",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86M-SLCQ",
+    "hypothesis": "Dip-Adaptive Salem Tilt-Contact Pullback x Steerable 8-Azimuth Log-Cauchy Step-vs-Dike Symmetry + Fold-Safe Parker-Bouguer Basement Mass-Balance Residual (BMR) & Up-Head Geothermal Conduit Discovery with 5-Fold (80/20 Hide-Matched) Strict LOQO & Exact 6-Ring Survival Dinkelbach-CELF",
+    "budget": 37654,
+    "spacing_px": 2.8,
+    "collar_px": 3.0,
+    "dinkelbach_final_lambda": 0.21055559613982056,
+    "dinkelbach_outer_lambdas": [
+      0.18,
+      0.21055031229576732
+    ],
+    "celf_total_covered_credit": 22408.739637553692,
+    "celf_total_self_credit": 15774.402016222477,
+    "celf_recomputations": 522304,
+    "static_feature_sha256": "7877728b0560e2f7bf2a2d30701973aaba4e35d27bdd8ead3fe69ae142db523f",
+    "surface_sha256": "0581463fe83ea4e3b0efdd99a2a1e04b24facf87306e99218a2e4970ca883d95",
+    "dots_sha256": "671a4774c4ac09cf8c887ee045d7108810be55bf9a523b15821eaefae7773651",
+    "registry_surface_evidence": "docs/evidence/h86m-slcq-registry-surface.json",
+    "registry_final_evidence": "docs/evidence/h86m-slcq-registry-final-dots.json",
+    "chance_overlap_evidence": "FAILED_CLOSED_NO_REPORT (see run card)"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "gems86.h86m-slcq-preregistration.v1",
+  "lane_id": "H86M-SLCQ",
+  "session_id": "99fb007b",
+  "declared_utc": "2026-10-25T17:20:00Z",
+  "declared_before_implementation": true,
+  "protocol": {
+    "single_method_lane": "Dip-Adaptive Salem Tilt-Contact Pullback x Steerable 8-Azimuth Log-Cauchy Step-vs-Dike Symmetry + Fold-Safe Parker-Bouguer Basement Mass-Balance Residual (BMR) & Up-Head Geothermal Conduit Discovery with 5-Fold (80/20 Hide-Matched) Strict LOQO & Exact 6-Ring Survival Dinkelbach-CELF",
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "holdout_evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12, 11321 withheld positive pixels, 1000 paired 200-px block-bootstrap draws)",
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_rho_max": 0.90,
+    "final_dot_overlap_3px_max": 0.70,
+    "banned_raw_regional_levels": [
+      "det_elev (Band 12 raw elevation level)",
+      "depth_to_base_surf (Band 15 raw level as direct classifier feature; permitted ONLY inside local cot_hat(delta) pullback displacement and out-of-quadrant BMR forward gravity residual)",
+      "iso_grav_anom (Band 13 raw level; permitted ONLY via horizontal gradient and out-of-quadrant BMR residual slope)",
+      "tmi (Band 14 raw level)",
+      "mag_anom (Band 1 raw level)",
+      "rtp (Band 2 raw level; permitted ONLY via horizontal/vertical derivatives and multi-altitude upward-continuation operators)",
+      "dist_known_fault_px in gdr_wellspring_in_footprint.csv (strictly banned)",
+      "derived_sgmc_faults_100m_u8.tif (strictly read-only diagnostic evaluation mask, never in features or training)"
+    ],
+    "arms": [
+      {
+        "id": "E1_slcq_adaptive_dinkelbach_celf",
+        "role": "Primary candidate (37,654 dots, d_min=2.8 px, collar > 3.0 px)",
+        "description": "Full H86M-SLCQ stack: local dip-adaptive Salem tilt-contact migration pullback + steerable 8-azimuth log-Cauchy odd-step minus even-dike symmetry + Garland Poisson admittance jump + fold-safe out-of-quadrant BMR basement-gravity residual + up-hydraulic-head GDR-1391 geothermal disequilibrium/probes/sinter + seam-free GeoDAWN K/eTh & U/eTh + 10m-quantile-debiased 3DEP 1m LiDAR/chi + 5-fold (80/20 hide-matched) strict LOQO cover-conditioned Noisy-OR + Exact 6-Ring Survival Dinkelbach-CELF."
+      },
+      {
+        "id": "E2_slcq_blind_subsurface_geotherm_celf",
+        "role": "100% zero-catalogue blind conduit specialist (37,654 dots, d_min=2.8 px, collar > 3.0 px)",
+        "description": "Pure zero-catalogue blind subsurface + geothermal conduit posterior (zero elastic/tip/stepover features from existing_faults.tif at inference) + Exact 6-Ring Survival Dinkelbach-CELF."
+      },
+      {
+        "id": "E3_pixel_local_no_pullback_no_celf_ablation",
+        "role": "Matched pixel-local / dike-unvetoed / no-BMR / static-E[k] ablation control (37,654 dots, d_min=2.8 px, collar > 3.0 px)",
+        "description": "Strips dip-adaptive Salem pullback, steerable 8-azimuth log-Cauchy dike veto, fold-safe BMR residual, up-head geothermal advection, and Dinkelbach-CELF; uses pixel-local isotropic gradients + isotropic tip halo + static E[k] greedy 2.8 px spacing at the identical 37,654-dot budget."
+      }
+    ],
+    "scientific_promotion_criteria": [
+      "All single-feature leakage canaries satisfy max(AUC, 1-AUC) <= 0.90.",
+      "Pre-placement surface Spearman |rho| <= 0.90 across all grid-compatible registry rasters.",
+      "Paired 1,000-draw block-bootstrap HOLDOUT-DTI of E1 beats matched ablation control E3 AND fold-fair R0_D28 / H33 controls.",
+      "Off-catalogue SGMC-PROXY-DTI (>3 px from existing_faults.tif) beats equal-budget 37,654-dot GEMSDOE32 H33 with positive paired 95% CI.",
+      "Discrete informative (halo_coverage <= 0.70) 3-px dot overlap <= 0.70 across all discrete registry rasters.",
+      "Literal full-registry gate (including pinned 17GEMSDOE full-support witness and 2 grid-incompatible rows) governs safe_to_submit / approved_for_weekly_slot; if literal witness fires at 1.0000, verdict MUST fail closed to negative / DO NOT SUBMIT with safe_to_submit=false and approved_for_weekly_slot=false."
+    ]
+  }
+}
