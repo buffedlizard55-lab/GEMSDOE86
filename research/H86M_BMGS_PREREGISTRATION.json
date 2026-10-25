@@ -1,0 +1,85 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86M-BMGS",
+  "frozen_utc": "2026-10-25T17:25:00Z",
+  "git_branch": "arena/94cbed2d-gemsdoe86",
+  "hypotheses_registry": "registry/h86m_hypotheses.json",
+  "single_lane_method_paragraph": "H86M-BMGS fits an out-of-quadrant (quad != q) 2-D FFT upward-continued Athy-compacted basin-fill mass-balance gravity regression removing Cenozoic sediment thickness (Band 15 at z=200 m and 800 m plus compaction Z_b^2/(Z_b+1200 m) and regional z=4000 m baseline) from isostatic gravity (Band 13) to isolate intrabasin horst/relay basement density steps, Laplace g_zz zero-crossing sharpness, and vector gradient discordance against observed (B18, -B11); pairs this with an 8-azimuth steerable quadrature odd-step vs even-dike filter bank relu(|O_theta| - 0.85|E_theta|) on flight-seam-vetoed RTP (Band 2) and BMR gravity, directional conductance-neck bridges (Band 17) gated by positive geodetic dilatation/shear (Bands 8, 7), dilatation-gated shallow footwall pullback (<=3.0 px max shift, leaving steep/strike-slip contacts unshifted), seam-vetoed GeoDAWN K/eTh & U/eTh steps, 10 m DEM quantile-debiased 3DEP 1 m LiDAR + fluvial chi knickzones, and up-hydraulic-head DOE GDR #1391 Fournier silica/cation thermal disequilibrium + 2-m probe thermal walls + paleo-sinter vents (strictly banning dist_known_fault_px and excluding raw Bands 12/19 from the cover-blind specialist). Calibrated via Elkan (2001) Bayes subsampling odds with zero-label quadrant-median alignment, sharpened by 8-azimuth axial geodesic strand coherence along local strike theta_hat, and fused via Noisy-OR with cross-component 4-fold LOQO fracture mechanics, H86M-BMGS allocates 37,654 unit dots (d_min=2.8 px, collar >3.0 px) via Exact 6-Ring Bernoulli Survival Supremum Self-Credit Dinkelbach Fractional-Programming CELF.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0,
+    "dinkelbach_outer_iterations": 2
+  },
+  "banned_columns": [
+    "dist_known_fault_px"
+  ],
+  "static_features": [
+    "bmr_resid_grad_z100",
+    "bmr_laplace_gzz_s2",
+    "bmr_vector_discordance",
+    "gsst_rtp_odd_step_seamfree",
+    "gsst_bmr_odd_step",
+    "gsst_cross_field_spin2",
+    "garland_poisson_step",
+    "cnt_transtens_cond_neck",
+    "cnt_cond_horstsaddle_step",
+    "dilatation_gated_shallow_pullback",
+    "kostrov_byerlee_dilation_tendency",
+    "aseismic_creep_deficit",
+    "microseismic_brittle_swarm_hp",
+    "tmi_up150_depth_persistence",
+    "hydro_magnetite_trough",
+    "rad_kth_potassic_seamfree",
+    "rad_uth_redox_seamfree",
+    "uphead_geotherm_diseq",
+    "probe2m_uphead_thermal_wall",
+    "paleo_sinter_vent_corridor",
+    "lidar1m_scarp_debiased",
+    "lidar1m_unilateral_polarity",
+    "topo10_piedmont_scarp_break",
+    "chi10_fluvial_knick_step"
+  ],
+  "fold_visible_elastic_features": [
+    "wing_crack_lobe",
+    "collinear_tip_cone",
+    "stepover_bridge",
+    "broadside_stress_shadow"
+  ],
+  "ablation_control_features": [
+    "raw_grav_slope_b5",
+    "raw_depth_gradmag_s3",
+    "raw_tmi_hg_b3",
+    "raw_cond_iso_blur",
+    "raw_elev_slope_b19",
+    "raw_topo10_slope_p90",
+    "raw_strain_2ndinv_hp",
+    "raw_geotherm_iso_blur"
+  ],
+  "arms": [
+    {
+      "id": "E1_bmgs_strand_dinkelbach_celf",
+      "role": "primary_candidate",
+      "description": "Full 24-plane H86M-BMGS cover-blind specialist (zero raw Bands 12/19, out-of-quadrant LOQO + Elkan Bayes calibration + 8-azimuth axial geodesic strand coherence) fused via Noisy-OR with cross-component 4-fold LOQO fracture-mechanics specialist, allocated by Exact 6-Ring Survival Dinkelbach-CELF (37,654 dots, d_min=2.8 px, collar >3.0 px)."
+    },
+    {
+      "id": "E2_bmgs_blind_zero_catalogue",
+      "role": "zero_catalogue_blind_specialist",
+      "description": "100% zero-catalogue blind specialist (zero existing_faults.tif input at inference; 24 cover-blind H86M-BMGS geophysical/geothermal/debiased-scarp planes + out-of-quadrant LOQO + Elkan Bayes calibration + 8-azimuth axial strand coherence) allocated by Exact 6-Ring Survival Dinkelbach-CELF (37,654 dots, d_min=2.8 px, collar >3.0 px)."
+    },
+    {
+      "id": "E3_raw_grav_iso_staticek_ablation",
+      "role": "controlled_ablation",
+      "description": "Matched 37,654-dot strict-LOQO ablation removing BMR mass-balance gravity residual, 8-azimuth GSST odd-vs-even quadrature, CNT transtensional conductance neck, axial strand coherence, and 6-ring Dinkelbach fractional CELF (uses 8 raw isotropic gradient/blur planes + isotropic tip halo + static E[k] spacing allocation)."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_max": 0.90,
+    "dot_overlap_3px_max": 0.70,
+    "holdout_evaluator": "gems57-pooled-hide-v2 (seed=20, hide_frac=0.20, buffer_px=3, 11,321 withheld positives, 1,000-draw paired 20 km physical-block bootstrap)",
+    "fail_closed_policy": "Any failure on full-registry completeness/literal support (including 17GEMSDOE continuous witness, 13GEMSDOE stride-5 lattice, or 2 off-grid rows) forces verdict='negative', decision='DO NOT SUBMIT', safe_to_submit=false, approved_for_weekly_slot=false, submission_slots_used=0."
+  }
+}

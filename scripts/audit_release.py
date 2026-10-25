@@ -196,6 +196,20 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86l_fmc":
+        hl = context.get("holdout", {})
+        cand = hl.get("candidate", {}) if isinstance(hl, dict) else {}
+        if (not isinstance(cand, dict) or cand.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or context.get("verdict") != "negative" or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0):
+            raise ValueError("H86L-FMC card lacks valid negative HOLDOUT-DTI evidence")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": cand["evaluator_version"],
+                "withheld_positives": cand["withheld_positive_pixels"],
+                "value": cand["dti"], "ci95": cand["ci95"],
+                "design": "buffered whole components (seed=20); fleet-ancestry leakage-suspect surface falsified (AUC 0.436, >3 px off-catalogue zero credit, 3-px overlap 0.886 > 0.70 vs GEMSDOE63)",
+                "caveat": "Merged PR #150 H86L-FMC negative audit artifact (registered here to resolve IR-H). Hypothesis falsified on both canary AUC (0.436 < 0.50) and 3-px duplicate overlap (0.886 > 0.70 vs GEMSDOE63); DO NOT SUBMIT; 0 slots used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -351,6 +365,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86m_bmgs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86M-BMGS lane result; the run card is the authoritative experiment receipt. Out-of-quadrant FFT Athy basement mass-balance gravity residual + 8-azimuth steerable odd-step asymmetry + transtensional MT neck + dilatation-gated <=3px shallow pullback + Elkan-Bayes axial strand coherence + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves strict 12-px-eroded 4-fold LOQO HOLDOUT-DTI 0.1310 [0.1121, 0.1509] (+0.0113 over raw/isotropic/static-E[k] ablation E3 = 0.1197) and SGMC-PROXY-DTI 0.1082 [0.0928, 0.1235] (pure-blind E2 = 0.1111 with 70.21% far-field >1 km off-catalogue matching GEMSDOE32 H33's 69.8%; beating GEMSDOE32 H33 0.0937, H86J-MCSP 0.0999, H86F-EWCS 0.0819, and E3 0.0818), with 0/702 Spearman rho > 0.90 firings (max 0.5650) and 0 discrete <=90k-dot firings > 0.70 (max 0.6369; 0.2974 vs GEMSDOE32 H33), while catalogue-hide trailing surface-DEM lanes and full 704-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
