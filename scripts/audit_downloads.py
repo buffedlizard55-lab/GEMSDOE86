@@ -50,9 +50,9 @@ def review_card(report):
                        values_in_0_1=None, crs_shape_transform_match=None,
                        inherited_artifacts_local_format_pass=report['all_checks_passed'], report=REPORT),
         submission_name=None,
-        note='No new TIFF: literal overlap stop reproduced. Inherited research downloads pass local format, not submission approval.',
+        note='No new TIFF: protocol stop reproduced. H86G PROMOTE is historical; current upload authorization is DO NOT SUBMIT.',
         verdict='negative', safe_to_submit=False, experiments_run=0, submission_slots_used=0,
-        scope='Publication audit only. No new model, surface or dots. Inherited scientific evidence is not rerun or promoted.')
+        scope='Format/integrity audit only. No new model, surface or dots. H86G-EDTI retains a historical PA-86-01 PROMOTE verdict, but the current literal registry rule blocks upload; no selector action or weekly slot was recorded.')
 
 
 def digest(path):
@@ -118,7 +118,7 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
                 note_chars=len(receipt['note']), positive_pixels=local['emitted_positive_pixels'],
                 min=local['min'], max=local['max'], n_nan=local['n_nan'], n_infinite=local['n_infinite'],
                 grid=local['meta'], checks=checks, all_checks_passed=True,
-                safe_to_submit=False, status='DO NOT SUBMIT')
+                safe_to_submit=False, status='NOT_ASSESSED_BY_FORMAT_AUDIT')
 
 
 def audit(root=ROOT):
@@ -167,8 +167,8 @@ def render(report):
         name = Path(row['file']).name
         href = 'downloads/' + name
         sections.append(f'''<section class="card"><h2 class="mono">{escape(name)}</h2>
-<p><span class="badge bad">DO NOT SUBMIT</span> <span class="badge ok">Local format / integrity PASS</span></p>
-<p><a class="btn ghost" href="{escape(href)}" download>Download TIFF for research only</a>
+<p><span class="badge neutral">FORMAT AUDIT ONLY · DECISION NOT MADE HERE</span> <span class="badge ok">Local format / integrity PASS</span></p>
+<p><a class="btn ghost" href="{escape(href)}" download>Download TIFF — format audit</a>
 <a class="btn ghost" href="{escape(str(Path(href).with_suffix('.zip')))}" download>Single-TIFF ZIP</a>
 <a href="{escape(str(Path(href).with_suffix('.json')))}">{escape(row['sidecar_kind'])}</a></p>
 <dl><dt>SHA-256</dt><dd class="mono">{row['sha256']}</dd>
@@ -180,12 +180,12 @@ def render(report):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Verified research downloads · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><nav><b>GEMSDOE86</b><a href="index.html">Decision</a><a href="executive-summary.html">How to submit</a><a href="evidence.html">Evidence</a></nav></header><main>
-<h1>Verified research downloads — DO NOT SUBMIT</h1>
-<p>No file is authorized for a competition slot. Local byte/format checks do not establish geological skill, uniqueness, eligibility or organizer acceptance. This audit did not generate a TIFF; the H86F-PCC file, if present, is a separate negative lane and is still DO NOT SUBMIT.</p>
+<h1>Verified research downloads — format audit, not a slot decision</h1>
+<p>This page checks file bytes, GeoTIFF format and ZIP integrity; it does not authorize a weekly slot. The current repository decision is <strong>DO NOT SUBMIT any file</strong>. H86G-EDTI retains a historical PA-86-01 PROMOTE verdict under a like-for-like reading, but does not pass the current literal registry rule; it is available for audit/reproducibility only. No slot was picked here. Local format checks alone do not establish geological skill, uniqueness, eligibility or organizer acceptance.</p>
 <p>This page is generated from actual TIFF bytes and adjacent writer receipts or archived run-card sidecars, not manually transcribed sizes or note lengths. The conservative export policy requires finite [0,1] values everywhere, exact sample geometry, valid in-footprint masks, no nodata tag, zero outside the footprint and zero on mapped faults. Inputs are hash-pinned owner mirrors, not authenticated organizer downloads.</p>
-<p><a href="evidence/download-validation.json">Full automated validation report</a> · <a href="evidence/protocol-preflight.json">Literal registry blocker proof</a> · <a href="evidence/session-review-run-card.json">This review's negative run card</a></p>
+<p><a href="index.html">Current per-file decision and H86G-EDTI download</a> · <a href="executive-summary.html">Submission steps</a> · <a href="evidence/download-validation.json">Full automated validation report</a> · <a href="evidence/protocol-preflight.json">Literal registry blocker proof</a> · <a href="evidence/session-review-run-card.json">This audit's negative no-slot run card</a></p>
 <p>Regenerate with <code>python scripts/audit_downloads.py --write</code>; verify without writes with <code>python scripts/audit_downloads.py</code>. CI reruns the byte checks before Pages publication. This is not a live leaderboard feed.</p>
-''' + '\n'.join(sections) + '\n</main><footer>Format PASS ≠ submission approval. Every artifact remains DO NOT SUBMIT.</footer></body></html>\n'
+''' + '\n'.join(sections) + '\n</main><footer>Format PASS ≠ submission authorization or organizer acceptance. Current repository decision: DO NOT SUBMIT any file.</footer></body></html>\n'
 
 
 def main():
@@ -201,7 +201,7 @@ def main():
             path.write_text(content, encoding='utf-8')
         elif not path.is_file() or path.read_text(encoding='utf-8') != content:
             raise SystemExit(f'Stale or missing generated output: {relative}; run --write')
-    print(f"PASS: {report['artifact_count']} research TIFFs and receipts revalidated; none authorized for submission")
+    print(f"PASS: {report['artifact_count']} research TIFFs and receipts revalidated; current repository decision remains DO NOT SUBMIT (format audit made no selector decision)")
 
 
 if __name__ == '__main__':
