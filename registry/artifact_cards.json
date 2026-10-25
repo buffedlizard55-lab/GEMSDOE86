@@ -199,7 +199,7 @@
       "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
     },
     {
-      "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "lane": "GDSC Geodetic Dilatational Strain Corridor — geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
       "card": "docs/evidence/gdsc-run-card.json",
       "context": "evidence/run_card.json",
       "holdout_kind": "unvalidated_variant",
@@ -246,6 +246,13 @@
       "context": "docs/evidence/h86m-damagering-run-card.json",
       "holdout_kind": "h86m_unvalidated",
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT leaderboard tomography (unvalidated projection; DO NOT SUBMIT)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
+      "context": "docs/evidence/h86m-lt-run-card.json",
+      "holdout_kind": "h86m_lt_unvalidated",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
     }
   ]
 }

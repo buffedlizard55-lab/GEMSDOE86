@@ -6,7 +6,7 @@
   "organizer_authenticated": false,
   "native_band_preparation": {
     "manifest": "data/prepared_manifest.json",
-    "sha256": "1ad8adfb6e71af13c3a7e3460e50332dce7968130ce6292132ffb88f10053f13",
+    "sha256": "f935f958680956b0ec5ea5a64fad33a146b000a464211467c9af36240f0058e9",
     "has_features": true,
     "input_grids": {
       "sample_submission": {
@@ -78,7 +78,10 @@
       "local_preparers_serialized": true,
       "crash_atomic_across_cache_and_manifest": false,
       "scope": "Native bands only; not the actual shared template cached feature stack"
-    }
+    },
+    "prepared_utc": "2026-10-25T18:11:53+00:00",
+    "scope": "Native bands only; not the actual shared template cached feature stack",
+    "shared_cache_proof": false
   },
   "actual_shared_feature_stack_restored": false,
   "shared_cache_obtainability": {

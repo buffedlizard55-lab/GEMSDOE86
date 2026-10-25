@@ -1,0 +1,67 @@
+{
+  "schema": "gems86.h86n-eql-run-card.v1",
+  "lane": "H86N-EQL",
+  "generated_utc": "2026-10-25T18:49:44.385685+00:00",
+  "hypothesis": "A pure multi-scale earthquake-intensity lineation is a catalogue-missing active-fault proxy, while compact induced or volcanic swarms are the named non-fault mimic.",
+  "mechanism": "Band 16 log-intensity Hessian ridge anisotropy at 2 px and 4 px with a separate Band 10 distance control; exact formula is frozen in research/H86N_EQL_PREREGISTRATION.md.",
+  "named_non_fault_process": "Induced geothermal injection swarm or volcanic dike swarm with an elongated event cloud.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_SHARED_CACHE_OR_PREFLIGHT_BLOCKER",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "caveat": "No feature construction or evaluator call occurred. A projection is not a score."
+  },
+  "leakage_canary": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "status": "NOT_RUN_SHARED_CACHE_OR_PREFLIGHT_BLOCKER",
+    "threshold": 0.9,
+    "max_discriminative_auc": null,
+    "any_leakage_flag": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "NOT_RUN_NO_CANDIDATE_SURFACE",
+    "surface": null,
+    "final_dots": null,
+    "thresholds": {
+      "spearman_max": 0.9,
+      "forward_overlap_3px_max": 0.7
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "status": "NOT_WRITTEN_NO_CANDIDATE",
+    "all_checks_passed": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "note_chars": null,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "experiments_run": 0,
+  "new_candidate_generated": false,
+  "preflight": {
+    "universal_overlap_blocker": true,
+    "status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+  },
+  "shared_cache": {
+    "available": false,
+    "reason": "hash-pinned shared cache bytes are missing",
+    "cache_file": "data/cache/rmrb86-20channel.f32",
+    "expected_bytes": 982332800,
+    "expected_sha256": "873b419b3de7e4e91efe26c7fc7141f0c3b7fd9ce933c015ca87b258003a22f4"
+  },
+  "decision_reason": "No H86N experiment is authorized until the actual hash-pinned shared cache, visible-catalogue fold provenance, and registry/preflight gates are available."
+}
