@@ -6,6 +6,8 @@ Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Cur
 
 Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
 
+Fresh repository recheck (2026-10-25; full 802-test suite passed after refreshing generated audit evidence; no candidate or slot): [recheck, H33 interpretation, and handoff](research/SESSION_20261025_ARENA_RECHECK.md).
+
 Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
 
 Independent repository review (2026-10-25; three passes; no model run or TIFF generated): [H33 forensic explanation, four queued geological hypotheses, current workspace audit, blockers, and negative run card](research/SESSION_20261025_ARENA_REVIEW.md). Machine-readable scoped evidence: [current local registry audit](docs/evidence/session-review-20261025/registry-input-grid-review.json) and [full review verification bundle](research/SESSION_20261025_ARENA_REVIEW.md#verification-run-record). Current local registry inventory differs from the earlier dated 690-file scan; the review preserves both measurements and flags the discrepancy.
