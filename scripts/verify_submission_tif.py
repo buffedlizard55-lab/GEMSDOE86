@@ -42,16 +42,22 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def main() -> int:
+def verify() -> int:
     failures: list[str] = []
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
+
+    if not isinstance(receipt, dict):
+        raise ValueError("Receipt must be a JSON object")
+    note = receipt.get("note")
+    if not isinstance(note, str) or not note.strip():
+        raise ValueError("Receipt note must be a nonempty string")
 
     # 1. Sidecar names the promoted file and declares the gate verdict.
     if receipt.get("gate_verdict") != "promote":
         failures.append(f"gate_verdict={receipt.get('gate_verdict')} != promote")
     if receipt.get("submission_name") != "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros":
         failures.append("submission_name mismatch in receipt")
-    if len(receipt.get("note", "")) > 140:
+    if len(note) > 140:
         failures.append("note exceeds 140 characters")
 
     # 2. TIFF bytes match the pinned digest (guards against silent bit rot /
@@ -75,10 +81,11 @@ def main() -> int:
         print(f"ZIP entries: {names}")
         if names != [TIFF.name]:
             failures.append(f"ZIP must contain exactly one TIFF ({TIFF.name}); got {names}")
-        with archive.open(TIFF.name) as inner:
-            inner_sha = hashlib.file_digest(inner, "sha256").hexdigest()
-        if inner_sha != EXPECTED_TIF_SHA:
-            failures.append(f"ZIP-internal TIFF sha256 mismatch: {inner_sha}")
+        else:
+            with archive.open(TIFF.name) as inner:
+                inner_sha = hashlib.file_digest(inner, "sha256").hexdigest()
+            if inner_sha != EXPECTED_TIF_SHA:
+                failures.append(f"ZIP-internal TIFF sha256 mismatch: {inner_sha}")
 
     # 4. On-disk raster decode (the "Predicted values must be in range [0, 1]"
     #    portal error class is excluded by construction).
@@ -118,7 +125,7 @@ def main() -> int:
 
     # 5. Receipt cross-checks.
     val = receipt.get("validator", {})
-    if val.get("all_checks_passed") is not True:
+    if not isinstance(val, dict) or val.get("all_checks_passed") is not True:
         failures.append("receipt validator.all_checks_passed is not True")
 
     if failures:
@@ -126,9 +133,20 @@ def main() -> int:
         for f in failures:
             print("  -", f)
         return 1
-    print("\nVERIFY PASSED: promoted submission TIFF is format-valid, unique by pinned digest, "
-          "values exactly {0,1} with 0 NaN/Inf, CRS/shape/transform match the sample submission.")
+    print("\nFORMAT/IDENTITY CHECK PASSED: pinned TIFF bytes match; "
+          "values exactly {0,1} with 0 NaN/Inf; CRS/shape/transform match. "
+          "Registry uniqueness, holdout improvement and slot authorization are NOT established "
+          "by this check. DO NOT SUBMIT based on this result.")
     return 0
+
+
+def main() -> int:
+    """Report malformed/missing artifacts as failures, never as upload clearance."""
+    try:
+        return verify()
+    except (OSError, ValueError, zipfile.BadZipFile, rasterio.errors.RasterioError) as exc:
+        print(f"\nVERIFY FAILED: {type(exc).__name__}: {exc}")
+        return 1
 
 
 if __name__ == "__main__":

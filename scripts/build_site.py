@@ -428,7 +428,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
-<span class="badge bad">NO FILE CLEARS THE FULL CURRENT REQUEST · H86G-EDTI REVIEW DOWNLOAD ONLY</span>
+<span class="badge bad">NO FILE AUTHORIZED · NO FILE CLEARS THE FULL CURRENT REQUEST · H86G-EDTI REVIEW DOWNLOAD ONLY</span>
 <h1>Do not submit a file yet.<br><span class="subtle">No weekly slot is authorized.</span></h1>
 <p class="lede">A distinct H86G-EDTI GeoTIFF is available below and passes its own lane's local format and like-for-like tests. It does not pass the stricter full-request gate: its HOLDOUT-DTI does not demonstrate improvement over the same-evaluator/same-count incumbent, the actual shared feature cache is missing, and the complete registry remains uncleared. The file is safe to download for review, <strong>not approved to upload or score</strong>.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal rules →</a></div>

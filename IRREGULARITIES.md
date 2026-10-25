@@ -1184,6 +1184,16 @@ and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
 `registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
 pair); a fleet-refresh session should ledger them and regenerate the feed.
 
+## IR-86-PUBLICATION-AUTH-09C7FC42 (2026-10-25)
+
+Homepage, executive summary, README and build success output said H86G-EDTI was OK to
+submit while its card explicitly denied safe_to_submit and weekly-slot approval, and
+literal release audit failed. Corrected publication instructions to research-only;
+historical amended-gate promotion and binary bytes unchanged. Added regression checks
+rejecting positive upload instructions in the negative-state publisher. See
+`research/SESSION_09C7FC42_REVIEW.md`. No new TIFF, model experiment or portal operation.
+
+
 ## IR-86-085C2B7A — promotion was displayed as upload permission (2026-10-25)
 
 The generated homepage/executive guide and current README said to submit H86G-EDTI even though its scientific card records `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the release audit retains the literal witness stop. Fixed the source generator, regenerated pages and exposed the promoted-for-review identity in `docs/data/summary.json` without changing historical scientific evidence. Regression tests forbid the unsafe direct-upload phrases. No new raster, model experiment or slot. See `research/SESSION_085C2B7A_REVIEW.md`.
@@ -1206,3 +1216,10 @@ trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.104
 vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
+## IR-F548F465 — hash identity is not registry uniqueness (2026-10-25)
+
+`verify_submission_tif.py` printed “unique by pinned digest” after a format/hash check.
+Corrected to format/identity only, with explicit DO NOT SUBMIT and no inferred
+holdout, registry or slot clearance. Added clean fail-closed handling and tests
+for malformed receipts and ZIPs. See `research/SESSION_F548F465_REVIEW.md`.
