@@ -238,7 +238,8 @@
       "passed": 39,
       "failed": 0
     },
-    "final_integrated_suite": "RUNNING"
+    "final_integrated_suite": "Stopped for main PR #155 integration; not counted as passed.",
+    "final_merged_suite": "RUNNING"
   },
   "verification": {
     "audit_release": true,
