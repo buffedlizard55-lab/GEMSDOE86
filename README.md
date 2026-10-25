@@ -992,7 +992,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **21** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **22** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 

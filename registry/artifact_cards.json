@@ -148,6 +148,13 @@
       "context": "docs/evidence/h86i-hvfd-run-card.json",
       "holdout_kind": "h86i_hvfd",
       "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
+    },
+    {
+      "lane": "UNIQUEDOT-DAMAGERING off-catalogue damage-zone ring emission (2026-10-25)",
+      "card": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "context": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros"
     }
   ]
 }

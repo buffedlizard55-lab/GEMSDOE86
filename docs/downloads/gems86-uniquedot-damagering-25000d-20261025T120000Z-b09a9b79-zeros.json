@@ -1,0 +1,89 @@
+{
+  "schema": "gems86.uniquedot-damagering-run-card.v1",
+  "lane": "UNIQUEDOT-DAMAGERING",
+  "generated_utc": "2026-10-25T04:29:41.576466+00:00",
+  "raster_sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+  "zip_sha256": "6c11ef6c1c42a60971efd582668068b619dd07ab6376cfe7320c7222e5c97bf1",
+  "submission_name": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros",
+  "submission_file": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+  "zip_file": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.zip",
+  "note": "Off-catalogue damage-zone ring 3.0-8.0px from catalogue, one-dot-per-2.8px-cell, 25000 dots; zero catalogue mass; local format-valid only",
+  "note_chars": 137,
+  "hypothesis": "Blind / off-catalogue faults nucleate in the damage zone around mapped traces (jogs, stepovers, relay ramps), so a catalogue-distance ring emission (3\u20138 px off trace) recovers faults absent from the USGS/INGENIOUS catalogue without mass on mapped faults.",
+  "mechanism": "Euclidean distance transform from pinned existing_faults.tif catalogue; select footprint pixels at 3\u20138 px distance that are off catalogue; one-dot-per-cell thinning at 2.8 px; emit {0,1}; budget-capped at 25,000 dots.",
+  "named_non_fault_process": "Unfaulted lithologic contacts, volcanic flow fronts, alluvial fan toes and relict shoreline scarps produce similar off-trace edge/rugosity signatures and can mimic the ring signal.",
+  "evidence_classes": "LOCAL-FORMAT-VALIDATION only (values in [0,1], 0 NaN/Inf, CRS/shape/transform match sample_submission.tif, zero dots on catalogue, zero mass outside footprint). No HOLDOUT-DTI measured (training labels unavailable without DrivenData login); no ORGANIZER-CONFIRMED score. A projection is never written as a score.",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+    "bytes": 121380,
+    "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0020359698683023453,
+    "emitted_positive_pixels": 25000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 25000,
+    "footprint_fraction": 0.004838048269401106
+  },
+  "correlation_overlap_vs_registry": {
+    "note": "Registry uniqueness not yet measured; run scripts/check_site.py and the PA-86 gates before any slot selection."
+  },
+  "verdict": "negative",
+  "decision": "Format-valid and unique-by-construction (catalogue-distance ring not used by any prior lane), but NOT cleared for submission: holdout DTI and registry uniqueness gates are not yet passed, and the literal 17GEMSDOE full-footprint witness blocks every nonempty candidate under the current protocol. Download for audit only \u2014 DO NOT SUBMIT to DrivenData.",
+  "submission_slots_used": 0,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_ready": false,
+  "organizer_confirmed": false,
+  "duplicate": null,
+  "holdout_dti": null,
+  "budget_experiments": 1,
+  "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+  "bytes": 121380,
+  "file": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+  "promoted": false
+}

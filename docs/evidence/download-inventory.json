@@ -126,6 +126,12 @@
       "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+      "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }
