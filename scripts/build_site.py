@@ -234,6 +234,67 @@ It passes the local format, footprint, catalogue-mask, ZIP and hash checks, but 
 <p><a href="evidence/h86e-mmt-run-card.json">Full H86E-MMT run card</a> · <a href="evidence/h86e-mmt-pa86-chance-overlap.json">PA-86-02 measurement</a> · <a href="evidence/h86e-mmt-registry-surface.json">surface gate</a> · <a href="evidence/session-20261024-86569dcd-run-card.json">Session 86569dcd audit card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_86569DCD_REVIEW.md">Three-pass forensic review &amp; hypotheses</a>. <strong>SAFE TO DOWNLOAD FOR AUDIT; DO NOT SUBMIT.</strong></p></section>'''
 
 
+def h86i_rlms_answer(card: dict, section_id: str = "h86i-rlms") -> str:
+    """Latest H86I-RLMS lane receipt; every scalar carries its exact evidence class."""
+    h = card["holdout_dti"]
+    c = h["candidate"]
+    e2 = h["all_arms"]["E2_rlms_native19_only_ablation"]
+    e3 = h["all_arms"]["E3_rlms_unprojected_disc_ablation"]
+    r0 = h["R0_D28_visible_collar"]
+    ewcs = h["H86F_EWCS_reproduced"]
+    d_ext = h["paired_delta_vs_native19_ablation"]
+    d_ewcs = h["paired_delta_vs_H86F_EWCS"]
+    reg = card["correlation_overlap_vs_registry"]
+    surface = reg["surface_preplacement"]
+    final = reg["final_dots"]
+    info = reg["informative_discrete_dot_diagnostic"]
+    pa = reg["pa86_02"]
+    lc = h["leakage_canary_summary"]
+    name = card["submission_name"]
+    note = card["note"]
+    return f'''<section class="callout" id="{e(section_id)}"><span class="badge bad">LATEST LANE H86I-RLMS: DO NOT SUBMIT (NEGATIVE VERDICT · AUDIT ONLY)</span>
+<h2>2026-10-25 latest run (H86I-RLMS): official 3DEP 1m/10m + GeoDAWN K/eTh gains +0.0264 HOLDOUT-DTI over native-19 (4/4 quadrants), yet auto-blocked (DO NOT SUBMIT)</h2>
+<p><strong>Immediate human-free submission answer:</strong> <code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"][:16])}…</code>; {card["validator_output"]["positive_pixels"]:,} unit dots) is <strong>SAFE TO DOWNLOAD FOR AUDIT ONLY — DO NOT SUBMIT TO DRIVENDATA</strong> (<code>verdict = "{e(card["verdict"])}"</code>, <code>submission_slots_used = 0</code>). Copy-ready {card["note_chars"]}-char portal note (&lt;= 140 chars, for audit reference only): <code>{e(note)}</code>.</p>
+<ul><li><strong>Automated GeoTIFF Format &amp; [0, 1] Range Check (PASS):</strong> single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, exact <code>sample_submission.tif</code> geotransform, values strictly in <code>[0, 1]</code> (<code>min={card["validator_output"]["min"]:.1f}</code>, <code>max={card["validator_output"]["max"]:.1f}</code>, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> positive pixels on <code>existing_faults.tif</code>).</li>
+<li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives, 1,000-draw paired 20 km physical-block bootstrap): <strong>External-physics ablation <code>E1 − E2</code> = <code>{d_ext["delta"]:+.4f} [{d_ext["ci95"][0]:+.4f}, {d_ext["ci95"][1]:+.4f}]</code></strong> (<code>E1_rlms_full_submodular</code> <strong>{c["dti"]:.4f} [{c["ci95"][0]:.4f}, {c["ci95"][1]:.4f}]</strong> vs matched native-19 <code>E2</code> {e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}], positive in all 4 quadrants and beating <code>H86F-EWCS</code> on <code>SE</code> <code>0.1666</code> vs <code>0.1566</code>; <code>R0_D28_visible_collar</code> = {r0["dti"]:.4f}). However, unconstrained submodular clumping in Walker Lane (<code>SW</code> <code>0.0860</code> vs 2.8-px disc ablation <code>E3</code> {e3["dti"]:.4f}) lowered pooled <code>E1</code> below reproduced repo best <code>H86F-EWCS</code> ({ewcs["dti"]:.4f} [{ewcs["ci95"][0]:.4f}, {ewcs["ci95"][1]:.4f}], paired Δ <code>{d_ewcs["delta"]:+.4f} [{d_ewcs["ci95"][0]:+.4f}, {d_ewcs["ci95"][1]:+.4f}]</code>; <code>IR-86-H86I-RLMS-01</code>). All values are <strong>HOLDOUT-DTI</strong>, never projected leaderboard scores.</li>
+<li><strong>LEAKAGE-CANARY (PASS):</strong> {lc["features_tested"]} static + fold-visible features audited; max discriminative AUC = <strong>{lc["max_discriminative_auc"]:.4f}</strong> (<code>{e(lc["max_discriminative_auc_feature"])}</code>) &lt;= 0.90 (<code>0</code> flags).</li>
+<li><strong>REGISTRY-MEASUREMENT ({final["registry_rasters_measured"]} / {final["registry_rasters_expected"]} indexed rasters at build; <a href="evidence/registry-input-grid-review-6bbd9586.json">697 / 697 byte-verified post-merge</a>):</strong> pre-placement surface worst Spearman = <strong>{surface["worst_spearman_full_footprint"]:.4f}</strong> (<code>{surface["rho_firings_over_0p90"]}</code> firings &gt; 0.90); across all <strong>{info["discrete_rasters_checked"]}</strong> discrete <code>&lt;= 100k</code>-dot rasters, <strong>{info["firings_over_0p70"]} exceed 0.70 forward 3-px overlap</strong> (worst <strong>{info["worst_discrete_overlap"]:.4f}</strong>; <strong>{info["overlap_vs_GEMSDOE32_h33"]:.4f}</strong> vs <code>GEMSDOE32</code> <code>h33-2-b2</code>; <strong>{info["overlap_vs_H86F_EWCS"]:.4f}</strong> vs <code>H86F-EWCS</code>; <strong>0.2426</strong> vs <code>H86G-EDTI</code>; <strong>0.3513</strong> vs <code>H86I-SACD</code>). Literal full-registry gate still fails closed on saturated <code>17GEMSDOE</code> (<code>1.0000</code>), 2 off-grid historical rows (<code>14GEMSDOE</code>, <code>7GEMSDOE</code>), and <code>PA-86-02</code> (<code>{e(pa.get("status", "FAILED_CLOSED"))}</code>).</li></ul>
+<p><a href="downloads/{e(name)}.tif" download>Download H86I-RLMS TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86i-rlms-run-card.json">Full H86I-RLMS run card</a> · <a href="evidence/h86i-rlms-registry-surface.json">Surface v2 registry check</a> · <a href="evidence/h86i-rlms-registry-final-dots.json">Final-dots v2 registry check</a> · <a href="{REPO}/blob/main/research/H86I_RLMS_PREREGISTRATION.md">Frozen H86I-RLMS preregistration</a> · <a href="{REPO}/blob/main/research/SESSION_H86I_RLMS_REVIEW_20261025.md">Three-pass PhD forensics &amp; review</a></p></section>'''
+
+
+def h86i_rlms_hypothesis_queue(plan86i_rlms: dict, rlms_card: dict | None) -> str:
+    rows = []
+    for h in plan86i_rlms["hypotheses"]:
+        status_label = h["status"]
+        if h["id"] == "H86I-RLMS" and rlms_card is not None:
+            hd = rlms_card["holdout_dti"]
+            status_label = (
+                f"EXECUTED NEGATIVE FOR SLOT PROMOTION (E1={hd['candidate']['dti']:.4f}, "
+                f"external physics E1-E2={hd['paired_delta_vs_native19_ablation']['delta']:+.4f} positive in 4/4 quadrants, "
+                f"trails EWCS {hd['H86F_EWCS_reproduced']['dti']:.4f}; DO NOT SUBMIT)"
+            )
+        layer_str = "; ".join(f'Band {lyr["band"]}: {lyr["name"]}' for lyr in h["layers"])
+        ext_list = h.get("external_pinned_sources", [])
+        if ext_list:
+            ext_str = "; ".join(f'{src["path"]} ({src["official_source"]})' for src in ext_list)
+            sources = " · ".join(f'<a href="{e(src["official_url"])}">{e(src["official_source"].split("(")[0].strip())}</a>' for src in ext_list)
+        else:
+            ext_str = "None required (native 19-band competition stack only)."
+            sources = ""
+        source_p = f"<p>{sources}</p>" if sources else ""
+        rows.append(f'''<article class="card"><p class="eyebrow">H86I-RLMS Rank {h['rank']} · {e(h['id'])} · {e(status_label)}</p><h3>{e(h['title'])}</h3>
+<dl><dt>Specific input layers</dt><dd>{e(layer_str)}</dd>
+<dt>Official external sources</dt><dd>{e(ext_str)}</dd>
+<dt>Targeted physical signature</dt><dd>{e(h['physical_signature'])}</dd>
+<dt>Why catalogue-missing / blind faults</dt><dd>{e(h['why_blind_not_mapped'])}</dd>
+<dt>Novelty vs all existing repo lanes</dt><dd>{e(h['novelty'])}</dd>
+<dt>Named non-fault mimic &amp; falsifier</dt><dd>{e(h['non_fault_mimic'])} Falsifier: {e(h['falsifier'])}</dd>
+<dt>Expected HOLDOUT-DTI potential &amp; cost</dt><dd>{e(h['expected_holdout_potential'])} {e(h['implementation_cost'])}</dd></dl>{source_p}</article>''')
+    return f'''<section id="h86i-rlms-hypotheses"><h2>2026-10-25: H86I-RLMS multi-physics &amp; official 3DEP/GeoDAWN hypothesis queue (Session 6bbd9586)</h2>
+<p>{e(plan86i_rlms['precedence'])} Single method lane assigned: <code>{e(plan86i_rlms['lane_assignment'])}</code>.</p>{''.join(rows)}
+<p><a href="{REPO}/blob/main/registry/h86i_rlms_hypotheses.json">Frozen H86I-RLMS hypothesis register</a> · <a href="{REPO}/blob/main/research/H86I_RLMS_PREREGISTRATION.md">H86I-RLMS preregistration</a> · <a href="evidence/h86i-rlms-run-card.json">H86I-RLMS run card</a></p></section>'''
+
+
 def h86i_ksad_answer(card: dict) -> str:
     """Latest 2026-10-25 H86I-KSAD strict-LOQO lane receipt (halted fail-closed pre-TIFF)."""
     h = card["holdout_dti"]
@@ -672,7 +733,7 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, plan86j: dict | None = None, csgd_card: dict | None = None) -> str:
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None) -> str:
     block86j = ""
     if plan86j:
         cards86j = []
@@ -814,8 +875,9 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
 <dt>Data / viability</dt><dd>{e(h['data_readiness'])} {e(h.get('obtainability', 'No new external product is proposed as acquired.'))}</dd></dl><p>{sources}</p></article>''')
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
-<div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
+<div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
 {block86j}
+{rlms_queue}
 {block86i_ksad}
 {block86i}
 {new_queue}
@@ -869,7 +931,8 @@ def irregularities(report: dict) -> str:
 <li>Embedded GeoTIFF band-description mislabels inside <code>training_features.tif</code> (<code>IR-86-BAND6-TC-MISLABEL-20261024</code>, <code>IR-86-BAND11-18-GRAV-VECTOR-20261024</code>): pixel-level audit across <code>5.15M–5.16M</code> footprint cells (<a href="evidence/band-physics-verification-20261024.json">receipt</a>) proved Band 6 (<code>tc</code>) is strictly positive (<code>min = +2.9534</code>, 0 zero-crossings) and correlates at <code>r = +0.997140</code> with USGS GeoDAWN Airborne Radiometric Total Count (<code>TC</code>) vs <code>r = +0.012796</code> with true magnetic tilt <code>atan2(Band 9, Band 3)</code>, while <code>(+Band 18, -Band 11)</code> is the signed 2-D horizontal gravity gradient vector (<code>r = +0.948186</code> and <code>+0.938102</code>) rather than scalar/vertical gradients. Hypothesis definitions and documentation were repaired accordingly.</li>
 <li><code>IR-86-PCC-01</code> / <code>IR-86-PCC-02</code>: the 2026-10-25 H86F-PCC lane wrote a format-valid audit TIFF and the gates rejected it. HOLDOUT-DTI does not beat the same-split comparator, the shared PA-86-02 script refused the incomplete registry (two rasters are not on the submission grid), and the space-filling overlap diagnostic is not a gate pass. The template cached feature stack is absent; the lane used the SHA-pinned 19-band TIFF and did not relabel it as that cache. No slot was used. See <a href="evidence/h86f-pcc-run-card.json">the negative run card</a>.</li>
 <li>Byte-level forensic review of the two newly prompt-named unscored fleet artifacts (<code>IR-86-FLEET-GEMS89-90-20261024</code>; <a href="evidence/prompt-named-unscored-audit-20261024.json">measured JSON receipt</a>) found that <code>GEMSDOE89</code> (<code>gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros</code>, SHA-256 <code>715c8b86...</code>) claimed <code>complete_registry_coverage=true</code> over a 91-raster subset that omitted both <code>17GEMSDOE</code> (<code>100.0%</code> forward 3-px overlap) and discrete binary <code>13GEMSDOE</code> (<code>99.92%</code> = <code>37,624/37,654</code> forward 3-px overlap), while <code>GEMSDOE90</code> (<code>gems90-cnc-35000dots-20261024T084324Z</code>, SHA-256 <code>e1e91be2...</code>) privately altered the uniqueness rule, exceeded <em>both</em> clauses of its altered rule (<code>max_overlap = 0.9833 &gt; 0.70</code> and <code>max_excess_over_chance = 0.4037 &gt; 0.30</code>; pinned-checker overlap <code>98.35%</code> vs binary <code>13GEMSDOE</code> and <code>100.0%</code> vs <code>17GEMSDOE</code>) yet still emitted <code>duplicate=false</code>, used external <code>qfault_sliprate_den</code> (<code>AUC = 0.7784</code>) on cut-segment folds, and recorded a <code>NEGATIVE</code> score-calibration verdict. Also fixed a mis-cited rule reference on the executive checklist from nonexistent <code>Official Rules §5–6</code> to verified <code>Official Rules §1.1 &amp; §3.4–3.6</code> (<code>IR-86-RULES-SECT-20261024</code>).</li>
-<li><code>IR-86-H86F-EWCS-TRANSQUAD-PU-20261025</code>: forensic review of <code>scripts/run_h86f_ewcs.py</code> in session <code>95a42d60</code> found that while <code>vis = f["visible"] &amp; fp</code> properly withheld all <code>11,321</code> hidden positive pixels and their 3-px feature collar globally (zero hidden-label leakage), <code>sample_nested_pu(..., vis, fp, ...)</code> drew visible positives and unlabeled background rows across all 4 quadrants <code>fp</code> rather than restricting training samples to <code>fp &amp; (quad != fold_i)</code>. The new <code>H86I-SACD</code> runner (<code>scripts/run_h86i_sacd.py</code>) enforces strict spatial Leave-One-Quadrant-Out training (<code>train_region = fp &amp; (quad != fold_i)</code>), leaving the archived <code>H86F-EWCS</code> run card untouched with an explicit comparator note.</li></ul>
+<li><code>IR-86-H86F-EWCS-TRANSQUAD-PU-20261025</code>: forensic review of <code>scripts/run_h86f_ewcs.py</code> in session <code>95a42d60</code> found that while <code>vis = f["visible"] &amp; fp</code> properly withheld all <code>11,321</code> hidden positive pixels and their 3-px feature collar globally (zero hidden-label leakage), <code>sample_nested_pu(..., vis, fp, ...)</code> drew visible positives and unlabeled background rows across all 4 quadrants <code>fp</code> rather than restricting training samples to <code>fp &amp; (quad != fold_i)</code>. The new <code>H86I-SACD</code> runner (<code>scripts/run_h86i_sacd.py</code>) enforces strict spatial Leave-One-Quadrant-Out training (<code>train_region = fp &amp; (quad != fold_i)</code>), leaving the archived <code>H86F-EWCS</code> run card untouched with an explicit comparator note.</li>
+<li><code>IR-86-H86I-RLMS-01</code>: the 2026-10-25 <code>H86I-RLMS</code> lane verified that adding SHA-pinned official USGS 3DEP 1-m LiDAR scarp density/anisotropy/strike + 10-m stream-power <code>chi</code> + GeoDAWN airborne <code>K/eTh</code> alteration improved <code>HOLDOUT-DTI</code> by <code>+0.0264 [+0.0162, +0.0371]</code> over matched native-19 <code>E2</code> across all 4 quadrants and beat <code>H86F-EWCS</code> on <code>SE</code> (<code>0.1666</code> vs <code>0.1566</code>), with <code>0/688</code> pre-placement Spearman firings &gt; <code>0.90</code> (max <code>0.6496</code>) and <code>0/469</code> discrete <code>&lt;= 100k</code>-dot overlap firings &gt; <code>0.70</code> (max <code>0.6731</code>). However, unconstrained submodular allocation with static modular bonus <code>eta * k_self</code> (<code>eta=0.042</code>, without hard <code>&gt;= 2.8 px</code> Poisson-disc exclusion) over-packed 1-px hotspots in high-density Walker Lane (<code>SW</code> <code>0.0860</code> vs 2.8-px disc ablation <code>E3</code> <code>0.1853</code>), leaving pooled <code>E1</code> (<code>0.1257</code>) below reproduced <code>H86F-EWCS</code> (<code>0.1723</code>) while literal <code>17GEMSDOE</code>/registry-completeness gates also failed closed (<a href="evidence/h86i-rlms-run-card.json">negative run card</a>; <code>0</code> slots spent).</li></ul>
 <p>The historical scientific cards and TIFF bytes are preserved. This audit does not retroactively certify earlier experiments, erase protocol overruns or change thresholds.</p>
 <p><a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT forensic card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">2026-10-24 three-pass review and next actions</a></p>''')
 
@@ -1159,11 +1222,31 @@ def render(root: Path = ROOT) -> dict[str, str]:
                 or comparison["shared_result"]["unique"] is not False
                 or comparison["shared_result"]["complete_accessible_scan"] is not False):
             raise ValueError("Concurrent pair receipt is stale or falsely claims full-registry clearance")
+    rlms_path = root / "docs/evidence/h86i-rlms-run-card.json"
+    plan86i_rlms_path = root / "registry/h86i_rlms_hypotheses.json"
+    if root.resolve() == ROOT.resolve() and (not rlms_path.is_file() or not plan86i_rlms_path.is_file()):
+        raise ValueError("Missing H86I-RLMS run card or hypothesis register in repository root")
+    rlms_card = strict_json(rlms_path) if rlms_path.is_file() else None
+    rlms_banner = ""
+    rlms_html = ""
+    if rlms_card is not None:
+        if (rlms_card["verdict"] != "negative" or rlms_card["decision"] != "DO NOT SUBMIT"
+                or rlms_card["submission_ready"] is not False
+                or rlms_card["safe_to_submit"] is not False
+                or rlms_card["approved_for_weekly_slot"] is not False
+                or rlms_card["submission_slots_used"] != 0
+                or rlms_card["experiments_run"] != 3
+                or rlms_card["raster_sha256"] is None):
+            raise ValueError("H86I-RLMS card must stay negative, slot-free, and bound to its raster")
+        rlms_banner = h86i_rlms_answer(rlms_card, section_id="h86i-rlms-banner")
+        rlms_html = h86i_rlms_answer(rlms_card, section_id="h86i-rlms")
+    plan86i_rlms = strict_json(plan86i_rlms_path) if plan86i_rlms_path.is_file() else None
+    rlms_queue = h86i_rlms_hypothesis_queue(plan86i_rlms, rlms_card) if plan86i_rlms is not None else ""
     plan86i_path = root / "registry/h86i_hypotheses.json"
     plan86i = strict_json(plan86i_path) if plan86i_path.is_file() else None
     sacd_path = root / "docs/evidence/h86i-sacd-run-card.json"
     sacd_card = strict_json(sacd_path) if sacd_path.is_file() else None
-    sacd_banner = ""
+    sacd_banner = rlms_banner
     if sacd_card is not None:
         if (sacd_card["verdict"] != "negative" or sacd_card["decision"] != "DO NOT SUBMIT"
                 or sacd_card["submission_ready"] is not False
@@ -1173,7 +1256,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
                 or sacd_card["experiments_run"] > 3
                 or sacd_card["raster_sha256"] is None):
             raise ValueError("H86I-SACD card must stay negative, <=3 arms, slot-free, and bound to its raster")
-        sacd_banner = h86i_sacd_answer(sacd_card)
+        sacd_banner = rlms_banner + h86i_sacd_answer(sacd_card)
     plan86j_path = root / "registry/h86j_hypotheses.json"
     plan86j = strict_json(plan86j_path) if plan86j_path.is_file() else None
     csgd_path = root / "docs/evidence/h86j-csgd-run-card.json"
@@ -1192,9 +1275,10 @@ def render(root: Path = ROOT) -> dict[str, str]:
         csgd_banner = h86j_csgd_answer(csgd_card)
     review_notice = current_review_notice(session_data, registry_inputs, concurrent)
     new_queue = new_hypothesis_queue(new_plan)
-    answer = (ksad_html + lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
+    answer = (rlms_html + ksad_html + lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))
     hypothesis_count = (len(plan["hypotheses"]) + len(new_plan["hypotheses"])
+                        + (len(plan86i_rlms["hypotheses"]) if plan86i_rlms else 0)
                         + (len(plan86f["hypotheses"]) if plan86f else 0)
                         + (len(h86h_prereg["candidate_hypotheses"]) if h86h_prereg else 0)
                         + (len(h86i_prereg["candidate_hypotheses"]) if h86i_prereg else 0)
@@ -1208,7 +1292,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, plan86j=plan86j, csgd_card=csgd_card),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

@@ -229,6 +229,15 @@
       "complete_accessible_scan": false
     },
     {
+      "file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
+      "sha256": "ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d",
+      "spearman_full_footprint": 0.0793687335544588,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
       "file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
       "sha256": "079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f",
       "spearman_full_footprint": 0.036948751895586635,

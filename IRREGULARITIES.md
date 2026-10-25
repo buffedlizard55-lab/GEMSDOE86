@@ -1354,7 +1354,44 @@ confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overla
 SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
 strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
 `0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
-`protocol_preflight.require_feasible()` (`61` CLI builders + `8` imported orchestrators).
+`protocol_preflight.require_feasible()` (`62` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_ksad.py`, `scripts/run_h86i_rlms.py`, `scripts/run_h86g_edti.py`, and `scripts/run_h86j_csgd.py`).
+
+## IR-86-H86I-RLMS-01 — `H86I-RLMS` official 3DEP 1m/10m + GeoDAWN `K/eTh` physics improved `HOLDOUT-DTI` by `+0.0264` across all 4 quadrants, while unconstrained submodular `eta=0.042` clumping degraded Walker Lane `SW`
+
+Under frozen preregistration `research/H86I_RLMS_PREREGISTRATION.json`
+(`sha256=f53b80b3130836d3e35d7dcb40e3201fcb0409cc32512e97fca1ce01a9cb7a7e`) and
+`registry/h86i_rlms_hypotheses.json`, the 3-arm `H86I-RLMS` lane evaluated SHA-pinned
+official USGS 3DEP 1-m LiDAR scarp planes, 10-m DEM curvature/fluvial `chi`
+disequilibrium, and USGS GeoDAWN airborne `K/eTh` alteration plus up-dip hanging-wall
+back-projection and spin-2 nematic director coherence on `gems57-pooled-hide-v2`
+(`seed=20`, `11,321` withheld positives, `1,000` 20 km block-bootstrap draws).
+- **Positive external-physics finding (`E1 - E2`):** `E1_rlms_full_submodular`
+  (`0.125716 [0.107073, 0.143239]`) beat matched native-19 ablation
+  `E2_rlms_native19_only_ablation` (`0.099322 [0.085157, 0.112842]`) by
+  **`+0.026394 [+0.016173, +0.037075]`**, positive in all 4 spatial quadrants
+  (`NW +0.016109`, `NE +0.031797`, `SW +0.014741`, `SE +0.041886`) and surpassing
+  `H86F-EWCS` on Basin-and-Range `SE` (`0.166613` vs `0.156591`).
+- **Allocator & OOF buffer diagnosis (`E1 - E3`):** Replacing the unconstrained
+  submodular allocator (`eta = 0.042` static modular bonus without hard `>= 2.8 px`
+  Poisson-disc exclusion) with hard `2.8 px` greedy Poisson-disc thinning on the same
+  `E1` OOF probability surface (`E3_rlms_unprojected_disc_ablation = 0.155115`)
+  restored `SW` Walker Lane from `0.085982` to `0.185323`, independently corroborating
+  `H86I-SACD`'s submodular plateau finding and showing that static `eta * k_self`
+  over-packs 1-px-adjacent hotspots where probability peaks exceed the regional
+  baseline; additionally, `buffer_px=3` OOF grouping censored `300-600 m` fault-tip
+  stepover positives during OOF isotonic calibration.
+- **Uniqueness & gate disposition:** Pre-placement `--surface` (`688/690` measured)
+  had `0` Spearman firings > `0.90` (`max = 0.649608`), final dots had `0/469` discrete
+  `<= 100k`-dot overlap firings > `0.70` (`max = 0.673102`; `0.4025` vs `GEMSDOE32`
+  `h33-h33-2-b2`; `0.3101` vs `H86F-EWCS`; `0.2426` vs `H86G-EDTI`; `0.3513` vs
+  `H86I-SACD`; `0.2453` vs `H86I-HVFD`; `0.1269` vs `H86I-RKSC`; `0.1413` vs
+  `H86J-MPC`), and `40/40` leakage canaries passed (`max AUC = 0.7949 <= 0.90`).
+  Because pooled `E1` (`0.125716`) did not beat reproduced `H86F-EWCS` (`0.172325`)
+  and literal `17GEMSDOE` / 2 off-grid registry rows / `PA-86-02` failed closed,
+  `docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif`
+  (`sha256=ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d`) is
+  published strictly as **`DO NOT SUBMIT`** (`verdict = "negative"`, `0` slots spent),
+  and `scripts/run_h86i_rlms.py` is locked behind `protocol_preflight.require_feasible()`.
 
 ## IR-86-H86G-LOCAL-ONLY-DUP-20261025 — H86G-EDTI 43-file local check missed 25 informative full-registry firings
 
@@ -1366,7 +1403,7 @@ revealed **44 dot-field forward-3px overlap firings (> 0.70)** and **25 informat
 (`halo_coverage <= 0.70`) firings**, including sparse `GEMSDOE46:r11f` (`76.02%` at
 44,090 dots), `GEMSDOE41:h42` (`73.99%` at 40,000 dots), and `GEMSDOE46:r12` (`72.24%`
 at 37,654 dots). `scripts/run_h86g_edti.py::main` is now gated behind
-`protocol_preflight.require_feasible()` (`61` CLI builders + `8` imported orchestrators).
+`protocol_preflight.require_feasible()` (`62` CLI builders + `8` imported orchestrators).
 
 ## IR-86-CSGD-LITERAL-STOP-20261025 — H86J-CSGD achieves 0 / 636 informative dot-field firings on full registry, stays fail-closed negative
 
