@@ -1,0 +1,94 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86M",
+  "frozen_utc": "2026-10-25T16:28:00Z",
+  "git_branch": "arena/2ea5b025-gemsdoe86",
+  "protocol_compliance": {
+    "frozen_before_implementation": true,
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "leakage_canary_auc_limit": 0.90,
+    "surface_spearman_limit": 0.90,
+    "dot_overlap_3px_limit": 0.70,
+    "evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "writer": "vendor/template66/gems57/submission_writer.py"
+  },
+  "hypotheses": [
+    {
+      "id": "H86M-PFTE",
+      "rank": 1,
+      "status": "SELECTED_FOR_VALIDATION",
+      "name": "3-D Cordell-Parker Spectral Compaction-Stripped Marussi Gravity Tensor Eigensystem, Baranov Pseudogravity Decoupling & Strike-Guided Peclet Dispersion with Comonotonic Tube-Survival Dinkelbach-CELF",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 3 (tmi_hg), 4 (geod_2ndinv), 5 (iso_grav_anom_slope), 6 (tc, verified GeoDAWN Radiometric Total Count; NOT magnetic tilt), 7 (geod_shearrate), 8 (geod_dilaterate), 9 (tmi_vg), 10 (deq_n100a15), 11 (iso_grav_anom_vg, verified +d(B13)/drow_south = -d(B13)/dy_north), 12 (det_elev), 13 (iso_grav_anom), 15 (depth_to_base_surf), 16 (ieq_n100a15), 17 (cond_surf), 18 (iso_grav_anom_hg, verified +d(B13)/dx_east), 19 (det_elev_slope)",
+        ".cache/external/geodawn_rad_u8.tif (Bands 1-4: K, eTh, eU, TC; SHA256 c22420f7...)",
+        ".cache/external/geodawn_extensions_u8.tif (Bands 1, 3, 4: ThK, UTh, TMI_up150; SHA256 a35a9c6d...)",
+        ".cache/external/acquisition_block_id_100m.tif (GeoDAWN airborne survey-block stitch seam mask; SHA256 2c0785c4...)",
+        ".cache/external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m LiDAR scarps, quantile-debiased on missing swaths via 10 m DEM; SHA256 d580bb8b...)",
+        ".cache/external/topo_10m_derived_100m_u8.tif & dem10_chi_100m_i16.tif (USGS 3DEP 10 m curvature & fluvial chi; SHA256 a6398d99..., 8897ba9c...)",
+        ".cache/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391 3,800 2-m temperature probes; SHA256 1301f70d...)",
+        ".cache/external/paleo_geothermal_regional.zip (DOE GDR #1391 726 sinter/travertine/tufa vents; SHA256 faffcf69...)",
+        ".cache/external/gdr_wellspring_in_footprint.csv & gdr_volcanic_vents_in_footprint.csv (DOE GDR #1391 geothermometry & vents, dist_known_fault_px strictly excluded; SHA256 122718e6..., f91bafba...)"
+      ],
+      "physical_signature": "Synthesizes the 3-D multi-shell wavenumber-attenuated exponential-compaction basin gravity vector (Cordell 1973; Parker 1973, exp(-|k|*z_m - z_m/1500m)) from depth_to_base_surf (B15) in 2-D FFT and strips it from true East/North gravity derivatives (+B18, -B11) and B13; constructs the symmetric 2x2 horizontal Marussi gravity curvature tensor (Pedersen & Rasmussen 1990; Beiki 2010) to extract differential curvature (lambda_1 - lambda_2), hyperbolic contact saddle sqrt(max(0, -lambda_1*lambda_2)), Beiki curvature-tilt, eigenvector strike theta_grav, and conservative potential-field curl seam residual |d_y g_x - d_x g_y|; pairs with Baranov (1957) FFT pseudogravity vector decoupling |grad(dg) x grad(g_pseudo)| + magnetite-destruction excess, GeoDAWN seam-vetoed K/eTh & eU/eTh + B6 TC alteration, across-vs-along-strike Peclet thermal/geochemical barrier sharpness on DOE GDR #1391 probes/geothermometers, Kostrov transtensional strain obliquity, 4-fold LOQO + nested cross-component PU fusion, and 1-D Frechet-comonotonic fault-tube survival self-credit inside Dinkelbach fractional-programming CELF (37,654 dots, d_min=2.8 px, d_cat>3.0 px).",
+      "why_off_catalogue": "Intrabasin horst-bounding faults, accommodation stepovers, and piedmont synthetic splays buried beneath 200-2,500 m of Cenozoic valley fill lack >2 m Quaternary surface scarps in aerial/INGENIOUS mapping while smooth 3-D sedimentary compaction bowls swamp raw gravity slope (Band 5). 3-D Cordell-Parker stripping + Marussi hyperbolic contact curvature + Baranov pseudogravity decoupling + across-strike Peclet thermal barriers isolate sharp sub-alluvial fault conduits, while comonotonic tube-survival self-credit prevents diffuse apron overestimation.",
+      "non_fault_mimic": "Isometric volcanic plugs, calderas, and unfaulted pluton cupolas (rejected via hyperbolic contact saddle -lambda_1*lambda_2 > 0 and Baranov vector collinearity); gravity gridding & GeoDAWN airborne stitch seams (attenuated via conservative curl |d_y g_x - d_x g_y| and acquisition_block_id_100m.tif); Pleistocene Lake Lahontan/Bonneville shorelines & LiDAR swath borders (10 m DEM quantile debiasing + highstand band attenuation); diffuse down-gradient alluvial thermal outflow plumes (suppressed via across-vs-along-strike Peclet barrier ratio and comonotonic tube self-credit).",
+      "differs_from_repo": "Completely independent first-principles physics (zero post-hoc averaging of prior surfaces unlike H86L-FMC/SOLO): first lane in GEMSDOE86 or the 92-repo fleet to implement (1) 3-D multi-shell Cordell-Parker spectral exponential-compaction basin gravity stripping (distinct from unrun 1-D infinite Bouguer slab BMR), (2) full 2x2 symmetric horizontal Marussi curvature eigensystem + Beiki curvature-tilt + hyperbolic contact saddle (-lambda_1*lambda_2) + conservative potential-field curl gridding-seam detector honoring BAND_PHYSICS_VERIFIED (+B18 East, -B11 North), (3) Baranov (1957) FFT pseudogravity vector cross-product decoupling, (4) strike-projected Peclet across-vs-along-strike thermal/geochemical barrier dispersion, and (5) 1-D Frechet-comonotonic fault-tube survival self-credit fixing H86K-STDP's 29-pixel independent-Bernoulli diffuse-apron inflation.",
+      "expected_dti_gain_rank": 1,
+      "implementation_cost": "Medium (~18 min CPU, <900 MiB RAM via float16 memmaps; 100% SHA-256-verified inputs already restored in workspace)"
+    },
+    {
+      "id": "H86M-HDEC",
+      "rank": 2,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "3-D Reid-Thompson Euler Deconvolution Structural-Index Clustering (N=0.5 Contact Sheet vs N=2.0 Pipe/Plug Rejection) & Magnetotelluric Skin-Depth Upflow Corridors",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 3 (tmi_hg), 9 (tmi_vg), 11 (iso_grav_anom_vg), 13 (iso_grav_anom), 17 (cond_surf), 18 (iso_grav_anom_hg)",
+        ".cache/external/geodawn_extensions_u8.tif (Band 4: TMI_up150)",
+        ".cache/external/gdr_volcanic_vents_in_footprint.csv (row, col vent mask)"
+      ],
+      "physical_signature": "Sliding-window 3-D Euler homogeneity least-squares inversion (x-x0)d_x F + (y-y0)d_y F + (z-z0)d_z F = -N(F-B) solved jointly at fault-contact index N=0.5 vs volcanic-pipe/plug index N=2.0, retaining tight curvilinear apex clusters (x0, y0) with z0 in [100, 1500 m] and residual variance ratio Var(N=0.5)/Var(N=2.0) < 0.25 co-located with lateral Band 17 MT conductivity steps.",
+      "why_off_catalogue": "Recovers 3-D sub-playa fault-contact apexes (x0, y0, z0) directly from potential-field homogeneity without relying on basement-depth inversions or surface scarps.",
+      "non_fault_mimic": "Shallow Quaternary basaltic cinder-cone feeders and cultural pipelines (rejected by N=2.0 pipe preference and gdr_volcanic_vents_in_footprint.csv proximity veto).",
+      "differs_from_repo": "H86J-MCSP used scalar TMI_up150 amplitude decay ratios; no lane has solved 3-D Reid-Thompson Euler linear systems for (x0, y0, z0) apex spray clustering or N=0.5 vs N=2.0 structural-index model selection.",
+      "expected_dti_gain_rank": 2,
+      "implementation_cost": "Medium (vectorized batched 4x4 normal equations across 7x7 windows; obtainable on existing stack)"
+    },
+    {
+      "id": "H86M-SGRT",
+      "rank": 3,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Multi-Watershed Cross-Divide Fluvial Chi Knickline Colinearity Orthogonal to Principal Geodetic Extension",
+      "layers": [
+        "training_features.tif Bands 4 (geod_2ndinv), 7 (geod_shearrate), 8 (geod_dilaterate), 12 (det_elev), 19 (det_elev_slope)",
+        ".cache/external/dem10_chi_100m_i16.tif",
+        ".cache/external/topo_10m_derived_100m_u8.tif",
+        ".cache/external/lidar_scarp_features_u8.tif"
+      ],
+      "physical_signature": "Radon-steered cross-divide line-integral coherence of fluvial chi steps (dem10_chi_100m_i16) jumping across >=3 independent adjacent drainage divides along strikes orthogonal to maximum principal geodetic extension (derived from Bands 7, 8), penalized when parallel to regional elevation contours (Band 12).",
+      "why_off_catalogue": "Slowly slipping (0.1-0.3 mm/yr) distributed pediment faults in E/NE Nevada lack >2 m aerial-photo scarps in unconsolidated alluvium yet impose coherent base-level uplift steps across neighboring catchments.",
+      "non_fault_mimic": "Flat-lying welded-tuff caprock benches and Pleistocene pluvial highstands (contour-parallel to Band 12, rejected by cross-contour Radon incidence gate).",
+      "differs_from_repo": "H86I-KSAD used pixelwise local chi gradients; no lane has tested multi-watershed cross-divide Radon colinearity conditioned on geodetic principal-extension azimuth.",
+      "expected_dti_gain_rank": 3,
+      "implementation_cost": "Low-Medium (directional line-integral bank on 100 m chi/divide rasters; obtainable on existing stack)"
+    },
+    {
+      "id": "H86M-RMRF",
+      "rank": 4,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Aitchison Isometric Log-Ratio (ilr) Ternary K-eTh-eU Metasomatic Roll-Fronts Above Seismogenic Hypocenter-Depth Ramps",
+      "layers": [
+        "training_features.tif Bands 6 (tc, verified Radiometric Total Count), 10 (deq_n100a15), 16 (ieq_n100a15), 17 (cond_surf)",
+        ".cache/external/geodawn_rad_u8.tif (Bands 1-3: K, eTh, eU)",
+        ".cache/external/acquisition_block_id_100m.tif",
+        ".cache/external/paleo_geothermal_regional.zip"
+      ],
+      "physical_signature": "Orthonormal Aitchison (1986) isometric log-ratio coordinates [ilr_1, ilr_2] on simplex-closed [K, eTh, eU] decoupled from lithologic closure, isolating narrow adularia/illite K-metasomatic + redox U-roll ridges situated updip of lateral hypocenter-depth ramps |grad(Band 10)| weighted by earthquake density (Band 16).",
+      "why_off_catalogue": "Epithermal argillic/potassic fault corridors in Tertiary volcanic terrains erode into soft recessive saddles rather than topographic scarps, leaving Mapped Fault gaps over active dipping microseismic ramps.",
+      "non_fault_mimic": "Felsic ash-flow tuff vs mafic flow contacts and GeoDAWN flight-line leveling seams (suppressed via acquisition_block_id_100m seam mask and high-pass ilr residualization).",
+      "differs_from_repo": "Prior lanes used heuristic K/Th or U/Th scalar ratios without Aitchison simplex closure geometry and never paired compositional roll-fronts with Band 10 hypocenter-depth dip ramps.",
+      "expected_dti_gain_rank": 4,
+      "implementation_cost": "Low (closed-form simplex ilr + gradient coupling; obtainable on existing stack)"
+    }
+  ]
+}

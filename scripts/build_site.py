@@ -611,6 +611,43 @@ def h86i_rksc_answer(card: dict) -> str:
 <p><a href="evidence/h86i-rksc-run-card.json">Full H86I-RKSC run card</a> · <a href="evidence/h86i-rksc-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86i-rksc-registry-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86I_RKSC_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_RKSC_REVIEW.md">PhD H33 (0.2778) proof &amp; 3-pass review</a></p></section>'''
 
 
+def h86m_pfte_answer(card: dict, section_id: str = "h86m-pfte") -> str:
+    """Latest contemporaneously preregistered H86M-PFTE lane receipt (all-time 37,654-dot SGMC-PROXY-DTI high 0.1210; fail-closed negative DO NOT SUBMIT)."""
+    h = card["holdout_dti"]
+    c = h["candidate"]
+    e1 = h["e1_kinematic_arm"]
+    e3 = h["arms"]["E3_unstripped_scalar_indep_ablation"]
+    r0 = h["arms"]["R0_D28_visible_collar"]
+    h33_h = h["arms"]["H33_visible_collar"]
+    ne_e1 = h["per_fold"]["E1_pfte_comonotonic_dcelf"]["NE"]["dti"]
+    ne_e3 = h["per_fold"]["E3_unstripped_scalar_indep_ablation"]["NE"]["dti"]
+    sgmc = card["sgmc_off_catalogue_diagnostic"]
+    sg_s = sgmc["scores"]
+    sg_d = sgmc["paired_differences_vs_candidate"]
+    reg = card["correlation_overlap_vs_registry"]
+    surface = reg["pre_placement_surface"]
+    final = reg["final_dots"]
+    inf_a = reg["full_registry_informative_dot_field_audit"]
+    disc = reg["local_discrete_submissions_diagnostic"]
+    kc = disc["key_comparators"]
+    lc = card["leakage_canary"]
+    v = card["validator_output"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="{e(section_id)}"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>2026-10-25 NEWEST UNIQUE TIFF (H86M-PFTE): 3-D Cordell–Parker Spectral Basin-Stripped Marussi Gravity Tensor + Baranov FFT Pseudogravity Decoupling + Across-Strike Péclet Hydrothermal Barriers + 3-Strand Fréchet-Comonotonic Dinkelbach-CELF — All-Time 37,654-Dot SGMC-PROXY-DTI High ({sg_s["E2_pfte_blind_comonotonic_dcelf"]["dti"]:.4f})</h2>
+<p><code>{e(name)}.tif</code> is a newly generated, byte- and pixel-unique single-band GeoTIFF (SHA-256 <code>{e(card["raster_sha256"])}</code>, {v["emitted_positive_pixels"]:,} unit dots at 2.8 px 3-strand comonotonic Dinkelbach-CELF spacing, 0 NaN, 0 Inf, values strictly in [0, 1], 0 mapped-catalogue dots). <strong>Immediate human-free submission answer: {e(card["decision"])} (verdict: <code>{e(card["verdict"])}</code>; <code>submission_ready = false</code>; <code>safe_to_submit = false</code>; <code>approved_for_weekly_slot = false</code>; <code>0</code> weekly slots used; safe to download for audit/reproducibility only).</strong></p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only, DO NOT SUBMIT</a>
+<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a></div>
+<ul><li><strong>SGMC-PROXY-DTI</strong> (read-only diagnostic on {sgmc["off_catalogue_positive_pixels"]:,} off-catalogue USGS SGMC 1:500k bedrock fault pixels &gt; 3 px from <code>existing_faults.tif</code>; never a training input or organizer score): emitted pure-blind physical arm <code>E2_pfte_blind_comonotonic_dcelf</code> achieves <strong>{sg_s["E2_pfte_blind_comonotonic_dcelf"]["dti"]:.4f} [{sg_s["E2_pfte_blind_comonotonic_dcelf"]["ci95"][0]:.4f}, {sg_s["E2_pfte_blind_comonotonic_dcelf"]["ci95"][1]:.4f}]</strong> (kinematic arm <code>E1</code> = {sg_s["E1_pfte_comonotonic_dcelf"]["dti"]:.4f} [{sg_s["E1_pfte_comonotonic_dcelf"]["ci95"][0]:.4f}, {sg_s["E1_pfte_comonotonic_dcelf"]["ci95"][1]:.4f}]) — the <strong>highest off-catalogue blind discovery score of any 37,654-dot raster in repository history</strong>, beating <code>GEMSDOE32 H33</code> ({sg_s["H33_GEMSDOE32_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H33_GEMSDOE32_as_is"]["delta"]:+.4f} [{sg_d["H33_GEMSDOE32_as_is"]["ci95"][0]:+.4f}, {sg_d["H33_GEMSDOE32_as_is"]["ci95"][1]:+.4f}]</strong>), unstripped scalar/indep ablation <code>E3</code> ({sg_s["E3_unstripped_scalar_indep_ablation"]["dti"]:.4f}, paired Δ <strong>{sg_d["E3_unstripped_scalar_indep_ablation"]["delta"]:+.4f} [{sg_d["E3_unstripped_scalar_indep_ablation"]["ci95"][0]:+.4f}, {sg_d["E3_unstripped_scalar_indep_ablation"]["ci95"][1]:+.4f}]</strong>), <code>H86F-EWCS</code> ({sg_s["H86F_EWCS_37654_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H86F_EWCS_37654_as_is"]["delta"]:+.4f} [{sg_d["H86F_EWCS_37654_as_is"]["ci95"][0]:+.4f}, {sg_d["H86F_EWCS_37654_as_is"]["ci95"][1]:+.4f}]</strong>), <code>H86J-MCSP</code> ({sg_s["H86J_MCSP_37654_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H86J_MCSP_37654_as_is"]["delta"]:+.4f} [{sg_d["H86J_MCSP_37654_as_is"]["ci95"][0]:+.4f}, {sg_d["H86J_MCSP_37654_as_is"]["ci95"][1]:+.4f}]</strong>), and <code>H86L-FMC</code> ({sg_s["H86L_FMC_37654_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H86L_FMC_37654_as_is"]["delta"]:+.4f} [{sg_d["H86L_FMC_37654_as_is"]["ci95"][0]:+.4f}, {sg_d["H86L_FMC_37654_as_is"]["ci95"][1]:+.4f}]</strong>) with 95% CIs strictly excluding zero, and outscoring <code>H86M-LT</code> (<code>0.1136</code>) and <code>H86K-STDP</code> ({sg_s["H86K_STDP_37654_as_is"]["dti"]:.4f}, paired Δ <strong>{sg_d["H86K_STDP_37654_as_is"]["delta"]:+.4f}</strong>).</li>
+<li><strong>HOLDOUT-DTI &amp; Automated Rule 1 Pre-Serialization Stop</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives, strict 4-fold spatial Leave-One-Quadrant-Out training): pure zero-catalogue emitted arm <code>E2_pfte_blind_comonotonic_dcelf</code> achieves <strong>{c["dti"]:.4f} [{c["ci95"][0]:.4f}, {c["ci95"][1]:.4f}]</strong> (2.7x <code>R0_D28_visible_collar</code> {r0["dti"]:.4f} and 20.6x <code>H33_visible_collar</code> {h33_h["dti"]:.4f}). Kinematic arm <code>E1_pfte_comonotonic_dcelf</code> reached <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> (beating <code>E3</code> {e3["dti"]:.4f} and lifting low-catalogue NE Nevada frontier to <strong>{ne_e1:.4f}</strong> vs <code>E3</code> {ne_e3:.4f}, +0.0251), but hit <code>0.7041 &gt; 0.70</code> 3-px dot overlap vs <code>H86K-STDP</code> before GeoTIFF serialization and was automatically halted per Parallel-Run Protocol Rule 1 with zero hyperparameter retuning.</li>
+<li><strong>LEAKAGE-CANARY:</strong> <strong>PASS</strong> — {lc["features_tested"]} static, ablation &amp; fold-visible planes audited; worst discriminative AUC is <code>{lc["max_discriminative_auc"]:.4f} &lt;= 0.90</code> (<code>{e(lc["max_discriminative_auc_feature"])}</code>, 0 flags; GDR <code>dist_known_fault_px</code> verified unread).</li>
+<li><strong>REGISTRY-MEASUREMENT ({final["registry_rasters_measured"]}/{final["registry_rasters_expected"]} indexed rasters + post-merge concurrent TIFFs):</strong> pre-placement continuous surface worst Spearman <code>{surface["worst_spearman_full_footprint"]:.4f} &lt;= 0.90</code> (<strong>0 / {surface["registry_rasters_measured"]} rho firings</strong>); across all discrete &lt;=90k-dot submissions in the restored 92-repo universe plus concurrent <code>BMR</code> (<code>0.0843</code>), <code>CNT</code> (<code>0.1307</code>), <code>DAMAGERING</code> (<code>0.1997</code>), and <code>H86M-LT</code> (<code>0.3682</code>), <strong>0 exceed 0.70</strong> (worst <strong>{inf_a["worst_discrete_le_90k_overlap_3px"]:.4f}</strong>; <strong>{kc["GEMSDOE32_H33"]["forward_overlap_3px"]:.4f}</strong> vs <code>GEMSDOE32 H33</code>, <strong>{kc["H86L_FMC"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86L-FMC</code>, <strong>{kc["H86G_EDTI"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86G-EDTI</code>, <strong>{kc["H86J_MCSP"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86J-MCSP</code>, <strong>{kc["H86K_STDP"]["forward_overlap_3px"]:.4f}</strong> vs <code>H86K-STDP</code>). Full-registry v2 fails closed on <code>17GEMSDOE</code>, <code>13GEMSDOE</code>, {inf_a["informative_dot_field_firings_count"]} ultra-dense 180k–624k-px scatter grids, and 2 off-grid historical rows, so verdict remains <code>negative</code> (<code>DO NOT SUBMIT</code>).</li></ul>
+<dl><dt>Submission name — audit reference only (DO NOT UPLOAD)</dt><dd><code id="{e(section_id)}-name">{e(name)}</code> <button data-copy-target="{e(section_id)}-name" type="button">Copy name</button></dd>
+<dt>Note ({card["note_chars"]} characters)</dt><dd><code id="{e(section_id)}-note">{e(card["note"])}</code> <button data-copy-target="{e(section_id)}-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence/h86m-pfte-run-card.json">Full H86M-PFTE run card</a> · <a href="evidence/h86m-pfte-registry-surface.json">Pre-placement surface report (702 rows)</a> · <a href="evidence/h86m-pfte-registry-final-dots.json">Final-dots registry report (702 rows)</a> · <a href="{REPO}/blob/main/research/H86M_PFTE_PREREGISTRATION.md">Frozen H86M-PFTE preregistration</a> · <a href="{REPO}/blob/main/registry/h86m_hypotheses.json">5 ranked H86M hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86M_PFTE_REVIEW.md">PhD H33 (0.2778), Parker 3-D Marussi &amp; 3-pass review</a></p></section>'''
+
+
 def h86k_stdp_answer(card: dict, section_id: str = "h86k-stdp") -> str:
     """Contemporaneously preregistered H86K-STDP lane receipt (unique audit TIFF generated)."""
     h = card["holdout_dti"]
@@ -1034,7 +1071,34 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "") -> str:
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "", plan86m: dict | None = None, pfte_card: dict | None = None) -> str:
+    block86m_pfte = ""
+    if plan86m and pfte_card:
+        cards_m = []
+        e1_m = pfte_card["holdout_dti"]["e1_kinematic_arm"]
+        e2_m = pfte_card["holdout_dti"]["candidate"]
+        sg_m = pfte_card["sgmc_off_catalogue_diagnostic"]["scores"]["E2_pfte_blind_comonotonic_dcelf"]
+        sg_dh33_m = pfte_card["sgmc_off_catalogue_diagnostic"]["paired_differences_vs_candidate"]["H33_GEMSDOE32_as_is"]
+        for ch in plan86m["hypotheses"]:
+            st_m = (
+                f"EXECUTED NEGATIVE UNDER STRICT V2 GATE (All-time 37,654-dot SGMC-PROXY-DTI high {sg_m['dti']:.4f} beating GEMSDOE32 H33 {sg_dh33_m['delta']:+.4f} [{sg_dh33_m['ci95'][0]:+.4f}, {sg_dh33_m['ci95'][1]:+.4f}]; blind LOQO {e2_m['dti']:.4f}, kinematic E1 {e1_m['dti']:.4f} halted by Rule 1; audit-only DO NOT SUBMIT)"
+                if ch["rank"] == 1
+                else ch["status"]
+            )
+            obt_m = ch.get(
+                "external_source_obtainability",
+                "100% SHA-256-verified in native training_features.tif + .cache/external/ (USGS GeoDAWN, 3DEP 1 m LiDAR / 10 m DEM, DOE GDR #1391; dist_known_fault_px banned).",
+            )
+            cards_m.append(f'''<article class="card"><p class="eyebrow">H86M Rank {ch['rank']} · {e(ch['id'])} · {e(st_m)}</p><h2>{e(ch['name'])}</h2>
+<dl><dt>Specific layers</dt><dd>{e('; '.join(ch['layers']))}</dd><dt>Physical signature &amp; transform</dt><dd>{e(ch['physical_signature'])}</dd>
+<dt>Why missing from USGS/INGENIOUS catalogue?</dt><dd>{e(ch['why_off_catalogue'])}</dd><dt>Novelty vs repository</dt><dd>{e(ch['differs_from_repo'])}</dd>
+<dt>Named non-fault mimic</dt><dd>{e(ch['non_fault_mimic'])}</dd><dt>Expected DTI rank &amp; cost</dt><dd>Rank {ch['expected_dti_gain_rank']} ({e(ch.get('expected_dti_gain_mechanism', ''))}) · {e(ch['implementation_cost'])}</dd>
+<dt>Official data obtainability</dt><dd>{e(obt_m)}</dd></dl></article>''')
+        block86m_pfte = (
+            '<section id="h86m-pfte-hypotheses"><h2>2026-10-25 H86M-PFTE Preregistered Hypothesis Queue (Session 2ea5b025 · 3-D Cordell–Parker Basin-Stripped Marussi Tensor + Baranov Pseudogravity Decoupling + Péclet Barriers + 3-Strand Fréchet-Comonotonic Dinkelbach-CELF)</h2>'
+            '<p>Declared prior to implementation in <a href="' + REPO + '/blob/main/research/H86M_PFTE_PREREGISTRATION.md"><code>H86M_PFTE_PREREGISTRATION.md</code></a> and <a href="' + REPO + '/blob/main/registry/h86m_hypotheses.json"><code>registry/h86m_hypotheses.json</code></a> (<a href="evidence/h86m-pfte-run-card.json">run card</a>).</p>'
+            + "".join(cards_m) + "</section>"
+        )
     block86k_stdp = ""
     if plan86k and stdp_card:
         cards_k = []
@@ -1228,6 +1292,7 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
 {vfgr_html}
 <div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-TVHS</code> achieved strict-LOQO <code>E1 = 0.0983 [0.0800, 0.1159]</code>, zero-catalogue blind <code>E2 = 0.0626 [0.0475, 0.0778]</code>, and unweighted strict-LOQO <code>E3 = 0.1214 [0.1060, 0.1350]</code>, <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
+{block86m_pfte}
 {block86k_stdp}
 {block86j_mcsp}
 {tvhs_queue}
@@ -1682,6 +1747,22 @@ def render(root: Path = ROOT) -> dict[str, str]:
     new_queue = new_hypothesis_queue(new_plan)
     answer = (tvhs_html + rlms_html + ksad_html + lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))
+    pfte_path = root / "docs/evidence/h86m-pfte-run-card.json"
+    pfte_card = strict_json(pfte_path) if pfte_path.is_file() else None
+    pfte_banner = ""
+    if pfte_card is not None:
+        pfte_tif = root / pfte_card["submission_file"]
+        if (pfte_card["verdict"] != "negative" or pfte_card["decision"] != "DO NOT SUBMIT"
+                or pfte_card["submission_ready"] is not False
+                or pfte_card["safe_to_submit"] is not False
+                or pfte_card["approved_for_weekly_slot"] is not False
+                or pfte_card["submission_slots_used"] != 0
+                or pfte_card["experiments_run"] != 3
+                or sha256(pfte_tif) != pfte_card["raster_sha256"]):
+            raise ValueError("H86M-PFTE card must stay negative, within 3-arm budget, slot-free, and bound to its raster")
+        pfte_banner = h86m_pfte_answer(pfte_card, section_id="h86m-pfte-banner")
+    plan86m_path = root / "registry/h86m_hypotheses.json"
+    plan86m = strict_json(plan86m_path) if plan86m_path.is_file() else None
     hypothesis_count = (len(plan["hypotheses"]) + len(new_plan["hypotheses"])
                         + (len(plan86j_tvhs["hypotheses"]) if plan86j_tvhs else 0)
                         + (len(plan86i_rlms["hypotheses"]) if plan86i_rlms else 0)
@@ -1693,7 +1774,8 @@ def render(root: Path = ROOT) -> dict[str, str]:
                         + (len(plan86i_ksad["hypotheses"]) if plan86i_ksad else 0)
                         + (len(plan86j["hypotheses"]) if plan86j else 0)
                         + (len(h86j_mcsp_prereg["ranked_hypotheses"]) if h86j_mcsp_prereg else 0)
-                        + (len(plan86k["hypotheses"]) if plan86k else 0))
+                        + (len(plan86k["hypotheses"]) if plan86k else 0)
+                        + (len(plan86m["hypotheses"]) if plan86m else 0))
     vfgr_path = root / "docs/evidence/h86l-vfgr-run-card.json"
     vfgr_card = strict_json(vfgr_path) if vfgr_path.is_file() else None
     vfgr_banner = h86l_vfgr_answer(vfgr_card) if vfgr_card is not None else ""
@@ -1711,13 +1793,13 @@ def render(root: Path = ROOT) -> dict[str, str]:
     lt_card = strict_json(lt_path) if lt_path.is_file() else None
     if gsst_card is not None:
         vfgr_banner = h86n_gsst_answer(gsst_card, lt_card) + vfgr_banner
-    combined_banner = stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    combined_banner = pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner, plan86m=plan86m, pfte_card=pfte_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

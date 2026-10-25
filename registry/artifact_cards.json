@@ -262,6 +262,13 @@
       "stem": "gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros"
     },
     {
+      "lane": "H86M-PFTE 3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor + Baranov FFT pseudogravity decoupling + across-strike Peclet hydrothermal barriers + 3-strand Frechet-comonotonic Dinkelbach-CELF (SGMC-PROXY-DTI 0.1210 [0.1024, 0.1407] all-time 37,654-dot repo high beating H33 +0.0273 [+0.0066, +0.0485], E3 +0.0419 [+0.0199, +0.0646], MCSP +0.0211, FMC +0.0208, LT +0.0074, STDP +0.0077; blind LOQO HOLDOUT-DTI 0.0734, kinematic E1 0.1310 halted by Rule 1 0.7041 vs STDP; 0/702 surface rho > 0.90, 0/465 discrete <=90k overlap > 0.70; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-pfte-run-card.json",
+      "context": "docs/evidence/h86m-pfte-run-card.json",
+      "holdout_kind": "h86m_pfte",
+      "stem": "gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros"
+    },
+    {
       "lane": "H86N-GSST gravity step vs compact-source shape test (HOLDOUT-DTI 0.0310 [0.0210,0.0423], 11321 withheld, beaten by raw-gravity-slope control; DO NOT SUBMIT, 2026-10-25)",
       "card": "docs/evidence/h86n-gsst-run-card.json",
       "context": "docs/evidence/h86n-gsst-run-card.json",
