@@ -1,0 +1,516 @@
+{
+  "schema": "gems86.h86h-pstd-run-card.v1",
+  "lane": "H86H-PSTD",
+  "generated_utc": "2026-10-25T01:15:23Z",
+  "hypothesis": "H86H-1 (H86H-PSTD): Concealed Great Basin geothermal faults juxtapose density blocks (regularized Laplace vertical gravity curvature g_zz = -(dx B18 + drow B11) hinge) while hydrothermal H2S fluids destroy magnetite along the permeable damage zone, creating a positive Poisson potential-field residual max(0, alpha_flank*z(g_zz) - z(M_z)) inside actively dilating/shearing, moderately conductive, low-relief piedmont/intrabasin cover.",
+  "mechanism": "Footprint-normalized sigma=500 m Laplace vertical gravity curvature g_zz coupled to Band 9 tmi_vg (M_z) via local sigma=1.2 km flank Poisson regression, sharpened by gravity-gradient structure-tensor anisotropy and Band 3 tmi_hg, modulated by GPS dilatation/shear (Bands 8, 7), shallow conductance (Band 17), and detrended slope (Band 19). 100% catalogue-blind surface; fold-visible faults used solely for emission masking.",
+  "non_fault_mimic": "Reversed-polarity Tertiary ash-flow tuff margins or caldera ring-fracture moats where reverse remanent magnetization produces negative M_z along a density boundary without Quaternary brittle faulting.",
+  "preregistration": {
+    "schema": "gems86.h86h-pstd-preregistration.v1",
+    "status": "frozen_before_implementation",
+    "json_path": "research/H86H_PSTD_PREREGISTRATION.json",
+    "json_sha256": "8ae15d8e8ed7bc72895687dcd6d4672f187cd5e09aecd17944c119e270ea3e30",
+    "md_path": "research/H86H_PSTD_PREREGISTRATION.md",
+    "md_sha256": "c0ea20ae76bcea4189c4d598b4657e9248a4714eedfff26dfac0050d9f037b4d",
+    "candidate_hypotheses_count": 4,
+    "experiment_arms": [
+      "E1_pstd_full",
+      "E2_pstd_geopotential_only",
+      "E3_pstd_inverted_polarity_control"
+    ]
+  },
+  "preflight": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense-witness.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+    "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
+    "source_path": "docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "registry_source": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/b99591eede63c6d45c8a896255b8cd34824fa00b/evidence/registry_full_index.json",
+    "registry_sha256": "e8597b4f527c5935460202735d5b021b3fb587a3c0d3e3682e41ec5835924ddb",
+    "registry_entries_in_snapshot": 655,
+    "registry_rasters_measured": 1,
+    "registry_complete": false,
+    "footprint_pixels": 5167373,
+    "catalogue_pixels": 60988,
+    "direct_support_uncovered_allowed_pixels": 0,
+    "witness_range_inside_footprint": [
+      0.0004625781439244747,
+      0.984115719795227
+    ],
+    "witness_grid_matches": true,
+    "witness_validity_mask_covers_footprint": true,
+    "measured_date_utc": "2026-10-25",
+    "measured_utc": "2026-10-25T01:05:52.260480+00:00",
+    "candidate_generated": false,
+    "thresholds_unchanged": true,
+    "dense_surface_exemption": false,
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "scope": "One hash-verified historical registry witness; sufficient for a negative, never for uniqueness clearance. No candidate surface or dots measured.",
+    "proof": "Every allowed pixel is already positive in the witness if direct_support_uncovered_allowed_pixels=0. Any nonempty subset then has forward 3px overlap 1, exceeding 0.70, regardless of rank correlation or geological mechanism.",
+    "amendment": "PA-86-01",
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    },
+    "literal_reading_blocked": true,
+    "obligations": [
+      "rank correlation <= 0.90 against EVERY measured registry raster (surface and final dots)",
+      "forward 3 px overlap <= 0.70 against EVERY measured dot-field registry raster (final dots)",
+      "literal reading reported side by side; any dot-field firing is a duplicate stop",
+      "registry scope (measured / expected rasters) stated; incomplete scope is never called complete"
+    ]
+  },
+  "verified_input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "leakage_canary": {
+    "threshold_discriminative_auc": 0.9,
+    "all_pass": true,
+    "worst_field": "low_relief_piedmont_gate",
+    "worst_discriminative_auc": 0.594126,
+    "fields": {
+      "laplace_gzz_hinge": {
+        "mean_auc": 0.51782,
+        "fold_aucs": [
+          0.503726,
+          0.522704,
+          0.498694,
+          0.546155
+        ],
+        "max_discriminative_auc": 0.546155,
+        "pass": true
+      },
+      "grav_tensor_anisotropy": {
+        "mean_auc": 0.487086,
+        "fold_aucs": [
+          0.535697,
+          0.436194,
+          0.471083,
+          0.505372
+        ],
+        "max_discriminative_auc": 0.563806,
+        "pass": true
+      },
+      "poisson_mag_destruction_residual": {
+        "mean_auc": 0.519038,
+        "fold_aucs": [
+          0.569565,
+          0.495233,
+          0.508569,
+          0.502785
+        ],
+        "max_discriminative_auc": 0.569565,
+        "pass": true
+      },
+      "poisson_mag_excess_control": {
+        "mean_auc": 0.494624,
+        "fold_aucs": [
+          0.48401,
+          0.496223,
+          0.516679,
+          0.481585
+        ],
+        "max_discriminative_auc": 0.518415,
+        "pass": true
+      },
+      "strain_coulomb_favorability": {
+        "mean_auc": 0.522384,
+        "fold_aucs": [
+          0.516957,
+          0.520661,
+          0.543042,
+          0.508876
+        ],
+        "max_discriminative_auc": 0.543042,
+        "pass": true
+      },
+      "cond_alteration_gate": {
+        "mean_auc": 0.48948,
+        "fold_aucs": [
+          0.58151,
+          0.440893,
+          0.467955,
+          0.467563
+        ],
+        "max_discriminative_auc": 0.58151,
+        "pass": true
+      },
+      "low_relief_piedmont_gate": {
+        "mean_auc": 0.54323,
+        "fold_aucs": [
+          0.47558,
+          0.594126,
+          0.548683,
+          0.554532
+        ],
+        "max_discriminative_auc": 0.594126,
+        "pass": true
+      },
+      "arm::E1_pstd_full": {
+        "mean_auc": 0.532799,
+        "fold_aucs": [
+          0.563203,
+          0.513967,
+          0.51002,
+          0.544007
+        ],
+        "max_discriminative_auc": 0.563203,
+        "pass": true
+      },
+      "arm::E2_pstd_geopotential_only": {
+        "mean_auc": 0.528872,
+        "fold_aucs": [
+          0.557848,
+          0.511734,
+          0.500238,
+          0.545669
+        ],
+        "max_discriminative_auc": 0.557848,
+        "pass": true
+      },
+      "arm::E3_pstd_inverted_polarity_control": {
+        "mean_auc": 0.502282,
+        "fold_aucs": [
+          0.484767,
+          0.498724,
+          0.499192,
+          0.526446
+        ],
+        "max_discriminative_auc": 0.526446,
+        "pass": true
+      }
+    }
+  },
+  "holdout_evaluation": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evaluator_implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "split": {
+      "kind": "buffered_component_draw",
+      "n_folds": 4,
+      "hide_frac": 0.2,
+      "buffer_px": 3,
+      "seed": 20,
+      "quadrant_names": [
+        "NW",
+        "NE",
+        "SW",
+        "SE"
+      ],
+      "shared_visible_mask_across_folds": true,
+      "withheld_positives_total": 11321
+    },
+    "fold_fair_r0_control": {
+      "control_id": "R0_fold_fair_d25_d28_vis_collar2",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "source_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "raw_d28_dots": 44090,
+      "holdout_dti": 0.096086,
+      "ci95": [
+        0.08334,
+        0.109335
+      ],
+      "withheld_positives_total": 11321,
+      "visible_collar_px": 2.0,
+      "per_fold": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.088321,
+          "n_truth": 1923,
+          "emitted": 8681
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.111201,
+          "n_truth": 2367,
+          "emitted": 9943
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.082915,
+          "n_truth": 3781,
+          "emitted": 10495
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.104419,
+          "n_truth": 3250,
+          "emitted": 7374
+        }
+      },
+      "leakage_audit_note": "Fold-fair H33-2-B2 control: masks ONLY fold-visible faults (d_vis > 2.0 px) from unpruned GEMSDOE25 d2.8 (44,090 dots), avoiding the IR-86-RIDF-02 / IR-86-MMT-R0-LEAK defect of using GEMSDOE28 r1-solo which pre-deleted dots near withheld test faults."
+    },
+    "same_split_archived_best": {
+      "id": "H86C-KSLB_E3_noisyor_44k",
+      "evidence_class": "HOLDOUT-DTI",
+      "holdout_dti": 0.124136,
+      "ci95": [
+        0.10796,
+        0.140312
+      ]
+    },
+    "arms": {
+      "E1_pstd_full": {
+        "arm_id": "E1_pstd_full",
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "holdout_dti": 0.031382,
+        "ci95": [
+          0.024202,
+          0.039539
+        ],
+        "withheld_positives_total": 11321,
+        "tpw": 507.314,
+        "fpw": 35037.994,
+        "fnw": 10813.686,
+        "full_footprint_budget_dots": 37654,
+        "total_emitted_across_4_quadrants": 35392,
+        "visible_collar_px": 2.0,
+        "per_fold": {
+          "NW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.022319,
+            "n_truth": 1923,
+            "emitted": 8641
+          },
+          "NE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.008184,
+            "n_truth": 2367,
+            "emitted": 3899
+          },
+          "SW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.032431,
+            "n_truth": 3781,
+            "emitted": 12160
+          },
+          "SE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.049463,
+            "n_truth": 3250,
+            "emitted": 10692
+          }
+        },
+        "paired_vs_fold_fair_r0": {
+          "delta_dti": -0.064704,
+          "delta_ci95": [
+            -0.077131,
+            -0.050573
+          ],
+          "ci95_strictly_positive": false
+        },
+        "delta_vs_h86c_kslb_archived_best": -0.092754,
+        "beats_same_split_holdout_best": false
+      },
+      "E2_pstd_geopotential_only": {
+        "arm_id": "E2_pstd_geopotential_only",
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "holdout_dti": 0.027374,
+        "ci95": [
+          0.020634,
+          0.034488
+        ],
+        "withheld_positives_total": 11321,
+        "tpw": 443.284,
+        "fpw": 35239.755,
+        "fnw": 10877.716,
+        "full_footprint_budget_dots": 37654,
+        "total_emitted_across_4_quadrants": 35558,
+        "visible_collar_px": 2.0,
+        "per_fold": {
+          "NW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.017108,
+            "n_truth": 1923,
+            "emitted": 8913
+          },
+          "NE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.011905,
+            "n_truth": 2367,
+            "emitted": 5572
+          },
+          "SW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.028783,
+            "n_truth": 3781,
+            "emitted": 11447
+          },
+          "SE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.043506,
+            "n_truth": 3250,
+            "emitted": 9626
+          }
+        },
+        "paired_vs_fold_fair_r0": {
+          "delta_dti": -0.068712,
+          "delta_ci95": [
+            -0.081746,
+            -0.055037
+          ],
+          "ci95_strictly_positive": false
+        },
+        "delta_vs_h86c_kslb_archived_best": -0.096762,
+        "beats_same_split_holdout_best": false
+      },
+      "E3_pstd_inverted_polarity_control": {
+        "arm_id": "E3_pstd_inverted_polarity_control",
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "holdout_dti": 0.028915,
+        "ci95": [
+          0.021135,
+          0.037495
+        ],
+        "withheld_positives_total": 11321,
+        "tpw": 468.434,
+        "fpw": 35248.304,
+        "fnw": 10852.566,
+        "full_footprint_budget_dots": 37654,
+        "total_emitted_across_4_quadrants": 35592,
+        "visible_collar_px": 2.0,
+        "per_fold": {
+          "NW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.016689,
+            "n_truth": 1923,
+            "emitted": 8880
+          },
+          "NE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.020905,
+            "n_truth": 2367,
+            "emitted": 5975
+          },
+          "SW": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.035737,
+            "n_truth": 3781,
+            "emitted": 10755
+          },
+          "SE": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "dti": 0.03542,
+            "n_truth": 3250,
+            "emitted": 9982
+          }
+        },
+        "paired_vs_fold_fair_r0": {
+          "delta_dti": -0.067171,
+          "delta_ci95": [
+            -0.078782,
+            -0.055022
+          ],
+          "ci95_strictly_positive": false
+        },
+        "delta_vs_h86c_kslb_archived_best": -0.095221,
+        "beats_same_split_holdout_best": false
+      }
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "stage_reached": "surface_pre_placement_stop",
+    "surface_report_path": "docs/evidence/h86h-pstd-registry-surface.json",
+    "surface_report_schema": "gems86.registry-candidate.v2",
+    "candidate_source_sha256": "46ccdeb19325c234d15ba4d54c2156f727fc5ff1a67c13840c92d526a65f859e",
+    "candidate_decoded_sha256": "d695774767e8b6542f8fe8590a777d2ed2bf7a6676a7d650ebbb455eec73406f",
+    "registry_index_sha256": "7c56f6e4e7e1cc33aa84776985af6ae9c660421808523a903bcea31157418f48",
+    "inventory_rasters_expected": 687,
+    "inventory_rasters_missing": [],
+    "valid_comparable_rasters": 685,
+    "dot_field_rasters": 631,
+    "continuous_surface_rasters": 54,
+    "error_rows_count": 2,
+    "error_submissions": [
+      "14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+      "7GEMSDOE:external/qfaults/qfaults_prior_u8.tif"
+    ],
+    "rho_firings_over_0_90": 0,
+    "worst_spearman_full_footprint": 0.25771969444170717,
+    "worst_spearman_submission": "GEMSDOE24:data/external/audit_sources/acquisition_block_id_100m.tif",
+    "surface_gate_pass": false,
+    "literal_gate_pass": false,
+    "final_dots_placed": false,
+    "final_dots_gate_pass": null
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_tif_serialized": false,
+    "surface_array_checks": {
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nan_inside_footprint": 0,
+      "min_inside_footprint": 0.0,
+      "max_inside_footprint": 1.0,
+      "values_in_0_1": true
+    },
+    "reason_no_tif_written": "Halted fail-closed before full-footprint dot placement and before GeoTIFF serialization per AGENTS.md Rule 11 (surface_gate_pass=False, literal_gate_pass=False, holdout_gate_pass=False)."
+  },
+  "submission_name": "NONE_HALTED_AT_PRE_PLACEMENT_GATE",
+  "submission_note": "DO NOT SUBMIT: H86H-PSTD negative deliverable; halted before placement/TIFF per Rule 11.",
+  "submission_note_length": 88,
+  "budget": {
+    "experiments_run": 3,
+    "max_experiments": 3,
+    "elapsed_seconds": 571.89,
+    "max_seconds": 7200,
+    "submission_slots_used": 0
+  },
+  "stop_reasons": [
+    "HOLDOUT_BELOW_CONTROLS: E1_pstd_full HOLDOUT-DTI=0.031382 [0.024202, 0.039539] vs fold-fair R0=0.096086 [0.08334, 0.109335] (paired delta -0.064704, CI95 [-0.077131, -0.050573]) and archived same-split best H86C-KSLB=0.124136 [0.10796, 0.140312].",
+    "SURFACE_REGISTRY_INCOMPLETE_OR_ERRORED: rho_firings=0 (worst Spearman=0.25771969444170717) across 685/687 valid rasters, but 2 historical registry_inventory rows failed CRS/grid checks (['14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif', '7GEMSDOE:external/qfaults/qfaults_prior_u8.tif']), forcing surface_gate_pass=False per AGENTS.md Rule 11.",
+    "LITERAL_WITNESS_BLOCKER: 17GEMSDOE full-support witness covers 100.0% of allowed pixels (forward_overlap=1.0 > 0.70), forcing literal_gate_pass=False per AGENTS.md Rules 6 & 11."
+  ],
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "submission_ready": false,
+  "approved_for_weekly_slot": false
+}

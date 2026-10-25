@@ -941,9 +941,9 @@ See `research/SESSION_20261024_REVIEW.md` and
 - **IR-86-PROSE-CODE-01 (repaired):** Two builders shipped docstrings contradicting their own enforced guards — the IR-86-SPT-02 "misrepresented prose vs code" defect class. `scripts/generate_unique_submission.py` claimed it "does NOT call `protocol_preflight.require_feasible()`" while `main()` did (left stale when PR #80 was gated under IR-86-FAULTHALO-01), and `scripts/run_h86e.py` claimed the same while `main()` did (left stale when PR #83 was gated). Both docstrings were corrected to describe the enforced behaviour and the revoked bypass; no guard, threshold or measurement was changed. `tests/test_builder_preflight.py::test_gated_builder_docstring_does_not_claim_a_preflight_bypass` now fails any `BUILDERS` entry whose docstring asserts a bypass, so this cannot silently recur.
 - **IR-86-H86E-02 (measured):** First E3 run degenerated (`p=1` on catalogue, `p~1e-6` elsewhere, HOLDOUT-DTI `0.0209`) because plain distance-to-visible-catalogue is `0` exactly on training positives (self-identity leak, preserved in `.cache` run-1 log summary inside `research/H86E_SESSION_20261024.md`). Repaired with other-component (two-group) distances and self-corrected densities; corrected rerun is the reported E3. The buggy run is an implementation defect record, not a scientific result.
 
-## IR-86-GAPRES-01 (2026-10-24) — literal overlap rule unsatisfiable; dotted reading used and disclosed
-`scripts/build_gems86_gapres.py` does not call `protocol_preflight.require_feasible()` (same
-owner-mandate pattern as IR-86-H86E-01). The pinned 17GEMSDOE witness is a continuous
+## IR-86-GAPRES-01 (2026-10-24, SUPERSEDED — bypass revoked in PR #94; historical record retained)
+An earlier revision of `scripts/build_gems86_gapres.py` did not call `protocol_preflight.require_feasible()` (same
+owner-mandate pattern as IR-86-H86E-01); PR #94 (`f7cec5b`) revoked that bypass so `build_gems86_gapres.py` now calls `protocol_preflight.require_feasible()` as the first action of `main()`, pinned in `tests/test_builder_preflight.py`. The pinned 17GEMSDOE witness is a continuous
 probability surface with support>0 over ~the whole footprint, so under the literal
 support>0 dot definition every nonempty candidate has 1.0 forward 3-px overlap and the
 >0.70 lane rule can never pass. GAPRES therefore reports BOTH readings in
@@ -973,3 +973,66 @@ no new TIFF, model experiment or slot. See
 The user generation mandate remains unmet; inherited PA interpretations do not
 establish that the stated literal overlap gate passed. The missing lane/cache and
 non-comparable holdout histories remain blockers.
+
+
+## IR-86-MMT-R0-LEAK-20261024 — 2026-10-24 (repaired in code; archived H86E-MMT card retained)
+
+Line-by-line review of `scripts/run_h86e_mmt.py` (PR #93) uncovered a triple defect in its
+`R0_D28_visible_collar` control (`HOLDOUT-DTI = 0.033860 [0.016043, 0.050292]`):
+1. It repeated `IR-86-RIDF-02` by loading `GEMSDOE28__gems28-h27-4-r1-solo-d2-8` (`40,199` dots),
+   which had already deleted dots within ~1.41 px of the FULL `existing_faults.tif` catalogue
+   (including withheld test components), instead of unpruned `GEMSDOE25` `dotted-h19-5-d2-8`
+   (`sha256: 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8`, `44,090` dots).
+2. It passed that binary `0/1` array through `holdout_arm -> make_dots -> rank01(..., 44_090)`,
+   which assigned deterministic mergesort tie ranks across `~5.04M` zero-valued pixels and padded
+   `~17,000` zero-signal lattice dots into the southern rows of the raster (`fpw = 41,687.57`).
+3. It pruned `R0` with a `3.0 px` visible collar instead of `H33-2-B2`'s `2.0 px` collar.
+
+Re-evaluated directly on the identical `seed=20` buffered whole-component split (`11,321` withheld
+positives, `gems57-pooled-hide-v2`), true fold-fair `R0` (`GEMSDOE25` `91eae1ca42ec...` masked ONLY
+by `d_vis > 2.0 px`) achieves **`0.096086 [0.083340, 0.109335]`** (`docs/evidence/h86h-pstd-run-card.json`),
+confirming `H86E-MMT` (`0.029002 [0.020550, 0.038126]`) trails true fold-fair `R0` by `~ -0.0671`
+rather than `-0.0049`. `scripts/run_h86e_mmt.py` now uses `holdout_binary_control` on `91eae1ca42ec...`
+(`tests/test_h86h_pstd.py`); the historical `docs/evidence/h86e-mmt-run-card.json` is preserved unedited
+as an audit archive with an explicit caveat on the site.
+
+
+## IR-86-H86E-IMPORT-EXEC-20261024 — 2026-10-24 (repaired)
+
+AST audit across `scripts/*.py` found that `scripts/build_h86e_features.py`,
+`scripts/h86e_comparator.py`, `scripts/h86e_fleet_strata.py`, and `scripts/h86e_instrument_check.py`
+loaded competition grids and/or overwrote `docs/evidence/*.json` at module import time without a
+`main()` guard, while historical `scripts/run_h86e_ridf.py` lacked `protocol_preflight.require_feasible()`
+(`AGENTS.md` Rule 8) and still pointed `D28` to leaked `GEMSDOE28`. All five now encapsulate execution
+inside `main()`, and `build_h86e_features`, `run_h86e_ridf`, and `write_h86e_tif` are added to
+`tests/test_builder_preflight.py` (`50` guarded historical CLI builders + `8` imported orchestrators).
+
+
+## IR-86-INVENTORY-OFFGRID-ROWS-20261024 — 2026-10-24 (measured blocker)
+
+Even after restoring and SHA-256-verifying all `655 / 655` blobs in `research/upstream/registry_inventory.json`
+(`728,345,463` bytes; `687` unique indexed rasters including local artifacts, `0` missing), two historical
+inventory entries fail `vendor/gems57/uniqueness.py::compare_array_to_registry` grid/CRS checks:
+- `14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif` (`ccbe1de0...`: `registry CRS/transform differs from reference`)
+- `7GEMSDOE:external/qfaults/qfaults_prior_u8.tif` (`538b4573...`: `registry grid or band-count mismatch`)
+
+Under `AGENTS.md` Rule 11 (`scripts/check_h86e_registry.py` v2 and `scripts/pa86_chance_overlap.py`),
+any errored registry row sets `registry_complete_for_index = False` and `surface_gate_pass = False`
+(and causes `pa86_chance_overlap.py` to raise `ValueError("Incomplete registry cannot pass")`). We do
+not relax `check_h86e_registry.py`, `pa86_chance_overlap.py`, or the SHA-pinned `registry_inventory.json`;
+`H86H-PSTD` records `rho_firings = 0` (`worst_spearman_full_footprint = 0.2577 <= 0.90`) across all
+`685` comparable rasters while halting fail-closed before full-footprint dot placement and serialization.
+
+
+## IR-86-MMT-RULE11-SERIALIZATION-20261024 — 2026-10-24 (archived negative artifact)
+
+PR #95 (`scripts/run_h86e_mmt.py`) ran custom inline `compare_array_to_registry` helpers rather than
+halting at `scripts/check_h86e_registry.py --surface` and serialized an audit-only `DO NOT SUBMIT`
+GeoTIFF (`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif`,
+`c32f67bf...`) despite `protocol_surface_gate_pass = False`, `literal_gate_pass = False`, and `6`
+informative `PA-86-02` overlap firings. That serialized artifact is preserved in the 15-file
+`DO NOT SUBMIT` audit-only inventory (`registry/artifact_cards.json`), while the new `H86H-PSTD`
+lane (`scripts/run_h86h_pstd.py`) strictly enforces `AGENTS.md` Rule 11 (`check_h86e_registry.py --surface`
+stop before full-footprint dot placement and before GeoTIFF serialization).
+
+

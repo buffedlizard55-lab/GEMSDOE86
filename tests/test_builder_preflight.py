@@ -17,15 +17,15 @@ from scripts import protocol_preflight
 ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = """
 build_axis_variants build_concentration5_axis build_concentration_sign
-build_gems86_gapres build_gems86_swcon build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
+build_gems86_gapres build_gems86_swcon build_h86e_features build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
 build_r0_trackb build_snap_variants build_spt build_submission build_xfleet
 experiment finalize_h86e gen_tip_final generate_unique_submission build_unique_submission h86b_features h86c_features h86d_features
 prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
-run_h86_wvb run_h86e run_lane run_lane86 run_lane86b run_lane86c run_lane86d
+run_h86_wvb run_h86e run_h86e_ridf run_lane run_lane86 run_lane86b run_lane86c run_lane86d
 run_prune_ladder run_relief_axis run_relief_source run_snap_axis
-run_spacing_axis run_trackb_axis
+run_spacing_axis run_trackb_axis write_h86e_tif
 """.split()
 IMPORTED_ORCHESTRATORS = [
     ("experiment", "run", ("full",)),

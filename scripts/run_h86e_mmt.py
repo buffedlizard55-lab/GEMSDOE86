@@ -44,7 +44,7 @@ from scripts.protocol_preflight import require_like_for_like  # noqa: E402
 BUDGET = 44_090
 SEED = 20
 FEATURE_TIF = ROOT / "data/training_features.tif"
-D28 = ROOT / "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+D28 = ROOT / "data/registry_ext/91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8.tif"
 OUT_DIR = ROOT / "docs/downloads"
 EV_DIR = ROOT / "docs/evidence"
 WORK_DIR = ROOT / "data/work"
@@ -93,6 +93,30 @@ def load_binary(path: Path) -> np.ndarray:
 def make_dots(surface: np.ndarray, allowed: np.ndarray, budget: int) -> np.ndarray:
     ranked, _ = emit.emit_decimated(rank01(surface, allowed), allowed, tile_px=3)
     return emit.emit_prefix(ranked, budget)
+
+
+def holdout_binary_control(dots_mask: np.ndarray, folds: list[dict], fp: np.ndarray,
+                           collar_px: float = 2.0) -> tuple[np.ndarray, dict, np.ndarray]:
+    """Evaluate a pre-existing binary dot field masked strictly by fold-visible faults."""
+    terms = []
+    per_fold = {}
+    example = None
+    for f in folds:
+        visible = np.asarray(f["visible"], bool)
+        dvis = ndi.distance_transform_edt(~visible)
+        dots = np.asarray(dots_mask, bool) & fp & ~visible & (dvis > collar_px)
+        if example is None:
+            example = dots.copy()
+        result, block_terms = EH.evaluate(dots.astype(np.float32), f, fp, block_side=200)
+        terms.append(block_terms)
+        per_fold[f["name"]] = {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": EH.VERSION,
+            "dti": result["dti"],
+            "n_truth": result["n_truth"],
+            "emitted": result["n_emitted"],
+        }
+    return np.sum(terms, axis=0), per_fold, example
 
 
 def holdout_arm(surface: np.ndarray, folds: list[dict], fp: np.ndarray,
@@ -228,7 +252,7 @@ def main() -> int:
         holdout_terms[arm] = terms
         holdout_per_fold[arm] = per
         holdout_examples[arm] = example
-    d28_terms, d28_per, d28_example = holdout_arm(d28.astype(np.float32), folds, fp, BUDGET)
+    d28_terms, d28_per, d28_example = holdout_binary_control(d28, folds, fp, collar_px=2.0)
     holdout_terms["R0_D28_visible_collar"] = d28_terms
     holdout_per_fold["R0_D28_visible_collar"] = d28_per
     holdout_examples["R0_D28_visible_collar"] = d28_example

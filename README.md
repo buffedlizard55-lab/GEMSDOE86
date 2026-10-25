@@ -1,10 +1,26 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ IS ANY FILE OK TO DOWNLOAD AND SUBMIT RIGHT NOW? **NO.** (`DO NOT SUBMIT`, automated decision, 2026-10-24)
+
+**Every file in this repository is `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used).**
+
+In the latest 2026-10-24 session (`H86H-PSTD`), four untried geological hypotheses (`H86H-1..H86H-4`) were **frozen before any code was written** in [`research/H86H_PSTD_PREREGISTRATION.md`](research/H86H_PSTD_PREREGISTRATION.md) ([machine-readable JSON](research/H86H_PSTD_PREREGISTRATION.json)). Top candidate **`H86H-1` (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance)** executed 3 preregistered arms on the 100% SHA-verified competition grid and **halted fail-closed before full-footprint dot placement and before GeoTIFF serialization** per `AGENTS.md` Rule 11:
+
+| Automated gate (zero human inspection) | `H86H-PSTD` measured result ([`docs/evidence/h86h-pstd-run-card.json`](docs/evidence/h86h-pstd-run-card.json)) |
+|---|---|
+| Preregistration frozen before code | **PASS** — 4 untried hypotheses (`H86H-1..H86H-4`) frozen in [`research/H86H_PSTD_PREREGISTRATION.json`](research/H86H_PSTD_PREREGISTRATION.json) (`3` arms run, `<= 3` budget, `571.9 s <= 7,200 s`) |
+| `LEAKAGE-CANARY` (`AUC <= 0.90`) | **PASS** — worst single-field discriminative AUC across 7 feature planes + 3 arm surfaces is **`0.5941 <= 0.90`** (`low_relief_piedmont_gate`) |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 1,000 paired block-bootstrap draws) | **NEGATIVE** — `E1_pstd_full` **`0.0314`** `[0.0242, 0.0395]` beat geopotential-only `E2` (`0.0274`, `+0.0040`) and inverted-polarity control `E3` (`0.0289`, `+0.0025`), outscoring prior blind lanes `H86E-MMT` (`0.0290`) and `blindgeothermal` (`0.0004`) on the identical split, **but trailed fold-fair `R0` (`0.0961` `[0.0833, 0.1093]`, paired Δ `−0.0647` `[−0.0771, −0.0506]`) and same-split archived best `H86C-KSLB` (`0.1241` `[0.1080, 0.1403]`)** |
+| Pre-placement complete-registry surface check ([`docs/evidence/h86h-pstd-registry-surface.json`](docs/evidence/h86h-pstd-registry-surface.json)) | **STOP (`surface_gate_pass: false`)** — **`0` rank-correlation firings** (`worst Spearman = 0.2577 <= 0.90` across **685** valid competition-grid rasters, `0` missing), **but** `2` off-grid historical `registry_inventory.json` entries (`14GEMSDOE`, `7GEMSDOE`) fail CRS/grid checks and `17GEMSDOE` covers `100.0%` of allowed cells |
+| Full-footprint dot placement / GeoTIFF serialization / weekly slots | **HALTED FAIL-CLOSED (`final_dots_placed: false`, `candidate_tif_serialized: false`, `0` slots used)** per `AGENTS.md` Rule 11 |
+
+Read the [PhD-level `GEMSDOE32` (`0.2778` `OWNER-REPORTED`) analysis, 4 preregistered hypotheses, comparator defect audit & 3-pass review](research/SESSION_20261024_H86H_PSTD_REVIEW.md), the [live download & gate dashboard](docs/index.html), the [executive submission guide](docs/executive-summary.html), and the [refreshed 92-project fleet feed](docs/evidence/fleet-feed.json). All **15** published research TIFFs in `docs/downloads/` pass automated format/footprint/hash checks (`15 / 15`) and remain **audit-only downloads (`DO NOT SUBMIT`)**; all **50 CLI builders + 8 imported orchestrators** are gated behind `protocol_preflight.require_feasible()`.
+
 **Independent review (branch `4b49f82f`):** [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md). All existing downloads remain **DO NOT SUBMIT**. No new candidate or slot was used; the literal overlap rule, amendment authority, missing shared cache, and unassigned method lane remain explicit blockers.
 
-## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
+## Archived 2026-10-24 lane: H86E-MMT magnetic-marker translation (`DO NOT SUBMIT`)
 
-**Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
+**Every file in this repository is `DO NOT SUBMIT`.** The earlier H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. (*Comparator audit `IR-86-MMT-R0-LEAK-20261024`:* `h86e-mmt-run-card.json` originally compared against `0.0339` because `scripts/run_h86e_mmt.py` loaded full-catalogue-masked `GEMSDOE28` and padded ~17k zero-rank tie dots; remediated in `scripts/run_h86e_mmt.py`, where true fold-fair `R0` from unpruned `GEMSDOE25` `91eae1ca…` on the identical split is `0.0961` `[0.0833, 0.1093]`.) These are **safe to download for audit only**, not approved uploads:
 
 - TIFF: [`docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif)
 - ZIP: [`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip`](docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.zip)
