@@ -1,19 +1,15 @@
 # SLOT PLAN — 2026-10-24 (rev. I: 92-site fleet sync + PR #60 SPT revocation, `DO NOT SUBMIT` active)
 
-> **2026-10-24 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`), **zero files in this repository are currently authorized for portal upload**, and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate has been revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
+> **2026-10-25 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`, `artifact_count: 18`), **zero files in this repository are currently authorized for portal upload** (including the newly generated 2026-10-25 `H86I-HVFD` audit GeoTIFF `gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif`, `H86F-GZZD`, `H86F-PCC`, and `H86E-MMT`), and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate remains revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
 
-**2026-10-25 addendum (H86G-EDTI REVOKED & H86J-CSGD negative):** PR #107's earlier
-`H86G-EDTI` promotion (`gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`,
-sha256 `ba8b731f...`) has been **REVOKED to `DO NOT SUBMIT`** (`IR-86-H86G-LOCAL-ONLY-DUP-20261025`)
-after full 655-blob registry restoration (`docs/evidence/h86g-edti-full-registry-audit-20261025.json`)
-exposed **44 dot-field overlap firings (> 0.70) and 25 informative (`halo_coverage <= 0.70`) firings**
-(including sparse `GEMSDOE46:r11f` `0.7602` at 44,090 dots and `GEMSDOE41:h42` `0.7399` at 40,000 dots)
-that PR #107 missed on its 43-file local scan. Current lane `H86J-CSGD`
-(`gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros`, sha256 `079914e3...`)
-achieved `0 / 636` informative dot-field firings on the full 690-raster restored scan and
-`HOLDOUT-DTI = 0.1577` on unweighted cover-blind `E2` (`0.0613` on SAR-debiased `E1`),
-and stays **fail-closed `DO NOT SUBMIT`** (`0` selector-ready files; `0` weekly slots spent).
-See `research/SESSION_REVIEW_20261025_H86J_CSGD.md`.
+**2026-10-25 addendum (H86G-EDTI):** one candidate is now selector-ready under PA-86-01
+like-for-like gates — `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`
+(sha256 `ba8b731f...`, SGMC-PROXY-DTI 0.1223 vs H33-as-is 0.0954, paired Δ +0.0269
+[+0.0028, +0.0518] post-selection descriptive; HOLDOUT-DTI OOF 0.0631). It is the
+recommended next single slot **if** the selector spends one; receipt decision
+rule (±0.01 vs the 0.2778 OWNER-REPORTED claim) is in
+`research/H86G_EDTI_REVIEW.md`. The literal-witness notice above is unchanged
+for every other file, and the R0-axis probes below remain archived spares.
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
@@ -162,3 +158,7 @@ with `0/687` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap
 (`26.96%` vs `GEMSDOE32`). **However, no selector ran and 0 weekly slots were used (`DO NOT SUBMIT`)**
 because `14GEMSDOE` and `7GEMSDOE` remain grid-incompatible in the pinned registry index
 and literal `17GEMSDOE` saturation blocks automated clearance (`IR-86-H86F-EWCS-01`).
+
+## 2026-10-25 — H86J-LSI lane: negative, 0 slots used, no selector action
+
+Live-score inversion: LOSO Spearman 0.900 vs owner-reported live (instrument gate PASS). The 30k candidate fails the SGMC paired gates vs H33 (−0.0325 [−0.0588, −0.0045]) and vs H86G. HOLDOUT-DTI is 0.0346 [0.0229, 0.0453] (11,321 withheld). **DO NOT SUBMIT.** Next: a bounded-link (λ ≤ 1) amendment. See `research/H86J_LSI_REVIEW.md`.

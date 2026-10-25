@@ -1,0 +1,63 @@
+{
+  "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+  "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+  "checks": {
+    "sha256_matches_run_card": true,
+    "note_le_140_chars": true,
+    "experiments_within_budget_3": true,
+    "uniqueness_checker_verbatim": true,
+    "readiness_respects_shared_stop": true,
+    "readiness_requires_complete_unique_scan": true,
+    "single_band_float32": true,
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_matches_pinned_grid": true,
+    "all_finite": true,
+    "values_in_0_1": true,
+    "no_sentinels": true,
+    "dots_match_run_card": true,
+    "zip_contains_only_this_tif": true,
+    "zip_tif_bytes_equal_registered_tif": true
+  },
+  "all_format_checks_passed": true,
+  "dots": 60000,
+  "min": 0.0,
+  "max": 1.0,
+  "uniqueness_checker": {
+    "unique": false,
+    "duplicate_count": 1,
+    "stop_required": true,
+    "worst_spearman": 0.0003379482233849768,
+    "worst_dot_overlap_within_3px": 0.9950333333333333,
+    "worst_overlap_submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "registry_rasters_checked": 12
+  },
+  "holdout_dti_labelled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22641,
+    "candidate_at_final_budget_60000": 0.04202939033542524,
+    "ci95_cell_bootstrap": [
+      0.0368715778609519,
+      0.0466660650893612
+    ],
+    "candidate_at_37654": 0.030937497799594416,
+    "ci95_37654": [
+      0.026365302800838833,
+      0.03445069578894742
+    ],
+    "mag_only_control_37654": 0.013464033369212173,
+    "resid_only_ablation_37654": 0.026011662044997545,
+    "registry_incumbent_benchmark_only": 0.10106964768349222,
+    "incumbent_ci95": [
+      0.08560393780206166,
+      0.11669019029309867
+    ],
+    "beats_incumbent": false
+  },
+  "verdict": "negative",
+  "submission_ready": false,
+  "approved_for_weekly_slot": false,
+  "download_status": "DOWNLOAD FOR INSPECTION ONLY - DO NOT SUBMIT: format-valid and byte/pixel-distinct vs 12-raster local registry, but shared uniqueness checker unique=false (literal >0.70 3px-overlap gate fires vs saturating lattice raster; stop_required=true) and HOLDOUT-DTI 0.0420 [0.0369,0.0467] does not beat same-instrument incumbent 0.1011 [0.0856,0.1167]. No weekly slot may be spent.",
+  "validation_class": "independent local format/consistency preflight; NOT organizer acceptance"
+}

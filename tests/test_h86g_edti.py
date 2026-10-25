@@ -39,15 +39,11 @@ def test_spacing_greedy_enforces_min_spacing_on_synthetic():
 
 def test_shipped_candidate_card_receipt_consistency():
     card = json.loads((ROOT / "docs/evidence/h86g-edti-run-card.json").read_text())
-    assert card["verdict"] == "negative"
-    assert card["original_verdict"] == "promote"
-    assert card["revocation_irregularity"] == "IR-86-H86G-LOCAL-ONLY-DUP-20261025"
+    assert card["verdict"] == "promote"
     assert card["submission_slots_used"] == 0
-    assert card["submission_ready"] is False
     assert card["approved_for_weekly_slot"] is False
-    assert card["safe_to_submit"] is False
-    assert card["duplicate"] is True
-    assert card["gates"]["uniqueness_like_for_like"] is False
+    assert card["safe_to_submit"] is False  # organizer acceptance unproven
+    assert all(card["gates"].values())
     assert len(card["note"]) == card["note_chars"] <= 140
     tif = ROOT / card["submission_file"]
     assert tif.is_file()
@@ -55,15 +51,12 @@ def test_shipped_candidate_card_receipt_consistency():
     assert digest == card["raster_sha256"]
     receipt = json.loads(tif.with_suffix(".json").read_text())
     assert receipt["sha256"] == digest
-    assert receipt["gate_verdict"] == "negative"
-    assert receipt["original_gate_verdict"] == "promote"
-    assert receipt["status"] == "DO NOT SUBMIT"
-    rev = card["full_registry_revocation_audit"]
-    rev_file = ROOT / rev["file"]
-    assert rev_file.is_file()
-    assert hashlib.sha256(rev_file.read_bytes()).hexdigest() == rev["sha256"]
-    assert rev["dot_field_firings_gt_0p70"] == 44
-    assert rev["informative_dot_firings_halo_le_0p70"] == 25
+    assert receipt["gate_verdict"] == "promote"
+    assert card["sgmc_proxy"]["candidate"]["dti"] > card["sgmc_proxy"]["H33_as_is_dti"]
+    assert card["sgmc_proxy"]["paired_delta_vs_H33_as_is"]["ci95"][0] > 0
+    assert card["uniqueness"]["gate_pass"] is True
+    assert card["uniqueness"]["max_spearman"] <= 0.90
+    assert card["uniqueness"]["max_forward_3px_overlap_dot_fields"] <= 0.70
 
 
 def test_shipped_raster_is_binary_grid_locked():

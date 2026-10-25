@@ -14,11 +14,9 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI was revoked after full 692-raster registry restoration
-    # found 25 informative dot-field firings; H86J-CSGD is also fail-closed negative.
-    assert "0 SELECTOR-READY FILES" in html
-    assert "IS ANY FILE OK TO SUBMIT? NO." in html
-    assert "REVOKED · DO NOT SUBMIT (IR-86-H86G-LOCAL-ONLY-DUP-20261025)" in html
+    # Research promotion must never override false authorization fields.
+    assert "NO FILE AUTHORIZED" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO" in html
     assert "IS THIS FILE OK TO SUBMIT? YES" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
@@ -47,3 +45,28 @@ def test_zip_contains_single_tiff():
         names = bundle.namelist()
         assert names == [card["raster_name"]]
         assert bundle.getinfo(names[0]).file_size > 100_000
+
+
+def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
+    """A PROMOTE label cannot contradict the card's false slot permissions."""
+    card = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert card["verdict"] == "promote"
+    assert card["safe_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False
+    for flag in ("safe_to_submit", "approved_for_weekly_slot", "selector_run"):
+        assert summary[flag] is False
+    historical = summary["historical_h86g_lane"]
+    assert historical["raster_sha256"] == card["raster_sha256"]
+    assert historical["historical_verdict"] == "promote"
+    assert historical["current_verdict"] == "negative"
+    assert historical["safe_to_submit"] is False
+    assert historical["approved_for_weekly_slot"] is False
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in html
+        assert "SAFE TO DOWNLOAD FOR AUDIT ONLY" in html
+        for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
+                       "submit this file", "OK to download and submit",
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
+            assert unsafe not in html

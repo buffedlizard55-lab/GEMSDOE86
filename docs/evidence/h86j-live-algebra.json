@@ -1,0 +1,36 @@
+{
+ "evidence_class": "DERIVED from OWNER-REPORTED scores + pixel-exact edits (not a score)",
+ "formula": "T = 0.2 b / (1/DTI0 - 1/DTI1)  (lower bound)",
+ "rows": [
+  {
+   "edit": "GEMSDOE25 d2.8 -> GEMSDOE28 (delete d_cat = 1 px)",
+   "b": 3891,
+   "dti0": 0.26,
+   "dti1": 0.2708,
+   "n1": 40199,
+   "T_lower_bound": 5073.287555555577,
+   "T_rounding_interval": [
+    5026.70490151377,
+    5120.740549766366
+   ],
+   "D_after": 18734.44444444452,
+   "G_if_FP_zero": 22149.733666666754,
+   "G_if_dots_on_lines_M_eq_T_over_3": 12522.757629629723
+  },
+  {
+   "edit": "GEMSDOE28 -> GEMSDOE32 H33 (delete 1 < d_cat <= 2 px)",
+   "b": 2545,
+   "dti0": 0.2708,
+   "dti1": 0.2778,
+   "n1": 37654,
+   "T_lower_bound": 5470.167737142842,
+   "T_rounding_interval": [
+    5393.097850352107,
+    5549.471164855063
+   ],
+   "D_after": 19691.02857142852,
+   "G_if_FP_zero": 23246.24377999994,
+   "G_if_dots_on_lines_M_eq_T_over_3": 14288.59109142851
+  }
+ ]
+}

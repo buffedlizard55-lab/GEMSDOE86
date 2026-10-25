@@ -306,6 +306,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", default=None, help="Directory containing competition TIFFs (data/ or data/bridge/)")
     parser.add_argument("--work-dir", default=None, help="Directory for band cache output (.cache/gems_work/)")
+    parser.add_argument("--manifest", default=None, help="Optional output path for prepared_manifest.json")
     parser.add_argument("--fetch", action="store_true", help="Attempt to restore missing files via scripts/restore_data.py")
     args = parser.parse_args()
 
@@ -313,6 +314,7 @@ def main() -> None:
         data_dir=Path(args.data_dir) if args.data_dir else None,
         work_dir=Path(args.work_dir) if args.work_dir else None,
         fetch_if_missing=args.fetch,
+        manifest_path=Path(args.manifest) if args.manifest else None,
     )
     counts = manifest["counts"]
     print(

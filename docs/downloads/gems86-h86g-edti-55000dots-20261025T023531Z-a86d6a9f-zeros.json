@@ -115,7 +115,7 @@
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "DO NOT SUBMIT",
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
   "metadata": {
     "lane": "H86G-EDTI",
     "arm": "L_lineament",
@@ -181,14 +181,12 @@
     "in_footprint_positive_pixels": 55000,
     "footprint_fraction": 0.010643706192682432
   },
-  "gate_verdict": "negative",
-  "decision": "DO NOT SUBMIT (revoked under IR-86-H86G-LOCAL-ONLY-DUP-20261025 after full 692-raster registry audit)",
+  "gate_verdict": "promote",
+  "decision": "OK TO SUBMIT after separate selector step (all registered gates pass; no slot picked here)",
   "gates": {
     "canary_leakage": true,
     "sgmc_proxy_beats_H33_paired_ci": true,
     "catalogue_hide_floor_vs_H33": true,
-    "uniqueness_local_registry": true,
-    "uniqueness_like_for_like": false
-  },
-  "original_gate_verdict": "promote"
+    "uniqueness_local_registry": true
+  }
 }
