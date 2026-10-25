@@ -74,6 +74,19 @@ def explicit_no_authorization(card: dict) -> bool:
                for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
 
 
+def revoked_historical_promote(card: dict) -> bool:
+    """Accept a historical research-promotion label only with an explicit revoke record."""
+    auth = card.get("release_authorization") or {}
+    return (card.get("verdict") == "promote"
+            and card.get("publication_status") == "DO NOT SUBMIT — audit download only"
+            and card.get("submission_slots_used") == 0
+            and card.get("safe_to_submit") is False
+            and card.get("approved_for_weekly_slot") is False
+            and auth.get("safe_to_submit") is False
+            and auth.get("approved_for_weekly_slot") is False
+            and "not permission to upload" in auth.get("reason", ""))
+
+
 def archived_holdout(config: dict, context: dict) -> dict:
     """Normalize known schemas, then reject invalid performance evidence.
 
@@ -118,6 +131,20 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_lt_archived_no_hide_recover":
+        revocation = context.get("release_authorization", {})
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("verdict") != "promote"
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or revocation.get("safe_to_submit") is not False
+                or revocation.get("approved_for_weekly_slot") is not False
+                or "not permission to upload" not in revocation.get("reason", "")):
+            raise ValueError("H86M-LT must preserve its scientific verdict while explicitly revoking upload authorization")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Fleet-score tomography / SGMC-PROXY-DTI diagnostics; no catalogue-hide HOLDOUT-DTI",
+                "caveat": "The original H86M-LT 'promote' verdict is a historical scientific selection label, not upload authorization. This artifact is registered for audit only. The lane card explicitly records safe_to_submit=false and approved_for_weekly_slot=false; the current global release audit and immutable full-support witness stop remain binding. Expected-DTI values are projections and SGMC-PROXY-DTI is not a score. No hide-and-recover HOLDOUT-DTI is reported here. DO NOT SUBMIT."}
     if kind == "h86m_unvalidated":
         h = context.get("holdout_dti", {})
         if (context.get("lane") != "H86M-DAMAGERING"
@@ -460,6 +487,16 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 card.get("submission_ready") is True
                 and card.get("safe_to_submit") is False
                 and card.get("approved_for_weekly_slot") is False)
+        elif config.get("holdout_kind") == "h86m_lt_archived_no_hide_recover":
+            checks["scientific_card_is_negative"] = (
+                card.get("verdict") == "promote"
+                and card.get("publication_status") == "DO NOT SUBMIT — audit download only"
+                and card.get("submission_slots_used") == 0)
+            checks["scientific_card_does_not_authorize"] = (
+                card.get("safe_to_submit") is False
+                and card.get("approved_for_weekly_slot") is False
+                and card.get("release_authorization", {}).get("safe_to_submit") is False
+                and card.get("release_authorization", {}).get("approved_for_weekly_slot") is False)
         else:
             checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
             checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
@@ -645,7 +682,9 @@ def build_report(root: Path = ROOT) -> dict:
                       and card_doc.get("submission_ready") is True
                       and card_doc.get("safe_to_submit") is False
                       and card_doc.get("approved_for_weekly_slot") is False)
-        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
+        revoked_promote_ok = revoked_historical_promote(card_doc)
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc))
+                or promote_ok or revoked_promote_ok):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

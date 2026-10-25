@@ -40,7 +40,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"])
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == len(report["artifacts"]) == 36
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -64,6 +64,24 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert h86m["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
     assert h86m["historical_holdout"]["value"] is None
     assert not h86m["safe_to_submit"] and h86m["verdict"] == "negative"
+    lt = next(a for a in report["artifacts"] if "h86m-lt" in a["file"])
+    assert lt["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert lt["historical_holdout"]["value"] is None
+    assert lt["historical_lane_verdict"] == "negative"
+    assert lt["registry_measurement"]["forward_overlap_3px"] == 1.0
+    assert not lt["safe_to_submit"] and not lt["approved_for_weekly_slot"]
+
+
+def test_h86m_lt_historical_promote_requires_explicit_revocation():
+    config = next(c for c in audit.strict_json(ROOT / "registry/artifact_cards.json")["artifacts"]
+                  if c["holdout_kind"] == "h86m_lt_archived_no_hide_recover")
+    card = audit.strict_json(ROOT / config["context"])
+    normalized = audit.archived_holdout(config, card)
+    assert normalized["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert normalized["value"] is normalized["ci95"] is normalized["withheld_positives"] is None
+    card["safe_to_submit"] = True
+    with pytest.raises(ValueError, match="explicitly revoking upload authorization"):
+        audit.archived_holdout(config, card)
 
 
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):

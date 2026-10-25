@@ -1,14 +1,17 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## ✅ NEWEST TIFF (2026-10-25, H86M-LT, session `ecc314b3`): **PROMOTE — OK TO SUBMIT under every H86M machine gate** (slot choice remains yours)
+## Current branch review (2026-10-25, `arena/295a5d50-gemsdoe86`): **DO NOT SUBMIT**
 
-- **Download this file:** [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) · [ZIP](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip) · [lane page](docs/h86m-lt.html) · [run card](docs/evidence/h86m-lt-run-card.json) · [review & H33 forensics](research/H86M_LT_REVIEW.md)
-- SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`; 37,654 binary dots, values exactly {0,1} (fixes the "[0, 1]" portal error class); format validator **15/15 PASS**; name for the form: `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros`; note (≤140): `H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat>3; auto-validated; see run card`.
-- **Unique:** full restored registry scan (655 rasters, 414 dot-fields): max 3-px forward overlap **0.649 ≤ 0.70**, max correlation **0.159 ≤ 0.90**, surface 0.556 — 0 duplicate firings ([evidence](docs/evidence/h86m-lt-full-registry-uniqueness.json)).
-- **Why it should beat 0.2778 (owner-reported h33):** leaderboard tomography fits hidden-fault density to the fleet's 29 owner-reported live scores through the exact DTI algebra (K≈15.5k, honest LOO-MAE 0.0190); expected-DTI projections (never scores): primary belief **0.3317 vs h33-model 0.2660**, second **0.3515 vs 0.2685**, coarsest tied **0.2714 vs 0.2716**; SGMC-PROXY-DTI 0.1136 vs h33 0.0954. `approved_for_weekly_slot=false`, 0 slots used — submitting spends *your* weekly slot; only an organizer receipt can confirm the live score. Repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (documented unsatisfiable); this lane's operative gates are the PA-86 like-for-like checks above. Inventory registration in the generated index is pending a new `audit_release` holdout-kind branch (see review Limitations).
-## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
+**No new TIFF was generated. There is no file authorized for upload by this review.** The request contains no assigned single-method lane, and current workspace inspection finds the native training-feature TIFF and shared cached feature stack missing. The previously unregistered H86M-LT artifact has been reconciled into the inventory as audit-only; the complete release audit now passes integrity checks for **36** published research TIFFs while its global decision remains `DO NOT SUBMIT`. No experiment or weekly slot was used.
 
-This review generated **no new candidate** or weekly submission. **35** published TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
+- Do **not** use the historical H86M-LT download as a competition submission based on its isolated historical `promote` label. It is now explicitly marked `safe_to_submit=false`, `approved_for_weekly_slot=false`, and audit-only; the site labels it DO NOT SUBMIT.
+- Current audit results, three-pass repo review, unrun hypothesis shortlist, H33 interpretation, limitations, and official-source links: [branch review](research/SESSION_ARENA_295A5D50_REVIEW.md) · [machine-readable run card](research/session-arena-295a5d50-run-card.json).
+- The earlier owner-reported H33 value `0.2778` is not an organizer receipt. Pixel forensics show a 2,545-dot collar deletion from its parent; that is consistent with more efficient emission under the metric, but does not prove causation or establish that a new method will score higher.
+- [Submission guide](docs/executive-summary.html) describes the competition process for a future file only. A format/range pass is not upload authorization. Read the [standing request](PROMPT.md), this README, and `AGENTS.md` before project work.
+
+## Historical snapshots
+
+The sections below are retained as dated records and may describe older branches or checks. Their promotion language, counts, input availability, and audit outcomes are not current unless confirmed by the current branch review and machine-generated release status.
 
 ## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
 

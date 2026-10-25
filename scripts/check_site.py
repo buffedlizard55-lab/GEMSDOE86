@@ -177,7 +177,18 @@ def check(root=ROOT):
             and card.get('approved_for_weekly_slot') is False
             and card.get('safe_to_submit') is False
         )
-        if card.get('verdict') != 'negative' and not promote_ok:
+        auth = card.get('release_authorization') or {}
+        revoked_historical_promote = (
+            card.get('verdict') == 'promote'
+            and card.get('publication_status') == 'DO NOT SUBMIT — audit download only'
+            and card.get('submission_slots_used') == 0
+            and card.get('approved_for_weekly_slot') is False
+            and card.get('safe_to_submit') is False
+            and auth.get('approved_for_weekly_slot') is False
+            and auth.get('safe_to_submit') is False
+            and 'not permission to upload' in auth.get('reason', '')
+        )
+        if card.get('verdict') != 'negative' and not promote_ok and not revoked_historical_promote:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')

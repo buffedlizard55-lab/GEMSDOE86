@@ -1,0 +1,85 @@
+{
+  "schema": "gems86.review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/295a5d50-gemsdoe86",
+  "hypothesis": "No candidate was assigned to this parallel-run lane. PFSB (fan-burial/catalogue-censoring propensity) is the top qualitative future proposal, not an executed or validated experiment.",
+  "mechanism": "No new mechanism measured. Proposed PFSB would model alluvial-fan concealment using native radiometric, terrain, gravity, conductance, and seismicity layers to test catalogue observation bias.",
+  "named_non_fault_process": "Fan-channel and pediment boundaries, lithology-dependent radiometric contrast, or alteration plumes can mimic a concealed-fault propensity signal.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT_RUN_NO_ASSIGNED_LANE_AND_MISSING_SHARED_CACHE"
+  },
+  "correlation_overlap_vs_registry": {
+    "new_candidate_surface_rank_correlation": null,
+    "new_candidate_final_dot_overlap_3px": null,
+    "new_candidate_status": "NOT_CONSTRUCTED",
+    "inherited_h86m_lt_final_dots": {
+      "evidence_class": "REGISTRY-MEASUREMENT (fresh all-artifact remeasurement against one witness; not a uniqueness clearance)",
+      "source": "docs/evidence/all-artifacts-registry.json",
+      "measured_utc": "2026-10-25T18:35:37.931406+00:00",
+      "raster_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+      "spearman_full_footprint": 0.06914945298172888,
+      "forward_overlap_3px": 1.0,
+      "overlap_limit": 0.7,
+      "unique": false,
+      "registry_complete": false,
+      "interpretation": "The pinned witness is positive on all 5,106,385 allowed pixels; this historical candidate's allowed dots therefore have literal overlap 1.0. The measurement is a sufficient negative, not a full-registry clearance."
+    },
+    "preflight_witness": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "source": "scripts/protocol_preflight.py (fresh read-only run)",
+      "measured_utc": "2026-10-25T18:38:32.466525+00:00",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "witness_covered_allowed_fraction": 1.0,
+      "limit": 0.7,
+      "registry_complete": false,
+      "status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+      "interpretation": "Archived witness measurement reproduced; it is not a candidate surface check or a complete registry scan."
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "Review only; no new TIFF, no upload authorization, zero experiments and zero slots.",
+  "verdict": "negative",
+  "workspace_audit": {
+    "evidence_class": "INPUT-INTEGRITY-MEASUREMENT",
+    "source": "scripts/audit_workspace_inputs.py",
+    "training_features_tif": "MISSING",
+    "shared_cached_feature_stack": false,
+    "existing_faults_root_sha_verified": true,
+    "sample_submission_root_sha_verified": true,
+    "prepared_arrays": "MISSING",
+    "safe_to_submit": false,
+    "approved_for_weekly_slot": false
+  },
+  "release_audit": {
+    "status": "PASS_INTEGRITY_NEGATIVE_DECISION",
+    "source": "scripts/audit_release.py --measure-registry",
+    "artifact_count": 36,
+    "locally_valid_artifacts": 36,
+    "all_final_artifacts_remeasured": true,
+    "decision": "DO NOT SUBMIT",
+    "safe_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "experiments_run": 0,
+    "submission_slots_used": 0,
+    "repair": "Registered the inherited H86M-LT raster/ZIP as audit-only, added a fail-closed historical-promote normalization, and aligned its landing page and authorization flags without modifying TIFF bytes."
+  },
+  "site_validation": {
+    "check_site": "PASS",
+    "build_site_check": "PASS",
+    "meaning": "Link/format/publication-policy integrity only; not scientific clearance or organizer acceptance."
+  }
+}
