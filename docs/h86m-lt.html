@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H86M-LT submission status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
+<title>H86M-LT audit-only status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><main id="main" style="max-width:900px;margin:2rem auto;padding:0 1rem">
 <p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
-<h1>H86M-LT — new unique GeoTIFF (2026-10-25)</h1>
+<h1>H86M-LT — audit-only GeoTIFF (2026-10-25)</h1>
 <section class="callout">
-<span class="badge ok">IS THIS FILE OK TO SUBMIT? YES — verdict: PROMOTE (passes every H86M machine gate below; no human inspection used)</span>
+<span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span>
 <span class="badge">WEEKLY SLOT: not spent by this project — the slot choice is yours (selector step, check the weekly cap on the submission page)</span>
-<h2>Download the submission file</h2>
-<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — the submission file</a>
+<h2>Download for audit only — not for submission</h2>
+<p><a class="btn" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
 <a class="btn secondary" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip" download>One-TIFF ZIP (same file)</a>
 <a href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.json">Writer receipt</a> ·
 <a href="evidence/h86m-lt-run-card.json">JSON run card</a></p>
 <dl>
 <dt>File</dt><dd><code>gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif</code></dd>
 <dt>SHA-256</dt><dd><code>4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee</code></dd>
-<dt>Submission name</dt><dd><code>gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros</code></dd>
-<dt>Note for the submission form (≤140 chars)</dt><dd><code>H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat&gt;3; auto-validated; see run card</code></dd>
+<dt>Historical submission-name field (audit metadata only)</dt><dd><code>gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros</code> — not authorized for upload</dd>
+<dt>Historical note field (audit metadata only)</dt><dd><code>H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat&gt;3; auto-validated; see run card</code> — not authorized for a submission form</dd>
 <dt>Dots</dt><dd>37,654 binary pixels (values exactly 0/1 — this fixes the portal error “Predicted values must be in range [0, 1]”)</dd>
 </dl>
 <h2>Machine validation (all automatic)</h2>
@@ -36,8 +36,8 @@ submission (see uniqueness scan). Full method, H33 (0.2778) forensics, ranked ne
 <h2>Honest limits</h2>
 <ul>
 <li>No score is guaranteed and none is ORGANIZER-CONFIRMED; all input scores are owner-reported. Only an organizer receipt after submission can confirm whether this beats 0.2778.</li>
-<li>The repo-wide literal-witness audit still prints DO NOT SUBMIT for every nonempty raster (a documented, unsatisfiable reading); this lane used the PA-86 like-for-like dot-field gates above. Inventory registration in the generated index is pending a shared-audit update — this standalone page is the lane's status page.</li>
-<li><code>approved_for_weekly_slot = false</code>, <code>submission_slots_used = 0</code>. If you submit it, archive the receipt in <code>ledger/submissions.csv</code>.</li>
+<li>The lane-local 655-raster summary reports max dot-field overlap 0.649, but the mandatory pinned-witness measurement is separate: the witness covers every allowed pixel, so this raster has 1.0 forward overlap, above the literal 0.70 stop. The lane-local result does not override this current repository gate. No HOLDOUT-DTI or 95% CI was measured; expected-DTI tomography values are projections, not scores. This file is audit-only.</li>
+<li><code>verdict = negative</code>, <code>safe_to_submit = false</code>, <code>approved_for_weekly_slot = false</code>, <code>submission_slots_used = 0</code>. No upload is authorized.</li>
 </ul>
 </section>
 </main></body></html>

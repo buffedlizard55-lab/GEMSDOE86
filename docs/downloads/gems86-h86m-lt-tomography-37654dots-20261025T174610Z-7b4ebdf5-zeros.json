@@ -115,9 +115,12 @@
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "local format pass; DO NOT SUBMIT under the pinned literal registry witness (1.0 overlap > 0.70)",
   "metadata": {
     "lane": "H86M-LT",
-    "verdict": "promote"
-  }
+    "verdict": "negative",
+    "current_upload_decision": "DO NOT SUBMIT"
+  },
+  "safe_to_submit": false,
+  "submission_ready": false
 }

@@ -1,6 +1,10 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-H86M-LT-01 — lane-local promotion conflicted with mandatory literal witness and no-holdout requirements (2026-10-25)
+
+PR #165 added the H86M-LT tomography TIFF and labeled its lane `promote` / `safe_to_submit=true` under a lane-local full-registry scan (655 rasters, reported maximum dot-field overlap 0.649). That scan does not override the pinned full-support witness: the witness covers 100% of allowed pixels, and the current shared release audit measures this TIFF at **1.0 literal forward overlap > 0.70**. Its expected-DTI values are projections fitted to owner-reported scores, not HOLDOUT-DTI or ORGANIZER-CONFIRMED results; no hide-and-recover value or 95% CI was reported. **Correction in this branch:** preserve the TIFF bytes as audit-only, register its identity, and fail closed (`verdict=negative`, `safe_to_submit=false`, no slot). The run card retains its historical lane-local promotion field separately. No TIFF was generated or altered here; no upload or portal interaction occurred. The lane's status page and site release audit now show the literal witness stop.
+
 ## IR-86-H86L-01 — visible-fault edge residual lost to its control and duplicated GEMSDOE46 (2026-10-25)
 
 `scripts/run_h86l_vfgr.py` ran the frozen three-arm design and stopped before writing a TIFF. HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) was 0.0313 [0.0230, 0.0395] for the residual and 0.0367 [0.0272, 0.0457] for the raw-edge control. The paired interval was entirely below zero. Final dots overlapped `GEMSDOE46:SUBMISSION-GEMSDOE46-dfa-corroborated.tif` at 0.7013 with that raster’s halo covering only 0.1965 of the footprint. **Decision: DO NOT SUBMIT. No file, no slot.**

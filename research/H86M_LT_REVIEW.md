@@ -114,7 +114,7 @@ already queued in `registry/followup_hypotheses_20261025.json`.)
    classification across candidate edges: a fault is a *step* (anti-symmetric profile),
    a dike/compact body is a *bump* (symmetric). Directly attacks the dike mimic that
    tomography cannot separate. Cost: medium (profile extraction along belief ridges —
-   can start from this lane's dot chains). 
+   can start from this lane's dot chains).
 4. **CNT — conductivity-neck topology × dilatation** (bands 17 `cond_surf`, 8
    `geod_dilaterate`). Persistent narrow conductive necks (fault-zone fluid/clay
    conduits) that coincide with dilatational strain corridors. GDSC used dilatation

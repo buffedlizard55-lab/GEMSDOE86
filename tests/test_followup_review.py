@@ -56,6 +56,9 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
     assert "New proposal 2 · H86G-MPC · NOT RUN" not in hypotheses
     assert "Latest follow-up run card" in home
     assert "this follow-up produced no TIFF, experiment, or slot" in home
+    assert "Current independent review" in home
+    assert "training_features.tif available = <strong>false</strong>" in home
+    assert "Data restored. Submission still blocked." not in home
     assert "NO FILE AUTHORIZED · DO NOT SUBMIT" in home
     submit = (ROOT / "docs/submit.html").read_text(encoding="utf-8")
     assert "Prior forensic reviews found" in submit

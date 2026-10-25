@@ -103,7 +103,16 @@
   "max_forward_overlap_3px": 0.6400382429489563,
   "max_spearman_binary": 0.11256700446599595,
   "pass_le_070_le_090": true,
-  "rows_file": ".cache/h86m/registry_rows.json (copied to evidence)"
+  "rows_file": ".cache/h86m/registry_rows.json (copied to evidence)",
+  "current_literal_witness": {
+   "evidence_class": "REGISTRY-MEASUREMENT",
+   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+   "allowed_support_fraction": 1.0,
+   "candidate_forward_overlap": 1.0,
+   "overlap_limit": 0.7,
+   "status": "FAIL_LITERAL_STOP",
+   "scope": "Pinned continuous witness; this mandatory direct-support measurement is separate from the lane-local 655-raster summary."
+  }
  },
  "raster_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
  "validator": {
@@ -189,8 +198,8 @@
    0.5414033037658682
   ]
  },
- "verdict": "promote",
- "safe_to_submit": true,
+ "verdict": "negative",
+ "safe_to_submit": false,
  "approved_for_weekly_slot": false,
  "submission_slots_used": 0,
  "selector_note": "Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
@@ -205,5 +214,17 @@
   "evidence": "docs/evidence/h86m-lt-full-registry-uniqueness.json",
   "pa86_chance_note": "No forward-overlap firing >0.70 exists, so no PA-86-02 informative-firing hard stop can trigger; chance-overlap test is moot for this candidate.",
   "pass": true
- }
+ },
+ "historical_lane_verdict": "promote under the lane-local PA-86 like-for-like interpretation only; not current upload authorization",
+ "submission_ready": false,
+ "current_upload_decision": "DO NOT SUBMIT: HOLDOUT-DTI was not run and the pinned literal witness yields 1.0 forward overlap, above the 0.70 stop.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "status": "NOT_RUN_NO_ASSIGNED_HOLDOUT_LANE_AND_SHARED_CACHE_ABSENT",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positives": null,
+  "value": null,
+  "ci95": null
+ },
+ "current_decision_reason": "Expected-DTI tomography values are projections, not scores; there is no HOLDOUT-DTI value/95% CI. The pinned witness covers every allowed pixel, so this nonempty candidate has 1.0 literal forward overlap > 0.70. DO NOT SUBMIT."
 }
