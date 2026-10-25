@@ -1,0 +1,42 @@
+{
+  "schema": "gems86.repository-review-run-card.v1",
+  "measured_date_utc": "2026-10-25",
+  "hypothesis": "No assigned geological lane; no new candidate was constructed. Future reserves are ranked H86K-CWQA, H86K-BFAH, then H86K-NVGS, all unrun in this checkout.",
+  "mechanism": "Read-only publication and protocol review. The pinned witness has positive support on every allowed cell, so the literal rule rejects every nonempty allowed candidate; no geological mechanism was tested.",
+  "named_non_fault_process": "Not tested in this review; leading future-hypothesis mimic is volcanic dike swarms or intrusive contacts for the H86K-CWQA step-versus-dike discriminator.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT_RUN_NO_ASSIGNED_LANE_AND_PROTOCOL_STOP"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "inherited_artifacts_checked": 36,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_forward_overlap_for_nonempty_allowed_prediction": 1.0,
+    "stop_threshold": 0.7,
+    "registry_complete": false,
+    "scope": "Witness-only negative is sufficient to stop; not a full registry uniqueness pass."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT_GENERATED",
+    "inherited_local_format_integrity": "36/36 PASS",
+    "no_nan_inside_footprint": "NOT_APPLICABLE_NO_NEW_RASTER",
+    "values_in_0_1": "NOT_APPLICABLE_NO_NEW_RASTER",
+    "crs_shape_transform_match": "NOT_APPLICABLE_NO_NEW_RASTER",
+    "submission_authorized": false
+  },
+  "submission_name": null,
+  "note": "No new TIFF or experiment. Current decision: DO NOT SUBMIT; H86M-LT is audit-only.",
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}
