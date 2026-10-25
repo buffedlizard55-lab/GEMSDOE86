@@ -224,6 +224,27 @@ values in [0, 1] with min {card["validator_output"]["min"]:.1f} / max {card["val
 <p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86f-gzzd-run-card.json">Full run card</a> · <a href="evidence/h86f-gzzd-registry-surface.json">Surface registry check</a> · <a href="evidence/h86f-gzzd-registry-final-dots.json">Final-dots registry check</a> · <a href="{REPO}/blob/main/research/H86F_GZZD_PREREGISTRATION.md">Frozen preregistration &amp; ranked hypotheses</a></p></section>'''
 
 
+def h86h_pstd_answer(card: dict) -> str:
+    """Latest contemporaneously preregistered H86H-PSTD lane receipt (halted fail-closed per Rule 11)."""
+    he = card["holdout_evaluation"]
+    arms = he["arms"]
+    e1 = arms["E1_pstd_full"]
+    e2 = arms["E2_pstd_geopotential_only"]
+    e3 = arms["E3_pstd_inverted_polarity_control"]
+    r0 = he["fold_fair_r0_control"]
+    best = he["same_split_archived_best"]
+    reg = card["correlation_overlap_vs_registry"]
+    can = card["leakage_canary"]
+    d_r0 = e1["paired_vs_fold_fair_r0"]
+    return f'''<section class="callout" id="h86h-pstd"><span class="badge bad">CURRENT LANE: DO NOT SUBMIT · NO UPLOAD AUTHORIZED</span>
+<h2>2026-10-25 latest lane (H86H-PSTD): negative on holdout &amp; halted fail-closed before placement/TIFF</h2>
+<p>Before any implementation code was written, four untried geological hypotheses (<code>H86H-1..H86H-4</code>) were frozen in <a href="{REPO}/blob/main/research/H86H_PSTD_PREREGISTRATION.md"><code>H86H_PSTD_PREREGISTRATION.md</code></a>. Top candidate <strong><code>H86H-1</code> (Poisson-Susceptibility Tensor Dislocation &amp; Dilatant Laplace-Gravity Hinge Concordance)</strong> ran 3 preregistered arms on the 100% SHA-verified competition grid and halted fail-closed <strong>before full-footprint dot placement and before GeoTIFF serialization</strong> per <code>AGENTS.md</code> Rule 11 (<code>0</code> weekly slots used; all 17 existing research TIFFs below remain <strong>audit-only downloads, DO NOT SUBMIT</strong>):</p>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(he["evaluator_version"])}, {r0["withheld_positives_total"]:,} withheld positives, 1,000-draw paired 20 km physical-block bootstrap): <code>E1_pstd_full</code> <strong>{e1["holdout_dti"]:.4f}</strong> [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}] beat geopotential-only <code>E2</code> ({e2["holdout_dti"]:.4f}) and inverted-polarity control <code>E3</code> ({e3["holdout_dti"]:.4f}), confirming directional hydrothermal magnetite-destruction signal, <strong>but trailed fold-fair <code>R0</code> ({r0["holdout_dti"]:.4f} [{r0["ci95"][0]:.4f}, {r0["ci95"][1]:.4f}], paired Δ {d_r0["delta_dti"]:+.4f} [{d_r0["delta_ci95"][0]:+.4f}, {d_r0["delta_ci95"][1]:.4f}]) and same-split archived best <code>H86C-KSLB</code> ({best["holdout_dti"]:.4f} [{best["ci95"][0]:.4f}, {best["ci95"][1]:.4f}])</strong>.</li>
+<li><strong>LEAKAGE-CANARY:</strong> <strong>PASS</strong> — worst single-field discriminative AUC across 7 feature planes + 3 arm surfaces is <code>{can["worst_discriminative_auc"]:.4f} &lt;= 0.90</code> (<code>{e(can["worst_field"])}</code>).</li>
+<li><strong>REGISTRY-MEASUREMENT (v2 source/decoded/index-bound pre-placement surface scan):</strong> <code>{reg["rho_firings_over_0_90"]}</code> rank-correlation firings (<code>worst Spearman = {reg["worst_spearman_full_footprint"]:.4f} &lt;= 0.90</code> across <strong>{reg["valid_comparable_rasters"]}</strong> valid competition-grid rasters, <code>0</code> missing), <strong>but</strong> <code>{reg["error_rows_count"]}</code> off-grid historical <code>registry_inventory.json</code> rows (<code>14GEMSDOE</code>, <code>7GEMSDOE</code>) failed CRS/grid checks and <code>17GEMSDOE</code> covers <code>100.0%</code> of allowed pixels (<code>surface_gate_pass = FALSE</code>, <code>literal_gate_pass = FALSE</code>).</li></ul>
+<p><a href="evidence/h86h-pstd-run-card.json">H86H-PSTD run card</a> · <a href="evidence/h86h-pstd-registry-surface.json">v2 bound surface report</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_H86H_PSTD_REVIEW.md">PhD GEMSDOE32 analysis, 4 hypotheses &amp; 3-pass review</a>.</p></section>'''
+
+
 def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
@@ -324,7 +345,21 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict) -> str:
+def hypotheses(plan: dict, h86h_prereg: dict, pstd_card: dict) -> str:
+    e1 = pstd_card["holdout_evaluation"]["arms"]["E1_pstd_full"]
+    r0 = pstd_card["holdout_evaluation"]["fold_fair_r0_control"]
+    h86h_cards = []
+    for ch in h86h_prereg["candidate_hypotheses"]:
+        status_label = (
+            f"EXECUTED NEGATIVE (HOLDOUT-DTI {e1['holdout_dti']:.4f} vs fold-fair R0 {r0['holdout_dti']:.4f}; halted pre-placement)"
+            if ch["selected_for_validation"]
+            else ("DEFERRED (NOT VIABLE IN SANDBOX YET)" if "NOT_VIABLE" in ch["official_data_obtainability"] else "PREREGISTERED (DEFERRED BEHIND RANK 1)")
+        )
+        h86h_cards.append(f'''<article class="card"><p class="eyebrow">H86H Rank {ch['rank']} · {e(ch['id'])} · {e(status_label)}</p><h2>{e(ch['title'])}</h2>
+<dl><dt>Specific layers</dt><dd>{e('; '.join(ch['layers']))}</dd><dt>Physical signature &amp; transform</dt><dd>{e(ch['physical_signature_and_transform'])}</dd>
+<dt>Why missing from USGS/INGENIOUS catalogue?</dt><dd>{e(ch['why_uncatalogued_faults'])}</dd><dt>Novelty vs repository</dt><dd>{e(ch['novelty_vs_repo'])}</dd>
+<dt>Named non-fault mimic</dt><dd>{e(ch['non_fault_mimic'])}</dd><dt>Expected DTI rank &amp; cost</dt><dd>{e(ch['expected_dti_rank_and_cost'])}</dd>
+<dt>Official data obtainability</dt><dd>{e(ch['official_data_obtainability'])}</dd></dl></article>''')
     sections = []
     for h in plan["hypotheses"]:
         sources = " · ".join(f'<a href="{e(url)}">Official basis</a>' for url in h["official_basis"])
@@ -336,6 +371,9 @@ def hypotheses(plan: dict) -> str:
     steps = "".join(f'<li>{e(step)}</li>' for step in plan["required_validation_after_blockers_are_resolved"])
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · planning only</p><h1>Seek displacement,<br>not just another edge.</h1>
 <div class="callout"><span class="badge bad">NO NEW SCIENTIFIC EXPERIMENT AUTHORIZED</span><p>{e(plan['scope'])} None of the following has a measured HOLDOUT-DTI or predicted score. The top candidate was <strong>not validated</strong> because the required pre-placement stop fires. No weekly slot was used.</p></div>
+<h2>Contemporaneously preregistered H86H hypotheses (<a href="evidence/h86h-pstd-run-card.json">H86H-1 run card</a>)</h2>
+{''.join(h86h_cards)}
+<h2>Archived earlier planning queue (registry/h86c_hypotheses.json)</h2>
 <p>{e(plan['ranking_basis'])} {e(plan['novelty_scope'])}</p><p>{e(plan['evidence_boundary'])}</p>{''.join(sections)}
 <h2>Validation plan after blockers are resolved</h2><ol>{steps}</ol>
 <p><a href="{REPO}/blob/main/registry/h86c_hypotheses.json">Machine-readable hypothesis register</a> · <a href="evidence/band-physics-verification-20261024.json">Pixel-verified 19-band physics receipt</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">2026-10-24 scientific critique</a> · <a href="{REPO}/blob/main/research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md">Geothermal vent synthesis</a> · <a href="research.html">Physical rationale and limitations</a></p>''')
@@ -383,7 +421,8 @@ def irregularities(report: dict) -> str:
 <li>Forensic review of PR #93's <code>H86E-MMT</code> implementation (<code>IR-86-MMT-RANK01-TIE-20261024</code>, <code>IR-86-MMT-SHIFT-AXIS-20261024</code>, <code>IR-86-MMT-PRE-V2-UNBOUND-REPORTS-20261024</code>, <code>IR-86-PREPARE-RELPATH-20261024</code>; <a href="evidence/session-20261024-86569dcd-run-card.json">session card</a>) discovered that <code>gems86_mmt.features.rank01</code> assigned row-major tie ramps up to <code>0.9922</code> across <code>5,127,174</code> zero background cells—packing all <code>44,090</code> <code>R0_D28_visible_collar</code> comparator dots into southern rows <code>3023..3727</code>—and that <code>build_marker_features</code> shifted <code>tgrad</code> parallel to the gradient normal <code>(sin θ, cos θ)</code> rather than along corridor strike <code>(-cos θ, sin θ)</code>. Both defects, plus <code>scripts/prepare_data.py</code>'s relative <code>--data-dir</code> crash and missing <code>require_feasible()</code> guards in <code>build_h86e_features.py</code>, <code>run_h86e_ridf.py</code>, and <code>run_h86e_mmt.py</code>, are fixed with regression tests while preserving historical run cards unedited.</li>
 <li>Embedded GeoTIFF band-description mislabels inside <code>training_features.tif</code> (<code>IR-86-BAND6-TC-MISLABEL-20261024</code>, <code>IR-86-BAND11-18-GRAV-VECTOR-20261024</code>): pixel-level audit across <code>5.15M–5.16M</code> footprint cells (<a href="evidence/band-physics-verification-20261024.json">receipt</a>) proved Band 6 (<code>tc</code>) is strictly positive (<code>min = +2.9534</code>, 0 zero-crossings) and correlates at <code>r = +0.997140</code> with USGS GeoDAWN Airborne Radiometric Total Count (<code>TC</code>) vs <code>r = +0.012796</code> with true magnetic tilt <code>atan2(Band 9, Band 3)</code>, while <code>(+Band 18, -Band 11)</code> is the signed 2-D horizontal gravity gradient vector (<code>r = +0.948186</code> and <code>+0.938102</code>) rather than scalar/vertical gradients. Hypothesis definitions and documentation were repaired accordingly.</li>
 <li><code>IR-86-PCC-01</code> / <code>IR-86-PCC-02</code>: the 2026-10-25 H86F-PCC lane wrote a format-valid audit TIFF and the gates rejected it. HOLDOUT-DTI does not beat the same-split comparator, the shared PA-86-02 script refused the incomplete registry (two rasters are not on the submission grid), and the space-filling overlap diagnostic is not a gate pass. The template cached feature stack is absent; the lane used the SHA-pinned 19-band TIFF and did not relabel it as that cache. No slot was used. See <a href="evidence/h86f-pcc-run-card.json">the negative run card</a>.</li>
-<li>Byte-level forensic review of the two newly prompt-named unscored fleet artifacts (<code>IR-86-FLEET-GEMS89-90-20261024</code>; <a href="evidence/prompt-named-unscored-audit-20261024.json">measured JSON receipt</a>) found that <code>GEMSDOE89</code> (<code>gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros</code>, SHA-256 <code>715c8b86...</code>) claimed <code>complete_registry_coverage=true</code> over a 91-raster subset that omitted both <code>17GEMSDOE</code> (<code>100.0%</code> forward 3-px overlap) and discrete binary <code>13GEMSDOE</code> (<code>99.92%</code> = <code>37,624/37,654</code> forward 3-px overlap), while <code>GEMSDOE90</code> (<code>gems90-cnc-35000dots-20261024T084324Z</code>, SHA-256 <code>e1e91be2...</code>) privately altered the uniqueness rule, exceeded <em>both</em> clauses of its altered rule (<code>max_overlap = 0.9833 &gt; 0.70</code> and <code>max_excess_over_chance = 0.4037 &gt; 0.30</code>; pinned-checker overlap <code>98.35%</code> vs binary <code>13GEMSDOE</code> and <code>100.0%</code> vs <code>17GEMSDOE</code>) yet still emitted <code>duplicate=false</code>, used external <code>qfault_sliprate_den</code> (<code>AUC = 0.7784</code>) on cut-segment folds, and recorded a <code>NEGATIVE</code> score-calibration verdict. Also fixed a mis-cited rule reference on the executive checklist from nonexistent <code>Official Rules §5–6</code> to verified <code>Official Rules §1.1 &amp; §3.4–3.6</code> (<code>IR-86-RULES-SECT-20261024</code>).</li></ul>
+<li>Byte-level forensic review of the two newly prompt-named unscored fleet artifacts (<code>IR-86-FLEET-GEMS89-90-20261024</code>; <a href="evidence/prompt-named-unscored-audit-20261024.json">measured JSON receipt</a>) found that <code>GEMSDOE89</code> (<code>gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros</code>, SHA-256 <code>715c8b86...</code>) claimed <code>complete_registry_coverage=true</code> over a 91-raster subset that omitted both <code>17GEMSDOE</code> (<code>100.0%</code> forward 3-px overlap) and discrete binary <code>13GEMSDOE</code> (<code>99.92%</code> = <code>37,624/37,654</code> forward 3-px overlap), while <code>GEMSDOE90</code> (<code>gems90-cnc-35000dots-20261024T084324Z</code>, SHA-256 <code>e1e91be2...</code>) privately altered the uniqueness rule, exceeded <em>both</em> clauses of its altered rule (<code>max_overlap = 0.9833 &gt; 0.70</code> and <code>max_excess_over_chance = 0.4037 &gt; 0.30</code>; pinned-checker overlap <code>98.35%</code> vs binary <code>13GEMSDOE</code> and <code>100.0%</code> vs <code>17GEMSDOE</code>) yet still emitted <code>duplicate=false</code>, used external <code>qfault_sliprate_den</code> (<code>AUC = 0.7784</code>) on cut-segment folds, and recorded a <code>NEGATIVE</code> score-calibration verdict. Also fixed a mis-cited rule reference on the executive checklist from nonexistent <code>Official Rules §5–6</code> to verified <code>Official Rules §1.1 &amp; §3.4–3.6</code> (<code>IR-86-RULES-SECT-20261024</code>).</li>
+<li><code>IR-86-INVENTORY-OFFGRID-ROWS-20261025</code>: contemporaneously preregistered <code>H86H-PSTD</code> checked all indexed rasters (<code>rho_firings = 0</code>, <code>worst Spearman = 0.2577 &lt;= 0.90</code> across all <code>687</code> valid competition-grid rasters, <code>2</code> off-grid historical entries <code>14GEMSDOE</code> and <code>7GEMSDOE</code>) and halted fail-closed before full-footprint dot placement and before GeoTIFF serialization per <code>AGENTS.md</code> Rule 11 (<a href="evidence/h86h-pstd-run-card.json">H86H-PSTD run card</a>).</li></ul>
 <p>The historical scientific cards and TIFF bytes are preserved. This audit does not retroactively certify earlier experiments, erase protocol overruns or change thresholds.</p>
 <p><a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT forensic card</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">2026-10-24 three-pass review and next actions</a></p>''')
 
@@ -529,16 +568,25 @@ def render(root: Path = ROOT) -> dict[str, str]:
         raise ValueError("H86F-PCC card must stay negative until a selector records a pass")
     if pcc_diag.get("gate_pass") is not False or pcc_diag.get("informative_firings") != 0:
         raise ValueError("H86F-PCC chance diagnostic is not a clearance record")
+    pstd_card = strict_json(root / "docs/evidence/h86h-pstd-run-card.json")
+    if (pstd_card["verdict"] != "negative" or pstd_card["submission_ready"] is not False
+            or pstd_card["safe_to_submit"] is not False
+            or pstd_card["approved_for_weekly_slot"] is not False
+            or pstd_card["budget"]["submission_slots_used"] != 0
+            or pstd_card["budget"]["experiments_run"] > 3):
+        raise ValueError("H86H-PSTD card must stay negative, within 3-arm budget, and slot-free")
+    h86h_prereg = strict_json(root / "research/H86H_PSTD_PREREGISTRATION.json")
     comp_path = root / "docs/evidence/h86e_comparator.json"
     comp = strict_json(comp_path) if comp_path.exists() else None
-    answer = (h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
+    answer = (h86h_pstd_answer(pstd_card) + h86f_gzzd_answer(gzzd_card, comp)
+              + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))
     return {
         "docs/index.html": home(report, feed, registry, review, len(plan["hypotheses"]), answer),
         "docs/executive-summary.html": executive(report, sources, answer),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan),
+        "docs/hypotheses.html": hypotheses(plan, h86h_prereg, pstd_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

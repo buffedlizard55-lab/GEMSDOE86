@@ -6,6 +6,8 @@
 
 The goal of making a unique, competition-ready GeoTIFF is therefore still **unmet**. I did not satisfy it by relabeling, re-encoding, or copying an earlier raster.
 
+**Parallel-work scope note:** this focused review was performed on its assigned branch before merging the concurrent mainline PR #100. That PR adds a separate H86H-PSTD research lane which halted before raster serialization; it was not run or selected by this review. Its independent evidence and outcome remain in [the H86H review](SESSION_20261024_H86H_PSTD_REVIEW.md) and [the mainline handoff](SESSION_20261025_REPO_REVIEW.md). After integrating that concurrent work, the final combined branch test suite is separately recorded below.
+
 ## Pass 1 — trace the request, repo instructions, and evidence
 
 Read `PROMPT.md`, the top of `README.md`, `AGENTS.md`, the prior 2026-10-24 request archive, the release/download gates, and current H86F research cards. The repository's standing requirements are stricter than “a TIFF exists”: use the shared evaluator/writer, run segment-buffered hide-and-recover, test individual features for leakage, compare against registry artifacts before/after placement, validate on-disk values/grid, and leave promotion to the selector. Scores in the prompt are not organizer receipts.
@@ -64,7 +66,7 @@ These are the URLs recorded in the repository's source ledger and related prereg
 - `python scripts/audit_release.py --measure-registry`: PASS; 17 inherited artifacts remeasured, all negative, no new experiment or slot.
 - `python scripts/build_site.py --check`: PASS.
 - `python scripts/check_site.py`: PASS; this validates links/registered binaries and negative-state safety, not scientific clearance.
-- `pytest -q`: **679 passed, 24 skipped, 42 warnings, 41 subtests passed**.
+- Before the concurrent mainline merge, `pytest -q`: **679 passed, 24 skipped, 42 warnings, 41 subtests passed**. After integrating PR #100's separate H86H-PSTD lane and its tests, final branch `pytest -q`: **688 passed, 24 skipped, 42 warnings, 41 subtests passed**.
 
 ## Pass 3 — check against the full request and close gaps
 

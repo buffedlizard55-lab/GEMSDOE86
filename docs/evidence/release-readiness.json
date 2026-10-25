@@ -18,7 +18,7 @@
   "input_evidence_sha256": {
     "docs/evidence/download-inventory.json": "f44424799f7bb4f430e7109f902793e8740d2cdd5503e16cefeaca43ec102803",
     "registry/artifact_cards.json": "1a6b403a4a6f3e621a676a291dc47db1e0556b9fbaae1d6d348ce26e3b48f7e0",
-    "docs/evidence/protocol-preflight.json": "f80688d3d8b9697d5692cc3bedeb340cd6344dbaf13d71b04ffe5434bb8cd7c5",
+    "docs/evidence/protocol-preflight.json": "e8d4e492e91b291572afd4da835893f6752692e124df97e65780ff8e66987099",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
     "docs/evidence/run-card.json": "c8131c6d697b3597e53f937c46efdbc4f9c423281c24b5b91b66905b913ec115",
@@ -35,7 +35,7 @@
     "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json": "8c4e88abe5e33b2197b20d014ba9f50957525c1b9f6cd3797fc8e8c8669c3f66",
     "docs/evidence/h86f-pcc-run-card.json": "747229ba0e39b1ee452766067a245c3887494011dbbad9aeeaa05df436c3cda5",
     "docs/evidence/h86f-gzzd-run-card.json": "3bb0634d2786f0e2f04c886f7cc5af1c49ae383ff0901fb9e7f63e68abf20531",
-    "docs/evidence/all-artifacts-registry.json": "229db7d869429908ddc3e99919e184e3a81d85977734874a814deb3243a32331"
+    "docs/evidence/all-artifacts-registry.json": "a6924b3ab3e8022b19464fd6f3b705b67732f86ee5cb961b6d24109d8fdf75e4"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",

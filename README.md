@@ -2,15 +2,25 @@
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
-## Latest review — 2026-10-25: **DO NOT SUBMIT**
+Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
 
-This review generated **no new TIFF** and used **no weekly slot**. The current request does not identify a single lane paragraph, the shared cached feature stack is absent, and prior H86F-PCC/GZZD files failed the final dot-field overlap gate. H33's `0.2778` remains an **OWNER-REPORTED** claim: the pinned H33 raster is exactly its D2.8 parent minus 2,545 near-catalogue dots, a plausible DTI efficiency change but not proof of causal improvement or an organizer receipt. Three unrun, qualitatively ranked hypotheses and full three-pass verification are in [the 2026-10-25 review](research/SESSION_20261025_REVIEW.md). Fresh evidence: [current review card](docs/evidence/latest-review-run-card.json), [preflight](docs/evidence/protocol-preflight.json), [release readiness](docs/evidence/release-readiness.json). **No existing TIFF is authorized for submission.**
+Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-25)
 
-**Every file in this repository is `DO NOT SUBMIT`.** Two concurrent 2026-10-25 lanes each generated a unique single-band GeoTIFF and its one-TIFF ZIP; the automated scientific and registry gates rejected both. They are **safe to download for audit only**, not approved uploads. Because the lanes ran in parallel, neither candidate was registry-measured against the other; both are negative on their own cards.
+**Every file in this repository is `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used).**
+
+### Latest lane: H86H-PSTD (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance) — HALTED FAIL-CLOSED (`DO NOT SUBMIT`)
+
+Before any implementation code was written, four untried geological hypotheses (`H86H-1..H86H-4`) were frozen in [`research/H86H_PSTD_PREREGISTRATION.md`](research/H86H_PSTD_PREREGISTRATION.md) ([machine-readable JSON](research/H86H_PSTD_PREREGISTRATION.json)). Top candidate **`H86H-1` (`H86H-PSTD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid and **halted fail-closed before full-footprint dot placement and before GeoTIFF serialization** per `AGENTS.md` Rule 11 ([run card](docs/evidence/h86h-pstd-run-card.json), [v2 bound surface report](docs/evidence/h86h-pstd-registry-surface.json), [PhD GEMSDOE32 analysis & 3-pass review](research/SESSION_20261024_H86H_PSTD_REVIEW.md)):
+
+- **`LEAKAGE-CANARY`:** **PASS** — worst single-field discriminative AUC across 7 feature planes + 3 arm surfaces is **`0.5941 <= 0.90`** (`low_relief_piedmont_gate`).
+- **`HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld positives, 1,000 paired block-bootstrap draws):** **NEGATIVE** — `E1_pstd_full` **`0.0314`** `[0.0242, 0.0395]` beat geopotential-only `E2` (`0.0274`, `+0.0040`) and inverted-polarity control `E3` (`0.0289`, `+0.0025`), confirming directional hydrothermal magnetite-destruction signal, **but trailed fold-fair `R0` (`0.0961` `[0.0833, 0.1093]`, paired Δ `−0.0647` `[−0.0771, −0.0506]`) and same-split archived best `H86C-KSLB` (`0.1241` `[0.1080, 0.1403]`)**.
+- **`REGISTRY-MEASUREMENT` (v2 bound pre-placement surface check across all 689 indexed entries, including `H86F-GZZD` & `H86F-PCC`):** **`0` rank-correlation firings** (`worst Spearman = 0.2577 <= 0.90` across **687** valid competition-grid rasters, `0` missing), **but** `2` off-grid historical `registry_inventory.json` entries (`14GEMSDOE`, `7GEMSDOE`) fail CRS/grid checks and `17GEMSDOE` covers `100.0%` of allowed cells (`surface_gate_pass: false`, `literal_gate_pass: false` → stopped before placement/TIFF, `0` slots used).
+
+Two earlier concurrent 2026-10-25 lanes (`H86F-GZZD` and `H86F-PCC`) each generated a unique single-band GeoTIFF and its one-TIFF ZIP; the automated scientific and registry gates rejected both. They are **safe to download for audit only**, not approved uploads. Because the lanes ran in parallel, neither candidate was registry-measured against the other; both are negative on their own cards.
 
 ### H86F-GZZD (Laplace gravity-curvature dipole) — DO NOT SUBMIT
 
