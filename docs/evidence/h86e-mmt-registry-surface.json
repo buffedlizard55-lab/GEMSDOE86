@@ -895,5 +895,6 @@
       "representation": "dot_field"
     }
   ],
-  "surface_gate_pass": true
+  "surface_gate_pass": false,
+  "legacy_archive_note": "Archived pre-PR-#91 v1 report; surface_gate_pass repaired from true to false per AGENTS.md Rule 11 because errors contains 2 invalid registry rows (matching h86e-mmt-run-card.json). Preserved as historical archive only; rerun check_h86e_registry.py (v2) for any future gate decision."
 }

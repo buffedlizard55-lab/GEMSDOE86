@@ -10,11 +10,15 @@ and saves the full audit receipt to data/prepared_manifest.json.
 from __future__ import annotations
 
 import argparse
+import fcntl
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
 import subprocess
+import tempfile
 import sys
 
 import numpy as np
@@ -62,6 +66,71 @@ def _rel_or_str(path: Path) -> str:
         return str(resolved)
 
 
+def audit_input_grid(src, name: str, *, count: int) -> dict:
+    """Validate every input, not just the sample; never repair a shifted grid."""
+    epsg = src.crs.to_epsg() if src.crs else None
+    if epsg != EXPECTED_EPSG:
+        raise ValueError(f"{name}: expected EPSG:{EXPECTED_EPSG}, got {src.crs}")
+    if src.shape != EXPECTED_SHAPE:
+        raise ValueError(f"{name}: expected shape {EXPECTED_SHAPE}, got {src.shape}")
+    transform = tuple(float(v) for v in src.transform)[:6]
+    if transform != EXPECTED_TRANSFORM:
+        raise ValueError(f"{name}: geotransform mismatch: {transform} != {EXPECTED_TRANSFORM}")
+    if src.count != count:
+        raise ValueError(f"{name}: expected {count} bands, got {src.count}")
+    return {"epsg": epsg, "shape": list(src.shape), "transform": list(transform),
+            "bands": src.count, "crs_shape_transform_match": True}
+
+
+def publish_native_cache(stage: Path, bands_dir: Path, manifest_path: Path, manifest: dict) -> None:
+    """Publish a fully staged native array set; roll back on ordinary failure.
+
+    A POSIX advisory lock serializes local preparers. Directory and manifest
+    replacements cannot be jointly crash-atomic across directories; this is
+    explicitly recorded, not presented as an actual shared-cache transaction.
+    """
+    if manifest_path.resolve().is_relative_to(bands_dir.resolve()):
+        raise ValueError("Manifest must not be inside the directory being replaced")
+    if bands_dir.is_symlink() or (bands_dir.exists() and not bands_dir.is_dir()):
+        raise ValueError("Native band output must be a real directory")
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", prefix=f".{manifest_path.name}.",
+                                     suffix=".partial", dir=manifest_path.parent, delete=False) as stream:
+        temporary_manifest = Path(stream.name)
+        try:
+            json.dump(manifest, stream, indent=2, allow_nan=False)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        except BaseException:
+            temporary_manifest.unlink(missing_ok=True)
+            raise
+    try:
+        with (bands_dir.parent / ".native-prepare.lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            backup = Path(tempfile.mkdtemp(prefix=".native-bands-backup-", dir=bands_dir.parent))
+            backup.rmdir()
+            backed_up = published = False
+            try:
+                if bands_dir.exists():
+                    os.replace(bands_dir, backup)
+                    backed_up = True
+                os.replace(stage, bands_dir)
+                published = True
+                os.replace(temporary_manifest, manifest_path)
+            except BaseException:
+                if published:
+                    os.replace(bands_dir, stage)
+                if backed_up:
+                    os.replace(backup, bands_dir)
+                raise
+            else:
+                if backed_up:
+                    shutil.rmtree(backup, ignore_errors=True)
+    finally:
+        temporary_manifest.unlink(missing_ok=True)
+
+
 def prepare(
     data_dir: Path | None = None,
     work_dir: Path | None = None,
@@ -79,7 +148,8 @@ def prepare(
         work_dir = Path(work_dir).resolve()
 
     bands_dir = work_dir / "bands"
-    bands_dir.mkdir(parents=True, exist_ok=True)
+    # Do not publish arrays or a manifest until ALL input identities and grids
+    # pass. A same-shape CRS/transform mismatch used to be silently accepted.
 
     tmpl_path = find_file(data_dirs, ["sample_submission.tif", "example_submission.tif"])
     lab_path = find_file(data_dirs, ["existing_faults.tif", "labels.tif"])
@@ -89,7 +159,10 @@ def prepare(
         restore_script = ROOT / "scripts" / "restore_data.py"
         if restore_script.is_file():
             print("Fetching missing files via scripts/restore_data.py...", flush=True)
-            subprocess.run([sys.executable, str(restore_script)], check=False)
+            command = [sys.executable, str(restore_script)]
+            if data_dir is not None:
+                command += ["--dest", str(data_dirs[0])]
+            subprocess.run(command, check=True)
             tmpl_path = find_file(data_dirs, ["sample_submission.tif", "example_submission.tif"])
             lab_path = find_file(data_dirs, ["existing_faults.tif", "labels.tif"])
             feat_path = find_file(data_dirs, ["training_features.tif", "gems-geodawn-numerical-features.tif"])
@@ -100,112 +173,133 @@ def prepare(
             "Run `python scripts/restore_protocol_data.py` or `bash scripts/download_competition_data.sh`."
         )
 
-    # 1. Audit sample_submission template
+    # 1. Audit the grid and band count of EVERY input before publishing arrays.
+    input_grids = {}
     with rasterio.open(tmpl_path) as tmpl:
-        epsg = tmpl.crs.to_epsg() if tmpl.crs else None
-        if epsg != EXPECTED_EPSG:
-            raise ValueError(f"Expected EPSG:{EXPECTED_EPSG}, got {tmpl.crs}")
-        shape_hw = (tmpl.height, tmpl.width)
-        if shape_hw != EXPECTED_SHAPE:
-            raise ValueError(f"Expected shape {EXPECTED_SHAPE}, got {shape_hw}")
+        input_grids["sample_submission"] = audit_input_grid(tmpl, "sample_submission", count=1)
+        epsg = tmpl.crs.to_epsg()
+        shape_hw = tmpl.shape
         transform_tuple = tuple(float(v) for v in tmpl.transform)[:6]
-        if transform_tuple != EXPECTED_TRANSFORM:
-            raise ValueError(f"Expected transform {EXPECTED_TRANSFORM}, got {transform_tuple}")
-        foot_arr = tmpl.read(1)
-        foot = np.isfinite(foot_arr)
+        foot = np.isfinite(tmpl.read(1))
+        if not (tmpl.read_masks(1)[foot] > 0).all():
+            raise ValueError("sample_submission: validity mask excludes finite footprint cells")
 
-    # 2. Audit existing faults / labels
     with rasterio.open(lab_path) as lab_src:
-        if (lab_src.height, lab_src.width) != shape_hw:
-            raise ValueError("labels/existing_faults shape mismatch")
+        input_grids["existing_faults"] = audit_input_grid(lab_src, "existing_faults", count=1)
         lab_raw = lab_src.read(1)
+        if not (lab_src.read_masks(1)[foot] > 0).all():
+            raise ValueError("existing_faults: validity mask excludes footprint cells")
+        if not np.isin(lab_raw[foot], (0, 1)).all():
+            raise ValueError("existing_faults: labels inside footprint must already be binary")
         lab = (lab_raw == 1) & foot
+    if int(foot.sum()) != EXPECTED_FOOTPRINT_PIXELS:
+        raise ValueError("sample_submission: footprint count mismatch")
+    if int(lab.sum()) != EXPECTED_CATALOGUE_PIXELS:
+        raise ValueError("existing_faults: catalogue count mismatch")
 
-    np.save(bands_dir / "_footprint.npy", foot)
-    np.save(bands_dir / "_labels.npy", lab)
-
-    band_stats = []
-    total_sentinel_in_foot = 0
-    any_sentinel_in_foot = np.zeros(shape_hw, dtype=bool)
     has_features = feat_path is not None and feat_path.is_file()
-
     if has_features:
         with rasterio.open(feat_path) as feat_src:
-            if (feat_src.height, feat_src.width) != shape_hw:
-                raise ValueError("training_features.tif shape mismatch")
-            nd = feat_src.nodata
-            for idx in range(1, 20):
-                bname = BANDS.get(idx, f"band_{idx}")
-                arr = feat_src.read(idx).astype(np.float32)
-                is_sentinel = (~np.isfinite(arr)) | (arr < -1e38)
-                if nd is not None and not np.isnan(nd):
-                    is_sentinel |= arr == nd
-                sentinel_in_foot = int(np.sum(is_sentinel & foot))
-                total_sentinel_in_foot += sentinel_in_foot
-                any_sentinel_in_foot |= is_sentinel & foot
+            input_grids["training_features"] = audit_input_grid(feat_src, "training_features", count=len(BANDS))
 
-                arr[is_sentinel] = np.nan
-                arr[~foot] = np.nan
-                np.save(bands_dir / f"{idx:02d}_{bname}.npy", arr)
+    # Hash identity is a gate, not an informational false flag in a successful
+    # manifest. Alias filenames must match the same canonical pins.
+    source_paths = {"sample_submission": tmpl_path, "existing_faults": lab_path}
+    if has_features:
+        source_paths["training_features"] = feat_path
+    source_hashes = {key: sha256_file(path) for key, path in source_paths.items()}
+    for key, digest in source_hashes.items():
+        if digest != PINS[f"{key}.tif"]:
+            raise ValueError(f"{key}: SHA-256 mismatch; no prepared arrays published")
 
-                valid_vals = arr[foot & np.isfinite(arr)]
-                band_stats.append({
-                    "index": idx,
-                    "name": bname,
-                    "finite_in_footprint": int(valid_vals.size),
-                    "sentinel_in_footprint": sentinel_in_foot,
-                    "min": float(np.min(valid_vals)) if valid_vals.size else None,
-                    "p05": float(np.percentile(valid_vals, 5)) if valid_vals.size else None,
-                    "median": float(np.median(valid_vals)) if valid_vals.size else None,
-                    "p95": float(np.percentile(valid_vals, 95)) if valid_vals.size else None,
-                    "max": float(np.max(valid_vals)) if valid_vals.size else None,
-                })
+    work_dir.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".native-bands-", dir=work_dir) as staged:
+        stage = Path(staged)
+        np.save(stage / "_footprint.npy", foot)
+        np.save(stage / "_labels.npy", lab)
 
-    source_hashes = {
-        "sample_submission": sha256_file(tmpl_path),
-        "existing_faults": sha256_file(lab_path),
-    }
-    if has_features and feat_path:
-        source_hashes["training_features"] = sha256_file(feat_path)
+        band_stats = []
+        total_sentinel_in_foot = 0
+        any_sentinel_in_foot = np.zeros(shape_hw, dtype=bool)
 
-    manifest = {
-        "schema_version": 1,
-        "prepared_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "grid": {
-            "epsg": epsg,
-            "height": shape_hw[0],
-            "width": shape_hw[1],
-            "total_cells": int(shape_hw[0] * shape_hw[1]),
-            "transform": list(transform_tuple),
-            "pixel_size_m": [100.0, 100.0],
-        },
-        "counts": {
-            "footprint_valid_pixels": int(foot.sum()),
-            "outside_footprint_pixels": int((~foot).sum()),
-            "positive_catalogue_label_pixels": int(lab.sum()),
-            "negative_in_footprint_pixels": int(foot.sum() - lab.sum()),
-            "has_features": has_features,
-            "total_sentinel_band_pixels_inside_footprint": total_sentinel_in_foot,
-            "unique_footprint_pixels_with_any_sentinel": int(any_sentinel_in_foot.sum()),
-        },
-        "source_paths": {
-            "sample_submission": _rel_or_str(tmpl_path),
-            "existing_faults": _rel_or_str(lab_path),
-            "training_features": _rel_or_str(feat_path) if feat_path else None,
-        },
-        "source_hashes": source_hashes,
-        "pins_verified": {
-            key: source_hashes[key] == PINS[f"{key}.tif"]
-            for key in source_hashes
-            if f"{key}.tif" in PINS
-        },
-        "bands": band_stats,
-    }
+        if has_features:
+            with rasterio.open(feat_path) as feat_src:
+                nd = feat_src.nodata
+                for idx in range(1, 20):
+                    bname = BANDS.get(idx, f"band_{idx}")
+                    arr = feat_src.read(idx).astype(np.float32)
+                    is_sentinel = (~np.isfinite(arr)) | (arr < -1e38)
+                    if nd is not None and not np.isnan(nd):
+                        is_sentinel |= arr == nd
+                    sentinel_in_foot = int(np.sum(is_sentinel & foot))
+                    total_sentinel_in_foot += sentinel_in_foot
+                    any_sentinel_in_foot |= is_sentinel & foot
 
-    out_path = Path(manifest_path) if manifest_path is not None else (ROOT / "data" / "prepared_manifest.json")
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(manifest, indent=2) + "\n")
-    return manifest
+                    arr[is_sentinel] = np.nan
+                    arr[~foot] = np.nan
+                    np.save(stage / f"{idx:02d}_{bname}.npy", arr)
+
+                    valid_vals = arr[foot & np.isfinite(arr)]
+                    band_stats.append({
+                        "index": idx,
+                        "name": bname,
+                        "finite_in_footprint": int(valid_vals.size),
+                        "sentinel_in_footprint": sentinel_in_foot,
+                        "min": float(np.min(valid_vals)) if valid_vals.size else None,
+                        "p05": float(np.percentile(valid_vals, 5)) if valid_vals.size else None,
+                        "median": float(np.median(valid_vals)) if valid_vals.size else None,
+                        "p95": float(np.percentile(valid_vals, 95)) if valid_vals.size else None,
+                        "max": float(np.max(valid_vals)) if valid_vals.size else None,
+                    })
+
+        if any(sha256_file(path) != source_hashes[key] for key, path in source_paths.items()):
+            raise ValueError("Input changed during preparation; no successful manifest published")
+
+        manifest = {
+            "schema_version": 1,
+            "prepared_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "grid": {
+                "epsg": epsg,
+                "height": shape_hw[0],
+                "width": shape_hw[1],
+                "total_cells": int(shape_hw[0] * shape_hw[1]),
+                "transform": list(transform_tuple),
+                "pixel_size_m": [100.0, 100.0],
+            },
+            "counts": {
+                "footprint_valid_pixels": int(foot.sum()),
+                "outside_footprint_pixels": int((~foot).sum()),
+                "positive_catalogue_label_pixels": int(lab.sum()),
+                "negative_in_footprint_pixels": int(foot.sum() - lab.sum()),
+                "has_features": has_features,
+                "total_sentinel_band_pixels_inside_footprint": total_sentinel_in_foot,
+                "unique_footprint_pixels_with_any_sentinel": int(any_sentinel_in_foot.sum()),
+            },
+            "source_paths": {
+                "sample_submission": _rel_or_str(tmpl_path),
+                "existing_faults": _rel_or_str(lab_path),
+                "training_features": _rel_or_str(feat_path) if feat_path else None,
+            },
+            "source_hashes": source_hashes,
+            "input_grid_checks": input_grids,
+            "shared_template_feature_stack": False,
+            "preparation_scope": "Hash-verified native bands only, not the shared cached feature stack or submission authorization.",
+            "pins_verified": {
+                key: source_hashes[key] == PINS[f"{key}.tif"]
+                for key in source_hashes
+                if f"{key}.tif" in PINS
+            },
+            "bands": band_stats,
+        }
+
+        out_path = Path(manifest_path) if manifest_path is not None else (ROOT / "data" / "prepared_manifest.json")
+        manifest["prepared_arrays"] = [dict(file=_rel_or_str(bands_dir / path.name),
+            sha256=sha256_file(path), bytes=path.stat().st_size) for path in sorted(stage.glob("*.npy"))]
+        manifest["publication"] = dict(complete_array_set_staged=True, rollback_on_exception=True,
+            local_preparers_serialized=True, crash_atomic_across_cache_and_manifest=False,
+            scope="Native bands only; not the actual shared template cached feature stack")
+        publish_native_cache(stage, bands_dir, out_path, manifest)
+        return manifest
 
 
 def main() -> None:

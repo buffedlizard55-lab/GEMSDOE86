@@ -1,0 +1,47 @@
+{
+  "schema": "gems86.ui-smoke.v1",
+  "observed_utc": "2026-10-25T03:06:46.417Z",
+  "scope": "One-time local Chromium UI checks at the recorded page hashes, not organizer acceptance, external link verification, scientific clearance, or a continuously refreshed browser test.",
+  "origin": "http://127.0.0.1:8000",
+  "browser_version": "153.0.8010.0",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "pages_checked": 11,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 18,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    },
+    {
+      "width": 390,
+      "height": 1000,
+      "pages_checked": 11,
+      "no_horizontal_overflow": true,
+      "downloads_each_format": 18,
+      "browser_download_sha_matches": true,
+      "fleet_filter_passed": true
+    }
+  ],
+  "page_sha256": {
+    "index.html": "ed877801d305a4cae87e87d895e7db7b432e7302f023239c58c69e27196dd256",
+    "executive-summary.html": "66f772909f6410a0ca1db0c3a64237cf64be90f237f9167c88fe31e2094130eb",
+    "submit.html": "67bb699b8176a4952ca8dfe916d924ec247504f82b3dcb36bc11ac534603c74a",
+    "evidence.html": "61464f3a9b0d45ca6a4c07cf917c52ca7075b3927916068b749985885a7f10a7",
+    "hypotheses.html": "beb2338caa2f0b79c5436b803c79eb027106e949cab85f4cfbbd001082d34e67",
+    "fleet.html": "4b656dd43295efc57a969804318f70a027efc5dbec5997869a2fe79d27e13f77",
+    "sources.html": "698642f05b180926001d221bf9077ad3d73f0abb3837f331203f2d652ffbc903",
+    "irregularities.html": "a2d0169acfa004bcb22be706c6ff67f83f2bb2e0bdfdbcaac2747625f88a0a4a",
+    "research.html": "93cb8c2267c3c2811324ae122e42cee52462f2bfe7a2a5703d43cb9c1f0d8460",
+    "download-status.html": "8cea4641baac4faca9be10920167c3b5f1f5daa9e5b062f3004608c650b9ca86",
+    "h86-fvmb-forensics.html": "283a5a1e66fb4f6161da810f6eb747ca5939f8b502ee85cd65025d317b83ad66"
+  },
+  "asset_sha256": {
+    "site.css": "ebe82f004be00fd87c9d26a6eebe41c19e28509ec039f557814333c35aba6426",
+    "site.js": "05b68ad10b23c27d941c687db96fbcf188c2b484c7395ae4d89dbab81f6ddd6c"
+  },
+  "without_javascript_decision_and_downloads_work": true,
+  "errors": [],
+  "passed": true
+}
