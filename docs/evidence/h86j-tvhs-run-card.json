@@ -6,7 +6,7 @@
   "preregistration": {
     "path": "research/H86J_TVHS_PREREGISTRATION.json",
     "markdown_path": "research/H86J_TVHS_PREREGISTRATION.md",
-    "hypothesis_queue_path": "registry/h86j_hypotheses.json",
+    "hypothesis_queue_path": "registry/h86j_tvhs_hypotheses.json",
     "sha256": "6548f4b869701449374aa9ccc53f579b9a0387593106450070d61ca9620e8faf",
     "status": "FROZEN_BEFORE_IMPLEMENTATION",
     "frozen_utc": "2026-10-25T05:02:00Z",
@@ -1126,9 +1126,9 @@
   "submission_ready": false,
   "post_merge_concurrent_lanes_addendum": {
     "measured_utc": "2026-10-25T06:55:00Z",
-    "peers_checked": 4,
+    "peers_checked": 5,
     "max_forward_overlap_3px": 0.613667,
-    "max_spearman_full_footprint": 0.039985,
+    "max_spearman_full_footprint": 0.041907,
     "rows": [
       {
         "peer": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
@@ -1157,6 +1157,13 @@
         "forward_overlap_3px": 0.433633,
         "spearman_full_footprint": 0.036623,
         "jaccard_dot_sets": 0.021172
+      },
+      {
+        "peer": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
+        "their_dots": 37654,
+        "forward_overlap_3px": 0.25397,
+        "spearman_full_footprint": 0.041907,
+        "jaccard_dot_sets": 0.025101
       }
     ]
   }

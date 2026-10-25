@@ -73,7 +73,7 @@ LEAKAGE_AUC_STOP = 0.90
 
 PREREGISTRATION_JSON = ROOT / "research" / "H86J_TVHS_PREREGISTRATION.json"
 PREREGISTRATION_MD = ROOT / "research" / "H86J_TVHS_PREREGISTRATION.md"
-HYPOTHESIS_QUEUE_JSON = ROOT / "registry" / "h86j_hypotheses.json"
+HYPOTHESIS_QUEUE_JSON = ROOT / "registry" / "h86j_tvhs_hypotheses.json"
 
 DATA_DIR = ROOT / "data"
 EXT_DIR = DATA_DIR / "external"

@@ -2,7 +2,7 @@
 
 **Status:** `FROZEN_BEFORE_IMPLEMENTATION` (`2026-10-25T05:02:00Z`)  
 **Machine-readable preregistration:** `research/H86J_TVHS_PREREGISTRATION.json`  
-**Machine-readable 4-hypothesis queue:** `registry/h86j_hypotheses.json`  
+**Machine-readable 4-hypothesis queue:** `registry/h86j_tvhs_hypotheses.json`  
 **Assigned lane:** `H86J-TVHS` (*Pedersen–Rasmussen Harmonic Gravity-Gradient Tensor 2-D Sheet-Step Invariants × Faulds–Hinz Geothermal Structural-Complexity Triangulation × Exposure-Propensity Dual-Expert PU Expected-Kernel-Credit Discovery*)  
 **Budget cap:** `<= 3` experiments (`E1`, `E2`, `E3`), `<= 2` hours CPU, `0` live weekly DrivenData submission slots consumed.
 

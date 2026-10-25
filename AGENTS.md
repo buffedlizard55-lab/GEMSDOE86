@@ -76,3 +76,13 @@
     executive guide, README and summary aligned with `safe_to_submit` and
     `approved_for_weekly_slot`; both are currently false. Do not restore “submit this
     file” buttons from historical promotion prose. See `research/SESSION_085C2B7A_REVIEW.md`.
+
+15. Full-registry restoration (`scripts/restore_registry_inventory.py`, with zero-REST-quota
+    `codeload.github.com` + shallow git-pack fallback) is mandatory before claiming
+    any like-for-like uniqueness pass: `docs/evidence/h86g-edti-full-registry-audit-20261025.json`
+    proved that H86G-EDTI's 43-file local check missed 44 dot-field firings (> 0.70) and
+    25 informative (`halo_coverage <= 0.70`) firings (`IR-86-H86G-LOCAL-ONLY-DUP-20261025`).
+    H86J-CSGD (`docs/evidence/h86j-csgd-run-card.json`, `079914e3...`) achieved
+    `0 / 636` informative dot-field firings on the full 690-raster restored scan
+    (`E2` cover-blind ablation `HOLDOUT-DTI = 0.1577`; `E1` SAR-debiased `0.0613`)
+    and remains explicitly `negative` (`DO NOT SUBMIT`, 0 slots used).

@@ -48,9 +48,9 @@ All `92` prompt-named fleet repositories are tracked in [`registry/prior_scores.
 
 ---
 
-## 3. Four Untried Geological Hypotheses Ranked Before Implementation (`registry/h86j_hypotheses.json`)
+## 3. Four Untried Geological Hypotheses Ranked Before Implementation (`registry/h86j_tvhs_hypotheses.json`)
 
-Prior to writing any model or feature code, four genuinely untried geological hypotheses were formulated, checked for official external data viability inside the network-restricted sandbox, and frozen in [`registry/h86j_hypotheses.json`](../registry/h86j_hypotheses.json):
+Prior to writing any model or feature code, four genuinely untried geological hypotheses were formulated, checked for official external data viability inside the network-restricted sandbox, and frozen in [`registry/h86j_tvhs_hypotheses.json`](../registry/h86j_tvhs_hypotheses.json):
 
 | Rank | ID & Name | Specific Layers Used | Physical Signature & Transform | Why Missing from USGS/INGENIOUS Catalogue? | Named Non-Fault Mimic | Expected DTI Gain & Cost | Status |
 |---:|---|---|---|---|---|---|---|
@@ -85,7 +85,7 @@ Prior to writing any model or feature code, four genuinely untried geological hy
 - **Local Format & `[0, 1]` Portal Safety (`15/15` checks PASS):** Single-band `float32`, `EPSG:32611`, `3730 × 3292`, `100 m` geotransform, `min = 0.0`, `max = 1.0`, `0` NaN, `0` Inf, `37,654` positive pixels (`0` on `known_faults.tif`, `0` outside footprint), single-TIFF `.zip` byte-verified.
 - **Registry Uniqueness (`691/693` valid-grid rasters measured, `0` missing):**
   - **Spearman rank correlation:** `0` firings above `0.90` on both pre-placement continuous surface (`worst rho = 0.7611`) and final 37,654-dot raster (`worst rho = 0.1395`; `worst Jaccard = 0.0728`).
-  - **Overlap vs `GEMSDOE32` (`h33-h33-2-b2`) & Post-Merge Concurrent Lanes:** **`25.70%`** (`74.30%` of dots sit `>300 m` from every `H33` dot); post-merge pairwise overlap against all `4` concurrent `origin/main` TIFFs passed with **`0/4` firings** (`H86I-RLMS`: `26.05%`, `H86I-SACD`: `61.37%`, `H86J-MPC`: `14.84%`, `UNIQUEDOT-DAMAGERING`: `43.36%`; max Spearman `0.0400`, max Jaccard `0.0241`).
+  - **Overlap vs `GEMSDOE32` (`h33-h33-2-b2`) & Post-Merge Concurrent Lanes:** **`25.70%`** (`74.30%` of dots sit `>300 m` from every `H33` dot); post-merge pairwise overlap against all `5` concurrent `origin/main` TIFFs passed with **`0/5` firings** (`H86J-CSGD`: `25.40%`, `H86I-RLMS`: `26.05%`, `H86I-SACD`: `61.37%`, `H86J-MPC`: `14.84%`, `UNIQUEDOT-DAMAGERING`: `43.36%`; max Spearman `0.0419`, max Jaccard `0.0251`).
   - **Fail-closed stops:** `3` discrete `<=60k`-dot submissions (`GEMSDOE43` at `0.7278`, `GEMSDOE53` at `0.8192`), dense stride-5 lattice `13GEMSDOE` (`0.9998`), full-support continuous witness `17GEMSDOE` (`1.0000`), and `2` historical off-grid rows (`14GEMSDOE`, `7GEMSDOE`) fail the full-registry overlap/completeness gates → **`DO NOT SUBMIT`**.
 
 ---
@@ -103,15 +103,15 @@ Prior to writing any model or feature code, four genuinely untried geological hy
 - **Caught & fixed GeoTIFF file mode (`0600 -> 0644`):** `NamedTemporaryFile` inside `submission_writer.py` leaves `0600` permissions on newly emitted files; added explicit `chmod(0o644)` in `scripts/run_h86j_tvhs.py` so GitHub Pages artifacts are world-readable.
 - **Caught & fixed `PendingDeprecationWarning` in `tests/test_h86j_tvhs.py`:** Replaced `rasterio.transform.from_origin` (`Affine * Affine`) with direct `Affine(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)` and `int(BY_NAME["det_elev_slope"])`.
 
-### Pass 3 — Full Repository Audit, Post-Merge 26-Artifact Reconciliation, Site Generation & Regression Suite
-- Reconciled with concurrent `origin/main` (`c67cc7d`, `25 -> 26` artifacts), verified `0/4` pairwise firings against concurrent `H86I-RLMS`, `H86I-SACD`, `H86J-MPC`, and `UNIQUEDOT-DAMAGERING`, and verified `audit_downloads.py --write`, `audit_release.py --measure-registry` (`26/26` valid artifacts), `build_site.py`, `build_site.py --check`, `check_site.py`, and full `.venv/bin/pytest -q` suite.
+### Pass 3 — Full Repository Audit, Post-Merge 27-Artifact Reconciliation, Site Generation & Regression Suite
+- Reconciled with concurrent `origin/main` (`8eeea48`, `26 -> 27` artifacts), verified `0/5` pairwise firings against concurrent `H86J-CSGD`, `H86I-RLMS`, `H86I-SACD`, `H86J-MPC`, and `UNIQUEDOT-DAMAGERING`, and verified `audit_downloads.py --write`, `audit_release.py --measure-registry` (`27/27` valid artifacts), `build_site.py`, `build_site.py --check`, `check_site.py`, and full `.venv/bin/pytest -q` suite.
 - Verified `git status` excludes all large/untracked caches (`data/`, `.cache/`) and leaves frozen files (`data/prepared_manifest.json`, `research/REQUEST_2026102{3,4,5}.md`, `research/OWNER_PROMPT.md`, `registry/h86g_hypotheses.json`, `docs/evidence/session-cf73474c-*`, `scripts/verify_submission_tif.py`, historical `*card*.json`) byte-identical.
 
 ---
 
 ## 6. Remaining Work & Explicit Limitations
 
-1. **Human Selector Governance (`0` slots used here; all `26` downloads `DO NOT SUBMIT`):** Every published GeoTIFF in `docs/downloads/` (including historical PA-86-01 `promote` lane `H86G-EDTI`) is downgraded to audit-only `DO NOT SUBMIT` under the current literal registry overlap gate (`safe_to_submit: false`, `approved_for_weekly_slot: false`). Any decision to amend the registry overlap rule or spend 1 of the 3 weekly DrivenData slots requires authenticated human selector review.
+1. **Human Selector Governance (`0` slots used here; all `27` downloads `DO NOT SUBMIT`):** Every published GeoTIFF in `docs/downloads/` (including revoked PA-86-01 `H86G-EDTI`, which `h86g-edti-full-registry-audit-20261025.json` showed had `25` informative full-registry firings) is audit-only `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`). Any decision to amend the registry overlap rule or spend 1 of the 3 weekly DrivenData slots requires authenticated human selector review.
 2. **Literal Registry Witness & Off-Grid Inventory Rows:** Full-support continuous witness `17GEMSDOE` (`100.0%` allowed-pixel positivity), dense lattice `13GEMSDOE` (`99.87%` 3-px coverage), and `2` off-grid historical inventory rows (`14GEMSDOE`, `7GEMSDOE`) continue to block literal `protocol_preflight.py` / `pa86_chance_overlap.py` clearance without a formal protocol amendment.
 3. **Next Scientific Iteration (`H86K` — Precision-Gated Blind Conduit Injection onto Unweighted Strict-LOQO Surface):** Because unweighted strict-LOQO `E3` (`0.1214` at `37,654` dots) beat `E1` (`0.0983`) while zero-catalogue blind `E2` (`0.0626`) beat `H86I-KSAD E3` (`0.0624`) and `H86I-HVFD E1` (`0.0475`), the clear next experiment is **capping blind-conduit injection to `<= 8%` (`~3,000` dots) gated on joint `D_2D > 0.85` AND `GDR-1391` thermal-wall highs** alongside `H86I-KSAD` kinematic continuation (`0.1599` pre-TIFF) and `H86I-SACD` 10-m DEM subsurface cues (`0.0843`), while enforcing discrete `<=60k`-dot registry non-overlap (`<= 0.70` vs `GEMSDOE43`/`53`/`80`).
 4. **External Data Access Boundary:** Outbound sandbox network access is restricted to `github.com`, `pypi.org`, and `npmjs.org`, so live DrivenData leaderboard/quota state cannot be authenticated and NASA ASF Sentinel-1 InSAR (`H86J-4_INSAR`) requires workstation staging before testing.

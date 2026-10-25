@@ -133,7 +133,7 @@ def test_exposure_propensity_weights_upweight_covered_basins_without_labels(tmp_
 
 def test_h86j_preregistration_and_serialized_artifact_invariants():
     """Verify frozen hypothesis queue, 3-arm budget cap, SHA-256 bindings, and [0, 1] GeoTIFF bytes."""
-    hyp = json.loads((ROOT / "registry/h86j_hypotheses.json").read_text(encoding="utf-8"))
+    hyp = json.loads((ROOT / "registry/h86j_tvhs_hypotheses.json").read_text(encoding="utf-8"))
     prereg = json.loads((ROOT / "research/H86J_TVHS_PREREGISTRATION.json").read_text(encoding="utf-8"))
     card = json.loads((ROOT / "docs/evidence/h86j-tvhs-run-card.json").read_text(encoding="utf-8"))
     inv = json.loads((ROOT / "docs/evidence/download-inventory.json").read_text(encoding="utf-8"))

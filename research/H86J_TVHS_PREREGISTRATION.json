@@ -3,7 +3,7 @@
   "lane": "H86J-TVHS",
   "status": "FROZEN_BEFORE_IMPLEMENTATION",
   "frozen_utc": "2026-10-25T05:02:00Z",
-  "hypothesis_queue_file": "registry/h86j_hypotheses.json",
+  "hypothesis_queue_file": "registry/h86j_tvhs_hypotheses.json",
   "selected_hypothesis_id": "H86J-1_TVHS",
   "ranked_hypotheses": [
     "H86J-1_TVHS",

@@ -1,0 +1,72 @@
+{
+  "schema": "gems86.h86j-csgd-preregistration.v1",
+  "status": "frozen_before_implementation",
+  "frozen_utc": "2026-10-25T04:22:00Z",
+  "session_branch": "arena/0bec8252-gemsdoe86",
+  "lane": "H86J-CSGD",
+  "hypothesis_queue": "registry/h86j_hypotheses.json",
+  "budget": {
+    "single_lane": "H86J-CSGD",
+    "max_experiments": 3,
+    "max_wall_clock_hours": 2.0,
+    "weekly_submission_slots_used": 0
+  },
+  "evaluator_contract": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "split": "gems57-pooled-hide-v2",
+    "seed": 20,
+    "hide_frac": 0.20,
+    "buffer_px": 3.0,
+    "withheld_positives_expected": 11321,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "bootstrap_block_px": 200,
+    "secondary_diagnostic_only": "SGMC-PROXY-DTI on .cache/external/derived_sgmc_faults_100m_u8.tif masked to d_cat > 3 px (read-only post-hoc diagnostic; never used in training, feature construction, or parameter selection)"
+  },
+  "safety_and_uniqueness_gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "forbidden_external_columns": ["dist_known_fault_px"],
+    "forbidden_training_inputs": ["existing_faults.tif_withheld", "derived_sgmc_faults_100m_u8.tif", "data/registry_ext/*"],
+    "surface_spearman_rho_limit": 0.90,
+    "final_dots_3px_overlap_limit": 0.70,
+    "informative_overlap_halo_ceiling": 0.70,
+    "literal_gate_fail_closed": "Under AGENTS.md Rules 6, 10, 11, if literal check_h86e_registry.py or pa86_chance_overlap.py returns non-zero (e.g., 17GEMSDOE full-support witness forward_overlap_3px=1.0 or 2 upstream grid-incompatible registry rows), verdict MUST be recorded as 'negative' / DO NOT SUBMIT with 0 slots spent, even when all 690 compatible rows satisfy |rho| <= 0.90 and 0 informative (halo_coverage <= 0.70) overlap firings occur."
+  },
+  "frozen_parameters": {
+    "dot_budget": 37654,
+    "poisson_disc_spacing_px": 2.8,
+    "visible_collar_px": 3.0,
+    "expected_credit_kernel": "vendor/gems57/emit.py::expected_credit (300 m / 3 px triangular kernel)",
+    "sar_propensity_floor_tau": 0.12,
+    "sar_censoring_gamma_e1": 0.85,
+    "sar_censoring_gamma_e2": 0.0,
+    "sar_censoring_gamma_e3": 0.85,
+    "volcanic_vent_veto_sigma_px": 12.0,
+    "hgb_params": {
+      "max_iter": 200,
+      "learning_rate": 0.07,
+      "max_leaf_nodes": 47,
+      "min_samples_leaf": 100,
+      "l2_regularization": 2.0
+    }
+  },
+  "arms": [
+    {
+      "arm_id": "E1_csgd_sar_debiased",
+      "role": "Primary preregistered candidate",
+      "description": "Cover-blind Cross-Spectral Gravity-Magnetic Admittance + Upward-Continued TMI_up150 Attenuation + GDR-1391 Thermal/Silica-Geothermometer Upflow Plume (volcanic-vent vetoed) + GeoDAWN K/Th/U Metasomatism + Transtensional Strain/Seismicity/Conductance + Fold-Visible Pollard-Segall Crack-Tip/Stepover PU (zero DEM/slope features in P_deep), reweighted by Bekker-Davis SAR geomorphic censoring odds ((1 - e_hat(X_vis)) / (e_hat(X_vis) + 0.12))^0.85 and convolved with 300 m triangular expected kernel credit before d=2.8 px Poisson-disc placement (37,654 dots)."
+    },
+    {
+      "arm_id": "E2_csgd_unweighted_pu_ablation",
+      "role": "SAR censoring de-biasing ablation",
+      "description": "Identical cover-blind P_deep + fold-visible elastic features + 300 m expected kernel credit placement with SAR censoring exponent gamma = 0.0 (no geomorphic censoring odds correction), isolating the causal effect of SAR burial reweighting on holdout recovery, off-catalogue SGMC recovery, and range-front registry overlap."
+    },
+    {
+      "arm_id": "E3_csgd_autonomous_blind_conduit",
+      "role": "Catalogue-free autonomous blind geothermal conduit ablation",
+      "description": "100% autonomous cover-blind subsurface/hydrothermal/tectonic P_deep (excluding all fold-visible elastic tip/stepover features) reweighted by SAR geomorphic censoring odds (gamma = 0.85) + 300 m expected kernel credit placement (37,654 dots outside >3 px collar), measuring pure basin-interior blind geothermal conduit discovery without catalogue-tip anchoring."
+    }
+  ]
+}

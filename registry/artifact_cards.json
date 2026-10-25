@@ -178,6 +178,13 @@
       "stem": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros"
     },
     {
+      "lane": "H86J-CSGD SAR geomorphically de-biased cross-spectral admittance + GDR-1391 geothermal conduit PU (0/636 informative dot-field firings, E1 0.0613 / E2 0.1577, fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-csgd-run-card.json",
+      "context": "docs/evidence/h86j-csgd-run-card.json",
+      "holdout_kind": "h86j_csgd",
+      "stem": "gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros"
+    },
+    {
       "lane": "H86J-TVHS GGT 2-D sheet-step invariants x Faulds-Hinz geothermal structural-complexity x exposure-propensity strict-LOQO Dual-Expert PU E[k] (current negative lane, 2026-10-25)",
       "card": "docs/evidence/h86j-tvhs-run-card.json",
       "context": "docs/evidence/h86j-tvhs-run-card.json",

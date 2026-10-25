@@ -312,6 +312,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-RLMS lane result; the run card is the authoritative experiment receipt. Official SHA-pinned USGS 3DEP 1m LiDAR + 10m DEM/chi + GeoDAWN K/eTh layers improved HOLDOUT-DTI by +0.0264 [+0.0162, +0.0371] over matched native-19 E2 (4/4 quadrants positive, beating H86F-EWCS on SE 0.1666 vs 0.1566), with 0/688 Spearman rho > 0.90 firings (max 0.6496) and 0/469 discrete <=100k-dot overlap firings > 0.70 (max 0.6731; 0.4025 vs GEMSDOE32; 0.3101 vs H86F-EWCS), but unconstrained submodular clumping in Walker Lane SW lowered pooled HOLDOUT-DTI to 0.1257 vs reproduced H86F-EWCS 0.1723 and literal registry/PA-86-02 gates failed closed; DO NOT SUBMIT; no slot was used."}
+    if kind == "h86j_csgd":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86J-CSGD lane result; the run card is the authoritative experiment receipt. Primary SAR-debiased arm E1 (0.0613 [0.0453, 0.0764]) beat R0_D28_visible_collar (0.0273) with positive paired CI and achieved 0/636 informative (halo_coverage <= 0.70) dot-field firings across the full 690-raster restored registry (worst surface Spearman 0.5050), while unweighted cover-blind ablation E2 achieved 0.1577 [0.1401, 0.1755] HOLDOUT-DTI (zero DEM/slope features); E1 trails H86C-KSLB (0.1241) and literal/PA-86-02 gates fail closed; DO NOT SUBMIT; 0 slots used."}
     if kind == "h86j_tvhs":
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
                 "evaluator_version": h["evaluator_version"],
