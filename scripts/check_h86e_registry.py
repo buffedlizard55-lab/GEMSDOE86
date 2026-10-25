@@ -119,7 +119,7 @@ def main(argv=None):
     from scripts.audit_release import verify_shared_pins, write_json
     if not all(verify_shared_pins(ROOT).values()):
         raise ValueError("Shared tool SHA drift")
-    g = grid.load_grid(ROOT / "data")
+    g = grid.load_grid(ROOT / "data" / "bridge")
     source_sha = sha(args.candidate)
     arr = load_candidate(args.candidate, g.footprint, surface=args.surface)
     if sha(args.candidate) != source_sha:

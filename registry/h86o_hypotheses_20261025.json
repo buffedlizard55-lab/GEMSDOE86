@@ -1,0 +1,104 @@
+{
+  "schema": "gems86.hypothesis-queue.v1",
+  "created_date_utc": "2026-10-25",
+  "session": "arena/96fc6d48-gemsdoe86",
+  "lane_assignment": null,
+  "status": "PROPOSALS_ONLY_NOT_AUTHORIZED_OR_IMPLEMENTED",
+  "scope_note": "Three exact methods not found as executed candidate experiments in this checkout (verified by code search 2026-10-25). Not a claim of global novelty across all GEMSDOE sites or the literature. All use native training_features.tif bands already present in the restored stack, so no new external data obtainability check is required; the actual shared cached feature stack remains absent and no experiment is authorized or run. Qualitative ranking only; no numeric score projection is made (a projection is never written as a score). The dated registry/followup_hypotheses_20261025.json snapshot (ranks 1-3: BMR, GSST, CNT) is preserved unchanged; this register continues the queue as ranks 4-6. Renamed H86O-* at merge: the H86N namespace is owned by registry/h86n_hypotheses.json (session 92f9e0e8).",
+  "ranking_basis": "Qualitative expected information gain for spatially blocked HOLDOUT-DTI per implementation cost, weighted by geological specificity and distance from methods already executed in this checkout. Not a projected score.",
+  "common_data_requirement": {
+    "new_external_data_required": false,
+    "actual_shared_feature_stack_restored": false,
+    "note": "Native bands only (src/gems86/io.py BANDS). Shared cached feature stack still absent."
+  },
+  "hypotheses": [
+    {
+      "rank": 4,
+      "id": "H86O-1_SCQD",
+      "name": "Seismicity-conditioned dilatancy conjunction (unsupervised gate)",
+      "layers": [
+        {
+          "band": 16,
+          "name": "ieq_n100a15"
+        },
+        {
+          "band": 10,
+          "name": "deq_n100a15"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        }
+      ],
+      "physical_signature": "Rank-normalize Band 8 geod_dilaterate over the footprint, then apply a hard conjunction mask: emit only cells where Band 16 ieq_n100a15 > 0 OR Band 10 deq_n100a15 > 0 (recorded event density). Dots rank by expected 300 m kernel credit of the gated surface; thresholds frozen by preregistration before any holdout look.",
+      "catalogue_missing_rationale": "Blind faults beneath basin fill may host microseismicity and present-day dilatational strain while having no mapped scarp; the catalogue is scarp/trace based, so a seismogenic blind fault is plausibly catalogue-missing.",
+      "novelty": "Prior lanes (EWCS, CSGD, FVMB) use ieq/deq only as an additive proximity feature inside a fitted supervised model (eq_prox_exp); CNT uses dilatation jointly with conductivity topology; the archived blind-geothermal prototype used a weighted sum (ieq weight 0.05). No executed lane in this checkout uses a pure unsupervised seismicity-x-dilatancy conjunction gate as the sole emission surface. Post-merge note (2026-10-25): H86N-EQL (earthquake-lineation structure-tensor anisotropy, registry/h86n_hypotheses.json) has since been executed as a measured negative (HOLDOUT-DTI 0.0306 [0.0175, 0.0455], 11,321 withheld; paired CIs vs both controls cross zero). SCQD remains distinct \u2014 an unsupervised hard conjunction gate on dilatancy with no anisotropy/tensor field and no fitted model \u2014 but EQL's negative lowers its prior; H86N-MTCS and H86N-SPBT are adjacent seismicity proposals still unrun.",
+      "non_fault_mimic": "Geothermal production/injection-induced seismicity, volcanic swarms, and quarry blasts elevate event density without an unmapped tectonic fault.",
+      "expected_holdout_potential": "Moderate qualitative priority: conjunction is cheap and physically specific, but event density is sparse and may not cover enough withheld pixels. No HOLDOUT-DTI measured; no numeric DTI gain claimed.",
+      "implementation_cost": "Low; native bands only, deterministic surface, standard canary + buffered whole-component holdout.",
+      "falsifier": "The gated arm fails to beat both a dilatation-only control and a seismicity-only control with a positive paired physical-block CI on the shared holdout, or per-feature canary AUC exceeds 0.90 (leakage).",
+      "status": "NOT_RUN_PROTOCOL_STOP",
+      "external_data_required": false,
+      "external_data_source": null
+    },
+    {
+      "rank": 5,
+      "id": "H86O-2_TCW",
+      "name": "Radiometric TC-wash cross-strike depletion asymmetry",
+      "layers": [
+        {
+          "band": 6,
+          "name": "tc"
+        },
+        {
+          "band": 12,
+          "name": "det_elev"
+        },
+        {
+          "band": 19,
+          "name": "det_elev_slope"
+        }
+      ],
+      "physical_signature": "Along candidate linear breaks in det_elev gradient magnitude (sigma 2-3 px), compute one-sided TC contrast: median Band 6 tc on the downslope side minus the upslope side within 3-8 px, normalized by local TC dispersion. Surface = |asymmetry| x break persistence; sign convention frozen in preregistration (downslope TC depletion = sediment-blanketed hanging-wall side).",
+      "catalogue_missing_rationale": "A piedmont fault buried under its own alluvium still controls sediment thickness across its trace, imprinting a one-sided radiometric step the trace-based catalogue can miss where the scarp is erased.",
+      "novelty": "No executed lane computes a TC cross-strike asymmetry. RKSC uses topographic scarp profile-curvature asymmetry and K-depletion edges; H19-lineage lanes use TC/thermal ranks; the archived propensity prototype uses TC rank in a weighted sum. One-sided TC contrast conditioned on downslope geometry is untried here. Band 6 is verified GeoDAWN Total Count (src/gems86/io.py BAND_PHYSICS_VERIFIED).",
+      "non_fault_mimic": "Alluvial fan-toe progradation, playa evaporite rims, and lithologic contacts produce one-sided TC steps without fault displacement.",
+      "expected_holdout_potential": "Moderate-low qualitative priority: specific to sediment-blanketed traces but fan/playa mimics are widespread in this basin. No HOLDOUT-DTI measured; no numeric DTI gain claimed.",
+      "implementation_cost": "Medium; native bands only, but break tracing and side assignment must be fold-safe and deterministic.",
+      "falsifier": "The asymmetry arm fails to beat both a plain |grad tc| control and an unsigned elevation-break control with a positive paired physical-block CI.",
+      "status": "NOT_RUN_PROTOCOL_STOP",
+      "external_data_required": false,
+      "external_data_source": null
+    },
+    {
+      "rank": 6,
+      "id": "H86O-3_DBK",
+      "name": "Basement-depth slope-break kink signed by gravity residual",
+      "layers": [
+        {
+          "band": 15,
+          "name": "depth_to_base_surf"
+        },
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        }
+      ],
+      "physical_signature": "Maximum cross-strike second derivative (kink) of Band 15 depth_to_base_surf at sigma 2-4 px, multiplied by the sign-concordance of the Band 13 iso_grav_anom local residual (deep side must be the gravity-low side). Surface = kink strength x concordance weight; Band 15 is gravity-derived, so concordance is a consistency filter, not independent corroboration, and circularity must be tested against kink alone.",
+      "catalogue_missing_rationale": "A buried half-graben hinge displaces the basement surface without reaching the ground surface; the depth surface kinks at the hinge even where no scarp exists for the catalogue.",
+      "novelty": "No executed lane takes a second-derivative kink of Band 15. PCC uses signed magnetic tilt; BMR (follow-up queue rank 1) uses a forward-model gravity residual; GSST (rank 2) uses a step-vs-compact shape test on gravity; H86G-EDTI/H86J-MPC use first-derivative/phase edges. A gravity-signed curvature kink of the depth surface is untried here.",
+      "non_fault_mimic": "Buried paleovalley walls, caldera ring margins, and inversion smoothing in the gravity-derived depth surface produce false kinks.",
+      "expected_holdout_potential": "Low-moderate qualitative priority: buried-hinge logic is sound but Band 15 resolution and circularity with Band 13 limit independence. No HOLDOUT-DTI measured; no numeric DTI gain claimed.",
+      "implementation_cost": "Low-medium; native bands only, deterministic filters, but resolution/smoothing sensitivity must be frozen upfront.",
+      "falsifier": "The signed-kink arm fails to beat both a |grad depth| control and an unsigned-kink control with a positive paired physical-block CI.",
+      "status": "NOT_RUN_PROTOCOL_STOP",
+      "external_data_required": false,
+      "external_data_source": null
+    }
+  ],
+  "required_before_any_experiment": [
+    "Fleet-level resolution of the literal lane-rule stop (explicit protocol revision) and an assigned method paragraph.",
+    "Complete restored registry (incl. 2 grid-incompatible rows) for surface and final-dot checks.",
+    "Frozen preregistration with per-feature leakage canaries (AUC stop 0.90) and buffered whole-component hide-and-recover with visible-only features."
+  ]
+}

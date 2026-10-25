@@ -57,7 +57,7 @@
     "docs/evidence/h86m-pfte-run-card.json": "322430edd66d0753088781d5709eca0af732aec4273810ccac22c5df64b46a64",
     "docs/evidence/h86n-gsst-run-card.json": "44d7b9d559493af01b89f284e720da87632f6d6e26c5e36a4325894bb1e406c9",
     "docs/evidence/h86m-bmgs-run-card.json": "cf7cddfdddf1b95b1074f5e345fff13e99587ddac3326268e023e9a9f0d62fe3",
-    "docs/evidence/all-artifacts-registry.json": "1442da6488dcf47af1f953c2704cccc6ccfca14a964d2f852fd10c78eea03cc8"
+    "docs/evidence/all-artifacts-registry.json": "099edb38e2df98b76f38ebfbea48d4dafae57badffec6d102a4740898539dde8"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",

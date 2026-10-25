@@ -1616,6 +1616,31 @@ uses Pearson, not Spearman, and reconstructs missing ignored cache source with e
 Post-placement gate amendments are exploratory, not independent validation.
 See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
 
+
+## IR-86-96FC6D48-PREFLIGHT-LAYOUT — 2026-10-25
+
+`scripts/protocol_preflight.measure()` defaulted `data_dir` to `ROOT/"data"` and
+`scripts/audit_release.measure_all_registry()` called `grid.load_grid(root/"data")` with the
+witness record at `root/"data"/pin["dest"]`, but the SHA-pinned grid (`sample_submission.tif`,
+`existing_faults.tif`) is committed under `data/bridge/` (see `vendor/gems57/grid.py` DATA_DIR
+and `tests/conftest.py` BRIDGE). `audit_release.py --measure-registry` therefore crashed with
+FileNotFoundError in a fresh checkout before any measurement. Fixed once in `scripts/`
+(`protocol_preflight.py`, `audit_release.py`, and the same stale layout in the operative PA-86
+checkers `check_h86e_registry.py` / `pa86_chance_overlap.py`); the vendored template was not
+modified. The pinned witness was restored from the pinned 17GEMSDOE blob
+`374c88b1da2b803e2ed160de467fd71ae114010d` into gitignored `data/bridge/registry/`
+(SHA-256 `ab0a0a62...`, 25,065,181 bytes). Thresholds, evaluator, and witness identity are
+unchanged. `tests/test_h86i_rlms.py` probed the old `data/` layout to select the expected error
+class; updated to probe the real pinned paths.
+
+## IR-86-96FC6D48-H86MLT-REGISTRATION — 2026-10-25
+
+Session `96fc6d48` independently reproduced the PR #165 H86M-LT publication omission
+(registered on main by parallel session `57139348`, PR #166) and re-verified the raster from
+disk bytes (SHA-256 `4067382c...`, ZIP byte-identity, EPSG:32611 3730x3292, values exactly
+{0,1}, 37,654 positives). This branch's parallel card-supersession and page rewrite were
+discarded at merge in favour of main's `h86m_lt_unvalidated` handling; both sessions reached
+the identical DO NOT SUBMIT state. See `research/SESSION_20261025_96FC6D48_REVIEW.md`.
 ## IR-86M-02 (`arena/2ea5b025-gemsdoe86`, 2026-10-25) — Automated Parallel-Run Protocol Rule 1 stop caught `H86M-PFTE` Arm `E1` (`0.7041 > 0.70` vs `H86K-STDP`) prior to GeoTIFF serialization
 
 - **Observed during `scripts/run_h86m_pfte.py` Step [5/6].** Preregistered kinematic+blind Arm #1 `E1_pfte_comonotonic_dcelf` (`alpha_kin = 0.68`, `HOLDOUT-DTI = 0.1310 [0.1141, 0.1476]`, `Fold NE = 0.1436` vs `E3 = 0.1185`, `SGMC-PROXY-DTI = 0.1166`) passed continuous surface Spearman across all `702` indexed rasters (`worst_spearman = 0.5657 <= 0.90`, `0` firings) and `459 / 460` discrete `<=90k`-dot submissions, **except** `0.704069 > 0.70` 3-px dot overlap against `H86K-STDP` (`3ac7fa1d...`) driven by shared `compute_elastic_fields` fold-visible fracture lobes.
