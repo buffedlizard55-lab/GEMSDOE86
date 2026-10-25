@@ -150,6 +150,34 @@
       "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
     },
     {
+      "lane": "UNIQUEDOT-DAMAGERING off-catalogue damage-zone ring emission (2026-10-25)",
+      "card": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "context": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros"
+    },
+    {
+      "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86j-mpc-run-card.json",
+      "context": "docs/evidence/h86j-mpc-run-card.json",
+      "holdout_kind": "h86j_mpc",
+      "stem": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros"
+    },
+    {
+      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-sacd-run-card.json",
+      "context": "docs/evidence/h86i-sacd-run-card.json",
+      "holdout_kind": "h86i_sacd",
+      "stem": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros"
+    },
+    {
+      "lane": "H86I-RLMS Riedel-listric + 3DEP 1m/10m + GeoDAWN K/eTh submodular PU (3DEP/GeoDAWN +0.0264 over native19, overall 0.1257 < EWCS 0.1723, DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-rlms-run-card.json",
+      "context": "docs/evidence/h86i-rlms-run-card.json",
+      "holdout_kind": "h86i_rlms",
+      "stem": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros"
+    },
+    {
       "lane": "H86J-TVHS GGT 2-D sheet-step invariants x Faulds-Hinz geothermal structural-complexity x exposure-propensity strict-LOQO Dual-Expert PU E[k] (current negative lane, 2026-10-25)",
       "card": "docs/evidence/h86j-tvhs-run-card.json",
       "context": "docs/evidence/h86j-tvhs-run-card.json",

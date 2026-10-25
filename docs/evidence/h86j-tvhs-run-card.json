@@ -1123,5 +1123,41 @@
     "full-registry uniqueness gates failed closed: 0 Spearman rho > 0.90 firings across all 691 valid-grid rasters (surface max 0.7611, final-dots max 0.1395; worst Jaccard 0.0728; overlap vs GEMSDOE32 h33-2-b2 = 0.2570), but 3 discrete <=60k-dot rasters (GEMSDOE43 at 0.7278, GEMSDOE53 at 0.8192; 3 sparse firings), dense lattices (13GEMSDOE 0.9998), continuous 100%-support witness 17GEMSDOE (1.0000), and 2 off-grid rows (14GEMSDOE, 7GEMSDOE) block clearance"
   ],
   "runtime_seconds": 26.45,
-  "submission_ready": false
+  "submission_ready": false,
+  "post_merge_concurrent_lanes_addendum": {
+    "measured_utc": "2026-10-25T06:55:00Z",
+    "peers_checked": 4,
+    "max_forward_overlap_3px": 0.613667,
+    "max_spearman_full_footprint": 0.039985,
+    "rows": [
+      {
+        "peer": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
+        "their_dots": 37654,
+        "forward_overlap_3px": 0.260504,
+        "spearman_full_footprint": 0.039985,
+        "jaccard_dot_sets": 0.024055
+      },
+      {
+        "peer": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
+        "their_dots": 37654,
+        "forward_overlap_3px": 0.613667,
+        "spearman_full_footprint": 0.023987,
+        "jaccard_dot_sets": 0.015795
+      },
+      {
+        "peer": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+        "their_dots": 44090,
+        "forward_overlap_3px": 0.148377,
+        "spearman_full_footprint": 0.006994,
+        "jaccard_dot_sets": 0.007444
+      },
+      {
+        "peer": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+        "their_dots": 25000,
+        "forward_overlap_3px": 0.433633,
+        "spearman_full_footprint": 0.036623,
+        "jaccard_dot_sets": 0.021172
+      }
+    ]
+  }
 }

@@ -1135,6 +1135,86 @@ despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
 `tests/test_builder_preflight.py::BUILDERS`, and `docs/evidence/h86e-mmt-registry-surface.json` now records
 `"surface_gate_pass": false` with an explicit archive note.
 
+## IR-86-H86F-INQUAD-TRAINING-20261025 — `H86F-EWCS` (`0.1723`) trained on in-quadrant visible components rather than strict outer Leave-One-Quadrant-Out (`quad != q`)
+
+Line-by-line audit of `scripts/run_h86f_ewcs.py` (`line 528`) against
+`vendor/gems57/holdout.py` (`buffered_component_draw` docstring, `lines 269-271`) and
+`scripts/run_lane86c.py` (`line 206`) identified a training-domain asymmetry between
+the repository's two leading same-split holdout benchmarks on `gems57-pooled-hide-v2`
+(`seed=20`, `hide_frac=0.20`, `buffer_px=3`, `11,321` withheld positive pixels):
+`H86C-KSLB` (`0.124063 [0.107970, 0.140330]`) restricted training labels to
+`train_dom = binary_erosion(quad != q, iterations=12) & footprint` (strict outer
+Leave-One-Quadrant-Out), whereas `H86F-EWCS` (`0.172325 [0.152956, 0.189793]`)
+sampled visible positive and negative training pixels across all 4 quadrants (`vis`,
+which still strictly excludes all `11,321` withheld whole-component pixels plus their
+`3 px` context collar, so zero withheld truth leaked, but allows tree splits to learn
+in-quadrant visible background statistics). Re-evaluating the exact `H86F-EWCS`
+architecture under strict outer Leave-One-Quadrant-Out (`C1_H86F_EWCS_strict_loqo_ctrl`
+in `docs/evidence/h86i-ksad-run-card.json`) yields **`HOLDOUT-DTI = 0.133311`
+(`95% CI [0.117836, 0.150210]`)**, showing `+0.039014` (`+390 bps`) of the `0.172325`
+score came from in-quadrant visible training. Under identical strict outer LOQO,
+`H86I-KSAD` achieves **`0.155275 [0.139633, 0.171839]` (`E1`)** and **`0.159867
+[0.145895, 0.174249]` (`E2`)**, beating `C1_H86F_EWCS_strict_loqo_ctrl` with a
+strictly positive paired `20 km` block-bootstrap 95% CI (`+0.021964 [+0.003838, +0.040503]`
+for `E1`).
+**Decision:** Never compare in-quadrant visible `HOLDOUT-DTI` (`0.1723`) directly against
+strict-LOQO `HOLDOUT-DTI` (`0.1241`, `0.1333`, `0.1553`, `0.1599`) without labeling the
+outer training domain (`AGENTS.md` Rule 6).
+
+## IR-86-DEM10-CHI-SENTINEL-20261025 — Raw `int16` `-32768` non-channel sentinels in `dem10_chi_100m_i16.tif`
+
+Direct pixel inspection of SHA-pinned `.cache/external/dem10_chi_100m_i16.tif`
+(`8897ba9c...` in `scripts/restore_data.py:EXTERNAL_PINS`) showed Bands 1-4
+(`step_max_x1000`, `step_min_x1000`, `ksn_max_m0.9`, `log10_area_m2_x1000`) store
+`-32768` (`int16` minimum, `median = -32768.0` across the footprint) at off-channel
+hillslope cells without declaring a GeoTIFF `nodata` tag that `np.isfinite` would filter,
+whereas Band 5 (`zmean_m`) stores true absolute elevation in meters ASL (`1032..3141 m`,
+`100.0%` valid). Unmasked smoothing across `-32768` creates spurious step artifacts along
+drainage margins.
+**Decision:** `src/gems86_ksad/physics.py` explicitly masks `val > -32000` with
+normalized Gaussian channel weights before computing reach-relative $k_{sn}$ and
+$\chi$-step knickzone features, while using `zmean_m` directly for Pleistocene Lake
+Lahontan (`1,180-1,345 m ASL`) contour-parallelism deconfounding.
+
+## IR-86-H86I-KSAD-OVERLAP-STOP-20261025 — `H86I-KSAD` sets repo strict-LOQO holdout record (`0.1553` / `0.1599`), then halts fail-closed BEFORE GeoTIFF serialization on `71.31%` informative discrete fleet overlap
+
+`scripts/run_h86i_ksad.py` executed the frozen 3-arm preregistered `H86I-KSAD` lane
+(`research/H86I_KSAD_PREREGISTRATION.json`, `registry/h86i_ksad_hypotheses.json`) within the
+`<= 3` experiment / `<= 2` hour budget (`32/32` single-feature leakage canaries passed,
+`max_discriminative_auc = 0.8074 <= 0.90`). Pre-placement `v2` surface audit across
+`688 / 690` compatible registry rasters (`docs/evidence/h86i-ksad-registry-surface.json`)
+recorded `0` Spearman `rho > 0.90` firings (`worst_spearman = 0.6344`). However,
+pre-serialization `v2` final-dot audit of `E1`'s `28,197` Dinkelbach-stopped dots
+(`docs/evidence/h86i-ksad-registry-final-dots.json`) caught **3 genuinely informative
+discrete dot-field forward 3-px overlaps `> 0.70`**: `71.31%` against
+`GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif`
+(`36,500` dots, measured 3-px chance halo `c = 14.65% << 70%`) and `70.19%` against
+`GEMSDOE43:gems43-sup01-hgb21-sep40-n40000` (`40,000` dots, `c = 18.45% << 70%`), in
+addition to the 2 off-grid registry rows (`688/690` compatible) and literal `17GEMSDOE`
+full-support witness saturation.
+**Decision:** Per Parallel-Run Protocol Rule 1 and `AGENTS.md` Rules 10-11 (*"final-dot
+checks precede serialization"* and *"informative overlap firings are hard stops"*), the
+runner halted fail-closed **before writing a duplicate GeoTIFF**, wrote the complete
+negative deliverable `docs/evidence/h86i-ksad-run-card.json` (`verdict = "negative"`,
+`decision = "DO NOT SUBMIT"`, `0` weekly slots used), and locked `scripts/run_h86i_ksad.py`
+behind `protocol_preflight.require_feasible()` (`55` CLI builders + `8` imported
+orchestrators in `tests/test_builder_preflight.py`).
+
+## IR-86-RELEASE-AUDIT-TMP-20261025 — `tests/test_release_audit.py::release_copy` copied untracked 400 MB `training_features.tif` into `/tmp` 20+ times when native data were restored
+
+**Observed.** In CI (`ubuntu-24.04`), `data/bridge/` contains only the two Git-tracked bridge
+rasters (`existing_faults.tif` `416 KB` and `sample_submission.tif` `1.6 MB`). After running
+`bash scripts/download_competition_data.sh` locally, `data/bridge/training_features.tif`
+(`400 MB`, gitignored) is also present. `tests/test_release_audit.py::release_copy` called
+`shutil.copytree(ROOT / "data/bridge", ...)` without excluding `training_features.tif`, even
+though `scripts/audit_release.py` never opens `training_features.tif`. Across 20+ fixtures
+and pytest's retained temporary directories, that copied `> 8 GB` into `/tmp` and exhausted
+sandbox disk (`Errno 28: No space left on device`).
+**Decision.** Excluded `training_features.tif` in `tests/test_release_audit.py::release_copy`
+(`shutil.ignore_patterns("__pycache__", "training_features.tif")`); all 27 tests in
+`tests/test_release_audit.py` now pass cleanly whether or not `training_features.tif` is
+present locally.
+
 ## IR-86-H86G-INSTRUMENT-20261025 — Catalogue-hide holdout anti-correlates with live ordering; OOF-vs-shipped conflation
 
 E1b (this session) scored shipped rasters as-is on the seed-20 buffered
@@ -1184,9 +1264,20 @@ and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
 `registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
 pair); a fleet-refresh session should ledger them and regenerate the feed.
 
+## IR-86-PUBLICATION-AUTH-09C7FC42 (2026-10-25)
+
+Homepage, executive summary, README and build success output said H86G-EDTI was OK to
+submit while its card explicitly denied safe_to_submit and weekly-slot approval, and
+literal release audit failed. Corrected publication instructions to research-only;
+historical amended-gate promotion and binary bytes unchanged. Added regression checks
+rejecting positive upload instructions in the negative-state publisher. See
+`research/SESSION_09C7FC42_REVIEW.md`. No new TIFF, model experiment or portal operation.
+
+
 ## IR-86-085C2B7A — promotion was displayed as upload permission (2026-10-25)
 
 The generated homepage/executive guide and current README said to submit H86G-EDTI even though its scientific card records `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the release audit retains the literal witness stop. Fixed the source generator, regenerated pages and exposed the promoted-for-review identity in `docs/data/summary.json` without changing historical scientific evidence. Regression tests forbid the unsafe direct-upload phrases. No new raster, model experiment or slot. See `research/SESSION_085C2B7A_REVIEW.md`.
+
 ## IR-86-HVFD-COLLAR-ABLATION-20261025 — 2026-10-25 (`H86I-HVFD` 3-arm Dual-Regime Noisy-OR & `buffer_px=3` vs unbuffered collar ablation)
 
 Contemporaneously preregistered lane `H86I-HVFD` (`research/H86I_HVFD_PREREGISTRATION.json`,
@@ -1207,23 +1298,110 @@ vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs de
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
 
-## IR-86-EWCS-INQUADRANT-20261025 — `H86F-EWCS` (`0.1723`) trained GBDT on non-withheld faults inside the test quadrant; not directly comparable to strict out-of-quadrant LOQO (`H86C-KSLB` `0.1241`, `H86J-TVHS E3` `0.1214`)
+## 2026-10-25 — H86J-LSI (live-score inversion)
 
-**Observed.** Forensic review of `scripts/run_h86f_ewcs.py` (lines 486–494) during the `H86J-TVHS`
-preparation revealed that while `H86F-EWCS` correctly withheld `withheld_faults` (`buffer_px=3`) and derived
-its fault-distance features strictly from `visible_faults = cat & ~withheld_faults`, its GBDT positive
-training mask was `pos_allowed = allowed & visible_faults` across the *entire* footprint — meaning each
-fold's classifier trained on the ~75–80% non-withheld faults *inside the evaluation quadrant itself*,
-whereas `H86C-KSLB` (`0.1241` at `44,090` dots) and `H86J-TVHS` (`E3 = 0.1214 [0.1060, 0.1350]` at `37,654`
-dots) restrict training strictly to the 3 out-of-quadrant folds (`train_mask = fp & (quad != q)`).
+* **IR-86-H86J-01:** on 74 owner-scored rasters, the SGMC proxy as-is reaches Spearman 0.300 vs OWNER-REPORTED live, and catalogue-hide (`gems57-pooled-hide-v2`) reaches 0.051. The 8-raster SGMC agreement behind H86G does not generalise (e.g. GEMSDOE44 h46: SGMC 0.3081 vs live 0.0715).
+* **IR-86-H86J-02:** inventory row `ccbe1de0…` (14GEMSDOE r5-geom-horse-ensemble) has the competition shape but a shifted transform (origin 500000, 4500000). H86J compared it index-wise.
+* **IR-86-H86J-03:** the H86J log-linear truth density is non-physical. λ > 1 on 2,552 pixels, which hold 63.5 % of its mass, so its LSI-PROJECTION values are not forecasts.
+* **IR-86-H86J-05:** two concurrent sessions both used the `H86J` prefix (H86J-MPC on main, H86J-LSI here). The lanes are distinct (different suffix, cards and files). `build_site.py` variables were renamed to avoid a silent overwrite. The H86I-SACD and H86J-MPC artifacts were lost from `download-inventory.json`/`artifact_cards.json` when PR #131 merged; this merge restores them (24 artifacts re-audited).
+* **IR-86-H86J-04:** E3 ended ~8 min past the 2 h session budget. No further experiment was run. The negative raster is not published.
 
-**Decision.** Do not mutate the archived `docs/evidence/h86f-ewcs-run-card.json` (which remains `verdict:
-"negative"`, `DO NOT SUBMIT`). Instead, label `H86F-EWCS` explicitly as an *in-quadrant component-hide*
-instrument (`0.1723`) rather than a strict out-of-quadrant LOQO instrument, and record the controlled
-`~+0.051` spatial-autocorrelation delta (`0.1723` vs `0.1214`) in `docs/evidence/h86j-tvhs-run-card.json`
-and `docs/irregularities.html`.
+## IR-F548F465 — hash identity is not registry uniqueness (2026-10-25)
 
-## IR-86-TVHS-PROPENSITY-ABLATION-20261025 — 2026-10-25 (`H86J-TVHS` strict-LOQO Dual-Expert PU `E[k]`, zero-catalogue blind record `0.0626`, spin-2 crest fix, and fleet feed verification)
+`verify_submission_tif.py` printed “unique by pinned digest” after a format/hash check.
+Corrected to format/identity only, with explicit DO NOT SUBMIT and no inferred
+holdout, registry or slot clearance. Added clean fail-closed handling and tests
+for malformed receipts and ZIPs. See `research/SESSION_F548F465_REVIEW.md`.
+
+## IR-86-H86F-EWCS-TRANSQUAD-PU-20261025 — `scripts/run_h86f_ewcs.py` sampled PU training rows across all 4 quadrants rather than strict `quad != fold_i`
+
+Forensic line-by-line inspection of `scripts/run_h86f_ewcs.py` (`line 519`) during
+session `95a42d60` confirmed that while `vis = f["visible"] & fp` properly stripped
+all `11,321` withheld positive pixels and their `3-px` feature collar globally (`0`
+hidden-truth label leakage), `sample_nested_pu(static_mm, s_keys, vis, fp, e_keys, ...)`
+drew visible training positives and unlabeled background rows from the full footprint
+`fp` (including the held-out quadrant `quad == fold_i`) and emitted four full-map
+`37,654`-dot allocations rather than restricting classifier training to the three
+out-of-quadrant regions `fp & (quad != fold_i)`.
+**Decision:** The archived `H86F-EWCS` run card (`docs/evidence/h86f-ewcs-run-card.json`)
+is left untouched per `AGENTS.md` Rule 9, its trans-quadrant PU scope is documented
+explicitly in `H86I-SACD`'s comparator table and on `irregularities.html`, and the new
+`H86I-SACD` runner (`scripts/run_h86i_sacd.py`) enforces strict spatial
+Leave-One-Quadrant-Out training (`train_region = fp & (quad != fold_i)`).
+
+## IR-86-H86I-SACD-01 (2026-10-25) — H86I-SACD executed under strict spatial LOQO (`0/367` `<=50k`-dot firings, `0/691` Spearman firings), auto-marked DO NOT SUBMIT (`verdict = "negative"`)
+
+Session `95a42d60` preregistered four untried hypotheses (`registry/h86i_hypotheses.json`,
+`research/H86I_SACD_PREREGISTRATION.json`) prior to any holdout evaluation and executed
+Rank-1 `H86I-SACD` (*Spin-2 Coulomb-Projected Strike Concordance, Jacobsen
+Upward-Continuation Depth-Attenuation & Bekker-Davis Alluvial-Burial Propensity
+Submodular Max-Cover*) across 3 fixed arms (`<= 3` experiment / `<= 2` hour budget,
+`1,323.96 s` wall time). All `33` features passed single-feature ROC-AUC leakage
+canaries (`max = 0.7639 <= 0.90`). Under strict `quad != fold_i` LOQO (`11,321`
+withheld positives, `1,000` paired `20 km` block-bootstrap draws), scalar unweighted
+pointwise `E2` achieved `HOLDOUT-DTI = 0.1055 [0.0878, 0.1257]` (beating `R0_D25`
+`0.0931` and `R0_D28` `0.0273`), whereas `E1` (`0.0832 [0.0673, 0.0997]`) and pure
+cover-blind subsurface `E3` (`0.0843 [0.0693, 0.0995]`) trailed `E2` (`paired delta =
+-0.0223 [-0.0352, -0.0104]`) due to Fold-0 forced inter-quadrant quantile equalization
+over-allocating dots into lower-density `NE` (`10,797` dots) and submodular plateau
+clustering on broad diffuse basin posteriors. Full post-merge `v2` registry scans (`691 / 693`
+valid competition-grid rasters including `H86G-EDTI`, `H86I-RKSC`, and `H86I-HVFD`, `0` missing)
+confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap firings
+(`31.17%` vs `GEMSDOE32` `h33-h33-2-b2`, `55.60%` vs `H86F-EWCS`), while failing closed on
+`17GEMSDOE` saturation, space-filling lattices, and `2` off-grid upstream rows (`PA-86-02`
+`FAILED_CLOSED_NO_REPORT`).
+**Decision:** The unique `[0, 1]` GeoTIFF (`docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif`,
+SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
+strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
+`0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
+`protocol_preflight.require_feasible()` (`60` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_ksad.py` and `scripts/run_h86i_rlms.py`).
+
+## IR-86-H86I-RLMS-01 — `H86I-RLMS` official 3DEP 1m/10m + GeoDAWN `K/eTh` physics improved `HOLDOUT-DTI` by `+0.0264` across all 4 quadrants, while unconstrained submodular `eta=0.042` clumping degraded Walker Lane `SW`
+
+Under frozen preregistration `research/H86I_RLMS_PREREGISTRATION.json`
+(`sha256=f53b80b3130836d3e35d7dcb40e3201fcb0409cc32512e97fca1ce01a9cb7a7e`) and
+`registry/h86i_rlms_hypotheses.json`, the 3-arm `H86I-RLMS` lane evaluated SHA-pinned
+official USGS 3DEP 1-m LiDAR scarp planes, 10-m DEM curvature/fluvial `chi`
+disequilibrium, and USGS GeoDAWN airborne `K/eTh` alteration plus up-dip hanging-wall
+back-projection and spin-2 nematic director coherence on `gems57-pooled-hide-v2`
+(`seed=20`, `11,321` withheld positives, `1,000` 20 km block-bootstrap draws).
+- **Positive external-physics finding (`E1 - E2`):** `E1_rlms_full_submodular`
+  (`0.125716 [0.107073, 0.143239]`) beat matched native-19 ablation
+  `E2_rlms_native19_only_ablation` (`0.099322 [0.085157, 0.112842]`) by
+  **`+0.026394 [+0.016173, +0.037075]`**, positive in all 4 spatial quadrants
+  (`NW +0.016109`, `NE +0.031797`, `SW +0.014741`, `SE +0.041886`) and surpassing
+  `H86F-EWCS` on Basin-and-Range `SE` (`0.166613` vs `0.156591`).
+- **Allocator & OOF buffer diagnosis (`E1 - E3`):** Replacing the unconstrained
+  submodular allocator (`eta = 0.042` static modular bonus without hard `>= 2.8 px`
+  Poisson-disc exclusion) with hard `2.8 px` greedy Poisson-disc thinning on the same
+  `E1` OOF probability surface (`E3_rlms_unprojected_disc_ablation = 0.155115`)
+  restored `SW` Walker Lane from `0.085982` to `0.185323`, independently corroborating
+  `H86I-SACD`'s submodular plateau finding and showing that static `eta * k_self`
+  over-packs 1-px-adjacent hotspots where probability peaks exceed the regional
+  baseline; additionally, `buffer_px=3` OOF grouping censored `300-600 m` fault-tip
+  stepover positives during OOF isotonic calibration.
+- **Uniqueness & gate disposition:** Pre-placement `--surface` (`688/690` measured)
+  had `0` Spearman firings > `0.90` (`max = 0.649608`), final dots had `0/469` discrete
+  `<= 100k`-dot overlap firings > `0.70` (`max = 0.673102`; `0.4025` vs `GEMSDOE32`
+  `h33-h33-2-b2`; `0.3101` vs `H86F-EWCS`; `0.2426` vs `H86G-EDTI`; `0.3513` vs
+  `H86I-SACD`; `0.2453` vs `H86I-HVFD`; `0.1269` vs `H86I-RKSC`; `0.1413` vs
+  `H86J-MPC`), and `40/40` leakage canaries passed (`max AUC = 0.7949 <= 0.90`).
+  Because pooled `E1` (`0.125716`) did not beat reproduced `H86F-EWCS` (`0.172325`)
+  and literal `17GEMSDOE` / 2 off-grid registry rows / `PA-86-02` failed closed,
+  `docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif`
+  (`sha256=ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d`) is
+  published strictly as **`DO NOT SUBMIT`** (`verdict = "negative"`, `0` slots spent),
+  and `scripts/run_h86i_rlms.py` is locked behind `protocol_preflight.require_feasible()`.
+
+## IR-86-EWCS-INQUADRANT-20261025 — `H86F-EWCS` (`0.1723`) trained GBDT on non-withheld faults inside the test quadrant; cross-confirmed with `IR-86-H86F-INQUAD-TRAINING-20261025`
+
+**Observed.** Forensic review of `scripts/run_h86f_ewcs.py` (lines 486–494) during `H86J-TVHS` preparation
+independently confirmed that `H86F-EWCS`'s GBDT positive training mask `pos_allowed = allowed & visible_faults`
+trained on non-withheld faults inside the test quadrant (`0.1723`), whereas strict out-of-quadrant LOQO
+(`train_mask = fp & (quad != q)`) yields `0.1214 [0.1060, 0.1350]` on `H86J-TVHS E3` (`37,654` dots) and
+`0.1333 [0.1178, 0.1502]` on `H86I-KSAD C1`. Recorded without mutating archived `h86f-ewcs-run-card.json`.
+
+## IR-86-TVHS-PROPENSITY-ABLATION-20261025 — 2026-10-25 (`H86J-TVHS` strict-LOQO Dual-Expert PU `E[k]`, spin-2 crest fix, post-merge 26-artifact audit, and fleet feed closure)
 
 **Observed.** Contemporaneously preregistered lane `H86J-TVHS` (`registry/h86j_hypotheses.json`,
 `research/H86J_TVHS_PREREGISTRATION.{json,md}`, `src/gems86_tvhs/features.py`, `scripts/run_h86j_tvhs.py`,
@@ -1231,21 +1409,18 @@ and `docs/irregularities.html`.
 `docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif` (`sha256:
 f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94`, `37,654` unit dots, `15/15` format checks
 PASS, `0` slots used):
-1. During pre-run synthetic testing of `src/gems86_tvhs/features.py::compute_faulds_hinz_kinematic_fields`,
-   a first-derivative ridge-normal formula vanished identically on symmetric 1-px fault crests (`v == 1`),
-   yielding `0.0` at a symmetric X-junction; fixed prior to execution by switching to second-derivative
-   Gaussian Hessian spin-2 ridge orientation `_principal_axis_spin2(v, sigma=2.2)` (`1.0771` on X-junction
-   vs `0.0040` on straight fault; locked by `tests/test_h86j_tvhs.py`).
-2. On strict 4-quadrant out-of-quadrant LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives),
-   zero-catalogue blind arm `E2_tvhs_blind_geothermal_ggt_ek` (`0.0626 [0.0475, 0.0778]`) set a new
-   repository blind record (`+31.8%` over `H86I-HVFD` `0.0475`), and unweighted 31-feature strict-LOQO
-   ablation `E3` reached `0.1214 [0.1060, 0.1350]` at `37,654` dots. However, candidate `E1` (`0.0983
-   [0.0800, 0.1159]`, beating `R0_D28 = 0.0931`) trailed `E3` (`paired E1 - E3 = -0.0231 [-0.0356, -0.0118]`)
-   because inverse cover-exposure propensity weighting (`w_sar` up to `2.5x`) + the `0.34 * P_blind` floor
-   diverted ~23% of dots off surficial scarps into unmapped basin interiors (which are scored as FPs on
-   catalogue-hide holdout), and 3 discrete `<=60k`-dot registry rasters (`GEMSDOE43` `0.7278`, `GEMSDOE53`
-   `0.8192`) plus `13GEMSDOE`/`17GEMSDOE` and `2` off-grid rows failed full-registry uniqueness.
-3. Also verified closure of `IR-86-H86G-FEED-20261025`: `GEMSDOE89` (`0.0301`) and `GEMSDOE90` (`0.0749`)
-   are now present as `OWNER-REPORTED` in `registry/prior_scores.csv`, `ledger/submissions.csv`, and
-   hash-bound `docs/evidence/fleet-feed.json`.
+1. Pre-run synthetic test caught first-derivative crest cancellation (`0.0`) on symmetric 1-px X-junctions in
+   `compute_faulds_hinz_kinematic_fields`; fixed via second-derivative Gaussian Hessian spin-2 eigenvector
+   `_principal_axis_spin2(v, sigma=2.2)` (`1.0771` on X-junction vs `0.0040` on straight fault; locked by
+   `tests/test_h86j_tvhs.py`).
+2. Strict 4-quadrant out-of-quadrant LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives): `E1 = 0.0983
+   [0.0800, 0.1159]` (beating `R0_D28 = 0.0931`), zero-catalogue blind `E2 = 0.0626 [0.0475, 0.0778]` (beating
+   `H86I-KSAD E3 = 0.0624` and `H86I-HVFD E1 = 0.0475`), and unweighted strict-LOQO `E3 = 0.1214 [0.1060,
+   0.1350]`. Inverse exposure-propensity weighting (`w_sar` up to `2.5x`) + `0.34 * P_blind` floor diverted
+   ~23% of dots off surficial scarps into unmapped basin interiors (`paired E1 - E3 = -0.0231 [-0.0356,
+   -0.0118]`), and `3` discrete `<=60k`-dot registry rasters (`GEMSDOE43` `0.7278`, `GEMSDOE53` `0.8192`) plus
+   `13GEMSDOE`/`17GEMSDOE` and `2` off-grid rows failed full-registry uniqueness (`0/4` firings against concurrent
+   `H86I-RLMS`, `H86I-SACD`, `H86J-MPC`, `UNIQUEDOT`, max `0.6137`).
+3. Verified closure of `IR-86-H86G-FEED-20261025` (`GEMSDOE89 = 0.0301`, `GEMSDOE90 = 0.0749` present as
+   `OWNER-REPORTED` in `registry/prior_scores.csv` and hash-bound `docs/evidence/fleet-feed.json`).
 

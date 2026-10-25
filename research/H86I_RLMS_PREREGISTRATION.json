@@ -1,0 +1,55 @@
+{
+  "schema": "gems86.h86i-rlms-preregistration.v1",
+  "lane": "H86I-RLMS",
+  "session_branch": "arena/6bbd9586-gemsdoe86",
+  "frozen_utc": "2026-10-25T03:35:00+00:00",
+  "precedence": "Written and frozen BEFORE any H86I feature array, PU model fit, holdout DTI score, or registry surface/dot check was computed.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "planned_arms": 3
+  },
+  "holdout_instrument": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_function": "gems57.holdout.buffered_component_draw",
+    "seed": 20,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 862026,
+    "block_px": 200,
+    "dot_budget": 37654,
+    "visible_collar_px": 3.0,
+    "dinkelbach_eta": 0.042,
+    "canary_auc_limit": 0.9
+  },
+  "arms": [
+    {
+      "id": "E1_rlms_full_submodular",
+      "role": "primary_candidate",
+      "description": "Full Riedel-Listric Multi-Scale Submodular blind-fault model: 22 native 19-band planes (Miller magnetic tilt + hydrothermal magnetite-destruction trough, Laplace g_zz zero-crossing steepness with curl seam veto, Cordell compaction-stripped horst gradient, listric hanging-wall -> footwall up-dip projections at 500 m & 1,100 m along +n_HW for gravity/MT conductivity/throw asymmetry, spin-2 nematic multi-physics director coherence + E-W flight-line veto, principal extensional strain rate, seismicity, DEM scarp curvature) + 8 SHA-pinned official USGS external planes (NaN-routed 3DEP 1 m LiDAR micro-scarp prominence, face asymmetry & spin-2 alignment with Lahontan shoreline veto; 3DEP 10 m sub-pixel micro-scarp excess, lineament coherence & diffused fluvial chi/k_sn disequilibrium; GeoDAWN K/eTh hydrothermal metasomatism) + 6 strictly fold-visible 5-fold (80%->20%, 3 px buffered-component) out-of-fold continuation planes (Pollard-Segall wing-crack lobes, dual-scale collinear valley cones, dual-scale opposing-tip stepover bridges, broadside stress-shadow suppression, spin-2 kinematic strike alignment, and Riedel conjugate relay obliquity), trained with cover-censoring propensity weights in a 2-seed HistGradientBoosting ensemble, Bayes prior-shift calibrated, and decoded at exact matched budget 37,654 dots via Minoux lazy-greedy submodular 300 m triangular-kernel allocation."
+    },
+    {
+      "id": "E2_rlms_native19_only_ablation",
+      "role": "ablation_native_competition_tensor_only",
+      "description": "Strict 19-band native-tensor ablation: removes all 8 external USGS 3DEP 1 m LiDAR, 10 m DEM/chi, and GeoDAWN ternary K-eTh-eU planes while retaining the identical 22 native listric/nematic/harmonic/strain/topographic planes, 5-fold (80%->20%) buffered-component OOF continuation planes, 2-seed cover-weighted HGB ensemble, Bayes prior calibration, and Minoux lazy-greedy submodular 300 m kernel allocation at 37,654 dots. Directly isolates the marginal HOLDOUT-DTI value of official public-domain high-resolution 3DEP/GeoDAWN layers vs pure 19-band competition physics."
+    },
+    {
+      "id": "E3_rlms_unprojected_disc_ablation",
+      "role": "ablation_no_listric_nematic_oof80_or_submodular",
+      "description": "Mechanism & decoder control: strips listric up-dip hanging-wall projections, spin-2 nematic strike coherence/alignment, external 3DEP/GeoDAWN layers, 80/20 buffered-component OOF calibration, cover propensity weighting, and submodular 300 m kernel allocation back to unprojected scalar baseline planes + 50/50 component split + unweighted single HGB + pointwise 2.8 px Poisson-disc thinning at identical 37,654-dot cardinality."
+    }
+  ],
+  "mandatory_comparators": [
+    "H86F_EWCS_reproduced (exact reproduction of current repo champion H86F-EWCS on identical seed=20 folds at 37,654 dots, HOLDOUT-DTI 0.172325, enabling exact paired 20 km spatial-block bootstrap CI for E1 - H86F_EWCS)",
+    "R0_D28_visible_collar (rebuilt fold-fair on identical seed=20 split at 37,654 budget)",
+    "H86C-KSLB E3_kslb_noisyor_44k (same-split historical HOLDOUT-DTI 0.124063, 95% CI [0.107962, 0.140340], docs/evidence/lane86c_results.json)",
+    "GEMSDOE25 R0 fold-fair (HOLDOUT-DTI 0.096086, 95% CI [0.082973, 0.108857], docs/evidence/h86e_comparator.json)"
+  ],
+  "fail_closed_gates": [
+    "Single-feature leakage canary max(AUC, 1-AUC) <= 0.90 on every static (finite & median-imputed) and fold-visible feature before trusting holdout scores.",
+    "Pre-placement v2 SHA-bound surface registry check (scripts/check_h86e_registry.py --surface) BEFORE any full-catalogue dot placement: if rho_firings != 0 (worst Spearman > 0.90), halt immediately before placement and write no GeoTIFF.",
+    "PA-86-01/02 & AGENTS.md Rules 10-11: when pre-placement rho_firings == 0, emit 37,654 submodular kernel dots outside the 3 px catalogue collar, run v2 final-dot registry check + scripts/pa86_chance_overlap.py, verify zero non-space-filling informative discrete dot-field overlap firings > 0.70, serialize an audit-only format-valid GeoTIFF via shared vendor/gems57/submission_writer.py, and fail closed to verdict='negative' / decision='DO NOT SUBMIT' (zero weekly slots used) whenever any literal registry witness or off-grid inventory row prevents registry_complete_for_index / literal_gate_pass."
+  ]
+}
