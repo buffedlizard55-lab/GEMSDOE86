@@ -38,7 +38,7 @@ def measure(data_dir=None):
     from scripts.audit_release import verify_shared_pins
     if not all(verify_shared_pins(ROOT).values()):
         raise ValueError('Shared tool SHA drift; protocol measurement cannot proceed')
-    data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data'
+    data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data' / 'bridge'
     pin = json.loads((ROOT / 'research/registry_witness_pin.json').read_text())
     inventory = ROOT / 'research/upstream/registry_inventory.json'
     verify_file(inventory, pin['registry_sha256'])

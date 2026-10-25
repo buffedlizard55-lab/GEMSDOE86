@@ -103,7 +103,7 @@ def main(argv):
     if not all(verify_shared_pins(ROOT).values()):
         raise ValueError("Shared tool SHA drift")
     report = json.loads(Path(argv[0]).read_text())
-    g = grid.load_grid(ROOT / "data")
+    g = grid.load_grid(ROOT / "data" / "bridge")
     fp = g.footprint
     allowed = fp & ~g.catalogue
     index, missing = build_index()

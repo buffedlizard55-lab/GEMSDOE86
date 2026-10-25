@@ -189,11 +189,20 @@
    0.5414033037658682
   ]
  },
- "verdict": "promote",
- "safe_to_submit": true,
- "approved_for_weekly_slot": false,
- "submission_slots_used": 0,
- "selector_note": "Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
+"verdict": "negative",
+"decision": "DO NOT SUBMIT — no HOLDOUT-DTI measured (tomography DTIs are projections fitted to owner-reported live scores; protocol rule 3 forbids writing projections as scores), no organizer receipt exists, and no weekly slot was used. safe_to_submit and approved_for_weekly_slot remain false until an organizer receipt is logged in ledger/submissions.csv.",
+"submission_ready": false,
+"safe_to_submit": false,
+"approved_for_weekly_slot": false,
+"submission_slots_used": 0,
+"organizer_confirmed": false,
+"duplicate": null,
+"selector_note": "Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
+"superseded_claims": {
+  "verdict": "promote",
+  "safe_to_submit": true,
+  "note": "Superseded by the 2026-10-25 standing protocol state: no organizer receipt, no HOLDOUT-DTI, and safe_to_submit=false for every lane until an organizer receipt exists. Measured tomography/SGMC/registry values above are unchanged."
+},
  "full_registry_uniqueness": {
   "registry_files": 655,
   "measured": 655,

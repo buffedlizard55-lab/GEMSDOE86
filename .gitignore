@@ -14,6 +14,7 @@ data/raw/
 # Small protocol-audit mirrors and historical witness (not releases)
 /data/*.tif
 /data/registry/
+/data/bridge/registry/
 /data/restoration_backup/
 
 /data/external/

@@ -1577,3 +1577,37 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 ## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-96FC6D48-PREFLIGHT-LAYOUT — 2026-10-25
+
+`scripts/protocol_preflight.measure()` defaulted `data_dir` to `ROOT/"data"` and
+`scripts/audit_release.measure_all_registry()` called `grid.load_grid(root/"data")` with the
+witness record at `root/"data"/pin["dest"]`, but the SHA-pinned grid (`sample_submission.tif`,
+`existing_faults.tif`) is committed under `data/bridge/` (see `vendor/gems57/grid.py` DATA_DIR
+and `tests/conftest.py` BRIDGE). `audit_release.py --measure-registry` therefore crashed with
+FileNotFoundError in this checkout before any measurement. Fixed once in `scripts/`
+(`protocol_preflight.py`, `audit_release.py`, and the same stale layout in the operative PA-86
+checkers `check_h86e_registry.py` / `pa86_chance_overlap.py`); the vendored template was not
+modified. The pinned witness was restored from the pinned 17GEMSDOE blob
+`374c88b1da2b803e2ed160de467fd71ae114010d` into gitignored `data/bridge/registry/`
+(SHA-256 `ab0a0a62...`, 25,065,181 bytes — matches `research/registry_witness_pin.json`).
+Thresholds, evaluator, and witness identity are unchanged. `tests/test_h86i_rlms.py` probed the
+old `data/` layout to select the expected error class; updated to probe the real pinned paths.
+
+## IR-86-96FC6D48-H86MLT-REGISTRATION — 2026-10-25
+
+PR #165 published `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`
+(SHA-256 `4067382c...`) under `docs/downloads/` without registering it in
+`docs/evidence/download-inventory.json` or `registry/artifact_cards.json`, breaking
+`audit_release.py` ("Unregistered or missing published TIFF") and therefore `build_site.py`.
+Its run card and hand-made page `docs/h86m-lt.html` also claimed `verdict=promote` /
+`safe_to_submit=true` / "OK TO SUBMIT? YES" despite no HOLDOUT-DTI (tomography expected-DTI
+values are projections fitted to owner-reported live scores) and no organizer receipt,
+violating the publication guard (`check_site.py`) and AGENTS.md rule 14. Remediation: the
+artifact was independently re-verified from disk bytes (SHA/ZIP byte-identity, CRS/shape/
+transform, values exactly {0,1}, 0 NaN/Inf, 37,654 positives) and registered audit-only with
+`status=DO NOT SUBMIT`, `approved_for_weekly_slot=false`; the card's invalid authorization
+fields were set false with the original claims preserved in `superseded_claims` (measured
+values unchanged); the lane page and README head were rewritten DO NOT SUBMIT aligned. All 36
+registered artifacts re-measured; no submission slot used. See
+`research/SESSION_20261025_96FC6D48_REVIEW.md`.
