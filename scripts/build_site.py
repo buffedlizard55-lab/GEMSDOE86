@@ -389,7 +389,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
-<span class="badge bad">NO FILE IS CLEARED TO SUBMIT · DO NOT SUBMIT ANY DOWNLOAD</span>
+<span class="badge bad">NO FILE AUTHORIZED · NO FILE IS CLEARED TO SUBMIT · DO NOT SUBMIT ANY DOWNLOAD</span>
 <h1>No submission is authorized.<br><span class="subtle">All TIFFs are audit-only until every current gate passes.</span></h1>
 <p class="lede">The current project policy binds the literal registry-overlap stop. The pinned historical witness has positive support on every allowed cell, so every non-empty candidate necessarily fails that rule. A format-valid file or historical promote verdict is not upload authorization.</p>
 <div class="actions"><a class="btn" href="#downloads">Open audit-only TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; required gates →</a></div>
