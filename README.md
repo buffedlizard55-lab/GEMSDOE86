@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**One-command three-pass verification:** after installing `requirements-lock.txt` in `.venv`, run `.venv/bin/python scripts/review_repository.py`. It checks releases, tests, evidence, site and downloads, recording `.cache/repository-review.json`; a software PASS never authorizes an upload. [Latest implementation review, ranked hypotheses, blockers and next steps](research/SESSION_1D3F3532_REVIEW.md). **No new TIFF generated; DO NOT SUBMIT.** The full standing request remains in [PROMPT.md](PROMPT.md) and [the current request archive](research/REQUEST_20261025.md); read them before starting work.
+
 **Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
 
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
