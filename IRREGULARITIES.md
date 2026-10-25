@@ -1176,10 +1176,49 @@ session (linked cards are validated per-artifact in `audit_artifact`, including
 the new `h86g_edti` promote branch). No historical verdict changed: all
 previously linked cards are negative under both readings.
 
-## IR-86-H86G-FEED-20261025 — GEMSDOE89/90 owner scores not yet in the ledger/feed
+## IR-86-H86G-FEED-20261025 — GEMSDOE89/90 owner scores not yet in the ledger/feed (RESOLVED)
 
 This session's prompt supplies OWNER-REPORTED scores for GEMSDOE89 (0.0301)
-and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
-`research/REQUEST_20261025.md` but not yet folded into
-`registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
-pair); a fleet-refresh session should ledger them and regenerate the feed.
+and GEMSDOE90 (0.0749), previously prompt-named unscored. Resolved in PR #109
+and verified in `0bec8252`: both scores are now transcribed as `OWNER-REPORTED`
+in `registry/prior_scores.csv`, `ledger/submissions.csv` (`CLAIM`), and
+hash-bound `docs/evidence/fleet-feed.json`.
+
+## IR-86-H86G-LOCAL-ONLY-DUP-20261025 — PR #107 H86G-EDTI promoted on 43 local files; full 692-raster registry audit found 25 informative firings (REVOKED)
+
+PR #107 marked `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif`
+(`ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`) as
+`verdict: "promote"` (`ONE SELECTOR-READY FILE`) using a custom local-only loop
+(`scripts/run_h86g_edti.py::check_uniqueness`) over 43 local files (`max = 0.6850`)
+and left `scripts/run_h86g_edti.py::main` outside `protocol_preflight.require_feasible()`
+enforcement. Restoring all 655 external Git blobs and running the full 692-entry
+audit (`docs/evidence/h86g-edti-full-registry-audit-20261025.json`, 689 compatible
+rasters excluding self) revealed **44 dot-field forward-3px overlap firings (> 0.70)**
+and **25 informative (`halo_coverage <= 0.70`) dot-field firings**, including sparse
+`GEMSDOE46:r11f` (`0.7602` at 44,090 dots), `GEMSDOE41:h42` (`0.7399` at 40,000 dots),
+`GEMSDOE46:r12` (`0.7224` at 37,654 dots), and `GEMSDOE50:h57` (`0.9452` at 80,000 dots).
+Revoked to `verdict: "negative"` (`DO NOT SUBMIT`, 0 selector-ready files) across
+`h86g-edti-run-card.json`, writer receipt, `download-inventory.json`,
+`audit_release.py`, `check_site.py`, `build_site.py`, and `AGENTS.md` Rule 12;
+`scripts/run_h86g_edti.py::main` now calls `protocol_preflight.require_feasible()`.
+
+## IR-86-RESTORE-RATE-LIMIT-20261025 — `restore_registry_inventory.py` exhausted GitHub REST quota on 655 per-blob calls (RESOLVED)
+
+Fetching 655 registry blobs individually via `gh api repos/<owner>/<repo>/git/blobs/<sha>`
+exhausted `api.github.com`'s 5,000-req/hr REST quota during multi-session runs.
+Upgraded `scripts/restore_registry_inventory.py` to fall back automatically to
+zero-REST-quota `codeload.github.com` tarballs + shallow `git clone --filter=blob:none`
++ `git cat-file blob`, verifying exact byte length and SHA-256 before atomic
+`.partial -> .tif` placement.
+
+## IR-86-CSGD-LITERAL-STOP-20261025 — H86J-CSGD achieves 0 / 636 informative dot-field firings on full registry, stays fail-closed negative
+
+`H86J-CSGD` (`gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif`,
+SHA-256 `079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f`) passed
+all 28 leakage canaries (`max AUC = 0.7742 <= 0.90`), surface Spearman (`0.5050 <= 0.90`),
+and achieved **0 / 636 informative (`halo_coverage <= 0.70`) dot-field firings**
+across the full 690-raster restored registry (`E2` unweighted ablation `HOLDOUT-DTI = 0.1577`,
+`E1` SAR-debiased `HOLDOUT-DTI = 0.0613`). Because `E1` trails `H86C-KSLB` (`0.1241`) on
+surface-mapped holdout and literal `17GEMSDOE` (`1.0000`), 12 space-filling lattices,
+1 dense 1.83M-px continuous halo (`7GEMSDOE`, `0.7298`), and 2 off-grid historical rows
+fail closed, `H86J-CSGD` is recorded as `verdict: "negative"` (`DO NOT SUBMIT`, 0 slots used).

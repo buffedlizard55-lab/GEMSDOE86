@@ -129,7 +129,7 @@
       "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
     },
     {
-      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (REVOKED -> DO NOT SUBMIT after full-registry audit: 25 informative firings, 2026-10-25)",
       "card": "docs/evidence/h86g-edti-run-card.json",
       "context": "docs/evidence/h86g-edti-run-card.json",
       "holdout_kind": "h86g_edti",
@@ -141,6 +141,13 @@
       "context": "docs/evidence/h86i-rksc-run-card.json",
       "holdout_kind": "h86i_rksc",
       "stem": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros"
+    },
+    {
+      "lane": "H86J-CSGD SAR geomorphically de-biased cross-spectral admittance + GDR-1391 geothermal conduit PU (0/636 informative dot-field firings, E1 0.0613 / E2 0.1577, fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-csgd-run-card.json",
+      "context": "docs/evidence/h86j-csgd-run-card.json",
+      "holdout_kind": "h86j_csgd",
+      "stem": "gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros"
     }
   ]
 }

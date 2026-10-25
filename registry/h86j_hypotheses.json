@@ -1,0 +1,115 @@
+{
+  "schema": "gems86.hypothesis-queue.v2",
+  "created_date_utc": "2026-10-25",
+  "session_branch": "arena/0bec8252-gemsdoe86",
+  "selected_lane": "H86J-CSGD",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "protocol_budget": {
+    "single_lane": "H86J-CSGD",
+    "max_experiments": 3,
+    "max_wall_clock_hours": 2.0,
+    "weekly_submission_slots_used": 0,
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "registry_spearman_rho_limit": 0.90,
+    "registry_dot_3px_overlap_limit": 0.70
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86J-1_CSGD",
+      "lane_code": "H86J-CSGD",
+      "selected_for_validation": true,
+      "name": "Selected-At-Random (SAR) Geomorphically De-Biased Cross-Spectral Potential-Field Admittance & Geothermal Upflow Conduit PU (CSGD)",
+      "layers": [
+        {"source": "data/bridge/training_features.tif", "band": 2, "name": "rtp"},
+        {"source": "data/bridge/training_features.tif", "band": 3, "name": "tmi_hg"},
+        {"source": "data/bridge/training_features.tif", "band": 4, "name": "geod_2ndinv"},
+        {"source": "data/bridge/training_features.tif", "band": 6, "name": "tc"},
+        {"source": "data/bridge/training_features.tif", "band": 7, "name": "geod_shearrate"},
+        {"source": "data/bridge/training_features.tif", "band": 8, "name": "geod_dilaterate"},
+        {"source": "data/bridge/training_features.tif", "band": 9, "name": "tmi_vg"},
+        {"source": "data/bridge/training_features.tif", "band": 10, "name": "deq_n100a15"},
+        {"source": "data/bridge/training_features.tif", "band": 11, "name": "iso_grav_anom_vg"},
+        {"source": "data/bridge/training_features.tif", "band": 12, "name": "det_elev"},
+        {"source": "data/bridge/training_features.tif", "band": 13, "name": "iso_grav_anom"},
+        {"source": "data/bridge/training_features.tif", "band": 15, "name": "depth_to_base_surf"},
+        {"source": "data/bridge/training_features.tif", "band": 16, "name": "ieq_n100a15"},
+        {"source": "data/bridge/training_features.tif", "band": 17, "name": "cond_surf"},
+        {"source": "data/bridge/training_features.tif", "band": 18, "name": "iso_grav_anom_hg"},
+        {"source": "data/bridge/training_features.tif", "band": 19, "name": "det_elev_slope"},
+        {"source": ".cache/external/geodawn_rad_u8.tif", "bands": ["K", "Th", "U", "TC"], "doi": "10.5066/P93LGLVQ"},
+        {"source": ".cache/external/geodawn_extensions_u8.tif", "bands": ["ThK", "UK", "UTh", "TMI_up150"], "doi": "10.5066/P93LGLVQ"},
+        {"source": ".cache/external/gdr_wellspring_in_footprint.csv", "columns_used": ["row", "col", "temp_c", "geothermquartz_c", "geothermchalc_c", "geothermcat_c"], "forbidden_columns": ["dist_known_fault_px"], "doi": "10.15121/1881483"},
+        {"source": ".cache/external/gdr_volcanic_vents_in_footprint.csv", "role": "circular volcanic plug non-fault mimic veto", "doi": "10.15121/1881483"},
+        {"source": ".cache/external/topo_10m_derived_100m_u8.tif", "bands": ["dem_mean"], "role": "Pleistocene Lake Lahontan <=1338 m shoreline censoring propensity"}
+      ],
+      "physical_signature": "Combines (1) multi-scale band-limited cross-spectral gravity-magnetic admittance residuals |grad(Delta g_iso - H_GM * Delta RTP)| and hydrothermal magnetite-destruction troughs (curl-vetoed Laplace g_zz zero-crossing step where 150 m upward-continued TMI_up150 gradient is attenuated), (2) active convective geothermal upflow plumes from INGENIOUS GDR-1391 measured well/spring temperatures (temp_c > 25 C) and silica/cation reservoir geothermometers (geothermquartz_c, geothermchalc_c, geothermcat_c > 90 C) coupled with GeoDAWN K/Th & U/Th metasomatism steps, smectite conductance (B17), and transtensional strain/microseismicity (B4, B7, B8, B10, B16), and (3) Bekker-Davis Selected-At-Random (SAR) geomorphic censoring odds ((1 - e_hat(X_vis)) / (e_hat(X_vis) + tau))^gamma that divide out steep range-front scarp exposure propensity before 300 m expected-kernel-credit Poisson-disc dot placement.",
+      "catalogue_missing_rationale": "Roughly 75% of Great Basin hydrothermal systems are blind (Faulds et al., 2015, 2021): Holocene alluvial-fan aggradation, pediment sheetwash, and Lake Lahontan (<=1338 m) lacustrine reworking bury surface fault scarps (low exposure propensity e_hat(X_vis)), whereas standard unweighted PU models (e.g., H86F-EWCS, H86C-KSLB) learn P(S=1|X) = P(Y=1|X)*e(X_vis) and crowd exposed bedrock range fronts (slope >= 6 deg, where mapped faults and 94.8% of GEMSDOE3's 3-px halo already sit). De-biasing by SAR censoring odds redirects emission onto buried piedmont, stepover, and intrabasin geothermal conduits whose basement density/admittance steps and thermal/argillic plumes survive surficial burial.",
+      "novelty_vs_repo_and_fleet": "First lane in GEMSDOE86 to (a) implement windowed multi-scale gravity-magnetic cross-spectral admittance residuals + upward-continued TMI_up150 depth-attenuation decoupling, (b) couple label-free GDR-1391 silica/cation geothermometer and measured thermal well/spring plumes with volcanic-vent vetoing, (c) factorize PU fault learning under Bekker-Davis SAR geomorphic censoring propensity e_hat(X_vis) so DEM/slope is excluded from the deep fault classifier P_deep, and (d) rank placement by exact 300 m triangular DTI expected kernel credit.",
+      "non_fault_mimic": "Unfaulted Mesozoic pluton-wallrock roof contacts, closed-basin evaporite playa brines with lateral thermal outflow plumes, and Quaternary volcanic vents/plugs (mitigated via curl-vetoed Laplace g_zz, volcanic-vent proximity veto, and transtensional strain/admittance gating).",
+      "expected_dti_gain_vs_cost_rank": 1,
+      "implementation_cost": "Medium (vectorized multi-scale Gaussian cross-spectral operators + nested cross-component HGB + SAR propensity calibration; ~4 min CPU total for 3 arms).",
+      "official_data_obtainability": "VERIFIED_ON_DISK_WITH_SHA256_PINS"
+    },
+    {
+      "rank": 2,
+      "id": "H86J-2_MGRD",
+      "lane_code": "H86J-MGRD",
+      "selected_for_validation": false,
+      "name": "Upward-Continued Magnetic Wavenumber Attenuation Ratio (RTP vs TMI_up150) & Euler Structural-Index Depth Staircase",
+      "layers": [
+        {"source": "data/bridge/training_features.tif", "band": 2, "name": "rtp"},
+        {"source": "data/bridge/training_features.tif", "band": 3, "name": "tmi_hg"},
+        {"source": "data/bridge/training_features.tif", "band": 9, "name": "tmi_vg"},
+        {"source": "data/bridge/training_features.tif", "band": 14, "name": "tmi"},
+        {"source": ".cache/external/geodawn_extensions_u8.tif", "bands": ["TMI_up150"], "doi": "10.5066/P93LGLVQ"}
+      ],
+      "physical_signature": "Closed-form vertical harmonic decay ratio k_z = (1 / 150 m) * ln(||grad TMI|| / ||grad TMI_up150||) combined with Thompson-Reid Euler deconvolution (structural index N=0.5 fault step) to isolate abrupt cross-strike jumps in magnetic basement depth beneath non-magnetic Cenozoic fill.",
+      "catalogue_missing_rationale": "Intrabasin synthetic and antithetic horst-bounding faults buried under 100-800 m of Quaternary playal/alluvial fill produce zero topographic relief but step the depth to Tertiary volcanic / Mesozoic crystalline magnetic basement.",
+      "novelty_vs_repo_and_fleet": "Uses true physical upward-continued TMI_up150 wavenumber attenuation rather than single-level Verduzco tilt (H86F-EWCS, H86H-PSTD) or multi-scale Gaussian smoothing.",
+      "non_fault_mimic": "Shallow basaltic talus aprons, paleochannel maghemite lag gravels, and reversely magnetized Miocene ash-flow cooling-unit margins.",
+      "expected_dti_gain_vs_cost_rank": 2,
+      "implementation_cost": "Low (pure closed-form potential-field harmonic decay; deferred to preserve strict single-lane / 3-experiment cap).",
+      "official_data_obtainability": "VERIFIED_ON_DISK_WITH_SHA256_PINS"
+    },
+    {
+      "rank": 3,
+      "id": "H86J-3_KNKX",
+      "lane_code": "H86J-KNKX",
+      "selected_for_validation": false,
+      "name": "10 m 3DEP Stream-Power Steepness (k_sn) Transient Knickzone Alignment & Sub-Pixel 1 m LiDAR Scarp Projection",
+      "layers": [
+        {"source": ".cache/external/dem10_chi_100m_i16.tif", "bands": ["ksn_max_m0.9", "step_max_x1000", "log10_area_m2_x1000", "zmean_m"]},
+        {"source": ".cache/external/lidar_scarp_features_u8.tif", "bands": ["step_max", "coh100", "strike", "valid"]},
+        {"source": "data/bridge/training_features.tif", "band": 15, "name": "depth_to_base_surf"},
+        {"source": ".cache/external/geodawn_extensions_u8.tif", "bands": ["ThK"]}
+      ],
+      "physical_signature": "Strike-aligned lateral bands of elevated normalized channel steepness k_sn (theta_ref = 0.45) across adjacent footwall-to-piedmont catchments projected down-drainage onto the basement-hinge inflection (grad B15), corroborated where 1 m LiDAR valid==1 by sub-pixel scarp coherence.",
+      "catalogue_missing_rationale": "Active normal slip on range-front/piedmont faults generates upstream-migrating fluvial knickzones that persist for 10^5-10^6 yr even when rapid fan-head debris-flow deposition erases the surface scarp at the canyon mouth.",
+      "novelty_vs_repo_and_fleet": "First explicit fluvial stream-power chi/k_sn transient knickzone projection hypothesis in GEMSDOE86; prior lanes used local 100 m DEM curvature/slope rather than drainage-area-normalized fluvial steepness.",
+      "non_fault_mimic": "Resistant Paleozoic quartzite or welded silicic ignimbrite lithologic ledges (partially separable via GeoDAWN Th/K contrast) and heterogeneous 3DEP 1 m LiDAR tile boundaries.",
+      "expected_dti_gain_vs_cost_rank": 3,
+      "implementation_cost": "Medium (cross-catchment strike-projection + LiDAR coverage normalization; deferred to preserve single-lane cap).",
+      "official_data_obtainability": "VERIFIED_ON_DISK_WITH_SHA256_PINS"
+    },
+    {
+      "rank": 4,
+      "id": "H86J-4_MT3D",
+      "lane_code": "H86J-MT3D",
+      "selected_for_validation": false,
+      "name": "EarthScope USArray 3D Crustal Magnetotelluric Phase-Tensor Skew (beta > 3 deg) & Subvertical Brittle-Ductile Conductor Ramps",
+      "layers": [
+        {"source": "External IRIS/EarthScope EMTF SPUD Great Basin 3D MT Impedance Tensor Models (Bedrosian et al. / Wannamaker et al.; http://ds.iris.edu/spud/emtf)", "bands": ["phase_tensor_skew_beta", "resistivity_3km_to_15km"]},
+        {"source": "data/bridge/training_features.tif", "band": 17, "name": "cond_surf"},
+        {"source": "data/bridge/training_features.tif", "band": 8, "name": "geod_dilaterate"}
+      ],
+      "physical_signature": "Co-location of 3D magnetotelluric phase-tensor skew |beta| > 3 deg and subvertical mid-crustal low-resistivity ramps (3-15 km depth, 3-20 ohm-m) rooting directly beneath shallow smectite clay-cap conductance (Band 17) in dilational stepovers.",
+      "catalogue_missing_rationale": "Resolves the #1 false-positive mimic in blind Basin-and-Range geothermal exploration by distinguishing flat-lying closed-basin evaporite playas (zero deep MT phase-tensor skew) from deep fault-hosted hydrothermal upflow plumes.",
+      "novelty_vs_repo_and_fleet": "Introduces depth-resolved 3D crustal MT impedance phase tensors rather than the single surficial conductance grid (Band 17).",
+      "non_fault_mimic": "Pre-Cenozoic graphitic/sulfidic Roberts Mountains allochthon thrust black shales.",
+      "expected_dti_gain_vs_cost_rank": 4,
+      "implementation_cost": "High (3D MT tensor interpolation & galvanic distortion removal).",
+      "official_data_obtainability": "NOT_VIABLE_IN_SANDBOX_YET: Official free public archive is EarthScope/IRIS SPUD EMTF (http://ds.iris.edu/spud/emtf) and USGS ScienceBase MT releases, which are outside the sandbox outbound host allowlist (github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org) and have no cached bytes in .cache/external/."
+    }
+  ]
+}

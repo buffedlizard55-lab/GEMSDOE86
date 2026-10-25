@@ -14,10 +14,12 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    # 2026-10-25: H86G-EDTI was revoked after full 692-raster registry restoration
+    # found 25 informative dot-field firings; H86J-CSGD is also fail-closed negative.
+    assert "0 SELECTOR-READY FILES" in html
+    assert "IS ANY FILE OK TO SUBMIT? NO." in html
+    assert "REVOKED · DO NOT SUBMIT (IR-86-H86G-LOCAL-ONLY-DUP-20261025)" in html
+    assert "IS THIS FILE OK TO SUBMIT? YES" not in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 

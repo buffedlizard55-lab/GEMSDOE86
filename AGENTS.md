@@ -47,17 +47,20 @@
     Surface checks precede placement, final-dot checks precede serialization, and
     a PA diagnostic pass never overrides a failing literal submission gate.
 
-12. H86G-EDTI (2026-10-25) is the first `promote` lane: its single candidate
-    (`gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`, sha256
-    `ba8b731f...`) passed canary, SGMC-proxy paired-CI (selection only),
-    OOF catalogue-hide floor, like-for-like uniqueness vs 43 local registry
-    dot-fields, and the fail-closed format writer. Never rebrand its numbers:
-    SGMC-PROXY-DTI is not a score, the 55k budget came from disclosed post-hoc
-    Amendment A4, `safe_to_submit`/`approved_for_weekly_slot` stay false until
-    an organizer receipt is logged in `ledger/submissions.csv`. The catalogue-
-    hide whole-component instrument anti-correlates with owner-reported live
-    ordering (E1b table in `research/H86G_EDTI_REVIEW.md`); never select a
-    live candidate on it alone, and never compare an OOF arm number to a
-    shipped raster's as-is number. `audit_release.py` knows this lane via
-    `holdout_kind="h86g_edti"`; the literal full-support witness stop and all
-    thresholds are unchanged.
+12. H86G-EDTI (PR #107, 2026-10-25) is **REVOKED (`verdict = "negative"`, `DO NOT SUBMIT`)**
+    under `IR-86-H86G-LOCAL-ONLY-DUP-20261025`: PR #107 promoted
+    `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` (`ba8b731f...`)
+    after checking only 43 local files (`max = 0.6850`), but restoring all 655
+    external Git blobs (`docs/evidence/h86g-edti-full-registry-audit-20261025.json`)
+    proved **44 dot-field overlap firings (> 0.70) and 25 informative
+    (`halo_coverage <= 0.70`) firings** (`GEMSDOE46:r11f` `0.7602` at 44,090 dots,
+    `GEMSDOE41:h42` `0.7399` at 40,000 dots, `GEMSDOE46:r12` `0.7224` at 37,654 dots).
+    Never claim uniqueness clearance on a local-only subset without restoring
+    `data/registry_ext/` via `scripts/restore_registry_inventory.py` (which now
+    includes zero-REST-quota `codeload.github.com` + git-pack fallback).
+    H86J-CSGD (`gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros`,
+    `079914e3...`) is the first candidate in repo history to achieve **0 / 636
+    informative dot-field firings** on the full 690-raster restored scan (`E2`
+    ablation `HOLDOUT-DTI = 0.1577`; `E1` SAR-debiased `0.0613`), and stays
+    explicitly `negative` (`DO NOT SUBMIT`, 0 slots used) under fail-closed
+    gates. All 21 published research TIFFs are `DO NOT SUBMIT`.
