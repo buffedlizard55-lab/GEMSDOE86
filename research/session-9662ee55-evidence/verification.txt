@@ -1,0 +1,39 @@
+Session 9662ee55 — 2026-10-25 UTC
+Software/integrity verification only; not scientific or organizer scores.
+
+Pass 1 baseline (started before adding new regression tests):
+.venv/bin/python -m pytest -q
+839 passed, 24 skipped, 42 warnings, 41 subtests passed in 231.09s
+
+Pass 2 focused adversarial regression:
+.venv/bin/python -m pytest -q tests/test_download.py
+9 passed, 22 subtests passed in 2.24s
+
+Pass 3 final full regression (process final-regression-suite-f6cacc41, exit 0):
+.venv/bin/python -m pytest -q
+844 passed, 24 skipped, 42 warnings, 54 subtests passed in 242.81s
+Warnings: third-party rasterio PendingDeprecationWarning about affine multiplication.
+Skips are not scientific passes.
+
+Final checks, all exit 0:
+.venv/bin/python scripts/audit_release.py
+  audit_ok=true; artifact_count=21; locally_valid_artifacts=21;
+  decision=DO NOT SUBMIT; experiments_run=0; submission_slots_used=0
+.venv/bin/python scripts/build_site.py --check
+.venv/bin/python scripts/check_site.py
+.venv/bin/python scripts/audit_downloads.py
+.venv/bin/python scripts/build_review_card.py --check
+.venv/bin/python scripts/validate_download.py
+.venv/bin/python -m compileall -q scripts tests
+git diff --check
+
+Also run successfully:
+.venv/bin/python scripts/audit.py
+.venv/bin/python scripts/restore_protocol_data.py --include-registry
+scripts.protocol_preflight.measure() (read-only session receipt)
+scripts.review_sources.run() (two pinned GitHub documents, session receipt)
+
+Initial environment had no pytest; system pip correctly refused unmanaged install.
+Created ignored .venv and installed requirements-lock.txt; no dependency pin edits.
+No TIFF/ZIP/generated HTML/model-card/shared-template bytes were changed.
+No new model candidate, HOLDOUT-DTI experiment or competition submission occurred.

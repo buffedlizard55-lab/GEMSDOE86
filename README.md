@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+Latest review ([session 9662ee55](research/SESSION_9662EE55_REVIEW.md)): hardened the independent download validator against untrusted paths/JSON and shared-tool drift; rechecked the pinned registry witness and H33 source documents. **DO NOT SUBMIT; no new TIFF or weekly slot.** [Negative run card](research/session-9662ee55-run-card.json). The complete owner request remains embedded below and in [the current request archive](research/REQUEST_20261025.md); read it at every session start.
+
 **Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
 
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
