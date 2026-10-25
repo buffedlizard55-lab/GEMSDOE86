@@ -1,0 +1,185 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane_id": "H86N-GSST",
+  "generated_utc": "2026-10-25T18:40:05.501322+00:00",
+  "hypothesis": "An extended buried basement fault step maintains one-sided cross-strike horizontal gravity gradient flanks and low radial unit-normal divergence (Bands 13, 5, 11, 18), whereas compact 3-D intrusive plugs and symmetric dike bumps reverse flank gradient sign or exhibit high radial curvature.",
+  "mechanism": "Multi-scale (sigma=3,6 px) flank-gradient sign persistence x potential step drop x along-strike coherence x (1 - 0.5*compact radial divergence) on verified signed gravity gradient vector (+Band 18 east, +Band 11 south); greedy 2.8px Poisson-disc emission, 37,654 dots, >3px off catalogue (visible-only collar in holdout folds).",
+  "named_non_fault_mimic": "Elongated lithologic or intrusive contacts and basin-margin alluvial-fan density boundaries producing a one-sided density step without brittle fault offset.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03103559883835457,
+      "ci95": [
+        0.0210350089444311,
+        0.04232526053933202
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 497.26774391009576,
+      "fpw": 34331.20994663794,
+      "fnw": 10823.732256089901
+    },
+    "controls": {
+      "E0_raw_grav_slope": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03493597030913026,
+        "ci95": [
+          0.023812563685372087,
+          0.047313472996400874
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 556.4589416196981,
+        "fpw": 33799.370251026434,
+        "fnw": 10764.5410583803
+      },
+      "E2_compact_curv": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04073370098826312,
+        "ci95": [
+          0.03047753545651433,
+          0.052910206695577916
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 662.4428807548821,
+        "fpw": 35367.41575263521,
+        "fnw": 10658.55711924512
+      }
+    },
+    "paired_differences_vs_candidate": {
+      "E0_raw_grav_slope": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.003900371470775689,
+        "ci95": [
+          -0.007821010882182337,
+          -7.903301816795735e-05
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "E2_compact_curv": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.009698102149908551,
+        "ci95": [
+          -0.022859262156928507,
+          0.003327424576738897
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    }
+  },
+  "leakage_canary": {
+    "single_feature_auc": {
+      "gsst_s3": 0.5169,
+      "gsst_s6": 0.5074,
+      "ctrl_raw_grav_slope": 0.5233,
+      "ctrl_compact_curv": 0.5213
+    },
+    "gate_le_0.90": true
+  },
+  "correlation_overlap_vs_registry": {
+    "max_surface_spearman_abs": 0.07450346509584531,
+    "worst_surface": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+    "max_dot_spearman_abs": 0.05617848566138211,
+    "worst_dot": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+    "max_overlap3": 0.5856482711000159,
+    "worst_overlap": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "n_registry_measured": 61,
+    "method": "surface Spearman on shared 300k footprint sample vs every raster; dot phi (=Spearman, binary); overlap=frac candidate dots <=3px of other dots, dot-fields only (support<=20% footprint, PA-86-01)"
+  },
+  "preflight_PA-86-01": {
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "literal_reading_blocked": true,
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    }
+  },
+  "gates": {
+    "paired_ci_low_gt_0_vs_E0": false,
+    "paired_ci_low_gt_0_vs_E2": false,
+    "beats_same_split_holdout_best_0.1599": false,
+    "canary_all_auc_le_0.90": true,
+    "surface_spearman_abs_le_0.90": true,
+    "dot_spearman_abs_le_0.90": true,
+    "overlap3_le_0.70": true,
+    "budget_exact": true,
+    "zero_dots_on_catalogue": true
+  },
+  "raster_sha256": "ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2",
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+    "bytes": 118958,
+    "sha256": "ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z",
+  "submission_note_le140": "H86N-GSST gravity step-vs-compact shape dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT",
+  "note_chars": 92,
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "dots": 37654,
+  "input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "runtime_s": 150.7
+}

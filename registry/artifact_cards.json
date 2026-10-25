@@ -246,6 +246,20 @@
       "context": "docs/evidence/h86m-damagering-run-card.json",
       "holdout_kind": "h86m_unvalidated",
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT leaderboard tomography + DTI-optimal emission (HOLDOUT-DTI not run; projection only; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
+      "context": "docs/evidence/h86m-lt-run-card.json",
+      "holdout_kind": "h86m_lt_unvalidated",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
+    },
+    {
+      "lane": "H86N-GSST gravity step vs compact-source shape test (HOLDOUT-DTI 0.0310 [0.0210,0.0423], 11321 withheld, beaten by raw-gravity-slope control; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86n-gsst-run-card.json",
+      "context": "docs/evidence/h86n-gsst-run-card.json",
+      "holdout_kind": "h86n_gsst",
+      "stem": "gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros"
     }
   ]
 }

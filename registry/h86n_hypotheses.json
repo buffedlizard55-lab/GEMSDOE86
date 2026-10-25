@@ -1,0 +1,89 @@
+{
+  "schema": "gems86.h86n-hypotheses.v1",
+  "created_date_utc": "2026-10-25",
+  "lane_assignment": "H86N-GSST",
+  "status": "PREREGISTERED_BEFORE_SCORING",
+  "scope_note": "Four candidate geological hypotheses not yet executed in this repository as of 2026-10-25 (after PR #157 executed BMR and CNT from the 2026-10-25 follow-up queue). Ranked by qualitative expected HOLDOUT-DTI improvement per implementation cost. Top candidate H86N-GSST is selected for spatially-blocked hide-and-recover validation within the 3-experiment budget.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86N-GSST",
+      "name": "Gravity step-versus-compact-source shape test",
+      "layers": [
+        {"band": 13, "name": "iso_grav_anom"},
+        {"band": 5, "name": "iso_grav_anom_slope"},
+        {"band": 11, "name": "iso_grav_anom_vg"},
+        {"band": 18, "name": "iso_grav_anom_hg"}
+      ],
+      "external_data_required": false,
+      "physical_signature": "Multi-scale (sigma in {3, 6} px = 300 m, 600 m) cross-strike step monotonicity and flank-gradient sign persistence versus compact-source radial curvature. Using the pixel-verified horizontal gravity gradient vector (gx = +Band 18 eastward, gy = -Band 11 northward, |grad_H g| = Band 5), project directional derivatives across the gradient crest at +/-d along the unit normal n = (gx, gy)/|grad_H g| and along strike s = (-gy, gx)/|grad_H g|. A buried basement fault step maintains one-sided (same-sign) directional gradient flanks and low radial unit-normal divergence |div(n)| along strike, whereas a compact 3-D intrusive plug or symmetric dike bump reverses flank gradient sign or exhibits high radial curvature.",
+      "catalogue_missing_rationale": "Concealed intrabasin and piedmont relay faults beneath Quaternary alluvial cover lack surface scarps (hence missed by LiDAR and photogeology in the USGS/INGENIOUS catalogue) and often have weaker raw gravity gradient magnitude than shallow volcanic plugs or plutonic stocks, but preserve an extended one-sided step profile.",
+      "novelty": "Rank 2 of registry/followup_hypotheses_20261025.json (the highest-ranked unexecuted native-band hypothesis remaining after PR #157 executed Rank 1 BMR and Rank 3 CNT). Existing lanes used raw/paired steps (H86E-SPBT), Laplace vertical curvature dipoles (H86F-GZZD), tensor invariants (H86H-PSTD), Hessian saddle-ridge topology (H86K-PSC), or slab regression (H86M-BMR); none implemented explicit cross-strike flank-monotonicity step-versus-compact source shape discrimination.",
+      "non_fault_mimic": "Elongated lithologic or intrusive contact or basin-margin alluvial-fan density boundary producing a one-sided density step without brittle fault offset.",
+      "expected_holdout_potential": "Medium; suppressing compact radial/bump anomalies should reduce false-positive dots on volcanic plugs and circular intrusives, though elongated lithologic contacts remain a confounder.",
+      "implementation_cost": "Low-to-medium; pure native bands (13, 5, 11, 18), zero label fitting, deterministic O(N) Gaussian derivative operators.",
+      "falsifier": "Paired 95% block-bootstrap HOLDOUT-DTI difference vs raw horizontal gravity gradient control (E0, Band 5) or compact-curvature control (E2) fails to exclude zero on the positive side.",
+      "status": "SELECTED_FOR_VALIDATION"
+    },
+    {
+      "rank": 2,
+      "id": "H86N-EQL",
+      "name": "Earthquake-lineation structure-tensor anisotropy corridor",
+      "layers": [
+        {"band": 10, "name": "deq_n100a15"},
+        {"band": 16, "name": "ieq_n100a15"},
+        {"band": 7, "name": "geod_shearrate"}
+      ],
+      "external_data_required": false,
+      "optional_external_verification_source": "USGS ANSS Comprehensive Earthquake Catalog (ComCat, https://earthquake.usgs.gov/fdsnws/event/1/, free public-domain API)",
+      "physical_signature": "Multi-scale 2-D structure-tensor coherence ((lambda_1 - lambda_2)/(lambda_1 + lambda_2) at sigma = 4, 8 px) of the joint seismicity fields (Bands 10 and 16) conditioned on geodetic shear strain rate (Band 7), isolating elongated microseismic lineations while suppressing radially isotropic swarm clusters.",
+      "catalogue_missing_rationale": "Active blind strike-slip and transtensional transfer faults in the Walker Lane and Humboldt structural zone accommodate slip on unmapped subsurface planes covered by young volcanics or playa sediments, manifesting as linear microseismic streaks.",
+      "novelty": "Prior lanes (FVMB, EWCS, CSGD, RLMS, TVHS, STDP) included Bands 10 and 16 only as raw point-wise features inside tree/logistic ensembles; no lane has computed the structure-tensor eigenvalue anisotropy of the seismicity bands to discriminate linear fault streaks from radial geothermal/volcanic swarms.",
+      "non_fault_mimic": "Artificially elongated hypocentral location smears caused by sparse seismic-network azimuthal gaps or quarry blast corridors.",
+      "expected_holdout_potential": "Low-to-medium; Band 10 and Band 16 have ~10-15 km kernel smoothing in the native stack, limiting 300 m positional precision without raw catalog re-gridding.",
+      "implementation_cost": "Low on native bands; medium if re-gridding raw USGS ComCat hypocenters.",
+      "falsifier": "Anisotropy-gated seismicity fails to beat raw seismicity-density or shear-rate controls on paired spatial-block HOLDOUT-DTI.",
+      "status": "RESERVE_NOT_RUN"
+    },
+    {
+      "rank": 3,
+      "id": "H86N-MTC",
+      "name": "Magnetic-thermal demagnetization trough bounded by conductance walls",
+      "layers": [
+        {"band": 2, "name": "rtp"},
+        {"band": 14, "name": "tmi"},
+        {"band": 17, "name": "cond_surf"},
+        {"band": 15, "name": "depth_to_base_surf"}
+      ],
+      "external_data_required": false,
+      "physical_signature": "Band-pass long-wavelength RTP demagnetization trough (Gaussian sigma=12 px minus sigma=30 px negative residual) flanked within +/-400 m by steep lateral surface conductance gradients (|grad(Band 17)|) at intermediate basement depth (Band 15).",
+      "catalogue_missing_rationale": "Hydrothermal fluid circulation along blind basin-interior fault conduits alters magnetite to non-magnetic pyrite/hematite/clays over a 0.5-1.5 km damage zone while depositing conductive smectite clays along the bounding fault walls, even where surface scarps are buried.",
+      "novelty": "H86I-RKSC and H86D-CTHB used positive high-frequency magnetic gradients/tilt; no lane has targeted negative band-pass RTP demagnetization troughs paired with flanking conductance walls.",
+      "non_fault_mimic": "Non-magnetic felsic intrusives, ash-flow tuff calderas, or saline playa margins.",
+      "expected_holdout_potential": "Low-to-medium; hydrothermal magnetite destruction occurs only along fluid-active segments, which represent a subset of the structural catalogue.",
+      "implementation_cost": "Medium; requires paired cross-strike wall offsets and polarity checks.",
+      "falsifier": "Demagnetization-wall score trails unsigned RTP gradient or conductance gradient controls on HOLDOUT-DTI.",
+      "status": "RESERVE_NOT_RUN"
+    },
+    {
+      "rank": 4,
+      "id": "H86N-DSR",
+      "name": "Geodetic dilatation-to-shear strain-mode partition gradient",
+      "layers": [
+        {"band": 4, "name": "geod_2ndinv"},
+        {"band": 7, "name": "geod_shearrate"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"band": 19, "name": "det_elev_slope"}
+      ],
+      "external_data_required": false,
+      "physical_signature": "Spatial gradient magnitude |grad M| of the dimensionless strain-mode partition index M = (Band 8 - |Band 7|) / (Band 4 + eps), gated by detrended topographic slope (Band 19) to localize transtensional-to-normal fault-tip horsetail transitions.",
+      "catalogue_missing_rationale": "Where strike-slip faults terminate into extensional horsetail splays or stepovers, strain partitions rapidly from shear to dilatation across distributed secondary faults that are individually under-mapped in regional compilations.",
+      "novelty": "GDSC used positive dilatation magnitude and H86M-CNT paired conductivity necks with dilatation; no lane has targeted the spatial gradient of the shear-vs-dilatation mode-partition ratio.",
+      "non_fault_mimic": "Long-wavelength GPS velocity interpolation cell edges in the geodetic strain grids.",
+      "expected_holdout_potential": "Low; geodetic strain bands (4, 7, 8) are smooth regional fields requiring topographic sharpening to achieve 300 m kernel credit.",
+      "implementation_cost": "Low.",
+      "falsifier": "Strain-mode partition gradient fails to improve HOLDOUT-DTI over Band 19 slope or GDSC controls.",
+      "status": "RESERVE_NOT_RUN"
+    }
+  ]
+}
