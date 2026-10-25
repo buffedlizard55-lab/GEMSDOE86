@@ -1,5 +1,7 @@
 # Three-pass repository review — 2026-10-25 — `arena/3d912985-gemsdoe86`
 
+> **Historical snapshot:** measured before integrating the newer `origin/main` tree (`d04d637`). At that time the release inventory contained 32 artifacts. The current README and machine reports supersede this snapshot with a 33-artifact inventory and later H86L-VFGR result; this report is retained for its scoped no-lane review and audit trail.
+
 ## Executive decision
 
 **DO NOT SUBMIT. No new TIFF was generated, no geological experiment was run, and no weekly slot was used.** The request's parallel-run rule says to follow one assigned method paragraph, but the archived request contains no such assignment. More importantly, the repository's unchanged literal-support interpretation of the registry gate has a verified counterexample that blocks every nonempty candidate: every allowed footprint cell is positive in one SHA-pinned historical **continuous probability surface**, so literal support overlap is `1.0`, above the `0.70` stop. This is not a measured dot-to-dot overlap against a discrete dot set; the continuous-vs-discrete interpretation is an unresolved protocol issue. Under the current mandatory literal rule, this single witness is sufficient for a negative; it is not a complete registry or uniqueness clearance. The actual shared-template feature cache is also absent. A candidate run or TIFF would violate the prescribed stop and could not be honestly described as validated.

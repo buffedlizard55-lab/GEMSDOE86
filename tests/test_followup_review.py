@@ -66,7 +66,14 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
 def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     card = load("docs/evidence/session-20261025-followup-run-card.json")
     preflight = load("docs/evidence/protocol-preflight.json")
-    registry = load("docs/evidence/all-artifacts-registry.json")
+    # A dated review binds its original bytes, not a later refreshed audit.
+    # Live timestamp/hash binding is separately tested in test_current_review.py.
+    import hashlib
+    source = card["registry_measurement_source"]
+    source_path = (ROOT / source["file"]).resolve()
+    assert source_path.is_relative_to((ROOT / "docs/evidence/session-followup-snapshot").resolve())
+    assert hashlib.sha256(source_path.read_bytes()).hexdigest() == source["sha256"]
+    registry = load(source["file"])
     assert card["hypothesis"].startswith("BMR:")
     assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["status"] == "NOT_RUN_NO_LANE_ASSIGNED_AND_PROTOCOL_STOP"
