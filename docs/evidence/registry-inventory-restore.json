@@ -2,10 +2,10 @@
   "schema": "gems86.registry-restore.v1",
   "inventory": "research/upstream/registry_inventory.json",
   "inventory_entries": 655,
-  "verified_entries": 781,
+  "verified_entries": 655,
   "errors": [],
-  "complete_accessible_scan": false,
+  "complete_accessible_scan": true,
   "organizer_authenticated": false,
   "comparison_only": true,
-  "bytes_verified": 798348105
+  "bytes_verified": 728345463
 }
