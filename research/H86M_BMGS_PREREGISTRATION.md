@@ -3,7 +3,7 @@
 - **Lane ID:** `H86M-BMGS`
 - **Frozen UTC:** `2026-10-25T17:25:00Z`
 - **Branch:** `arena/94cbed2d-gemsdoe86`
-- **Ranked Hypothesis Queue:** `registry/h86m_hypotheses.json` (`4` candidate hypotheses: `H86M-BMGS`, `H86M-BFLI`, `H86M-ORTF`, `H86M-OPERA`)
+- **Ranked Hypothesis Queue:** `registry/h86m_bmgs_hypotheses.json` (`4` candidate hypotheses: `H86M-BMGS`, `H86M-BFLI`, `H86M-ORTF`, `H86M-OPERA`)
 - **Machine-Readable Preregistration:** `research/H86M_BMGS_PREREGISTRATION.json`
 
 ## 1. Scientific Motivation & Empirical Diagnosis Across `GEMSDOE` through `GEMSDOE92`

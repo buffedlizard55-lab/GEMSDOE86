@@ -44,7 +44,7 @@ Before designing or running any new experiment, we completed all pending repairs
 
 ## 3. Preregistered `H86M` Candidate Hypotheses (Declared Before Implementation)
 
-Frozen prior to code execution in [`registry/h86m_hypotheses.json`](../registry/h86m_hypotheses.json) and [`research/H86M_BMGS_PREREGISTRATION.md`](../research/H86M_BMGS_PREREGISTRATION.md):
+Frozen prior to code execution in [`registry/h86m_bmgs_hypotheses.json`](../registry/h86m_bmgs_hypotheses.json) and [`research/H86M_BMGS_PREREGISTRATION.md`](../research/H86M_BMGS_PREREGISTRATION.md):
 
 | Rank | ID & Status | Specific Layers | Physical Signature & Transform | Why Missing from USGS/INGENIOUS Catalogue & Novelty vs Repo | Expected DTI Gain & Cost | Official Obtainability |
 |---:|---|---|---|---|---|---|
@@ -95,7 +95,7 @@ Frozen prior to code execution in [`registry/h86m_hypotheses.json`](../registry/
 ## 5. Explicit Three-Pass Verification Log
 
 ### Pass 1 — End-to-End Implementation & Pipeline Execution
-- Repaired `IR-H` (`H86L-FMC` inventory/card registration + `require_feasible()` guard), updated `registry/prior_scores.csv` + `ledger/submissions.csv` + `docs/evidence/fleet-feed.json` (`92/92` repos) for `REQUEST_20261025_REV2.md`, preregistered `registry/h86m_hypotheses.json` & `research/H86M_BMGS_PREREGISTRATION.{json,md}`, implemented `src/gems86_bmgs/{features,model}.py` + `scripts/run_h86m_bmgs.py` + `tests/test_h86m_bmgs.py`, executed `run_pa86_lane()` end-to-end across all `655` restored external registry blobs, and generated + machine-validated `gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.{tif,zip,json}` and `docs/evidence/h86m-bmgs-run-card.json`.
+- Repaired `IR-H` (`H86L-FMC` inventory/card registration + `require_feasible()` guard), updated `registry/prior_scores.csv` + `ledger/submissions.csv` + `docs/evidence/fleet-feed.json` (`92/92` repos) for `REQUEST_20261025_REV2.md`, preregistered `registry/h86m_bmgs_hypotheses.json` & `research/H86M_BMGS_PREREGISTRATION.{json,md}`, implemented `src/gems86_bmgs/{features,model}.py` + `scripts/run_h86m_bmgs.py` + `tests/test_h86m_bmgs.py`, executed `run_pa86_lane()` end-to-end across all `655` restored external registry blobs, and generated + machine-validated `gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.{tif,zip,json}` and `docs/evidence/h86m-bmgs-run-card.json`.
 
 ### Pass 2 — Self-Audit, Bug Fixes, & Edge-Case Hardening
 During implementation and testing we caught and fixed **five concrete bugs/edge cases** before finalizing artifacts:

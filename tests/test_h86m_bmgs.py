@@ -30,7 +30,7 @@ from gems86_bmgs import (
 
 
 def test_h86m_hypothesis_queue_and_preregistration_contract():
-    q_doc = json.loads((ROOT / "registry/h86m_hypotheses.json").read_text(encoding="utf-8"))
+    q_doc = json.loads((ROOT / "registry/h86m_bmgs_hypotheses.json").read_text(encoding="utf-8"))
     assert q_doc["schema"] == "gems86.hypothesis_queue.v1"
     hyps = q_doc["hypotheses"]
     assert 3 <= len(hyps) <= 5

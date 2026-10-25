@@ -1578,6 +1578,34 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
 
+## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (found independently; repair superseded at merge by PR #166)
+
+On this branch's starting commit (`3deca67`), H86M-LT violated the repo's own publication
+guard in four measured ways: (1) its TIFF/ZIP were absent from
+`docs/evidence/download-inventory.json` and `registry/artifact_cards.json` (the gap already
+flagged as IR-86-H86M-INVENTORY); (2) `docs/h86m-lt.html` carried the banned instruction
+"IS THIS FILE OK TO SUBMIT? YES"; (3) its run card set `safe_to_submit=true` with no
+`submission_ready`/`gates` fields; (4) README's headline said "OK TO SUBMIT" while the
+generated site said "NO FILE AUTHORIZED · DO NOT SUBMIT" — so `scripts/check_site.py`
+failed on main (exit 1, reproduced this session). Session `92f9e0e8` first repaired this locally (registration + run-card publication
+addendum preserving the PA-86 PROMOTE); in parallel, session `57139348` repaired the
+same failure on main (PR #166) by downgrading the card to a negative unvalidated
+archive (`h86m_lt_unvalidated`). At merge, main's already-accepted LT state was kept
+and this session's parallel LT branch/addendum was removed, leaving exactly one LT
+normalization path; only the H86N-EQL lane was layered on top (37 artifacts). No raster
+bytes or thresholds changed in either repair; no slot was authorized or used.
+
+## IR-86-92F9E0E8-PRIOR-SCORES — 2026-10-25 (open, data re-pin needed)
+
+The 2026-10-25 `92f9e0e8` request adds owner-reported claims for GEMSDOE91 (0.1367,
+0.1823) and GEMSDOE92 (0.0255), but `registry/prior_scores.csv` still carries
+"NO ARTIFACT OR SCORE SPECIFIED IN PROMPT" placeholder rows for those sites and its
+SHA-256 is pinned into the generated fleet feed (`owner_ledger_sha256`). The claims are
+archived verbatim in `research/REQUEST_20261025_92F9E0E8.md`; transcribing them into the
+CSV requires a deliberate feed re-pin/regeneration pass, deliberately not smuggled into
+this session's lane change. They remain unverified claims either way (no organizer
+receipts).
+
 ## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
 
 H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
@@ -1588,9 +1616,23 @@ uses Pearson, not Spearman, and reconstructs missing ignored cache source with e
 Post-placement gate amendments are exploratory, not independent validation.
 See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
 
+## IR-86M-02 (`arena/2ea5b025-gemsdoe86`, 2026-10-25) — Automated Parallel-Run Protocol Rule 1 stop caught `H86M-PFTE` Arm `E1` (`0.7041 > 0.70` vs `H86K-STDP`) prior to GeoTIFF serialization
+
+- **Observed during `scripts/run_h86m_pfte.py` Step [5/6].** Preregistered kinematic+blind Arm #1 `E1_pfte_comonotonic_dcelf` (`alpha_kin = 0.68`, `HOLDOUT-DTI = 0.1310 [0.1141, 0.1476]`, `Fold NE = 0.1436` vs `E3 = 0.1185`, `SGMC-PROXY-DTI = 0.1166`) passed continuous surface Spearman across all `702` indexed rasters (`worst_spearman = 0.5657 <= 0.90`, `0` firings) and `459 / 460` discrete `<=90k`-dot submissions, **except** `0.704069 > 0.70` 3-px dot overlap against `H86K-STDP` (`3ac7fa1d...`) driven by shared `compute_elastic_fields` fold-visible fracture lobes.
+- **Decision enforced.** `run_h86m_pfte.py` halted `E1` **before writing any GeoTIFF**, performed **zero hyperparameter retuning** (`3` total experiments), and emitted preregistered pure-blind Arm #2 `E2_pfte_blind_comonotonic_dcelf` (`6bfde507...`, `HOLDOUT-DTI = 0.0734 [0.0591, 0.0882]`, **all-time `37,654`-dot repository high `SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407]`**, `0 / 702` continuous surface Spearman firings with `max = 0.4795`, and **`0 / 464` discrete `<=90k`-dot overlap firings** with `max = 0.6244 <= 0.70`, including `0.0843–0.3682` vs concurrent `BMR`/`CNT`/`DAMAGERING`/`LT`). Verdict remains `negative` (`DO NOT SUBMIT`, `0` weekly slots spent).
+
+
+## IR-86-H86M-BMR-CNT-NODATA-SENTINEL-20261025 — 3,061 pixels inside `sample_submission.tif` footprint carry float32 sentinel `-3.4028235e+38` in `training_features.tif`
+
+Inspection of `training_features.tif` (`4371c82e...`) against `sample_submission.tif`'s valid footprint `fp` (`5,167,373` pixels) showed that **3,061 pixels inside `fp`** across bands 5, 7, 8, 11, 13, 15, 17, 18 carry the finite float32 sentinel `-3.4028234663852886e+38` (`<= NODATA * 0.5`). Implemented `clean_band(arr, fp)` in `src/gems86_gsst/features.py` for `H86N-GSST` so that all non-finite and `<= NODATA * 0.5` pixels inside and outside `fp` are replaced with the valid in-footprint mean before any spatial filtering.
+
+## IR-86-H86N-GSST-NEGATIVE-20261025 — `H86N-GSST` falsified on 4-fold hide-and-recover holdout (`0.0310` vs `E0 = 0.0349`, `E2 = 0.0407`)
+
+Executed the preregistered `H86N-GSST` lane (`scripts/run_h86n_gsst.py`, `src/gems86_gsst/features.py`). On `gems57-pooled-hide-v2` (`11,321` withheld positives, `1,000` physical-block draws), `H86N_GSST` achieved `HOLDOUT-DTI = 0.0310 [0.0210, 0.0423]`, trailing `E0_raw_grav_slope` (`0.0349 [0.0238, 0.0473]`, paired $\Delta = -0.0039\ [-0.0078, -0.0001]$) and `E2_compact_curv` (`0.0407 [0.0305, 0.0529]`, paired $\Delta = -0.0097\ [-0.0229, +0.0033]$). Recorded `verdict = "negative"`, `safe_to_submit = false`, `submission_ready = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0` in `docs/evidence/h86n-gsst-run-card.json`.
+
 ## IR-86M-BMGS-20261025 (session `94cbed2d`) — `GEMSDOE91`/`GEMSDOE92` (`REV2`) fleet forensics & log-odds strand-crush defect fixed
 
 Full evidence: [`research/SESSION_20261025_H86M_BMGS_REVIEW.md`](research/SESSION_20261025_H86M_BMGS_REVIEW.md) · [`docs/evidence/h86m-bmgs-run-card.json`](docs/evidence/h86m-bmgs-run-card.json).
 - **1. `GEMSDOE91` (`0.1823` `OWNER-REPORTED`) halo-crowding vs `GEMSDOE92` (`0.0255` `OWNER-REPORTED`) uniform pullback over-shift:** Forensic comparison across the newly supplied rev-2 fleet entries confirmed that in-sample PU models crowd `68.5%` of dots into `< 1 km` near-catalogue halos (vs `69.8%` `> 1 km` far-field in `GEMSDOE32` `H33`), while uniform `50°` up-dip pullback (`5–28 px`) shifts steep strike-slip (`80°–90°`) and horst contacts completely outside the `300 m` (`3 px`) DTI kernel.
-- **2. `IR-86M-STRAND-LOGODDS-20261025` (caught & fixed in Pass 2):** Averaging log-odds (`logit p`) along a `7×7` directional stencil acts as a geometric mean of odds that multiplicatively crushes curved 1-px fault crests whenever stencil endpoints touch desert background (`p ~ 0.0005`). Replaced in `src/gems86_bmgs/model.py` with additive probability-space 8-azimuth strand reinforcement (`>= 0.70 * p_bayes` floor regression-tested in `tests/test_h86m_bmgs.py`). Unified `H86M-BMGS` achieved `HOLDOUT-DTI = 0.1310 [0.1121, 0.1509]` (`6x` single-feature `H86M-BMR` `0.0220` and `3.2x` `H86M-CNT` `0.0408`) and `SGMC-PROXY-DTI = 0.1082` (`E2` blind `0.1111` at `70.21%` far-field `> 1 km`), with `0.0820–0.3632` 3-px overlap vs parallel `H86M` rasters; remains `verdict = "negative"` (`DO NOT SUBMIT`, `0` weekly slots used).
+- **2. `IR-86M-STRAND-LOGODDS-20261025` (caught & fixed in Pass 2):** Averaging log-odds (`logit p`) along a `7×7` directional stencil acts as a geometric mean of odds that multiplicatively crushes curved 1-px fault crests whenever stencil endpoints touch desert background (`p ~ 0.0005`). Replaced in `src/gems86_bmgs/model.py` with additive probability-space 8-azimuth strand reinforcement (`>= 0.70 * p_bayes` floor regression-tested in `tests/test_h86m_bmgs.py`). Unified `H86M-BMGS` achieved `HOLDOUT-DTI = 0.1310 [0.1121, 0.1509]` (`6x` single-feature `H86M-BMR` `0.0220`, `4.2x` `H86N-GSST` `0.0310`, `3.2x` `H86M-CNT` `0.0408`) and `SGMC-PROXY-DTI = 0.1082` (`E2` blind `0.1111` at `70.21%` far-field `> 1 km`), with `0.0820–0.4101` 3-px overlap vs all parallel `H86M`/`H86N` rasters (`0.6351` vs `H86K-STDP` — clearing the `0.70` stop that halted `H86M-PFTE` `E1`); remains `verdict = "negative"` (`DO NOT SUBMIT`, `0` weekly slots used).
 

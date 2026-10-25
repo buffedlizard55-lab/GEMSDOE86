@@ -365,8 +365,9 @@ for nm, d in alt.items():
 primary_material_win = beats[0][1] > LOO_E2E
 no_material_loss = all(b[1] > -MATERIALITY for b in beats)
 sgmc_ok = cand_sgmc['dti'] >= comps['h33']  # diagnostic only (Amendment A: SGMC-live Spearman -0.11 for live>0.15)
-verdict = 'promote' if (uniq_pass and primary_material_win and no_material_loss and auc_sgmc < 0.90) else 'negative'
-print(f"[verdict] {verdict} deltas={[(b[0], round(b[1],4)) for b in beats]} primary_win={primary_material_win} no_material_loss={no_material_loss} sgmc_diag>={sgmc_ok}", flush=True)
+verdict = 'negative'
+historical_lane_verdict = 'promote' if (uniq_pass and primary_material_win and no_material_loss and auc_sgmc < 0.90) else 'negative'
+print(f"[verdict] {verdict} (historical_lane_verdict={historical_lane_verdict}) deltas={[(b[0], round(b[1],4)) for b in beats]} primary_win={primary_material_win} no_material_loss={no_material_loss} sgmc_diag>={sgmc_ok}", flush=True)
 
 # ---------- write submission ----------
 stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
@@ -406,10 +407,20 @@ card = dict(
     submission_name=name, note=note, note_chars=len(note),
     dots=int(dots.sum()), greedy=greedy_info,
     verdict=verdict,
-    safe_to_submit=bool(verdict == 'promote'),
+    historical_lane_verdict=historical_lane_verdict,
+    submission_ready=False,
+    safe_to_submit=False,
     approved_for_weekly_slot=False,
     submission_slots_used=0,
-    selector_note="Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
+    holdout_dti=dict(
+        evidence_class="HOLDOUT-DTI",
+        evaluator_version="gems57-pooled-hide-v2",
+        status="NOT_RUN_FLEET_TOMOGRAPHY_PROJECTION_ONLY",
+        value=None,
+        ci95=None,
+        withheld_positives=None,
+    ),
+    selector_note="Demoted to negative (DO NOT SUBMIT): no spatially-blocked hide-and-recover HOLDOUT-DTI was run (tomography expected-DTI values are projections fit to 29 unverified owner-reported fleet scores whose rasters used the full catalogue), and literal full-support witness overlap is 1.0 > 0.70. 0 slots used.",
 )
 def clean(o):
     if isinstance(o, dict): return {k: clean(v) for k, v in o.items()}

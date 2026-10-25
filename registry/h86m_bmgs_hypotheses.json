@@ -1,0 +1,89 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86M",
+  "frozen_utc": "2026-10-25T17:24:00Z",
+  "git_branch": "arena/94cbed2d-gemsdoe86",
+  "protocol_compliance": {
+    "frozen_before_implementation": true,
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "leakage_canary_auc_limit": 0.90,
+    "surface_spearman_limit": 0.90,
+    "dot_overlap_3px_limit": 0.70,
+    "evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "writer": "vendor/template66/gems57/submission_writer.py"
+  },
+  "hypotheses": [
+    {
+      "id": "H86M-BMGS",
+      "rank": 1,
+      "status": "SELECTED_FOR_VALIDATION",
+      "name": "Out-of-Quadrant Spectral Basement Mass-Balance Gravity Residual (BMR) + 8-Azimuth Quadrature Odd-Step vs Even-Dike Asymmetry (GSST) + Transtensional Conductance-Neck Bridge (CNT) + Axial Strand Dinkelbach-CELF",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 3 (tmi_hg), 4 (geod_2ndinv), 5 (iso_grav_anom_slope), 6 (tc, verified GeoDAWN Total Count), 7 (geod_shearrate), 8 (geod_dilaterate), 9 (tmi_vg), 10 (deq_n100a15), 11 (iso_grav_anom_vg, verified +dg/drow_south), 13 (iso_grav_anom), 15 (depth_to_base_surf), 16 (ieq_n100a15), 17 (cond_surf), 18 (iso_grav_anom_hg, verified +dg/dx_east) — raw Bands 12/19 excluded from cover-blind specialist",
+        ".cache/external/geodawn_rad_u8.tif (Bands 1-4: K, Th, U, TC; SHA256 c22420f7...)",
+        ".cache/external/geodawn_extensions_u8.tif (Bands 1, 3, 4: ThK, UTh, TMI_up150; SHA256 a35a9c6d...)",
+        ".cache/external/acquisition_block_id_100m.tif (GeoDAWN survey-block seam veto; SHA256 2c0785c4...)",
+        ".cache/external/lidar_scarp_features_u8.tif (USGS 3DEP 1m LiDAR scarps, quantile-debiased on missing swaths via 10m DEM; SHA256 d580bb8b...)",
+        ".cache/external/topo_10m_derived_100m_u8.tif & dem10_chi_100m_i16.tif (USGS 3DEP 10m tectonic break & fluvial chi; SHA256 a6398d99..., 8897ba9c...)",
+        ".cache/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391 3,800 2-m probes; SHA256 1301f70d...)",
+        ".cache/external/paleo_geothermal_regional.zip (DOE GDR #1391 726 sinter/travertine/tufa vents; SHA256 faffcf69...)",
+        ".cache/external/gdr_wellspring_in_footprint.csv & gdr_volcanic_vents_in_footprint.csv (DOE GDR #1391 Fournier geothermometry & vents, dist_known_fault_px strictly excluded; SHA256 122718e6..., f91bafba...)"
+      ],
+      "physical_signature": "Out-of-quadrant (quad != q) 2-D FFT upward-continued Athy-compacted basin-fill mass-balance gravity regression removing Cenozoic sediment thickness (Band 15 at z=200 m, 800 m plus compaction Z_b^2/(Z_b+1200 m)) from isostatic gravity (Band 13) to isolate intrabasin horst/relay density steps, Laplace g_zz zero-crossing sharpness, and vector angular discordance against observed (B18, -B11); coupled with an 8-azimuth steerable quadrature odd-step vs even-dike filter bank relu(|O_theta| - 0.85|E_theta|) on seam-vetoed RTP (Band 2) and BMR gravity, directional conductance-neck bridges (Band 17) gated by positive geodetic dilatation/shear (Bands 8, 7), dilatation-gated shallow footwall pullback (<=3.0 px max shift, retaining unshifted steep strike-slip contacts), up-hydraulic-head DOE GDR #1391 geothermometry/2-m probes/sinter, Elkan (2001) Bayes subsampling recalibration with 8-azimuth axial strand coherence, and Exact 6-Ring Bernoulli Survival Dinkelbach-CELF allocation (37,654 dots).",
+      "why_off_catalogue": "USGS QFolds and INGENIOUS surface fault compilations systematically miss (1) intrabasin horst, accommodation-zone, and stepover faults masked in raw gravity by smooth 1-3 km Cenozoic basin-fill wedges, (2) concealed basement steps in Tertiary volcanic cover masked by Northern Nevada Rift even-symmetric mafic dike swarms, and (3) narrow clay/brine hydrothermal damage-zone necks beneath Quaternary alluvial fans and playas lacking aerial-photo scarps.",
+      "non_fault_mimic": "Pre-Cenozoic granitic pluton-roof or metamorphic facies density contacts beneath basin fill (partially mitigated via spin-2 RTP/BMR odd-step strike alignment and geodetic dilatation gating), GeoDAWN airborne flight-block seams (explicitly vetoed via acquisition_block_id_100m.tif), and Pleistocene Lake Lahontan (~1,330 m / ~1,205 m) shoreline terraces bordering saline playas.",
+      "differs_from_repo": "Executes the #1-ranked unexecuted physics queue from registry/followup_hypotheses_20261025.json (synthesizing BMR + GSST + CNT for the first time in GEMSDOE86) while directly fixing three empirically diagnosed fleet failure modes: (1) GEMSDOE92 (0.0255) & H86K-STDP (0.1380) over-shifting of steep/vertical faults via dilatation-gated <=3.0 px shallow-only pullback alongside unshifted odd-step planes, (2) H86K-STDP's high-floor quantile calibration via Elkan (2001) Bayes log-odds + zero-label quadrant median centering, and (3) GEMSDOE91 (0.1823) near-catalogue PU halo crowding via zero-DEM cover-blind specialist + 8-azimuth axial geodesic strand coherence.",
+      "expected_dti_gain_rank": 1,
+      "implementation_cost": "Medium (~15 min CPU, <900 MiB RAM via float16 memmaps; 100% SHA-256-pinned data restored and verified in sandbox)"
+    },
+    {
+      "id": "H86M-BFLI",
+      "rank": 2,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Bounded Logistic-Link (lambda <= 0.25) Anisotropic-TV Fleet Live-Score Tomographic Inversion with Far-Field Prior Re-Weighting",
+      "layers": [
+        "data/scored_fleet/*.tif (25 SHA-pinned local fleet rasters convolved with exact R=3.0 px DTI kernel) & registry/prior_scores.csv (OWNER-REPORTED fleet claims; strictly excluded from HOLDOUT-DTI training)",
+        "training_features.tif Bands 2 (rtp), 4 (geod_2ndinv), 8 (geod_dilaterate), 13 (iso_grav_anom), 15 (depth_to_base_surf), 17 (cond_surf)"
+      ],
+      "physical_signature": "Replaces H86J-LSI's unconstrained linear Tikhonov weight (which blew up to lambda_max = 96.9 and concentrated dots into a narrow subset) with a bounded logistic/simplex link p(x) = sigmoid(z_phys(x) + sum_m beta_m K_3(D_m)(x)) subject to ||beta||_1 <= 0.25 and strike-aligned anisotropic total variation along geophysical azimuth theta_hat.",
+      "why_off_catalogue": "Exploits cross-fleet DTI linear constraints across 25 diverse dot geometries (spanning 69.8% far-field H33 to 31.5% far-field PU submissions) to localize where off-catalogue truth credit T(D_m) empirically accrued on the hidden test regions.",
+      "non_fault_mimic": "Small-sample overfitting to 25 scalar OWNER-REPORTED scores if L1/TV bounds are relaxed, and unauthenticated score transcription errors in prior_scores.csv.",
+      "differs_from_repo": "H86J-LSI used unbounded linear ridge weights (lambda_max = 96.9) without geophysical strike-aligned TV regularization or bounded simplex constraints; ranked #2 behind H86M-BMGS because fleet scores are OWNER-REPORTED claims without organizer portal receipts.",
+      "expected_dti_gain_rank": 2,
+      "implementation_cost": "Low-Medium (convex L-BFGS-B + Chambolle-Pock TV on existing local files)"
+    },
+    {
+      "id": "H86M-ORTF",
+      "rank": 3,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Orthorhombic Conjugate Riedel (R/R') & Walker Lane Transtensional Steiner Fault-Mesh Transport",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 4 (geod_2ndinv), 7 (geod_shearrate), 8 (geod_dilaterate), 11 (iso_grav_anom_vg), 13 (iso_grav_anom), 15 (depth_to_base_surf), 17 (cond_surf), 18 (iso_grav_anom_hg)"
+      ],
+      "physical_signature": "Derives local principal horizontal strain-rate axes from geodetic shear/dilatation invariants (Bands 4, 7, 8) to construct an orthorhombic Finsler metric favoring conjugate Riedel shears (+-(45 deg - phi/2) for friction angle phi=30 deg) and normal tension fractures, extracting minimum-energy geodesic corridors connecting high-certainty geophysical fault terminations across unmapped accommodation zones.",
+      "why_off_catalogue": "In the Walker Lane-Basin and Range transition (Humboldt and Carson structural zones), strain transfers between NNE normal faults and NW dextral faults via short, complex conjugate Riedel meshes that lack single-scarp geomorphic continuity in aerial mapping.",
+      "non_fault_mimic": "Conjugate jointing in competent welded tuffs without macroscopic fault throw.",
+      "differs_from_repo": "H86I-KSAD evaluated pointwise scalar Kostrov slip/dilation tendency at fixed N22E azimuth, whereas H86M-ORTF solves non-local Finsler shortest-path Steiner transport on spatially varying geodetic strain-rate axes.",
+      "expected_dti_gain_rank": 3,
+      "implementation_cost": "Medium-High (anisotropic Fast Marching / Dijkstra across candidate nodes; obtainable on native stack)"
+    },
+    {
+      "id": "H86M-OPERA",
+      "rank": 4,
+      "status": "DEFERRED_EXTERNAL_SOURCE_EGRESS_BLOCKED",
+      "name": "NASA/JPL OPERA DISP-S1 Sentinel-1 InSAR Line-of-Sight Velocity Step & Seasonal Aquitard-Head Phase-Jump Detector",
+      "layers": [
+        "External official free US Government source required: NASA/JPL OPERA L3 Surface Displacement from Sentinel-1 (DISP-S1 V1), NASA Alaska Satellite Facility DAAC (https://asf.alaska.edu/datasets/daac/opera/, DOI https://doi.org/10.5067/SNWG/OPERA-L3_DISP-S1-V1, public open data on AWS s3://opera-pst-rs-pop1)",
+        "training_features.tif Bands 4 (geod_2ndinv), 8 (geod_dilaterate), 15 (depth_to_base_surf), 17 (cond_surf)"
+      ],
+      "physical_signature": "30-m C-band InSAR persistent/distributed scatterer secular LOS velocity step |grad_n(v_LOS)| and seasonal poroelastic amplitude jump |grad_n(A_annual)| across low-slope Quaternary basins, directly imaging low-permeability clay fault-gouge groundwater barriers (Bense et al. 2013; Chaussard et al. 2014) and localized geothermal reservoir subsidence/inflation boundaries.",
+      "why_off_catalogue": "Unconsolidated valley-floor holocene/playa sediments erase fault scarps within centuries, but clay-rich fault cores act as hydraulic barriers producing sharp 2-10 mm/yr differential InSAR phase steps across actively pumped or convecting Great Basin basins (Brady's, Dixie Valley, San Emidio, Fallon).",
+      "non_fault_mimic": "Stratigraphic clay-lens pinch-outs at distal alluvial-fan toes, agricultural center-pivot pumping boundaries, and mine dewatering cones.",
+      "differs_from_repo": "Native Bands 4, 7, 8 are smooth ~15-30 km GPS/GNSS interpolated strain-rate grids incapable of resolving 100-m fault-core hydraulic steps; no lane in GEMSDOE86 has ingested 30-m Sentinel-1 OPERA InSAR velocity/seasonal displacement fields.",
+      "external_source_obtainability": "Official free public-domain NASA/JPL US Government dataset (https://asf.alaska.edu/datasets/daac/opera/), freely obtainable on any unrestricted workstation, but NOT directly downloadable inside this sandbox because outbound internet egress is restricted to github.com/codeload.github.com/api.github.com/pypi.org/npmjs.org and no SHA-pinned OPERA raster mirror exists in buffedlizard55-lab/*. Explicitly deferred per protocol rather than simulated.",
+      "expected_dti_gain_rank": 4,
+      "implementation_cost": "High (requires external workstation download of OPERA UTM tiles + mosaicking/warping to EPSG:32611 100 m grid)"
+    }
+  ]
+}

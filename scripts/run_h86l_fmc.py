@@ -46,7 +46,10 @@ def greedy(support, eligible, budget, spacing):
             if len(oy) >= budget: break
     dots = np.zeros(support.shape, bool); dots[oy, ox] = True; return dots
 
-def run_h86l_fmc():
+def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time(); stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     g = grid.load_grid(ROOT / "data/bridge"); fp, cat = g.footprint, g.catalogue
     fleet_files = sorted((ROOT / "data/scored_fleet").glob("*.tif"))
@@ -143,14 +146,6 @@ def run_h86l_fmc():
     }
     (ROOT / "docs/evidence/h86l-fmc-run-card.json").write_text(json.dumps(card, indent=2) + "\n")
     print(json.dumps({"file": out.name, "sha256": digest, "verdict": verdict, "validator": card["validator"]}, indent=2))
-
-
-def main():
-    sys.path.insert(0, str(ROOT))
-    from scripts.protocol_preflight import require_feasible
-    require_feasible()
-    return run_h86l_fmc()
-
 
 if __name__ == "__main__":
     main()
