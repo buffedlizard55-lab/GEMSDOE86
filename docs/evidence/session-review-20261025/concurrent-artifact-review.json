@@ -1,0 +1,142 @@
+{
+  "schema": "gems86.concurrent-artifact-review.v1",
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "measured_utc": "2026-10-25T03:17:05+00:00",
+  "comparisons": [
+    {
+      "candidate_file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+      "candidate_sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+      "shared_result": {
+        "my_file": null,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "my_dots": 44090,
+        "candidate_decoded_sha256": "94664b2081bc894a7b1de4ced71578ae6fcca5762acd77ad406a270fc8a9853c",
+        "candidate_file_sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+        "rho_limit": 0.9,
+        "overlap_limit": 0.7,
+        "jaccard_limit": 0.5,
+        "registry_rasters_expected": 1,
+        "registry_rasters_checked": 1,
+        "complete_accessible_scan": false,
+        "missing_or_invalid": 0,
+        "source_errors": [
+          "Legacy list has no complete-inventory certificate; diagnostic only"
+        ],
+        "worst_spearman_full_footprint": 0.020263787025187864,
+        "worst_rho_submission": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+        "worst_dot_overlap": 0.1705148559764119,
+        "worst_overlap_submission": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+        "worst_jaccard_dot_sets": 0.014519432108424032,
+        "worst_jaccard_submission": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+        "byte_unique_among_checked": true,
+        "pixel_unique_among_checked": true,
+        "duplicate_count": 0,
+        "unique": false,
+        "rows": [
+          {
+            "repo": "GEMSDOE86",
+            "submission": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+            "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+            "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+            "decoded_sha256": "dba2336c7810bd9aa22fb7ff87bfd08d785553c220bf25fa35521036efedf929",
+            "their_dots": 44090,
+            "my_dots_within_3px_of_theirs": 0.1705148559764119,
+            "their_dots_within_3px_of_mine": 0.16577455205261965,
+            "spearman_full_footprint": 0.020263787025187864,
+            "jaccard_dot_sets": 0.014519432108424032,
+            "identical_bytes": false,
+            "identical_decoded_predictions": false,
+            "duplicate_by_rho": false,
+            "duplicate_by_overlap": false,
+            "duplicate_by_jaccard": false
+          }
+        ],
+        "jaccard_diagnostic_only": true,
+        "verdict": "negative",
+        "stop_required": true,
+        "candidate_rank_variation": true,
+        "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+      }
+    },
+    {
+      "candidate_file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+      "candidate_sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+      "shared_result": {
+        "my_file": null,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "my_dots": 44090,
+        "candidate_decoded_sha256": "dba2336c7810bd9aa22fb7ff87bfd08d785553c220bf25fa35521036efedf929",
+        "candidate_file_sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+        "rho_limit": 0.9,
+        "overlap_limit": 0.7,
+        "jaccard_limit": 0.5,
+        "registry_rasters_expected": 1,
+        "registry_rasters_checked": 1,
+        "complete_accessible_scan": false,
+        "missing_or_invalid": 0,
+        "source_errors": [
+          "Legacy list has no complete-inventory certificate; diagnostic only"
+        ],
+        "worst_spearman_full_footprint": 0.020263787025187864,
+        "worst_rho_submission": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+        "worst_dot_overlap": 0.16577455205261965,
+        "worst_overlap_submission": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+        "worst_jaccard_dot_sets": 0.014519432108424032,
+        "worst_jaccard_submission": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+        "byte_unique_among_checked": true,
+        "pixel_unique_among_checked": true,
+        "duplicate_count": 0,
+        "unique": false,
+        "rows": [
+          {
+            "repo": "GEMSDOE86",
+            "submission": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+            "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+            "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+            "decoded_sha256": "94664b2081bc894a7b1de4ced71578ae6fcca5762acd77ad406a270fc8a9853c",
+            "their_dots": 44090,
+            "my_dots_within_3px_of_theirs": 0.16577455205261965,
+            "their_dots_within_3px_of_mine": 0.1705148559764119,
+            "spearman_full_footprint": 0.020263787025187864,
+            "jaccard_dot_sets": 0.014519432108424032,
+            "identical_bytes": false,
+            "identical_decoded_predictions": false,
+            "duplicate_by_rho": false,
+            "duplicate_by_overlap": false,
+            "duplicate_by_jaccard": false
+          }
+        ],
+        "jaccard_diagnostic_only": true,
+        "verdict": "negative",
+        "stop_required": true,
+        "candidate_rank_variation": true,
+        "scope": "All hash-verified accessible entries in the indexed public owner-repository inventory; not a complete organizer registry. External/private/unlinked/inaccessible files may be absent. Reverse overlap is diagnostic only."
+      }
+    }
+  ],
+  "h33_lineage": {
+    "parent_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+    "h33_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dots": 40199,
+    "h33_dots": 37654,
+    "removed_dots": 2545,
+    "added_dots": 0,
+    "exact_parent_minus_2px_catalogue_collar": true,
+    "removed_catalogue_distances_px": [
+      1.4142135623730951,
+      2.0
+    ],
+    "owner_reported_parent": "0.2708",
+    "owner_reported_h33": "0.2778",
+    "organizer_confirmed": false,
+    "interpretation": "Verified pixel operation only. Coverage-efficient pruning is a plausible mechanism, not a causal explanation of private leaderboard truth or a projected improvement."
+  },
+  "registry_complete": false,
+  "preplacement_surfaces_measured": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "submission_authorized": false,
+  "verdict": "negative",
+  "scope": "Two inherited final-dot directions plus a pinned H33 pixel-identity audit only. No full-registry clearance, no reconstructed pre-placement surfaces, no re-evaluated HOLDOUT-DTI and no new submission."
+}
