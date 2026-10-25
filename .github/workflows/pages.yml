@@ -40,6 +40,7 @@ jobs:
       - name: Build an evidence-only, fail-closed website
         run: |
           python scripts/build_site.py
+          python scripts/build_review_card.py --check
           python scripts/build_site.py --check
           python scripts/check_site.py
           python scripts/audit_downloads.py

@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
+
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
 Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
@@ -20,6 +22,7 @@ Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and p
 - A complete native-band array generation is now staged with hashes and rollback for ordinary failures; local preparers are serialized. This does not claim cross-directory crash atomicity.
 - Fixed archive extraction to verify every requested raster **before** publication and reject missing/duplicate members without replacing existing targets. Added strict value/CI/positive-count/evaluator checks for every normalized historical HOLDOUT-DTI schema; impossible evidence can no longer inherit a valid-TIFF badge.
 - **REGISTRY-INPUT-MEASUREMENT:** restored all 655 pinned inventory entries; 690 indexed files including local extras are byte-verified, but 2 incompatible grids remain blockers. The new read-only GZZD/PCC mutual final-dot audit is limited evidence, never full-registry clearance.
+- The dated session card now binds immutable source-revision snapshots, not daily live-audit hashes. The read-only frozen-card check also runs in the Pages pipeline, so a refresh cannot silently redate this historical review.
 - The current request's `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749` are transcribed as **OWNER-REPORTED**, never organizer-confirmed. Prior request archives and scientific run cards remain unchanged.
 - [Four ranked, untested native-layer hypotheses](registry/h86g_hypotheses.json), [three-pass review and handoff](research/SESSION_20261025_CF73474C_REVIEW.md), [native-data/shared-cache evidence](docs/evidence/session-cf73474c-data.json). The top CSPA idea remains **NOT RUN** under the binding preflight; no holdout number is invented.
 
