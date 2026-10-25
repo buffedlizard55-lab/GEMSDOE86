@@ -1,6 +1,12 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+Latest review ([session 9662ee55](research/SESSION_9662EE55_REVIEW.md)): hardened the independent download validator against untrusted paths/JSON and shared-tool drift; rechecked the pinned registry witness and H33 source documents. **DO NOT SUBMIT; no new TIFF or weekly slot.** [Negative run card](research/session-9662ee55-run-card.json). The complete owner request remains embedded below and in [the current request archive](research/REQUEST_20261025.md); read it at every session start.
+
+**One-command three-pass verification:** after installing `requirements-lock.txt` in `.venv`, run `.venv/bin/python scripts/review_repository.py`. It checks releases, tests, evidence, site and downloads, recording `.cache/repository-review.json`; a software PASS never authorizes an upload. [Latest implementation review, ranked hypotheses, blockers and next steps](research/SESSION_1D3F3532_REVIEW.md). **No new TIFF generated; DO NOT SUBMIT.** The full standing request remains in [PROMPT.md](PROMPT.md) and [the current request archive](research/REQUEST_20261025.md); read them before starting work.
+
 **Current upload authorization: DO NOT SUBMIT.** H86G-EDTI has a historical like-for-like `promote` verdict only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads are audit-only; this safety review generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+
+**Latest independent review on this Arena branch (2026-10-25): NEGATIVE; no new TIFF, experiment, or slot.** The literal full-support registry witness blocks all non-empty candidate rasters; no shared cached feature stack or lane assignment is present. See [three-pass review, ranked untested hypotheses, H33 evidence, and next blockers](research/SESSION_20261025_ARENA_43838D43_REVIEW.md) and its [machine-readable run card](docs/evidence/arena-43838d43-run-card.json). Existing audit-only downloads are not new submissions and remain **DO NOT SUBMIT**.
 
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
@@ -13,6 +19,8 @@ Fresh repository recheck (2026-10-25; full 802-test suite passed after refreshin
 Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
 
 Independent repository review (2026-10-25; three passes; no model run or TIFF generated): [H33 forensic explanation, four queued geological hypotheses, current workspace audit, blockers, and negative run card](research/SESSION_20261025_ARENA_REVIEW.md). Machine-readable scoped evidence: [current local registry audit](docs/evidence/session-review-20261025/registry-input-grid-review.json) and [full review verification bundle](research/SESSION_20261025_ARENA_REVIEW.md#verification-run-record). Current local registry inventory differs from the earlier dated 690-file scan; the review preserves both measurements and flags the discrepancy.
+
+Final environment and quality recheck (2026-10-25): [839 tests passed; site checks and 21-artifact local audit passed; no TIFF/slot authorized](research/SESSION_20261025_ARENA_FINAL_RECHECK.md). This verifies code/evidence consistency, not scientific performance or competition acceptance.
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
