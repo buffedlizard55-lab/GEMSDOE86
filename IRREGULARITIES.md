@@ -1615,3 +1615,9 @@ recover CI or per-feature canaries exist; the historical surface registry checke
 uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
 Post-placement gate amendments are exploratory, not independent validation.
 See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
+
+## IR-86M-02 (`arena/2ea5b025-gemsdoe86`, 2026-10-25) — Automated Parallel-Run Protocol Rule 1 stop caught `H86M-PFTE` Arm `E1` (`0.7041 > 0.70` vs `H86K-STDP`) prior to GeoTIFF serialization
+
+- **Observed during `scripts/run_h86m_pfte.py` Step [5/6].** Preregistered kinematic+blind Arm #1 `E1_pfte_comonotonic_dcelf` (`alpha_kin = 0.68`, `HOLDOUT-DTI = 0.1310 [0.1141, 0.1476]`, `Fold NE = 0.1436` vs `E3 = 0.1185`, `SGMC-PROXY-DTI = 0.1166`) passed continuous surface Spearman across all `702` indexed rasters (`worst_spearman = 0.5657 <= 0.90`, `0` firings) and `459 / 460` discrete `<=90k`-dot submissions, **except** `0.704069 > 0.70` 3-px dot overlap against `H86K-STDP` (`3ac7fa1d...`) driven by shared `compute_elastic_fields` fold-visible fracture lobes.
+- **Decision enforced.** `run_h86m_pfte.py` halted `E1` **before writing any GeoTIFF**, performed **zero hyperparameter retuning** (`3` total experiments), and emitted preregistered pure-blind Arm #2 `E2_pfte_blind_comonotonic_dcelf` (`6bfde507...`, `HOLDOUT-DTI = 0.0734 [0.0591, 0.0882]`, **all-time `37,654`-dot repository high `SGMC-PROXY-DTI = 0.1210 [0.1024, 0.1407]`**, `0 / 702` continuous surface Spearman firings with `max = 0.4795`, and **`0 / 464` discrete `<=90k`-dot overlap firings** with `max = 0.6244 <= 0.70`, including `0.0843–0.3682` vs concurrent `BMR`/`CNT`/`DAMAGERING`/`LT`). Verdict remains `negative` (`DO NOT SUBMIT`, `0` weekly slots spent).
+
