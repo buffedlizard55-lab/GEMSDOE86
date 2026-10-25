@@ -17,15 +17,15 @@
     "evidence_class": "REGISTRY-MEASUREMENT",
     "status": "UNIVERSAL_LITERAL_BLOCKER_REMEASURED",
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "measured_utc": "2026-10-25T19:42:42.825506+00:00",
-    "inherited_artifacts_remeasured": 39,
+    "measured_utc": "2026-10-25T19:51:53.386393+00:00",
+    "inherited_artifacts_remeasured": 40,
     "all_forward_overlap_3px": 1.0,
     "overlap_limit": 0.7,
     "rho_limit": 0.9,
     "registry_complete": false,
     "scope": "One SHA-pinned full-support witness restored from the pinned blob; sufficient to stop every nonempty candidate under the unchanged literal rule, never to clear uniqueness. Full-registry evidence for H86G-EDTI (25 informative dot-field firings) is in docs/evidence/h86g-edti-full-registry-audit-20261025.json.",
     "evidence": "docs/evidence/all-artifacts-registry.json",
-    "post_merge_note": "Post-merge re-measurement (origin/main a7efb59 after PRs #166-#176): 39 registered artifacts including H86N-EQL, H86M-PFTE, H86N-GSST; session-time measurement covered 36."
+    "post_merge_note": "Post-merge re-measurement (origin/main 0fb4f80 after PRs #166-#177): 40 registered artifacts including H86N-EQL, H86M-PFTE, H86N-GSST, H86M-BMGS; session-time measurement covered 36."
   },
   "raster_sha256": null,
   "validator_output": {
@@ -35,8 +35,8 @@
     "crs_shape_transform_match": null,
     "inherited_artifacts_revalidated": {
       "evidence_class": "FORMAT-VALIDATION",
-      "artifact_count": 39,
-      "locally_valid": 39,
+      "artifact_count": 40,
+      "locally_valid": 40,
       "audit_ok": true,
       "h86m_lt_disk_reverification": "SHA-256 4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee matches; one-TIFF ZIP payload byte-identical and CRC-clean; single-band float32 EPSG:32611 3730x3292 transform (100,0,243350,0,-100,4508550); finite; 0 NaN/Inf; values exactly {0,1}; 37,654 positives; excludes the portal '[0, 1]' error class"
     }
@@ -59,8 +59,8 @@
     "IR-86-96FC6D48-H86MLT-REGISTRATION"
   ],
   "h86m_lt_registered_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
-  "release_readiness_sha256": "f1716e3cd14020de28d3034b01db14d72c94f0635595526d5a4f577af5592b1f",
-  "registry_measurement_sha256": "f5cc3d8e60bd847fde75a7bd79482482f9ae9b9274403fe3da7a85d6f4a54dec",
+  "release_readiness_sha256": "8cf27d739f7c9a3433356fc77bd18acbc1e916c7563acc5774ea6c0b04184f1a",
+  "registry_measurement_sha256": "d7f3d4125be030b08527709e1826798f9b6e3a9abe982a818d212ab9483455f2",
   "review": "research/SESSION_20261025_96FC6D48_REVIEW.md",
   "requirement_unmet": "No new unique submission TIFF could be generated or authorized: the literal lane rule is unsatisfiable against the pinned full-support witness, the only historical promote fails the full-registry duplicate scan, no lane paragraph is assigned, the shared feature cache is absent, and no organizer receipt exists. Existing TIFFs are audit-only downloads; generating another would not be submittable and would violate the protocol."
 }
