@@ -310,6 +310,42 @@ values in [0, 1] with min {card["validator_output"]["min"]:.1f} / max {card["val
 <p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86f-gzzd-run-card.json">Full run card</a> · <a href="evidence/h86f-gzzd-registry-surface.json">Surface registry check</a> · <a href="evidence/h86f-gzzd-registry-final-dots.json">Final-dots registry check</a> · <a href="{REPO}/blob/main/research/H86F_GZZD_PREREGISTRATION.md">Frozen preregistration &amp; ranked hypotheses</a></p></section>'''
 
 
+def h86j_lsi_answer(card: dict) -> str:
+    """Latest H86J-LSI lane receipt (live-score inversion). Every number carries its class."""
+    iv = card["instrument_validation"]
+    base = card["baseline_spearman_vs_live"]
+    sg = card["sgmc_proxy"]["pooled"]
+    ho = card["holdout_dti"]
+    hs = ho["pooled"]["scores"]
+    hd = ho["pooled"]["paired_differences"]["H33_visible_collar"]
+    sgs, sgd = sg["scores"], sg["paired_differences"]
+    ud = card["uniqueness_dots"]
+    ann = card["post_run_annotations"]
+    near = ann["closest_non_space_filling_dot_field"]
+    gates = card["gates"]
+    failed = [k for k, v in gates.items() if not v]
+    name = card["submission_name"]
+    ok = card["safe_to_submit"] is True and card["approved_for_weekly_slot"] is True
+    badge = ("OK TO SUBMIT" if ok else "IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT")
+    gate_rows = "".join(f"<li><code>{e(k)}</code>: {'PASS' if v else '<strong>FAIL</strong>'}</li>"
+                        for k, v in gates.items())
+    dl = ""
+    if card.get("published_download"):
+        dl = (f'<p><a class="btn" href="downloads/{e(name)}.tif" download>Download H86J-LSI TIFF — audit only, DO NOT SUBMIT</a> '
+              f'<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a></p>')
+    return f'''<section class="callout" id="h86j-lsi"><span class="badge bad">{e(badge)}</span>
+<h2>2026-10-25 latest lane H86J-LSI (live-score inversion): verdict <code>{e(card["verdict"])}</code> — {e(card["decision"])}</h2>
+<p><strong>New instrument result.</strong> A truth-density model fitted to {card["measurement_set"]["n"]} OWNER-REPORTED live scores through the official DTI algebra predicts <em>held-out sites</em> with leave-one-site-out Spearman <strong>{iv["loso_spearman"]:.3f}</strong> (constant model {iv["loso_spearman_constant_model"]:.3f}; SGMC proxy as-is {base["sgmc_proxy_as_is"]:.3f}; catalogue-hide as-is {base["catalogue_hide_as_is"]:.3f}). These are MODEL/instrument numbers, not scores.</p>
+<ul><li><strong>Candidate</strong> ({card["chosen_budget"]:,} dots, unique name <code>{e(name)}</code>, SHA-256 <code>{e(card["raster_sha256"])}</code>, independent validator {"PASS" if card["validator_output"]["all_checks_passed"] else "FAIL"}).</li>
+<li><strong>SGMC-PROXY-DTI</strong> (selection instrument, not a score): candidate {sgs["CAND"]["dti"]:.4f} vs H33 as-is {sgs["H33_as_is"]["dti"]:.4f} (paired Δ {sgd["H33_as_is"]["delta"]:+.4f} [{sgd["H33_as_is"]["ci95"][0]:+.4f}, {sgd["H33_as_is"]["ci95"][1]:+.4f}]); vs H86G-EDTI {sgs["H86G_EDTI_as_is"]["dti"]:.4f}.</li>
+<li><strong>HOLDOUT-DTI</strong> ({e(ho["evaluator_version"])}, {ho["withheld_positive_pixels"]:,} withheld, 95% CI): candidate {hs["CAND"]["dti"]:.4f} [{hs["CAND"]["ci95"][0]:.4f}, {hs["CAND"]["ci95"][1]:.4f}] vs H33 visible-collar control {hs["H33_visible_collar"]["dti"]:.4f} (paired Δ {hd["delta"]:+.4f} [{hd["ci95"][0]:+.4f}, {hd["ci95"][1]:+.4f}]).</li>
+<li><strong>Registry</strong>: {ud["compared"]} rasters compared; max Spearman {ud["max_spearman"]:.4f}; max 3-px overlap vs a non-space-filling dot field {near["forward_3px_overlap"]:.4f} (<code>{e(near["source"])}</code>); overlap firings {ud["overlap_firings"]}; space-filling/continuous rasters reach {ud["max_forward_3px_overlap_literal_incl_continuous"]:.4f} under the literal reading (PA-86-01).</li>
+<li><strong>Caveat</strong>: {e(ann["lambda_non_physical"])}</li>
+<li><strong>Download</strong>: {e(ann["download_not_published"])}</li>
+<li><strong>Preregistered gates</strong> (failed: {e(", ".join(failed) or "none")}):<ul>{gate_rows}</ul></li></ul>
+{dl}<p><a href="evidence/h86j-lsi-run-card.json">Full H86J-LSI run card</a> · <a href="{REPO}/blob/main/research/H86J_LSI_REVIEW.md">PhD review: why H33 led, live-algebra bounds, ranked hypotheses</a> · <a href="{REPO}/blob/main/research/H86J_LSI_PREREGISTRATION.md">Frozen preregistration</a></p></section>'''
+
+
 def h86i_hvfd_answer(card: dict) -> str:
     """Current H86I-HVFD lane receipt; every number carries its evidence class."""
     h = card["holdout_dti"]
@@ -890,6 +926,16 @@ def render(root: Path = ROOT) -> dict[str, str]:
         raise ValueError("H86H-PSTD card must stay negative, within 3-arm budget, and slot-free")
     h86h_path = root / "research/H86H_PSTD_PREREGISTRATION.json"
     h86h_prereg = strict_json(h86h_path) if h86h_path.is_file() else None
+    lsi_path = root / "docs/evidence/h86j-lsi-run-card.json"
+    lsi_card = strict_json(lsi_path) if lsi_path.is_file() else None
+    lsi_html = ""
+    if lsi_card is not None:
+        if (lsi_card["safe_to_submit"] is not False or lsi_card["approved_for_weekly_slot"] is not False
+                or lsi_card["submission_slots_used"] != 0
+                or lsi_card["verdict"] not in ("promote", "negative")
+                or (lsi_card["verdict"] == "promote") != all(lsi_card["gates"].values())):
+            raise ValueError("H86J-LSI card must stay slot-free, unauthorized and gate-consistent")
+        lsi_html = h86j_lsi_answer(lsi_card)
     hvfd_path = root / "docs/evidence/h86i-hvfd-run-card.json"
     hvfd_card = strict_json(hvfd_path) if hvfd_path.is_file() else None
     hvfd_html = ""
@@ -1012,7 +1058,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         sacd_banner = h86i_sacd_answer(sacd_card)
     review_notice = current_review_notice(session_data, registry_inputs, concurrent)
     new_queue = new_hypothesis_queue(new_plan)
-    answer = (h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
+    answer = (lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))
     hypothesis_count = (len(plan["hypotheses"]) + len(new_plan["hypotheses"])
                         + (len(plan86f["hypotheses"]) if plan86f else 0)

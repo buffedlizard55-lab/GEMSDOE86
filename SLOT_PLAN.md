@@ -158,3 +158,7 @@ with `0/687` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap
 (`26.96%` vs `GEMSDOE32`). **However, no selector ran and 0 weekly slots were used (`DO NOT SUBMIT`)**
 because `14GEMSDOE` and `7GEMSDOE` remain grid-incompatible in the pinned registry index
 and literal `17GEMSDOE` saturation blocks automated clearance (`IR-86-H86F-EWCS-01`).
+
+## 2026-10-25 — H86J-LSI lane: negative, 0 slots used, no selector action
+
+Live-score inversion: LOSO Spearman 0.900 vs owner-reported live (instrument gate PASS). The 30k candidate fails the SGMC paired gates vs H33 (−0.0325 [−0.0588, −0.0045]) and vs H86G. HOLDOUT-DTI is 0.0346 [0.0229, 0.0453] (11,321 withheld). **DO NOT SUBMIT.** Next: a bounded-link (λ ≤ 1) amendment. See `research/H86J_LSI_REVIEW.md`.

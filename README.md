@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**Latest lane (2026-10-25, H86J-LSI live-score inversion): NEGATIVE — DO NOT SUBMIT; no new download, 0 slots.** First instrument that tracks the live board: leave-one-site-out Spearman 0.900 vs OWNER-REPORTED live scores on 74 rasters (SGMC proxy 0.300, catalogue-hide 0.051). But the fitted field is non-physical (λ > 1), and the 30k-dot candidate fails both SGMC paired gates. [Review: why H33 led, live-algebra bounds, ranked hypotheses](research/H86J_LSI_REVIEW.md) · [run card](docs/evidence/h86j-lsi-run-card.json).
+
 Latest session fb9725b9: [three-pass review and preflight integrity repair](research/SESSION_FB9725B9_REVIEW.md). Both vendored evaluator/writer paths are now checked by session preflight. **DO NOT SUBMIT; no new TIFF generated.** [Negative run card](research/session-fb9725b9-run-card.json).
 
 Latest focused checker review: [session f548f465](research/SESSION_F548F465_REVIEW.md). Corrected the false “unique by pinned digest” claim and added malformed-artifact regression tests. **DO NOT SUBMIT; no new TIFF or slot.**
@@ -1041,7 +1043,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **22** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **24** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 

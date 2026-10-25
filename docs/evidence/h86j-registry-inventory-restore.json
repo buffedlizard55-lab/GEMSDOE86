@@ -1,0 +1,11 @@
+{
+  "schema": "gems86.registry-restore.v1",
+  "inventory": "research/upstream/registry_inventory.json",
+  "inventory_entries": 655,
+  "verified_entries": 655,
+  "errors": [],
+  "complete_accessible_scan": true,
+  "organizer_authenticated": false,
+  "comparison_only": true,
+  "bytes_verified": 728345463
+}
