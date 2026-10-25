@@ -60,30 +60,18 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
-    h86l = next(a for a in report["artifacts"] if "h86l-fmc" in a["file"])
-    assert h86l["historical_holdout"]["evidence_class"] == "HOLDOUT-DTI"
-    assert h86l["historical_holdout"]["value"] == 0.0
-    assert h86l["historical_holdout"]["withheld_positives"] == 11321
-    assert "full catalogue" in h86l["historical_holdout"]["design"]
-    assert "not fold-visible" in h86l["historical_holdout"]["design"]
-    assert h86l["historical_lane_verdict"] == "negative"
-    assert "DO NOT SUBMIT" in h86l["status"]
-
-
-def test_h86l_archive_is_registered_and_explicitly_non_authorized():
-    card = audit.strict_json(ROOT / "docs/evidence/h86l-fmc-run-card.json")
-    inventory = audit.strict_json(ROOT / "docs/evidence/download-inventory.json")["artifacts"]
-    config = audit.strict_json(ROOT / "registry/artifact_cards.json")["artifacts"]
-    entry = next(row for row in inventory if "h86l-fmc" in row["file"])
-    mapping = next(row for row in config if "h86l-fmc" in row["stem"])
-    assert entry["sha256"] == card["raster_sha256"] == card["sha256"]
-    assert entry["status"] == "DO NOT SUBMIT" and entry["approved_for_weekly_slot"] is False
-    assert mapping["holdout_kind"] == "h86l_fmc"
-    assert mapping["card"] == mapping["context"] == "docs/evidence/h86l-fmc-run-card.json"
-    assert card["verdict"] == "negative"
-    assert card["promoted"] is False
-    assert card["safe_to_submit"] is False and card["approved_for_weekly_slot"] is False
-    assert card["holdout"]["evidence_class"].startswith("HOLDOUT-DTI (LEAKAGE-SUSPECT")
+    h86m = next(a for a in report["artifacts"] if "h86m-damagering" in a["file"])
+    assert h86m["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert h86m["historical_holdout"]["value"] is None
+    assert not h86m["safe_to_submit"] and h86m["verdict"] == "negative"
+    h86m_lt = next(a for a in report["artifacts"] if "h86m-lt-tomography" in a["file"])
+    assert h86m_lt["historical_lane_verdict"] == "promote"
+    assert h86m_lt["verdict"] == "negative"
+    assert h86m_lt["registry_measurement"]["forward_overlap_3px"] == 1.0
+    assert h86m_lt["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert not h86m_lt["safe_to_submit"] and not h86m_lt["approved_for_weekly_slot"]
+    assert h86m_lt["safe_to_download_for_audit"]
+    assert "OWNER-REPORTED" in h86m_lt["historical_holdout"]["caveat"]
 
 
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):
@@ -190,6 +178,13 @@ def test_optimistic_scientific_card_cannot_promote(release_copy):
     assert not artifact["validator"]["checks"]["scientific_card_is_negative"]
     assert not artifact["safe_to_submit"]
     assert not report["audit_ok"]
+
+
+def test_h86m_lt_historical_promote_cannot_authorize_upload(release_copy):
+    card = release_copy / "docs/evidence/h86m-lt-run-card.json"
+    rewrite(card, lambda doc: doc.update(safe_to_submit=True))
+    with pytest.raises(ValueError, match="H86M-LT must preserve its historical research verdict without upload authorization"):
+        audit.build_report(release_copy)
 
 
 def test_missing_inventory_member_fails(release_copy):

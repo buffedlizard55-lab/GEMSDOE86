@@ -177,7 +177,16 @@ def check(root=ROOT):
             and card.get('approved_for_weekly_slot') is False
             and card.get('safe_to_submit') is False
         )
-        if card.get('verdict') != 'negative' and not promote_ok:
+        h86m_lt_historical_promote = (
+            card.get('lane') == 'H86M-LT leaderboard tomography + DTI-optimal emission'
+            and card.get('verdict') == 'promote'
+            and card.get('submission_ready') is False
+            and card.get('submission_slots_used') == 0
+            and card.get('approved_for_weekly_slot') is False
+            and card.get('safe_to_submit') is False
+            and str(card.get('current_upload_decision', '')).startswith('DO NOT SUBMIT')
+        )
+        if card.get('verdict') != 'negative' and not (promote_ok or h86m_lt_historical_promote):
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')

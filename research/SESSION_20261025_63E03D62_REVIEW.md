@@ -6,6 +6,10 @@
 
 A previously generated H86L-FMC TIFF was already in `docs/downloads/` but omitted from the format-audit and artifact manifests. This review repaired that metadata/publication inconsistency; it did not generate, alter, rename, or promote the raster. Its scientific run card explicitly calls its holdout leakage-suspect and its verdict negative. The homepage and executive summary continue to say **DO NOT SUBMIT**.
 
+### Post-merge reconciliation — origin/main `3deca67`
+
+The updated main branch introduced a published H86M-LT TIFF/ZIP/receipt absent from the shared inventory and artifact-card index. Its historical research card said `promote` and `safe_to_submit=true`, while the repo's release-readiness artifact uses a pinned-witness 3-pixel overlap of 1.0 (>0.70) as a mandatory stop. I registered the existing bytes for audit-download only, preserved their historical scientific evidence, set current `submission_ready`, `safe_to_submit`, and weekly-slot approval false, and clarified the standalone page and README. The all-artifact audit now covers 36 TIFFs and still returns **DO NOT SUBMIT**; H86M-LT has no comparable HOLDOUT-DTI and no organizer receipt. No raster, score, threshold, evaluator, writer, method result, or slot state was changed. This reconciliation was a branch merge/metadata and messaging correction, not a new geological experiment or candidate validation.
+
 ## Three-pass review
 
 ### Pass 1 — inventory, source, and protocol
@@ -71,3 +75,12 @@ Official links retained for independent review (not freshly fetched in this sess
 | Python warnings | 48 existing Rasterio affine multiplication deprecation warnings; no new scientific model was run. |
 
 This is a negative review deliverable. It neither creates a leaderboard projection nor satisfies the requested new-TIFF requirement.
+
+## Verification after `origin/main` `3deca67` reconciliation
+
+- `scripts/audit_release.py --measure-registry`: PASS, 36/36 local format/integrity checks; current decision DO NOT SUBMIT; 0 experiments and 0 slots.
+- `scripts/audit_downloads.py --write` and read-only verification: PASS, 36 registered TIFF/ZIP/receipt sets; format only.
+- `scripts/build_site.py`, `scripts/build_site.py --check`, `scripts/check_site.py`, and `scripts/build_review_card.py --check`: PASS.
+- Adversarial H86M-LT publication tests confirm its archived research `promote` cannot set upload authorization, and a card with `safe_to_submit=true` fails closed.
+- Full suite after final corrections: **1024 passed, 24 skipped, 58 subtests passed**, 48 existing Rasterio affine deprecation warnings.
+- `git diff --check`: PASS. These checks establish repository consistency and local artifact integrity, not scientific improvement, full official-registry uniqueness, or organizer acceptance.
