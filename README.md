@@ -146,6 +146,7 @@ The highest-priority *new* TIFF requirement was **not satisfied in this review**
 - The dated session card now binds immutable source-revision snapshots, not daily live-audit hashes. The read-only frozen-card check also runs in the Pages pipeline, so a refresh cannot silently redate this historical review.
 - The current request's `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749` are transcribed as **OWNER-REPORTED**, never organizer-confirmed. Prior request archives and scientific run cards remain unchanged.
 - [Four ranked, untested native-layer hypotheses](registry/h86g_hypotheses.json), [three-pass review and handoff](research/SESSION_20261025_CF73474C_REVIEW.md), [native-data/shared-cache evidence](docs/evidence/session-cf73474c-data.json). The top CSPA idea remains **NOT RUN** under the binding preflight; no holdout number is invented.
+- [Independent repository re-review (2026-10-25)](research/SESSION_ARENA_REPO_REVIEW_20261025.md): refreshed fail-closed audit; no candidate TIFF or slot.
 
 <details>
 <summary>Complete current request (2026-10-25; user claims, not verified evidence)</summary>

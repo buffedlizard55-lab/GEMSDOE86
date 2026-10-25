@@ -1,7 +1,7 @@
 {
   "schema": "gems86.concurrent-artifact-review.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-25T03:59:05+00:00",
+  "measured_utc": "2026-10-25T13:18:22+00:00",
   "comparisons": [
     {
       "candidate_file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
