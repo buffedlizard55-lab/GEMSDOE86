@@ -14,22 +14,22 @@ Independent repository review (2026-10-25; three passes; no model run or TIFF ge
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## ✅ IS ANY FILE OK TO SUBMIT RIGHT NOW? **YES — EXACTLY ONE.** (automated decision, 2026-10-25, H86G-EDTI; supersedes the dated negative reviews below for this one file only)
+## 🚫 IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO — NONE CLEARS THE FULL CURRENT REQUEST.**
 
-**Submit this file (selector action):** [`docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip`](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip) (contains exactly one TIFF; TIFF SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots).
-Submission name: `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros` · Note (113 chars): `H86G-EDTI multiline+HGB E[k] spacing-greedy collar3; SGMC-proxy selected; holdout in run card; no slot pre-picked`.
-Portal steps: [executive summary](docs/executive-summary.html) / [scientific review](research/H86G_EDTI_REVIEW.md) / [run card (JSON)](docs/evidence/h86g-edti-run-card.json).
+The current request-level gate is [`docs/evidence/prompt-slot-gate.json`](docs/evidence/prompt-slot-gate.json); it authorizes **no upload and no weekly slot**. H86G-EDTI remains downloadable for review only: its lane card says `PROMOTE` under a separate proxy-ranking amendment, but that is not the full-request decision. The request-level gate is negative because it does not demonstrate superiority to the current same-evaluator/same-count HOLDOUT-DTI incumbent, the actual shared feature cache is missing, and full-registry clearance is incomplete. No organizer-confirmed score exists. See the [current site](docs/index.html), [executive summary](docs/executive-summary.html), [H86G scientific review](research/H86G_EDTI_REVIEW.md), and [original lane card](docs/evidence/h86g-edti-run-card.json).
 
-| Automated gate (no human inspection) | Result |
-|---|---|
-| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1} (the portal "[0, 1]" error class is excluded on these bytes), 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical |
-| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` |
-| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | **PASS** — candidate `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` (post-selection descriptive, Amendment A4). Not a leaderboard projection |
-| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld, OOF visible construction) | **PASS (floor)** — `0.0631` `[0.0468, 0.0806]` vs H33 visible-collar control `0.0349` |
-| Uniqueness (surface + final dots, local registry dot-fields) | **PASS** — max Spearman `0.070` ≤ `0.90`; max forward 3-px overlap `68.5%` ≤ `70%`; vs H33 only `26.0%`. Literal continuous-witness reading still reported unchanged (PA-86-01); concurrently merged lanes re-measured in the run-card post-merge addendum |
-| Verdict / weekly slots | **`promote` — OK TO DOWNLOAD AND SUBMIT as the selector action; 0 slots used here; live score unknowable until an organizer receipt** |
+**Review-only downloads (not approved for submission):** [H86G TIFF](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif) · [single-TIFF ZIP](docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.zip). The TIFF is `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif` (SHA-256 `ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d`, 55,000 dots). It is byte-distinct, but not established as unique under the full registry gate. Its local lane-level diagnostics remain useful context, not submission approval:
 
-**Why H33 (0.2778 OWNER-REPORTED) led, one line:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px — coverage-efficient dotted emission (2.8 px spacing + collar pruning) on the H19-5 multiline surface, not a new layer ([forensics](docs/evidence/h86f-h33-forensics.json)). **How H86G-EDTI attacks it:** an independently rebuilt multiline-corroboration surface over the full pinned stack (+ catalogue-signature HGB diagnostic arm), expected-kernel-credit spacing-greedy emission behind a wider 3 px collar, selected on the SGMC proxy that reproduces the live ordering across 8 scored fleet rasters (the catalogue-hide holdout anti-correlates with it — measured, [`H86G_EDTI_REVIEW.md`](research/H86G_EDTI_REVIEW.md)). No prior raster was copied: 74% of its dots are >3 px from every H33 dot. **Every other file below remains `DO NOT SUBMIT`.**
+| Evidence | H86G-EDTI lane result | Scope / limitation |
+|---|---|---|
+| Local format / footprint / catalogue mask / ZIP / SHA | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, 0 NaN/Inf, 0 dots on mapped faults, min spacing 2.828 px, ZIP byte-identical | Technical validity only; not organizer acceptance |
+| `LEAKAGE-CANARY` (68 features) | **PASS** — max discriminative AUC `0.6015` ≤ `0.90` | Feature-alone check within lane protocol |
+| `SGMC-PROXY-DTI` (selection instrument; 62,122 off-catalogue USGS SGMC px) | `0.1223` vs H33-as-is `0.0954`; paired Δ `+0.0269` `[+0.0028, +0.0518]` | Post-selection descriptive proxy; not HOLDOUT-DTI or a leaderboard projection |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld) | `0.0631168` `[0.0468256, 0.0806053]` | H86F-EWCS same evaluator/count reports `0.1723246` `[0.1529564, 0.1897929]`; cross-lane contrast is descriptive, not paired significance |
+| Local uniqueness | Max surface Spearman `0.070`; max forward 3-px dot overlap `68.5%` | Against 43 local dot fields only; wider registry incomplete, 2 indexed grids incompatible |
+| Request-level verdict / weekly slots | **DO NOT SUBMIT · 0 slots authorized or used** | No organizer receipt; no confirmed score |
+
+**Why H33 (0.2778 OWNER-REPORTED) led:** it is its D2.8 parent minus exactly 2,545 dots at catalogue distance √2–2 px—coverage-efficient dotted emission, not a new geological layer ([forensics](docs/evidence/h86f-h33-forensics.json)). H86G tests independent multiline corroboration, an HGB catalogue-signature diagnostic, and expected-kernel-credit spacing-greedy emission behind a wider 3 px collar ([H86G review](research/H86G_EDTI_REVIEW.md)). Its proxy improvement does not override the stricter request-level blockers.
 
 ## Current independent review — 2026-10-25 (session `cf73474c`)
 

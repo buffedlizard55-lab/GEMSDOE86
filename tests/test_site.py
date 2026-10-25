@@ -14,10 +14,22 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    # The lane's own A4 PROMOTE is not enough under the owner's stricter full-request gates.
+    assert "NO FILE CLEARS THE FULL CURRENT REQUEST" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO" in html
+    assert "SAFE TO DOWNLOAD FOR REVIEW ONLY" in html
+    assert "Do not upload H86G-EDTI or spend a weekly slot" in html
+    executive = (DOCS / "executive-summary.html").read_text()
+    assert "CURRENT DECISION: DO NOT SUBMIT" in executive
+    assert "PROMOTE (LANE ONLY) · DO NOT SUBMIT UNDER FULL REQUEST" in executive
+    assert "OK TO SUBMIT (selector-ready)" not in html + executive
+    assert "Download TIFF — review/audit only" in html
+    gate = json.loads((DOCS / "evidence/prompt-slot-gate.json").read_text())
+    assert gate["decision"] == "DO_NOT_SUBMIT_UNDER_CURRENT_REQUEST"
+    assert gate["verdict"] == "negative" and gate["weekly_slot_authorized"] is False
+    assert gate["holdout_dti"]["value"] < gate["holdout_dti"]["current_same_evaluator_same_count_incumbent"]["value"]
+    assert gate["shared_feature_cache_restored"] is False
+    assert gate["correlation_overlap_vs_registry"]["full_registry_clearance"] is False
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
