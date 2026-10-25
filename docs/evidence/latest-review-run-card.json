@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 31,
-    "local_format_pass": 31,
+    "checked": 35,
+    "local_format_pass": 35,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -193,6 +193,26 @@
         "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
         "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+        "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+        "sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+        "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+        "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -207,8 +227,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T15:55:40.039738+00:00",
+  "registry_measured_utc": "2026-10-25T17:53:21.829982+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "34748539f5d6372c46a61ed8383dff764dd9396360176bfc80bb62b6420a3ac6",
-  "registry_measurement_sha256": "6bae21acf374f99191d8919b01c1458c1e7a81832ef1e56c40476f75184d0832"
+  "release_report_sha256": "545e21264efdef573f490d4168472918ba8a8d8fb3e662417e7f47754711f4ad",
+  "registry_measurement_sha256": "68168f82a26dff2499657f978800057ae454126443887fb6c4e60dbee627147c"
 }

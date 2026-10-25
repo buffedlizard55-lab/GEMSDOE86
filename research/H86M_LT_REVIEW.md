@@ -180,3 +180,16 @@ also the cleanest path to dots that are geological *and* fleet-independent.
 - GDR submission 1391: https://gdr.openei.org/submissions/1391
 - EPSG:32611: https://epsg.io/32611 · Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 - GEMSDOE32 (owner-reported 0.2778 source): https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+
+## Postscript (merge-time, 2026-10-25): parallel BMR/CNT results
+
+While this lane ran, a parallel session executed BMR and CNT (from the same followup
+queue) and merged to main: BMR HOLDOUT-DTI 0.0220 [0.0086, 0.0384] (11,321 withheld),
+beaten by its raw-gravity control; CNT 0.0408 [0.0257, 0.0575], paired CIs vs controls
+cross zero — both negative (`registry/artifact_cards.json`, DO NOT SUBMIT). The
+"next experiment: BMR" recommendation above is therefore **already answered (negative)**
+and should not be re-run unchanged; EQL (earthquake-lineation anisotropy, bands 10/16)
+becomes the top untried fleet-independent follow-up. This lane's candidate was additionally
+checked against the three new main artifacts at merge time: forward 3-px overlap
+**0.0688** (BMR), **0.1066** (CNT), **0.1959** (DAMAGERING) — all far below the 0.70 stop,
+confirming the tomography lane is spatially distinct from the parallel geological lanes.

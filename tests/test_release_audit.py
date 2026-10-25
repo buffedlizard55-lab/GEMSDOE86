@@ -60,6 +60,10 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
+    h86m = next(a for a in report["artifacts"] if "h86m-damagering" in a["file"])
+    assert h86m["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert h86m["historical_holdout"]["value"] is None
+    assert not h86m["safe_to_submit"] and h86m["verdict"] == "negative"
 
 
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):

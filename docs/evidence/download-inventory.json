@@ -1,191 +1,215 @@
 {
-  "scope": "21 locally format-valid research artifacts: 15 inherited lanes plus the 2026-10-25 lanes H86F-PCC, H86F-GZZD, H86F-EWCS, H86G-EDTI, H86I-RKSC, and H86I-HVFD. No selector ran; 0 slots used. GDSC added 2026-10-25.",
-  "artifacts": [
-    {
-      "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
-      "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
-      "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
-      "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
-      "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
-      "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
-      "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
-      "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
-      "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
-      "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
-      "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
-      "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
-      "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
-      "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
-      "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
-      "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
-      "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
-      "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
-      "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
-      "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
-      "status": "PROMOTE \u2014 selector-ready (like-for-like gates pass); literal full-support reading still blocked pending selector",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
-      "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
-      "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
-      "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
-      "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
-      "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
-      "sha256": "ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
-      "sha256": "079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
-      "sha256": "f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
-      "sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
-      "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
-      "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    },
-    {
-      "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
-      "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
-      "status": "DO NOT SUBMIT",
-      "approved_for_weekly_slot": false
-    }
-  ]
+ "scope": "21 locally format-valid research artifacts: 15 inherited lanes plus the 2026-10-25 lanes H86F-PCC, H86F-GZZD, H86F-EWCS, H86G-EDTI, H86I-RKSC, and H86I-HVFD. No selector ran; 0 slots used. GDSC added 2026-10-25. H86L-FMC, H86M-BMR and H86M-CNT added 2026-10-25 (all DO NOT SUBMIT negatives).",
+ "artifacts": [
+  {
+   "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+   "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+   "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+   "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+   "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+   "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+   "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+   "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+   "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
+   "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+   "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
+   "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+   "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+   "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+   "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
+   "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+   "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+   "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
+   "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
+   "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
+   "status": "PROMOTE \u2014 selector-ready (like-for-like gates pass); literal full-support reading still blocked pending selector",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+   "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+   "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+   "sha256": "1681434743ebf50e4b7fea9b47b100c78d8db66b126c559b14422c624cb4ae96",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+   "sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
+   "sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
+   "sha256": "ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
+   "sha256": "079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
+   "sha256": "f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
+   "sha256": "a72d9f59567db0873cdcc9b5c14449b84b118fa91c87d7b689838b8b604107ef",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+   "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+   "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
+   "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+   "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+   "sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+   "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  },
+  {
+   "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+   "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+   "status": "DO NOT SUBMIT",
+   "approved_for_weekly_slot": false
+  }
+ ]
 }
