@@ -1,9 +1,9 @@
 # PhD Forensic Analysis of `GEMSDOE32` (`0.2778`), Multi-Altitude Salem Up-Dip Fault Pullback, Up-Head Geothermal Conduits, and `H86K-STDP` Validation (2026-10-25)
 
-**Branch:** `arena/8114f7b4-gemsdoe86`  
-**Preregistration (frozen prior to implementation):** [`research/H86K_STDP_PREREGISTRATION.md`](H86K_STDP_PREREGISTRATION.md) · [`research/H86K_STDP_PREREGISTRATION.json`](H86K_STDP_PREREGISTRATION.json) · [`registry/h86k_hypotheses.json`](../registry/h86k_hypotheses.json)  
-**Generated unique GeoTIFF:** `docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif` (SHA-256 `3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69`, `37,654` positive pixels, single-TIFF ZIP + writer receipt + independent on-disk validation PASS)  
-**Machine-readable run card:** [`docs/evidence/h86k-stdp-run-card.json`](../docs/evidence/h86k-stdp-run-card.json)  
+**Branch:** `arena/8114f7b4-gemsdoe86`
+**Preregistration (frozen prior to implementation):** [`research/H86K_STDP_PREREGISTRATION.md`](H86K_STDP_PREREGISTRATION.md) · [`research/H86K_STDP_PREREGISTRATION.json`](H86K_STDP_PREREGISTRATION.json) · [`registry/h86k_hypotheses.json`](../registry/h86k_hypotheses.json)
+**Generated unique GeoTIFF:** `docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif` (SHA-256 `3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69`, `37,654` positive pixels, single-TIFF ZIP + writer receipt + independent on-disk validation PASS)
+**Machine-readable run card:** [`docs/evidence/h86k-stdp-run-card.json`](../docs/evidence/h86k-stdp-run-card.json)
 **Automated upload decision (`H86K-STDP` & repository-wide):** **`DO NOT SUBMIT`** (`verdict = "negative"`, `submission_ready = false`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`). Per `AGENTS.md` Rules 6, 10–15, all **31** published research GeoTIFFs in `docs/downloads/` remain audit-only (`DO NOT SUBMIT`) while the literal `17GEMSDOE` full-support witness, `13GEMSDOE` lattice, `2` off-grid historical rows, and `11` ultra-dense `246k–344k`-pixel archive ribbons trigger fail-closed registry stops.
 
 ---
