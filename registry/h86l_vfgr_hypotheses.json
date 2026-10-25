@@ -1,0 +1,152 @@
+{
+  "schema": "gems86.h86l-hypothesis-queue.v1",
+  "created_date_utc": "2026-10-25",
+  "lane_assignment": "H86L-VFGR",
+  "ranking_basis": "Expected spatially blocked HOLDOUT-DTI improvement per implementation cost. Not a projected leaderboard score. Owner-reported 0.2778 / 0.3195 / 0.4413 are not organizer receipts.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86L-VFGR",
+      "name": "Visible-fault explained-edge residual",
+      "status": "EXECUTED_NEGATIVE_DUPLICATE_STOP",
+      "layers": [
+        {
+          "band": 3,
+          "name": "tmi_hg"
+        },
+        {
+          "band": 5,
+          "name": "iso_grav_anom_slope"
+        }
+      ],
+      "physical_signature": "Gaussian expected-edge profile of visible faults subtracted from magnetic and gravity horizontal-gradient magnitudes, then structure-tensor coherence of the residual.",
+      "catalogue_missing_rationale": "A withheld or unmapped strand keeps its geophysical edge after the visible-fault expected edge is removed. Painting the raw edge wastes dots on the mapped trace the metric penalises.",
+      "differs_from_repo": "Prior lanes collar the catalogue and rank raw edges, tips, or phase congruency. None fits and subtracts a frozen visible-fault expected-edge profile before corroborating magnetic and gravity residuals.",
+      "non_fault_mimic": "Lithologic contact or flight-line residual that is linear and off the mapped catalogue.",
+      "expected_holdout_potential": "Highest of this queue: the holdout truth is withheld catalogue segments, which are exactly unexplained edges.",
+      "implementation_cost": "Medium. Native bands only. No new external file.",
+      "new_external_data": false,
+      "falsifier": "Paired HOLDOUT-DTI versus the raw-edge control has a 95% CI that includes or falls below zero."
+    },
+    {
+      "rank": 2,
+      "id": "H86L-BMR",
+      "name": "Basement-interface gravity mass-balance residual",
+      "status": "EXECUTED_AS_E3_CONTROL_NOT_PROMOTED",
+      "layers": [
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        },
+        {
+          "band": 15,
+          "name": "depth_to_base_surf"
+        }
+      ],
+      "physical_signature": "Training-only linear slab response of smoothed basement depth removed from isostatic gravity; coherent residual gradient.",
+      "catalogue_missing_rationale": "A buried basement step can sit under basin fill with no mapped scarp. The smooth basement surface absorbs the broad basin; a short residual step would not.",
+      "differs_from_repo": "Previously proposed and not executed as its own candidate. H86E-SPBT pairs the two bands as steps; H86H-PSTD uses tensors; H86K-PSC uses Hessian saddles. This arm is the frozen forward residual.",
+      "non_fault_mimic": "Lateral sediment-density change, basement-surface smoothing error, or model-edge ringing.",
+      "expected_holdout_potential": "Lower than VFGR on this holdout, because withheld truth is surface-mapped and may already be inside the basement surface.",
+      "implementation_cost": "Medium. Native bands only. Band 15 is gravity-derived, so circularity is tested by the raw-gravity comparison inside the same fit family only through the paired arm, not assumed away.",
+      "new_external_data": false,
+      "falsifier": "Residual coherent gradient does not beat a basement-gradient-only reading, or training R\u00b2 shows the residual is numerical noise."
+    },
+    {
+      "rank": 3,
+      "id": "H86L-GSST",
+      "name": "Gravity step-versus-compact-source shape test",
+      "status": "NOT_RUN_BUDGET",
+      "layers": [
+        {
+          "band": 13,
+          "name": "iso_grav_anom"
+        },
+        {
+          "band": 5,
+          "name": "iso_grav_anom_slope"
+        },
+        {
+          "band": 11,
+          "name": "iso_grav_anom_vg"
+        },
+        {
+          "band": 18,
+          "name": "iso_grav_anom_hg"
+        }
+      ],
+      "physical_signature": "Width and signed east/south derivative pattern compared with a frozen extended-step template versus a compact-source template.",
+      "catalogue_missing_rationale": "An extended buried step can be coherent across strike without being the single strongest gradient pixel already ranked by prior lanes.",
+      "differs_from_repo": "No explicit competing-source likelihood exists in scripts/ or src/. Band 11 is a signed southward derivative, not vertical gravity.",
+      "non_fault_mimic": "Elongated intrusive contact or overlapping compact sources.",
+      "expected_holdout_potential": "Low-to-medium.",
+      "implementation_cost": "Medium-high. Not started. Would consume the third experiment if VFGR were not selected.",
+      "new_external_data": false,
+      "falsifier": "Step likelihood does not beat the compact-source control on paired HOLDOUT-DTI."
+    },
+    {
+      "rank": 4,
+      "id": "H86L-CNT",
+      "name": "Conductivity-neck topology under dilatation",
+      "status": "NOT_RUN_BUDGET",
+      "layers": [
+        {
+          "band": 17,
+          "name": "cond_surf"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        },
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        }
+      ],
+      "physical_signature": "Narrow conductive-component necks that persist across a frozen threshold range and co-locate with positive dilatation.",
+      "catalogue_missing_rationale": "A concealed permeability neck can connect conductive patches without a scarp. Band 17 is surface conductance, not a depth-resolved MT image.",
+      "differs_from_repo": "Listed as an unrun reserve. Existing lanes use conductivity gradients or halos, not threshold-persistent necks.",
+      "non_fault_mimic": "Saline playa, clay paleochannel, or interpolation bottleneck.",
+      "expected_holdout_potential": "Lowest of the native-band set. Conductivity is nonspecific.",
+      "implementation_cost": "Medium. Not started.",
+      "new_external_data": false,
+      "falsifier": "Neck features fail to beat conductivity-only and strain-only controls."
+    },
+    {
+      "rank": 5,
+      "id": "H86L-FLOR",
+      "name": "Flight-line-orthogonal magnetic residual",
+      "status": "NOT_VIABLE_IN_THIS_CHECKOUT",
+      "layers": [
+        {
+          "band": 1,
+          "name": "mag_anom"
+        },
+        {
+          "band": 2,
+          "name": "rtp"
+        }
+      ],
+      "physical_signature": "Residual after removing the along-line median, so faults parallel to GeoDAWN flight lines are not suppressed by decorrugation.",
+      "catalogue_missing_rationale": "Decorrugation can erase flight-parallel contacts that never received a mapped scarp.",
+      "differs_from_repo": "No flight-line azimuth grid is used by an executed GEMSDOE86 lane.",
+      "non_fault_mimic": "Residual levelling error along the flight direction.",
+      "expected_holdout_potential": "Unknown until the line azimuth is in hand. Not ranked above executable native-band tests.",
+      "implementation_cost": "Blocked.",
+      "new_external_data": true,
+      "official_source": "https://doi.org/10.5066/P93LGLVQ",
+      "official_source_note": "USGS GeoDAWN DOI 10.5066/P93LGLVQ is the official flight-line release. This checkout has no flight-line azimuth raster, and the sandbox cannot fetch USGS hosts. Not proposed as viable until that grid is hash-pinned.",
+      "falsifier": "Along-line residual does not beat raw RTP horizontal gradient on paired HOLDOUT-DTI."
+    }
+  ],
+  "status": "EXECUTED_NEGATIVE_DUPLICATE_STOP",
+  "execution": {
+    "executed_utc": "2026-10-25",
+    "experiments_run": 3,
+    "selected_arm": "E1_vfgr",
+    "verdict": "negative",
+    "tiff_written": false,
+    "reason": "Paired HOLDOUT-DTI versus the raw-edge control was entirely below zero, and final dots informatively overlapped GEMSDOE46.",
+    "run_card": "docs/evidence/h86l-vfgr-run-card.json"
+  }
+}

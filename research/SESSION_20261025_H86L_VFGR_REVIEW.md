@@ -8,7 +8,7 @@ A unique competition GeoTIFF, values in [0, 1], matching the sample grid, with a
 
 ## Hypotheses, frozen before the score
 
-Ranked in `registry/h86l_hypotheses.json` and `research/H86L_VFGR_PREREGISTRATION.md` before any holdout print:
+Ranked in `registry/h86l_vfgr_hypotheses.json` and `research/H86L_VFGR_PREREGISTRATION.md` before any holdout print. The shared filename `registry/h86l_hypotheses.json` belongs to the concurrent H86L-FMC lane.
 
 1. **H86L-VFGR** — subtract the expected magnetic and gravity edge of the *visible* faults, then keep the residual edge. Selected.
 2. **H86L-BMR** — residual gravity after a training-only basement-depth regression. Run as the third arm.

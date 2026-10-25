@@ -741,6 +741,7 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
     """Dated read-only observations; native bands and pair checks are not clearance."""
     preparation = data["native_band_preparation"]
     bands = preparation["input_grids"]["training_features"]["bands"]
+    data_measured = str(data.get("measured_utc", "unknown")).replace("+00:00", "Z")
     pairs = []
     for comparison in concurrent["comparisons"]:
         result = comparison["shared_result"]
@@ -750,12 +751,13 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
     return f'''<section class="card" id="current-review"><p class="eyebrow">Independent review · 2026-10-25 · no model experiment</p>
 <h2>Data restored. Submission still blocked.</h2>
 <p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. Existing files below are audit-only, not substitutes for that unmet deliverable. Byte-distinct research GeoTIFFs are not automatically registry-unique; local format validity or pairwise comparison cannot replace complete protocol clearance.</p>
-<p><strong>DATA-MEASUREMENT:</strong> all {bands} native bands were restored and prepared. Every input now passes CRS, shape, transform, band-count and SHA checks before output. The actual shared cached feature stack is still absent; raw-band preparation is not that cache.</p>
+<p><strong>DATA-MEASUREMENT (historical receipt dated {e(data_measured)}):</strong> all {bands} native bands were restored and prepared. Every input then passed CRS, shape, transform, band-count and SHA checks before output. The actual shared cached feature stack is still absent; raw-band preparation is not that cache.</p>
+<p><strong>LIVE INPUT CHECK:</strong> <code>training_features.tif</code> is absent from this checkout; all 21 prepared arrays and the required shared feature cache are also missing. The historical preparation receipt does not prove these bytes are currently available.</p>
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
 <p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
 <p><strong>Follow-up code and research review (2026-10-25):</strong> this follow-up produced no TIFF, experiment, or slot. Main concurrently merged PR #145 (GDSC) and PR #147 (H86K-PSC); both research TIFFs remain <strong>DO NOT SUBMIT</strong> under the literal witness stop. The request still lacks an assigned method paragraph and the shared cache remains absent. H86G-CSPA/MPC and H86K-PSC are no longer untried; GDSC is an executed lane with a missing 95% CI. The current three-item queue excludes these and the earlier variogram submission. This review also adds the missing early preflight to historical H86K, fixes the audit's stale timestamp, and narrows the H33 causal claim. No file is authorized.</p>
-<p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
+<p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Fresh independent recheck: three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
 
 
 def new_hypothesis_queue(plan: dict) -> str:
@@ -777,6 +779,28 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><strong>Not an experiment or lane assignment:</strong> all three proposals remain unrun under the protocol stop. They use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
 <h3>Previously attempted methods excluded from the untried queue</h3><ul>{excluded}</ul>{''.join(rows)}
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
+
+
+def h86l_fmc_answer(card: dict) -> str:
+    """Concurrent published TIFF. Numbers come from its card; submission stays forbidden."""
+    if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86L-FMC card must stay a no-slot negative")
+    hold = card["holdout"]["candidate"]
+    paired = card["holdout"]["paired_vs_H33"]
+    overlap = card["correlation_overlap_vs_registry"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86l-fmc"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>Concurrent H86L-FMC TIFF — audit download only</h2>
+<p><code>{e(name)}-zeros.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["dots"]:,} dots) is a file from another session. <strong>OK to submit: NO.</strong> <code>safe_to_submit</code> is false and no weekly slot was used.</p>
+<ul>
+<li><strong>HOLDOUT-DTI</strong> ({e(hold["evaluator_version"])}, {hold["withheld_positive_pixels"]:,} withheld positives; the card labels this leakage-suspect): <strong>{hold["dti"]:.4f} [{hold["ci95"][0]:.4f}, {hold["ci95"][1]:.4f}]</strong>. Paired difference versus H33-as-is: {paired["delta"]:+.4f} [{paired["ci95"][0]:+.4f}, {paired["ci95"][1]:+.4f}].</li>
+<li><strong>Leakage canary AUC:</strong> {card["leakage_canary"]["auc"]:.4f}. <strong>Registry overlap reported by that lane:</strong> {overlap["max_overlap3"]:.4f} versus <code>{e(overlap["worst_overlap"])}</code>. That overlap is above 0.70.</li>
+<li><strong>Note, audit reference only:</strong> <code>{e(card["submission_note_le140"])}</code></li>
+</ul>
+<p><a href="downloads/{e(name)}-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}-zeros.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86l-fmc-run-card.json">H86L-FMC run card</a></p>
+</section>'''
 
 
 def h86l_vfgr_answer(card: dict) -> str:
@@ -823,7 +847,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede"><strong>OK to submit this session: NO. No new TIFF was written.</strong> The H86L-VFGR candidate lost to its raw-edge control and duplicated an earlier corroborated-edge lane, so the writer stopped before creating a file. The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. Downloadable GeoTIFFs remain available for reproducibility only; a new hash or local format pass does not establish scientific uniqueness or slot approval.</p>
+<p class="lede"><strong>OK to submit: NO.</strong> This session wrote no TIFF. The H86L-VFGR candidate lost to its raw-edge control and duplicated an earlier corroborated-edge lane, so the writer stopped. A concurrent H86L-FMC file is downloadable for audit only and is also not authorized. The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. A local format pass does not establish scientific uniqueness or slot approval.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
 <p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
@@ -1593,6 +1617,10 @@ def render(root: Path = ROOT) -> dict[str, str]:
     vfgr_path = root / "docs/evidence/h86l-vfgr-run-card.json"
     vfgr_card = strict_json(vfgr_path) if vfgr_path.is_file() else None
     vfgr_banner = h86l_vfgr_answer(vfgr_card) if vfgr_card is not None else ""
+    fmc_path = root / "docs/evidence/h86l-fmc-run-card.json"
+    fmc_card = strict_json(fmc_path) if fmc_path.is_file() else None
+    if fmc_card is not None:
+        vfgr_banner += h86l_fmc_answer(fmc_card)
     combined_banner = stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),

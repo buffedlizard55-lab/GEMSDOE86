@@ -185,6 +185,22 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "OOF visible construction"),
                 "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."}
+    if kind == "h86l_fmc":
+        h = context.get("holdout") or {}
+        candidate = h.get("candidate") if isinstance(h, dict) else None
+        if not isinstance(candidate, dict) or candidate.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86L-FMC card lacks its leakage-suspect HOLDOUT-DTI candidate")
+        if (context.get("verdict") != "negative" or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or context.get("gates", {}).get("overlap3_le_0.70") is not False):
+            raise ValueError("H86L-FMC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": candidate["evaluator_version"],
+                "withheld_positives": candidate["withheld_positive_pixels"],
+                "value": candidate["dti"], "ci95": candidate["ci95"],
+                "design": "buffered whole components; fleet-consensus candidate; card labels the result leakage-suspect",
+                "caveat": "Concurrent H86L-FMC receipt, not rerun here. The card itself marks the holdout leakage-suspect because the fleet was built with the full catalogue, and its overlap gate fired. DO NOT SUBMIT; no slot was used."}
     if kind == "h86k_psc":
         hn = context.get("holdout_dti_normalized")
         if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":

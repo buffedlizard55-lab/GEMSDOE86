@@ -27,7 +27,7 @@ def test_homepage_states_the_no_file_decision():
     home = (ROOT / "docs/index.html").read_text(encoding="utf-8")
     assert "NO FILE AUTHORIZED · DO NOT SUBMIT" in home
     assert 'id="h86l-vfgr"' in home
-    assert "OK to submit this session: NO. No new TIFF was written." in home
+    assert "This session wrote no TIFF." in home
     assert "Can this session be submitted? No." in home
     assert "OK to submit to DrivenData: NO." in home
     executive = (ROOT / "docs/executive-summary.html").read_text(encoding="utf-8")
