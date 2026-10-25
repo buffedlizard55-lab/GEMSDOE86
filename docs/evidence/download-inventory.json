@@ -1,5 +1,5 @@
 {
-  "scope": "35 locally format-valid research TIFF artifacts. Includes the inherited lanes, H86L-FMC, H86M-BMR, H86M-CNT and H86M-DAMAGERING; every artifact remains audit-only/DO NOT SUBMIT, with 0 selector actions and 0 weekly slots.",
+  "scope": "36 locally format-valid research TIFF artifacts. All are audit-only/DO NOT SUBMIT under the current repository gates; 0 selector actions and 0 weekly slots.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -208,6 +208,12 @@
     {
       "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
       "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
+      "sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     }

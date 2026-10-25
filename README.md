@@ -1,5 +1,30 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ H86M-LT TIFF (2026-10-25): **DO NOT SUBMIT — audit download only**
+
+- **Download for audit only — DO NOT SUBMIT:** [`gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif) · [ZIP](docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip) · [lane page](docs/h86m-lt.html) · [run card](docs/evidence/h86m-lt-run-card.json) · [review & H33 forensics](research/H86M_LT_REVIEW.md)
+- SHA-256 `4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee`; 37,654 binary dots, values exactly {0,1}; local format validator **15/15 PASS**. The recorded name/note are historical audit metadata only, not authorized for a submission form.
+- **Current stop:** the lane-local 655-raster report reports max dot-field overlap 0.649, but the mandatory pinned-witness measurement is separate: the witness covers every allowed pixel, making this raster's literal forward overlap **1.0 > 0.70**. The lane-local scan does not waive that gate. No HOLDOUT-DTI or 95% CI was measured; expected-DTI values are projections, not scores. [Current registry measurement](docs/evidence/all-artifacts-registry.json) · [negative run card](docs/evidence/h86m-lt-run-card.json).
+- **Projection context only — not a score or evidence of holdout improvement:** leaderboard tomography fits an expectation model to 29 owner-reported live values; its expected-DTI values and SGMC-PROXY-DTI diagnostic are not HOLDOUT-DTI or ORGANIZER-CONFIRMED results. No hide-and-recover holdout or 95% CI was reported. The archived lane-local PA-86 interpretation is superseded for upload by the current literal witness stop: 1.0 forward overlap exceeds the 0.70 limit. `approved_for_weekly_slot=false`, `safe_to_submit=false`, 0 slots used. See the negative run card and full registry measurement.
+## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
+
+This review generated **no new candidate** or weekly submission. **36** published research TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
+
+## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
+
+**No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.
+
+- Reproduced and repaired the inherited H86L-FMC inventory/card omission, then reconciled with parallel PR #156 and reused its repair instead of bypassing the failing audits. All **35** published research TIFFs and their ZIP partners pass the shared local-format/integrity audit; this is not submission approval.
+- Restored the hash-pinned historical witness and remeasured every final TIFF against it. Each fails the literal overlap gate; the witness is not official training data or a candidate.
+- H86L-FMC's archived holdout stays **leakage-suspect, not promotion evidence**. Passing a single-feature canary cannot undo full-catalogue fleet ancestry.
+- PR #158 subsequently added an unevaluated H86M catalogue-ring TIFF. Repaired its missing card mapping, remeasured all 33 files, and explicitly rejected its archived “leakage structurally impossible” claim. No holdout is inferred.
+- PR #157 subsequently added BMR and CNT negative experiments. These are now **already tried**, not new proposals. All 35 inherited outputs remain DO NOT SUBMIT; this session changed no TIFF pixels.
+- Final integrated verification: **41 focused tests passed**; shared release and download audits pass for **35** files; site, link and frozen-review checks pass. No final-tree full-suite pass is claimed.
+- Earlier verification before PR #158: reconciled suite **1015 passed, 24 skipped**; final H86L regression module **13 passed**. Release, download, generated-site and frozen-review checks pass.
+- [Current review, ranked research queue and limitations](research/SESSION_63051E73_REVIEW.md) · [Live inputs](research/session-63051e73-inputs.json) · [Run card](research/session-63051e73-run-card.json).
+- Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
+
+The older snapshot below is historical; its H86L publication failure has been repaired in this review.
 ## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
 
 ## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**

@@ -1,6 +1,10 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-H86M-LT-01 — lane-local promotion conflicted with mandatory literal witness and no-holdout requirements (2026-10-25)
+
+PR #165 added the H86M-LT tomography TIFF and labeled its lane `promote` / `safe_to_submit=true` under a lane-local full-registry scan (655 rasters, reported maximum dot-field overlap 0.649). That scan does not override the pinned full-support witness: the witness covers 100% of allowed pixels, and the current shared release audit measures this TIFF at **1.0 literal forward overlap > 0.70**. Its expected-DTI values are projections fitted to owner-reported scores, not HOLDOUT-DTI or ORGANIZER-CONFIRMED results; no hide-and-recover value or 95% CI was reported. **Correction in this branch:** preserve the TIFF bytes as audit-only, register its identity, and fail closed (`verdict=negative`, `safe_to_submit=false`, no slot). The run card retains its historical lane-local promotion field separately. No TIFF was generated or altered here; no upload or portal interaction occurred. The lane's status page and site release audit now show the literal witness stop.
+
 ## IR-86-H86L-01 — visible-fault edge residual lost to its control and duplicated GEMSDOE46 (2026-10-25)
 
 `scripts/run_h86l_vfgr.py` ran the frozen three-arm design and stopped before writing a TIFF. HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) was 0.0313 [0.0230, 0.0395] for the residual and 0.0367 [0.0272, 0.0457] for the raw-edge control. The paired interval was entirely below zero. Final dots overlapped `GEMSDOE46:SUBMISSION-GEMSDOE46-dfa-corroborated.tif` at 0.7013 with that raster’s halo covering only 0.1965 of the footprint. **Decision: DO NOT SUBMIT. No file, no slot.**
@@ -1536,6 +1540,31 @@ Full evidence: [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079
 
 - **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; not caused by this session).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. `pytest -q` on main: 16 failed / 985 passed (10 in `tests/test_release_audit.py`). `scripts/run_h86l_fmc.py` writes the run card only. Owner action: register the artifact through the lane's own protocol and re-run `audit_release.py --measure-registry`; do not mark it authorized. Documented here; not repaired by session `0c60b079`.
 
+## IR-86-H86M-POISSON81 (2026-10-25, session `ecc314b3`, H86M-LT) — scored-fleet file/score mismatch suspect
+
+`data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif`
+(binary, 44,090 dots, median d_cat 2.2 px) carries owner-reported live score **0.0041**, but every
+tomography fit (E2b/E2c/E2d/E2e) predicts **0.043–0.084** for these exact dots — the largest
+residual in the fleet by an order of magnitude. Either (a) the submitted bytes differed from this
+local binary (the stem says "cont", suggesting a continuous raster was submitted and this is a
+thresholded derivative), or (b) the organizer masks a >300 m catalogue buffer that penalizes this
+collar-hugging raster far beyond the other fits' collar behaviour. H86M-LT excluded it from
+belief fitting and hard-excluded `d_cat <= 3 px` from emission under either explanation.
+Owner action: confirm which filename was actually uploaded for the 0.0041 receipt; do not use
+this raster/score pair as a calibration anchor until resolved. Evidence:
+`docs/evidence/h86m-lt-tomography.json`, `research/H86M_LT_REVIEW.md`.
+
+## IR-86-H86M-INVENTORY (2026-10-25, session `ecc314b3`) — new artifact not yet in generated index
+
+The H86M-LT TIFF/ZIP/receipt are published under `docs/downloads/` with a standalone lane page
+(`docs/h86m-lt.html`, same pattern as `docs/h86k-psc.html`) but are **not** registered in
+`docs/evidence/download-inventory.json`, because `scripts/audit_release.py` has no
+`holdout_kind` branch for a tomography-LOO lane (it raises on unsupported kinds) and its status
+rendering is DO NOT SUBMIT for every kind except `h86g_edti`. Registering correctly requires a
+reviewed shared-audit branch + `build_site.py` regeneration; this session reports it instead of
+smuggling a private fork (protocol rule 2). Main already fails `check_site`/`build_site --check`
+and 16 pytest cases over the analogous H86L-FMC gap (IR-H above); H86M adds one more unregistered
+artifact to the same known failure class.
 ## IR-86-E95B-PUBLICATION-20261025 — repaired missing H86L publication coverage
 
 The branch inherited an H86L-FMC TIFF/ZIP absent from both publication indexes. This made the release/site audits fail before any artifact validation. Registered its actual SHA and existing negative scientific card; added explicit leakage-suspect archival normalization and regression tests. No raster bytes, scientific verdict, evaluator/writer or uniqueness thresholds changed. Fresh measurement validates all 32 published formats but confirms literal overlap failure against the pinned dense witness. This repairs the earlier IR-H inventory blocker; it does not authorize submission.
@@ -1543,3 +1572,12 @@ The branch inherited an H86L-FMC TIFF/ZIP absent from both publication indexes. 
 ## IR-86-E95B-HISTORICAL-CLOCK-20261025 — frozen review compared with mutable audit
 
 A test bound the historical follow-up run card's registry timestamp to the mutable latest audit. A legitimate fresh audit therefore failed the test. Preserved the original audit bytes from this branch's starting commit under `docs/evidence/session-followup-snapshot/`, bound their SHA in the historical card, and changed that test to verify the exact frozen evidence. No historical timestamp/count was rewritten as current. Latest-review tests continue to require current report hashes and measurement timestamps.
+
+
+## IR-86-63051E73-H86L-INVENTORY — 2026-10-25
+
+Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the prior review). Registered existing TIFF SHA `5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a`, joined its original negative run card, restored the pinned witness and remeasured all published final dots. No candidate pixels or scientific receipts changed. Added a dedicated archived leakage-suspect schema rather than describing fleet-as-is evidence as fold-safe hide-and-recover. Removed the non-generated “NEWEST UNIQUE TIFF” banner during deterministic site regeneration, retaining its anchor and explicit audit-only decision. Current format count is 32; submission authorization remains false. See `research/SESSION_63051E73_REVIEW.md`.
+
+## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
+
+PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
