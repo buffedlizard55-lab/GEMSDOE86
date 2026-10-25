@@ -4,6 +4,8 @@ Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Cur
 
 Latest mainline lane review (2026-10-25; H86H-PSTD halted before raster writing; all files remain **DO NOT SUBMIT**): [review and evidence](research/SESSION_20261025_REPO_REVIEW.md).
 
+**Fresh verification refresh (2026-10-25 03:17 UTC):** remeasured the protocol witness and all 18 inherited downloads; local format checks pass, but the literal uniqueness stop still blocks every nonempty candidate. No experiment, new TIFF, or slot was used. The full test suite passes (802 passed, 24 skipped, 41 subtests). See the machine-readable [latest review card](docs/evidence/latest-review-run-card.json) and [registry measurement](docs/evidence/all-artifacts-registry.json). These results do not authorize submission.
+
 Focused follow-on review in this session (2026-10-25; no new lane or TIFF selected): [H33 analysis, three ranked future hypotheses, and three-pass audit](research/SESSION_20261025_REVIEW.md). The two reviews cover separate work; neither authorizes a submission.
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
