@@ -2,6 +2,10 @@
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
+## Latest review — 2026-10-25: **DO NOT SUBMIT**
+
+This review generated **no new TIFF** and used **no weekly slot**. The current request does not identify a single lane paragraph, the shared cached feature stack is absent, and prior H86F-PCC/GZZD files failed the final dot-field overlap gate. H33's `0.2778` remains an **OWNER-REPORTED** claim: the pinned H33 raster is exactly its D2.8 parent minus 2,545 near-catalogue dots, a plausible DTI efficiency change but not proof of causal improvement or an organizer receipt. Three unrun, qualitatively ranked hypotheses and full three-pass verification are in [the 2026-10-25 review](research/SESSION_20261025_REVIEW.md). Fresh evidence: [current review card](docs/evidence/latest-review-run-card.json), [preflight](docs/evidence/protocol-preflight.json), [release readiness](docs/evidence/release-readiness.json). **No existing TIFF is authorized for submission.**
+
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-25)
