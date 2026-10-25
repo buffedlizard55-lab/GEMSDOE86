@@ -47,7 +47,11 @@ def measure(data_dir=None):
     source_id = pin['repo'].split('/')[-1] + ':' + pin['source_path']
     if len(match) != 1 or source_id not in match[0]['sources'] or match[0]['blob'] != pin['blob']:
         raise ValueError('Witness is not bound to the pinned registry record')
-    witness = data_dir / pin['dest']
+    # The restore helper writes the pinned witness under data/<dest>, not
+    # beneath the shared bridge directory. Keep native sample/fault inputs in
+    # data_dir while resolving this repository-level witness at its canonical
+    # persisted path.
+    witness = ROOT / 'data' / pin['dest']
     for path, sha, size in (
         (data_dir / 'sample_submission.tif', grid.SHA256_SAMPLE_SUBMISSION, None),
         (data_dir / 'existing_faults.tif', grid.SHA256_EXISTING_FAULTS, None),
