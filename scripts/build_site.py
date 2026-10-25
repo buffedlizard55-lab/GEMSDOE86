@@ -879,6 +879,24 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or prompt_gate["raster_sha256"] != h86g_card["raster_sha256"]):
         raise ValueError("The strict request gate must remain negative and bound to H86G-EDTI")
     h86g_html = h86g_edti_answer(h86g_card, prompt_gate)
+    summary.update(
+        approved_for_weekly_slot=report["approved_for_weekly_slot"],
+        selector_run=report["selector_run"],
+        promoted_for_selector_review=dict(
+            submission_name=h86g_card["submission_name"],
+            file=h86g_card["submission_file"],
+            raster_sha256=h86g_card["raster_sha256"],
+            historical_verdict=h86g_card["verdict"],
+            safe_to_submit=h86g_card["safe_to_submit"],
+            approved_for_weekly_slot=h86g_card["approved_for_weekly_slot"],
+            decision="DO NOT SUBMIT — full-request gate negative",
+            scope="Lane-local promotion only; current request-level gate blocks upload."),
+        request_level_gate=dict(
+            decision=prompt_gate["decision"], verdict=prompt_gate["verdict"],
+            raster_sha256=prompt_gate["raster_sha256"],
+            weekly_slot_authorized=prompt_gate["weekly_slot_authorized"],
+            organizer_confirmed_score=prompt_gate["organizer_confirmed_score"],
+            evidence_class=prompt_gate["evidence_class"]))
     plan86f_path = root / "registry/h86f_hypotheses.json"
     plan86f = strict_json(plan86f_path) if plan86f_path.is_file() else None
     ewcs_path = root / "docs/evidence/h86f-ewcs-run-card.json"

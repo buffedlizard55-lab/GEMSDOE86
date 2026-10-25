@@ -30,6 +30,13 @@ def test_download_links_and_fail_closed_decision():
     assert gate["holdout_dti"]["value"] < gate["holdout_dti"]["current_same_evaluator_same_count_incumbent"]["value"]
     assert gate["shared_feature_cache_restored"] is False
     assert gate["correlation_overlap_vs_registry"]["full_registry_clearance"] is False
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert summary["approved_for_weekly_slot"] is False
+    assert summary["selector_run"] is False
+    assert summary["promoted_for_selector_review"]["safe_to_submit"] is False
+    assert summary["request_level_gate"]["decision"] == gate["decision"]
+    assert summary["request_level_gate"]["weekly_slot_authorized"] is False
+    assert summary["request_level_gate"]["organizer_confirmed_score"] is None
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
