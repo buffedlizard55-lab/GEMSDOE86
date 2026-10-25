@@ -17,7 +17,7 @@ def test_download_links_and_fail_closed_decision():
     # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
     # name exactly that one selector-ready file and no other.
     assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    assert "IS THIS FILE OK TO SUBMIT? NOT YET" in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
@@ -45,3 +45,26 @@ def test_zip_contains_single_tiff():
         names = bundle.namelist()
         assert names == [card["raster_name"]]
         assert bundle.getinfo(names[0]).file_size > 100_000
+
+
+def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
+    """A PROMOTE label cannot contradict the card's false slot permissions."""
+    card = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert card["verdict"] == "promote"
+    assert card["safe_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False
+    for flag in ("safe_to_submit", "approved_for_weekly_slot", "selector_run"):
+        assert summary[flag] is False
+    promoted = summary["promoted_for_selector_review"]
+    assert promoted["raster_sha256"] == card["raster_sha256"]
+    assert promoted["safe_to_submit"] is False
+    assert promoted["approved_for_weekly_slot"] is False
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        assert "IS THIS FILE OK TO SUBMIT? NOT YET" in html
+        assert "safe_to_submit=false; approved_for_weekly_slot=false" in html
+        for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
+                       "submit this file", "OK to download and submit",
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
+            assert unsafe not in html

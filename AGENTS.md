@@ -61,3 +61,8 @@
     shipped raster's as-is number. `audit_release.py` knows this lane via
     `holdout_kind="h86g_edti"`; the literal full-support witness stop and all
     thresholds are unchanged.
+
+13. Scientific `promote` / `submission_ready` is not upload authorization. Keep homepage,
+    executive guide, README and summary aligned with `safe_to_submit` and
+    `approved_for_weekly_slot`; both are currently false. Do not restore “submit this
+    file” buttons from historical promotion prose. See `research/SESSION_085C2B7A_REVIEW.md`.
