@@ -101,3 +101,12 @@ of every historical experiment is claimed.
 The existing homepage and executive summary expose downloads and state DO NOT
 SUBMIT. This session improves automated integrity validation; it does not turn an
 inspection-only artifact into a competitive submission.
+
+## Concurrent-main integration
+
+The first merge attempt found conflicts with parallel reviews. Merged `origin/main`
+into the fixed session branch, retained both README review links, and regenerated
+the live audit and HTML using the updated shared site builder rather than choosing
+stale generated files. Post-integration full suite: **861 passed, 24 skipped,
+45 subtests passed**, with the same 42 warnings. Release/witness, site consistency,
+site links, download and frozen-card checks passed again. No gate was relaxed.
