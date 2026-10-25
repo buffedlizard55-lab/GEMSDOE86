@@ -1497,5 +1497,8 @@ They now distinguish support identity from hidden-truth performance, and state
 the exact inequality with *weighted FP mass reduction*, not raw deleted-dot
 count. Owner request and historical source archives were preserved byte-for-byte.
 
-## IR-86-H86KPSC-GDSC-RECEIPT-20261025
-On merging origin/main (fe46b41), `scripts/audit_downloads.py --write` fails on the parallel GDSC artifact `gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif`: its receipt lacks `promoted`/`approved_for_weekly_slot` keys and zip filename check. Pre-existing on main, not introduced by H86K-PSC; flagged for the GDSC lane owner, not silently rewritten here.
+## IR-86-H86KPSC-GDSC-RECEIPT-20261025 — metadata mismatch resolved transparently
+
+**Observed on merging origin/main (`f55dbb1`).** `scripts/audit_downloads.py` rejected the already-merged GDSC artifact `gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif`: its writer receipt used a path instead of the ZIP basename and omitted explicit `promoted` / `approved_for_weekly_slot` flags. The raw GDSC HOLDOUT-DTI receipt also does not provide a 95% CI; that scientific evidence gap remains.
+
+**Resolution in this follow-up.** Corrected only the sidecar metadata (`zip_file` basename, `promoted=false`, `approved_for_weekly_slot=false`, `safe_to_submit=false`) and regenerated the local download-validation receipt. TIFF and ZIP bytes, hashes, holdout metrics, and verdict were not changed. The artifact remains `DO NOT SUBMIT`; the literal witness stop still applies.

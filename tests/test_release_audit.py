@@ -40,7 +40,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 28  # prior 27 (incl. H86J-CSGD & H86J-TVHS) + H86J-MCSP (2026-10-25, DO NOT SUBMIT)
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 30  # 28 prior artifacts plus merged GDSC and H86K-PSC; all remain DO NOT SUBMIT
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -60,6 +60,79 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
+
+
+def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):
+    """A fresh artifact audit must not inherit a stale literal clock."""
+    from types import SimpleNamespace
+
+    import numpy as np
+    from gems57 import uniqueness
+    from scripts import protocol_preflight
+
+    root = tmp_path.resolve()
+    (root / "docs/downloads").mkdir(parents=True)
+    candidate = root / "docs/downloads/candidate.tif"
+    candidate.write_bytes(b"synthetic placeholder; rasterio is stubbed")
+    cert = {
+        "measured_utc": "2026-10-25T17:42:19.123456+00:00",
+        "witness_source": "https://api.github.com/repos/owner/repo/git/blobs/pinned",
+    }
+    pin = {
+        "repo": "owner/repo", "source_path": "docs/downloads/witness.tif",
+        "dest": "registry/witness.tif", "sha256": "witness-hash",
+    }
+    inventory = {"artifacts": [{"file": "docs/downloads/candidate.tif", "sha256": "candidate-hash"}]}
+    fake_grid = SimpleNamespace(
+        shape=(1, 1), crs="EPSG:32611", transform="synthetic-affine",
+        footprint=np.ones((1, 1), dtype=bool),
+    )
+
+    class FakeRaster:
+        count = 1
+        shape = fake_grid.shape
+        crs = fake_grid.crs
+        transform = fake_grid.transform
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args):
+            return False
+
+        def read(self, _band):
+            return np.zeros(fake_grid.shape, dtype=np.float32)
+
+    def fake_json(path):
+        name = Path(path).name
+        if name == "registry_witness_pin.json":
+            return pin
+        if name == "download-inventory.json":
+            return inventory
+        raise AssertionError(f"unexpected JSON input: {path}")
+
+    def fake_sha(path):
+        return {
+            "candidate.tif": "candidate-hash",
+            "protocol-preflight.json": "proof-hash",
+        }[Path(path).name]
+
+    monkeypatch.setattr(audit, "ROOT", root)
+    monkeypatch.setattr(audit, "strict_json", fake_json)
+    monkeypatch.setattr(audit, "inside", lambda base, rel, **_kw: base / rel)
+    monkeypatch.setattr(audit, "sha256", fake_sha)
+    monkeypatch.setattr(audit.grid, "load_grid", lambda _path: fake_grid)
+    monkeypatch.setattr(audit.rasterio, "open", lambda _path: FakeRaster())
+    monkeypatch.setattr(protocol_preflight, "measure", lambda: cert)
+    monkeypatch.setattr(uniqueness, "compare_array_to_registry", lambda *_a, **_kw: {
+        "worst_spearman_full_footprint": 0.0, "worst_dot_overlap": 0.0,
+        "unique": True, "stop_required": False, "complete_accessible_scan": False,
+    })
+
+    measured = audit.measure_all_registry(root)
+
+    assert measured["measured_utc"] == cert["measured_utc"]
+    assert measured["measured_utc"] != "2026-10-25T04:07:18+00:00"
 
 
 def test_empty_zip_member_is_not_a_download_pass(release_copy):
@@ -156,7 +229,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 28  # prior 27 (incl. H86J-CSGD & H86J-TVHS) + H86J-MCSP (2026-10-25, DO NOT SUBMIT)
+    assert len(card["inherited_artifacts"]["files"]) == 30  # 28 prior artifacts plus merged GDSC and H86K-PSC; all remain DO NOT SUBMIT
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():
