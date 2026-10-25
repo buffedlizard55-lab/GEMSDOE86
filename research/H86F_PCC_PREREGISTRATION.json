@@ -1,0 +1,77 @@
+{
+  "schema": "gems86.h86f-pcc-preregistration.v1",
+  "lane": "H86F-PCC",
+  "written_before_execution": true,
+  "candidate_arm": "E1_pcc_signed",
+  "budget": {"max_arms": 3, "max_hours": 2, "dots": 44090},
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_m": 300,
+    "seed": 20,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "design": "buffered whole-component quadrant draw"
+  },
+  "leakage_auc_stop": 0.9,
+  "rho_stop": 0.9,
+  "overlap_stop": 0.7,
+  "arms": [
+    {
+      "id": "E1_pcc_signed",
+      "role": "preregistered candidate",
+      "layers": ["training_features.tif band 13 iso_grav_anom", "band 2 rtp", "band 15 depth_to_base_surf", "band 12 det_elev", "band 19 det_elev_slope"],
+      "transform": "Minimum of 150 m and 400 m signed polarity: gravity and RTP gradients point the same way, depth-to-basement gradient points the opposite way, times structure-tensor coherence, oblique-to-survey-axis weight, gradient-magnitude ranks, and a soft topographic-density veto.",
+      "non_fault_mimic": "Unfaulted basin-fill facies contact or volcanic flow edge with the same density/magnetization polarity, plus residual E-W flight-line or N-S tie-line corrugation.",
+      "uncatalogued_rationale": "Qfaults/INGENIOUS records surface scarps. A basement step under basin fill can offset density and magnetization without a Holocene scarp, so it is absent from the mapped catalogue. Emission never places positive mass on mapped catalogue pixels.",
+      "novelty": "Unlike H86-WVB unsigned cos(2*delta) alignment, H86E-MMT lag correlation, H86E-SPBT/SPT Laplace paired-throw, and KSLB fluvial/Blakely filaments, this arm requires signed three-field polarity and rejects anti-parallel magnetic-gravity edges.",
+      "cost": "low",
+      "official_data": "Pinned training_features.tif only. Flight-line azimuths from USGS GeoDAWN DOI 10.5066/P93LGLVQ. No new external raster."
+    },
+    {
+      "id": "E2_pcc_cover",
+      "role": "cover-filter control",
+      "layers": ["E1 fields", "band 15 depth_to_base_surf", "band 19 det_elev_slope"],
+      "transform": "E1 multiplied by rank(depth-to-basement) times one minus rank(detrended slope).",
+      "non_fault_mimic": "Deep unfaulted basin depocenters and low-slope playa interiors.",
+      "uncatalogued_rationale": "Tests whether the missed-fault signal is specifically the no-scarp, thick-cover subset rather than every basement step.",
+      "novelty": "Cover weight is a control on E1, not a separate external dataset and not the H86B/H86C cover-blind GBDT head.",
+      "cost": "low",
+      "official_data": "Same pinned training_features.tif bands."
+    },
+    {
+      "id": "E3_pcc_unsigned",
+      "role": "unsigned-alignment control",
+      "layers": ["band 13 iso_grav_anom", "band 2 rtp"],
+      "transform": "Minimum across the same two scales of cos(delta)^2 magnetic-gravity alignment, times coherence and oblique weight, without depth polarity or topographic veto.",
+      "non_fault_mimic": "Any parallel or anti-parallel magnetic and gravity edge, including intrusive contacts and survey seams that survive the oblique weight.",
+      "uncatalogued_rationale": "If this control matches or beats E1, the signed-polarity claim is not supported on this holdout.",
+      "novelty": "This is the ablation of the signed constraint, included so a win cannot be credited to generic edge ranking.",
+      "cost": "low",
+      "official_data": "Same pinned training_features.tif bands."
+    },
+    {
+      "id": "H86F-RAD",
+      "role": "ranked hypothesis, not run",
+      "layers": ["geodawn_rad_u8 K/Th/U", "band 8 geod_dilaterate", "band 6 TC"],
+      "transform": "K/Th ridge coincident with dilatation and low thorium.",
+      "non_fault_mimic": "Primary rhyolite versus basalt lithologic contrast.",
+      "uncatalogued_rationale": "Potassic alteration can mark a fluid conduit that has no scarp.",
+      "novelty": "Not the RMRB mixing residual and not the CTHB K/Th cross-gradient.",
+      "cost": "medium",
+      "official_data": "Pinned geodawn_rad_u8.tif is obtainable from the 60GEMSDOE GitHub mirror; not used in this 3-arm budget."
+    },
+    {
+      "id": "H86F-MTMIG",
+      "role": "not viable this session",
+      "layers": ["USGS 3D MT conductance DOI 10.5066/P9TWT2LU"],
+      "transform": "Updip projection of a dipping conductor from 2-6 km to the surface.",
+      "non_fault_mimic": "Flat playa brine and inversion smoothing.",
+      "uncatalogued_rationale": "A dipping clay cap can mark a blind fault whose surface trace is offset from the deep conductor.",
+      "novelty": "training_features.tif has one conductivity band, not depth slices. Prior prose that claimed six MT slices inside that TIFF is not used.",
+      "cost": "medium-high",
+      "official_data": "ScienceBase raster not mirrored and not fetched. Not viable until that official grid is hash-pinned inside the sandbox."
+    }
+  ]
+}

@@ -1,6 +1,14 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-PCC-01 — H86F-PCC generated a format-valid TIFF and the gates rejected it (2026-10-25)
+
+`scripts/run_h86f_pcc.py` wrote `docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif` (sha256 `7a0dcffb…c7be`). **Decision: DO NOT SUBMIT.** HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) is 0.0327 [0.0237, 0.0436], below the same-split KSLB comparator 0.1241 [0.1080, 0.1403]. The shared PA-86-02 script refused the registry report because two inventory rasters are not on the submission grid (`14GEMSDOE` horse-ensemble; `7GEMSDOE` qfaults prior). A later diagnostic, `docs/evidence/h86f-pcc-chance-diagnostic.json`, classified 11 dot-field overlap hits as space-filling (0 informative firings). That diagnostic is not a gate pass. The run-card reason string was corrected after the script crash; scores and the SHA-256 were not recomputed. No slot was used.
+
+## IR-86-PCC-02 — template feature cache still absent; raw pinned TIFF was used, not described as the cache
+
+The protocol names the template cached feature stack. It is not in this checkout (`/tmp/gems32/work/feature_stack.npy` is the upstream receipt path). This lane used SHA-pinned `training_features.tif` (`4371c82e…`) plus the unmodified `vendor/gems57` evaluator and writer. It did not rebuild or relabel that cache. The pinned registry inventory still ends at `56GEMSDOE`; local `docs/downloads` and `data/scored_fleet` were added by the existing checker. That is not a complete organizer registry and not coverage of `GEMSDOE57`–`GEMSDOE92`.
+
 ## IR-86-PRUNE-01 — the standing protocol forbids every submission; brief v2 forbids the gate
 `PROMPT.md` / `AGENTS.md` / `scripts/audit_release.py` apply a **70 % overlap** and **0.90
 rank-correlation** uniqueness rule against a pinned registry witness that is positive at every

@@ -1,0 +1,122 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "amendment": "PA-86-02-diagnostic-not-a-gate",
+  "gate_pass": false,
+  "reason": "Shared PA-86-02 script refused the incomplete registry (2 incomparable grids). This file only classifies the 11 same-grid dot-field overlap firings already measured by the shared comparator. It does not authorize submission.",
+  "overlap_limit": 0.7,
+  "firings": 11,
+  "informative_firings": 0,
+  "space_filling_firings": 11,
+  "rows": [
+    {
+      "submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "forward_overlap": 0.9997731911998186,
+      "their_dots": 206895,
+      "chance": 0.9987243421716145,
+      "excess": 0.001048849028204013,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.0008082116223030714
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+      "forward_overlap": 0.9997731911998186,
+      "their_dots": 206895,
+      "chance": 0.9987243421716145,
+      "excess": 0.001048849028204013,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.0008082116223030714
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+      "forward_overlap": 0.710977545928782,
+      "their_dots": 192231,
+      "chance": 0.7621148816628593,
+      "excess": -0.051137335734077305,
+      "space_filling": true,
+      "informative": false,
+      "spearman": 0.007602346445029784
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+      "forward_overlap": 0.710977545928782,
+      "their_dots": 192231,
+      "chance": 0.7621148816628593,
+      "excess": -0.051137335734077305,
+      "space_filling": true,
+      "informative": false,
+      "spearman": 0.007602346445029784
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+      "forward_overlap": 0.8361079609888864,
+      "their_dots": 507776,
+      "chance": 0.8594541931327152,
+      "excess": -0.023346232143828805,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.00459820688157433
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+      "forward_overlap": 0.8361079609888864,
+      "their_dots": 507776,
+      "chance": 0.8594541931327152,
+      "excess": -0.023346232143828805,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.00459820688157433
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+      "forward_overlap": 0.8129961442503969,
+      "their_dots": 380365,
+      "chance": 0.8329651994512752,
+      "excess": -0.019969055200878327,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.005337357778261821
+    },
+    {
+      "submission": "13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+      "forward_overlap": 0.8129961442503969,
+      "their_dots": 380365,
+      "chance": 0.8329651994512752,
+      "excess": -0.019969055200878327,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.005337357778261821
+    },
+    {
+      "submission": "15GEMSDOE:docs/downloads/gems-cleanup-a-20260928T195952Z-curv_scarp.tif",
+      "forward_overlap": 0.8769108641415287,
+      "their_dots": 362327,
+      "chance": 0.8885693107746478,
+      "excess": -0.011658446633119102,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.0025256573968672445
+    },
+    {
+      "submission": "GEMSDOE3:docs/downloads/pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+      "forward_overlap": 0.7170106600136086,
+      "their_dots": 155021,
+      "chance": 0.7344514759462908,
+      "excess": -0.017440815932682208,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.000600653545429976
+    },
+    {
+      "submission": "GEMSDOE3:docs/downloads/pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+      "forward_overlap": 0.7157405307325925,
+      "their_dots": 155021,
+      "chance": 0.7346140175486181,
+      "excess": -0.01887348681602563,
+      "space_filling": true,
+      "informative": false,
+      "spearman": -0.0011680248572418256
+    }
+  ]
+}

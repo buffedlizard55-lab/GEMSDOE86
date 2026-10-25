@@ -179,6 +179,15 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["value"], "ci95": h["ci95"],
                 "design": "buffered whole components; two seeds; physical-block bootstrap",
                 "caveat": "Archived pipeline evidence only; not recomputed in this audit, not a private-test score."}
+    if kind == "h86f_pcc":
+        h = context["holdout_dti"]
+        candidate = h["candidate"]
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": candidate["dti"], "ci95": candidate["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-PCC lane. HOLDOUT-DTI does not beat the same-split historical comparator. Not an organizer score. No slot was used."}
     if kind == "h86e_mmt":
         # This is a current lane card, not an inherited historical score. Keep
         # its measured result visible in the artifact audit without pretending

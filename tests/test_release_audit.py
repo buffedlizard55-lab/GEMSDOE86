@@ -36,7 +36,7 @@ def first_artifact(root):
 def test_real_report_checks_every_published_raster_and_all_remain_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 16  # 10 inherited + faulthalo + H86E + GAPRES + H86E-MMT + blind-geothermal + H86F-GZZD
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 17  # prior 15 + H86F-PCC + H86F-GZZD (concurrent negative lanes, 2026-10-25)
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -152,7 +152,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 16  # 10 inherited + faulthalo + H86E + GAPRES + H86E-MMT + blind-geothermal + H86F-GZZD
+    assert len(card["inherited_artifacts"]["files"]) == 17  # prior 15 + H86F-PCC + H86F-GZZD (concurrent negative lanes, 2026-10-25)
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

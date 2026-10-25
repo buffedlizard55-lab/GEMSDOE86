@@ -26,13 +26,13 @@ class PrepareDataTests(unittest.TestCase):
             self.assertEqual(manifest["grid"]["transform"], [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0])
             self.assertEqual(manifest["counts"]["footprint_valid_pixels"], 5167373)
             self.assertEqual(manifest["counts"]["positive_catalogue_label_pixels"], 60988)
-            # training_features is also pin-verified when restored locally;
-            # CI restores only the two protocol files. Accept the superset,
-            # but every verified pin that is reported must actually be True.
             pins = manifest["pins_verified"]
             self.assertTrue(pins["sample_submission"])
             self.assertTrue(pins["existing_faults"])
-            self.assertTrue(all(pins.values()))
+            self.assertNotIn(False, pins.values())
+            if manifest["counts"]["has_features"]:
+                self.assertTrue(pins["training_features"])
+
 
             self.assertTrue(out_manifest.is_file())
             saved = json.loads(out_manifest.read_text())
