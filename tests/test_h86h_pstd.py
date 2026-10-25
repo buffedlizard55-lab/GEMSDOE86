@@ -239,4 +239,3 @@ def test_pstd_rank01_tie_invariance():
     zero_mask = fp & (arr == 0.0)
     assert np.all(ranked[zero_mask] == 0.0)
     assert float(ranked[18, 15]) == pytest.approx(1.0)
-
