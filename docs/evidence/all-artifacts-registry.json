@@ -1,10 +1,10 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-25T02:15:33+00:00",
+  "measured_utc": "2026-10-25T02:31:53+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
-  "proof_sha256": "46a7f2c523edaa477355b1932b535713d36e6d2c25d0bca4aa528258368e5514",
+  "proof_sha256": "e8d4e492e91b291572afd4da835893f6752692e124df97e65780ff8e66987099",
   "registry_rasters_measured": 1,
   "registry_complete": false,
   "preplacement_surfaces_measured": false,

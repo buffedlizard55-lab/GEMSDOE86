@@ -1072,6 +1072,22 @@ competition rasters (`training_features.tif` `4371c82e...`, `existing_faults.tif
 generating the complete 19-band `data/prepared_manifest.json` (`has_features: true`, `58,171`
 total sentinel band-pixels across `3,073` unique perimeter/TC cells).
 
+## IR-86-INVENTORY-OFFGRID-ROWS-20261025 — 2026-10-24/25 (`H86H-PSTD` strict Rule-11 stop before placement)
+
+Even after restoring and SHA-256-verifying all `655 / 655` blobs in `research/upstream/registry_inventory.json`
+(`728,345,463` bytes; `689` unique indexed rasters including the 17 prior local artifacts, `0` missing), two historical
+inventory entries fail `vendor/gems57/uniqueness.py::compare_array_to_registry` grid/CRS checks:
+- `14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif` (`ccbe1de0...`: `registry CRS/transform differs from reference`)
+- `7GEMSDOE:external/qfaults/qfaults_prior_u8.tif` (`538b4573...`: `registry grid or band-count mismatch`)
+
+Unlike lanes that serialized audit-only GeoTIFFs despite failing `surface_gate_pass` / `literal_gate_pass`,
+the contemporaneously preregistered `H86H-PSTD` lane (`scripts/run_h86h_pstd.py`, `docs/evidence/h86h-pstd-run-card.json`)
+strictly obeys `AGENTS.md` Rule 11: it checks its continuous surface (`rho_firings = 0`,
+`worst_spearman_full_footprint <= 0.90` across all `687` valid competition-grid rasters including `H86F-GZZD` and `H86F-PCC`)
+and **halts fail-closed before full-footprint dot placement and before GeoTIFF serialization** (`final_dots_placed = False`,
+`candidate_tif_serialized = False`). Also added `holdout_binary_control` (`GEMSDOE25` `91eae1ca42ec...`, `d_vis > 2.0 px`,
+`HOLDOUT-DTI = 0.096086`) to `scripts/run_h86e_mmt.py` and gated `write_h86e_tif`.
+
 ## IR-86-H86F-EWCS-01 (2026-10-25) — H86F-EWCS sets repo same-split HOLDOUT-DTI record (`0.1723`), yet fails closed to DO NOT SUBMIT on registry completeness and literal saturation
 
 `scripts/run_h86f_ewcs.py` executed the frozen 3-arm preregistered `H86F-EWCS` lane
@@ -1103,7 +1119,7 @@ upstream registry blockers.
 
 ## IR-86-H86F-PCC-PREFLIGHT-20261025 — `scripts/run_h86f_pcc.py` lacked `require_feasible()` and `docs/evidence/h86e-mmt-registry-surface.json` carried `surface_gate_pass: true` despite 2 errors
 
-Pass-2/3 audit after merging PRs #97–#99 found that `scripts/run_h86f_pcc.py` (merged in
+Pass-2/3 audit after merging PRs #97–#102 found that `scripts/run_h86f_pcc.py` (merged in
 PR #97 concurrently with PR #98's builder-gating sweep) did not call
 `protocol_preflight.require_feasible()` at the start of `main()` and was absent from
 `tests/test_builder_preflight.py::BUILDERS`, while archived
@@ -1112,6 +1128,6 @@ despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
 `docs/evidence/h86e-mmt-run-card.json` (`false`) and `AGENTS.md` Rule 11.
 **Decision:** Both `scripts/run_h86f_pcc.py` and `scripts/run_h86f_ewcs.py` now call
 `protocol_preflight.require_feasible()` before any work and are pinned in
-`tests/test_builder_preflight.py::BUILDERS` (now **53 CLI builders + 8 imported
+`tests/test_builder_preflight.py::BUILDERS` (now **54 CLI builders + 8 imported
 orchestrators**), and `docs/evidence/h86e-mmt-registry-surface.json` now records
 `"surface_gate_pass": false` with an explicit archive note.

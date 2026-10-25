@@ -547,6 +547,15 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
     if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
         raise ValueError("Registry measurement must carry a UTC timestamp")
     card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+                # This is a fresh audit, not a scientific lane. Do not inherit the
+                # historical session card's planned SPBT hypothesis as if it were
+                # selected or tested in the current review.
+                hypothesis="No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
+                mechanism="None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
+                named_non_fault_process="Not applicable: no candidate mechanism was tested.",
+                holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_NO_LANE_ASSIGNED",
+                                 evaluator_version="gems57-pooled-hide-v2", withheld_positives=None,
+                                 value=None, ci95=None),
                 # date_utc means something different here than in the archived
                 # session card, so its basis must be restated rather than inherited.
                 date_utc_basis=("Date of this registry remeasurement (registry_measured_utc). "
@@ -555,6 +564,10 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
                 scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
                 release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
                 registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
+    card["holdout_dti"]["status"] = "NOT_RUN_NO_LANE_ASSIGNED"
+    card["correlation_overlap_vs_registry"]["evidence_class"] = "REGISTRY-MEASUREMENT"
+    card["correlation_overlap_vs_registry"]["measurement_scope"] = (
+        "Inherited full-support continuous witness direct-support overlap; not a candidate surface or final-dot PA measurement.")
     return card
 
 

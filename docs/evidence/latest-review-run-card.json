@@ -2,12 +2,12 @@
   "schema": "gems86.current-review.v1",
   "date_utc": "2026-10-25",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
-  "hypothesis": "H86E-SPBT: Signed paired-throw basement\u2013Laplace-gravity concordance under low-relief alluvial cover (planned g_zz/low-relief extension; standalone SPBT-v1 was previously negative; exact extension NOT RUN; no method lane assigned)",
-  "mechanism": "Test antisymmetric flank profiles across +/-400 m strike-oriented corridors: a positive hanging-wall step in depth_to_base_surf (Band 15) and an antiparallel negative step in iso_grav_anom (Band 13) must share the same downthrown polarity AND coincide with an across-strike dipole zero-crossing of the footprint-masked, Gaussian-regularized (sigma = 400-600 m, avoiding 100 m gravity resampling noise) Laplace vertical gravity curvature g_zz = -(d_x iso_grav_anom_hg (Band 18) - d_y iso_grav_anom_vg (Band 11)) along >=900 m strike continuity, weighted higher where det_elev_slope (Band 19) scarp relief is muted by Holocene basin fill, and tested against a polarity-scrambled control at identical 300 m submodular emission budget.",
-  "named_non_fault_process": "Unfaulted pre-Tertiary erosional paleovalley margins or buried caldera moat walls infilled by low-density tuffaceous basin sediments; gravity-basement inversion artifacts (USGS OFR 99-383).",
+  "hypothesis": "No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
+  "mechanism": "None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
+  "named_non_fault_process": "Not applicable: no candidate mechanism was tested.",
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
-    "status": "NOT_RUN_PROTOCOL_STOP",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED",
     "evaluator_version": "gems57-pooled-hide-v2",
     "withheld_positives": null,
     "value": null,
@@ -22,7 +22,9 @@
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
     "universal_forward_overlap": 1.0,
     "allowed_overlap_limit": 0.7,
-    "evidence": "docs/evidence/all-artifacts-registry.json"
+    "evidence": "docs/evidence/all-artifacts-registry.json",
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "measurement_scope": "Inherited full-support continuous witness direct-support overlap; not a candidate surface or final-dot PA measurement."
   },
   "raster_sha256": null,
   "validator_output": {
@@ -140,8 +142,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T02:15:33+00:00",
+  "registry_measured_utc": "2026-10-25T02:31:53+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "584c2ee0c629d29382c1e12eb45d529443494332cbd91209e4d4ca06661c99dc",
-  "registry_measurement_sha256": "90645cfc9aa11f34da707d0e4ca18a1201eb636c97c04fb9995d7b89647494fa"
+  "release_report_sha256": "c65b7c35f51705b5f76057d38ab4d6d593133967d756b2e2d7f5860f80b2003b",
+  "registry_measurement_sha256": "9803a4164278203d14bec7d9f52d00c0f9a308233b0fe07357789b01d67ca3d1"
 }

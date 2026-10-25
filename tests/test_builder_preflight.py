@@ -25,7 +25,7 @@ run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
 run_h86_wvb run_h86e run_h86e_mmt run_h86e_ridf run_h86f_ewcs run_h86f_gzzd run_h86f_pcc run_lane run_lane86 run_lane86b run_lane86c run_lane86d
 run_prune_ladder run_relief_axis run_relief_source run_snap_axis
-run_spacing_axis run_trackb_axis
+run_spacing_axis run_trackb_axis write_h86e_tif
 """.split()
 IMPORTED_ORCHESTRATORS = [
     ("experiment", "run", ("full",)),
