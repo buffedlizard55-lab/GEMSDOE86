@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 36,
-    "local_format_pass": 36,
+    "checked": 39,
+    "local_format_pass": 39,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -218,6 +218,21 @@
         "file": "docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
         "sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
+        "sha256": "5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+        "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+        "sha256": "ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -232,8 +247,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T19:10:02.501425+00:00",
+  "registry_measured_utc": "2026-10-25T19:40:12.801197+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "c7834a854326642e326e9202092c6bd235db582594665bdd4ea5fbdbd9bb9bae",
-  "registry_measurement_sha256": "a36380dabd063ba4864e0def6b32e681ce8e5224807667b5bd8aedcff8c716b2"
+  "release_report_sha256": "2ec6ba549a18b60203c4f9c9ead9da1b43e2485eb8cc7feed61ae20aec3f8401",
+  "registry_measurement_sha256": "20f715520ee470bfb25e8eb6c0b925e366e4871ddb32a1d0ce8f30531143273a"
 }

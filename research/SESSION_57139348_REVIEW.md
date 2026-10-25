@@ -59,3 +59,7 @@ Next session: restore/provenance-pin the shared cache with fold-visible-mask ide
 ## Later branch-integration verification (PR #162, after main `2c8d518`)
 
 A subsequent branch reconciliation retained this review's negative findings and ranked proposals, changed the H86M-LT run card's operative verdict to `negative` while preserving the prior promotion claim as superseded history, and explicitly remeasured the pinned-witness overlap at 1.0 (>0.70). The latest full local suite on the integrated tree passes: **1029 passed, 24 skipped, 58 subtests passed**; 48 existing Rasterio deprecation warnings. Release and download integrity audits each cover 36 artifacts; site checks pass. These are local verification results, not scientific validation or organizer confirmation. No holdout, canary, experiment, slot selection, or submission occurred.
+
+## Latest main integration (`a7efb59`)
+
+Following additional parallel main merges, the audit inventory contains 39 locally format-valid audit-only TIFFs, all 39 fail-closed for submission. A later full run on the integrated branch passed **1051 tests**, skipped 24, and passed 58 subtests (48 existing Rasterio warnings). H86M-LT's release row still records literal overlap 1.0 > 0.70 and `NOT_VALIDATED_FOR_THIS_VARIANT`; no claim of current clearance is made.
