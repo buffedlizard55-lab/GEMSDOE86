@@ -1,0 +1,66 @@
+{
+  "schema": "gems86.session-review.v1",
+  "session": "arena/96fc6d48-gemsdoe86",
+  "date_utc": "2026-10-25",
+  "hypothesis": "No geological hypothesis was tested: no method paragraph is assigned, the template's cached feature stack is absent, and the literal registry witness stops placement before any experiment. Queue ranks 4-6 (H86O-1_SCQD, H86O-2_TCW, H86O-3_DBK; renamed H86O at merge \u2014 H86N is owned by registry/h86n_hypotheses.json, whose H86N-EQL seismic-lineation lane is an executed measured negative) were proposed unrun in registry/h86o_hypotheses_20261025.json; top candidate for a future authorized lane is H86O-1_SCQD (seismicity-conditioned dilatancy conjunction).",
+  "mechanism": "Read-only integrity audit + publication repair: pinned-witness registry re-measurement of all registered final TIFFs; independent byte re-verification of the unregistered H86M-LT raster (SHA/ZIP/CRS/range); registration audit-only; superseding its unsupported promote/safe_to_submit claim; fixing the pinned-data layout bug breaking protocol_preflight.measure(); regenerating the site from evidence. No surface, dots, or TIFF were created.",
+  "named_non_fault_process": "For the top queued hypothesis (H86O-1_SCQD): geothermal production/injection-induced seismicity, volcanic swarms and quarry blasts elevate event density with dilatancy and could mimic the signal.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "UNIVERSAL_LITERAL_BLOCKER_REMEASURED",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "measured_utc": "2026-10-25T19:51:53.386393+00:00",
+    "inherited_artifacts_remeasured": 40,
+    "all_forward_overlap_3px": 1.0,
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9,
+    "registry_complete": false,
+    "scope": "One SHA-pinned full-support witness restored from the pinned blob; sufficient to stop every nonempty candidate under the unchanged literal rule, never to clear uniqueness. Full-registry evidence for H86G-EDTI (25 informative dot-field firings) is in docs/evidence/h86g-edti-full-registry-audit-20261025.json.",
+    "evidence": "docs/evidence/all-artifacts-registry.json",
+    "post_merge_note": "Post-merge re-measurement (origin/main 0fb4f80 after PRs #166-#177): 40 registered artifacts including H86N-EQL, H86M-PFTE, H86N-GSST, H86M-BMGS; session-time measurement covered 36."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_artifacts_revalidated": {
+      "evidence_class": "FORMAT-VALIDATION",
+      "artifact_count": 40,
+      "locally_valid": 40,
+      "audit_ok": true,
+      "h86m_lt_disk_reverification": "SHA-256 4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee matches; one-TIFF ZIP payload byte-identical and CRC-clean; single-band float32 EPSG:32611 3730x3292 transform (100,0,243350,0,-100,4508550); finite; 0 NaN/Inf; values exactly {0,1}; 37,654 positives; excludes the portal '[0, 1]' error class"
+    }
+  },
+  "submission_name": null,
+  "note": "Session 96fc6d48: audit repaired, H86M-LT audit-only; 36 TIFFs format-valid, none authorized; no new TIF; 0 slots.",
+  "note_chars": 114,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "organizer_confirmed": false,
+  "duplicate": null,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "irregularities_logged": [
+    "IR-86-96FC6D48-PREFLIGHT-LAYOUT",
+    "IR-86-96FC6D48-H86MLT-REGISTRATION"
+  ],
+  "h86m_lt_registered_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+  "release_readiness_sha256": "8cf27d739f7c9a3433356fc77bd18acbc1e916c7563acc5774ea6c0b04184f1a",
+  "registry_measurement_sha256": "d7f3d4125be030b08527709e1826798f9b6e3a9abe982a818d212ab9483455f2",
+  "review": "research/SESSION_20261025_96FC6D48_REVIEW.md",
+  "requirement_unmet": "No new unique submission TIFF could be generated or authorized: the literal lane rule is unsatisfiable against the pinned full-support witness, the only historical promote fails the full-registry duplicate scan, no lane paragraph is assigned, the shared feature cache is absent, and no organizer receipt exists. Existing TIFFs are audit-only downloads; generating another would not be submittable and would violate the protocol."
+}

@@ -543,10 +543,10 @@ def measure_all_registry(root: Path = ROOT) -> dict:
     if root.resolve() != ROOT:
         raise ValueError("Registry measurement requires this checkout's pinned inputs")
     cert = measure()  # verifies witness, inventory membership, size, SHA and grid
-    g = grid.load_grid(root / "data")
+    g = grid.load_grid(root / "data" / "bridge")
     pin = strict_json(root / "research/registry_witness_pin.json")
     records = [dict(repo=pin["repo"], submission=pin["source_path"],
-                    file=str(root / "data" / pin["dest"]), sha256=pin["sha256"])]
+                    file=str(root / "data" / "bridge" / pin["dest"]), sha256=pin["sha256"])]
     rows = []
     inventory = strict_json(root / "docs/evidence/download-inventory.json")
     for entry in inventory["artifacts"]:
