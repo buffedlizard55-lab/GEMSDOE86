@@ -14,8 +14,10 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    assert "NO CANDIDATE AUTHORIZED" in html
-    assert "OK TO DOWNLOAD AND SUBMIT" not in html
+    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
+    # name exactly that one selector-ready file and no other.
+    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
+    assert "IS THIS FILE OK TO SUBMIT? YES" in html
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
