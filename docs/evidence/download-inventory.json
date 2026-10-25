@@ -1,5 +1,5 @@
 {
-  "scope": "32 locally format-valid research artifacts: earlier registered files plus H86L-FMC (2026-10-25); all remain audit-only and no selector/slot was used.",
+  "scope": "35 locally format-valid research TIFF artifacts. Includes the inherited lanes, H86L-FMC, H86M-BMR, H86M-CNT and H86M-DAMAGERING; every artifact remains audit-only/DO NOT SUBMIT, with 0 selector actions and 0 weekly slots.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -190,6 +190,24 @@
     {
       "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
       "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+      "sha256": "fa7418e87080129afea27a26c9ec0eebe5ca9b0a45945d84ca5cd691952ddb10",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+      "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+      "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     }
