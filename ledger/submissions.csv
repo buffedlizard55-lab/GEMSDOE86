@@ -107,8 +107,8 @@ GEMSDOE85,gemsdoe85-hjcd-ventbridge-submod-zeros,0.1110,zeros,,,,N,,,,,,HISTORIC
 GEMSDOE86,site:GEMSDOE86,,,,,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE86/
 GEMSDOE87,h87-h87-cmgep-20261022T060000Z-8f394f43,0.0500,unknown,,8f394f43,,N,,,,,,HISTORICAL,,,,CLAIM,https://buffedlizard55-lab.github.io/GEMSDOE87/
 GEMSDOE88,site:GEMSDOE88,,,,,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE88/
-GEMSDOE89,gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros,,zeros,,d7e1507c,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE89/
-GEMSDOE90,gems90-cnc-35000dots-20261024T084324Z,,unknown,,,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE90/
+GEMSDOE89,gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros,0.0301,zeros,,d7e1507c,,N,,,,,,HISTORICAL,,,,CLAIM,https://buffedlizard55-lab.github.io/GEMSDOE89/
+GEMSDOE90,gems90-cnc-35000dots-20261024T084324Z,0.0749,unknown,,,,N,,,,,,HISTORICAL,,,,CLAIM,https://buffedlizard55-lab.github.io/GEMSDOE90/
 GEMSDOE91,site:GEMSDOE91,,,,,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE91/
 GEMSDOE92,site:GEMSDOE92,,,,,,N,,,,,,HISTORICAL,,,,NO-EVIDENCE,https://buffedlizard55-lab.github.io/GEMSDOE92/
 GEMSDOE86,h33-h33-2-b2-prune3-20261023-withdrawn,,nan,35483,,,N,h33-h33-2-b2-prune3-20261023-withdrawn,PRUNE,3,5.7657,,WITHDRAWN,"-0.003 (95% range -0.010..+0.004). MODEL. Mechanism: the 2-3 px collar holds 5.8% of the dots at 2.1x the background density but is NOT evidence-poor (tmi_hg percentile 0.528 vs 0.542 elsewhere), and the organiser says new truth can sit within 300 m of known traces, so most of these dots still carry new-fault credit; only the masked-sliver redundancy argues for a gain.",,,MODEL,
