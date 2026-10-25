@@ -211,6 +211,13 @@
       "context": "docs/evidence/h86k-psc-run-card.json",
       "holdout_kind": "h86k_psc",
       "stem": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros"
+    },
+    {
+      "lane": "H86K-STDP multi-altitude Salem tilt dip-migration up-dip pullback + up-head GDR-1391 geothermal disequilibrium + 4-fold LOQO + exact 6-ring survival Dinkelbach-CELF (SGMC-PROXY-DTI 0.1133 / blind E2 0.1151 beating GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355] & MCSP +0.0134 [+0.0002, +0.0261]; LOQO HOLDOUT-DTI 0.1380 with NE 0.1420; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86k-stdp-run-card.json",
+      "context": "docs/evidence/h86k-stdp-run-card.json",
+      "holdout_kind": "h86k_stdp",
+      "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
     }
   ]
 }

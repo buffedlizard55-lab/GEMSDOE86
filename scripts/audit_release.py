@@ -344,6 +344,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86J-MCSP lane result; the run card is the authoritative experiment receipt. Under strict 4-fold spatial Leave-One-Quadrant-Out training with zero raw regional levels and 10m DEM LiDAR-swath debiasing, E1 achieves HOLDOUT-DTI 0.1463 [0.1280, 0.1647] (pure-blind E2 = 0.0839 [0.0669, 0.1009], scalar/static-E[k] ablation E3 = 0.1380 [0.1236, 0.1529]) and SGMC-PROXY-DTI 0.0999 [0.0826, 0.1168] (beating E3 0.0760 by +0.0239 [+0.0086, +0.0381], H86F-EWCS 0.0819 by +0.0180 [+0.0034, +0.0328], and equal-budget GEMSDOE32 H33 0.0937), with 0/690 Spearman rho > 0.90 firings (max 0.6364) and 0/51 local discrete <=100k-dot firings > 0.70 (max 0.5964), but full 692-entry v2 literal/completeness gates fail closed and paired delta vs E3 on catalogue-hide spans zero; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86k_stdp":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
