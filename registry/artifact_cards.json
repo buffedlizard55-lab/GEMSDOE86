@@ -246,6 +246,13 @@
       "context": "docs/evidence/h86m-damagering-run-card.json",
       "holdout_kind": "h86m_unvalidated",
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT historical tomography artifact (current negative disposition; no comparable HOLDOUT-DTI)",
+      "card": null,
+      "context": "docs/evidence/h86m-lt-current-disposition.json",
+      "holdout_kind": "h86m_lt_unvalidated",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
     }
   ]
 }

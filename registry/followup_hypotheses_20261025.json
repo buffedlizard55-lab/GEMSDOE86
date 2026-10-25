@@ -3,8 +3,8 @@
   "created_date_utc": "2026-10-25",
   "lane_assignment": null,
   "status": "PROPOSALS_ONLY_NOT_AUTHORIZED_OR_IMPLEMENTED",
-  "scope_note": "Three exact methods not found as executed candidate experiments in this checkout. This is not a claim of global novelty across all GEMSDOE sites or the literature. Several methods were proposed in earlier review documents; proposed is not the same as implemented or validated. Newly merged H86K-PSC and GDSC lanes are excluded because they were already executed. No numeric score projection is made.",
-  "ranking_basis": "Qualitative expected information gain for spatially blocked HOLDOUT-DTI per implementation cost, weighted by geological specificity, ability to separate named mimics, and distance from methods already executed in this checkout. This is a research-priority ordering, not a projected score.",
+  "scope_note": "Three checkout-scoped exact candidates remain in the queue after reclassifying executed BMR and continuous CNT as tried. Not a claim of global novelty across the literature or the GEMSDOE fleet. Candidate ranking is qualitative information gain versus cost, not a score projection. No candidate is authorized: there is no assigned method paragraph, no actual shared feature cache, and the current literal witness stop remains binding.",
+  "ranking_basis": "Qualitative information gain and geological specificity per implementation cost, with penalties for confounding and proximity to executed methods. This is not a projected score or an authorization to run.",
   "excluded_as_already_tried": [
     {
       "method": "Persistent potential-field saddle connectors / saddle-ridge (H86K-PSC)",
@@ -30,40 +30,27 @@
       "method": "Directional variogram anisotropy",
       "evidence": "registry/upstream_registry_index.json entry GEMSDOE52:docs/downloads/gems52-h75-dva-variogram-anisotropy-B-37654px-20261009.tif",
       "disposition": "Excluded from the untried queue because a prior registry artifact is explicitly named as a variogram-anisotropy submission. That entry alone does not establish its score, scientific validity, or exact algorithm."
+    },
+    {
+      "method": "Basement-interface gravity mass-balance residual (BMR)",
+      "evidence": "scripts/run_h86m_bmr.py and docs/evidence/h86m-bmr-run-card.json",
+      "disposition": "Already executed in H86M-BMR; negative. HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.0086, 0.0384]) = 0.0220. Do not relabel as untried; historical result is not recomputed here."
+    },
+    {
+      "method": "Continuous high-pass conductivity neck \u00d7 dilatation (CNT)",
+      "evidence": "scripts/run_h86m_cnt.py and docs/evidence/h86m-cnt-run-card.json",
+      "disposition": "Already executed in H86M-CNT; negative. HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.0257, 0.0575]) = 0.0408. The threshold-persistence CTP proposal is a close, unvalidated refinement, not a rename of this result."
     }
   ],
   "common_data_requirement": {
     "layers_are_present_in_native_band_map": true,
     "actual_shared_feature_stack_restored": false,
     "new_external_data_required": false,
-    "caveat": "All three designs use native competition bands, but the required shared cached feature stack is absent. The native TIFF, if restored, is not a substitute. No experiment is currently authorized or reproducible from the required shared stack."
+    "caveat": "The candidates use native competition bands; the native feature TIFF and the actual shared cached feature stack are absent in the current workspace. No new third-party dataset is necessary, but no experiment is currently reproducible under the required shared-stack protocol."
   },
   "hypotheses": [
     {
       "rank": 1,
-      "id": "BMR",
-      "name": "Basement-interface gravity mass-balance residual",
-      "layers": [
-        {
-          "band": 13,
-          "name": "iso_grav_anom"
-        },
-        {
-          "band": 15,
-          "name": "depth_to_base_surf"
-        }
-      ],
-      "physical_signature": "Fit a simple basement-interface forward gravity response from Band 15 to Band 13 using training spatial blocks only, then test whether a localized, persistent cross-strike gravity residual remains after broad basement relief is accounted for. Freeze density contrast, filtering, and edge treatment before holdout evaluation; compare the residual against raw gravity and basement-gradient controls.",
-      "catalogue_missing_rationale": "A buried basement displacement could leave a density step beneath basin fill without a mapped surface scarp, while a broad basin response is absorbed by the forward component. This remains a hypothesis, not direct evidence of fault displacement.",
-      "novelty": "A prior review proposed this exact forward-residual family, but no executable forward-gravity mass-balance residual or run card was found in this checkout. Existing H86E-SPBT pairs Band 13 and Band 15 steps; H86H-PSTD uses gravity-tensor features; the now-executed H86K-PSC uses a Hessian saddle/ridge score. None is this frozen physical forward-model residual test. Band 15 is gravity-derived, so it is not independent corroboration and circularity must be tested.",
-      "non_fault_mimic": "Lateral sediment-density changes, errors or smoothing in the gravity-derived basement-depth surface, and model-edge ringing.",
-      "expected_holdout_potential": "Highest qualitative priority, but only moderate confidence: removing a broad basin component might expose a narrower residual, while dependence of Band 15 on gravity can make the residual circular or unstable.",
-      "implementation_cost": "High; requires verified units and sign conventions, a fold-safe forward model, stability analysis, and matched raw-gravity/basement controls.",
-      "falsifier": "The residual does not improve paired spatial-block HOLDOUT-DTI over both raw-gravity and basement-gradient controls, or its apparent signal disappears under plausible density contrasts and boundary conditions.",
-      "status": "NOT_RUN_PROTOCOL_STOP"
-    },
-    {
-      "rank": 2,
       "id": "GSST",
       "name": "Gravity step-versus-compact-source shape test",
       "layers": [
@@ -88,15 +75,42 @@
       "catalogue_missing_rationale": "An extended buried basement step could generate a coherent cross-strike response that is not captured by a single gradient maximum; rejecting compact-source-like anomalies may favor long, concealed discontinuities without using catalogue distance.",
       "novelty": "A 2026-10-23 review proposed the source-shape comparison, but no explicit step-versus-compact likelihood or response-ratio model was found in scripts/ or src/. H86F-GZZD and H86H-PSTD use gravity derivatives/tensors, and H86K-PSC now uses Hessian saddle/ridge topology, but none implements this explicit competing-source model comparison.",
       "non_fault_mimic": "An elongated intrusive contact, basin-margin facies change, or overlapping compact sources that happen to form a linear gradient corridor.",
-      "expected_holdout_potential": "Low-to-medium qualitative potential; shape consistency may reject some isolated bodies, but a long lithologic contact can mimic a fault step.",
+      "expected_holdout_potential": "Highest of this remaining qualitative queue, but low-to-medium confidence; this is not a projected DTI or leaderboard score.",
       "implementation_cost": "Medium; requires scale-matched forward templates, verified coordinate/sign conventions, and sensitivity analysis to source depth and bandwidth.",
       "falsifier": "Step-source likelihood fails to outperform compact/contact controls on paired spatial-block HOLDOUT-DTI or changes rank materially across reasonable filter scales.",
       "status": "NOT_RUN_PROTOCOL_STOP"
     },
     {
+      "rank": 2,
+      "id": "EQA",
+      "name": "Microseismic density-lineation tensor",
+      "layers": [
+        {
+          "band": 10,
+          "name": "deq_n100a15"
+        },
+        {
+          "band": 16,
+          "name": "ieq_n100a15"
+        },
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        }
+      ],
+      "physical_signature": "Estimate local orientation coherence and anisotropic scale from the two seismic-density fields, then test whether persistent lineations align with independently measured geodetic shear. Freeze smoothing, orientation windows and nulls before evaluation.",
+      "catalogue_missing_rationale": "An active but unmapped structure may host aligned microseismicity without a clear surface scarp; a lineation statistic could retain geometry where amplitude/proximity summaries are diffuse.",
+      "novelty": "A source search found seismicity used in broader strain/conduit feature fusions (including H86I-RKSC), but did not find a standalone orientation-coherence candidate built from Bands 10/16. This is checkout-scoped only; it does not establish novelty across every GEMSDOE site. Verify original band smoothing/semantics before preregistration.",
+      "non_fault_mimic": "Induced geothermal microseismic swarms, volcanic seismicity, and gridding/interpolation anisotropy.",
+      "expected_holdout_potential": "Low qualitative potential: the competition bands are derived density/intensity products and may be too smoothed to preserve fault-scale orientation.",
+      "implementation_cost": "Medium-high; requires verified layer semantics, angular nulls, fold-safe preprocessing, and comparison with both seismicity and shear-only controls.",
+      "falsifier": "Orientation coherence does not add paired spatial-block HOLDOUT-DTI over density-only and shear-only controls, or is unstable to plausible windows/null orientations.",
+      "status": "NOT_RUN_PROTOCOL_STOP"
+    },
+    {
       "rank": 3,
-      "id": "CNT",
-      "name": "Conductivity-neck topology conditioned on dilatation",
+      "id": "CTP",
+      "name": "Threshold-persistent conductivity neck topology",
       "layers": [
         {
           "band": 17,
@@ -111,25 +125,25 @@
           "name": "geod_shearrate"
         }
       ],
-      "physical_signature": "Track narrow conductive connections across a frozen threshold-persistence range, then test whether the necks co-locate with positive dilatation and coherent shear compared with conductivity-only, strain-only, and spatially randomized controls. This single surface-conductance band is not depth-resolved magnetotellurics.",
-      "catalogue_missing_rationale": "A concealed fluid-permeability pathway could connect broader conductive zones without a surface scarp; using neck persistence rather than a conductivity maximum is intended to emphasize narrow pathways that raw-halo methods may suppress.",
-      "novelty": "This conductivity-neck idea also appears as an H86K-CNT reserve in the merged H86K-PSC preregistration, but that entry is RESERVE and has no execution/run card. No threshold-persistent conductive-component neck extraction conditioned on dilatation was found in scripts/ or src/. Existing CTHB/FVMB/MCSP-style features use conductivity gradients, margins, or halos; they do not construct this exact topology test.",
-      "non_fault_mimic": "Saline playa sediments, clay-rich paleochannels, or gridding/interpolation bottlenecks that connect conductive patches.",
-      "expected_holdout_potential": "Lowest qualitative priority because surface conductivity is nonspecific; any benefit is conditional on stable topology and independent strain corroboration.",
-      "implementation_cost": "Medium; multi-threshold connectivity, width controls, and randomized-neck nulls are needed.",
-      "falsifier": "Neck features fail to beat both conductivity-only and strain-only controls, or their topology is unstable across the preregistered threshold range.",
+      "physical_signature": "Track connectivity and neck-width persistence across a frozen conductivity-threshold filtration, and require independent strain consistency. Compare with conductivity-only, strain-only and randomized-neck controls.",
+      "catalogue_missing_rationale": "A covered fluid pathway could connect conductive regions without a mapped surface scarp; persistence of a narrow connection is intended to distinguish a corridor from a broad conductivity high.",
+      "novelty": "H86M-CNT already tested a continuous high-pass conductivity-neck score multiplied by positive dilatation and was negative. A threshold-persistence/topological statistic is a distinct representation, but is a close refinement, not a wholly new concept. No exact threshold-filtration implementation was found in the scanned source. The H86K-CNT reserve proposal and external fleet require review before calling this novel.",
+      "non_fault_mimic": "Saline playa deposits, clay-rich paleochannels, or interpolation bottlenecks connecting conductive patches.",
+      "expected_holdout_potential": "Low, with high confounding risk; only worthwhile if persistent topology adds information beyond H86M-CNT controls.",
+      "implementation_cost": "Medium; requires multi-threshold connected-component tracking, neck-width calibration, and spatially randomized nulls.",
+      "falsifier": "Persistent neck features fail to beat conductivity-only and strain-only controls on paired spatial-block HOLDOUT-DTI, or topology changes materially under the frozen plausible threshold range.",
       "status": "NOT_RUN_PROTOCOL_STOP"
     }
   ],
   "required_before_any_experiment": [
-    "An explicit single assigned method paragraph; the current request has none.",
-    "The actual shared cached feature stack with preprocessing and visible-mask identity; native-band rebuilding is not an acceptable substitute.",
-    "The repository's fail-closed protocol disposition; do not bypass the literal witness stop or modify uniqueness thresholds.",
-    "A complete current same-grid registry and explicit treatment of incompatible registry entries.",
-    "Frozen buffered whole-segment hide-and-recover folds; derive catalogue features from visible faults only and mask visible pixels exactly.",
-    "Run isolated-feature leakage canaries before trust; discriminative AUC above 0.90 is a stop pending proof.",
-    "Use the shared evaluate_holdout.py, pooled DTI with alpha 0.2, beta 0.8, and a 300 m triangular kernel; report evaluator, withheld-positive count, and 95% CI.",
-    "Measure rank correlation before placement and 3-pixel dot overlap on the final dots against the complete registry; stop at rho > 0.90 or overlap > 0.70.",
-    "Stop after at most three experiments or two hours, and do not select a weekly submission slot here."
+    "An explicit single assigned method paragraph; current request has none.",
+    "The actual shared cached feature stack with generating-code, input-hash, preprocessing and visible-mask identity; native bands or historical hashes are not substitutes.",
+    "A shared/upstream resolution of the unchanged literal full-support witness stop; do not change support thresholds privately.",
+    "A complete current registry with an auditable policy for incompatible entries.",
+    "Freeze buffered whole-segment hide-and-recover folds; derive all catalogue features from visible faults only; mask visible fault pixels exactly.",
+    "Run isolated-feature leakage canaries before trusting a feature; AUC above 0.90 is a stop pending proof.",
+    "Use the shared evaluator, pooled DTI with alpha 0.2, beta 0.8, and 300 m triangular kernel; report evaluator, withheld-positive count, and 95% CI.",
+    "Check rank correlation on the surface before placement and 3-px overlap on final dots against the complete registry; stop above 0.90 correlation or 0.70 overlap.",
+    "Use no more than three experiments or two hours, and no weekly slot until a separate selector."
   ]
 }

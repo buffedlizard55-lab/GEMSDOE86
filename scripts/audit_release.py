@@ -81,6 +81,36 @@ def archived_holdout(config: dict, context: dict) -> dict:
     A valid TIFF cannot excuse an impossible DTI, a reversed/nonfinite CI, a
     boolean positive count, or an unknown evaluator label on the public page.
     """
+    if config.get("holdout_kind") == "h86m_lt_unvalidated":
+        required = (
+            context.get("schema") == "gems86.current-artifact-disposition.v1"
+            and context.get("artifact") == "H86M-LT leaderboard tomography"
+            and context.get("historical_lane_verdict") == "promote"
+            and context.get("verdict") == "negative"
+            and context.get("decision") == "DO NOT SUBMIT"
+            and context.get("evidence_class") == "PROTOCOL-REASSESSMENT"
+            and context.get("holdout_dti") is None
+            and context.get("submission_ready") is False
+            and context.get("safe_to_submit") is False
+            and context.get("approved_for_weekly_slot") is False
+            and context.get("submission_slots_used") == 0
+            and isinstance(context.get("rationale"), list)
+            and len(context["rationale"]) >= 3
+        )
+        if not required:
+            raise ValueError("H86M-LT current disposition must preserve the historical verdict and current no-holdout/no-submit state")
+        return dict(
+            evidence_class="NO-HOLDOUT-DTI",
+            status="NOT_VALIDATED_FOR_THIS_VARIANT",
+            source=config["context"],
+            evaluator_version=None,
+            withheld_positives=None,
+            value=None,
+            ci95=None,
+            design=None,
+            caveat="Historical H86M-LT tomography is not buffered whole-segment catalogue hide-and-recover validation. Its lane-level promote verdict is preserved as historical only; current protocol disposition is negative and the pinned literal witness is a stop. No score is reported.",
+        )
+
     result = _normalize_archived_holdout(config, context)
 
     def number(value, low, high):
@@ -446,6 +476,15 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
             and receipt.get("evidence_class") == "RUN-CARD"
         )
     context = strict_json(inside(root, config["context"]))
+    if config.get("holdout_kind") == "h86m_lt_unvalidated":
+        checks.update(
+            current_disposition_matches_raster=context.get("raster_sha256") == file_sha,
+            current_disposition_is_negative=context.get("verdict") == "negative"
+                and context.get("decision") == "DO NOT SUBMIT"
+                and context.get("safe_to_submit") is False
+                and context.get("approved_for_weekly_slot") is False,
+            no_holdout_claimed=context.get("holdout_dti") is None,
+        )
     if config["card"]:
         card = strict_json(inside(root, config["card"]))
         checks["sha_matches_scientific_card"] = card["raster_sha256"] == file_sha
