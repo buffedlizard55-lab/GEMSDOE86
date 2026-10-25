@@ -232,7 +232,18 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
     folds, quad_meta = holdout.buffered_component_draw(
         g, seed=HOLDOUT_SEED, hide_frac=HIDE_FRAC, buffer_px=BUFFER_PX
     )
-    visible_edts = [ndi.distance_transform_edt(~np.asarray(f["visible"], dtype=bool)) for f in folds]
+    same_visible = all(
+        np.array_equal(np.asarray(folds[0]["visible"], dtype=bool), np.asarray(f["visible"], dtype=bool))
+        for f in folds[1:]
+    )
+    if same_visible:
+        shared_edt = ndi.distance_transform_edt(~np.asarray(folds[0]["visible"], dtype=bool)).astype(np.float32)
+        visible_edts = [shared_edt for _ in folds]
+    else:
+        visible_edts = [
+            ndi.distance_transform_edt(~np.asarray(f["visible"], dtype=bool)).astype(np.float32)
+            for f in folds
+        ]
 
     planes = build_pstd_features(DATA_DIR / "training_features.tif", g.footprint)
     arms = compose_pstd_arms(planes, g.footprint)
@@ -250,10 +261,6 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
     terms_by_arm: dict[str, np.ndarray] = {"R0_fold_fair_d25_d28_vis_collar2": r0_terms}
     per_fold_by_arm: dict[str, dict[str, Any]] = {"R0_fold_fair_d25_d28_vis_collar2": r0_per_fold}
 
-    same_visible = all(
-        np.array_equal(np.asarray(folds[0]["visible"], dtype=bool), np.asarray(f["visible"], dtype=bool))
-        for f in folds[1:]
-    )
     for arm_id, surf in arms.items():
         if same_visible:
             vis = np.asarray(folds[0]["visible"], dtype=bool)
@@ -333,10 +340,28 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
     }
 
     # Pre-placement complete-registry surface check (AGENTS.md Rules 10 & 11)
+    import gc
+
     WORK_DIR.mkdir(parents=True, exist_ok=True)
     surface_npy = WORK_DIR / "h86h_pstd_e1_surface.npy"
     e1_surface = np.where(g.footprint, arms["E1_pstd_full"], np.float32(0.0)).astype(np.float32)
     np.save(surface_npy, e1_surface)
+    n_folds = len(folds)
+    quad_names = [str(f["name"]) for f in folds]
+    surface_array_checks = {
+        "shape": list(e1_surface.shape),
+        "dtype": str(e1_surface.dtype),
+        "nan_inside_footprint": int(np.isnan(e1_surface[g.footprint]).sum()),
+        "min_inside_footprint": float(e1_surface[g.footprint].min()),
+        "max_inside_footprint": float(e1_surface[g.footprint].max()),
+        "values_in_0_1": bool(
+            np.isfinite(e1_surface[g.footprint]).all()
+            and float(e1_surface[g.footprint].min()) >= 0.0
+            and float(e1_surface[g.footprint].max()) <= 1.0
+        ),
+    }
+    del planes, arms, folds, visible_edts, r0_preds, raw_d28, d28_dots, e1_surface
+    gc.collect()
 
     SURFACE_REPORT_OUT.parent.mkdir(parents=True, exist_ok=True)
     rel_surface_npy = surface_npy.relative_to(ROOT)
@@ -426,11 +451,11 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
                 "bootstrap": pooled["bootstrap"],
                 "split": {
                     "kind": "buffered_component_draw",
-                    "n_folds": len(folds),
+                    "n_folds": n_folds,
                     "hide_frac": HIDE_FRAC,
                     "buffer_px": BUFFER_PX,
                     "seed": HOLDOUT_SEED,
-                    "quadrant_names": [str(f["name"]) for f in folds],
+                    "quadrant_names": quad_names,
                     "shared_visible_mask_across_folds": bool(same_visible),
                     "withheld_positives_total": r0_eval["withheld_positives_total"],
                 },
@@ -469,18 +494,7 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
             "raster_sha256": None,
             "validator_output": {
                 "candidate_tif_serialized": False,
-                "surface_array_checks": {
-                    "shape": list(e1_surface.shape),
-                    "dtype": str(e1_surface.dtype),
-                    "nan_inside_footprint": int(np.isnan(e1_surface[g.footprint]).sum()),
-                    "min_inside_footprint": float(e1_surface[g.footprint].min()),
-                    "max_inside_footprint": float(e1_surface[g.footprint].max()),
-                    "values_in_0_1": bool(
-                        np.isfinite(e1_surface[g.footprint]).all()
-                        and float(e1_surface[g.footprint].min()) >= 0.0
-                        and float(e1_surface[g.footprint].max()) <= 1.0
-                    ),
-                },
+                "surface_array_checks": surface_array_checks,
                 "reason_no_tif_written": (
                     "Halted fail-closed before full-footprint dot placement and before GeoTIFF "
                     "serialization per AGENTS.md Rule 11 (surface_gate_pass=False, literal_gate_pass=False, "

@@ -23,7 +23,7 @@ experiment finalize_h86e gen_tip_final generate_unique_submission build_unique_s
 prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment
 run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
-run_h86_wvb run_h86e run_h86e_ridf run_lane run_lane86 run_lane86b run_lane86c run_lane86d
+run_h86_wvb run_h86e run_h86e_mmt run_h86e_ridf run_h86f_gzzd run_lane run_lane86 run_lane86b run_lane86c run_lane86d
 run_prune_ladder run_relief_axis run_relief_source run_snap_axis
 run_spacing_axis run_trackb_axis write_h86e_tif
 """.split()
@@ -138,7 +138,17 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     )
 
 
-@pytest.mark.parametrize("name", ["build_spt.py", "build_xfleet.py", "build_gems86_swcon.py", "generate_unique_submission.py", "build_gems86_gapres.py", "build_unique_submission.py"])
+@pytest.mark.parametrize("name", [
+    "build_spt.py",
+    "build_xfleet.py",
+    "build_gems86_swcon.py",
+    "generate_unique_submission.py",
+    "build_gems86_gapres.py",
+    "build_unique_submission.py",
+    "build_h86e_features.py",
+    "run_h86e_ridf.py",
+    "run_h86e_mmt.py",
+])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()
     env.pop("PYTHONPATH", None)
@@ -152,3 +162,15 @@ def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     assert result.returncode != 0
     assert "training_features.tif" not in output
     assert "STOP_LITERAL_OVERLAP_UNSATISFIABLE" in output or "sample_submission.tif" in output
+
+
+@pytest.mark.parametrize("module_name", [
+    "h86e_comparator",
+    "h86e_fleet_strata",
+    "h86e_instrument_check",
+    "h86f_forensics",
+])
+def test_diagnostic_scripts_do_not_execute_io_on_import(module_name):
+    module = importlib.import_module("scripts." + module_name)
+    assert callable(getattr(module, "main", None))
+

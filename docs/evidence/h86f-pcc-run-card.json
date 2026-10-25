@@ -1,0 +1,513 @@
+{
+  "schema": "gems86.h86f-pcc-run-card.v1",
+  "lane": "H86F-PCC",
+  "generated_utc": "2026-10-25T00:27:56.707709+00:00",
+  "preregistration": {
+    "document": "research/H86F_PCC_PREREGISTRATION.md",
+    "machine_readable": "research/H86F_PCC_PREREGISTRATION.json",
+    "candidate_arm": "E1_pcc_signed",
+    "hypotheses_recorded": 5
+  },
+  "hypothesis": "A basement step missing from the Quaternary catalogue offsets density and magnetization under cover. Gravity and RTP gradients point toward the footwall while depth-to-basement points the other way. Unsigned edge alignment accepts the anti-parallel case and is not the same mechanism.",
+  "mechanism": "Bands 13, 2, 15 and 12 are differentiated on the north-up grid at 150 m and 400 m. Signed polarity is the minimum of the two scales, times structure-tensor coherence, an oblique-to-90/180 survey-axis weight, gradient-magnitude ranks, and a soft topographic-density veto. Catalogue pixels are not features.",
+  "named_non_fault_process": "Unfaulted basin-fill facies contacts, volcanic flow edges, and residual GeoDAWN E-W flight-line or N-S tie-line corrugations can mimic a signed basement step.",
+  "named_non_fault_mimic": "Unfaulted basin-fill facies contacts, volcanic flow edges, and residual GeoDAWN E-W flight-line or N-S tie-line corrugations can mimic a signed basement step.",
+  "source_layers": [
+    "training_features.tif band 13 iso_grav_anom",
+    "training_features.tif band 2 rtp",
+    "training_features.tif band 15 depth_to_base_surf",
+    "training_features.tif band 12 det_elev",
+    "training_features.tif band 19 det_elev_slope",
+    "USGS GeoDAWN DOI 10.5066/P93LGLVQ flight-line azimuth 90 and tie-line azimuth 180"
+  ],
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "design": "buffered whole-component quadrant draw, seed 20, hide fraction 0.20, visible-fault collar 3 px, pooled 200-px physical blocks",
+    "withheld_positive_pixels": 11321,
+    "same_split_as_historical_kslb": true,
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03273346091504306,
+      "ci95": [
+        0.023737407002398826,
+        0.04357410813238978
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 573.4883584747064,
+      "fpw": 41742.22496898966,
+      "fnw": 10747.511641525292
+    },
+    "paired_delta_vs_best_preregistered_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.0011262861816321648,
+      "ci95": [
+        -0.019946094228150947,
+        0.019150468183332034
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "best_preregistered_control": "R0_D28_visible_collar",
+    "current_holdout_best_same_split": {
+      "evidence_class": "HOLDOUT-DTI",
+      "source": "docs/evidence/lane86c_results.json",
+      "arm": "E3_kslb_noisyor_44k",
+      "dti": 0.1240634961614658,
+      "ci95": [
+        0.1079703374809469,
+        0.140329759708305
+      ],
+      "withheld_positive_pixels": 11321,
+      "note": "historical same-split comparator only if withheld counts match; not re-run by this lane"
+    },
+    "beats_current_with_separated_ci": false,
+    "paired_delta_beats_control": false,
+    "all_arms": {
+      "E1_pcc_signed": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.03273346091504306,
+        "ci95": [
+          0.023737407002398826,
+          0.04357410813238978
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 573.4883584747064,
+        "fpw": 41742.22496898966,
+        "fnw": 10747.511641525292
+      },
+      "E2_pcc_cover": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.027538311582496495,
+        "ci95": [
+          0.019241665061344938,
+          0.036806332457667505
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 482.27576249103686,
+        "fpw": 41798.23614418192,
+        "fnw": 10838.724237508963
+      },
+      "E3_pcc_unsigned": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.024683445542145268,
+        "ci95": [
+          0.01885030704075703,
+          0.03146529494081656
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 429.45066496893617,
+        "fpw": 41278.18594339659,
+        "fnw": 10891.549335031063
+      },
+      "R0_D28_visible_collar": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.033859747096675226,
+        "ci95": [
+          0.015996792434622452,
+          0.04968234666030931
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 592.9827446278447,
+        "fpw": 41687.57332467474,
+        "fnw": 10728.017255372157
+      },
+      "H33_visible_collar": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.033555407453135,
+        "ci95": [
+          0.015660038144653974,
+          0.049551340763845195
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 587.6851038855139,
+        "fpw": 41697.67382973813,
+        "fnw": 10733.314896114489
+      }
+    },
+    "paired_differences": {
+      "E2_pcc_cover": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.005195149332546566,
+        "ci95": [
+          0.0018083591806451517,
+          0.008816640799406876
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "E3_pcc_unsigned": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.008050015372897793,
+        "ci95": [
+          0.0020286286990268,
+          0.01441927858127058
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "R0_D28_visible_collar": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0011262861816321648,
+        "ci95": [
+          -0.019946094228150947,
+          0.019150468183332034
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "H33_visible_collar": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0008219465380919361,
+        "ci95": [
+          -0.01971122516221578,
+          0.019431024773189493
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "per_fold": {
+      "E1_pcc_signed": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.029107158974075106,
+          "n_truth": 1923,
+          "emitted": 8799
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.019034637047928262,
+          "n_truth": 2367,
+          "emitted": 10087
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.031893680541463354,
+          "n_truth": 3781,
+          "emitted": 12571
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.04751864006905626,
+          "n_truth": 3250,
+          "emitted": 10665
+        }
+      },
+      "E2_pcc_cover": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.01912121043194959,
+          "n_truth": 1923,
+          "emitted": 8623
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.01732881568906044,
+          "n_truth": 2367,
+          "emitted": 10674
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.028533556760077655,
+          "n_truth": 3781,
+          "emitted": 12275
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.04091681729528021,
+          "n_truth": 3250,
+          "emitted": 10538
+        }
+      },
+      "E3_pcc_unsigned": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.02117977718930221,
+          "n_truth": 1923,
+          "emitted": 10475
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.012645905401531037,
+          "n_truth": 2367,
+          "emitted": 7799
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.025484045158869352,
+          "n_truth": 3781,
+          "emitted": 13665
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.03563482454027369,
+          "n_truth": 3250,
+          "emitted": 9634
+        }
+      },
+      "R0_D28_visible_collar": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "n_truth": 1923,
+          "emitted": 0
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "n_truth": 2367,
+          "emitted": 0
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.010055282424171414,
+          "n_truth": 3781,
+          "emitted": 2693
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.052984039106232644,
+          "n_truth": 3250,
+          "emitted": 39357
+        }
+      },
+      "H33_visible_collar": {
+        "NW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "n_truth": 1923,
+          "emitted": 0
+        },
+        "NE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "n_truth": 2367,
+          "emitted": 0
+        },
+        "SW": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.010269858635780423,
+          "n_truth": 3781,
+          "emitted": 2698
+        },
+        "SE": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.052407153328830905,
+          "n_truth": 3250,
+          "emitted": 39350
+        }
+      }
+    },
+    "leakage_canary": {
+      "pcc_signed": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.5181392465329918,
+        "discriminative_auc": 0.5181392465329918,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_cover": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.5146867065630245,
+        "discriminative_auc": 0.5146867065630245,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_unsigned": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.5207928613491153,
+        "discriminative_auc": 0.5207928613491153,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_polarity": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.5168145023996701,
+        "discriminative_auc": 0.5168145023996701,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_coherence": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.49917804080911576,
+        "discriminative_auc": 0.5008219591908842,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_oblique": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.5018699149073992,
+        "discriminative_auc": 0.5018699149073992,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_topo_veto": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.4497689880163708,
+        "discriminative_auc": 0.5502310119836292,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      },
+      "pcc_cover_weight": {
+        "evidence_class": "LEAKAGE-CANARY",
+        "auc": 0.4823491184524335,
+        "discriminative_auc": 0.5176508815475664,
+        "threshold": 0.9,
+        "leakage_flag": false,
+        "n_positive": 11321,
+        "n_negative_sampled": 300000
+      }
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_preplacement": {
+      "report": "docs/evidence/h86f-pcc-registry-surface.json",
+      "registry_rasters_measured": 685,
+      "registry_rasters_expected": 687,
+      "registry_errors": [
+        {
+          "repo": "14GEMSDOE",
+          "submission": "14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+          "file": "/home/user/GEMSDOE86/data/registry_ext/ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6.tif",
+          "error": "registry CRS/transform differs from reference"
+        },
+        {
+          "repo": "7GEMSDOE",
+          "submission": "7GEMSDOE:external/qfaults/qfaults_prior_u8.tif",
+          "file": "/home/user/GEMSDOE86/data/registry_ext/538b45735833b341fc455dbbf06c47bc82a8bd8943c254ae6d3a5a07e72e22ca.tif",
+          "error": "registry grid or band-count mismatch"
+        }
+      ],
+      "surface_gate_pass": false,
+      "rho_firings": 0,
+      "complete_accessible_scan": false,
+      "worst_spearman_full_footprint": 0.340619713111573,
+      "two_phase_like_for_like_duplicate": true
+    },
+    "final_dots": {
+      "report": "docs/evidence/h86f-pcc-registry-final-dots.json",
+      "registry_rasters_measured": 685,
+      "registry_errors": [
+        {
+          "repo": "14GEMSDOE",
+          "submission": "14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+          "file": "/home/user/GEMSDOE86/data/registry_ext/ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6.tif",
+          "error": "registry CRS/transform differs from reference"
+        },
+        {
+          "repo": "7GEMSDOE",
+          "submission": "7GEMSDOE:external/qfaults/qfaults_prior_u8.tif",
+          "file": "/home/user/GEMSDOE86/data/registry_ext/538b45735833b341fc455dbbf06c47bc82a8bd8943c254ae6d3a5a07e72e22ca.tif",
+          "error": "registry grid or band-count mismatch"
+        }
+      ],
+      "final_dots_gate_pass": false,
+      "complete_accessible_scan": false,
+      "worst_dot_overlap": 1.0,
+      "worst_spearman_full_footprint": 0.028512577520432292
+    },
+    "pa86_02": {
+      "gate_pass": false,
+      "checker_exit_code": 1,
+      "error": "PA-86-02 did not write a report"
+    },
+    "incompatible_grid_note": "Two pinned inventory rasters are not on the submission grid. They are recorded as registry errors and block a complete-scan pass. They are not resampled and are not treated as a duplicate firing.",
+    "pa86_02_script_result": {
+      "gate_pass": false,
+      "checker_exit_code": 1,
+      "error": "PA-86-02 did not write a report"
+    },
+    "pa86_02_diagnostic": "docs/evidence/h86f-pcc-chance-diagnostic.json"
+  },
+  "raster_sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "positive_pixels": 44090,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "submission_name": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros",
+  "note": "H86F-PCC signed grav-RTP-basement polarity, survey-axis veto; holdout is not a leaderboard score; no slot used",
+  "note_chars": 110,
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "decision": "DO NOT SUBMIT",
+  "decision_reason": "candidate does not beat same-split HOLDOUT-DTI best with separated CIs; paired HOLDOUT-DTI delta versus best preregistered control includes zero; two inventory rasters are not on the submission grid, so the complete-scan gate is false; shared PA-86-02 script refused that incomplete report and wrote no firing count; a later diagnostic classified 11 dot-field overlap hits as space-filling with 0 informative firings and is not a gate pass",
+  "experiments_run": 3,
+  "placement_performed": true,
+  "preflight_status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+  "runtime_seconds": 1143.9397265911102,
+  "organizer_confirmed": false,
+  "reason_correction": {
+    "original_reason": "candidate does not beat same-split HOLDOUT-DTI best with separated CIs; paired HOLDOUT-DTI delta versus best preregistered control is not strictly positive; registry contains incomparable grids; complete-scan gate is false; final-dot like-for-like registry gate failed; PA-86-02 informative overlap gate failed",
+    "corrected_utc_note": "Labeling correction only. Holdout scores, canaries, SHA-256 and validator output were not recomputed.",
+    "diagnostic": "docs/evidence/h86f-pcc-chance-diagnostic.json",
+    "field_alias": "named_non_fault_mimic duplicates named_non_fault_process for the prompt field name. Scores and SHA-256 were not recomputed."
+  }
+}

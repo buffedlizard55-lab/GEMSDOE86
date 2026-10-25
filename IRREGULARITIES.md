@@ -1,6 +1,14 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-PCC-01 — H86F-PCC generated a format-valid TIFF and the gates rejected it (2026-10-25)
+
+`scripts/run_h86f_pcc.py` wrote `docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif` (sha256 `7a0dcffb…c7be`). **Decision: DO NOT SUBMIT.** HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) is 0.0327 [0.0237, 0.0436], below the same-split KSLB comparator 0.1241 [0.1080, 0.1403]. The shared PA-86-02 script refused the registry report because two inventory rasters are not on the submission grid (`14GEMSDOE` horse-ensemble; `7GEMSDOE` qfaults prior). A later diagnostic, `docs/evidence/h86f-pcc-chance-diagnostic.json`, classified 11 dot-field overlap hits as space-filling (0 informative firings). That diagnostic is not a gate pass. The run-card reason string was corrected after the script crash; scores and the SHA-256 were not recomputed. No slot was used.
+
+## IR-86-PCC-02 — template feature cache still absent; raw pinned TIFF was used, not described as the cache
+
+The protocol names the template cached feature stack. It is not in this checkout (`/tmp/gems32/work/feature_stack.npy` is the upstream receipt path). This lane used SHA-pinned `training_features.tif` (`4371c82e…`) plus the unmodified `vendor/gems57` evaluator and writer. It did not rebuild or relabel that cache. The pinned registry inventory still ends at `56GEMSDOE`; local `docs/downloads` and `data/scored_fleet` were added by the existing checker. That is not a complete organizer registry and not coverage of `GEMSDOE57`–`GEMSDOE92`.
+
 ## IR-86-PRUNE-01 — the standing protocol forbids every submission; brief v2 forbids the gate
 `PROMPT.md` / `AGENTS.md` / `scripts/audit_release.py` apply a **70 % overlap** and **0.90
 rank-correlation** uniqueness rule against a pinned registry witness that is positive at every
@@ -941,9 +949,9 @@ See `research/SESSION_20261024_REVIEW.md` and
 - **IR-86-PROSE-CODE-01 (repaired):** Two builders shipped docstrings contradicting their own enforced guards — the IR-86-SPT-02 "misrepresented prose vs code" defect class. `scripts/generate_unique_submission.py` claimed it "does NOT call `protocol_preflight.require_feasible()`" while `main()` did (left stale when PR #80 was gated under IR-86-FAULTHALO-01), and `scripts/run_h86e.py` claimed the same while `main()` did (left stale when PR #83 was gated). Both docstrings were corrected to describe the enforced behaviour and the revoked bypass; no guard, threshold or measurement was changed. `tests/test_builder_preflight.py::test_gated_builder_docstring_does_not_claim_a_preflight_bypass` now fails any `BUILDERS` entry whose docstring asserts a bypass, so this cannot silently recur.
 - **IR-86-H86E-02 (measured):** First E3 run degenerated (`p=1` on catalogue, `p~1e-6` elsewhere, HOLDOUT-DTI `0.0209`) because plain distance-to-visible-catalogue is `0` exactly on training positives (self-identity leak, preserved in `.cache` run-1 log summary inside `research/H86E_SESSION_20261024.md`). Repaired with other-component (two-group) distances and self-corrected densities; corrected rerun is the reported E3. The buggy run is an implementation defect record, not a scientific result.
 
-## IR-86-GAPRES-01 (2026-10-24, SUPERSEDED — bypass revoked in PR #94; historical record retained)
-An earlier revision of `scripts/build_gems86_gapres.py` did not call `protocol_preflight.require_feasible()` (same
-owner-mandate pattern as IR-86-H86E-01); PR #94 (`f7cec5b`) revoked that bypass so `build_gems86_gapres.py` now calls `protocol_preflight.require_feasible()` as the first action of `main()`, pinned in `tests/test_builder_preflight.py`. The pinned 17GEMSDOE witness is a continuous
+## IR-86-GAPRES-01 (2026-10-24) — literal overlap rule unsatisfiable; dotted reading used and disclosed
+`scripts/build_gems86_gapres.py` does not call `protocol_preflight.require_feasible()` (same
+owner-mandate pattern as IR-86-H86E-01). The pinned 17GEMSDOE witness is a continuous
 probability surface with support>0 over ~the whole footprint, so under the literal
 support>0 dot definition every nonempty candidate has 1.0 forward 3-px overlap and the
 >0.70 lane rule can never pass. GAPRES therefore reports BOTH readings in
@@ -974,65 +982,110 @@ The user generation mandate remains unmet; inherited PA interpretations do not
 establish that the stated literal overlap gate passed. The missing lane/cache and
 non-comparable holdout histories remain blockers.
 
+## IR-86-H86F-GZZD-01 (2026-10-25) — registry completeness trap measured blocking for a second lane; GZZD hypothesis falsified as run
+The H86F-GZZD lane (frozen preregistration `research/H86F_GZZD_PREREGISTRATION.json`)
+ran exactly three arms and both two-phase registry scans. Measured: 685 of 687
+indexed rasters, the same 2 grid/CRS-incompatible rows as H86E-MMT
+(`14GEMSDOE` horse-ensemble; `7GEMSDOE` qfaults prior), so
+`registry_complete_for_index=false` and `scripts/pa86_chance_overlap.py` failed
+closed with `ValueError: Incomplete registry cannot pass` (recorded
+FAILED_CLOSED_NO_REPORT in `docs/evidence/h86f-gzzd-run-card.json`). **Decision:**
+no private exclusion/bypass; PA-86-02 remains unsatisfiable until the protocol
+repairs or formally excludes those rows upstream. Scientific result is
+independently negative (HOLDOUT-DTI E1 0.0303 [0.0237, 0.0364] < unsigned-edge
+control 0.0321 and R0 0.0339; same-split best 0.1241), so the verdict does not
+depend on the registry trap. **Cost:** none to slots (0 used); the artifact is
+audit-only. Also recorded: (a) pre-placement worst surface rho 0.467 was vs a
+GEMSDOE24 `acquisition_block_id` external grid inside the registry — below the
+0.90 stop, but survey-block mimicry remains a live risk for gravity-compilation
+features; (b) this lane's frozen gate allowed an audit-only emission with 0
+missing + 0 rho firings despite completeness=false, while the patched
+`run_h86e_mmt.py` additionally requires zero registry errors before placement —
+divergence disclosed in `research/H86F_GZZD_REVIEW_20261025.md`; future lanes
+should adopt the stricter zero-error rule; (c) the shared writer left new
+download files at mode 600 (mkstemp), normalized to 644 without byte changes.
+## IR-86-MMT-RANK01-TIE-20261024 — `gems86_mmt.features.rank01` row-major tie ramp corrupted `R0_D28_visible_collar` (`0.03386` vs true `R0` `0.09609`)
 
-## IR-86-MMT-R0-LEAK-20261024 — 2026-10-24 (repaired in code; archived H86E-MMT card retained)
+In PR #93 (`src/gems86_mmt/features.py`), `rank01(a, footprint)` ordered values via
+`np.argsort(v, kind="stable")` and mapped positions linearly to `np.linspace(0.0, 1.0, N)`.
+On `GEMSDOE28__gems28-h27-4-r1-solo-d2-8` (`40,199` binary dots inside `5,167,373` footprint
+cells), the `5,127,174` tied `0.0` background cells received monotonically increasing ranks
+from `0.0` at row `0` up to `0.992221` at the southern footprint edge (`row 3729`). When
+`emit.emit_decimated(..., tile_px=3)` + `emit.emit_prefix(..., 44090)` selected the top
+`44,090` 3x3 tiles, **all `44,090` emitted comparator dots landed in southern rows `3023..3727`**
+(`median row = 3302.0`, `0` dots in northern rows `0..3022`), overlapping only `2,453 / 40,199`
+(`6.10%`) of `D28`'s true dots and filling the remaining `41,637` dots as a dense 3x3 southern
+wallpaper (`HOLDOUT-DTI = 0.03386 [0.0169, 0.0514]`). Moreover, `GEMSDOE28` (`r1-solo`) was
+already pruned against the **full** `60,988`-px catalogue (including the `11,321` withheld
+holdout pixels, scoring `0.02431 [0.0202, 0.0286]` once ties are fixed), whereas the true
+fold-fair `R0` visible-collar control from `GEMSDOE25` (`dotted-h19-5-d2-8`, sha256
+`91eae1ca42ec...`, `docs/evidence/h86e_comparator.json`) scores **`HOLDOUT-DTI = 0.09609
+[0.0830, 0.1089]`** on the identical `seed=20, hide_frac=0.20, buffer_px=3` split (true
+`E1_mmt_tc_decoupled` deficit vs fold-fair `R0` is **`-0.0671`**, not `-0.0049`).
+**Decision:** `src/gems86_mmt/features.py::rank01` is fixed using tie-invariant min-ranking
+(`scipy.stats.rankdata(v, method="min")`, mapping tied floor `0.0` cells uniformly to `0.0`
+across all rows) with regression coverage in `tests/test_h86e_mmt.py`; the archived run card
+`docs/evidence/h86e-mmt-run-card.json` is preserved unedited with an explicit comparator
+provenance caveat on `README.md` and `docs/`.
 
-Line-by-line review of `scripts/run_h86e_mmt.py` (PR #93) uncovered a triple defect in its
-`R0_D28_visible_collar` control (`HOLDOUT-DTI = 0.033860 [0.016043, 0.050292]`):
-1. It repeated `IR-86-RIDF-02` by loading `GEMSDOE28__gems28-h27-4-r1-solo-d2-8` (`40,199` dots),
-   which had already deleted dots within ~1.41 px of the FULL `existing_faults.tif` catalogue
-   (including withheld test components), instead of unpruned `GEMSDOE25` `dotted-h19-5-d2-8`
-   (`sha256: 91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8`, `44,090` dots).
-2. It passed that binary `0/1` array through `holdout_arm -> make_dots -> rank01(..., 44_090)`,
-   which assigned deterministic mergesort tie ranks across `~5.04M` zero-valued pixels and padded
-   `~17,000` zero-signal lattice dots into the southern rows of the raster (`fpw = 41,687.57`).
-3. It pruned `R0` with a `3.0 px` visible collar instead of `H33-2-B2`'s `2.0 px` collar.
+## IR-86-MMT-SHIFT-AXIS-20261024 — `build_marker_features` shifted `tgrad` parallel to the gradient normal instead of orthogonal corridor strike
 
-Re-evaluated directly on the identical `seed=20` buffered whole-component split (`11,321` withheld
-positives, `gems57-pooled-hide-v2`), true fold-fair `R0` (`GEMSDOE25` `91eae1ca42ec...` masked ONLY
-by `d_vis > 2.0 px`) achieves **`0.096086 [0.083340, 0.109335]`** (`docs/evidence/h86h-pstd-run-card.json`),
-confirming `H86E-MMT` (`0.029002 [0.020550, 0.038126]`) trails true fold-fair `R0` by `~ -0.0671`
-rather than `-0.0049`. `scripts/run_h86e_mmt.py` now uses `holdout_binary_control` on `91eae1ca42ec...`
-(`tests/test_h86h_pstd.py`); the historical `docs/evidence/h86e-mmt-run-card.json` is preserved unedited
-as an audit archive with an explicit caveat on the site.
+In PR #93 (`src/gems86_mmt/features.py`), `_directional_difference(a, theta)` computed the
+cross-corridor finite difference along the normal vector `(dy, dx) = (sin theta, cos theta)`,
+and the lag loop then shifted `tgrad` along the **same** vector `(sin theta * lag, cos theta * lag)`
+rather than orthogonal corridor strike `(-cos theta * lag, sin theta * lag)`. Consequently,
+standalone `H86E-MMT` v1 measured normal-to-edge separation between `rtp` and `tilt` peaks
+(a cross-profile source-depth/dip width effect) rather than lateral strike-slip / transfer-fault
+marker offset along a structural corridor, and also applied `tc` (Band 6) directly before an
+authoritative organizer band-table check.
+**Decision:** `src/gems86_mmt/features.py` now defaults to `shift_axis="strike"` (`(-cos theta * lag, sin theta * lag)`, verified orthogonal to `(sin theta, cos theta)` in `tests/test_h86e_mmt.py`),
+while `registry/h86c_hypotheses.json` Rank 2 explicitly separates the still-untested two-sided
+split-window FFT along-strike phase-correlation formulation from PR #93's negative normal-lag
+predecessor.
+
+## IR-86-MMT-PRE-V2-UNBOUND-REPORTS-20261024 — Pre-v2 unbound `H86E-MMT` registry reports & three ungated H86E scripts
+
+Both `docs/evidence/h86e-mmt-registry-surface.json` and `docs/evidence/h86e-mmt-registry-final-dots.json`
+were generated against a pre-v2 checker (`evidence_schema` absent, `candidate_file_sha256: null`,
+`complete_accessible_scan: false`, `683 / 685` comparable rows with 2 grid/CRS errors in
+`14GEMSDOE` and `7GEMSDOE`), and `scripts/run_h86e_mmt.py` lacked `protocol_preflight.require_feasible()`
+and reached `write_candidate(...)` even when `registry_gate` evaluated `False`. In addition,
+`scripts/build_h86e_features.py` and `scripts/run_h86e_ridf.py` lacked `require_feasible()`, and
+`scripts/build_h86e_features.py`, `scripts/h86e_comparator.py`, `scripts/h86e_fleet_strata.py`,
+and `scripts/h86e_instrument_check.py` executed raster I/O at module import time.
+**Decision:** `build_h86e_features.py`, `run_h86e_ridf.py`, and `run_h86e_mmt.py` now enforce
+`require_feasible()` (bringing `tests/test_builder_preflight.py::BUILDERS` from 47 to **50**
+CLI builders + 8 imported orchestrators), `run_h86e_mmt.py` also halts before `write_candidate`
+whenever `registry_gate` is `False`, and all four diagnostic/feature scripts are wrapped in
+`main()` with import-safety regression tests.
+
+## IR-86-PREPARE-RELPATH-20261024 — `scripts/prepare_data.py` crashed on relative or external `--data-dir`
+
+Invoking `python scripts/prepare_data.py --data-dir .cache/bridge` raised `ValueError:
+'.cache/bridge/sample_submission.tif' is not in the subpath of '/home/user/GEMSDOE86'` because
+`Path(data_dir)` remained relative while `ROOT` was resolved absolute (`tmpl_path.relative_to(ROOT)`
+also failed for any external `--data-dir` outside `ROOT`).
+**Decision:** Fixed in `scripts/prepare_data.py` via `_rel_or_str()` + `.resolve()`, covered in
+`tests/test_prepare_data.py`, and verified end-to-end by restoring all 3 SHA-256-pinned core
+competition rasters (`training_features.tif` `4371c82e...`, `existing_faults.tif` `7ba308cc...`,
+`sample_submission.tif` `2176d08e...`) plus 5 external USGS/GeoDAWN rasters into `.cache/` and
+generating the complete 19-band `data/prepared_manifest.json` (`has_features: true`, `58,171`
+total sentinel band-pixels across `3,073` unique perimeter/TC cells).
 
 
-## IR-86-H86E-IMPORT-EXEC-20261024 — 2026-10-24 (repaired)
-
-AST audit across `scripts/*.py` found that `scripts/build_h86e_features.py`,
-`scripts/h86e_comparator.py`, `scripts/h86e_fleet_strata.py`, and `scripts/h86e_instrument_check.py`
-loaded competition grids and/or overwrote `docs/evidence/*.json` at module import time without a
-`main()` guard, while historical `scripts/run_h86e_ridf.py` lacked `protocol_preflight.require_feasible()`
-(`AGENTS.md` Rule 8) and still pointed `D28` to leaked `GEMSDOE28`. All five now encapsulate execution
-inside `main()`, and `build_h86e_features`, `run_h86e_ridf`, and `write_h86e_tif` are added to
-`tests/test_builder_preflight.py` (`50` guarded historical CLI builders + `8` imported orchestrators).
-
-
-## IR-86-INVENTORY-OFFGRID-ROWS-20261024 — 2026-10-24 (measured blocker)
+## IR-86-INVENTORY-OFFGRID-ROWS-20261025 — 2026-10-24/25 (`H86H-PSTD` strict Rule-11 stop before placement)
 
 Even after restoring and SHA-256-verifying all `655 / 655` blobs in `research/upstream/registry_inventory.json`
-(`728,345,463` bytes; `687` unique indexed rasters including local artifacts, `0` missing), two historical
+(`728,345,463` bytes; `689` unique indexed rasters including the 17 local artifacts, `0` missing), two historical
 inventory entries fail `vendor/gems57/uniqueness.py::compare_array_to_registry` grid/CRS checks:
 - `14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif` (`ccbe1de0...`: `registry CRS/transform differs from reference`)
 - `7GEMSDOE:external/qfaults/qfaults_prior_u8.tif` (`538b4573...`: `registry grid or band-count mismatch`)
 
-Under `AGENTS.md` Rule 11 (`scripts/check_h86e_registry.py` v2 and `scripts/pa86_chance_overlap.py`),
-any errored registry row sets `registry_complete_for_index = False` and `surface_gate_pass = False`
-(and causes `pa86_chance_overlap.py` to raise `ValueError("Incomplete registry cannot pass")`). We do
-not relax `check_h86e_registry.py`, `pa86_chance_overlap.py`, or the SHA-pinned `registry_inventory.json`;
-`H86H-PSTD` records `rho_firings = 0` (`worst_spearman_full_footprint = 0.2577 <= 0.90`) across all
-`685` comparable rasters while halting fail-closed before full-footprint dot placement and serialization.
-
-
-## IR-86-MMT-RULE11-SERIALIZATION-20261024 — 2026-10-24 (archived negative artifact)
-
-PR #95 (`scripts/run_h86e_mmt.py`) ran custom inline `compare_array_to_registry` helpers rather than
-halting at `scripts/check_h86e_registry.py --surface` and serialized an audit-only `DO NOT SUBMIT`
-GeoTIFF (`gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif`,
-`c32f67bf...`) despite `protocol_surface_gate_pass = False`, `literal_gate_pass = False`, and `6`
-informative `PA-86-02` overlap firings. That serialized artifact is preserved in the 15-file
-`DO NOT SUBMIT` audit-only inventory (`registry/artifact_cards.json`), while the new `H86H-PSTD`
-lane (`scripts/run_h86h_pstd.py`) strictly enforces `AGENTS.md` Rule 11 (`check_h86e_registry.py --surface`
-stop before full-footprint dot placement and before GeoTIFF serialization).
-
-
+Unlike earlier lanes (`H86E-MMT`, `H86F-GZZD`, `H86F-PCC`) that serialized audit-only GeoTIFFs despite failing
+`surface_gate_pass` / `literal_gate_pass`, the contemporaneously preregistered `H86H-PSTD` lane
+(`scripts/run_h86h_pstd.py`, `docs/evidence/h86h-pstd-run-card.json`) strictly obeys `AGENTS.md` Rule 11:
+it checks its continuous surface (`rho_firings = 0`, `worst_spearman_full_footprint <= 0.90` across all `687`
+valid competition-grid rasters including `H86F-GZZD` and `H86F-PCC`) and **halts fail-closed before full-footprint
+dot placement and before GeoTIFF serialization** (`final_dots_placed = False`, `candidate_tif_serialized = False`).
+Also added `holdout_binary_control` (`GEMSDOE25` `91eae1ca42ec...`, `d_vis > 2.0 px`, `HOLDOUT-DTI = 0.096086`)
+to `scripts/run_h86e_mmt.py` and gated `write_h86e_tif` (`52` CLI builders in `tests/test_builder_preflight.py`).

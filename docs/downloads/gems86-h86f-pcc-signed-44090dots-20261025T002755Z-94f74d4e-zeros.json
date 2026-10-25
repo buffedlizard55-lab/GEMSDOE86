@@ -1,0 +1,192 @@
+{
+  "file": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+  "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+  "bytes": 126662,
+  "submission_name": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros",
+  "note": "H86F-PCC signed grav-RTP-basement polarity, survey-axis veto; holdout is not a leaderboard score; no slot used",
+  "note_chars": 110,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+    "bytes": 126662,
+    "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+    "bytes": 126662,
+    "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "n_nonzero": 44090,
+    "mass": 44090.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.zip",
+  "zip_sha256": "75a995ec272dcf3f7be71f9ae5e4315e3a59af5383c10a4b13edc8911876ee32",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86F-PCC",
+    "hypothesis": "signed polarity-consistent basement step",
+    "budget": 44090,
+    "feature_hashes": {
+      "pcc_signed": "8e9b51699badf83106671ac319e599bfbd5f8b71140f8ea20172bdd4e6d21c23",
+      "pcc_cover": "3f1bad0cd749ad57556823da5fb797d55331ae90906577bad44bc0cb2461fd34",
+      "pcc_unsigned": "822c94922987b26c62ce339b5e5cc4a2304b3ff989940bbbb9e2b541d7aac689",
+      "pcc_polarity": "a0d53564d2e7f1aeff192fe2e5eb625dad9fb904201828587a94da7873b50019",
+      "pcc_coherence": "55ad835405ea7319454c336de5dfe335b8f17aecce6a4a7e4750a72e280233a1",
+      "pcc_oblique": "882ceab5047a5415542d09e460539af0d0bedc5f8241d52ba35552835f41ec1f",
+      "pcc_topo_veto": "c78e050c25e4fcf8e83f6dacf30cf293f77a4e95c5e71f7bc90d4749f81fe7d9",
+      "pcc_cover_weight": "c8abb81d1524baf5a6153b3d473f255f820aa3782e2b396851755944b2a8bddc"
+    },
+    "surface_sha256": "8f9e0f9028a7c6545268489799447b06393d6d26f9e8cebeff4b02b287af73f0",
+    "dots_sha256": "8b6116497e13fa0b7b09ed274cf48933ac2ae12c5c70771138d3cedfa3141e46"
+  },
+  "independent_disk_validation": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+    "bytes": 126662,
+    "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  }
+}

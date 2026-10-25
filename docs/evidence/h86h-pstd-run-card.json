@@ -1,7 +1,7 @@
 {
   "schema": "gems86.h86h-pstd-run-card.v1",
   "lane": "H86H-PSTD",
-  "generated_utc": "2026-10-25T01:15:23Z",
+  "generated_utc": "2026-10-25T01:46:18Z",
   "hypothesis": "H86H-1 (H86H-PSTD): Concealed Great Basin geothermal faults juxtapose density blocks (regularized Laplace vertical gravity curvature g_zz = -(dx B18 + drow B11) hinge) while hydrothermal H2S fluids destroy magnetite along the permeable damage zone, creating a positive Poisson potential-field residual max(0, alpha_flank*z(g_zz) - z(M_z)) inside actively dilating/shearing, moderately conductive, low-relief piedmont/intrabasin cover.",
   "mechanism": "Footprint-normalized sigma=500 m Laplace vertical gravity curvature g_zz coupled to Band 9 tmi_vg (M_z) via local sigma=1.2 km flank Poisson regression, sharpened by gravity-gradient structure-tensor anisotropy and Band 3 tmi_hg, modulated by GPS dilatation/shear (Bands 8, 7), shallow conductance (Band 17), and detrended slope (Band 19). 100% catalogue-blind surface; fold-visible faults used solely for emission masking.",
   "non_fault_mimic": "Reversed-polarity Tertiary ash-flow tuff margins or caldera ring-fracture moats where reverse remanent magnetization produces negative M_z along a density boundary without Quaternary brittle faulting.",
@@ -48,7 +48,7 @@
     "witness_grid_matches": true,
     "witness_validity_mask_covers_footprint": true,
     "measured_date_utc": "2026-10-25",
-    "measured_utc": "2026-10-25T01:05:52.260480+00:00",
+    "measured_utc": "2026-10-25T01:36:55.721310+00:00",
     "candidate_generated": false,
     "thresholds_unchanged": true,
     "dense_surface_exemption": false,
@@ -459,11 +459,11 @@
     "surface_report_schema": "gems86.registry-candidate.v2",
     "candidate_source_sha256": "46ccdeb19325c234d15ba4d54c2156f727fc5ff1a67c13840c92d526a65f859e",
     "candidate_decoded_sha256": "d695774767e8b6542f8fe8590a777d2ed2bf7a6676a7d650ebbb455eec73406f",
-    "registry_index_sha256": "7c56f6e4e7e1cc33aa84776985af6ae9c660421808523a903bcea31157418f48",
-    "inventory_rasters_expected": 687,
+    "registry_index_sha256": "10e18e823839007c152e6996b331e81baa2165488c1b76b09b1a3666e9bceb0e",
+    "inventory_rasters_expected": 689,
     "inventory_rasters_missing": [],
-    "valid_comparable_rasters": 685,
-    "dot_field_rasters": 631,
+    "valid_comparable_rasters": 687,
+    "dot_field_rasters": 633,
     "continuous_surface_rasters": 54,
     "error_rows_count": 2,
     "error_submissions": [
@@ -500,13 +500,13 @@
   "budget": {
     "experiments_run": 3,
     "max_experiments": 3,
-    "elapsed_seconds": 571.89,
+    "elapsed_seconds": 563.95,
     "max_seconds": 7200,
     "submission_slots_used": 0
   },
   "stop_reasons": [
     "HOLDOUT_BELOW_CONTROLS: E1_pstd_full HOLDOUT-DTI=0.031382 [0.024202, 0.039539] vs fold-fair R0=0.096086 [0.08334, 0.109335] (paired delta -0.064704, CI95 [-0.077131, -0.050573]) and archived same-split best H86C-KSLB=0.124136 [0.10796, 0.140312].",
-    "SURFACE_REGISTRY_INCOMPLETE_OR_ERRORED: rho_firings=0 (worst Spearman=0.25771969444170717) across 685/687 valid rasters, but 2 historical registry_inventory rows failed CRS/grid checks (['14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif', '7GEMSDOE:external/qfaults/qfaults_prior_u8.tif']), forcing surface_gate_pass=False per AGENTS.md Rule 11.",
+    "SURFACE_REGISTRY_INCOMPLETE_OR_ERRORED: rho_firings=0 (worst Spearman=0.25771969444170717) across 687/689 valid rasters, but 2 historical registry_inventory rows failed CRS/grid checks (['14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif', '7GEMSDOE:external/qfaults/qfaults_prior_u8.tif']), forcing surface_gate_pass=False per AGENTS.md Rule 11.",
     "LITERAL_WITNESS_BLOCKER: 17GEMSDOE full-support witness covers 100.0% of allowed pixels (forward_overlap=1.0 > 0.70), forcing literal_gate_pass=False per AGENTS.md Rules 6 & 11."
   ],
   "verdict": "negative",

@@ -106,6 +106,20 @@
       "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
       "holdout_kind": "blindgeothermal_candidate",
       "stem": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros"
+    },
+    {
+      "lane": "H86F-PCC signed polarity-consistent basement step (concurrent negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86f-pcc-run-card.json",
+      "context": "docs/evidence/h86f-pcc-run-card.json",
+      "holdout_kind": "h86f_pcc",
+      "stem": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros"
+    },
+    {
+      "lane": "H86F-GZZD Laplace gravity-curvature dipole (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86f-gzzd-run-card.json",
+      "context": "docs/evidence/h86f-gzzd-run-card.json",
+      "holdout_kind": "h86f_gzzd",
+      "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
     }
   ]
 }

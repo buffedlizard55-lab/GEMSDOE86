@@ -179,6 +179,15 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["value"], "ci95": h["ci95"],
                 "design": "buffered whole components; two seeds; physical-block bootstrap",
                 "caveat": "Archived pipeline evidence only; not recomputed in this audit, not a private-test score."}
+    if kind == "h86f_pcc":
+        h = context["holdout_dti"]
+        candidate = h["candidate"]
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": candidate["dti"], "ci95": candidate["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-PCC lane. HOLDOUT-DTI does not beat the same-split historical comparator. Not an organizer score. No slot was used."}
     if kind == "h86e_mmt":
         # This is a current lane card, not an inherited historical score. Keep
         # its measured result visible in the artifact audit without pretending
@@ -189,6 +198,16 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86E-MMT lane result; the run card is the authoritative experiment receipt. Registry gates and the three-arm preregistered comparison are negative; no slot was used."}
+    if kind == "h86f_gzzd":
+        # Same treatment as h86e_mmt: the H86F-GZZD run card is the experiment
+        # receipt; this audit re-reads bytes and receipts, it does not rerun
+        # the evaluator or soften the lane's own negative gates.
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-GZZD lane result; the run card is the authoritative experiment receipt. The candidate trails its unsigned-edge control and the same-split historical best, the registry scan is incomplete (2 grid-incompatible rows) with dot-field firings, and PA-86-02 failed closed; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
