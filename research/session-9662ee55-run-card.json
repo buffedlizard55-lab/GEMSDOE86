@@ -49,12 +49,21 @@
     "research/session-9662ee55-evidence/protocol-witness.json": "872aff3ccfb014d8c16e605717dd1a9f9cf1c4c24db78ed92cef21ee43fde89b",
     "research/session-9662ee55-evidence/release-audit-summary.json": "e9e8fe96b05e4a2efffc868421c391af7faf0adf03951322146309a1c7354623",
     "research/session-9662ee55-evidence/source-integrity.json": "d7652d83efe37a949373f227067a64ba15aa77b246cc64301ab847b831ba8177",
-    "research/session-9662ee55-evidence/verification.txt": "275008665eaa4f34588471a4d0e1cdf0c5c2ed9ec6d51545ac9158b5c114b043"
+    "research/session-9662ee55-evidence/verification.txt": "816ca2204f97bd02ce84d1af83c47a8fda18f1b2fb64de2de3259ff8f1502ce3"
   },
   "software_verification": {
     "tests_passed": 844,
     "tests_skipped": 24,
     "subtests_passed": 54,
+    "warnings": 42,
+    "scientific_gate_pass": false,
+    "scope": "Pre-integration session tree"
+  },
+  "combined_main_software_verification": {
+    "main_revision": "b61eb02",
+    "tests_passed": 853,
+    "tests_skipped": 24,
+    "subtests_passed": 58,
     "warnings": 42,
     "scientific_gate_pass": false
   }

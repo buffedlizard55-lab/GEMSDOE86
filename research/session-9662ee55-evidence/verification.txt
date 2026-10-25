@@ -37,3 +37,14 @@ Initial environment had no pytest; system pip correctly refused unmanaged instal
 Created ignored .venv and installed requirements-lock.txt; no dependency pin edits.
 No TIFF/ZIP/generated HTML/model-card/shared-template bytes were changed.
 No new model candidate, HOLDOUT-DTI experiment or competition submission occurred.
+
+Concurrent-main integration recheck:
+Merged origin/main b61eb02 into this session branch (efcb645), preserving both
+README introductions; no code conflicts. Inherited site/receipt changes are
+concurrent work, not this session's new scientific evidence.
+Full combined-tree pytest, process combined-main-regression-suite-a02483d3, exit 0:
+853 passed, 24 skipped, 42 warnings, 58 subtests passed in 251.06s.
+Combined-tree release audit, site build check, site safety check, download audit,
+independent validation, frozen review-card check and diff check also pass.
+GitHub Actions were still queued/running at the time of this local verification;
+local success is not a claim that remote checks or Pages deployment completed.
