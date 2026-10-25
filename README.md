@@ -38,6 +38,21 @@ H86G-EDTI retains a historical like-for-like `promote` verdict; its run card say
 
 **H33 interpretation:** the pixel-forensics note supports the hypothesis that the supplied `0.2778` owner-reported result benefited from pruning 2,545 low-marginal-coverage catalogue-adjacent dots from an H19-5/D2.8 lineage. This is not proof of portal-score causation or evidence a new method will beat it. See [H33 interpretation and caveats](research/H33_INTERPRETATION_REVIEW.md). No HOLDOUT-DTI result is a leaderboard projection.
 
+### Latest lane H86J-MPC (2026-10-25): locally distinct TIFF emitted — **NEGATIVE, NOT UNIQUENESS-CLEARED, DO NOT SUBMIT**
+
+A new physically distinct TIFF **was** generated and machine-validated end-to-end (no human inspection): amplitude-invariant monogenic phase-congruency *step* surfaces on RTP + gravity + DEM, frozen in [`research/H86J_MPC_PREREGISTRATION.md`](research/H86J_MPC_PREREGISTRATION.md) (5 ranked untried hypotheses, 3-experiment budget, 44,090-dot budget fixed before any scoring). The hypothesis then failed its own preregistered gates — **negative results are deliverables, and no weekly slot was spent**. No current file is authorized to submit: H86G-EDTI retains only its historical amended-gate promotion (`safe_to_submit=false`).
+
+| Automated gate | Result (all values labelled; see [run card](docs/evidence/h86j-mpc-run-card.json)) |
+|---|---|
+| Format (independent on-disk check) | **PASS** — one-band float32, `3730×3292`, `EPSG:32611`, values exactly {0,1}, 44,090 dots, min spacing 2.828 px, 0 dots on catalogue, ZIP byte-identical; SHA-256 `e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d` |
+| `SGMC-PROXY-DTI` @44,090 (selection instrument; 62,122 SGMC px) | **FAIL** — MPC-TRI `0.0658` `[0.0606, 0.0709]` vs H33-as-is `0.0954`; paired Δ `−0.0296` `[−0.0427, −0.0156]` |
+| Falsifiers (same frozen pipeline) | **FAIL** — amplitude control `0.1089` and phase-line control `0.0640`: amplitude carries the signal; step/line symmetry does not separate |
+| `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, 11,321 withheld) | Floor PASS — `0.0453` `[0.0379, 0.0528]` vs H33 visible-collar floor `0.0349` |
+| Leakage canary (18 features) | PASS — max discriminative AUC `0.5749` ≤ `0.90` |
+| Uniqueness (surface + final dots, 46 local registry rasters) | PASS locally — max Spearman `0.053` ≤ `0.90`; max forward 3-px overlap `53.8%` (dot-fields) ≤ `70%`; full-registry v2 scan measured 330/694 and PA-86-02 failed closed (reported, not hidden) |
+
+Diagnosis and ranked follow-ups (hybrid amplitude×phase gate, phase symmetry, noise-compensated PC): [`research/H86J_MPC_REVIEW.md`](research/H86J_MPC_REVIEW.md). The audit-only TIFF is `docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif` — **do not upload it**; the site authorizes zero files for submission.
+
 ### Latest hydrothermal-vent & basement-flexure lane (2026-10-25): H86I-HVFD — AUDIT DOWNLOAD ONLY (`DO NOT SUBMIT`)
 
 Before any lane computation ran, four geological hypotheses (`H86I-1..H86I-4`) were frozen in [`research/H86I_HVFD_PREREGISTRATION.md`](research/H86I_HVFD_PREREGISTRATION.md) ([machine-readable JSON](research/H86I_HVFD_PREREGISTRATION.json)). Top candidate **`H86I-1` (`H86I-HVFD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid + external DOE GDR-1391 (`3,800` 2-m temperature probes, `726` paleo-sinter/travertine/tufa vents, wells/springs geothermometers) + USGS 3DEP 1-m LiDAR/10-m DEM/$\chi$ scarplets + USGS GeoDAWN radiometrics ([PhD review & 3-pass audit](research/SESSION_20261025_H86I_HVFD_REVIEW.md)):
@@ -899,7 +914,7 @@ Go ahead and create a pull request and then merge the pull request onto the main
 
 ## ⛔ All research GeoTIFFs — **DO NOT SUBMIT** (automated decision, 2026-10-25)
 
-**All 21 published research GeoTIFFs are `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used).** Following Arena Core Values (**Maximize P(Win)** and **Own the Outcome**), our latest 2026-10-25 lane **`H86F-EWCS`** generated a genuinely byte- and pixel-unique single-band GeoTIFF (`37,654` dots, `2.8 px` Poisson-disc spacing) that **set a new repository same-split `HOLDOUT-DTI` high of `0.1723` (`95% CI [0.1530, 0.1898]`)**—beating its isotropic-tip ablation (`0.1592`, paired Δ `+0.0131 [+0.0012, +0.0261]`), cover-blind subsurface ablation (`0.1003`), fold-fair `GEMSDOE25` `R0` (`0.0961`), and prior repo same-split best `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`) with separated 95% CIs—while recording **`0` Spearman `rho > 0.90` firings (`max = 0.7508`)** and **`0` discrete `<= 50,000`-dot overlap firings (`26.96%` vs `GEMSDOE32` `h33-h33-2-b2`, `9.46%` vs `H86F-PCC`, `9.90%` vs `H86F-GZZD`)** across all `687 / 689` accessible registry rasters. **Nevertheless, the automated registry gates fail closed (`DO NOT SUBMIT`)** due to `2` grid/CRS-incompatible historical registry rows (`14GEMSDOE`, `7GEMSDOE`), `39` space-filling `>= 56,605`-dot firings, and literal `17GEMSDOE` full-footprint positive-prior saturation.
+**All 22 published research GeoTIFFs are `DO NOT SUBMIT` (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used).** Following Arena Core Values (**Maximize P(Win)** and **Own the Outcome**), our latest 2026-10-25 lane **`H86F-EWCS`** generated a genuinely byte- and pixel-unique single-band GeoTIFF (`37,654` dots, `2.8 px` Poisson-disc spacing) that **set a new repository same-split `HOLDOUT-DTI` high of `0.1723` (`95% CI [0.1530, 0.1898]`)**—beating its isotropic-tip ablation (`0.1592`, paired Δ `+0.0131 [+0.0012, +0.0261]`), cover-blind subsurface ablation (`0.1003`), fold-fair `GEMSDOE25` `R0` (`0.0961`), and prior repo same-split best `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`) with separated 95% CIs—while recording **`0` Spearman `rho > 0.90` firings (`max = 0.7508`)** and **`0` discrete `<= 50,000`-dot overlap firings (`26.96%` vs `GEMSDOE32` `h33-h33-2-b2`, `9.46%` vs `H86F-PCC`, `9.90%` vs `H86F-GZZD`)** across all `687 / 689` accessible registry rasters. **Nevertheless, the automated registry gates fail closed (`DO NOT SUBMIT`)** due to `2` grid/CRS-incompatible historical registry rows (`14GEMSDOE`, `7GEMSDOE`), `39` space-filling `>= 56,605`-dot firings, and literal `17GEMSDOE` full-footprint positive-prior saturation.
 
 ### Latest unique TIFF lane: H86I-RKSC (GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step + Lahontan-Deconfounded Piedmont Scarp Dipole) — AUDIT ONLY (`DO NOT SUBMIT`)
 
@@ -994,7 +1009,7 @@ The current review completed three passes and reran the full suite (**640 passed
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
-Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **21** published research TIFFs, including H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
+Historical sections below retain their dated 12/13/17/18/19/20-artifact counts and prior-lane results; they are not the current feed. The current machine-checked inventory contains **22** published research TIFFs, including the negative H86J-MPC lane, H86I-HVFD, H86I-RKSC, the H86G-EDTI promote lane, H86F-EWCS, the concurrent negative H86F-PCC and H86F-GZZD lanes, H86E-MMT, and the blind-geothermal lane.
 
 ## Concurrent blind-geothermal lane — PR #92, also **DO NOT SUBMIT**
 

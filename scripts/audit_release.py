@@ -172,6 +172,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
                 "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
+    if kind == "h86j_mpc":
+        hn = context.get("holdout_dti_normalized")
+        if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86J-MPC card lacks normalized HOLDOUT-DTI")
+        if (context.get("verdict") != "negative" or context.get("decision") != "DO NOT SUBMIT"
+                or context.get("submission_slots_used") != 0
+                or context.get("gates", {}).get("sgmc_proxy_beats_H33_paired_ci") is not False):
+            raise ValueError("H86J-MPC card is not in its measured negative/no-slot state")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
+                "design": hn.get("design", "OOF visible construction"),
+                "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but

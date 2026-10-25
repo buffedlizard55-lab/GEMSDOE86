@@ -148,6 +148,13 @@
       "context": "docs/evidence/h86i-hvfd-run-card.json",
       "holdout_kind": "h86i_hvfd",
       "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
+    },
+    {
+      "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86j-mpc-run-card.json",
+      "context": "docs/evidence/h86j-mpc-run-card.json",
+      "holdout_kind": "h86j_mpc",
+      "stem": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros"
     }
   ]
 }
