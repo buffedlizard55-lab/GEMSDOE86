@@ -239,6 +239,13 @@
    "context": "docs/evidence/h86m-cnt-run-card.json",
    "holdout_kind": "h86m_cnt",
    "stem": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros"
+  },
+  {
+   "lane": "H86M-DAMAGERING off-catalogue damage-zone ring (HOLDOUT-DTI not run; DO NOT SUBMIT, 2026-10-25)",
+   "card": "docs/evidence/h86m-damagering-run-card.json",
+   "context": "docs/evidence/h86m-damagering-run-card.json",
+   "holdout_kind": "unvalidated_variant",
+   "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
   }
  ]
 }
