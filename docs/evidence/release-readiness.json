@@ -16,8 +16,8 @@
   "shared_tool_hashes_match": true,
   "shared_tools_checked": 34,
   "input_evidence_sha256": {
-    "docs/evidence/download-inventory.json": "920b7ded65c847a3d1e09c5fedb78a68c39562fefd634f30ffebfbab7183ed42",
-    "registry/artifact_cards.json": "910de7868ace09993a8e46575861beeae5b135cfb5700ec6c37e82688cc02c76",
+    "docs/evidence/download-inventory.json": "442cbc634163d8ed1691e68848bbb286a25a9c309f03592f1d9069b87f9c5ab2",
+    "registry/artifact_cards.json": "e097872810d3df2e88c693db577a95ab9377701b264686ab02b2a4324d744a23",
     "docs/evidence/protocol-preflight.json": "3f0a91d35f6a43b75b0493ce9f75c78416797a76521d8e40b0f5677a8a81ff20",
     "evidence/run_card.json": "8e27619b8f223889db0e993a6aea86e9319224ea43fea1ee4226e6f4d0a253e6",
     "docs/evidence/h86_run_card.json": "f42d35bfbe4f9b4ad36ec1121921916f4843c3d8d785b3dd0daebcb4308f03a5",
@@ -51,7 +51,7 @@
     "docs/evidence/h86l-fmc-run-card.json": "14e3f737d59ae910cccdcf46a1701462acb9407463baeb7ebec84379aff7de1d",
     "docs/evidence/h86m-bmr-run-card.json": "8cf50000353e263f1b464e3562091c5cf8241ef84e59f2d67520757a23288e7f",
     "docs/evidence/h86m-cnt-run-card.json": "1581aa70b4eac0536bd6b74bbfe6cbd7e109e83b695a0108a65c6c88cfefde3d",
-    "docs/evidence/all-artifacts-registry.json": "5d5a3d58604baeb6db9dbb50c363ce91cec94615a108778e6dcac09840daeec8"
+    "docs/evidence/all-artifacts-registry.json": "4b51bdb005860d6cfd255fb45daf5e378f1aca1f532f251977e2b50f324aa310"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -3413,7 +3413,7 @@
       "literal_registry_stop": true
     },
     {
-      "lane": "H86L-FMC fleet minority-consensus (HOLDOUT-DTI 0.0000 leakage-suspect; DO NOT SUBMIT, 2026-10-25)",
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
       "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
       "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
       "bytes": 148836,
@@ -3491,7 +3491,7 @@
       },
       "historical_holdout": {
         "evidence_class": "HOLDOUT-DTI",
-        "status": "CURRENT_LANE_NEGATIVE",
+        "status": "ARCHIVED_LEAKAGE_SUSPECT_NOT_PROMOTION_EVIDENCE",
         "source": "docs/evidence/h86l-fmc-run-card.json",
         "evaluator_version": "gems57-pooled-hide-v2",
         "withheld_positives": 11321,
@@ -3500,8 +3500,8 @@
           0.0,
           0.0
         ],
-        "design": "buffered whole components; visible-only collar in folds; physical-block bootstrap",
-        "caveat": "Measured negative lane (H86L-FMC holdout is additionally leakage-suspect by fleet ancestry). DO NOT SUBMIT; no slot used."
+        "design": "Fleet derived with full catalogue; not fold-visible hide-and-recover evidence",
+        "caveat": "Archived H86L-FMC result, not recomputed. Passing a feature canary does not cure fleet-ancestry leakage. Final-dot overlap exceeded the registry limit. Publication registration and format validity do not establish uniqueness, performance or slot authorization. DO NOT SUBMIT."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,
