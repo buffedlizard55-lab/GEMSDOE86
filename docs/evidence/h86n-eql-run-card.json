@@ -1,7 +1,7 @@
 {
   "schema": "gems86.h86n-eql-run-card.v1",
   "lane": "H86N-EQL",
-  "generated_utc": "2026-10-25T18:49:44.385685+00:00",
+  "generated_utc": "2026-10-25T19:23:07.128347+00:00",
   "hypothesis": "A pure multi-scale earthquake-intensity lineation is a catalogue-missing active-fault proxy, while compact induced or volcanic swarms are the named non-fault mimic.",
   "mechanism": "Band 16 log-intensity Hessian ridge anisotropy at 2 px and 4 px with a separate Band 10 distance control; exact formula is frozen in research/H86N_EQL_PREREGISTRATION.md.",
   "named_non_fault_process": "Induced geothermal injection swarm or volcanic dike swarm with an elongated event cloud.",
