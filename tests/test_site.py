@@ -14,10 +14,18 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # 2026-10-25: H86G-EDTI is the first like-for-like PROMOTE lane; the site must
-    # name exactly that one selector-ready file and no other.
-    assert "ONE SELECTOR-READY FILE (H86G-EDTI)" in html
-    assert "IS THIS FILE OK TO SUBMIT? YES" in html
+    # H86G-EDTI has a historical PROMOTE verdict, but its machine card explicitly
+    # leaves upload safety and weekly-slot approval false. The public site must not
+    # convert a research promotion into permission to submit.
+    assert "NO FILE CURRENTLY AUTHORIZED FOR UPLOAD" in html
+    assert "PROMOTE CANDIDATE — SELECTOR APPROVAL PENDING" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO — SELECTOR APPROVAL NOT RECORDED" in html
+    assert "Download one-TIFF ZIP — review only, do not submit" in html
+    assert "SUBMIT THIS FILE" not in html
+    assert "OK TO SUBMIT? YES" not in html
+    h86g = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    assert h86g["safe_to_submit"] is False
+    assert h86g["approved_for_weekly_slot"] is False
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
