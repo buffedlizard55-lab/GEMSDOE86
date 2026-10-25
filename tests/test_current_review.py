@@ -33,6 +33,26 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["release_report_sha256"] == audit_release.sha256(ROOT / "docs/evidence/release-readiness.json")
 
 
+def test_branch_review_run_card_separates_unrun_candidate_from_prior_h86g():
+    card = audit_release.strict_json(ROOT / "research/SESSION_20261025_ARENA_B5040_RUN_CARD.json")
+    h86g = audit_release.strict_json(ROOT / "docs/evidence/h86g-edti-run-card.json")
+    assert card["verdict"] == "negative"
+    assert card["experiments_run"] == card["submission_slots_used"] == 0
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["holdout_dti"]["status"] == "NOT_RUN"
+    assert card["correlation_overlap_vs_registry"]["candidate_surface_max_spearman"] is None
+    assert card["correlation_overlap_vs_registry"]["candidate_final_dot_max_forward_3px_overlap"] is None
+    prior = card["previously_promoted_artifact_not_generated_by_this_review"]
+    assert prior["raster_sha256"] == h86g["raster_sha256"]
+    assert prior["submission_name"] == h86g["submission_name"]
+    assert prior["holdout_dti"]["value"] == h86g["holdout_dti"]["candidate"]["dti"]
+    assert prior["holdout_dti"]["ci95"] == h86g["holdout_dti"]["candidate"]["ci95"]
+    assert prior["like_for_like_registry_measurement"]["gate_pass"] is True
+    assert card["current_upload_authorized"] is False
+    assert card["safe_to_submit"] is card["approved_for_weekly_slot"] is False
+    assert prior["current_upload_decision"].startswith("DO NOT SUBMIT")
+
+
 def test_current_readme_download_counts_match_fresh_release_inventory():
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
     readme = (ROOT / "README.md").read_text()
@@ -41,7 +61,34 @@ def test_current_readme_download_counts_match_fresh_release_inventory():
     assert report["locally_valid_artifacts"] == count
     assert f"**{count}** published research TIFFs" in current
     assert "PR #92" in current and "DO NOT SUBMIT" in current
-    assert "not generated in this review" in current
+    assert "generated **no new candidate**" in current
+
+
+def test_historical_h86g_promotion_is_not_current_upload_authorization():
+    rendered = build_site.render(ROOT)
+    home = rendered["docs/index.html"]
+    executive = rendered["docs/executive-summary.html"]
+    evidence_page = rendered["docs/evidence.html"]
+
+    # Preserve the historical scientific verdict while fail-closing every
+    # upload surface under the current literal registry decision.
+    for html in (home, executive):
+        assert "DO NOT SUBMIT" in html
+        assert "historical" in html.lower() and "PROMOTE" in html
+        assert "safe_to_submit=false" in html or "does not authorize submission" in html
+    h86g = home.split('id="h86g-edti"', 1)[1].split("</section>", 1)[0]
+    assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in h86g
+    assert "PROMOTE under the amended like-for-like interpretation only" in h86g
+    assert "safe_to_submit=false" in h86g and "approved_for_weekly_slot=false" in h86g
+
+    format_page = (ROOT / "docs/download-status.html").read_text()
+    format_card = json.loads((ROOT / "docs/evidence/session-review-run-card.json").read_text())
+    assert "DO NOT SUBMIT any file" in format_page
+    assert "historical PA-86-01 PROMOTE verdict" in format_page
+    assert format_card["verdict"] == "negative" and format_card["safe_to_submit"] is False
+    assert format_card["submission_slots_used"] == 0
+    assert "current literal registry rule blocks upload" in format_card["scope"]
+    assert "DO NOT SUBMIT" in evidence_page
 
 
 def test_pr92_candidate_is_explicitly_negative_on_site_and_machine_summary():
