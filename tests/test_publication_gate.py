@@ -52,7 +52,7 @@ class PublicationTests(unittest.TestCase):
         expected = json.loads((ROOT / audit_downloads.REPORT).read_text())
         self.assertEqual(actual, expected)
         self.assertEqual(audit_downloads.render(actual), (ROOT / audit_downloads.PAGE).read_text())
-        self.assertEqual(actual['artifact_count'], 20)  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS + H86G-EDTI + H86I-RKSC (2026-10-25)
+        self.assertEqual(actual['artifact_count'], 21)  # prior 15 + H86F-PCC + H86F-GZZD + H86F-EWCS + H86G-EDTI + H86I-RKSC + H86I-HVFD (2026-10-25)
         self.assertFalse(actual['safe_to_submit'])
         card = audit_downloads.review_card(actual)
         self.assertEqual(card, json.loads((ROOT / audit_downloads.CARD).read_text()))
