@@ -218,6 +218,13 @@
       "context": "docs/evidence/h86k-stdp-run-card.json",
       "holdout_kind": "h86k_stdp",
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
+    },
+    {
+      "lane": "H86L-FMC fleet minority consensus (negative; full-catalogue ancestry leakage; duplicate)",
+      "card": "docs/evidence/h86l-fmc-run-card.json",
+      "context": "docs/evidence/h86l-fmc-run-card.json",
+      "holdout_kind": "h86l_fmc",
+      "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
     }
   ]
 }

@@ -73,7 +73,14 @@ def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
     assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
     assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
-    assert card["correlation_overlap_vs_registry"]["registry_measurement_utc"] == registry["measured_utc"]
+    # This archived session is not regenerated when a later byte audit runs.
+    # Require its own original timestamp, and bind the live review separately.
+    from datetime import datetime
+    archived_time = card["correlation_overlap_vs_registry"]["registry_measurement_utc"]
+    assert archived_time == card["generated_utc"]
+    assert datetime.fromisoformat(archived_time) <= datetime.fromisoformat(registry["measured_utc"])
+    live = load("docs/evidence/latest-review-run-card.json")
+    assert live["registry_measured_utc"] == registry["measured_utc"]
     assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False

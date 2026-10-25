@@ -185,6 +185,23 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "OOF visible construction"),
                 "caveat": "Current H86J-MPC lane result; the run card is the authoritative experiment receipt. The preregistered pure phase-congruency step hypothesis was falsified by its own amplitude control (SGMC-PROXY-DTI 0.0658 vs 0.1089 at 44,090) and trails H33-as-is with paired CI excluding 0 in the negative direction; uniqueness vs the local registry passes but PA-86-02 failed closed on the incomplete upstream registry. DO NOT SUBMIT; no slot was used."}
+    if kind == "h86l_fmc":
+        h = context.get("holdout", {})
+        hn = h.get("candidate", {})
+        if (hn.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or hn.get("evidence_class") != "HOLDOUT-DTI"
+                or "LEAKAGE-SUSPECT" not in h.get("evidence_class", "")
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False):
+            raise ValueError("H86L-FMC must preserve leakage-suspect negative/no-slot evidence")
+        return {**base, "status": "ARCHIVED_LEAKAGE_SUSPECT_NOT_PROMOTION_EVIDENCE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn.get("withheld_positive_pixels"),
+                "value": hn.get("dti"), "ci95": hn.get("ci95"),
+                "design": "Archived fleet-as-is on hidden components; not fold-safe hide-and-recover",
+                "caveat": "Fleet inputs were constructed using the full catalogue. Passing the AUC canary cannot remove this ancestry leakage. The archived HOLDOUT-DTI is not promotion evidence; the archived dot-overlap gate also failed. DO NOT SUBMIT; no slot used."}
     if kind == "h86k_psc":
         hn = context.get("holdout_dti_normalized")
         if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":

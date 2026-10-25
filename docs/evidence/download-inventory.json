@@ -1,5 +1,5 @@
 {
-  "scope": "21 locally format-valid research artifacts: 15 inherited lanes plus the 2026-10-25 lanes H86F-PCC, H86F-GZZD, H86F-EWCS, H86G-EDTI, H86I-RKSC, and H86I-HVFD. No selector ran; 0 slots used. GDSC added 2026-10-25.",
+  "scope": "All registered published research TIFFs, including H86L-FMC. Inventory registration is audit-only, not scientific promotion or upload authorization.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -184,6 +184,12 @@
     {
       "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
       "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+      "sha256": "5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     }

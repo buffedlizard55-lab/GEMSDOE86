@@ -793,6 +793,9 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
+<section class="callout" id="h86l-fmc"><h2>H86L-FMC — audit download only, DO NOT SUBMIT</h2>
+<p>The inherited fleet-minority candidate is now included in the automated download inventory and release audit below. Its archived holdout is <strong>leakage-suspect</strong>: the source fleet used the full catalogue, so this is not fold-safe hide-and-recover evidence. It also failed the archived overlap gate. Registration repairs publication integrity; it does not make the file scientifically unique or authorize upload.</p>
+<p><a href="#downloads">Audited TIFF and ZIP downloads</a> · <a href="evidence/h86l-fmc-run-card.json">Original negative run card</a></p></section>
 {h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Authorized submission files</span><strong>0</strong><small>H86G-EDTI retains its historical amended-gate promotion, not literal-rule clearance or slot approval. No portal operation was run here.</small></div>
