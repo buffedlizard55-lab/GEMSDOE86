@@ -29,10 +29,10 @@
     "report": "docs/evidence/download-validation.json"
   },
   "submission_name": null,
-  "note": "No new TIFF: literal overlap stop reproduced. Inherited research downloads pass local format, not submission approval.",
+  "note": "No new TIFF: protocol stop reproduced. H86G-EDTI promotion is separate; this audit selected no weekly slot.",
   "verdict": "negative",
   "safe_to_submit": false,
   "experiments_run": 0,
   "submission_slots_used": 0,
-  "scope": "Publication audit only. No new model, surface or dots. Inherited scientific evidence is not rerun or promoted."
+  "scope": "Format/integrity audit only. No new model, surface or dots. This audit neither revokes nor grants the separately recorded H86G-EDTI PROMOTE verdict; no selector action or weekly slot was recorded."
 }

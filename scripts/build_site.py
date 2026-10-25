@@ -2,8 +2,10 @@
 """Generate the Pages dashboard from byte-checked evidence, never from prose scores.
 
 No model fitting, placement, historical-raster copying, slot selection or portal
-submission occurs here. Every download stays explicitly negative. --check is
-read-only and fails on stale HTML/JSON, including stale identity/count claims.
+submission occurs here. Download decisions are per artifact: H86G-EDTI is
+promoted for a separate selector action; all other research downloads are audit
+only. --check is read-only and fails on stale HTML/JSON, including stale
+identity/count claims.
 """
 from __future__ import annotations
 
@@ -347,12 +349,12 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
                      f'rank rho <code>{result["worst_spearman_full_footprint"]:.4f}</code>, '
                      f'forward 3-px overlap <code>{result["worst_dot_overlap"]:.2%}</code>.</li>')
     return f'''<section class="card" id="current-review"><p class="eyebrow">Independent review · 2026-10-25 · no model experiment</p>
-<h2>Data restored. Submission still blocked.</h2>
-<p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. Existing files below are audit-only, not substitutes for that unmet deliverable.</p>
+<h2>No new submission generated in this review</h2>
+<p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. This is a scoped negative result, not a revocation of the separately promoted H86G-EDTI file featured above. H86G-EDTI was not rerun here; this review adds no replacement candidate. Other downloadable files remain audit-only.</p>
 <p><strong>DATA-MEASUREMENT:</strong> all {bands} native bands were restored and prepared. Every input now passes CRS, shape, transform, band-count and SHA checks before output. The actual shared cached feature stack is still absent; raw-band preparation is not that cache.</p>
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
-<p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
+<p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence, and they are not measurements of H86G-EDTI. <strong>No candidate from this independent review is cleared; the separately documented H86G-EDTI PROMOTE verdict is unchanged, and no slot was selected.</strong> No historical HOLDOUT-DTI was rerun or upgraded.</p>
 <p><a href="evidence/session-cf73474c-run-card.json">This review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Four untested hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Three-pass review &amp; next steps</a></p></section>'''
 
 
@@ -410,7 +412,7 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
 {h86g_html}
-<div class="callout"><span class="badge ok">CURRENT DECISION: SUBMIT ONLY H86G-EDTI (SELECTOR ACTION)</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). Uploading it is the separate selector action within the weekly cap; this audit spent no weekly slot.</p>
+<div class="callout"><span class="badge ok">ONE FILE PROMOTED FOR THE SEPARATE SELECTOR ACTION: H86G-EDTI</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}). The literal continuous-support witness reading remains a blocker and is reported for every nonempty candidate. Under PA-86-01's registered like-for-like gates, exactly one file — <strong>H86G-EDTI</strong>, panel above — has a <strong>PROMOTE</strong> verdict for separate selector consideration; the other files remain audit-only. This does not claim complete registry coverage, slot authorization, or an organizer-confirmed score. No weekly slot was selected here.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only (except H86G-EDTI above)</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 {review_notice}
 <h2>Current downloads — one selector-ready file; all others audit only</h2>
@@ -424,10 +426,10 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
 <li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
 <li>The SHA matches the inventory, writer receipt and applicable scientific card. ZIP bytes must contain exactly the corresponding TIFF; empty or mismatched ZIPs fail.</li>
 <li>Names and notes are verified against the project length cap. Stored model evidence is not rewritten or upgraded by a format pass.</li>
-<li>All final artifacts are bound to the negative registry measurement. Unknown/missing/stale evidence fails closed.</li></ul>
+<li>Registry scope and verdict are artifact-specific: H86G-EDTI's PROMOTE is based on recorded PA-86-01 like-for-like measurements, while the literal continuous-support witness remains disclosed. Other artifacts remain audit-only; the aggregate format audit is not a selector or complete-registry clearance. Unknown/missing/stale evidence fails closed.</li></ul>
 <h2>Registry checks must fail closed</h2><p>Candidate checks reject invalid values rather than thresholding or masking them into validity. Missing or invalid registry files, empty/constant predictions and stale candidate evidence cannot pass. Current reports bind the exact source array, decoded pixels and indexed registry content. A surface check runs before dot placement; final-dot checks precede TIFF generation. Historical unbound reports are archives, not clearance, and must be rerun. The representation-aware diagnostics are not permission to ignore the literal stop or spend a slot.</p>
 <p><a href="{REPO}/blob/main/research/SESSION_20261024_4D79B443.md">Independent code review, research sketches and limitations</a></p>
-<h2>Future submission steps — only after scientific clearance</h2><ol class="steps"><li><strong>Resolve the protocol conflict first.</strong> A new lane must be authorized, the actual shared cached features and a complete accessible registry recovered, and the uniqueness rule made satisfiable through an explicit protocol revision. This project does not grant that revision itself.</li>
+<h2>Future submission steps — only after scientific clearance</h2><ol class="steps"><li><strong>Before any new lane, resolve the protocol conflict.</strong> Obtain an explicit method assignment, the actual shared cached features and complete compatible registry, and an explicit disposition of the literal overlap contradiction. Do not silently waive or privately change the rule. This stop applies to new experiments; it does not retroactively revoke H86G-EDTI's separately recorded PA-86-01 PROMOTE verdict.</li>
 <li><strong>Validate a new method.</strong> Freeze whole-segment buffered folds, derive catalogue features only from visible faults, run each feature's leakage canary, and beat the strongest rerunnable matched control with a positive paired physical-block confidence interval. Use the shared evaluator and writer unchanged.</li>
 <li><strong>Run all release checks.</strong> A format pass alone is insufficient: both pre-placement surface and final-dot uniqueness must pass the literal thresholds. Promotion is separate from slot selection.</li>
 <li><strong>Use the separate selector.</strong> It must inspect the authenticated submission page's actual remaining weekly quota and bind its decision to the exact raster SHA. The public rules list {sources['weekly_limit_in_public_rules']} submissions per week; that is not our current account balance. No account credentials or automatic upload are implemented here.</li>
@@ -435,7 +437,7 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
 <li><strong>Retain the organizer receipt.</strong> Bind the result and submission ID to the exact SHA before classifying any score as ORGANIZER-CONFIRMED. Follow the rules for one final selection, reproducible assets, eligibility and generative-AI disclosure.</li></ol>
 <h2>DrivenData “New submission” portal checklist (exact form mapping)</h2>
 <div class="table-wrap"><table><thead><tr><th>DrivenData portal field</th><th>Required specification</th><th>Automated check in this repo</th></tr></thead><tbody>
-<tr><th scope="row"><code>File to submit</code></th><td>Single-band <code>float32</code> GeoTIFF (<code>.tif</code>) or <code>.zip</code> containing a single <code>.tif</code>; <code>EPSG:32611</code>; shape <code>3730 × 3292</code>; <code>100 m</code> affine transform; values in <code>[0, 1]</code>.</td><td>Checked automatically by <code>vendor/template66/gems57/validate.py</code>, <code>gates.py</code>, and <code>scripts/audit_release.py</code> (<code>{n_valid}/{n_total}</code> format-valid, <code>0</code> NaN, <code>0</code> Inf, <code>min=0.0</code>, <code>max&lt;=1.0</code> — still <strong>DO NOT SUBMIT</strong> under literal witness gate).</td></tr>
+<tr><th scope="row"><code>File to submit</code></th><td>Single-band <code>float32</code> GeoTIFF (<code>.tif</code>) or <code>.zip</code> containing a single <code>.tif</code>; <code>EPSG:32611</code>; shape <code>3730 × 3292</code>; <code>100 m</code> affine transform; values in <code>[0, 1]</code>.</td><td>Checked automatically by <code>vendor/template66/gems57/validate.py</code>, <code>gates.py</code>, and <code>scripts/audit_release.py</code> (<code>{n_valid}/{n_total}</code> format-valid, <code>0</code> NaN, <code>0</code> Inf, <code>min=0.0</code>, <code>max&lt;=1.0</code> — this format-only total is not submission authorization; H86G-EDTI has the separate PROMOTE status shown above).</td></tr>
 <tr><th scope="row">Unique filename stem</th><td>Distinct lane + dot budget + UTC timestamp + 8-hex digest + fill policy (e.g. <code>gems86-&lt;lane&gt;-&lt;dots&gt;dots-&lt;YYYYMMDDTHHMMSSZ&gt;-&lt;sha8&gt;-zeros.tif</code>) so no two team uploads collide.</td><td>Verified unique across inventory and <code>1..140</code> characters (<code>name_1_to_140_chars</code>) with copy button on each card.</td></tr>
 <tr><th scope="row"><code>Note (optional)</code></th><td>Short team-disambiguating comment of <strong>at most 140 characters</strong> (e.g. method tag, dot count, spacing, holdout evaluator version, <code>[0,1]</code> policy).</td><td>Verified <code>1 &lt;= len(note) &lt;= 140</code> against serialized JSON receipt (<code>note_1_to_140_chars</code>, <code>receipt_note_count_matches</code>).</td></tr>
 <tr><th scope="row">Weekly cap &amp; final pick</th><td>Up to <code>3</code> submissions per week on the public leaderboard; <strong>only ONE final submission</strong> enters both Phase 1 ($50k) and Phase 2 ($250k) judging (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules §1.1 &amp; §3.4–3.6</a>).</td><td>Separate human/team selector step required; <code>submission_slots_used = 0</code> in this repo.</td></tr>
@@ -451,7 +453,7 @@ python -m pytest -q</code></pre>
 <p><a href="sources.html">Official sources and exact observation limits</a> · <a href="irregularities.html">Remaining blockers</a></p>''')
 
 
-def evidence(report: dict) -> str:
+def evidence(report: dict, root: Path = ROOT) -> str:
     rows = []
     for i, a in enumerate(report["artifacts"]):
         h = a["historical_holdout"]
@@ -463,20 +465,37 @@ def evidence(report: dict) -> str:
 <p>{e(h['design'])}. <strong>Archived, not recomputed in this audit.</strong> {e(h['caveat'])}</p>'''
         v = a["validator"]
         checks = "".join(f'<tr><td><code>{e(k)}</code></td><td>{"PASS" if value else "FAIL"}</td></tr>' for k, value in v["checks"].items())
-        registry = a.get("registry_measurement")
-        measure = (f'<p>REGISTRY-MEASUREMENT against one pinned witness: Spearman {registry["spearman_full_footprint"]:.6f}; forward 3 px overlap {registry["forward_overlap_3px"]:.6f}; <code>unique=false</code>, <code>stop_required=true</code>. Not a complete registry scan or a pre-placement surface check.</p>' if registry else '<p>Final-dot remeasurement not available; no uniqueness clearance.</p>')
+        is_promoted = str(a.get("status", "")).startswith("PROMOTE")
+        if is_promoted:
+            card_data = strict_json(root / a["source_card"])
+            uniqueness = card_data["uniqueness"]
+            measure = (f'<p><strong>REGISTRY-MEASUREMENT (PA-86-01 like-for-like gate):</strong> '
+                       f'max Spearman {uniqueness["max_spearman"]:.4f} (limit {uniqueness["thresholds"]["rho_max"]:.2f}); '
+                       f'max forward 3-px overlap across measured dot fields '
+                       f'{uniqueness["max_forward_3px_overlap_dot_fields"]:.1%} '
+                       f'(limit {uniqueness["thresholds"]["dot_overlap_3px_max"]:.0%}); '
+                       f'{uniqueness["rho_firings"] + uniqueness["overlap_firings"]} threshold firings; '
+                       f'{e(uniqueness["scope"])} Literal continuous-support witness reading remains separately reported '
+                       f'and blocked by the standing protocol; this row does not claim full-registry completeness.</p>')
+            status = 'PROMOTE — selector action is separate; no weekly slot selected'
+            badge = 'ok'
+        else:
+            registry = a.get("registry_measurement")
+            measure = (f'<p>REGISTRY-MEASUREMENT against one pinned witness: Spearman {registry["spearman_full_footprint"]:.6f}; forward 3 px overlap {registry["forward_overlap_3px"]:.6f}; <code>unique=false</code>, <code>stop_required=true</code>. Not a complete registry scan or a pre-placement surface check.</p>' if registry else '<p>Final-dot remeasurement not available; no uniqueness clearance.</p>')
+            status = 'DO NOT SUBMIT'
+            badge = 'bad'
         if a["source_card"]:
             card = f'<a href="{e(link(a["source_card"]))}">Historical scientific card</a>'
         elif "PR #92" in a["lane"]:
             card = f'<a href="{e(link(h["source"]))}">Archived PR #92 run-card sidecar</a> (not rerun or uniqueness clearance)'
         else:
             card = '<span>Historical control, not a new canonical candidate card</span>'
-        rows.append(f'''<section class="card" id="artifact-{i}"><h2>{e(a['lane'])}</h2><p class="filename">{e(Path(a['file']).name)}</p><span class="badge bad">DO NOT SUBMIT</span>
+        rows.append(f'''<section class="card" id="artifact-{i}"><h2>{e(a['lane'])}</h2><p class="filename">{e(Path(a['file']).name)}</p><span class="badge {badge}">{e(status)}</span>
 {score}{measure}<p>{card} · <a href="{e(link(h['source']))}">Metric context</a></p>
 <p>FORMAT-VALIDATION: min {v['min']:.1f}, max {v['max']:.1f}; NaN {v['n_nan']}, Inf {v['n_inf']}; outside-footprint positive cells {v['outside_footprint_positive']}; on-catalogue positive cells {v['on_catalogue_positive']}.</p>
 <details><summary>Every automated format / identity / ZIP check</summary><div class="table-wrap"><table><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody>{checks}</tbody></table></div></details></section>''')
-    return page("Validation evidence", "evidence.html", '''<p class="eyebrow">Read-only audit · not a model experiment</p><h1>Every file. Every gate.<br>No automatic promotion.</h1>
-<p>Different fold designs, seeds, buffered/cut segments, training contexts and confidence intervals are not one comparable leaderboard. Do not select the largest number across these cards. No current holdout best or improvement over the private test is certified here.</p>
+    return page("Validation evidence", "evidence.html", '''<p class="eyebrow">Read-only audit · not a model experiment</p><h1>Every file. Every gate.<br>One prior PROMOTE verdict; no new promotion in this audit.</h1>
+<p>H86G-EDTI's PROMOTE status is based on its recorded like-for-like gates and only makes it eligible for a separate selector action; this audit neither picks a weekly slot nor authenticates a score. The literal witness reading and registry scope remain visible. Other historical downloads are audit-only. Different fold designs, seeds, buffered/cut segments, training contexts and confidence intervals are not one comparable leaderboard. Do not select the largest number across these cards. No new holdout best or improvement over the private test is certified here.</p>
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
@@ -828,7 +847,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html),
         "docs/submit.html": submit_gate(report, review),
-        "docs/evidence.html": evidence(report),
+        "docs/evidence.html": evidence(report, root),
         "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, new_queue=new_queue),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),

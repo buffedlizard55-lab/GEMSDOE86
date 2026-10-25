@@ -33,6 +33,23 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert card["release_report_sha256"] == audit_release.sha256(ROOT / "docs/evidence/release-readiness.json")
 
 
+def test_branch_review_run_card_separates_unrun_candidate_from_prior_h86g():
+    card = audit_release.strict_json(ROOT / "research/SESSION_20261025_ARENA_B5040_RUN_CARD.json")
+    h86g = audit_release.strict_json(ROOT / "docs/evidence/h86g-edti-run-card.json")
+    assert card["verdict"] == "negative"
+    assert card["experiments_run"] == card["submission_slots_used"] == 0
+    assert card["raster_sha256"] is None and card["submission_name"] is None
+    assert card["holdout_dti"]["status"] == "NOT_RUN"
+    assert card["correlation_overlap_vs_registry"]["candidate_surface_max_spearman"] is None
+    assert card["correlation_overlap_vs_registry"]["candidate_final_dot_max_forward_3px_overlap"] is None
+    prior = card["previously_promoted_artifact_not_generated_by_this_review"]
+    assert prior["raster_sha256"] == h86g["raster_sha256"]
+    assert prior["submission_name"] == h86g["submission_name"]
+    assert prior["holdout_dti"]["value"] == h86g["holdout_dti"]["candidate"]["dti"]
+    assert prior["holdout_dti"]["ci95"] == h86g["holdout_dti"]["candidate"]["ci95"]
+    assert prior["like_for_like_registry_measurement"]["gate_pass"] is True
+
+
 def test_current_readme_download_counts_match_fresh_release_inventory():
     report = audit_release.strict_json(ROOT / "docs/evidence/release-readiness.json")
     readme = (ROOT / "README.md").read_text()
@@ -41,7 +58,37 @@ def test_current_readme_download_counts_match_fresh_release_inventory():
     assert report["locally_valid_artifacts"] == count
     assert f"**{count}** published research TIFFs" in current
     assert "PR #92" in current and "DO NOT SUBMIT" in current
-    assert "not generated in this review" in current
+    assert "generated **no new candidate**" in current
+
+
+def test_prior_h86g_promotion_is_not_contradicted_by_later_no_new_candidate_review():
+    rendered = build_site.render(ROOT)
+    home = rendered["docs/index.html"]
+    executive = rendered["docs/executive-summary.html"]
+    evidence_page = rendered["docs/evidence.html"]
+
+    # A later read-only review has no lane assignment and cannot revoke a
+    # distinct prior lane's promotion. Keep the scoped negative and selector
+    # action simultaneously explicit, without claiming slot approval.
+    for html in (home, executive):
+        assert "The requested new, uniqueness-cleared TIFF was not generated in this review." in html
+        assert "not a revocation of the separately promoted H86G-EDTI" in html
+        assert "No candidate from this independent review is cleared" in html
+    h86g = evidence_page.split('id="artifact-18"', 1)[1].split("</section>", 1)[0]
+    assert "PROMOTE — selector action is separate; no weekly slot selected" in h86g
+    assert "REGISTRY-MEASUREMENT (PA-86-01 like-for-like gate)" in h86g
+    assert "Literal continuous-support witness reading remains separately reported" in h86g
+    assert "DO NOT SUBMIT" not in h86g
+    assert "Other historical downloads are audit-only" in evidence_page
+
+    format_page = (ROOT / "docs/download-status.html").read_text()
+    format_card = json.loads((ROOT / "docs/evidence/session-review-run-card.json").read_text())
+    assert "format audit, not a slot decision" in format_page
+    assert "The separate decision page lists H86G-EDTI as PROMOTE/selector-ready" in format_page
+    assert "DO NOT SUBMIT</span>" not in format_page
+    assert format_card["verdict"] == "negative" and format_card["safe_to_submit"] is False
+    assert format_card["submission_slots_used"] == 0
+    assert "neither revokes nor grants the separately recorded H86G-EDTI PROMOTE verdict" in format_card["scope"]
 
 
 def test_pr92_candidate_is_explicitly_negative_on_site_and_machine_summary():
