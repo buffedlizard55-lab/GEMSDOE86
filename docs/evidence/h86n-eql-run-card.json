@@ -1,0 +1,187 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane_id": "H86N-EQL",
+  "generated_utc": "2026-10-25T18:19:48.283053+00:00",
+  "preregistration": "research/H86N_EQA_PREREGISTRATION.md",
+  "hypothesis": "Line-like (anisotropic) organization of the seismicity fields (bands 10/16) at ~600 m scale traces active fault segments, including catalogue-missing ones under fill/volcanics; isotropic seismicity clouds do not.",
+  "mechanism": "Density d=mean(rank log1p B10, rank log1p B16); structure-tensor coherence c of d (deriv sigma 1.5px, tensor sigma 6px); surface=rank(c*sqrt(E)*(0.25+0.75d)); greedy 2.8px emission, 37654 dots, >3px off catalogue.",
+  "named_non_fault_mimic": "Geothermal induced-seismicity clusters (radial), quarry/blast and network-geometry location artifacts, bridged isotropic clusters.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03063420185303714,
+      "ci95": [
+        0.017498970786010093,
+        0.04549737174497756
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 422.53636146497263,
+      "fpw": 23258.270277210577,
+      "fnw": 10898.46363853503
+    },
+    "controls": {
+      "C0_iso_density": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0356041970820565,
+        "ci95": [
+          0.013915333454020112,
+          0.05945619464350406
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 567.620391506477,
+        "fpw": 33860.94694968227,
+        "fnw": 10753.379608493522
+      },
+      "C1_rtp_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04290165998842793,
+        "ci95": [
+          0.030001557597844754,
+          0.056568272494789885
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 686.7596287747251,
+        "fpw": 34068.05809529097,
+        "fnw": 10634.24037122527
+      }
+    },
+    "paired_differences_vs_candidate": {
+      "C0_iso_density": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.004969995229019357,
+        "ci95": [
+          -0.030121535623878874,
+          0.019964354627071575
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "C1_rtp_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.01226745813539079,
+        "ci95": [
+          -0.03112482646773966,
+          0.007357779759138933
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    }
+  },
+  "leakage_canary": {
+    "single_feature_auc": {
+      "eql_log_b10": 0.5375,
+      "eql_log_b16": 0.5428,
+      "eql_density": 0.5403,
+      "eql_coherence": 0.5206,
+      "eql_energy": 0.5117,
+      "eql_cand_raw": 0.5297,
+      "ctrl_rtp_grad": 0.5349
+    },
+    "gate_symmetric_le_0.90": true
+  },
+  "correlation_overlap_vs_registry": {
+    "max_surface_spearman_abs": 0.06894533449799584,
+    "worst_surface": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "max_dot_spearman_abs": 0.1403233840751146,
+    "worst_dot": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "max_overlap3": 0.5794869071015032,
+    "worst_overlap": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "n_registry_measured": 61,
+    "method": "surface Spearman on shared 300k footprint sample vs every raster; dot phi (=Spearman, binary); overlap=frac candidate dots <=3px of other dots, dot-fields only (support<=20% footprint, PA-86-01)",
+    "registry_scope": "Locally measured rasters only (data/scored_fleet + docs/downloads at run time); complete 92-site registry NOT restored this session, so no complete-uniqueness claim is made."
+  },
+  "preflight_PA-86-01": {
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "literal_reading_blocked": true,
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    }
+  },
+  "gates": {
+    "paired_ci_low_gt_0_vs_C0": false,
+    "paired_ci_low_gt_0_vs_C1": false,
+    "canary_all_symmetric_auc_le_0.90": true,
+    "surface_spearman_abs_le_0.90": true,
+    "dot_spearman_abs_le_0.90": true,
+    "overlap3_le_0.70": true,
+    "budget_exact": true,
+    "zero_dots_on_catalogue": true
+  },
+  "raster_sha256": "5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a",
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
+    "bytes": 105329,
+    "sha256": "5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems86-h86n-eql-seislineation-37654dots-20261025T181759Z",
+  "submission_note_le140": "H86N-EQL seismicity lineation anisotropy dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT",
+  "note_chars": 93,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "dots": 37654,
+  "input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "runtime_s": 110.9
+}

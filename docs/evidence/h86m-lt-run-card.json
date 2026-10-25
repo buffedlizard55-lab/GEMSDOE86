@@ -190,7 +190,7 @@
   ]
  },
  "verdict": "promote",
- "safe_to_submit": true,
+ "safe_to_submit": false,
  "approved_for_weekly_slot": false,
  "submission_slots_used": 0,
  "selector_note": "Promotion to a real weekly slot is a separate selector step within the weekly cap; this session used 0 slots.",
@@ -205,5 +205,21 @@
   "evidence": "docs/evidence/h86m-lt-full-registry-uniqueness.json",
   "pa86_chance_note": "No forward-overlap firing >0.70 exists, so no PA-86-02 informative-firing hard stop can trigger; chance-overlap test is moot for this candidate.",
   "pass": true
- }
+ },
+ "publication_addendum_20261025_92f9e0e8": {
+  "reason": "Repo publication guard (AGENTS.md rule 14 + scripts/check_site.py negative-state gate): scientific PROMOTE is not upload authorization. Original card set safe_to_submit=true with no submission_ready/gates fields, which contradicted the generated site (DO NOT SUBMIT) and failed check_site on main.",
+  "original_safe_to_submit": true,
+  "current_publication_state": "DO_NOT_SUBMIT",
+  "semantics": "submission_ready=true means only that the file bytes pass the local format/[0,1] writer+validator (H86G-EDTI pattern); safe_to_submit=false and approved_for_weekly_slot=false remain binding: no weekly slot is authorized by this repo, and the literal full-support-witness audit still blocks every nonempty raster. The lane's scientific gates and verdict are unchanged.",
+  "gates_basis": "Amendment C gate set as recorded in this card: format 15/15 PASS (validator.all_checks_passed), full-registry uniqueness pass (full_registry_uniqueness.pass, 0 firings), leakage-canary analogue 0.621<0.90, primary-belief material win + no material loss (tomography.materiality), SGMC-PROXY-DTI >= h33 (diagnostic).",
+  "session": "arena/92f9e0e8-gemsdoe86"
+ },
+ "gates": {
+  "format_validator_all_pass": true,
+  "full_registry_uniqueness_pass": true,
+  "leakage_canary_analogue_lt_0.90": true,
+  "primary_belief_material_win": true,
+  "no_material_loss_any_belief": true
+ },
+ "submission_ready": true
 }

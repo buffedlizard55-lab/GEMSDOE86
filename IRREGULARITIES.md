@@ -1577,3 +1577,34 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 ## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (repaired)
+
+On this branch's starting commit (`3deca67`), H86M-LT violated the repo's own publication
+guard in four measured ways: (1) its TIFF/ZIP were absent from
+`docs/evidence/download-inventory.json` and `registry/artifact_cards.json` (the gap already
+flagged as IR-86-H86M-INVENTORY); (2) `docs/h86m-lt.html` carried the banned instruction
+"IS THIS FILE OK TO SUBMIT? YES"; (3) its run card set `safe_to_submit=true` with no
+`submission_ready`/`gates` fields; (4) README's headline said "OK TO SUBMIT" while the
+generated site said "NO FILE AUTHORIZED · DO NOT SUBMIT" — so `scripts/check_site.py`
+failed on main (exit 1, reproduced this session). Repair (session `92f9e0e8`): registered
+the artifact with a reviewed `h86m_lt` branch in `scripts/audit_release.py` (no catalogue
+HOLDOUT-DTI exists for this lane; tomography projections are never relabelled), added a
+dated publication addendum to the run card (`safe_to_submit=false`,
+`submission_ready=true` in the H86G-EDTI format-ready sense, Amendment-C `gates`; the
+scientific PA-86 PROMOTE verdict and all measurements are preserved verbatim), aligned the
+lane page and README headline to the binding `DO NOT SUBMIT` publication state, and
+re-ran `audit_release --measure-registry`, `audit_downloads --write`, `build_site` and
+`check_site` to PASS over 37 artifacts. No raster bytes, thresholds, evaluator/writer or
+scientific verdict changed; no slot was authorized or used.
+
+## IR-86-92F9E0E8-PRIOR-SCORES — 2026-10-25 (open, data re-pin needed)
+
+The 2026-10-25 `92f9e0e8` request adds owner-reported claims for GEMSDOE91 (0.1367,
+0.1823) and GEMSDOE92 (0.0255), but `registry/prior_scores.csv` still carries
+"NO ARTIFACT OR SCORE SPECIFIED IN PROMPT" placeholder rows for those sites and its
+SHA-256 is pinned into the generated fleet feed (`owner_ledger_sha256`). The claims are
+archived verbatim in `research/REQUEST_20261025_92F9E0E8.md`; transcribing them into the
+CSV requires a deliberate feed re-pin/regeneration pass, deliberately not smuggled into
+this session's lane change. They remain unverified claims either way (no organizer
+receipts).

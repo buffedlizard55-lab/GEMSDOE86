@@ -229,8 +229,25 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind in {"h86m_bmr", "h86m_cnt"}:
-        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
+    if kind == "h86m_lt":
+        # H86M-LT ran no catalogue hide-and-recover by design (leaderboard
+        # tomography); its expected-DTI numbers are projections under fitted
+        # beliefs, never HOLDOUT-DTI. Registration here covers format/identity
+        # only and preserves the current DO NOT SUBMIT publication state.
+        fru = context.get("full_registry_uniqueness") or {}
+        if (not str(context.get("lane", "")).startswith("H86M-LT")
+                or context.get("verdict") != "promote"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or not all((context.get("gates") or {}).values())
+                or fru.get("pass") is not True):
+            raise ValueError("H86M-LT card is not in its promote-science/no-slot publication state")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Leaderboard tomography (LOO on owner-reported raster scores); no catalogue HOLDOUT-DTI run",
+                "caveat": "Scientific PA-86 like-for-like PROMOTE is preserved in the run card, but it is not HOLDOUT-DTI evidence and not upload authorization: safe_to_submit and slot approval are false, the literal full-support witness still blocks every nonempty raster, and no organizer receipt exists. DO NOT SUBMIT under the current publication state."}
+    if kind in {"h86m_bmr", "h86m_cnt", "h86n_eql"}:
+        # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT, H86N-EQL): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
         cand = h.get("candidate") or {}
