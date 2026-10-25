@@ -222,6 +222,22 @@ def test_h86i_rlms_run_card_artifact_and_registry_evidence_are_honest_and_bound(
     assert post_grid["uniqueness_clearance"] is False
 
 
-def test_run_h86i_rlms_cli_stops_at_protocol_preflight():
+def test_run_h86i_rlms_cli_stops_at_protocol_preflight(monkeypatch):
+    if (ROOT / "data/sample_submission.tif").is_file():
+        with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+            run_h86i_rlms.main([])
+    else:
+        with pytest.raises(FileNotFoundError):
+            run_h86i_rlms.main([])
+    called = []
+
+    def fake_stop():
+        called.append(True)
+        raise RuntimeError("STOP_LITERAL_OVERLAP_UNSATISFIABLE")
+
+    from scripts import protocol_preflight
+
+    monkeypatch.setattr(protocol_preflight, "require_feasible", fake_stop)
     with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
         run_h86i_rlms.main([])
+    assert called == [True]
