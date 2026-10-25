@@ -1216,3 +1216,10 @@ trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.104
 vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
+## 2026-10-25 — H86J-LSI (live-score inversion)
+
+* **IR-86-H86J-01:** on 74 owner-scored rasters, the SGMC proxy as-is reaches Spearman 0.300 vs OWNER-REPORTED live, and catalogue-hide (`gems57-pooled-hide-v2`) reaches 0.051. The 8-raster SGMC agreement behind H86G does not generalise (e.g. GEMSDOE44 h46: SGMC 0.3081 vs live 0.0715).
+* **IR-86-H86J-02:** inventory row `ccbe1de0…` (14GEMSDOE r5-geom-horse-ensemble) has the competition shape but a shifted transform (origin 500000, 4500000). H86J compared it index-wise.
+* **IR-86-H86J-03:** the H86J log-linear truth density is non-physical. λ > 1 on 2,552 pixels, which hold 63.5 % of its mass, so its LSI-PROJECTION values are not forecasts.
+* **IR-86-H86J-04:** E3 ended ~8 min past the 2 h session budget. No further experiment was run. The negative raster is not published.
