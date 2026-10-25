@@ -1577,3 +1577,13 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 ## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
+
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
