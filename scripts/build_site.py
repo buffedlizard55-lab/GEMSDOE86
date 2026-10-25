@@ -737,10 +737,15 @@ def h86h_pstd_answer(card: dict) -> str:
 <p><a href="evidence/h86h-pstd-run-card.json">H86H-PSTD run card</a> · <a href="evidence/h86h-pstd-registry-surface.json">v2 bound surface report</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_H86H_PSTD_REVIEW.md">PhD GEMSDOE32 analysis, 4 hypotheses &amp; 3-pass review</a>.</p></section>'''
 
 
-def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
-    """Dated read-only observations; native bands and pair checks are not clearance."""
-    preparation = data["native_band_preparation"]
-    bands = preparation["input_grids"]["training_features"]["bands"]
+def current_review_notice(data: dict, inputs: dict, concurrent: dict, workspace: dict) -> str:
+    """Dated observations; historical preparation receipts are not current inputs."""
+    native = {item["name"]: item for item in workspace["native_inputs"]}
+    feature = native.get("training_features.tif", {"usable": False, "copies": []})
+    missing_locations = [row["file"] for row in feature["copies"] if row["status"] != "HASH_VERIFIED"]
+    usable_names = [name for name, row in native.items() if row["usable"]]
+    prepared = workspace["preparation"]
+    verified_arrays = sum(row["status"] == "HASH_VERIFIED" for row in prepared["arrays"])
+    total_arrays = len(prepared["arrays"])
     pairs = []
     for comparison in concurrent["comparisons"]:
         result = comparison["shared_result"]
@@ -748,14 +753,14 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
                      f'rank rho <code>{result["worst_spearman_full_footprint"]:.4f}</code>, '
                      f'forward 3-px overlap <code>{result["worst_dot_overlap"]:.2%}</code>.</li>')
     return f'''<section class="card" id="current-review"><p class="eyebrow">Independent review · 2026-10-25 · no model experiment</p>
-<h2>Data restored. Submission still blocked.</h2>
+<h2>Protocol rasters restored; training data still missing.</h2>
 <p><strong>The requested new, uniqueness-cleared TIFF was not generated in this review.</strong> The literal preflight stops before fitting or placement; no method lane was assigned. Existing files below are audit-only, not substitutes for that unmet deliverable. Byte-distinct research GeoTIFFs are not automatically registry-unique; local format validity or pairwise comparison cannot replace complete protocol clearance.</p>
-<p><strong>DATA-MEASUREMENT:</strong> all {bands} native bands were restored and prepared. Every input now passes CRS, shape, transform, band-count and SHA checks before output. The actual shared cached feature stack is still absent; raw-band preparation is not that cache.</p>
+<p><strong>LIVE INPUT-INTEGRITY-MEASUREMENT:</strong> measured <time>{e(workspace['measured_utc'])}</time>. <code>training_features.tif</code> is {'available' if feature['usable'] else 'NOT AVAILABLE'}{f" (unverified locations: {', '.join(e(path) for path in missing_locations)})" if missing_locations else ''}; currently usable pinned inputs: {', '.join(f'<code>{e(name)}</code>' for name in usable_names) or 'none'}. Prepared arrays: <code>{e(prepared['status'])}</code>, {verified_arrays}/{total_arrays} paths currently hash-verified. Shared feature cache: <code>{e(workspace['shared_cache']['status'])}</code> (not established). Earlier preparation receipts are historical, not proof that files remain present. <a href="evidence/current-workspace-inputs.json">Open current input audit</a>.</p>
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
 <p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
 <p><strong>Follow-up code and research review (2026-10-25):</strong> this follow-up produced no TIFF, experiment, or slot. Main concurrently merged PR #145 (GDSC) and PR #147 (H86K-PSC); both research TIFFs remain <strong>DO NOT SUBMIT</strong> under the literal witness stop. The request still lacks an assigned method paragraph and the shared cache remains absent. H86G-CSPA/MPC and H86K-PSC are no longer untried; GDSC is an executed lane with a missing 95% CI. The current three-item queue excludes these and the earlier variogram submission. This review also adds the missing early preflight to historical H86K, fixes the audit's stale timestamp, and narrows the H33 causal claim. No file is authorized.</p>
-<p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
+<p><a href="evidence/session-live-input-review-run-card.json">Current three-pass review run card</a> · <a href="evidence/current-workspace-inputs.json">Live input audit</a> · <a href="evidence/session-20261025-followup-run-card.json">Prior follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_LIVE_INPUT_REVIEW.md">Current three-pass repository review</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Prior three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
 
 
 def new_hypothesis_queue(plan: dict) -> str:
@@ -1209,6 +1214,11 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or feed["targets_sha256"] != sha256(root / "registry/site_targets.json")):
         raise ValueError("Fleet feed is stale relative to its ledger/target inputs")
     registry = strict_json(root / "docs/evidence/all-artifacts-registry.json")
+    workspace_inputs = strict_json(root / "docs/evidence/current-workspace-inputs.json")
+    if (workspace_inputs.get("schema") != "gems86.live-workspace-inputs.v1"
+            or workspace_inputs.get("inspection_completed") is not True
+            or workspace_inputs.get("safe_to_submit") is not False):
+        raise ValueError("Current workspace input audit is missing, malformed, or unsafe")
     spt_audit = strict_json(root / "docs/evidence/spt-full-support-witness-audit.json")
     spt_card = strict_json(root / "docs/evidence/spt-run-card.json")
     candidate_file = root / spt_audit["candidate_file"]
@@ -1533,7 +1543,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         stdp_banner = h86k_stdp_answer(stdp_card, section_id="h86k-stdp-banner")
     plan86k_path = root / "registry/h86k_hypotheses.json"
     plan86k = strict_json(plan86k_path) if plan86k_path.is_file() else None
-    review_notice = current_review_notice(session_data, registry_inputs, concurrent)
+    review_notice = current_review_notice(session_data, registry_inputs, concurrent, workspace_inputs)
     new_queue = new_hypothesis_queue(new_plan)
     answer = (tvhs_html + rlms_html + ksad_html + lsi_html + h86j_html + hvfd_html + rksc_html + ewcs_html + pstd_html + h86f_gzzd_answer(gzzd_card, comp) + h86f_pcc_answer(pcc_card, pcc_diag)
               + h86e_answer(card86e, kslb, swcon) + h86e_mmt_answer(mmt_card, comp))

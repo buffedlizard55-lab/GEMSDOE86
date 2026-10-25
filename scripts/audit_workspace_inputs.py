@@ -15,8 +15,10 @@ import json
 from pathlib import Path
 import re
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+REPORT_PATH = ROOT / 'docs/evidence/current-workspace-inputs.json'
 sys.path.insert(0, str(ROOT))
 from scripts.restore_data import PINS  # noqa: E402
 
@@ -134,11 +136,32 @@ def inspect(root: Path = ROOT) -> dict:
                 experiments_run=0, submission_slots_used=0)
 
 
+def persist_report(report: dict, path: Path = REPORT_PATH) -> None:
+    """Atomically publish the current inspection as dated input evidence."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent,
+                                         prefix=path.name + '.', suffix='.partial',
+                                         delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(report, indent=2, allow_nan=False) + '\n')
+        temporary.replace(path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--require-native', action='store_true')
+    parser.add_argument('--write-report', action='store_true',
+                        help=f'atomically refresh {REPORT_PATH.relative_to(ROOT)} for the Pages dashboard')
     args = parser.parse_args(argv)
     report = inspect()
+    if args.write_report:
+        persist_report(report)
     print(json.dumps(report, indent=2, allow_nan=False))
     return 1 if args.require_native and not report['native_inputs_available'] else 0
 

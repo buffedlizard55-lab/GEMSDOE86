@@ -64,6 +64,40 @@ def test_current_readme_download_counts_match_fresh_release_inventory():
     assert "generated **no new candidate**" in current
 
 
+def test_current_session_run_card_is_complete_negative_and_scope_labeled():
+    card = audit_release.strict_json(ROOT / "docs/evidence/session-live-input-review-run-card.json")
+    assert card["verdict"] == "negative"
+    assert card["hypothesis"].startswith("No lane was assigned")
+    assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
+    assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
+    assert card["correlation_overlap_vs_registry"]["universal_literal_forward_overlap_for_any_nonempty_allowed_candidate"] == 1.0
+    assert card["live_inputs"]["evidence_class"] == "INPUT-INTEGRITY-MEASUREMENT"
+    assert card["raster_sha256"] is card["submission_name"] is None
+    assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
+    assert card["safe_to_submit"] is card["approved_for_weekly_slot"] is False
+    assert card["experiments_run"] == card["submission_slots_used"] == 0
+    assert len(card["note"]) <= 140
+
+
+def test_site_exposes_live_input_audit_instead_of_trusting_old_preparation_receipt():
+    report = audit_release.strict_json(ROOT / "docs/evidence/current-workspace-inputs.json")
+    assert report["schema"] == "gems86.live-workspace-inputs.v1"
+    assert report["native_inputs_available"] is False
+    assert report["preparation"]["status"] == "STALE_OR_INCOMPLETE_RECEIPT"
+    assert report["shared_cache"]["status"] == "SHARED_CACHE_NOT_ESTABLISHED"
+    rendered = build_site.render(ROOT)
+    for filename in ("docs/index.html", "docs/executive-summary.html"):
+        html = rendered[filename]
+        assert "LIVE INPUT-INTEGRITY-MEASUREMENT" in html
+        assert "current-workspace-inputs.json" in html
+        assert "NOT AVAILABLE" in html
+        assert "0/21 paths currently hash-verified" in html
+        assert "SHARED_CACHE_NOT_ESTABLISHED" in html
+        assert "historical, not proof that files remain present" in html
+        assert "all 19 native bands were restored and prepared" not in html
+
+
 def test_historical_h86g_promotion_is_not_current_upload_authorization():
     rendered = build_site.render(ROOT)
     home = rendered["docs/index.html"]
@@ -132,6 +166,7 @@ def test_site_rejects_stale_or_optimistic_current_review(tmp_path, monkeypatch, 
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
         "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/current-workspace-inputs.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.json",
@@ -171,6 +206,7 @@ def test_site_rejects_spt_download_url(tmp_path, monkeypatch):
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
         "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/current-workspace-inputs.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
@@ -193,6 +229,7 @@ def test_site_rejects_optimistic_spt_witness_audit(tmp_path, monkeypatch):
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
         "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/current-workspace-inputs.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",

@@ -1,5 +1,6 @@
 """Regression checks for the 2026-10-25 follow-up review and current research queue."""
 import json
+from datetime import datetime
 from pathlib import Path
 
 from src.gems86.io import BANDS
@@ -54,7 +55,8 @@ def test_current_site_uses_followup_queue_and_preserves_no_submit_status():
     assert "New proposal 4 · CNT · NOT RUN" not in hypotheses
     assert "New proposal 1 · H86G-CSPA · NOT RUN" not in hypotheses
     assert "New proposal 2 · H86G-MPC · NOT RUN" not in hypotheses
-    assert "Latest follow-up run card" in home
+    assert "Current three-pass review run card" in home
+    assert "Prior follow-up run card" in home
     assert "this follow-up produced no TIFF, experiment, or slot" in home
     assert "NO FILE AUTHORIZED · DO NOT SUBMIT" in home
     submit = (ROOT / "docs/submit.html").read_text(encoding="utf-8")
@@ -71,10 +73,17 @@ def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     assert card["holdout_dti"]["status"] == "NOT_RUN_NO_LANE_ASSIGNED_AND_PROTOCOL_STOP"
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
     assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
-    assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
-    assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
-    assert card["correlation_overlap_vs_registry"]["registry_measurement_utc"] == registry["measured_utc"]
-    assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
+    # This session card records its own historical measurement timestamps; the live
+    # preflight and registry reports are intentionally refreshed by later audits.
+    # Bind the immutable witness identity and measured blocker facts, not wall-clock
+    # timestamps that are expected to diverge after a fresh remeasurement.
+    observed = card["correlation_overlap_vs_registry"]
+    assert observed["witness_sha256"] == preflight["witness_sha256"]
+    datetime.fromisoformat(observed["witness_measured_utc"])
+    datetime.fromisoformat(observed["registry_measurement_utc"])
+    assert observed["uncovered_allowed_pixels"] == preflight["uncovered_allowed_pixels"] == 0
+    assert observed["universal_overlap_for_any_nonempty_allowed_candidate"] == preflight["covered_allowed_fraction"] == 1.0
+    assert registry["measured_utc"]
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False
     assert card["raster_sha256"] is card["submission_name"] is None

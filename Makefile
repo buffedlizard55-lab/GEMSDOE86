@@ -21,6 +21,7 @@ submission:
 # Audit all files; do not silently choose the newest candidate with ls/head.
 audit:
 	$(PY) scripts/audit_release.py --measure-registry
+	$(PY) scripts/audit_workspace_inputs.py --write-report
 
 # Retain the independently merged all-download integrity audit and its commands.
 verify-downloads:

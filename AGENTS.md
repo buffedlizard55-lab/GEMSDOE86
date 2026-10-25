@@ -92,3 +92,11 @@
     fail-closed native-TIFF presence/hash gate) before describing training inputs
     as available. This read-only inspection never establishes shared-cache
     provenance, scientific improvement, registry uniqueness or upload approval.
+
+17. Before publishing the site, refresh the current input status with
+    `python scripts/audit_workspace_inputs.py --write-report`; `make audit` and
+    the Pages workflow do this automatically. The generated
+    `docs/evidence/current-workspace-inputs.json` supersedes any historical
+    availability wording. Keep missing native files, stale prepared arrays, and
+    unestablished shared cache visible; never convert local mirror hash
+    verification into organizer authentication or readiness.

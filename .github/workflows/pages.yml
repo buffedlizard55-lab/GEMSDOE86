@@ -33,6 +33,8 @@ jobs:
         run: python scripts/restore_protocol_data.py --include-registry
       - name: Recheck every inherited TIFF, ZIP, receipt and final-dot stop
         run: python scripts/audit_release.py --measure-registry
+      - name: Measure current native inputs and shared-cache availability
+        run: python scripts/audit_workspace_inputs.py --write-report
       - name: Refresh named-project Git metadata (partial failures stay explicit)
         env:
           GH_TOKEN: ${{ github.token }}
@@ -55,6 +57,7 @@ jobs:
             docs/evidence/all-artifacts-registry.json
             docs/evidence/session-20261023-run-card.json
             docs/evidence/latest-review-run-card.json
+            docs/evidence/current-workspace-inputs.json
             docs/evidence/fleet-feed.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

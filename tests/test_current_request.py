@@ -67,6 +67,8 @@ def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_train
     workflow = (ROOT / ".github/workflows/pages.yml").read_text()
     assert "schedule:" in workflow
     assert "audit_release.py --measure-registry" in workflow
+    assert "audit_workspace_inputs.py --write-report" in makefile
+    assert "audit_workspace_inputs.py --write-report" in workflow
     assert "refresh_fleet.py" in workflow
     assert "run_lane" not in workflow
     assert "build_submission.py" not in workflow

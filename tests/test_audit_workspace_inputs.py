@@ -118,6 +118,16 @@ def test_cli_require_native_exits_nonzero_but_default_is_inspection_only(tmp_pat
     assert '"safe_to_submit": false' in capsys.readouterr().out
 
 
+def test_write_report_is_atomic_and_does_not_imply_readiness(tmp_path):
+    report = audit.inspect(tmp_path)
+    target = tmp_path / 'docs/evidence/current-workspace-inputs.json'
+    audit.persist_report(report, target)
+    assert json.loads(target.read_text()) == report
+    assert not target.with_name(target.name + '.partial').exists()
+    assert report['safe_to_submit'] is False
+    assert report['approved_for_weekly_slot'] is False
+
+
 def test_symlink_cycle_is_reported_without_traceback(tmp_path):
     (tmp_path / 'cycle').symlink_to('cycle')
     result = audit.inspect_file(tmp_path, 'cycle', None)
