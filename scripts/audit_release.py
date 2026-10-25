@@ -242,10 +242,10 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 or context.get("holdout_dti", {}).get("status") != "NOT_RUN_NO_SHARED_CACHE_AND_NO_VISIBLE-FAULT_RECOMPUTATION"
                 or any(context.get("holdout_dti", {}).get(k) is not None
                        for k in ("dti", "ci95", "withheld_positive_pixels"))):
-            raise ValueError("H86M-LT must remain an unvalidated projection and negative/no-slot artifact")
+            raise ValueError("H86M-LT must remain unvalidated projection and negative/no-slot artifact")
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "design": "Historical leaderboard-tomography projection; no shared hide-and-recover run",
-                "caveat": "H86M-LT expected-DTI and SGMC-proxy values are projections/diagnostics from owner-reported scored rasters, not HOLDOUT-DTI. The shared feature cache, visible-fault recomputation, leakage canary and organizer receipt are absent. Full-registry uniqueness is local evidence only. DO NOT SUBMIT."}
+                "caveat": "H86M-LT expected-DTI and SGMC-proxy values are projections/diagnostics from owner-reported scored rasters, not HOLDOUT-DTI. The shared feature cache, visible-fault recomputation, leakage canary and organizer receipt are absent. The historical surface checker also used Pearson rather than the required Spearman measurement. Full-registry uniqueness is local evidence only. DO NOT SUBMIT."}
     if kind in {"h86m_bmr", "h86m_cnt"}:
         # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
         # block lives at holdout.candidate; all are measured negatives.

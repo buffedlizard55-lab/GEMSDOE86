@@ -53,7 +53,7 @@
     "docs/evidence/h86m-cnt-run-card.json": "1581aa70b4eac0536bd6b74bbfe6cbd7e109e83b695a0108a65c6c88cfefde3d",
     "docs/evidence/h86m-damagering-run-card.json": "9da6a255fcd64c60dd3f72fe9473e9ac0965aaf58a2d568e630c68efb71eb560",
     "docs/evidence/h86m-lt-run-card.json": "4f05e254fc165267d8426ed1f67fad603667e100f78321e7fd51f6526a0d38c8",
-    "docs/evidence/all-artifacts-registry.json": "b6b42d430123b84bb128ee50480c6ed3a22ea46315bc4b96d4ab29931e1f5ef7"
+    "docs/evidence/all-artifacts-registry.json": "52045385b17c929fdb8934c5f612d6150c64495c8cd6cdc558c40d63fba052b1"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -3929,7 +3929,7 @@
         "value": null,
         "ci95": null,
         "design": "Historical leaderboard-tomography projection; no shared hide-and-recover run",
-        "caveat": "H86M-LT expected-DTI and SGMC-proxy values are projections/diagnostics from owner-reported scored rasters, not HOLDOUT-DTI. The shared feature cache, visible-fault recomputation, leakage canary and organizer receipt are absent. Full-registry uniqueness is local evidence only. DO NOT SUBMIT."
+        "caveat": "H86M-LT expected-DTI and SGMC-proxy values are projections/diagnostics from owner-reported scored rasters, not HOLDOUT-DTI. The shared feature cache, visible-fault recomputation, leakage canary and organizer receipt are absent. The historical surface checker also used Pearson rather than the required Spearman measurement. Full-registry uniqueness is local evidence only. DO NOT SUBMIT."
       },
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,
