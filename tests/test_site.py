@@ -14,22 +14,22 @@ def test_download_links_and_fail_closed_decision():
         assert name in html
         assert (DOCS / "downloads" / name).is_file()
     assert "DO NOT SUBMIT" in html
-    # Current literal full-support witness stop applies to every nonempty file.
-    # The old H86G lane verdict remains archival and must not authorize upload.
+    # The literal full-support witness blocks every nonempty prediction. H86G's
+    # older promote verdict remains historical and cannot authorize an upload.
     assert "NO FILE CLEARED FOR SUBMISSION" in html
-    assert "DO NOT SUBMIT" in html
-    assert "H86G-EDTI artifact retains its historical like-for-like lane verdict" in html
-    assert "Download one-TIFF ZIP — audit only, DO NOT SUBMIT" in html
+    assert "SAFE TO DOWNLOAD FOR AUDIT ONLY" in html
+    assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in html
+    assert "ONE SELECTOR-READY FILE" not in html
     assert "submit this file" not in html.lower()
     readiness = json.loads((DOCS / "evidence/release-readiness.json").read_text())
     assert readiness["decision"] == "DO NOT SUBMIT"
-    assert readiness["submission_ready"] is False
-    assert readiness["safe_to_submit"] is False
+    assert readiness["submission_ready"] is False and readiness["safe_to_submit"] is False
+    assert len(readiness["artifacts"]) == 21
     assert all(a["status"].startswith("DO NOT SUBMIT") for a in readiness["artifacts"])
     assert all(a["safe_to_submit"] is False for a in readiness["artifacts"])
     h86g = next(a for a in readiness["artifacts"] if a.get("source_card") == "docs/evidence/h86g-edti-run-card.json")
-    assert h86g["historical_lane_verdict"] == "promote"
-    assert h86g["literal_registry_stop"] is True
+    assert h86g["historical_lane_verdict"] == "promote" and h86g["literal_registry_stop"] is True
+    rmrb = json.loads((DOCS / "evidence/rmrb86-run-card.json").read_text())
     assert rmrb["safe_to_download"] is True
     assert rmrb["safe_to_submit"] is False
 
@@ -57,3 +57,28 @@ def test_zip_contains_single_tiff():
         names = bundle.namelist()
         assert names == [card["raster_name"]]
         assert bundle.getinfo(names[0]).file_size > 100_000
+
+
+def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
+    """A PROMOTE label cannot contradict the card's false slot permissions."""
+    card = json.loads((DOCS / "evidence/h86g-edti-run-card.json").read_text())
+    summary = json.loads((DOCS / "data/summary.json").read_text())
+    assert card["verdict"] == "promote"
+    assert card["safe_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False
+    for flag in ("safe_to_submit", "approved_for_weekly_slot", "selector_run"):
+        assert summary[flag] is False
+    historical = summary["historical_h86g_lane"]
+    assert historical["raster_sha256"] == card["raster_sha256"]
+    assert historical["historical_verdict"] == "promote"
+    assert historical["current_verdict"] == "negative"
+    assert historical["safe_to_submit"] is False
+    assert historical["approved_for_weekly_slot"] is False
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        assert "IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT" in html
+        assert "safe_to_submit = false" in html
+        for unsafe in ("IS THIS FILE OK TO SUBMIT? YES", "SUBMIT THIS FILE",
+                       "submit this file", "OK to download and submit",
+                       "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
+            assert unsafe not in html

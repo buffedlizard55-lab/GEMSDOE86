@@ -527,6 +527,9 @@ def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--strict-exit",

@@ -1,0 +1,10 @@
+{
+  "schema": "gems86.pa86-chance-overlap.v2",
+  "status": "FAILED_CLOSED_NO_REPORT",
+  "runner_returncode": 1,
+  "gate_pass": false,
+  "informative_firings": null,
+  "stderr_tail": "Traceback (most recent call last):\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 162, in <module>\n    raise SystemExit(main(sys.argv[1:]))\n                     ^^^^^^^^^^^^^^^^^^\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 111, in main\n    phase = validate_report_binding(report, argv[1], g, index, missing, exclude=exclude)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/GEMSDOE86/scripts/pa86_chance_overlap.py\", line 62, in validate_report_binding\n    raise ValueError(\"Incomplete registry cannot pass\")\nValueError: Incomplete registry cannot pass\n",
+  "stdout_tail": "",
+  "note": "pa86_chance_overlap.py refused to certify (binding/completeness); recorded verbatim, never bypassed with a private computation."
+}
