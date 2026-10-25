@@ -1,0 +1,5597 @@
+{
+ "summary": {
+  "candidate": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros",
+  "registry_files": 655,
+  "measured": 655,
+  "errors": 0,
+  "dotfields": 414,
+  "non_dotfields": 241,
+  "max_forward_overlap_3px": 0.6489881553088649,
+  "max_pearson_dots": 0.1594770703332588,
+  "max_pearson_surface": 0.5560123221902681,
+  "firings_forward_gt_070": [],
+  "firings_pearson_dots_gt_090": [],
+  "firings_pearson_surface_gt_090": [],
+  "top10_forward": [
+   {
+    "file": "28a51fb032b8f2cfd1f04ad3bd429c29d7bb780d36961fea783ff8099130986e.tif",
+    "support": 58031,
+    "pearson_surface": 0.1715775352675015,
+    "pearson_dots": 0.09099414169518388,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6489881553088649,
+    "reverse_overlap_3px": 0.48412055625441575
+   },
+   {
+    "file": "4e6c4ddd5a31ec39adbc84b2e547844bc4f98f752d307f694837591319ef847b.tif",
+    "support": 58031,
+    "pearson_surface": 0.1715775352675015,
+    "pearson_dots": 0.09099414169518388,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6489881553088649,
+    "reverse_overlap_3px": 0.48412055625441575
+   },
+   {
+    "file": "ce749a992baec603460dfeddd068758855cb8b12978268e6ef94f6e23ffd9ee7.tif",
+    "support": 80000,
+    "pearson_surface": 0.07411746897985123,
+    "pearson_dots": 0.021527178953970945,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6414989111382589,
+    "reverse_overlap_3px": 0.3992875
+   },
+   {
+    "file": "d7977d7b93287f17fbf3cb85f10fdbee4acc5c8453a7faa451e760363433a286.tif",
+    "support": 85526,
+    "pearson_surface": 0.045211271452761326,
+    "pearson_dots": 0.011945148360830986,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6386838051734212,
+    "reverse_overlap_3px": 0.30579005214788485
+   },
+   {
+    "file": "fed5232e8efeefef00728ce9d5884f08e007c542f317cb11419452d14ff866da.tif",
+    "support": 85526,
+    "pearson_surface": 0.045211271452761326,
+    "pearson_dots": 0.011945148360830986,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6386838051734212,
+    "reverse_overlap_3px": 0.30579005214788485
+   },
+   {
+    "file": "f1584187b459baf47f75e5daf64de6f7696f9feb14910d3cf2762f7a1119597a.tif",
+    "support": 37723,
+    "pearson_surface": 0.12047394833988101,
+    "pearson_dots": 0.0276668694327695,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6360546024326765,
+    "reverse_overlap_3px": 0.5773931023513507
+   },
+   {
+    "file": "54aa8c6cbee0a1f858f80f898c5c3ae9c069ad3d11c7457b94717c261b5d9416.tif",
+    "support": 60710,
+    "pearson_surface": 0.21581148557823443,
+    "pearson_dots": 0.1105520966971963,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6347001646571413,
+    "reverse_overlap_3px": 0.48311645527919617
+   },
+   {
+    "file": "9940d101fe0ad6a06b941bc8f5156030fbe282b67263bc82cec8c4446753b6df.tif",
+    "support": 60710,
+    "pearson_surface": 0.21581148557823443,
+    "pearson_dots": 0.1105520966971963,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6347001646571413,
+    "reverse_overlap_3px": 0.48311645527919617
+   },
+   {
+    "file": "7cacff894c4444997e2ee8896582cda82ad34a43cf039cfb960befa20577d005.tif",
+    "support": 82678,
+    "pearson_surface": 0.0766577071219785,
+    "pearson_dots": 0.023456784150116174,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6288840495033728,
+    "reverse_overlap_3px": 0.39022472725513435
+   },
+   {
+    "file": "2dc67f4bdb8d1bf200f8307946d100c8e51ebd55cc6c7229d1220f83156b6935.tif",
+    "support": 44090,
+    "pearson_surface": 0.18198532720525906,
+    "pearson_dots": 0.07178422209318841,
+    "dotfield": true,
+    "forward_overlap_3px": 0.6203059435916503,
+    "reverse_overlap_3px": 0.6921070537536856
+   }
+  ],
+  "top10_pearson_dots": [
+   {
+    "file": "59ef8e7d8374e228bc1e41376f03fc67dd5b8a5e6804885a1ae802f399140b89.tif",
+    "support": 5167373,
+    "pearson_surface": 0.5221178504418875,
+    "pearson_dots": 0.1594770703332588,
+    "dotfield": false
+   },
+   {
+    "file": "9242c831dc103966e7ea961e342e4dce5e655b11313d349a112ece8a4d8b0d15.tif",
+    "support": 1488778,
+    "pearson_surface": 0.5371795424347757,
+    "pearson_dots": 0.1564612861740527,
+    "dotfield": false
+   },
+   {
+    "file": "a5c1c4fbd53e889fe5178628fa5f25b02e920e6db434ccca63e44792f7d4bf0f.tif",
+    "support": 1488778,
+    "pearson_surface": 0.5371795424347757,
+    "pearson_dots": 0.1564612861740527,
+    "dotfield": false
+   },
+   {
+    "file": "b8a2c58ad78cbe29fc90a60c64bc9928ebc29041c9771e7af5c554f69781820c.tif",
+    "support": 5167373,
+    "pearson_surface": 0.5376039680946147,
+    "pearson_dots": 0.15643706558800857,
+    "dotfield": false
+   },
+   {
+    "file": "54dfe8bd79f767370558bebc1c23366cb43e5e5a4b26c7d9d14131c8b58bdc0c.tif",
+    "support": 767043,
+    "pearson_surface": 0.5464667560993576,
+    "pearson_dots": 0.1555862956405286,
+    "dotfield": false
+   },
+   {
+    "file": "5b59e106b6e448038b96fb340c5bae39094d4558c239c437aea28b6020d5d32f.tif",
+    "support": 767043,
+    "pearson_surface": 0.5464667560993576,
+    "pearson_dots": 0.1555862956405286,
+    "dotfield": false
+   },
+   {
+    "file": "cd0e07fb882927d528a6708044e4f88e63ea21ffa9e6af4b41f045f186a930e0.tif",
+    "support": 5167373,
+    "pearson_surface": 0.5467247113030796,
+    "pearson_dots": 0.15546060498324693,
+    "dotfield": false
+   },
+   {
+    "file": "a1a26570f336e84a743e5acb451df16ede8734613f1f9a4b1d515ff69d369ba3.tif",
+    "support": 777643,
+    "pearson_surface": 0.5460630591404265,
+    "pearson_dots": 0.15387071903518748,
+    "dotfield": false
+   },
+   {
+    "file": "f614e72d999941b8ded1746ea11900ac0a653184a3c55226fdb9cc6f90b07d2a.tif",
+    "support": 791389,
+    "pearson_surface": 0.546425449124138,
+    "pearson_dots": 0.153782071142501,
+    "dotfield": false
+   },
+   {
+    "file": "56abce3cfd91c7a6961ffed128ed92ce11d6c17c293d02e02f0f9d6a88fad3a2.tif",
+    "support": 5167373,
+    "pearson_surface": 0.5466601682141015,
+    "pearson_dots": 0.1535843324708258,
+    "dotfield": false
+   }
+  ],
+  "note": "PA-86 like-for-like: dot-field gate support<=90k; binary-binary Pearson==Spearman with ties; continuous registry surfaces use Pearson (point-biserial) as a conservative rank proxy and are not dot-gated. Registry is the hash-verified restore (655 entries); completeness is snapshot scope, not an organizer registry.",
+  "pass": true
+ },
+ "rows": [
+  {
+   "file": "006e912b85b73e764ad151cb7228de61aa02485ffca769439022d2b124e26f05.tif",
+   "support": 21371,
+   "pearson_surface": 0.014232523855920413,
+   "pearson_dots": 0.005044174606842344,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06652679662187284,
+   "reverse_overlap_3px": 0.26961770623742454
+  },
+  {
+   "file": "007a99d6dc2866cc19ed86b1e7b6f1825c470de0104a1789b3f5b736eb7dd118.tif",
+   "support": 550000,
+   "pearson_surface": 0.4692005759081673,
+   "pearson_dots": 0.11476640205621606,
+   "dotfield": false
+  },
+  {
+   "file": "009dd3d8dffae29ded5db312bb7191c81de1d05e4acf7a071185f49f6fe26719.tif",
+   "support": 326,
+   "pearson_surface": 0.00014213381889099867,
+   "pearson_dots": -0.00010757761065477066,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0018855898443724437,
+   "reverse_overlap_3px": 0.18404907975460122
+  },
+  {
+   "file": "018ca3065cedf8f0fbda6cde429c759dacfdd8c6214c4814788d3bbf3e760a2f.tif",
+   "support": 39654,
+   "pearson_surface": 0.21278519713896638,
+   "pearson_dots": 0.10974773208831975,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5700855154830828,
+   "reverse_overlap_3px": 0.6348413779189993
+  },
+  {
+   "file": "0210da4395b209450e52e9efc780ab3ca6aceffd60c26d6f623da2b8fe76b691.tif",
+   "support": 103347,
+   "pearson_surface": 0.030410766645507317,
+   "pearson_dots": 0.01015657588596021,
+   "dotfield": false
+  },
+  {
+   "file": "02486eaa491da2d8ebc6b1cd53ed2bdc8e995f316be1110a64eec484779b5a68.tif",
+   "support": 17425,
+   "pearson_surface": -0.007508284511596663,
+   "pearson_dots": -0.002039924351296934,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0036383916715355606,
+   "reverse_overlap_3px": 0.08832137733142037
+  },
+  {
+   "file": "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd.tif",
+   "support": 272853,
+   "pearson_surface": -0.004715118309248946,
+   "pearson_dots": -0.0012233969676399541,
+   "dotfield": false
+  },
+  {
+   "file": "03d619fa75689b48bd3eb4f74c3fa529a9b04c19bd716e15640d910baf3d5a90.tif",
+   "support": 5167373,
+   "pearson_surface": 0.026768449086301195,
+   "pearson_dots": 0.0140556115525584,
+   "dotfield": false
+  },
+  {
+   "file": "044379b4d43b231ba16f7c87899302be0d71641d66713e449d15f5ea6a177df0.tif",
+   "support": 5167373,
+   "pearson_surface": 0.026768449086301195,
+   "pearson_dots": 0.0140556115525584,
+   "dotfield": false
+  },
+  {
+   "file": "045dc7f613648fc118333e51832ae9e6b13197e85278aa83e9383586b01b46e9.tif",
+   "support": 5167373,
+   "pearson_surface": -0.5484120511062721,
+   "pearson_dots": -0.1413675426032649,
+   "dotfield": false
+  },
+  {
+   "file": "04c201817c3ca39d1ea09e776d8d1e248f98fe578e0ddd2826835fe4bbe7883a.tif",
+   "support": 16183,
+   "pearson_surface": 0.03818985724272828,
+   "pearson_dots": 0.015966325608558846,
+   "dotfield": true,
+   "forward_overlap_3px": 0.096882137355925,
+   "reverse_overlap_3px": 0.48390286102700364
+  },
+  {
+   "file": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff.tif",
+   "support": 42294,
+   "pearson_surface": 0.20378660816880814,
+   "pearson_dots": 0.10548055582492023,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5661549901736868,
+   "reverse_overlap_3px": 0.5952853832694945
+  },
+  {
+   "file": "04f4ae79b2dd7c6e75bfb958e5a9bd665d999c1a17faa663edcc9278c9c2e5a0.tif",
+   "support": 4939,
+   "pearson_surface": -0.007459278906534374,
+   "pearson_dots": -0.002576398755927031,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0040633133266054075,
+   "reverse_overlap_3px": 0.025713707228183842
+  },
+  {
+   "file": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792.tif",
+   "support": 227507,
+   "pearson_surface": 0.12281117690551151,
+   "pearson_dots": 0.03388441630479569,
+   "dotfield": false
+  },
+  {
+   "file": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea.tif",
+   "support": 123939,
+   "pearson_surface": 0.3056658146224808,
+   "pearson_dots": 0.12476869605473707,
+   "dotfield": false
+  },
+  {
+   "file": "055e9aac96b89b9a1d8fca8005778733039ed79f1165bb8cdd46dcfc51d6f53d.tif",
+   "support": 103347,
+   "pearson_surface": 0.05375006519869759,
+   "pearson_dots": 0.01717766218230968,
+   "dotfield": false
+  },
+  {
+   "file": "056e8a3cb954ae3e6dee2c993e569ef0c60d42c24f29b44487fef91a0993bfa3.tif",
+   "support": 45869,
+   "pearson_surface": 0.0004047664342570839,
+   "pearson_dots": 1.839600026087421e-05,
+   "dotfield": true,
+   "forward_overlap_3px": 0.03330323471609922,
+   "reverse_overlap_3px": 0.16204844230308052
+  },
+  {
+   "file": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27.tif",
+   "support": 44090,
+   "pearson_surface": 0.02318776409579494,
+   "pearson_dots": 0.00699410860556217,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2787486057258193,
+   "reverse_overlap_3px": 0.2529144930823316
+  },
+  {
+   "file": "063fb7247f8e12b80788dd14652c3245dec15be82f7c7e8e901193b9aeaa68b6.tif",
+   "support": 37654,
+   "pearson_surface": 0.20487898874276927,
+   "pearson_dots": 0.05022357293595586,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14375630743081744,
+   "reverse_overlap_3px": 0.766983587401073
+  },
+  {
+   "file": "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b.tif",
+   "support": 224173,
+   "pearson_surface": -0.0008010342755117122,
+   "pearson_dots": 0.0005370432203349843,
+   "dotfield": false
+  },
+  {
+   "file": "0707aea945e02d2eb601d7d25456bf624261ab583a8d49f9988fed2de04409a4.tif",
+   "support": 5167373,
+   "pearson_surface": 0.2202480874230702,
+   "pearson_dots": 0.11184765484275488,
+   "dotfield": false
+  },
+  {
+   "file": "074df9bddaf11e8d5df5bc02293e5df5332d463f756595aace73dcce43e63c44.tif",
+   "support": 60069,
+   "pearson_surface": 0.20580927977523722,
+   "pearson_dots": 0.09631467015907062,
+   "dotfield": true,
+   "forward_overlap_3px": 0.552876188452754,
+   "reverse_overlap_3px": 0.5774193011370258
+  },
+  {
+   "file": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40.tif",
+   "support": 40199,
+   "pearson_surface": 0.21051183447441568,
+   "pearson_dots": 0.10856750253406708,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6252891862981667
+  },
+  {
+   "file": "0814b454be3bd8f0f898c8822bd9d2bc7eec57271276e3b326ee4e235ed7ff3b.tif",
+   "support": 40000,
+   "pearson_surface": -0.0029879601223101724,
+   "pearson_dots": -0.0005834982319766273,
+   "dotfield": true,
+   "forward_overlap_3px": 0.13300047803686196,
+   "reverse_overlap_3px": 0.1396
+  },
+  {
+   "file": "08de79ce298c74dc5fcc006c1bde2bf117203e31b3a5ba3e943c1d05154781d7.tif",
+   "support": 6504,
+   "pearson_surface": 0.0031741483262794053,
+   "pearson_dots": 0.0017074503502456297,
+   "dotfield": true,
+   "forward_overlap_3px": 0.01439422106549105,
+   "reverse_overlap_3px": 0.2730627306273063
+  },
+  {
+   "file": "0a28426785c4125d4560d6279cc763570f791cd1fdb7fb788ba60d6024e1f9db.tif",
+   "support": 37654,
+   "pearson_surface": 0.09375758233094529,
+   "pearson_dots": 0.02746469911983106,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4476549636160833,
+   "reverse_overlap_3px": 0.5044616773782334
+  },
+  {
+   "file": "0a7f1d02e509ace05626aae079cbc3f1205857b493386c98a97af16e48e51d21.tif",
+   "support": 12279160,
+   "pearson_surface": 0.461506961527239,
+   "pearson_dots": 0.08531184365433651,
+   "dotfield": false
+  },
+  {
+   "file": "0ac095a7ed6c8a142cdd8f686e001dfdec765f9a0e21ee53ddc69ae4cc4cddbf.tif",
+   "support": 624025,
+   "pearson_surface": 0.1108615797150956,
+   "pearson_dots": 0.03818749249293756,
+   "dotfield": false
+  },
+  {
+   "file": "0c265d667e7d98b03cff6e56ad5eca59fd5ebbefcdd57e7e2c2df29f6b5305d7.tif",
+   "support": 73679,
+   "pearson_surface": 0.051432776695369505,
+   "pearson_dots": 0.014837839418504467,
+   "dotfield": true,
+   "forward_overlap_3px": 0.09385457056355234,
+   "reverse_overlap_3px": 0.3031257210331302
+  },
+  {
+   "file": "0c7d00e879e7f54e3019de185b252e5faad2983c754c9030273ad333688acb69.tif",
+   "support": 180000,
+   "pearson_surface": 0.008528653764725403,
+   "pearson_dots": -0.0013605178854734288,
+   "dotfield": false
+  },
+  {
+   "file": "0c9199f14e625d7b2539a0a045803b74d6494ce568d185abecc193fe7e93c6f2.tif",
+   "support": 103347,
+   "pearson_surface": 0.07823724314479581,
+   "pearson_dots": 0.02584025245071806,
+   "dotfield": false
+  },
+  {
+   "file": "0ce05c52194a8d234aac98684bee6f96bad9c7c5c5c2f79cf580a5df72707629.tif",
+   "support": 633,
+   "pearson_surface": -0.002934246595646376,
+   "pearson_dots": -0.0009483143503003631,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0002655760344186541,
+   "reverse_overlap_3px": 0.01579778830963665
+  },
+  {
+   "file": "0d8ba64c960a3f56720e3f45345e92a554064ae41c8d139c8f2fc224ccef6261.tif",
+   "support": 18524,
+   "pearson_surface": 0.17334281100005908,
+   "pearson_dots": 0.06940423015133866,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2651511127635842,
+   "reverse_overlap_3px": 0.5950658605052904
+  },
+  {
+   "file": "0daeb871557e8c77264f26abab24e8d6aa2cef316efabb0c290869a2ccd63e70.tif",
+   "support": 47905,
+   "pearson_surface": 0.22006241955230701,
+   "pearson_dots": 0.11180723401839199,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5684123864662453,
+   "reverse_overlap_3px": 0.6292662561319278
+  },
+  {
+   "file": "0eb23e410a968964322cf23392b05fca9e522761391c303340c0f20aef4bc038.tif",
+   "support": 24000,
+   "pearson_surface": 0.07654611309744594,
+   "pearson_dots": 0.02195673718814912,
+   "dotfield": true,
+   "forward_overlap_3px": 0.32155946247410633,
+   "reverse_overlap_3px": 0.5684166666666667
+  },
+  {
+   "file": "0f1be73cdcd91d82300e5182b0ffe6d4ef7bcb6114c650a663b71e3c16146d89.tif",
+   "support": 1488469,
+   "pearson_surface": 0.15833201633004834,
+   "pearson_dots": 0.04048977244805543,
+   "dotfield": false
+  },
+  {
+   "file": "10bf2c4d3885d06116664226705712c3656a7a21364ec8559b4ec8200efd1f5e.tif",
+   "support": 252507,
+   "pearson_surface": 0.11140533200791415,
+   "pearson_dots": 0.030438422643234975,
+   "dotfield": false
+  },
+  {
+   "file": "10cd66f0e55fd419366ad90b9bd27b8164fc702e2ed0c2d471f92c1983708c1d.tif",
+   "support": 123829,
+   "pearson_surface": 0.3115058371816058,
+   "pearson_dots": 0.12754242276638178,
+   "dotfield": false
+  },
+  {
+   "file": "1101b655fbc3315250a6f9404fc3234a84f058726fb3e1a87c08b27eccae4236.tif",
+   "support": 40000,
+   "pearson_surface": 0.032674166623410265,
+   "pearson_dots": 0.009775384309468315,
+   "dotfield": true,
+   "forward_overlap_3px": 0.25861794231688534,
+   "reverse_overlap_3px": 0.3424
+  },
+  {
+   "file": "11bc36197649dbd4b1b3eaca26ab286f328723f96f180a850f1512463430b17e.tif",
+   "support": 5167373,
+   "pearson_surface": 0.09350987890091243,
+   "pearson_dots": 0.03156239591417289,
+   "dotfield": false
+  },
+  {
+   "file": "11c0e3b6569ef65ed2e311acfd37e6c91d0c325fc2ee803887cd6cebe06e031b.tif",
+   "support": 5167373,
+   "pearson_surface": 0.1292991628096373,
+   "pearson_dots": 0.04952873588553744,
+   "dotfield": false
+  },
+  {
+   "file": "123d94a6ad57ab8ba42ddd30f277fc584a78dc8cda54184211b869319e6e45a0.tif",
+   "support": 98607,
+   "pearson_surface": -0.026792359758608796,
+   "pearson_dots": -0.009006177335293922,
+   "dotfield": false
+  },
+  {
+   "file": "127411333856a22fb3f9faaca7c1819e8660e0663753392db5933d799ce473c1.tif",
+   "support": 10000,
+   "pearson_surface": 0.004813976111404076,
+   "pearson_dots": 0.0030096283667976624,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06458809157061667,
+   "reverse_overlap_3px": 0.2224
+  },
+  {
+   "file": "1308083dcf09b4c6fb656589ce79b3c392f5a0dd315e2ed31c8d36a47fc1d52d.tif",
+   "support": 40517,
+   "pearson_surface": 0.13760132283884524,
+   "pearson_dots": 0.07844315967921778,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5888086259095979,
+   "reverse_overlap_3px": 0.5183256410889256
+  },
+  {
+   "file": "130c242e33aef398c44b22cdf247e8a9357d8b402f43f17f0a2da30f2ede1fc7.tif",
+   "support": 22,
+   "pearson_surface": 0.000485924386315716,
+   "pearson_dots": -0.0001767812215031063,
+   "dotfield": true,
+   "forward_overlap_3px": 0.00015934562065119244,
+   "reverse_overlap_3px": 0.13636363636363635
+  },
+  {
+   "file": "132a6b82835f70555191c750b6e1992354a45d9a1f3c3ad0fed0ebbf67b385f6.tif",
+   "support": 44090,
+   "pearson_surface": 0.008971885819495816,
+   "pearson_dots": 0.002565918336640717,
+   "dotfield": true,
+   "forward_overlap_3px": 0.27787220481223773,
+   "reverse_overlap_3px": 0.1956906327965525
+  },
+  {
+   "file": "132e23e10344013a23ffd18a21a3fdcdb59c7c7c84444708db1fb38072c119ef.tif",
+   "support": 227507,
+   "pearson_surface": 0.12281117690551151,
+   "pearson_dots": 0.03388441630479569,
+   "dotfield": false
+  },
+  {
+   "file": "133bacd0031f865a9df2888de71abeba863118458d37d61ab08c388f415b3b96.tif",
+   "support": 44090,
+   "pearson_surface": 0.19531446973473066,
+   "pearson_dots": 0.10144567534694177,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5639507090880119,
+   "reverse_overlap_3px": 0.5628713994102971
+  },
+  {
+   "file": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e.tif",
+   "support": 174232,
+   "pearson_surface": 0.12091668548672446,
+   "pearson_dots": 0.03269150858190714,
+   "dotfield": false
+  },
+  {
+   "file": "143bae71968c5fc2b70b2de579e6a33f61d9d3e07beac13f20272760758b3bda.tif",
+   "support": 75308,
+   "pearson_surface": -0.00035447737354959806,
+   "pearson_dots": -0.0009827519655012601,
+   "dotfield": true,
+   "forward_overlap_3px": 0.37106283528974343,
+   "reverse_overlap_3px": 0.18485419875710415
+  },
+  {
+   "file": "14644198f1031e8250a284c86775c55b57d60d55195e815eac6f4d17b01395c6.tif",
+   "support": 24907,
+   "pearson_surface": 0.004839669059514796,
+   "pearson_dots": 0.001265019736571672,
+   "dotfield": true,
+   "forward_overlap_3px": 0.016678174961491474,
+   "reverse_overlap_3px": 0.1740876058939254
+  },
+  {
+   "file": "150620f57160ee7f755fb2b2c77928bb36850b5b38547dfc4b77516346483efd.tif",
+   "support": 10000,
+   "pearson_surface": 0.004813976111404076,
+   "pearson_dots": 0.0030096283667976624,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06458809157061667,
+   "reverse_overlap_3px": 0.2224
+  },
+  {
+   "file": "15210d91fa0c939b254d058876b47268e650176e08bf0eed10437ced8d476e36.tif",
+   "support": 50517,
+   "pearson_surface": 0.14012510423025498,
+   "pearson_dots": 0.07668264215186012,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6132947362829978,
+   "reverse_overlap_3px": 0.5458756458221985
+  },
+  {
+   "file": "154003d9b7220c43a96052364a4380ce8b602a9f7e45c549354b1f73353ef867.tif",
+   "support": 40000,
+   "pearson_surface": 0.042480930419843264,
+   "pearson_dots": 0.012683140812325069,
+   "dotfield": true,
+   "forward_overlap_3px": 0.203829606416317,
+   "reverse_overlap_3px": 0.37515
+  },
+  {
+   "file": "15468475cc99b9106b9959c95add9966ad38678329435daa3a9cbf7e8ccc9a21.tif",
+   "support": 44828,
+   "pearson_surface": 0.05272097851536014,
+   "pearson_dots": 0.017649666508679242,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3892813512508631,
+   "reverse_overlap_3px": 0.3811010975283305
+  },
+  {
+   "file": "15738b42ddf6cc30bfba3d3dacabfe36e594c64c82f5eafb6aff0226246d0a6a.tif",
+   "support": 20000,
+   "pearson_surface": 0.17370896439493444,
+   "pearson_dots": 0.09546872792294525,
+   "dotfield": true,
+   "forward_overlap_3px": 0.39870930047272535,
+   "reverse_overlap_3px": 0.67745
+  },
+  {
+   "file": "1580815184c647fd53e7d15e9c49639440c25e8cba74768b5fe695dc22e75f6c.tif",
+   "support": 44069,
+   "pearson_surface": 0.04559028297390643,
+   "pearson_dots": 0.01385372805459606,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3363520475912254,
+   "reverse_overlap_3px": 0.3681726383625678
+  },
+  {
+   "file": "15c12778486e5a15f6cced0e9d61c6cf32f2c916128fb37f5ff2f09edd7bb144.tif",
+   "support": 44069,
+   "pearson_surface": 0.050419935625723944,
+   "pearson_dots": 0.015882763604012227,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33382907526424815,
+   "reverse_overlap_3px": 0.37876965667476004
+  },
+  {
+   "file": "1647e7657e4ba34bba1a659580e8b84f84f20306ae8fa6cc5b9d59e768369bd6.tif",
+   "support": 39108,
+   "pearson_surface": 0.036283446857135006,
+   "pearson_dots": 0.013626603721148352,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4062516598502151,
+   "reverse_overlap_3px": 0.2639357676178787
+  },
+  {
+   "file": "1729f3571ebf25668e84c08cb5e8c4fed375ae0910e5037e95bddcca7f0253a2.tif",
+   "support": 324488,
+   "pearson_surface": -0.06915339147161659,
+   "pearson_dots": -0.022020896132770282,
+   "dotfield": false
+  },
+  {
+   "file": "17c67554a1fde7607e9ffe9846433162035364eb4ef5ec3d2ab65778fe3bbdd2.tif",
+   "support": 54714,
+   "pearson_surface": 0.2370297874252594,
+   "pearson_dots": 0.11131378348170567,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.6411521731183975
+  },
+  {
+   "file": "17ef72fbbdb42cbc207f78dc1c9ffbd34ce7266bc7128ebbd626c160280e47c4.tif",
+   "support": 32182,
+   "pearson_surface": 0.0015426945851809558,
+   "pearson_dots": 0.0005927274670157988,
+   "dotfield": true,
+   "forward_overlap_3px": 0.055399160779731234,
+   "reverse_overlap_3px": 0.18473059474240258
+  },
+  {
+   "file": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7.tif",
+   "support": 40199,
+   "pearson_surface": 0.20405116762490655,
+   "pearson_dots": 0.1054079131756116,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5563021192967547,
+   "reverse_overlap_3px": 0.609841040821911
+  },
+  {
+   "file": "18bd0efd582f107ccb988fc20016203c323846bf63d3ecea1f75a0670e4586e8.tif",
+   "support": 37654,
+   "pearson_surface": -0.011082893200003507,
+   "pearson_dots": -0.0035950066629781147,
+   "dotfield": true,
+   "forward_overlap_3px": 0.12814043660700059,
+   "reverse_overlap_3px": 0.11722526159239391
+  },
+  {
+   "file": "18c0387579cee6d694d59e1b20c403732d161a240d7c7112e960920fa2047e21.tif",
+   "support": 184990,
+   "pearson_surface": 0.03015661301756298,
+   "pearson_dots": 0.0102138946284978,
+   "dotfield": false
+  },
+  {
+   "file": "18dc6b7fe0f4bf17791b2bda6b985364324f6b3c23f89303543416ee5729d6e5.tif",
+   "support": 5167373,
+   "pearson_surface": -0.38337364782491595,
+   "pearson_dots": -0.09182572917002096,
+   "dotfield": false
+  },
+  {
+   "file": "1997316a0102909135dfa12d48e86dbc1fbe567b4d4ba3884c53ce981b2bc50c.tif",
+   "support": 29661,
+   "pearson_surface": -0.0013754621389420799,
+   "pearson_dots": -0.00027516642750040945,
+   "dotfield": true,
+   "forward_overlap_3px": 0.01675784777181707,
+   "reverse_overlap_3px": 0.15373723070698897
+  },
+  {
+   "file": "19de9950ceffbdf7a7163b645984353965ab7d61dca07dfe8b9b68856edb853b.tif",
+   "support": 332544,
+   "pearson_surface": 0.0519129839607944,
+   "pearson_dots": 0.017838601474946425,
+   "dotfield": false
+  },
+  {
+   "file": "19fc681f3c6d1894efb5d44d6552a34d9989fe43ea8a6da13fcfb8a03bec92af.tif",
+   "support": 55992,
+   "pearson_surface": 0.23386066533465633,
+   "pearson_dots": 0.10984518320947209,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.6271788826975282
+  },
+  {
+   "file": "1a3b1d63e1759ac71b7a187b893bad93abe09273178c8e64dcbb327c37f2a035.tif",
+   "support": 45890,
+   "pearson_surface": 0.1941114526315191,
+   "pearson_dots": 0.10066349528986651,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5749721145163861,
+   "reverse_overlap_3px": 0.5560688603181521
+  },
+  {
+   "file": "1a64839d5195728df53303db5d6e9132efa2aef863c2416a41e53cc6eadd74d5.tif",
+   "support": 40000,
+   "pearson_surface": 0.00854279192113086,
+   "pearson_dots": 0.004505075648031945,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2339193711159505,
+   "reverse_overlap_3px": 0.236325
+  },
+  {
+   "file": "1aef3f909aea5b6c792380f4498d834231fa8cc8f03cc677098bf9076e0edc73.tif",
+   "support": 47905,
+   "pearson_surface": 0.22006241985242334,
+   "pearson_dots": 0.11180723408422036,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5684123864662453,
+   "reverse_overlap_3px": 0.6292662561319278
+  },
+  {
+   "file": "1b52d633a647802918b8defcf08d084d6ff808d118da0e3893eefe6a86ff9fb8.tif",
+   "support": 93413,
+   "pearson_surface": 0.0011961969676459348,
+   "pearson_dots": 0.0012861737954526125,
+   "dotfield": false
+  },
+  {
+   "file": "1c1fd7096880829d1693a262573522b2bb41a8eccdf22b03b3d8fdda1de99081.tif",
+   "support": 36171,
+   "pearson_surface": 0.04777421854274295,
+   "pearson_dots": 0.01551321926921603,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3363254899877835,
+   "reverse_overlap_3px": 0.4119045644300683
+  },
+  {
+   "file": "1c6ff54bbc046371648ce04a7f219c3d47799d0f6137da1284d2708d4348c80a.tif",
+   "support": 37654,
+   "pearson_surface": 0.2476124644891051,
+   "pearson_dots": 0.1372571474683719,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5187762256333989,
+   "reverse_overlap_3px": 0.7570244861103734
+  },
+  {
+   "file": "1cb527720ffcc8619cc30c8ec18b5b4d76e6cacb2fdcba16597f8f190a193814.tif",
+   "support": 34546,
+   "pearson_surface": 0.18977003941711387,
+   "pearson_dots": 0.10164208848087312,
+   "dotfield": true,
+   "forward_overlap_3px": 0.566712699845966,
+   "reverse_overlap_3px": 0.6214033462629538
+  },
+  {
+   "file": "1e1e7835af72701150dc1c0a9042bed2cd149e88305659760b889d842116c239.tif",
+   "support": 35185,
+   "pearson_surface": 0.1457973565777498,
+   "pearson_dots": 0.08371447223521812,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5367557231635417,
+   "reverse_overlap_3px": 0.5123490123632229
+  },
+  {
+   "file": "1e404763feb330b9f9735767bd8bfd96ee50d5c0185ace5c40fef34a5c70306a.tif",
+   "support": 45000,
+   "pearson_surface": 0.012222079846603374,
+   "pearson_dots": 0.004459264344394382,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2933287300154034,
+   "reverse_overlap_3px": 0.23402222222222221
+  },
+  {
+   "file": "1f25c4fbeaf1aaf945b789bdb480971178bd0247c02da53617d20ee3d24dd8d2.tif",
+   "support": 37627,
+   "pearson_surface": -0.012933913384820089,
+   "pearson_dots": -0.005089697521478672,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05441652945238222,
+   "reverse_overlap_3px": 0.07781646158343743
+  },
+  {
+   "file": "1f7b5a4f18dbc62f31b14078545332238be9289dd388d57f550d75fb5a5fe95a.tif",
+   "support": 791389,
+   "pearson_surface": 0.5482155145802314,
+   "pearson_dots": 0.14094998061461056,
+   "dotfield": false
+  },
+  {
+   "file": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc.tif",
+   "support": 60988,
+   "pearson_surface": -0.02940374750917221,
+   "pearson_dots": -0.009363197610900459,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "21c5b3b846776d49ca75a1647099985ff64720b2d9e4affd37dc5d511a984173.tif",
+   "support": 60000,
+   "pearson_surface": 0.013606177596556279,
+   "pearson_dots": 0.004392050870805984,
+   "dotfield": true,
+   "forward_overlap_3px": 0.23638922823604397,
+   "reverse_overlap_3px": 0.21641666666666667
+  },
+  {
+   "file": "21e2b81d736440103786bf7d0a868e319c4a6aea7bb397518067d1b859a9d719.tif",
+   "support": 98598,
+   "pearson_surface": 0.0057588489579750565,
+   "pearson_dots": -0.00010762720852519024,
+   "dotfield": false
+  },
+  {
+   "file": "224be205fdd428260f9c3f5ff6978e4b0ddf09a7dfa7b7acde341c18151d6c65.tif",
+   "support": 40000,
+   "pearson_surface": 0.024352678626817156,
+   "pearson_dots": 0.00821765761150555,
+   "dotfield": true,
+   "forward_overlap_3px": 0.36136931003346257,
+   "reverse_overlap_3px": 0.31175
+  },
+  {
+   "file": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22.tif",
+   "support": 343816,
+   "pearson_surface": 0.0014379399936351402,
+   "pearson_dots": 0.0013497951196899329,
+   "dotfield": false
+  },
+  {
+   "file": "237f0063a440b2c6c4b822bcb0f74e5203586313b3b5ed6c5cabe70fa046f63f.tif",
+   "support": 264247,
+   "pearson_surface": 0.04487961129325251,
+   "pearson_dots": 0.015261357479501067,
+   "dotfield": false
+  },
+  {
+   "file": "23915c13d1b2f9b3f6c5628158cd2576030d356c465e5c385c7c2b95ff7ef664.tif",
+   "support": 25000,
+   "pearson_surface": -0.001172735512032996,
+   "pearson_dots": -0.0006522634245749264,
+   "dotfield": true,
+   "forward_overlap_3px": 0.03566686142242524,
+   "reverse_overlap_3px": 0.0836
+  },
+  {
+   "file": "2505ac5fa1db2ba142b1ecbe5c3fc221e88f2156cc6e5b8d36d0e75cb290f107.tif",
+   "support": 5156176,
+   "pearson_surface": 0.16722918099297493,
+   "pearson_dots": 0.05306425500422646,
+   "dotfield": false
+  },
+  {
+   "file": "26748e4b4721277b093c776f7ca72920023d0ee6e9514ee38e677c8010f4068e.tif",
+   "support": 42294,
+   "pearson_surface": 0.20378660816880814,
+   "pearson_dots": 0.10548055582492023,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5661549901736868,
+   "reverse_overlap_3px": 0.5952853832694945
+  },
+  {
+   "file": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c.tif",
+   "support": 82151,
+   "pearson_surface": 0.013083580149954234,
+   "pearson_dots": 0.004609156650754717,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15528230732458703,
+   "reverse_overlap_3px": 0.20430670350939123
+  },
+  {
+   "file": "271f784923b0c001aa1a7e26fb7848b94bc7d1eaddf3a36da298488210c2b74b.tif",
+   "support": 41339,
+   "pearson_surface": 0.050728254745461165,
+   "pearson_dots": 0.017183514394669697,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33754713974610934,
+   "reverse_overlap_3px": 0.4284331986743753
+  },
+  {
+   "file": "2873f2f8190b28db1c896fb838f22053aecf9748dc17192373149caa628f5ec6.tif",
+   "support": 124356,
+   "pearson_surface": 0.034142603284524474,
+   "pearson_dots": 0.011503955934911752,
+   "dotfield": false
+  },
+  {
+   "file": "28a51fb032b8f2cfd1f04ad3bd429c29d7bb780d36961fea783ff8099130986e.tif",
+   "support": 58031,
+   "pearson_surface": 0.1715775352675015,
+   "pearson_dots": 0.09099414169518388,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6489881553088649,
+   "reverse_overlap_3px": 0.48412055625441575
+  },
+  {
+   "file": "28f30b31c5d054764038144c2742364c5e4f1e2ca79f122281d04cb9d15cd5db.tif",
+   "support": 100000,
+   "pearson_surface": 0.037249013875945966,
+   "pearson_dots": 0.01676971842387345,
+   "dotfield": false
+  },
+  {
+   "file": "2943432c6e3d13f1cfae69a473499cdb9c611a873f6841f9268f151f2a025555.tif",
+   "support": 40000,
+   "pearson_surface": 0.0325099367564759,
+   "pearson_dots": 0.010268664430487793,
+   "dotfield": true,
+   "forward_overlap_3px": 0.43071121262017315,
+   "reverse_overlap_3px": 0.352175
+  },
+  {
+   "file": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "29ce3150ae796ca50570b830b9231487fc5a043af5b0681f7e7dbe8f4fbdcc19.tif",
+   "support": 37654,
+   "pearson_surface": 0.03276680896626829,
+   "pearson_dots": 0.011306161399934948,
+   "dotfield": true,
+   "forward_overlap_3px": 0.07390981037871143,
+   "reverse_overlap_3px": 0.3199128910607107
+  },
+  {
+   "file": "2a0707537962757e9aa8f856fd6d3fdfdc8d0e387b0eef6639eacf18fe2ba7b2.tif",
+   "support": 44069,
+   "pearson_surface": 0.04977520660956514,
+   "pearson_dots": 0.01474452414945862,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3312529877303872,
+   "reverse_overlap_3px": 0.3774762304567837
+  },
+  {
+   "file": "2b06d45c5b5726be60ed7f953accda58919999a99b442bb87410377e0c4c034a.tif",
+   "support": 575055,
+   "pearson_surface": -0.05636457612822033,
+   "pearson_dots": -0.01785891213138779,
+   "dotfield": false
+  },
+  {
+   "file": "2b070e616f5494d09d39f4a35727adceb541e72a2a0471322f7b87cc1fb1dc86.tif",
+   "support": 791389,
+   "pearson_surface": 0.5492238649444985,
+   "pearson_dots": 0.14665389676897042,
+   "dotfield": false
+  },
+  {
+   "file": "2b6d871239a886121f3531c33f6b904bc146e3c2a004f4c1f6bd8b1c0d11c137.tif",
+   "support": 380365,
+   "pearson_surface": -0.016787736300756546,
+   "pearson_dots": -0.004153410640811034,
+   "dotfield": false
+  },
+  {
+   "file": "2bfaf1839652eb1052d96a218afbc5ae7f622ced979a0be30c72d1dd3535b486.tif",
+   "support": 6040,
+   "pearson_surface": 0.1180798932534533,
+   "pearson_dots": 0.050209057904404726,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14651829818877143,
+   "reverse_overlap_3px": 0.827317880794702
+  },
+  {
+   "file": "2c0785c4b3ec46c734d1be7a7aedbb3e816201100ab358033a3af074418c894a.tif",
+   "support": 5167373,
+   "pearson_surface": 0.060404547502612635,
+   "pearson_dots": 0.0180702034947881,
+   "dotfield": false
+  },
+  {
+   "file": "2c1861f1dbf5bfe7e594db93cf2fedb5708e345b150c4ab58538a1fd1391047d.tif",
+   "support": 45000,
+   "pearson_surface": 0.012222079846603374,
+   "pearson_dots": 0.004459264344394382,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2933287300154034,
+   "reverse_overlap_3px": 0.23402222222222221
+  },
+  {
+   "file": "2cd0e75b75d1adc8528ace9c0ec0d3d06d9b2dc94c50927f9cbdcc8f9921312e.tif",
+   "support": 37654,
+   "pearson_surface": -0.017213884802992612,
+   "pearson_dots": -0.005253664508398236,
+   "dotfield": true,
+   "forward_overlap_3px": 0.053487013331916924,
+   "reverse_overlap_3px": 0.043156105593031284
+  },
+  {
+   "file": "2cdf7e705c867008b0dc86d3e7481bf43aef44240508312d270c97ebd192c81b.tif",
+   "support": 40000,
+   "pearson_surface": 0.009401744288252422,
+   "pearson_dots": 0.0034146669594591014,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21968449567111065,
+   "reverse_overlap_3px": 0.19705
+  },
+  {
+   "file": "2d288ebc99218fd14bfab6b0d700fda579e65ba304f806b3ca4b2a88b6b7d7c9.tif",
+   "support": 40000,
+   "pearson_surface": 0.003188323110528921,
+   "pearson_dots": 0.0010001905776190311,
+   "dotfield": true,
+   "forward_overlap_3px": 0.23824826047697456,
+   "reverse_overlap_3px": 0.16715
+  },
+  {
+   "file": "2dc67f4bdb8d1bf200f8307946d100c8e51ebd55cc6c7229d1220f83156b6935.tif",
+   "support": 44090,
+   "pearson_surface": 0.18198532720525906,
+   "pearson_dots": 0.07178422209318841,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6203059435916503,
+   "reverse_overlap_3px": 0.6921070537536856
+  },
+  {
+   "file": "2e32d8ed384692bc44ff768ca5d3814ed48d7b627ba3c818743ee13ab3538d5b.tif",
+   "support": 37654,
+   "pearson_surface": 0.0008084773820843929,
+   "pearson_dots": 0.0014612245109689751,
+   "dotfield": true,
+   "forward_overlap_3px": 0.22542093801455357,
+   "reverse_overlap_3px": 0.2149572422584586
+  },
+  {
+   "file": "2f6e74e4d48ad47d07671cee4e73f08d012178e337a9045a9b57e51012b3613a.tif",
+   "support": 44069,
+   "pearson_surface": 0.04902612812951099,
+   "pearson_dots": 0.016080718291761695,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33489137940192276,
+   "reverse_overlap_3px": 0.38033538314915244
+  },
+  {
+   "file": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8.tif",
+   "support": 40199,
+   "pearson_surface": 0.21051183447441568,
+   "pearson_dots": 0.10856750253406708,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6252891862981667
+  },
+  {
+   "file": "318fdda4e26bcb1c673a1c8af866b4d9515a3ac73d88ee95c3ff52ed4e124f43.tif",
+   "support": 759775,
+   "pearson_surface": 0.45724852517726206,
+   "pearson_dots": 0.08422285684973825,
+   "dotfield": false
+  },
+  {
+   "file": "326ee7020b9bb32794b053befd2da5ef5b3531eeae91de822651f3f6ee4ecd15.tif",
+   "support": 5167373,
+   "pearson_surface": -0.5403915184336369,
+   "pearson_dots": -0.13355115281117083,
+   "dotfield": false
+  },
+  {
+   "file": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d.tif",
+   "support": 61328,
+   "pearson_surface": 0.22100162665843245,
+   "pearson_dots": 0.10419563698883534,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.5729356900600052
+  },
+  {
+   "file": "33cec71ff00b3f32d0d59c81c156f3f1488ffef46baa4b6499094e24ea1875ab.tif",
+   "support": 155021,
+   "pearson_surface": 0.026224947434199487,
+   "pearson_dots": 0.00814146755437139,
+   "dotfield": false
+  },
+  {
+   "file": "33d893193f6eb009165b5c62bcef1c7c945531ed19ddb2c621150a52f0c16835.tif",
+   "support": 97654,
+   "pearson_surface": 0.18139293126089173,
+   "pearson_dots": 0.09226092477582996,
+   "dotfield": false
+  },
+  {
+   "file": "3435d13e06654b122c5671b18b8d21db0691b3ea0db6f7aa204fc01acb8ffc3b.tif",
+   "support": 214920,
+   "pearson_surface": 0.019329285338387382,
+   "pearson_dots": 0.007543353237162703,
+   "dotfield": false
+  },
+  {
+   "file": "344e7c857f363b195dbfd6e64a0a0e0fc77923c8c14d7830e53bfd2d5c05610c.tif",
+   "support": 41507,
+   "pearson_surface": 0.20663296084310864,
+   "pearson_dots": 0.1066138566711529,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656769533117332,
+   "reverse_overlap_3px": 0.6067651239549955
+  },
+  {
+   "file": "349ab5e51c8d4fec2416af8dcea405fc54b3cab3475d5edfe91fbfe87c0b2ec2.tif",
+   "support": 663688,
+   "pearson_surface": 0.09596831055863995,
+   "pearson_dots": 0.031614861281190704,
+   "dotfield": false
+  },
+  {
+   "file": "34f590461ae021830d98521567a2b1fcdfd60eeb9032e70de9bb000618ec4d35.tif",
+   "support": 60068,
+   "pearson_surface": 0.03301030501095862,
+   "pearson_dots": 0.010980844674068084,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3164604026132682,
+   "reverse_overlap_3px": 0.2883898248651528
+  },
+  {
+   "file": "3537e9fc47a465036a8c1462b99a29b7f3449ee2e7bb94fd0a12d438a85b375d.tif",
+   "support": 37913,
+   "pearson_surface": -0.010531178920287567,
+   "pearson_dots": -0.0033398366441123547,
+   "dotfield": true,
+   "forward_overlap_3px": 0.10176873638922823,
+   "reverse_overlap_3px": 0.11547490306754939
+  },
+  {
+   "file": "3543d0c430ca1ef145204b81ef44fa736794f1240d63745f9f31f1d0e1edee0e.tif",
+   "support": 44069,
+   "pearson_surface": 0.04936768905961021,
+   "pearson_dots": 0.013804239382654222,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3275880384554098,
+   "reverse_overlap_3px": 0.37522975334135106
+  },
+  {
+   "file": "35598693474710c8b7237a879bbe7ae91da154715f42ff1970d040b6267892a3.tif",
+   "support": 5167373,
+   "pearson_surface": 0.2462649013957805,
+   "pearson_dots": 0.06873358572853307,
+   "dotfield": false
+  },
+  {
+   "file": "356f833c09900fc41f2cc75278c6c91feb398deee09acd45c55303d07cd59e3a.tif",
+   "support": 123779,
+   "pearson_surface": 0.3207502658931233,
+   "pearson_dots": 0.13554903510651828,
+   "dotfield": false
+  },
+  {
+   "file": "3589e89a1ad4f78f54e6f17f9b7cdb0edb563f66aedfcdabd632ef8774968c3a.tif",
+   "support": 791389,
+   "pearson_surface": 0.5560123221902681,
+   "pearson_dots": 0.14053711099929986,
+   "dotfield": false
+  },
+  {
+   "file": "369b844e04c4b092d63215cf325eae6872042e4e56c7576dcf0ef41d111ea95c.tif",
+   "support": 3080,
+   "pearson_surface": -0.0018236299554771774,
+   "pearson_dots": -0.00022780446020049627,
+   "dotfield": true,
+   "forward_overlap_3px": 0.01282732246242099,
+   "reverse_overlap_3px": 0.1551948051948052
+  },
+  {
+   "file": "36c3a3f341c8306dfb5610f61acfec635a7cb8a3ef6ef00380ca083d2f9745fe.tif",
+   "support": 76859,
+   "pearson_surface": 0.11255254550100491,
+   "pearson_dots": 0.03657786065682896,
+   "dotfield": true,
+   "forward_overlap_3px": 0.416927816433845,
+   "reverse_overlap_3px": 0.4128989448210359
+  },
+  {
+   "file": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1.tif",
+   "support": 40000,
+   "pearson_surface": 0.08524047212369973,
+   "pearson_dots": 0.027767127670938738,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5330111010782387,
+   "reverse_overlap_3px": 0.5368
+  },
+  {
+   "file": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad.tif",
+   "support": 155021,
+   "pearson_surface": 0.005848854193711517,
+   "pearson_dots": 0.0022859412439485624,
+   "dotfield": false
+  },
+  {
+   "file": "38029417f6cab01f9f56d4d3259a998affad6ae45a2a21a394682ee38b98e0c7.tif",
+   "support": 39654,
+   "pearson_surface": 0.21278519713896638,
+   "pearson_dots": 0.10974773208831975,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5700855154830828,
+   "reverse_overlap_3px": 0.6348413779189993
+  },
+  {
+   "file": "38539dc647d5ede0d8fa90123810d18130ee15e524097f55e83b6b8a57976ea9.tif",
+   "support": 91533,
+   "pearson_surface": 0.04153198572408049,
+   "pearson_dots": 0.018733057878067273,
+   "dotfield": false
+  },
+  {
+   "file": "3866b60cf91b4f6bff2ef694153550aa97a744a3091a57ef9f83da41e16b91b2.tif",
+   "support": 5000,
+   "pearson_surface": 0.0005228464213577095,
+   "pearson_dots": 0.00048048951877785874,
+   "dotfield": true,
+   "forward_overlap_3px": 0.027832368407074946,
+   "reverse_overlap_3px": 0.1466
+  },
+  {
+   "file": "388b31312ab1dc53d839a5a584970a8c9cd2f7dca6a286c36945b89a5ef07be0.tif",
+   "support": 80000,
+   "pearson_surface": 0.004299504483201397,
+   "pearson_dots": 0.004368835299047506,
+   "dotfield": true,
+   "forward_overlap_3px": 0.25386413130079144,
+   "reverse_overlap_3px": 0.219925
+  },
+  {
+   "file": "3c04892d0deca00ccbadf77c801130180f05a03a9c0d575e4d8b91127286d06f.tif",
+   "support": 42000,
+   "pearson_surface": 0.03129336629272055,
+   "pearson_dots": 0.01043940906964497,
+   "dotfield": true,
+   "forward_overlap_3px": 0.30785573909810376,
+   "reverse_overlap_3px": 0.3248809523809524
+  },
+  {
+   "file": "3c22da583d5358b2986189a4ed3322182f39f562bdde14809f3300aeb6bd37ea.tif",
+   "support": 23598,
+   "pearson_surface": 0.00629572895678482,
+   "pearson_dots": 0.0010139146363987968,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1557603441865406,
+   "reverse_overlap_3px": 0.20671243325705568
+  },
+  {
+   "file": "3ccf68834ad2e3de331252cc14de72d5d30284a7da70aebe86445299c01adf26.tif",
+   "support": 246258,
+   "pearson_surface": 0.12805630443223415,
+   "pearson_dots": 0.042311219490428084,
+   "dotfield": false
+  },
+  {
+   "file": "3d12889caf5093151808fbe5750233dcbf2ca871c12130fcf631d0f0b765c0b4.tif",
+   "support": 37654,
+   "pearson_surface": 0.003115919888761626,
+   "pearson_dots": 0.0020497805206344615,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2416741913209752,
+   "reverse_overlap_3px": 0.22696127901418175
+  },
+  {
+   "file": "3d30ed6f67a87db2e95dbd3e4e1a0dfec64b67ca5c9db7c9f3667d1daf3a3171.tif",
+   "support": 45784,
+   "pearson_surface": 0.01606797745490735,
+   "pearson_dots": 0.004641118195125881,
+   "dotfield": true,
+   "forward_overlap_3px": 0.050406331332660544,
+   "reverse_overlap_3px": 0.2256246723746287
+  },
+  {
+   "file": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce.tif",
+   "support": 60069,
+   "pearson_surface": 0.22373524797651204,
+   "pearson_dots": 0.10546367124930654,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.5843613178178428
+  },
+  {
+   "file": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "3e88e6ad5c63f2bc37edebd0eb2c7332d97ba1e48308f7ffea3b7c63fc2bddd1.tif",
+   "support": 362327,
+   "pearson_surface": -0.016644885585496504,
+   "pearson_dots": -0.0033079819895296386,
+   "dotfield": false
+  },
+  {
+   "file": "3ea61e719af4c0d0df9f8d279560ae4a6b5063cca0a43991c8f66a56cb63c51f.tif",
+   "support": 41338,
+   "pearson_surface": 0.16981013513807722,
+   "pearson_dots": 0.08037438546234031,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769639347745259,
+   "reverse_overlap_3px": 0.5612753398809812
+  },
+  {
+   "file": "3f80e5b9c06228648082febe57b6511ac264a4a4c38f69d8d85e0a9549d1f174.tif",
+   "support": 507776,
+   "pearson_surface": -0.0147609770387538,
+   "pearson_dots": -0.004296560051320402,
+   "dotfield": false
+  },
+  {
+   "file": "3fb2ca7327b47aa5a3f73c8b2ad3272d8d26ab25df35bc940944758d4c0885f2.tif",
+   "support": 60939,
+   "pearson_surface": -0.02938946650389818,
+   "pearson_dots": -0.00935931287642322,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "40524184b4cc88a0fa92c3fcc869b2d6ebb9a87c6c2019105fcf9716b419d8fb.tif",
+   "support": 759775,
+   "pearson_surface": 0.4572485277461105,
+   "pearson_dots": 0.08422285759421466,
+   "dotfield": false
+  },
+  {
+   "file": "405346c4c940615e725bca74370888d527860fd561ef237723626acd9f6c2b40.tif",
+   "support": 5167373,
+   "pearson_surface": 0.39373190473311115,
+   "pearson_dots": 0.07747671483627787,
+   "dotfield": false
+  },
+  {
+   "file": "40eb32bf995433b15052745c7ea647ed344dc4d56ca9356f8b843a4c1466a402.tif",
+   "support": 40000,
+   "pearson_surface": 0.08342336316298422,
+   "pearson_dots": 0.022263160004813116,
+   "dotfield": true,
+   "forward_overlap_3px": 0.10715992988792691,
+   "reverse_overlap_3px": 0.49065
+  },
+  {
+   "file": "41216d099db0e077dcdedb99c0fcda879c4d9406fafa42b45b78a968f6349c38.tif",
+   "support": 40000,
+   "pearson_surface": 0.024352678626817156,
+   "pearson_dots": 0.00821765761150555,
+   "dotfield": true,
+   "forward_overlap_3px": 0.36136931003346257,
+   "reverse_overlap_3px": 0.31175
+  },
+  {
+   "file": "4151c2e438758c4a216a8a597b381e851a5a8e9f358b3fcffd62c01b627142cc.tif",
+   "support": 57783,
+   "pearson_surface": 0.023687004372801895,
+   "pearson_dots": 0.00763709812371324,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14407499867211984,
+   "reverse_overlap_3px": 0.2536559195611166
+  },
+  {
+   "file": "42b77433f34e1231ae0795ed5567632fc43b79d119aac198f94f0d946d43b6c2.tif",
+   "support": 45000,
+   "pearson_surface": 0.012531888542633146,
+   "pearson_dots": 0.005732705705717091,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2003505603654326,
+   "reverse_overlap_3px": 0.25808888888888887
+  },
+  {
+   "file": "43743afdb030b739465d4754aabd8605bceef49bcc836bee93e9094807d4695f.tif",
+   "support": 40000,
+   "pearson_surface": 0.003188323110528921,
+   "pearson_dots": 0.0010001905776190311,
+   "dotfield": true,
+   "forward_overlap_3px": 0.23824826047697456,
+   "reverse_overlap_3px": 0.16715
+  },
+  {
+   "file": "45020a3e476242f685e8b1076d37261d12e572ee19aeeee11e68a1de5be8d585.tif",
+   "support": 176781,
+   "pearson_surface": 0.1048293229651956,
+   "pearson_dots": 0.02297178515111703,
+   "dotfield": false
+  },
+  {
+   "file": "4557311baedb4e661363bc1d3e6c959a1d8f9999f8bfc5fabb85fd8c338850c6.tif",
+   "support": 37447,
+   "pearson_surface": 0.17609989470069512,
+   "pearson_dots": 0.08528280339007394,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5834439900143411,
+   "reverse_overlap_3px": 0.6268859988784148
+  },
+  {
+   "file": "45d50773d2313de651b0b804c7f4520fc241d2038136150b8b17ad8d28f6bb73.tif",
+   "support": 21492,
+   "pearson_surface": 0.08481877424595756,
+   "pearson_dots": 0.022605564153891783,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15259998937695862,
+   "reverse_overlap_3px": 0.48999627768471987
+  },
+  {
+   "file": "45f73d4fc3d08c2458ac0f661c5970ce8649714b64ecda8190dc398755ef6e5d.tif",
+   "support": 766701,
+   "pearson_surface": 0.10079015022555511,
+   "pearson_dots": 0.033337120511072085,
+   "dotfield": false
+  },
+  {
+   "file": "460ad48bd4453a91ecef85fe0c97db7ac81e9cccc51352e18c2adc410f11fede.tif",
+   "support": 305335,
+   "pearson_surface": -0.0649714393213111,
+   "pearson_dots": -0.020689214027607976,
+   "dotfield": false
+  },
+  {
+   "file": "465935789e62e6a042881a0e2dd11f96dc89d0913a29d3079455c2833c1bc464.tif",
+   "support": 39530,
+   "pearson_surface": 0.09218423297692604,
+   "pearson_dots": 0.02556507889405825,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0654113772773145,
+   "reverse_overlap_3px": 0.5597773842651151
+  },
+  {
+   "file": "47174e2b95eec27358f028eb6bb4d24e00fe0a8c12d8cb27ebf132c05091a377.tif",
+   "support": 378103,
+   "pearson_surface": 0.06518803764240161,
+   "pearson_dots": 0.02173677392386476,
+   "dotfield": false
+  },
+  {
+   "file": "488dd2af1d251730a404ea84f01ca81f132b31fcdf2a09938d53cbcbc4bcd089.tif",
+   "support": 5000,
+   "pearson_surface": 0.08879242108950205,
+   "pearson_dots": 0.04775644229852452,
+   "dotfield": true,
+   "forward_overlap_3px": 0.13090242736495458,
+   "reverse_overlap_3px": 0.6946
+  },
+  {
+   "file": "48fd9d40427a03ae5eaafa63156c28f73b69dde6d0209dcc30c042094ed5c08e.tif",
+   "support": 51053,
+   "pearson_surface": 0.04223901935781352,
+   "pearson_dots": 0.013825800944326425,
+   "dotfield": true,
+   "forward_overlap_3px": 0.400355871886121,
+   "reverse_overlap_3px": 0.33408418702133075
+  },
+  {
+   "file": "4945c83d6f09c8376963e32d5c36f65009122fd50d26473eda185e3674677589.tif",
+   "support": 126600,
+   "pearson_surface": 0.1497897507111107,
+   "pearson_dots": 0.04809115408168614,
+   "dotfield": false
+  },
+  {
+   "file": "49835b5135398b6893b3c88de209882c1e3ec81e1a52a8bec5674748f17ff83d.tif",
+   "support": 338755,
+   "pearson_surface": -0.00893987259794715,
+   "pearson_dots": -0.0024404554792107885,
+   "dotfield": false
+  },
+  {
+   "file": "49d26d8195e343b531cf5e8f9ebd44e2e0a652daca6ad4f71016faabcab33509.tif",
+   "support": 40000,
+   "pearson_surface": -0.0030560380122609033,
+   "pearson_dots": -0.0005109358635415612,
+   "dotfield": true,
+   "forward_overlap_3px": 0.13300047803686196,
+   "reverse_overlap_3px": 0.1396
+  },
+  {
+   "file": "4a60f9410405c7a4df12c004736e57596fa8c6d4877d667d694b002740f635f6.tif",
+   "support": 37654,
+   "pearson_surface": 0.018779473286030936,
+   "pearson_dots": 0.00627668277187434,
+   "dotfield": true,
+   "forward_overlap_3px": 0.18146810431826632,
+   "reverse_overlap_3px": 0.2628671588675838
+  },
+  {
+   "file": "4a931832d76040b51252649e525376a31b5b15b3bb8c2ffbda8758531211776b.tif",
+   "support": 37722,
+   "pearson_surface": 0.01470703416907316,
+   "pearson_dots": 0.005081761828128204,
+   "dotfield": true,
+   "forward_overlap_3px": 0.16994210442449673,
+   "reverse_overlap_3px": 0.22909707862785642
+  },
+  {
+   "file": "4aff087dee275bc4958c787308a6141965479856dc38915dba5a6cd81e24989f.tif",
+   "support": 44069,
+   "pearson_surface": 0.042904707355041864,
+   "pearson_dots": 0.012962931959724009,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3458331120199713,
+   "reverse_overlap_3px": 0.36000363067008556
+  },
+  {
+   "file": "4b06a5cc617d187000ec2cd9e682bb79b36df762f6d34c29b388385772b128f8.tif",
+   "support": 44838,
+   "pearson_surface": 0.1888323005175933,
+   "pearson_dots": 0.07861060435795834,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5965368885111807,
+   "reverse_overlap_3px": 0.6376287970025425
+  },
+  {
+   "file": "4b603c9b1ada9f3a8817d21ee08d089558938e1c58a1a894dcea75902fd912fc.tif",
+   "support": 123779,
+   "pearson_surface": 0.29812233949264666,
+   "pearson_dots": 0.12348077187617082,
+   "dotfield": false
+  },
+  {
+   "file": "4c01fcf2ad8c1d2bd487bc4d07c85e57b2a256296586d4817b58079b0ccd7a1f.tif",
+   "support": 5144440,
+   "pearson_surface": 0.5493159893531804,
+   "pearson_dots": 0.1495456801474649,
+   "dotfield": false
+  },
+  {
+   "file": "4c31411088a92d83589b1fd0557c00460069b1a7cfbbe18a0fb1ceaa1b38d420.tif",
+   "support": 37654,
+   "pearson_surface": 0.04815509308398824,
+   "pearson_dots": 0.013874405805742932,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3699474159451851,
+   "reverse_overlap_3px": 0.3926010516810963
+  },
+  {
+   "file": "4c63cf4e5bea95d981dbe00d14d8de4549f2c8df5b8da8ea8cb91b40a69fb31f.tif",
+   "support": 20000,
+   "pearson_surface": 0.006752112983517308,
+   "pearson_dots": 0.003527498216997159,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15918627503054125,
+   "reverse_overlap_3px": 0.2384
+  },
+  {
+   "file": "4d00b72c78fa21c258061079daad55c3a99b1bc91dc5d3e2516ad4c0e90ba334.tif",
+   "support": 38545,
+   "pearson_surface": 0.07212107245852752,
+   "pearson_dots": 0.028509819022712993,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5495299304190789,
+   "reverse_overlap_3px": 0.42651446361395773
+  },
+  {
+   "file": "4d6548d4ec07a47a25b83d28ebc05d58b57448c1507b460aed52cec395bdb6b5.tif",
+   "support": 791389,
+   "pearson_surface": 0.5560123196808613,
+   "pearson_dots": 0.14053711098587665,
+   "dotfield": false
+  },
+  {
+   "file": "4dc278c4e5b80bbe50da76244e6eacdb230660807b49b4388470697b23f42ac8.tif",
+   "support": 60069,
+   "pearson_surface": 0.22373524797651204,
+   "pearson_dots": 0.10546367124930654,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.5843613178178428
+  },
+  {
+   "file": "4dc4cc54b061cb4567a5500c8fa2bfe750a39340b02c8cdbb4308916f36cbcc3.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "4e03fc97052e9bd673e48f1923ad17f15926f8db26d2befc033e1722381dc9b7.tif",
+   "support": 155021,
+   "pearson_surface": 0.12390566643461544,
+   "pearson_dots": 0.039539893373882945,
+   "dotfield": false
+  },
+  {
+   "file": "4e199f0ce1bb7e6f6e5e42fbbe54fcd3714bbf1b4ee864fad262b95ebba464f7.tif",
+   "support": 121258,
+   "pearson_surface": 0.31257110234623053,
+   "pearson_dots": 0.12660171364990336,
+   "dotfield": false
+  },
+  {
+   "file": "4e6c4ddd5a31ec39adbc84b2e547844bc4f98f752d307f694837591319ef847b.tif",
+   "support": 58031,
+   "pearson_surface": 0.1715775352675015,
+   "pearson_dots": 0.09099414169518388,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6489881553088649,
+   "reverse_overlap_3px": 0.48412055625441575
+  },
+  {
+   "file": "4e9fbf0ca23806383c4f543117fc25fd0d0000e5e96f9a6e763a6f1021168f07.tif",
+   "support": 75308,
+   "pearson_surface": -0.029699058778830265,
+   "pearson_dots": -0.007001542101829951,
+   "dotfield": true,
+   "forward_overlap_3px": 0.11504753811016094,
+   "reverse_overlap_3px": 0.054243905030010094
+  },
+  {
+   "file": "4ee074230a305fce6768012fc33380bf196c89170e70050a77cf4a44d74ef14c.tif",
+   "support": 37654,
+   "pearson_surface": 0.004415553619987372,
+   "pearson_dots": 0.0025848314385124825,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15557444096244755,
+   "reverse_overlap_3px": 0.20653848196738725
+  },
+  {
+   "file": "50041161e7a7922992f05c9e027092806f13b1537d1888fd10d461bbd4a8b6c2.tif",
+   "support": 44069,
+   "pearson_surface": 0.040316181111597967,
+   "pearson_dots": 0.01227009055260534,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33521007064322517,
+   "reverse_overlap_3px": 0.3492023871655813
+  },
+  {
+   "file": "50c27c52fcd6b475e01c7ca3f343fad2537ae3158c25a2411232481407f5b279.tif",
+   "support": 43649,
+   "pearson_surface": -0.02483313515991158,
+   "pearson_dots": -0.007907752293417232,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "50d12651da2394296e351dd4e0258d4a08e2b8854fccd54e855ebdd019c8152c.tif",
+   "support": 40000,
+   "pearson_surface": 0.06388640605476772,
+   "pearson_dots": 0.016551495445607373,
+   "dotfield": true,
+   "forward_overlap_3px": 0.09438572263238966,
+   "reverse_overlap_3px": 0.407325
+  },
+  {
+   "file": "51b9ba34f3edd57ca4f9f3707a6433d0912e01a11561d29187d15c2b41e8d20a.tif",
+   "support": 40000,
+   "pearson_surface": 0.00854279192113086,
+   "pearson_dots": 0.004505075648031945,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2339193711159505,
+   "reverse_overlap_3px": 0.236325
+  },
+  {
+   "file": "527cd3247208a80a17439ac4e72e08a55829bb2fe201b16aa328ae86eba6dfbd.tif",
+   "support": 60068,
+   "pearson_surface": 0.053951410414581256,
+   "pearson_dots": 0.01571458951387243,
+   "dotfield": true,
+   "forward_overlap_3px": 0.40009029585170236,
+   "reverse_overlap_3px": 0.3515016314843178
+  },
+  {
+   "file": "529d9e1bd80b54957ca16398e47bfc51b1e32eaee8fc89d6dfbddbd7036c5ffc.tif",
+   "support": 37860,
+   "pearson_surface": 0.19751736354687302,
+   "pearson_dots": 0.10125453455192561,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5614808519679184,
+   "reverse_overlap_3px": 0.6159535129424194
+  },
+  {
+   "file": "538b45735833b341fc455dbbf06c47bc82a8bd8943c254ae6d3a5a07e72e22ca.tif",
+   "support": 138416,
+   "pearson_surface": -0.028728689987854987,
+   "pearson_dots": -0.009148235318478325,
+   "dotfield": false
+  },
+  {
+   "file": "542eaf30766ba57b122cc85fb239e407294a282e1259dcceae0c55575ee19f95.tif",
+   "support": 235887,
+   "pearson_surface": 0.11909951067719088,
+   "pearson_dots": 0.03272689075416691,
+   "dotfield": false
+  },
+  {
+   "file": "54a8fb55bca1509ee58c3351a3727078416d9aa6ba5c7c6f2420e816c74b809d.tif",
+   "support": 42000,
+   "pearson_surface": 0.03129336629272055,
+   "pearson_dots": 0.01043940906964497,
+   "dotfield": true,
+   "forward_overlap_3px": 0.30785573909810376,
+   "reverse_overlap_3px": 0.3248809523809524
+  },
+  {
+   "file": "54aa8c6cbee0a1f858f80f898c5c3ae9c069ad3d11c7457b94717c261b5d9416.tif",
+   "support": 60710,
+   "pearson_surface": 0.21581148557823443,
+   "pearson_dots": 0.1105520966971963,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6347001646571413,
+   "reverse_overlap_3px": 0.48311645527919617
+  },
+  {
+   "file": "54dfe8bd79f767370558bebc1c23366cb43e5e5a4b26c7d9d14131c8b58bdc0c.tif",
+   "support": 767043,
+   "pearson_surface": 0.5464667560993576,
+   "pearson_dots": 0.1555862956405286,
+   "dotfield": false
+  },
+  {
+   "file": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641.tif",
+   "support": 37660,
+   "pearson_surface": 0.1979436354750118,
+   "pearson_dots": 0.10153329930841705,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5610293727094067,
+   "reverse_overlap_3px": 0.618162506638343
+  },
+  {
+   "file": "564d569b8500e3c615457d0325f063c25f827ebb0703f249d7a043b2b25cdba9.tif",
+   "support": 46090,
+   "pearson_surface": 0.19396481141896194,
+   "pearson_dots": 0.10038734301872261,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5770701651882935,
+   "reverse_overlap_3px": 0.5557604686482968
+  },
+  {
+   "file": "56508f98d3f250370cd07e77d9972000da5562c6304415db54fd82ad97395b87.tif",
+   "support": 20000,
+   "pearson_surface": 0.006161426688158069,
+   "pearson_dots": 0.0012582465364569316,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14338450098263134,
+   "reverse_overlap_3px": 0.19665
+  },
+  {
+   "file": "56abce3cfd91c7a6961ffed128ed92ce11d6c17c293d02e02f0f9d6a88fad3a2.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5466601682141015,
+   "pearson_dots": 0.1535843324708258,
+   "dotfield": false
+  },
+  {
+   "file": "56bb722227c756618fa82bba8c112e326096d9f2e5ece063a72c82df1e75324c.tif",
+   "support": 40000,
+   "pearson_surface": 0.006527710578678605,
+   "pearson_dots": 0.0017271297033353186,
+   "dotfield": true,
+   "forward_overlap_3px": 0.08400169968662027,
+   "reverse_overlap_3px": 0.186375
+  },
+  {
+   "file": "57896abee36d6722f587f543e1f65ddfd9af19163e20653e852bfb3162b10902.tif",
+   "support": 60000,
+   "pearson_surface": 0.013606177596556279,
+   "pearson_dots": 0.004392050870805984,
+   "dotfield": true,
+   "forward_overlap_3px": 0.23638922823604397,
+   "reverse_overlap_3px": 0.21641666666666667
+  },
+  {
+   "file": "57be86502a03a22eb755f04204cb090b49ba4b89158662a728ca2e34b1d37f95.tif",
+   "support": 44090,
+   "pearson_surface": 0.0437105075235845,
+   "pearson_dots": 0.014465133528546986,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5008498433101397,
+   "reverse_overlap_3px": 0.3478793377183035
+  },
+  {
+   "file": "57f8ad5491f7e0da75eafcd19bcdc538bf0d82fc6825e0c2654804ec23116fc0.tif",
+   "support": 5167373,
+   "pearson_surface": 0.13721383143302918,
+   "pearson_dots": 0.04568322142288785,
+   "dotfield": false
+  },
+  {
+   "file": "5823def4fab491ac6bd667cedb467c0540fd1bbce1351992289f4a609e7b775e.tif",
+   "support": 44069,
+   "pearson_surface": 0.05045682698551629,
+   "pearson_dots": 0.015387876884641856,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3313592181441547,
+   "reverse_overlap_3px": 0.3770223966960902
+  },
+  {
+   "file": "5835c8b3862a1aa6d1f4317f68daf02d8a3620701c923832b9a437b685336b7e.tif",
+   "support": 60000,
+   "pearson_surface": 0.013601177038521234,
+   "pearson_dots": 0.004583205826160992,
+   "dotfield": true,
+   "forward_overlap_3px": 0.25628087321400117,
+   "reverse_overlap_3px": 0.22516666666666665
+  },
+  {
+   "file": "5987d5051a76a8a28e8a31106936413d26ab8d8af143d6849c29827cf1d35597.tif",
+   "support": 55304,
+   "pearson_surface": 0.20912991127382954,
+   "pearson_dots": 0.10052426549500203,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5818239762043873,
+   "reverse_overlap_3px": 0.6028316215825257
+  },
+  {
+   "file": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d.tif",
+   "support": 44090,
+   "pearson_surface": 0.02318776409579494,
+   "pearson_dots": 0.00699410860556217,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2787486057258193,
+   "reverse_overlap_3px": 0.2529144930823316
+  },
+  {
+   "file": "59abe557302c158463911f388bcf2ec7edafc511e6948f431f3fee339f947333.tif",
+   "support": 37654,
+   "pearson_surface": 0.04975097508387461,
+   "pearson_dots": 0.015720331472428493,
+   "dotfield": true,
+   "forward_overlap_3px": 0.40609231422956393,
+   "reverse_overlap_3px": 0.3871833005789558
+  },
+  {
+   "file": "59cbcc4a15108ff5346b50504c6e5ebb95089f45d18bfe835ed6dcbd5f2bfa17.tif",
+   "support": 37654,
+   "pearson_surface": 0.04403601685137427,
+   "pearson_dots": 0.013178839612488355,
+   "dotfield": true,
+   "forward_overlap_3px": 0.04676793966112498,
+   "reverse_overlap_3px": 0.3922823604397939
+  },
+  {
+   "file": "59ef8e7d8374e228bc1e41376f03fc67dd5b8a5e6804885a1ae802f399140b89.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5221178504418875,
+   "pearson_dots": 0.1594770703332588,
+   "dotfield": false
+  },
+  {
+   "file": "5a66ed4d96399f6a1dad1ba62e19cfa973ee2f8ae4e38e635262edec0466f000.tif",
+   "support": 50000,
+   "pearson_surface": -0.0012546292875466921,
+   "pearson_dots": -0.0016583064597460368,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21474478143092368,
+   "reverse_overlap_3px": 0.16416
+  },
+  {
+   "file": "5acb56d987ce30a2c332f09ed33cb00dcaeec027ac437519ca237e52e0046022.tif",
+   "support": 40000,
+   "pearson_surface": 0.22199335308809132,
+   "pearson_dots": 0.11306978064742504,
+   "dotfield": true,
+   "forward_overlap_3px": 0.561560524778244,
+   "reverse_overlap_3px": 0.67275
+  },
+  {
+   "file": "5b1790087f442c7c88535f97e3c647fb8342342cc5a5661d293c5f17acaa7c75.tif",
+   "support": 37654,
+   "pearson_surface": 0.01041375019910347,
+   "pearson_dots": 0.0040027163708903106,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21644446805120307,
+   "reverse_overlap_3px": 0.23152918680618262
+  },
+  {
+   "file": "5b50e1878328db2f07587fcac92d53031b4bb9625f99a1010908daa29eeab23a.tif",
+   "support": 16573,
+   "pearson_surface": 0.0019528973396544527,
+   "pearson_dots": 0.0012569437469056122,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0759281882402932,
+   "reverse_overlap_3px": 0.18137935195800398
+  },
+  {
+   "file": "5b59e106b6e448038b96fb340c5bae39094d4558c239c437aea28b6020d5d32f.tif",
+   "support": 767043,
+   "pearson_surface": 0.5464667560993576,
+   "pearson_dots": 0.1555862956405286,
+   "dotfield": false
+  },
+  {
+   "file": "5bc279cd55e65733df6d532b6b1c9d348b33720ed9196237371d487042fff195.tif",
+   "support": 45784,
+   "pearson_surface": 0.01606797745490735,
+   "pearson_dots": 0.004641118195125881,
+   "dotfield": true,
+   "forward_overlap_3px": 0.050406331332660544,
+   "reverse_overlap_3px": 0.2256246723746287
+  },
+  {
+   "file": "5d26cdea082e18e97b693365de0fcfb41f97a432e18ff138d08cd7c622679929.tif",
+   "support": 51205,
+   "pearson_surface": -0.0040220368921881,
+   "pearson_dots": -0.0017027473293427106,
+   "dotfield": true,
+   "forward_overlap_3px": 0.04984862166038137,
+   "reverse_overlap_3px": 0.14719265696709305
+  },
+  {
+   "file": "5d881c82d9f66dc5593e2aa0a073d055c38b7a97802af71b737dcec2a7b5ee2e.tif",
+   "support": 44090,
+   "pearson_surface": 0.18198532720525906,
+   "pearson_dots": 0.07178422209318841,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6203059435916503,
+   "reverse_overlap_3px": 0.6921070537536856
+  },
+  {
+   "file": "5daa6eaf7ce78603896b0696df5be67d9a71971da936e030161c3157944b576b.tif",
+   "support": 16291,
+   "pearson_surface": 0.12929916280953163,
+   "pearson_dots": 0.049528735885552885,
+   "dotfield": true,
+   "forward_overlap_3px": 0.16287778190896054,
+   "reverse_overlap_3px": 0.6269105641151556
+  },
+  {
+   "file": "5db55c064eb0b920beb84cd4d6de426a347206b7b8a2c9adc8cfb343084a570b.tif",
+   "support": 44069,
+   "pearson_surface": 0.04211533730613024,
+   "pearson_dots": 0.013259863991345712,
+   "dotfield": true,
+   "forward_overlap_3px": 0.34288521803792427,
+   "reverse_overlap_3px": 0.35807483718713834
+  },
+  {
+   "file": "5de1380c0a6984fd1491faab8f495b98c13ea8d02916fc930c8e613f9dfe231e.tif",
+   "support": 192481,
+   "pearson_surface": 0.027974266255513656,
+   "pearson_dots": 0.008523777484986483,
+   "dotfield": false
+  },
+  {
+   "file": "5e8e528d105cf060490511a033c692f72dd761d09259fa7ae40c53dfc136e05f.tif",
+   "support": 39793,
+   "pearson_surface": 0.015575683609818421,
+   "pearson_dots": 0.006911024501479941,
+   "dotfield": true,
+   "forward_overlap_3px": 0.02791204121740054,
+   "reverse_overlap_3px": 0.2590907948634182
+  },
+  {
+   "file": "5f2fd91ad46a3602c03802e0f7773fd466b08e47cbfcf40ff796ffc2b956a382.tif",
+   "support": 0,
+   "pearson_surface": 0.0,
+   "pearson_dots": 0.0,
+   "dotfield": false
+  },
+  {
+   "file": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "5fa9890f57d374e54c08142c0d7c905bf252d0303c57e9e92f69b9180ca65dbc.tif",
+   "support": 60000,
+   "pearson_surface": 0.01304528397867648,
+   "pearson_dots": 0.004179656475964203,
+   "dotfield": true,
+   "forward_overlap_3px": 0.24913687788813937,
+   "reverse_overlap_3px": 0.21796666666666667
+  },
+  {
+   "file": "5fadcaefd64db0cb553bf16dfd0ec9b54005e3674ed4afb1052d5c8e1e215f78.tif",
+   "support": 40321,
+   "pearson_surface": 0.13378466164313493,
+   "pearson_dots": 0.07628995217047102,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769373771710841,
+   "reverse_overlap_3px": 0.4797996081446393
+  },
+  {
+   "file": "5fb100d14c20fe925fda8af8acf77df933bf9df3b5a03c039fed6d28d0953db9.tif",
+   "support": 5167373,
+   "pearson_surface": 0.026768449086301195,
+   "pearson_dots": 0.0140556115525584,
+   "dotfield": false
+  },
+  {
+   "file": "60a7930a5ac229bb8a3a81656de49c1e228eab8398e0b26316972d516a2951f5.tif",
+   "support": 59075,
+   "pearson_surface": 0.09429784529227188,
+   "pearson_dots": 0.03044656285607552,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5119509215488395,
+   "reverse_overlap_3px": 0.4624968260685569
+  },
+  {
+   "file": "60e39a01b81e94fd5f12cc23f6010bb6d1c0effddf9378866d6f2774c7d78dd9.tif",
+   "support": 519613,
+   "pearson_surface": 0.06680290538653208,
+   "pearson_dots": 0.022785544477437455,
+   "dotfield": false
+  },
+  {
+   "file": "612412b48e45704e40a00718589da6a04f12e0b23d55954094de7c4ebc85a44f.tif",
+   "support": 740795,
+   "pearson_surface": 0.48069888344101036,
+   "pearson_dots": 0.09131377649089283,
+   "dotfield": false
+  },
+  {
+   "file": "6146688da296b24df1cb12c59211f38ed78744b6631e63ba6ca9673cbd0d87e7.tif",
+   "support": 489372,
+   "pearson_surface": 0.0803795027509013,
+   "pearson_dots": 0.026576317976066795,
+   "dotfield": false
+  },
+  {
+   "file": "61843240c45576772badb6c45128b10d64295c6197af380639e1b3fa2cf70dd8.tif",
+   "support": 45374,
+   "pearson_surface": 0.19554280808385804,
+   "pearson_dots": 0.10132086138961065,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656769533117332,
+   "reverse_overlap_3px": 0.5553180235377089
+  },
+  {
+   "file": "61f9b53de42786e6d48afa50fd453a87c57d5d7b9b626c7dcf28c2dfbd20f411.tif",
+   "support": 59075,
+   "pearson_surface": 0.09429784529227188,
+   "pearson_dots": 0.03044656285607552,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5119509215488395,
+   "reverse_overlap_3px": 0.4624968260685569
+  },
+  {
+   "file": "62824bcab55d97427b035a004d90c2aaf088acb30c66aeb2a355f5022cc6efb2.tif",
+   "support": 37654,
+   "pearson_surface": 0.0035311416593757842,
+   "pearson_dots": 0.001487977056862682,
+   "dotfield": true,
+   "forward_overlap_3px": 0.19482657884952462,
+   "reverse_overlap_3px": 0.17788282785361448
+  },
+  {
+   "file": "6292a7916c83d371fc650b0f0c6a090702b9890eaa6e6546d50f104eea2fadc3.tif",
+   "support": 343526,
+   "pearson_surface": 0.06287888751663899,
+   "pearson_dots": 0.020831579854359406,
+   "dotfield": false
+  },
+  {
+   "file": "629800b15ca54906b1bfcbde8811273a47b90d112038b86aea6701460070e1ed.tif",
+   "support": 234429,
+   "pearson_surface": 0.12448893965728318,
+   "pearson_dots": 0.034372098547310236,
+   "dotfield": false
+  },
+  {
+   "file": "62b309d93e9a3665520ff0f55c0683dc8458e9d60813fa7fc9a5f2fc995d0ee6.tif",
+   "support": 30800,
+   "pearson_surface": 0.0020685385889696708,
+   "pearson_dots": 0.0007261210080319714,
+   "dotfield": true,
+   "forward_overlap_3px": 0.16279810909863493,
+   "reverse_overlap_3px": 0.16912337662337662
+  },
+  {
+   "file": "62ccee8f81241afe6a110022b7eec4b857c1972ca6f25b45dca92bd367197ea4.tif",
+   "support": 20528,
+   "pearson_surface": 0.17162909585444938,
+   "pearson_dots": 0.09427947871243038,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3996653741966325,
+   "reverse_overlap_3px": 0.6662607170693686
+  },
+  {
+   "file": "62eac7cafbd61a8a39b87af95cb19b077cf05202ce213cabf983a96bce2979f4.tif",
+   "support": 818626,
+   "pearson_surface": 0.09694619229086747,
+   "pearson_dots": 0.03204097196135732,
+   "dotfield": false
+  },
+  {
+   "file": "638f0abb7bbb197199100ca72b1af763c42aa4997d6730b17b6023beb14d8ff9.tif",
+   "support": 24000,
+   "pearson_surface": 0.07654611309744594,
+   "pearson_dots": 0.02195673718814912,
+   "dotfield": true,
+   "forward_overlap_3px": 0.32155946247410633,
+   "reverse_overlap_3px": 0.5684166666666667
+  },
+  {
+   "file": "639e2a2f0b7a5afbca516f7b9fae44179aab2dc2fe0dba408bf0f616cb04a5a8.tif",
+   "support": 5167373,
+   "pearson_surface": 0.4339782680642857,
+   "pearson_dots": 0.1159666226612011,
+   "dotfield": false
+  },
+  {
+   "file": "63c9239a7eb473c342ba51f8f70494aa7222499d3935908c022d54e2e5b5bd4b.tif",
+   "support": 51053,
+   "pearson_surface": 0.04223901935781352,
+   "pearson_dots": 0.013825800944326425,
+   "dotfield": true,
+   "forward_overlap_3px": 0.400355871886121,
+   "reverse_overlap_3px": 0.33408418702133075
+  },
+  {
+   "file": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0.tif",
+   "support": 83593,
+   "pearson_surface": 0.013275323123842678,
+   "pearson_dots": 0.004705008404568706,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15785839485844796,
+   "reverse_overlap_3px": 0.20422762671515557
+  },
+  {
+   "file": "64b338214a335714357e4f54c31835e18d4316b688e4a1dbe8bf45e48cec2ad8.tif",
+   "support": 80000,
+   "pearson_surface": 0.010812267910392689,
+   "pearson_dots": 0.004350405284376687,
+   "dotfield": true,
+   "forward_overlap_3px": 0.24632177192330165,
+   "reverse_overlap_3px": 0.2020125
+  },
+  {
+   "file": "6501da54c39757556cac7e3d7990ce0f35ddeacc039fdd2139f3beab753ce424.tif",
+   "support": 50517,
+   "pearson_surface": 0.15322982751197234,
+   "pearson_dots": 0.08054465365024244,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5967759069421575,
+   "reverse_overlap_3px": 0.5653740325039096
+  },
+  {
+   "file": "65635a536d5195532691dbe02c04f796ea6b9e7123cd4c9cf5a8f930b351d20b.tif",
+   "support": 1,
+   "pearson_surface": -0.00011835930409516263,
+   "pearson_dots": -3.768980647750494e-05,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "6733bbde40e61bc16309d351b0c3f92c17f30aab023eaf07db80795198867096.tif",
+   "support": 759775,
+   "pearson_surface": 0.45724852332142346,
+   "pearson_dots": 0.08422285664286025,
+   "dotfield": false
+  },
+  {
+   "file": "6790aee129c1e2a3ac6c30fcb56bf5fad455b375919e8d938bd12e9b9b275733.tif",
+   "support": 39430,
+   "pearson_surface": 0.21722813255756512,
+   "pearson_dots": 0.11080528864927754,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5675359855526637,
+   "reverse_overlap_3px": 0.651331473497337
+  },
+  {
+   "file": "67c505016ae313138946ee405375f3a3ada25358b7f6fdb792fa157d357b7a96.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5466601682141015,
+   "pearson_dots": 0.1535843324708258,
+   "dotfield": false
+  },
+  {
+   "file": "67eddfd0001b0993f10ab160fc153b947035070077ff544c085740ed20bfda04.tif",
+   "support": 40000,
+   "pearson_surface": 0.006527710578678605,
+   "pearson_dots": 0.0017271297033353186,
+   "dotfield": true,
+   "forward_overlap_3px": 0.08400169968662027,
+   "reverse_overlap_3px": 0.186375
+  },
+  {
+   "file": "68063ac544a2132ffc20419f8dd814bb92b1d0d90877c14e2383c5d3859f5f42.tif",
+   "support": 39108,
+   "pearson_surface": 0.036283446857135006,
+   "pearson_dots": 0.013626603721148352,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4062516598502151,
+   "reverse_overlap_3px": 0.2639357676178787
+  },
+  {
+   "file": "682a7bbbfe55e1ed3a3cc2d8a7fa0c5cff36d97954f55c5a655d42824e60f1f3.tif",
+   "support": 229468,
+   "pearson_surface": 0.13329800115695925,
+   "pearson_dots": 0.04308730604208838,
+   "dotfield": false
+  },
+  {
+   "file": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310.tif",
+   "support": 60069,
+   "pearson_surface": 0.22373524797651204,
+   "pearson_dots": 0.10546367124930654,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.5843613178178428
+  },
+  {
+   "file": "68e16a87e0f63eec2a99a57b36b90493a5daf8ee3128728c8738f749043b9ccf.tif",
+   "support": 41349,
+   "pearson_surface": 0.16986464742437593,
+   "pearson_dots": 0.08056604065076177,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769639347745259,
+   "reverse_overlap_3px": 0.5612469467218071
+  },
+  {
+   "file": "699d9c7f6d136818af48ed65d357bcd6eca828e530c73c4d80c3a6cca4214b81.tif",
+   "support": 103347,
+   "pearson_surface": 0.05475762713505515,
+   "pearson_dots": 0.01833159071713084,
+   "dotfield": false
+  },
+  {
+   "file": "69d7cdbb1337b07278dd73f4e605cd35c185e8f9cfef18614d4c9c071800a8cf.tif",
+   "support": 44069,
+   "pearson_surface": 0.04211533730613024,
+   "pearson_dots": 0.013259863991345712,
+   "dotfield": true,
+   "forward_overlap_3px": 0.34288521803792427,
+   "reverse_overlap_3px": 0.35807483718713834
+  },
+  {
+   "file": "6b494e7d1abc476555778c699e8d51a6cbd10658f57dfb60f1ccafc3f91924eb.tif",
+   "support": 37626,
+   "pearson_surface": -0.012932566290955553,
+   "pearson_dots": -0.004768420543764143,
+   "dotfield": true,
+   "forward_overlap_3px": 0.054761778297126466,
+   "reverse_overlap_3px": 0.0780045713070749
+  },
+  {
+   "file": "6bcf9de850471535816e1a798983a329b4408d39cfa91d4c17511e7fe0158a38.tif",
+   "support": 791389,
+   "pearson_surface": 0.5510248755200373,
+   "pearson_dots": 0.1472412752555034,
+   "dotfield": false
+  },
+  {
+   "file": "6c32147db39cd34e77baf31f6cb585165bca1d042cfa599d5d027cb140e0c195.tif",
+   "support": 213616,
+   "pearson_surface": -0.011339544185805,
+   "pearson_dots": -0.003457173113164257,
+   "dotfield": false
+  },
+  {
+   "file": "6cb2aab8dbd71335152dea7e2fa442126abffc609b426286f5a171f14353b454.tif",
+   "support": 37754,
+   "pearson_surface": 0.218712999302039,
+   "pearson_dots": 0.11253058634761241,
+   "dotfield": true,
+   "forward_overlap_3px": 0.564534976363733,
+   "reverse_overlap_3px": 0.6606982041637972
+  },
+  {
+   "file": "6d0085641ee4a9ae7da4db8b5f56fe6a92018bc08055c329f5ccda67f942d167.tif",
+   "support": 452679,
+   "pearson_surface": -0.012760317979779329,
+   "pearson_dots": -0.003602469816013276,
+   "dotfield": false
+  },
+  {
+   "file": "6d0227c6284ce2a5a2e51cb214acaabac42eab9cea290f5afc22cf6f7a210b16.tif",
+   "support": 380365,
+   "pearson_surface": -0.016787736300756546,
+   "pearson_dots": -0.004153410640811034,
+   "dotfield": false
+  },
+  {
+   "file": "6d086c099a0a25812153570ece57aa7bbcc852656763fc52c68a430049ee8d9e.tif",
+   "support": 19197,
+   "pearson_surface": 0.014973286382453103,
+   "pearson_dots": 0.004866286413771774,
+   "dotfield": true,
+   "forward_overlap_3px": 0.07478621129229299,
+   "reverse_overlap_3px": 0.2838985258113247
+  },
+  {
+   "file": "6d18948d0287301b7a20fc907da439cdc1cfe253c3392853d4e34bd0d8d69801.tif",
+   "support": 5167373,
+   "pearson_surface": 0.08786448097069338,
+   "pearson_dots": 0.030969264160582422,
+   "dotfield": false
+  },
+  {
+   "file": "6dfe602d35b0f0755eae9a7a8bcc2e6f81efaf291f97341d588ee818b2e07cc5.tif",
+   "support": 37612,
+   "pearson_surface": 0.04745200264333063,
+   "pearson_dots": 0.010383760130719405,
+   "dotfield": true,
+   "forward_overlap_3px": 0.32060338875019917,
+   "reverse_overlap_3px": 0.3758906731894076
+  },
+  {
+   "file": "6e8486843141a826592324b39602524321abf6c0b6c12e3cb02cd054b216960e.tif",
+   "support": 41339,
+   "pearson_surface": 0.050728254745461165,
+   "pearson_dots": 0.017183514394669697,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33754713974610934,
+   "reverse_overlap_3px": 0.4284331986743753
+  },
+  {
+   "file": "7036b8dfcb76444e7bb51b02fa770156a0c7b345ce1d40fb820d8d65f31c8995.tif",
+   "support": 41338,
+   "pearson_surface": 0.16981013513807722,
+   "pearson_dots": 0.08037438546234031,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769639347745259,
+   "reverse_overlap_3px": 0.5612753398809812
+  },
+  {
+   "file": "703ea58b0e49479d57acb9293d748d861b07eba80898aa6bc0ed07595bc1dc91.tif",
+   "support": 122120,
+   "pearson_surface": 0.200771118744909,
+   "pearson_dots": 0.0875690880298328,
+   "dotfield": false
+  },
+  {
+   "file": "70c4ccd5dd51c6cbf1c0b8019738885a357dde7be64c17b4fb278a12f073e1e4.tif",
+   "support": 344041,
+   "pearson_surface": -0.0010658753697813904,
+   "pearson_dots": 0.0002739656637417053,
+   "dotfield": false
+  },
+  {
+   "file": "70ebfc9d2e0cabe2543497c6c3536a4ab1b83f9b7f3742e8ac12c4f86f395b97.tif",
+   "support": 37654,
+   "pearson_surface": 0.021546532779461496,
+   "pearson_dots": 0.006356940409556043,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3683539597386732,
+   "reverse_overlap_3px": 0.2766771126573538
+  },
+  {
+   "file": "7251c22bb489198ae4709611c29cef3ac799d8942c2f1779086d5b59ae0e3097.tif",
+   "support": 61664,
+   "pearson_surface": 0.024848508254397533,
+   "pearson_dots": 0.00833274034339517,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14766027513677166,
+   "reverse_overlap_3px": 0.25355150492994294
+  },
+  {
+   "file": "7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7.tif",
+   "support": 41139,
+   "pearson_surface": 0.20793769498015874,
+   "pearson_dots": 0.10728246814947154,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5663940086046635,
+   "reverse_overlap_3px": 0.6144048226743479
+  },
+  {
+   "file": "73454bc5ed668806d3629544c03934cfb5679c54052eb7fa320d2dd093be4f84.tif",
+   "support": 18880,
+   "pearson_surface": 0.00803806469880299,
+   "pearson_dots": 0.0026180914589682197,
+   "dotfield": true,
+   "forward_overlap_3px": 0.09271259361555213,
+   "reverse_overlap_3px": 0.21509533898305086
+  },
+  {
+   "file": "736f62c2da585677ef472cab0f9bc63bd15c50c340beb4a0f4627fafd3d1c853.tif",
+   "support": 57783,
+   "pearson_surface": 0.023687004372801895,
+   "pearson_dots": 0.00763709812371324,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14407499867211984,
+   "reverse_overlap_3px": 0.2536559195611166
+  },
+  {
+   "file": "7379cd7f6d9e1cf9c84635fc4aa899dd584f820692287a522aaec2108339786f.tif",
+   "support": 55000,
+   "pearson_surface": 0.011943315883856857,
+   "pearson_dots": 0.004129101672493411,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1360280448292346,
+   "reverse_overlap_3px": 0.2122181818181818
+  },
+  {
+   "file": "737c77344457dc1561fe091bc3ab085b3ab65af10b290f5301512f0505abec07.tif",
+   "support": 31000,
+   "pearson_surface": -0.0017622623600692053,
+   "pearson_dots": 0.0007987077568844926,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2230838689116694,
+   "reverse_overlap_3px": 0.21138709677419354
+  },
+  {
+   "file": "739a8e7c4b54436508fc2b9da6b8ddc56e44a0d1ad273dc88c07a2003637f8bb.tif",
+   "support": 37600,
+   "pearson_surface": -0.02198618083092173,
+   "pearson_dots": -0.006371281232827948,
+   "dotfield": true,
+   "forward_overlap_3px": 0.02249429011526,
+   "reverse_overlap_3px": 0.022393617021276596
+  },
+  {
+   "file": "73a8dcb305609def44f4c2cc421f6c4a3c4d5c45a9fe8ef64078a58706908fb4.tif",
+   "support": 44069,
+   "pearson_surface": 0.05070316939202716,
+   "pearson_dots": 0.014695035477521247,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33252775269559676,
+   "reverse_overlap_3px": 0.3781115977217545
+  },
+  {
+   "file": "73b1e452ba18dcd56291652ad9b553cd85e7ca709778ebf1cee770e159d50fbf.tif",
+   "support": 16291,
+   "pearson_surface": 0.129299162809563,
+   "pearson_dots": 0.04952873588554011,
+   "dotfield": true,
+   "forward_overlap_3px": 0.16287778190896054,
+   "reverse_overlap_3px": 0.6269105641151556
+  },
+  {
+   "file": "73e97f79f635ebf8932b74357db271d0b71c9263b67e5a45fd4c267dc3e11825.tif",
+   "support": 178548,
+   "pearson_surface": 0.14072819641361017,
+   "pearson_dots": 0.045358086466753184,
+   "dotfield": false
+  },
+  {
+   "file": "73fd1d8340e32d0175ca7ddb084c50f561a04a2b6bd58f80426d7934cef157c7.tif",
+   "support": 37654,
+   "pearson_surface": 0.015402167617784701,
+   "pearson_dots": 0.005821889491674982,
+   "dotfield": true,
+   "forward_overlap_3px": 0.34856854517448344,
+   "reverse_overlap_3px": 0.2600254952993042
+  },
+  {
+   "file": "741f781734cbbf7145c2f7c93112d2272e62213205f15283babad65433a7fc28.tif",
+   "support": 44069,
+   "pearson_surface": 0.04499254894159039,
+   "pearson_dots": 0.013878472390563206,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3331651351782015,
+   "reverse_overlap_3px": 0.3631577753069051
+  },
+  {
+   "file": "7563e187171f7210d70295f958b0b2714c1fa504afa35f9a4688fc99b1e1122a.tif",
+   "support": 82155,
+   "pearson_surface": 0.01918555424520262,
+   "pearson_dots": 0.006513646534101744,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15538853773835448,
+   "reverse_overlap_3px": 0.20432110035907736
+  },
+  {
+   "file": "756af6ee74b3fd456eeb30bbcaaa41de51d3cdc17222b04166d8280ba7c18c3e.tif",
+   "support": 759775,
+   "pearson_surface": 0.4751660478527634,
+   "pearson_dots": 0.10252421461083404,
+   "dotfield": false
+  },
+  {
+   "file": "75c853c3f875b4732952dd59d3a97fc6942972bac8983d1c653c1321cd4c25fe.tif",
+   "support": 5167373,
+   "pearson_surface": 0.24626487766778316,
+   "pearson_dots": 0.06873357928996597,
+   "dotfield": false
+  },
+  {
+   "file": "760f124bee6a1752912fc5a37608fc06fbde58fb3b09406c59f099bd0de51c5b.tif",
+   "support": 37654,
+   "pearson_surface": 0.19235344670993956,
+   "pearson_dots": 0.09456008422159218,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5648271100015935,
+   "reverse_overlap_3px": 0.6211292292983481
+  },
+  {
+   "file": "7625f34335cc48fb05dbe851f03950ae61ae49f8db93dd27ac7f516a3349b980.tif",
+   "support": 80000,
+   "pearson_surface": 0.032335653965836056,
+   "pearson_dots": 0.010229579963136719,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5830456259627131,
+   "reverse_overlap_3px": 0.277575
+  },
+  {
+   "file": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58.tif",
+   "support": 69281,
+   "pearson_surface": 0.06469128154850731,
+   "pearson_dots": 0.01739296019233022,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5060551335847453,
+   "reverse_overlap_3px": 0.2948427418772824
+  },
+  {
+   "file": "772cf4502bfc00f9265560b001cd307c8bc699ab2b0bac2c17528020d779fd19.tif",
+   "support": 75308,
+   "pearson_surface": -0.029699058778830265,
+   "pearson_dots": -0.007001542101829951,
+   "dotfield": true,
+   "forward_overlap_3px": 0.11504753811016094,
+   "reverse_overlap_3px": 0.054243905030010094
+  },
+  {
+   "file": "779efdcdfdea223356eb8ef98a25021c20b9a527d4016b8e8ca3dfacad25a829.tif",
+   "support": 338755,
+   "pearson_surface": -0.00893987259794715,
+   "pearson_dots": -0.0024404554792107885,
+   "dotfield": false
+  },
+  {
+   "file": "7810719248d2aa17b4aefdc838bf7ea5ad90a08ae0882c7f96f158bf01696302.tif",
+   "support": 172974,
+   "pearson_surface": 0.1558607916879464,
+   "pearson_dots": 0.043674373407138256,
+   "dotfield": false
+  },
+  {
+   "file": "789dd56c4287cd50c8d2d5e3f063828a8d25a275d82bd8418a4cf971d908b8a6.tif",
+   "support": 516738,
+   "pearson_surface": 0.20592852233881503,
+   "pearson_dots": 0.08341868573697427,
+   "dotfield": false
+  },
+  {
+   "file": "78b2aebe410e016d76c1cf15760561d7699346647955039bcc0b8adce87af30a.tif",
+   "support": 198000,
+   "pearson_surface": 0.21262973038381563,
+   "pearson_dots": 0.06705567083745465,
+   "dotfield": false
+  },
+  {
+   "file": "79e260ae223d7dfd96413da28a9c6fed30107285ab843795181a5c9e5dff7262.tif",
+   "support": 44709,
+   "pearson_surface": 0.0029687942792593364,
+   "pearson_dots": 0.0033710201294689063,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1640463164604026,
+   "reverse_overlap_3px": 0.19662707732223936
+  },
+  {
+   "file": "7a366b7bbe431533a9d4246cbcdde34eb379ebb34fa116a8667431916506498d.tif",
+   "support": 13591,
+   "pearson_surface": 0.003413296662478317,
+   "pearson_dots": 0.00039823066113344564,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05693950177935943,
+   "reverse_overlap_3px": 0.21484806121698183
+  },
+  {
+   "file": "7a66001dfb72164a085005c6f010a627959265a13944b8ee9134865d429db640.tif",
+   "support": 5167373,
+   "pearson_surface": 0.4507587925666098,
+   "pearson_dots": 0.0833185962851306,
+   "dotfield": false
+  },
+  {
+   "file": "7ac3cfdf2412f7f8a8b82d928115888c510f106f0254fb0b3988448db2f3b6ec.tif",
+   "support": 2700,
+   "pearson_surface": -0.0010484149014958412,
+   "pearson_dots": -0.00016673062427694196,
+   "dotfield": true,
+   "forward_overlap_3px": 0.010888617411164817,
+   "reverse_overlap_3px": 0.13703703703703704
+  },
+  {
+   "file": "7ae6f90df568a2578294968ec5e4a8a088653b569e5ab3c149afbe132ba29238.tif",
+   "support": 54714,
+   "pearson_surface": 0.2370297874252594,
+   "pearson_dots": 0.11131378348170567,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.6411521731183975
+  },
+  {
+   "file": "7b043c8bb7c49c2dfc3294d83f159ac3a922d948581bc854f3fc3386e85686c3.tif",
+   "support": 5167373,
+   "pearson_surface": -0.3887893025012575,
+   "pearson_dots": -0.09393044306033717,
+   "dotfield": false
+  },
+  {
+   "file": "7b6010637ae341b56f7d211eaf892b239822b0668d3f5556af0eecb505a228d3.tif",
+   "support": 352506,
+   "pearson_surface": 0.13664120872493668,
+   "pearson_dots": 0.04275392257253428,
+   "dotfield": false
+  },
+  {
+   "file": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093.tif",
+   "support": 60988,
+   "pearson_surface": -0.02940374750917221,
+   "pearson_dots": -0.009363197610900459,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "7bfc92ac536cf83a5caf24a815353ba151862f5ad2fbec4461b89353bafb3146.tif",
+   "support": 37654,
+   "pearson_surface": 0.1470339554671174,
+   "pearson_dots": 0.0417773111729781,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1360280448292346,
+   "reverse_overlap_3px": 0.664763371753333
+  },
+  {
+   "file": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32.tif",
+   "support": 37660,
+   "pearson_surface": 0.1979436354750118,
+   "pearson_dots": 0.10153329930841705,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5610293727094067,
+   "reverse_overlap_3px": 0.618162506638343
+  },
+  {
+   "file": "7c86853164f9cfa7aea34de029c7d5ccf3a6b43dbbb2b14de570e558384d2755.tif",
+   "support": 37600,
+   "pearson_surface": -0.018404029447772665,
+   "pearson_dots": -0.005461046537175932,
+   "dotfield": true,
+   "forward_overlap_3px": 0.04594465395442715,
+   "reverse_overlap_3px": 0.051409574468085105
+  },
+  {
+   "file": "7cacff894c4444997e2ee8896582cda82ad34a43cf039cfb960befa20577d005.tif",
+   "support": 82678,
+   "pearson_surface": 0.0766577071219785,
+   "pearson_dots": 0.023456784150116174,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6288840495033728,
+   "reverse_overlap_3px": 0.39022472725513435
+  },
+  {
+   "file": "7d2576f844636b7a1a440a8cd2b3babab523837d4b052d60e5842ca59d4b3365.tif",
+   "support": 98598,
+   "pearson_surface": 0.0057588489579750565,
+   "pearson_dots": -0.00010762720852519024,
+   "dotfield": false
+  },
+  {
+   "file": "7d5a83a326f9e3a951b88dbcf3db74228cfab0ab13271babbbf79f5679b69f5a.tif",
+   "support": 50000,
+   "pearson_surface": -0.0012546292875466921,
+   "pearson_dots": -0.0016583064597460368,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21474478143092368,
+   "reverse_overlap_3px": 0.16416
+  },
+  {
+   "file": "7da9fe49482c9a826ff11a51b27a054b4cdbe4b4160513389c2c0bd6b37b5eeb.tif",
+   "support": 198000,
+   "pearson_surface": 0.21262973038381563,
+   "pearson_dots": 0.06705567083745465,
+   "dotfield": false
+  },
+  {
+   "file": "7de8f533e13a26c25aadd74852b920a6ef759d5beab5d453ba25cb2d9212b9c9.tif",
+   "support": 60069,
+   "pearson_surface": 0.012767354099147168,
+   "pearson_dots": 0.0034236521292575037,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2750836564508419,
+   "reverse_overlap_3px": 0.21596830311808088
+  },
+  {
+   "file": "7e5df9d01689e438e8379ebd4763ed803de02e94826f43da37c33c16380d669b.tif",
+   "support": 18524,
+   "pearson_surface": 0.008192074411056073,
+   "pearson_dots": 0.0027417991944617874,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14306580974132893,
+   "reverse_overlap_3px": 0.22505938242280285
+  },
+  {
+   "file": "7e93956c934f0937341b930022b7e222c60a8fa9f7b5999da145f817810a523f.tif",
+   "support": 33144,
+   "pearson_surface": 0.007796542417326717,
+   "pearson_dots": 0.0032345311777045214,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14641206777500398,
+   "reverse_overlap_3px": 0.22731112720251026
+  },
+  {
+   "file": "7ee6cac2444949a31d43ffd66a5ae0825c366e3d2ce1d18a1e6adc03fb4b63f1.tif",
+   "support": 20000,
+   "pearson_surface": 0.006161426688158069,
+   "pearson_dots": 0.0012582465364569316,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14338450098263134,
+   "reverse_overlap_3px": 0.19665
+  },
+  {
+   "file": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15.tif",
+   "support": 172974,
+   "pearson_surface": 0.1558607916879464,
+   "pearson_dots": 0.043674373407138256,
+   "dotfield": false
+  },
+  {
+   "file": "7f0fbe2fcec056f2a06f927f011a2010c95608ea610bcf56db62cb2bae4b8806.tif",
+   "support": 759775,
+   "pearson_surface": 0.45724852517726206,
+   "pearson_dots": 0.08422285684973825,
+   "dotfield": false
+  },
+  {
+   "file": "8027c4e9fe0f789e2d7180a7ccc031abec90b391cf9e42ebcc125752af9fb696.tif",
+   "support": 80000,
+   "pearson_surface": 0.032335653965836056,
+   "pearson_dots": 0.010229579963136719,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5830456259627131,
+   "reverse_overlap_3px": 0.277575
+  },
+  {
+   "file": "8029a741b44a14125656288f5b885166af17458eff1e9b3bd1bb0fff4f0b6ea5.tif",
+   "support": 32182,
+   "pearson_surface": 0.0015426945851809558,
+   "pearson_dots": 0.0005927274670157988,
+   "dotfield": true,
+   "forward_overlap_3px": 0.055399160779731234,
+   "reverse_overlap_3px": 0.18473059474240258
+  },
+  {
+   "file": "806a4ba42e7be89cdef226dd75c09246d3e5923feb1796ab6d5b86ae94f8dda9.tif",
+   "support": 37654,
+   "pearson_surface": 0.0982933328773158,
+   "pearson_dots": 0.016763680762271832,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14250810006904976,
+   "reverse_overlap_3px": 0.549928294470707
+  },
+  {
+   "file": "80e2954801ae99b228612302ab0c37b2a4799aff074584a04c5fea174df65273.tif",
+   "support": 121258,
+   "pearson_surface": 0.31257110234623053,
+   "pearson_dots": 0.12660171364990336,
+   "dotfield": false
+  },
+  {
+   "file": "8149c9343e5438553385e5d4ce8aca43682ad1f833df0ea033f4e5bd019c037f.tif",
+   "support": 37654,
+   "pearson_surface": 0.10351668900633323,
+   "pearson_dots": 0.05237131934697653,
+   "dotfield": true,
+   "forward_overlap_3px": 0.43952833696287247,
+   "reverse_overlap_3px": 0.4433260742550592
+  },
+  {
+   "file": "818957c0cb69caf360d445c7f7a684578c37528f363b5d84f5ae3be832e7413f.tif",
+   "support": 47905,
+   "pearson_surface": 0.21789421611137166,
+   "pearson_dots": 0.11129410020225232,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5684123864662453,
+   "reverse_overlap_3px": 0.6292662561319278
+  },
+  {
+   "file": "81c90dedb7f775aa6e1731088be90e2f9f63a7ac0a9c979638abdf5a842e2a0c.tif",
+   "support": 37654,
+   "pearson_surface": 0.007340874521837702,
+   "pearson_dots": 0.002263800887785619,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14399532586179423,
+   "reverse_overlap_3px": 0.2356987305465555
+  },
+  {
+   "file": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783.tif",
+   "support": 37860,
+   "pearson_surface": 0.19751736354687302,
+   "pearson_dots": 0.10125453455192561,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5614808519679184,
+   "reverse_overlap_3px": 0.6159535129424194
+  },
+  {
+   "file": "82bdf4e67f16de893caa7a7c16bfe51eac0a712b87db93fff60c1eebef701eb9.tif",
+   "support": 59065,
+   "pearson_surface": -0.028929968871104328,
+   "pearson_dots": -0.009212666249791421,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0,
+   "reverse_overlap_3px": 0.0
+  },
+  {
+   "file": "831459fd86d636f8dc12986316d588a4c6b9ecc8ca0c9eb5bdae9a84427e9ca6.tif",
+   "support": 97654,
+   "pearson_surface": 0.18139293126089173,
+   "pearson_dots": 0.09226092477582996,
+   "dotfield": false
+  },
+  {
+   "file": "838f9502fd4a2720374559db0947fb3372f97629401a617e5c9c95c1b1ce8be5.tif",
+   "support": 90000,
+   "pearson_surface": -0.00037655086106315065,
+   "pearson_dots": 5.5332100916684336e-05,
+   "dotfield": true,
+   "forward_overlap_3px": 0.38280129601104795,
+   "reverse_overlap_3px": 0.18906666666666666
+  },
+  {
+   "file": "840e7afe571a856a2395ff87dec5af757f4812e3c5c146da7bb83616dbc6da8d.tif",
+   "support": 192231,
+   "pearson_surface": -0.0049407912667299375,
+   "pearson_dots": -0.0018246079453862172,
+   "dotfield": false
+  },
+  {
+   "file": "8489991c787d98f06ac48a271a665def2cb02ca0a1fa0ccfd23ebfbe88d85d18.tif",
+   "support": 45962,
+   "pearson_surface": 0.010844847793196508,
+   "pearson_dots": 0.0034431675790157676,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1877888139374303,
+   "reverse_overlap_3px": 0.21052173534659066
+  },
+  {
+   "file": "84c0b0000f00db01966ef66275e0b902003436eb56783558bd99fd9956fc6d48.tif",
+   "support": 5167373,
+   "pearson_surface": 0.09458038727108219,
+   "pearson_dots": 0.03280577408133791,
+   "dotfield": false
+  },
+  {
+   "file": "85c5eed333caba5bf2ff68d7e91ae6bb89c001df57ea7988d08839af9e9435ad.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5467459800452982,
+   "pearson_dots": 0.13843885893258076,
+   "dotfield": false
+  },
+  {
+   "file": "8612586354611df8602a2b0bad8a7916946d1bc0bc32f63e39f1fffbcccced8d.tif",
+   "support": 170401,
+   "pearson_surface": 0.05767623214152455,
+   "pearson_dots": 0.017867826884019854,
+   "dotfield": false
+  },
+  {
+   "file": "86a470fc184989040e9bfc7a52be70285b9cc3189e620ee777aee1ed49744c4f.tif",
+   "support": 5167373,
+   "pearson_surface": 0.12929916280956094,
+   "pearson_dots": 0.049528735885500476,
+   "dotfield": false
+  },
+  {
+   "file": "8721329b55c72635803cca27414f3d0ffe4705f48285de0dc7c29d6fd3eb90d3.tif",
+   "support": 103347,
+   "pearson_surface": 0.05475762713505515,
+   "pearson_dots": 0.01833159071713084,
+   "dotfield": false
+  },
+  {
+   "file": "8729eaf846ad20fb5d175e0c7a25b7dab8bea7e1ba5c37bb4b6e24199acc637a.tif",
+   "support": 22061,
+   "pearson_surface": 0.012319278507732094,
+   "pearson_dots": 0.004859328927721661,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14157858394858447,
+   "reverse_overlap_3px": 0.25243642627260776
+  },
+  {
+   "file": "87eda0c871f8f2ff03482452674010083486aad534e6a7f75dc3124177a34db1.tif",
+   "support": 38907,
+   "pearson_surface": 0.04025720987268854,
+   "pearson_dots": 0.016700686913036864,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2987730387209858,
+   "reverse_overlap_3px": 0.3413010512247153
+  },
+  {
+   "file": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757.tif",
+   "support": 41865,
+   "pearson_surface": 0.19863648378849394,
+   "pearson_dots": 0.0995713900197128,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5664205662081054,
+   "reverse_overlap_3px": 0.6006927027349815
+  },
+  {
+   "file": "883d93f2801987481f8ffb761eeae8f7a39520ad3b670e09129bdaaf7983e2c7.tif",
+   "support": 791389,
+   "pearson_surface": 0.5560123196808613,
+   "pearson_dots": 0.14053711098587665,
+   "dotfield": false
+  },
+  {
+   "file": "88976dc5b2504838b193d41b718df95eb1e237b870b94a6443dc3bee65e98e06.tif",
+   "support": 246469,
+   "pearson_surface": -0.010680702357587364,
+   "pearson_dots": -0.003042576936471127,
+   "dotfield": false
+  },
+  {
+   "file": "88b6fe79e01b1573c85e3202a5cb1ef39a6d9e83def6227a576c828e73e1c5eb.tif",
+   "support": 33517,
+   "pearson_surface": 0.1484579255116469,
+   "pearson_dots": 0.08366521911056136,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5426515111276359,
+   "reverse_overlap_3px": 0.5558671718829251
+  },
+  {
+   "file": "88e71d57c5792dcc8d02b7cdd913874f96bb21d2f57fc506623143ab8e591f5d.tif",
+   "support": 41335,
+   "pearson_surface": 0.16979153720356624,
+   "pearson_dots": 0.08037783696443795,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769373771710841,
+   "reverse_overlap_3px": 0.5612676908189186
+  },
+  {
+   "file": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22.tif",
+   "support": 123779,
+   "pearson_surface": 0.3207502658931233,
+   "pearson_dots": 0.13554903510651828,
+   "dotfield": false
+  },
+  {
+   "file": "8951445650e89b482cae6ece0193034c8cd3e772b03721dda58fd723f0a8e4f2.tif",
+   "support": 99999,
+   "pearson_surface": 0.004150069520369155,
+   "pearson_dots": 0.0011779811110449682,
+   "dotfield": false
+  },
+  {
+   "file": "8a59bc5ea68df8c64f2467fd5e8b3652a324fa3d5e364b9e974d993401c2ec1f.tif",
+   "support": 38545,
+   "pearson_surface": 0.07212107245852752,
+   "pearson_dots": 0.028509819022712993,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5495299304190789,
+   "reverse_overlap_3px": 0.42651446361395773
+  },
+  {
+   "file": "8a85485ed0877d240ece6b07883641d04fa64cdf8d3687ff767a068346350313.tif",
+   "support": 38907,
+   "pearson_surface": 0.04025720987268854,
+   "pearson_dots": 0.016700686913036864,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2987730387209858,
+   "reverse_overlap_3px": 0.3413010512247153
+  },
+  {
+   "file": "8a954440f358a55e06c0c41b1032dded8626b2130e022091996d28380d340e17.tif",
+   "support": 41656,
+   "pearson_surface": 0.20597856354742328,
+   "pearson_dots": 0.1063969315743093,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6036585365853658
+  },
+  {
+   "file": "8aaa2a9b6a78419b4366935f74d731d6f1e669ca866b73280c91420bb60dd675.tif",
+   "support": 41656,
+   "pearson_surface": 0.20597856354742328,
+   "pearson_dots": 0.1063969315743093,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6036585365853658
+  },
+  {
+   "file": "8b77ec8369275e6e0a26992e1685a35b69f06c8f945805b0db126f89580f7149.tif",
+   "support": 20000,
+   "pearson_surface": 0.14844614866158642,
+   "pearson_dots": 0.08117734506713095,
+   "dotfield": true,
+   "forward_overlap_3px": 0.32952674350666594,
+   "reverse_overlap_3px": 0.6214
+  },
+  {
+   "file": "8bce5dfe7302ad388a6bd36f9ae8a6402bde2bae6a295b0e66d174bfb25389a2.tif",
+   "support": 21492,
+   "pearson_surface": 0.08481877424595756,
+   "pearson_dots": 0.022605564153891783,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15259998937695862,
+   "reverse_overlap_3px": 0.48999627768471987
+  },
+  {
+   "file": "8c035eb13edcc64944d7dd46619a7c6e5b22ebdd01e1c1b9750f3e253f4a3d8b.tif",
+   "support": 30000,
+   "pearson_surface": 0.00210184808607407,
+   "pearson_dots": 0.002797075132659707,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15541509534179634,
+   "reverse_overlap_3px": 0.22906666666666667
+  },
+  {
+   "file": "8c262620a769e7dbc8f8ee89aa92a633c91507752b398eec463932adea87c01b.tif",
+   "support": 741536,
+   "pearson_surface": 0.04264897978974918,
+   "pearson_dots": 0.01343252267074264,
+   "dotfield": false
+  },
+  {
+   "file": "8c4945ce170b702495057176fe61b892ee4b1af975b11f978920387216cf968d.tif",
+   "support": 40300,
+   "pearson_surface": 0.13608286083273924,
+   "pearson_dots": 0.07597736976324428,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5851702342380624,
+   "reverse_overlap_3px": 0.49325062034739453
+  },
+  {
+   "file": "8ccde09e97c631c9ac5df0d7aed4ee0850ea0480fe3c4c2831d399e05e0e08d5.tif",
+   "support": 28124,
+   "pearson_surface": 0.020340626471534104,
+   "pearson_dots": 0.005475946523802799,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2221012375843204,
+   "reverse_overlap_3px": 0.2736452851656948
+  },
+  {
+   "file": "8cd554d6caa94932879ecf7b73af5f9f9b24553eb5124f74dc1281940826a12c.tif",
+   "support": 150421,
+   "pearson_surface": 0.014549932089353127,
+   "pearson_dots": 0.006215523945309938,
+   "dotfield": false
+  },
+  {
+   "file": "8ce89331d404a15522a485c2511d81838854147ad27d4047a0b8abb2737b73c2.tif",
+   "support": 5152246,
+   "pearson_surface": 0.16735114238350737,
+   "pearson_dots": 0.05337174860632388,
+   "dotfield": false
+  },
+  {
+   "file": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "8dafb1860367e7d5b8530f924b2ff20efbdff32cfffda82647711f0dbb2e646d.tif",
+   "support": 60000,
+   "pearson_surface": 0.01304528397867648,
+   "pearson_dots": 0.004179656475964203,
+   "dotfield": true,
+   "forward_overlap_3px": 0.24913687788813937,
+   "reverse_overlap_3px": 0.21796666666666667
+  },
+  {
+   "file": "8e0876bbe844ee118489993bc3fe67c3120181ffef9a0dc144c083fbb5a1f5cd.tif",
+   "support": 36171,
+   "pearson_surface": 0.04777421854274295,
+   "pearson_dots": 0.01551321926921603,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3363254899877835,
+   "reverse_overlap_3px": 0.4119045644300683
+  },
+  {
+   "file": "8e5870c61569b8e6546dd409e438ad6525c57735511074be45175fa03b77f0fc.tif",
+   "support": 37000,
+   "pearson_surface": 0.06265750061079543,
+   "pearson_dots": 0.017470494155273922,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4078716736601689,
+   "reverse_overlap_3px": 0.4454054054054054
+  },
+  {
+   "file": "8f8708d2872b66d71925707e0aede23eebcf217dfd2e57d6e61186f32e686f5d.tif",
+   "support": 35000,
+   "pearson_surface": 0.0571598718316145,
+   "pearson_dots": 0.01841899157264572,
+   "dotfield": true,
+   "forward_overlap_3px": 0.34729378020927393,
+   "reverse_overlap_3px": 0.42634285714285713
+  },
+  {
+   "file": "8f9a9d3d1ea2aed1c99e5ab5260aad9ceb10f4011c4b5a38791509261ddd284a.tif",
+   "support": 39430,
+   "pearson_surface": 0.21722813255756512,
+   "pearson_dots": 0.11080528864927754,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5675359855526637,
+   "reverse_overlap_3px": 0.651331473497337
+  },
+  {
+   "file": "8fc827773ea28ceeac3ece35a9392a20c7537f334d5cf31bf56adaebb2fd177a.tif",
+   "support": 325165,
+   "pearson_surface": 0.10523748306280069,
+   "pearson_dots": 0.02974595026196492,
+   "dotfield": false
+  },
+  {
+   "file": "90026224ed74698bd623cae53c5d6f5fe3cb263cdae7d145060d813ea50ef0c4.tif",
+   "support": 23598,
+   "pearson_surface": 0.00629572895678482,
+   "pearson_dots": 0.0010139146363987968,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1557603441865406,
+   "reverse_overlap_3px": 0.20671243325705568
+  },
+  {
+   "file": "9074204be7480f6e6e5d543630b1cf396515f3e1108c584bab71cbc211199e6b.tif",
+   "support": 5167373,
+   "pearson_surface": 0.3662927665979604,
+   "pearson_dots": 0.06794674772677031,
+   "dotfield": false
+  },
+  {
+   "file": "90fb7dc0fc1f6e7d3dbb20927417c6af7d110ca41167329d792c75c145f75b6a.tif",
+   "support": 1828699,
+   "pearson_surface": -0.019005053611547865,
+   "pearson_dots": -0.0015279879709564808,
+   "dotfield": false
+  },
+  {
+   "file": "91c2e7764beada782e1f2d8f0d5c940f078d0e328de6f5868e6d552dbc50832e.tif",
+   "support": 38554,
+   "pearson_surface": 0.21609080534616154,
+   "pearson_dots": 0.11123794356651832,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6496602168387198
+  },
+  {
+   "file": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "91f3dd7a0bb947e623f2c5660f5741bde099f69cb94a5bcc083c060dd5cd06cc.tif",
+   "support": 108500,
+   "pearson_surface": 0.26356149712707316,
+   "pearson_dots": 0.09684440479489158,
+   "dotfield": false
+  },
+  {
+   "file": "920b89b94288f55a4808d59d9710a72f069007eb66eb3cc8ed039b99c8f7a261.tif",
+   "support": 37654,
+   "pearson_surface": 0.07461549992614623,
+   "pearson_dots": 0.023104034139130727,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4002761990757954,
+   "reverse_overlap_3px": 0.4685026823179476
+  },
+  {
+   "file": "9242c831dc103966e7ea961e342e4dce5e655b11313d349a112ece8a4d8b0d15.tif",
+   "support": 1488778,
+   "pearson_surface": 0.5371795424347757,
+   "pearson_dots": 0.1564612861740527,
+   "dotfield": false
+  },
+  {
+   "file": "92904a5bfd84c8bd1141683fc5d29817aa4de71574d8caff5b40f7ed0072a5b8.tif",
+   "support": 122120,
+   "pearson_surface": 0.200771118744909,
+   "pearson_dots": 0.0875690880298328,
+   "dotfield": false
+  },
+  {
+   "file": "92d5062aeaf17a9a397bb595e14e0b91887e4a358da4e53cbc417a56d9967981.tif",
+   "support": 195126,
+   "pearson_surface": 0.13391366088930826,
+   "pearson_dots": 0.04408384506513636,
+   "dotfield": false
+  },
+  {
+   "file": "93d1a77e8d90e4a60dd68e2785b4a1b5cf8b34bfad80109c79354cae74c61c06.tif",
+   "support": 44069,
+   "pearson_surface": 0.04559028297390643,
+   "pearson_dots": 0.01385372805459606,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3363520475912254,
+   "reverse_overlap_3px": 0.3681726383625678
+  },
+  {
+   "file": "948742576c8ee48805edc567fd9aee7f6e4d995b34e33d9502ff80c15cb0870b.tif",
+   "support": 469044,
+   "pearson_surface": 0.06987508260311216,
+   "pearson_dots": 0.023872707394167386,
+   "dotfield": false
+  },
+  {
+   "file": "94eaa16e806ef85000dd896dc94a684971a056d2e1b0989e0ff3b889456946c6.tif",
+   "support": 171952,
+   "pearson_surface": 0.1555830494576645,
+   "pearson_dots": 0.043564127089349064,
+   "dotfield": false
+  },
+  {
+   "file": "9501c1c88fa1b80ac76b0d2652afb6234c470f8583a2d634dd62fc23c6ae8461.tif",
+   "support": 37600,
+   "pearson_surface": -0.02078219276032444,
+   "pearson_dots": -0.005220102058915228,
+   "dotfield": true,
+   "forward_overlap_3px": 0.07178520210336219,
+   "reverse_overlap_3px": 0.07194148936170212
+  },
+  {
+   "file": "9596d0653b6304040d08f652038c31a6655203d29d95b6b9c49e33c7bc91c29b.tif",
+   "support": 88988,
+   "pearson_surface": 0.009112407366366962,
+   "pearson_dots": 0.002860581426046896,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2707016518829341,
+   "reverse_overlap_3px": 0.10242954106171619
+  },
+  {
+   "file": "9606cef20d34046e9b5f6d506df642847ffae1deafe97fc9e75a07c0094a94f5.tif",
+   "support": 759775,
+   "pearson_surface": 0.36788596662043854,
+   "pearson_dots": 0.07823281792904292,
+   "dotfield": false
+  },
+  {
+   "file": "96077b2a8875efbc47fb6f0b1d602cff25d1714b01d52ca05ed22bc141b0eba9.tif",
+   "support": 176781,
+   "pearson_surface": 0.10482932036001671,
+   "pearson_dots": 0.022971783757579668,
+   "dotfield": false
+  },
+  {
+   "file": "96737553f2c6322bdf9870759b0e14c4bedd55f11eb4ce8e0f1ffb3e5288dd28.tif",
+   "support": 749296,
+   "pearson_surface": 0.339050324908315,
+   "pearson_dots": 0.06989739838210955,
+   "dotfield": false
+  },
+  {
+   "file": "96d451d5ffc819fc3834052f22ab66190621f206c0bf8990446082a3363dc2ef.tif",
+   "support": 38854,
+   "pearson_surface": 0.21544270604661758,
+   "pearson_dots": 0.11083234486966212,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5650926860360121,
+   "reverse_overlap_3px": 0.6474751634323365
+  },
+  {
+   "file": "975c217ef803a45041077a219ba460134a8c84c8ea9f7ffc0414ddb47cb54ccd.tif",
+   "support": 5167373,
+   "pearson_surface": 0.12929916280955062,
+   "pearson_dots": 0.049528735885484176,
+   "dotfield": false
+  },
+  {
+   "file": "97e3c3816cd6b458d01e34d7022f871935bb57710e3982a11d9edaec13e91a17.tif",
+   "support": 37654,
+   "pearson_surface": 0.0008084773820843929,
+   "pearson_dots": 0.0014612245109689751,
+   "dotfield": true,
+   "forward_overlap_3px": 0.22542093801455357,
+   "reverse_overlap_3px": 0.2149572422584586
+  },
+  {
+   "file": "98bad6c07870d82c59064c4dcfb5385d5446bc6b4a75f12ee85ddf99683d1c0d.tif",
+   "support": 125567,
+   "pearson_surface": 0.2999788343749846,
+   "pearson_dots": 0.1269494471338688,
+   "dotfield": false
+  },
+  {
+   "file": "9940d101fe0ad6a06b941bc8f5156030fbe282b67263bc82cec8c4446753b6df.tif",
+   "support": 60710,
+   "pearson_surface": 0.21581148557823443,
+   "pearson_dots": 0.1105520966971963,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6347001646571413,
+   "reverse_overlap_3px": 0.48311645527919617
+  },
+  {
+   "file": "9970111b46860b73d2a37c5c5fa8c78c90e70dba42a29538621ae19bb251f6ea.tif",
+   "support": 60069,
+   "pearson_surface": 0.012767354099147168,
+   "pearson_dots": 0.0034236521292575037,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2750836564508419,
+   "reverse_overlap_3px": 0.21596830311808088
+  },
+  {
+   "file": "9a7e5908b0d6f436cd0a0dfcd11f669cb3ce0608d704e034f192874bd9611dfc.tif",
+   "support": 217830,
+   "pearson_surface": 0.043724372968849616,
+   "pearson_dots": 0.01593992226958781,
+   "dotfield": false
+  },
+  {
+   "file": "9b4a7b83fd7bb58bed86692059f112ffc9418b8bd6f0704100dabef1f98c7682.tif",
+   "support": 37654,
+   "pearson_surface": 0.04815509308398824,
+   "pearson_dots": 0.013874405805742932,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3699474159451851,
+   "reverse_overlap_3px": 0.3926010516810963
+  },
+  {
+   "file": "9b4cf4450bbc6c13b307e5ec89f0dd2d2f0a54245b1757287541079098fba0de.tif",
+   "support": 32369,
+   "pearson_surface": 0.0012326374288193298,
+   "pearson_dots": 0.001186187340244973,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14829765761937644,
+   "reverse_overlap_3px": 0.19966634743118417
+  },
+  {
+   "file": "9b4d5675a2f67a47c6884f8d753491d849b6eec7aae1da60f5c76fe316f6dc8e.tif",
+   "support": 30000,
+   "pearson_surface": 0.00210184808607407,
+   "pearson_dots": 0.002797075132659707,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15541509534179634,
+   "reverse_overlap_3px": 0.22906666666666667
+  },
+  {
+   "file": "9b83158bde01cd5d42e38229d70d01e67cecd2514eeb5fa8d1f3ab6851469dad.tif",
+   "support": 44090,
+   "pearson_surface": 0.015571271091530295,
+   "pearson_dots": 0.006202476825643275,
+   "dotfield": true,
+   "forward_overlap_3px": 0.20008498433101396,
+   "reverse_overlap_3px": 0.24611022907688818
+  },
+  {
+   "file": "9bd1e50d86114daa7c944d0c6d4f9f7cba6ba5070ae98ba5e45a965d78650777.tif",
+   "support": 44069,
+   "pearson_surface": 0.05688699772420103,
+   "pearson_dots": 0.016922025714687927,
+   "dotfield": true,
+   "forward_overlap_3px": 0.38365113932118766,
+   "reverse_overlap_3px": 0.404161655585559
+  },
+  {
+   "file": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42.tif",
+   "support": 5106385,
+   "pearson_surface": 0.029403747509172143,
+   "pearson_dots": 0.009363197610900426,
+   "dotfield": false
+  },
+  {
+   "file": "9f028289c364c071065245799d7ed131600e80e9f0d10602806b12ce34d7cae8.tif",
+   "support": 47905,
+   "pearson_surface": 0.19725006717230584,
+   "pearson_dots": 0.09983264957214799,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5934562065119243,
+   "reverse_overlap_3px": 0.5919632606199771
+  },
+  {
+   "file": "9f2577cff20d97717dc42afbdc08faff149bf5fcf237b3bc3daffa9d81dc1163.tif",
+   "support": 155889,
+   "pearson_surface": -0.011259035276617826,
+   "pearson_dots": -0.0027395226995069774,
+   "dotfield": false
+  },
+  {
+   "file": "9f36769d415ff85e7ed62a610092fffb94cda970949c0087a29a38b71456d8c1.tif",
+   "support": 759775,
+   "pearson_surface": 0.4572485285770221,
+   "pearson_dots": 0.08422285826750799,
+   "dotfield": false
+  },
+  {
+   "file": "9ffe11b2b56a2cb43e7da5ce3613a626b1a5503dc72e91cee694376d15f4420f.tif",
+   "support": 37654,
+   "pearson_surface": 0.007607144881057967,
+   "pearson_dots": 0.0027185941679821316,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2028204174855261,
+   "reverse_overlap_3px": 0.17852021033621926
+  },
+  {
+   "file": "a0dc6909715a4bd97b6aa9fe226cd8c54b7127af4e13a852ac052093527682fb.tif",
+   "support": 150421,
+   "pearson_surface": 0.015028846201645206,
+   "pearson_dots": 0.006557171264555873,
+   "dotfield": false
+  },
+  {
+   "file": "a0e82ce0e2f8cfa11b9759d47ec36ec259923d8137b0057a557e4701d245c50c.tif",
+   "support": 37654,
+   "pearson_surface": 0.01041375019910347,
+   "pearson_dots": 0.0040027163708903106,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21644446805120307,
+   "reverse_overlap_3px": 0.23152918680618262
+  },
+  {
+   "file": "a0eaa98c3294a7686d26753348bca9eaf143f089a9d39d827ee19ddb7e55ffac.tif",
+   "support": 791389,
+   "pearson_surface": 0.5495298076255339,
+   "pearson_dots": 0.15010201156309205,
+   "dotfield": false
+  },
+  {
+   "file": "a0f3ed4b4524ca67a0c715beca5a905eced165ee9e59be5e5831a39b7526254d.tif",
+   "support": 37654,
+   "pearson_surface": 0.07551737901416254,
+   "pearson_dots": 0.02147212883961304,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5683592712593616,
+   "reverse_overlap_3px": 0.49131566367451
+  },
+  {
+   "file": "a17cb236f1003c7df7dcc9b3e9d38bf9b557180c54a48bd0dab89b577d11884d.tif",
+   "support": 88988,
+   "pearson_surface": -0.02521360074978046,
+   "pearson_dots": -0.0076508872991728535,
+   "dotfield": true,
+   "forward_overlap_3px": 0.08166463058373612,
+   "reverse_overlap_3px": 0.04652312671371421
+  },
+  {
+   "file": "a1a26570f336e84a743e5acb451df16ede8734613f1f9a4b1d515ff69d369ba3.tif",
+   "support": 777643,
+   "pearson_surface": 0.5460630591404265,
+   "pearson_dots": 0.15387071903518748,
+   "dotfield": false
+  },
+  {
+   "file": "a2513d169be10adf985fcc93d0b8a0dd9937b4e12f029e4db94f47fc5f18d44c.tif",
+   "support": 8176,
+   "pearson_surface": 0.07351138424381252,
+   "pearson_dots": 0.03219724136332247,
+   "dotfield": true,
+   "forward_overlap_3px": 0.16439156530514687,
+   "reverse_overlap_3px": 0.6439579256360078
+  },
+  {
+   "file": "a26055834f8e6cc57cc33e96a4a5a26a1adeaafbeec490135af84c6ccd4d1da0.tif",
+   "support": 30000,
+   "pearson_surface": 0.12179448758868079,
+   "pearson_dots": 0.02088643616077244,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4781165347639029,
+   "reverse_overlap_3px": 0.5661666666666667
+  },
+  {
+   "file": "a26e5e46acc00ddd867f0b2910e638b25e4e81108ebe05c0abcc7c9b04372247.tif",
+   "support": 153957,
+   "pearson_surface": 0.09826667793898305,
+   "pearson_dots": 0.02836020852786242,
+   "dotfield": false
+  },
+  {
+   "file": "a2ed87fac9fdb4b9604ab2850b5f750eefe51fa9795caa6a503fc4739de6475d.tif",
+   "support": 80000,
+   "pearson_surface": 0.03764204342058415,
+   "pearson_dots": 0.011280090799153198,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4430339406171987,
+   "reverse_overlap_3px": 0.285875
+  },
+  {
+   "file": "a30aaa0786b85439c2c35565cc3644a6144a0e6dcf2e874da8827ab4309b402f.tif",
+   "support": 44090,
+   "pearson_surface": 0.02192511724442578,
+   "pearson_dots": 0.006548815729357787,
+   "dotfield": true,
+   "forward_overlap_3px": 0.27317150900302756,
+   "reverse_overlap_3px": 0.2715128146972102
+  },
+  {
+   "file": "a4b8ffa59655d2e4ca1bf77fa27a53c86d168bebb55e8d7ee2bc82720261cb23.tif",
+   "support": 106138,
+   "pearson_surface": 0.2122814002438563,
+   "pearson_dots": 0.0873250467435623,
+   "dotfield": false
+  },
+  {
+   "file": "a56c55ba2f92d319557cb0ab84862cc24a368a5d2f1d74099f39c0a1e3d71bd9.tif",
+   "support": 32151,
+   "pearson_surface": 0.19470795017887138,
+   "pearson_dots": 0.10479859118770614,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5474849949540553,
+   "reverse_overlap_3px": 0.6402289197847656
+  },
+  {
+   "file": "a579081d22eef2039605910a19d2351df775d9d33a278d8238badacd4c387a3c.tif",
+   "support": 37654,
+   "pearson_surface": 0.20859350643366267,
+   "pearson_dots": 0.10584965858882499,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5276730227864238,
+   "reverse_overlap_3px": 0.6377808466563978
+  },
+  {
+   "file": "a5abe022b8352971dc2f27a2733f289607d4a9ac44b60335bde7c822826c2a1b.tif",
+   "support": 37612,
+   "pearson_surface": 0.04273964229703028,
+   "pearson_dots": 0.008376207458648482,
+   "dotfield": true,
+   "forward_overlap_3px": 0.42994104212035905,
+   "reverse_overlap_3px": 0.3452089758587685
+  },
+  {
+   "file": "a5ae61d572b0cd95eac111cab86954eca2219ad310fc0febddcda7ab92fb7969.tif",
+   "support": 21492,
+   "pearson_surface": 0.08481877424595756,
+   "pearson_dots": 0.022605564153891783,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15259998937695862,
+   "reverse_overlap_3px": 0.48999627768471987
+  },
+  {
+   "file": "a5bef4be722b588e78d65953b30a2ffa7567e96b6fafd654e29ed128c76464b4.tif",
+   "support": 125567,
+   "pearson_surface": 0.2999788343749846,
+   "pearson_dots": 0.1269494471338688,
+   "dotfield": false
+  },
+  {
+   "file": "a5c1c4fbd53e889fe5178628fa5f25b02e920e6db434ccca63e44792f7d4bf0f.tif",
+   "support": 1488778,
+   "pearson_surface": 0.5371795424347757,
+   "pearson_dots": 0.1564612861740527,
+   "dotfield": false
+  },
+  {
+   "file": "a612f66fe640cc6d5dd2333a330a454c2d8affef04f4672961d07bd4415a0b83.tif",
+   "support": 44090,
+   "pearson_surface": 0.013404218151702342,
+   "pearson_dots": 0.004050227923988716,
+   "dotfield": true,
+   "forward_overlap_3px": 0.18423009507622032,
+   "reverse_overlap_3px": 0.22229530505783623
+  },
+  {
+   "file": "a6486899cb9f1a170c2bbb5a27f81ea3f960bc496ab460f11a9d4d8ae04a30b4.tif",
+   "support": 55000,
+   "pearson_surface": 0.011943315883856857,
+   "pearson_dots": 0.004129101672493411,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1360280448292346,
+   "reverse_overlap_3px": 0.2122181818181818
+  },
+  {
+   "file": "a6e6e44aebaf057989e254bd5ce3729e5a94836c0e5687a95e91e3fc8a40c686.tif",
+   "support": 12000,
+   "pearson_surface": -0.004115342100065441,
+   "pearson_dots": 0.0002627099196829557,
+   "dotfield": true,
+   "forward_overlap_3px": 0.04644924841982259,
+   "reverse_overlap_3px": 0.15466666666666667
+  },
+  {
+   "file": "a765eaefedf6abeba3229c873784754928c87c284c81f8d439ce1f8da853a530.tif",
+   "support": 5167373,
+   "pearson_surface": 0.31253473726747516,
+   "pearson_dots": 0.07434852123079114,
+   "dotfield": false
+  },
+  {
+   "file": "a7cce341cbe047d08dcbfbd21642f33b54c8941bc212e485e94a09dc0c951e90.tif",
+   "support": 40704,
+   "pearson_surface": 0.2113826606754325,
+   "pearson_dots": 0.10865188796068821,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5828066075317363,
+   "reverse_overlap_3px": 0.6352446933962265
+  },
+  {
+   "file": "a82febc957e46d857cc0fbfa7879f87e3decd4b083cced2344178b8f0a96a0b7.tif",
+   "support": 37654,
+   "pearson_surface": 0.0017192498395226328,
+   "pearson_dots": 0.0003911226752137793,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2074945556912944,
+   "reverse_overlap_3px": 0.1580708556859829
+  },
+  {
+   "file": "a84734ab532fffde07e8ecd5ee55a702f776ee6a96c31a01e00f2c8509897210.tif",
+   "support": 44090,
+   "pearson_surface": 0.021464397779365832,
+   "pearson_dots": 0.007192016550541887,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06639400860466352,
+   "reverse_overlap_3px": 0.25670220004536176
+  },
+  {
+   "file": "a87c55f8c4d5bbe100324941b7722a73e8e73613ab5c802194291459869ee2d5.tif",
+   "support": 37600,
+   "pearson_surface": -0.016596209427032917,
+   "pearson_dots": -0.0045508118415288215,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06174642800233707,
+   "reverse_overlap_3px": 0.06962765957446808
+  },
+  {
+   "file": "a8dc50f3b0b2c77c9829da8875ae23007d5efbdfe1b3c2b8c1535790c9982f95.tif",
+   "support": 240138,
+   "pearson_surface": 0.06838132292269695,
+   "pearson_dots": 0.017933686942224008,
+   "dotfield": false
+  },
+  {
+   "file": "a913f633925e9e683be150ec7826d8dad6cca44589bf832ec5d8e689ccda5c52.tif",
+   "support": 47905,
+   "pearson_surface": 0.2279009870043233,
+   "pearson_dots": 0.1110388045600816,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5684123864662453,
+   "reverse_overlap_3px": 0.6292662561319278
+  },
+  {
+   "file": "a99f68ea3de6a8e464a73a819429486ac619d9b94d725a393d2e0e5d911ab60d.tif",
+   "support": 38554,
+   "pearson_surface": 0.21609080534616154,
+   "pearson_dots": 0.11123794356651832,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6496602168387198
+  },
+  {
+   "file": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb.tif",
+   "support": 61328,
+   "pearson_surface": 0.22100162665843245,
+   "pearson_dots": 0.10419563698883534,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.5729356900600052
+  },
+  {
+   "file": "aa41d0cd4658b2f0887180bf85132453dbf8f9408272d2c880d1fe4e822caa9f.tif",
+   "support": 37600,
+   "pearson_surface": -0.01708912994871361,
+   "pearson_dots": -0.004631126667613947,
+   "dotfield": true,
+   "forward_overlap_3px": 0.06458809157061667,
+   "reverse_overlap_3px": 0.06797872340425531
+  },
+  {
+   "file": "aab59e05fd27dd7bab418db7220dbdfe2a433a116403903f83b26f20cf8be745.tif",
+   "support": 37654,
+   "pearson_surface": 0.021546532779461496,
+   "pearson_dots": 0.006356940409556043,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3683539597386732,
+   "reverse_overlap_3px": 0.2766771126573538
+  },
+  {
+   "file": "aac907db6aadc3d07a4eeb2531a0be200ee0143599ab304921e4f4f742fbc02a.tif",
+   "support": 100000,
+   "pearson_surface": 0.03726197046312487,
+   "pearson_dots": 0.017116571318248803,
+   "dotfield": false
+  },
+  {
+   "file": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73.tif",
+   "support": 40199,
+   "pearson_surface": 0.21051183447441568,
+   "pearson_dots": 0.10856750253406708,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6252891862981667
+  },
+  {
+   "file": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be.tif",
+   "support": 5167373,
+   "pearson_surface": 0.22170256632595806,
+   "pearson_dots": 0.06782924322186536,
+   "dotfield": false
+  },
+  {
+   "file": "ab28c325ee57b49b0d518743c392754fff490b6861545ce04f51e795acef601d.tif",
+   "support": 37654,
+   "pearson_surface": 0.009961286829051775,
+   "pearson_dots": 0.0019160177911654711,
+   "dotfield": true,
+   "forward_overlap_3px": 0.20319222393371222,
+   "reverse_overlap_3px": 0.1946141180219897
+  },
+  {
+   "file": "ab9076de63bd76fd8857b0dba81f6c19be4a95377cb52802f71ccf177cf9b9ce.tif",
+   "support": 33739,
+   "pearson_surface": 0.03665643975208885,
+   "pearson_dots": 0.013056299744476444,
+   "dotfield": true,
+   "forward_overlap_3px": 0.272693472141074,
+   "reverse_overlap_3px": 0.3392513115385755
+  },
+  {
+   "file": "abcb616ee7a118374bd1e477c7e636c50e55b29e2ec12b3b1a355428142dedd2.tif",
+   "support": 789722,
+   "pearson_surface": 0.0970163558443826,
+   "pearson_dots": 0.031822513011517235,
+   "dotfield": false
+  },
+  {
+   "file": "ac4ebc913a172f3415f14a3b47b169af03798cff3a643ffd0a89451b869259be.tif",
+   "support": 33766,
+   "pearson_surface": 0.03850205439982083,
+   "pearson_dots": 0.014288121593830616,
+   "dotfield": true,
+   "forward_overlap_3px": 0.27739416795028415,
+   "reverse_overlap_3px": 0.346472783273115
+  },
+  {
+   "file": "ac7c6ac1d0cb136086f90fbee2901faccb893b938d27434998ad73f636a08186.tif",
+   "support": 37654,
+   "pearson_surface": -0.004865144958976437,
+   "pearson_dots": -0.0014012978996777896,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1647368141498911,
+   "reverse_overlap_3px": 0.1213682477293249
+  },
+  {
+   "file": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6.tif",
+   "support": 40199,
+   "pearson_surface": 0.21051183447441568,
+   "pearson_dots": 0.10856750253406708,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6252891862981667
+  },
+  {
+   "file": "acf00361263a14c29fc6292bce2f10f862ec3ac258e1cd123a8a17c37bd5d203.tif",
+   "support": 37654,
+   "pearson_surface": 0.018598391400376318,
+   "pearson_dots": 0.005821889491676721,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3010835502204281,
+   "reverse_overlap_3px": 0.2672226058320497
+  },
+  {
+   "file": "ad52f4c2704f2a8721f74b736dc139b6b9e11cbf6130c3b971b91cfb3661ac84.tif",
+   "support": 123779,
+   "pearson_surface": 0.3207502658931233,
+   "pearson_dots": 0.13554903510651828,
+   "dotfield": false
+  },
+  {
+   "file": "ad5ba91174b637bb77f399ae35506bebfa920a2e159ab593492f9baa64f3389f.tif",
+   "support": 292190,
+   "pearson_surface": 0.10879465703485026,
+   "pearson_dots": 0.029227026574137584,
+   "dotfield": false
+  },
+  {
+   "file": "ad9750be86acf6b8c253dcd8f1ee6487c2ea8327a582a8c9e6a765d16037d319.tif",
+   "support": 180000,
+   "pearson_surface": 0.008528653764725403,
+   "pearson_dots": -0.0013605178854734288,
+   "dotfield": false
+  },
+  {
+   "file": "ae5c5aafce85a395af73944ab10f3fc2cad7bcc1244d49a52d53443bd0f5c3c2.tif",
+   "support": 100000,
+   "pearson_surface": 0.037249013875945966,
+   "pearson_dots": 0.01676971842387345,
+   "dotfield": false
+  },
+  {
+   "file": "aeaa9a46236a658d91a05be48d54f14b44804c967d590314caeb2c0a82511f60.tif",
+   "support": 56605,
+   "pearson_surface": 0.03333189594351538,
+   "pearson_dots": 0.01107258734649005,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3745418813406278,
+   "reverse_overlap_3px": 0.3176221181874393
+  },
+  {
+   "file": "b00328ce401cf5be5c149e668efbbaa911815fe1f2847719c3ff8576fff2ea31.tif",
+   "support": 741536,
+   "pearson_surface": 0.04264897978974918,
+   "pearson_dots": 0.01343252267074264,
+   "dotfield": false
+  },
+  {
+   "file": "b00a6fb6cab70d0f957308e297695c4032ab97997a41a15ff1295add3df31a26.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "b023dc8a709dd5e806c991c586b776bd53e48d7ad34f1eedaf51b407c2462239.tif",
+   "support": 452679,
+   "pearson_surface": -0.012760317979779329,
+   "pearson_dots": -0.003602469816013276,
+   "dotfield": false
+  },
+  {
+   "file": "b0afa9ecc6ff5dbc9ee55cd4e32a818113411aad911e2dae7c87b72d2715530f.tif",
+   "support": 759775,
+   "pearson_surface": 0.36788595784322853,
+   "pearson_dots": 0.07823281569599429,
+   "dotfield": false
+  },
+  {
+   "file": "b33684ae033512a1a1c7d2cfccd128955fedfdff2a8fed6c7585a755b1b58b3c.tif",
+   "support": 310042,
+   "pearson_surface": 0.09962208168549173,
+   "pearson_dots": 0.027868696309479836,
+   "dotfield": false
+  },
+  {
+   "file": "b430615afe94c317d147122f274c85d2d96f2f35369b25ee1116c12c79a3efd8.tif",
+   "support": 15907,
+   "pearson_surface": 0.01646982341876199,
+   "pearson_dots": 0.006287791826748813,
+   "dotfield": true,
+   "forward_overlap_3px": 0.09836936314866947,
+   "reverse_overlap_3px": 0.2855346702709499
+  },
+  {
+   "file": "b437766e894e7b33378d35513f835d650937464991dc6429701ac11202cfa708.tif",
+   "support": 26000,
+   "pearson_surface": 0.06579540637336266,
+   "pearson_dots": 0.01889424756850688,
+   "dotfield": true,
+   "forward_overlap_3px": 0.30198650873745153,
+   "reverse_overlap_3px": 0.4915769230769231
+  },
+  {
+   "file": "b437efcec17fb4582a3ff2f5f6ce6a179545c1e21fcd51e0c4b828cfd185d631.tif",
+   "support": 99999,
+   "pearson_surface": 0.004013538110496523,
+   "pearson_dots": 0.0011614642255958567,
+   "dotfield": false
+  },
+  {
+   "file": "b44248ee7ca46405326b81998c5e4c417971d0596c01d3f995f6dd73f3997707.tif",
+   "support": 106138,
+   "pearson_surface": 0.2122814002438563,
+   "pearson_dots": 0.0873250467435623,
+   "dotfield": false
+  },
+  {
+   "file": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2.tif",
+   "support": 206895,
+   "pearson_surface": 1.740848602158032e-05,
+   "pearson_dots": -0.0008195885034996385,
+   "dotfield": false
+  },
+  {
+   "file": "b60b3a668f80564133af5a7c99fd5c50879ac8f0614e6ca73a0540f80eddb75a.tif",
+   "support": 55992,
+   "pearson_surface": 0.23386066533465633,
+   "pearson_dots": 0.10984518320947209,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5699261698624316,
+   "reverse_overlap_3px": 0.6271788826975282
+  },
+  {
+   "file": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33.tif",
+   "support": 40199,
+   "pearson_surface": 0.21051183447441568,
+   "pearson_dots": 0.10856750253406708,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.6252891862981667
+  },
+  {
+   "file": "b6ba77cfb4b78c76858131edcb97d2878640a573b1482a8b509838b216a89ff4.tif",
+   "support": 123779,
+   "pearson_surface": 0.29812233949264666,
+   "pearson_dots": 0.12348077187617082,
+   "dotfield": false
+  },
+  {
+   "file": "b6d91ba6f6a703c45bbd71dca43209f95521be52dfa4d9ae96fc8270c392740c.tif",
+   "support": 80000,
+   "pearson_surface": 0.004299504483201397,
+   "pearson_dots": 0.004368835299047506,
+   "dotfield": true,
+   "forward_overlap_3px": 0.25386413130079144,
+   "reverse_overlap_3px": 0.219925
+  },
+  {
+   "file": "b733cfdbf0d479e1c0eea06f75ef61ba55f14409f2fa9a5876ef7234f294e7df.tif",
+   "support": 37447,
+   "pearson_surface": 0.17609989470069512,
+   "pearson_dots": 0.08528280339007394,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5834439900143411,
+   "reverse_overlap_3px": 0.6268859988784148
+  },
+  {
+   "file": "b748e0f97738a5e3b0feaf35dab340ff1dcedd6b8d2124f2b54b5f1b0f14d7d3.tif",
+   "support": 786170,
+   "pearson_surface": 0.55336688130938,
+   "pearson_dots": 0.14063127095766656,
+   "dotfield": false
+  },
+  {
+   "file": "b7e39108f9718021edaac2920680ee49d3ffdcacab93e38822081556407d6010.tif",
+   "support": 760580,
+   "pearson_surface": 0.4634327242748351,
+   "pearson_dots": 0.08532677819334748,
+   "dotfield": false
+  },
+  {
+   "file": "b7ea86e8893434e3ea6616cdba07ac3e55e3b8bd0bc42add68bdf5d4084efc22.tif",
+   "support": 38100,
+   "pearson_surface": 0.05601345305316643,
+   "pearson_dots": 0.015675274236826492,
+   "dotfield": true,
+   "forward_overlap_3px": 0.35233972486322834,
+   "reverse_overlap_3px": 0.4220997375328084
+  },
+  {
+   "file": "b83ea0e7074882ceee31de89695281c00ade51f26a0a7048f628f60058755356.tif",
+   "support": 427862,
+   "pearson_surface": -0.056892217036262065,
+   "pearson_dots": -0.018155711474157427,
+   "dotfield": false
+  },
+  {
+   "file": "b8a2c58ad78cbe29fc90a60c64bc9928ebc29041c9771e7af5c554f69781820c.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5376039680946147,
+   "pearson_dots": 0.15643706558800857,
+   "dotfield": false
+  },
+  {
+   "file": "b8d0bdc55b8ef20ba7ccf5a2d43773092663f4477967891ab1aab9327c80a69c.tif",
+   "support": 37654,
+   "pearson_surface": 0.007340874521837702,
+   "pearson_dots": 0.002263800887785619,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14399532586179423,
+   "reverse_overlap_3px": 0.2356987305465555
+  },
+  {
+   "file": "b9530b70065da1f5e9da82caf4f5aaba3d7175dbbbfb2851e4b2ab2dd13aa4f1.tif",
+   "support": 791389,
+   "pearson_surface": 0.545881348748266,
+   "pearson_dots": 0.1377414932418599,
+   "dotfield": false
+  },
+  {
+   "file": "b988cbce0f4c2d839151cb7f9f6e5577fdad2f355ec8ce7186feddc7e6e58232.tif",
+   "support": 40000,
+   "pearson_surface": 0.21297000604723226,
+   "pearson_dots": 0.10970355198387943,
+   "dotfield": true,
+   "forward_overlap_3px": 0.582275455462899,
+   "reverse_overlap_3px": 0.64325
+  },
+  {
+   "file": "b9ca8c093d3b0812112f2c62b06e2047a48156e71136c735962ececfb20372bf.tif",
+   "support": 33766,
+   "pearson_surface": 0.03850205439982083,
+   "pearson_dots": 0.014288121593830616,
+   "dotfield": true,
+   "forward_overlap_3px": 0.27739416795028415,
+   "reverse_overlap_3px": 0.346472783273115
+  },
+  {
+   "file": "b9f2bc4d7e63df5f79f28c941eb3d6077d8b89f2a03ff1bbe3ae96183c7d4fb6.tif",
+   "support": 207906,
+   "pearson_surface": 0.0015221900734356537,
+   "pearson_dots": 0.000575223725492667,
+   "dotfield": false
+  },
+  {
+   "file": "ba1ef907a699a879135062235eae5acd43c2adc9b616653e1e609a9b59134398.tif",
+   "support": 54959,
+   "pearson_surface": 0.023103454643243437,
+   "pearson_dots": 0.008595673180708705,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3332448079885271,
+   "reverse_overlap_3px": 0.2649429574773922
+  },
+  {
+   "file": "ba5e4e64e28a224c9380ce8b0ce8dfe727991ae92f2801003ab03262c244aa43.tif",
+   "support": 5167373,
+   "pearson_surface": -0.3833736474131722,
+   "pearson_dots": -0.09182572905254256,
+   "dotfield": false
+  },
+  {
+   "file": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd.tif",
+   "support": 37654,
+   "pearson_surface": 0.2190137317994546,
+   "pearson_dots": 0.11264480524589501,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5643490731396399,
+   "reverse_overlap_3px": 0.6620544962022628
+  },
+  {
+   "file": "bb517a03bbce13900d8bc973365ffbea077a580a706edb5fc8587fba1a659847.tif",
+   "support": 44069,
+   "pearson_surface": 0.04499254894159039,
+   "pearson_dots": 0.013878472390563206,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3331651351782015,
+   "reverse_overlap_3px": 0.3631577753069051
+  },
+  {
+   "file": "bbce3ab4b8e353c63681c18d35b6bd466abc9fa3cc3ab393529b5cd4092c9b51.tif",
+   "support": 51819,
+   "pearson_surface": -0.0032079213706654535,
+   "pearson_dots": -0.001018468244516896,
+   "dotfield": true,
+   "forward_overlap_3px": 0.03131141445795931,
+   "reverse_overlap_3px": 0.13929253748625023
+  },
+  {
+   "file": "bc16bea3e53004c2d8d2b474f3189f4924e6cb297a69a2ac9413d9f3a74cab64.tif",
+   "support": 34546,
+   "pearson_surface": 0.18977003941711387,
+   "pearson_dots": 0.10164208848087312,
+   "dotfield": true,
+   "forward_overlap_3px": 0.566712699845966,
+   "reverse_overlap_3px": 0.6214033462629538
+  },
+  {
+   "file": "bc2dc2ec9b2f584e1e7529cd7a1b4698de5b4e58cc8cb61754795e48b9033bc4.tif",
+   "support": 43038,
+   "pearson_surface": 0.029059054524089797,
+   "pearson_dots": 0.009849024201419232,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3782333882190471,
+   "reverse_overlap_3px": 0.29780658952553557
+  },
+  {
+   "file": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c.tif",
+   "support": 41865,
+   "pearson_surface": 0.19863648378849394,
+   "pearson_dots": 0.0995713900197128,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5664205662081054,
+   "reverse_overlap_3px": 0.6006927027349815
+  },
+  {
+   "file": "bcf76cf1e961cf67cb4d018dcbcfd7c01124f28a8b99251fafe4c8a336e45bab.tif",
+   "support": 37654,
+   "pearson_surface": 0.07424855359476772,
+   "pearson_dots": 0.021766406844435485,
+   "dotfield": true,
+   "forward_overlap_3px": 0.49182025813990543,
+   "reverse_overlap_3px": 0.46242099112976043
+  },
+  {
+   "file": "bd1e3d056e83e792aed8c77b3249f833d119320779b94d2eb7c5b65ac5161428.tif",
+   "support": 344041,
+   "pearson_surface": -0.0010658753697813904,
+   "pearson_dots": 0.0002739656637417053,
+   "dotfield": false
+  },
+  {
+   "file": "bdbcb62e8af6aaaa02b0baad19c80f15be5610aa8d7abddf20841408a58e5a66.tif",
+   "support": 100988,
+   "pearson_surface": 0.06510369623179518,
+   "pearson_dots": 0.02355667266249027,
+   "dotfield": false
+  },
+  {
+   "file": "bdc045934e4a2e33a90093ef07e4968f9fffb016ce3ff3e780bbe7fa5c32977a.tif",
+   "support": 95927,
+   "pearson_surface": 0.04514371837031524,
+   "pearson_dots": 0.015188051026568977,
+   "dotfield": false
+  },
+  {
+   "file": "be7915f2f68bb077b486a3c210c6fe6ee6c831f5bc21a56761613906f532ea8c.tif",
+   "support": 40000,
+   "pearson_surface": 0.06388640605476772,
+   "pearson_dots": 0.016551495445607373,
+   "dotfield": true,
+   "forward_overlap_3px": 0.09438572263238966,
+   "reverse_overlap_3px": 0.407325
+  },
+  {
+   "file": "bef0881aadc8366f1a08e13aac119cfa71492750e93426105b9e5745c7d701bf.tif",
+   "support": 40000,
+   "pearson_surface": 0.042480930419843264,
+   "pearson_dots": 0.012683140812325069,
+   "dotfield": true,
+   "forward_overlap_3px": 0.203829606416317,
+   "reverse_overlap_3px": 0.37515
+  },
+  {
+   "file": "bf3b3914b1730596583bf84483f8bcd67202836944f4044464bfaaeaf67ed913.tif",
+   "support": 44090,
+   "pearson_surface": 0.02192511724442578,
+   "pearson_dots": 0.006548815729357787,
+   "dotfield": true,
+   "forward_overlap_3px": 0.27317150900302756,
+   "reverse_overlap_3px": 0.2715128146972102
+  },
+  {
+   "file": "bf816036a43b6823f69b0ad7fb61fa3dd6cda5e0e6e451d123e83dfed374a47b.tif",
+   "support": 38654,
+   "pearson_surface": 0.21585452030513977,
+   "pearson_dots": 0.11118142902968352,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5670313910872683,
+   "reverse_overlap_3px": 0.6476173229161277
+  },
+  {
+   "file": "c02930644a5c3b1051a57c5f2092bb1c942d6adb07d6ca76be205ad8e0d46ab9.tif",
+   "support": 44069,
+   "pearson_surface": 0.042904707355041864,
+   "pearson_dots": 0.012962931959724009,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3458331120199713,
+   "reverse_overlap_3px": 0.36000363067008556
+  },
+  {
+   "file": "c09ebb73c49ef8553bf4834ef93856c870cdea72551e4268769299c2a4d31d4d.tif",
+   "support": 45890,
+   "pearson_surface": 0.1938947290628532,
+   "pearson_dots": 0.10083326437493602,
+   "dotfield": true,
+   "forward_overlap_3px": 0.573989483189037,
+   "reverse_overlap_3px": 0.5559599041185443
+  },
+  {
+   "file": "c11744b1c4c5694c6485a287f7c6391b2da2ddaf2a90df70a63998c8aee57893.tif",
+   "support": 37654,
+   "pearson_surface": 0.1470339554671174,
+   "pearson_dots": 0.0417773111729781,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1360280448292346,
+   "reverse_overlap_3px": 0.664763371753333
+  },
+  {
+   "file": "c11e495e5817730ad5f0fdc368b810f79050cbb6bd65e98c98123b7921ed336b.tif",
+   "support": 513786,
+   "pearson_surface": 0.0026836887609036114,
+   "pearson_dots": 0.0017953080704181095,
+   "dotfield": false
+  },
+  {
+   "file": "c12533bb980234c3a706af641d4f1d514bbbe482714b2ebcac3b10f3e72a7a3f.tif",
+   "support": 206895,
+   "pearson_surface": 1.740848602158032e-05,
+   "pearson_dots": -0.0008195885034996385,
+   "dotfield": false
+  },
+  {
+   "file": "c1da7dd9c44e05382b67367a8eba1987fca5594e33bf23812d308f37112dadb4.tif",
+   "support": 335054,
+   "pearson_surface": 0.04718336336867972,
+   "pearson_dots": 0.015805426496238596,
+   "dotfield": false
+  },
+  {
+   "file": "c202a579ce33ea385a117f233857714150f8d68a5d6e8e46ef820b428e08ff33.tif",
+   "support": 21041,
+   "pearson_surface": -0.007315727103311081,
+   "pearson_dots": -0.0022268176186771224,
+   "dotfield": true,
+   "forward_overlap_3px": 0.020475912253678227,
+   "reverse_overlap_3px": 0.09619314671355925
+  },
+  {
+   "file": "c219bd644e6f7a4071dc429e29b909a2296967b0657bf456bb6675413ee76cb2.tif",
+   "support": 6776,
+   "pearson_surface": 0.013577196997882044,
+   "pearson_dots": 0.0029943868535365595,
+   "dotfield": true,
+   "forward_overlap_3px": 0.004222658947256599,
+   "reverse_overlap_3px": 0.2752361275088548
+  },
+  {
+   "file": "c24a8e3ce7ef2c30c2a44fe33bd901c6795ff02eca7004e135e2b588cce81623.tif",
+   "support": 40000,
+   "pearson_surface": 0.009401744288252422,
+   "pearson_dots": 0.0034146669594591014,
+   "dotfield": true,
+   "forward_overlap_3px": 0.21968449567111065,
+   "reverse_overlap_3px": 0.19705
+  },
+  {
+   "file": "c3185ec459f84c5fd9a9c117f4611c25ec754e1a113c12139baca60e29501d74.tif",
+   "support": 160000,
+   "pearson_surface": 0.011881854026240384,
+   "pearson_dots": 0.003797525037945462,
+   "dotfield": false
+  },
+  {
+   "file": "c36696693639749791286bcd58e48a78ff79d4651b63fc33d273aab8191df0d4.tif",
+   "support": 335879,
+   "pearson_surface": 0.24174274095573917,
+   "pearson_dots": 0.0967958973532398,
+   "dotfield": false
+  },
+  {
+   "file": "c36d8fea85ccd9f832d44f18c22d950aa6231da802c812af6e3a56bb136a0bf6.tif",
+   "support": 40000,
+   "pearson_surface": 0.21297000604723226,
+   "pearson_dots": 0.10970355198387943,
+   "dotfield": true,
+   "forward_overlap_3px": 0.582275455462899,
+   "reverse_overlap_3px": 0.64325
+  },
+  {
+   "file": "c391ae7a5d0d4b25c69f219110d808dffbe08fa0148c0241984eca9590edc4e6.tif",
+   "support": 37654,
+   "pearson_surface": 0.002163754848624446,
+   "pearson_dots": 0.0010331837766663027,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14051627981090986,
+   "reverse_overlap_3px": 0.16654273118393795
+  },
+  {
+   "file": "c3a08704d46c84acf13141f5df5476dd24e1fa0f55faa5aa77ca73b53621befc.tif",
+   "support": 37654,
+   "pearson_surface": 0.07365841012799433,
+   "pearson_dots": 0.02256898322126015,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3995060285759813,
+   "reverse_overlap_3px": 0.47187549795506456
+  },
+  {
+   "file": "c3a0cbb14ca60f66934223e4455b970481d0229d2b8095afb3f023233e607621.tif",
+   "support": 46090,
+   "pearson_surface": 0.1938666257274519,
+   "pearson_dots": 0.10060514771131042,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5718648749136878,
+   "reverse_overlap_3px": 0.5535257105662834
+  },
+  {
+   "file": "c3bf15a0471c5f00d3a436f2328ef443564a955f44a32776485e706344529839.tif",
+   "support": 44069,
+   "pearson_surface": 0.040316181111597967,
+   "pearson_dots": 0.01227009055260534,
+   "dotfield": true,
+   "forward_overlap_3px": 0.33521007064322517,
+   "reverse_overlap_3px": 0.3492023871655813
+  },
+  {
+   "file": "c44e791702c50bc1189325b4febb6f6acd2cf6ca1338514df4b4b95dc31f4c53.tif",
+   "support": 90000,
+   "pearson_surface": 0.02435497952584311,
+   "pearson_dots": 0.00903016511836438,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5259202209592606,
+   "reverse_overlap_3px": 0.24495555555555557
+  },
+  {
+   "file": "c467bbdff23d2585b4e444cb239bbd45bc6d6372cff713aa8f7670ec86908697.tif",
+   "support": 0,
+   "pearson_surface": 0.0,
+   "pearson_dots": 0.0,
+   "dotfield": false
+  },
+  {
+   "file": "c4bc4fb37210d34c802e4ea94e98f2593c7d3b29ed80cfa712f88cf071a3b853.tif",
+   "support": 40000,
+   "pearson_surface": 0.01617574743908366,
+   "pearson_dots": 0.005413749555174818,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2713921495724226,
+   "reverse_overlap_3px": 0.25695
+  },
+  {
+   "file": "c4d6583474edbb6d4c1ce454eab8388f051596c7bd9d7fc8091b6d18a8d0b197.tif",
+   "support": 33587,
+   "pearson_surface": 0.04725443444318434,
+   "pearson_dots": 0.013541699274914762,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3211876560259202,
+   "reverse_overlap_3px": 0.41709590019948195
+  },
+  {
+   "file": "c5179435bacc705d564e36af7466fe6374b6816875cbda2eab2da85ec12e9988.tif",
+   "support": 90000,
+   "pearson_surface": 0.02435497952584311,
+   "pearson_dots": 0.00903016511836438,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5259202209592606,
+   "reverse_overlap_3px": 0.24495555555555557
+  },
+  {
+   "file": "c532e030ff645de7d64fa1437f55d5175339de9b6ca385d68e9f8637f651560f.tif",
+   "support": 40000,
+   "pearson_surface": 0.0325099367564759,
+   "pearson_dots": 0.010268664430487793,
+   "dotfield": true,
+   "forward_overlap_3px": 0.43071121262017315,
+   "reverse_overlap_3px": 0.352175
+  },
+  {
+   "file": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9.tif",
+   "support": 37654,
+   "pearson_surface": 0.2190137317994546,
+   "pearson_dots": 0.11264480524589501,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5643490731396399,
+   "reverse_overlap_3px": 0.6620544962022628
+  },
+  {
+   "file": "c58fe0551e120678fff190239146985d0b2f7255255535fb5fb637a05cb40af3.tif",
+   "support": 40000,
+   "pearson_surface": 0.08524047212369973,
+   "pearson_dots": 0.027767127670938738,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5330111010782387,
+   "reverse_overlap_3px": 0.5368
+  },
+  {
+   "file": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "c5ea501eba0ab840d26f0c017d01074c4bd9040ec5e2c5ac19bde8655d150e64.tif",
+   "support": 172974,
+   "pearson_surface": 0.1558607916879464,
+   "pearson_dots": 0.043674373407138256,
+   "dotfield": false
+  },
+  {
+   "file": "c640b71c7c57066dd77bbd42fcb6c436d0a8c201de6b0ec1d88ab25976089501.tif",
+   "support": 18524,
+   "pearson_surface": 0.009342460244795382,
+   "pearson_dots": 0.0031225098224282053,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14596058851649227,
+   "reverse_overlap_3px": 0.23261714532498382
+  },
+  {
+   "file": "c656cc4e2278cc1fda0ca4b291da3142087dd64cbe178a77c68f44a6fc94fdf0.tif",
+   "support": 511996,
+   "pearson_surface": 0.05039220472827297,
+   "pearson_dots": 0.01822537775072218,
+   "dotfield": false
+  },
+  {
+   "file": "c69d54a5730942c41a9ca7e2f2ee1e9d170c47761c63ff1d3f4e5e9d1af9bcbe.tif",
+   "support": 72768,
+   "pearson_surface": -0.0005258416721137202,
+   "pearson_dots": -0.0006614074740715608,
+   "dotfield": true,
+   "forward_overlap_3px": 0.02467201359749296,
+   "reverse_overlap_3px": 0.1197504397537379
+  },
+  {
+   "file": "c6b9351fe45dde5559d3b7ee09c7e8f28d137fa03f7dde95ef3b8fbdf71245e0.tif",
+   "support": 37654,
+   "pearson_surface": 0.0681683443054972,
+   "pearson_dots": 0.021284861018348252,
+   "dotfield": true,
+   "forward_overlap_3px": 0.11703935836830084,
+   "reverse_overlap_3px": 0.49851277420725554
+  },
+  {
+   "file": "c79337229ed304df532368bb2e82fcbf0c9388c9dbd9f3bf451de7f6cfbcea93.tif",
+   "support": 35000,
+   "pearson_surface": 0.009693376198931201,
+   "pearson_dots": 0.0017465651796542908,
+   "dotfield": true,
+   "forward_overlap_3px": 0.18988686460933765,
+   "reverse_overlap_3px": 0.1951142857142857
+  },
+  {
+   "file": "c7e980f472113ff1b3378b9d08a4a361cece5984d07fe93e4b3a6e98fdf8068e.tif",
+   "support": 41200,
+   "pearson_surface": 0.049254166541600655,
+   "pearson_dots": 0.015575182531923961,
+   "dotfield": true,
+   "forward_overlap_3px": 0.47580602326446064,
+   "reverse_overlap_3px": 0.36094660194174755
+  },
+  {
+   "file": "c8292db9e2c6d16b99a32ceae3d1652eb15019c8faa6f9d8b6d8b052d15dd582.tif",
+   "support": 80000,
+   "pearson_surface": 0.03764204342058415,
+   "pearson_dots": 0.011280090799153198,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4430339406171987,
+   "reverse_overlap_3px": 0.285875
+  },
+  {
+   "file": "c88237daa47c4f4f8bf9061677c1f05a52239c4d7a7c677f7329861de27af836.tif",
+   "support": 24881,
+   "pearson_surface": 0.0072841147087591195,
+   "pearson_dots": 0.0028167842315910034,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05959526212354597,
+   "reverse_overlap_3px": 0.22302158273381295
+  },
+  {
+   "file": "c9155f228cdca724ebaf4fa65984f37637a5b4a710595ca1928f6c896addaa47.tif",
+   "support": 5165997,
+   "pearson_surface": 0.1851110283954481,
+   "pearson_dots": 0.058298767525194965,
+   "dotfield": false
+  },
+  {
+   "file": "c966def73cfb3177af25651c92d32f1f36fc209ad13c49274c125aa06f62f322.tif",
+   "support": 37654,
+   "pearson_surface": 0.0024840675948052905,
+   "pearson_dots": 0.0017822550616965623,
+   "dotfield": true,
+   "forward_overlap_3px": 0.20544962022627078,
+   "reverse_overlap_3px": 0.16194826578849525
+  },
+  {
+   "file": "c97279940f013396fe1f83c4f403f8b39550f9dca87a5d5e43a14bba101aae42.tif",
+   "support": 37654,
+   "pearson_surface": 0.004408916300117736,
+   "pearson_dots": 0.0021300381583159787,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15549476815212196,
+   "reverse_overlap_3px": 0.20714930684655017
+  },
+  {
+   "file": "c9a0e7aa5618c0733fa94882b778c2eb744df4633a07d050598a6a346065f4f5.tif",
+   "support": 37612,
+   "pearson_surface": 0.04745200264333063,
+   "pearson_dots": 0.010383760130719405,
+   "dotfield": true,
+   "forward_overlap_3px": 0.32060338875019917,
+   "reverse_overlap_3px": 0.3758906731894076
+  },
+  {
+   "file": "c9a83c6c8f230ae85b829933a127b65b3832b03b5eaccd8a687ce8bbf1858d5b.tif",
+   "support": 987037,
+   "pearson_surface": 0.0684306624233343,
+   "pearson_dots": 0.032685578220501055,
+   "dotfield": false
+  },
+  {
+   "file": "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef.tif",
+   "support": 192231,
+   "pearson_surface": -0.0049407912667299375,
+   "pearson_dots": -0.0018246079453862172,
+   "dotfield": false
+  },
+  {
+   "file": "cb755e0b91642a085c74bb70eeeb6d89018287226aea93e02d45e9e779df3341.tif",
+   "support": 237507,
+   "pearson_surface": 0.12098686217617342,
+   "pearson_dots": 0.0333831731927913,
+   "dotfield": false
+  },
+  {
+   "file": "cbae340361811abb7e7f6d0a1712d9adad087562c24479cb98439d5561225a17.tif",
+   "support": 37654,
+   "pearson_surface": 0.004408916300117736,
+   "pearson_dots": 0.0021300381583159787,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15549476815212196,
+   "reverse_overlap_3px": 0.20714930684655017
+  },
+  {
+   "file": "cc03eb8472e3c08dc7eea3e67a1d943191be78561fa850e7a0fd4225843f77be.tif",
+   "support": 44090,
+   "pearson_surface": 0.19531446973473066,
+   "pearson_dots": 0.10144567534694177,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5639507090880119,
+   "reverse_overlap_3px": 0.5628713994102971
+  },
+  {
+   "file": "ccbe1de0cfd70cbe7257c04669195f390ca652fa3a76c51505f461f01a1424c6.tif",
+   "support": 116225,
+   "pearson_surface": 0.0205945285495257,
+   "pearson_dots": 0.00798077892674581,
+   "dotfield": false
+  },
+  {
+   "file": "cd0e07fb882927d528a6708044e4f88e63ea21ffa9e6af4b41f045f186a930e0.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5467247113030796,
+   "pearson_dots": 0.15546060498324693,
+   "dotfield": false
+  },
+  {
+   "file": "cd1f9d6ac726288d27c41820a4da9845a30dddbf7b25b15185df11381e523d39.tif",
+   "support": 5167373,
+   "pearson_surface": 0.45724852959126633,
+   "pearson_dots": 0.08422285844081057,
+   "dotfield": false
+  },
+  {
+   "file": "cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337.tif",
+   "support": 550000,
+   "pearson_surface": 0.4692005759081673,
+   "pearson_dots": 0.11476640205621606,
+   "dotfield": false
+  },
+  {
+   "file": "cd7f765a95ea9c71b22abffbf330434597c28057f8a80ed723b753cd0a32d3c6.tif",
+   "support": 13591,
+   "pearson_surface": 0.003413296662478317,
+   "pearson_dots": 0.00039823066113344564,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05693950177935943,
+   "reverse_overlap_3px": 0.21484806121698183
+  },
+  {
+   "file": "ce34944afa302e8a2b7e71502caf18a0d2f71d706dcb6f39397f11a237355961.tif",
+   "support": 37654,
+   "pearson_surface": 0.22361624249772413,
+   "pearson_dots": 0.11186898141496178,
+   "dotfield": true,
+   "forward_overlap_3px": 0.529000902958517,
+   "reverse_overlap_3px": 0.6659584639082169
+  },
+  {
+   "file": "ce3f70fa2e1e7bbea60c8c62a2f805c22d15b8a8905ebec757259617ceb02fbc.tif",
+   "support": 103347,
+   "pearson_surface": 0.07823724314479581,
+   "pearson_dots": 0.02584025245071806,
+   "dotfield": false
+  },
+  {
+   "file": "ce5d85b205ecc937d048982df0e2a52804375dc6785a1085120e19d183abd05b.tif",
+   "support": 16573,
+   "pearson_surface": 0.0019528973396544527,
+   "pearson_dots": 0.0012569437469056122,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0759281882402932,
+   "reverse_overlap_3px": 0.18137935195800398
+  },
+  {
+   "file": "ce749a992baec603460dfeddd068758855cb8b12978268e6ef94f6e23ffd9ee7.tif",
+   "support": 80000,
+   "pearson_surface": 0.07411746897985123,
+   "pearson_dots": 0.021527178953970945,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6414989111382589,
+   "reverse_overlap_3px": 0.3992875
+  },
+  {
+   "file": "cf59ad8290e4f883b6c9d0fd19871a003a4e32bede578860b56ff5815966db40.tif",
+   "support": 740795,
+   "pearson_surface": 0.48069888344101036,
+   "pearson_dots": 0.09131377649089283,
+   "dotfield": false
+  },
+  {
+   "file": "cf645d250f8788929884c4591d6aa61f51152d4f3413b4c3920fc6443e1df6e6.tif",
+   "support": 90000,
+   "pearson_surface": -0.00037655086106315065,
+   "pearson_dots": 5.5332100916684336e-05,
+   "dotfield": true,
+   "forward_overlap_3px": 0.38280129601104795,
+   "reverse_overlap_3px": 0.18906666666666666
+  },
+  {
+   "file": "cfccf7d2d985921a1b27b53a6a8af10824aa8e3111abb155d721e29ff6f0e317.tif",
+   "support": 507776,
+   "pearson_surface": -0.0147609770387538,
+   "pearson_dots": -0.004296560051320402,
+   "dotfield": false
+  },
+  {
+   "file": "d028ba16c9232c7f1bd3074a5891ef25cd5d7265d5c2a70e2f82bec9082da6e2.tif",
+   "support": 35000,
+   "pearson_surface": 0.0571598718316145,
+   "pearson_dots": 0.01841899157264572,
+   "dotfield": true,
+   "forward_overlap_3px": 0.34729378020927393,
+   "reverse_overlap_3px": 0.42634285714285713
+  },
+  {
+   "file": "d07cbb6f69076e76f1a8a4806ddc5639421bc9a59b10d80a09b9fb423bb99427.tif",
+   "support": 91533,
+   "pearson_surface": 0.04153198572408049,
+   "pearson_dots": 0.018733057878067273,
+   "dotfield": false
+  },
+  {
+   "file": "d0c5fd6825b544eb08672303c11292eb99d6105e42a41eac0e5a211a3fdc69e5.tif",
+   "support": 516738,
+   "pearson_surface": 0.20592852233881503,
+   "pearson_dots": 0.08341868573697427,
+   "dotfield": false
+  },
+  {
+   "file": "d2bfb0f79328399354943bd166f2d2a206e9a49da46b4f1e8ccba0e4f0d8d002.tif",
+   "support": 16681,
+   "pearson_surface": 0.0057428027227493,
+   "pearson_dots": 0.00048079704019250187,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1045572847506241,
+   "reverse_overlap_3px": 0.22684491337449794
+  },
+  {
+   "file": "d2f5ebb1ffe742d829267c44add47113ed64dd84274dae560a66fcf390c37a19.tif",
+   "support": 146136,
+   "pearson_surface": 0.09904229046272385,
+   "pearson_dots": 0.027933454189279408,
+   "dotfield": false
+  },
+  {
+   "file": "d34ad9224ccbd7c7c2bad4382272c80afc2f1850daf46ae7b1f9c6edcf1939f4.tif",
+   "support": 33739,
+   "pearson_surface": 0.03665643975208885,
+   "pearson_dots": 0.013056299744476444,
+   "dotfield": true,
+   "forward_overlap_3px": 0.272693472141074,
+   "reverse_overlap_3px": 0.3392513115385755
+  },
+  {
+   "file": "d3ce73e0cfd340dc974c0117420213f36ea97ffd46a6f46b8e294a2de9c853de.tif",
+   "support": 37654,
+   "pearson_surface": 0.0982933328773158,
+   "pearson_dots": 0.016763680762271832,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14250810006904976,
+   "reverse_overlap_3px": 0.549928294470707
+  },
+  {
+   "file": "d4132a9214beacdb9a2c1a81dd14e737729ededd2a296f9e32bf908a62783c74.tif",
+   "support": 5167373,
+   "pearson_surface": 0.3662927665979604,
+   "pearson_dots": 0.06794674772677031,
+   "dotfield": false
+  },
+  {
+   "file": "d478ccb13155d200c18b6fe6d80445992bc42228ee592578757c912dff3ff1e3.tif",
+   "support": 5167373,
+   "pearson_surface": 0.5506020830528495,
+   "pearson_dots": 0.14818430526852716,
+   "dotfield": false
+  },
+  {
+   "file": "d4a5de924057eec12c4e4ee9bdb5de361754b7bc9ace8691f86cb1ace51e57e2.tif",
+   "support": 277507,
+   "pearson_surface": 0.10242366121431075,
+   "pearson_dots": 0.02773471143520322,
+   "dotfield": false
+  },
+  {
+   "file": "d527678fe06e92777f4d4bce1a1833ae3c69de74c75cdee06aa4289e4f82f3c9.tif",
+   "support": 1138851,
+   "pearson_surface": 0.44022982266108945,
+   "pearson_dots": 0.12918387060289352,
+   "dotfield": false
+  },
+  {
+   "file": "d54cf7edc6ec57c29b88dec81fe3fb101efa4fe31fc9c1088664a0c2e5190887.tif",
+   "support": 60068,
+   "pearson_surface": 0.05671082977613202,
+   "pearson_dots": 0.017370338830038135,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4088808625909598,
+   "reverse_overlap_3px": 0.35789438636212295
+  },
+  {
+   "file": "d569d5539972f86a7862add0ce6738275ffd56174b9ef1298b08b8ab1dcd700f.tif",
+   "support": 7222519,
+   "pearson_surface": 0.014791645703902963,
+   "pearson_dots": 0.005359743488274456,
+   "dotfield": false
+  },
+  {
+   "file": "d58eea0074e29ac171b70ba652a4e5bde76e52ce1259a958fd49f558c4eaf459.tif",
+   "support": 3380827,
+   "pearson_surface": 0.0677861331226486,
+   "pearson_dots": 0.02044160075544462,
+   "dotfield": false
+  },
+  {
+   "file": "d6462b76bce1a54920bd4e9d61700f3a1cc2f8dedf89d93651f74d10144c0243.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "d67b9bddc8af86d128fcebffecb0e91d00ce6db3b0bfb14ae689c2e91f6f5233.tif",
+   "support": 81016,
+   "pearson_surface": -0.020232825635422762,
+   "pearson_dots": -0.006526939860706004,
+   "dotfield": true,
+   "forward_overlap_3px": 0.08009773198066607,
+   "reverse_overlap_3px": 0.05824775353016688
+  },
+  {
+   "file": "d6a3609bd7943fa5f1126a3cc688441aeceee261a76cd6a90a206830400066a4.tif",
+   "support": 244,
+   "pearson_surface": 0.002717240240239997,
+   "pearson_dots": -0.00025761792103700027,
+   "dotfield": true,
+   "forward_overlap_3px": 0.002098050671907367,
+   "reverse_overlap_3px": 0.2336065573770492
+  },
+  {
+   "file": "d6d417af0b551b890528cce49dc5e0404220069138e5eabb4dc98a9c424fd4f1.tif",
+   "support": 24136,
+   "pearson_surface": 0.0014086896375532306,
+   "pearson_dots": 0.0005714411618556642,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05194667233228874,
+   "reverse_overlap_3px": 0.1839990056347365
+  },
+  {
+   "file": "d727c2d661670780dc4d7e2195a979c1178e39ee5472231fd5e8a00b86d653d2.tif",
+   "support": 30000,
+   "pearson_surface": 0.12179448758868079,
+   "pearson_dots": 0.02088643616077244,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4781165347639029,
+   "reverse_overlap_3px": 0.5661666666666667
+  },
+  {
+   "file": "d75ab9e282422d9592bc835c5cf719b22e6c564730de1f5fc42b57fc5bac2c01.tif",
+   "support": 37654,
+   "pearson_surface": 0.004415553619987372,
+   "pearson_dots": 0.0025848314385124825,
+   "dotfield": true,
+   "forward_overlap_3px": 0.15557444096244755,
+   "reverse_overlap_3px": 0.20653848196738725
+  },
+  {
+   "file": "d7977d7b93287f17fbf3cb85f10fdbee4acc5c8453a7faa451e760363433a286.tif",
+   "support": 85526,
+   "pearson_surface": 0.045211271452761326,
+   "pearson_dots": 0.011945148360830986,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6386838051734212,
+   "reverse_overlap_3px": 0.30579005214788485
+  },
+  {
+   "file": "d7fc78a036f325ddb80f94fdda1864b4af0889eb58b0291356945fb1b44e1da0.tif",
+   "support": 103347,
+   "pearson_surface": 0.05375006519869759,
+   "pearson_dots": 0.01717766218230968,
+   "dotfield": false
+  },
+  {
+   "file": "da4193e3a2e0470908b5bd1e28de97f25ee1ce15c57c959d0b623414d200692a.tif",
+   "support": 46090,
+   "pearson_surface": 0.19345048878240462,
+   "pearson_dots": 0.10041154354012133,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5457149056194402
+  },
+  {
+   "file": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a.tif",
+   "support": 40199,
+   "pearson_surface": 0.20405116762490655,
+   "pearson_dots": 0.1054079131756116,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5563021192967547,
+   "reverse_overlap_3px": 0.609841040821911
+  },
+  {
+   "file": "daf5ce1818dc058192bfe9059cc74b3a310c2c814f2f1de76c7ee6bb60ad44dc.tif",
+   "support": 33587,
+   "pearson_surface": 0.04725443444318434,
+   "pearson_dots": 0.013541699274914762,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3211876560259202,
+   "reverse_overlap_3px": 0.41709590019948195
+  },
+  {
+   "file": "dc6a7a597a511152551dcf202ecee280429cf13e977e849058b449cf5ce36fd9.tif",
+   "support": 791389,
+   "pearson_surface": 0.5482155144172056,
+   "pearson_dots": 0.14094998016350813,
+   "dotfield": false
+  },
+  {
+   "file": "dc71c807fbca2cd398f394bcd91b10ecec6b46fe89c2d61f5b1c058fef672811.tif",
+   "support": 18524,
+   "pearson_surface": 0.009342460244795382,
+   "pearson_dots": 0.0031225098224282053,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14596058851649227,
+   "reverse_overlap_3px": 0.23261714532498382
+  },
+  {
+   "file": "dcb057aee8e8232368dc338bfa99e05ef33863ccf5c9ba84cad71c7b44936923.tif",
+   "support": 11498,
+   "pearson_surface": 0.007995333642642537,
+   "pearson_dots": 0.0019419978465828518,
+   "dotfield": true,
+   "forward_overlap_3px": 0.056408349710522124,
+   "reverse_overlap_3px": 0.2582188206644634
+  },
+  {
+   "file": "dd5bb61a617ff6ad779bddbe1eb3a08b050c84f94929942a5fd742f4a44a0296.tif",
+   "support": 25000,
+   "pearson_surface": 0.019903712306037578,
+   "pearson_dots": 0.007405317989397672,
+   "dotfield": true,
+   "forward_overlap_3px": 0.020369681839910767,
+   "reverse_overlap_3px": 0.32168
+  },
+  {
+   "file": "dd5cd18a721196602eaccd8946b047eb8c929cbfdcac033512628f6dd0030f50.tif",
+   "support": 90358,
+   "pearson_surface": 0.07241477657080839,
+   "pearson_dots": 0.02172631002880773,
+   "dotfield": false
+  },
+  {
+   "file": "ddadb8c96cda673b91ddaa0bbed2aa955c358a8f6196c4c4e8fa70d454dd429f.tif",
+   "support": 5167373,
+   "pearson_surface": 0.0,
+   "pearson_dots": 0.0,
+   "dotfield": false
+  },
+  {
+   "file": "de35531d386792da1950eac815f98db8f36304f78debb6b568138d070640d9bd.tif",
+   "support": 49654,
+   "pearson_surface": 0.18664649982677092,
+   "pearson_dots": 0.09745160913929674,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5905083125298773,
+   "reverse_overlap_3px": 0.5255568534257059
+  },
+  {
+   "file": "de47952fe9c0fc15c1aaacd63a04f6c0a6aa15b094f2367ed631c6920e91c1fd.tif",
+   "support": 22000,
+   "pearson_surface": 0.013126113227119846,
+   "pearson_dots": 0.002784804636825141,
+   "dotfield": true,
+   "forward_overlap_3px": 0.19052424709194243,
+   "reverse_overlap_3px": 0.236
+  },
+  {
+   "file": "deda0533e4aa041e3877f58a8d6b9d0f8930fec6db1f66934f649a6583c71201.tif",
+   "support": 55304,
+   "pearson_surface": 0.20912991127382954,
+   "pearson_dots": 0.10052426549500203,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5818239762043873,
+   "reverse_overlap_3px": 0.6028316215825257
+  },
+  {
+   "file": "dedc43dc0167edcf1dca9fa1693b69153c71325d59e47218298e577cd8159fc4.tif",
+   "support": 38654,
+   "pearson_surface": 0.21585452030513977,
+   "pearson_dots": 0.11118142902968352,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5670313910872683,
+   "reverse_overlap_3px": 0.6476173229161277
+  },
+  {
+   "file": "dee5c5c6bc390ed39638f1638819c10d4e1ae52537c4a900930651dfd19754b7.tif",
+   "support": 46090,
+   "pearson_surface": 0.19396481141896194,
+   "pearson_dots": 0.10038734301872261,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5770701651882935,
+   "reverse_overlap_3px": 0.5557604686482968
+  },
+  {
+   "file": "defe590b944651552d7260237f79f309e3c089d03361e130db0e2dd7c87eb326.tif",
+   "support": 123829,
+   "pearson_surface": 0.3115058371816058,
+   "pearson_dots": 0.12754242276638178,
+   "dotfield": false
+  },
+  {
+   "file": "e050b1ec627e8207c1fe5f7530f015d0cf2feb6bb98c5bce225e5db806afb0e3.tif",
+   "support": 246469,
+   "pearson_surface": -0.010680702357587364,
+   "pearson_dots": -0.003042576936471127,
+   "dotfield": false
+  },
+  {
+   "file": "e06f3b34afc9e02239ef554d09b62212c2f2716c66a0f19a8adc1051af7a87aa.tif",
+   "support": 44090,
+   "pearson_surface": 0.013674661295242328,
+   "pearson_dots": 0.003308073130314695,
+   "dotfield": true,
+   "forward_overlap_3px": 0.24709194242311575,
+   "reverse_overlap_3px": 0.23501927874801543
+  },
+  {
+   "file": "e13394d96baf6867f3a6851d9243de74f8d37c581ff003dbdf3e7497f58dab38.tif",
+   "support": 44069,
+   "pearson_surface": 0.04523534449430398,
+   "pearson_dots": 0.013878472390560241,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3426196420035056,
+   "reverse_overlap_3px": 0.36220472440944884
+  },
+  {
+   "file": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a.tif",
+   "support": 38854,
+   "pearson_surface": 0.21544270604661758,
+   "pearson_dots": 0.11083234486966212,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5650926860360121,
+   "reverse_overlap_3px": 0.6474751634323365
+  },
+  {
+   "file": "e1b943c37103db06c96884492a9a5519c89234e8a83fc9b1674f7f436f9cdf45.tif",
+   "support": 44069,
+   "pearson_surface": 0.04523534449430398,
+   "pearson_dots": 0.013878472390560241,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3426196420035056,
+   "reverse_overlap_3px": 0.36220472440944884
+  },
+  {
+   "file": "e1fd0ddff5a4ba76291fd3a9d4c78e7c0b5792be3a263845e93d9ab4c015699f.tif",
+   "support": 5167373,
+   "pearson_surface": 0.026768449086301195,
+   "pearson_dots": 0.0140556115525584,
+   "dotfield": false
+  },
+  {
+   "file": "e229aa9af26018bc80b0cca880d484a5b8362c26ad79ca362423953c32e66597.tif",
+   "support": 28080,
+   "pearson_surface": -0.006315815024218193,
+   "pearson_dots": -0.0018852342223104528,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0029213363786051946,
+   "reverse_overlap_3px": 0.045904558404558406
+  },
+  {
+   "file": "e29e8f04e048a4aa210edbc1128dc39703e9271a11c02a5a391c7753339b0125.tif",
+   "support": 100000,
+   "pearson_surface": 0.03726197046312487,
+   "pearson_dots": 0.017116571318248803,
+   "dotfield": false
+  },
+  {
+   "file": "e3285854e73ae4ba3fce8faea64940fdc4bee3b702eb52d2530a67fb60195196.tif",
+   "support": 14,
+   "pearson_surface": -0.0004428605215328147,
+   "pearson_dots": -0.0001410225202040865,
+   "dotfield": true,
+   "forward_overlap_3px": 2.6557603441865406e-05,
+   "reverse_overlap_3px": 0.07142857142857142
+  },
+  {
+   "file": "e3ce40ccdf285f8fffccc1c55a8c7b48452a921f59d312ded90f7f70f3b52cde.tif",
+   "support": 45000,
+   "pearson_surface": 0.026379737787677434,
+   "pearson_dots": 0.009479562018841294,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3008710893928932,
+   "reverse_overlap_3px": 0.3245111111111111
+  },
+  {
+   "file": "e3ff2258b3835c2ec01bdad7fba7913a5dcf188cf2dff77ca11c2c7a323202f6.tif",
+   "support": 5167373,
+   "pearson_surface": 0.3662927665979604,
+   "pearson_dots": 0.06794674772677031,
+   "dotfield": false
+  },
+  {
+   "file": "e43b4dd66b87891a5d9516e97f8d73a889fbc7c69667ac47f9e33071018fb0e4.tif",
+   "support": 10251,
+   "pearson_surface": 0.07222888923646158,
+   "pearson_dots": 0.023845045368738733,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14582780049928296,
+   "reverse_overlap_3px": 0.5088284069846845
+  },
+  {
+   "file": "e4985b78c4d99e185686de639dffb16084a71cf5b673b1e7474f7c898493c2c3.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "e527ac899dc0b6593b4b0db824a51678fad87111604e74845f5cd71990a1db55.tif",
+   "support": 227642,
+   "pearson_surface": -0.04223445689021544,
+   "pearson_dots": -0.013710372526245643,
+   "dotfield": false
+  },
+  {
+   "file": "e5711e098797ccd5f4dd471290ff3a758d24fe21c29072138bdf770f8ecfd120.tif",
+   "support": 759775,
+   "pearson_surface": 0.45724852517726206,
+   "pearson_dots": 0.08422285684973825,
+   "dotfield": false
+  },
+  {
+   "file": "e5f3684e9b49e8f11019f87e047017c5ab8a46294935bc0c7c80859ca7d2b1ce.tif",
+   "support": 335879,
+   "pearson_surface": 0.24174274095573917,
+   "pearson_dots": 0.0967958973532398,
+   "dotfield": false
+  },
+  {
+   "file": "e691ce310a503e9b1eddf177f2a984f19e344a652f4547aa1d9499f25d47b772.tif",
+   "support": 37654,
+   "pearson_surface": 0.0017192498395226328,
+   "pearson_dots": 0.0003911226752137793,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2074945556912944,
+   "reverse_overlap_3px": 0.1580708556859829
+  },
+  {
+   "file": "e6eb13f671e2663b4f69e94307dfcac840bf9039cb411ab7b815cf029301fa43.tif",
+   "support": 37654,
+   "pearson_surface": 0.003115919888761626,
+   "pearson_dots": 0.0020497805206344615,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2416741913209752,
+   "reverse_overlap_3px": 0.22696127901418175
+  },
+  {
+   "file": "e6eea1956b8f76ffef2f4867a6e2ac0bef078c0c61c3711e44eb07e93cb089d0.tif",
+   "support": 37654,
+   "pearson_surface": 0.052648817392192404,
+   "pearson_dots": 0.015533063651171557,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3087055824082435,
+   "reverse_overlap_3px": 0.3761618951505816
+  },
+  {
+   "file": "e6f08013888b625db7d187d79bb75ba36c45d068081b77a3dd405ab7eec3d472.tif",
+   "support": 47905,
+   "pearson_surface": 0.19725006717230584,
+   "pearson_dots": 0.09983264957214799,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5934562065119243,
+   "reverse_overlap_3px": 0.5919632606199771
+  },
+  {
+   "file": "e6f58dfdcf1eef76df741f748a57e4131ff1b3ccd3d4b4dc89623151e46ef715.tif",
+   "support": 176781,
+   "pearson_surface": 0.10482932036001671,
+   "pearson_dots": 0.022971783757579668,
+   "dotfield": false
+  },
+  {
+   "file": "e6f82d42c751e77f93f79d0c62c6ac0574daf9e35c827b1566753fe26b0984ef.tif",
+   "support": 32369,
+   "pearson_surface": 0.0012326374288193298,
+   "pearson_dots": 0.001186187340244973,
+   "dotfield": true,
+   "forward_overlap_3px": 0.14829765761937644,
+   "reverse_overlap_3px": 0.19966634743118417
+  },
+  {
+   "file": "e746ae6f8028f619bc7ab2a3f848afaf12953a2fa37fe09cb9b1f38060fdb79c.tif",
+   "support": 103348,
+   "pearson_surface": 0.012376881111335484,
+   "pearson_dots": 0.004316864444303777,
+   "dotfield": false
+  },
+  {
+   "file": "e7f0d4b9fd58b90e67538e595680315fb9861e08d8d093c1617b10a584f28b5a.tif",
+   "support": 272853,
+   "pearson_surface": -0.004715118309248946,
+   "pearson_dots": -0.0012233969676399541,
+   "dotfield": false
+  },
+  {
+   "file": "e8f148d08d3d67035a457cb95bdede26242009ea5f50d4322f57da41f690d00c.tif",
+   "support": 272853,
+   "pearson_surface": -0.004715118309248946,
+   "pearson_dots": -0.0012233969676399541,
+   "dotfield": false
+  },
+  {
+   "file": "e9bfb8fd27989c073fc57a04cf6f0f3eca9c49b7f82dfec5c9f10e424e703a91.tif",
+   "support": 791389,
+   "pearson_surface": 0.5495939671621732,
+   "pearson_dots": 0.1507768251209963,
+   "dotfield": false
+  },
+  {
+   "file": "e9f27784afdb5d5a467618bdfcdffbcca48b659d0e0ebb63df9dbbce6ab6bbaa.tif",
+   "support": 20000,
+   "pearson_surface": 0.05677892394733098,
+   "pearson_dots": 0.0195778205012522,
+   "dotfield": true,
+   "forward_overlap_3px": 0.277819089605354,
+   "reverse_overlap_3px": 0.47675
+  },
+  {
+   "file": "ea9774a871929427e60261cdfe2f64fdab0d0c8c2253cf2eac119cc404e28af3.tif",
+   "support": 610,
+   "pearson_surface": -0.0029083201754244712,
+   "pearson_dots": -0.0009309244104307008,
+   "dotfield": true,
+   "forward_overlap_3px": 0.00015934562065119244,
+   "reverse_overlap_3px": 0.009836065573770493
+  },
+  {
+   "file": "eb0411b295be3282b119597a0b52a277ea9aff3bd3d5a853b1ca788975b2b879.tif",
+   "support": 5167373,
+   "pearson_surface": -0.3547206664566393,
+   "pearson_dots": -0.08830975545043135,
+   "dotfield": false
+  },
+  {
+   "file": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d.tif",
+   "support": 121131,
+   "pearson_surface": 0.3311497639831132,
+   "pearson_dots": 0.14326218182950898,
+   "dotfield": false
+  },
+  {
+   "file": "ec6e74f8bb05a878ce77ab4dc7e85ee9ec2ed6bf028b7b772c84b3c52f106ce0.tif",
+   "support": 272853,
+   "pearson_surface": -0.004715118309248946,
+   "pearson_dots": -0.0012233969676399541,
+   "dotfield": false
+  },
+  {
+   "file": "ed30785ce0cac24c820bbb915f1dd75eeed84bac7ec277ef5e21a5f6a3c2974c.tif",
+   "support": 41349,
+   "pearson_surface": 0.16986464742437593,
+   "pearson_dots": 0.08056604065076177,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769639347745259,
+   "reverse_overlap_3px": 0.5612469467218071
+  },
+  {
+   "file": "ed5c312b7c01e95584c7127a88dfc21f373eafaadc86e3efd4302eb3d225ac34.tif",
+   "support": 56481,
+   "pearson_surface": -0.017176986834342794,
+   "pearson_dots": -0.0052645268662524156,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1184469113507197,
+   "reverse_overlap_3px": 0.06402152936385687
+  },
+  {
+   "file": "ed9ca147851f0df0a167d3aafc0481df6bf8adddf486c12034729e2d736ab148.tif",
+   "support": 326,
+   "pearson_surface": 0.00014213381889099867,
+   "pearson_dots": -0.00010757761065477066,
+   "dotfield": true,
+   "forward_overlap_3px": 0.0018855898443724437,
+   "reverse_overlap_3px": 0.18404907975460122
+  },
+  {
+   "file": "ee73ffd76fabbaa1a2e77e17f57947a7db858916d713801e0c3502e49f6acabb.tif",
+   "support": 865145,
+   "pearson_surface": -0.018523060722516978,
+   "pearson_dots": -0.005575718483904689,
+   "dotfield": false
+  },
+  {
+   "file": "eefc7b1210f71872024d057cb09ec88341628bb7d70d7e71c99425c44714fc1e.tif",
+   "support": 15000,
+   "pearson_surface": -0.013234415424105323,
+   "pearson_dots": -0.003988359125523885,
+   "dotfield": true,
+   "forward_overlap_3px": 0.013092898496839644,
+   "reverse_overlap_3px": 0.0374
+  },
+  {
+   "file": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa.tif",
+   "support": 121131,
+   "pearson_surface": 0.3311497639831132,
+   "pearson_dots": 0.14326218182950898,
+   "dotfield": false
+  },
+  {
+   "file": "f0732d40d57b92d3f082eb2b910b6e6951b7238e7616f9e6e9c6c22ee9f1c7f8.tif",
+   "support": 37654,
+   "pearson_surface": 0.07547378578089281,
+   "pearson_dots": 0.024120630883101072,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4004886599033303,
+   "reverse_overlap_3px": 0.47392043342008816
+  },
+  {
+   "file": "f0a06cdb5b80b7713997fba9f38bbf1b4a2fc96e254d51bb723d5946f5b77e26.tif",
+   "support": 40000,
+   "pearson_surface": 0.01617574743908366,
+   "pearson_dots": 0.005413749555174818,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2713921495724226,
+   "reverse_overlap_3px": 0.25695
+  },
+  {
+   "file": "f0b8b48fea7b682054ebc1c52105555858c3a1e753efbd5792c283ef83048ed7.tif",
+   "support": 75308,
+   "pearson_surface": -0.00035447737354959806,
+   "pearson_dots": -0.0009827519655012601,
+   "dotfield": true,
+   "forward_overlap_3px": 0.37106283528974343,
+   "reverse_overlap_3px": 0.18485419875710415
+  },
+  {
+   "file": "f0d697490fc27e9aa1e0c440c69497240f3d8ea70329b398a99902097846feed.tif",
+   "support": 44828,
+   "pearson_surface": 0.05272097851536014,
+   "pearson_dots": 0.017649666508679242,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3892813512508631,
+   "reverse_overlap_3px": 0.3811010975283305
+  },
+  {
+   "file": "f11c8684b152c2ccefc51c1f725491e31499bbef2091a0284b47cc35d785f93e.tif",
+   "support": 237507,
+   "pearson_surface": 0.1179499550256155,
+   "pearson_dots": 0.03242698280748859,
+   "dotfield": false
+  },
+  {
+   "file": "f12e5391bb9cd2709ae7331699bb0876cc4bf3c443f96ea8a5456c858eb67908.tif",
+   "support": 29607,
+   "pearson_surface": -0.0013660222902764098,
+   "pearson_dots": -0.0002635535229199356,
+   "dotfield": true,
+   "forward_overlap_3px": 0.01675784777181707,
+   "reverse_overlap_3px": 0.15401763096565002
+  },
+  {
+   "file": "f1584187b459baf47f75e5daf64de6f7696f9feb14910d3cf2762f7a1119597a.tif",
+   "support": 37723,
+   "pearson_surface": 0.12047394833988101,
+   "pearson_dots": 0.0276668694327695,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6360546024326765,
+   "reverse_overlap_3px": 0.5773931023513507
+  },
+  {
+   "file": "f244f32731a599d4173a8a5b7a8d54636aec0efcdda83ae7649ec0405ded3ef1.tif",
+   "support": 98603,
+   "pearson_surface": -0.02679137031809677,
+   "pearson_dots": -0.009005871700166397,
+   "dotfield": false
+  },
+  {
+   "file": "f28e5cff682662c18d6b15f5d5501e13096b0ab00a76e1640dc93dc5e6e6fc8f.tif",
+   "support": 43038,
+   "pearson_surface": 0.029059054524089797,
+   "pearson_dots": 0.009849024201419232,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3782333882190471,
+   "reverse_overlap_3px": 0.29780658952553557
+  },
+  {
+   "file": "f2b2e033d09520522c55b84826ea9aa6185719498ea17f8047db63dba9afeca4.tif",
+   "support": 5167373,
+   "pearson_surface": 0.12800363256826908,
+   "pearson_dots": 0.04273562622605303,
+   "dotfield": false
+  },
+  {
+   "file": "f2cec409ce3bec5a2805f1fab9a12ab7f72394f8be79cc365134ce43708c6060.tif",
+   "support": 37612,
+   "pearson_surface": 0.04273964229703028,
+   "pearson_dots": 0.008376207458648482,
+   "dotfield": true,
+   "forward_overlap_3px": 0.42994104212035905,
+   "reverse_overlap_3px": 0.3452089758587685
+  },
+  {
+   "file": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca.tif",
+   "support": 155021,
+   "pearson_surface": 0.01737513713671754,
+   "pearson_dots": 0.007301152844672936,
+   "dotfield": false
+  },
+  {
+   "file": "f3f4302cb639f374221f9b2a4a75b784d036327078cadd85bfbb28ffb058a6d7.tif",
+   "support": 99999,
+   "pearson_surface": 0.006790266321272673,
+   "pearson_dots": 0.0019047240708003847,
+   "dotfield": false
+  },
+  {
+   "file": "f3f840b7880b7540ac6260b6b791ea55b2a875646c28401b01960096dc2da291.tif",
+   "support": 37612,
+   "pearson_surface": 0.03546801674054441,
+   "pearson_dots": 0.00671663058306676,
+   "dotfield": true,
+   "forward_overlap_3px": 0.4235406596908695,
+   "reverse_overlap_3px": 0.3402903328724875
+  },
+  {
+   "file": "f43ea85e2b7f20101d719277ccfe24c22a01b65effb9ea4ad39ea193fb843fe5.tif",
+   "support": 44090,
+   "pearson_surface": 0.19022914343420533,
+   "pearson_dots": 0.10406795561791585,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5746003080682,
+   "reverse_overlap_3px": 0.5848945339079157
+  },
+  {
+   "file": "f4826581f563e2a6f88f39cdfd07f7c8f62f0f5f4311451096e48224f0e14552.tif",
+   "support": 773869,
+   "pearson_surface": 0.07685784554638142,
+   "pearson_dots": 0.026378777632742243,
+   "dotfield": false
+  },
+  {
+   "file": "f49b8ae2d90ac3f45f873acf61bb30fe13f7aa3aa262c058c2bf9e10ef134a22.tif",
+   "support": 543625,
+   "pearson_surface": 0.06674127295193578,
+   "pearson_dots": 0.022942727170684164,
+   "dotfield": false
+  },
+  {
+   "file": "f5d137b9c010873f0b4fc11e841d923f359d33c7272ded0da9ac9b7c1efc7cc2.tif",
+   "support": 90358,
+   "pearson_surface": 0.07241477657080839,
+   "pearson_dots": 0.02172631002880773,
+   "dotfield": false
+  },
+  {
+   "file": "f614e72d999941b8ded1746ea11900ac0a653184a3c55226fdb9cc6f90b07d2a.tif",
+   "support": 791389,
+   "pearson_surface": 0.546425449124138,
+   "pearson_dots": 0.153782071142501,
+   "dotfield": false
+  },
+  {
+   "file": "f644238f8c44f1a88fcf9aa73ae0da7b17b64fd67143e35aa64c38e9429c3ca5.tif",
+   "support": 37654,
+   "pearson_surface": 0.2233137494766597,
+   "pearson_dots": 0.11202949669032884,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5402082116109842,
+   "reverse_overlap_3px": 0.6659850215116588
+  },
+  {
+   "file": "f64d57df29e6f97d17a0236780afd564a359e773b5595f94c87f1287d12002d1.tif",
+   "support": 45374,
+   "pearson_surface": 0.19554280808385804,
+   "pearson_dots": 0.10132086138961065,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656769533117332,
+   "reverse_overlap_3px": 0.5553180235377089
+  },
+  {
+   "file": "f66ce1a252f38bcb84d15c832d1d0abc76b6b08bed4e753a048bd47983b37c29.tif",
+   "support": 41200,
+   "pearson_surface": 0.049254166541600655,
+   "pearson_dots": 0.015575182531923961,
+   "dotfield": true,
+   "forward_overlap_3px": 0.47580602326446064,
+   "reverse_overlap_3px": 0.36094660194174755
+  },
+  {
+   "file": "f68e590f8534d036872f18170819b52366c728e68619f17c648dce9629b0aaf2.tif",
+   "support": 183642,
+   "pearson_surface": 0.16625674168146307,
+   "pearson_dots": 0.04618389606919925,
+   "dotfield": false
+  },
+  {
+   "file": "f6d2268f9bf15fb6fa29f506008024cdbcb8f4d7769ab3de8c8995d41a0749e6.tif",
+   "support": 24136,
+   "pearson_surface": 0.0014086896375532306,
+   "pearson_dots": 0.0005714411618556642,
+   "dotfield": true,
+   "forward_overlap_3px": 0.05194667233228874,
+   "reverse_overlap_3px": 0.1839990056347365
+  },
+  {
+   "file": "f7e5645f10ffb9961ad3199ff83c67cd3bc9375d75af971cf656253dae1057c5.tif",
+   "support": 794250,
+   "pearson_surface": 0.5339160011546974,
+   "pearson_dots": 0.1461185277909843,
+   "dotfield": false
+  },
+  {
+   "file": "f81e26d7712d1a4a9d3d5393037b09849400c3976d1ebd40e2760a586f2adc2f.tif",
+   "support": 46090,
+   "pearson_surface": 0.1938666257274519,
+   "pearson_dots": 0.10060514771131042,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5718648749136878,
+   "reverse_overlap_3px": 0.5535257105662834
+  },
+  {
+   "file": "f870b9247b0cbc28b608a8e4fb85e40055ce17a81aa65b99f7642cc4cd2149a8.tif",
+   "support": 60068,
+   "pearson_surface": 0.0039913704332988,
+   "pearson_dots": 0.0011524865537513413,
+   "dotfield": true,
+   "forward_overlap_3px": 0.2060604451054337,
+   "reverse_overlap_3px": 0.17669974029433308
+  },
+  {
+   "file": "f87d3fc008230ec12a2b2ad260de643d15b8e474135d28020dafd2c784d2cbd5.tif",
+   "support": 80000,
+   "pearson_surface": 0.004908765474941104,
+   "pearson_dots": 0.0029128641403541617,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3763477983746747,
+   "reverse_overlap_3px": 0.222375
+  },
+  {
+   "file": "f881810d6713a4bd8d6f9fd15bca99cc928ea052473bbd6a82c738d54dd4067b.tif",
+   "support": 41507,
+   "pearson_surface": 0.20663296084310864,
+   "pearson_dots": 0.1066138566711529,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656769533117332,
+   "reverse_overlap_3px": 0.6067651239549955
+  },
+  {
+   "file": "f8e6c76cf584c6fdae6610998d12da185ae858f2a41833b3f630f6f2dd03985c.tif",
+   "support": 60069,
+   "pearson_surface": 0.20580927977523722,
+   "pearson_dots": 0.09631467015907062,
+   "dotfield": true,
+   "forward_overlap_3px": 0.552876188452754,
+   "reverse_overlap_3px": 0.5774193011370258
+  },
+  {
+   "file": "f8fa1d0817712d34935acd70663eb14c510876598c4f70729fcd79288706120f.tif",
+   "support": 37654,
+   "pearson_surface": 0.22361624249772413,
+   "pearson_dots": 0.11186898141496178,
+   "dotfield": true,
+   "forward_overlap_3px": 0.529000902958517,
+   "reverse_overlap_3px": 0.6659584639082169
+  },
+  {
+   "file": "fb2d0d2d74bad2b52c6fcd48db5d8e2855c938fd222798e03fc01a96dbdc6d0e.tif",
+   "support": 80000,
+   "pearson_surface": 0.004908765474941104,
+   "pearson_dots": 0.0029128641403541617,
+   "dotfield": true,
+   "forward_overlap_3px": 0.3763477983746747,
+   "reverse_overlap_3px": 0.222375
+  },
+  {
+   "file": "fb9d98443cedb8c94c2f50ae3275be6969707600dfad989d7d82799c99e0e409.tif",
+   "support": 5167373,
+   "pearson_surface": 0.026768449086301195,
+   "pearson_dots": 0.0140556115525584,
+   "dotfield": false
+  },
+  {
+   "file": "fbb4c10726adfffddcc912513e8e7ffd19bc0c7428d2351106f25524807f7e1a.tif",
+   "support": 45962,
+   "pearson_surface": 0.010844847793196508,
+   "pearson_dots": 0.0034431675790157676,
+   "dotfield": true,
+   "forward_overlap_3px": 0.1877888139374303,
+   "reverse_overlap_3px": 0.21052173534659066
+  },
+  {
+   "file": "fde9fbd2270a5ae5cb4606f33dbc19eed096a0dc27e382baf6dd5d1dd82c8dda.tif",
+   "support": 123939,
+   "pearson_surface": 0.3056658146224808,
+   "pearson_dots": 0.12476869605473707,
+   "dotfield": false
+  },
+  {
+   "file": "fe01ebd3961d6911bfa731111d4d3de75923e642c2276e1d7f6109de9236fd85.tif",
+   "support": 44090,
+   "pearson_surface": 0.19888196785813556,
+   "pearson_dots": 0.10300420041365292,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5656503957082912,
+   "reverse_overlap_3px": 0.5704694942163756
+  },
+  {
+   "file": "fe0b511435cf80eb55a78b36555a0650fa9d626822f08a3d3221615a9bf12a68.tif",
+   "support": 45890,
+   "pearson_surface": 0.1941114526315191,
+   "pearson_dots": 0.10066349528986651,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5749721145163861,
+   "reverse_overlap_3px": 0.5560688603181521
+  },
+  {
+   "file": "fe434e1c784c7f8b21be7933bb89ee289908521c330030218ae77be4c72edb02.tif",
+   "support": 37654,
+   "pearson_surface": 0.2476124644891051,
+   "pearson_dots": 0.1372571474683719,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5187762256333989,
+   "reverse_overlap_3px": 0.7570244861103734
+  },
+  {
+   "file": "fe68ae6f57be013e26d20006551b43cd84bb5fe4a0b07d1d10ce4725c90fd16c.tif",
+   "support": 47905,
+   "pearson_surface": 0.19726070148855232,
+   "pearson_dots": 0.10477157519443699,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5684123864662453,
+   "reverse_overlap_3px": 0.6292662561319278
+  },
+  {
+   "file": "fe7eb41038baea535c5404adace8b062b0758babda8e0d5213351614a02cfbe3.tif",
+   "support": 764214,
+   "pearson_surface": 0.2809777048216242,
+   "pearson_dots": 0.11407066705715152,
+   "dotfield": false
+  },
+  {
+   "file": "fe96521c3ef3b9cb728792ebe943717976680d9511239aac601f632946bdce9a.tif",
+   "support": 45890,
+   "pearson_surface": 0.1938947290628532,
+   "pearson_dots": 0.10083326437493602,
+   "dotfield": true,
+   "forward_overlap_3px": 0.573989483189037,
+   "reverse_overlap_3px": 0.5559599041185443
+  },
+  {
+   "file": "fed135479141ac7d1e3768139fddce6dc564374b82585831f7325c8ec9e37dc0.tif",
+   "support": 41335,
+   "pearson_surface": 0.16979153720356624,
+   "pearson_dots": 0.08037783696443795,
+   "dotfield": true,
+   "forward_overlap_3px": 0.5769373771710841,
+   "reverse_overlap_3px": 0.5612676908189186
+  },
+  {
+   "file": "fed5232e8efeefef00728ce9d5884f08e007c542f317cb11419452d14ff866da.tif",
+   "support": 85526,
+   "pearson_surface": 0.045211271452761326,
+   "pearson_dots": 0.011945148360830986,
+   "dotfield": true,
+   "forward_overlap_3px": 0.6386838051734212,
+   "reverse_overlap_3px": 0.30579005214788485
+  },
+  {
+   "file": "ff0fd15e86e6f7ada91752cef33488ddcdf61e799245baeccbd18f4e68895c7d.tif",
+   "support": 40000,
+   "pearson_surface": 0.08342336316298422,
+   "pearson_dots": 0.022263160004813116,
+   "dotfield": true,
+   "forward_overlap_3px": 0.10715992988792691,
+   "reverse_overlap_3px": 0.49065
+  },
+  {
+   "file": "ffaeea106e6ae36a25bc26001e42444e541d147ab37f82777f99a8500af95f19.tif",
+   "support": 5155443,
+   "pearson_surface": 0.16561121938227427,
+   "pearson_dots": 0.052796350743528016,
+   "dotfield": false
+  },
+  {
+   "file": "ffd2a892b750022b6fbe0bcd0759099421eab1b9e354fc5f7e2793d082859273.tif",
+   "support": 160000,
+   "pearson_surface": 0.011881854026240384,
+   "pearson_dots": 0.003797525037945462,
+   "dotfield": false
+  },
+  {
+   "file": "fffa7524b3f6e5a3b58f90b33aa9bc37982e214915ee3a16ca981feb2aa6cae3.tif",
+   "support": 44069,
+   "pearson_surface": 0.04724406389300882,
+   "pearson_dots": 0.013828983718624187,
+   "dotfield": true,
+   "forward_overlap_3px": 0.35018855898443724,
+   "reverse_overlap_3px": 0.37348249336268124
+  }
+ ]
+}

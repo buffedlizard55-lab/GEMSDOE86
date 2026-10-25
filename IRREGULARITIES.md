@@ -1,6 +1,12 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-H86L-01 — visible-fault edge residual lost to its control and duplicated GEMSDOE46 (2026-10-25)
+
+`scripts/run_h86l_vfgr.py` ran the frozen three-arm design and stopped before writing a TIFF. HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives) was 0.0313 [0.0230, 0.0395] for the residual and 0.0367 [0.0272, 0.0457] for the raw-edge control. The paired interval was entirely below zero. Final dots overlapped `GEMSDOE46:SUBMISSION-GEMSDOE46-dfa-corroborated.tif` at 0.7013 with that raster’s halo covering only 0.1965 of the footprint. **Decision: DO NOT SUBMIT. No file, no slot.**
+
+Two related facts are not the duplicate itself. First, `depth_to_base_surf` is negative on part of the footprint (minimum −14.84). The basement-mass control still fit and still lost. Second, `registry_complete` is false with 0 missing inventory files because some measured rows fail the grid check, including known off-grid historical rasters. That is fail-closed, not a claim that the 655-file restore failed. The restore receipt said 655 verified.
+
 ## IR-86-RKSC-01 — H86I-RKSC generated a unique audit-only GeoTIFF (0 rho firings, 0 sparse-dot overlap firings) and failed closed on holdout & off-grid registry rows (2026-10-25)
 
 Before any lane code was written, four untried geological hypotheses (`H86I-1..H86I-4`) were frozen in `research/H86I_RKSC_PREREGISTRATION.json` (`sha256: 83300b29…`) and `research/H86I_RKSC_PREREGISTRATION.md`. `scripts/run_h86i_rksc.py` executed the top candidate (`H86I-RKSC`: Lahontan-Deconfounded Piedmont Scarp Profile-Curvature Dipole coupled with GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step and Seismic-Conductance Conduit, excluding all gravity and magnetic bands) and serialized `docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif` (`sha256: 9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba`, `44,090` dots, `0` NaN, values in `[0, 1]`). **Decision: `DO NOT SUBMIT` (`verdict: "negative"`, `safe_to_submit: false`, `submission_slots_used: 0`).** On `gems57-pooled-hide-v2` (`seed=20`, `11,321` withheld positives), `E1_rksc_full` (`0.0245 [0.0185, 0.0304]`) beat both internal ablations (`E2 = 0.0235 [0.0174, 0.0294]` and Lahontan-uncorrected K-depleted negative control `E3 = 0.0142 [0.0093, 0.0196]`, `+72.5%` relative lift), but trailed fold-fair 2-px `R0` (`0.0961 [0.0829, 0.1094]`), 3-px `R0` (`0.0931 [0.0798, 0.1067]`), and same-split `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`). Across `687 / 689` valid registry rasters, pre-placement surface worst Spearman is `0.2633 <= 0.90` (`0` rho firings) and final-dot worst Spearman is `0.0395 <= 0.90` (`0` overlap firings against any sparse `<=60,000`-dot submission), but `16` space-filling lattice/composite rasters (`13GEMSDOE`, `15GEMSDOE`, `GEMSDOE48`) and continuous witness `17GEMSDOE` exceed `0.70` 3-px overlap and `scripts/pa86_chance_overlap.py` fails closed on the `2` off-grid historical rows (`14GEMSDOE`, `7GEMSDOE`). Following execution, `scripts/run_h86i_rksc.py` is gated behind `protocol_preflight.require_feasible()` in `tests/test_builder_preflight.py`.
@@ -1530,10 +1536,61 @@ Full evidence: [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079
 
 - **IR-H — main fails its publish gates after PR #150 (found 2026-10-25, session `0c60b079`; not caused by this session).** `docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip}` are not registered in `docs/evidence/download-inventory.json` / `registry/artifact_cards.json`, so `scripts/check_site.py` and `scripts/build_site.py --check` exit 1 on main. `pytest -q` on main: 16 failed / 985 passed (10 in `tests/test_release_audit.py`). `scripts/run_h86l_fmc.py` writes the run card only. Owner action: register the artifact through the lane's own protocol and re-run `audit_release.py --measure-registry`; do not mark it authorized. Documented here; not repaired by session `0c60b079`.
 
-## IR-86M-BMGS-20261025 (session `94cbed2d`) — `IR-H` repaired, `GEMSDOE91`/`GEMSDOE92` (`REV2`) synced, & log-odds strand-crush defect fixed
+## IR-86-H86M-POISSON81 (2026-10-25, session `ecc314b3`, H86M-LT) — scored-fleet file/score mismatch suspect
+
+`data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif`
+(binary, 44,090 dots, median d_cat 2.2 px) carries owner-reported live score **0.0041**, but every
+tomography fit (E2b/E2c/E2d/E2e) predicts **0.043–0.084** for these exact dots — the largest
+residual in the fleet by an order of magnitude. Either (a) the submitted bytes differed from this
+local binary (the stem says "cont", suggesting a continuous raster was submitted and this is a
+thresholded derivative), or (b) the organizer masks a >300 m catalogue buffer that penalizes this
+collar-hugging raster far beyond the other fits' collar behaviour. H86M-LT excluded it from
+belief fitting and hard-excluded `d_cat <= 3 px` from emission under either explanation.
+Owner action: confirm which filename was actually uploaded for the 0.0041 receipt; do not use
+this raster/score pair as a calibration anchor until resolved. Evidence:
+`docs/evidence/h86m-lt-tomography.json`, `research/H86M_LT_REVIEW.md`.
+
+## IR-86-H86M-INVENTORY (2026-10-25, session `ecc314b3`) — new artifact not yet in generated index
+
+The H86M-LT TIFF/ZIP/receipt are published under `docs/downloads/` with a standalone lane page
+(`docs/h86m-lt.html`, same pattern as `docs/h86k-psc.html`) but are **not** registered in
+`docs/evidence/download-inventory.json`, because `scripts/audit_release.py` has no
+`holdout_kind` branch for a tomography-LOO lane (it raises on unsupported kinds) and its status
+rendering is DO NOT SUBMIT for every kind except `h86g_edti`. Registering correctly requires a
+reviewed shared-audit branch + `build_site.py` regeneration; this session reports it instead of
+smuggling a private fork (protocol rule 2). Main already fails `check_site`/`build_site --check`
+and 16 pytest cases over the analogous H86L-FMC gap (IR-H above); H86M adds one more unregistered
+artifact to the same known failure class.
+## IR-86-E95B-PUBLICATION-20261025 — repaired missing H86L publication coverage
+
+The branch inherited an H86L-FMC TIFF/ZIP absent from both publication indexes. This made the release/site audits fail before any artifact validation. Registered its actual SHA and existing negative scientific card; added explicit leakage-suspect archival normalization and regression tests. No raster bytes, scientific verdict, evaluator/writer or uniqueness thresholds changed. Fresh measurement validates all 32 published formats but confirms literal overlap failure against the pinned dense witness. This repairs the earlier IR-H inventory blocker; it does not authorize submission.
+
+## IR-86-E95B-HISTORICAL-CLOCK-20261025 — frozen review compared with mutable audit
+
+A test bound the historical follow-up run card's registry timestamp to the mutable latest audit. A legitimate fresh audit therefore failed the test. Preserved the original audit bytes from this branch's starting commit under `docs/evidence/session-followup-snapshot/`, bound their SHA in the historical card, and changed that test to verify the exact frozen evidence. No historical timestamp/count was rewritten as current. Latest-review tests continue to require current report hashes and measurement timestamps.
+
+
+## IR-86-63051E73-H86L-INVENTORY — 2026-10-25
+
+Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the prior review). Registered existing TIFF SHA `5bacedbe67a8000dd8bcb5f375c089cef71aba7172f482ff05a76363a04a502a`, joined its original negative run card, restored the pinned witness and remeasured all published final dots. No candidate pixels or scientific receipts changed. Added a dedicated archived leakage-suspect schema rather than describing fleet-as-is evidence as fold-safe hide-and-recover. Removed the non-generated “NEWEST UNIQUE TIFF” banner during deterministic site regeneration, retaining its anchor and explicit audit-only decision. Current format count is 32; submission authorization remains false. See `research/SESSION_63051E73_REVIEW.md`.
+
+## IR-86-63051E73-H86M-ARCHIVE — 2026-10-25
+
+PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
+
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
+
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
+
+## IR-86M-BMGS-20261025 (session `94cbed2d`) — `GEMSDOE91`/`GEMSDOE92` (`REV2`) fleet forensics & log-odds strand-crush defect fixed
 
 Full evidence: [`research/SESSION_20261025_H86M_BMGS_REVIEW.md`](research/SESSION_20261025_H86M_BMGS_REVIEW.md) · [`docs/evidence/h86m-bmgs-run-card.json`](docs/evidence/h86m-bmgs-run-card.json).
-- **1. `IR-H` resolved without modifying PR #150 artifact bytes:** Registered `gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.{tif,zip,json}` (`5bacedbe...`) in `docs/evidence/download-inventory.json`, `registry/artifact_cards.json`, and `scripts/audit_release.py` (`holdout_kind == "h86l_fmc"`, `DO NOT SUBMIT`), and added `require_feasible()` + `tests/test_builder_preflight.py` AST guard to `scripts/run_h86l_fmc.py::main()`, restoring clean `check_site.py`, `build_site.py --check`, and `pytest -q`.
-- **2. `GEMSDOE91` (`0.1823` `OWNER-REPORTED`) halo-crowding vs `GEMSDOE92` (`0.0255` `OWNER-REPORTED`) uniform pullback over-shift:** Forensic comparison across the newly supplied rev-2 fleet entries confirmed that in-sample PU models crowd `68.5%` of dots into `< 1 km` near-catalogue halos (vs `69.8%` `> 1 km` far-field in `GEMSDOE32` `H33`), while uniform `50°` up-dip pullback (`5–28 px`) shifts steep strike-slip (`80°–90°`) and horst contacts completely outside the `300 m` (`3 px`) DTI kernel.
-- **3. `IR-86M-STRAND-LOGODDS-20261025` (caught & fixed in Pass 2):** Averaging log-odds (`logit p`) along a `7×7` directional stencil acts as a geometric mean of odds that multiplicatively crushes curved 1-px fault crests whenever stencil endpoints touch desert background (`p ~ 0.0005`). Replaced in `src/gems86_bmgs/model.py` with additive probability-space 8-azimuth strand reinforcement (`>= 0.70 * p_bayes` floor regression-tested in `tests/test_h86m_bmgs.py`). `H86M-BMGS` remains `verdict = "negative"` (`DO NOT SUBMIT`, `0` weekly slots used).
+- **1. `GEMSDOE91` (`0.1823` `OWNER-REPORTED`) halo-crowding vs `GEMSDOE92` (`0.0255` `OWNER-REPORTED`) uniform pullback over-shift:** Forensic comparison across the newly supplied rev-2 fleet entries confirmed that in-sample PU models crowd `68.5%` of dots into `< 1 km` near-catalogue halos (vs `69.8%` `> 1 km` far-field in `GEMSDOE32` `H33`), while uniform `50°` up-dip pullback (`5–28 px`) shifts steep strike-slip (`80°–90°`) and horst contacts completely outside the `300 m` (`3 px`) DTI kernel.
+- **2. `IR-86M-STRAND-LOGODDS-20261025` (caught & fixed in Pass 2):** Averaging log-odds (`logit p`) along a `7×7` directional stencil acts as a geometric mean of odds that multiplicatively crushes curved 1-px fault crests whenever stencil endpoints touch desert background (`p ~ 0.0005`). Replaced in `src/gems86_bmgs/model.py` with additive probability-space 8-azimuth strand reinforcement (`>= 0.70 * p_bayes` floor regression-tested in `tests/test_h86m_bmgs.py`). Unified `H86M-BMGS` achieved `HOLDOUT-DTI = 0.1310 [0.1121, 0.1509]` (`6x` single-feature `H86M-BMR` `0.0220` and `3.2x` `H86M-CNT` `0.0408`) and `SGMC-PROXY-DTI = 0.1082` (`E2` blind `0.1111` at `70.21%` far-field `> 1 km`), with `0.0820–0.3632` 3-px overlap vs parallel `H86M` rasters; remains `verdict = "negative"` (`DO NOT SUBMIT`, `0` weekly slots used).
 
