@@ -1183,3 +1183,12 @@ and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
 `research/REQUEST_20261025.md` but not yet folded into
 `registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
 pair); a fleet-refresh session should ledger them and regenerate the feed.
+
+## IR-86-PUBLICATION-AUTH-09C7FC42 (2026-10-25)
+
+Homepage, executive summary, README and build success output said H86G-EDTI was OK to
+submit while its card explicitly denied safe_to_submit and weekly-slot approval, and
+literal release audit failed. Corrected publication instructions to research-only;
+historical amended-gate promotion and binary bytes unchanged. Added regression checks
+rejecting positive upload instructions in the negative-state publisher. See
+`research/SESSION_09C7FC42_REVIEW.md`. No new TIFF, model experiment or portal operation.
