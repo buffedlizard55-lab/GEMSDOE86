@@ -4,7 +4,7 @@
 
 **No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.
 
-- Reproduced and repaired the inherited H86L-FMC inventory/card omission, then reconciled with parallel PR #156 and reused its repair instead of bypassing the failing audits. All **33** published research TIFFs and their ZIP partners pass the shared local-format/integrity audit; this is not submission approval.
+- Reproduced and repaired the inherited H86L-FMC inventory/card omission, then reconciled with parallel PR #156 and reused its repair instead of bypassing the failing audits. All **35** published research TIFFs and their ZIP partners pass the shared local-format/integrity audit; this is not submission approval.
 - Restored the hash-pinned historical witness and remeasured every final TIFF against it. Each fails the literal overlap gate; the witness is not official training data or a candidate.
 - H86L-FMC's archived holdout stays **leakage-suspect, not promotion evidence**. Passing a single-feature canary cannot undo full-catalogue fleet ancestry.
 - PR #158 subsequently added an unevaluated H86M catalogue-ring TIFF. Repaired its missing card mapping, remeasured all 33 files, and explicitly rejected its archived “leakage structurally impossible” claim. No holdout is inferred.
@@ -13,6 +13,8 @@
 - Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
 
 The older snapshot below is historical; its H86L publication failure has been repaired in this review.
+## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
+
 ## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**
 
 **OK to submit: NO.** No GeoTIFF was written by this session. `safe_to_submit` is false, `approved_for_weekly_slot` is false, and no weekly slot was used. There is no authorized filename and no note to paste.
@@ -36,14 +38,41 @@ Pages: [download decision](docs/index.html) · [how to submit, and why not now](
 
 ## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
 
+## Start here (2026-10-25, session `4add368e`, H86M): **DO NOT SUBMIT — two new unique TIFFs, both NEGATIVE**
+
+<details><summary>Superseded 0c60b079 status (historical)</summary>
 - **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.
 - **Why no new TIFF:** the shared feature stack is absent (`scripts/audit_workspace_inputs.py`), so nothing can be validated against a holdout; and the uniqueness rule is undefined for the dense probability rasters that the official reference solution writes.
 - **Review, verified commands and numbers, and the blockers:** [`research/SESSION_0C60B079_REVIEW.md`](research/SESSION_0C60B079_REVIEW.md) · run card [`research/session-0c60b079-run-card.json`](research/session-0c60b079-run-card.json).
 - **Verified this session (pre-merge tree):** test suite `1001 passed, 24 skipped`; H33 = parent minus 2,545 in-footprint dots (0 added), but the pair also differs in 7,111,787 NaN-vs-zero cells; the vendored metric treats NaN as 0.
 - **Post-merge state recorded by session `0c60b079` (main `0c05e70`):** `scripts/check_site.py` and `scripts/build_site.py --check` failed because the H86L-FMC TIFF/ZIP from PR #150 was not in `docs/evidence/download-inventory.json`. This merge registers that existing file as audit-only (`DO NOT SUBMIT`, `safe_to_submit` false). It does not rerun the H86L-FMC experiment and does not authorize upload.
 - **Needed from you:** (1) place the competition training features and labels into `data/bridge/` from a logged-in DrivenData download; (2) an owner decision on how to define the dot set for dense rasters; (3) the filename that produced the "[0, 1]" portal error.
-
 </details>
+
+- **Can I download a TIFF right now? YES (audit only). Can I submit one? NO.**
+  Newest files, at the top of [docs/index.html](docs/index.html) and
+  [docs/executive-summary.html](docs/executive-summary.html):
+  `gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif` (SHA-256 `fa7418e8...`)
+  and `gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif` (SHA-256 `ff95ed56...`).
+  Both are machine-validated with no human inspection (values exactly {0,1}, 0 NaN,
+  EPSG:32611, 3730x3292, validator PASS, unique vs 57-58 registry rasters:
+  surface Spearman <=0.067, dot-field 3-px overlap <=0.57), and both are
+  **DO NOT SUBMIT**: HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld)
+  BMR = **0.0220 [0.0086, 0.0384]** (beaten by its raw-gravity control,
+  paired -0.0144 [-0.0257, -0.0025]) and CNT = **0.0408 [0.0257, 0.0575]**
+  (paired CIs vs controls cross zero). 0 weekly slots used.
+  [Session review](research/SESSION_20261025_H86M_REVIEW.md) ·
+  [BMR card](docs/evidence/h86m-bmr-run-card.json) · [CNT card](docs/evidence/h86m-cnt-run-card.json)
+- **Portal error "Predicted values must be in range [0, 1]":** use only a
+  `-zeros` file with validator `min=0.0, max=1.0, n_nan=0`. Never upload a file
+  derived from `existing_faults.tif` (-1 outside-footprint sentinel) or a
+  `-nan` variant. Unique name + <=140-char note for each file are printed on
+  the site banner and stored in each writer receipt.
+- **35** published research TIFFs are registered and revalidated; none is authorized for submission.
+- **Data blocker resolved in this sandbox:** `scripts/restore_data.py
+  --with-external --include-registry` + `prepare_data.py` restored the
+  hash-pinned 19-band features; H33's 0.2778 remains OWNER-REPORTED (no
+  organizer receipt), and no HOLDOUT-DTI here is a leaderboard projection.
 
 ## ⛔ NEWEST TIFF (2026-10-25, H86L-FMC): **DO NOT SUBMIT** — unique file generated & machine-validated, hypothesis FALSIFIED
 
