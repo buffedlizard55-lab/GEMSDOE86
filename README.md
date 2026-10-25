@@ -1,6 +1,14 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Current independent repository review (2026-10-25)
+## Latest follow-up repository review (2026-10-25)
+
+**DO NOT SUBMIT. The requested new, unique TIFF was not generated.** The refreshed, hash-pinned `REGISTRY-MEASUREMENT` finds the historical witness positive on all 5,106,385 allowed cells, so any nonempty allowed candidate has 100% forward overlap against the unchanged 70% limit. The registry scan is only one witness, not complete uniqueness clearance; there was no assigned method paragraph, no actual shared feature cache, no holdout experiment, and no weekly slot.
+
+The owner-reported H33 values (0.2708 parent; 0.2778 H33) remain unconfirmed. Pixel forensics establish only that 2,545 dots at catalogue distances √2 or 2 pixels were removed, with no other pixel changes; they do not establish the score cause. Earlier H86G-CSPA and H86G-MPC proposals are not currently untried: later H86J-CSGD and H86J-MPC runs implemented those method families. The current four-item, code-scoped unrun queue and limits are in [`registry/followup_hypotheses_20261025.json`](registry/followup_hypotheses_20261025.json).
+
+This follow-up also adds the missing fail-closed preflight to the historical H86K builder, fixes the release audit's hard-coded registry-measurement timestamp, and clarifies that the refreshed registry audit did not rerun older PR-specific forensic reviews. No candidate, experiment, or site slot was created. See the [three-pass follow-up review](research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md) and [negative run card](docs/evidence/session-20261025-followup-run-card.json). The complete owner request is preserved below and in [PROMPT.md](PROMPT.md) and [the request archive](research/REQUEST_20261025.md); read it at each session start.
+
+## Earlier independent repository review (2026-10-25; session cf73474c)
 
 **DO NOT SUBMIT any current TIFF.** The read-only review verified 28/28 inherited artifacts for local format/integrity only; all remain blocked from competition use. The literal full-support registry witness covers every allowed cell, no method paragraph is assigned, and the required shared derived feature cache is absent. No experiment or slot was used. See [the three-pass review, ranked research queue, verification commands, and next-step blockers](research/ARENA_REPO_REVIEW_20261025.md). The request itself remains archived in [PROMPT.md](PROMPT.md) and [research/REQUEST_20261025.md](research/REQUEST_20261025.md); never treat owner-reported leaderboard claims as organizer receipts.
 

@@ -714,7 +714,8 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
 <p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
-<p><a href="evidence/session-cf73474c-run-card.json">This review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Four untested hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Three-pass review &amp; next steps</a></p></section>'''
+<p><strong>Follow-up code and research review (2026-10-25):</strong> no new TIFF, experiment, or slot was produced. The request still lacks an assigned method paragraph and the shared cache remains absent. This review found that H86G-CSPA and H86G-MPC are no longer untried (their later H86J-CSGD and H86J-MPC lanes ran); the current four-item shortlist excludes them and the earlier variogram submission. It also adds the missing early preflight to historical H86K and fixes the audit's stale timestamp. The top proposal remains unvalidated and no file is authorized.</p>
+<p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
 
 
 def new_hypothesis_queue(plan: dict) -> str:
@@ -727,9 +728,15 @@ def new_hypothesis_queue(plan: dict) -> str:
 <dt>Named non-fault mimic</dt><dd>{e(h['non_fault_mimic'])}</dd>
 <dt>Qualitative potential / cost — not a projected score</dt><dd>{e(h['expected_holdout_potential'])} {e(h['implementation_cost'])}</dd>
 <dt>Falsifier</dt><dd>{e(h['falsifier'])}</dd></dl></article>''')
-    return f'''<section id="new-hypotheses"><h2>2026-10-25: four untested native-layer proposals</h2>
-<p>{e(plan['ranking_basis'])}</p><p>No new external product is required by these designs. The pinned native TIFF was obtained, but the actual shared cache and method authorization remain missing. These are hypotheses, not validated geological discoveries or score estimates.</p>{''.join(rows)}
-<p><a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Full proposal register and blockers</a> · <a href="evidence/session-cf73474c-data.json">Actual data obtainability / shared-cache limits</a></p></section>'''
+    excluded = "".join(
+        f'<li><code>{e(item["method"])}</code>: {e(item["disposition"])}</li>'
+        for item in plan["excluded_as_already_tried"]
+    )
+    return f'''<section id="new-hypotheses"><h2>2026-10-25 follow-up: four unrun native-band hypotheses</h2>
+<p>{e(plan['ranking_basis'])}</p><p>{e(plan['scope_note'])}</p>
+<p><strong>Not an experiment or lane assignment:</strong> all four proposals remain unrun under the protocol stop. They use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
+<h3>Previously attempted methods excluded from the untried queue</h3><ul>{excluded}</ul>{''.join(rows)}
+<p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
 def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "") -> str:
@@ -1105,7 +1112,7 @@ def fvmb_archive(report: dict) -> str:
 
 def submit_gate(report: dict, review: dict) -> str:
     return page("Submission gate & candidate revocations", "submit.html", f'''<p class="eyebrow">Automated submission safety gate · IR-86-SPT-02, IR-86-TIPRELAY-01, IR-86-SWCON-01 &amp; IR-86-FAULTHALO-01</p><h1>DO NOT SUBMIT:<br>Concurrent SPT, TIPRELAY, SWCON &amp; FAULTHALO candidates revoked.</h1>
-<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT · VERDICT NEGATIVE</span><p>Concurrent commits published candidates (<code>SPT</code> in PR #60, <code>H86-TIPRELAY</code> in PR #63, <code>SWCON</code> in PR #77, and <code>FAULTHALO</code> in PR #80) bypassing preflight or uniqueness gates. Automated forensic review on <time>{e(review['registry_measured_utc'])}</time> verified that all four violate mandatory uniqueness and/or preflight gates; none is authorized for competition upload.</p>
+<div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT · VERDICT NEGATIVE</span><p>Prior forensic reviews found that concurrent commits published candidates (<code>SPT</code> in PR #60, <code>H86-TIPRELAY</code> in PR #63, <code>SWCON</code> in PR #77, and <code>FAULTHALO</code> in PR #80) bypassing preflight or uniqueness gates. The current registry remeasurement, <time>{e(review['registry_measured_utc'])}</time>, rechecks inherited final TIFFs only; it does not rerun those PR-specific forensic investigations. None of the four is authorized for competition upload.</p>
 <a class="btn" href="executive-summary.html">Open official submission guide &amp; audit status →</a><a class="btn secondary" href="evidence/spt-full-support-witness-audit.json">Open SPT witness audit JSON</a></div>
 {pr92_candidate_notice(report)}
 <h2>1. Why PR #60's SPT candidate is blocked (<code>IR-86-SPT-02</code>)</h2>
@@ -1341,7 +1348,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
     session_data = strict_json(root / "docs/evidence/session-cf73474c-data.json")
     registry_inputs = strict_json(root / "docs/evidence/registry-input-grid-review-20261025.json")
     concurrent = strict_json(root / "docs/evidence/concurrent-artifact-review-20261025.json")
-    new_plan = strict_json(root / "registry/h86g_hypotheses.json")
+    new_plan = strict_json(root / "registry/followup_hypotheses_20261025.json")
     if (session_data["actual_shared_feature_stack_restored"] is not False
             or registry_inputs["uniqueness_clearance"] is not False
             or concurrent["registry_complete"] is not False
