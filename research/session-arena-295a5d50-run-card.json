@@ -20,7 +20,7 @@
     "inherited_h86m_lt_final_dots": {
       "evidence_class": "REGISTRY-MEASUREMENT (fresh all-artifact remeasurement against one witness; not a uniqueness clearance)",
       "source": "docs/evidence/all-artifacts-registry.json",
-      "measured_utc": "2026-10-25T19:30:46.639072+00:00",
+      "measured_utc": "2026-10-25T20:15:56.971058+00:00",
       "raster_sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
       "spearman_full_footprint": 0.06914945298172888,
       "forward_overlap_3px": 1.0,
@@ -32,7 +32,7 @@
     "preflight_witness": {
       "evidence_class": "REGISTRY-MEASUREMENT",
       "source": "scripts/protocol_preflight.py (read-only run)",
-      "measured_utc": "2026-10-25T19:55:48.540880+00:00",
+      "measured_utc": "2026-10-25T20:15:55.305502+00:00",
       "registry_entries_in_snapshot": 655,
       "registry_rasters_measured": 1,
       "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
@@ -69,8 +69,8 @@
   "release_audit": {
     "status": "PASS_INTEGRITY_NEGATIVE_DECISION",
     "source": "scripts/audit_release.py --measure-registry",
-    "artifact_count": 38,
-    "locally_valid_artifacts": 38,
+    "artifact_count": 40,
+    "locally_valid_artifacts": 40,
     "all_final_artifacts_remeasured": true,
     "registry_complete": false,
     "decision": "DO NOT SUBMIT",
@@ -86,6 +86,6 @@
     "meaning": "Link/format/publication-policy integrity only; not scientific clearance or organizer acceptance."
   },
   "test_validation": {
-    "full_suite": "PASS: 1048 passed, 24 skipped, 48 warnings, 58 subtests passed in 475.86 seconds"
+    "full_suite": "PASS: 1062 passed, 24 skipped, 48 warnings, 58 subtests passed in 483.35 seconds"
   }
 }

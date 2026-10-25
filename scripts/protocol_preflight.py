@@ -38,7 +38,7 @@ def measure(data_dir=None):
     from scripts.audit_release import verify_shared_pins
     if not all(verify_shared_pins(ROOT).values()):
         raise ValueError('Shared tool SHA drift; protocol measurement cannot proceed')
-    data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data'
+    data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data' / 'bridge'
     pin = json.loads((ROOT / 'research/registry_witness_pin.json').read_text())
     inventory = ROOT / 'research/upstream/registry_inventory.json'
     verify_file(inventory, pin['registry_sha256'])
@@ -47,6 +47,8 @@ def measure(data_dir=None):
     source_id = pin['repo'].split('/')[-1] + ':' + pin['source_path']
     if len(match) != 1 or source_id not in match[0]['sources'] or match[0]['blob'] != pin['blob']:
         raise ValueError('Witness is not bound to the pinned registry record')
+    # Keep the pinned witness beside the bridge-grid mirrors consumed by the
+    # shared evaluator; restore_protocol_data also retains its canonical archive.
     witness = data_dir / pin['dest']
     for path, sha, size in (
         (data_dir / 'sample_submission.tif', grid.SHA256_SAMPLE_SUBMISSION, None),
