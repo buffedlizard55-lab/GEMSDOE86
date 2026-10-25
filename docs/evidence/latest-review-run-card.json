@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 35,
-    "local_format_pass": 35,
+    "checked": 37,
+    "local_format_pass": 37,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -213,6 +213,16 @@
         "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
         "sha256": "25a5e90138a9d94f19b1a5c17cd346b0a19316aa0d82f6b1f353643d2ca52576",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
+        "sha256": "4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros.tif",
+        "sha256": "6e2749a534bfc40198886284bc9c73bd7984c2adb52efeaa0f1307c57cfd172e",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -227,8 +237,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T17:53:21.829982+00:00",
+  "registry_measured_utc": "2026-10-25T22:04:26.197286+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "545e21264efdef573f490d4168472918ba8a8d8fb3e662417e7f47754711f4ad",
-  "registry_measurement_sha256": "68168f82a26dff2499657f978800057ae454126443887fb6c4e60dbee627147c"
+  "release_report_sha256": "14f690fa5929472b95d8b490ed338579b8711b3ab2158d0d6260233e64ec150b",
+  "registry_measurement_sha256": "48897c517d11252f68244c5ee357f0ca12ed3697db3a239401b11d94b77c78c7"
 }

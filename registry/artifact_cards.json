@@ -246,6 +246,20 @@
       "context": "docs/evidence/h86m-damagering-run-card.json",
       "holdout_kind": "h86m_unvalidated",
       "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT leaderboard tomography + DTI-optimal emission (fitted to 29 owner-reported scores on full-catalogue fleet rasters; HOLDOUT-DTI not run; SGMC-PROXY-DTI 0.1136; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
+      "context": "docs/evidence/h86m-lt-run-card.json",
+      "holdout_kind": "h86m_lt_unvalidated",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
+    },
+    {
+      "lane": "H86N-SHPB steerable odd-step/even-dike up-dip pullback + Kostrov-Riedel seismotectonic tensor + Elkan Bayes prior-odds 4-fold LOQO + 6-ring survival Dinkelbach-CELF (LOQO HOLDOUT-DTI 0.1665 [0.1498, 0.1834] beating ablation E3 0.1365 by +0.0300 [+0.0146, +0.0438], H86I-KSAD 0.1599, H86J-MCSP 0.1463, H86K-STDP 0.1380; SGMC-PROXY-DTI 0.1009; 0/704 Spearman firings & 0 discrete <=90k firings; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86n-shpb-run-card.json",
+      "context": "docs/evidence/h86n-shpb-run-card.json",
+      "holdout_kind": "h86n_shpb",
+      "stem": "gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros"
     }
   ]
 }

@@ -1,0 +1,89 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86N",
+  "frozen_utc": "2026-10-25T18:40:00Z",
+  "git_branch": "arena/fd5fa170-gemsdoe86",
+  "protocol_compliance": {
+    "frozen_before_implementation": true,
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "leakage_canary_auc_limit": 0.90,
+    "surface_spearman_limit": 0.90,
+    "dot_overlap_3px_limit": 0.70,
+    "evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "writer": "vendor/template66/gems57/submission_writer.py"
+  },
+  "hypotheses": [
+    {
+      "id": "H86N-SHPB",
+      "rank": 1,
+      "status": "SELECTED_FOR_VALIDATION",
+      "name": "Steerable Odd-Step vs Even-Dike Quadrature Phase-Asymmetry, Up-Dip Basement Pullback, Seismic-Geodetic Lineation & Cover-Aware Elkan-Bayes 6-Ring Survival Dinkelbach-CELF",
+      "layers": [
+        "training_features.tif Bands 2 (rtp), 3 (tmi_hg), 4 (geod_2ndinv), 5 (iso_grav_anom_slope, verified hypot(B11,B18)), 6 (tc, verified GeoDAWN Total Count), 7 (geod_shearrate), 8 (geod_dilaterate), 9 (tmi_vg), 10 (deq_n100a15), 11 (iso_grav_anom_vg, verified +dg/drow_south), 12 (det_elev), 13 (iso_grav_anom), 15 (depth_to_base_surf), 16 (ieq_n100a15), 17 (cond_surf), 18 (iso_grav_anom_hg, verified +dg/dx_east), 19 (det_elev_slope)",
+        ".cache/external/geodawn_rad_u8.tif (Bands 1-4: K, Th, U, TC; SHA256 c22420f7...)",
+        ".cache/external/geodawn_extensions_u8.tif (Bands 1, 3, 4: ThK, UTh, TMI_up150; SHA256 a35a9c6d...)",
+        ".cache/external/acquisition_block_id_100m.tif (GeoDAWN survey-block seam veto; SHA256 2c0785c4...)",
+        ".cache/external/lidar_scarp_features_u8.tif (USGS 3DEP 1m LiDAR scarps, quantile-debiased on missing swaths via 10m DEM; SHA256 d580bb8b...)",
+        ".cache/external/topo_10m_derived_100m_u8.tif & dem10_chi_100m_i16.tif (USGS 3DEP 10m curvature & fluvial chi; SHA256 a6398d99..., 8897ba9c...)",
+        ".cache/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391 3,800 2-m probes; SHA256 1301f70d...)",
+        ".cache/external/paleo_geothermal_regional.zip (DOE GDR #1391 726 sinter/travertine/tufa vents; SHA256 faffcf69...)",
+        ".cache/external/gdr_wellspring_in_footprint.csv & gdr_volcanic_vents_in_footprint.csv (DOE GDR #1391 geothermometry & vents, dist_known_fault_px strictly excluded; SHA256 122718e6..., f91bafba...)"
+      ],
+      "physical_signature": "Steerable odd-symmetric fault-step vs even-symmetric volcanic-dike/paleochannel quadrature phase-asymmetry A_step = (||grad_n phi|| - |d^2_nn phi|) / (||grad_n phi|| + |d^2_nn phi| + eps) on vector gravity (Bands 11, 13, 18) and RTP/TMI_up150 (Band 2 + ext Band 4), bilinearly pulled back up-dip along footwall-directed (-grad Z_b) vectors by clip((Z_b/100)*cot(60 deg), 0, 8 px) onto surface fault emergence; coupled with oriented seismic-lineation structure-tensor anisotropy (Bands 10, 16) projected onto Kostrov normal-dilation/Riedel-shear strain rates (Bands 7, 8), multi-altitude FFT Salem tilt-zero dip-migration, up-hydraulic-head advected DOE GDR #1391 silica/cation geothermometry + 2-m probe thermal walls + paleo-sinter vents, 6 anisotropic Kostrov-Pollard fracture-mechanics fields, Elkan (2001) Bayes prior-odds calibration + cover-aware Noisy-OR fusion, and Exact 6-Ring Bernoulli Survival Supremum Self-Credit Dinkelbach-CELF allocation.",
+      "why_off_catalogue": "Concealed intrabasin normal faults and blind geothermal conduits dip 55-65 deg beneath Quaternary alluvium (displacing subsurface gravity/magnetic/MT steps 400-800 m basinward of surface emergence), while Miocene Northern Nevada Rift mafic dike swarms generate strong even-symmetric magnetic/gravity ridges that trigger isotropic gradient and Riesz amplitude detectors. Pulling odd-symmetric step phase up-dip to surface emergence and fusing via cover-aware Elkan-Bayes calibration recovers both concealed basin-floor conduits (SGMC-PROXY-DTI) and unmapped range-tip/relay extensions (HOLDOUT-DTI) without concentrating >70% of dots on legacy catalogue collars.",
+      "non_fault_mimic": "(1) Miocene Northern Nevada Rift basaltic dike swarms and buried alluvial paleochannels (even-symmetric phi in {0, pi} ridges/troughs, suppressed by odd-minus-even quadrature step filter A_step); (2) Pleistocene Lake Lahontan (1,180-1,345 m ASL) wave-cut shorelines and GeoDAWN flight-block leveling seams (vetoed via acquisition_block_id_100m.tif and elevation contour-parallelism); (3) down-slope shallow groundwater thermal outflow plumes (mitigated via up-hydraulic-head back-projection).",
+      "differs_from_repo": "Resolves the exact structural trade-off between H86I-KSAD (which achieved 0.1599 HOLDOUT-DTI via Elkan-Bayes coupled Kostrov-Pollard trees but failed the 0.70 discrete overlap gate at 0.7131 due to collar=2.6 px, min_sep=2.4 px, and unpulled static features) and H86K-STDP (which achieved 0.3711 max overlap and 0.1133 SGMC-PROXY-DTI via up-dip pullback + 6-ring Dinkelbach-CELF at collar=3.0 px, spacing=2.8 px, but dropped to 0.1380 HOLDOUT-DTI because quadrant-IQR normalization erased natural SW/SE fold base rates and omitted steerable odd-step vs even-dike discrimination and 6-plane Kostrov-Pollard coupling).",
+      "expected_dti_gain_rank": 1,
+      "implementation_cost": "Medium (~18 min CPU, <900 MiB RAM via float16 memmaps; 100% SHA-pinned data already restored and verified in sandbox)"
+    },
+    {
+      "id": "H86N-EQLA",
+      "rank": 2,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Microseismic-Hypocentral Lineation Structure Tensor & Geodetic Transtensional Coulomb Stress-Rate Coupling",
+      "layers": [
+        "training_features.tif Bands 4 (geod_2ndinv), 7 (geod_shearrate), 8 (geod_dilaterate), 10 (deq_n100a15), 15 (depth_to_base_surf), 16 (ieq_n100a15)"
+      ],
+      "physical_signature": "2-D structure-tensor anisotropy ((lambda_1 - lambda_2)/(lambda_1 + lambda_2)) and principal strike director of log-transformed earthquake density (Band 10) and inverse distance (Band 16) projected onto Kostrov normal-dilation and Riedel transtensional shear strain rates (Bands 7, 8).",
+      "why_off_catalogue": "Active accommodation-zone transfer faults and blind Walker Lane / Humboldt structural zone stepovers creep and host linear microseismic streaks beneath unbroken Quaternary playfairways without forming single range-front scarps.",
+      "non_fault_mimic": "Isotropic geothermal injection swarms, mining/quarry blasts, or broad catalog kernel smoothing halos (suppressed by requiring high structure-tensor eccentricity and transtensional azimuth alignment).",
+      "differs_from_repo": "Prior lanes (H86I-KSAD, H86K-STDP) used scalar products or differences of Bands 10 and 16; none extracted the oriented 2-D seismic structure tensor and projected its strike onto the geodetic Kostrov strain tensor (core plane incorporated as feature 14 in H86N-SHPB).",
+      "expected_dti_gain_rank": 2,
+      "implementation_cost": "Low (native bands only; core operator integrated into H86N-SHPB)"
+    },
+    {
+      "id": "H86N-BFAH",
+      "rank": 3,
+      "status": "QUEUED_SELF_CONTAINED",
+      "name": "Listric Hanging-Wall Rollover Antithetic Fiber-Bending Curvature & Conductive Clay-Cap Seal Termination",
+      "layers": [
+        "training_features.tif Bands 13 (iso_grav_anom), 15 (depth_to_base_surf), 17 (cond_surf), 19 (det_elev_slope)",
+        ".cache/external/topo_10m_derived_100m_u8.tif"
+      ],
+      "physical_signature": "Directional hanging-wall rollover bending strain -d^2(Z_b)/du^2 at 1.5-3.5 km basinward standoff coupled with lateral termination of high surface conductance (Band 17 smectite clay cap).",
+      "why_off_catalogue": "Antithetic keystone faults in hanging-wall rollover anticlines nucleate 1.5-3.5 km basinward of mapped master range-front faults and trap blind geothermal upflow beneath electrically conductive smectite clay caps.",
+      "non_fault_mimic": "Differential compaction synclines over buried bedrock highs and saline playa margins.",
+      "differs_from_repo": "Couples directional Xiao-Suppe rollover curvature with lateral clay-cap conductance termination rather than isotropic biharmonic nabla^4(Z_b) (H86I-HVFD) or raw conductivity necks (H86M-CNT).",
+      "expected_dti_gain_rank": 3,
+      "implementation_cost": "Low-Medium (obtainable on existing stack; core rollover hinge incorporated in H86N-SHPB)"
+    },
+    {
+      "id": "H86N-INSAR",
+      "rank": 4,
+      "status": "DEFERRED_EXTERNAL_SOURCE_EGRESS_BLOCKED",
+      "name": "ARIA/COMET Sentinel-1 Ascending+Descending InSAR Vertical Subsidence & Fault-Parallel Creep-Gradient Step",
+      "layers": [
+        "External official public-domain source required: NASA/JPL ARIA Sentinel-1 Geocoded Unwrapped Interferograms (ASF DAAC https://asf.alaska.edu/data-sets/derived-data-sets/insar/) & COMET LiCSAR Nevada frame 064A_05054_131313 (https://comet.nerc.ac.uk/COMET-LiCS-portal/)",
+        "training_features.tif Bands 4 (geod_2ndinv), 7 (geod_shearrate), 8 (geod_dilaterate), 15 (depth_to_base_surf)"
+      ],
+      "physical_signature": "100 m high-pass vertical deformation phase-gradient step across blind intrabasin faults acting as hydraulic compartment barriers and aseismic creep planes.",
+      "why_off_catalogue": "Blind intrabasin faults compartmentalize basin groundwater and geothermal reservoirs, producing sharp 100 m-scale InSAR vertical deformation steps across flat playas with zero topographic scarp.",
+      "non_fault_mimic": "Agricultural center-pivot pumping cones and seasonal playa evaporite swelling.",
+      "differs_from_repo": "Native Bands 4, 7, 8 are long-wavelength (~10-20 km) GPS station interpolations (Hammond et al. 2016) that cannot resolve 100 m intrabasin hydraulic-barrier phase steps.",
+      "external_source_obtainability": "Official free public-domain NASA ASF DAAC / COMET LiCSAR products verified by URL, but NOT directly downloadable inside this sandbox because outbound internet access is restricted to github.com/codeload.github.com/api.github.com/pypi.org/npmjs.org and no SHA-pinned Sentinel-1 InSAR raster mirror exists in buffedlizard55-lab/*. Explicitly deferred per protocol rather than simulated.",
+      "expected_dti_gain_rank": 4,
+      "implementation_cost": "High (requires external workstation download + EPSG:32611 100 m phase unwrapping/projection)"
+    }
+  ]
+}

@@ -131,6 +131,16 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
                 "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."}
+    if kind == "h86m_lt_unvalidated":
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or not explicit_no_authorization(context)
+                or "holdout_dti" in context):
+            raise ValueError("H86M-LT archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Fleet leaderboard tomography fit to 29 owner-reported scores on full-catalogue rasters; no hide-and-recover evaluation",
+                "caveat": "No fold-visible hide-and-recover HOLDOUT-DTI was run. Belief was fit to 29 unverified owner-reported scores on full-catalogue fleet rasters (d_cat > 3 px from full catalogue); expected-DTI values are model projections, not HOLDOUT-DTI or organizer scores, and literal witness overlap fails. DO NOT SUBMIT."}
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
@@ -401,6 +411,15 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86K-STDP lane result; the run card is the authoritative experiment receipt. Multi-altitude Salem tilt dip-migration + bilinear up-dip hanging-wall pullback + up-hydraulic-head DOE GDR-1391 geothermal disequilibrium + GeoDAWN flight-seam veto + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves SGMC-PROXY-DTI 0.1133 [0.0993, 0.1288] (pure-blind E2 = 0.1151 [0.0970, 0.1337]), beating every equal-budget 37,654-dot comparator with strictly positive paired 95% CIs (GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355], H86J-MCSP +0.0134 [+0.0002, +0.0261], H86F-EWCS +0.0314 [+0.0195, +0.0424], pixel-local ablation E3 +0.0353 [+0.0221, +0.0475]) and achieving strict 4-fold LOQO HOLDOUT-DTI 0.1380 [0.1223, 0.1545] (lifting Fold NE blind E2 28.5x from 0.0024 to 0.0685 and E1 to 0.1420), with 0/698 Spearman rho > 0.90 firings (max 0.5728) and 0/475 discrete <=90k-dot firings > 0.70 (max 0.6213), while full 700-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86n_shpb":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "paired_delta": h["paired_delta_vs_ablation_E3"]["delta"],
+                "paired_delta_ci95": h["paired_delta_vs_ablation_E3"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86N-SHPB lane result; the run card is the authoritative experiment receipt. Steerable odd-step/even-dike quadrature up-dip pullback + Kostrov-Riedel seismotectonic lineation tensor + Elkan (2001) Bayes prior-odds 4-fold LOQO + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves all-time strict-LOQO HOLDOUT-DTI 0.1665 [0.1498, 0.1834] (NW=0.1675, NE=0.1675, SW=0.1630, SE=0.1698; blind E2 = 0.0728 [0.0579, 0.0873]; pixel-local unpulled ablation E3 = 0.1365 [0.1208, 0.1525]), beating E3 by +0.0300 [+0.0146, +0.0438] (strictly > 0 in all 4 folds), R0_D28 by +0.1392 [+0.1220, +0.1571], R0_GEMSDOE25 by +0.0704 [+0.0530, +0.0868], H86I-KSAD (0.1599), H86J-MCSP (0.1463), and H86K-STDP (0.1380), and achieving SGMC-PROXY-DTI 0.1009 [0.0869, 0.1150] (vs D28 0.0937 and H33 0.0937), with 0/704 Spearman rho > 0.90 firings (max 0.4929) and 0 discrete <=90k-dot firings > 0.70 (max 0.6239), while full 706-entry v2 literal/completeness gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

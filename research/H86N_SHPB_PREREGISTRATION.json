@@ -1,0 +1,102 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86N-SHPB",
+  "frozen_utc": "2026-10-25T18:40:00Z",
+  "git_branch": "arena/fd5fa170-gemsdoe86",
+  "title": "Steerable Odd-Step vs Even-Dike Quadrature Phase-Asymmetry, Up-Dip Basement Pullback, Seismic-Geodetic Lineation & Cover-Aware Elkan-Bayes 6-Ring Survival Dinkelbach-CELF",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "weekly_submission_slots_to_spend": 0
+  },
+  "evaluator_contract": {
+    "holdout_evaluator": "vendor/template66/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_seed": 20,
+    "hide_frac": 0.20,
+    "buffer_px": 3,
+    "erode_px": 12,
+    "withheld_positive_pixels": 11321,
+    "bootstrap_clusters": 158,
+    "bootstrap_draws": 1000,
+    "secondary_instrument": "SGMC-PROXY-DTI (derived_sgmc_faults_100m_u8.tif, d_cat > 3.0 px, 52,653 positive pixels)",
+    "leakage_canary_auc_max": 0.90,
+    "surface_spearman_max": 0.90,
+    "dot_overlap_3px_max": 0.70
+  },
+  "static_features": [
+    "odd_step_even_dike_grav_updip",
+    "odd_step_even_dike_rtp_updip",
+    "salem_rtp_tilt_zero_z100",
+    "salem_grav_tilt_zero_z100",
+    "salem_rtp_dip_migration",
+    "salem_grav_dip_migration",
+    "updip_pullback_monogenic",
+    "updip_pullback_cond_neck",
+    "intrabasin_keystone_hinge",
+    "tmi_up150_wavenumber_si",
+    "hydro_magnetite_destruction",
+    "kostrov_dilation_tendency",
+    "kostrov_riedel_slip_tendency",
+    "eq_lineation_transtens_align",
+    "aseismic_creep_deficit",
+    "uphead_geotherm_diseq",
+    "probe2m_uphead_thermal_wall",
+    "paleo_sinter_vent_corridor",
+    "rad_kth_alteration_seamfree",
+    "rad_uth_redox_seamfree",
+    "geotherm_conjugate_intersect",
+    "lidar1m_scarp_swath_debiased",
+    "topo10_piedmont_curv_break",
+    "chi10_drainage_knick_step"
+  ],
+  "fold_visible_elastic_features": [
+    "kostrov_wing_crack_lobe",
+    "collinear_tip_cone_short",
+    "collinear_tip_cone_long",
+    "releasing_stepover_bridge",
+    "strike_anisotropic_corridor",
+    "broadside_stress_shadow"
+  ],
+  "ablation_control_features": [
+    "local_rtp_gradmag_s2",
+    "local_grav_slope_b5",
+    "local_depth_gradmag_s3",
+    "local_elev_slope_b19",
+    "local_lidar_step_debiased",
+    "local_topo10_slope_p90",
+    "local_strain_2ndinv_hp",
+    "local_geotherm_iso_blur"
+  ],
+  "banned_columns_and_layers": [
+    "dist_known_fault_px",
+    "existing_faults.tif in static features",
+    "gdr_qfaults_traces.csv in static features",
+    "derived_sgmc_faults_100m_u8.tif in training or inference"
+  ],
+  "arms": [
+    {
+      "arm_id": "E1_shpb_coupled_dinkelbach_celf",
+      "role": "primary_candidate",
+      "description": "Coupled 4-fold LOQO + nested cross-component PU ensemble (24 SHPB static features + 6 anisotropic Kostrov-Pollard fracture features) with SAR exposure-propensity weights and Elkan (2001) Bayes subsampling prior-odds recalibration, fused via cover-aware Noisy-OR with the quadrant-sparse blind SHPB conduit specialist and allocated via Exact 6-Ring Bernoulli Survival Supremum Self-Credit Dinkelbach-CELF (budget=37,654, min_spacing=2.8 px, collar >3.0 px)."
+    },
+    {
+      "arm_id": "E2_shpb_blind_conduit_dinkelbach_celf",
+      "role": "blind_conduit_specialist",
+      "description": "Zero-catalogue-feature blind SHPB conduit specialist (24 translation-invariant SHPB static features + physics corroboration prior, zero fold-visible elastic features at inference) calibrated under strict 4-fold LOQO and allocated via Exact 6-Ring Bernoulli Survival Supremum Self-Credit Dinkelbach-CELF (budget=37,654, min_spacing=2.8 px, collar >3.0 px)."
+    },
+    {
+      "arm_id": "E3_local_unpulled_staticek_ablation",
+      "role": "ablation_control",
+      "description": "Pixel-local unpulled isotropic gradient ablation control (8 local gradient/blur features without steerable odd-step phase-asymmetry, up-dip basement pullback, Salem dip-migration, seismic-lineation tensor alignment, or up-hydraulic-head geothermometry) decoded with static expected-kernel Poisson-disc thinning (budget=37,654, min_spacing=2.8 px, collar >3.0 px)."
+    }
+  ],
+  "promotion_and_safety_rules": {
+    "require_positive_95ci_vs_ablation_on_holdout": true,
+    "require_positive_95ci_vs_R0_on_holdout": true,
+    "require_positive_gain_vs_R0_on_sgmc_proxy": true,
+    "require_surface_spearman_le_090": true,
+    "require_discrete_dot_overlap_le_070": true,
+    "fail_closed_under_pa86_literal_witness": true
+  }
+}

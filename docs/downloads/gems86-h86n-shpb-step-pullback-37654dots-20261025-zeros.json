@@ -1,0 +1,140 @@
+{
+  "file": "gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros.tif",
+  "sha256": "6e2749a534bfc40198886284bc9c73bd7984c2adb52efeaa0f1307c57cfd172e",
+  "bytes": 142593,
+  "submission_name": "gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros",
+  "note": "H86N-SHPB odd-step pullback+Kostrov-Bayes 6-ring CELF 37654d [0,1]; HOLD 0.1665; DO NOT SUBMIT",
+  "note_chars": 94,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros.tif",
+    "bytes": 142593,
+    "sha256": "6e2749a534bfc40198886284bc9c73bd7984c2adb52efeaa0f1307c57cfd172e",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros.tif",
+    "bytes": 142593,
+    "sha256": "6e2749a534bfc40198886284bc9c73bd7984c2adb52efeaa0f1307c57cfd172e",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86n-shpb-step-pullback-37654dots-20261025-zeros.zip",
+  "zip_sha256": "ece462e8af3a78aa44a2fc5ceb3248086925bef1bf3194bbf1340322bc8a374f",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane_id": "H86N-SHPB",
+    "git_branch": "arena/fd5fa170-gemsdoe86",
+    "preregistration_sha256": "e3bf6d38714d50cf3e0bb97a7c26f338be0da31c791009d5195ede0cb0fab2e1",
+    "hypotheses_sha256": "a8c1b091422aa74a12d6d148c22215132b40aee17a0357fc67bd6476f3847f2a",
+    "static_stack_sha256": "c014cc440f37de47199389aa0222d3c16ee8f9039ebdc552dd258dc02fc55215",
+    "holdout_dti": 0.1665073056311654,
+    "holdout_ci95": [
+      0.14978497839563143,
+      0.18341233913677438
+    ],
+    "sgmc_proxy_dti": 0.10089409929441175,
+    "sgmc_proxy_ci95": [
+      0.08686238852305499,
+      0.11497087993365963
+    ],
+    "safe_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "verdict": "negative",
+    "decision": "DO NOT SUBMIT"
+  }
+}
