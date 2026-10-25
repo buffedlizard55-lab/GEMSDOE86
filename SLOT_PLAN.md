@@ -2,6 +2,15 @@
 
 > **2026-10-25 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`, `artifact_count: 18`), **zero files in this repository are currently authorized for portal upload** (including the newly generated 2026-10-25 `H86I-HVFD` audit GeoTIFF `gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif`, `H86F-GZZD`, `H86F-PCC`, and `H86E-MMT`), and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate remains revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
 
+**2026-10-25 addendum (H86G-EDTI):** one candidate is now selector-ready under PA-86-01
+like-for-like gates — `gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros`
+(sha256 `ba8b731f...`, SGMC-PROXY-DTI 0.1223 vs H33-as-is 0.0954, paired Δ +0.0269
+[+0.0028, +0.0518] post-selection descriptive; HOLDOUT-DTI OOF 0.0631). It is the
+recommended next single slot **if** the selector spends one; receipt decision
+rule (±0.01 vs the 0.2778 OWNER-REPORTED claim) is in
+`research/H86G_EDTI_REVIEW.md`. The literal-witness notice above is unchanged
+for every other file, and the R0-axis probes below remain archived spares.
+
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`
 portal clock; ~5.9 wk ⇒ ~17 slots max, minus the final pick). Parent **R0 = `h33-h33-2-b2`**
@@ -135,3 +144,17 @@ measured; PA-86-02 failed closed). **No selector ran and no weekly slot was cons
 formally exclude the two grid-incompatible registry rows upstream
 (IR-86-H86F-GZZD-01), obtain receipt-backed organizer scores for the h33 lineage, and
 present a candidate that beats same-split best HOLDOUT-DTI with a separated CI.
+
+## 2026-10-25 — H86F-EWCS lane: HOLDOUT-DTI 0.1723 (beats same-split KSLB & controls with separated 95% CIs), 0 slots used, DO NOT SUBMIT pending registry blocker resolution
+
+The H86F-EWCS lane (`docs/evidence/h86f-ewcs-run-card.json`) generated a byte- and
+pixel-unique, locally format-valid 37,654-dot GeoTIFF (`gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif`,
+SHA-256 `8322dcf157851e07...`) that **solved the scientific holdout hurdle** — achieving
+`HOLDOUT-DTI = 0.1723` (`95% CI [0.1530, 0.1898]`) on `gems57-pooled-hide-v2` (`11,321`
+withheld positives), beating its isotropic-tip control `E3` (`0.1592`, paired Δ `+0.0131
+[+0.0012, +0.0261]`), cover-blind control `E2` (`0.1003`), fold-fair `GEMSDOE25` `R0`
+(`0.0961`), and same-split `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`) with separated 95% CIs,
+with `0/687` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap firings
+(`26.96%` vs `GEMSDOE32`). **However, no selector ran and 0 weekly slots were used (`DO NOT SUBMIT`)**
+because `14GEMSDOE` and `7GEMSDOE` remain grid-incompatible in the pinned registry index
+and literal `17GEMSDOE` saturation blocks automated clearance (`IR-86-H86F-EWCS-01`).

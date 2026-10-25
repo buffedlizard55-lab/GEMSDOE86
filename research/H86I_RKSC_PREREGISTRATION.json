@@ -1,0 +1,120 @@
+{
+  "schema": "gems86.h86i-rksc-preregistration.v1",
+  "status": "frozen_before_implementation",
+  "frozen_utc": "2026-10-25T02:18:00Z",
+  "session_branch": "arena/ef9c3480-gemsdoe86",
+  "selected_lane_id": "H86I-RKSC",
+  "candidate_hypotheses_count": 4,
+  "protocol_constraints": {
+    "max_experiments": 3,
+    "max_wall_clock_hours": 2.0,
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_rho_limit": 0.90,
+    "dot_3px_overlap_limit": 0.70,
+    "holdout_evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, seed=20, hide_frac=0.20, buffer_px=3, 11321 withheld positives, alpha=0.2, beta=0.8, 300 m triangular kernel)",
+    "submission_writer": "vendor/gems57/submission_writer.py",
+    "weekly_submission_slots_to_consume": 0
+  },
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86I-1_RKSC",
+      "lane_code": "H86I-RKSC",
+      "selected_for_validation": true,
+      "title": "Lahontan-Deconfounded Piedmont Scarp Profile-Curvature Dipole coupled with GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step and Seismic-Conductance Conduit",
+      "layers": [
+        "training_features.tif Band 6 (tc: pixel-verified GeoDAWN Airborne Radiometric Total Count TC, r=+0.997140 vs geodawn_rad_u8.tif Band 4 TC)",
+        "data/external/geodawn_rad_u8.tif Band 1 (K), Band 2 (Th), Band 3 (U), Band 4 (TC) (USGS GeoDAWN DOI 10.5066/P93LGLVQ)",
+        "training_features.tif Band 12 (det_elev: Detrended elevation) & Band 19 (det_elev_slope: Detrended elevation slope)",
+        "data/external/topo_10m_derived_100m_u8.tif Band 6 (curv_prof_absmax) & Band 9 (dem_mean for Lake Lahontan shoreline contour deconfounding)",
+        "training_features.tif Band 4 (geod_2ndinv), Band 7 (geod_shearrate), Band 8 (geod_dilaterate)",
+        "training_features.tif Band 10 (deq_n100a15: Distance to earthquake) & Band 16 (ieq_n100a15: Earthquake intensity/density)",
+        "training_features.tif Band 17 (cond_surf: Electrical conductivity surface)"
+      ],
+      "physical_signature": "Co-located (1) asymmetric piedmont profile-curvature dipole (-div(grad(B12)/||grad(B12)||) + 10m 3DEP curv_prof_absmax gated by piedmont slope window in B19 and suppressed along Pleistocene Lake Lahontan contour-parallel strandlines in topo_10m Band 9 dem_mean), (2) strike-concordant cross-scarp gradient in immobile-normalized potassium metasomatism index R_K_Th = z(geodawn K) - 0.85*z(geodawn Th) and Total Count B6 (tc), and (3) seismic-geodetic-argillic conduit favorability from B4, B7, B8, B10, B16, and B17.",
+      "why_catches_unmapped_faults": "Late-Quaternary piedmont and intrabasin fault scarps diffused below ~1-2 m vertical relief over 10^4-10^5 yr are systematically missed by aerial-photo compilation in USGS/INGENIOUS, yet still juxtapose distinct footwall vs. hanging-wall alluvial radioelement provenance (K, Th, U, TC), focus K-metasomatic illite/adularia alteration along the fault damage zone, and preserve a 300-600 m piedmont profile-curvature inflection.",
+      "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut constructional strandlines and non-tectonic alluvial fan boundary channels between adjacent drainages draining potassic ash-flow tuffs vs. intermediate volcanics.",
+      "difference_from_repo": "Excludes all gravity (Bands 5, 11, 13, 15, 18) and magnetic (Bands 1, 2, 3, 9, 14) layers that underpinned H86E-MMT, H86F-PCC, H86F-GZZD, and H86H-PSTD; operates as a 100% catalogue-blind, zero-parameter radiometric-geomorphic-seismotectonic operator rather than the 48-62 feature supervised HGB + visible-catalogue relay models of H86C-KSLB and H86D-CTHB.",
+      "expected_dti_rank": 1,
+      "implementation_cost": "Low-Medium (9 verified training_features.tif bands + pinned GeoDAWN K/Th/U/TC & 10m 3DEP rasters, O(N) Gaussian derivative & structure-tensor operators)",
+      "official_data_obtainability": "OBTAINABLE_AND_VERIFIED_IN_REPO (data/training_features.tif sha256=4371c82e..., data/external/geodawn_rad_u8.tif, data/external/topo_10m_derived_100m_u8.tif)"
+    },
+    {
+      "rank": 2,
+      "id": "H86I-2_MTCS",
+      "lane_code": "H86I-MTCS",
+      "selected_for_validation": false,
+      "title": "Shallow-Conductance Smectite Cap to Seismic-Swarm Upflow Lateral Offset across Dipping Basement Faults",
+      "layers": [
+        "training_features.tif Band 17 (cond_surf)",
+        "training_features.tif Band 16 (ieq_n100a15) & Band 10 (deq_n100a15)",
+        "training_features.tif Band 15 (depth_to_base_surf)",
+        "training_features.tif Band 8 (geod_dilaterate)"
+      ],
+      "physical_signature": "Cross-strike dipole coupling where earthquake density/proximity (B16, B10) at seismogenic depth is laterally offset 200-800 m in the down-dip hanging-wall direction (grad B15) from a shallow electrical conductance smectite cap (B17).",
+      "why_catches_unmapped_faults": "Blind intrabasin geothermal faults beneath zero-relief playas leave no surface scarp, but fluid upflow along a 50-65 deg dipping fault plane creates a diagnostic down-dip separation between deep microseismicity and the shallow argillic alteration cap.",
+      "named_non_fault_mimic": "Closed-basin evaporite playa brines sitting laterally adjacent to buried volcanic centers without brittle fault conduits.",
+      "difference_from_repo": "Targets the directed lateral spatial phase offset between B16/B10 and B17 along the B15 dip vector, unlike point-wise scalar tree splits in H86C-KSLB or potential-field curvature in H86F-GZZD/H86H-PSTD.",
+      "expected_dti_rank": 2,
+      "implementation_cost": "Low (5 in-repo bands, directional shift cross-correlation)",
+      "official_data_obtainability": "OBTAINABLE_AND_VERIFIED_IN_REPO (deferred to preserve strict 1-lane / 3-experiment budget)"
+    },
+    {
+      "rank": 3,
+      "id": "H86I-3_SPBT",
+      "lane_code": "H86I-SPBT",
+      "selected_for_validation": false,
+      "title": "Mohr-Coulomb Transtensional Stress-Ratio Obliquity Coupled with Microseismic Lineament Tensor and Conductance Boundaries",
+      "layers": [
+        "training_features.tif Band 16 (ieq_n100a15) & Band 10 (deq_n100a15)",
+        "training_features.tif Band 4 (geod_2ndinv), Band 7 (geod_shearrate), Band 8 (geod_dilaterate)",
+        "training_features.tif Band 17 (cond_surf)"
+      ],
+      "physical_signature": "Spin-2 angular alignment between the structure tensor of earthquake density (B16) and lateral conductance gradients (B17), weighted by the transtensional strain product z(B7)*sigmoid(z(B8)).",
+      "why_catches_unmapped_faults": "Nascent strike-slip and transtensional accommodation zones (e.g., Walker Lane / Humboldt structural belt) have minimal vertical throw and weak gravity steps, but exhibit aligned microseismicity and fluid-conductivity boundaries.",
+      "named_non_fault_mimic": "Swarm seismicity induced by geothermal injection/production or volcanic diking unrelated to through-going tectonic faults.",
+      "difference_from_repo": "Uses seismic-conductance spin-2 tensor alignment with zero topographic, gravity, or magnetic inputs.",
+      "expected_dti_rank": 3,
+      "implementation_cost": "Low (6 in-repo bands)",
+      "official_data_obtainability": "OBTAINABLE_AND_VERIFIED_IN_REPO (deferred to preserve strict 1-lane / 3-experiment budget)"
+    },
+    {
+      "rank": 4,
+      "id": "H86I-4_INSAR",
+      "lane_code": "H86I-INSAR",
+      "selected_for_validation": false,
+      "title": "Sentinel-1 / ARIA Ascending-Descending InSAR Interseismic Strain Gradient & Poroelastic Aquifer-Barrier Phase Jump",
+      "layers": [
+        "External NASA JPL ARIA / ASF DAAC Sentinel-1 GUNW unwrapped interferograms & COMET LiCSAR velocity fields (90 m)",
+        "External USGS NWIS / Nevada Division of Water Resources seasonal piezometric head records"
+      ],
+      "physical_signature": "Horizontal velocity gradient step (||grad v_LOS|| > 1.5 mm/yr/km) co-located with a seasonal poroelastic vertical phase discontinuity across fault-gouge hydraulic barriers in alluvial basins.",
+      "why_catches_unmapped_faults": "Directly images active aseismic creep and groundwater compartmentalization across Holocene playas where erosion/aggradation erases topographic scarps.",
+      "named_non_fault_mimic": "Stratigraphic clay-silt facies pinchouts in agricultural pumping cones (e.g., Mason Valley, Fallon, Lovelock).",
+      "difference_from_repo": "Requires multi-temporal satellite radar interferometry rather than static geophysical or topographic rasters.",
+      "expected_dti_rank": 4,
+      "implementation_cost": "High (multi-orbit InSAR time-series inversion)",
+      "official_data_obtainability": "NOT_VIABLE_IN_SANDBOX_YET: Official free sources are NASA ASF DAAC (https://search.asf.alaska.edu/) and COMET LiCSAR (https://comet.nerc.ac.uk/COMET-LiCS-portal/), which are blocked by the sandbox outbound allowlist (github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org) and are not mirrored in data/external/."
+    }
+  ],
+  "experiment_arms": [
+    {
+      "arm_id": "E1_rksc_full",
+      "description": "Full H86I-RKSC operator: Lahontan-deconfounded piedmont scarp profile-curvature dipole coupled with strike-aligned GeoDAWN radiometric K/Th/U/TC provenance-metasomatism gradient and seismic-geodetic-argillic conduit favorability; emitted at 44,090 dots via shared 3-px decimated emitter with >3 px visible/catalogue collar.",
+      "dot_budget_full_footprint": 44090,
+      "visible_collar_px": 3.0
+    },
+    {
+      "arm_id": "E2_rksc_rad_scarp_only",
+      "description": "Radiometric-geomorphic ablation: Lahontan-deconfounded piedmont scarp profile-curvature dipole + GeoDAWN radiometric K/Th/U/TC provenance-metasomatism step without seismic/geodetic/conductance coupling; emitted at 44,090 dots.",
+      "dot_budget_full_footprint": 44090,
+      "visible_collar_px": 3.0
+    },
+    {
+      "arm_id": "E3_rksc_lahontan_uncorrected_control",
+      "description": "Negative control removing Lake Lahontan shoreline contour deconfounding and inverting the K/Th metasomatic polarity to test whether shoreline-suppression and potassic enrichment polarity contribute positively on holdout; emitted at 44,090 dots.",
+      "dot_budget_full_footprint": 44090,
+      "visible_collar_px": 3.0
+    }
+  ]
+}

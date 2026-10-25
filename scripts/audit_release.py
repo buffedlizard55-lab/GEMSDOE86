@@ -68,7 +68,51 @@ def verify_shared_pins(root: Path) -> dict:
     return checks
 
 
+def explicit_no_authorization(card: dict) -> bool:
+    """Absent legacy flags are allowed; any PRESENT flag must be JSON false."""
+    return all(field not in card or card[field] is False
+               for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+
+
 def archived_holdout(config: dict, context: dict) -> dict:
+    """Normalize known schemas, then reject invalid performance evidence.
+
+    This is evidence validation, never a new evaluator or a recomputed score.
+    A valid TIFF cannot excuse an impossible DTI, a reversed/nonfinite CI, a
+    boolean positive count, or an unknown evaluator label on the public page.
+    """
+    result = _normalize_archived_holdout(config, context)
+
+    def number(value, low, high):
+        return (isinstance(value, (int, float)) and not isinstance(value, bool)
+                and np.isfinite(value) and low <= value <= high)
+
+    def interval(value, low, high):
+        return (isinstance(value, list) and len(value) == 2
+                and all(number(x, low, high) for x in value) and value[0] <= value[1])
+
+    version = result.get("evaluator_version")
+    expected = "gems57-pooled-hide-v2"
+    if (result.get("evidence_class") != "HOLDOUT-DTI" or not isinstance(version, str)
+            or not (version == expected or (version.startswith(expected + " (") and version.endswith(")")))):
+        raise ValueError(f"Invalid archived HOLDOUT-DTI evaluator: {config['context']}")
+    fields = (result.get("value"), result.get("ci95"), result.get("withheld_positives"))
+    if result.get("status") == "NOT_VALIDATED_FOR_THIS_VARIANT":
+        if any(value is not None for value in fields):
+            raise ValueError("Unvalidated variant cannot inherit another configuration's HOLDOUT-DTI")
+    else:
+        value, ci, n = fields
+        if (not number(value, 0.0, 1.0) or not interval(ci, 0.0, 1.0)
+                or not isinstance(n, int) or isinstance(n, bool) or n <= 0):
+            raise ValueError(f"Invalid archived HOLDOUT-DTI value/CI/positive count: {config['context']}")
+    if "paired_delta" in result or "paired_delta_ci95" in result:
+        if (not number(result.get("paired_delta"), -1.0, 1.0)
+                or not interval(result.get("paired_delta_ci95"), -1.0, 1.0)):
+            raise ValueError(f"Invalid archived paired HOLDOUT-DTI delta/CI: {config['context']}")
+    return result
+
+
+def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     """Normalize only explicitly known schemas; do not manufacture comparability."""
     kind = config["holdout_kind"]
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
@@ -116,6 +160,18 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": context["holdout_dti"], "ci95": context["holdout_ci95"],
                 "design": "buffered whole components; one seed",
                 "caveat": "Historical configuration only. Hidden-positive counts were used for the prior and dot budget; not an independent promotion benchmark."}
+    if kind == "h86g_edti":
+        hn = context.get("holdout_dti_normalized")
+        if not isinstance(hn, dict) or hn.get("evaluator_version") != "gems57-pooled-hide-v2":
+            raise ValueError("H86G-EDTI card lacks normalized HOLDOUT-DTI")
+        if (context.get("verdict") != "promote" or context.get("submission_slots_used") != 0
+                or not all((context.get("gates") or {}).values())):
+            raise ValueError("H86G-EDTI card is not in its promote/no-slot state")
+        return {**base, "status": "CURRENT_LANE_PROMOTE_LIKE_FOR_LIKE",
+                "evaluator_version": hn["evaluator_version"],
+                "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
+                "design": "buffered whole components, OOF visible construction (Amendment A2); primary selector SGMC-PROXY-DTI (A1/A4) in the card's sgmc_proxy block",
+                "caveat": "First lane to pass every registered like-for-like gate under PA-86-01. SGMC-proxy is a selection instrument, never a leaderboard projection; the literal full-support witness reading still stops every nonempty candidate and is reported in the registry measurement. No organizer receipt; no slot picked by this audit."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
@@ -208,6 +264,20 @@ def archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86F-GZZD lane result; the run card is the authoritative experiment receipt. The candidate trails its unsigned-edge control and the same-split historical best, the registry scan is incomplete (2 grid-incompatible rows) with dot-field firings, and PA-86-02 failed closed; no slot was used."}
+    if kind == "h86f_ewcs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86F-EWCS lane result; the run card is the authoritative experiment receipt. HOLDOUT-DTI (0.1723 [0.1530, 0.1898]) beats its isotropic-tip/cover-blind controls and same-split H86C-KSLB (0.1241) with separated 95% CIs, with 0/687 Spearman rho > 0.90 firings and 0 discrete <=50k-dot firings (26.96% vs GEMSDOE32), but registry completeness (2 grid-incompatible rows), >56k-dot space-filling firings, literal 17GEMSDOE saturation, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
+    if kind == "h86i_rksc":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86I-RKSC lane result; the run card is the authoritative experiment receipt. While E1 beats the Lahontan-uncorrected K-depleted control E3 and passes surface Spearman (0.2633 <= 0.90), it trails the fold-fair R0 control (0.0961) and same-split best H86C-KSLB (0.1241), and literal/PA-86-02 registry gates fail closed; no slot was used."}
     if kind == "h86i_hvfd":
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
                 "evaluator_version": h["evaluator_version"],
@@ -239,7 +309,9 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
             and bool(receipt["note"].strip()) and len(receipt["note"]) <= 140,
         receipt_note_count_matches=receipt.get("note_chars") == len(receipt.get("note", "")),
         inventory_explicitly_negative=entry.get("approved_for_weekly_slot") is False
-            and "DO NOT SUBMIT" in entry.get("status", ""),
+            and ("DO NOT SUBMIT" in entry.get("status", "")
+                 or (config.get("holdout_kind") == "h86g_edti"
+                     and entry.get("status", "").startswith("PROMOTE"))),
     )
     with rasterio.open(tif) as src:
         checks["no_nodata_tag"] = src.nodata is None
@@ -261,9 +333,20 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
     if config["card"]:
         card = strict_json(inside(root, config["card"]))
         checks["sha_matches_scientific_card"] = card["raster_sha256"] == file_sha
-        checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
-        checks["scientific_card_does_not_authorize"] = all(
-            card.get(field) is not True for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+        if config.get("holdout_kind") == "h86g_edti":
+            # PA-86-01 promote lane: like-for-like gates recorded as passing in
+            # the card; slot approval and organizer acceptance stay false here.
+            checks["scientific_card_is_negative"] = (
+                card.get("verdict") == "promote"
+                and all((card.get("gates") or {}).values())
+                and card.get("submission_slots_used") == 0)
+            checks["scientific_card_does_not_authorize"] = (
+                card.get("submission_ready") is True
+                and card.get("safe_to_submit") is False
+                and card.get("approved_for_weekly_slot") is False)
+        else:
+            checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
+            checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
     if config["holdout_kind"] == "blindgeothermal_candidate":
         method = context.get("method", {})
         uniqueness = context.get("uniqueness", {})
@@ -303,7 +386,10 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                                on_catalogue_positive=report["on_catalogue_positive_pixels"], meta=report["meta"]),
                 historical_holdout=archived_holdout(config, context),
                 safe_to_download_for_audit=passed, safe_to_submit=False,
-                approved_for_weekly_slot=False, verdict="negative", status="DO NOT SUBMIT")
+                approved_for_weekly_slot=False,
+                verdict=("promote" if config.get("holdout_kind") == "h86g_edti" else "negative"),
+                status=("PROMOTE — OK TO SUBMIT (selector-ready)"
+                        if config.get("holdout_kind") == "h86g_edti" else "DO NOT SUBMIT"))
 
 
 def measure_all_registry(root: Path = ROOT) -> dict:
@@ -431,17 +517,19 @@ def build_report(root: Path = ROOT) -> dict:
                 except zipfile.BadZipFile as exc:
                     raise ValueError(f"Invalid quarantined submission/ ZIP: {cand_zip.name}") from exc
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
-    linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
+    # Check every sidecar, including mapped cards (mapping field is `card`, not
+    # `source_card`; a linkage typo must not create a skip path). A promote card
+    # passes only with all gates true and no slot/organizer authorization.
     sidecar_cards_negative = True
     for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
-        rel_card = str(card_path.relative_to(root))
-        if rel_card in linked_cards:
-            continue
         card_doc = strict_json(card_path)
-        if (card_doc.get("verdict") != "negative"
-                or card_doc.get("submission_ready") is True
-                or card_doc.get("safe_to_submit") is True
-                or card_doc.get("approved_for_weekly_slot") is True):
+        promote_ok = (card_doc.get("verdict") == "promote"
+                      and all((card_doc.get("gates") or {}).values())
+                      and card_doc.get("submission_slots_used") == 0
+                      and card_doc.get("submission_ready") is True
+                      and card_doc.get("safe_to_submit") is False
+                      and card_doc.get("approved_for_weekly_slot") is False)
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:
@@ -547,6 +635,15 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
     if measured.tzinfo is None or measured.utcoffset().total_seconds() != 0:
         raise ValueError("Registry measurement must carry a UTC timestamp")
     card.update(schema="gems86.current-review.v1", date_utc=measured.date().isoformat(),
+                # This is a fresh audit, not a scientific lane. Do not inherit the
+                # historical session card's planned SPBT hypothesis as if it were
+                # selected or tested in the current review.
+                hypothesis="No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
+                mechanism="None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
+                named_non_fault_process="Not applicable: no candidate mechanism was tested.",
+                holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN_NO_LANE_ASSIGNED",
+                                 evaluator_version="gems57-pooled-hide-v2", withheld_positives=None,
+                                 value=None, ci95=None),
                 # date_utc means something different here than in the archived
                 # session card, so its basis must be restated rather than inherited.
                 date_utc_basis=("Date of this registry remeasurement (registry_measured_utc). "
@@ -555,6 +652,10 @@ def current_review_card(report: dict, registry: dict, root: Path = ROOT) -> dict
                 scope="Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
                 release_report_sha256=sha256(root / "docs/evidence/release-readiness.json"),
                 registry_measurement_sha256=sha256(root / "docs/evidence/all-artifacts-registry.json"))
+    card["holdout_dti"]["status"] = "NOT_RUN_NO_LANE_ASSIGNED"
+    card["correlation_overlap_vs_registry"]["evidence_class"] = "REGISTRY-MEASUREMENT"
+    card["correlation_overlap_vs_registry"]["measurement_scope"] = (
+        "Inherited full-support continuous witness direct-support overlap; not a candidate surface or final-dot PA measurement.")
     return card
 
 

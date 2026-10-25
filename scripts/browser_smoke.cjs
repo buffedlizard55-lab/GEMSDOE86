@@ -13,7 +13,8 @@ const chromium = packageModule.default ?? packageModule;
 const root = path.resolve(__dirname, "..");
 const base = new URL(process.argv[2] || "http://127.0.0.1:8000/");
 const artifactCount = JSON.parse(fs.readFileSync(path.join(root, "docs/evidence/download-inventory.json"), "utf8")).artifacts.length;
-const pages = ["index.html", "executive-summary.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html", "download-status.html", "h86-fvmb-forensics.html"];
+const projectCount = JSON.parse(fs.readFileSync(path.join(root, "docs/evidence/fleet-feed.json"), "utf8")).projects.length;
+const pages = ["index.html", "executive-summary.html", "submit.html", "evidence.html", "hypotheses.html", "fleet.html", "sources.html", "irregularities.html", "research.html", "download-status.html", "h86-fvmb-forensics.html"];
 const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
 
 (async () => {
@@ -69,13 +70,13 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
       assert.equal(download.suggestedFilename(), path.basename(expected.file));
       assert.equal(hash(fs.readFileSync(await download.path())), expected.sha256, "Browser-downloaded TIFF SHA mismatch");
       await page.goto(new URL("fleet.html", base).href);
-      assert.equal(await page.locator("#fleet-table tbody tr").count(), 88);
+      assert.equal(await page.locator("#fleet-table tbody tr").count(), projectCount);
       await page.locator("#fleet-filter").fill("GEMSDOE32");
       assert.equal(await page.locator("#fleet-table tbody tr:visible").count(), 1);
       await page.locator("#fleet-filter").fill("no-such-project-unique-test");
       assert.equal(await page.locator("#fleet-table tbody tr:visible").count(), 0);
       await page.locator("#fleet-filter").fill("");
-      assert.equal(await page.locator("#fleet-table tbody tr:visible").count(), 88);
+      assert.equal(await page.locator("#fleet-table tbody tr:visible").count(), projectCount);
       fs.mkdirSync(path.join(root, ".cache/ui"), { recursive: true });
       await page.goto(new URL("index.html", base).href);
       await page.screenshot({ path: path.join(root, `.cache/ui/dashboard-${width}.png`), fullPage: false });
@@ -94,7 +95,8 @@ const hash = bytes => crypto.createHash("sha256").update(bytes).digest("hex");
     assert.deepEqual(errors, [], "Browser errors or local HTTP failures");
     report.errors = errors;
     report.passed = true;
-    const destination = path.join(root, "docs/evidence/ui-smoke-20261023.json");
+    const date = new Date().toISOString().slice(0, 10).replaceAll("-", "");
+    const destination = path.join(root, `docs/evidence/ui-smoke-${date}.json`);
     fs.writeFileSync(destination, JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));
   } finally {

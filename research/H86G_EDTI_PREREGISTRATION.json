@@ -1,0 +1,201 @@
+{
+ "schema": "gems86.h86g-edti-preregistration.v1",
+ "lane": "H86G-EDTI",
+ "frozen_before_lane_fields": true,
+ "candidate_arm": "E2_edti_hgb_ek_greedy",
+ "budget": {
+  "max_experiments": 3,
+  "max_hours": 2,
+  "dots": "chosen from holdout budget curve"
+ },
+ "holdout": {
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_m": 300,
+  "seed": 20,
+  "hide_frac": 0.2,
+  "buffer_px": 3,
+  "evaluator_version": "gems57-pooled-hide-v2"
+ },
+ "arms": [
+  {
+   "id": "H86G-EDTI",
+   "role": "preregistered candidate",
+   "rank": 1,
+   "layers": [
+    "training_features.tif bands 1-19 + Gaussian derivatives (sigma 1,2,3 px) of bands 2,13,15,12; analytic signal from bands 3,9",
+    ".cache/external/lidar_scarp_features_u8.tif (12 bands) sha256 d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    ".cache/external/topo_10m_derived_100m_u8.tif (9 bands)",
+    ".cache/external/dem10_chi_100m_i16.tif (5 bands)",
+    ".cache/external/geodawn_rad_u8.tif K/Th/U/TC + geodawn_extensions_u8.tif ThK/UK/UTh/TMI_up150"
+   ],
+   "transform": "HistGradientBoosting posterior p(hidden fault) with ZERO catalogue-derived features; emission ranked by E[k]=p convolved with the 300 m triangular kernel (vendor gems57.emit.expected_credit), spacing-greedy >=2.8 px, collar >3 px from visible catalogue, budget from pooled holdout DTI curve",
+   "non_fault_mimic": "Unfaulted lithologic contacts, volcanic flow-front edges, Lahontan shorelines/beach ridges",
+   "uncatalogued_rationale": "Signature learning without catalogue-proximity features fires on lineaments far from any mapped trace; collar and masking match the organiser's known-fault exclusion",
+   "novelty": "No repo lane combines zero catalogue-derived features + E[k]-ranked true-spacing greedy + holdout-chosen budget + 3 px collar + full pinned external stack in one posterior; prior supervised lanes used fixed budgets and raw-probability top-k/tile emission",
+   "cost": "medium",
+   "official_data": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://doi.org/10.5066/P93LGLVQ",
+    "https://gdr.openei.org/submissions/1391"
+   ]
+  },
+  {
+   "id": "H86G-STRAIN",
+   "role": "ranked hypothesis (not run)",
+   "rank": 2,
+   "layers": [
+    "bands 4,7,8 gradients",
+    "bands 3,9"
+   ],
+   "transform": "strain-rate gradient magnitude intersected with magnetic gradient edge",
+   "non_fault_mimic": "block rotation, volcanic inflation, groundwater subsidence",
+   "uncatalogued_rationale": "active blind faults localize present-day strain without a scarp",
+   "novelty": "geodetic bands never differentiated as a localization edge in this fleet",
+   "cost": "low",
+   "official_data": [
+    "https://doi.org/10.5066/P93LGLVQ"
+   ]
+  },
+  {
+   "id": "H86G-TIP",
+   "role": "ranked hypothesis (not run)",
+   "rank": 3,
+   "layers": [
+    "catalogue segment endpoints/strike",
+    "H86G-EDTI posterior gate"
+   ],
+   "transform": "strike extrapolation 0.5-2 km from tips/stepovers, posterior-gated",
+   "non_fault_mimic": "drainage/shoreline lineaments continuing a tip by chance",
+   "uncatalogued_rationale": "unmapped linking segments continue mapped systems under cover",
+   "novelty": "fleet tip lanes were ungated geometry (0.016-0.046 owner-reported); posterior gating untested",
+   "cost": "medium",
+   "official_data": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+   ]
+  },
+  {
+   "id": "H86G-ALT",
+   "role": "ranked hypothesis (folded into H1 features)",
+   "rank": 4,
+   "layers": [
+    "band 2 rtp",
+    "band 17 cond_surf",
+    "GeoDAWN rad K/Th/U + ratios"
+   ],
+   "transform": "learned 3-way alteration interaction (mag trough x conductivity x K anomaly) inside the HGB",
+   "non_fault_mimic": "felsic tuffs; saline playa clays",
+   "uncatalogued_rationale": "permeable buried conduits alter wall rock without measurable throw",
+   "novelty": "prior alteration lanes were fixed conjunctions (0.078-0.159 owner-reported)",
+   "cost": "low",
+   "official_data": [
+    "https://doi.org/10.5066/P93LGLVQ",
+    "https://gdr.openei.org/submissions/1391"
+   ]
+  },
+  {
+   "id": "H86G-CHI",
+   "role": "ranked hypothesis (bands folded into H1; alignment lane deferred)",
+   "rank": 5,
+   "layers": [
+    "dem10_chi_100m_i16.tif chi/ksn",
+    "bands 12,19"
+   ],
+   "transform": "cross-drainage knickpoint/ksn alignment statistic (deferred); chi/ksn enter H1 as features now",
+   "non_fault_mimic": "lithologic knickpoints; lake base-level fall",
+   "uncatalogued_rationale": "pediment faults may express only as drainage reorganization",
+   "novelty": "KSLB used ksn pointwise; alignment across independent catchments never built",
+   "cost": "medium-high",
+   "official_data": [
+    "https://www.usgs.gov/programs/national-geospatial-program/national-map"
+   ]
+  }
+ ],
+ "gates": {
+  "canary_auc_max": 0.9,
+  "same_split_best_to_beat": {
+   "arm": "E3_kslb_noisyor_44k",
+   "dti": 0.1240634961614658,
+   "ci95": [
+    0.1079703374809469,
+    0.140329759708305
+   ],
+   "withheld_positive_pixels": 11321,
+   "source": "docs/evidence/lane86c_results.json"
+  },
+  "uniqueness": {
+   "rho_max": 0.9,
+   "dot_overlap_3px_max": 0.7,
+   "registry": [
+    "data/scored_fleet/*.tif",
+    "docs/downloads/*.tif",
+    "submission/*.tif"
+   ]
+  },
+  "format": "vendor gems57 submission_writer + validate (fail-closed, values in [0,1])",
+  "slots_used": 0
+ },
+ "amendment_A1": {
+  "date": "2026-10-25",
+  "after": "E1 canaries + as-is control measurement",
+  "before_any_candidate_field": true,
+  "evidence": "data/work/h86g/e1b_instruments.json (reproduced in run card)",
+  "falsified_premises": [
+   "catalogue-hide whole-component holdout anti-correlates with owner-reported live ordering (live-best H33=0.0037 as-is; live-worst poisson81=0.0918)",
+   "same-split best 0.1241 is an OOF arm construct; shipped KSLB raster = 0.0038 as-is on same folds"
+  ],
+  "arms": [
+   "L multiline corroboration (unsupervised)",
+   "H HGB signature posterior (frozen)",
+   "LH hybrid rank_L*(0.35+0.65 rank_H)"
+  ],
+  "primary_selector": "SGMC-proxy DTI, pinned derived_sgmc_faults_100m_u8.tif sha256 643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0, truth=SGMC & d_cat>3px (62,122 px), known=catalogue; SELECTION ONLY, never a feature/training byte, never written as a score",
+  "amended_gate_2": "candidate SGMC-proxy DTI > H33-as-is 0.0954 with paired spatial-block 95% CI > 0 AND candidate catalogue-hide as-is point >= H33-as-is 0.0037",
+  "canary_result": {
+   "max_discriminative_auc": 0.6015,
+   "gate_pass": true
+  }
+ },
+ "amendment_A2": {
+  "date": "2026-10-25",
+  "after": "E2 SGMC budget curve",
+  "before_final_build": true,
+  "discovery": "collar>3px vs full catalogue makes as-is catalogue-hide DTI identically 0 (withheld truth subset of catalogue); A1 floor degenerate",
+  "amended_reading": "OOF like-for-like: candidate re-emitted vs visible catalogue (H refit on visible only); H33/D28 controls re-emitted with visible collar at same budget (PCC construction); floor = candidate OOF point >= H33-OOF point",
+  "candidate_cap": "350k -> 900k (44,090 optimum was candidate starvation)"
+ },
+ "amendment_A3": {
+  "date": "2026-10-25",
+  "after": "E2 curves + extended budget diagnostics",
+  "before_E3_final": true,
+  "discovery": "SGMC-proxy still rising at ranking exhaustion (98,163 dots, 0.1830): proxy budget optimum is a truth-density artifact; live fleet >55k dots all <=0.2376 owner-reported, >=0.26 cluster at 37,654-44,090",
+  "amended_selection": "SGMC selects arm (L>LH>H at all budgets); budget capped to live-validated <=44,090, chosen by SGMC inside cap",
+  "H_arm_diagnostic": "OOF catalogue-hide HOLDOUT-DTI 0.1689@37654 / 0.1818@70k vs KSLB OOF 0.1241 same split; not shipped (supervised live priors 0.0286/0.0424); top follow-up"
+ },
+ "amendment_A4": {
+  "date": "2026-10-25",
+  "post_hoc": true,
+  "diagnostics": {
+   "marginal_TP_per_dot_SGMC": "0.116-0.133 flat 20k->70k vs DTI break-even ~0.056 at DTI 0.28",
+   "paired_SGMC_CI_55k": [
+    0.00276327547920033,
+    0.05178434125627342
+   ],
+   "paired_SGMC_CI_70k": [
+    0.022947405767617,
+    0.07638363547118679
+   ],
+   "paired_SGMC_CI_44090": [
+    -0.01274000654788791,
+    0.033130933222160694
+   ],
+   "fwd3px_vs_geopb90k": {
+    "44090": 0.6925,
+    "55000": 0.685,
+    "70000": 0.6764
+   }
+  },
+  "rule": "smallest preregistered-grid budget whose paired SGMC CI vs H33-as-is excludes 0 (cap 70,000) -> 55,000; CI is post-selection descriptive",
+  "uniqueness_classification_fix": "vendor representation_class (support>0.20 = continuous_surface); faulthalo 0.815 literal row only"
+ }
+}

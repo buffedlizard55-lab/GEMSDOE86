@@ -21,8 +21,11 @@ def test_current_review_binds_actual_measurement_without_relabeling_old_results(
     assert archived["date_utc"] == "2026-10-23"
     assert card["registry_measured_utc"] == registry["measured_utc"]
     assert card["raster_sha256"] is card["submission_name"] is None
-    assert card["holdout_dti"]["status"] == "NOT_RUN_PROTOCOL_STOP"
+    assert card["holdout_dti"]["status"] == "NOT_RUN_NO_LANE_ASSIGNED"
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
+    assert "No new lane was selected or run" in card["hypothesis"]
+    assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
+    assert "not a candidate" in card["correlation_overlap_vs_registry"]["measurement_scope"]
     assert card["new_candidate_generated"] is card["submission_ready"] is False
     assert card["experiments_run"] == card["submission_slots_used"] == 0
     assert card["verdict"] == "negative"
