@@ -196,6 +196,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86l_fmc":
+        lane_holdout = context.get("holdout", {}).get("candidate", {})
+        if (context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or lane_holdout.get("evidence_class") != "HOLDOUT-DTI"
+                or lane_holdout.get("evaluator_version") != "gems57-pooled-hide-v2"):
+            raise ValueError("H86L-FMC card is not bound to its negative/no-slot HOLDOUT-DTI record")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE_LEAKAGE_SUSPECT",
+                "evaluator_version": lane_holdout["evaluator_version"],
+                "withheld_positives": lane_holdout["withheld_positive_pixels"],
+                "value": lane_holdout["dti"], "ci95": lane_holdout["ci95"],
+                "design": "fleet-minority consensus; not hide-and-recover because fleet inputs include full-catalogue lineage",
+                "caveat": "H86L-FMC is an archived, already-generated lane, not this review's experiment. Its HOLDOUT-DTI is explicitly leakage-suspect; fleet ancestry is not fold-safe catalogue-derived evidence. Its candidate is negative (0.0000 [0.0000, 0.0000], 11,321 withheld positives), and the run card reports a 0.886 3-px dot overlap with GEMSDOE63, above 0.70. The TIFF is registered for audit/reproducibility only; current literal witness stop remains binding. No organizer receipt or slot authorization."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
