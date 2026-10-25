@@ -1206,3 +1206,46 @@ trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.104
 vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
+## IR-86-EWCS-INQUADRANT-20261025 — `H86F-EWCS` (`0.1723`) trained GBDT on non-withheld faults inside the test quadrant; not directly comparable to strict out-of-quadrant LOQO (`H86C-KSLB` `0.1241`, `H86J-TVHS E3` `0.1214`)
+
+**Observed.** Forensic review of `scripts/run_h86f_ewcs.py` (lines 486–494) during the `H86J-TVHS`
+preparation revealed that while `H86F-EWCS` correctly withheld `withheld_faults` (`buffer_px=3`) and derived
+its fault-distance features strictly from `visible_faults = cat & ~withheld_faults`, its GBDT positive
+training mask was `pos_allowed = allowed & visible_faults` across the *entire* footprint — meaning each
+fold's classifier trained on the ~75–80% non-withheld faults *inside the evaluation quadrant itself*,
+whereas `H86C-KSLB` (`0.1241` at `44,090` dots) and `H86J-TVHS` (`E3 = 0.1214 [0.1060, 0.1350]` at `37,654`
+dots) restrict training strictly to the 3 out-of-quadrant folds (`train_mask = fp & (quad != q)`).
+
+**Decision.** Do not mutate the archived `docs/evidence/h86f-ewcs-run-card.json` (which remains `verdict:
+"negative"`, `DO NOT SUBMIT`). Instead, label `H86F-EWCS` explicitly as an *in-quadrant component-hide*
+instrument (`0.1723`) rather than a strict out-of-quadrant LOQO instrument, and record the controlled
+`~+0.051` spatial-autocorrelation delta (`0.1723` vs `0.1214`) in `docs/evidence/h86j-tvhs-run-card.json`
+and `docs/irregularities.html`.
+
+## IR-86-TVHS-PROPENSITY-ABLATION-20261025 — 2026-10-25 (`H86J-TVHS` strict-LOQO Dual-Expert PU `E[k]`, zero-catalogue blind record `0.0626`, spin-2 crest fix, and fleet feed verification)
+
+**Observed.** Contemporaneously preregistered lane `H86J-TVHS` (`registry/h86j_hypotheses.json`,
+`research/H86J_TVHS_PREREGISTRATION.{json,md}`, `src/gems86_tvhs/features.py`, `scripts/run_h86j_tvhs.py`,
+`docs/evidence/h86j-tvhs-run-card.json`) generated audit-only GeoTIFF
+`docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif` (`sha256:
+f77e4d6aef7e594df5002fcb2be7c6ad8fd3cfef06e107f48dacfd4453c3ac94`, `37,654` unit dots, `15/15` format checks
+PASS, `0` slots used):
+1. During pre-run synthetic testing of `src/gems86_tvhs/features.py::compute_faulds_hinz_kinematic_fields`,
+   a first-derivative ridge-normal formula vanished identically on symmetric 1-px fault crests (`v == 1`),
+   yielding `0.0` at a symmetric X-junction; fixed prior to execution by switching to second-derivative
+   Gaussian Hessian spin-2 ridge orientation `_principal_axis_spin2(v, sigma=2.2)` (`1.0771` on X-junction
+   vs `0.0040` on straight fault; locked by `tests/test_h86j_tvhs.py`).
+2. On strict 4-quadrant out-of-quadrant LOQO (`gems57-pooled-hide-v2`, `11,321` withheld positives),
+   zero-catalogue blind arm `E2_tvhs_blind_geothermal_ggt_ek` (`0.0626 [0.0475, 0.0778]`) set a new
+   repository blind record (`+31.8%` over `H86I-HVFD` `0.0475`), and unweighted 31-feature strict-LOQO
+   ablation `E3` reached `0.1214 [0.1060, 0.1350]` at `37,654` dots. However, candidate `E1` (`0.0983
+   [0.0800, 0.1159]`, beating `R0_D28 = 0.0931`) trailed `E3` (`paired E1 - E3 = -0.0231 [-0.0356, -0.0118]`)
+   because inverse cover-exposure propensity weighting (`w_sar` up to `2.5x`) + the `0.34 * P_blind` floor
+   diverted ~23% of dots off surficial scarps into unmapped basin interiors (which are scored as FPs on
+   catalogue-hide holdout), and 3 discrete `<=60k`-dot registry rasters (`GEMSDOE43` `0.7278`, `GEMSDOE53`
+   `0.8192`) plus `13GEMSDOE`/`17GEMSDOE` and `2` off-grid rows failed full-registry uniqueness.
+3. Also verified closure of `IR-86-H86G-FEED-20261025`: `GEMSDOE89` (`0.0301`) and `GEMSDOE90` (`0.0749`)
+   are now present as `OWNER-REPORTED` in `registry/prior_scores.csv`, `ledger/submissions.csv`, and
+   hash-bound `docs/evidence/fleet-feed.json`.
+

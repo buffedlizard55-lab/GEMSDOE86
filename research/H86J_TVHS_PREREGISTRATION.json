@@ -1,0 +1,55 @@
+{
+  "schema": "gems86.h86j-tvhs-preregistration.v1",
+  "lane": "H86J-TVHS",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "frozen_utc": "2026-10-25T05:02:00Z",
+  "hypothesis_queue_file": "registry/h86j_hypotheses.json",
+  "selected_hypothesis_id": "H86J-1_TVHS",
+  "ranked_hypotheses": [
+    "H86J-1_TVHS",
+    "H86J-2_WTHD",
+    "H86J-3_KNIC",
+    "H86J-4_INSAR"
+  ],
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "split": "vendor/gems57/holdout.py::buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3)",
+    "withheld_positive_pixels": 11321,
+    "outer_spatial_cv": "Strict Leave-One-Quadrant-Out (LOQO): for test quadrant q in {NW, NE, SW, SE}, HistGradientBoosting classifiers train ONLY on footprint pixels with quad != q, using only fold['visible'] (global hidden components + 3 px buffer removed) and nested cross-component va/vb elastic splits so no visible fault pixel scores its own trace.",
+    "metric": "Pooled 300 m triangular-kernel Tversky DTI (alpha=0.2, beta=0.8), 200-px (20 km) physical-block paired bootstrap, 1000 draws, seed=520810",
+    "read_only_diagnostic": "SGMC-PROXY-DTI (62,122 off-catalogue USGS SGMC fault pixels >3.0 px from known_faults.tif, 200-px block bootstrap, 1000 draws) evaluated strictly post-hoc on the already-frozen full-map emission (never used in training, feature engineering, arm selection, or budget picking)."
+  },
+  "budget_and_emission": {
+    "experiments_cap": 3,
+    "runtime_cap_hours": 2.0,
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "collar_px": 3.0,
+    "ranking_variable": "vendor/gems57/emit.py::expected_credit(S) = S (*) K_300m for E1 and E2; raw pixel probability S for ablation E3",
+    "weekly_slots_used": 0
+  },
+  "candidate_arm": "E1_tvhs_dual_expert_ek",
+  "arms": [
+    {
+      "id": "E1_tvhs_dual_expert_ek",
+      "role": "Primary preregistered candidate",
+      "description": "Exposure-propensity-weighted strict-LOQO Dual-Expert PU HistGradientBoosting ensemble (Expert A: coupled GGT 2-D invariants + Verduzco magnetic tilt-depth + DOE GDR-1391 2m thermal-wall/sinter/upslope-geotherm + 3DEP 1m LiDAR/10m DEM/chi + GeoDAWN K/Th/U alteration + nested fold-visible Faulds-Hinz wing-crack/stepover/conjugate-intersection/shadow fields; Expert B: 100% zero-catalogue blind GGT + magnetic + hydrothermal-vent + 3DEP LiDAR + GeoDAWN stack), combined via calibrated Dual-Expert Noisy-OR and emitted via E[k] = S (*) K_300m r=2.8 px spacing-greedy at 37,654 dots behind d > 3.0 px collar."
+    },
+    {
+      "id": "E2_tvhs_blind_geothermal_ggt_ek",
+      "role": "100% zero-catalogue blind geothermal-vent + GGT + 3DEP LiDAR control",
+      "description": "Expert B alone (zero catalogue geometry features in training or inference; only mandatory evaluation collar d > 3.0 px at emission), emitted via E[k] = S (*) K_300m r=2.8 px spacing-greedy at 37,654 dots."
+    },
+    {
+      "id": "E3_tvhs_unweighted_rawpixel_ablation",
+      "role": "Mechanism ablation control",
+      "description": "19-band native-only coupled LOQO PU baseline WITHOUT Pedersen-Rasmussen GGT 2-D sheet-step invariants, WITHOUT DOE GDR-1391 hydrothermal-vent / 3DEP 1m LiDAR / GeoDAWN external layers, WITHOUT Bekker-Davis exposure-propensity sample weighting, WITHOUT Dual-Expert blind floor, and emitted by raw pixel probability ranking instead of E[k] 300 m kernel convolution at the identical 37,654-dot budget and d > 3.0 px collar."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_max": 0.90,
+    "dot_overlap_3px_max": 0.70,
+    "literal_registry_honesty": "Full 693+ entry check_h86e_registry.py and pa86_chance_overlap.py executed verbatim; if historical off-grid rows (14GEMSDOE, 7GEMSDOE) or 100%-support continuous witness (17GEMSDOE) cause literal fail-closed exit, verdict MUST remain 'negative' and decision 'DO NOT SUBMIT' per AGENTS.md Rules 5, 9, 10, 12."
+  }
+}

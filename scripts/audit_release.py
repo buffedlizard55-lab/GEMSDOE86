@@ -285,6 +285,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."}
+    if kind == "h86j_tvhs":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86J-TVHS strict out-of-quadrant LOQO lane result; the run card is the authoritative experiment receipt. Blind E2 (0.0626) sets a repository zero-catalogue LOQO high (+31.8% over H86I-HVFD blind 0.0475) and unweighted native LOQO E3 reaches 0.1214 [0.1060, 0.1350] at 37,654 dots, but exposure-propensity Dual-Expert candidate E1 (0.0983 [0.0800, 0.1159], beating R0_D28 0.0931) trails E3 and archived LOQO KSLB (0.1241), and literal/completeness/dot-overlap registry gates fail closed; DO NOT SUBMIT; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
