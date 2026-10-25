@@ -3111,6 +3111,42 @@
           "forward_overlap_3px": 0.37695862325383755
         }
       }
+    },
+    "post_merge_concurrent_lanes_20261025": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "rasters_checked": 3,
+      "firings_over_threshold": 0,
+      "max_forward_overlap_3px": 0.22435863387687896,
+      "max_surface_spearman": 0.01143883448976916,
+      "rows": [
+        {
+          "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+          "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+          "their_dots": 37654,
+          "forward_overlap_3px": 0.08240824348010836,
+          "spearman_final_dots": -0.00041145370159993775,
+          "spearman_preplacement_surface": -0.0006577970795496622,
+          "firings_over_threshold": false
+        },
+        {
+          "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+          "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+          "their_dots": 37654,
+          "forward_overlap_3px": 0.22435863387687896,
+          "spearman_final_dots": 0.006838486235640998,
+          "spearman_preplacement_surface": 0.01143883448976916,
+          "firings_over_threshold": false
+        },
+        {
+          "file": "releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif",
+          "sha256": "e4d00084b219e210c10e5ccd539ab1ee1a3c2315ac6188f40b2a256e90f9aa11",
+          "their_dots": 40000,
+          "forward_overlap_3px": 0.14752748711956232,
+          "spearman_final_dots": -1.2331776055583929e-05,
+          "spearman_preplacement_surface": -0.005702937492381503,
+          "firings_over_threshold": false
+        }
+      ]
     }
   },
   "raster_sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",

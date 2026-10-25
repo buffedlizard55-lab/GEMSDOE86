@@ -1,0 +1,92 @@
+{
+  "file": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+  "zip_file": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
+  "bytes": 818874,
+  "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+  "zip_sha256": "2406c340f7e7dd521dea34959ddea52a4b594e125dc7ca2767a4bfdc876d57d9",
+  "submission_name": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros",
+  "note": "GDSC geod_2ndinv x dilaterate+ x basin-wt, 37654d 2.8px Poisson, b2 collar; HOLDOUT screen only [0,1] zeros",
+  "note_chars": 107,
+  "mode": "zeros",
+  "emitted_dots": 37654,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+    "bytes": 818874,
+    "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "lzw"
+    },
+    "band_description": [
+      "predicted_new_fault_probability"
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "metadata": {
+    "lane": "GDSC",
+    "hypothesis": "Blind transtensional faults under Lake Lahontan fill express as +dilatation x second invariant under low slope",
+    "layers": [
+      "geod_2ndinv B4",
+      "geod_dilaterate B8",
+      "det_elev_slope B19",
+      "geod_shearrate B7 veto"
+    ],
+    "budget_dots": 37654,
+    "emitted_dots": 37654,
+    "spacing_px": 2.8,
+    "catalogue_buffer_px": 2.0,
+    "data_sources": [
+      "data/training_features.tif (B4,B7,B8,B19, sha4371c82)",
+      "data/bridge/existing_faults.tif",
+      "data/bridge/sample_submission.tif"
+    ],
+    "method": "robust-normalized strain product + basin sigmoid, score-sorted Poisson-disc thinning"
+  },
+  "generated_utc": "2026-10-25T13:44:27.691664+00:00",
+  "promoted": false,
+  "approved_for_weekly_slot": false,
+  "safe_to_submit": false
+}

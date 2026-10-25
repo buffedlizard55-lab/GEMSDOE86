@@ -1,0 +1,131 @@
+{
+  "schema": "gems86.gdsc-run-card.v1",
+  "lane": "GDSC",
+  "session_branch": "arena/37508762-gemsdoe86",
+  "generated_utc": "2026-10-25T13:44:27+00:00",
+  "hypothesis": "GDSC — Geodetic Dilatational Strain Corridor: blind transtensional relay/jog faults beneath Pleistocene Lake Lahontan lacustrine fill are expressed as co-located peaks in GPS second invariant (Band 4) and positive areal dilatation (Band 8) under low-relief basin cover (Band 19 muted), where surface scarps are erased but GPS strain sees aseismic creep; catalogue-blind so holdout truth is never used as input.",
+  "mechanism": "Robust-normalized z(B4) × ReLU(z(B8+)) × sigmoid(-(B19-median)/scale) masked to footprint & >2px off existing_faults.tif, clipped [0,1], score-sorted Poisson-disc thinning at 2.8 px to 37,654 binary dots via vendor/gems57/grid.write_submission mode='zeros' (EPSG:32611, 3730×3292, float32). No catalogue-derived feature; all three bands are GPS/DEM, so zero leakage from withheld fault geometry.",
+  "named_non_fault_process": "Central Nevada agricultural groundwater withdrawal subsidence bowls, playa evaporite contraction, and irrigation-related anthropogenic strain produce similar second-invariant highs without faulting; mitigated by basin-weight sigmoid and requiring positive dilatation, but residual confound remains — must be tested with InSAR OPERA control (not available in sandbox allowlist).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "design": "4-fold quadrant draw, seed 20, hide_frac 0.20, domain erode 12 px, pooled DTI alpha 0.2 beta 0.8 300 m triangular kernel, measured on raw binary dots (no HGB training) — simple baseline to compare vs H33 raw dots on identical withheld geometry",
+    "withheld_positive_pixels": 11318,
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.00532,
+      "withheld_positive_pixels": 11318,
+      "tpw": 85.5,
+      "fpw": 34985.0,
+      "fnw": 11233.0,
+      "note": "Raw dot field without learned weighting; beats H33 raw dots (0.00440) by +0.00092 on same withheld geometry, but well below trained repo best H86F-EWCS 0.1723 [0.1530,0.1898] and H86C-KSLB 0.1241 — indicates signal but insufficient without ML; CI not computed (pooled mean only)"
+    },
+    "H33_baseline_same_withheld": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.00440,
+      "withheld_positive_pixels": 11318,
+      "tpw": 70.9,
+      "fpw": 35291.0,
+      "fnw": 11247.0
+    },
+    "historical_best_same_evaluator_reported": {
+      "H86F_EWCS": "0.1723 [0.1530,0.1898] (11,321 withheld, reported in SESSION_CF73474C, not rerun here)",
+      "H86C_KSLB": "0.1241 [0.1080,0.1403] (11,321 withheld, reported)",
+      "R0_foldfair_H33": "0.0961 [0.0830,0.1089] (11,321 withheld, reported)"
+    },
+    "conclusion": "GDSC raw dots show +21% relative lift over H33 raw dots on identical withheld faults, but remain an order of magnitude below trained lane holdouts; holdout is not a live DTI projection and must not be compared across different hide designs"
+  },
+  "leakage_canary": {
+    "evidence_class": "LEAKAGE-CANARY",
+    "features_tested": 4,
+    "features": ["geod_2ndinv B4", "geod_shearrate B7", "geod_dilaterate B8", "det_elev_slope B19"],
+    "max_discriminative_auc": 0.592,
+    "max_feature": "geod_2ndinv",
+    "verdict": "PASS (0 features >0.90) — all are catalogue-blind GPS/DEM, no catalogue-derived feature was used",
+    "note": "AUCs estimated via single-feature ROC against withheld faults in one fold; below 0.90 threshold so no leakage artefact"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_preplacement": {
+      "worst_spearman_vs_fleet": 0.047,
+      "worst_submission": "GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+      "rho_firings_gt_0p90": 0,
+      "rho_limit": 0.90,
+      "note": "Surface vs 25 scored_fleet rasters; no rho firing, so lane not drifted before placement"
+    },
+    "final_dots": {
+      "worst_forward_overlap_vs_fleet": 0.536,
+      "worst_submission": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros",
+      "forward_overlap_firings_gt_0p70": 0,
+      "overlap_limit": 0.70,
+      "worst_spearman_vs_fleet": 0.047,
+      "rho_firings_gt_0p90": 0,
+      "max_vs_H33": 0.1868,
+      "jaccard_vs_H33": 0.0047,
+      "self_sha_excluded": true,
+      "note": "0/25 scored_fleet dot-field overlap firings; max 0.536 <0.70 so not duplicate of any prior lane's dot set"
+    },
+    "local_like_for_like": {
+      "dot_field_rasters_checked": 25,
+      "continuous_surface_rasters": 0,
+      "worst_forward_overlap_dot_fields": 0.536,
+      "duplicate": false,
+      "literal_reading": "1 continuous dense witness (17GEMSDOE, 5,167,373 px, 100% allowed) would fire literal 1.0 overlap; this is the known universal continuous_surface blocker, not evidence of duplication — see protocol_preflight LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY",
+      "literal_gate": "blocked by continuous_surface only (representation_class fraction 1.0 >0.20); like-for-like dot-field gates are the discriminative check and PASS here on local scope",
+      "registry_complete": false,
+      "scope": "Local scored_fleet + docs/downloads (55 rasters) only; full 690-ras registry not restored (requires codeload/REST); incomplete scan cannot certify full uniqueness, only that candidate is not a near-copy of measured local fleet"
+    }
+  },
+  "raster_sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+  "zip_sha256": "2406c340f7e7dd521dea34959ddea52a4b594e125dc7ca2767a4bfdc876d57d9",
+  "raster_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+  "zip_file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.zip",
+  "validator_output": {
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003066,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "emitted_positive_pixels": 37654,
+    "on_catalogue_positive_pixels": 0,
+    "footprint_fraction": 0.007286
+  },
+  "submission_name": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros",
+  "note": "GDSC geod_2ndinv x dilaterate+ x basin-wt, 37654d 2.8px Poisson, b2 collar; HOLDOUT screen only [0,1] zeros",
+  "note_chars": 107,
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "budget_experiments": 1,
+  "budget_cap": 3,
+  "duplicate": false,
+  "like_for_like_duplicate": false,
+  "literal_witness_blocked": true,
+  "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "witness_coverage_allowed": 1.0
+}

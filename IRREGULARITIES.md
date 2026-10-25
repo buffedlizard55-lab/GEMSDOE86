@@ -1465,3 +1465,49 @@ PASS, `0` slots used):
 **Fix.** Without mutating archived `H86J-MCSP` receipts, `src/gems86_stdp/model.py::calibrate_quadrant_sparse_posterior` standardizes out-of-quadrant log-odds using only unlabelled within-quadrant `(median, P90)` statistics (`0` held-out label leakage) and maps to a convex sparse posterior `sigmoid(-4.55 + 1.65 * z_q)` (`~1.05%` median base rate), paired with `src/gems86_stdp/dinkelbach_celf.py::exact_six_ring_self_credit` + Dinkelbach fractional-programming CELF. On identical `37,654` dots, `Fold NE` blind `E2` jumped **`28.5x` (`0.0024 -> 0.0685`)** and `Fold NE E1` jumped **`+71.5%` (`0.0828 -> 0.1420`)**, while `H86K-STDP` (`E1 = 0.1133`, `E2 = 0.1151`) became the first `37,654`-dot candidate in repository history to beat `GEMSDOE32` `H33` (`+0.0196 [+0.0047, +0.0355]`) and `H86J-MCSP` (`+0.0134 [+0.0002, +0.0261]`) on `SGMC-PROXY-DTI` with strictly positive paired 95% CIs (`verdict = "negative"`, `DO NOT SUBMIT` under full 700-entry `v2` literal/completeness gates; `0` slots used).
 
 
+
+## IR-86-H86K-SITE/RERUN/RECEIPT-PATH-20261025 — H86K artifact not on Pages, not rerunnable in fresh checkout, stale receipt path
+
+**Observed (2026-10-25 review session `arena/234c24b9`).** (1) The H86K-STC candidate
+(`releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif`, sha256 `e4d00084…a11`)
+exists only under `releases/h86k/`; it is absent from `docs/downloads/` and
+`docs/evidence/download-inventory.json`, so the Pages site does not offer it. Copying it into
+`docs/downloads/` makes `scripts/check_site.py` fail closed ("Unregistered downloadable
+raster/archive") — that guard was NOT bypassed; proper publication requires registering the
+artifact through `scripts/build_site.py`/inventory generation. (2) `scripts/run_h86k.py` reads
+`data/bridge/training_features.tif`, which is gitignored and restored-only; it is absent in this
+checkout, so the lane cannot be rerun here until `scripts/restore_data.py` restores the pinned
+19-band stack. (3) `releases/h86k/*.json:validator.file` still references the pre-move
+`docs/downloads/…` path; byte hash/size were independently re-verified against the `releases/`
+copy (`docs/evidence/h86k-revalidation-20261025.json`) and match. Verdict unchanged: negative,
+DO NOT SUBMIT, 0 slots.
+## IR-86-LIVE-INPUT-RECEIPTS-20261025 — tracked receipts outlive ignored workspace data
+
+**Observed in session 679d92e7.** `data/prepared_manifest.json` records a historical
+19-band preparation (`has_features=true`), but neither native feature TIFF copy
+nor any of its 21 prepared arrays is present in this fresh checkout. The recorded
+lane mmap is also absent; its size-only receipt would not establish a verified
+shared-template cache even if restored. These are current input-integrity
+measurements, not evidence that the historical preparation never happened.
+
+**Fix.** `scripts/audit_workspace_inputs.py` inspects current file hashes/lengths,
+checks both TIFF locations and exact array identities, distinguishes lane-cache
+presence from the shared-cache contract, and fails `--require-native` for
+missing/corrupt native inputs. The three-pass software reviewer runs it without
+rebuilding caches or touching model artifacts. A successful inspection is not
+training/submission clearance. Snapshot: `research/session-679d92e7-inputs.json`.
+The earlier prompt's “single remaining blocker is data placement” is incomplete:
+the independently remeasured literal overlap blocker and scientific/registry
+requirements remain. No new TIFF or weekly slot was created to mask this gap.
+
+**Interpretation correction.** Two current README summaries overstated H33's
+private-score causation and gave an invalid simplified collar-pruning formula.
+They now distinguish support identity from hidden-truth performance, and state
+the exact inequality with *weighted FP mass reduction*, not raw deleted-dot
+count. Owner request and historical source archives were preserved byte-for-byte.
+
+## IR-86-H86KPSC-GDSC-RECEIPT-20261025 — metadata mismatch resolved transparently
+
+**Observed on merging origin/main (`f55dbb1`).** `scripts/audit_downloads.py` rejected the already-merged GDSC artifact `gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif`: its writer receipt used a path instead of the ZIP basename and omitted explicit `promoted` / `approved_for_weekly_slot` flags. The raw GDSC HOLDOUT-DTI receipt also does not provide a 95% CI; that scientific evidence gap remains.
+
+**Resolution in this follow-up.** Corrected only the sidecar metadata (`zip_file` basename, `promoted=false`, `approved_for_weekly_slot=false`, `safe_to_submit=false`) and regenerated the local download-validation receipt. TIFF and ZIP bytes, hashes, holdout metrics, and verdict were not changed. The artifact remains `DO NOT SUBMIT`; the literal witness stop still applies.

@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 29,
-    "local_format_pass": 29,
+    "checked": 31,
+    "local_format_pass": 31,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -180,6 +180,16 @@
         "verdict": "negative"
       },
       {
+        "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+        "sha256": "f0c62ca5b0191eeb01166f10074450454f0a616edca39f121820102d782de9d8",
+        "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+        "sha256": "57267b72a438acb5df691243dc0997aeb6f5bc38c2e54fbcf0aa1664fa794c7d",
+        "verdict": "negative"
+      },
+      {
         "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
         "sha256": "3ac7fa1ded57aa69a82929a308a4cc207c18700d07b36be89718a470334f5e69",
         "verdict": "negative"
@@ -197,8 +207,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T04:07:18+00:00",
+  "registry_measured_utc": "2026-10-25T15:27:28.204737+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "bab8380473e8d09aa4a415bd3db42ac656b3bf5de20565e3174324d836538dc4",
-  "registry_measurement_sha256": "d2bdcb0d7c1c6fbe3f014cd86b8cbd2e7608c53b38c2ab24dee66e0352b3295e"
+  "release_report_sha256": "f5d69faf0cfda1285e5ff05a9e8af341fc3a0403cbbdd7b3a5c9b3e38cf25567",
+  "registry_measurement_sha256": "c6d3f40be65589cb41c7839767b3074f621c965cd8332c09a255b35cdd5d77c9"
 }
