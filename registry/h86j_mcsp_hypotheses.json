@@ -1,0 +1,50 @@
+{
+  "schema": "gems86.hypotheses.v1",
+  "lane_id": "H86J-MCSP",
+  "frozen_utc": "2026-10-25T04:08:00Z",
+  "preregistration_path": "research/H86J_MCSP_PREREGISTRATION.json",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86J-MCSP",
+      "status": "EXECUTED",
+      "title": "Monogenic Cross-Spectral Phase-Congruent Structural Conduit + Out-of-Quadrant Geothermal Fault-Intersection Specialist with Exact Submodular CELF Kernel Allocation",
+      "bands_verified_io_py": [2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19],
+      "external_pinned_grids": [
+        "geodawn_extensions_u8.tif",
+        "geodawn_rad_u8.tif",
+        "lidar_scarp_features_u8.tif",
+        "topo_10m_derived_100m_u8.tif",
+        "dem10_chi_100m_i16.tif"
+      ],
+      "named_non_fault_mimic": "Buried Tertiary caldera ring-fracture walls or welded ash-flow tuff cooling-unit pinch-outs altered by fossil Miocene epithermal systems, and Pleistocene Lake Lahontan (~1,330 m) wave-cut benches adjacent to conductive playas."
+    },
+    {
+      "rank": 2,
+      "id": "H86J-WCA",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "title": "Upward-Continuation Wavenumber Attenuation Structural Index (TMI vs TMI_up150) for Intra-Graben Faults",
+      "bands_verified_io_py": [2, 13, 14, 15],
+      "external_pinned_grids": ["geodawn_extensions_u8.tif"],
+      "named_non_fault_mimic": "Shallow sub-vertical Miocene basaltic feeder dikes."
+    },
+    {
+      "rank": 3,
+      "id": "H86J-KCSN",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "title": "Anisotropic Drainage-Divide Chi-Asymmetry Coupled with Crustal Transtensional Strain-Rate Alignment",
+      "bands_verified_io_py": [4, 7, 8, 12],
+      "external_pinned_grids": ["dem10_chi_100m_i16.tif"],
+      "named_non_fault_mimic": "Differential bedrock erodibility across unfaulted granite-tuff contacts."
+    },
+    {
+      "rank": 4,
+      "id": "H86J-ECFN",
+      "status": "RESERVE_NOT_RUN_SEPARATELY",
+      "title": "Hessian-Eccentricity Conductive Fault-Gouge Necking Deconfounded from Isotropic Evaporite Playas",
+      "bands_verified_io_py": [15, 17, 19],
+      "external_pinned_grids": ["geodawn_rad_u8.tif"],
+      "named_non_fault_mimic": "Linear clay-filled axial river paleochannels."
+    }
+  ]
+}

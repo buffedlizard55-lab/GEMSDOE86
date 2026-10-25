@@ -190,6 +190,13 @@
       "context": "docs/evidence/h86j-tvhs-run-card.json",
       "holdout_kind": "h86j_tvhs",
       "stem": "gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros"
+    },
+    {
+      "lane": "H86J-MCSP multi-scale Riesz monogenic phase-congruency + blind geothermal/metasomatic corroboration + 4-fold LOQO + exact CELF submodular allocation (LOQO HOLDOUT-DTI 0.1463, pure-blind E2 0.0839, SGMC-PROXY-DTI 0.0999; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-mcsp-run-card.json",
+      "context": "docs/evidence/h86j-mcsp-run-card.json",
+      "holdout_kind": "h86j_mcsp",
+      "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
     }
   ]
 }

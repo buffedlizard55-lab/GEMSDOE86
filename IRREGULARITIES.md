@@ -1449,3 +1449,10 @@ PASS, `0` slots used):
    `H86J-CSGD`, `H86I-RLMS`, `H86I-SACD`, `H86J-MPC`, `UNIQUEDOT`, max `0.6137`).
 3. Verified closure of `IR-86-H86G-FEED-20261025` (`GEMSDOE89 = 0.0301`, `GEMSDOE90 = 0.0749` present as
    `OWNER-REPORTED` in `registry/prior_scores.csv` and hash-bound `docs/evidence/fleet-feed.json`).
+
+## IR-86-MCSP-LIDAR-SURVEY-BIAS-20261025 — 3DEP 1 m LiDAR acquisition swaths leak human mapping effort (`SW 95.1%` vs `NE 52.6%`)
+
+**Observed.** Quadrant-by-quadrant measurement on the Nevada study footprint (`5,167,373` valid pixels) revealed an inverse relationship between mapped `existing_faults.tif` density and unmapped USGS SGMC bedrock fault density (`> 3 px` from `existing_faults.tif`): `SW` (`10.9%` area) has `cat = 16.74‰`, `SGMC = 7.36‰`, `3DEP LiDAR = 95.1%`, whereas `NE` (`26.4%` area) has the lowest mapped catalogue density (`9.21‰`), the highest unmapped SGMC bedrock fault density (`22.49‰`), and only `52.6%` 3DEP 1 m LiDAR coverage (`47.4%` missing). In `HistGradientBoostingClassifier`, both `0`-filling (`Fold NE E2 = 0.0000`) and `NaN` missing-value routing (`missing_go_to_left`, `Fold NE E2 = 0.0036`) exploit the LiDAR swath boundary as a proxy for human survey effort rather than fault scarp mechanics.
+
+**Fix.** `src/gems86_mcsp/features.py::_put_lidar_debiased` omits `lidar_valid` completely and substitutes robust-z / quantile-matched 10 m USGS DEM scarp curvature (`topo10_curv_lineament` / `topo_slope_10m`) outside acquired 3DEP swaths, eliminating `0` and `NaN` survey-boundary cues across all `5,167,373` footprint pixels, while `scripts/restore_protocol_data.py` adds Git smart-HTTP blob-fetch fallback gated strictly on `b"API rate limit exceeded"` in `stderr`.
+
