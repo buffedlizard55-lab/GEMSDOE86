@@ -1216,3 +1216,10 @@ trailed its own 44,090-dot `d_vis > 1.5 px` collar-ablation control `E3` (`0.104
 vs `h33-2-b2`), it measures `1.0000` vs full-support `17GEMSDOE`, `0.9995` vs dense lattice `13GEMSDOE`, and
 encounters the `2` off-grid historical inventory rows (`errors = 2`), so it is automatically marked
 `verdict: "negative"`, `decision: "DO NOT SUBMIT"`, `submission_slots_used: 0`.
+
+## IR-F548F465 — hash identity is not registry uniqueness (2026-10-25)
+
+`verify_submission_tif.py` printed “unique by pinned digest” after a format/hash check.
+Corrected to format/identity only, with explicit DO NOT SUBMIT and no inferred
+holdout, registry or slot clearance. Added clean fail-closed handling and tests
+for malformed receipts and ZIPs. See `research/SESSION_F548F465_REVIEW.md`.

@@ -385,7 +385,16 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Full proposal register and blockers</a> · <a href="evidence/session-cf73474c-data.json">Actual data obtainability / shared-cache limits</a></p></section>'''
 
 
-def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "") -> str:
+def h86g_edti_answer(card: dict) -> str:
+    safe = "false" if card.get("safe_to_submit") is False else "true"
+    approved = "false" if card.get("approved_for_weekly_slot") is False else "true"
+    return f'''<section class="callout" id="h86g-edti"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span>
+<h2>H86G-EDTI: historical amended-gate result only</h2>
+<p>The archived verdict is <strong>PROMOTE under the amended like-for-like interpretation only</strong>. That historical verdict does not satisfy the current literal registry rule and does not authorize upload. <code>safe_to_submit={safe}</code>; <code>approved_for_weekly_slot={approved}</code>. This file is listed with the other research artifacts below for audit only.</p>
+<p><a href="evidence/h86g-edti-run-card.json">Historical run card and gate evidence</a> · <a href="{e(link(card['submission_file']))}">TIFF bytes (audit only — DO NOT SUBMIT)</a></p></section>'''
+
+
+def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
@@ -397,6 +406,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><span class="badge bad">AUDIT DOWNLOAD ONLY</span> <strong>Do not upload any file linked from this page.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
+{h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Files cleared to submit</span><strong>0</strong><small>No artifact has current authorization; historical verdict labels cannot override the current stop.</small></div>
 <div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This read-only release audit ran no model experiment and used no submission slot.</small></div></div>
@@ -416,12 +426,13 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "") -> str:
+def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>{"HISTORICAL PROMOTE — NOT CLEARED TO SUBMIT" if str(a["status"]).startswith("PROMOTE") else "DO NOT SUBMIT — AUDIT ONLY"}</strong></td></tr>' for a in report["artifacts"])
     n_valid = report["locally_valid_artifacts"]
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{h86g_html}
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). That historical research promotion does not override the literal stop or authorize upload. H86G-EDTI status: <strong>IS THIS FILE OK TO SUBMIT? NO</strong>; <code>safe_to_submit=false; approved_for_weekly_slot=false</code>. This audit spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only (all files)</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
 {review_notice}
@@ -838,6 +849,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         approved_for_weekly_slot=h86g_card["approved_for_weekly_slot"],
         decision="DO NOT SUBMIT — separate selector authorization pending",
         scope="Historical PA-86 like-for-like promotion only; literal witness remains blocked.")
+    h86g_html = h86g_edti_answer(h86g_card)
     plan86f_path = root / "registry/h86f_hypotheses.json"
     plan86f = strict_json(plan86f_path) if plan86f_path.is_file() else None
     ewcs_path = root / "docs/evidence/h86f-ewcs-run-card.json"
@@ -883,8 +895,8 @@ def render(root: Path = ROOT) -> dict[str, str]:
                         + (len(plan86f["hypotheses"]) if plan86f else 0)
                         + (len(h86h_prereg["candidate_hypotheses"]) if h86h_prereg else 0))
     return {
-        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice),
-        "docs/executive-summary.html": executive(report, sources, answer, review_notice),
+        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html),
+        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue),
