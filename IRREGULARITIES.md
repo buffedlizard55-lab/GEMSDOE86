@@ -1511,3 +1511,7 @@ count. Owner request and historical source archives were preserved byte-for-byte
 **Observed on merging origin/main (`f55dbb1`).** `scripts/audit_downloads.py` rejected the already-merged GDSC artifact `gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif`: its writer receipt used a path instead of the ZIP basename and omitted explicit `promoted` / `approved_for_weekly_slot` flags. The raw GDSC HOLDOUT-DTI receipt also does not provide a 95% CI; that scientific evidence gap remains.
 
 **Resolution in this follow-up.** Corrected only the sidecar metadata (`zip_file` basename, `promoted=false`, `approved_for_weekly_slot=false`, `safe_to_submit=false`) and regenerated the local download-validation receipt. TIFF and ZIP bytes, hashes, holdout metrics, and verdict were not changed. The artifact remains `DO NOT SUBMIT`; the literal witness stop still applies.
+
+## IR-86L-01 / IR-86L-02 (2026-10-25, H86L-FMC session)
+- IR-86L-01: shared cached feature stack absent (.cache/training_features.tif not in checkout); native-band lanes BMR/GSST blocked until restore_data.py runs with authorised access.
+- IR-86L-02: fleet minority-consensus surface anti-predictive on hide-and-recover holdout (canary AUC 0.436, HOLDOUT-DTI 0.0000); candidate also fires 3px-overlap duplicate gate (0.886 vs GEMSDOE63). Verdict negative, DO NOT SUBMIT. See research/SESSION_20261025_H86L_FMC_REVIEW.md.
