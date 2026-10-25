@@ -118,16 +118,6 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
-    if kind == "h86m_lt_unvalidated":
-        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
-                or context.get("verdict") != "negative"
-                or not explicit_no_authorization(context)
-                or context.get("submission_slots_used") != 0
-                or "holdout_dti" in context):
-            raise ValueError("H86M-LT must remain unvalidated and unauthorized")
-        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
-                "design": "Aggregate owner-reported score tomography; no buffered hide-and-recover evaluation",
-                "caveat": "Fitted projections and SGMC-PROXY-DTI are not HOLDOUT-DTI. Post-outcome gate amendments, missing per-feature canaries, and Pearson rather than Spearman surface checks prevent clearance. Historical registry measurements were not recomputed. DO NOT SUBMIT."}
     if kind == "h86m_unvalidated":
         h = context.get("holdout_dti", {})
         if (context.get("lane") != "H86M-DAMAGERING"
@@ -239,6 +229,23 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86m_lt_unvalidated":
+        # H86M-LT is a historical tomography export. Its expected-DTI and
+        # SGMC-proxy fields are projections/diagnostics, not a hide-and-recover
+        # score. Registration repairs the publication audit only; it cannot
+        # turn a projection into HOLDOUT-DTI or organizer acceptance.
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("verdict") != "negative"
+                or context.get("historical_scientific_verdict") != "promote"
+                or not explicit_no_authorization(context)
+                or context.get("submission_slots_used") != 0
+                or context.get("holdout_dti", {}).get("status") != "NOT_RUN_NO_SHARED_CACHE_AND_NO_VISIBLE-FAULT_RECOMPUTATION"
+                or any(context.get("holdout_dti", {}).get(k) is not None
+                       for k in ("dti", "ci95", "withheld_positive_pixels"))):
+            raise ValueError("H86M-LT must remain unvalidated projection and negative/no-slot artifact")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Historical leaderboard-tomography projection; no shared hide-and-recover run",
+                "caveat": "H86M-LT expected-DTI and SGMC-proxy values are projections/diagnostics from owner-reported scored rasters, not HOLDOUT-DTI. The shared feature cache, visible-fault recomputation, leakage canary and organizer receipt are absent. The historical surface checker also used Pearson rather than the required Spearman measurement. Full-registry uniqueness is local evidence only. DO NOT SUBMIT."}
     if kind in {"h86m_bmr", "h86m_cnt"}:
         # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
         # block lives at holdout.candidate; all are measured negatives.

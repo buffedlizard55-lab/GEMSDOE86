@@ -781,6 +781,23 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
+def h86m_lt_answer(card: dict) -> str:
+    """Historical H86M-LT projection, explicitly reconciled as audit-only."""
+    if (card.get("verdict") != "negative" or card.get("historical_scientific_verdict") != "promote"
+            or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0
+            or card.get("holdout_dti", {}).get("dti") is not None):
+        raise ValueError("H86M-LT card must stay negative, unvalidated and slot-free")
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86m-lt"><div class="section-head"><span class="badge bad">H86M-LT: DO NOT SUBMIT — UNVALIDATED</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>H86M-LT historical tomography TIFF — audit only</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>) remains downloadable for reproducibility, but its current verdict is <strong>negative</strong>. The historical scientific label <code>promote</code> is retained only as <code>historical_scientific_verdict</code>; it is not a release or slot authorization.</p>
+<ul><li><strong>No HOLDOUT-DTI:</strong> the shared hide-and-recover evaluator, visible-catalogue recomputation and withheld-positive/95% CI receipt were not run.</li><li><strong>No leakage canary:</strong> the required single-feature AUC test was not run because the shared feature cache is absent.</li><li><strong>Projection ≠ score:</strong> tomography expected-DTI and SGMC-PROXY values are projections/diagnostics, not HOLDOUT-DTI or ORGANIZER-CONFIRMED results.</li><li><strong>No organizer receipt:</strong> 0 weekly slots used; do not paste this identity into a submission form.</li></ul>
+<p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86m-lt-run-card.json">Run card</a> · <a href="h86m-lt.html">Dedicated H86M-LT status page</a></p>
+</section>'''
+
+
 def h86m_damagering_answer(card: dict) -> str:
     """Concurrent published TIFF with no holdout. Submission stays forbidden."""
     if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
@@ -863,7 +880,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede"><strong>OK to submit: NO.</strong> This session wrote no TIFF. The H86L-VFGR candidate lost to its raw-edge control and duplicated an earlier corroborated-edge lane, so the writer stopped. A concurrent H86L-FMC file is downloadable for audit only and is also not authorized. The existing <strong>H86G-EDTI</strong> GeoTIFF has a historical amended-gate research promotion, but fails the current literal registry requirement. Its card does not authorize submission. A local format pass does not establish scientific uniqueness or slot approval.</p>
+<p class="lede"><strong>OK to submit: NO.</strong> This session wrote no TIFF. No current file is authorized. H86M-LT is the newest published historical artifact, but it is now explicitly <strong>negative / unvalidated</strong>: no shared-cache HOLDOUT-DTI, leakage canary, organizer receipt, or weekly slot approval exists. Its TIFF and ZIP are safe to download for audit only. The shared native input TIFF is restored, but the required hash-pinned feature cache is absent; the preregistered H86N-EQL lane therefore stopped before feature construction. A local format or registry measurement is not scientific or upload authorization.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
 <p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
@@ -989,7 +1006,20 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "") -> str:
+def h86n_hypothesis_queue(plan: dict, card: dict | None) -> str:
+    """Render the current five-item H86N queue without inventing results."""
+    rows = []
+    for item in plan.get("hypotheses", []):
+        rows.append(f'''<article class="card"><p class="eyebrow">H86N rank {item["rank"]} · <code>{e(item["id"])}</code> · {e(item["status"])}</p><h2>{e(item["name"])}</h2><dl>
+<dt>Layers</dt><dd>{e("; ".join(item["layers"]))}</dd><dt>Physical signature</dt><dd>{e(item["physical_signature"])}</dd><dt>Why catalogue-missing</dt><dd>{e(item["catalogue_missing_rationale"])}</dd><dt>Difference from this repository</dt><dd>{e(item["repo_distinction"])}</dd><dt>Named non-fault mimic</dt><dd>{e(item["named_non_fault_mimic"])}</dd><dt>Expected DTI benefit (qualitative only)</dt><dd>{e(item["expected_dti_benefit"])}</dd><dt>Cost / data</dt><dd>{e(item["implementation_cost"])} {e(item["data_availability"])}</dd></dl></article>''')
+    card_status = ""
+    if card:
+        card_status = f'''<p><strong>Top candidate status:</strong> <code>{e(card["verdict"])}</code>; <code>experiments_run={card["experiments_run"]}</code>; no candidate raster; shared-cache/preflight blocker recorded in <a href="evidence/h86n-eql-run-card.json">the run card</a>. No HOLDOUT-DTI number is claimed.</p>'''
+    return f'''<section id="h86n-hypotheses"><h2>H86N: five distinct geological hypotheses — proposals only</h2><p>{e(plan["ranking_basis"])}</p><p><strong>Current blocker:</strong> {e(plan["common_gates"]["shared_cache_currently_available"])} is the cache state; the actual shared cache is not available and no weekly slot was used. These are not score projections or organizer claims.</p>{card_status}{"".join(rows)}<p><a href="{REPO}/blob/main/research/H86N_EQL_PREREGISTRATION.md">H86N-EQL preregistration</a> · <a href="{REPO}/blob/main/registry/h86n_hypotheses.json">Full H86N register</a> · <a href="{REPO}/blob/main/research/official-source-verification-20261025.json">Fresh official-source verification</a></p></section>'''
+
+
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "", h86n_plan: dict | None = None, h86n_card: dict | None = None) -> str:
+    h86n_block = h86n_hypothesis_queue(h86n_plan, h86n_card) if h86n_plan else ""
     block86k_stdp = ""
     if plan86k and stdp_card:
         cards_k = []
@@ -1183,6 +1213,7 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
 {vfgr_html}
 <div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-TVHS</code> achieved strict-LOQO <code>E1 = 0.0983 [0.0800, 0.1159]</code>, zero-catalogue blind <code>E2 = 0.0626 [0.0475, 0.0778]</code>, and unweighted strict-LOQO <code>E3 = 0.1214 [0.1060, 0.1350]</code>, <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
+{h86n_block}
 {block86k_stdp}
 {block86j_mcsp}
 {tvhs_queue}
@@ -1223,7 +1254,7 @@ def source_page(observations: dict) -> str:
     return page("Verified sources and limits", "sources.html", f'''<p class="eyebrow">Primary-source observations</p><h1>What the sources establish.<br>And what they do not.</h1>
 <p>Observed on {e(observations['observed_date_utc'])}. {e(observations['retrieval_method'])}. {e(observations['scope'])}</p>
 <div class="table-wrap"><table><thead><tr><th>Source</th><th>Observed statement / scope</th><th>Limit</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
-<p><strong>2026-10-25 observation boundary:</strong> <a href="evidence/review-source-checks.json">fresh narrow GitHub byte recheck</a> reverified the official reference README and archived owner H33 audit. Non-GitHub source pages in the tables above were not freshly fetched in this egress-restricted review. <a href="evidence/session-cf73474c-data.json">Native-data/cache receipt</a>: all 19 native bands restored; actual shared derived cache still absent. A mirror hash match is not organizer authentication.</p>
+<p><strong>2026-10-25 observation boundary:</strong> <a href="evidence/review-source-checks.json">fresh narrow GitHub byte recheck</a> reverified the official reference README and archived owner H33 audit. This session also freshly retrieved the primary-source pages and recorded the line-limited observations and irregularities in <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/official-source-verification-20261025.json">official-source-verification-20261025.json</a>. Non-GitHub source pages are source observations, not authenticated competition receipts. <a href="evidence/session-cf73474c-data.json">Native-data/cache receipt</a>: all 19 native bands restored; actual shared derived cache still absent. A mirror hash match is not organizer authentication.</p>
 <p><a href="evidence/source-review-20261023.json">Exact observation register (2026-10-23)</a> · <a href="evidence/source-recheck-20261024.json">Live primary-source recheck (2026-10-24)</a> · <a href="fleet.html">All 92 owner-reported project entries</a></p>
 <p>Official observations are dated research records, not an automatically authenticated live leaderboard. The daily feed refreshes repository metadata and local file checks, not the meaning of external publications or the remaining account quota.</p>''')
 
@@ -1333,6 +1364,9 @@ def render(root: Path = ROOT) -> dict[str, str]:
         raise ValueError("Current review is stale or contradicts the negative release audit; remeasure registry")
     sources = strict_json(root / "docs/evidence/source-review-20261023.json")
     plan = strict_json(root / "registry/h86c_hypotheses.json")
+    h86n_plan = strict_json(root / "registry/h86n_hypotheses.json")
+    h86n_card_path = root / "docs/evidence/h86n-eql-run-card.json"
+    h86n_card = strict_json(h86n_card_path) if h86n_card_path.is_file() else None
     with (root / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
         ledger = list(csv.DictReader(stream))
     summary = {k: report[k] for k in ("schema", "audit_ok", "decision", "submission_ready", "safe_to_submit", "artifact_count", "locally_valid_artifacts", "new_candidate_generated", "experiments_run", "submission_slots_used")}
@@ -1656,6 +1690,10 @@ def render(root: Path = ROOT) -> dict[str, str]:
     fmc_card = strict_json(fmc_path) if fmc_path.is_file() else None
     if fmc_card is not None:
         vfgr_banner += h86l_fmc_answer(fmc_card)
+    h86m_lt_path = root / "docs/evidence/h86m-lt-run-card.json"
+    h86m_lt_card = strict_json(h86m_lt_path) if h86m_lt_path.is_file() else None
+    if h86m_lt_card is not None:
+        vfgr_banner += h86m_lt_answer(h86m_lt_card)
     h86m_path = root / "docs/evidence/h86m-damagering-run-card.json"
     h86m_card = strict_json(h86m_path) if h86m_path.is_file() else None
     if h86m_card is not None:
@@ -1666,7 +1704,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner, h86n_plan=h86n_plan, h86n_card=h86n_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),

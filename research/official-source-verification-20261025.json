@@ -1,0 +1,129 @@
+{
+  "schema": "gems86.official-source-verification.v1",
+  "verified_utc": "2026-10-25",
+  "method": "Fresh page retrieval in this session; claims below are limited to text visible on the cited official/trusted page. This is source verification, not a leaderboard receipt or a substitute for pinned input bytes.",
+  "sources": [
+    {
+      "id": "drivendata_problem_967",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "publisher": "DrivenData competition page",
+      "retrieval": "success",
+      "verified_lines": [
+        "The task is to predict structures indicative of geothermal resources, namely geological faults.",
+        "The public known-fault set is incomplete and may contain inaccurate data; expert-labelled new faults form the test data.",
+        "Provided features include surface conductivity, detrended elevation/slope, geodetic strain, gravity, magnetic layers, and earthquake density.",
+        "The distance-weighted Tversky kernel has 300 m support (3 pixels at 100 m), with alpha=0.2 and beta=0.8.",
+        "Submission format is a single-layer float32 GeoTIFF in EPSG:32611 at 100 m with values from 0 to 1; outside bounds is null or NaN on the official page."
+      ],
+      "irregularities": [
+        "The repository's conservative local export policy uses finite zero outside the footprint so its local validators can audit the whole array. That is an implementation policy, not a claim that the portal treats zero and null identically.",
+        "The competition page describes public/private and expanded expert labels; this repository has no organizer receipt and cannot infer a live score from local holdout values."
+      ]
+    },
+    {
+      "id": "nlr_official_rules_96647",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "publisher": "U.S. Department of Energy / National Laboratory of the Rockies, GEMS Prize Official Rules, September 2026",
+      "retrieval": "success",
+      "verified_lines": [
+        "Section 1.1 describes Phase 1 as a private withheld subset and Phase 2 as an expert-updated label set.",
+        "Section 3.3 says training includes a multiband GeoTIFF at 100 m and training fault labels, and submissions are predictions for all faults as a 100 m GeoTIFF.",
+        "Section 3.4 says up to three submissions per week may be used for feedback and only one final submission is selected across the prize phases.",
+        "Section 3.5 says the submission is automatically evaluated with the distance-weighted Tversky index and final selection must be made without private-test knowledge.",
+        "Section 3.2 requires disclosure of generative-AI use in the narrative and states finalists must provide reproducible code assets and documentation."
+      ],
+      "irregularities": [
+        "The current repo status is not a rules interpretation that authorizes an upload; it is a stricter internal scientific and registry gate."
+      ]
+    },
+    {
+      "id": "usgs_geodawn",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "doi": "https://doi.org/10.5066/P93LGLVQ",
+      "publisher": "U.S. Geological Survey",
+      "retrieval": "success",
+      "verified_lines": [
+        "The release is dated March 4, 2024 and links the DOI data release.",
+        "USGS and DOE acquired airborne magnetic and radiometric data for geologic/geophysical mapping and geothermal/critical-mineral studies.",
+        "The page states the survey includes magnetic data, radiometric data, and coordinated airborne lidar over the Great Basin extent.",
+        "The page says the release includes contractor reports/readme, metadata, grids/line data, and GeoTIFF geophysical grids.",
+        "The citation table identifies Jonathan M. Glen and Tait E. Earney, 2024, and CC0 1.0 Universal."
+      ],
+      "irregularities": [
+        "The user-supplied older USGS GeoDAWN URL returned a 404 in this session. The current working official page and DOI above were used instead.",
+        "A source description does not authenticate the local owner-mirrored TIFF; the repository keeps SHA-256 pins and labels provenance accordingly."
+      ]
+    },
+    {
+      "id": "gbcge_ingenious",
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "publisher": "Great Basin Center for Geothermal Energy",
+      "retrieval": "success",
+      "verified_lines": [
+        "The page identifies INGENIOUS and its goal of finding hidden geothermal systems while reducing exploration/development risk.",
+        "It lists USGS, state surveys, NREL, LBNL and other collaborators.",
+        "It describes an integrated regional-to-prospect workflow including geophysics, geostatistics, play-fairway work and detailed conceptual models.",
+        "It links publications and related datasets, including heat flow, regional gravity/magnetics, MT conductance, slip/dilation tendency, and geodetic strain."
+      ],
+      "irregularities": [
+        "The page is a project description, not a guarantee that every linked layer is available, co-registered, licensed for this competition, or present in this checkout."
+      ]
+    },
+    {
+      "id": "gdr_1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "doi": "https://doi.org/10.15121/1881483",
+      "publisher": "DOE Geothermal Data Repository / GBCGE / NBMG / UNR",
+      "retrieval": "success",
+      "verified_lines": [
+        "The page identifies the INGENIOUS Great Basin Regional Dataset Compilation and its DOI.",
+        "It lists earthquake density, geodetic shear/dilation, geophysics, heat flow, conductance, faults, volcanics, paleo-geothermal features, wells/springs and geochemistry resources.",
+        "It labels the dataset publicly accessible and CC BY 4.0, and gives a terms-of-use disclaimer that users must assess fitness.",
+        "The page identifies a downloadable earthquake-density archive and separate resource links, but this session did not use those external bytes in a candidate."
+      ],
+      "irregularities": [
+        "The GDR page is a catalog/resource page; no external GDR file was promoted into the shared feature stack here. GDR point layers are not a substitute for the required blind holdout.",
+        "The repository explicitly excludes any label-derived distance-to-known-fault field from model features."
+      ]
+    },
+    {
+      "id": "epsg_32611",
+      "url": "https://epsg.io/32611",
+      "publisher": "EPSG registry presentation",
+      "retrieval": "success",
+      "verified_lines": [
+        "EPSG:32611 is WGS 84 / UTM zone 11N.",
+        "The unit is metre, the coordinate axes are easting/northing, and the listed area is between 120 W and 114 W in the northern hemisphere."
+      ],
+      "irregularities": [
+        "The local sample and validator are the authoritative byte/grid pins for this checkout; the EPSG page is a CRS reference, not the competition portal."
+      ]
+    },
+    {
+      "id": "reference_solution",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "publisher": "DrivenData reference-solution repository",
+      "retrieval": "success",
+      "verified_lines": [
+        "The repository describes itself as a reference solution for the GEMS Prize Challenge.",
+        "Its README says data are downloaded from the challenge website and the notebook implements a benchmark using standard libraries.",
+        "The README documents CPU/GPU environment options; it is a reference implementation, not an organizer score or a uniqueness registry."
+      ],
+      "irregularities": [
+        "The repository is a benchmark/reference source, not evidence that this checkout's historical artifacts are accepted or that a current leaderboard value is confirmed."
+      ]
+    },
+    {
+      "id": "usgs_geodawn_old_url",
+      "url": "https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada",
+      "publisher": "U.S. Geological Survey",
+      "retrieval": "success_404",
+      "verified_lines": [
+        "The page returned an official USGS 404 page. It was not used as a source of scientific claims."
+      ],
+      "irregularities": [
+        "Do not cite this stale URL as the working GeoDAWN release; use the current USGS page and DOI above."
+      ]
+    }
+  ]
+}

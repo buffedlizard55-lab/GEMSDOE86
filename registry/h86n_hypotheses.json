@@ -1,0 +1,107 @@
+{
+  "schema": "gems86.h86n-hypothesis-register.v1",
+  "lane": "H86N pure earthquake-field anisotropy / structural-shape follow-up",
+  "created_utc": "2026-10-25",
+  "novelty_scope": "New relative to executed run cards found in this checkout on 2026-10-25; not a claim of global novelty across all repositories or literature. Earlier proposals are disclosed rather than relabeled as executed results.",
+  "status": "PROPOSALS_ONLY_SHARED_CACHE_BLOCKED",
+  "ranking_basis": "Qualitative expected same-split HOLDOUT-DTI information gain per implementation cost, catalogue-missing specificity, mimic separability, and distance from executed lanes. No numeric DTI projection is made.",
+  "common_gates": {
+    "shared_feature_cache_required": true,
+    "shared_cache_currently_available": false,
+    "evaluator": "gems57-pooled-hide-v2",
+    "holdout": "buffered whole fault components, visible-only catalogue-derived features, pixel-exact visible mask, pooled DTI alpha=0.2 beta=0.8 triangular radius=300 m, physical-block 95% CI",
+    "canary": "single-feature discriminative AUC > 0.90 is leakage until proven otherwise",
+    "registry": "surface and final dots; Spearman <= 0.90 and forward 3-pixel overlap <= 0.70; stop on either firing",
+    "budget": "at most 3 experiments or 2 hours; no weekly slot"
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86N-EQL",
+      "name": "Pure multi-scale earthquake-lineation anisotropy",
+      "layers": [
+        "training_features.tif Band 16 ieq_n100a15 (earthquake intensity/density)",
+        "training_features.tif Band 10 deq_n100a15 (distance-to-earthquake catalogue transform)"
+      ],
+      "physical_signature": "Log-intensity Hessian ridge strength and eigenvalue anisotropy at 2- and 4-pixel scales, rank-normalized and combined with multi-scale persistence; Band 10 is retained as a separate distance/closeness control rather than multiplied into the proposed lineation mechanism.",
+      "catalogue_missing_rationale": "A blind active fault can organize earthquakes into a narrow lineation without a mapped surface trace, while a geothermal injection or volcanic swarm is more likely to be compact/radial. The anisotropy/persistence test targets the spatial shape, not merely high event density.",
+      "repo_distinction": "No executed run card in this checkout uses Bands 10/16 as a pure primary structural surface with Hessian lineation and a distance-only control. H86C/H86F/H86I used seismicity as one component of larger multi-physics or supervised stacks; H86M-LT is tomography, not a seismicity holdout. This formalizes the deferred EQL idea while keeping it a distinct pure lane.",
+      "named_non_fault_mimic": "Induced geothermal injection swarm or volcanic dike swarm with an elongated aftershock/cloud footprint; compactness, multi-scale anisotropy and a later non-fault review are required discriminants, not proof of a fault.",
+      "expected_dti_benefit": "Highest qualitative priority: may add catalogue-missing linear corridors in geophysically bland cover and is aligned with the 300 m metric scale after thinning. No numeric gain is projected; only a like-for-like HOLDOUT-DTI with CI can establish benefit.",
+      "implementation_cost": "Low to medium: native-band read, Gaussian/Hessian transforms, one canary per feature, shared holdout evaluation, and shared registry/writer gates.",
+      "data_availability": "Native 19-band TIFF is restored and its SHA-256 is pinned; the required shared cached feature stack is absent, so this is not executable/validated in the current state. No external data are required for the first test.",
+      "status": "TOP_CANDIDATE_NOT_RUN_SHARED_CACHE_BLOCKER"
+    },
+    {
+      "rank": 2,
+      "id": "H86N-MTPS",
+      "name": "Cross-depth conductance–seismicity phase offset",
+      "layers": [
+        "training_features.tif Band 17 cond_surf",
+        "training_features.tif Bands 10 deq_n100a15 and 16 ieq_n100a15",
+        "training_features.tif Band 15 depth_to_base_surf",
+        "training_features.tif Band 8 geod_dilaterate"
+      ],
+      "physical_signature": "Measure a signed cross-strike offset, projected along the Band-15 basement-depth gradient, between a shallow conductance edge and a persistent earthquake lineation; gate by positive dilatation and compare to zero-offset and shuffled-offset controls.",
+      "catalogue_missing_rationale": "A dipping blind hydrothermal conduit may place microseismicity deeper/up-dip from a shallow clay/conductance cap, leaving no mapped scarp. The phase relation, rather than either raw layer, is the target.",
+      "repo_distinction": "No executed card implements a fold-visible, signed offset statistic between these layers. It is not the H86M-CNT conductivity-neck product (already executed) and not a raw conductance covariate; it tests directed phase geometry.",
+      "named_non_fault_mimic": "Flat-lying playa brine or smectite sheet whose conductance edge and catalogue density are unrelated but coarsely aligned by basin geometry.",
+      "expected_dti_benefit": "Medium qualitative potential as a complementary blind-conduit signal if the phase sign is stable across quadrants; a broad 100-km catalogue smoothing may cap precision.",
+      "implementation_cost": "Medium: signed distance/warp transforms, phase controls, and fold-safe visible-catalogue recomputation.",
+      "data_availability": "All first-test layers exist in the restored native band map; actual shared cache is missing. Official USGS conductance/GDR context is recorded but not needed for the native first test.",
+      "status": "PROPOSAL_NOT_RUN"
+    },
+    {
+      "rank": 3,
+      "id": "H86N-PSCS",
+      "name": "Potential-field step-versus-compact-source shape likelihood",
+      "layers": [
+        "training_features.tif Bands 13 iso_grav_anom and 2 rtp",
+        "training_features.tif Bands 5 iso_grav_anom_slope, 11 iso_grav_anom_vg, and 18 iso_grav_anom_hg",
+        "training_features.tif Band 14 tmi"
+      ],
+      "physical_signature": "At frozen scales, fit a local odd-symmetric step template and an even-symmetric compact/dike template to gravity and magnetic profiles; retain coherent step likelihood only where signed derivative orientation agrees across the two fields. Band 11 and Band 18 retain the verified directional semantics in src/gems86/io.py.",
+      "catalogue_missing_rationale": "A buried fault step should produce a polarity-changing/extended response, while dikes, pluton contacts and compact bodies can produce strong but symmetric ridges that attract generic edge detectors. Rejecting the compact-source shape may favor concealed discontinuities.",
+      "repo_distinction": "No executed lane in this checkout fits competing step/compact response shapes. H86F-GZZD/H86H-PSTD use derivative/tensor features and H86J-MPC uses monogenic phase; this is an explicit source-shape likelihood with polarity controls, not another gradient rank.",
+      "named_non_fault_mimic": "Mafic dike swarm, elongated intrusive contact, or overlapping compact sources that form an apparently linear potential-field edge.",
+      "expected_dti_benefit": "Medium-low qualitative potential: shape rejection is physically targeted but sensitive to source depth, filtering and the local sign convention; improvement must be shown against raw-edge and compact-source controls.",
+      "implementation_cost": "Medium: profile sampling, scale calibration, signed-band QA, and ablation controls.",
+      "data_availability": "Native bands are restored; shared cache remains the blocker. No external bytes required for a first experiment.",
+      "status": "PROPOSAL_NOT_RUN"
+    },
+    {
+      "rank": 4,
+      "id": "H86N-BWPP",
+      "name": "Broad low-relief warp persistence",
+      "layers": [
+        "training_features.tif Band 12 det_elev",
+        "training_features.tif Band 19 det_elev_slope"
+      ],
+      "physical_signature": "Signed profile-curvature and low-order polynomial warp residuals at several 300–1200 m smoothing scales, retaining sign-stable broad flexure across orientations and rejecting only sharp single-scale scarps.",
+      "catalogue_missing_rationale": "An old or degraded fault-related warp can survive erosion or alluvial burial after its sharp scarp disappears. Existing catalogue-following scarp detectors preferentially learn exposed, sharp faults; a persistent broad warp targets a different expression.",
+      "repo_distinction": "This is not the executed LiDAR scarp, slope threshold, sharp curvature, or vent-flexure lanes: it is a sign-stable broad-wavelength warp with no catalogue distance or external 1 m LiDAR. The distinction is testable by a broad-only ablation.",
+      "named_non_fault_mimic": "Pleistocene lake-shoreline benches, differential compaction, alluvial fan tilting, or a broad volcanic-edifice flank.",
+      "expected_dti_benefit": "Low to medium qualitative potential in the 24.63% non-LiDAR/low-relief gap; broad support may underperform the 300 m metric unless emission is carefully thinned.",
+      "implementation_cost": "Low to medium: native filters and a scale-persistence control, but the holdout canary and edge handling remain mandatory.",
+      "data_availability": "Native bands are restored; shared cache absent. No external data required for the first test.",
+      "status": "PROPOSAL_NOT_RUN"
+    },
+    {
+      "rank": 5,
+      "id": "H86N-SWIR",
+      "name": "Independent alteration-mineral boundary corroboration",
+      "layers": [
+        "External official USGS ASTER/SWIR mineral-index release would be required and must be acquired/hash-pinned on an unrestricted workstation",
+        "training_features.tif Bands 2 rtp, 13 iso_grav_anom, and 17 cond_surf as native structural context"
+      ],
+      "physical_signature": "Linear, low-relief Al-OH and hydrated-silica absorption-index boundaries co-located with magnetic quieting and conductance edges, targeting vapor-zone alteration above blind fluid pathways.",
+      "catalogue_missing_rationale": "A blind geothermal structure can lack a mapped scarp but leave shallow alteration; an independent mineral index could add evidence unavailable in the current 19-band stack.",
+      "repo_distinction": "No executed lane in this checkout uses SWIR mineral absorption indices. It is not a relabeling of GeoDAWN K/Th/U radiometric ratios, which are nuclear-count proxies rather than vibrational mineral spectra.",
+      "named_non_fault_mimic": "Detrital clay-rich alluvium derived from altered volcanic tuff or mine-related alteration.",
+      "expected_dti_benefit": "Potentially high geological complementarity but unknown; no numeric projection is allowed before a pinned source and blind holdout.",
+      "implementation_cost": "High: external acquisition, licensing/provenance check, 100 m EPSG:32611 co-registration, and coverage/edge QA.",
+      "data_availability": "Not available in this sandbox and not in the shared cache. Explicitly deferred; no external source is silently substituted.",
+      "status": "DEFERRED_EXTERNAL_DATA"
+    }
+  ]
+}
