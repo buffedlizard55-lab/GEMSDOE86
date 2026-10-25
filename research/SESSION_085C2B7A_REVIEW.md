@@ -87,3 +87,11 @@ Verification results are recorded below after completion. Run card: [session JSO
 - `git diff --check`: PASS before commit.
 
 No new HOLDOUT-DTI, leakage-canary measurement, pre-placement surface, final dots or competition submission was produced. Historical evidence is explicitly historical; fresh audit timestamps are not fresh model results.
+
+### Concurrent-main integration (before merge)
+
+The first `gh pr merge 117 --merge` attempt correctly failed because concurrent PRs had changed main. Merged `origin/main` into this same fixed session branch, preserved concurrent H86I-HVFD code/cards/TIFF and the standalone on-disk verifier, combined both irregularity entries, and regenerated conflicted HTML/evidence from the merged generator rather than choosing stale generated pages.
+
+The refreshed combined release inventory contains **21/21 locally format-valid inherited TIFFs**, still no upload permission. The 20-file counts above describe this review's initial snapshot, not this integrated snapshot. `verify_submission_tif.py` additionally passed on the unchanged H86G bytes (finite 0/1, 55,000 positives, pinned TIFF and ZIP hashes and grid); digest identity is not a proof of geological novelty or authorization.
+
+After integration: **839 passed, 24 skipped, 41 subtests passed**, 42 existing Rasterio warnings, in the full suite. Site/build/review checks, all 21 download checks, 22 focused regression tests and `git diff --check` passed. No model was rerun during conflict resolution; no concurrent lane is attributed to this session.
