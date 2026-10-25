@@ -60,6 +60,27 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["bytes"] == 145410  # catches the inherited stale 158,348 headline
     assert gfco["note_chars"] == 91  # catches the inherited stale 92 headline
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
+    h86l = next(a for a in report["artifacts"] if "h86l-fmc" in a["file"])
+    assert h86l["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert h86l["historical_holdout"]["value"] is None
+    assert h86l["historical_holdout"]["ci95"] is None
+    assert h86l["historical_holdout"]["withheld_positives"] is None
+    assert h86l["verdict"] == "negative" and not h86l["safe_to_submit"]
+
+
+def test_h86l_fleet_holdout_is_never_normalized_as_trusted_performance():
+    card = audit.strict_json(ROOT / "docs/evidence/h86l-fmc-run-card.json")
+    config = {"holdout_kind": "h86l_fmc", "context": "docs/evidence/h86l-fmc-run-card.json"}
+    normalized = audit.archived_holdout(config, card)
+    assert normalized["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert normalized["value"] is None
+    assert normalized["ci95"] is None
+    assert normalized["withheld_positives"] is None
+
+    corrupted = dict(card)
+    corrupted["holdout"] = {**card["holdout"], "evidence_class": "HOLDOUT-DTI"}
+    with pytest.raises(ValueError, match="leakage-suspect/duplicate negative state"):
+        audit.archived_holdout(config, corrupted)
 
 
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):

@@ -196,6 +196,23 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
+    if kind == "h86l_fmc":
+        # The source card explicitly marks its fleet-derived holdout as leakage-suspect.
+        # Preserve the TIFF for audit-integrity checks, but do not expose its numeric
+        # DTI as trusted HOLDOUT-DTI or let format validation cure the scientific flaw.
+        canary = context.get("leakage_canary", {})
+        if (context.get("lane_id") != "H86L-FMC"
+                or context.get("verdict") != "negative"
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or not str(context.get("holdout", {}).get("evidence_class", "")).startswith("HOLDOUT-DTI (LEAKAGE-SUSPECT")
+                or canary.get("feature") != "fleet_support_count"
+                or context.get("gates", {}).get("overlap3_le_0.70") is not False):
+            raise ValueError("H86L-FMC card no longer records its leakage-suspect/duplicate negative state")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Archived fleet-derived holdout is explicitly leakage-suspect; numeric result withheld from trusted HOLDOUT-DTI summaries.",
+                "caveat": "H86L-FMC is registered for byte/format auditing only. Its holdout is contaminated by fleet ancestry and its final-dot overlap exceeds the 0.70 duplicate threshold; no candidate promotion or upload authorization follows."}
     h = context["holdout_dti"]
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but

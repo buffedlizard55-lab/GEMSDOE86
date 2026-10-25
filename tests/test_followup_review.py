@@ -1,5 +1,6 @@
 """Regression checks for the 2026-10-25 follow-up review and current research queue."""
 import json
+from datetime import datetime
 from pathlib import Path
 
 from src.gems86.io import BANDS
@@ -72,9 +73,16 @@ def test_followup_run_card_is_negative_and_does_not_borrow_historical_scores():
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
     assert card["correlation_overlap_vs_registry"]["evidence_class"] == "REGISTRY-MEASUREMENT"
     assert card["correlation_overlap_vs_registry"]["witness_sha256"] == preflight["witness_sha256"]
-    assert card["correlation_overlap_vs_registry"]["witness_measured_utc"] == preflight["measured_utc"]
-    assert card["correlation_overlap_vs_registry"]["registry_measurement_utc"] == registry["measured_utc"]
+    # This dated card is an immutable prior review; its measurements must not be
+    # forced to equal the refreshed mutable preflight/registry clocks.
+    card_witness_time = datetime.fromisoformat(card["correlation_overlap_vs_registry"]["witness_measured_utc"])
+    card_measurement_time = datetime.fromisoformat(card["correlation_overlap_vs_registry"]["registry_measurement_utc"])
+    current_preflight_time = datetime.fromisoformat(preflight["measured_utc"])
+    current_registry_time = datetime.fromisoformat(registry["measured_utc"])
+    assert card_witness_time <= card_measurement_time == datetime.fromisoformat(card["generated_utc"])
     assert card["correlation_overlap_vs_registry"]["uncovered_allowed_pixels"] == 0
+    assert card_witness_time <= current_preflight_time
+    assert card_measurement_time <= current_registry_time
     assert card["correlation_overlap_vs_registry"]["universal_overlap_for_any_nonempty_allowed_candidate"] == 1.0
     assert card["correlation_overlap_vs_registry"]["registry_complete"] is False
     assert card["raster_sha256"] is card["submission_name"] is None
