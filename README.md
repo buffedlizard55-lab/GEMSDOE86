@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**Independent review (branch `4b49f82f`):** [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md). All existing downloads remain **DO NOT SUBMIT**. No new candidate or slot was used; the literal overlap rule, amendment authority, missing shared cache, and unassigned method lane remain explicit blockers.
+
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-24)
 
 **Every file in this repository is `DO NOT SUBMIT`.** The current H86E-MMT lane generated a byte-distinct single-band GeoTIFF and its one-TIFF ZIP, but the automated scientific and registry gates rejected it. These are **safe to download for audit only**, not approved uploads:
@@ -20,6 +22,10 @@
 | Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
 The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its holdout numbers are `HOLDOUT-DTI`, not leaderboard scores; owner-reported `GEMSDOE32` `0.2778` remains an unverified claim, and no projection is made. Read the [current machine-checked site](docs/index.html), [executive submission guide](docs/executive-summary.html), [session `86569dcd` PhD forensic review & untried hypotheses](research/SESSION_20261024_86569DCD_REVIEW.md), [session `86569dcd` negative run card](docs/evidence/session-20261024-86569dcd-run-card.json), [verified 19-band prepared manifest](data/prepared_manifest.json), [three-to-five-hypothesis preregistration](research/H86E_MMT_PREREGISTRATION.md), [three-pass H86E-MMT review](research/H86E_MMT_REVIEW_20261024.md), and [current feed/evidence](docs/evidence/release-readiness.json).
+
+## Latest repository review — 2026-10-24: no new TIFF; **DO NOT SUBMIT**
+
+The current review completed three passes and reran the full suite (**640 passed, 24 skipped, 42 warnings, 41 subtests**) plus release and static-site checks. A read-only integrity preflight confirms that a pinned full-support witness covers every allowed cell under the request's literal overlap definition; the complete registry is not present, so this is a negative stop, never uniqueness clearance. No new candidate was generated: the current request does not assign one method lane, the actual shared feature cache is absent, and no complete contemporary registry is restored. Existing GeoTIFFs are downloadable for audit only, not cleared for competition upload. See [the full three-pass repository review](research/ARENA_REPO_REVIEW_20261024.md) and the [current release-readiness inventory](docs/evidence/release-readiness.json).
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
