@@ -259,6 +259,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86F-EWCS lane result; the run card is the authoritative experiment receipt. HOLDOUT-DTI (0.1723 [0.1530, 0.1898]) beats its isotropic-tip/cover-blind controls and same-split H86C-KSLB (0.1241) with separated 95% CIs, with 0/687 Spearman rho > 0.90 firings and 0 discrete <=50k-dot firings (26.96% vs GEMSDOE32), but registry completeness (2 grid-incompatible rows), >56k-dot space-filling firings, literal 17GEMSDOE saturation, and PA-86-02 failed closed; DO NOT SUBMIT; no slot was used."}
+    if kind == "h86i_rlms":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86I-RLMS lane result; the run card is the authoritative experiment receipt. Official SHA-pinned USGS 3DEP 1m LiDAR + 10m DEM/chi + GeoDAWN K/eTh layers improved HOLDOUT-DTI by +0.0264 [+0.0162, +0.0371] over matched native-19 E2 (4/4 quadrants positive, beating H86F-EWCS on SE 0.1666 vs 0.1566), with 0/688 Spearman rho > 0.90 firings (max 0.6496) and 0/469 discrete <=100k-dot overlap firings > 0.70 (max 0.6731; 0.4025 vs GEMSDOE32; 0.3101 vs H86F-EWCS), but unconstrained submodular clumping in Walker Lane SW lowered pooled HOLDOUT-DTI to 0.1257 vs reproduced H86F-EWCS 0.1723 and literal registry/PA-86-02 gates failed closed; DO NOT SUBMIT; no slot was used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

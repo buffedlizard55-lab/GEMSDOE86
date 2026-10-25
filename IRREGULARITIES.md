@@ -1128,6 +1128,41 @@ despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
 `docs/evidence/h86e-mmt-run-card.json` (`false`) and `AGENTS.md` Rule 11.
 **Decision:** Both `scripts/run_h86f_pcc.py` and `scripts/run_h86f_ewcs.py` now call
 `protocol_preflight.require_feasible()` before any work and are pinned in
-`tests/test_builder_preflight.py::BUILDERS` (now **54 CLI builders + 8 imported
-orchestrators**), and `docs/evidence/h86e-mmt-registry-surface.json` now records
+`tests/test_builder_preflight.py::BUILDERS` (now **55 CLI builders + 8 imported
+orchestrators**, including `scripts/run_h86i_rlms.py`), and `docs/evidence/h86e-mmt-registry-surface.json` now records
 `"surface_gate_pass": false` with an explicit archive note.
+
+## IR-86-H86I-RLMS-01 — `H86I-RLMS` official 3DEP 1m/10m + GeoDAWN `K/eTh` physics improved `HOLDOUT-DTI` by `+0.0264` across all 4 quadrants, while unconstrained submodular `eta=0.042` clumping degraded Walker Lane `SW`
+
+Under frozen preregistration `research/H86I_RLMS_PREREGISTRATION.json`
+(`sha256=f53b80b3130836d3e35d7dcb40e3201fcb0409cc32512e97fca1ce01a9cb7a7e`), the
+3-arm `H86I-RLMS` lane evaluated SHA-pinned official USGS 3DEP 1-m LiDAR scarp planes,
+10-m DEM curvature/fluvial `chi` disequilibrium, and USGS GeoDAWN airborne `K/eTh`
+alteration plus up-dip hanging-wall back-projection and spin-2 nematic director
+coherence on `gems57-pooled-hide-v2` (`seed=20`, `11,321` withheld positives, `1,000`
+20 km block-bootstrap draws).
+- **Positive external-physics finding (`E1 - E2`):** `E1_rlms_full_submodular`
+  (`0.125716 [0.107073, 0.143239]`) beat matched native-19 ablation
+  `E2_rlms_native19_only_ablation` (`0.099322 [0.085157, 0.112842]`) by
+  **`+0.026394 [+0.016173, +0.037075]`**, positive in all 4 spatial quadrants
+  (`NW +0.016109`, `NE +0.031797`, `SW +0.014741`, `SE +0.041886`) and surpassing
+  `H86F-EWCS` on Basin-and-Range `SE` (`0.166613` vs `0.156591`).
+- **Allocator & OOF buffer diagnosis (`E1 - E3`):** Replacing the unconstrained
+  submodular allocator (`eta = 0.042` static modular bonus without hard `>= 2.8 px`
+  Poisson-disc exclusion) with hard `2.8 px` greedy Poisson-disc thinning on the same
+  `E1` OOF probability surface (`E3_rlms_unprojected_disc_ablation = 0.155115`)
+  restored `SW` Walker Lane from `0.085982` to `0.185323`, demonstrating that static
+  `eta * k_self` over-packs 1-px-adjacent hotspots where probability peaks exceed the
+  regional baseline; additionally, `buffer_px=3` OOF grouping censored `300-600 m`
+  fault-tip stepover positives during OOF isotonic calibration.
+- **Uniqueness & gate disposition:** Pre-placement `--surface` (`688/690` measured)
+  had `0` Spearman firings > `0.90` (`max = 0.649608`), and final dots had `0/469`
+  discrete `<= 100k`-dot overlap firings > `0.70` (`max = 0.673102`; `0.4025` vs
+  `GEMSDOE32` `h33-h33-2-b2`; `0.3101` vs `H86F-EWCS`), with `40/40` leakage canaries
+  passing (`max AUC = 0.7949 <= 0.90`). Because pooled `E1` (`0.125716`) did not beat
+  reproduced `H86F-EWCS` (`0.172325`) and literal `17GEMSDOE` / 2 off-grid registry
+  rows / `PA-86-02` failed closed, `docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif`
+  (`sha256=ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d`) is
+  published strictly as **`DO NOT SUBMIT`** (`verdict = "negative"`, `0` slots spent),
+  and `scripts/run_h86i_rlms.py` is locked behind `protocol_preflight.require_feasible()`.
+
