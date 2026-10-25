@@ -1,0 +1,133 @@
+{
+  "schema": "gems86.session-data-review.v1",
+  "session": "cf73474c",
+  "measured_utc": "2026-10-25T02:15:47+00:00",
+  "evidence_class": "DATA-MEASUREMENT",
+  "organizer_authenticated": false,
+  "native_band_preparation": {
+    "manifest": "data/prepared_manifest.json",
+    "sha256": "1ad8adfb6e71af13c3a7e3460e50332dce7968130ce6292132ffb88f10053f13",
+    "has_features": true,
+    "input_grids": {
+      "sample_submission": {
+        "epsg": 32611,
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "crs_shape_transform_match": true
+      },
+      "existing_faults": {
+        "epsg": 32611,
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "crs_shape_transform_match": true
+      },
+      "training_features": {
+        "epsg": 32611,
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 19,
+        "crs_shape_transform_match": true
+      }
+    },
+    "pins_verified": {
+      "sample_submission": true,
+      "existing_faults": true,
+      "training_features": true
+    },
+    "source_sha256": {
+      "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    },
+    "prepared_array_count": 21,
+    "publication": {
+      "complete_array_set_staged": true,
+      "rollback_on_exception": true,
+      "local_preparers_serialized": true,
+      "crash_atomic_across_cache_and_manifest": false,
+      "scope": "Native bands only; not the actual shared template cached feature stack"
+    }
+  },
+  "actual_shared_feature_stack_restored": false,
+  "shared_cache_obtainability": {
+    "status": "NOT_FOUND_IN_THESE_GIT_TREES",
+    "trees": [
+      {
+        "repository": "buffedlizard55-lab/60GEMSDOE",
+        "commit": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+        "tree": "b99591eede63c6d45c8a896255b8cd34824fa00b",
+        "truncated": false,
+        "blob_entries": 831,
+        "cached_array_objects": [],
+        "response_sha256": "d4aacd8a01ef8f035bf07ea83e5f99193e766f18a695050d76007da408f69101",
+        "url": "https://api.github.com/repos/buffedlizard55-lab/60GEMSDOE/git/trees/b99591eede63c6d45c8a896255b8cd34824fa00b?recursive=1"
+      },
+      {
+        "repository": "buffedlizard55-lab/GEMSDOE66",
+        "commit": "2734d5d46a240245e610d4e39ebc98e6fc557722",
+        "tree": "2734d5d46a240245e610d4e39ebc98e6fc557722",
+        "truncated": false,
+        "blob_entries": 562,
+        "cached_array_objects": [],
+        "response_sha256": "affd4b29d48440e75d9f6160e196569986aa468967b55f1c5831400595919311",
+        "url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE66/git/trees/2734d5d46a240245e610d4e39ebc98e6fc557722?recursive=1"
+      }
+    ],
+    "note": "Complete Git-tree observations only, not proof of absence from releases, LFS, other commits or external storage; no replacement derived feature stack was built.",
+    "published_release_queries": [
+      {
+        "repository": "buffedlizard55-lab/60GEMSDOE",
+        "queried_utc": "2026-10-25T02:29:04+00:00",
+        "release_count_returned": 0,
+        "per_page": 100,
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "url": "https://api.github.com/repos/buffedlizard55-lab/60GEMSDOE/releases?per_page=100",
+        "cache_asset_found": false
+      },
+      {
+        "repository": "buffedlizard55-lab/GEMSDOE66",
+        "queried_utc": "2026-10-25T02:29:04+00:00",
+        "release_count_returned": 0,
+        "per_page": 100,
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE66/releases?per_page=100",
+        "cache_asset_found": false
+      }
+    ]
+  },
+  "network_scope": "GitHub APIs/codeload only. No automated DrivenData, USGS, GDR, Dropbox or rules-PDF fetch in this session.",
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

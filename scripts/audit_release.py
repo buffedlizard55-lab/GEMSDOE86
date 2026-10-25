@@ -68,7 +68,51 @@ def verify_shared_pins(root: Path) -> dict:
     return checks
 
 
+def explicit_no_authorization(card: dict) -> bool:
+    """Absent legacy flags are allowed; any PRESENT flag must be JSON false."""
+    return all(field not in card or card[field] is False
+               for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+
+
 def archived_holdout(config: dict, context: dict) -> dict:
+    """Normalize known schemas, then reject invalid performance evidence.
+
+    This is evidence validation, never a new evaluator or a recomputed score.
+    A valid TIFF cannot excuse an impossible DTI, a reversed/nonfinite CI, a
+    boolean positive count, or an unknown evaluator label on the public page.
+    """
+    result = _normalize_archived_holdout(config, context)
+
+    def number(value, low, high):
+        return (isinstance(value, (int, float)) and not isinstance(value, bool)
+                and np.isfinite(value) and low <= value <= high)
+
+    def interval(value, low, high):
+        return (isinstance(value, list) and len(value) == 2
+                and all(number(x, low, high) for x in value) and value[0] <= value[1])
+
+    version = result.get("evaluator_version")
+    expected = "gems57-pooled-hide-v2"
+    if (result.get("evidence_class") != "HOLDOUT-DTI" or not isinstance(version, str)
+            or not (version == expected or (version.startswith(expected + " (") and version.endswith(")")))):
+        raise ValueError(f"Invalid archived HOLDOUT-DTI evaluator: {config['context']}")
+    fields = (result.get("value"), result.get("ci95"), result.get("withheld_positives"))
+    if result.get("status") == "NOT_VALIDATED_FOR_THIS_VARIANT":
+        if any(value is not None for value in fields):
+            raise ValueError("Unvalidated variant cannot inherit another configuration's HOLDOUT-DTI")
+    else:
+        value, ci, n = fields
+        if (not number(value, 0.0, 1.0) or not interval(ci, 0.0, 1.0)
+                or not isinstance(n, int) or isinstance(n, bool) or n <= 0):
+            raise ValueError(f"Invalid archived HOLDOUT-DTI value/CI/positive count: {config['context']}")
+    if "paired_delta" in result or "paired_delta_ci95" in result:
+        if (not number(result.get("paired_delta"), -1.0, 1.0)
+                or not interval(result.get("paired_delta_ci95"), -1.0, 1.0)):
+            raise ValueError(f"Invalid archived paired HOLDOUT-DTI delta/CI: {config['context']}")
+    return result
+
+
+def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     """Normalize only explicitly known schemas; do not manufacture comparability."""
     kind = config["holdout_kind"]
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
@@ -262,8 +306,7 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
         card = strict_json(inside(root, config["card"]))
         checks["sha_matches_scientific_card"] = card["raster_sha256"] == file_sha
         checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
-        checks["scientific_card_does_not_authorize"] = all(
-            card.get(field) is not True for field in ("submission_ready", "safe_to_submit", "approved_for_weekly_slot"))
+        checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
     if config["holdout_kind"] == "blindgeothermal_candidate":
         method = context.get("method", {})
         uniqueness = context.get("uniqueness", {})
@@ -431,17 +474,13 @@ def build_report(root: Path = ROOT) -> dict:
                 except zipfile.BadZipFile as exc:
                     raise ValueError(f"Invalid quarantined submission/ ZIP: {cand_zip.name}") from exc
     artifacts = [audit_artifact(root, entry, by_stem[Path(entry["file"]).stem], g) for entry in inventory]
-    linked_cards = {c["source_card"] for c in configs if c.get("source_card")}
+    # Check every sidecar, including mapped cards. The mapping calls its field
+    # `card`, not `source_card`; a linkage typo must not create a skip path.
+    # audit_artifact additionally binds the mapped cards to the exact TIFF bytes.
     sidecar_cards_negative = True
     for card_path in sorted((root / "docs/evidence").glob("*card*.json")):
-        rel_card = str(card_path.relative_to(root))
-        if rel_card in linked_cards:
-            continue
         card_doc = strict_json(card_path)
-        if (card_doc.get("verdict") != "negative"
-                or card_doc.get("submission_ready") is True
-                or card_doc.get("safe_to_submit") is True
-                or card_doc.get("approved_for_weekly_slot") is True):
+        if card_doc.get("verdict") != "negative" or not explicit_no_authorization(card_doc):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

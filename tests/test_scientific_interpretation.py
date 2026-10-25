@@ -54,3 +54,21 @@ def test_redundant_off_truth_dot_can_reduce_metric():
     assert np.isclose(a['tp'], b['tp'])
     assert b['fp'] > a['fp']
     assert b['dti'] < a['dti']
+
+
+def test_exact_pruning_condition_uses_total_truth_count_not_false_negatives():
+    """Synthetic algebra check against shared DTI, not a spatial holdout."""
+    from gems57.metric import EPS
+    rng = np.random.default_rng(20261025)
+    for _ in range(100):
+        truth = rng.random((13, 14)) < 0.08
+        pred = rng.random(truth.shape) < 0.12
+        removed = pred & (rng.random(truth.shape) < 0.3)
+        before = dti_binary(pred, truth)
+        after = dti_binary(pred & ~removed, truth)
+        T, F, K = before['tp'], before['fp'], before['n_truth']
+        a, b = T - after['tp'], F - after['fp']
+        lhs = T * b
+        rhs = a * (F + 4 * K + 5 * EPS)
+        if not np.isclose(lhs, rhs, atol=1e-10, rtol=1e-12):
+            assert (after['dti'] > before['dti']) == (lhs > rhs)

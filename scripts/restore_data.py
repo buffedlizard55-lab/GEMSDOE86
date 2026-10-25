@@ -41,6 +41,7 @@ import json
 import shutil
 import sys
 import tarfile
+import tempfile
 import urllib.request
 from pathlib import Path
 
@@ -91,32 +92,59 @@ def sha256(p: Path) -> str:
     return h.hexdigest()
 
 
-def stream_extract(url: str, wanted: dict[str, Path]) -> None:
+def stream_extract(url: str, wanted: dict[str, Path], *,
+                   expected_sha256: dict[str, str] | None = None) -> None:
+    """Stage a complete selection, verify it, then publish only valid bytes.
+
+    Canonical rasters MUST supply all expected hashes. The sole unhashed caller
+    restores scratch feature parts; their concatenation is separately verified
+    before it becomes training_features.tif. No tar member is extracted by its
+    supplied filesystem path. An absent/duplicate requested member is an error.
+    """
+    if not wanted:
+        return
+    if len({Path(p).resolve() for p in wanted.values()}) != len(wanted):
+        raise ValueError("Archive targets must have distinct destinations")
+    if expected_sha256 is not None and set(expected_sha256) != set(wanted):
+        raise ValueError("Expected hashes must cover exactly the requested archive members")
     staged: list[tuple[Path, Path]] = []
+    seen = set()
     req = urllib.request.Request(url, headers={"User-Agent": "gems86-restore"})
     try:
         with urllib.request.urlopen(req, timeout=900) as resp:
             with tarfile.open(fileobj=resp, mode="r|gz") as tf:
-                for m in tf:
-                    if not m.isfile():
+                for member in tf:
+                    rel = member.name.split("/", 1)[-1]
+                    if rel not in wanted:
                         continue
-                    rel = m.name.split("/", 1)[-1]
-                    if rel in wanted:
-                        dst = wanted[rel]
-                        dst.parent.mkdir(parents=True, exist_ok=True)
-                        tmp = dst.with_suffix(dst.suffix + ".partial")
+                    if rel in seen or not member.isfile():
+                        raise ValueError(f"Duplicate or non-file requested archive member: {rel}")
+                    seen.add(rel)
+                    dst = Path(wanted[rel])
+                    dst.parent.mkdir(parents=True, exist_ok=True)
+                    # Unique temporary names avoid colliding with another
+                    # read-only restoration running from the same prompt.
+                    with tempfile.NamedTemporaryFile(dir=dst.parent, prefix=dst.name + ".",
+                                                     suffix=".partial", delete=False) as out:
+                        tmp = Path(out.name)
                         staged.append((tmp, dst))
-                        fh = tf.extractfile(m)
-                        if fh is None:
+                        payload = tf.extractfile(member)
+                        if payload is None:
                             raise RuntimeError(f"tar member {rel} had no payload")
-                        with tmp.open("wb") as out:
-                            shutil.copyfileobj(fh, out)
+                        with payload:
+                            shutil.copyfileobj(payload, out)
+                    if expected_sha256 is not None and sha256(tmp) != expected_sha256[rel]:
+                        raise ValueError(f"SHA-256 mismatch before archive publication: {rel}")
+        missing = set(wanted) - seen
+        if missing:
+            raise ValueError(f"Missing requested archive members: {sorted(missing)}")
+        # Every selected member passed before ANY target is replaced. A failed
+        # download/hash/selection leaves all pre-existing targets untouched.
         for tmp, dst in staged:
             tmp.replace(dst)
-    except BaseException:
+    finally:
         for tmp, _ in staged:
             tmp.unlink(missing_ok=True)
-        raise
 
 
 def download_verified(url: str, dst: Path, expected_sha256: str) -> None:
@@ -198,7 +226,8 @@ def main(argv: list[str] | None = None) -> None:
             small = {f"data/bridge/{alias.get(n, n)}": dest / n
                      for n in need if n != "training_features.tif"}
             if small:
-                stream_extract(f"https://codeload.github.com/buffedlizard55-lab/GEMSDOE/tar.gz/{FEATURE_REF}", small)
+                stream_extract(f"https://codeload.github.com/buffedlizard55-lab/GEMSDOE/tar.gz/{FEATURE_REF}", small,
+                               expected_sha256={rel: PINS[path.name] for rel, path in small.items()})
             if "training_features.tif" in need:
                 parts = {f"data/bridge/gems-geodawn-numerical-features.tif.part-00{i}":
                          CACHE / f"feat-part-{i}" for i in range(5)}
@@ -237,7 +266,8 @@ def main(argv: list[str] | None = None) -> None:
         missing = {k: v for k, v in wanted.items()
                    if not v.is_file() or sha256(v) != EXTERNAL_PINS[v.name]}
         if missing and not a.verify_only:
-            stream_extract(f"https://codeload.github.com/buffedlizard55-lab/60GEMSDOE/tar.gz/{EXT_REF}", missing)
+            stream_extract(f"https://codeload.github.com/buffedlizard55-lab/60GEMSDOE/tar.gz/{EXT_REF}", missing,
+                           expected_sha256={rel: EXTERNAL_PINS[path.name] for rel, path in missing.items()})
         receipt["external"] = {
             n: verify_pin(EXT / n, n, EXTERNAL_PINS[n]) for n in EXTERNAL
         }
