@@ -1,5 +1,11 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Current handoff — 2026-10-25 (`arena/b90880fa-gemsdoe86`): **DO NOT SUBMIT**
+
+**No newly generated competition-ready TIFF exists.** This review generated **no new candidate**. The **32** published research TIFFs are downloadable **for audit only**; the [executive summary](docs/executive-summary.html) and [machine decision](docs/evidence/release-readiness.json) both say `safe_to_submit=false`. This session repaired the inherited H86L-FMC registration so that the Pages builder and on-disk validator can audit *all 32*; it did **not** promote that leakage-suspect/duplicate artifact or spend a weekly slot. Its archived 0.0000 diagnostic is **not** a valid new hide-and-recover score.
+
+The pinned GitHub mirror **can** restore the 19-band native TIFF without DrivenData automation (`scripts/restore_data.py`); native bands were restored and prepared locally on this session, but both the TIFF and derived arrays are ignored and **will not persist in Git**. The *required shared template feature cache* is still not established. The literal full-support witness again covered all allowed pixels (preflight stop), and no single method paragraph was assigned in the request. Generating a new file and calling it a validated unique *submission* would misrepresent these gates. Read the [current review and ranked unrun hypotheses](research/SESSION_B90880FA_REVIEW.md), then [standing prompt](PROMPT.md) and [complete request archive](research/REQUEST_20261025.md) **before any new lane**. Site download links are not upload approval.
+
 ## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
 
 - **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.

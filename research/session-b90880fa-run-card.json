@@ -1,0 +1,41 @@
+{
+  "schema": "gems86.session-review.v1",
+  "date_utc": "2026-10-25",
+  "hypothesis": "BMR basement-interface gravity mass-balance residual (ranked next; no assigned method paragraph; NOT RUN)",
+  "mechanism": "Fold-safe broad basement response from native Band 15 subtracted from Band 13 gravity; test cross-strike residual against raw-gravity and basement-gradient controls. No candidate surface was built.",
+  "named_non_fault_process": "Sediment-density gradients, gravity-derived basement-model smoothing and edge ringing",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_ASSIGNED_LANE_OR_SHARED_CACHE",
+    "evaluator_version": "gems57-pooled-hide-v2 (planned, not executed)",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap_3px": null,
+    "scope": "No new candidate. Pinned continuous witness only: every allowed pixel has positive support; literal forward overlap for any nonempty allowed candidate is 1.0 > 0.70. Not a full-registry comparison.",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "evidence": "docs/evidence/protocol-preflight.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_local_artifacts_valid": 32,
+    "inherited_artifact_scope": "format/ZIP and one pinned witness only; not a new candidate or full uniqueness clearance",
+    "evidence": "docs/evidence/release-readiness.json"
+  },
+  "submission_name": null,
+  "note": "No new TIFF: cache/lane/registry gate unresolved; inherited H86L duplicate, audit download only; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

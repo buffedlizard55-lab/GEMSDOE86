@@ -121,6 +121,17 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
+    if kind == "h86l_fmc_leakage_suspect":
+        # The published fleet inputs were constructed with the full catalogue.
+        # Its sidecar's 0.0000 diagnostic cannot certify a hide-and-recover result.
+        # Keep the historical card available without importing a score as valid
+        # release evidence, even though the format and duplicate gates also fail.
+        if (context.get("verdict") != "negative"
+                or context.get("holdout", {}).get("evidence_class") !=
+                "HOLDOUT-DTI (LEAKAGE-SUSPECT: fleet built with full catalogue)"):
+            raise ValueError("H86L-FMC must preserve its leakage-suspect negative result")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "caveat": "The fleet inputs use full-catalogue ancestry; the archived 0.0000 diagnostic is leakage-suspect and is not a valid hide-and-recover HOLDOUT-DTI for this artifact. Dot-overlap gate also failed."}
     if kind == "blindgeothermal_candidate":
         if context.get("evidence_class") != "RUN-CARD":
             raise ValueError("Archived blind-geothermal candidate lacks its original run-card evidence class")
