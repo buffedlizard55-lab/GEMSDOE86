@@ -1472,3 +1472,27 @@ checkout, so the lane cannot be rerun here until `scripts/restore_data.py` resto
 `docs/downloads/…` path; byte hash/size were independently re-verified against the `releases/`
 copy (`docs/evidence/h86k-revalidation-20261025.json`) and match. Verdict unchanged: negative,
 DO NOT SUBMIT, 0 slots.
+## IR-86-LIVE-INPUT-RECEIPTS-20261025 — tracked receipts outlive ignored workspace data
+
+**Observed in session 679d92e7.** `data/prepared_manifest.json` records a historical
+19-band preparation (`has_features=true`), but neither native feature TIFF copy
+nor any of its 21 prepared arrays is present in this fresh checkout. The recorded
+lane mmap is also absent; its size-only receipt would not establish a verified
+shared-template cache even if restored. These are current input-integrity
+measurements, not evidence that the historical preparation never happened.
+
+**Fix.** `scripts/audit_workspace_inputs.py` inspects current file hashes/lengths,
+checks both TIFF locations and exact array identities, distinguishes lane-cache
+presence from the shared-cache contract, and fails `--require-native` for
+missing/corrupt native inputs. The three-pass software reviewer runs it without
+rebuilding caches or touching model artifacts. A successful inspection is not
+training/submission clearance. Snapshot: `research/session-679d92e7-inputs.json`.
+The earlier prompt's “single remaining blocker is data placement” is incomplete:
+the independently remeasured literal overlap blocker and scientific/registry
+requirements remain. No new TIFF or weekly slot was created to mask this gap.
+
+**Interpretation correction.** Two current README summaries overstated H33's
+private-score causation and gave an invalid simplified collar-pruning formula.
+They now distinguish support identity from hidden-truth performance, and state
+the exact inequality with *weighted FP mass reduction*, not raw deleted-dot
+count. Owner request and historical source archives were preserved byte-for-byte.
