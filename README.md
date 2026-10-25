@@ -1,5 +1,22 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## ⛔ HIGHEST-VISIBILITY SUBMISSION ANSWER — H86K-STC (2026-10-25, this review session)
+
+**IS IT OK TO SUBMIT? NO — DO NOT SUBMIT.** The newest unique TIF,
+`releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif`
+(SHA-256 `e4d00084b219e210c10e5ccd539ab1ee1a3c2315ac6188f40b2a256e90f9aa11`, 40,000 binary dots,
+values exactly {0,1} — the portal *"Predicted values must be in range [0, 1]"* error class is excluded,
+EPSG:32611 / 3730×3292 / sample transform, 0 NaN, 0 dots on catalogue; independently re-verified this
+session, see `docs/evidence/h86k-revalidation-20261025.json`), is **SAFE TO DOWNLOAD FOR AUDIT ONLY**.
+Its pre-registered promotion rule **FAILED**: HOLDOUT-DTI (gems57-pooled-hide-v2, 22,641 withheld
+positives) = **0.0428 [0.0383, 0.0466]** vs the `tmi_hg`-only control **0.0458**. Verdict `negative`,
+`safe_to_submit=false`, `approved_for_weekly_slot=false`, **0 weekly slots used**. No file in this repo
+is currently authorized for DrivenData upload; no ORGANIZER-CONFIRMED score exists for any local file
+(owner-reported 0.2778 / leaderboard 0.4413 / 0.3195 claims remain unverified receipts-free claims).
+Portal name (≤64 ch): `gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros` · Note (94 ch):
+`H86K-STC coherence x coincident mag/grav edge, 40k dotted; audit only unless run card promotes`.
+Flagged: `IR-86-H86K-SITE/RERUN/RECEIPT-PATH-20261025` in `IRREGULARITIES.md`.
+
 ## Current independent repository review (2026-10-25)
 
 **DO NOT SUBMIT any current TIFF.** The read-only review verified 28/28 inherited artifacts for local format/integrity only; all remain blocked from competition use. The literal full-support registry witness covers every allowed cell, no method paragraph is assigned, and the required shared derived feature cache is absent. No experiment or slot was used. See [the three-pass review, ranked research queue, verification commands, and next-step blockers](research/ARENA_REPO_REVIEW_20261025.md). The request itself remains archived in [PROMPT.md](PROMPT.md) and [research/REQUEST_20261025.md](research/REQUEST_20261025.md); never treat owner-reported leaderboard claims as organizer receipts.
