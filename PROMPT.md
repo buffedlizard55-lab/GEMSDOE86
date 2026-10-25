@@ -1,31 +1,18 @@
 # Standing project prompt (condensed historical archive)
 
-**Current decision (2026-10-25): DO NOT SUBMIT ANY FILE.** The current all-artifact audit measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. H86G-EDTI's earlier like-for-like `promote` card is historical, not current authorization. No new TIFF, experiment, or slot was created in the current review.
-**Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first.** This condensed historical document is not
-a replacement for that archive. Preserve `REQUEST_20261024.md`,
-`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
+**Current decision (2026-10-25; review branch `arena/861cd6cd-gemsdoe86`): DO NOT SUBMIT ANY FILE.** Read this summary, the complete README, and `research/REQUEST_20261025.md` before each project session. The full owner request is embedded in README and preserved in the archive below; earlier request archives remain byte-for-byte historical records.
 
-The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
-Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
-The named fleet remains 92 projects. The current request adds owner claims
-`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
-They were unscored in the 2026-10-24 archive; that historical record is not
-retroactively changed. Current release remeasurement is
-`docs/evidence/latest-review-run-card.json`.
+The latest three-pass review is `research/SESSION_20261025_ARENA_861CD6CD_REVIEW.md`; the earlier detailed review remains preserved as `research/SESSION_20261025_ARENA_REVIEW.md`. This session corrected the H86L-FMC artifact-registration/site-audit gap and remeasured the registered artifacts. The machine-readable current status is in `docs/evidence/latest-review-run-card.json`, `docs/evidence/release-readiness.json`, and `docs/evidence/all-artifacts-registry.json`. All 32 preserved TIFFs pass local format/integrity checks, but all remain `DO NOT SUBMIT`; no experiment, new candidate, or slot was used.
 
-The native 19-band TIFF was restored and prepared, but this is **not** restoration
-of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
-there is no assigned method paragraph in the current request. The immutable
-full-positive witness still makes the literal overlap rule unsatisfiable for
-every nonempty candidate. Stop before fitting or placement. Do not bypass the
-gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
-or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
-CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
-model cards, download status, evaluator/writer pins and slot separation remain
-binding. Scores and access claims in request archives are user input, not
-verified evidence.
+Two independent blockers prevent a legitimate new experiment: (1) no single method paragraph/lane is assigned; (2) the live workspace check finds `training_features.tif` absent, the prepared native-band arrays absent, and the actual shared cached feature stack unestablished. The pinned registry witness (`SHA-256 ab0a0a62…`) is positive across all 5,106,385 allowed pixels, so the unchanged literal 0.70 dot-overlap rule rejects every nonempty candidate with measured forward overlap 1.0. This is a protocol satisfiability stop, not proof that all geology or methods are duplicates. Do not bypass it, synthesize an empty raster, rebrand an old TIFF, or spend a submission slot.
+
+The existing H86L-FMC TIFF is a prior audit artifact, not a new submission. Its run card reports `HOLDOUT-DTI` 0.0000 [0.0000, 0.0000] (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positives), explicitly marked leakage-suspect because its fleet was built with the full catalogue; its paired result versus H33 is negative, and its local 3-px overlap is 0.8864. It is format-valid for audit only and remains `DO NOT SUBMIT`.
+
+Treat `0.2778` for GEMSDOE32/H33 and the user-cited `0.3195`/`0.4413` as owner/user claims unless an organizer submission-page receipt is supplied. Pixel lineage explains that H33 is D28 with 2,545 catalogue-collar dots removed and no additions; this establishes what changed, not that the pruning caused its private score. Do not project HOLDOUT-DTI onto the competition leaderboard.
+
+The current proposal register contains three unrun native-band ideas (BMR, GSST, CNT), qualitatively ranked with mimics, novelty, cost, and falsifiers. No experiment is authorized or reproducible until the lane, shared cache, and protocol stop are resolved. The refreshed 92-project feed is GitHub repository metadata only; it found zero organizer receipts and is not a live score or quota feed.
+
+Never fork the pinned `evaluate_holdout.py`, `submission_writer.py`, or validator. Preserve the leakage canary, whole-segment buffered holdout, evaluator/CI labelling, pre-placement surface and final-dot uniqueness checks, experiment/time budget, and separate promotion/slot-selection step. Scores and source-access claims in request archives are user input, not verified evidence. Follow `AGENTS.md`; the complete current request follows below.
 
 ---
 

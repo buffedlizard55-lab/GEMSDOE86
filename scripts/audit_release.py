@@ -196,7 +196,8 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    h = context["holdout_dti"]
+    h = (context.get("holdout", {}).get("candidate") if kind == "h86l_fmc"
+         else context["holdout_dti"])
     if kind == "blind_geothermal":
         # The concurrent blind-geothermal lane has a complete writer receipt but
         # no separate scientific card. Preserve its own holdout receipt rather
@@ -344,6 +345,46 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86J-MCSP lane result; the run card is the authoritative experiment receipt. Under strict 4-fold spatial Leave-One-Quadrant-Out training with zero raw regional levels and 10m DEM LiDAR-swath debiasing, E1 achieves HOLDOUT-DTI 0.1463 [0.1280, 0.1647] (pure-blind E2 = 0.0839 [0.0669, 0.1009], scalar/static-E[k] ablation E3 = 0.1380 [0.1236, 0.1529]) and SGMC-PROXY-DTI 0.0999 [0.0826, 0.1168] (beating E3 0.0760 by +0.0239 [+0.0086, +0.0381], H86F-EWCS 0.0819 by +0.0180 [+0.0034, +0.0328], and equal-budget GEMSDOE32 H33 0.0937), with 0/690 Spearman rho > 0.90 firings (max 0.6364) and 0/51 local discrete <=100k-dot firings > 0.70 (max 0.5964), but full 692-entry v2 literal/completeness gates fail closed and paired delta vs E3 on catalogue-hide spans zero; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86l_fmc":
+        holdout = context.get("holdout")
+        if not isinstance(holdout, dict):
+            raise ValueError("H86L-FMC card lacks its HOLDOUT-DTI record")
+        candidate = holdout.get("candidate")
+        paired = holdout.get("paired_vs_H33")
+        canary = context.get("leakage_canary")
+        if (context.get("lane_id") != "H86L-FMC"
+                or not str(holdout.get("evidence_class", "")).startswith("HOLDOUT-DTI (LEAKAGE-SUSPECT:")
+                or not isinstance(candidate, dict)
+                or candidate.get("evidence_class") != "HOLDOUT-DTI"
+                or candidate.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or holdout.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or candidate.get("withheld_positive_pixels") != holdout.get("withheld_positive_pixels")
+                or not isinstance(paired, dict)
+                or paired.get("evidence_class") != "HOLDOUT-DTI"
+                or paired.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or paired.get("withheld_positive_pixels") != holdout.get("withheld_positive_pixels")
+                or not isinstance(canary, dict)
+                or canary.get("feature") != "fleet_support_count"
+                or not isinstance(canary.get("auc"), (int, float))
+                or isinstance(canary.get("auc"), bool)
+                or not np.isfinite(canary["auc"]) or not 0.0 <= canary["auc"] <= 1.0
+                or canary.get("gate_le_0.90") is not (canary["auc"] <= 0.90)
+                or context.get("verdict") != "negative"
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0):
+            raise ValueError("H86L-FMC evidence is malformed or not explicitly leakage-suspect/negative")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE_LEAKAGE_SUSPECT",
+                "evaluator_version": candidate["evaluator_version"],
+                "withheld_positives": holdout["withheld_positive_pixels"],
+                "value": candidate["dti"], "ci95": candidate["ci95"],
+                "paired_delta": paired.get("delta"),
+                "paired_delta_ci95": paired.get("ci95"),
+                "design": "HOLDOUT-DTI reported by the H86L-FMC run card; fleet-derived inputs were built with the full catalogue, so this is not a valid hide-and-recover promotion result",
+                "caveat": ("The run card explicitly marks this HOLDOUT-DTI as leakage-suspect because the fleet was built with the full fault catalogue. "
+                           f"The feature-alone fleet_support_count AUC is {canary['auc']:.4f} "
+                           f"({'below' if canary['auc'] <= 0.90 else 'above'} 0.90), but that diagnostic does not repair the feature-provenance leak. "
+                           "The archived paired HOLDOUT-DTI delta versus H33 is negative; this result is not an organizer score, cannot be ranked as a valid candidate, and does not authorize submission. Its final-dot registry overlap also fails the 0.70 rule, while the current pinned full-support witness independently triggers the literal stop.")}
     if kind == "h86k_stdp":
         return {**base, "status": "CURRENT_LANE_NEGATIVE",
                 "evaluator_version": h["evaluator_version"],

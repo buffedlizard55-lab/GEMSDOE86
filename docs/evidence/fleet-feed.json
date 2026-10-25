@@ -1,8 +1,8 @@
 {
   "schema": "gems86.fleet-feed.v1",
   "evidence_class": "REPOSITORY-METADATA",
-  "refresh_started_utc": "2026-10-25T05:50:58+00:00",
-  "refreshed_utc": "2026-10-25T05:51:16+00:00",
+  "refresh_started_utc": "2026-10-25T17:03:39+00:00",
+  "refreshed_utc": "2026-10-25T17:03:56+00:00",
   "targets_sha256": "9a81839530e571ec4663b2ce246b4641d69a65f4feadda149ae23e4e13852a71",
   "owner_ledger_sha256": "a656c8c47054bcd3926c458249a67062e46746727204315e64a913da1e6aaa9a",
   "projects_requested": 92,
@@ -28,11 +28,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "098f3af9508a135277ef4d1bf2266e2e448be814",
-      "tree_sha": "e1fc661c2c6f39a27300a75a2b8bbab098acb9f2",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/tree/098f3af9508a135277ef4d1bf2266e2e448be814",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/trees/e1fc661c2c6f39a27300a75a2b8bbab098acb9f2?recursive=1",
-      "source_commit_date": "2026-10-24T10:09:55Z",
+      "commit_sha": "012e17b2a115c3c0d5e7885bea625bf9657c99fc",
+      "tree_sha": "11b82d99424ffa8f8202337d8155b62fbe5761ef",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/tree/012e17b2a115c3c0d5e7885bea625bf9657c99fc",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/trees/11b82d99424ffa8f8202337d8155b62fbe5761ef?recursive=1",
+      "source_commit_date": "2026-10-25T09:56:58Z",
       "current_tree_tif_count": 27,
       "tif_git_objects": [
         {
@@ -1347,11 +1347,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "4cf3ea936f5e7e13bfca5a01ea0a64f94d7777e1",
-      "tree_sha": "345414bcea7e4ffae3b5ed25ff81873e94d54861",
-      "commit_url": "https://github.com/buffedlizard55-lab/12GEMSDOE/tree/4cf3ea936f5e7e13bfca5a01ea0a64f94d7777e1",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/12GEMSDOE/git/trees/345414bcea7e4ffae3b5ed25ff81873e94d54861?recursive=1",
-      "source_commit_date": "2026-10-24T19:28:53Z",
+      "commit_sha": "f79f383a3a05d8e6801784dbc9c348892ba73f8e",
+      "tree_sha": "4f7a44ee3ec97c60c1f065ef05e6dd4ec2d833e7",
+      "commit_url": "https://github.com/buffedlizard55-lab/12GEMSDOE/tree/f79f383a3a05d8e6801784dbc9c348892ba73f8e",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/12GEMSDOE/git/trees/4f7a44ee3ec97c60c1f065ef05e6dd4ec2d833e7?recursive=1",
+      "source_commit_date": "2026-10-25T09:47:46Z",
       "current_tree_tif_count": 7,
       "tif_git_objects": [
         {
@@ -2267,11 +2267,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "2ec48d7674f6f856bbddfd83f43825e91b2da853",
-      "tree_sha": "9362ebd861128d3bcb25e43fce9bb5aa59d549d8",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE23/tree/2ec48d7674f6f856bbddfd83f43825e91b2da853",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE23/git/trees/9362ebd861128d3bcb25e43fce9bb5aa59d549d8?recursive=1",
-      "source_commit_date": "2026-10-24T14:57:13Z",
+      "commit_sha": "9b3dc197a1a7d8f1cdae0e211722ba05d3d43d7d",
+      "tree_sha": "29a8859a6dc221756a07e7d9fbad01cc0cb8417c",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE23/tree/9b3dc197a1a7d8f1cdae0e211722ba05d3d43d7d",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE23/git/trees/29a8859a6dc221756a07e7d9fbad01cc0cb8417c?recursive=1",
+      "source_commit_date": "2026-10-25T15:10:30Z",
       "current_tree_tif_count": 7,
       "tif_git_objects": [
         {
@@ -2504,11 +2504,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "51fede1cd275351cbe88603dc31ab972629ebe27",
-      "tree_sha": "465333148fbaffcd2e97d53b2ffc22137bb81bf7",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/tree/51fede1cd275351cbe88603dc31ab972629ebe27",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/trees/465333148fbaffcd2e97d53b2ffc22137bb81bf7?recursive=1",
-      "source_commit_date": "2026-10-25T04:52:45Z",
+      "commit_sha": "04333cc3fbf7486c56e0324fd07aee684be614dc",
+      "tree_sha": "f5844f6a9054844b1d6ecda3be2e34498803818b",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/tree/04333cc3fbf7486c56e0324fd07aee684be614dc",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/trees/f5844f6a9054844b1d6ecda3be2e34498803818b?recursive=1",
+      "source_commit_date": "2026-10-25T16:33:56Z",
       "current_tree_tif_count": 2,
       "tif_git_objects": [
         {
@@ -2591,11 +2591,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "bac5c99f230465ba601fa14fe0553158e4313224",
-      "tree_sha": "2df7d541d41d8608b961e7d486e4d067b8feac0d",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/tree/bac5c99f230465ba601fa14fe0553158e4313224",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/trees/2df7d541d41d8608b961e7d486e4d067b8feac0d?recursive=1",
-      "source_commit_date": "2026-10-24T10:54:59Z",
+      "commit_sha": "b8dd298e10884afffa05436673ac73aeaf850b8c",
+      "tree_sha": "d118af52f2e3ab18bc0509401c4d4c39049f4d25",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/tree/b8dd298e10884afffa05436673ac73aeaf850b8c",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/trees/d118af52f2e3ab18bc0509401c4d4c39049f4d25?recursive=1",
+      "source_commit_date": "2026-10-25T11:21:54Z",
       "current_tree_tif_count": 12,
       "tif_git_objects": [
         {
@@ -3417,11 +3417,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "0bc6f0171fc40afd5f0ee7e115cb86f82195247a",
-      "tree_sha": "55c2c2ff56733c99b424e75a50c21f6b328ef655",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/tree/0bc6f0171fc40afd5f0ee7e115cb86f82195247a",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/trees/55c2c2ff56733c99b424e75a50c21f6b328ef655?recursive=1",
-      "source_commit_date": "2026-10-24T11:01:12Z",
+      "commit_sha": "78e724f95337a6528b1248be5c113c6d6d502891",
+      "tree_sha": "db8370e85930a502447a06d4ffdfda62212d5472",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/tree/78e724f95337a6528b1248be5c113c6d6d502891",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/trees/db8370e85930a502447a06d4ffdfda62212d5472?recursive=1",
+      "source_commit_date": "2026-10-25T11:29:46Z",
       "current_tree_tif_count": 22,
       "tif_git_objects": [
         {
@@ -5677,11 +5677,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "729b4f38e1d3e1a80d10560aa8aa9a00d05f541b",
-      "tree_sha": "d66186d0adff4f35c8c0ea0fa7787003540a07bb",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE52/tree/729b4f38e1d3e1a80d10560aa8aa9a00d05f541b",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE52/git/trees/d66186d0adff4f35c8c0ea0fa7787003540a07bb?recursive=1",
-      "source_commit_date": "2026-10-25T04:39:52Z",
+      "commit_sha": "4afe47e3e066e570522f156099e7c17684f366eb",
+      "tree_sha": "83bc47ea27ef68e3f204159be41421672fce3dcd",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE52/tree/4afe47e3e066e570522f156099e7c17684f366eb",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE52/git/trees/83bc47ea27ef68e3f204159be41421672fce3dcd?recursive=1",
+      "source_commit_date": "2026-10-25T16:17:07Z",
       "current_tree_tif_count": 222,
       "tif_git_objects": [
         {
@@ -8065,11 +8065,11 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "111cf8f1222081cc0076ec2f62c0064b7f365720",
-      "tree_sha": "01e406756f82a1df8bc23d752e4cad06b8c24cb2",
-      "commit_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/tree/111cf8f1222081cc0076ec2f62c0064b7f365720",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/60GEMSDOE/git/trees/01e406756f82a1df8bc23d752e4cad06b8c24cb2?recursive=1",
-      "source_commit_date": "2026-10-24T10:01:53Z",
+      "commit_sha": "420366b20dac4870119368b53bbe777a7e1f2f19",
+      "tree_sha": "883887f29f849e449b6650ebd1a8c523e2ea966c",
+      "commit_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/tree/420366b20dac4870119368b53bbe777a7e1f2f19",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/60GEMSDOE/git/trees/883887f29f849e449b6650ebd1a8c523e2ea966c?recursive=1",
+      "source_commit_date": "2026-10-25T09:55:04Z",
       "current_tree_tif_count": 154,
       "tif_git_objects": [
         {
@@ -14110,12 +14110,12 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "d015d210c8f675943de770a4584cf86b0f248c95",
-      "tree_sha": "9dfd16d2cda817ac88991cf28fd2df1ac4f299a5",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/d015d210c8f675943de770a4584cf86b0f248c95",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE86/git/trees/9dfd16d2cda817ac88991cf28fd2df1ac4f299a5?recursive=1",
-      "source_commit_date": "2026-10-25T05:32:02Z",
-      "current_tree_tif_count": 52,
+      "commit_sha": "67e4cf987f85227798e7296956658816d8f83182",
+      "tree_sha": "3d894f15acfc7abf43d1efc0aec00a8e90d2d0a9",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/tree/67e4cf987f85227798e7296956658816d8f83182",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE86/git/trees/3d894f15acfc7abf43d1efc0aec00a8e90d2d0a9?recursive=1",
+      "source_commit_date": "2026-10-25T17:03:35Z",
+      "current_tree_tif_count": 61,
       "tif_git_objects": [
         {
           "path": "data/bridge/existing_faults.tif",
@@ -14268,6 +14268,11 @@
           "git_blob_bytes": 824258
         },
         {
+          "path": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+          "git_blob_sha1": "e2dd652515b7611601625c689fe1167bb947a467",
+          "git_blob_bytes": 818874
+        },
+        {
           "path": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
           "git_blob_sha1": "1aef27598a262d664625c0418b396c74cb734722",
           "git_blob_bytes": 213861
@@ -14353,14 +14358,49 @@
           "git_blob_bytes": 136667
         },
         {
+          "path": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
+          "git_blob_sha1": "4ee888c53e8fce2520c30d0be538a8013431dac6",
+          "git_blob_bytes": 138155
+        },
+        {
           "path": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
           "git_blob_sha1": "eb4169c4d57e938fd76e5aae5e0c6837308d8a38",
           "git_blob_bytes": 137860
         },
         {
+          "path": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
+          "git_blob_sha1": "44867ec38fa276963b947ea41e67a09458a4494c",
+          "git_blob_bytes": 120211
+        },
+        {
+          "path": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
+          "git_blob_sha1": "7540d76daec45bae122b9ede493d20aec225f327",
+          "git_blob_bytes": 139489
+        },
+        {
           "path": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
           "git_blob_sha1": "05f4142b2d27fd8fa264379b4ded220cfca86aa0",
           "git_blob_bytes": 159505
+        },
+        {
+          "path": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
+          "git_blob_sha1": "6674ea83cc34bbb4371e23f27e647eee72c75aad",
+          "git_blob_bytes": 133861
+        },
+        {
+          "path": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+          "git_blob_sha1": "ebd80eb9b949d6cdb7d650ef166a21ebd92077c0",
+          "git_blob_bytes": 147992
+        },
+        {
+          "path": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
+          "git_blob_sha1": "65075ca1dc528f2caf441c3fbc58777f94d4cb4f",
+          "git_blob_bytes": 142023
+        },
+        {
+          "path": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+          "git_blob_sha1": "292a3f471609ae3b86a679b64010e73706daa627",
+          "git_blob_bytes": 148836
         },
         {
           "path": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
@@ -14373,12 +14413,17 @@
           "git_blob_bytes": 121380
         },
         {
+          "path": "releases/h86k/gems86-h86k-stc-40000dots-20261025T131720Z-61680c22-zeros.tif",
+          "git_blob_sha1": "e51412afd253c877a5a7c8917a9e7a6cd1b4749a",
+          "git_blob_bytes": 144613
+        },
+        {
           "path": "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
           "git_blob_sha1": "d314f87b22e112b7d2c201239d03de752d9ff660",
           "git_blob_bytes": 267158
         }
       ],
-      "published_download_tif_count": 24,
+      "published_download_tif_count": 32,
       "tree_truncated": false
     },
     {
@@ -14597,12 +14642,12 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "67eabc14b61a6182c86c12bc122108de39fe0bf2",
-      "tree_sha": "8d9edb2e79e1b00bd33744245c9e29c78508c3ad",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/tree/67eabc14b61a6182c86c12bc122108de39fe0bf2",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE88/git/trees/8d9edb2e79e1b00bd33744245c9e29c78508c3ad?recursive=1",
-      "source_commit_date": "2026-10-25T05:45:13Z",
-      "current_tree_tif_count": 65,
+      "commit_sha": "805bdd53ccef42d9987b423f30656ffde59d04b5",
+      "tree_sha": "36a0636e8f5fd6564fb7332e88876c2631e6b5d6",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/tree/805bdd53ccef42d9987b423f30656ffde59d04b5",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE88/git/trees/36a0636e8f5fd6564fb7332e88876c2631e6b5d6?recursive=1",
+      "source_commit_date": "2026-10-25T17:01:24Z",
+      "current_tree_tif_count": 72,
       "tif_git_objects": [
         {
           "path": "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
@@ -14613,6 +14658,11 @@
           "path": "docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "ec0feb4628db6643b106acdfe06850dff88f6e60",
           "git_blob_bytes": 139490
+        },
+        {
+          "path": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "1d6409b5faef7b69eba2ef9975ec330133934102",
+          "git_blob_bytes": 796147
         },
         {
           "path": "docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.tif",
@@ -14680,6 +14730,11 @@
           "git_blob_bytes": 122537
         },
         {
+          "path": "docs/downloads/gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "4517b27e30fb90260bcb431bcb95c8892585c4d1",
+          "git_blob_bytes": 139630
+        },
+        {
           "path": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "4bfc2b8e3fd7fc9927fee8b2efc4a4f914f7ad4e",
           "git_blob_bytes": 119914
@@ -14745,6 +14800,11 @@
           "git_blob_bytes": 793355
         },
         {
+          "path": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "8a067b661999e8c2590ff9f5a377509276798697",
+          "git_blob_bytes": 109159
+        },
+        {
           "path": "docs/downloads/gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "e1be90a23fd48c70a3900187e415aa4fbc701f0a",
           "git_blob_bytes": 796281
@@ -14778,6 +14838,11 @@
           "path": "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "ba80b07d50bcf38d0cd0b01d23904823a47663d3",
           "git_blob_bytes": 110864
+        },
+        {
+          "path": "docs/downloads/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "42f95b8de2e85eac95a3e7c202a20a3c9ec84fb1",
+          "git_blob_bytes": 787359
         },
         {
           "path": "docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -14850,6 +14915,11 @@
           "git_blob_bytes": 139490
         },
         {
+          "path": "submissions/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "1d6409b5faef7b69eba2ef9975ec330133934102",
+          "git_blob_bytes": 796147
+        },
+        {
           "path": "submissions/gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "5db4ace7e032041f80b9fd3176ef3a5e1ad57c22",
           "git_blob_bytes": 153877
@@ -14878,6 +14948,11 @@
           "path": "submissions/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "5094071b4bebd87f536e0b53b094c12a2339d178",
           "git_blob_bytes": 143314
+        },
+        {
+          "path": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "174a59aea9e2125315914c50ffc03c5da119e01d",
+          "git_blob_bytes": 796808
         },
         {
           "path": "submissions/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
@@ -14915,6 +14990,11 @@
           "git_blob_bytes": 146021
         },
         {
+          "path": "submissions/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif",
+          "git_blob_sha1": "42f95b8de2e85eac95a3e7c202a20a3c9ec84fb1",
+          "git_blob_bytes": 787359
+        },
+        {
           "path": "submissions/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
           "git_blob_sha1": "49bf79d23581c1172a10afb495e65c2eb7d45bd6",
           "git_blob_bytes": 118427
@@ -14930,7 +15010,7 @@
           "git_blob_bytes": 147469
         }
       ],
-      "published_download_tif_count": 41,
+      "published_download_tif_count": 45,
       "tree_truncated": false
     },
     {
@@ -15390,22 +15470,17 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "67ca5d1473e5cedc33757c16f09e24f9856c8593",
-      "tree_sha": "c97cef20f60abef5d4d8881e35e6d1b464d692f0",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/tree/67ca5d1473e5cedc33757c16f09e24f9856c8593",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE91/git/trees/c97cef20f60abef5d4d8881e35e6d1b464d692f0?recursive=1",
-      "source_commit_date": "2026-10-25T05:39:57Z",
-      "current_tree_tif_count": 30,
+      "commit_sha": "fe8fe03070ebb8db51bfd84d2a0f6d9090772590",
+      "tree_sha": "c5f9de04eb658186e8c52d79b8e0c012fd15254e",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/tree/fe8fe03070ebb8db51bfd84d2a0f6d9090772590",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE91/git/trees/c5f9de04eb658186e8c52d79b8e0c012fd15254e?recursive=1",
+      "source_commit_date": "2026-10-25T16:48:49Z",
+      "current_tree_tif_count": 47,
       "tif_git_objects": [
         {
           "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
           "git_blob_sha1": "8d7364b80595281a016a75d34f7cf5133a3e059d",
           "git_blob_bytes": 177734
-        },
-        {
-          "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00.tif",
-          "git_blob_sha1": "eef0d324129b9eaaaf032be86b901d7793b06701",
-          "git_blob_bytes": 324510
         },
         {
           "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
@@ -15453,9 +15528,29 @@
           "git_blob_bytes": 202693
         },
         {
+          "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+          "git_blob_sha1": "d89a838a8322b281c4ee36c3d0d49ac4564769d3",
+          "git_blob_bytes": 139850
+        },
+        {
           "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
           "git_blob_sha1": "ff95bec8931382ea4f148a3e89056adcbe8a7ad1",
           "git_blob_bytes": 138651
+        },
+        {
+          "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+          "git_blob_sha1": "ecfd5e2880070def7b9e8119498f7ebebff97ce4",
+          "git_blob_bytes": 143789
+        },
+        {
+          "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+          "git_blob_sha1": "2550b7f72c5108d622c5d6f6693a1c1513ac38e1",
+          "git_blob_bytes": 152644
+        },
+        {
+          "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+          "git_blob_sha1": "4e08f03319540255208acb4634a50c7b77c0cc7f",
+          "git_blob_bytes": 96301
         },
         {
           "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
@@ -15508,6 +15603,11 @@
           "git_blob_bytes": 364058
         },
         {
+          "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif",
+          "git_blob_sha1": "68ecfbca55f3b5d2d8e3fd5ef96f33ed8e1174e8",
+          "git_blob_bytes": 239912
+        },
+        {
           "path": "docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif",
           "git_blob_sha1": "dba8792d0e96ecd8ef28aa41cee73f86d2d75769",
           "git_blob_bytes": 223649
@@ -15521,6 +15621,36 @@
           "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
           "git_blob_sha1": "d070e25a54aff9d358f5260df598448edf439738",
           "git_blob_bytes": 130258
+        },
+        {
+          "path": "docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif",
+          "git_blob_sha1": "79c23fdab9a97b89243274a89457ce2f3930eb18",
+          "git_blob_bytes": 236512
+        },
+        {
+          "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
+          "git_blob_sha1": "d895c444b32fedbcedf6d350358c8d83b64a9dcc",
+          "git_blob_bytes": 203212
+        },
+        {
+          "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+          "git_blob_sha1": "6686b3a527285b49af057a23541a90b49174bede",
+          "git_blob_bytes": 145258
+        },
+        {
+          "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
+          "git_blob_sha1": "caf7eaf8565552d544f48f7d220b9386da308374",
+          "git_blob_bytes": 137920
+        },
+        {
+          "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif",
+          "git_blob_sha1": "32d4b92bdd965b877036b0aa3221dfd9e4e63696",
+          "git_blob_bytes": 235257
+        },
+        {
+          "path": "docs/downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif",
+          "git_blob_sha1": "223710f7a450afca4092263a4d2f141a5b527d50",
+          "git_blob_bytes": 141713
         },
         {
           "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
@@ -15543,12 +15673,47 @@
           "git_blob_bytes": 400386
         },
         {
+          "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+          "git_blob_sha1": "28773f3065d86b43cdfea718f0a444781fb6ec52",
+          "git_blob_bytes": 84485
+        },
+        {
+          "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
+          "git_blob_sha1": "8d456604c78cce6d3a6b0cff36685d45206bfea3",
+          "git_blob_bytes": 226555
+        },
+        {
+          "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",
+          "git_blob_sha1": "28773f3065d86b43cdfea718f0a444781fb6ec52",
+          "git_blob_bytes": 84485
+        },
+        {
+          "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119.tif",
+          "git_blob_sha1": "8d456604c78cce6d3a6b0cff36685d45206bfea3",
+          "git_blob_bytes": 226555
+        },
+        {
           "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
           "git_blob_sha1": "fe4b63acfc0dc1a501ee0f88001d1e4886889b8e",
           "git_blob_bytes": 66776
+        },
+        {
+          "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+          "git_blob_sha1": "afa8ad2f1a2d4892eea87b3997f563d5e5ba5935",
+          "git_blob_bytes": 142403
+        },
+        {
+          "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+          "git_blob_sha1": "ec76610c24fe906db68a45ffb99a9a22874cb5ca",
+          "git_blob_bytes": 140375
+        },
+        {
+          "path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+          "git_blob_sha1": "a14161761238c875504ea0bc91d5708951a79dc7",
+          "git_blob_bytes": 138430
         }
       ],
-      "published_download_tif_count": 30,
+      "published_download_tif_count": 47,
       "tree_truncated": false
     },
     {
@@ -15566,12 +15731,12 @@
       "organizer_score_verified": false,
       "raster_bytes_verified": false,
       "status": "SNAPSHOT_OK",
-      "commit_sha": "f146e31211dddcc5e2507b48c5db012ed1a94ebc",
-      "tree_sha": "8ea1ce4863fe69c08aee3908a42709f5580859c9",
-      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE92/tree/f146e31211dddcc5e2507b48c5db012ed1a94ebc",
-      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE92/git/trees/8ea1ce4863fe69c08aee3908a42709f5580859c9?recursive=1",
-      "source_commit_date": "2026-10-25T05:48:39Z",
-      "current_tree_tif_count": 101,
+      "commit_sha": "923ec61707a4937c36b37816e51148c89924ace7",
+      "tree_sha": "ed778449b45d64d3ec55ca5b6784710ea68936b7",
+      "commit_url": "https://github.com/buffedlizard55-lab/GEMSDOE92/tree/923ec61707a4937c36b37816e51148c89924ace7",
+      "tree_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE92/git/trees/ed778449b45d64d3ec55ca5b6784710ea68936b7?recursive=1",
+      "source_commit_date": "2026-10-25T17:03:09Z",
+      "current_tree_tif_count": 130,
       "tif_git_objects": [
         {
           "path": "data/bridge/d28.tif",
@@ -15634,9 +15799,94 @@
           "git_blob_bytes": 130005
         },
         {
+          "path": "docs/downloads/gemsdoe92-curiedemag-20261026T000000Z-zeros.tif",
+          "git_blob_sha1": "fdbf0f2d70047cbe473535ce37d66f99a9d39b91",
+          "git_blob_bytes": 150117
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-drainageknick-20261025T120000Z-zeros.tif",
+          "git_blob_sha1": "7e072d5492a28e87690f2ad34a665bbeac740124",
+          "git_blob_bytes": 125451
+        },
+        {
           "path": "docs/downloads/gemsdoe92-eulerfuse-gravity-37654-20261024-d7133700-zeros.tif",
           "git_blob_sha1": "dd316f24f55817b36f2a486a92b896bbdca51bec",
           "git_blob_bytes": 143329
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-faultnet-netctx-37654-20261025-443d044b-zeros.tif",
+          "git_blob_sha1": "da1bda272dd3b4f427494550fdb4fd1473b2851b",
+          "git_blob_bytes": 144837
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-faultnet-netdens-37654-20261025-517af913-zeros.tif",
+          "git_blob_sha1": "c0cb12e95b8875a0e6430bf8f8aa764a13dcd816",
+          "git_blob_bytes": 143454
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-faultnet-netfar-37654-20261025-3c4e9051-zeros.tif",
+          "git_blob_sha1": "821df3e92ca1944be80a0510b199ea69ac6783b4",
+          "git_blob_bytes": 146568
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-gravquad-20261025T145744Z-zeros.tif",
+          "git_blob_sha1": "100a01455b26f0ee7eeb95329c77c668d659a36d",
+          "git_blob_bytes": 130690
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-listricdip-anti22-9571-20261025T190000Z-zeros.tif",
+          "git_blob_sha1": "a2c94e3f8fc57a80a529cb9502dfa35ce4c223f2",
+          "git_blob_bytes": 81288
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-listricdip-anti35-9555-20261025T190000Z-zeros.tif",
+          "git_blob_sha1": "d335d8877fce61c19359f68fd0f58f4d5e461a7b",
+          "git_blob_bytes": 81306
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros.tif",
+          "git_blob_sha1": "7c5666f75eb46427ed56146832980be660a10725",
+          "git_blob_bytes": 141115
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-listriclag-20261025T145312Z-n90k-zeros.tif",
+          "git_blob_sha1": "13d86b5df4aeec68dc7487379d8a2e3fce15a814",
+          "git_blob_bytes": 228095
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-listriclag-20261025T145312Z-zeros.tif",
+          "git_blob_sha1": "c35ea4aff81901705ff28e5b4978164e1b1bd3d7",
+          "git_blob_bytes": 126242
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonflex-poissonflex_eq-37654-20261025-5512bd34-zeros.tif",
+          "git_blob_sha1": "ddd842a4a3ada1c5940b34354b883279b6ea9777",
+          "git_blob_bytes": 145981
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonflex-poissonflex_opt-45000-20261025-54255bcc-zeros.tif",
+          "git_blob_sha1": "7fdeaf8a7bafaf4e17ddfebc7ff7d1b7c7eae348",
+          "git_blob_bytes": 160773
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonflex-poissonflex_raw-37654-20261025-be99276b-zeros.tif",
+          "git_blob_sha1": "afd44cd8faf6863f799cfbecf27f10bcb0b1121d",
+          "git_blob_bytes": 146341
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonknick-pkdual40-37654-20261025-6c1bf3ba-zeros.tif",
+          "git_blob_sha1": "db41c9d3d66a52a15dc131107b04f2b5dec14719",
+          "git_blob_bytes": 144688
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonknick-qcal-37654-20261025-9cfcc9b9-zeros.tif",
+          "git_blob_sha1": "76090cb4133e5ff5ae137b5bef58450a0c409240",
+          "git_blob_bytes": 142346
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-poissonknick-uncal-37654-20261025-da9bfc4a-zeros.tif",
+          "git_blob_sha1": "e2f55a69b74cd42613a5cf6a64af2ebc08b3dd96",
+          "git_blob_bytes": 139432
         },
         {
           "path": "docs/downloads/gemsdoe92-provincetoe-globalraw-37654-20261025-73b06876-zeros.tif",
@@ -15657,6 +15907,36 @@
           "path": "docs/downloads/gemsdoe92-radiocontact-20261025T041646Z-zeros.tif",
           "git_blob_sha1": "470ce73276fc2e25d4f3eb90ad97fea186139e1e",
           "git_blob_bytes": 125242
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-radiodecouple-demag-37654-20261025-zeros.tif",
+          "git_blob_sha1": "97fd0200ce6c8a3feb6928a607b3a16af7643fdc",
+          "git_blob_bytes": 135821
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-radiodecouple-dual35-37654-20261025-zeros.tif",
+          "git_blob_sha1": "7556a8c0276fb9cb6abe54af4bc91018fbae29e3",
+          "git_blob_bytes": 138823
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-radiodecouple-standalone-37654-20261025-zeros.tif",
+          "git_blob_sha1": "0d5aabe5c3bbd943431056b59223f3ed6e0895c9",
+          "git_blob_bytes": 132453
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-ventscarp-scarp10m_novent-37654-20261025-3c9a1c6e-zeros.tif",
+          "git_blob_sha1": "93904fc00ee0bebf909aea0bd0da11b6e6d600b4",
+          "git_blob_bytes": 148613
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-ventscarp-ventscarp-37654-20261025-6e97367c-zeros.tif",
+          "git_blob_sha1": "1a593c35a95df79f596213963bd153bca4aadf41",
+          "git_blob_bytes": 148686
+        },
+        {
+          "path": "docs/downloads/gemsdoe92-ventscarp-ventscarp_soft-47000-20261025-97cebb93-zeros.tif",
+          "git_blob_sha1": "5fb13660356dfd04a29a74dcebefb10ef67b884f",
+          "git_blob_bytes": 532629
         },
         {
           "path": "docs/downloads/h33-h33-2-b2-ANASIGf45Atop-20261024-1d90574a-zeros.tif",
@@ -15827,6 +16107,36 @@
           "path": "docs/downloads/h33-h33-2-b2-HYDROCONDUITf50hydro-20261024-5d50e9e3-zeros.tif",
           "git_blob_sha1": "721e3435800ae23f8c6ab94bccb997d65f4be288",
           "git_blob_bytes": 215183
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-KNICKLOQOdual35-20261025-8eedc094-zeros.tif",
+          "git_blob_sha1": "2f7ae85065bc6d3f9a6241e39c783045efc4ea5b",
+          "git_blob_bytes": 149623
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-KNICKLOQOstandalone-20261025-d53d919f-zeros.tif",
+          "git_blob_sha1": "a3807b1ab33815ff01fe299399225b67e8bac70c",
+          "git_blob_bytes": 149177
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-KNICKLOQOuncal-20261025-61b98143-zeros.tif",
+          "git_blob_sha1": "d33e453efdcd3a63fff6fb2cd55c96d06f179fdc",
+          "git_blob_bytes": 148680
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-LISTRICdual35-20261026-2b8b394a-zeros.tif",
+          "git_blob_sha1": "5bce6916d83c5a1313fb6d676df98b767621a5e1",
+          "git_blob_bytes": 146912
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-LISTRICstandalone-20261026-a705162a-zeros.tif",
+          "git_blob_sha1": "b4b306981bd2f13a351d0965dc54797f89058551",
+          "git_blob_bytes": 146283
+        },
+        {
+          "path": "docs/downloads/h33-h33-2-b2-LISTRICuncal-20261026-fc9686b5-zeros.tif",
+          "git_blob_sha1": "51ed8026536a2f1e74f2e5e4ae270488cc65b5e4",
+          "git_blob_bytes": 145372
         },
         {
           "path": "docs/downloads/h33-h33-2-b2-MICROSWARMshort-20261024-261a2f21-zeros.tif",
@@ -16079,7 +16389,7 @@
           "git_blob_bytes": 147798
         }
       ],
-      "published_download_tif_count": 65,
+      "published_download_tif_count": 94,
       "tree_truncated": false
     }
   ]

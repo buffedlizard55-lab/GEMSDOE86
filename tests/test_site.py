@@ -36,6 +36,23 @@ def test_h33_claim_and_holdout_scores_show_evidence_class_and_context():
     assert "Do not infer a leaderboard projection from holdout results." in html
 
 
+def test_h86l_download_is_prominently_and_consistently_negative():
+    from scripts import build_site
+
+    outputs = build_site.render()
+    for relative in ("docs/index.html", "docs/executive-summary.html", "docs/submit.html"):
+        html = outputs[relative]
+        assert "H86L-FMC" in html
+        assert "IS THIS FILE OK TO SUBMIT? NO" in html
+        assert "DO NOT SUBMIT" in html
+        assert "LEAKAGE-SUSPECT" in html
+        assert "Download TIFF — audit only, DO NOT SUBMIT" in html
+        assert "HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives, 95% CI [0.0000, 0.0000])" in html
+        assert "1.0000" in html
+        assert "IS THIS FILE OK TO SUBMIT? YES" not in html
+    assert "latest unique TIFF (H86L-FMC)" not in outputs["docs/index.html"]
+
+
 def test_zip_contains_single_tiff():
     import zipfile
     card = json.loads((ROOT / "evidence/run_card.json").read_text())

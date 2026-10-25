@@ -1,6 +1,6 @@
 {
   "schema": "gems86.artifact-card-index.v1",
-  "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision.",
+  "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision. Includes the H86L-FMC audit-only artifact.",
   "artifacts": [
     {
       "lane": "GMC catalogue-following control",
@@ -218,6 +218,13 @@
       "context": "docs/evidence/h86k-stdp-run-card.json",
       "holdout_kind": "h86k_stdp",
       "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
+    },
+    {
+      "lane": "H86L-FMC fleet minority-consensus (leakage-suspect negative, 2026-10-25)",
+      "card": "docs/evidence/h86l-fmc-run-card.json",
+      "context": "docs/evidence/h86l-fmc-run-card.json",
+      "holdout_kind": "h86l_fmc",
+      "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
     }
   ]
 }

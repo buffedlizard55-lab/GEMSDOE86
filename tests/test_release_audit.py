@@ -62,6 +62,36 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert gfco["historical_holdout"]["paired_delta_ci95"][0] < 0
 
 
+def test_h86l_holdout_is_labeled_but_never_certified_as_clean_hide_and_recover():
+    report = audit.build_report()
+    artifact = next(a for a in report["artifacts"] if "h86l-fmc" in a["file"])
+    holdout = artifact["historical_holdout"]
+    card = audit.strict_json(ROOT / "docs/evidence/h86l-fmc-run-card.json")
+
+    assert holdout["evidence_class"] == "HOLDOUT-DTI"
+    assert holdout["status"] == "CURRENT_LANE_NEGATIVE_LEAKAGE_SUSPECT"
+    assert holdout["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert holdout["withheld_positives"] == 11321
+    assert holdout["value"] == 0.0 and holdout["ci95"] == [0.0, 0.0]
+    assert holdout["paired_delta"] < 0
+    assert holdout["paired_delta_ci95"][1] < 0
+    assert "full fault catalogue" in holdout["caveat"]
+    assert card["leakage_canary"]["auc"] < 0.90
+    assert card["verdict"] == "negative"
+    assert card["safe_to_submit"] is False
+    assert artifact["registry_measurement"]["forward_overlap_3px"] == 1.0
+    assert artifact["safe_to_submit"] is False
+
+
+def test_h86l_card_cannot_hide_its_full_catalogue_leakage_flag(release_copy):
+    card_path = release_copy / "docs/evidence/h86l-fmc-run-card.json"
+    card = audit.strict_json(card_path)
+    card["holdout"]["evidence_class"] = "HOLDOUT-DTI"
+    card_path.write_text(json.dumps(card))
+    with pytest.raises(ValueError, match="explicitly leakage-suspect/negative"):
+        audit.build_report(release_copy)
+
+
 def test_measure_all_registry_uses_preflight_certificate_timestamp(tmp_path, monkeypatch):
     """A fresh artifact audit must not inherit a stale literal clock."""
     from types import SimpleNamespace
