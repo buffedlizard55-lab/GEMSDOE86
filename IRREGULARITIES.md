@@ -996,3 +996,71 @@ missing + 0 rho firings despite completeness=false, while the patched
 divergence disclosed in `research/H86F_GZZD_REVIEW_20261025.md`; future lanes
 should adopt the stricter zero-error rule; (c) the shared writer left new
 download files at mode 600 (mkstemp), normalized to 644 without byte changes.
+## IR-86-MMT-RANK01-TIE-20261024 — `gems86_mmt.features.rank01` row-major tie ramp corrupted `R0_D28_visible_collar` (`0.03386` vs true `R0` `0.09609`)
+
+In PR #93 (`src/gems86_mmt/features.py`), `rank01(a, footprint)` ordered values via
+`np.argsort(v, kind="stable")` and mapped positions linearly to `np.linspace(0.0, 1.0, N)`.
+On `GEMSDOE28__gems28-h27-4-r1-solo-d2-8` (`40,199` binary dots inside `5,167,373` footprint
+cells), the `5,127,174` tied `0.0` background cells received monotonically increasing ranks
+from `0.0` at row `0` up to `0.992221` at the southern footprint edge (`row 3729`). When
+`emit.emit_decimated(..., tile_px=3)` + `emit.emit_prefix(..., 44090)` selected the top
+`44,090` 3x3 tiles, **all `44,090` emitted comparator dots landed in southern rows `3023..3727`**
+(`median row = 3302.0`, `0` dots in northern rows `0..3022`), overlapping only `2,453 / 40,199`
+(`6.10%`) of `D28`'s true dots and filling the remaining `41,637` dots as a dense 3x3 southern
+wallpaper (`HOLDOUT-DTI = 0.03386 [0.0169, 0.0514]`). Moreover, `GEMSDOE28` (`r1-solo`) was
+already pruned against the **full** `60,988`-px catalogue (including the `11,321` withheld
+holdout pixels, scoring `0.02431 [0.0202, 0.0286]` once ties are fixed), whereas the true
+fold-fair `R0` visible-collar control from `GEMSDOE25` (`dotted-h19-5-d2-8`, sha256
+`91eae1ca42ec...`, `docs/evidence/h86e_comparator.json`) scores **`HOLDOUT-DTI = 0.09609
+[0.0830, 0.1089]`** on the identical `seed=20, hide_frac=0.20, buffer_px=3` split (true
+`E1_mmt_tc_decoupled` deficit vs fold-fair `R0` is **`-0.0671`**, not `-0.0049`).
+**Decision:** `src/gems86_mmt/features.py::rank01` is fixed using tie-invariant min-ranking
+(`scipy.stats.rankdata(v, method="min")`, mapping tied floor `0.0` cells uniformly to `0.0`
+across all rows) with regression coverage in `tests/test_h86e_mmt.py`; the archived run card
+`docs/evidence/h86e-mmt-run-card.json` is preserved unedited with an explicit comparator
+provenance caveat on `README.md` and `docs/`.
+
+## IR-86-MMT-SHIFT-AXIS-20261024 — `build_marker_features` shifted `tgrad` parallel to the gradient normal instead of orthogonal corridor strike
+
+In PR #93 (`src/gems86_mmt/features.py`), `_directional_difference(a, theta)` computed the
+cross-corridor finite difference along the normal vector `(dy, dx) = (sin theta, cos theta)`,
+and the lag loop then shifted `tgrad` along the **same** vector `(sin theta * lag, cos theta * lag)`
+rather than orthogonal corridor strike `(-cos theta * lag, sin theta * lag)`. Consequently,
+standalone `H86E-MMT` v1 measured normal-to-edge separation between `rtp` and `tilt` peaks
+(a cross-profile source-depth/dip width effect) rather than lateral strike-slip / transfer-fault
+marker offset along a structural corridor, and also applied `tc` (Band 6) directly before an
+authoritative organizer band-table check.
+**Decision:** `src/gems86_mmt/features.py` now defaults to `shift_axis="strike"` (`(-cos theta * lag, sin theta * lag)`, verified orthogonal to `(sin theta, cos theta)` in `tests/test_h86e_mmt.py`),
+while `registry/h86c_hypotheses.json` Rank 2 explicitly separates the still-untested two-sided
+split-window FFT along-strike phase-correlation formulation from PR #93's negative normal-lag
+predecessor.
+
+## IR-86-MMT-PRE-V2-UNBOUND-REPORTS-20261024 — Pre-v2 unbound `H86E-MMT` registry reports & three ungated H86E scripts
+
+Both `docs/evidence/h86e-mmt-registry-surface.json` and `docs/evidence/h86e-mmt-registry-final-dots.json`
+were generated against a pre-v2 checker (`evidence_schema` absent, `candidate_file_sha256: null`,
+`complete_accessible_scan: false`, `683 / 685` comparable rows with 2 grid/CRS errors in
+`14GEMSDOE` and `7GEMSDOE`), and `scripts/run_h86e_mmt.py` lacked `protocol_preflight.require_feasible()`
+and reached `write_candidate(...)` even when `registry_gate` evaluated `False`. In addition,
+`scripts/build_h86e_features.py` and `scripts/run_h86e_ridf.py` lacked `require_feasible()`, and
+`scripts/build_h86e_features.py`, `scripts/h86e_comparator.py`, `scripts/h86e_fleet_strata.py`,
+and `scripts/h86e_instrument_check.py` executed raster I/O at module import time.
+**Decision:** `build_h86e_features.py`, `run_h86e_ridf.py`, and `run_h86e_mmt.py` now enforce
+`require_feasible()` (bringing `tests/test_builder_preflight.py::BUILDERS` from 47 to **50**
+CLI builders + 8 imported orchestrators), `run_h86e_mmt.py` also halts before `write_candidate`
+whenever `registry_gate` is `False`, and all four diagnostic/feature scripts are wrapped in
+`main()` with import-safety regression tests.
+
+## IR-86-PREPARE-RELPATH-20261024 — `scripts/prepare_data.py` crashed on relative or external `--data-dir`
+
+Invoking `python scripts/prepare_data.py --data-dir .cache/bridge` raised `ValueError:
+'.cache/bridge/sample_submission.tif' is not in the subpath of '/home/user/GEMSDOE86'` because
+`Path(data_dir)` remained relative while `ROOT` was resolved absolute (`tmpl_path.relative_to(ROOT)`
+also failed for any external `--data-dir` outside `ROOT`).
+**Decision:** Fixed in `scripts/prepare_data.py` via `_rel_or_str()` + `.resolve()`, covered in
+`tests/test_prepare_data.py`, and verified end-to-end by restoring all 3 SHA-256-pinned core
+competition rasters (`training_features.tif` `4371c82e...`, `existing_faults.tif` `7ba308cc...`,
+`sample_submission.tif` `2176d08e...`) plus 5 external USGS/GeoDAWN rasters into `.cache/` and
+generating the complete 19-band `data/prepared_manifest.json` (`has_features: true`, `58,171`
+total sentinel band-pixels across `3,073` unique perimeter/TC cells).
+

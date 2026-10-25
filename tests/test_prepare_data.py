@@ -26,6 +26,13 @@ class PrepareDataTests(unittest.TestCase):
             self.assertEqual(manifest["grid"]["transform"], [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0])
             self.assertEqual(manifest["counts"]["footprint_valid_pixels"], 5167373)
             self.assertEqual(manifest["counts"]["positive_catalogue_label_pixels"], 60988)
+            # training_features is also pin-verified when restored locally;
+            # CI restores only the two protocol files. Accept the superset,
+            # but every verified pin that is reported must actually be True.
+            pins = manifest["pins_verified"]
+            self.assertTrue(pins["sample_submission"])
+            self.assertTrue(pins["existing_faults"])
+            self.assertTrue(all(pins.values()))
 
             self.assertTrue(out_manifest.is_file())
             saved = json.loads(out_manifest.read_text())
@@ -39,6 +46,30 @@ class PrepareDataTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as empty_dir:
             with self.assertRaises(FileNotFoundError):
                 prepare_data.prepare(data_dir=Path(empty_dir))
+
+    def test_relative_and_external_data_dir_resolution(self):
+        """Relative --data-dir and external paths outside ROOT must not fail relative_to(ROOT)."""
+        import shutil
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            rel_manifest = tmp_path / "rel_manifest.json"
+            rel = prepare_data.prepare(
+                data_dir=Path("data/bridge"),
+                work_dir=tmp_path / "rel_work",
+                manifest_path=rel_manifest,
+            )
+            self.assertEqual(rel["source_paths"]["sample_submission"], "data/bridge/sample_submission.tif")
+            ext_dir = tmp_path / "ext_data"
+            ext_dir.mkdir()
+            shutil.copyfile(ROOT / "data/bridge/sample_submission.tif", ext_dir / "sample_submission.tif")
+            shutil.copyfile(ROOT / "data/bridge/existing_faults.tif", ext_dir / "existing_faults.tif")
+            ext_manifest = tmp_path / "ext_manifest.json"
+            ext = prepare_data.prepare(
+                data_dir=ext_dir,
+                work_dir=tmp_path / "ext_work",
+                manifest_path=ext_manifest,
+            )
+            self.assertTrue(ext["source_paths"]["sample_submission"].endswith("sample_submission.tif"))
 
 
 if __name__ == "__main__":

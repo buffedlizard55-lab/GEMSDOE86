@@ -218,3 +218,37 @@ python3 -m venv .venv && .venv/bin/python -m pip install -r requirements-lock.tx
   https://github.com/drivendataorg/gems-prize-reference-solution
 - EPSG:32611 registry entry (grid identity): https://epsg.io/32611
 - Tversky index definition (α/β semantics): https://en.wikipedia.org/wiki/Tversky_index
+
+## Post-merge forensic addendum (2026-10-25, after PR #98 merged to main)
+
+While this PR was open, session `86569dcd` merged (PR #98) with
+`IR-86-MMT-RANK01-TIE-20261024`: the pre-fix `gems86_mmt.features.rank01`
+assigned row-major tie ramps across tied background cells. This lane reused
+`run_h86e_mmt.make_dots` (which applies `rank01`) and `rank01` itself for the
+registry surface, so the identical defect class touches this lane's receipts.
+Impact, measured read-only post-merge (label: POSTHOC-DIAGNOSTIC):
+
+- **R0 comparator understated.** The binary D28 surface has ~5.1M tied zeros;
+  after the allowed ones were exhausted, zero-tie filling came from southern
+  rows. Recorded R0 = 0.0339; the true fold-fair R0 on the identical split is
+  **HOLDOUT-DTI 0.0961 [0.0830, 0.1089]** (`R0_foldfair` in
+  `docs/evidence/h86e_comparator.json`; D28-as-is 0.0919). The paired delta
+  against "best preregistered control" in the run card therefore used a weak
+  comparator; against the true control the candidate trails by ~0.066. The
+  verdict (negative) is **strengthened**; no number in the frozen run card was
+  edited (same preservation rule main applied to the H86E-MMT card).
+- **Candidate dots not south-packed.** All 44,090 final dots sit on
+  positive-field cells (1,620,779 available), spread over rows 2..3718
+  (16,953 / 10,142 / 6,362 / 5,095 / 5,538 per 746-row band) — the zero-tie
+  fill never engaged for E1's placement surface. Residual tie reordering
+  inside exactly-equal positive float cells is second-order and does not
+  rescue the hypothesis: the rank-free field-alone canaries (sklearn AUC,
+  average-tie handling) were already ≈0.50.
+- **Registry surface rho** was computed on the pre-fix `rank01` surface; worst
+  rho 0.467 is far from the 0.90 stop, and the gate failed on completeness
+  regardless, so the registry outcome is unchanged in kind.
+- `rank01` is fixed on merged main (`src/gems86_mmt/features.py`); any future
+  re-measurement must not be compared against this card's R0 without the
+  comparator correction above. `scripts/run_h86f_gzzd.py` is now gated behind
+  `protocol_preflight.require_feasible()` like the other 50 historical
+  builders (51 total), so the lane cannot be silently re-run for promotion.

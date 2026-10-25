@@ -3,10 +3,17 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 import rasterio
 from affine import Affine
 
-from src.gems86_mmt.features import build_marker_features, feature_names, rank01
+from src.gems86_mmt.features import (
+    ORIENTATIONS_DEG,
+    _lag_shift_vector,
+    build_marker_features,
+    feature_names,
+    rank01,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,7 +24,51 @@ def test_rank01_is_bounded_and_deterministic():
     got = rank01(a, fp)
     assert got.dtype == np.float32
     assert np.all((got >= 0) & (got <= 1))
+    assert np.allclose(got.ravel(), np.linspace(0.0, 1.0, 12, dtype=np.float32))
     assert np.array_equal(got, rank01(a, fp))
+
+
+def test_rank01_eliminates_north_south_tie_ramp_on_binary_fields():
+    """Regression test for IR-86-MMT-RANK01-TIE-20261024."""
+    fp = np.ones((20, 10), dtype=bool)
+    binary = np.zeros((20, 10), dtype=np.float32)
+    binary[1, 3] = 1.0
+    binary[18, 7] = 1.0
+    got = rank01(binary, fp)
+    zero_ranks = got[fp & (binary == 0)]
+    one_ranks = got[fp & (binary > 0)]
+    assert np.all(zero_ranks == 0.0)
+    assert np.allclose(one_ranks, 198.0 / 199.0)
+    assert float(one_ranks[0]) == float(one_ranks[1])
+    # Constant and empty masks return clean zeros without NaN or division errors.
+    assert np.all(rank01(np.zeros((4, 4), dtype=np.float32), np.ones((4, 4), dtype=bool)) == 0.0)
+    assert np.all(rank01(np.ones((4, 4), dtype=np.float32), np.zeros((4, 4), dtype=bool)) == 0.0)
+
+
+def test_rank01_handles_nonfinite_values_without_nan_propagation():
+    """Pass-2 edge-case regression: NaN/Inf inside footprint must never poison rank01."""
+    fp = np.ones((2, 3), dtype=bool)
+    arr = np.array([[0.0, np.nan, 1.0], [np.inf, -np.inf, 2.0]], dtype=np.float32)
+    got = rank01(arr, fp)
+    assert np.isfinite(got).all()
+    assert np.all((got >= 0.0) & (got <= 1.0))
+    assert got[0, 1] == 0.0 and got[1, 0] == 0.0 and got[1, 1] == 0.0
+    assert got[1, 2] > got[0, 2] > got[0, 0]
+    assert np.all(rank01(np.full((3, 3), np.nan, dtype=np.float32), np.ones((3, 3), dtype=bool)) == 0.0)
+
+
+def test_lag_shift_vector_strike_is_orthogonal_to_gradient_normal():
+    """Regression test for IR-86-MMT-SHIFT-AXIS-20261024."""
+    for theta in ORIENTATIONS_DEG:
+        rad = np.deg2rad(theta)
+        ndy, ndx = float(np.sin(rad)), float(np.cos(rad))
+        sdy, sdx = _lag_shift_vector(theta, 4.0, shift_axis="strike")
+        assert abs(ndy * sdy + ndx * sdx) < 1e-12
+        assert abs(np.hypot(sdy, sdx) - 4.0) < 1e-12
+        ldy, ldx = _lag_shift_vector(theta, 4.0, shift_axis="normal")
+        assert abs(ndy * ldy + ndx * ldx - 4.0) < 1e-12
+    with pytest.raises(ValueError):
+        _lag_shift_vector(30.0, 2.0, shift_axis="invalid")
 
 
 def test_marker_features_are_finite_and_masked(tmp_path: Path):

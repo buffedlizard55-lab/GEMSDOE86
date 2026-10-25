@@ -22,6 +22,15 @@ def test_spbt_extension_is_distinguished_from_its_negative_predecessor():
     assert "No measured or projected DTI gain" in spbt["expected_dti_gain"]
 
 
+def test_mmt_extension_is_distinguished_from_its_negative_predecessor():
+    mmt = PLAN["hypotheses"][1]
+    assert "Standalone pointwise H86E-MMT v1" in mmt["difference_from_repo"]
+    assert "IR-86-MMT-SHIFT-AXIS-20261024" in mmt["difference_from_repo"]
+    assert "IR-86-MMT-RANK01-TIE-20261024" in mmt["difference_from_repo"]
+    assert "still-untested extension" in mmt["difference_from_repo"]
+    assert "No measured or projected DTI gain" in mmt["expected_dti_gain"]
+
+
 def test_external_sources_require_actual_obtainability_check():
     for h in PLAN['hypotheses']:
         if h['external_data_required']:

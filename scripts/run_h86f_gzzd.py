@@ -24,6 +24,13 @@ Fail-closed sequence (PA-86-01/02, thresholds unchanged):
 
 No weekly slot is selected or used in any outcome. ``promote`` would mean
 only "eligible for the separate human selector step".
+
+Following the repository-wide builder gating merged in PR #98, ``main()`` now
+calls ``protocol_preflight.require_feasible()`` before any work, so this
+runner now stops at the literal protocol stop like every other historical
+builder. The recorded 2026-10-25 execution ran under the frozen PA-86
+owner-mandate interpretation; its run card and artifacts are unchanged
+historical receipts, not a protocol exemption.
 """
 from __future__ import annotations
 
@@ -177,6 +184,9 @@ def registry_summary(report: dict, returncode: int) -> dict:
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.time()
     preregistration = require_preregistration()
     preflight = require_like_for_like()
