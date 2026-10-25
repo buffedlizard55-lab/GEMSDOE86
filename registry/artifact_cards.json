@@ -1,251 +1,258 @@
 {
- "schema": "gems86.artifact-card-index.v1",
- "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision.",
- "artifacts": [
-  {
-   "lane": "GMC catalogue-following control",
-   "card": null,
-   "context": "evidence/run_card.json",
-   "holdout_kind": "gmc_control",
-   "stem": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros"
-  },
-  {
-   "lane": "GMC off-catalogue variant",
-   "card": "evidence/run_card.json",
-   "context": "evidence/run_card.json",
-   "holdout_kind": "unvalidated_variant",
-   "stem": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros"
-  },
-  {
-   "lane": "H86-1 edge corroboration",
-   "card": "docs/evidence/h86_run_card.json",
-   "context": "docs/evidence/h86_run_card.json",
-   "holdout_kind": "pooled",
-   "stem": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros"
-  },
-  {
-   "lane": "H86-RMRB unsupervised boundary",
-   "card": "docs/evidence/run-card.json",
-   "context": "docs/evidence/run-card.json",
-   "holdout_kind": "cut_segments",
-   "stem": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros"
-  },
-  {
-   "lane": "RMRB-86 supervised residual",
-   "card": "docs/evidence/rmrb86-run-card.json",
-   "context": "docs/evidence/rmrb86-run-card.json",
-   "holdout_kind": "pooled",
-   "stem": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT"
-  },
-  {
-   "lane": "H86B-GFCO multi-physics",
-   "card": "docs/evidence/h86b-gfco-run-card.json",
-   "context": "docs/evidence/h86b-gfco-run-card.json",
-   "holdout_kind": "gfco_whole_components",
-   "stem": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros"
-  },
-  {
-   "lane": "H86-WVB wavenumber / fault-valve bridge",
-   "card": "docs/evidence/h86-wvb-run-card.json",
-   "context": "docs/evidence/h86-wvb-run-card.json",
-   "holdout_kind": "wvb_whole_components",
-   "stem": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros"
-  },
-  {
-   "lane": "H86-FVMB dip-projected / fault-valve model",
-   "card": "docs/evidence/h86-fvmb-run-card.json",
-   "context": "docs/evidence/h86-fvmb-run-card.json",
-   "holdout_kind": "fvmb_segments",
-   "stem": "gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros"
-  },
-  {
-   "lane": "H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR",
-   "card": "docs/evidence/h86c-kslb-run-card.json",
-   "context": "docs/evidence/h86c-kslb-run-card.json",
-   "holdout_kind": "kslb_whole_components",
-   "stem": "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros"
-  },
-  {
-   "lane": "H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular",
-   "card": "docs/evidence/h86d-cthb-run-card.json",
-   "context": "docs/evidence/h86d-cthb-run-card.json",
-   "holdout_kind": "cthb_submod",
-   "stem": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros"
-  },
-  {
-   "lane": "H86E catalogue-context LOQO (SPBT channel)",
-   "card": "docs/evidence/h86e-run-card.json",
-   "context": "docs/evidence/h86e-run-card.json",
-   "holdout_kind": "pooled",
-   "stem": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros"
-  },
-  {
-   "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
-   "card": null,
-   "context": "docs/evidence/h86-faulthalo-run-card.json",
-   "holdout_kind": "unvalidated_variant",
-   "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
-  },
-  {
-   "lane": "GEMS86-GAPRES fleet-gap interpolation",
-   "card": "docs/evidence/gapres-run-card.json",
-   "context": "docs/evidence/gapres-run-card.json",
-   "holdout_kind": "pooled",
-   "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
-  },
-  {
-   "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
-   "card": "docs/evidence/h86e-mmt-run-card.json",
-   "context": "docs/evidence/h86e-mmt-run-card.json",
-   "holdout_kind": "h86e_mmt",
-   "stem": "gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros"
-  },
-  {
-   "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
-   "card": null,
-   "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
-   "holdout_kind": "blindgeothermal_candidate",
-   "stem": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros"
-  },
-  {
-   "lane": "H86F-PCC signed polarity-consistent basement step (concurrent negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86f-pcc-run-card.json",
-   "context": "docs/evidence/h86f-pcc-run-card.json",
-   "holdout_kind": "h86f_pcc",
-   "stem": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros"
-  },
-  {
-   "lane": "H86F-GZZD Laplace gravity-curvature dipole (current negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86f-gzzd-run-card.json",
-   "context": "docs/evidence/h86f-gzzd-run-card.json",
-   "holdout_kind": "h86f_gzzd",
-   "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
-  },
-  {
-   "lane": "H86F-EWCS elastic wing-crack + harmonic tilt-depth/Laplace PU (holdout-positive 0.1723, registry-blocked DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86f-ewcs-run-card.json",
-   "context": "docs/evidence/h86f-ewcs-run-card.json",
-   "holdout_kind": "h86f_ewcs",
-   "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
-  },
-  {
-   "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
-   "card": "docs/evidence/h86g-edti-run-card.json",
-   "context": "docs/evidence/h86g-edti-run-card.json",
-   "holdout_kind": "h86g_edti",
-   "stem": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros"
-  },
-  {
-   "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86i-rksc-run-card.json",
-   "context": "docs/evidence/h86i-rksc-run-card.json",
-   "holdout_kind": "h86i_rksc",
-   "stem": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros"
-  },
-  {
-   "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86i-hvfd-run-card.json",
-   "context": "docs/evidence/h86i-hvfd-run-card.json",
-   "holdout_kind": "h86i_hvfd",
-   "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
-  },
-  {
-   "lane": "UNIQUEDOT-DAMAGERING off-catalogue damage-zone ring emission (2026-10-25)",
-   "card": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
-   "context": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
-   "holdout_kind": "unvalidated_variant",
-   "stem": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros"
-  },
-  {
-   "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86j-mpc-run-card.json",
-   "context": "docs/evidence/h86j-mpc-run-card.json",
-   "holdout_kind": "h86j_mpc",
-   "stem": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros"
-  },
-  {
-   "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86i-sacd-run-card.json",
-   "context": "docs/evidence/h86i-sacd-run-card.json",
-   "holdout_kind": "h86i_sacd",
-   "stem": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros"
-  },
-  {
-   "lane": "H86I-RLMS Riedel-listric + 3DEP 1m/10m + GeoDAWN K/eTh submodular PU (3DEP/GeoDAWN +0.0264 over native19, overall 0.1257 < EWCS 0.1723, DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86i-rlms-run-card.json",
-   "context": "docs/evidence/h86i-rlms-run-card.json",
-   "holdout_kind": "h86i_rlms",
-   "stem": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros"
-  },
-  {
-   "lane": "H86J-CSGD SAR geomorphically de-biased cross-spectral admittance + GDR-1391 geothermal conduit PU (0/636 informative dot-field firings, E1 0.0613 / E2 0.1577, fail-closed DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86j-csgd-run-card.json",
-   "context": "docs/evidence/h86j-csgd-run-card.json",
-   "holdout_kind": "h86j_csgd",
-   "stem": "gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros"
-  },
-  {
-   "lane": "H86J-TVHS GGT 2-D sheet-step invariants x Faulds-Hinz geothermal structural-complexity x exposure-propensity strict-LOQO Dual-Expert PU E[k] (current negative lane, 2026-10-25)",
-   "card": "docs/evidence/h86j-tvhs-run-card.json",
-   "context": "docs/evidence/h86j-tvhs-run-card.json",
-   "holdout_kind": "h86j_tvhs",
-   "stem": "gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros"
-  },
-  {
-   "lane": "H86J-MCSP multi-scale Riesz monogenic phase-congruency + blind geothermal/metasomatic corroboration + 4-fold LOQO + exact CELF submodular allocation (LOQO HOLDOUT-DTI 0.1463, pure-blind E2 0.0839, SGMC-PROXY-DTI 0.0999; fail-closed DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86j-mcsp-run-card.json",
-   "context": "docs/evidence/h86j-mcsp-run-card.json",
-   "holdout_kind": "h86j_mcsp",
-   "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
-  },
-  {
-   "lane": "GDSC Geodetic Dilatational Strain Corridor \u2014 geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
-   "card": "docs/evidence/gdsc-run-card.json",
-   "context": "evidence/run_card.json",
-   "holdout_kind": "unvalidated_variant",
-   "stem": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros"
-  },
-  {
-   "lane": "H86K-PSC persistent potential-field saddle connectors x ridge junction, CELF (HOLDOUT-DTI 0.0467; paired CI vs ridge crosses zero; negative DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86k-psc-run-card.json",
-   "context": "docs/evidence/h86k-psc-run-card.json",
-   "holdout_kind": "h86k_psc",
-   "stem": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros"
-  },
-  {
-   "lane": "H86K-STDP multi-altitude Salem tilt dip-migration up-dip pullback + up-head GDR-1391 geothermal disequilibrium + 4-fold LOQO + exact 6-ring survival Dinkelbach-CELF (SGMC-PROXY-DTI 0.1133 / blind E2 0.1151 beating GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355] & MCSP +0.0134 [+0.0002, +0.0261]; LOQO HOLDOUT-DTI 0.1380 with NE 0.1420; fail-closed DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86k-stdp-run-card.json",
-   "context": "docs/evidence/h86k-stdp-run-card.json",
-   "holdout_kind": "h86k_stdp",
-   "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
-  },
-  {
-   "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
-   "card": "docs/evidence/h86l-fmc-run-card.json",
-   "context": "docs/evidence/h86l-fmc-run-card.json",
-   "holdout_kind": "h86l_fmc",
-   "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
-  },
-  {
-   "lane": "H86M-BMR basement gravity mass-balance residual (HOLDOUT-DTI 0.0220 [0.0086,0.0384], 11321 withheld, beaten by raw-gravity control; DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86m-bmr-run-card.json",
-   "context": "docs/evidence/h86m-bmr-run-card.json",
-   "holdout_kind": "h86m_bmr",
-   "stem": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros"
-  },
-  {
-   "lane": "H86M-CNT conductivity-neck x dilatation (HOLDOUT-DTI 0.0408 [0.0257,0.0575], 11321 withheld, paired CIs vs controls cross zero; DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86m-cnt-run-card.json",
-   "context": "docs/evidence/h86m-cnt-run-card.json",
-   "holdout_kind": "h86m_cnt",
-   "stem": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros"
-  },
-  {
-   "lane": "H86M-DAMAGERING off-catalogue damage-zone ring (HOLDOUT-DTI not run; DO NOT SUBMIT, 2026-10-25)",
-   "card": "docs/evidence/h86m-damagering-run-card.json",
-   "context": "docs/evidence/h86m-damagering-run-card.json",
-   "holdout_kind": "unvalidated_variant",
-   "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
-  }
- ]
+  "schema": "gems86.artifact-card-index.v1",
+  "scope": "Explicit joins between the inherited download inventory and historical scientific evidence; not a ranking or selector decision.",
+  "artifacts": [
+    {
+      "lane": "GMC catalogue-following control",
+      "card": null,
+      "context": "evidence/run_card.json",
+      "holdout_kind": "gmc_control",
+      "stem": "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros"
+    },
+    {
+      "lane": "GMC off-catalogue variant",
+      "card": "evidence/run_card.json",
+      "context": "evidence/run_card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros"
+    },
+    {
+      "lane": "H86-1 edge corroboration",
+      "card": "docs/evidence/h86_run_card.json",
+      "context": "docs/evidence/h86_run_card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros"
+    },
+    {
+      "lane": "H86-RMRB unsupervised boundary",
+      "card": "docs/evidence/run-card.json",
+      "context": "docs/evidence/run-card.json",
+      "holdout_kind": "cut_segments",
+      "stem": "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros"
+    },
+    {
+      "lane": "RMRB-86 supervised residual",
+      "card": "docs/evidence/rmrb86-run-card.json",
+      "context": "docs/evidence/rmrb86-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT"
+    },
+    {
+      "lane": "H86B-GFCO multi-physics",
+      "card": "docs/evidence/h86b-gfco-run-card.json",
+      "context": "docs/evidence/h86b-gfco-run-card.json",
+      "holdout_kind": "gfco_whole_components",
+      "stem": "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros"
+    },
+    {
+      "lane": "H86-WVB wavenumber / fault-valve bridge",
+      "card": "docs/evidence/h86-wvb-run-card.json",
+      "context": "docs/evidence/h86-wvb-run-card.json",
+      "holdout_kind": "wvb_whole_components",
+      "stem": "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros"
+    },
+    {
+      "lane": "H86-FVMB dip-projected / fault-valve model",
+      "card": "docs/evidence/h86-fvmb-run-card.json",
+      "context": "docs/evidence/h86-fvmb-run-card.json",
+      "holdout_kind": "fvmb_segments",
+      "stem": "gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros"
+    },
+    {
+      "lane": "H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR",
+      "card": "docs/evidence/h86c-kslb-run-card.json",
+      "context": "docs/evidence/h86c-kslb-run-card.json",
+      "holdout_kind": "kslb_whole_components",
+      "stem": "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros"
+    },
+    {
+      "lane": "H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular",
+      "card": "docs/evidence/h86d-cthb-run-card.json",
+      "context": "docs/evidence/h86d-cthb-run-card.json",
+      "holdout_kind": "cthb_submod",
+      "stem": "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros"
+    },
+    {
+      "lane": "H86E catalogue-context LOQO (SPBT channel)",
+      "card": "docs/evidence/h86e-run-card.json",
+      "context": "docs/evidence/h86e-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros"
+    },
+    {
+      "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
+      "card": null,
+      "context": "docs/evidence/h86-faulthalo-run-card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros"
+    },
+    {
+      "lane": "GEMS86-GAPRES fleet-gap interpolation",
+      "card": "docs/evidence/gapres-run-card.json",
+      "context": "docs/evidence/gapres-run-card.json",
+      "holdout_kind": "pooled",
+      "stem": "gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros"
+    },
+    {
+      "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
+      "card": "docs/evidence/h86e-mmt-run-card.json",
+      "context": "docs/evidence/h86e-mmt-run-card.json",
+      "holdout_kind": "h86e_mmt",
+      "stem": "gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros"
+    },
+    {
+      "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
+      "card": null,
+      "context": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.json",
+      "holdout_kind": "blindgeothermal_candidate",
+      "stem": "gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros"
+    },
+    {
+      "lane": "H86F-PCC signed polarity-consistent basement step (concurrent negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86f-pcc-run-card.json",
+      "context": "docs/evidence/h86f-pcc-run-card.json",
+      "holdout_kind": "h86f_pcc",
+      "stem": "gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros"
+    },
+    {
+      "lane": "H86F-GZZD Laplace gravity-curvature dipole (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86f-gzzd-run-card.json",
+      "context": "docs/evidence/h86f-gzzd-run-card.json",
+      "holdout_kind": "h86f_gzzd",
+      "stem": "gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros"
+    },
+    {
+      "lane": "H86F-EWCS elastic wing-crack + harmonic tilt-depth/Laplace PU (holdout-positive 0.1723, registry-blocked DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86f-ewcs-run-card.json",
+      "context": "docs/evidence/h86f-ewcs-run-card.json",
+      "holdout_kind": "h86f_ewcs",
+      "stem": "gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros"
+    },
+    {
+      "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
+      "card": "docs/evidence/h86g-edti-run-card.json",
+      "context": "docs/evidence/h86g-edti-run-card.json",
+      "holdout_kind": "h86g_edti",
+      "stem": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros"
+    },
+    {
+      "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-rksc-run-card.json",
+      "context": "docs/evidence/h86i-rksc-run-card.json",
+      "holdout_kind": "h86i_rksc",
+      "stem": "gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros"
+    },
+    {
+      "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86i-hvfd-run-card.json",
+      "context": "docs/evidence/h86i-hvfd-run-card.json",
+      "holdout_kind": "h86i_hvfd",
+      "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
+    },
+    {
+      "lane": "UNIQUEDOT-DAMAGERING off-catalogue damage-zone ring emission (2026-10-25)",
+      "card": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "context": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros"
+    },
+    {
+      "lane": "H86J-MPC monogenic phase-congruency step (RTP+gravity+DEM) (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86j-mpc-run-card.json",
+      "context": "docs/evidence/h86j-mpc-run-card.json",
+      "holdout_kind": "h86j_mpc",
+      "stem": "gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros"
+    },
+    {
+      "lane": "H86I-SACD spin-2 Coulomb strike concordance + 300 m submodular PU (strict LOQO 0.0832 vs E2 0.1055; 0/368 <=50k-dot firings; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-sacd-run-card.json",
+      "context": "docs/evidence/h86i-sacd-run-card.json",
+      "holdout_kind": "h86i_sacd",
+      "stem": "gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros"
+    },
+    {
+      "lane": "H86I-RLMS Riedel-listric + 3DEP 1m/10m + GeoDAWN K/eTh submodular PU (3DEP/GeoDAWN +0.0264 over native19, overall 0.1257 < EWCS 0.1723, DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86i-rlms-run-card.json",
+      "context": "docs/evidence/h86i-rlms-run-card.json",
+      "holdout_kind": "h86i_rlms",
+      "stem": "gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros"
+    },
+    {
+      "lane": "H86J-CSGD SAR geomorphically de-biased cross-spectral admittance + GDR-1391 geothermal conduit PU (0/636 informative dot-field firings, E1 0.0613 / E2 0.1577, fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-csgd-run-card.json",
+      "context": "docs/evidence/h86j-csgd-run-card.json",
+      "holdout_kind": "h86j_csgd",
+      "stem": "gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros"
+    },
+    {
+      "lane": "H86J-TVHS GGT 2-D sheet-step invariants x Faulds-Hinz geothermal structural-complexity x exposure-propensity strict-LOQO Dual-Expert PU E[k] (current negative lane, 2026-10-25)",
+      "card": "docs/evidence/h86j-tvhs-run-card.json",
+      "context": "docs/evidence/h86j-tvhs-run-card.json",
+      "holdout_kind": "h86j_tvhs",
+      "stem": "gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros"
+    },
+    {
+      "lane": "H86J-MCSP multi-scale Riesz monogenic phase-congruency + blind geothermal/metasomatic corroboration + 4-fold LOQO + exact CELF submodular allocation (LOQO HOLDOUT-DTI 0.1463, pure-blind E2 0.0839, SGMC-PROXY-DTI 0.0999; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-mcsp-run-card.json",
+      "context": "docs/evidence/h86j-mcsp-run-card.json",
+      "holdout_kind": "h86j_mcsp",
+      "stem": "gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros"
+    },
+    {
+      "lane": "GDSC Geodetic Dilatational Strain Corridor — geod_2ndinv x dilaterate+ x basin-weight, 37,654d 2.8px Poisson (UNIQUE vs fleet, 0/25 overlap firings; [0,1] zeros validated 2026-10-25)",
+      "card": "docs/evidence/gdsc-run-card.json",
+      "context": "evidence/run_card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros"
+    },
+    {
+      "lane": "H86K-PSC persistent potential-field saddle connectors x ridge junction, CELF (HOLDOUT-DTI 0.0467; paired CI vs ridge crosses zero; negative DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86k-psc-run-card.json",
+      "context": "docs/evidence/h86k-psc-run-card.json",
+      "holdout_kind": "h86k_psc",
+      "stem": "gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros"
+    },
+    {
+      "lane": "H86K-STDP multi-altitude Salem tilt dip-migration up-dip pullback + up-head GDR-1391 geothermal disequilibrium + 4-fold LOQO + exact 6-ring survival Dinkelbach-CELF (SGMC-PROXY-DTI 0.1133 / blind E2 0.1151 beating GEMSDOE32 H33 +0.0196 [+0.0047, +0.0355] & MCSP +0.0134 [+0.0002, +0.0261]; LOQO HOLDOUT-DTI 0.1380 with NE 0.1420; fail-closed DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86k-stdp-run-card.json",
+      "context": "docs/evidence/h86k-stdp-run-card.json",
+      "holdout_kind": "h86k_stdp",
+      "stem": "gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros"
+    },
+    {
+      "lane": "H86L-FMC fleet minority consensus (leakage-suspect archive)",
+      "card": "docs/evidence/h86l-fmc-run-card.json",
+      "context": "docs/evidence/h86l-fmc-run-card.json",
+      "holdout_kind": "h86l_fmc",
+      "stem": "gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros"
+    },
+    {
+      "lane": "H86M-BMR basement gravity mass-balance residual (HOLDOUT-DTI 0.0220 [0.0086,0.0384], 11321 withheld, beaten by raw-gravity control; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-bmr-run-card.json",
+      "context": "docs/evidence/h86m-bmr-run-card.json",
+      "holdout_kind": "h86m_bmr",
+      "stem": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros"
+    },
+    {
+      "lane": "H86M-CNT conductivity-neck x dilatation (HOLDOUT-DTI 0.0408 [0.0257,0.0575], 11321 withheld, paired CIs vs controls cross zero; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-cnt-run-card.json",
+      "context": "docs/evidence/h86m-cnt-run-card.json",
+      "holdout_kind": "h86m_cnt",
+      "stem": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros"
+    },
+    {
+      "lane": "H86M-DAMAGERING off-catalogue damage-zone ring (HOLDOUT-DTI not run; DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86m-damagering-run-card.json",
+      "context": "docs/evidence/h86m-damagering-run-card.json",
+      "holdout_kind": "h86m_unvalidated",
+      "stem": "gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros"
+    },
+    {
+      "lane": "H86M-LT leaderboard tomography (upstream lane promote; repo-wide DO NOT SUBMIT; alternate evidence design)",
+      "card": "docs/evidence/h86m-lt-run-card.json",
+      "context": "docs/evidence/h86m-lt-run-card.json",
+      "holdout_kind": "h86m_lt_tomography",
+      "stem": "gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros"
+    }
+  ]
 }

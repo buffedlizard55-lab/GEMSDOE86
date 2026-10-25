@@ -66,6 +66,17 @@ def test_real_report_checks_every_published_raster_and_global_decision_remains_n
     assert h86l["historical_holdout"]["value"] == 0.0
     assert "fleet-ancestry leakage" in h86l["historical_holdout"]["caveat"]
     assert h86l["verdict"] == "negative" and not h86l["safe_to_submit"]
+    h86m = next(a for a in report["artifacts"] if "h86m-damagering" in a["file"])
+    assert h86m["historical_holdout"]["status"] == "NOT_VALIDATED_FOR_THIS_VARIANT"
+    assert h86m["historical_holdout"]["value"] is None
+    assert not h86m["safe_to_submit"] and h86m["verdict"] == "negative"
+    h86m_lt = next(a for a in report["artifacts"] if "h86m-lt-tomography" in a["file"])
+    assert h86m_lt["historical_lane_verdict"] == "promote"
+    assert h86m_lt["verdict"] == "negative" and not h86m_lt["safe_to_submit"]
+    assert h86m_lt["approved_for_weekly_slot"] is False
+    assert h86m_lt["historical_holdout"]["status"] == "NOT_RUN_ALTERNATE_EVIDENCE_DESIGN"
+    assert h86m_lt["historical_holdout"]["value"] is None
+    assert "no whole-segment buffered hide-and-recover" in h86m_lt["historical_holdout"]["design"]
 
 
 def test_h86l_fleet_holdout_is_never_normalized_as_trusted_performance():

@@ -1,6 +1,6 @@
 # Three-pass repository review — 2026-10-25 — `arena/3d912985-gemsdoe86`
 
-> **Historical snapshot:** measured before integrating the newer `origin/main` tree (`d04d637`). At that time the release inventory contained 32 artifacts. The current README and machine reports supersede this snapshot with a 33-artifact inventory and later H86L-VFGR result; this report is retained for its scoped no-lane review and audit trail.
+> **Historical snapshot:** measured before integrating newer `origin/main` trees (`d04d637` and later). At that time the release inventory contained 32 artifacts. Subsequent upstream integrations expanded the audit to 35 registered artifacts and added later lane reviews; this report remains an audit trail of this session's no-lane review, not current release status.
 
 ## Executive decision
 
@@ -144,3 +144,9 @@ Links retained for independent/manual verification; not freshly scraped in this 
   "verdict": "negative"
 }
 ```
+
+## Post-review integration note — upstream H86M-LT (later `origin/main`)
+
+This note is separate from the historical review above; it does not retroactively change its no-lane results. The later upstream H86M-LT report (`research/H86M_LT_REVIEW.md`, session `ecc314b3`) records a 37,654-dot candidate and a lane-local `promote` verdict based on its PA-86 validation: format checks, a full-restored-registry uniqueness scan, and score-tomography diagnostics. It reports max forward 3-px overlap 0.649 against a 0.70 cap over 414 registered dot-fields. The candidate's own card still says `approved_for_weekly_slot=false`; no slot was used and no organizer score is established.
+
+**Do not treat that lane verdict as this review's requested HOLDOUT-DTI or as global upload authorization.** H86M-LT's review says its validation is tomography fitted to owner-reported fleet scores because the catalogue hide-and-recover instrument was considered invalid for the off-catalogue fleet emission. That is a different evidence design from the required whole-segment buffered hide-and-recover evaluation. The upstream README also identifies a release-integration gap: the H86M-LT TIFF is not included in the generated download inventory, while the repo-wide literal continuous-support audit continues to say `DO NOT SUBMIT`. Consequently, this review did not select, endorse, or submit the candidate. Its live status must be rechecked with the release, inventory, and site audits after integration; no user slot should be spent absent explicit owner selection and an organizer-confirmed result.
