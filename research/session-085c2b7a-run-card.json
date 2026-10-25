@@ -1,0 +1,45 @@
+{
+  "schema": "gems86.session-review.v1",
+  "session": "085c2b7a",
+  "measured_utc": "2026-10-25T04:02:17.421327+00:00",
+  "hypothesis": "CSPA cross-spectral gravity-magnetic admittance breaks (queued proposal; no assigned lane)",
+  "mechanism": "Windowed cross-spectral coherence and scale-dependent admittance breaks; not computed in this session.",
+  "named_non_fault_process": "Unfaulted lithologic contacts, source-depth changes and remanent magnetization",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rho": null,
+    "candidate_final_dot_overlap_3px": null,
+    "status": "NO_NEW_CANDIDATE",
+    "literal_witness_stop": true,
+    "complete_registry": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_artifacts_format_valid": 20,
+    "inherited_artifacts_total": 20
+  },
+  "submission_name": null,
+  "note": "No new TIFF: lane/cache/literal-registry blockers. Existing promotion is selector review only; no upload authorization.",
+  "verdict": "negative",
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "evidence_sha256": {
+    "docs/evidence/release-readiness.json": "1bc53ac8c9ad3665cbdb17f66f27b18f01ebae787db8681409a631b92bd116ef",
+    "docs/evidence/concurrent-artifact-review-20261025.json": "31ebdefbf232212cb5f0970229342a6a9d1ce56729f68e986f0b5877b6b6740f"
+  }
+}

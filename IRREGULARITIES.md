@@ -1183,3 +1183,7 @@ and GEMSDOE90 (0.0749), previously prompt-named unscored. They are recorded in
 `research/REQUEST_20261025.md` but not yet folded into
 `registry/prior_scores.csv` / `docs/evidence/fleet-feed.json` (hash-bound
 pair); a fleet-refresh session should ledger them and regenerate the feed.
+
+## IR-86-085C2B7A — promotion was displayed as upload permission (2026-10-25)
+
+The generated homepage/executive guide and current README said to submit H86G-EDTI even though its scientific card records `safe_to_submit=false`, `approved_for_weekly_slot=false`, and the release audit retains the literal witness stop. Fixed the source generator, regenerated pages and exposed the promoted-for-review identity in `docs/data/summary.json` without changing historical scientific evidence. Regression tests forbid the unsafe direct-upload phrases. No new raster, model experiment or slot. See `research/SESSION_085C2B7A_REVIEW.md`.
