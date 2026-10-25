@@ -1354,7 +1354,7 @@ confirmed `0` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overla
 SHA-256 `b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0`) is published
 strictly as an audit-only download (`status = "DO NOT SUBMIT"`, `verdict = "negative"`,
 `0` weekly slots used), and `scripts/run_h86i_sacd.py` is locked behind
-`protocol_preflight.require_feasible()` (`60` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_ksad.py` and `scripts/run_h86i_rlms.py`).
+`protocol_preflight.require_feasible()` (`62` CLI builders + `8` imported orchestrators, including `scripts/run_h86i_ksad.py`, `scripts/run_h86i_rlms.py`, `scripts/run_h86g_edti.py`, and `scripts/run_h86j_csgd.py`).
 
 ## IR-86-H86I-RLMS-01 — `H86I-RLMS` official 3DEP 1m/10m + GeoDAWN `K/eTh` physics improved `HOLDOUT-DTI` by `+0.0264` across all 4 quadrants, while unconstrained submodular `eta=0.042` clumping degraded Walker Lane `SW`
 
@@ -1392,3 +1392,29 @@ back-projection and spin-2 nematic director coherence on `gems57-pooled-hide-v2`
   (`sha256=ad4474b4d78ed3e8eaf5114fc63e3d858afcc0c016f7932baaaca06e99247b2d`) is
   published strictly as **`DO NOT SUBMIT`** (`verdict = "negative"`, `0` slots spent),
   and `scripts/run_h86i_rlms.py` is locked behind `protocol_preflight.require_feasible()`.
+
+## IR-86-H86G-LOCAL-ONLY-DUP-20261025 — H86G-EDTI 43-file local check missed 25 informative full-registry firings
+
+Restoring all 655 external Git blobs via zero-REST-quota `codeload.github.com` + shallow
+git-pack fallback in `scripts/restore_registry_inventory.py` and auditing
+`gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif` (`ba8b731f...`)
+across all 689 compatible rasters excluding self (`docs/evidence/h86g-edti-full-registry-audit-20261025.json`)
+revealed **44 dot-field forward-3px overlap firings (> 0.70)** and **25 informative
+(`halo_coverage <= 0.70`) firings**, including sparse `GEMSDOE46:r11f` (`76.02%` at
+44,090 dots), `GEMSDOE41:h42` (`73.99%` at 40,000 dots), and `GEMSDOE46:r12` (`72.24%`
+at 37,654 dots). `scripts/run_h86g_edti.py::main` is now gated behind
+`protocol_preflight.require_feasible()` (`62` CLI builders + `8` imported orchestrators).
+
+## IR-86-CSGD-LITERAL-STOP-20261025 — H86J-CSGD achieves 0 / 636 informative dot-field firings on full registry, stays fail-closed negative
+
+Session `0bec8252` preregistered `registry/h86j_hypotheses.json` +
+`research/H86J_CSGD_PREREGISTRATION.json` and executed 3-arm `H86J-CSGD`
+(`docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif`,
+SHA-256 `079914e36dec80349310f52289119ad8a956f13e435369422859d5dd0b16707f`):
+`28/28` canaries passed (`max = 0.7742 <= 0.90`), `E2` unweighted cover-blind ablation
+achieved `HOLDOUT-DTI = 0.1577 [0.1401, 0.1755]` (zero DEM/slope features), and primary
+SAR-debiased `E1` (`0.0613 [0.0453, 0.0764]`) achieved **0 / 636 informative dot-field
+firings** across the full 690-raster restored scan (`0` Spearman firings, max `0.5050`).
+Because `E1` trails `H86C-KSLB` (`0.1241`) and literal `17GEMSDOE` (`100%`) + 2 off-grid
+rows fail closed, `H86J-CSGD` is recorded as `verdict = "negative"` (`DO NOT SUBMIT`,
+`0` weekly slots used).
