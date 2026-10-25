@@ -1,0 +1,153 @@
+{
+  "schema": "gems86.h86h-pstd-preregistration.v1",
+  "lane": "H86H-PSTD",
+  "preregistered_utc": "2026-10-24T23:59:00Z",
+  "status": "frozen_before_implementation",
+  "process_irregularity": null,
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86H-1_PSTD",
+      "selected_for_validation": true,
+      "title": "Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance",
+      "layers": [
+        "Band 2 rtp (USGS GeoDAWN/regional reduced-to-pole magnetics, DOI 10.5066/P93LGLVQ)",
+        "Band 3 tmi_hg (horizontal magnetic gradient)",
+        "Band 7 geod_shearrate (GPS shear strain rate, DOI 10.1785/0220220153)",
+        "Band 8 geod_dilaterate (GPS dilatation rate, DOI 10.1785/0220220153)",
+        "Band 9 tmi_vg (vertical magnetic derivative M_z)",
+        "Band 11 iso_grav_anom_vg (pixel-verified -dg_iso/dy_north, DOI 10.5066/P9Z6SA1Z)",
+        "Band 17 cond_surf (surface electrical conductance)",
+        "Band 18 iso_grav_anom_hg (pixel-verified +dg_iso/dx_east, DOI 10.5066/P9Z6SA1Z)",
+        "Band 19 det_elev_slope (detrended topographic slope, DOI 10.5066/P9MQRCBY)"
+      ],
+      "physical_signature_and_transform": "Regularized spatial-domain Laplace vertical gravity curvature g_zz = -(d/dx Band18 - d/dy Band11) at sigma=500 m coupled via Poisson's potential-field relation (Poisson 1826; Cordell & Taylor 1971) to M_z (Band 9 tmi_vg). Across unfaulted lithologic contacts M_z tracks alpha_local * g_zz smoothly; across hydrothermally altered fault conduits juxtaposing density blocks, cross-strike +-500 m flank regression residual R_Poisson = max(0, alpha_flank * z(g_zz) - z(M_z)) isolates magnetite-destructive (Fe3O4 -> FeS2/leucoxene) damage zones seated on density-step hinges, weighted by gravity-gradient structure-tensor strike coherence, active dilatant/shear strain (Bands 7-8), shallow conductance (Band 17), and low-relief piedmont/intrabasin cover modulation (Band 19).",
+      "why_uncatalogued_faults": "USGS/INGENIOUS Quaternary fault traces heavily favor subaerial bedrock and range-front scarps. Concealed intrabasin stepovers, accommodation-zone transfer structures, and piedmont relay faults lose topographic scarps beneath Holocene alluvial/playa veneers (low Band 19) yet retain basement density steps (g_zz hinge) and hydrothermal magnetite destruction along permeable damage zones.",
+      "novelty_vs_repo": "Zero prior lanes in GEMSDOE86 (or archived fleet lanes) couple regularized Laplace vertical gravity curvature g_zz = -(dx B18 - dy B11) to M_z via Poisson potential-field breakdown. H86E-SPBT tested scalar basement-depth x gravity step products; H86E-MMT tested 1-D magnetic translation lags (Bands 2,3,6,9); SESSION_20261024_4D79B443 sketched Fourier cross-spectral admittance on B2 and scalar B13 without Laplace g_zz, magnetite-destruction Poisson sign parity, or strain/conductance gating.",
+      "non_fault_mimic": "Reversed-polarity Tertiary ash-flow tuff margins or caldera ring-fracture moats where reverse remanent magnetization produces negative M_z alongside a density contact without Quaternary brittle faulting.",
+      "expected_dti_rank_and_cost": "Rank 1; low-medium compute (~10-15 min CPU on 5.17M footprint pixels); 100% competition-native bands.",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX: 100% competition-native bands inside SHA-256-pinned training_features.tif (4371c82e...)."
+    },
+    {
+      "rank": 2,
+      "id": "H86H-2_BPTG",
+      "selected_for_validation": false,
+      "title": "Bi-Harmonic Basement-Flexure Plate Curvature (nabla^4 z_b) & GDR-1391 2-m Thermal-Probe Lateral Gradient Plume",
+      "layers": [
+        "Band 15 depth_to_base_surf",
+        "Band 18 iso_grav_anom_hg & Band 11 iso_grav_anom_vg",
+        "Band 12 det_elev",
+        "DOE GDR-1391 2m_temperature_probe_INGENIOUS_regional_data.zip (sha256 1301f70d..., 3,800 probes)",
+        "DOE GDR-1391 paleo_geothermal_regional.zip (sha256 faffcf69..., 726 sinter/tufa/travertine deposits)"
+      ],
+      "physical_signature_and_transform": "Thin-plate elastic flexure operator nabla^2(nabla^2 z_b) on regularized basement depth (Band 15) isolating narrow hanging-wall roll-over / footwall-uplift hinge lines, intersected with anisotropic lateral thermal-anomaly gradients from 3,800 GDR-1391 2-m temperature probes and paleo-sinter alignments.",
+      "why_uncatalogued_faults": "Blind geothermal upflow rises along intrabasin flexural fault hinges buried under 100-800 m of unconsolidated fill, creating shallow conductive thermal plumes and relict sinter/travertine mounds where zero Holocene scarp survives.",
+      "novelty_vs_repo": "H86D-CTHB used isotropic point-density halos inside a catalogue-seeded GBDT; no lane pairs bi-harmonic elastic plate flexure nabla^4 z_b with directional 2-m thermal-probe lateral gradients.",
+      "non_fault_mimic": "Down-hydraulic-gradient warm groundwater outflow plumes perched in permeable Quaternary fanglomerate channels 2-8 km laterally offset from range-front upflow.",
+      "expected_dti_rank_and_cost": "Rank 2; medium compute (~35 min CPU); sparse 2-m probe coverage outside surveyed basins limits basin-wide standalone recall relative to H86H-1.",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX: GDR-1391 archives SHA-256-pinned on reachable GitHub mirrors in research/h86d_extended_manifest.json (official source https://gdr.openei.org/submissions/1391, CC-BY-4.0)."
+    },
+    {
+      "rank": 3,
+      "id": "H86H-3_RKTU",
+      "selected_for_validation": false,
+      "title": "Contour-Crossing GeoDAWN Potassium-to-Thorium (K/eTh) Adularia-Illite Alteration Ribbons",
+      "layers": [
+        "USGS GeoDAWN ternary radiometrics geodawn_rad_u8.tif (sha256 c22420f7..., DOI 10.5066/P93LGLVQ: K, eTh, eU)",
+        "Band 6 tc (pixel-verified GeoDAWN Radiometric Total Count)",
+        "Band 12 det_elev",
+        "Band 19 det_elev_slope",
+        "Band 2 rtp"
+      ],
+      "physical_signature_and_transform": "Narrow (<400 m) anisotropic ridges of positive potassic metasomatic residual K - beta(TC)*eTh that cross topographic contours (high |grad(z_elev) x tangent_ridge|) after subtracting upslope drainage-fan provenance averages.",
+      "why_uncatalogued_faults": "Epithermal/geothermal adularia-illite fault ribs in Tertiary volcanics and thin pediments weather into low rounded exposures without sharp late-Quaternary scarps and are omitted from airphoto Quaternary scarp maps.",
+      "novelty_vs_repo": "H86E-MMT used scalar Band 6 TC solely as a quietness veto; H86D-CTHB fed bulk radiometric bands to trees without contour-crossing geometry or upslope fan-provenance subtraction.",
+      "non_fault_mimic": "Unfaulted potassic rhyolite dikes, unwelded potassic ash-flow tuff beds cropping out along strike, or evaporitic potash-enriched playa rims.",
+      "expected_dti_rank_and_cost": "Rank 3; medium compute (~40 min CPU); gamma-ray attenuation in top 30-50 cm of unweathered alluvium limits deep-basin sensitivity.",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX: geodawn_rad_u8.tif SHA-256-pinned in scripts/restore_data.py (official USGS source https://doi.org/10.5066/P93LGLVQ, CC0 1.0)."
+    },
+    {
+      "rank": 4,
+      "id": "H86H-4_3DMT",
+      "selected_for_validation": false,
+      "title": "Multi-Depth 3D Magnetotelluric Conductance Root Ratio (2-10 km vs 0-2 km) Sharpened by Analytical Magnetic Tilt Zero-Crossings",
+      "layers": [
+        "External USGS Great Basin 3D MT conductance slices (DOI 10.5066/P9TWT2LU)",
+        "External USGS Great Basin conductive heat-flow grid (DOI 10.5066/P9BZPVUC)",
+        "Band 17 cond_surf",
+        "Band 3 tmi_hg & Band 9 tmi_vg",
+        "Band 8 geod_dilaterate"
+      ],
+      "physical_signature_and_transform": "Log deep-to-shallow MT conductance ratio log(C_2_10km / C_0_2km) separating subvertical crustal hydrothermal roots from shallow saline playa brines, sharpened onto 100 m corridors along analytical magnetic tilt zero-crossings atan2(Band 9, Band 3) = 0.",
+      "why_uncatalogued_faults": "Deep permeable crustal fault conduits feeding blind geothermal systems (2-8 km depth) persist regardless of whether Holocene surface rupture broke unconsolidated basin fill.",
+      "novelty_vs_repo": "training_features.tif provides only single-surface cond_surf (Band 17); zero GEMSDOE86 implementations ingest multi-depth 3D MT slices.",
+      "non_fault_mimic": "Regional Paleozoic graphitic/sulfidic marine black shales (Roberts Mountains allochthon) dipping into the mid-crust without Quaternary brittle reactivation.",
+      "expected_dti_rank_and_cost": "Rank 4 (deferred pending mirror); medium-high compute (~75 min CPU once mirrored).",
+      "official_data_obtainability": "NOT_VIABLE_IN_SANDBOX_YET: Official free public-domain USGS ScienceBase releases exist (https://doi.org/10.5066/P9TWT2LU and https://doi.org/10.5066/P9BZPVUC), but sandbox outbound egress is restricted to GitHub/PyPI/npmjs and those binary grids are not yet SHA-pinned in a GitHub mirror. Explicitly excluded from viable execution in this session."
+    }
+  ],
+  "experiment_arms": [
+    {
+      "arm_index": 1,
+      "id": "E1_pstd_full",
+      "description": "Primary H86H-1 hypothesis: regularized Laplace g_zz hinge x cross-flank Poisson magnetite-destruction residual x gravity-gradient strike coherence x active dilatant/shear strain + shallow conductance + low-relief piedmont modulation (catalogue-blind surface; 37,654 dots emitted strictly outside fold-visible 2-px collar)."
+    },
+    {
+      "arm_index": 2,
+      "id": "E2_pstd_geopotential_only",
+      "description": "Ablation removing active strain (Bands 7-8), shallow conductance (Band 17), and low-relief modulation (Band 19) to isolate pure Poisson M_z-vs-g_zz dislocation + gravity hinge coherence at identical 37,654-dot budget."
+    },
+    {
+      "arm_index": 3,
+      "id": "E3_pstd_inverted_polarity_control",
+      "description": "Negative physics control: sign-inverted Poisson residual (+z(M_z) fresh-magnetite excess instead of magnetite-destruction deficit at g_zz hinges) at identical 37,654-dot budget."
+    }
+  ],
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "target_dots": 37654,
+    "shared_emitter": "gems57.emit.emit_decimated(tile_px=3)+emit_prefix",
+    "visible_fault_collar_px": 2.0
+  },
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "split_fn": "gems57.holdout.buffered_component_draw",
+    "n_folds": 4,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "seed": 20,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_m": 300,
+    "catalogue_features_used_in_surface": false,
+    "catalogue_from_visible_faults_only": true,
+    "visible_faults_masked_pixel_exact": true,
+    "controls": [
+      {
+        "id": "R0_GEMSDOE25_d28_fold_fair_vis_collar2",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "rationale": "Fold-fair H33-2-B2 construction from unpruned GEMSDOE25 dotted-h19-5-d2-8 (44,090 dots) masked ONLY by fold-visible faults (d_vis > 2.0 px), avoiding the IR-86-RIDF-02 / IR-86-MMT-R0-LEAK full-catalogue-masked GEMSDOE28 leak."
+      },
+      {
+        "id": "H86C_KSLB_same_split_reference",
+        "holdout_dti_archived": 0.124136,
+        "ci95_archived": [0.10796, 0.140312],
+        "rationale": "Highest archived buffered whole-component LOQO HOLDOUT-DTI on the identical seed=20 11,321-positive split."
+      }
+    ]
+  },
+  "leakage_canary": {
+    "discriminative_auc_stop": 0.90,
+    "tested_before_holdout_trust": true
+  },
+  "registry_and_stop_ordering": {
+    "surface_rho_stop": 0.90,
+    "final_dots_overlap_stop": 0.70,
+    "require_complete_zero_error_registry_for_gate_pass": true,
+    "surface_check_precedes_full_footprint_placement": true,
+    "final_dot_check_precedes_serialization": true,
+    "pa_diagnostic_never_overrides_literal_submission_gate": true
+  },
+  "promotion_rule": "Verdict MUST be 'negative' and weekly slot MUST NOT be touched unless all leakage canaries <= 0.90, paired physical-block 95% CI beats both fold-fair R0 and same-split holdout best (0.1241), complete zero-error surface and final-dot registry gates pass (including literal <= 0.70 gate), all local format checks pass, and a separate human selector authorizes upload."
+}
