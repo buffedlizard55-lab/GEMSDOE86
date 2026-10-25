@@ -3,7 +3,7 @@
   "session": "cf73474c",
   "date_utc": "2026-10-25",
   "evidence_class": "RUN-CARD",
-  "measured_registry_utc": "2026-10-25T02:40:35+00:00",
+  "measured_registry_utc": "2026-10-25T03:17:45+00:00",
   "hypothesis": "H86G-CSPA: Local cross-spectral gravity-magnetic admittance breaks (ranked proposal only; not implemented or authorized)",
   "mechanism": "Within tapered, overlapping windows, estimate gravity-magnetic cross-spectrum, coherence and scale-dependent admittance. Test a spatially persistent change in the relationship across a corridor against within-window phase-scrambled controls. Define numerical windows, frequency bands and regularization only in a future authorized preregistration, before any holdout evaluation.",
   "non_fault_mimic": "Unfaulted lithologic juxtaposition, source-depth changes, remanent volcanic magnetization, and mismatched survey resolution.",
@@ -66,9 +66,9 @@
     "docs/evidence/session-cf73474c-data.json": "e4bf9233ede205ef3012bf5ab6771c0d04c9eb3971f1f19e483ed5321829376c",
     "docs/evidence/registry-input-grid-review-20261025.json": "fd359878c3d645684cf4019837533951db9f5f16593b2ff583f876b5877fed05",
     "docs/evidence/concurrent-artifact-review-20261025.json": "b51db41756bf8bdffca333d96cb04fe95c835b35221c839acea17db917af7155",
-    "docs/evidence/protocol-preflight.json": "e7f2a51ca60c6a1d6090fbe0593d71fb0dcbb884fab81c8ba9952497c4398818",
-    "docs/evidence/release-readiness.json": "2ce7b5881f0aa558a169404d6424d584ba611d7013c54617c9e46e7f5fd0e97b",
-    "docs/evidence/all-artifacts-registry.json": "e9d490dae167cf71752d45319f9d2df9258eff34dad91e532d6d83c4fafd6b2e"
+    "docs/evidence/protocol-preflight.json": "a2ce6670a440801e4665eb134056c2f3279580716ac6a7040adfdd278b6f7a3f",
+    "docs/evidence/release-readiness.json": "ec8340b72e2f2c398341fb7b216339e40931dfdbe517f3580ffce5eb859205c5",
+    "docs/evidence/all-artifacts-registry.json": "a0f1959da2553bf547733803b9b3f3f6f2477791dbe28ac07c4aa9597ae6d4f1"
   },
   "limitations": [
     "No single-method lane assigned.",
