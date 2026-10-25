@@ -781,6 +781,22 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
 
+def h86m_damagering_answer(card: dict) -> str:
+    """Concurrent published TIFF with no holdout. Submission stays forbidden."""
+    if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False
+            or card.get("submission_slots_used") != 0):
+        raise ValueError("H86M-DAMAGERING card must stay a no-slot negative")
+    hold = card["holdout_dti"]
+    name = card["submission_name"]
+    return f'''<section class="callout" id="h86m-damagering"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>Concurrent H86M-DAMAGERING TIFF — audit download only</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>) is a file from another session. <strong>OK to submit: NO.</strong> Its own card records HOLDOUT-DTI status <code>{e(hold["status"])}</code>. A format pass is not upload permission.</p>
+<p><strong>Note, audit reference only:</strong> <code>{e(card["note"])}</code></p>
+<p><a href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> · <a href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="evidence/h86m-damagering-run-card.json">H86M-DAMAGERING run card</a></p>
+</section>'''
+
+
 def h86l_fmc_answer(card: dict) -> str:
     """Concurrent published TIFF. Numbers come from its card; submission stays forbidden."""
     if (card.get("verdict") != "negative" or card.get("safe_to_submit") is not False
@@ -1621,6 +1637,10 @@ def render(root: Path = ROOT) -> dict[str, str]:
     fmc_card = strict_json(fmc_path) if fmc_path.is_file() else None
     if fmc_card is not None:
         vfgr_banner += h86l_fmc_answer(fmc_card)
+    h86m_path = root / "docs/evidence/h86m-damagering-run-card.json"
+    h86m_card = strict_json(h86m_path) if h86m_path.is_file() else None
+    if h86m_card is not None:
+        vfgr_banner += h86m_damagering_answer(h86m_card)
     combined_banner = stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
