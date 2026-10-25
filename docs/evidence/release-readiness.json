@@ -39,7 +39,7 @@
     "docs/evidence/h86g-edti-run-card.json": "2d6e1f2b56ad37819d58b1579b38877c6a4eb9c566060cf9c551c2ce451b6155",
     "docs/evidence/h86i-rksc-run-card.json": "59dd570f20d0559a30f004610b543dc76ab05877edd6b93f9929b8451abfe27d",
     "docs/evidence/h86i-hvfd-run-card.json": "51d16d58f4d2e5d130040de947929a0e872541b85537a0f1c5ac217fd94a3414",
-    "docs/evidence/all-artifacts-registry.json": "653b27771aa6d9fbce26f9385a9450d64a01dbb64d3c978602cf16e6683b752b"
+    "docs/evidence/all-artifacts-registry.json": "236d79698c01979a763506c0ce4aa7deb765915f01a5cf8b1f66c09947756b86"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
@@ -140,7 +140,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
         "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3",
@@ -149,7 +149,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "GMC off-catalogue variant",
@@ -242,7 +244,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
         "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9",
@@ -251,7 +253,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-1 edge corroboration",
@@ -348,7 +352,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
         "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5",
@@ -357,7 +361,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-RMRB unsupervised boundary",
@@ -454,7 +460,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
         "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962",
@@ -463,7 +469,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "RMRB-86 supervised residual",
@@ -560,7 +568,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
         "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd",
@@ -569,7 +577,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86B-GFCO multi-physics",
@@ -671,7 +681,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
         "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116",
@@ -680,7 +690,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-WVB wavenumber / fault-valve bridge",
@@ -782,7 +794,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
         "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3",
@@ -791,7 +803,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86-FVMB dip-projected / fault-valve model",
@@ -888,7 +902,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
         "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233",
@@ -897,7 +911,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86C-KSLB Lahontan-deconfounded / fluvial-ksn / Blakely Noisy-OR",
@@ -999,7 +1015,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
         "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0",
@@ -1008,7 +1024,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86D-CTHB contact-truncation / cross-gradient / hydrothermal-breach submodular",
@@ -1110,7 +1128,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
         "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425",
@@ -1119,7 +1137,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E catalogue-context LOQO (SPBT channel)",
@@ -1216,7 +1236,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
         "sha256": "c26ebb296b11d35e8ef7d9e4abdc58320f2eec212e29e5d781fc3c64eaf892cd",
@@ -1225,7 +1245,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E-faulthalo fault-proximity halo (format-valid, protocol-blocked)",
@@ -1315,7 +1337,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
         "sha256": "8a66c57c576cd2a4d0e78c349a6ac2614b3a4d9dc14691a4b55830818e4b160b",
@@ -1324,7 +1346,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "GEMS86-GAPRES fleet-gap interpolation",
@@ -1421,7 +1445,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
         "sha256": "0af386ec51f12d74df838a6344e2ce85a5a38efd421a198cb3ecf8be1ee72b1c",
@@ -1430,7 +1454,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86E-MMT magnetic marker translation + TC decoupling (current negative lane)",
@@ -1527,7 +1553,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
         "sha256": "c32f67bfb307984ddd1eeaed42cfe6ebceea7c1ecb8e595634f52ba08c8e21c6",
@@ -1536,7 +1562,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "PR #92 blind off-catalogue geothermal dilation (current negative lane)",
@@ -1639,7 +1667,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
         "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
@@ -1648,7 +1676,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-PCC signed polarity-consistent basement step (concurrent negative lane, 2026-10-25)",
@@ -1745,7 +1775,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
         "sha256": "7a0dcffb09634de1fb8bf381a358a3fee7508735c9688cd682c1f13a99dec7be",
@@ -1754,7 +1784,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-GZZD Laplace gravity-curvature dipole (current negative lane, 2026-10-25)",
@@ -1851,7 +1883,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
         "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
@@ -1860,7 +1892,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86F-EWCS elastic wing-crack + harmonic tilt-depth/Laplace PU (holdout-positive 0.1723, registry-blocked DO NOT SUBMIT, 2026-10-25)",
@@ -1957,7 +1991,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
         "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
@@ -1966,7 +2000,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86G-EDTI multiline corroboration + E[k] spacing-greedy (PROMOTE like-for-like, 2026-10-25)",
@@ -2062,8 +2098,8 @@
       "safe_to_download_for_audit": true,
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
-      "verdict": "promote",
-      "status": "PROMOTE \u2014 OK TO SUBMIT (selector-ready)",
+      "verdict": "negative",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
         "sha256": "ba8b731fead02eb27ab30c1d2c2add78f3f703325a3b29316cdfdc3183489e8d",
@@ -2072,7 +2108,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "promote",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86I-RKSC GeoDAWN K/Th/U/TC step + Lahontan-deconfounded piedmont scarp dipole (current negative lane, 2026-10-25)",
@@ -2169,7 +2207,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
         "sha256": "9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba",
@@ -2178,7 +2216,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     },
     {
       "lane": "H86I-HVFD hydrothermal-vent thermal-wall, paleo-sinter & bi-harmonic basement flexure fault-valve discovery (current negative lane, 2026-10-25)",
@@ -2275,7 +2315,7 @@
       "safe_to_submit": false,
       "approved_for_weekly_slot": false,
       "verdict": "negative",
-      "status": "DO NOT SUBMIT",
+      "status": "DO NOT SUBMIT \u2014 literal witness overlap 1.0 > 0.70",
       "registry_measurement": {
         "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
         "sha256": "0325442434733ee10a9d77200b17db86f00d6195d373afeca43d673435216b58",
@@ -2284,7 +2324,9 @@
         "unique": false,
         "stop_required": true,
         "complete_accessible_scan": false
-      }
+      },
+      "historical_lane_verdict": "negative",
+      "literal_registry_stop": true
     }
   ],
   "limitations": [
