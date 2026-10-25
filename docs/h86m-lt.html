@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H86M-LT audit-only status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><main id="main" style="max-width:900px;margin:2rem auto;padding:0 1rem">
+<p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
+<h1>H86M-LT — inherited upstream artifact (2026-10-25)</h1>
+<section class="callout">
+<span class="badge bad">CURRENT REVIEW: DO NOT SUBMIT — required HOLDOUT-DTI is not reported</span>
+<span class="badge">AUDIT DOWNLOAD ONLY — no weekly slot is selected or authorized</span>
+<p><strong>Why this is blocked here:</strong> the upstream H86M-LT card records a lane-specific <code>promote</code> verdict and <code>safe_to_submit=true</code>, but it contains no <code>HOLDOUT-DTI</code> result from <code>gems57-pooled-hide-v2</code>. Its owner-score tomography values are PROJECTIONS and its SGMC-PROXY-DTI is a separate diagnostic, neither a substitute for the holdout required by this review. The current workspace also lacks the required shared feature cache and the pinned literal-overlap witness still blocks nonempty submissions. The upstream lane flag is preserved as provenance, not adopted as current authorization.</p>
+<h2>Download for audit only — not a submission file</h2>
+<p><a class="btn secondary" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.zip" download>One-TIFF ZIP (same file)</a>
+<a href="downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.json">Writer receipt</a> ·
+<a href="evidence/h86m-lt-run-card.json">JSON run card</a></p>
+<dl>
+<dt>File</dt><dd><code>gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif</code></dd>
+<dt>SHA-256</dt><dd><code>4067382cab05de80e85c22e717a8ea98e569f85933eedd9690651a7755eaebee</code></dd>
+<dt>Archived writer name (not authorization to submit)</dt><dd><code>gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros</code></dd>
+<dt>Archived writer note (not authorization to submit)</dt><dd><code>H86M-LT leaderboard tomography (29 scored rasters), DTI-optimal CELF, dcat&gt;3; auto-validated; see run card</code></dd>
+<dt>Dots</dt><dd>37,654 binary pixels (values exactly 0/1 — this fixes the portal error “Predicted values must be in range [0, 1]”)</dd>
+</dl>
+<h2>Machine validation (all automatic)</h2>
+<ul>
+<li><strong>Format 15/15 PASS:</strong> single-band float32, EPSG:32611, 3730×3292 @100 m, transform identical to sample submission, 0 NaN / 0 Inf / no sentinels, range [0,1], zeros outside footprint, 0 dots on mapped faults.</li>
+<li><strong>Archived upstream uniqueness scan (not current release clearance):</strong> the H86M-LT session reports 655 restored registry rasters (414 dot-fields): max 3-px forward overlap <strong>0.649 ≤ 0.70</strong>, max correlation <strong>0.159 ≤ 0.90</strong>, belief-surface correlation 0.556. This is not a current complete-registry audit and does not clear the repo-wide literal witness. Evidence: <a href="evidence/h86m-lt-full-registry-uniqueness.json">archived lane scan</a>.</li>
+<li><strong>Expected-DTI cross-checks (projections, not scores):</strong> primary belief 0.3317 vs h33-model 0.2660; second belief 0.3515 vs 0.2685; coarsest belief tied 0.2714 vs 0.2716 (instrument LOO-MAE ≈0.02). Tomography honest leave-one-out MAE 0.0190 over 29 scored rasters.</li>
+<li><strong>SGMC-PROXY-DTI diagnostic:</strong> 0.1136 vs h33 0.0954 on the same proxy instrument.</li>
+</ul>
+<h2>What this is</h2>
+<p>A belief map of hidden-fault density was fit to the fleet's 29 owner-reported live scores through the exact DTI
+algebra (α=0.2, β=0.8, 300 m kernel) — “leaderboard tomography” — then emitted as spaced dots only where
+independent submissions corroborate, more than 300 m from mapped faults. It is not a copy of any prior
+submission (see uniqueness scan). Full method, H33 (0.2778) forensics, ranked next hypotheses and limitations:
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86M_LT_REVIEW.md">H86M-LT review</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86M_LT_PREREGISTRATION.md">preregistration</a>.</p>
+<h2>Honest limits</h2>
+<ul>
+<li>No score is guaranteed and none is ORGANIZER-CONFIRMED; all input scores are owner-reported. Only an organizer receipt after submission can confirm whether this beats 0.2778.</li>
+<li>The upstream lane's PA-86 like-for-like checks and its <code>promote</code> verdict are retained as historical evidence only. The current request additionally requires a buffered whole-segment <code>HOLDOUT-DTI</code>; none is reported. The release audit therefore registers this TIFF as format-valid audit-only and records the holdout as not validated.</li>
+<li><code>approved_for_weekly_slot = false</code> and <code>submission_slots_used = 0</code> in the upstream card. This page does not select a slot or authorize upload; do not upload this artifact under the current review.</li>
+</ul>
+</section>
+</main></body></html>

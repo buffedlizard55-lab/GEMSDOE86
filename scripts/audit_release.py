@@ -97,7 +97,10 @@ def archived_holdout(config: dict, context: dict) -> dict:
             or not (version == expected or (version.startswith(expected + " (") and version.endswith(")")))):
         raise ValueError(f"Invalid archived HOLDOUT-DTI evaluator: {config['context']}")
     fields = (result.get("value"), result.get("ci95"), result.get("withheld_positives"))
-    if result.get("status") == "NOT_VALIDATED_FOR_THIS_VARIANT":
+    if result.get("status") in {
+        "NOT_VALIDATED_FOR_THIS_VARIANT",
+        "NOT_VALIDATED_REQUIRED_HOLDOUT_NOT_REPORTED",
+    }:
         if any(value is not None for value in fields):
             raise ValueError("Unvalidated variant cannot inherit another configuration's HOLDOUT-DTI")
     else:
@@ -118,6 +121,36 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_lt_tomography":
+        # Preserve the upstream lane card verbatim, but do not inherit its
+        # lane-specific promotion under this repository request: no required
+        # buffered HOLDOUT-DTI is reported, and SGMC proxy / owner-score fits
+        # are not substitutes for it.
+        if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
+                or context.get("raster_sha256") is None
+                or context.get("verdict") != "promote"
+                or context.get("safe_to_submit") is not True
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or context.get("holdout_dti") is not None
+                or context.get("sgmc_proxy", {}).get("candidate", {}).get("dti") is None):
+            raise ValueError("H86M-LT archive identity or no-HOLDOUT-DTI state changed")
+        return {**base, "status": "NOT_VALIDATED_REQUIRED_HOLDOUT_NOT_REPORTED",
+                "design": "upstream leaderboard-score tomography and SGMC-PROXY-DTI diagnostic; no required buffered HOLDOUT-DTI",
+                "caveat": "Upstream H86M-LT card's expected-DTI values are PROJECTIONS fitted to OWNER-REPORTED scores; its 0.1136 SGMC-PROXY-DTI is a diagnostic, not HOLDOUT-DTI. No gems57-pooled-hide-v2 holdout is reported. This repository request requires that holdout, so the lane-specific promote/safe_to_submit fields are not inherited. Full-registry uniqueness in the archived lane card does not resolve this holdout stop or this checkout's literal witness stop. DO NOT SUBMIT."}
+    if kind == "h86m_unvalidated":
+        h = context.get("holdout_dti", {})
+        if (context.get("lane") != "H86M-DAMAGERING"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or h.get("status") != "NOT_RUN_NO_PUBLIC_LABELS"
+                or any(h.get(k) is not None for k in ("value", "ci95", "withheld_positives"))):
+            raise ValueError("H86M archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
+                "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."}
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
@@ -216,7 +249,7 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind in {"h86l_fmc", "h86m_bmr", "h86m_cnt"}:
+    if kind in {"h86m_bmr", "h86m_cnt"}:
         # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
@@ -447,6 +480,16 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 card.get("submission_ready") is True
                 and card.get("safe_to_submit") is False
                 and card.get("approved_for_weekly_slot") is False)
+        elif config.get("holdout_kind") == "h86m_lt_tomography":
+            # Its upstream lane-specific promote bit is preserved as evidence,
+            # but this request requires a buffered HOLDOUT-DTI that the card lacks.
+            checks["upstream_card_has_no_required_holdout"] = (
+                card.get("verdict") == "promote"
+                and card.get("safe_to_submit") is True
+                and card.get("approved_for_weekly_slot") is False
+                and card.get("submission_slots_used") == 0
+                and card.get("holdout_dti") is None)
+            checks["current_protocol_blocks_missing_holdout"] = True
         else:
             checks["scientific_card_is_negative"] = card.get("verdict") == "negative"
             checks["scientific_card_does_not_authorize"] = explicit_no_authorization(card)
@@ -490,7 +533,9 @@ def audit_artifact(root: Path, entry: dict, config: dict, g) -> dict:
                 historical_holdout=archived_holdout(config, context),
                 safe_to_download_for_audit=passed, safe_to_submit=False,
                 approved_for_weekly_slot=False,
-                verdict=("promote" if config.get("holdout_kind") == "h86g_edti" else "negative"),
+                verdict=("promote" if config.get("holdout_kind") == "h86g_edti"
+                         else ("not validated" if config.get("holdout_kind") == "h86m_lt_tomography"
+                               else "negative")),
                 status=("PROMOTE — OK TO SUBMIT (selector-ready)"
                         if config.get("holdout_kind") == "h86g_edti" else "DO NOT SUBMIT"))
 
@@ -632,7 +677,16 @@ def build_report(root: Path = ROOT) -> dict:
                       and card_doc.get("submission_ready") is True
                       and card_doc.get("safe_to_submit") is False
                       and card_doc.get("approved_for_weekly_slot") is False)
-        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc)) or promote_ok):
+        h86m_lt_archived_no_holdout = (
+            card_doc.get("lane") == "H86M-LT leaderboard tomography + DTI-optimal emission"
+            and card_doc.get("verdict") == "promote"
+            and card_doc.get("safe_to_submit") is True
+            and card_doc.get("approved_for_weekly_slot") is False
+            and card_doc.get("submission_slots_used") == 0
+            and card_doc.get("holdout_dti") is None
+        )
+        if not ((card_doc.get("verdict") == "negative" and explicit_no_authorization(card_doc))
+                or promote_ok or h86m_lt_archived_no_holdout):
             sidecar_cards_negative = False
     inputs = {str(p.relative_to(root)): sha256(p) for p in (inventory_path, index_path, proof_path)}
     for config in configs:

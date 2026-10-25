@@ -108,8 +108,11 @@ def audit_artifact(path, entry, sample, footprint, catalogue):
         checks.update(
             run_card_sidecar_schema_recognized=True,
             run_card_no_unverified_zip_hash_claim='zip_sha256' not in receipt and 'zip_file' not in receipt,
-            receipt_not_promoted=receipt.get('verdict') == 'format-valid; not organizer-confirmed; weekly slot not used',
-            receipt_no_slot_approval=receipt.get('submission_slots_used') == 0,
+            receipt_not_promoted=(receipt.get('verdict') == 'format-valid; not organizer-confirmed; weekly slot not used'
+                                  and receipt.get('promoted') is False
+                                  and receipt.get('safe_to_submit') is False),
+            receipt_no_slot_approval=(receipt.get('approved_for_weekly_slot') is False
+                                      and receipt.get('submission_slots_used') == 0),
         )
     elif is_gdsc_sidecar:
         expected_zip_ref = Path(entry['file']).with_suffix('.zip').as_posix()

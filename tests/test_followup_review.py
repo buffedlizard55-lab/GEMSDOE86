@@ -23,10 +23,14 @@ def test_followup_queue_contains_only_scoped_unrun_native_layer_hypotheses():
     excluded_methods = " ".join(row["method"] for row in queue["excluded_as_already_tried"])
     assert "H86M-BMR" in excluded_methods
     assert "H86M-CNT" in excluded_methods
+    assert "H86M-LT" in excluded_methods
     bmr = next(row for row in queue["excluded_as_already_tried"] if "H86M-BMR" in row["method"])
     cnt = next(row for row in queue["excluded_as_already_tried"] if "H86M-CNT" in row["method"])
     assert "0.0220 [0.0086, 0.0384]" in bmr["disposition"]
     assert "0.0408 [0.0257, 0.0575]" in cnt["disposition"]
+    lt = next(row for row in queue["excluded_as_already_tried"] if "H86M-LT" in row["method"])
+    assert "no HOLDOUT-DTI" in lt["disposition"]
+    assert "PROJECTIONS" in lt["disposition"]
     for hypothesis in queue["hypotheses"]:
         assert hypothesis["physical_signature"]
         assert hypothesis["catalogue_missing_rationale"]

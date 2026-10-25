@@ -3,7 +3,7 @@
   "created_date_utc": "2026-10-25",
   "lane_assignment": null,
   "status": "PROPOSALS_ONLY_NOT_AUTHORIZED_OR_IMPLEMENTED",
-  "scope_note": "Queue refreshed after merging origin/main at 6a859ed (PR #157). H86M-BMR and H86M-CNT were executed in a separate upstream session and are now excluded as already tried; their archived results are negative/inconclusive and do not belong to this review. Three remaining exact designs were not found as executed candidate experiments in this checkout. This is not a claim of global novelty across all GEMSDOE sites or the literature. No numeric score projection is made.",
+  "scope_note": "Queue refreshed after merging origin/main at 6a859ed (PR #157). H86M-BMR and H86M-CNT were executed in a separate upstream session and are now excluded as already tried; their archived results are negative/inconclusive and do not belong to this review. Three remaining exact designs were not found as executed candidate experiments in this checkout. This is not a claim of global novelty across all GEMSDOE sites or the literature. No numeric score projection is made. H86M-LT leaderboard tomography was also added by separate upstream PR #165; it uses owner-reported fleet scores and SGMC-PROXY-DTI, with no HOLDOUT-DTI, so it is excluded from the new-hypothesis queue and is not validated under the current request.",
   "ranking_basis": "Qualitative expected information gain for spatially blocked HOLDOUT-DTI per implementation cost, weighted by geological specificity, ability to separate named mimics, and distance from methods already executed in this checkout. This is a research-priority ordering, not a projected score.",
   "excluded_as_already_tried": [
     {
@@ -40,6 +40,11 @@
       "method": "Conductivity-neck topology conditioned on dilatation (H86M-CNT)",
       "evidence": "docs/evidence/h86m-cnt-run-card.json; research/SESSION_20261025_H86M_REVIEW.md (merged upstream PR #157)",
       "disposition": "Already executed in a separate upstream session. HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives) = 0.0408 [0.0257, 0.0575]; paired confidence intervals vs both controls cross zero. Negative/inconclusive; not attributable to the present review and not re-run here."
+    },
+    {
+      "method": "Leaderboard tomography plus DTI-optimal CELF emission (H86M-LT)",
+      "evidence": "docs/evidence/h86m-lt-run-card.json and research/H86M_LT_REVIEW.md (merged upstream PR #165)",
+      "disposition": "An upstream lane card reports owner-score-based expected-DTI PROJECTIONS (not scores) and SGMC-PROXY-DTI 0.1136; it contains no HOLDOUT-DTI result. Its lane-specific `safe_to_submit=true` is not adopted here: the required buffered holdout is unreported and the current repository literal witness remains a stop. Registered as format-valid audit-only, DO NOT SUBMIT under this request."
     }
   ],
   "common_data_requirement": {

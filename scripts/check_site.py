@@ -177,13 +177,27 @@ def check(root=ROOT):
             and card.get('approved_for_weekly_slot') is False
             and card.get('safe_to_submit') is False
         )
-        if card.get('verdict') != 'negative' and not promote_ok:
+        h86m_lt_archive_no_holdout = (
+            card.get('lane') == 'H86M-LT leaderboard tomography + DTI-optimal emission'
+            and card.get('verdict') == 'promote'
+            and card.get('safe_to_submit') is True
+            and card.get('approved_for_weekly_slot') is False
+            and card.get('submission_slots_used') == 0
+            and card.get('holdout_dti') is None
+        )
+        if card.get('verdict') != 'negative' and not promote_ok and not h86m_lt_archive_no_holdout:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         for key in ('submission_ready', 'approved_for_weekly_slot', 'safe_to_submit'):
-            if key in card and card[key] is not False and not (promote_ok and key == 'submission_ready'):
+            archived_lane_flag = h86m_lt_archive_no_holdout and key == 'safe_to_submit'
+            if key in card and card[key] is not False and not (promote_ok and key == 'submission_ready') and not archived_lane_flag:
                 errors.append(f'{card_file.name}: {key} must be false')
+    h86m_lt_page = root / 'docs/h86m-lt.html'
+    if h86m_lt_page.is_file():
+        text = h86m_lt_page.read_text(encoding='utf-8').casefold()
+        if 'do not submit' not in text or 'required holdout-dti is not reported' not in text:
+            errors.append('H86M-LT archival page must prominently deny submission and disclose missing HOLDOUT-DTI')
     summary_path = root / 'docs/data/summary.json'
     if summary_path.is_file():
         summary = json.loads(summary_path.read_text())
