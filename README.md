@@ -1,9 +1,24 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
-## Current review — 2026-10-25 (`arena/b90880fa-gemsdoe86`): **DO NOT SUBMIT**
+## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 
-This review generated **no new candidate** or weekly submission. **35** published research TIFFs (including concurrent H86M-BMR/CNT/DAMAGERING) are audit downloads only; the [machine decision](docs/evidence/release-readiness.json) remains `safe_to_submit=false`, `approved_for_weekly_slot=false`. We repaired H86M-DAMAGERING's inherited audit registration: its holdout is NOT RUN, its local-only uniqueness check is incomplete, and its TIFF must **not** be submitted. The native 19-band mirror was restored and prepared locally with hash checks; it is Git-ignored and is *not* the absent verified shared template feature cache. Read the [review and negative run card](research/SESSION_B90880FA_REVIEW.md), [standing prompt](PROMPT.md), and [full request](research/REQUEST_20261025.md). [Executive guide](docs/executive-summary.html) · download ≠ upload authorization.
+This review generated **no new candidate** or weekly submission. **35** published TIFFs are audit-only downloads, not upload-authorized. The local native 19-band GitHub mirror was restored and prepared with pinned hashes, but the verified shared template feature cache is still absent. H86M-DAMAGERING has no holdout or canary and is recorded as a negative archive; parallel BMR/CNT lanes are likewise not submission-cleared. [Review and negative run card](research/SESSION_B90880FA_REVIEW.md) · [automatic release decision](docs/evidence/release-readiness.json) · [executive guide](docs/executive-summary.html) · [standing prompt](PROMPT.md).
 
+## Current review — 2026-10-25, session `63051e73`: **DO NOT SUBMIT**
+
+**No new TIFF generated; the unique, submission-cleared TIFF goal remains unmet.** The required shared feature cache is absent and the unchanged literal registry rule blocks every nonempty allowed dot field. No score improvement is claimed and no slot was used.
+
+- Reproduced and repaired the inherited H86L-FMC inventory/card omission, then reconciled with parallel PR #156 and reused its repair instead of bypassing the failing audits. All **35** published research TIFFs and their ZIP partners pass the shared local-format/integrity audit; this is not submission approval.
+- Restored the hash-pinned historical witness and remeasured every final TIFF against it. Each fails the literal overlap gate; the witness is not official training data or a candidate.
+- H86L-FMC's archived holdout stays **leakage-suspect, not promotion evidence**. Passing a single-feature canary cannot undo full-catalogue fleet ancestry.
+- PR #158 subsequently added an unevaluated H86M catalogue-ring TIFF. Repaired its missing card mapping, remeasured all 33 files, and explicitly rejected its archived “leakage structurally impossible” claim. No holdout is inferred.
+- PR #157 subsequently added BMR and CNT negative experiments. These are now **already tried**, not new proposals. All 35 inherited outputs remain DO NOT SUBMIT; this session changed no TIFF pixels.
+- Final integrated verification: **41 focused tests passed**; shared release and download audits pass for **35** files; site, link and frozen-review checks pass. No final-tree full-suite pass is claimed.
+- Earlier verification before PR #158: reconciled suite **1015 passed, 24 skipped**; final H86L regression module **13 passed**. Release, download, generated-site and frozen-review checks pass.
+- [Current review, ranked research queue and limitations](research/SESSION_63051E73_REVIEW.md) · [Live inputs](research/session-63051e73-inputs.json) · [Run card](research/session-63051e73-run-card.json).
+- Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
+
+The older snapshot below is historical; its H86L publication failure has been repaired in this review.
 ## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`, merged during H86M): **DO NOT SUBMIT**
 
 ## Current session — 2026-10-25 (`H86L-VFGR`): **NO TIFF · DO NOT SUBMIT**

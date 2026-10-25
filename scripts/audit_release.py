@@ -118,6 +118,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86m_unvalidated":
+        h = context.get("holdout_dti", {})
+        if (context.get("lane") != "H86M-DAMAGERING"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or h.get("status") != "NOT_RUN_NO_PUBLIC_LABELS"
+                or any(h.get(k) is not None for k in ("value", "ci95", "withheld_positives"))):
+            raise ValueError("H86M archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Inherited full-catalogue ring export; no hide-and-recover evaluation",
+                "caveat": "No HOLDOUT-DTI or canary was run. The archive's claim that catalogue-only features make leakage structurally impossible is not accepted: catalogue features must be rebuilt from visible faults. The pinned labels are available locally; absent shared features do not imply absence of all labels. Incomplete registry scope cannot establish uniqueness. DO NOT SUBMIT."}
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
@@ -155,20 +168,6 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": n, "value": value, "ci95": ci,
                 "design": "candidate-sidecar holdout; fold construction and result not recomputed by this audit",
                 "caveat": "Pre-existing PR #92 artifact, not generated in this review. Its HOLDOUT-DTI is archived, with no matched-baseline delta established here. Its local like-for-like registry summary is scoped to locally present rasters and cannot clear the complete-registry gate; the fresh pinned full-support witness measurement below triggers the unchanged literal stop. Not organizer-confirmed or authorized for submission."}
-    if kind == "h86m_unvalidated":
-        # A concurrent TIFF arrived with no actual segment-hide holdout and a
-        # local-only registry comparison. Register for integrity auditing, not
-        # for scientific promotion. Preserve its original negative card.
-        h = context.get("holdout_dti", {})
-        if (context.get("lane") != "H86M-DAMAGERING"
-                or context.get("verdict") != "negative"
-                or not explicit_no_authorization(context)
-                or context.get("submission_slots_used") != 0
-                or h.get("status") != "NOT_RUN_NO_PUBLIC_LABELS"
-                or any(h.get(key) is not None for key in ("value", "ci95", "withheld_positives"))):
-            raise ValueError("H86M-DAMAGERING is an unvalidated negative archive")
-        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
-                "caveat": "Concurrent H86M ring artifact has no hide-and-recover holdout, no feature-alone AUC, and an incomplete registry check. Its claim that labels cannot be accessed is a historical environment assertion, not a current input audit. Audit download only; DO NOT SUBMIT."}
     if kind == "h86l_fmc":
         # Registration repairs publication coverage; it must not launder a fleet
         # built from the full catalogue into leakage-safe hide-and-recover proof.
@@ -230,7 +229,7 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": hn["n_truth"], "value": hn["dti"], "ci95": hn["ci95"],
                 "design": hn.get("design", "buffered whole components"),
                 "caveat": "H86K-PSC saddle-ridge candidate; paired CI vs ridge control crosses zero and full 692-entry registry was not restored this session (53-raster measured scope disclosed). DO NOT SUBMIT; no slot used."}
-    if kind in {"h86l_fmc", "h86m_bmr", "h86m_cnt"}:
+    if kind in {"h86m_bmr", "h86m_cnt"}:
         # gems86.run-card.v1 lanes (H86L-FMC, H86M-BMR, H86M-CNT): candidate
         # block lives at holdout.candidate; all are measured negatives.
         h = context.get("holdout") or {}
