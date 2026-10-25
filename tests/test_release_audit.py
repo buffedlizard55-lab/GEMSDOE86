@@ -14,7 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 @pytest.fixture
 def release_copy(tmp_path):
     for rel in ("data/bridge", "docs/downloads", "docs/evidence", "vendor", "registry"):
-        shutil.copytree(ROOT / rel, tmp_path / rel, ignore=shutil.ignore_patterns("__pycache__"))
+        shutil.copytree(
+            ROOT / rel,
+            tmp_path / rel,
+            ignore=shutil.ignore_patterns("__pycache__", "training_features.tif"),
+        )
     (tmp_path / "research").mkdir()
     for rel in ("research/template_pin.json", "research/registry_witness_pin.json", "evidence/run_card.json"):
         target = tmp_path / rel
@@ -33,10 +37,10 @@ def first_artifact(root):
     return audit.strict_json(root / "docs/evidence/download-inventory.json")["artifacts"][0]
 
 
-def test_real_report_checks_every_published_raster_and_all_remain_negative():
+def test_real_report_checks_every_published_raster_and_global_decision_remains_negative():
     report = audit.build_report()
     assert report["audit_ok"]
-    assert report["artifact_count"] == report["locally_valid_artifacts"] == 19  # prior 18 + H86I-RLMS (2026-10-25, all DO NOT SUBMIT)
+    assert report["artifact_count"] == report["locally_valid_artifacts"] == 25  # prior 24 + H86I-RLMS (2026-10-25, DO NOT SUBMIT)
     assert report["all_final_artifacts_remeasured"]
     assert not report["safe_to_submit"]
     assert not report["selector_run"]
@@ -152,7 +156,7 @@ def test_session_card_does_not_rebrand_old_hashes_or_metrics():
     assert not card["new_candidate_generated"]
     assert card["verdict"] == "negative"
     assert 0 < len(card["note"]) <= 140
-    assert len(card["inherited_artifacts"]["files"]) == 19  # prior 18 + H86I-RLMS (2026-10-25, all DO NOT SUBMIT)
+    assert len(card["inherited_artifacts"]["files"]) == 25  # prior 24 + H86I-RLMS (2026-10-25, DO NOT SUBMIT)
 
 
 def test_session_card_date_cannot_contradict_its_live_artifact_inventory():

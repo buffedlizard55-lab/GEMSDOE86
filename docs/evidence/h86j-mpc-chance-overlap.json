@@ -1,0 +1,11 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "amendment": "PA-86-02",
+  "status": "FAILED_CLOSED_NO_REPORT",
+  "gate_pass": false,
+  "runner_returncode": 1,
+  "command": "python scripts/pa86_chance_overlap.py docs/evidence/h86j-mpc-registry-final-dots-v2.json data/work/h86j/final_dots.npy docs/evidence/h86j-mpc-chance-overlap.json",
+  "stderr_tail": "Traceback (most recent call last):\n  File \"scripts/pa86_chance_overlap.py\", line 111, in main\n    phase = validate_report_binding(report, argv[1], g, index, missing, exclude=exclude)\n  File \"scripts/pa86_chance_overlap.py\", line 62, in validate_report_binding\n    raise ValueError(\"Incomplete registry cannot pass\")\nValueError: Incomplete registry cannot pass\n",
+  "context": "check_h86e_registry measured 330/694 indexed rasters (362 inventory blobs not restored in this session; 2 known grid-incompatible rows: 14GEMSDOE CRS/transform, 7GEMSDOE qfaults grid). Excluding the candidate's own row, worst full-footprint Spearman is 0.024 (final dots) / 0.098 (surface); the worst dot-field forward overlap is 0.99998 vs the 13GEMSDOE stride-5 lattice (206,895 dots; space-filling by construction, the comparator PA-86-02 exists to discount). The lane verdict is already negative on efficacy gates (run card), so this fail-closed registry diagnostic changes no decision; it is recorded verbatim, never as clearance.",
+  "local_registry_gate": "EDTI-precedent local scan (46 rasters): max rho 0.053, max forward 3px overlap vs dot-fields 0.538 (GEMSDOE85 geopb-crest 90k), gate_pass true (docs/evidence/h86j-mpc-registry.json)."
+}

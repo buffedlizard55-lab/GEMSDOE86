@@ -51,8 +51,11 @@ def load_inventory(root):
             raise ValueError(f'Duplicate inventory path: {relative}')
         if not isinstance(entry.get('sha256'), str) or not re.fullmatch('[0-9a-f]{64}', entry['sha256']):
             raise ValueError(f'Invalid SHA256: {relative}')
-        if entry.get('approved_for_weekly_slot') is not False or entry.get('status') != 'DO NOT SUBMIT':
-            raise ValueError('Negative inventory requires exact DO NOT SUBMIT status and false slot approval')
+        status = entry.get('status')
+        if entry.get('approved_for_weekly_slot') is not False or not (
+                status == 'DO NOT SUBMIT'
+                or (isinstance(status, str) and status.startswith('PROMOTE'))):
+            raise ValueError('Inventory requires DO NOT SUBMIT (or recorded PROMOTE lane) status and false slot approval')
         registered[target] = entry
     return registered
 
@@ -131,8 +134,31 @@ def check(root=ROOT):
                     errors.append(f'Invalid quarantined submission ZIP: {cand_zip.name}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
+        # This checker is a negative-state publication guard, not a selector.
+        # Research PROMOTE cards with false slot approval cannot authorize a CTA.
+        text = re.sub(r"<[^>]*>", " ", html_text)
+        text = " ".join(text.split()).casefold()
+        for claim in ("is this file ok to submit? yes", "one file is ok to submit",
+                      "submit this file", "current decision: submit only",
+                      "ok to download and submit", "one selector-ready file"):
+            if claim in text:
+                errors.append(f'Unauthorized submission instruction: {html_file.name}: {claim}')
         if 'READY TO DOWNLOAD' in html_text:
             errors.append(f'Contradictory READY TO DOWNLOAD banner during negative release state: {html_file.name}')
+        if html_file == root / 'docs/index.html':
+            # A scientific PROMOTE verdict is not a selector decision. Never let
+            # the public CTA imply upload authorization while the machine card is false.
+            h86g_card = root / 'docs/evidence/h86g-edti-run-card.json'
+            if h86g_card.is_file():
+                promote = json.loads(h86g_card.read_text(encoding='utf-8'))
+                if promote.get('safe_to_submit') is False or promote.get('approved_for_weekly_slot') is False:
+                    unsafe_ctas = ('SUBMIT THIS FILE', 'DOWNLOAD → SUBMIT', 'OK TO SUBMIT? YES',
+                                   'Submit only the H86G-EDTI', 'OK to download and submit',
+                                   'One file is OK to submit')
+                    if any(text in html_text for text in unsafe_ctas):
+                        errors.append('Homepage authorizes H86G-EDTI despite false submission/slot flags')
+                    if 'NO FILE AUTHORIZED' not in html_text or 'DO NOT SUBMIT' not in html_text:
+                        errors.append('Homepage must state that no file is authorized and submissions are prohibited')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
             errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
     canonical_card = root / 'docs/evidence/run-card.json'
@@ -143,12 +169,20 @@ def check(root=ROOT):
         if not card_file.is_file():
             continue
         card = json.loads(card_file.read_text())
-        if card.get('verdict') != 'negative':
+        promote_ok = (
+            card.get('verdict') == 'promote'
+            and card.get('submission_ready') is True
+            and all((card.get('gates') or {}).values())
+            and card.get('submission_slots_used') == 0
+            and card.get('approved_for_weekly_slot') is False
+            and card.get('safe_to_submit') is False
+        )
+        if card.get('verdict') != 'negative' and not promote_ok:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         if card_file in (canonical_card, root / 'evidence/run_card.json') and card.get('submission_ready') is not False:
             errors.append(f'Run card contradicts negative publication state: {card_file.name}')
         for key in ('submission_ready', 'approved_for_weekly_slot', 'safe_to_submit'):
-            if key in card and card[key] is not False:
+            if key in card and card[key] is not False and not (promote_ok and key == 'submission_ready'):
                 errors.append(f'{card_file.name}: {key} must be false')
     summary_path = root / 'docs/data/summary.json'
     if summary_path.is_file():

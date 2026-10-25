@@ -1,0 +1,70 @@
+{
+  "schema": "gems86.session-review.v1",
+  "session": "fb9725b9",
+  "measured_utc": "2026-10-25T04:25:03.856601+00:00",
+  "hypothesis": "No assigned method lane; cross-spectral admittance proposal remains untested.",
+  "mechanism": "Proposed local RTP magnetic/gravity cross-spectral changes; no model constructed.",
+  "named_non_fault_process": "Unfaulted lithologic contacts, remanent magnetization and source-depth changes.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2 (planned only)",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "surface": null,
+    "final_dots": null,
+    "registry_clearance": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_release_integrity": {
+      "evidence_class": "SOFTWARE_FORMAT_AUDIT",
+      "audit_ok": true,
+      "artifact_count": 21,
+      "locally_valid_artifacts": 21,
+      "decision": "DO NOT SUBMIT"
+    }
+  },
+  "submission_name": null,
+  "note": "No new TIFF: lane/cache/registry blockers remain. Preflight now verifies both shared tool paths. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "verification": {
+    "evidence_class": "SOFTWARE_TEST",
+    "targeted_tests_passed": 11,
+    "full_tests_passed": 850,
+    "full_tests_skipped": 24,
+    "subtests_passed": 41,
+    "warnings": 42,
+    "release_audit": "PASS (integrity only)",
+    "generated_site_check": "PASS",
+    "site_links_and_download_integrity": "PASS",
+    "git_diff_check": "PASS",
+    "pages_api_status": "built (before merge; legacy build)",
+    "environment": "Ignored .venv; numerical dependencies installed; not an exact requirements-lock reproduction (certifi 2026.10.23 vs 2026.10.19)."
+  },
+  "limitations": [
+    "No single assigned method paragraph",
+    "Actual shared feature cache absent",
+    "Literal full-support overlap blocker and incompatible registry entries unresolved",
+    "No organizer or weekly quota receipt",
+    "Official non-GitHub sources not freshly fetched; outbound host restrictions"
+  ],
+  "evidence_sha256": {
+    "scripts/session_preflight.py": "7fbf758e11c377e386f7a28ebb7af6d7e66405e797b276e16a989d7b00639edc",
+    "tests/test_session_preflight_pins.py": "dd60312a86a8247a87f69181e8b0b2544fe381d0d877504bed5e0501515c3881",
+    "research/template_pin.json": "c1f27f84c5a0e0a23c670a1e8b4b564d80d3fcca2af34400e2504b26e3c87a70",
+    "docs/evidence/release-readiness.json": "6faa6bad0fa034ca580af4fc4a5ba2b8eecc5bac692ab7e9bf1226be5336a04a"
+  }
+}

@@ -216,8 +216,8 @@ def test_h86i_rlms_run_card_artifact_and_registry_evidence_are_honest_and_bound(
     assert reg["final_dots"]["literal_gate_pass"] is False
 
     post_grid = strict_json(ROOT / "docs/evidence/registry-input-grid-review-6bbd9586.json")
-    assert post_grid["indexed_rasters_expected"] == post_grid["byte_verified_rasters"] == 691
-    assert post_grid["grid_compatible_rasters"] == 689
+    assert post_grid["indexed_rasters_expected"] == post_grid["byte_verified_rasters"] == 697
+    assert post_grid["grid_compatible_rasters"] == 695
     assert post_grid["grid_incompatible_or_invalid_rasters"] == 2
     assert post_grid["uniqueness_clearance"] is False
 
