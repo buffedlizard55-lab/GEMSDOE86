@@ -1,0 +1,15 @@
+{
+ "candidate": "gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros",
+ "context": "post-merge addendum: lanes merged to main concurrently with H86G-EDTI (PR #104/#106) were not in the pre-merge registry scan; measured here after merge with the same EDT 3px rule.",
+ "rows": [
+  {
+   "source": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
+   "source_kind": "concurrent_lane_download_H86F-EWCS",
+   "source_dots": 37654,
+   "overlap_fwd_3px": 0.17041818181818183,
+   "overlap_rev_3px": 0.22045466617092474
+  }
+ ],
+ "h86h_pstd": "no TIFF published (halted before raster writing per main README); nothing to dot-compare",
+ "all_within_thresholds": true
+}
