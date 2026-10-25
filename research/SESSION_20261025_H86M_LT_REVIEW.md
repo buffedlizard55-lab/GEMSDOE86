@@ -12,7 +12,8 @@ The repository now registers H86M-LT's TIFF/ZIP/receipt/card in the download and
 - H86M-LT local format and ZIP checks pass through the shared validators. The local scan has a separately recorded 655-raster scope, but it is not organizer clearance.
 - H86M-LT has no shared hide-and-recover `HOLDOUT-DTI` with evaluator version, withheld-positive count and 95% CI. Its expected-DTI and SGMC-PROXY values remain projections/diagnostics, not scores.
 - The restored native 19-band feature TIFF is SHA-pinned (`4371c82e…`), but `docs/evidence/feature-cache.json` points to a missing 982,332,800-byte shared cache. Prepared native arrays are not accepted as a shared-cache receipt.
-- `scripts/run_h86n_eql.py` was invoked. It recorded a negative no-run card with `experiments_run=0`, because the literal registry preflight blocker and missing shared cache are both still active. No H86N feature surface, holdout prediction, candidate TIFF, or slot was created.
+- `scripts/run_h86n_eql.py` was invoked. It recorded a negative no-run card with `experiments_run=0`, because the literal registry preflight blocker and missing shared cache are both still active. No current H86N feature surface was constructed and no current slot was used.
+- A parallel main-line history already contains an inherited H86N native-stack TIFF and an H86M-PFTE TIFF. Both are registered as negative audit-only artifacts. The H86N experiment reports `HOLDOUT-DTI` `0.030634 [0.017499, 0.045497]` with `gems57-pooled-hide-v2` and `11,321` withheld positives, but its paired controls cross zero and it does not prove use of the required shared cache; the current blocked no-run card remains authoritative for this review. No organizer score is claimed.
 - Fresh official/trusted source checks are stored in [`official-source-verification-20261025.json`](official-source-verification-20261025.json), including the working USGS GeoDAWN page, the stale USGS 404 irregularity, DrivenData problem text, NLR rules, GBCGE INGENIOUS, GDR 1391, EPSG:32611, and the DrivenData reference repository.
 
 ## Ranked research queue
@@ -38,14 +39,14 @@ No number in this table is a score. The top candidate's preregistration is [`H86
 3. Added an `h86m_lt_unvalidated` branch to `scripts/audit_release.py`; it rejects projections as inherited HOLDOUT-DTI and requires the card's negative/no-slot state.
 4. Rewrote the H86M-LT page and top README/site language so “safe to download” and “safe to submit” cannot be confused.
 5. Added five hypotheses, a frozen H86N-EQL preregistration, source verification, a pure seismic feature module, and a fail-closed runner/run card.
-6. Re-ran the full local artifact release measurement: 36 registered TIFFs and ZIPs, 36 local format/integrity passes, current decision DO NOT SUBMIT, 0 experiments and 0 slots.
+6. Re-ran the full local artifact release measurement: 38 registered TIFFs and ZIPs, 38 local format/integrity passes, current decision DO NOT SUBMIT, 0 release-audit experiments and 0 slots.
 
 ### Pass 2 — bug and edge-case review
 
 - Checked that H86M-LT receipt, TIFF, ZIP, inventory SHA and card SHA join exactly.
 - Checked that H86M-LT card's historical `promote` label cannot satisfy the current `verdict`, `safe_to_submit`, or slot flags.
 - Checked that an absent cache, a cache hash mismatch, a cache missing seismic channels, or a cache without per-fold visible-catalogue provenance all stop H86N before feature construction.
-- Checked that H86N's planned numeric fields are null, not invented, and that the card distinguishes `HOLDOUT-DTI`, `LEAKAGE-CANARY`, `REGISTRY-MEASUREMENT`, and local format classes.
+- Checked that the current H86N blocked card's planned numeric fields are null, while the separately preserved inherited native-stack card labels its measured HOLDOUT-DTI with evaluator, withheld-positive count and CI; neither is an organizer receipt.
 - Checked official-source irregularities: the user-supplied old USGS GeoDAWN URL is a 404; the current USGS page/DOI is used. GDR/INGENIOUS pages describe data resources but do not prove local bytes, co-registration, or competition eligibility.
 
 ### Pass 3 — final requirement re-check
@@ -55,8 +56,8 @@ No number in this table is a score. The top candidate's preregistration is [`H86
 | Study prior results and official sources | Met for this review; source observations and irregularities are recorded, and owner-reported scores remain labeled as unverified. |
 | Propose 3–5 new hypotheses with layers, signature, missing rationale, distinction, benefit, cost, data | Met: five proposals in the H86N register; benefit is qualitative, not a fabricated score. |
 | Validate top candidate using shared cache/evaluator before slot | Correctly not met because the actual shared cache and fold-visible provenance are unavailable; the runner stops before experiment. |
-| Generate a unique single-band GeoTIFF only after all gates | No new TIFF was generated; no gate-passing candidate existed. H86M-LT is historical and audit-only, not relabeled as new. |
-| Obvious download/submit status, guide, name/note, run card, sources, limitations | Met for H86M-LT audit status and H86N blocked card. No name/note is presented as an authorized upload. |
+| Generate a unique single-band GeoTIFF only after all gates | The current runner generated no TIFF; two inherited main-line negative TIFFs (H86N native-stack and H86M-PFTE) are retained for audit only and are not relabeled as current shared-cache clearance. |
+| Obvious download/submit status, guide, name/note, run card, sources, limitations | Met for H86M-LT, inherited H86N/PFTE audit status, and the current H86N blocked card. No name/note is presented as an authorized upload. |
 | Three passes | Met and documented here. |
 | Organizer-confirmed score | None claimed; no organizer receipt exists. |
 | PR and merge | A PR should be opened from the fixed Arena branch after final checks. The branch must not be switched or renamed; merge is a GitHub operation outside the scientific decision. |

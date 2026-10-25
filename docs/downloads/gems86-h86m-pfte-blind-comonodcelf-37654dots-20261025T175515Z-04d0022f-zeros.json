@@ -1,0 +1,142 @@
+{
+  "file": "gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+  "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+  "bytes": 140106,
+  "submission_name": "gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros",
+  "note": "H86M-PFTE Parker3D-Marussi+Baranov+Peclet E2 (HOLD 0.0734, SGMC 0.1210); v2 gate fail-closed; DO NOT SUBMIT",
+  "note_chars": 107,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+    "bytes": 140106,
+    "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+    "bytes": 140106,
+    "sha256": "6bfde507f151b8eabf45275a7f7d8edf92a971480b711b613d5bf0190523ce1f",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.zip",
+  "zip_sha256": "a45cb7dca2ace00de4affc2e03ca2a5d75130a64a934af40a76c669a3edd9029",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H86M-PFTE",
+    "emitted_arm": "E2_pfte_blind_comonotonic_dcelf",
+    "e1_rule1_disqualification": "E1_pfte_comonotonic_dcelf disqualified before GeoTIFF serialization per Parallel-Run Protocol Rule 1: 3-px dot overlap vs H86K-STDP = 0.704069 > 0.70 (shared fold-visible elastic fracture-lobe halo). Zero hyperparameters retuned; preregistered pure-blind physical arm E2_pfte_blind_comonotonic_dcelf emitted instead.",
+    "hypothesis": "3-D Cordell-Parker spectral basin-stripped Marussi gravity tensor eigensystem + Baranov FFT pseudogravity decoupling + strike-guided Peclet barriers + 3-strand Frechet-comonotonic tube-survival Dinkelbach-CELF",
+    "budget": 37654,
+    "spacing_px": 2.8,
+    "collar_px": 3.0,
+    "dinkelbach_final_lambda": 0.24636454279323675,
+    "dinkelbach_outer_lambdas": [
+      0.19,
+      0.2463218472060889
+    ],
+    "celf_total_covered_credit": 23913.72085788846,
+    "celf_total_self_credit": 7349.157109238207,
+    "celf_recomputations": 499424,
+    "static_feature_sha256": "dc58a360fb00936b893ea9e1c46bebe16bc91b31b303d08e4a491553a5bcea2a",
+    "surface_sha256": "6d189e7e46bb2ec2bcacd0630a6d40414b8653e9be020f1e86513ce832acb615",
+    "dots_sha256": "771441248b4a0ff56ef45327e22bda919572a46a510f5faf3d30f944fe7df215",
+    "registry_surface_evidence": "docs/evidence/h86m-pfte-registry-surface.json",
+    "registry_final_evidence": "docs/evidence/h86m-pfte-registry-final-dots.json",
+    "chance_overlap_evidence": "FAILED_CLOSED_NO_REPORT (see run card)"
+  }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H86N-EQL submission status · GEMSDOE86</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><main id="main" style="max-width:900px;margin:2rem auto;padding:0 1rem">
+<p><a href="index.html">← GEMSDOE86 downloads</a> · <a href="executive-summary.html">How to submit</a></p>
+<h1>H86N-EQL — historical native-stack GeoTIFF (2026-10-25), measured negative; not current shared-cache clearance</h1>
+<section class="callout">
+<span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: negative; no human inspection used)</span>
+<span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span>
+<h2>Download the file (audit only)</h2>
+<p><a class="btn" href="downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.zip" download>One-TIFF ZIP (same file)</a>
+<a href="downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.json">Writer receipt</a> ·
+<a href="evidence/h86n-eql-historical-run-card.json">Historical JSON run card</a> · <a href="evidence/h86n-eql-run-card.json">Current blocked no-run card</a></p>
+<dl>
+<dt>File</dt><dd><code>gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif</code></dd>
+<dt>SHA-256</dt><dd><code>5b355275dfbc6774b3f113a1ec85e4becab6b8235f78386f3de1e098da27895a</code></dd>
+<dt>Submission name (identity only — not authorization)</dt><dd><code>gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros</code></dd>
+<dt>Note stored in writer receipt (≤140 chars)</dt><dd><code>H86N-EQL seismicity lineation anisotropy dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT</code></dd>
+<dt>Dots</dt><dd>37,654 binary pixels (values exactly 0/1 — the portal error “Predicted values must be in range [0, 1]” cannot occur on these bytes)</dd>
+</dl>
+<h2>Machine validation (all automatic)</h2>
+<ul>
+<li><strong>HOLDOUT-DTI</strong> (gems57-pooled-hide-v2, 11,321 withheld positives): candidate <strong>0.0306 [0.0175, 0.0455]</strong>; isotropic-density control C0 0.0356 [0.0139, 0.0595]; RTP-gradient control C1 0.0429 [0.0300, 0.0566]. Paired differences: vs C0 <strong>−0.0050 [−0.0301, +0.0200]</strong>, vs C1 <strong>−0.0123 [−0.0311, +0.0074]</strong> — both cross zero with negative point estimates, so the anisotropy hypothesis is not supported and no slot may be spent on it. These are HOLDOUT-DTI values, never leaderboard scores or projections.</li>
+<li><strong>Leakage canary PASS:</strong> max single-feature AUC 0.543 ≤ 0.90 (7 features).</li>
+<li><strong>Unique (local scope):</strong> vs 61 locally measured rasters, max surface Spearman 0.069 ≤ 0.90, max final-dot phi 0.140, max forward 3-px overlap 0.579 ≤ 0.70 — the dot field is not a copy of any measured prior raster. The complete 92-site registry was not restored this session, so no complete-uniqueness claim is made; the literal full-support-witness reading blocks every nonempty raster (documented unsatisfiable) and is reported in the run card.</li>
+<li><strong>Format PASS:</strong> single-band float32, EPSG:32611, 3730×3292 @100 m, sample-submission transform, 0 NaN / 0 Inf, values exactly {0,1} ⊂ [0,1], zeros outside footprint, 0 dots on mapped faults, exact 37,654-dot budget at 2.8 px spacing.</li>
+</ul>
+<h2>Historical experiment boundary</h2>
+<p>This page documents an inherited negative native-stack experiment from the parallel main-line history. It is retained for audit only and is not the current shared-cache validation: the hash-pinned shared cache and fold-visible provenance are absent in this checkout. The current fail-closed no-run card is authoritative for the present H86N queue.</p>
+<h2>What this is</h2>
+<p>An earthquake-lineation anisotropy test: structure-tensor coherence of the seismicity fields
+(training_features bands 10 <code>deq_n100a15</code> and 16 <code>ieq_n100a15</code>) gated by seismicity density,
+emitted as spaced dots &gt;300 m from mapped faults. The idea — unmapped active faults host line-like
+microseismicity while geothermal induced clusters are radial — was preregistered before scoring and
+was falsified as a ranking improvement by its own isotropic-density control on the spatially blocked
+holdout. Negative results are deliverables: do not re-run this unchanged; a hybrid (anisotropy as a
+gate on a proven surface) would need a fresh preregistration. Method and ranked alternatives:
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86N_EQA_PREREGISTRATION.md">preregistration</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/SESSION_20261025_92F9E0E8_REVIEW.md">session review</a>.</p>
+<h2>Honest limits</h2>
+<ul>
+<li><code>safe_to_submit = false</code>, <code>approved_for_weekly_slot = false</code>, <code>submission_slots_used = 0</code>.</li>
+<li>No organizer-confirmed score exists for this or any file on this site; 0.2778 / 0.4413 / 0.3195 remain owner-reported.</li>
+</ul>
+</section>
+</main></body></html>
