@@ -115,6 +115,14 @@
     "software_review_passed": true,
     "strict_native_command_exit_code": 1,
     "training_readiness_established": false,
-    "scope": "Full suite collected before final symlink-cycle regression; focused 32-test supplement covers that fix. Neither is scientific validation."
+    "scope": "Full suite collected before final symlink-cycle regression; focused 32-test supplement covers that fix. Neither is scientific validation.",
+    "post_readme_merge_full_suite": {
+      "passed": 976,
+      "skipped": 24,
+      "subtests_passed": 58,
+      "source_revision": "e2528a03f907efe6780ca83e8993141b8d789892",
+      "stdout_sha256": "1fe25634c5916ece179f9bfdacf1cd107a97c0b28a43c5b976469ac952dd951e"
+    },
+    "latest_main_integration": "Preserved concurrent PRs #140/#142 including the separate negative H86K release. Release audit, generated-site check, links and 32 focused tests passed again after integration; no new model run by this session."
   }
 }

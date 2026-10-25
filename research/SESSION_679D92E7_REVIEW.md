@@ -102,3 +102,7 @@ Next steps, in order:
 - Assign exactly one lane and freeze feature definitions, controls, buffer, whole-segment split, emission budget and paired spatial CI. Test feature-alone canaries before trusting results. Compare only identical holdout instruments and establish a common-split best.
 - Restore and validate the complete applicable registry; resolve incompatible inputs explicitly, then run pre-placement surface and final-dot checks. Stop/log any duplicate before serialization.
 - Only after every gate passes, use the existing shared writer, re-read the actual TIFF/ZIP, verify finite `[0,1]` values and exact template metadata, and expose a clearly authorized download. Keep weekly-slot selection separate and bounded by a real organizer receipt/quota. No score or quota can be invented by automation.
+
+### Concurrent-main integration recheck
+
+Preserved PR #139's independent README review and resolved the README-only conflict without deleting either review. The subsequent complete suite on `e2528a0` passed **976 tests**, with **24 skipped** and **58 subtests passed**. Then preserved concurrent PRs **#140/#142**, including the separate negative H86K release outside `docs/` (not generated or selected by this session). After that integration, the release audit still measured **28/28** published research artifacts, and the generated-site check, link check and **32 focused tests** passed again. These are software/integrity measurements only. GitHub-hosted checks were queued at the time of this local recheck; their status is not represented as a pass.
