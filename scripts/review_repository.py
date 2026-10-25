@@ -26,6 +26,7 @@ def plan(python: str) -> list[tuple[str, list[str]]]:
         ("pass3-generated-site", [python, "scripts/build_site.py", "--check"]),
         ("pass3-site-links", [python, "scripts/check_site.py"]),
         ("pass3-downloads", [python, "scripts/audit_downloads.py"]),
+        ("pass3-live-inputs", [python, "scripts/audit_workspace_inputs.py"]),
     ]
 
 
@@ -53,13 +54,16 @@ def review(root: Path = ROOT, timeout: int = 600) -> dict:
     checks = [run_check(name, command, root, timeout) for name, command in plan(sys.executable)]
     evidence = {}
     for relative in ("PROMPT.md", "AGENTS.md", "research/REQUEST_20261025.md",
-                     "docs/evidence/release-readiness.json"):
+                     "docs/evidence/release-readiness.json", "data/prepared_manifest.json",
+                     "registry/feature_receipt.json"):
         path = root / relative
         evidence[relative] = hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
     return dict(schema="gems86.three-pass-review.v1",
                 measured_utc=datetime.now(timezone.utc).isoformat(),
                 checks=checks, software_review_passed=all(c["status"] == "PASS" for c in checks),
                 evidence_sha256=evidence,
+                training_readiness_established=False,
+                readiness_scope="Software checks and live input inspection only; neither can authorize training or submission.",
                 hypothesis="No lane assigned; repository verification only",
                 mechanism="No candidate constructed", named_non_fault_process="Not tested",
                 holdout_dti=dict(evidence_class="HOLDOUT-DTI", status="NOT_RUN",

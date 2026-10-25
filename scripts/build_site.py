@@ -42,7 +42,7 @@ def page(title: str, active: str, body: str) -> str:
 <header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a>{navigation}</nav></header>
 <main id="main">{body}</main>
 <footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
-<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}">Source code</a> ·
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}/blob/main/research/SESSION_679D92E7_REVIEW.md">Live-input review &amp; next steps</a> · <a href="{REPO}">Source code</a> ·
 <a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>
 '''
 
@@ -714,7 +714,7 @@ def current_review_notice(data: dict, inputs: dict, concurrent: dict) -> str:
 <p><strong>REGISTRY-INPUT-MEASUREMENT:</strong> {inputs['byte_verified_rasters']} / {inputs['indexed_rasters_expected']} indexed files hash-verified; {inputs['grid_compatible_rasters']} have compatible grids and {inputs['grid_incompatible_or_invalid_rasters']} do not. The horse-ensemble has a shifted transform; the Qfaults prior has three bands. Neither was dropped or repaired. This is byte/metadata coverage, not a candidate uniqueness pass.</p>
 <p><strong>REGISTRY-MEASUREMENT (two inherited final-dot directions only):</strong> the concurrent GZZD/PCC audit gap is now closed:</p><ul>{''.join(pairs)}</ul>
 <p>These pair checks fire neither rank nor overlap threshold against each other, but cannot clear the full registry or reconstruct pre-placement evidence. All files remain <strong>DO NOT SUBMIT</strong>. No historical HOLDOUT-DTI was rerun or upgraded.</p>
-<p><strong>Follow-up code and research review (2026-10-25):</strong> no new TIFF, experiment, or slot was produced. The request still lacks an assigned method paragraph and the shared cache remains absent. This review found that H86G-CSPA and H86G-MPC are no longer untried (their later H86J-CSGD and H86J-MPC lanes ran); the current four-item shortlist excludes them and the earlier variogram submission. It also adds the missing early preflight to historical H86K and fixes the audit's stale timestamp. The top proposal remains unvalidated and no file is authorized.</p>
+<p><strong>Follow-up code and research review (2026-10-25):</strong> this follow-up produced no TIFF, experiment, or slot. Main concurrently merged PR #145 (GDSC) and PR #147 (H86K-PSC); both research TIFFs remain <strong>DO NOT SUBMIT</strong> under the literal witness stop. The request still lacks an assigned method paragraph and the shared cache remains absent. H86G-CSPA/MPC and H86K-PSC are no longer untried; GDSC is an executed lane with a missing 95% CI. The current three-item queue excludes these and the earlier variogram submission. This review also adds the missing early preflight to historical H86K, fixes the audit's stale timestamp, and narrows the H33 causal claim. No file is authorized.</p>
 <p><a href="evidence/session-20261025-followup-run-card.json">Latest follow-up run card</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Current untried proposal register</a> · <a href="evidence/session-cf73474c-run-card.json">Previous review’s negative run card</a> · <a href="evidence/session-cf73474c-data.json">Data/cache receipt</a> · <a href="evidence/registry-input-grid-review-20261025.json">All registry input rows</a> · <a href="evidence/concurrent-artifact-review-20261025.json">Pair and H33 pixel audit</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier proposal queue</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_CF73474C_REVIEW.md">Earlier three-pass review</a></p></section>'''
 
 
@@ -732,9 +732,9 @@ def new_hypothesis_queue(plan: dict) -> str:
         f'<li><code>{e(item["method"])}</code>: {e(item["disposition"])}</li>'
         for item in plan["excluded_as_already_tried"]
     )
-    return f'''<section id="new-hypotheses"><h2>2026-10-25 follow-up: four unrun native-band hypotheses</h2>
+    return f'''<section id="new-hypotheses"><h2>2026-10-25 follow-up: three unrun native-band hypotheses</h2>
 <p>{e(plan['ranking_basis'])}</p><p>{e(plan['scope_note'])}</p>
-<p><strong>Not an experiment or lane assignment:</strong> all four proposals remain unrun under the protocol stop. They use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
+<p><strong>Not an experiment or lane assignment:</strong> all three proposals remain unrun under the protocol stop. They use existing native band definitions and require no new external product, but the actual shared cached feature stack is absent; raw TIFF bands are not a substitute. No holdout value or score projection is available.</p>
 <h3>Previously attempted methods excluded from the untried queue</h3><ul>{excluded}</ul>{''.join(rows)}
 <p><a href="{REPO}/blob/main/registry/followup_hypotheses_20261025.json">Full follow-up proposal register and blockers</a> · <a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Archived earlier queue (not current status)</a> · <a href="{REPO}/blob/main/research/ARENA_REPO_REVIEW_20261025_FOLLOWUP.md">Three-pass follow-up review</a> · <a href="evidence/session-cf73474c-data.json">Native-data/shared-cache limits</a></p></section>'''
 
