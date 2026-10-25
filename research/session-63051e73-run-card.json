@@ -2,7 +2,7 @@
   "schema": "gems86.session-review.v1",
   "date_utc": "2026-10-25",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
-  "hypothesis": "BMR forward basement gravity residual proposed; not run: missing shared cache and no assigned lane.",
+  "hypothesis": "No new experiment. Initial BMR/CNT proposals were executed by concurrent PR #157 and are now negative archives, not untried.",
   "mechanism": "Future fold-safe forward gravity subtraction; this session only audited inherited bytes.",
   "named_non_fault_process": "Sediment-density heterogeneity and basement inversion error (untested).",
   "holdout_dti": {
@@ -217,7 +217,7 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-25T17:21:53.565294+00:00",
+  "registry_measured_utc": "2026-10-25T17:35:37.113215+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
   "release_report_sha256": "ef6bbed54a72992314222b6fa0d42a3bccd10b44df588a96108f0d919e4e4871",
   "registry_measurement_sha256": "c265e47bc7405d3e3122662e5e078bce1e05f8b90370d42e69396883018a159b",
@@ -238,8 +238,12 @@
       "passed": 39,
       "failed": 0
     },
-    "final_integrated_suite": "Stopped for main PR #155 integration; not counted as passed.",
-    "final_merged_suite": "RUNNING"
+    "final_integrated_suite": "Stopped for upstream integration, not counted as passed.",
+    "final_merged_suite": {
+      "passed": 1022,
+      "skipped": 24,
+      "scope": "Upstream merge began during last tests: not an immutable-final-tree full-suite claim."
+    }
   },
   "verification": {
     "audit_release": true,
@@ -250,5 +254,5 @@
     "git_diff_check": true
   },
   "reconciliation": "Reused PR #156 shared archive schema and snapshot. No private evaluator or duplicate inventory implementation.",
-  "audit_measurement_scope": "Final integrated audit: 33 inherited files after PR #158; one pinned witness sufficient to reject, never registry completeness."
+  "audit_measurement_scope": "35 inherited TIFFs after PR #157; pinned witness sufficient to reject, never a complete uniqueness scan."
 }

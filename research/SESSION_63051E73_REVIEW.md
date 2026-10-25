@@ -69,3 +69,9 @@ Main changed again before merging this PR: PR #158 added H86M-DAMAGERING, one ne
 ### Third upstream integration — PR #155
 
 Integrated the concurrently merged VFGR no-file negative lane and retained its generated homepage/executive warning and tests. Combined its banner with the H86L-FMC audit anchor; retained the complete 33-file release mapping and witness audit instead of regressing to an older mapping. The full-suite attempt after PR #158 was stopped for this reconciliation rather than reported as passed. The final merged full-suite result is recorded in the run card.
+
+### Fourth upstream integration — PR #157
+
+PR #157 executed BMR and CNT while this review was in progress. They are now **already tried**, superseding rows 1 and 3 of the original proposal table above; do not rerun them unchanged or advertise that table as a current untried queue. The cards record negative results; neither is promoted. Integrated both TIFFs, preserved the stronger existing H86L leakage schema, retained the special unvalidated DAMAGERING treatment, and refreshed the witness and format audit for **35** files. Narrowed the imported banner from global uniqueness/upload wording to scoped local evidence and audit-only use.
+
+The preceding full test run completed with **1022 passed, 24 skipped**, but the final upstream merge started during its last tests, so this is **not** advertised as an immutable-final-tree full-suite pass. The earlier immutable reconciled full suite remains 1015 passed/24 skipped; final focused verification is reported separately in the card. No geological experiment was run by this session.

@@ -8,6 +8,7 @@
 - Restored the hash-pinned historical witness and remeasured every final TIFF against it. Each fails the literal overlap gate; the witness is not official training data or a candidate.
 - H86L-FMC's archived holdout stays **leakage-suspect, not promotion evidence**. Passing a single-feature canary cannot undo full-catalogue fleet ancestry.
 - PR #158 subsequently added an unevaluated H86M catalogue-ring TIFF. Repaired its missing card mapping, remeasured all 33 files, and explicitly rejected its archived “leakage structurally impossible” claim. No holdout is inferred.
+- PR #157 subsequently added BMR and CNT negative experiments. These are now **already tried**, not new proposals. All 35 inherited outputs remain DO NOT SUBMIT; this session changed no TIFF pixels.
 - Earlier verification before PR #158: reconciled suite **1015 passed, 24 skipped**; final H86L regression module **13 passed**. Release, download, generated-site and frozen-review checks pass.
 - [Current review, ranked research queue and limitations](research/SESSION_63051E73_REVIEW.md) · [Live inputs](research/session-63051e73-inputs.json) · [Run card](research/session-63051e73-run-card.json).
 - Read [the standing request](PROMPT.md) and [the archived full owner prompt](research/REQUEST_20261025.md) at the start of each session. Preserve the Core Values: maximize the probability of a valid result and own the audit/repair outcome; never substitute an invented score or cosmetic file uniqueness.
