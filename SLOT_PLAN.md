@@ -1,6 +1,15 @@
-# SLOT PLAN — 2026-10-24 (rev. I: 92-site fleet sync + PR #60 SPT revocation, `DO NOT SUBMIT` active)
+# SLOT PLAN — 2026-10-25 (rev. J: 92-site fleet sync + `H86I-KSAD` strict-LOQO record & pre-TIFF overlap stop, `DO NOT SUBMIT` active)
 
-> **2026-10-24 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`) and `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`), **zero files in this repository are currently authorized for portal upload**, and PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate has been revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
+> **2026-10-25 Binding Safety Notice:** Under `scripts/protocol_preflight.py` (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`), `scripts/audit_release.py` (`decision: "DO NOT SUBMIT"`, `safe_to_submit: false`), and `docs/evidence/h86i-ksad-run-card.json` (`verdict: "negative"`, halted pre-TIFF on `71.31%` discrete forward 3-px overlap vs `GEMSDOE80` 36,500-dot KKT-Lagrangian raster and `70.19%` vs `GEMSDOE43` 40,000-dot sep-4.0 rasters), **zero files in this repository are currently authorized for portal upload** (`submission_slots_used = 0`).
+>
+> **2026-10-25 `H86I-KSAD` Strict-LOQO Holdout Benchmark (`gems57-pooled-hide-v2`, `11,321` withheld positives, 20 km block bootstrap, `quad != q` eroded 12 px):**
+> - `E2_ksad_pointwise_d28_ablation` (`37,654`d, `2.8 px`): **`0.1599 [0.1459, 0.1742]`** `HOLDOUT-DTI` (repo strict-LOQO record)
+> - `E1_ksad_dinkelbach_submod` (`28,197`d final, Dinkelbach submodular $K_3$): **`0.1553 [0.1396, 0.1718]`** `HOLDOUT-DTI` (paired `E1 - E2 = -0.0046 [-0.0100, +0.0010]`)
+> - `C1_H86F_EWCS_strict_loqo_ctrl` (`H86F-EWCS` re-evaluated under strict outer LOQO; see `IR-86-H86F-INQUAD-TRAINING-20261025`): **`0.1333 [0.1178, 0.1502]`** `HOLDOUT-DTI` (`E1 - C1 = +0.0220 [+0.0038, +0.0405]`)
+> - `H86C-KSLB` historical strict-LOQO best (`44,090`d): **`0.1241 [0.1080, 0.1403]`** `HOLDOUT-DTI`
+> - `E3_ksad_cover_blind_no_catalogue` (zero-catalogue, no 100 m DEM): **`0.0624 [0.0498, 0.0762]`** `HOLDOUT-DTI`
+>
+> PR #60's unregistered `submission/gems86-spt-throwcons-...` candidate remains revoked (`IR-86-SPT-02`). Historical R0-axis notes below remain archived selector context only (`submission_slots_used = 0`).
 
 **No automatic submission.** One entity, ≤ 3 scored submissions per rolling week, 1 blind final pick
 ([official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)). Deadline 2026-12-03 (`UNVERIFIED`

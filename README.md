@@ -8,7 +8,22 @@ Focused follow-on review in this session (2026-10-25; no new lane or TIFF select
 
 Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear either later H86F file.
 
-## Current independent review — 2026-10-25 (session `cf73474c`)
+## Current independent scientific run & review — 2026-10-25 (session `53d26a87`, lane `H86I-KSAD`)
+
+[Open live GitHub Pages executive summary & audit gate](https://buffedlizard55-lab.github.io/GEMSDOE86/executive-summary.html) · [JSON Run Card](docs/evidence/h86i-ksad-run-card.json) · [PhD forensic review (`GEMSDOE32` `0.2778`, 92-site fleet, 4 `H86I` hypotheses, strict-LOQO benchmarks)](research/SESSION_20261025_53D26A87_KSAD_REVIEW.md).
+
+**OBVIOUS SUBMISSION STATUS: `DO NOT SUBMIT` (`verdict: "negative"`, `safe_to_submit: false`, `approved_for_weekly_slot: false`, `0` weekly slots used, `0` new `.tif` written to `docs/downloads/`).** All `18` existing files in `docs/downloads/` remain audit-only (`DO NOT SUBMIT`).
+
+- **PhD forensic analysis of `GEMSDOE32` (`h33-h33-2-b2`: `0.2778` `OWNER-REPORTED`) & 92-site fleet (`docs/evidence/fleet-feed.json`, `92/92` snapshotted):** `GEMSDOE32` deleted `2,545` near-collar (`1 < d_cat <= 2 px`) dots from `GEMSDOE28` (`40,199 -> 37,654` dots), raising fractional DTI iff removed dots carry mean kernel credit below $0.2\,\text{DTI}_0/(0.2 + \text{DTI}_0\cdot 0.0\text{ marginal truth})$ (verified against over-pruning counterexample `GEMSDOE77 = 0.0964`). Reconciled conflicting headline prompt claims (`0.3195` on `GEMSDOE79`/`GEMSDOE81` vs `0.4413` on `GEMSDOE73`) and `GEMSDOE89` (`0.0301`) / `GEMSDOE90` (`0.0749`) strictly as `OWNER-REPORTED` (`0` organizer receipts).
+- **Four ranked geological hypotheses frozen before implementation (`registry/h86i_ksad_hypotheses.json`, [preregistration](research/H86I_KSAD_PREREGISTRATION.md)):** Rank 1 `H86I-KSAD` (kinematic spin-2 strike-projected basement step + external USGS `dem10_chi_100m_i16` $\chi$-jump + Dinkelbach submodular $K_3$ allocator, naming Pleistocene Lake Lahontan wave-cut shorelines as primary mimic), Rank 2 `H86I-DBTD`, Rank 3 `H86I-TRGD`, and Rank 4 `H86I-ISGD` (`OPERA_L3_DISP-S1_V1` InSAR explicitly marked `NOT_VIABLE_IN_SANDBOX_YET` due to sandbox host allowlist).
+- **New repository strict Leave-One-Quadrant-Out (`quad != q` eroded `1.2 km`) `HOLDOUT-DTI` record (`gems57-pooled-hide-v2`, `11,321` withheld positives, 20 km block bootstrap):**
+  - `E2_ksad_pointwise_d28_ablation` (`37,654`d, `2.8 px`): **`0.1599 [0.1459, 0.1742]`** `HOLDOUT-DTI`
+  - `E1_ksad_dinkelbach_submod` (Dinkelbach submodular $K_3$): **`0.1553 [0.1396, 0.1718]`** `HOLDOUT-DTI` (paired `E1 - E2 = -0.0046 [-0.0100, +0.0010]`)
+  - Matched strict-LOQO `H86F-EWCS` control (`C1`, audited per `IR-86-H86F-INQUAD-TRAINING-20261025`): **`0.1333 [0.1178, 0.1502]`** `HOLDOUT-DTI` (**paired `E1 - C1 = +0.0220 [+0.0038, +0.0405]`**, strictly positive 95% CI)
+  - Historical strict-LOQO best `H86C-KSLB` (`44,090`d): **`0.1241 [0.1080, 0.1403]`** `HOLDOUT-DTI`; fold-fair `GEMSDOE25` R0: **`0.0961 [0.0836, 0.1095]`**; zero-catalogue cover-blind `E3`: **`0.0624 [0.0498, 0.0762]`** (~2x prior zero-catalogue lanes). All `32/32` feature leakage canaries passed (`max AUC = 0.8074 <= 0.90`).
+- **Pre-serialization Lane-Overlap Hard Stop (Rule 1 & `AGENTS.md` Rules 10–11):** Pre-placement surface cleared all `688/690` compatible registry rasters (`worst Spearman = 0.6344 <= 0.90`, [surface report](docs/evidence/h86i-ksad-registry-surface.json)), and final in-memory dots (`28,197` unit cells) passed all array/CRS/grid validator checks (`0` NaN, values in `[0, 1]`, `0` catalogue hits). However, final-dot `v2` registry verification ([final-dots report](docs/evidence/h86i-ksad-registry-final-dots.json)) detected **3 genuinely informative discrete (`<= 40,000`-dot) forward 3-px overlaps `> 0.70`**: `GEMSDOE80` 36,500-dot KKT-Lagrangian raster (`71.31%`, chance halo `14.65%`) and `GEMSDOE43` 40,000-dot sep-4.0 rasters (`70.19%`, chance halo `18.45%`). Execution halted fail-closed prior to GeoTIFF serialization.
+
+## Earlier independent review — 2026-10-25 (session `cf73474c`)
 
 [Open all 18 audit-only TIFF downloads](https://buffedlizard55-lab.github.io/GEMSDOE86/#downloads). **None is approved for submission.**
 

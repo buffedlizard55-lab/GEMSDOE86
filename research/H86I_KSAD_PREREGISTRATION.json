@@ -1,0 +1,60 @@
+{
+  "schema": "gems86.h86i-ksad-preregistration.v1",
+  "lane": "H86I-KSAD",
+  "hypothesis_id": "H86I-1",
+  "frozen_utc": "2026-10-25T16:00:00+00:00",
+  "precedence": "Written and frozen before any H86I feature array, PU model fit, holdout DTI score, or registry surface/dot check was computed.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "planned_arms": 3
+  },
+  "holdout_instrument": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_function": "gems57.holdout.buffered_component_draw",
+    "outer_training_regime": "strict_leave_one_quadrant_out_eroded_12px_plus_nested_cross_component_elastic",
+    "seed": 20,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "domain_erode_px": 12,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 862026,
+    "block_px": 200,
+    "dot_budget_cap": 37654,
+    "dinkelbach_target_dti": 0.17,
+    "submodular_min_sep_px": 2.4,
+    "ablation_disc_spacing_px": 2.8,
+    "visible_collar_px": 2.6,
+    "canary_auc_limit": 0.9
+  },
+  "arms": [
+    {
+      "id": "E1_ksad_dinkelbach_submod",
+      "role": "primary_candidate",
+      "description": "Strict Leave-One-Quadrant-Out (quad != q eroded 12 px) + nested cross-component SAR cover-propensity PU ensemble combining 26 quadrant-invariant physical planes (Roest 3-D magnetic analytic signal, 150 m upward-continuation depth-persistence, vector-consistent Laplace g_zz, Morris-Byerlee-Kostrov azimuthal normal dilation & Riedel shear tendency, 1 m LiDAR unilateral scarp polarity, sentinel-clean 10 m fluvial k_sn & chi steps, K/Th potassic alteration residual, absolute-elevation Lake Lahontan contour-parallelism deconfounder) + 6 fold-visible anisotropic Kostrov-Pollard crack-tip/stepover/shadow planes, calibrated via Elkan (2001) Bayes subsampling prior-odds correction and decoded by Minoux-exact Dinkelbach Submodular K3-Supremum Expected-DTI Allocation (budget_cap=37,654, min_sep=2.4 px, lambda*=0.17)."
+    },
+    {
+      "id": "E2_ksad_pointwise_d28_ablation",
+      "role": "ablation_allocator_spacing",
+      "description": "Identical strict-LOQO Bayes-calibrated H86I-KSAD posterior surface as E1 decoded by standard pointwise 2.8 px greedy Poisson-disc thinning at fixed 37,654-dot budget, isolating the exact paired 20-km spatial-block HOLDOUT-DTI contribution of Dinkelbach Submodular K3-Supremum Allocation versus fleet-standard 2.8 px pointwise thinning."
+    },
+    {
+      "id": "E3_ksad_cover_blind_no_catalogue",
+      "role": "ablation_zero_catalogue_cover_blind",
+      "description": "Zero-catalogue, native-100m-DEM-blind physical control: excludes all 6 fold-visible fault-tip/stepover/shadow features and excludes native 100 m detrended elevation/slope (Bands 12, 19), testing pure out-of-quadrant geophysical + sub-pixel tectonic/fluvial signature recovery decoded by Dinkelbach Submodular K3-Supremum Allocation."
+    }
+  ],
+  "mandatory_comparators": [
+    "R0_GEMSDOE25_fold_fair (re-evaluated fold-fair on identical seed=20 split outside visible collar)",
+    "R0_D28_visible_collar (re-evaluated fold-fair on identical seed=20 split at 37,654 budget)",
+    "H86F-EWCS_strict_loqo_control (re-evaluated on identical seed=20 split under strict Leave-One-Quadrant-Out quad != q training to audit IR-86-H86F-INQUAD-TRAINING-20261025 fairly)",
+    "Historical same-split references: H86F-EWCS in-quadrant visible 0.172325 [0.152956, 0.189793] and H86C-KSLB strict-LOQO 0.124063 [0.107962, 0.140340]"
+  ],
+  "fail_closed_gates": [
+    "Single-feature leakage canary max(AUC, 1-AUC) <= 0.90 on every one of the 26 static and 6 fold-visible features before trusting any holdout score.",
+    "Pre-placement v2 SHA-bound surface registry check (scripts/check_h86e_registry.py --surface) BEFORE any full-catalogue dot placement: if rho_firings != 0 (worst Spearman > 0.90), halt immediately before placement and write no GeoTIFF.",
+    "Pre-serialization v2 SHA-bound final-dot registry check + scripts/pa86_chance_overlap.py BEFORE GeoTIFF serialization: if rho_firings != 0 or any discrete non-space-filling dot raster exceeds 0.70 forward 3-px overlap, halt immediately and write no GeoTIFF.",
+    "AGENTS.md Rules 6, 8, 10, 11: even if HOLDOUT-DTI sets a new strict-LOQO or overall repository record and informative uniqueness passes, record verdict='negative', decision='DO NOT SUBMIT', safe_to_submit=false, approved_for_weekly_slot=false, submission_slots_used=0 whenever literal 17GEMSDOE full-support witness or the 2 off-grid registry rows (688/690 compatible) cause literal/v2/PA-86-02 gates to fail closed; then lock scripts/run_h86i_ksad.py behind protocol_preflight.require_feasible()."
+  ]
+}
