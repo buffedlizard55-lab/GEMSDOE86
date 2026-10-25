@@ -13,8 +13,16 @@
 
 - [Download dashboard](docs/index.html) · [submission guide](docs/executive-summary.html) · [LT audit-only file and evidence](docs/h86m-lt.html).
 - [Three-pass review and ranked hypotheses](research/SESSION_57139348_REVIEW.md) · [negative run card](docs/evidence/session-57139348-run-card.json).
+- [Independent H33 forensic review, future hypothesis ranking, and review run card](research/SESSION_15577166_REVIEW.md) · [machine-readable review card](docs/evidence/session-15577166-run-card.json).
 - Read [the standing owner prompt](PROMPT.md) and this README before work. The requested unique, scientifically cleared new submission remains unmet; do not treat a format pass as a score guarantee.
 - Core values: Maximize P(Win) and Own the Outcome mean fixing end-to-end failures, keeping negative results, and refusing unsupported approval.
+
+## Parallel review reconciliation — session `d135ebf9`
+
+The parallel review independently found the same H86M-LT publication failures.
+Reused its shared archive fix rather than retaining a private implementation.
+[Additional three-pass review, ranked refinements and access limits](research/SESSION_D135EBF9_REVIEW.md).
+No new candidate was generated and no weekly slot used.
 
 ## Latest branch review (`arena/b90880fa-gemsdoe86`, 2026-10-25): **DO NOT SUBMIT**
 
