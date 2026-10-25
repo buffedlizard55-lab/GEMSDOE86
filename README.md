@@ -2,6 +2,8 @@
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
 
+Prior independent reviews, both still **DO NOT SUBMIT**: [three-pass audit and prioritized handoff](research/SESSION_4B49F82F_REVIEW.md) and [repository review](research/ARENA_REPO_REVIEW_20261024.md). Those reviews used no slot. They do not clear the later H86F-PCC file.
+
 ## ⛔ IS ANY FILE OK TO SUBMIT RIGHT NOW? **NO.** (automated decision, 2026-10-25)
 
 The new file is easy to download and is **not** cleared for the portal:
@@ -36,6 +38,10 @@ The new file is easy to download and is **not** cleared for the portal:
 | Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
 The H86E-MMT lane ran exactly three fixed arms within the two-hour budget. Its holdout numbers are `HOLDOUT-DTI`, not leaderboard scores; owner-reported `GEMSDOE32` `0.2778` remains an unverified claim, and no projection is made. Read the [current machine-checked site](docs/index.html), [executive submission guide](docs/executive-summary.html), [three-to-five-hypothesis preregistration](research/H86E_MMT_PREREGISTRATION.md), [three-pass H86E-MMT review](research/H86E_MMT_REVIEW_20261024.md), and [current feed/evidence](docs/evidence/release-readiness.json).
+
+## Prior repository review — 2026-10-24, before H86F-PCC: **DO NOT SUBMIT**
+
+The current review completed three passes and reran the full suite (**640 passed, 24 skipped, 42 warnings, 41 subtests**) plus release and static-site checks. A read-only integrity preflight confirms that a pinned full-support witness covers every allowed cell under the request's literal overlap definition; the complete registry is not present, so this is a negative stop, never uniqueness clearance. No new candidate was generated: the current request does not assign one method lane, the actual shared feature cache is absent, and no complete contemporary registry is restored. Existing GeoTIFFs are downloadable for audit only, not cleared for competition upload. See [the full three-pass repository review](research/ARENA_REPO_REVIEW_20261024.md) and the [current release-readiness inventory](docs/evidence/release-readiness.json).
 
 **Process irregularity:** the standalone preregistration file was added after the original H86E-MMT scaffolding/execution. It freezes the design honestly but is not contemporaneous timestamp proof; no result or threshold was changed after evaluation. Future runs now fail closed unless the machine-readable preregistration exists and matches the 3-arm/2-hour/DTI rules.
 
