@@ -183,5 +183,9 @@
     "on_catalogue_positive_pixels": 0,
     "in_footprint_positive_pixels": 37654,
     "footprint_fraction": 0.007286874781441169
-  }
+  },
+  "raster_sha256": "b15a89fa1917526c1ce32081c1802d39333dc497d0d0d1034dc962df47c691e0",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "submission_ready": false
 }

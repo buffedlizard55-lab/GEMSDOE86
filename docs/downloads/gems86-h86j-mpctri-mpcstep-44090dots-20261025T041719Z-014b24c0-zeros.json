@@ -187,5 +187,9 @@
     "catalogue_hide_floor_vs_H33": true,
     "falsifiers_amplitude_and_line": false,
     "uniqueness_local_registry": true
-  }
+  },
+  "raster_sha256": "e3035cd59620b8ee442c8ec8c0232f474d15d245411000bd8cd057739b559c3d",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "submission_ready": false
 }
