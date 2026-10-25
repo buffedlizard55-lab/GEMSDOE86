@@ -134,8 +134,31 @@ def check(root=ROOT):
                     errors.append(f'Invalid quarantined submission ZIP: {cand_zip.name}')
     for html_file in sorted((root / 'docs').glob('*.html')):
         html_text = html_file.read_text(encoding='utf-8')
+        # This checker is a negative-state publication guard, not a selector.
+        # Research PROMOTE cards with false slot approval cannot authorize a CTA.
+        text = re.sub(r"<[^>]*>", " ", html_text)
+        text = " ".join(text.split()).casefold()
+        for claim in ("is this file ok to submit? yes", "one file is ok to submit",
+                      "submit this file", "current decision: submit only",
+                      "ok to download and submit", "one selector-ready file"):
+            if claim in text:
+                errors.append(f'Unauthorized submission instruction: {html_file.name}: {claim}')
         if 'READY TO DOWNLOAD' in html_text:
             errors.append(f'Contradictory READY TO DOWNLOAD banner during negative release state: {html_file.name}')
+        if html_file == root / 'docs/index.html':
+            # A scientific PROMOTE verdict is not a selector decision. Never let
+            # the public CTA imply upload authorization while the machine card is false.
+            h86g_card = root / 'docs/evidence/h86g-edti-run-card.json'
+            if h86g_card.is_file():
+                promote = json.loads(h86g_card.read_text(encoding='utf-8'))
+                if promote.get('safe_to_submit') is False or promote.get('approved_for_weekly_slot') is False:
+                    unsafe_ctas = ('SUBMIT THIS FILE', 'DOWNLOAD → SUBMIT', 'OK TO SUBMIT? YES',
+                                   'Submit only the H86G-EDTI', 'OK to download and submit',
+                                   'One file is OK to submit')
+                    if any(text in html_text for text in unsafe_ctas):
+                        errors.append('Homepage authorizes H86G-EDTI despite false submission/slot flags')
+                    if 'NO FILE AUTHORIZED' not in html_text or 'DO NOT SUBMIT' not in html_text:
+                        errors.append('Homepage must state that no file is authorized and submissions are prohibited')
         if 'raw.githubusercontent.com' in html_text and any(ext in html_text for ext in ('.tif', '.tiff', '.zip')):
             errors.append(f'Unregistered raw.githubusercontent.com binary download bypass: {html_file.name}')
     canonical_card = root / 'docs/evidence/run-card.json'
