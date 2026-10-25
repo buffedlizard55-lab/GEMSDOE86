@@ -1,5 +1,7 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+**Current upload authorization: DO NOT SUBMIT.** H86G-EDTI is promoted for selector review only; `safe_to_submit=false` and `approved_for_weekly_slot=false`. Downloads remain available, but this session generated no new TIFF. [Latest safety review and next steps](research/SESSION_085C2B7A_REVIEW.md).
+
 Latest focused safety review: [session 4a5a945d](research/SESSION_4A5A945D_REVIEW.md). **DO NOT SUBMIT; no new TIFF.** Corrected a legacy seismicity/conductivity band mix-up and disabled its unsafe orchestration; [negative run card](research/session-4a5a945d-run-card.json).
 
 Standing prompt, read at the start of every session: [PROMPT.md](PROMPT.md). Current complete request: [research/REQUEST_20261025.md](research/REQUEST_20261025.md). The 2026-10-24 request is archived in [research/REQUEST_20261024.md](research/REQUEST_20261024.md). Scores inside that archive are user input, not organizer receipts.
@@ -916,7 +918,6 @@ Before any implementation code was written, four untried geological hypotheses (
 | Verdict / weekly slots | **`negative` — DO NOT SUBMIT; 0 slots used; no organizer receipt** |
 
 ### Concurrent 2026-10-25 lane: H86H-PSTD (Poisson-Susceptibility Tensor Dislocation & Dilatant Laplace-Gravity Hinge Concordance) — HALTED FAIL-CLOSED (`DO NOT SUBMIT`)
->>>>>>> origin/main
 
 Before any implementation code was written, four untried geological hypotheses (`H86H-1..H86H-4`) were frozen in [`research/H86H_PSTD_PREREGISTRATION.md`](research/H86H_PSTD_PREREGISTRATION.md) ([machine-readable JSON](research/H86H_PSTD_PREREGISTRATION.json)). Top candidate **`H86H-1` (`H86H-PSTD`)** ran 3 preregistered arms on the 100% SHA-verified competition grid and **halted fail-closed before full-footprint dot placement and before GeoTIFF serialization** per `AGENTS.md` Rule 11 ([run card](docs/evidence/h86h-pstd-run-card.json), [v2 bound surface report](docs/evidence/h86h-pstd-registry-surface.json), [PhD GEMSDOE32 analysis & 3-pass review](research/SESSION_20261024_H86H_PSTD_REVIEW.md)):
 

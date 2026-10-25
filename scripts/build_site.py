@@ -2,7 +2,7 @@
 """Generate the Pages dashboard from byte-checked evidence, never from prose scores.
 
 No model fitting, placement, historical-raster copying, slot selection or portal
-submission occurs here. Every download stays explicitly negative. --check is
+submission occurs here. Scientific promotion never authorizes a weekly slot. --check is
 read-only and fails on stale HTML/JSON, including stale identity/count claims.
 """
 from __future__ import annotations
@@ -142,7 +142,7 @@ def h86g_edti_answer(card: dict) -> str:
 <p><strong>Future portal procedure only — not authorization to upload this file.</strong> First resolve the literal gate and obtain a separate selector decision. No manual inspection is being substituted for validation.</p><ol class="steps"><li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official DrivenData submission page</a> → <em>New submission</em>. Check your remaining weekly quota there (this repo cannot see it).</li>
 <li><strong>File to submit:</strong> choose <code>{e(name)}.zip</code> (contains exactly this one TIFF) or the <code>.tif</code> itself. It is single-band float32, EPSG:32611, 3730×3292, values exactly 0/1 — the local range check passes on these exact bytes; this is not a guarantee of portal acceptance.</li>
 <li><strong>Note:</strong> paste the {card["note_chars"]}-character note below (copy button).</li>
-<li>Submit once, then keep the submission-page receipt (submission ID + score) — only that receipt makes any number ORGANIZER-CONFIRMED.</li></ol>
+<li><strong>STOP until a separate selector records quota and authorization for this exact SHA.</strong> Only after authorization, submit once and keep the submission-page receipt (submission ID + score) — only that receipt makes any number ORGANIZER-CONFIRMED.</li></ol>
 <ul><li><strong>SGMC-PROXY-DTI</strong> (selection instrument only; truth = pinned USGS SGMC faults &gt;3 px off catalogue, {sg["positives"]:,} px): candidate {cand["dti"]:.4f} [{cand["ci95"][0]:.4f}, {cand["ci95"][1]:.4f}] vs H33-as-is {sg["H33_as_is_dti"]:.4f}; paired delta {delta["delta"]:+.4f} [{delta["ci95"][0]:+.4f}, {delta["ci95"][1]:+.4f}] (post-selection descriptive, Amendment A4). This proxy reproduces the owner-reported live ordering across 8 scored fleet rasters; it is not a leaderboard score or projection.</li>
 <li><strong>HOLDOUT-DTI</strong> ({e(hn["evaluator_version"])}, {hn["n_truth"]:,} withheld positives, OOF visible construction): {ch["dti"]:.4f} [{ch["ci95"][0]:.4f}, {ch["ci95"][1]:.4f}], above the H33 visible-collar control floor.</li>
 <li><strong>LEAKAGE-CANARY:</strong> max discriminative AUC {leakage:.4f} across 68 features, below the 0.90 stop.</li>
@@ -748,7 +748,9 @@ def render(root: Path = ROOT) -> dict[str, str]:
     with (root / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
         ledger = list(csv.DictReader(stream))
     summary = {k: report[k] for k in ("schema", "audit_ok", "decision", "submission_ready", "safe_to_submit", "artifact_count", "locally_valid_artifacts", "new_candidate_generated", "experiments_run", "submission_slots_used")}
-    summary.update(featured_research_artifact=None, current_comparable_holdout_best=None,
+    summary.update(approved_for_weekly_slot=report["approved_for_weekly_slot"],
+                   selector_run=report["selector_run"],
+                   featured_research_artifact=None, current_comparable_holdout_best=None,
                    reason="No selector decision. Different historical holdout designs cannot be ranked by their maxima; the pre-existing PR #92 artifact remains audit-only and fails the literal witness gate.",
                    release_readiness="../evidence/release-readiness.json")
     existing_candidate = pr92_candidate(report)
@@ -852,6 +854,14 @@ def render(root: Path = ROOT) -> dict[str, str]:
             or not all(h86g_card["gates"].values())
             or sha256(h86g_tif) != h86g_card["raster_sha256"]):
         raise ValueError("H86G-EDTI card must stay promote/gates-pass/slot-free and bound to its raster")
+    summary["promoted_for_selector_review"] = dict(
+        submission_name=h86g_card["submission_name"],
+        file=h86g_card["submission_file"], raster_sha256=h86g_card["raster_sha256"],
+        historical_verdict=h86g_card["verdict"],
+        safe_to_submit=h86g_card["safe_to_submit"],
+        approved_for_weekly_slot=h86g_card["approved_for_weekly_slot"],
+        decision="DO NOT SUBMIT — separate selector authorization pending",
+        scope="Historical PA-86 like-for-like promotion only; literal witness remains blocked.")
     h86g_html = h86g_edti_answer(h86g_card)
     plan86f_path = root / "registry/h86f_hypotheses.json"
     plan86f = strict_json(plan86f_path) if plan86f_path.is_file() else None
