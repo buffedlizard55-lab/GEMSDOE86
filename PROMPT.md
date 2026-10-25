@@ -1,15 +1,31 @@
 # Standing project prompt (condensed historical archive)
 
-**Read the latest README decision and its complete 2026-10-24 request archive first.** Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used). Earlier RIDF lane: `research/H86E_RIDF_REVIEW.md` (negative + duplicate). New lanes use PA-86-01/02 (AGENTS.md rule 10).
-The 2026-10-24 request expands the named fleet to 92 projects (`GEMSDOE` through `GEMSDOE92`, adding 8 newly reported owner scores across `GEMSDOE76`..`GEMSDOE87` plus unscored artifact stems for `GEMSDOE89` and `GEMSDOE90`, with 4 bare `:` sites `GEMSDOE86`, `GEMSDOE88`, `GEMSDOE91`, `GEMSDOE92`) while retaining the exact same standing protocol. Current remeasurement:
-`docs/evidence/latest-review-run-card.json`; review: `research/SESSION_20261024_REVIEW.md`.
-The current request is archived verbatim in `research/REQUEST_20261024.md`; the 2026-10-23 request remains in `research/REQUEST_20261023.md`, and the earlier request remains in
-`research/OWNER_PROMPT.md`. Scores and access claims inside these archives are user input, not
-verified results. A pinned full-positive registry witness currently makes the literal overlap
-rule unsatisfiable for every nonempty candidate. Scientific CLIs must stop before fitting or
-placement; do not bypass that gate, relabel an old TIFF as new, smuggle unregistered binaries into `submission/`, or claim the unmet unique-TIFF
-requirement has been completed. `scripts/audit_release.py` checks all historical downloads and sidecar run cards;
-`docs/evidence/session-20261023-run-card.json` and `docs/evidence/latest-review-run-card.json` record the current negative outcome.
+**Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used).**
+**Read the latest README decision and the COMPLETE current request in
+`research/REQUEST_20261025.md` first.** This condensed historical document is not
+a replacement for that archive. Preserve `REQUEST_20261024.md`,
+`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
+
+The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
+Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
+the combined inventory now contains 18 historical audit-only TIFFs, all blocked.
+The named fleet remains 92 projects. The current request adds owner claims
+`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
+They were unscored in the 2026-10-24 archive; that historical record is not
+retroactively changed. Current release remeasurement is
+`docs/evidence/latest-review-run-card.json`.
+
+The native 19-band TIFF was restored and prepared, but this is **not** restoration
+of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
+there is no assigned method paragraph in the current request. The immutable
+full-positive witness still makes the literal overlap rule unsatisfiable for
+every nonempty candidate. Stop before fitting or placement. Do not bypass the
+gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
+or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
+CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
+model cards, download status, evaluator/writer pins and slot separation remain
+binding. Scores and access claims in request archives are user input, not
+verified evidence.
 
 ---
 

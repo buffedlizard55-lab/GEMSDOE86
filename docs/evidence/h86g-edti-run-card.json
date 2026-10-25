@@ -1619,5 +1619,10 @@
   "rows_file": "docs/evidence/h86g-edti-registry.json"
  },
  "decision_reason": "All registered gates pass (canary, SGMC-proxy paired CI vs H33 [post-selection descriptive, A4], OOF catalogue-hide floor vs H33, like-for-like uniqueness vs 43 local registry rasters, fail-closed format). Literal full-support reading vs the continuous 17GEMSDOE witness remains blocked for every nonempty candidate (PA-86-01). No slot picked here; upload is the owner's selector action within the weekly cap.",
- "field_normalization_note": "submission_ready/safe_to_submit/approved_for_weekly_slot/experiments_run/duplicate/holdout_dti_normalized added 2026-10-25 for shared audit/site schemas; no measured value changed."
+ "field_normalization_note": "submission_ready/safe_to_submit/approved_for_weekly_slot/experiments_run/duplicate/holdout_dti_normalized added 2026-10-25 for shared audit/site schemas; no measured value changed.",
+ "post_merge_concurrent_registry_addendum": {
+  "file": "docs/evidence/h86g-edti-registry-postmerge.json",
+  "summary": "H86F-EWCS (merged concurrently, negative) measured post-merge: forward 3px overlap 0.170 (<=0.70 threshold holds); H86H-PSTD published no TIFF.",
+  "gate_impact": "none \u2014 maxima in `uniqueness` unchanged"
+ }
 }

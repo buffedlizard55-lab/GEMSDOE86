@@ -25,7 +25,7 @@ from gems86_ridf import pipeline as P  # noqa: E402
 from gems86_ridf.features import feature_names  # noqa: E402
 
 BUDGET = 37_654
-D28 = ROOT / "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif"
+D28 = ROOT / "data/registry_ext/91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8.tif"
 
 
 def main():

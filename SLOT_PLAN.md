@@ -144,3 +144,17 @@ measured; PA-86-02 failed closed). **No selector ran and no weekly slot was cons
 formally exclude the two grid-incompatible registry rows upstream
 (IR-86-H86F-GZZD-01), obtain receipt-backed organizer scores for the h33 lineage, and
 present a candidate that beats same-split best HOLDOUT-DTI with a separated CI.
+
+## 2026-10-25 — H86F-EWCS lane: HOLDOUT-DTI 0.1723 (beats same-split KSLB & controls with separated 95% CIs), 0 slots used, DO NOT SUBMIT pending registry blocker resolution
+
+The H86F-EWCS lane (`docs/evidence/h86f-ewcs-run-card.json`) generated a byte- and
+pixel-unique, locally format-valid 37,654-dot GeoTIFF (`gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif`,
+SHA-256 `8322dcf157851e07...`) that **solved the scientific holdout hurdle** — achieving
+`HOLDOUT-DTI = 0.1723` (`95% CI [0.1530, 0.1898]`) on `gems57-pooled-hide-v2` (`11,321`
+withheld positives), beating its isotropic-tip control `E3` (`0.1592`, paired Δ `+0.0131
+[+0.0012, +0.0261]`), cover-blind control `E2` (`0.1003`), fold-fair `GEMSDOE25` `R0`
+(`0.0961`), and same-split `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`) with separated 95% CIs,
+with `0/687` Spearman `rho > 0.90` firings and `0` discrete `<= 50k`-dot overlap firings
+(`26.96%` vs `GEMSDOE32`). **However, no selector ran and 0 weekly slots were used (`DO NOT SUBMIT`)**
+because `14GEMSDOE` and `7GEMSDOE` remain grid-incompatible in the pinned registry index
+and literal `17GEMSDOE` saturation blocks automated clearance (`IR-86-H86F-EWCS-01`).

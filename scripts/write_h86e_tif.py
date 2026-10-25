@@ -11,6 +11,7 @@ OUT = ROOT / 'releases/h86e-NEGATIVE-DO-NOT-SUBMIT' / f'{NAME}.tif'
 def main():
     # Historical negative artifacts are archived, not permission to regenerate a
     # duplicate. The owner's literal stop still governs any fresh serialization.
+    sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_feasible
     require_feasible()
     g = grid.load_grid(ROOT / 'data')

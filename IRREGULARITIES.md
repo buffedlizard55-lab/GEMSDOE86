@@ -1072,7 +1072,65 @@ competition rasters (`training_features.tif` `4371c82e...`, `existing_faults.tif
 generating the complete 19-band `data/prepared_manifest.json` (`has_features: true`, `58,171`
 total sentinel band-pixels across `3,073` unique perimeter/TC cells).
 
+## IR-86-INVENTORY-OFFGRID-ROWS-20261025 — 2026-10-24/25 (`H86H-PSTD` strict Rule-11 stop before placement)
 
+Even after restoring and SHA-256-verifying all `655 / 655` blobs in `research/upstream/registry_inventory.json`
+(`728,345,463` bytes; `689` unique indexed rasters including the 17 prior local artifacts, `0` missing), two historical
+inventory entries fail `vendor/gems57/uniqueness.py::compare_array_to_registry` grid/CRS checks:
+- `14GEMSDOE:docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif` (`ccbe1de0...`: `registry CRS/transform differs from reference`)
+- `7GEMSDOE:external/qfaults/qfaults_prior_u8.tif` (`538b4573...`: `registry grid or band-count mismatch`)
+
+Unlike lanes that serialized audit-only GeoTIFFs despite failing `surface_gate_pass` / `literal_gate_pass`,
+the contemporaneously preregistered `H86H-PSTD` lane (`scripts/run_h86h_pstd.py`, `docs/evidence/h86h-pstd-run-card.json`)
+strictly obeys `AGENTS.md` Rule 11: it checks its continuous surface (`rho_firings = 0`,
+`worst_spearman_full_footprint <= 0.90` across all `687` valid competition-grid rasters including `H86F-GZZD` and `H86F-PCC`)
+and **halts fail-closed before full-footprint dot placement and before GeoTIFF serialization** (`final_dots_placed = False`,
+`candidate_tif_serialized = False`). Also added `holdout_binary_control` (`GEMSDOE25` `91eae1ca42ec...`, `d_vis > 2.0 px`,
+`HOLDOUT-DTI = 0.096086`) to `scripts/run_h86e_mmt.py` and gated `write_h86e_tif`.
+
+## IR-86-H86F-EWCS-01 (2026-10-25) — H86F-EWCS sets repo same-split HOLDOUT-DTI record (`0.1723`), yet fails closed to DO NOT SUBMIT on registry completeness and literal saturation
+
+`scripts/run_h86f_ewcs.py` executed the frozen 3-arm preregistered `H86F-EWCS` lane
+(`research/H86F_EWCS_PREREGISTRATION.json`, `registry/h86f_hypotheses.json`) within
+the `<= 3` experiment / `<= 2` hour budget using SHA-pinned competition inputs and
+unmodified `vendor/gems57` tools. On `gems57-pooled-hide-v2` (`seed=20`, `hide_frac=0.20`,
+`buffer_px=3`, `11,321` withheld positives, `1,000` bootstrap draws over `20 km` blocks),
+`E1_ewcs_coupled_pu` (`37,654` dots, `2.8 px` Poisson-disc spacing) achieved
+**`HOLDOUT-DTI = 0.172325` (`95% CI [0.152956, 0.189793]`)**, outperforming its
+isotropic-tip mechanism control `E3_ewcs_isotropic_tip_ablation` (`0.159234`, paired
+delta **`+0.013091` `95% CI [+0.001163, +0.026066]`**), cover-blind subsurface control
+`E2_ewcs_cover_blind_pu` (`0.100261`, paired delta `+0.072063`), `R0_D28_visible_collar`
+(`0.027299`), fold-fair `GEMSDOE25` `R0` (`0.096086 [0.082975, 0.108898]`), and prior
+repo same-split best `H86C-KSLB` (`0.124063 [0.107970, 0.140330]` at `44,090` dots) with
+separated 95% CIs (`23` leakage canaries max discriminative AUC `0.7949 <= 0.90`).
+Both `v2` SHA-bound registry scans (`687 / 689` measured, explicitly including the
+newly merged `H86F-PCC` and `H86F-GZZD` TIFFs) recorded `0` Spearman `rho > 0.90`
+firings (`worst_spearman = 0.7508`) and `0` discrete `<= 50,000`-dot overlap firings
+(`26.96%` vs `GEMSDOE32` `h33-h33-2-b2`, `37.57%` vs `H86C-KSLB`, `9.46%` vs `H86F-PCC`,
+`9.90%` vs `H86F-GZZD`). However, the same `2` grid/CRS-incompatible historical rows
+(`14GEMSDOE`, `7GEMSDOE`), `39` space-filling `>= 56,605`-dot firings, and literal
+`17GEMSDOE` full-support saturation caused `surface_gate_pass`, `final_dots_gate_pass`,
+`literal_gate_pass`, and `pa86_02` to fail closed.
+**Decision:** The format-valid GeoTIFF (`docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif`,
+SHA-256 `8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d`) is registered
+for audit download only (`status = "DO NOT SUBMIT"`, `verdict = "negative"`, `0` slots
+used) and emerges as the lead technical candidate once a human selector resolves the
+upstream registry blockers.
+
+## IR-86-H86F-PCC-PREFLIGHT-20261025 — `scripts/run_h86f_pcc.py` lacked `require_feasible()` and `docs/evidence/h86e-mmt-registry-surface.json` carried `surface_gate_pass: true` despite 2 errors
+
+Pass-2/3 audit after merging PRs #97–#102 found that `scripts/run_h86f_pcc.py` (merged in
+PR #97 concurrently with PR #98's builder-gating sweep) did not call
+`protocol_preflight.require_feasible()` at the start of `main()` and was absent from
+`tests/test_builder_preflight.py::BUILDERS`, while archived
+`docs/evidence/h86e-mmt-registry-surface.json` still carried `"surface_gate_pass": true`
+despite `2` grid/CRS errors (`14GEMSDOE` and `7GEMSDOE`), contradicting
+`docs/evidence/h86e-mmt-run-card.json` (`false`) and `AGENTS.md` Rule 11.
+**Decision:** Both `scripts/run_h86f_pcc.py` and `scripts/run_h86f_ewcs.py` now call
+`protocol_preflight.require_feasible()` before any work and are pinned in
+`tests/test_builder_preflight.py::BUILDERS` (now **54 CLI builders + 8 imported
+orchestrators**), and `docs/evidence/h86e-mmt-registry-surface.json` now records
+`"surface_gate_pass": false` with an explicit archive note.
 ## IR-86-H86G-INSTRUMENT-20261025 — Catalogue-hide holdout anti-correlates with live ordering; OOF-vs-shipped conflation
 
 E1b (this session) scored shipped rasters as-is on the seed-20 buffered

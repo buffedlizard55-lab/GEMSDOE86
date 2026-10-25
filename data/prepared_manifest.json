@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "prepared_utc": "2026-10-25T00:43:53+00:00",
+  "prepared_utc": "2026-10-25T02:15:46+00:00",
   "grid": {
     "epsg": 32611,
     "height": 3730,
@@ -29,15 +29,70 @@
     "unique_footprint_pixels_with_any_sentinel": 3073
   },
   "source_paths": {
-    "sample_submission": ".cache/bridge/sample_submission.tif",
-    "existing_faults": ".cache/bridge/existing_faults.tif",
-    "training_features": ".cache/bridge/training_features.tif"
+    "sample_submission": "data/sample_submission.tif",
+    "existing_faults": "data/existing_faults.tif",
+    "training_features": "data/training_features.tif"
   },
   "source_hashes": {
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
     "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
   },
+  "input_grid_checks": {
+    "sample_submission": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 1,
+      "crs_shape_transform_match": true
+    },
+    "existing_faults": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 1,
+      "crs_shape_transform_match": true
+    },
+    "training_features": {
+      "epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bands": 19,
+      "crs_shape_transform_match": true
+    }
+  },
+  "shared_template_feature_stack": false,
+  "preparation_scope": "Hash-verified native bands only, not the shared cached feature stack or submission authorization.",
   "pins_verified": {
     "sample_submission": true,
     "existing_faults": true,
@@ -253,5 +308,119 @@
       "p95": 25.336517333984375,
       "max": 62.64591598510742
     }
-  ]
+  ],
+  "prepared_arrays": [
+    {
+      "file": ".cache/gems_work/bands/01_mag_anom.npy",
+      "sha256": "6a023e7b67ce37dd555cdfd809acb7de8f1051f5c3372bcc5367080d199c894c",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/02_rtp.npy",
+      "sha256": "9ff3809b83ca83bc5a7fe45e4859703b1f1c152970b142b340b7bb8f4918edd3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/03_tmi_hg.npy",
+      "sha256": "d897a433f887cbb1c01c46b46c5ec8250062ba25cce801a7ce33afb138216f10",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/04_geod_2ndinv.npy",
+      "sha256": "eee2e47e3649fa58ccf14d62610e07a82b90a298ff1a3837a08ab42a5397cc28",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/05_iso_grav_anom_slope.npy",
+      "sha256": "378e6a217109c207584df698c265340ac23aafad4586fcaa754daec0faa3f050",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/06_tc.npy",
+      "sha256": "cb972e81a4345f84c9d99b74e166503d9753e66dc5c584c9f20dd021a7416dda",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/07_geod_shearrate.npy",
+      "sha256": "7b56e0571da4460566ca7819d040e4e9fe4b6827fc672157478beea4185e11d1",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/08_geod_dilaterate.npy",
+      "sha256": "3162ac9ce138b948ebbb17dd9f161c23519bcdf3cf374a20791551aaa21f24e3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/09_tmi_vg.npy",
+      "sha256": "62e8abca6d8ce3d4cbf847aacdcf46a9df01bc441bd454e96971900190b2f25b",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/10_deq_n100a15.npy",
+      "sha256": "82bfb707064d7bab4f7a5827724484756286738fea11d9a4300ff018483df743",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/11_iso_grav_anom_vg.npy",
+      "sha256": "8d804a9d5f23d6a1d5219eccf07af51d83b0f52623482e568c7d062e8f7272c3",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/12_det_elev.npy",
+      "sha256": "df112b7feebed7f5924a9f9bd2ee66422225f776079a3fa74bdd79b816830c75",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/13_iso_grav_anom.npy",
+      "sha256": "9a1f600a9096148a34258b5165f8c179890d23668e3620d227cc5baab1839811",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/14_tmi.npy",
+      "sha256": "8f2cabc32745b7fceff83b3f96caef1d395cff0dec04be5a2e4952363241166e",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/15_depth_to_base_surf.npy",
+      "sha256": "81284c6255784b257f853a6c0ae3e27d5d5c0d3085de3bf8901e29916ea16b1b",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/16_ieq_n100a15.npy",
+      "sha256": "419e51d65c99ca0697a9a0abfd5356ea8e4301c64edfb3ce354d03e3fe196640",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/17_cond_surf.npy",
+      "sha256": "d30c43c106dcfe2245020bcd8bba52f320288718572c603eb173c8857c987803",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/18_iso_grav_anom_hg.npy",
+      "sha256": "0ccf700b456340fffbb97357b872f772d0b0393d7c5b11683956a4fccdc99e94",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/19_det_elev_slope.npy",
+      "sha256": "df23d987bd55514ce63cee57ec3e00b2d49eb5e385c4c83875a3ebd7f9ba4c57",
+      "bytes": 49116768
+    },
+    {
+      "file": ".cache/gems_work/bands/_footprint.npy",
+      "sha256": "c446094771775c00802862e9ec58846fd1b278b4e608303e68811a2404dfd246",
+      "bytes": 12279288
+    },
+    {
+      "file": ".cache/gems_work/bands/_labels.npy",
+      "sha256": "d77fa88ad58d0a268b736b3c1d6a8939fd237d5955369944bd2b299194b2555d",
+      "bytes": 12279288
+    }
+  ],
+  "publication": {
+    "complete_array_set_staged": true,
+    "rollback_on_exception": true,
+    "local_preparers_serialized": true,
+    "crash_atomic_across_cache_and_manifest": false,
+    "scope": "Native bands only; not the actual shared template cached feature stack"
+  }
 }

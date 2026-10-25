@@ -1,5 +1,5 @@
 {
-  "scope": "All 17 locally format-valid research artifacts are audit-only and DO NOT SUBMIT: 15 inherited lanes plus the two concurrent 2026-10-25 negative lanes H86F-PCC and H86F-GZZD. Neither new lane was measured against the other's candidate (parallel execution); both are HOLDOUT-DTI-negative and registry-failing on their own run cards. No selector ran; 0 slots used.",
+  "scope": "All 18 locally format-valid research artifacts are audit-only and DO NOT SUBMIT: 15 inherited lanes plus the two 2026-10-25 negative lanes (H86F-PCC, H86F-GZZD) and the 2026-10-25 H86F-EWCS lane (which set a same-split HOLDOUT-DTI record 0.1723 with 0/687 Spearman rho > 0.90 firings and 0 discrete <=50k-dot firings, measured against both H86F-PCC and H86F-GZZD, yet failed closed on registry completeness/literal saturation). No selector ran; 0 slots used.",
   "artifacts": [
     {
       "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
@@ -100,6 +100,12 @@
     {
       "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
       "sha256": "b86a5b2f46ea1091db3cd5051980445832e20fd2670ea2d371de1f1c6e03c993",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
+      "sha256": "8322dcf157851e07dfdd4391ed5164916479e4dce17af2d0e14afab5592a697d",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
     },

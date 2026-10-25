@@ -1,5 +1,6 @@
 """Preserve the request while keeping its unverified scores out of measured evidence."""
 import csv
+import hashlib
 from pathlib import Path
 import re
 
@@ -10,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
+    current25 = readme.split("<!-- CURRENT_REQUEST_20261025_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_END -->", 1)[0]
+    assert current25.strip() == (ROOT / "research/REQUEST_20261025.md").read_text().strip()
     current24 = readme.split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261024_END -->", 1)[0]
     current23 = readme.split("<!-- CURRENT_REQUEST_20261023_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261023_END -->", 1)[0]
     earlier = readme.split("<!-- OWNER_PROMPT_ARCHIVE_START -->", 1)[1].split("<!-- OWNER_PROMPT_ARCHIVE_END -->", 1)[0]
@@ -33,25 +36,28 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 113
+    assert sum(1 for r in ledger if r["score"]) == 115  # two new owner claims, never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
         "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
         "gems90-cnc-35000dots-20261024T084324Z",
     }
-    assert all((name, "") in registered for name in unscored_named)
+    # They were unscored in this immutable archive; the CURRENT request supplies
+    # two numbers. Record their date/source without rewriting historical input.
+    updated = {"gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros": "0.0301",
+               "gems90-cnc-35000dots-20261024T084324Z": "0.0749"}
     for row in ledger:
         if row["submission"] in unscored_named:
-            assert row["score"] == ""
-            assert row["evidence_class"].startswith("PROMPT-NAMED UNSCORED")
+            assert row["score"] == updated[row["submission"]]
+            assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-25 request")
     with (ROOT / "ledger/submissions.csv").open(newline="") as stream:
         canonical_ledger = list(csv.DictReader(stream))
     canonical_by_name = {r["name"]: r for r in canonical_ledger}
     for name in unscored_named:
         assert name in canonical_by_name
-        assert canonical_by_name[name]["score"] == ""
-        assert canonical_by_name[name]["evidence_class"] == "NO-EVIDENCE"
+        assert canonical_by_name[name]["score"] == updated[name]
+        assert canonical_by_name[name]["evidence_class"] == "CLAIM"
 
 
 def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_training():
@@ -96,3 +102,19 @@ def test_current_session_card_is_complete_negative_and_not_presented_as_a_downlo
     for relative in ("research/SESSION_20261024_REVIEW.md", "docs/evidence/release-readiness.json",
                      "docs/evidence/all-artifacts-registry.json", "docs/evidence/fleet-feed.json"):
         assert (ROOT / relative).is_file()
+
+
+def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims():
+    for name, digest in {
+        "REQUEST_20261024.md": "0a232bf7981e146813478d591fc554d59323fb5631b101f529546f8bdffb031e",
+        "REQUEST_20261023.md": "f97442adbbdf3efb16a515445f9ec6a28283188053d95a63b443e5b34afa97db",
+        "OWNER_PROMPT.md": "70c0e08c6d465b4d56654066d9f5e3dc1fdcdec971dd5b81d29fb94b14a7e3c0",
+    }.items():
+        assert hashlib.sha256((ROOT / "research" / name).read_bytes()).hexdigest() == digest
+    current = (ROOT / "research/REQUEST_20261025.md").read_text()
+    scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", current, re.M)
+    assert len(scores) == 117  # duplicate H33 mentions are retained as supplied
+    with (ROOT / "registry/prior_scores.csv").open(newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in scores)
+    assert "REQUEST_20261025.md" in (ROOT / "PROMPT.md").read_text()
