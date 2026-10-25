@@ -29,6 +29,45 @@ def sha(p: Path) -> str:
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
+ONGRID_DIR = ROOT / "data/registry_ongrid"
+
+
+def ongrid_derivatives(record: dict, path: Path) -> list[dict] | None:
+    """PA-86-03: pixel-position derivatives for inventory rows the shared
+    comparator (correctly) refuses because their georeference is not the
+    submission grid.  Nothing is skipped and no threshold changes: a 3730x3292
+    raster with a placeholder transform is compared by array position (how a
+    grid-shaped upload is read), and a multi-band asset is compared band by band.
+    Returns None when the row is already on-grid.  Derivatives are written once
+    to the git-ignored ``data/registry_ongrid/`` and bound by SHA-256 in the index.
+    """
+    import rasterio
+    from gems57.grid import TRANSFORM
+    with rasterio.open(path) as src:
+        on_grid = (src.count == 1 and src.shape == (3730, 3292) and src.crs is not None
+                   and src.crs.to_epsg() == 32611 and src.transform == TRANSFORM)
+        if on_grid or src.shape != (3730, 3292):
+            return None
+        bands = [(i, src.read(i).astype(np.float32), src.dtypes[i - 1]) for i in range(1, src.count + 1)]
+        reason = ("placeholder transform %s; compared by pixel position" % (tuple(src.transform)[:6],)
+                  if src.count == 1 else f"{src.count}-band asset; compared band by band")
+    ONGRID_DIR.mkdir(parents=True, exist_ok=True)
+    out = []
+    for i, a, dt in bands:
+        if dt == "uint8":
+            a = a / 255.0
+        a = np.where(np.isfinite(a), np.clip(a, 0, 1), 0).astype(np.float32)
+        dest = ONGRID_DIR / f"{record['sha256'][:16]}_b{i}_pixelgrid.tif"
+        if not dest.is_file():
+            with rasterio.open(dest, "w", driver="GTiff", height=3730, width=3292, count=1, dtype="float32",
+                               crs="EPSG:32611", transform=TRANSFORM, compress="deflate") as dst:
+                dst.write(a, 1)
+        out.append(dict(sha256=sha(dest), bytes=dest.stat().st_size, blob=None, cache_file=str(dest),
+                        sources=[f"{s} [PA-86-03 pixel-grid derivative band {i}: {reason}]" for s in record["sources"]],
+                        repo_first=record["repo_first"], derived_from_sha256=record["sha256"]))
+    return out
+
+
 def build_index():
     inv = json.loads((ROOT / "research/upstream/registry_inventory.json").read_text())
     rasters, seen, missing = [], set(), []
@@ -37,9 +76,21 @@ def build_index():
         if not f.exists():
             missing.append(r["sha256"])
             continue
+        if sha(f) != r["sha256"]:
+            missing.append(r["sha256"])
+            continue
+        derived = ongrid_derivatives(r, f)
+        if derived:
+            for d in derived:
+                if d["sha256"] not in seen:
+                    rasters.append(d)
+                    seen.add(d["sha256"])
+            seen.add(r["sha256"])
+            continue
         rasters.append(dict(r, cache_file=str(f)))
         seen.add(r["sha256"])
-    extra = sorted((ROOT / "docs/downloads").glob("*.tif")) + sorted((ROOT / "data/scored_fleet").glob("*.tif"))
+    extra = (sorted((ROOT / "docs/downloads").glob("*.tif")) + sorted((ROOT / "data/scored_fleet").glob("*.tif"))
+             + sorted((ROOT / "data/scored_ext").glob("*.tif")))  # H86J: codeload-fetched scored rasters
     for f in extra:
         d = sha(f)
         if d in seen:

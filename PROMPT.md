@@ -1,6 +1,7 @@
 # Standing project prompt (condensed historical archive)
 
-**Latest lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — first **promote** verdict (all PA-86-01 like-for-like gates pass; selector action/upload still separate, 0 slots used).**
+**Latest lane: H86J-LLP (2026-10-25, `research/H86J_LLP_REVIEW.md`). The automated gate (`scripts/submission_gate.py` → `docs/evidence/submission-gate.json`) says DO NOT SUBMIT for its new unique TIFF. The protocol holdout puts the live-calibrated candidate below random (0.0370 vs 0.0475), and the rebuilt H33 recipe below random as well (0.0286). The owner must decide on the holdout rule (review §6). Every session: run the gate on the newest run card and read its single-line verdict first.**
+**Previous lane: H86G-EDTI (2026-10-25, `research/H86G_EDTI_REVIEW.md`) — historical like-for-like promote; selector action/upload still separate, 0 slots used.**
 **Read the latest README decision and the COMPLETE current request in
 `research/REQUEST_20261025.md` first.** This condensed historical document is not
 a replacement for that archive. Preserve `REQUEST_20261024.md`,

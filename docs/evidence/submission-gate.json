@@ -1,0 +1,156 @@
+{
+ "schema": "gems86.submission-gate.v1",
+ "generated_utc": "2026-10-25T05:47:35+00:00",
+ "verdict": "DO NOT SUBMIT",
+ "ok_to_submit": false,
+ "failed_checks": [
+  "U3_pa86_chance_overlap",
+  "S3_holdout_beats_current_best"
+ ],
+ "file": "docs/downloads/gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros.tif",
+ "zip": "docs/downloads/gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros.zip",
+ "sha256": "48b06c93564a4ff89aecf21609546aea91ff35af583560c3074e227732fbdcfb",
+ "submission_name": "gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros",
+ "submission_note": "H86J-LLP: fault intensity fit to 102 fleet live scores; E[k] spacing-greedy 2.8px collar2; gate+holdout in run card",
+ "lane": "H86J-LLP",
+ "checks": {
+  "F1_sha256_bound": {
+   "passed": true,
+   "detail": {
+    "file": "docs/downloads/gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros.tif",
+    "actual": "48b06c93564a4ff89aecf21609546aea91ff35af583560c3074e227732fbdcfb",
+    "run_card": "48b06c93564a4ff89aecf21609546aea91ff35af583560c3074e227732fbdcfb"
+   }
+  },
+  "F2_shared_validator": {
+   "passed": true,
+   "detail": {
+    "checks": {
+     "single_band": true,
+     "dtype_float32": true,
+     "dimensions_3730x3292": true,
+     "crs_epsg_32611": true,
+     "transform_matches_sample_submission": true,
+     "no_nan_anywhere": true,
+     "no_inf_anywhere": true,
+     "no_sentinel_values": true,
+     "range_0_1_guaranteed": true,
+     "min_ge_0": true,
+     "max_le_1": true,
+     "in_footprint_all_finite": true,
+     "in_footprint_range_0_1": true,
+     "outside_footprint_zero": true,
+     "zero_dots_on_mapped_catalogue": true
+    },
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "positives": 44090
+   }
+  },
+  "F3_single_tiff_zip": {
+   "passed": true,
+   "detail": {
+    "zip": "docs/downloads/gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros.zip",
+    "members": [
+     "gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros.tif"
+    ]
+   }
+  },
+  "F4_name_note_length": {
+   "passed": true,
+   "detail": {
+    "name_chars": 57,
+    "note_chars": 115
+   }
+  },
+  "U1_registry_final_dots_bound_complete_rho": {
+   "passed": true,
+   "detail": {
+    "report": "docs/evidence/h86j-llp-registry-final-dots.json",
+    "tif_equals_audited_dots": true,
+    "rasters_measured": 734,
+    "registry_complete": true,
+    "worst_spearman_final_dots": 0.05407232850263481,
+    "rho_firings": 0,
+    "raw_like_for_like_gate_pass": false,
+    "worst_forward_overlap_dot_fields": 0.9926060331140848,
+    "worst_forward_overlap_dot_field_submission": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "literal_reading": {
+     "duplicate": true,
+     "worst_forward_overlap": 1.0,
+     "worst_overlap_submission": "17GEMSDOE:docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+     "note": "literal reading shown side by side (PA-86-01); a continuous full-support witness fires on every nonempty candidate"
+    }
+   }
+  },
+  "U2_registry_surface_rho": {
+   "passed": true,
+   "detail": {
+    "report": "docs/evidence/h86j-llp-registry-surface.json",
+    "worst_spearman": 0.30483560916127994,
+    "worst_spearman_submission": "GEMSDOE48:docs/downloads/diagnostics/gemsdoe48-h56b-plausibility-126ca59c2801.tif"
+   }
+  },
+  "U3_pa86_chance_overlap": {
+   "passed": false,
+   "detail": {
+    "report": "docs/evidence/h86j-llp-pa86-chance-overlap.json",
+    "informative_firings": 12,
+    "space_filling_firings": 68,
+    "worst_spearman_any_raster": 0.05407232850263481
+   }
+  },
+  "S1_leakage_canary": {
+   "passed": true,
+   "detail": {
+    "max_discriminative_auc": 0.8043507098901745,
+    "feature": "hgb_catalogue_signature_posterior"
+   }
+  },
+  "S2_model_acceptance": {
+   "passed": true,
+   "detail": {
+    "rule": "LOSO Spearman >= 0.50 and > distance-only model",
+    "value": 0.8554303389313715
+   }
+  },
+  "S3_holdout_beats_current_best": {
+   "passed": false,
+   "detail": {
+    "candidate": 0.0370453425216985,
+    "current_holdout_best": {
+     "in_run": {
+      "arm": "H86G-H",
+      "dti": 0.1373243919229409
+     },
+     "published_record": 0.17232456905148233
+    },
+    "paired_delta": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.10027904940124241,
+     "ci95": [
+      -0.12592244433270317,
+      -0.07653947030643363
+     ],
+     "withheld_positive_pixels": 11321,
+     "se_from_ci": 0.012597697455681005,
+     "z": -7.9601093576049475
+    },
+    "rule": "(i) candidate - best in-run comparator > 0 with paired 95% CI lower bound > 0 AND (ii) candidate > 0.1723 published same-split record (H86F-EWCS; Amendment A4)"
+   }
+  },
+  "S4_live_emulator_above_h33": {
+   "passed": true,
+   "detail": {
+    "candidate": 0.40399635860824945,
+    "h33": 0.1641814569133284,
+    "note": "LLP-EMULATOR MODEL projection, never a score; can only veto (H86J Amendment A5)"
+   }
+  }
+ },
+ "meaning": "OK TO SUBMIT = every automated project gate passed for these exact bytes; still confirm the weekly quota on the DrivenData submission page. DO NOT SUBMIT = at least one gate failed (see failed_checks). Never a score.",
+ "run_card": "docs/evidence/h86j-llp-run-card.json"
+}

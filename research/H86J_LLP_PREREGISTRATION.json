@@ -1,0 +1,135 @@
+{
+ "lane": "H86J-LLP",
+ "frozen_utc": "2026-10-25T04:34:00Z",
+ "status": "PREREGISTERED (before any H86J surface, fit or placement)",
+ "hypotheses_ranked": [
+  "H86J-LLP",
+  "H86J-BUDGET",
+  "H86J-DEPL",
+  "H86J-PLUV (blocked: 3DEP not reachable)",
+  "H86J-SEIS (blocked: ComCat not reachable)"
+ ],
+ "features": {
+  "stack_rank01": [
+   "gradmag_dem_s1p5",
+   "b19_det_elev_slope",
+   "lidar_step_max",
+   "lidar_cross_max",
+   "topo_hs_lineament",
+   "topo_curv_prof_absmax",
+   "gradmag_rtp_s1p5",
+   "analytic_signal_log",
+   "gradmag_grav_s1p5",
+   "b15_log_depth_base",
+   "b04_geod_2ndinv",
+   "b10_log_deq",
+   "b17_cond_surf",
+   "b06_tc_radiometric"
+  ],
+  "derived_rank01": [
+   "h86g_L_corroboration",
+   "tophat_L_5x5",
+   "hgb_catalogue_signature_posterior"
+  ],
+  "catalogue_derived_visible_only_in_holdout": [
+   "dcat_0_2",
+   "dcat_2_4",
+   "dcat_4_8",
+   "dcat_8_16",
+   "dcat_16_32",
+   "dcat_32_64",
+   "log_catdensity_r25"
+  ],
+  "never_features": [
+   "any registry or fleet raster",
+   "SGMC proxy",
+   "lidar coverage mask",
+   "raw strike"
+  ]
+ },
+ "llp": {
+  "intensity": "lambda = exp(b + theta . phi)",
+  "expected_T": "sum_g lambda(g) c_r(g), c_r = max-kernel coverage",
+  "M_approx": "T/2.6",
+  "G": "sum lambda",
+  "loss": "sum_r (logit s_hat - logit s)^2 + rho ||theta||^2",
+  "rho_grid": [
+   0.3,
+   1,
+   3,
+   10
+  ],
+  "subsample": {
+   "fraction": 0.25,
+   "seed": 860310,
+   "domain": "footprint & ~catalogue"
+  },
+  "cv": "leave-one-site-out",
+  "acceptance": "LOSO Spearman >= 0.50 and > distance-only model"
+ },
+ "holdout": {
+  "split": "buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3)",
+  "evaluator": "gems57-pooled-hide-v2",
+  "bootstrap": {
+   "draws": 1000,
+   "seed": 520810,
+   "block_px": 200
+  },
+  "budget": 37654,
+  "emission": "E[k] spacing-greedy >= 2.8 px, allowed = footprint & d_visible > 2 px",
+  "arms": [
+   "LLP (candidate)",
+   "LLP-dist (ablation)",
+   "H86G-L (comparator)",
+   "H86G-H HGB (comparator)",
+   "random (null)"
+  ],
+  "current_holdout_best": "max same-design comparator measured in this run",
+  "promote_rule": "(i) candidate - best in-run comparator > 0 with paired 95% CI lower bound > 0 AND (ii) candidate HOLDOUT-DTI > 0.1723 (H86F-EWCS same-split record)"
+ },
+ "final_build": {
+  "budget_grid": [
+   20000,
+   25000,
+   30000,
+   37654,
+   44090,
+   55000
+  ],
+  "budget_rule": "argmax model-expected DTI (MODEL projection, never a score)",
+  "allowed": "footprint & d_cat > 2 px",
+  "spacing_px": 2.8,
+  "uniqueness": "check_h86e_registry.py surface + final dots; pa86_chance_overlap.py; thresholds rho 0.90 / overlap 0.70 unchanged",
+  "writer": "vendor/gems57/submission_writer.py",
+  "validator": "vendor/gems57/validate.py"
+ },
+ "gate": "scripts/submission_gate.py -> exactly one of OK TO SUBMIT / DO NOT SUBMIT",
+ "mimics": [
+  "Lake Lahontan shorelines/beach ridges",
+  "alluvial-fan channel and terrace risers",
+  "roads/canals/pipelines",
+  "lithologic contacts in potential fields"
+ ],
+ "amendments": [
+  {
+   "id": "A1",
+   "utc": "2026-10-25T04:38Z",
+   "text": "M_r = sum p_r min(1, 3 lambda) (line-process) replaces T/2.6"
+  },
+  {
+   "id": "A2",
+   "utc": "2026-10-25T04:38Z",
+   "text": "missing scored rasters fetched via codeload HEAD tarballs; receipt docs/evidence/scored-ext-receipt.json"
+  },
+  {
+   "id": "A3",
+   "utc": "2026-10-25T04:38Z",
+   "text": "LOSO CV on deterministic 1-in-5 thinned S with warm starts; final theta on full S"
+  },
+  {
+   "id": "A4",
+   "utc": "2026-10-25T04:44Z",
+   "text": "promote additionally requires candidate HOLDOUT-DTI > 0.1723 (H86F-EWCS published same-split record); stricter only"
+  }
+ ]
+}

@@ -405,15 +405,136 @@ def new_hypothesis_queue(plan: dict) -> str:
 <p><a href="{REPO}/blob/main/registry/h86g_hypotheses.json">Full proposal register and blockers</a> · <a href="evidence/session-cf73474c-data.json">Actual data obtainability / shared-cache limits</a></p></section>'''
 
 
-def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "") -> str:
+GATE_LABELS = {
+    "F1_sha256_bound": "File bytes match the run card SHA-256",
+    "F2_shared_validator": "Format: single-band float32, EPSG:32611, 3730×3292, sample transform, no NaN/Inf, values in [0, 1], zeros outside footprint (fixes the portal error “Predicted values must be in range [0, 1]”)",
+    "F3_single_tiff_zip": "ZIP holds exactly one TIFF, byte-identical",
+    "F4_name_note_length": "Submission name and note are 1–140 characters",
+    "U1_registry_final_dots_bound_complete_rho": "Final dots measured against the complete registry index (734 rasters); Spearman ≤0.90 against every raster",
+    "U2_registry_surface_rho": "Unique pre-placement surface: Spearman ≤0.90 against every registry raster",
+    "U3_pa86_chance_overlap": "Overlap: no registry dot field holds >70% of our dots within 3 px beyond what chance coverage explains (PA-86-02)",
+    "S1_leakage_canary": "Leakage canary: every single feature AUC ≤0.90 on the holdout",
+    "S2_model_acceptance": "Model passed its preregistered acceptance rule",
+    "S3_holdout_beats_current_best": "Protocol holdout: beats the current holdout best with a paired 95% CI",
+    "S4_live_emulator_above_h33": "Live-score emulator projects it above H33 (veto-only MODEL check, never a score)",
+}
+
+
+def gate_panel(gate: dict | None, card: dict | None) -> str:
+    """Top-of-page verdict generated from docs/evidence/submission-gate.json."""
+    if not gate or not card:
+        return ('<section class="gate no" id="gate"><p class="verdict">DO NOT SUBMIT</p>'
+                '<p>No automated gate result is published.</p></section>')
+    ok = gate.get("verdict") == "OK TO SUBMIT" and gate.get("ok_to_submit") is True
+    name = Path(gate["file"]).stem
+    checks = gate.get("checks", {})
+    failed = [k for k, v in checks.items() if not v.get("passed")]
+    passed = [k for k, v in checks.items() if v.get("passed")]
+    s3 = checks.get("S3_holdout_beats_current_best", {}).get("detail", {})
+    best = (s3.get("current_holdout_best") or {})
+    in_run = best.get("in_run") or {}
+    h = card.get("holdout_dti", {})
+    cand = h.get("candidate", {})
+    reasons = []
+    for k in failed:
+        extra = ""
+        if k == "S3_holdout_beats_current_best":
+            extra = (f" — HOLDOUT-DTI (<code>{e(h.get('evaluator_version'))}</code>, <code>{h.get('withheld_positive_pixels', 0):,}</code> withheld positives): "
+                     f"candidate <code>{cand.get('dti', 0):.4f}</code> [<code>{cand.get('ci95', [0, 0])[0]:.4f}</code>, <code>{cand.get('ci95', [0, 0])[1]:.4f}</code>] vs "
+                     f"in-run best <code>{e(in_run.get('arm'))}</code> <code>{in_run.get('dti', 0):.4f}</code> and published same-split record <code>{best.get('published_record', 0):.4f}</code> (H86F-EWCS)")
+        reasons.append(f"<li><strong>{e(k)}</strong>: {GATE_LABELS.get(k, k)}{extra}</li>")
+    ok_items = "".join(f"<li>{e(k)}: {GATE_LABELS.get(k, k)}</li>" for k in passed)
+    verdict = "OK TO SUBMIT" if ok else "DO NOT SUBMIT"
+    cls = "yes" if ok else "no"
+    lead = ("Every automated project gate passed for these exact bytes. Confirm the remaining weekly quota on the DrivenData submission page, then follow the steps on the How-to-submit page."
+            if ok else "At least one automated gate failed for this file, so it must not be uploaded. Downloading it for review or reproduction is safe.")
+    dl_label = "Download TIFF" if ok else "Download TIFF (review only)"
+    return f'''<section class="gate {cls}" id="gate">
+<p class="eyebrow">Automated submission gate · <code>scripts/submission_gate.py</code> · no human inspection · {e(gate.get("generated_utc"))}</p>
+<p class="verdict">{verdict}</p>
+<h2>Newest unique TIFF: {e(card.get("lane"))} — <code>{e(name)}.tif</code></h2>
+<p>{lead}</p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>{dl_label}</a><a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP</a><a class="btn secondary" href="evidence/submission-gate.json">Gate result (JSON)</a><a class="btn secondary" href="evidence/h86j-llp-run-card.json">Run card (JSON)</a></div>
+<dl><dt>SHA-256</dt><dd><code>{e(gate.get("sha256"))}</code></dd>
+<dt>Submission name (≤140)</dt><dd><code>{e(gate.get("submission_name"))}</code></dd>
+<dt>Submission note (≤140)</dt><dd><code>{e(gate.get("submission_note"))}</code></dd></dl>
+{"<p><strong>Failed checks:</strong></p><ul>" + "".join(reasons) + "</ul>" if reasons else ""}
+<details><summary>Passed checks ({len(passed)} of {len(checks)})</summary><ul>{ok_items}</ul></details>
+</section>'''
+
+
+def exact_steps() -> str:
+    """Plain, exact portal procedure (applies to whichever file the gate clears)."""
+    return f'''<section class="card" id="exact-steps"><h2>Exactly how to submit (only a file whose gate says OK TO SUBMIT)</h2>
+<ol class="steps">
+<li><strong>Check the verdict above.</strong> Upload a file only when the green banner reads <code>OK TO SUBMIT</code>; a red <code>DO NOT SUBMIT</code> banner means a gate failed and lists which one. Re-run it yourself with <code>.venv/bin/python scripts/submission_gate.py docs/evidence/h86j-llp-run-card.json</code>; it prints one line, <code>OK TO SUBMIT</code> or <code>DO NOT SUBMIT</code>.</li>
+<li><strong>Download the file.</strong> Use the banner’s “Download TIFF” (<code>.tif</code>) or “One-TIFF ZIP” (<code>.zip</code>). Optional integrity check: <code>sha256sum FILE.tif</code> must equal the SHA-256 shown in the banner.</li>
+<li><strong>Open the official submission page</strong> while signed in: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a>. Check the weekly quota shown there first. The official rules allow at most 3 scored submissions per rolling week, plus one final selection.</li>
+<li><strong>Click “Make new submission”, then choose the file</strong> in the “File to submit” field. Do not upload the JSON receipt, the sample submission or any file whose banner is red.</li>
+<li><strong>Paste the note</strong> shown in the banner (≤140 characters) into the note field, then submit.</li>
+<li><strong>Record the receipt.</strong> Copy the score and submission ID from the page into <code>ledger/submissions.csv</code>, together with the SHA-256. Only then may the number be called ORGANIZER-CONFIRMED.</li>
+</ol>
+<p class="muted">Portal error <em>“Predicted values must be in range [0, 1]”</em>: it appears when a file contains NaN (for example, a NaN fill outside the study area) or values outside [0, 1]. Every file produced here is all-finite float32, with zeros outside the footprint and values in [0, 1]. Gate check F2 verifies this from the file bytes.</p></section>'''
+
+
+README_BEGIN = "<!-- GATE:BEGIN (generated by scripts/build_site.py from docs/evidence/submission-gate.json; do not hand-edit) -->"
+README_END = "<!-- GATE:END -->"
+
+
+def readme_gate_block(gate: dict | None, card: dict | None) -> str:
+    if not gate or not card:
+        return f"{README_BEGIN}\n## Is the newest TIFF OK to submit? **DO NOT SUBMIT** (no gate result)\n{README_END}"
+    ok = gate.get("ok_to_submit") is True and gate.get("verdict") == "OK TO SUBMIT"
+    name = Path(gate["file"]).stem
+    h = card.get("holdout_dti", {})
+    cand = h.get("candidate", {})
+    best = h.get("current_holdout_best_in_run", {})
+    failed = gate.get("failed_checks", [])
+    lines = [README_BEGIN,
+             f"## Is the newest TIFF OK to submit? **{gate['verdict']}**",
+             "",
+             f"Automated verdict from `scripts/submission_gate.py` ({gate['generated_utc']}). "
+             "Nobody inspects the file by hand: every check is recomputed from the file bytes or from evidence bound to them by SHA-256.",
+             "",
+             f"- **File ({card.get('lane')}):** [`docs/downloads/{name}.tif`](docs/downloads/{name}.tif) · "
+             f"[one-TIFF ZIP](docs/downloads/{name}.zip) · SHA-256 `{gate['sha256']}` · {card.get('dots', 0):,} dots",
+             f"- **Submission name:** `{gate['submission_name']}`",
+             f"- **Note ({len(gate['submission_note'])} chars):** `{gate['submission_note']}`",
+             f"- **Failed checks:** {', '.join('`' + f + '`' for f in failed) if failed else 'none'}",
+             f"- **HOLDOUT-DTI** (`{h.get('evaluator_version')}`, {h.get('withheld_positive_pixels', 0):,} withheld positives, "
+             f"{h.get('budget', 0):,} dots): candidate `{cand.get('dti', 0):.4f}` 95% CI "
+             f"`[{cand.get('ci95', [0, 0])[0]:.4f}, {cand.get('ci95', [0, 0])[1]:.4f}]` vs current holdout best "
+             f"`{best.get('arm')}` `{best.get('dti', 0):.4f}`",
+             f"- **Evidence:** [gate JSON](docs/evidence/submission-gate.json) · [run card](docs/evidence/h86j-llp-run-card.json) · "
+             f"[scientific review](research/H86J_LLP_REVIEW.md) · [exact portal steps](docs/executive-summary.html#exact-steps)",
+             "",
+             ("Upload only after confirming the weekly quota on the DrivenData submission page."
+              if ok else "**Do not upload this file.** It is safe to download for review or reproduction. A red verdict always lists the failing check."),
+             README_END]
+    return "\n".join(lines)
+
+
+def readme_with_gate(root: Path, gate: dict | None, card: dict | None) -> str:
+    text = (root / "README.md").read_text(encoding="utf-8")
+    block = readme_gate_block(gate, card)
+    if README_BEGIN in text and README_END in text:
+        head, rest = text.split(README_BEGIN, 1)
+        _, tail = rest.split(README_END, 1)
+        return head + block + tail
+    first, _, remainder = text.partition("\n")
+    return first + "\n\n" + block + "\n" + remainder
+
+
+def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: int = 4, answer: str = "", review_notice: str = "", h86g_html: str = "", gate_html: str = "") -> str:
     n = report["artifact_count"]
     return page("Download decision", "index.html", f'''
+{gate_html}
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge ok">ONE SELECTOR-READY FILE (H86G-EDTI) · ALL OTHERS DO NOT SUBMIT</span>
 <h1>Download a TIFF for review.<br><span class="subtle">No file is authorized for upload yet.</span></h1>
-<p class="lede">The new <strong>H86G-EDTI</strong> GeoTIFF (green panel below) has a historical like-for-like PROMOTE verdict and is the one selector-review candidate. It is not authorized for upload: safe_to_submit=false and approved_for_weekly_slot=false; the literal registry gate remains blocked. All other downloadable GeoTIFFs pass format checks only and remain DO NOT SUBMIT. A new hash is not a unique scientific submission — this one is unique by measured gate, not by hash.</p>
+<p class="lede">The red banner above is the automated verdict for the newest file (H86J-LLP). The earlier 2026-10-25 <strong>H86G-EDTI</strong> GeoTIFF (green panel below) has a historical like-for-like PROMOTE verdict and is the one selector-review candidate. It is not authorized for upload: safe_to_submit=false and approved_for_weekly_slot=false; the literal registry gate remains blocked. All other downloadable GeoTIFFs pass format checks only and remain DO NOT SUBMIT. A new hash is not a unique scientific submission — this one is unique by measured gate, not by hash.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
-<p><strong>Current lane H86G-EDTI (2026-10-25): PROMOTE</strong> — see the green panel below for the exact file, note and portal steps. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
+<p><strong>Newest lane H86J-LLP (2026-10-25): DO NOT SUBMIT</strong> — automated gate in the red banner above; <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86J_LLP_REVIEW.md">scientific review</a>. <strong>Previous lane H86G-EDTI (2026-10-25): historical PROMOTE</strong> — see the green panel below for the exact file, note and portal steps. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>H86G-EDTI is promoted for selector review, not authorized for upload. DO NOT SUBMIT before a separate selector decision.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
@@ -437,12 +558,14 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "") -> str:
+def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", gate_html: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>{e(a["status"])}</strong></td></tr>' for a in report["artifacts"])
     n_valid = report["locally_valid_artifacts"]
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{gate_html}
+{exact_steps()}
 {h86g_html}
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT — SELECTOR AUTHORIZATION PENDING</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). Under the PA-86-01 like-for-like reading, exactly one file — <strong>H86G-EDTI</strong>, panel above — passes every registered gate (verdict PROMOTE). Uploading it is the separate selector action within the weekly cap; this audit spent no weekly slot.</p>
 <a class="btn" href="index.html#downloads">Download research TIFFs — audit only / selector review; no upload authorization</a><a class="btn secondary" href="evidence/release-readiness.json">Open complete validator output</a></div>
@@ -861,6 +984,14 @@ def render(root: Path = ROOT) -> dict[str, str]:
         decision="DO NOT SUBMIT — separate selector authorization pending",
         scope="Historical PA-86 like-for-like promotion only; literal witness remains blocked.")
     h86g_html = h86g_edti_answer(h86g_card)
+    gate_path = root / "docs/evidence/submission-gate.json"
+    gate = strict_json(gate_path) if gate_path.is_file() else None
+    gate_card = strict_json(root / gate["run_card"]) if gate and gate.get("run_card") else None
+    if gate and gate_card and gate_card.get("raster_sha256") != gate.get("sha256"):
+        raise ValueError("Submission gate result is not bound to its run card's raster SHA-256")
+    if gate and sha256(root / gate["file"]) != gate["sha256"]:
+        raise ValueError("Submission gate result is stale: published TIFF bytes changed")
+    gate_html = gate_panel(gate, gate_card)
     plan86f_path = root / "registry/h86f_hypotheses.json"
     plan86f = strict_json(plan86f_path) if plan86f_path.is_file() else None
     ewcs_path = root / "docs/evidence/h86f-ewcs-run-card.json"
@@ -906,8 +1037,9 @@ def render(root: Path = ROOT) -> dict[str, str]:
                         + (len(plan86f["hypotheses"]) if plan86f else 0)
                         + (len(h86h_prereg["candidate_hypotheses"]) if h86h_prereg else 0))
     return {
-        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html),
-        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html),
+        "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, gate_html),
+        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, gate_html),
+        "README.md": readme_with_gate(root, gate, gate_card),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue),

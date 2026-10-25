@@ -7,3 +7,4 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 figure{margin:1.5rem 0}figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px}figcaption{font-size:.8rem;color:var(--muted);margin:.6rem 0}
+.gate{border:3px solid var(--line);border-radius:12px;padding:1.4rem 1.6rem;margin:0 0 2.2rem;background:#fff}.gate.no{border-color:var(--bad);background:var(--bad-bg)}.gate.yes{border-color:var(--ok);background:var(--ok-bg)}.gate h2{margin-top:.2rem;font-size:1.3rem}.verdict{font-size:clamp(2rem,6vw,3.2rem);font-weight:850;letter-spacing:-.03em;margin:.2rem 0}.gate.no .verdict{color:var(--bad)}.gate.yes .verdict{color:var(--ok)}

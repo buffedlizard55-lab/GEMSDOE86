@@ -148,6 +148,13 @@
       "context": "docs/evidence/h86i-hvfd-run-card.json",
       "holdout_kind": "h86i_hvfd",
       "stem": "gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros"
+    },
+    {
+      "lane": "H86J-LLP live-score (LLP) truth intensity + E[k] spacing-greedy (current lane; automated gate DO NOT SUBMIT, 2026-10-25)",
+      "card": "docs/evidence/h86j-llp-run-card.json",
+      "context": "docs/evidence/h86j-llp-run-card.json",
+      "holdout_kind": "h86j_llp",
+      "stem": "gems86-h86j-llp-44090dots-20261025T052203Z-3078bcd6-zeros"
     }
   ]
 }

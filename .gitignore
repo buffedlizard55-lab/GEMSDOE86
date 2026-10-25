@@ -23,6 +23,7 @@ data/raw/
 /data/scored/
 /data/registry_ext/
 /data/scored_ext/
+/data/registry_ongrid/
 
 data/processed/
 registry/submissions/

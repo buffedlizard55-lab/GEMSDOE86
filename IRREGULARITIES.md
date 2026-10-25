@@ -1,6 +1,119 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+
+## IR-86-H86J-LLP-01 — H86J-LLP: a live-score inversion is accepted (LOSO ρ 0.855) but ranks below random on the protocol holdout → DO NOT SUBMIT (2026-10-25)
+
+**Preregistration.** `research/H86J_LLP_PREREGISTRATION.md` was frozen at 04:34 UTC, before any fit.
+Amendments A1–A5 were each recorded before the computation they affect; A4 and A5 only make the
+gate stricter.
+
+**Lane.** Fit a truth intensity λ to 102 OWNER-REPORTED fleet scores by learning from label
+proportions. This is the first lane in the repo to use live scores as supervision.
+
+**Results.**
+- **E1.** The canary's maximum discriminative AUC is 0.8044 (HGB posterior), within the 0.90 limit.
+  LOSO Spearman is 0.855 for the full model against 0.585 for the distance-only model, so the
+  acceptance rule is met.
+- **E2.** HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld positives, 37,654 dots):
+
+  | Arm | HOLDOUT-DTI | 95 % CI |
+  |---|---:|---|
+  | LLP (candidate) | 0.0370 | [0.0249, 0.0498] |
+  | random | 0.0475 | [0.0417, 0.0534] |
+  | H86G-H (HGB) | 0.1373 | [0.1161, 0.1607] |
+  | H33 recipe on visible faults | 0.0286 | — |
+
+  Paired candidate − best = −0.1003 [−0.1259, −0.0765], so the verdict is **negative**.
+- **E3.** The final TIFF was written by the shared writer, and the automated gate prints
+  **DO NOT SUBMIT** because S3 (the protocol holdout) fails.
+
+**Why it matters.** The live champion's recipe, rebuilt out of fold, scores *below random* on the
+protocol holdout (0.0286 vs 0.0475). This confirms IR-86-H86G-INSTRUMENT without the as-is-leakage
+objection. The owner must choose a holdout rule; the options are in `research/H86J_LLP_REVIEW.md` §6.
+
+## IR-86-DISKFULL-20261025 — a full disk silently corrupted one evidence array; the gate's SHA binding caught it and a deterministic recompute restored it byte-exactly
+
+**What filled the disk.** `scripts/restore_data.py` defaults to `--dest data/bridge`, so it put a
+419 MB `training_features.tif` into `data/bridge/`. The `release_copy` fixture in
+`tests/test_release_audit.py` copies `data/bridge` for each of ~30 tests, which left 13 GB under
+`/tmp/pytest-of-user` and filled the 21 GB disk.
+
+**What was damaged.** One file written earlier, `data/work/h86j/h86j_surface.npy`, came back from
+disk with its first data block zeroed: 370 pixels, unchanged mtime. Delayed writeback failed on
+ENOSPC.
+
+**How it was caught.** The gate re-hashes every bound array. U2 failed closed: the file hashed
+`89df010a…` against the measured `54fde19a…`.
+
+**How it was fixed.**
+- The surface was recomputed deterministically from θ and the cached features. It hashes exactly
+  `54fde19a…`, the bytes the registry measured, and it was restored.
+- Everything else re-verified clean:
+  - every other bound file: the TIFF/ZIP via F1/F3, and the final dots, which recompute to `040443a4…`;
+  - 655/655 registry blobs;
+  - 39/39 codeload rasters;
+  - the core pins;
+  - all 47 changed text files (no NUL bytes; every JSON parses).
+- The duplicate `data/bridge/training_features.tif` was deleted. `data/training_features.tif`
+  (pinned `4371c82e…`) is kept, and nothing reads the bridge copy.
+
+**Follow-up.** The test fixture should ignore large restored rasters, or `restore_data.py` should
+default to `data/`.
+
+## IR-86-PA86-03-20261025 — the two off-grid inventory rows are now measured by pixel position; the completeness trap is closed and no threshold changed
+
+Two inventory rows had made every registry report `registry_complete_for_index=false` since
+IR-86-INVENTORY-OFFGRID-ROWS:
+- `14GEMSDOE` horse-ensemble: 3730×3292 with a placeholder transform origin (500000, 4500000);
+- `7GEMSDOE` `qfaults_prior_u8`: a 3-band uint8 asset, not a submission.
+
+`scripts/check_h86e_registry.py::ongrid_derivatives` now compares each of them by array position:
+- the first as-is, with the competition transform;
+- the second band by band, scaled /255.
+
+The derivatives are written once to the git-ignored `data/registry_ongrid/` and bound by SHA-256,
+each tagged with `derived_from_sha256`. This adds 4 comparisons; it removes none. The shared
+comparator (`vendor/gems57/uniqueness.py`) and the thresholds (ρ 0.90, overlap 0.70) are unchanged.
+The same index now also includes the 39 codeload-fetched scored rasters (`data/scored_ext/`). Total:
+734 hash-bound rasters, none missing.
+
+## IR-86-LITERAL-WITNESS-DISPOSITION-20261025 — explicit disposition of the literal full-support witness
+
+The automated gate (`scripts/submission_gate.py`) applies the like-for-like reading (PA-86-01)
+together with the chance-corrected reading (PA-86-02) as binding. The literal reading is always
+printed next to them.
+
+The literal reading is not binding for a simple reason. The 17GEMSDOE witness is positive on every
+allowed pixel, so it fires on every nonempty raster and carries zero information about duplication.
+Space-filling lattices have the same property.
+
+The rank test (ρ ≤ 0.90) still applies to every raster, including both of those. This disposition
+replaces no threshold. It cannot by itself authorise an upload: the S1–S4 science checks remain
+binding.
+
+## IR-86-API-QUOTA-20261025 — the GitHub REST quota was exhausted by the 655-blob registry restore; a codeload fallback was used
+
+`scripts/restore_registry_inventory.py` used the remaining ~3,400 REST calls (reset at 05:16 UTC).
+Missing scored rasters were then streamed from the owners' public repos through codeload
+(`scripts/fetch_scored_codeload.py`, allowlisted host). Each file was recorded with its SHA-256 and
+the tarball commit in `docs/evidence/scored-ext-receipt.json`; 6 rows were not found.
+
+## IR-86-PREREG-CLOCK-20261025 — preregistration timestamps corrected to the sandbox clock before any fit
+
+The first draft of `H86J_LLP_PREREGISTRATION.md` carried hand-typed times (04:40 and 04:55). They
+were corrected at 04:40 UTC to the sandbox clock and file mtimes: frozen at 04:34, A1–A3 at 04:38.
+This happened before any LLP fit was run.
+
+## IR-86-TRUTH-MASS-20261025 — the lattice inversion puts |G| at ≈12.5k, against SLOT_PLAN's ≈40k
+
+The 13GEMSDOE stride-5 lattice (206,895 dots, 0.0904 OWNER-REPORTED) has an expected max-kernel
+credit of 0.375 per truth pixel, whatever the truth geometry. That implies about 12.5k truth px per
+full-footprint equivalent (ANALYTIC). The LLP's λ implies about 30k but over-predicts the lattice.
+
+SLOT_PLAN's "+0.01 ≈ 418 credit units" arithmetic assumed |G| ≈ 40k. It should be read as an upper
+bound until an organizer receipt calibrates it.
+
 ## IR-86-RKSC-01 — H86I-RKSC generated a unique audit-only GeoTIFF (0 rho firings, 0 sparse-dot overlap firings) and failed closed on holdout & off-grid registry rows (2026-10-25)
 
 Before any lane code was written, four untried geological hypotheses (`H86I-1..H86I-4`) were frozen in `research/H86I_RKSC_PREREGISTRATION.json` (`sha256: 83300b29…`) and `research/H86I_RKSC_PREREGISTRATION.md`. `scripts/run_h86i_rksc.py` executed the top candidate (`H86I-RKSC`: Lahontan-Deconfounded Piedmont Scarp Profile-Curvature Dipole coupled with GeoDAWN Radiometric K/Th/U/TC Provenance-Metasomatism Step and Seismic-Conductance Conduit, excluding all gravity and magnetic bands) and serialized `docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif` (`sha256: 9437c83e0b5cf3fe1679ee26b6e41f200cf9a5eb08d7815a36a13a0e96f765ba`, `44,090` dots, `0` NaN, values in `[0, 1]`). **Decision: `DO NOT SUBMIT` (`verdict: "negative"`, `safe_to_submit: false`, `submission_slots_used: 0`).** On `gems57-pooled-hide-v2` (`seed=20`, `11,321` withheld positives), `E1_rksc_full` (`0.0245 [0.0185, 0.0304]`) beat both internal ablations (`E2 = 0.0235 [0.0174, 0.0294]` and Lahontan-uncorrected K-depleted negative control `E3 = 0.0142 [0.0093, 0.0196]`, `+72.5%` relative lift), but trailed fold-fair 2-px `R0` (`0.0961 [0.0829, 0.1094]`), 3-px `R0` (`0.0931 [0.0798, 0.1067]`), and same-split `H86C-KSLB` (`0.1241 [0.1080, 0.1403]`). Across `687 / 689` valid registry rasters, pre-placement surface worst Spearman is `0.2633 <= 0.90` (`0` rho firings) and final-dot worst Spearman is `0.0395 <= 0.90` (`0` overlap firings against any sparse `<=60,000`-dot submission), but `16` space-filling lattice/composite rasters (`13GEMSDOE`, `15GEMSDOE`, `GEMSDOE48`) and continuous witness `17GEMSDOE` exceed `0.70` 3-px overlap and `scripts/pa86_chance_overlap.py` fails closed on the `2` off-grid historical rows (`14GEMSDOE`, `7GEMSDOE`). Following execution, `scripts/run_h86i_rksc.py` is gated behind `protocol_preflight.require_feasible()` in `tests/test_builder_preflight.py`.

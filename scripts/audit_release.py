@@ -285,6 +285,19 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86I-HVFD lane result; the run card is the authoritative experiment receipt. E2 (0.1013) beats fold-fair R0 (0.0961) and triples blind zero-catalogue lanes, but trails its 44,090-dot unpruned-collar E3 control (0.1040) and the same-split historical KSLB best (0.1241), and literal/completeness registry gates fail; no slot was used."}
+    if kind == "h86j_llp":
+        gate = strict_json(ROOT / "docs/evidence/submission-gate.json")
+        if (context.get("verdict") != "negative" or context.get("submission_slots_used") != 0
+                or gate.get("sha256") != context.get("raster_sha256") or gate.get("verdict") != "DO NOT SUBMIT"):
+            raise ValueError("H86J-LLP card must stay negative, slot-free and bound to a DO NOT SUBMIT gate result")
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "paired_delta": h["candidate_minus_best"]["delta"],
+                "paired_delta_ci95": h["candidate_minus_best"]["ci95"],
+                "design": "buffered whole components seed 20, OOF visible construction, 37,654 dots, E[k] spacing-greedy, visible collar 2 px (H86J E2)",
+                "caveat": "Current H86J-LLP lane. The live-score emulator is accepted (LOSO Spearman 0.855 over 102 OWNER-REPORTED fleet scores), but on the protocol holdout the candidate (0.0370) trails random (0.0475) and the HGB catalogue posterior (0.1373); the rebuilt H33 recipe also scores below random (0.0286). Automated gate: DO NOT SUBMIT (S3). No slot used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
