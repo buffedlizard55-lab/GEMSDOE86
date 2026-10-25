@@ -1578,6 +1578,45 @@ Reproduced and repaired the inherited H86L-FMC publication omission (IR-H in the
 
 PR #158 added an H86M TIFF to the inventory without its release-card mapping, again breaking the generated-site audit. Integrated that upstream merge, joined its negative card, and remeasured all 33 inherited TIFFs against the pinned witness. H86M's archived assertions “no public labels” and catalogue-only leakage “structurally impossible” are not accepted: the pinned catalogue/labels are present and catalogue features require fold-visible rebuilding. Its HOLDOUT-DTI stays null/unvalidated and upload remains prohibited. No scientific result was manufactured; original receipts preserved.
 
+## IR-86-92F9E0E8-H86M-PUBLICATION — 2026-10-25 (found independently; repair superseded at merge by PR #166)
+
+On this branch's starting commit (`3deca67`), H86M-LT violated the repo's own publication
+guard in four measured ways: (1) its TIFF/ZIP were absent from
+`docs/evidence/download-inventory.json` and `registry/artifact_cards.json` (the gap already
+flagged as IR-86-H86M-INVENTORY); (2) `docs/h86m-lt.html` carried the banned instruction
+"IS THIS FILE OK TO SUBMIT? YES"; (3) its run card set `safe_to_submit=true` with no
+`submission_ready`/`gates` fields; (4) README's headline said "OK TO SUBMIT" while the
+generated site said "NO FILE AUTHORIZED · DO NOT SUBMIT" — so `scripts/check_site.py`
+failed on main (exit 1, reproduced this session). Session `92f9e0e8` first repaired this locally (registration + run-card publication
+addendum preserving the PA-86 PROMOTE); in parallel, session `57139348` repaired the
+same failure on main (PR #166) by downgrading the card to a negative unvalidated
+archive (`h86m_lt_unvalidated`). At merge, main's already-accepted LT state was kept
+and this session's parallel LT branch/addendum was removed, leaving exactly one LT
+normalization path; only the H86N-EQL lane was layered on top (37 artifacts). No raster
+bytes or thresholds changed in either repair; no slot was authorized or used.
+
+## IR-86-92F9E0E8-PRIOR-SCORES — 2026-10-25 (open, data re-pin needed)
+
+The 2026-10-25 `92f9e0e8` request adds owner-reported claims for GEMSDOE91 (0.1367,
+0.1823) and GEMSDOE92 (0.0255), but `registry/prior_scores.csv` still carries
+"NO ARTIFACT OR SCORE SPECIFIED IN PROMPT" placeholder rows for those sites and its
+SHA-256 is pinned into the generated fleet feed (`owner_ledger_sha256`). The claims are
+archived verbatim in `research/REQUEST_20261025_92F9E0E8.md`; transcribing them into the
+CSV requires a deliberate feed re-pin/regeneration pass, deliberately not smuggled into
+this session's lane change. They remain unverified claims either way (no organizer
+receipts).
+
+## IR-86-57139348-LT-UNSUPPORTED-CLEARANCE (2026-10-25)
+
+H86M-LT was a published but unregistered TIFF/ZIP with `safe_to_submit=true` and an
+“OK TO SUBMIT” standalone page. Corrected to negative/audit-only and registered in
+both release indexes without modifying raster bytes. No required buffered hide-and-
+recover CI or per-feature canaries exist; the historical surface registry checker
+uses Pearson, not Spearman, and reconstructs missing ignored cache source with exec.
+Post-placement gate amendments are exploratory, not independent validation.
+See `research/SESSION_57139348_REVIEW.md`; no new experiment or weekly slot used.
+
+
 ## IR-86-96FC6D48-PREFLIGHT-LAYOUT — 2026-10-25
 
 `scripts/protocol_preflight.measure()` defaulted `data_dir` to `ROOT/"data"` and
@@ -1585,29 +1624,20 @@ PR #158 added an H86M TIFF to the inventory without its release-card mapping, ag
 witness record at `root/"data"/pin["dest"]`, but the SHA-pinned grid (`sample_submission.tif`,
 `existing_faults.tif`) is committed under `data/bridge/` (see `vendor/gems57/grid.py` DATA_DIR
 and `tests/conftest.py` BRIDGE). `audit_release.py --measure-registry` therefore crashed with
-FileNotFoundError in this checkout before any measurement. Fixed once in `scripts/`
+FileNotFoundError in a fresh checkout before any measurement. Fixed once in `scripts/`
 (`protocol_preflight.py`, `audit_release.py`, and the same stale layout in the operative PA-86
 checkers `check_h86e_registry.py` / `pa86_chance_overlap.py`); the vendored template was not
 modified. The pinned witness was restored from the pinned 17GEMSDOE blob
 `374c88b1da2b803e2ed160de467fd71ae114010d` into gitignored `data/bridge/registry/`
-(SHA-256 `ab0a0a62...`, 25,065,181 bytes — matches `research/registry_witness_pin.json`).
-Thresholds, evaluator, and witness identity are unchanged. `tests/test_h86i_rlms.py` probed the
-old `data/` layout to select the expected error class; updated to probe the real pinned paths.
+(SHA-256 `ab0a0a62...`, 25,065,181 bytes). Thresholds, evaluator, and witness identity are
+unchanged. `tests/test_h86i_rlms.py` probed the old `data/` layout to select the expected error
+class; updated to probe the real pinned paths.
 
 ## IR-86-96FC6D48-H86MLT-REGISTRATION — 2026-10-25
 
-PR #165 published `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif`
-(SHA-256 `4067382c...`) under `docs/downloads/` without registering it in
-`docs/evidence/download-inventory.json` or `registry/artifact_cards.json`, breaking
-`audit_release.py` ("Unregistered or missing published TIFF") and therefore `build_site.py`.
-Its run card and hand-made page `docs/h86m-lt.html` also claimed `verdict=promote` /
-`safe_to_submit=true` / "OK TO SUBMIT? YES" despite no HOLDOUT-DTI (tomography expected-DTI
-values are projections fitted to owner-reported live scores) and no organizer receipt,
-violating the publication guard (`check_site.py`) and AGENTS.md rule 14. Remediation: the
-artifact was independently re-verified from disk bytes (SHA/ZIP byte-identity, CRS/shape/
-transform, values exactly {0,1}, 0 NaN/Inf, 37,654 positives) and registered audit-only with
-`status=DO NOT SUBMIT`, `approved_for_weekly_slot=false`; the card's invalid authorization
-fields were set false with the original claims preserved in `superseded_claims` (measured
-values unchanged); the lane page and README head were rewritten DO NOT SUBMIT aligned. All 36
-registered artifacts re-measured; no submission slot used. See
-`research/SESSION_20261025_96FC6D48_REVIEW.md`.
+Session `96fc6d48` independently reproduced the PR #165 H86M-LT publication omission
+(registered on main by parallel session `57139348`, PR #166) and re-verified the raster from
+disk bytes (SHA-256 `4067382c...`, ZIP byte-identity, EPSG:32611 3730x3292, values exactly
+{0,1}, 37,654 positives). This branch's parallel card-supersession and page rewrite were
+discarded at merge in favour of main's `h86m_lt_unvalidated` handling; both sessions reached
+the identical DO NOT SUBMIT state. See `research/SESSION_20261025_96FC6D48_REVIEW.md`.

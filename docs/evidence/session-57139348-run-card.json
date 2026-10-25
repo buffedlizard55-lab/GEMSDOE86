@@ -1,0 +1,33 @@
+{
+  "hypothesis": "Release integrity review; defer GSST until shared-cache and lane prerequisites hold",
+  "mechanism": "Competing extended-step versus compact-body gravity response",
+  "non_fault_mimic": "Elongated intrusive lithologic contact",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_MISSING_SHARED_CACHE",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NO_NEW_CANDIDATE",
+    "surface": null,
+    "final_dots": null
+  },
+  "raster_sha256": null,
+  "validator": {
+    "status": "NO_NEW_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "existing_download_report": "docs/evidence/download-validation.json"
+  },
+  "submission_name": null,
+  "note": "No new TIFF; inherited LT archived as unvalidated. Shared cache missing. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

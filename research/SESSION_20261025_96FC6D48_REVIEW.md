@@ -59,7 +59,7 @@ emitted at H33-grade efficiency. Two independent blockers prevent any such claim
 1. **Protocol lane rule is literally unsatisfiable.** The SHA-pinned 17GEMSDOE witness
    (`ab0a0a62...`) is positive on 100% of the allowed domain, so every nonempty candidate
    has forward 3-px overlap 1.0 > 0.70 (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`, re-measured
-   this session; `REGISTRY-MEASUREMENT` over all 36 registered artifacts,
+   this session; `REGISTRY-MEASUREMENT` over all registered artifacts (36 at session audit; 37 after the parallel H86N-EQL merge — re-measured at merge),
    `docs/evidence/all-artifacts-registry.json`, registry incomplete). The PA-86-01/02
    like-for-like readings (thresholds unchanged: ρ ≤ 0.90, overlap ≤ 0.70) exist, but the
    only lane that promoted under them (H86G-EDTI, 43-file local registry) was later shown
@@ -74,14 +74,14 @@ emitted at H33-grade efficiency. Two independent blockers prevent any such claim
 gate actually runnable and honest (below) rather than emitting a 37th unsubmittable
 raster. The next scientific move, when a lane is authorized and the protocol conflict is
 resolved through an explicit revision endorsed at fleet level, is to run the top queued
-untried hypotheses (queue ranks 4–6 in `registry/h86n_hypotheses_20261025.json`, all native-band so no
+untried hypotheses (queue ranks 4–6 in `registry/h86o_hypotheses_20261025.json`, all native-band so no
 external obtainability blocker):
 
 | Rank | ID | Layers (`training_features.tif`) | Signature | Why catalogue-missing | Named mimic |
 |---|---|---|---|---|---|
-| 4 | H86N-1_SCQD | 16 `ieq_n100a15`, 10 `deq_n100a15`, 8 `geod_dilaterate` | dilatancy rank **conjunction-gated** by seismicity presence | seismogenic blind faults under basin fill lack scarps | injection/volcanic swarms |
-| 5 | H86N-2_TCW | 6 `tc` (verified GeoDAWN Total Count), 12 `det_elev`, 19 `det_elev_slope` | one-sided TC depletion asymmetry across elevation breaks | sediment-blanketed traces erase scarps but keep TC steps | fan toes, playa rims |
-| 6 | H86N-3_DBK | 15 `depth_to_base_surf`, 13 `iso_grav_anom` | basement-depth 2nd-derivative kink × gravity-sign concordance | buried half-graben hinges never reach the surface | paleovalley walls, caldera rings |
+| 4 | H86O-1_SCQD | 16 `ieq_n100a15`, 10 `deq_n100a15`, 8 `geod_dilaterate` | dilatancy rank **conjunction-gated** by seismicity presence | seismogenic blind faults under basin fill lack scarps | injection/volcanic swarms |
+| 5 | H86O-2_TCW | 6 `tc` (verified GeoDAWN Total Count), 12 `det_elev`, 19 `det_elev_slope` | one-sided TC depletion asymmetry across elevation breaks | sediment-blanketed traces erase scarps but keep TC steps | fan toes, playa rims |
+| 6 | H86O-3_DBK | 15 `depth_to_base_surf`, 13 `iso_grav_anom` | basement-depth 2nd-derivative kink × gravity-sign concordance | buried half-graben hinges never reach the surface | paleovalley walls, caldera rings |
 
 Each names how it differs from implemented lanes (verified by code search this session:
 prior seismicity use is an additive fitted feature `eq_prox_exp` in EWCS/CSGD; no TC
@@ -121,7 +121,7 @@ assertion (fixed by the truthful README head: **36** published research TIFFs) a
 RLMS test probing the old `data/` layout (fixed to probe the real pinned paths; with
 pinned inputs present the CLI now correctly stops with `STOP_LITERAL_OVERLAP_UNSATISFIABLE`).
 Added `data/bridge/registry/` to `.gitignore` (witness must not enter git). Hypotheses
-ranks 4–6 written to `registry/h86n_hypotheses_20261025.json` (status
+ranks 4–6 written to `registry/h86o_hypotheses_20261025.json` (status
 `NOT_RUN_PROTOCOL_STOP`; no HOLDOUT-DTI recorded — no projections written as scores).
 An initial attempt to append them to the dated `registry/followup_hypotheses_20261025.json`
 snapshot was reverted to preserve that archive byte-for-byte (its regression test pins
@@ -166,7 +166,7 @@ values, and the exact DrivenData portal procedure ([0,1] range class, unique nam
 
 **Suggested next work (in order):** (1) fleet-level protocol revision for the
 representation-aware lane rule; (2) restore the complete registry incl. the 2 off-grid
-rows; (3) preregister and validate H86N-1_SCQD (lowest cost) under the frozen protocol;
+rows; (3) preregister and validate H86O-1_SCQD (lowest cost) under the frozen protocol;
 (4) if it beats controls and the same-split best with a positive paired CI and passes
 full-registry checks, let the separate selector decide a single weekly slot and bind the
 organizer receipt before any further submission.

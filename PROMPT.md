@@ -1,15 +1,14 @@
 # Standing project prompt (condensed historical archive)
 
-**Current decision (2026-10-25): DO NOT SUBMIT ANY FILE.** The current all-artifact audit measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. H86G-EDTI's earlier like-for-like `promote` card is historical, not current authorization. No new TIFF, experiment, or slot was created in the current review. Session `96fc6d48` (2026-10-25) repaired the pinned-data layout bug breaking `protocol_preflight.measure()` (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, re-measured all registered artifacts, and registered the previously unregistered H86M-LT raster audit-only after superseding its unsupported `promote`/`safe_to_submit` claim (`IR-86-96FC6D48-H86MLT-REGISTRATION`). See `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`.
+**Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** Session `96fc6d48` (2026-10-25) then repaired the pinned-data layout bug breaking `protocol_preflight.measure()` in fresh checkouts (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, and re-measured all registered artifacts; see `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`. The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
 **Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first.** This condensed historical document is not
+`research/REQUEST_20261025.md` first (supplemented by `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
 a replacement for that archive. Preserve `REQUEST_20261024.md`,
 `REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 
-The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`;
-the latest session review/repair is `research/SESSION_20261025_96FC6D48_REVIEW.md`.
+The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
 Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 36 published research TIFFs (0 currently authorized; H86G-EDTI historical like-for-like promote only; all audit-only/negative under the current decision, including H86J-MPC, H86I-HVFD and the newly registered H86M-LT).
+the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
 The named fleet remains 92 projects. The current request adds owner claims
 `GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
 They were unscored in the 2026-10-24 archive; that historical record is not
