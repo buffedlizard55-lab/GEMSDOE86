@@ -2,15 +2,15 @@
   "schema": "gems86.session-code-verification.v1",
   "session": "cf73474c",
   "evidence_class": "CODE/UI-VERIFICATION",
-  "measured_utc": "2026-10-25T02:53:31+00:00",
-  "scope": "Local combined-main verification after integrating 2b0c086. No model fit, new prediction, new TIFF, organizer receipt, slot selection or upload.",
+  "measured_utc": "2026-10-25T03:13:34+00:00",
+  "scope": "Local combined-main verification, including a real fresh release remeasurement after PR #106 and the immutable historical-card repair. No model fit, new prediction/TIFF, organizer receipt, selector or upload.",
   "tests": {
     "command": ".venv/bin/python -m pytest -q -rs",
-    "passed": 802,
+    "passed": 807,
     "skipped": 24,
     "subtests_passed": 41,
     "warnings": 42,
-    "seconds": 344.4,
+    "seconds": 345.88,
     "warning_source": "Pinned Rasterio affine matrix-multiplication PendingDeprecationWarning; no new shared-tool fork.",
     "skips": [
       "SKIPPED [1] tests/test_axis_releases.py:55: no session release rasters in this checkout (releases/*.tif is gitignored)",
@@ -67,7 +67,7 @@
     "scripts/build_r0_spacing.py": "7441225339343168350fbd93aa387ccf229b8a8fe303e5b0e048721ed6965180",
     "scripts/build_r0_trackb.py": "7696125cd8a715eb56b142e442e980f391d5d9436838327e9022fcf914dc32be",
     "scripts/build_registry.py": "23101d3d5b6497f20a76ca0d5e3344bc004f9aefd614a5007d0799bbb00ad7f6",
-    "scripts/build_review_card.py": "f9412b7abb2333eef78af4c0caa8c9304e2ad9e8b40f985adebc8808f790aecd",
+    "scripts/build_review_card.py": "91c5e686f4a2fe78a9b00d87fb74cc91a45336808cc322dcba28f4b4932eb996",
     "scripts/build_site.py": "bec1504dfb6e27b2cc46c61e1420f74b7b7ecde4cd2321d9ad18b55382f12d1f",
     "scripts/build_snap_variants.py": "95a1215ef4d0d340826f11a7b0d4f90ff360c066d3a566e54f3a525bbd4e90fd",
     "scripts/build_spt.py": "616dfa1d19865de882939f3dc08c18a3c7f2622e856d962f64a70c0cd586e80a",
@@ -207,7 +207,7 @@
     "tests/test_concentration_surfext.py": "944f81812a4bf4a387179dd64e2ca31456f522640da4af8b79f6782327e87960",
     "tests/test_current_request.py": "01834531a5c1101fb075eafff3c1397da1758634ded6ea110efe2bc8ef78c908",
     "tests/test_current_review.py": "a119cd26712bcbc30b78f1c3cfaa3e3f0d854d6f77af225d224053c84ebb316e",
-    "tests/test_current_session_cf73474c.py": "8fdfd28d29561cbd81774d80bc3ee59adea88ffda6aed191a8a4d8ce328f33fd",
+    "tests/test_current_session_cf73474c.py": "584a802087926582fd824a6ee192f62df720127edf6a1c88081423287642fe56",
     "tests/test_data_integrity_gates.py": "1c07dce8cec7ca7a3c23e14523c0408f556762307cbb3d066efd77e67febb218",
     "tests/test_download.py": "3b6461e56e3caf14623e13e45efdf112a2001ef979b73c37516a80998b04690b",
     "tests/test_features.py": "4bffea87e7e1f807e7776da18ecf11b875e7bfe782e860b876ea5ecd2d33213d",
@@ -261,12 +261,24 @@
   },
   "locked_requirements_sha256": "08c4d00589d06320ec46d14f0eba5b778cf28c8c879510934b896c4eb9238763",
   "ui_receipt": "docs/evidence/ui-smoke-20261025.json",
-  "ui_receipt_sha256": "b8eceb2e68c680c194a70a21579eb13670844fa42fd18112a878840af712d0b2",
+  "ui_receipt_sha256": "c2a8689e2d39d4ec35759f51f1b095af35133c1bfcb9fc404034e7b15f8da362",
   "release_receipt": "docs/evidence/release-readiness.json",
-  "release_receipt_sha256": "2ce7b5881f0aa558a169404d6424d584ba611d7013c54617c9e46e7f5fd0e97b",
+  "release_receipt_sha256": "8aa26897c65ca0cf17b24808363dd433317e281f4815dfef6d0d4f709bc69b8d",
   "release_consistency_ok": true,
   "locally_valid_inherited_artifacts": 18,
   "submission_authorized": false,
   "experiments_run": 0,
-  "submission_slots_used": 0
+  "submission_slots_used": 0,
+  "workflow_sha256": {
+    ".github/workflows/ci.yml": "078a734fa84041baeeebfbd1ca4ab17b2b626d6b22e24f44910193431caefd1e",
+    ".github/workflows/pages.yml": "104e40dce9f0ab329b5260cd98c5419ec5edf275b9c957c4aa7f50167fdbb20e",
+    ".github/workflows/verify.yml": "b7cb43be691459a61204c3e60b25bc5788d74653124f78d3a9161a4885054bc3"
+  },
+  "daily_rebuild_regression": {
+    "reproduced_before_fix": true,
+    "live_audit_remeasured": true,
+    "immutable_review_check_passed": true,
+    "history_redated": false,
+    "snapshot_manifest": "docs/evidence/session-cf73474c-evidence/manifest.json"
+  }
 }
