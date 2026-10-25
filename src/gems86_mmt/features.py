@@ -19,6 +19,7 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from scipy import ndimage as ndi
+from scipy.stats import rankdata
 
 try:  # works both as ``gems86`` for CLIs and ``src.gems86`` for tests
     from gems86.io import NODATA
@@ -64,13 +65,28 @@ def _robust_z(a: np.ndarray, footprint: np.ndarray) -> np.ndarray:
 
 
 def rank01(a: np.ndarray, footprint: np.ndarray) -> np.ndarray:
-    """Deterministic empirical-CDF rank inside the footprint, in [0, 1]."""
+    """Tie-invariant empirical-CDF min-rank inside the footprint, in [0, 1].
+
+    Tied floor cells (e.g., 0.0 background or binary off-support cells) receive
+    0.0 uniformly across all rows rather than a row-major ``argsort`` ramp
+    (see ``IR-86-MMT-RANK01-TIE-20261024``). Non-finite values inside the
+    footprint are mapped safely to the floor (0.0) rather than propagating NaN.
+    """
+    footprint = np.asarray(footprint, bool)
     out = np.zeros(a.shape, np.float32)
     v = np.asarray(a, np.float32)[footprint]
-    order = np.argsort(v, kind="stable")
-    ranks = np.empty(order.size, np.float32)
-    ranks[order] = np.linspace(0.0, 1.0, order.size, dtype=np.float32)
-    out[footprint] = ranks
+    if v.size <= 1:
+        return out
+    finite = np.isfinite(v)
+    if not finite.any():
+        return out
+    fmin = float(v[finite].min())
+    fmax = float(v[finite].max())
+    if fmin == fmax and finite.all():
+        return out
+    clean = np.where(finite, v, fmin - 1.0)
+    ranks = (rankdata(clean, method="min").astype(np.float64) - 1.0) / float(v.size - 1)
+    out[footprint] = np.clip(ranks, 0.0, 1.0).astype(np.float32)
     return out
 
 
@@ -82,7 +98,7 @@ def _shift(a: np.ndarray, dy: float, dx: float) -> np.ndarray:
 
 def _directional_difference(a: np.ndarray, theta_deg: float) -> tuple[np.ndarray, float]:
     theta = np.deg2rad(theta_deg)
-    # tangent=(cos,-sin), normal=(sin,cos) in row/column coordinates
+    # normal=(sin,cos), strike=(-cos,sin) in row/column coordinates
     dy, dx = float(np.sin(theta)), float(np.cos(theta))
     plus = _shift(a, dy, dx)
     minus = _shift(a, -dy, -dx)
@@ -91,7 +107,27 @@ def _directional_difference(a: np.ndarray, theta_deg: float) -> tuple[np.ndarray
     return (plus - minus) * 0.5, obliquity
 
 
-def build_marker_features(features_tif: Path, footprint: np.ndarray) -> dict[str, np.ndarray]:
+def _lag_shift_vector(theta_deg: float, lag: float, *, shift_axis: str = "strike") -> tuple[float, float]:
+    """Return (dy, dx) for lag evaluation relative to gradient normal (sin θ, cos θ).
+
+    ``shift_axis="strike"`` shifts orthogonal to the gradient normal along
+    corridor strike ``(-cos θ, sin θ)``. ``shift_axis="normal"`` reproduces the
+    historical PR #93 across-edge shift (``IR-86-MMT-SHIFT-AXIS-20261024``).
+    """
+    rad = np.deg2rad(theta_deg)
+    if shift_axis == "strike":
+        return float(-np.cos(rad) * lag), float(np.sin(rad) * lag)
+    if shift_axis == "normal":
+        return float(np.sin(rad) * lag), float(np.cos(rad) * lag)
+    raise ValueError(f"Unsupported shift_axis {shift_axis!r}; expected 'strike' or 'normal'")
+
+
+def build_marker_features(
+    features_tif: Path,
+    footprint: np.ndarray,
+    *,
+    shift_axis: str = "strike",
+) -> dict[str, np.ndarray]:
     """Build H86E-MMT fields from Bands 2, 3, 6, and 9.
 
     ``mmt_translation`` is the largest positive non-zero-lag local product of
@@ -130,8 +166,8 @@ def build_marker_features(features_tif: Path, footprint: np.ndarray) -> dict[str
         for lag in NONZERO_LAGS_PX:
             # A non-zero lag is the hypothesis; lag 0 is retained as its
             # within-pixel registration control.
-            shifted = _shift(tgrad, float(np.sin(np.deg2rad(theta)) * lag),
-                             float(np.cos(np.deg2rad(theta)) * lag))
+            s_dy, s_dx = _lag_shift_vector(theta, lag, shift_axis=shift_axis)
+            shifted = _shift(tgrad, s_dy, s_dx)
             lag_product = np.abs(ndi.gaussian_filter(rgrad * shifted, 4.0, mode="nearest"))
             local_best = np.maximum(local_best, lag_product)
             del shifted, lag_product

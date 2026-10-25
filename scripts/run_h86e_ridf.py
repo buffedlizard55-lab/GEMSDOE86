@@ -29,6 +29,9 @@ D28 = ROOT / "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8a
 
 
 def main():
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     g = grid.load_grid(ROOT / "data")
     fp = g.footprint
