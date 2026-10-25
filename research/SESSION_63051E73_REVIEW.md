@@ -55,3 +55,9 @@ Outbound access is restricted to GitHub and package registries. Current organize
 ## Pass 3
 
 Final commands and test outcome are recorded in the accompanying session run card. Generated evidence and site checks must pass on the final tree before PR creation. No software pass is scientific clearance.
+
+### Parallel-run reconciliation
+
+While this audit ran, PR #156 independently merged the same inventory repair. Merged `origin/main` into this session branch and reused its archive schema, stronger lane-identity tests and hash-bound historical snapshot rather than maintaining a second implementation. The final diff adds this review, the current input/run-card records, and a deterministic H86L homepage anchor/negative-state warning with a regression test. The earlier measured audit remains a session measurement; current published audit evidence uses the reconciled main receipts. The initial full suite had five failures (two from files edited while it ran, one incomplete README link, one count wording, one obsolete timestamp assumption); the focused recheck passed. A second attempt was stopped for reconciliation; the final full suite runs only after that reconciliation.
+
+Final verification: reconciled full suite **1015 passed, 24 skipped**; the H86L module including the subsequently added homepage regression **13 passed**. Release audit, build-site check, site links, all-download audit, frozen-review check and diff-whitespace check passed. Skipped data-dependent tests are not scientific validation.

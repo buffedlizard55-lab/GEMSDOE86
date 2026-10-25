@@ -219,5 +219,26 @@
   "session": "63051e73",
   "measured_utc": "2026-10-25T17:10:56.323385+00:00",
   "unique_tiff_requirement_satisfied": false,
-  "software_tests": "Final verification pending; no scientific gate inferred."
+  "software_tests": {
+    "reconciled_full_suite": {
+      "passed": 1015,
+      "skipped": 24,
+      "failed": 0
+    },
+    "additional_final_h86l_module": {
+      "passed": 13,
+      "failed": 0
+    },
+    "scope": "New homepage regression added after full-suite collection; separately verified in the 13-test module."
+  },
+  "reconciliation": "Reused PR #156 shared archive schema and snapshot. No private evaluator or duplicate inventory implementation.",
+  "audit_measurement_scope": "This card retains the session 17:01 UTC measurement; current published evidence was reconciled with main PR #156.",
+  "verification": {
+    "audit_release": true,
+    "build_site_check": true,
+    "check_site": true,
+    "audit_downloads": true,
+    "frozen_review": true,
+    "git_diff_check": true
+  }
 }

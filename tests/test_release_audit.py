@@ -377,4 +377,3 @@ def test_tampered_quarantined_submission_bytes_or_zip_fail_release_audit(release
     cand_tif.write_bytes(b"substituted")
     with pytest.raises(ValueError, match="Quarantined submission/ TIFF SHA mismatch"):
         audit.build_report(release_copy)
-
