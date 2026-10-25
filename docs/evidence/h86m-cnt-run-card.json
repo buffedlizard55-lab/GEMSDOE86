@@ -1,0 +1,183 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane_id": "H86M-CNT",
+  "generated_utc": "2026-10-25T16:58:33.489227+00:00",
+  "hypothesis": "A concealed fluid-permeability fault pathway appears as a narrow high-pass conductivity neck (band 17 minus 5px background) conditioned on positive geodetic dilatation (band 8).",
+  "mechanism": "neck=clip(cond-gauss(cond,5),0,None); surface=rank(neck)*(0.5+0.5*rank(clip(dilat,0,None))); greedy 2.8px emission, 37654 dots, >3px off catalogue (visible-only in holdout folds).",
+  "named_non_fault_mimic": "Saline playa sediments and clay-rich paleochannels forming conductive necks without faults.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.04079232047189282,
+      "ci95": [
+        0.025720279542564745,
+        0.057478248699756374
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 606.2548123682295,
+      "fpw": 28419.66496603195,
+      "fnw": 10714.74518763177
+    },
+    "controls": {
+      "E0_raw_grav": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0297589488743728,
+        "ci95": [
+          0.013604984549716315,
+          0.048537843274364986
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 486.01800266526436,
+        "fpw": 35889.11665242388,
+        "fnw": 10834.981997334733
+      },
+      "E1_depth_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04539924944980939,
+        "ci95": [
+          0.02645526090972646,
+          0.06640937116055498
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 719.9706480129541,
+        "fpw": 33289.261810478376,
+        "fnw": 10601.029351987045
+      }
+    },
+    "paired_differences_vs_candidate": {
+      "E0_raw_grav": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.011033371597520023,
+        "ci95": [
+          -0.0038320622725859293,
+          0.026143400830680938
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "E1_depth_grad": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.004606928977916563,
+        "ci95": [
+          -0.027331842948086216,
+          0.019268707643097276
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    }
+  },
+  "leakage_canary": {
+    "single_feature_auc": {
+      "cnt_neck": 0.5175,
+      "cnt_dilat_pos": 0.5142,
+      "ctrl_cond_raw": 0.4791,
+      "ctrl_shear_abs": 0.5671
+    },
+    "gate_le_0.90": true
+  },
+  "correlation_overlap_vs_registry": {
+    "max_surface_spearman_abs": 0.06252932620286267,
+    "worst_surface": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "max_dot_spearman_abs": 0.07287269486431203,
+    "worst_dot": "gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+    "max_overlap3": 0.5671376215010357,
+    "worst_overlap": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "n_registry_measured": 58,
+    "method": "surface Spearman on shared 300k footprint sample vs every raster; dot phi (=Spearman, binary); overlap=frac candidate dots <=3px of other dots, dot-fields only (support<=20% footprint, PA-86-01)"
+  },
+  "preflight_PA-86-01": {
+    "status": "LITERAL_BLOCKED_BY_CONTINUOUS_SURFACE_ONLY__LIKE_FOR_LIKE_GATES_REQUIRED",
+    "literal_reading_blocked": true,
+    "witness_representation": {
+      "kind": "continuous_surface",
+      "support_fraction": 1.0,
+      "limit": 0.2
+    }
+  },
+  "gates": {
+    "paired_ci_low_gt_0_vs_E0": false,
+    "paired_ci_low_gt_0_vs_E1": false,
+    "canary_all_auc_le_0.90": true,
+    "surface_spearman_abs_le_0.90": true,
+    "dot_spearman_abs_le_0.90": true,
+    "overlap3_le_0.70": true,
+    "budget_exact": true,
+    "zero_dots_on_catalogue": true
+  },
+  "raster_sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+    "bytes": 105620,
+    "sha256": "ff95ed567aff2b55014c92d2135568ff40eb59394ac0c3f3e6352a701a8b8bda",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems86-h86m-cnt-condneck-37654dots-20261025T165655Z",
+  "submission_note_le140": "H86M-CNT conductivity-neck x dilatation dotted 37654; HOLDOUT-DTI in run card; DO NOT SUBMIT",
+  "note_chars": 92,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "dots": 37654,
+  "input_sha256": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "runtime_s": 98.8
+}
