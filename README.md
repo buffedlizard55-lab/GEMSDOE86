@@ -1,5 +1,16 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+## Current review — 2026-10-25 (`arena/e95b35a0-gemsdoe86`): **DO NOT SUBMIT**
+
+- Revalidated **32** published research TIFFs and their one-TIFF ZIPs: local format, [0,1] range, finite values, CRS, shape, transform and integrity pass. All are **audit downloads only**, including PR #92 and H86L-FMC. This session generated **no new candidate** and used no weekly slot.
+- Fixed H86L-FMC's missing publication registration without changing its TIFF or its negative/leakage-suspect evidence. The earlier inventory failure below is historical and repaired in this review.
+- Restored the pinned historical dense witness and remeasured all final artifacts: every nonempty allowed dot set fails the literal overlap rule. The native feature raster and required shared cache remain absent. No score improvement or unique submission has been established.
+- [Review, ranked research proposals, sources and limitations](research/SESSION_E95B35A0_REVIEW.md) · [Current machine decision](docs/evidence/release-readiness.json) · [Session run card](docs/evidence/session-e95b35a0-run-card.json) · [Submission guide](docs/executive-summary.html).
+- **Final verification:** `1015 passed, 24 skipped`; release audit, all-download audit, site build/check, frozen-review check and `git diff --check` pass. Skips are not evidence that unavailable-data experiments succeeded.
+- **Standing request:** read [PROMPT.md](PROMPT.md) and the complete owner-request archives embedded below before every session. Maximize P(Win) and Own the Outcome mean preserving negative findings and fixing end-to-end reliability, not manufacturing submission clearance.
+
+<details><summary>Previous session status (historical; superseded by the current review above)</summary>
+
 ## Start here (2026-10-25, session `0c60b079`, branch `arena/0c60b079-gemsdoe86`): **DO NOT SUBMIT — no new TIFF**
 
 - **Can I download and submit a TIFF from this repo right now? No.** Every published TIFF is `DO NOT SUBMIT` in this repo's own gate (`safe_to_submit = false`, `approved_for_weekly_slot = false`). The competition rules themselves (official GEMS Prize Rules, [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), sections 3.2–3.5) do not prohibit a generated raster; this stop is the repo's internal protocol.
@@ -8,6 +19,8 @@
 - **Verified this session (pre-merge tree):** test suite `1001 passed, 24 skipped`; H33 = parent minus 2,545 in-footprint dots (0 added), but the pair also differs in 7,111,787 NaN-vs-zero cells; the vendored metric treats NaN as 0.
 - **Post-merge state (main `0c05e70`, identical on this branch):** `scripts/check_site.py` and `scripts/build_site.py --check` **FAIL** because the H86L-FMC TIFF/ZIP from PR #150 is not registered in `docs/evidence/download-inventory.json`; `pytest` shows **16 failed / 985 passed** (same count on main). This predates this session and is not caused by it. Repair belongs to the H86L owner (IR-H in `IRREGULARITIES.md`).
 - **Needed from you:** (1) place the competition training features and labels into `data/bridge/` from a logged-in DrivenData download; (2) an owner decision on how to define the dot set for dense rasters; (3) the filename that produced the "[0, 1]" portal error.
+
+</details>
 
 ## ⛔ NEWEST TIFF (2026-10-25, H86L-FMC): **DO NOT SUBMIT** — unique file generated & machine-validated, hypothesis FALSIFIED
 

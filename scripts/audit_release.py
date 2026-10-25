@@ -155,6 +155,26 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "withheld_positives": n, "value": value, "ci95": ci,
                 "design": "candidate-sidecar holdout; fold construction and result not recomputed by this audit",
                 "caveat": "Pre-existing PR #92 artifact, not generated in this review. Its HOLDOUT-DTI is archived, with no matched-baseline delta established here. Its local like-for-like registry summary is scoped to locally present rasters and cannot clear the complete-registry gate; the fresh pinned full-support witness measurement below triggers the unchanged literal stop. Not organizer-confirmed or authorized for submission."}
+    if kind == "h86l_fmc":
+        # Registration repairs publication coverage; it must not launder a fleet
+        # built from the full catalogue into leakage-safe hide-and-recover proof.
+        h = context.get("holdout", {})
+        candidate = h.get("candidate", {})
+        if (context.get("lane_id") != "H86L-FMC"
+                or context.get("verdict") != "negative"
+                or not explicit_no_authorization(context)
+                or context.get("submission_slots_used") != 0
+                or h.get("evidence_class") != "HOLDOUT-DTI (LEAKAGE-SUSPECT: fleet built with full catalogue)"
+                or candidate.get("evidence_class") != "HOLDOUT-DTI"
+                or candidate.get("evaluator_version") != "gems57-pooled-hide-v2"
+                or context.get("gates", {}).get("overlap3_le_0.70") is not False):
+            raise ValueError("H86L-FMC archive must preserve leakage-suspect, duplicate, negative/no-slot evidence")
+        return {**base, "status": "ARCHIVED_LEAKAGE_SUSPECT_NOT_PROMOTION_EVIDENCE",
+                "evaluator_version": candidate["evaluator_version"],
+                "withheld_positives": candidate.get("withheld_positive_pixels"),
+                "value": candidate.get("dti"), "ci95": candidate.get("ci95"),
+                "design": "Fleet derived with full catalogue; not fold-visible hide-and-recover evidence",
+                "caveat": "Archived H86L-FMC result, not recomputed. Passing a feature canary does not cure fleet-ancestry leakage. Final-dot overlap exceeded the registry limit. Publication registration and format validity do not establish uniqueness, performance or slot authorization. DO NOT SUBMIT."}
     if kind == "gmc_control":
         return {**base, "withheld_positives": context["withheld_positive_pixels"],
                 "value": context["holdout_dti"], "ci95": context["holdout_ci95"],
