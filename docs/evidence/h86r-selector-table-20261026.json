@@ -1,0 +1,1164 @@
+{
+  "schema": "gems86.h86r.selector-table.v1",
+  "evidence_class": "REGISTRY-MEASUREMENT + SGMC-PROXY-DTI (point) + FLEET-REGRESSION-PROJECTION",
+  "measured_note": "Point SGMC-PROXY-DTI via identical fold_proxy as evaluate_sgmc_proxy (off-catalogue SGMC >3px from catalogue); random-null floor at 37,654 dots measured in the lane run: 0.0754. Projection uses frozen OLS from h86r-fleet-estimator-20261026.json (n=23, LOO-RMSE=0.0380); it is not a score and cannot credit new truth mass. live_owner_reported column corrected 2026-10-26 to strict stem/hex-token matching (IR-86R-ESTIMATOR-MISMATCH-20261026): 38 false labels removed; SGMC/projection columns unchanged (v2 coefficients).",
+  "random_null_sgmc_proxy_dti": 0.0754,
+  "rows": [
+    {
+      "file": "docs/downloads/gems86-blindgeothermal-dilation-40000d-20261024T222850Z-16522b66-zeros.tif",
+      "dots": 40000,
+      "ov_h33_3px": 0.1197,
+      "frac_gt_1km": 0.7706,
+      "sgmc_proxy_dti_point": 0.0358,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1496,
+      "projection_interval_approx": [
+        0.0752,
+        0.2239
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "dots": 4210938,
+      "ov_h33_3px": 0.1535,
+      "frac_gt_1km": 0.7036,
+      "sgmc_proxy_dti_point": 0.0676,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1441,
+      "projection_interval_approx": [
+        0.0697,
+        0.2184
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-gapres-fleetgap-37654dots-20261024T192023Z-8e34901f-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.0,
+      "frac_gt_1km": 0.8839,
+      "sgmc_proxy_dti_point": 0.0782,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1602,
+      "projection_interval_approx": [
+        0.0858,
+        0.2345
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-gdsc-dilatational-37654dots-20261025T134427Z-70224321-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.1868,
+      "frac_gt_1km": 0.732,
+      "sgmc_proxy_dti_point": 0.0151,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1494,
+      "projection_interval_approx": [
+        0.075,
+        0.2237
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "dots": 90568,
+      "ov_h33_3px": 0.2213,
+      "frac_gt_1km": 0.0,
+      "sgmc_proxy_dti_point": 0.0887,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0055,
+      "projection_interval_approx": [
+        0.0,
+        0.0799
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+      "dots": 90568,
+      "ov_h33_3px": 0.1577,
+      "frac_gt_1km": 0.9904,
+      "sgmc_proxy_dti_point": 0.0876,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.2088,
+      "projection_interval_approx": [
+        0.1344,
+        0.2832
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3316,
+      "frac_gt_1km": 0.4892,
+      "sgmc_proxy_dti_point": 0.0609,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1249,
+      "projection_interval_approx": [
+        0.0505,
+        0.1993
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+      "dots": 38000,
+      "ov_h33_3px": 0.1815,
+      "frac_gt_1km": 0.7607,
+      "sgmc_proxy_dti_point": 0.0547,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1593,
+      "projection_interval_approx": [
+        0.0849,
+        0.2336
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+      "dots": 38400,
+      "ov_h33_3px": 0.412,
+      "frac_gt_1km": 0.3903,
+      "sgmc_proxy_dti_point": 0.0757,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1179,
+      "projection_interval_approx": [
+        0.0435,
+        0.1922
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+      "dots": 60000,
+      "ov_h33_3px": 0.1429,
+      "frac_gt_1km": 0.7893,
+      "sgmc_proxy_dti_point": 0.1064,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1653,
+      "projection_interval_approx": [
+        0.0909,
+        0.2397
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2928,
+      "frac_gt_1km": 0.1199,
+      "sgmc_proxy_dti_point": 0.053,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0384,
+      "projection_interval_approx": [
+        0.0,
+        0.1128
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.3012,
+      "frac_gt_1km": 0.0815,
+      "sgmc_proxy_dti_point": 0.0816,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0347,
+      "projection_interval_approx": [
+        0.0,
+        0.1091
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.3068,
+      "frac_gt_1km": 0.3366,
+      "sgmc_proxy_dti_point": 0.0721,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0895,
+      "projection_interval_approx": [
+        0.0151,
+        0.1638
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-cctx-44090dots-20261024T183534Z-f776ea1a-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.2408,
+      "frac_gt_1km": 0.0488,
+      "sgmc_proxy_dti_point": 0.0429,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0138,
+      "projection_interval_approx": [
+        0.0,
+        0.0882
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86e-mmt-marker-translation-44090dots-20261024T224434Z-04001ad9-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.2038,
+      "frac_gt_1km": 0.8259,
+      "sgmc_proxy_dti_point": 0.0449,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1757,
+      "projection_interval_approx": [
+        0.1013,
+        0.25
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-ewcs-elastic-wing-37654dots-20261025T020534Z-47f1ed21-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2696,
+      "frac_gt_1km": 0.277,
+      "sgmc_proxy_dti_point": 0.0819,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0719,
+      "projection_interval_approx": [
+        0.0,
+        0.1463
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-gzzd-laplace-dipole-44090dots-20261025T003205Z-c18f96da-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.1558,
+      "frac_gt_1km": 0.8227,
+      "sgmc_proxy_dti_point": 0.0364,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1665,
+      "projection_interval_approx": [
+        0.0921,
+        0.2409
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86f-pcc-signed-44090dots-20261025T002755Z-94f74d4e-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.1509,
+      "frac_gt_1km": 0.8166,
+      "sgmc_proxy_dti_point": 0.0274,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1634,
+      "projection_interval_approx": [
+        0.089,
+        0.2378
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2323,
+      "frac_gt_1km": 0.0,
+      "sgmc_proxy_dti_point": 0.0799,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0062,
+      "projection_interval_approx": [
+        0.0,
+        0.0806
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86g-edti-55000dots-20261025T023531Z-a86d6a9f-zeros.tif",
+      "dots": 55000,
+      "ov_h33_3px": 0.2595,
+      "frac_gt_1km": 0.757,
+      "sgmc_proxy_dti_point": 0.1223,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1784,
+      "projection_interval_approx": [
+        0.104,
+        0.2528
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86i-hvfd-vent-flexure-37654dots-20261025T030002Z-33c17af1-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.212,
+      "frac_gt_1km": 0.4436,
+      "sgmc_proxy_dti_point": 0.0577,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0961,
+      "projection_interval_approx": [
+        0.0217,
+        0.1704
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86i-rksc-rad-scarp-44090dots-20261025T025132Z-f1199979-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.1435,
+      "frac_gt_1km": 0.8015,
+      "sgmc_proxy_dti_point": 0.0425,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1607,
+      "projection_interval_approx": [
+        0.0863,
+        0.2351
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86i-rlms-riedel-listric-37654dots-20261025T053030Z-08cce287-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.4025,
+      "frac_gt_1km": 0.6055,
+      "sgmc_proxy_dti_point": 0.0743,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1626,
+      "projection_interval_approx": [
+        0.0882,
+        0.237
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86i-sacd-spin2-submod-37654dots-20261025T040150Z-0544ef05-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3117,
+      "frac_gt_1km": 0.2252,
+      "sgmc_proxy_dti_point": 0.0743,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0665,
+      "projection_interval_approx": [
+        0.0,
+        0.1408
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86j-csgd-sar-admit-37654dots-20261025T055033Z-35faffb4-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.0658,
+      "frac_gt_1km": 0.5775,
+      "sgmc_proxy_dti_point": 0.0141,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0971,
+      "projection_interval_approx": [
+        0.0227,
+        0.1715
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86j-mcsp-celf-37654dots-20261025T065104Z-b80b7702-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3377,
+      "frac_gt_1km": 0.496,
+      "sgmc_proxy_dti_point": 0.0999,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1318,
+      "projection_interval_approx": [
+        0.0574,
+        0.2062
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86j-mpctri-mpcstep-44090dots-20261025T041719Z-014b24c0-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.1765,
+      "frac_gt_1km": 0.8092,
+      "sgmc_proxy_dti_point": 0.0658,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1702,
+      "projection_interval_approx": [
+        0.0958,
+        0.2446
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86j-tvhs-ggt-vent-loqo-37654dots-20261025T062647Z-49726478-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.257,
+      "frac_gt_1km": 0.1752,
+      "sgmc_proxy_dti_point": 0.0541,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0448,
+      "projection_interval_approx": [
+        0.0,
+        0.1192
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86k-psc-saddleridge-37654dots-20261025T135153Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.1648,
+      "frac_gt_1km": 0.7684,
+      "sgmc_proxy_dti_point": 0.072,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1603,
+      "projection_interval_approx": [
+        0.0859,
+        0.2347
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86k-stdp-dcelf-37654dots-20261025T145724Z-72a82f29-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3126,
+      "frac_gt_1km": 0.4967,
+      "sgmc_proxy_dti_point": 0.1133,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1296,
+      "projection_interval_approx": [
+        0.0552,
+        0.2039
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86l-fmc-minconsensus-37654dots-20261025T161053Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.8602,
+      "frac_gt_1km": 0.6601,
+      "sgmc_proxy_dti_point": 0.1002,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.2488,
+      "projection_interval_approx": [
+        0.1744,
+        0.3232
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-bmgs-dcelf-37654dots-20261025T185635Z-dac77ff2-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2974,
+      "frac_gt_1km": 0.466,
+      "sgmc_proxy_dti_point": 0.1082,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.12,
+      "projection_interval_approx": [
+        0.0456,
+        0.1944
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-bmr-massresid-37654dots-20261025T165457Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.122,
+      "frac_gt_1km": 0.8224,
+      "sgmc_proxy_dti_point": 0.0299,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1604,
+      "projection_interval_approx": [
+        0.086,
+        0.2348
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-cnt-condneck-37654dots-20261025T165655Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.1668,
+      "frac_gt_1km": 0.7645,
+      "sgmc_proxy_dti_point": 0.0484,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1571,
+      "projection_interval_approx": [
+        0.0827,
+        0.2314
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-damagering-40000d-20261025T170111Z-1459e091-zeros.tif",
+      "dots": 40000,
+      "ov_h33_3px": 0.1509,
+      "frac_gt_1km": 1.0,
+      "sgmc_proxy_dti_point": 0.0765,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.2085,
+      "projection_interval_approx": [
+        0.1341,
+        0.2829
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.5643,
+      "frac_gt_1km": 0.7106,
+      "sgmc_proxy_dti_point": 0.1136,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.215,
+      "projection_interval_approx": [
+        0.1406,
+        0.2894
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-pfte-blind-comonodcelf-37654dots-20261025T175515Z-04d0022f-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3014,
+      "frac_gt_1km": 0.6747,
+      "sgmc_proxy_dti_point": 0.121,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1671,
+      "projection_interval_approx": [
+        0.0927,
+        0.2414
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2999,
+      "frac_gt_1km": 0.41,
+      "sgmc_proxy_dti_point": 0.0967,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.107,
+      "projection_interval_approx": [
+        0.0326,
+        0.1814
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86n-eql-seislineation-37654dots-20261025T181759Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.1615,
+      "frac_gt_1km": 0.7903,
+      "sgmc_proxy_dti_point": 0.0497,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1619,
+      "projection_interval_approx": [
+        0.0876,
+        0.2363
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.1527,
+      "frac_gt_1km": 0.7603,
+      "sgmc_proxy_dti_point": 0.0195,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1507,
+      "projection_interval_approx": [
+        0.0763,
+        0.225
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2735,
+      "frac_gt_1km": 0.3329,
+      "sgmc_proxy_dti_point": 0.0809,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0845,
+      "projection_interval_approx": [
+        0.0101,
+        0.1588
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.135,
+      "frac_gt_1km": 1.0,
+      "sgmc_proxy_dti_point": 0.0344,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.2012,
+      "projection_interval_approx": [
+        0.1268,
+        0.2756
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3392,
+      "frac_gt_1km": 0.6848,
+      "sgmc_proxy_dti_point": 0.0967,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1723,
+      "projection_interval_approx": [
+        0.0979,
+        0.2467
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2387,
+      "frac_gt_1km": 0.7274,
+      "sgmc_proxy_dti_point": 0.0596,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1616,
+      "projection_interval_approx": [
+        0.0872,
+        0.236
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.4564,
+      "frac_gt_1km": 0.4415,
+      "sgmc_proxy_dti_point": 0.0638,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1344,
+      "projection_interval_approx": [
+        0.0601,
+        0.2088
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "docs/downloads/gems86-uniquedot-damagering-25000d-20261025T120000Z-b09a9b79-zeros.tif",
+      "dots": 25000,
+      "ov_h33_3px": 0.2133,
+      "frac_gt_1km": 0.0,
+      "sgmc_proxy_dti_point": 0.0481,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0,
+      "projection_interval_approx": [
+        0.0,
+        0.0744
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "dots": 40199,
+      "ov_h33_3px": 0.9539,
+      "frac_gt_1km": 0.6541,
+      "sgmc_proxy_dti_point": 0.0937,
+      "live_owner_reported": 0.2708,
+      "fleet_regression_projection": 0.2614,
+      "projection_interval_approx": [
+        0.187,
+        0.3357
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "dots": 37660,
+      "ov_h33_3px": 0.9547,
+      "frac_gt_1km": 0.6565,
+      "sgmc_proxy_dti_point": 0.0915,
+      "live_owner_reported": 0.271,
+      "fleet_regression_projection": 0.2618,
+      "projection_interval_approx": [
+        0.1874,
+        0.3361
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "dots": 37860,
+      "ov_h33_3px": 0.9501,
+      "frac_gt_1km": 0.6544,
+      "sgmc_proxy_dti_point": 0.0918,
+      "live_owner_reported": 0.2707,
+      "fleet_regression_projection": 0.2606,
+      "projection_interval_approx": [
+        0.1862,
+        0.335
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+      "dots": 46090,
+      "ov_h33_3px": 0.8408,
+      "frac_gt_1km": 0.5923,
+      "sgmc_proxy_dti_point": 0.0962,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.2307,
+      "projection_interval_approx": [
+        0.1563,
+        0.3051
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 1.0,
+      "frac_gt_1km": 0.6983,
+      "sgmc_proxy_dti_point": 0.0937,
+      "live_owner_reported": 0.2778,
+      "fleet_regression_projection": 0.2781,
+      "projection_interval_approx": [
+        0.2037,
+        0.3525
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "dots": 41865,
+      "ov_h33_3px": 0.9264,
+      "frac_gt_1km": 0.6336,
+      "sgmc_proxy_dti_point": 0.0945,
+      "live_owner_reported": 0.2632,
+      "fleet_regression_projection": 0.2527,
+      "projection_interval_approx": [
+        0.1784,
+        0.3271
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "dots": 38854,
+      "ov_h33_3px": 0.974,
+      "frac_gt_1km": 0.6967,
+      "sgmc_proxy_dti_point": 0.0951,
+      "live_owner_reported": 0.275,
+      "fleet_regression_projection": 0.2738,
+      "projection_interval_approx": [
+        0.1995,
+        0.3482
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+      "dots": 40000,
+      "ov_h33_3px": 0.4339,
+      "frac_gt_1km": 0.6861,
+      "sgmc_proxy_dti_point": 0.1334,
+      "live_owner_reported": 0.2376,
+      "fleet_regression_projection": 0.1916,
+      "projection_interval_approx": [
+        0.1172,
+        0.266
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+      "dots": 54864,
+      "ov_h33_3px": 0.5504,
+      "frac_gt_1km": 0.6764,
+      "sgmc_proxy_dti_point": 0.1273,
+      "live_owner_reported": 0.2303,
+      "fleet_regression_projection": 0.207,
+      "projection_interval_approx": [
+        0.1326,
+        0.2814
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2749,
+      "frac_gt_1km": 0.6237,
+      "sgmc_proxy_dti_point": 0.0651,
+      "live_owner_reported": 0.1152,
+      "fleet_regression_projection": 0.1455,
+      "projection_interval_approx": [
+        0.0711,
+        0.2199
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.4539,
+      "frac_gt_1km": 0.5513,
+      "sgmc_proxy_dti_point": 0.1093,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.163,
+      "projection_interval_approx": [
+        0.0886,
+        0.2373
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.486,
+      "frac_gt_1km": 0.6103,
+      "sgmc_proxy_dti_point": 0.0785,
+      "live_owner_reported": 0.1917,
+      "fleet_regression_projection": 0.1771,
+      "projection_interval_approx": [
+        0.1027,
+        0.2515
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+      "dots": 36800,
+      "ov_h33_3px": 0.4561,
+      "frac_gt_1km": 0.6069,
+      "sgmc_proxy_dti_point": 0.1182,
+      "live_owner_reported": 0.1627,
+      "fleet_regression_projection": 0.1763,
+      "projection_interval_approx": [
+        0.1019,
+        0.2507
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+      "dots": 39200,
+      "ov_h33_3px": 0.5799,
+      "frac_gt_1km": 0.489,
+      "sgmc_proxy_dti_point": 0.0859,
+      "live_owner_reported": 0.2343,
+      "fleet_regression_projection": 0.1665,
+      "projection_interval_approx": [
+        0.0921,
+        0.2409
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.522,
+      "frac_gt_1km": 0.66,
+      "sgmc_proxy_dti_point": 0.0847,
+      "live_owner_reported": 0.1555,
+      "fleet_regression_projection": 0.1942,
+      "projection_interval_approx": [
+        0.1198,
+        0.2686
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2996,
+      "frac_gt_1km": 0.5343,
+      "sgmc_proxy_dti_point": 0.0763,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1314,
+      "projection_interval_approx": [
+        0.057,
+        0.2058
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "dots": 40000,
+      "ov_h33_3px": 0.4449,
+      "frac_gt_1km": 0.3491,
+      "sgmc_proxy_dti_point": 0.0974,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1166,
+      "projection_interval_approx": [
+        0.0422,
+        0.191
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+      "dots": 36500,
+      "ov_h33_3px": 0.336,
+      "frac_gt_1km": 0.4718,
+      "sgmc_proxy_dti_point": 0.0609,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1219,
+      "projection_interval_approx": [
+        0.0475,
+        0.1962
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "dots": 51667,
+      "ov_h33_3px": 0.377,
+      "frac_gt_1km": 0.3806,
+      "sgmc_proxy_dti_point": 0.082,
+      "live_owner_reported": 0.0943,
+      "fleet_regression_projection": 0.111,
+      "projection_interval_approx": [
+        0.0366,
+        0.1854
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.1937,
+      "frac_gt_1km": 0.0,
+      "sgmc_proxy_dti_point": 0.0195,
+      "live_owner_reported": 0.0041,
+      "fleet_regression_projection": 0.0,
+      "projection_interval_approx": [
+        0.0,
+        0.0744
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.5259,
+      "frac_gt_1km": 0.4564,
+      "sgmc_proxy_dti_point": 0.0904,
+      "live_owner_reported": 0.1886,
+      "fleet_regression_projection": 0.1516,
+      "projection_interval_approx": [
+        0.0772,
+        0.2259
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3183,
+      "frac_gt_1km": 0.3677,
+      "sgmc_proxy_dti_point": 0.0906,
+      "live_owner_reported": 0.0573,
+      "fleet_regression_projection": 0.1001,
+      "projection_interval_approx": [
+        0.0257,
+        0.1745
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "dots": 90000,
+      "ov_h33_3px": 0.2151,
+      "frac_gt_1km": 0.7805,
+      "sgmc_proxy_dti_point": 0.1921,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.1845,
+      "projection_interval_approx": [
+        0.1101,
+        0.2589
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": false
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.3972,
+      "frac_gt_1km": 0.1065,
+      "sgmc_proxy_dti_point": 0.0494,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.0514,
+      "projection_interval_approx": [
+        0.0,
+        0.1258
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "dots": 37654,
+      "ov_h33_3px": 0.2115,
+      "frac_gt_1km": 0.5221,
+      "sgmc_proxy_dti_point": 0.0417,
+      "live_owner_reported": null,
+      "fleet_regression_projection": 0.111,
+      "projection_interval_approx": [
+        0.0367,
+        0.1854
+      ],
+      "unique_scoped_vs_h33_lineage": true,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "dots": 123939,
+      "ov_h33_3px": 0.8375,
+      "frac_gt_1km": 0.5922,
+      "sgmc_proxy_dti_point": 0.1163,
+      "live_owner_reported": 0.1855,
+      "fleet_regression_projection": 0.2324,
+      "projection_interval_approx": [
+        0.1581,
+        0.3068
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "dots": 123779,
+      "ov_h33_3px": 0.8704,
+      "frac_gt_1km": 0.5907,
+      "sgmc_proxy_dti_point": 0.1098,
+      "live_owner_reported": 0.1894,
+      "fleet_regression_projection": 0.2365,
+      "projection_interval_approx": [
+        0.1621,
+        0.3109
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "dots": 121131,
+      "ov_h33_3px": 0.8925,
+      "frac_gt_1km": 0.5893,
+      "sgmc_proxy_dti_point": 0.1034,
+      "live_owner_reported": 0.1922,
+      "fleet_regression_projection": 0.2389,
+      "projection_interval_approx": [
+        0.1645,
+        0.3133
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "dots": 60069,
+      "ov_h33_3px": 0.8848,
+      "frac_gt_1km": 0.5931,
+      "sgmc_proxy_dti_point": 0.1007,
+      "live_owner_reported": 0.2477,
+      "fleet_regression_projection": 0.2382,
+      "projection_interval_approx": [
+        0.1638,
+        0.3126
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "dots": 44090,
+      "ov_h33_3px": 0.8817,
+      "frac_gt_1km": 0.5964,
+      "sgmc_proxy_dti_point": 0.0937,
+      "live_owner_reported": 0.26,
+      "fleet_regression_projection": 0.2376,
+      "projection_interval_approx": [
+        0.1633,
+        0.312
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    },
+    {
+      "file": "data/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "dots": 61328,
+      "ov_h33_3px": 0.8672,
+      "frac_gt_1km": 0.5837,
+      "sgmc_proxy_dti_point": 0.102,
+      "live_owner_reported": 0.2449,
+      "fleet_regression_projection": 0.2336,
+      "projection_interval_approx": [
+        0.1592,
+        0.308
+      ],
+      "unique_scoped_vs_h33_lineage": false,
+      "projection_in_training_support": true
+    }
+  ],
+  "live_match_corrections": 38
+}

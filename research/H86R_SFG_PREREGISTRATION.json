@@ -1,0 +1,73 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86R-SFG",
+  "frozen_utc": "2026-10-26T16:15:00Z",
+  "branch": "arena/9c9712ca-gemsdoe86",
+  "hypothesis_queue_ref": "registry/h86r_hypotheses_20261026.json",
+  "selected_hypothesis_id": "H86R-1_SFG",
+  "executes_queued_proposal": "H86J-SCO (research/H86J_LSI_PREREGISTRATION.md, rank 2, never implemented)",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "weekly_submission_slots_authorized": 0,
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0
+  },
+  "static_features": [
+    "sfg_grav_edge_b5_rank",
+    "sfg_mag_edge_b3_rank",
+    "sfg_rtp_gradmag_s1p5_rank",
+    "sfg_basement_gradmag_rank",
+    "sfg_elev_slope_b19_rank",
+    "sfg_edge_fusion_E",
+    "sfg_alignment_A_fullcat",
+    "sfg_surface_E1_fullcat"
+  ],
+  "fold_visible_features": [
+    "sfg_alignment_A_visible",
+    "sfg_surface_E1_visible",
+    "sfg_surface_E3_visible"
+  ],
+  "method_frozen": {
+    "rank01": "percentile rank over footprint pixels with finite band values (sentinel -3.4028235e38 treated as missing -> rank 0)",
+    "edge_fusion_E": "0.5*mean(5 edge ranks) + 0.5*(second-highest of the 5 edge ranks), computed per pixel",
+    "edge_strike_theta_E": "strike = perpendicular to verified gravity gradient vector (gx=B18 east, gy=-B11 north); theta_E = atan2(gy,gx)+pi/2 (mod pi)",
+    "catalogue_strike_field": "smoothed catalogue mask (gaussian sigma=2 px) gradients -> double-angle vector (cos2t,sin2t) of local trace orientation weighted by gradient energy; gaussian smooth double-angle components sigma=50 px (5 km); theta_C=0.5*atan2(sin2t_s,cos2t_s) (mod pi)",
+    "alignment_A": "cos^2(theta_E - theta_C) in [0,1]",
+    "surface_E1": "E * (0.35 + 0.65*A)",
+    "surface_E3": "grav_edge_rank * (0.35 + 0.65*A)",
+    "emission": "score-descending greedy Poisson-disk: eligible = footprint & d_cat(reference catalogue)>3.0 px & finite surface; accept if no accepted dot within 2.8 px Euclidean; stop at exactly 37,654 dots; ties broken by flat index order (deterministic)",
+    "holdout": "vendor gems57 holdout.buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12); ONE global holdout emission per arm using fold-visible strike field + fold-visible collar; scored per fold with vendor evaluate_holdout.evaluate (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangular kernel, 200-px blocks) and pooled with 1,000 paired bootstrap draws (seed 861726)",
+    "sgmc_proxy": "scripts.run_h86k_stdp.evaluate_sgmc_proxy unchanged (read-only diagnostic; SGMC never used in features/emission/tuning)",
+    "canary": "scripts.run_h86k_stdp.prepare_canary_indices + score_canary_array on every static plane + surfaces; hard stop if discriminative AUC > 0.90",
+    "comparators_not_arms": [
+      "GEMSDOE32 H33 (data/scored_fleet, sha c55bafc4...) re-scored on identical holdout + SGMC calls",
+      "GEMSDOE28 H27-4 (data/scored_fleet) re-scored identically",
+      "H86Q-BFRA shipped blind TIFF (docs/downloads) re-scored identically",
+      "seeded uniform-random null emission under identical eligibility/spacing/budget (seed 861726)"
+    ]
+  },
+  "arms": [
+    {"id": "E1_sfg_gated_edge_fusion", "role": "primary_candidate", "surface": "E*(0.35+0.65*A)"},
+    {"id": "E2_edge_fusion_ungated_ablation", "role": "ablation_control", "surface": "E"},
+    {"id": "E3_sfg_gated_gravity_only", "role": "mechanism_isolation", "surface": "grav_edge_rank*(0.35+0.65*A)"}
+  ],
+  "gates_frozen_before_run": {
+    "G1_format": "vendor submission_writer 15-check pass on the serialized TIFF (single band float32, 3730x3292, EPSG:32611, exact sample transform, no NaN/Inf anywhere, values in [0,1], zeros outside footprint, zero dots on catalogue)",
+    "G2_canary": "every plane discriminative AUC <= 0.90",
+    "G3_holdout": "E1 pooled HOLDOUT-DTI > E2 ablation point estimate (paired 95% CI reported; CI excluding 0 = strong pass, point-only = weak pass flagged)",
+    "G4_sgmc": "E1 SGMC-PROXY-DTI >= H33 SGMC-PROXY-DTI recomputed with the identical call in this session",
+    "G5_uniqueness_scoped": "forward 3-px dot overlap <= 0.70 AND surface Spearman <= 0.90 vs EVERY locally restored comparable discrete raster (data/scored_fleet + data/scored + docs/downloads), byte- and pixel-nonidentical; dense ancestors (>100k positives) and full-support continuous registry rasters are reported separately and never silently counted as passes",
+    "G6_fingerprint": "exactly 37,654 dots, min d_cat > 3.0 px, frac>1km reported against H33's 0.698",
+    "verdict_rule": "Scoped automated decision (no human inspection): DOWNLOAD_CANDIDATE iff G1,G2,G4,G5 pass AND G3 strong-or-weak pass; else DO_NOT_DOWNLOAD_AS_CANDIDATE. Repository governance fields stay separate and truthful in all cases: run-card verdict='negative', safe_to_submit=false, approved_for_weekly_slot=false, submission_slots_used=0, because slot spending is the owner's DrivenData action (no agent auth/API) and the literal full-registry witness gate cannot pass for any nonempty raster (17GEMSDOE full-support witness). The executive summary must state the scoped decision, the gates table, and this distinction in one place. A projection from the fleet estimator is never a gate and never a score.",
+    "governance_note_added_pre_run": "2026-10-26T16:20Z, before any feature computation: audit_release.py hard-codes non-h86g_edti cards to verdict negative (scientific_card_is_negative); this preregistration therefore fixes the scoped DOWNLOAD_CANDIDATE decision as the session's automated yes/no, rather than silently relabelling governance fields after seeing results."
+  },
+  "estimator_frozen": "OLS of OWNER-REPORTED live score on [1, overlap3px_vs_H33, SGMC-PROXY-DTI, frac_gt_1km] over all locally measurable rasters matched to registry/prior_scores.csv (deduplicated -nan/-zeros twins); leave-one-out RMSE reported; candidate projection = OLS prediction +/- 1.96*LOO-RMSE, labelled FLEET-REGRESSION-PROJECTION (not HOLDOUT-DTI, not ORGANIZER-CONFIRMED)",
+  "inputs_sha256_verified": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "derived_sgmc_faults_100m_u8.tif": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+  }
+}

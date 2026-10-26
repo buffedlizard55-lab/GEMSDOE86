@@ -611,6 +611,49 @@ def h86i_rksc_answer(card: dict) -> str:
 <p><a href="evidence/h86i-rksc-run-card.json">Full H86I-RKSC run card</a> · <a href="evidence/h86i-rksc-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86i-rksc-registry-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86I_RKSC_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_RKSC_REVIEW.md">PhD H33 (0.2778) proof &amp; 3-pass review</a></p></section>'''
 
 
+def h86r_sfg_answer(card: dict, selector: dict, estimator_v2: dict, section_id: str = "h86r-sfg") -> str:
+    """Newest lane receipt (H86R-SFG): falsified strike-field gate + automated download-decision table.
+
+    All numbers are read from the frozen run card / selector / estimator-v2
+    evidence files at render time; projections are labelled projections,
+    never scores; every file remains DO NOT SUBMIT under repo governance.
+    """
+    h = card["holdout_dti"]
+    e1, e2 = h["candidate"], h["all_arms"]["E2_edge_fusion_ungated_ablation"]
+    sg = card["sgmc_proxy"]["scores"]
+    fp_ = card["fingerprint"]
+    name = card["submission_name"]
+    proj = estimator_v2["candidate"]
+    gates_rows = "".join(
+        f'<tr><td><code>{e(k)}</code></td><td><strong>{"PASS" if v else "FAIL"}</strong></td></tr>'
+        for k, v in card["gates"].items())
+    cand_rows = [r for r in selector["rows"] if r["file"].startswith("docs/downloads/")
+                 and r["unique_scoped_vs_h33_lineage"] and r["projection_in_training_support"]
+                 and r["dots"] == 37654]
+    cand_rows.sort(key=lambda r: -r["sgmc_proxy_dti_point"])
+    sel_rows = "".join(
+        f'<tr><td><code>{e(Path(r["file"]).name)}</code></td><td>{r["sgmc_proxy_dti_point"]:.4f}</td>'
+        f'<td>{r["fleet_regression_projection"]:.4f} [{r["projection_interval_approx"][0]:.3f}, {r["projection_interval_approx"][1]:.3f}]</td>'
+        f'<td>{r["ov_h33_3px"]:.3f}</td><td>{r["frac_gt_1km"] * 100:.1f}%</td>'
+        f'<td>{"yes &le;0.70 vs H33"}</td><td>DO NOT SUBMIT (audit only)</td></tr>'
+        for r in cand_rows[:5])
+    return f'''<section id="{e(section_id)}" class="card">
+<h2>2026-10-26 NEWEST LANE (H86R-SFG): Catalogue Strike-Field Gated Edge Fusion — hypothesis FALSIFIED by its own ablation; automated download decision below</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {fp_["dots"]:,} dots, min d<sub>cat</sub> = {fp_["min_dcat_px"]:.2f} px &gt; 3.0 px, {fp_["frac_gt_1km"] * 100:.1f}% &gt; 1 km off-catalogue, 15/15 format checks pass, values in [0, 1], 0 NaN/Inf). It executes the queued <code>H86J-SCO</code> proposal. <strong>Decision: DO NOT SUBMIT</strong> — the strike-field gate lost to the ungated ablation on both instruments (below). Safe to download for audit/reproducibility only; 0 weekly slots used.</p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download H86R-SFG TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld): gated E1 = <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> &lt; ungated ablation E2 = {e2["dti"]:.4f} → gate falsified as preregistered. Same-split comparators replicated exactly (H33 = {h["all_arms"]["H33_visible_collar"]["dti"]:.4f}).</li>
+<li><strong>SGMC-PROXY-DTI</strong>: E1 = {sg["E1_sfg_gated_edge_fusion"]["dti"]:.4f} &lt; GEMSDOE32 H33 = {sg["GEMSDOE32_H33"]["dti"]:.4f} and &lt; seeded uniform-random null = {selector["random_null_sgmc_proxy_dti"]:.4f} (37,654 dots) — the proxy has a high chance floor and is blind to &le;3 px collar edits.</li>
+<li><strong>Estimated live score</strong> (FLEET-REGRESSION-PROJECTION from {estimator_v2["n"]} OWNER-REPORTED fleet scores, LOO-RMSE = {estimator_v2["loo_rmse"]:.4f}; <em>not a score</em>, never ORGANIZER-CONFIRMED): <strong>{proj["projection"]:.4f} [{proj["interval_approx"][0]:.3f}, {proj["interval_approx"][1]:.3f}]</strong>. No unique candidate in this fleet is projected at or above 0.2778.</li>
+<li><strong>Uniqueness (scoped, local registry)</strong>: worst discrete &le;100k-dot 3-px overlap = {card["uniqueness_scoped"]["final_dots_worst_discrete"]["forward_overlap_3px"]:.4f} &le; 0.70; overlap vs H33 = {card["uniqueness_scoped"]["overlap_vs_H33"]:.4f}; worst sampled surface Spearman = {card["uniqueness_scoped"]["surface_worst_sampled_rho"]["sampled_spearman"]:.4f} &le; 0.90. Full upstream registry not restored this session; literal full-support witness gate still fails for every nonempty raster.</li></ul>
+<h3>Automated gate table (frozen pre-run in the H86R preregistration; no human inspection)</h3>
+<div class="table-wrap"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>{gates_rows}</tbody></table></div>
+<h3>If the owner/selector spends a slot anyway: measured shortlist of existing 37,654-dot downloads</h3>
+<p>Ranked by SGMC-PROXY-DTI point value among unique-scoped (&le;0.70 vs H33), in-training-support files in <a href="evidence/h86r-selector-table-20261026.json">h86r-selector-table-20261026.json</a>. Projections are fleet-regression estimates, not scores. All remain DO NOT SUBMIT under repo governance; this table is ranking evidence for the separate selector step, not authorization.</p>
+<div class="table-wrap"><table><thead><tr><th>File to download (audit)</th><th>SGMC-PROXY-DTI</th><th>Projected live [interval]</th><th>Overlap vs H33</th><th>&gt;1 km</th><th>Unique vs H33 lineage?</th><th>Status</th></tr></thead><tbody>{sel_rows}</tbody></table></div>
+<p><a href="evidence/h86r-sfg-run-card.json">Full H86R-SFG run card</a> · <a href="evidence/h86r-fleet-estimator-20261026-v2.json">Fleet estimator v2 (strict matching)</a> · <a href="evidence/h86r-selector-table-20261026.json">Selector table (77 rasters)</a> · <a href="{REPO}/blob/main/research/SESSION_20261026_H86R_SFG_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, 3-pass audit</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
+
+
 def h86q_bfra_answer(card: dict, section_id: str = "h86q-bfra") -> str:
     """Contemporaneously preregistered H86Q-BFRA lane receipt + Rev-2 Focus-9 Executive Summary."""
     h = card["holdout_dti"]
@@ -2207,7 +2250,24 @@ def render(root: Path = ROOT) -> dict[str, str]:
     lt_card = strict_json(lt_path) if lt_path.is_file() else None
     if gsst_card is not None:
         vfgr_banner = h86n_gsst_answer(gsst_card, lt_card) + vfgr_banner
-    combined_banner = bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    sfg_path = root / "docs/evidence/h86r-sfg-run-card.json"
+    sfg_card = strict_json(sfg_path) if sfg_path.is_file() else None
+    sfg_banner = ""
+    if sfg_card is not None:
+        sfg_tif = root / sfg_card["submission_file"]
+        if (sfg_card["verdict"] != "negative" or sfg_card["decision"] != "DO NOT SUBMIT"
+                or sfg_card["submission_ready"] is not False
+                or sfg_card["safe_to_submit"] is not False
+                or sfg_card["approved_for_weekly_slot"] is not False
+                or sfg_card["submission_slots_used"] != 0
+                or sfg_card["experiments_run"] != 3
+                or sfg_card["scoped_download_candidate"] is not False
+                or sha256(sfg_tif) != sfg_card["raster_sha256"]):
+            raise ValueError("H86R-SFG card must stay negative, falsified, slot-free, and bound to its raster")
+        selector = strict_json(root / "docs/evidence/h86r-selector-table-20261026.json")
+        estimator_v2 = strict_json(root / "docs/evidence/h86r-fleet-estimator-20261026-v2.json")
+        sfg_banner = h86r_sfg_answer(sfg_card, selector, estimator_v2, section_id="h86r-sfg-banner")
+    combined_banner = sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
