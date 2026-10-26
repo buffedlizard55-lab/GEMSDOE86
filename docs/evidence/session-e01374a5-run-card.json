@@ -1,0 +1,44 @@
+{
+  "schema": "gems86.session_run_card.v1",
+  "session": "e01374a5",
+  "measured_utc": "2026-10-26T16:17:09.362541+00:00",
+  "evidence_class": "REPOSITORY-REVIEW / INPUT-INTEGRITY-MEASUREMENT",
+  "hypothesis": "No new geological hypothesis was tested in this session: no single method paragraph was explicitly assigned for this checkout, and the required native bands/shared feature cache are absent.",
+  "mechanism": "No candidate-generation mechanism executed. Read-only audits confirmed absent native training_features.tif, absent prepared arrays/labels, absent provenance-established shared cache, and the existing fail-closed registry witness stop.",
+  "named_non_fault_process_that_could_mimic_candidate": null,
+  "holdout_dti": {
+    "evidence_class": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No candidate or holdout run in this session; the workspace inputs and shared cache required by protocol are absent."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "NOT RUN FOR A NEW CANDIDATE",
+    "rho": null,
+    "maximum_3px_dot_overlap_fraction": null,
+    "reason": "No new candidate surface or final-dot raster was created."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT APPLICABLE \u2014 NO SESSION CANDIDATE RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "related_readonly_audits": {
+    "release_audit": "PASS; 45 registered historical artifacts locally valid; decision DO NOT SUBMIT; 0 experiments; 0 slots",
+    "workspace_inputs": "BLOCKED; native 19-band raster and shared feature cache missing",
+    "site_builder_and_links": "PASS; local consistency only",
+    "pytest": "1091 passed; 24 skipped; 58 subtests passed; 48 Rasterio pending-deprecation warnings"
+  },
+  "review": "research/SESSION_20261026_ARENA_E01374A5_REVIEW.md"
+}

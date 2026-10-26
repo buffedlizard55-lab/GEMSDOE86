@@ -1,11 +1,13 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+> **Independent checkout review (2026-10-26): no file is authorized for upload.** The prior H86Q-BFRA research TIFF passes its recorded local GeoTIFF/range checks but is audit-only; the full-support registry witness remains a hard stop. In this checkout, `training_features.tif`, prepared cache arrays, and a verifiable shared template feature cache are missing, so the experiment is not reproducible here. The historical preparation manifest is not proof of current file presence. Details and exact test/audit results: [session review](research/SESSION_20261026_4B94D097_REVIEW.md). Re-run `python scripts/audit_workspace_inputs.py` before describing data availability. **Do not submit** unless all gates and separate slot authorization pass.
+
 > **STANDING PROJECT PROMPT — READ AT THE START OF EVERY SESSION**
 >
-> Goal: Generate a **unique TIF submission** for the DOE GEMS Prize competition that scores higher than 0.2778 (GEMSDOE32 H33, best of Focus-9 cohort and #1 across all 92 `buffedlizard55-lab` repositories) and competes for the leaderboard top (0.4413). Focus on the highest-scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Produce an executive summary per site that makes it clear and obvious which submission is best. Generate a **unique** TIF — not an exact duplicate of any previous submission. It must be **obvious whether it is OK to download and submit** the generated TIF. Provide an easy-to-download submission TIF file. Create an executive summary subpage explaining exactly how to submit into the contest. No hallucinations — verify line by line from official verified sources.
+> Goal: Generate a **unique TIF submission** for the DOE GEMS Prize competition that scores higher than 0.2778 (GEMSDOE32 H33, best of Focus-9 cohort and #1 across all 92 `buffedlizard55-lab` repositories) and competes for the leaderboard top (owner-reported target 0.4413; unverified). Focus on the highest-scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Produce an executive summary per site that makes it clear and obvious which submission is best. Generate a **unique** TIF — not an exact duplicate of any previous submission. It must be **obvious whether it is OK to download and submit** the generated TIF. Provide an easy-to-download submission TIF file. Create an executive summary subpage explaining exactly how to submit into the contest. No hallucinations — verify line by line from official verified sources.
 >
 > **Competition:** https://www.drivendata.org/competitions/306/competition-doe-gems/
-> **Leaderboard:** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (top: 0.4413)
+> **Leaderboard:** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (owner-reported targets 0.3195 and 0.4413 conflict; current leader unverified)
 > **Reference solution:** https://github.com/drivendataorg/gems-prize-reference-solution
 > **Rules (PDF):** https://docs.nlr.gov/docs/fy26osti/96647.pdf
 >
@@ -19,6 +21,12 @@
 - **Result: hypothesis falsified.** Gated `E1` HOLDOUT-DTI = 0.0450 [0.034, 0.057] < ungated ablation `E2` 0.0512 (paired Δ = −0.0062 [−0.017, +0.004]); SGMC-PROXY-DTI 0.0596 < H33 0.0937 and below the seeded uniform-random null 0.0754 (new instrument fact, `IR-86R-INSTRUMENT-FLOORS-20261026`). Frozen gates G3/G4 FAIL; no post-hoc retuning; 3-experiment budget spent.
 - **Selector ranking (automated, existing downloads, 37,654-dot class):** best in-support unique candidate remains `H86M-PFTE-blind` (SGMC 0.1210; projection 0.167 [0.093, 0.241]) then `H86Q-BFRA-blind` (0.0967; 0.172 [0.098, 0.247]) — **both still `DO NOT SUBMIT`**; no unique file in this repo honestly projects above 0.2778 (estimator: live ≈ −0.039 + 0.156·ovH33 + 0.115·SGMC + 0.215·frac>1km; anything obeying ovH33 ≤ 0.70 projects ≤ ~0.24).
 - **Corrections logged:** `IR-86R-PCPD-ALREADY-IMPLEMENTED-20261026` (queued PCPD already exists in PFTE), `IR-86R-ESTIMATOR-MISMATCH-20261026` (5/28 v1 estimator rows + 38 selector live labels were false filename matches; strict v2 supersedes, tests pin it), `IR-86R-INSTRUMENT-FLOORS-20261026` (SGMC chance floor 0.0754; SGMC blind to collar edits; >3 px-collar rasters score exactly 0 as-is on catalogue-hide). Hypotheses queue + preregistration: [`registry/h86r_hypotheses_20261026.json`](registry/h86r_hypotheses_20261026.json) · [`research/H86R_SFG_PREREGISTRATION.json`](research/H86R_SFG_PREREGISTRATION.json) · Run card: [`docs/evidence/h86r-sfg-run-card.json`](docs/evidence/h86r-sfg-run-card.json) · Selector: [`docs/evidence/h86r-selector-table-20261026.json`](docs/evidence/h86r-selector-table-20261026.json).
+## Independent review — 2026-10-26 (session 63adba74)
+
+**No new candidate; DO NOT SUBMIT.** [Review findings and next steps](research/SESSION_63ADBA74_REVIEW.md).
+The prominent H33 explanation now separates correlation from causation; no new score estimate is claimed.
+Native training features and the actual shared feature cache are absent in this checkout.
+The standing request is preserved in [PROMPT.md](PROMPT.md) and [the request archive](research/REQUEST_20261025.md); read these at the start of each session.
 
 ## ⛔ NEWEST EXECUTED LANE (2026-10-26, `H86Q-BFRA`, session `6ac94866`): **NEGATIVE — DO NOT SUBMIT** (`68.48% > 1 km` Off-Catalogue · Pure-Blind `SGMC-PROXY-DTI = 0.0967` Beating `GEMSDOE32 H33 = 0.0937` · Unique `15/15` Validated GeoTIFF Generated; `0` Slots Spent)
 
