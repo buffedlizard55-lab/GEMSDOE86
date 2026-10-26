@@ -1,0 +1,109 @@
+{
+  "schema": "gems86.hypothesis-queue.v1",
+  "created_date_utc": "2026-10-26",
+  "session": "arena/1595e23f-gemsdoe86",
+  "lane_assignment": "H86P-TCWB",
+  "status": "PREREGISTERED_TOP_CANDIDATE_SELECTED_FOR_HOLDOUT",
+  "scope_note": "Four candidate geological hypotheses formulated after auditing all 28 merged GEMSDOE86 lanes on main, open sibling PR #179 (H86N-SHPB), registry/followup_hypotheses_20261025.json, registry/h86o_hypotheses_20261025.json, and all 27 GeoTIFFs across focus sites GEMSDOE24/25/27/28/30/31/32/33/36. Ranked qualitatively by expected spatially blocked HOLDOUT-DTI and off-catalogue discovery potential per implementation cost. No numeric live score projection is made (projections are never scores).",
+  "ranking_basis": "Qualitative expected information gain on buffered whole-component spatially blocked HOLDOUT-DTI (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m triangle kernel) and blind off-catalogue Great Basin fault physics per implementation cost, weighted by radial far-field (>1 km) discovery power and mimic suppression.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86P-1_TCWB",
+      "lane_id": "H86P-TCWB",
+      "name": "Downslope Radiometric Total-Count Wash-Blanket Asymmetry x Vector-Gravity-Signed Basement Hinge Kink x Lateral Clay-Cap Fault-Seal Termination + Radial-Cover Elkan-Bayes 6-Ring Dinkelbach-CELF",
+      "layers": [
+        {"band": 6, "name": "tc", "verified_physics": "GeoDAWN Airborne Radiometric Total Count (strictly positive, r=+0.99714 vs geodawn_rad_u8 TC; NOT magnetic tilt)"},
+        {"band": 12, "name": "det_elev", "verified_physics": "Detrended topographic elevation (used only via translation-invariant mesoscale gradient directors and Lahontan bench suppression)"},
+        {"band": 19, "name": "det_elev_slope", "verified_physics": "Detrended topographic slope magnitude"},
+        {"band": 15, "name": "depth_to_base_surf", "verified_physics": "Depth to pre-Cenozoic basement (used only via steerable cross-strike curvature kinks and adaptive up-dip pullback offsets)"},
+        {"band": 18, "name": "iso_grav_anom_hg", "verified_physics": "Signed eastward horizontal Bouguer gravity derivative +d(Band 13)/dx_east"},
+        {"band": 11, "name": "iso_grav_anom_vg", "verified_physics": "Signed southward horizontal Bouguer gravity derivative +d(Band 13)/drow_south"},
+        {"band": 13, "name": "iso_grav_anom", "verified_physics": "Isostatic residual gravity anomaly"},
+        {"band": 17, "name": "cond_surf", "verified_physics": "Near-surface electrical conductance (smectite/illite hydrothermal clay cap)"},
+        {"band": 2, "name": "rtp", "verified_physics": "Reduced-to-pole magnetic anomaly (hydrothermal titanomagnetite destruction & odd-step pullback)"},
+        {"band": 8, "name": "geod_dilaterate", "verified_physics": "GPS geodetic dilatational strain rate"},
+        {"band": 7, "name": "geod_shearrate", "verified_physics": "GPS geodetic shear strain rate"},
+        {"band": 4, "name": "geod_2ndinv", "verified_physics": "GPS geodetic second invariant of strain rate"},
+        {"band": 10, "name": "deq_n100a15", "verified_physics": "Distance to earthquake (transformed via exp(-deq/median) proximity)"},
+        {"band": 16, "name": "ieq_n100a15", "verified_physics": "Earthquake kernel intensity/density"},
+        {"band": 3, "name": "tmi_hg", "verified_physics": "Total magnetic intensity horizontal gradient"},
+        {"band": 9, "name": "tmi_vg", "verified_physics": "Total magnetic intensity vertical derivative"},
+        {"band": 5, "name": "iso_grav_anom_slope", "verified_physics": "Unsigned 2-D horizontal gravity gradient magnitude (ablation control)"},
+        {"external": "acquisition_block_id_100m.tif, geodawn_rad_u8.tif, geodawn_extensions_u8.tif, lidar_scarp_features_u8.tif, topo_10m_derived_100m_u8.tif, dem10_chi_100m_i16.tif, DOE GDR #1391 wells/probes/sinter/vents (dist_known_fault_px strictly banned)"}
+      ],
+      "physical_signature": "Combines five untried translation-invariant operators: (1) Downslope one-sided Total Count (Band 6 tc) wash-blanket depletion asymmetry across mesoscale piedmont breaks (+/-450 m along -grad G_5(Band 12), IQR-normalized, GeoDAWN seam-vetoed and Lahontan 1330 m/1205 m bench-suppressed); (2) Cross-strike basement-depth second-derivative footwall hinge kink n_b^T H(Band 15) n_b strictly signed by independent horizontal gravity-drop concordance max(0, -n_b . (B18, B11)) and pulled back up-dip by adaptive Salem cot(dip); (3) One-sided hydrothermal smectite clay-cap lateral fault-seal termination max(0, n_b . grad log(1+B17_+)) gated by RTP magnetite-destruction deficit; (4) Seismicity-conditioned transtensional dilatancy conjunction gate (Bands 7,8 x Bands 10,16); and (5) Aitchison (1982) centered log-ratio (CLR) radiometric compositional Jacobian norm across (Band 6 TC, K, eTh, eU). Coupled via de-crowded (4.5 px stress-shadow negative buffer) 4-fold eroded-LOQO Elkan-Bayes PU + radial-and-cover-aware Noisy-OR fusion + Exact 6-Ring Bernoulli Survival Dinkelbach-CELF (37,654 dots, d_min=2.8 px, d_cat>3.0 px).",
+      "catalogue_missing_rationale": "USGS/INGENIOUS Quaternary fault mapping relies heavily on preserved subaerial scarps. Piedmont faults beveled by sheetfloods still juxtapose U/Th/K-bearing footwall fanhead detritus against fine distal hanging-wall wash (Band 6 TC step); blind intrabasin half-graben master faults kink the basement surface (Band 15) with concordant vector gravity drops (B18, B11) under >200 m of fill; and blind Great Basin geothermal upflow zones (Bradys/Desert Peak/McGinness analogs) terminate conductive smectite clay caps (Band 17) laterally against sealing fault planes without surface scarps.",
+      "novelty": "Band 6 (verified GeoDAWN Total Count) was unused in H86K-STDP, H86M-SLCQ, and sibling PR #179 (H86N-SHPB); H86O-2_TCW and H86O-3_DBK were proposed in registry/h86o_hypotheses_20261025.json as NOT_RUN_PROTOCOL_STOP and never implemented; prior lanes treated Band 17 only as symmetric ridges/necks rather than one-sided hanging-wall clay-cap lateral terminations; and prior coupled PU samplers excluded negatives inside 3.0-8.0 px (under-penalizing broadside stress-shadow halo clutter).",
+      "non_fault_mimic": "Unfaulted alluvial fan-toe progradation, playa evaporite rims, Pleistocene Lake Lahontan (1,330 m / 1,205 m) shoreline benches, GeoDAWN airborne survey stitch seams, Miocene Northern Nevada Rift mafic dikes, buried paleovalley thalwegs, and geothermal injection seismic swarms.",
+      "expected_holdout_potential": "Highest qualitative priority: simultaneously sharpens near-catalogue tip/stepover selectivity via 4.5 px stress-shadow negative sampling and expands far-field (>1 km) blind piedmont/intrabasin/geothermal discovery.",
+      "implementation_cost": "Medium (~15 min CPU, <1.2 GB RSS, zero GPU, zero new external unpinned downloads).",
+      "status": "SELECTED_FOR_VALIDATION",
+      "external_data_required": false,
+      "external_data_source": "Uses only SHA-256-pinned public-domain USGS GeoDAWN (doi:10.5066/P93LGLVQ), USGS 3DEP 1m/10m DEM, and DOE GDR #1391 (doi:10.15121/1881483) mirrors already verified in .cache/external/."
+    },
+    {
+      "rank": 2,
+      "id": "H86P-2_BCSF",
+      "lane_id": null,
+      "name": "Thin-Plate Elastic Basement Flexural Shear Force (d^3_nnn Z_b) & Footwall-Uplift / Hanging-Wall-Moat Couple",
+      "layers": [
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 12, "name": "det_elev"},
+        {"band": 18, "name": "iso_grav_anom_hg"},
+        {"band": 11, "name": "iso_grav_anom_vg"}
+      ],
+      "physical_signature": "Cross-strike directional third derivative -d^3_nnn Z_b (thin-plate elastic shear force V_n across a broken brittle upper crust, Te ~ 3-6 km) at sigma 4-8 px, gated by antisymmetric footwall residual uplift (Band 12 high-pass > 0 upslope) and hanging-wall gravity moat.",
+      "catalogue_missing_rationale": "Cumulative Quaternary slip on blind piedmont step-out faults flexes both the buried basement interface and footwall pediment over 2-8 km wavelengths long after Holocene fan aggradation erases the narrow surface scarp.",
+      "novelty": "H86I-HVFD used unsigned isotropic biharmonic magnitude ||nabla^4 Z_b||; no lane in GEMSDOE86 has computed the signed directional third-derivative flexural shear couple -d^3_nnn Z_b paired with footwall topographic residual polarity.",
+      "non_fault_mimic": "Differential compaction over buried caldera ring margins, granitic pluton roofs, and glacial/fluvial valley walls.",
+      "expected_holdout_potential": "Medium-high qualitative priority for range-front step-out faults; coarser spatial localization (~400-800 m) than TCWB's pulled-back second-derivative hinge.",
+      "implementation_cost": "Low (~3 min CPU, native bands only).",
+      "status": "QUEUED_FOR_FUTURE_SESSION",
+      "external_data_required": false,
+      "external_data_source": null
+    },
+    {
+      "rank": 3,
+      "id": "H86P-3_RCSD",
+      "lane_id": null,
+      "name": "Full Aitchison Compositional Radiometric Tensor Decomposition (Provenance Juxtaposition vs Constant-Th Epithermal Fault Metasomatism)",
+      "layers": [
+        {"band": 6, "name": "tc"},
+        {"band": 2, "name": "rtp"},
+        {"external": "geodawn_rad_u8.tif (K, eTh, eU), geodawn_extensions_u8.tif (Th/K, U/K, U/Th), acquisition_block_id_100m.tif"}
+      ],
+      "physical_signature": "Eigen-decomposition of the 2x2 spatial structure tensor of Aitchison centered log-ratios clr(K, eTh, eU), projecting fault-normal jumps onto two orthogonal geochemical endmembers: (a) parallel Delta clr(eTh) + Delta clr(K) lithologic juxtaposition vs (b) orthogonal Delta(clr(K) - clr(eTh)) + Delta(clr(eU) - clr(eTh)) at |Delta clr(eTh)| ~ 0 (potassic adularia-illite + redox U fault-conduit alteration).",
+      "catalogue_missing_rationale": "In eroded volcanic/epithermal terrains of the Walker Lane and Humboldt structural zone, fossil and active hydrothermal fault conduits leave 200-500 m K/U metasomatic halos and magnetite destruction along unmapped bedrock faults lacking Quaternary scarps.",
+      "novelty": "Prior lanes (RKSC, STDP, SLCQ) used scalar K/Th and U/Th gradient magnitudes; scalar CLR norm is introduced inside H86P-TCWB, whereas full 2-endmember tensor eigen-separation of provenance vs constant-Th metasomatism remains a standalone follow-up.",
+      "non_fault_mimic": "Unfaulted rhyolite-ash-flow tuff cooling-unit boundaries, potash-richalkali playa crusts, and agricultural fertilizer runoff.",
+      "expected_holdout_potential": "Moderate qualitative priority: strong in exposed/thinly covered volcanic blocks, weaker in deep carbonate/alluvial basins.",
+      "implementation_cost": "Low-medium (~4 min CPU, pinned GeoDAWN + native bands).",
+      "status": "QUEUED_FOR_FUTURE_SESSION",
+      "external_data_required": false,
+      "external_data_source": "USGS GeoDAWN (https://doi.org/10.5066/P93LGLVQ), SHA-256 verified in .cache/external/."
+    },
+    {
+      "rank": 4,
+      "id": "H86P-4_USMT",
+      "lane_id": null,
+      "name": "EarthScope USArray 3-D Magnetotelluric Mid-Crustal Sub-Vertical Conductive Fault-Root Curtain",
+      "layers": [
+        {"band": 17, "name": "cond_surf"},
+        {"band": 15, "name": "depth_to_base_surf"},
+        {"band": 10, "name": "deq_n100a15"},
+        {"band": 8, "name": "geod_dilaterate"},
+        {"external_unmirrored": "IRIS/EarthScope USArray 3-D Western US Electrical Conductivity Model depth slices (3-15 km)"}
+      ],
+      "physical_signature": "Horizontal phase-tensor skew and lateral log-conductivity gradient of 3-15 km EarthScope MT resistivity inversions aligned with shallow Band 17 cond_surf terminations and Band 10 hypocentral seismicity.",
+      "catalogue_missing_rationale": "Major Great Basin geothermal range-front and accommodation-zone faults (e.g., Dixie Valley, Carson Sink, Buena Vista) root into sub-vertical mid-crustal magmatic/metamorphic fluid conductors detectable beneath thick basin fill.",
+      "novelty": "Band 17 captures only shallow near-surface conductance; no repo lane incorporates 3-D mid-crustal MT resistivity depth slices.",
+      "non_fault_mimic": "Graphitic Paleozoic black-shale thrusts (Roberts Mountains allochthon) and broad conductive magmatic underplating.",
+      "expected_holdout_potential": "Moderate-high regional prior, limited at 100 m pixel scale by ~35-70 km USArray MT station spacing.",
+      "implementation_cost": "Medium, but currently DEFERRED in this sandbox because outbound network egress is restricted to github.com/pypi.org/npmjs.org and no SHA-pinned 3-D USArray MT volume is mirrored in the org repositories.",
+      "status": "DEFERRED_SANDBOX_EGRESS_RESTRICTED",
+      "external_data_required": true,
+      "external_data_source": "Free official public source: NSF EarthScope / IRIS SPUD EMTF & USGS ScienceBase 3-D MT Resistivity Models (https://ds.iris.edu/spud/emtf, https://www.sciencebase.gov/catalog/; Kelbert, Egbert & Schultz 2014). Verified public-domain/open-access specification; unfetchable from sandbox due to egress allowlist."
+    }
+  ]
+}

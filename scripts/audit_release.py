@@ -435,6 +435,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/8 firings vs concurrent H86M/H86N TIFFs, while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86p_tcwb":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86P-TCWB lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 4.5-px stress-shadow de-crowded Elkan-Bayes PU, coupling downslope Total-Count wash-blanket asymmetry (Band 6 x 3DEP slope) + vector-gravity-signed basement hinge kink (Band 15 x Bands 11, 18) + lateral clay-cap fault-seal termination (Band 17 x Band 2) + seismicity-dilatancy gate (Bands 7, 8 x Bands 10, 16) + Aitchison CLR radiometric Jacobian + Kostrov-Pollard fields + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves all-time strict-LOQO record HOLDOUT-DTI 0.1727 [0.1560, 0.1894] (blind E2 = 0.0736 [0.0564, 0.0910], local unpulled static-E[k] ablation E3 = 0.1565 [0.1394, 0.1741], paired delta +0.0162 [+0.0040, +0.0286] > 0 across all 4 quadrants) and SGMC-PROXY-DTI 0.0809 (pure-blind E2 = 0.0954 beating GEMSDOE32 H33 0.0937), with 0/711 Spearman rho > 0.90 firings (max 0.4797), 0/469 discrete <=90k-dot firings > 0.70 (max 0.6986; 0.2735 vs GEMSDOE32 H33; 0/27 Focus-9 firings; 0.6398 vs PR #179 H86N-SHPB), while full 713-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 
@@ -552,8 +559,11 @@ def measure_all_registry(root: Path = ROOT) -> dict:
     cert = measure()  # verifies witness, inventory membership, size, SHA and grid
     g = grid.load_grid(root / "data" / "bridge")
     pin = strict_json(root / "research/registry_witness_pin.json")
+    witness_path = root / "data" / "bridge" / pin["dest"]
+    if not witness_path.is_file() and (root / "data" / pin["dest"]).is_file():
+        witness_path = root / "data" / pin["dest"]
     records = [dict(repo=pin["repo"], submission=pin["source_path"],
-                    file=str(root / "data" / "bridge" / pin["dest"]), sha256=pin["sha256"])]
+                    file=str(witness_path), sha256=pin["sha256"])]
     rows = []
     inventory = strict_json(root / "docs/evidence/download-inventory.json")
     for entry in inventory["artifacts"]:

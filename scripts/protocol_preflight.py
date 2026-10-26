@@ -38,6 +38,7 @@ def measure(data_dir=None):
     from scripts.audit_release import verify_shared_pins
     if not all(verify_shared_pins(ROOT).values()):
         raise ValueError('Shared tool SHA drift; protocol measurement cannot proceed')
+    default_data_dir = data_dir is None
     data_dir = Path(data_dir) if data_dir is not None else ROOT / 'data' / 'bridge'
     pin = json.loads((ROOT / 'research/registry_witness_pin.json').read_text())
     inventory = ROOT / 'research/upstream/registry_inventory.json'
@@ -48,6 +49,8 @@ def measure(data_dir=None):
     if len(match) != 1 or source_id not in match[0]['sources'] or match[0]['blob'] != pin['blob']:
         raise ValueError('Witness is not bound to the pinned registry record')
     witness = data_dir / pin['dest']
+    if default_data_dir and not witness.is_file() and (ROOT / 'data' / pin['dest']).is_file():
+        witness = ROOT / 'data' / pin['dest']
     for path, sha, size in (
         (data_dir / 'sample_submission.tif', grid.SHA256_SAMPLE_SUBMISSION, None),
         (data_dir / 'existing_faults.tif', grid.SHA256_EXISTING_FAULTS, None),
