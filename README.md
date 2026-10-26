@@ -2,14 +2,21 @@
 
 > **STANDING PROJECT PROMPT — READ AT THE START OF EVERY SESSION**
 >
-> Goal: Generate a **unique TIF submission** for the DOE GEMS Prize competition that scores higher than 0.2778 (GEMSDOE32 H33, best of Focus-9 cohort and #1 across all 92 `buffedlizard55-lab` repositories) and competes for the leaderboard top (0.4413). Focus on the highest-scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Produce an executive summary per site that makes it clear and obvious which submission is best. Generate a **unique** TIF — not an exact duplicate of any previous submission. It must be **obvious whether it is OK to download and submit** the generated TIF. Provide an easy-to-download submission TIF file. Create an executive summary subpage explaining exactly how to submit into the contest. No hallucinations — verify line by line from official verified sources.
+> Goal: Generate a **unique TIF submission** for the DOE GEMS Prize competition that scores higher than 0.2778 (GEMSDOE32 H33, best of Focus-9 cohort and #1 across all 92 `buffedlizard55-lab` repositories) and competes for the leaderboard top (owner-reported target 0.4413; unverified). Focus on the highest-scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Produce an executive summary per site that makes it clear and obvious which submission is best. Generate a **unique** TIF — not an exact duplicate of any previous submission. It must be **obvious whether it is OK to download and submit** the generated TIF. Provide an easy-to-download submission TIF file. Create an executive summary subpage explaining exactly how to submit into the contest. No hallucinations — verify line by line from official verified sources.
 >
 > **Competition:** https://www.drivendata.org/competitions/306/competition-doe-gems/
-> **Leaderboard:** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (top: 0.4413)
+> **Leaderboard:** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (owner-reported targets 0.3195 and 0.4413 conflict; current leader unverified)
 > **Reference solution:** https://github.com/drivendataorg/gems-prize-reference-solution
 > **Rules (PDF):** https://docs.nlr.gov/docs/fy26osti/96647.pdf
 >
 > **Core Values:** Maximize P(Win) · Own the Outcome.
+
+## Independent review — 2026-10-26 (session 63adba74)
+
+**No new candidate; DO NOT SUBMIT.** [Review findings and next steps](research/SESSION_63ADBA74_REVIEW.md).
+The prominent H33 explanation now separates correlation from causation; no new score estimate is claimed.
+Native training features and the actual shared feature cache are absent in this checkout.
+The standing request is preserved in [PROMPT.md](PROMPT.md) and [the request archive](research/REQUEST_20261025.md); read these at the start of each session.
 
 ## ⛔ NEWEST EXECUTED LANE (2026-10-26, `H86Q-BFRA`, session `6ac94866`): **NEGATIVE — DO NOT SUBMIT** (`68.48% > 1 km` Off-Catalogue · Pure-Blind `SGMC-PROXY-DTI = 0.0967` Beating `GEMSDOE32 H33 = 0.0937` · Unique `15/15` Validated GeoTIFF Generated; `0` Slots Spent)
 
