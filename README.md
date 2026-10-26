@@ -1,5 +1,24 @@
 # GEMSDOE86 — automatically audited fault-prediction research
 
+> **STANDING PROJECT PROMPT — READ AT THE START OF EVERY SESSION**
+>
+> Goal: Generate a **unique TIF submission** for the DOE GEMS Prize competition that scores higher than 0.2778 (GEMSDOE32 H33, best of Focus-9 cohort) and competes for the leaderboard top (0.4413). Focus on the highest-scoring submissions from GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Produce an executive summary per site that makes it clear and obvious which submission is best. Generate a **unique** TIF — not an exact duplicate of any previous submission. It must be **obvious whether it is OK to download and submit** the generated TIF. Provide an easy-to-download submission TIF file. Create an executive summary subpage explaining exactly how to submit into the contest. No hallucinations — verify line by line from official verified sources.
+>
+> **Competition:** https://www.drivendata.org/competitions/306/competition-doe-gems/
+> **Leaderboard:** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (top: 0.4413)
+> **Reference solution:** https://github.com/drivendataorg/gems-prize-reference-solution
+> **Rules (PDF):** https://docs.nlr.gov/docs/fy26osti/96647.pdf
+>
+> **Core Values:** Maximize P(Win) · Own the Outcome.
+
+## ⛔ NEWEST UNIQUE TIFF (2026-10-26, `H86Q-BASINRIDGE`, this session): **AUDIT ONLY — NOT OK TO SUBMIT** (Unique `37,654`-Dot Basin-Center Distance-Ridge GeoTIFF; `0` Slots Spent; Zero Local Registry Firings)
+
+- **IS ANY FILE IN THIS REPOSITORY APPROVED TO UPLOAD TO A LIVE WEEKLY COMPETITION SLOT? NO — `DO NOT SUBMIT` (`verdict = "negative"`, `submission_ready = false`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`).**
+- **Newest unique GeoTIFF (`15/15` automated format & `[0, 1]` checks PASS, research/audit download only):** [`gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.tif`](docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.tif) · [`one-TIFF ZIP`](docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.zip) · [`writer receipt`](docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.json) · [`uniqueness report`](docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.uniqueness.json) (`SHA-256: 7afcca44dc4c2411af4cad97ca9beb15117ed94b78b77b13ce1462c4ad49a6f4`, `37,654` unit dots at `2.8 px` Poisson-disc spacing, `EPSG:32611`, `3730×3292`, exact `sample_submission.tif` geotransform, `min = 0.0`, `max = 1.0`, `0` NaN/Inf, `0` mapped-catalogue dots, `0` dots within 10 px (>1 km) of catalogue, `139`-char note `H86Q basin-center distance-ridge 37654d; far-field dcat>10px (ridge+smooth); blind basin-interior faults; Poisson-disc 2.8px; DO NOT SUBMIT`).
+- **Novel hypothesis:** Basin-center blind-fault via distance-transform ridge emphasis — dots placed exclusively at distance-transform ridges in the far field (>10 px / >1 km from any catalogue fault), targeting concealed basin-interior faults absent from the USGS/INGENIOUS catalogue. No prior lane uses distance-transform ridges as the primary emission mechanism.
+- **Local uniqueness vs 72 accessible rasters:** worst forward 3-px dot overlap **0.428 <= 0.70** (0 firings); worst Spearman rho **0.379 <= 0.90** (0 firings); vs Focus-9 sites max overlap 0.137 (GEMSDOE32 H33, GEMSDOE36, GEMSDOE28/31). Genuinely unique — not a duplicate of any prior lane.
+- **Submission status:** `NOT OK TO SUBMIT — AUDIT ONLY`. Reason: `training_features.tif`/`labels.tif` absent → no HOLDOUT-DTI; no DrivenData auth → no organizer receipt; literal full-support witness blocks all nonempty candidates. [Full executive summary & how-to-submit guide](docs/executive-summary.html#new-unique-submission).
+
 ## ⛔ NEWEST EXECUTED LANE (2026-10-26, `H86P-TCWB`, session `1595e23f`): **NEGATIVE — DO NOT SUBMIT** (New All-Time Strict-LOQO `37,654`-Dot Record `HOLDOUT-DTI = 0.1727`; Unique `15/15` Validated GeoTIFF Generated; `0` Slots Spent)
 
 - **IS ANY FILE IN THIS REPOSITORY APPROVED TO UPLOAD TO A LIVE WEEKLY COMPETITION SLOT? NO — `DO NOT SUBMIT` (`verdict = "negative"`, `submission_ready = false`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`).**
