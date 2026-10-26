@@ -179,3 +179,17 @@ Live-score inversion: LOSO Spearman 0.900 vs owner-reported live (instrument gat
 
 - **H86N-GSST (`docs/evidence/h86n-gsst-run-card.json`):** Generated and machine-validated `docs/downloads/gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif` (SHA-256 `ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2`, `37,654` binary dots in `{0.0, 1.0}`, `0` NaN/Inf, `15/15` format checks pass, local like-for-like uniqueness vs 61 rasters `max_overlap3 = 0.5856 <= 0.70`, `max_surface_spearman = 0.0745 <= 0.90`). On `gems57-pooled-hide-v2` (`11,321` withheld positives, `1,000` physical-block draws), `H86N_GSST` scored **`HOLDOUT-DTI = 0.0310 [0.0210, 0.0423]`**, trailing its raw horizontal gravity-slope control `E0_raw_grav_slope` (`0.0349 [0.0238, 0.0473]`, paired $\Delta = -0.0039\ [-0.0078, -0.0001]$) and compact-curvature control `E2_compact_curv` (`0.0407 [0.0305, 0.0529]`, paired $\Delta = -0.0097\ [-0.0229, +0.0033]$). Verdict is **`negative` (`DO NOT SUBMIT`, `0` weekly slots used)**.
 - **H86M-LT reconciliation (`docs/evidence/h86m-lt-run-card.json`):** Repaired PR #165's unregistered `gems86-h86m-lt-tomography-37654dots-20261025T174610Z-7b4ebdf5-zeros.tif` and demoted its unauthorized `promote` / `safe_to_submit: true` state to `negative` / `safe_to_submit: false` (`DO NOT SUBMIT`, `0` slots used) because it ran no hide-and-recover `HOLDOUT-DTI` evaluation and fails the literal full-support witness gate (`1.0 > 0.70`). See `research/SESSION_20261025_H86N_GSST_REVIEW.md`.
+
+## 2026-10-26 — H86P-PFA lane + focus-nine forensics: negative, 0 slots used, no selector action
+
+Session `5620a35f` spent no slot and generated no TIFF. Focus-nine pixel
+forensics (`docs/evidence/focus9-forensics-20261026.json`) prove GEMSDOE25 ≡
+GEMSDOE30, GEMSDOE31 ≡ GEMSDOE28 parent, GEMSDOE32 H33 an exact collar-pruned
+subset of both, GEMSDOE36 = H33 + 1,200 dots; no focus file is slot-eligible.
+Preregistered `H86P-PFA` (3 arms) scored HOLDOUT-DTI `0.1433` vs ablation
+`0.1417` (paired CI crosses zero; KSAD benchmark `0.1553`, same-budget record
+`0.1599`), SGMC-PROXY-DTI `0.0656` vs H33 `0.0937`, and stopped before
+serialisation on discrete registry firings (`0.7722` vs GEMSDOE53
+`gems53-h1-thin`). The H86G-EDTI selector note above is unchanged historical
+context; the literal-witness DO NOT SUBMIT decision stands for every file.
+See `research/SESSION_20261026_REVIEW.md`.

@@ -1,8 +1,26 @@
 # Standing project prompt (condensed historical archive)
 
-**Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** Session `96fc6d48` (2026-10-25) then repaired the pinned-data layout bug breaking `protocol_preflight.measure()` in fresh checkouts (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, and re-measured all registered artifacts; see `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`. The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
+**Current decision (2026-10-26, session `5620a35f`): DO NOT SUBMIT ANY FILE.**
+Session `5620a35f` measured the prompt's nine focus sites pixel-for-pixel
+(GEMSDOE25 ≡ GEMSDOE30; GEMSDOE31 ≡ GEMSDOE28 parent; GEMSDOE32 H33 is an exact
+collar-pruned subset of both; GEMSDOE36 = H33 + 1,200 dots — no focus file is a
+unique new submission), then ran one preregistered lane `H86P-PFA` (paired-flank
+multi-physics step asymmetry, 3 frozen arms): HOLDOUT-DTI `0.1433` vs ablation
+`0.1417` (paired CI crosses zero), SGMC-PROXY-DTI `0.0656` vs H33 `0.0937`, and
+the final dots hit the registry duplicate stop (`0.7722` vs GEMSDOE53), so the
+lane **stopped before serialisation — no new TIFF exists from this lane**, 0 slots used
+(`docs/evidence/h86p-pfa-run-card.json`). In parallel, PR #180 (session
+`4c5e12aa`) published an `H86G` collar-emphasis TIFF unregistered and with no
+HOLDOUT-DTI; at merge it was registered as a negative unvalidated archive
+(`h86g_collar_unvalidated`, `IR-86-5620-PR180-UNREGISTERED`). The literal
+full-support witness proof was re-measured 2026-10-26 (coverage `1.0`); all
+42 published research TIFFs remain audit-only and measure `1.0` forward 3-px overlap against that witness,
+above the unchanged 0.70 stop. Latest review:
+`research/SESSION_20261026_REVIEW.md`; latest request archive:
+`research/REQUEST_20261026_5620A35F.md`.
 **Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first (supplemented by `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
+`research/REQUEST_20261026_5620A35F.md` first (supplemented by
+`REQUEST_20261025.md` and `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
 a replacement for that archive. Preserve `REQUEST_20261024.md`,
 `REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 

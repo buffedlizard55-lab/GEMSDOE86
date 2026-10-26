@@ -144,6 +144,28 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
+    if kind == "h86g_collar_unvalidated":
+        # PR #180 (session 4c5e12aa) published this TIFF on main without
+        # registering it in the release indexes; registered here at merge
+        # time (session 5620a35f) following the H86M-LT/DAMAGERING repair
+        # precedent. Registration restores publication integrity only.
+        hv = context.get("holdout_validation", {})
+        uq = context.get("uniqueness_vs_scored_fleet", {})
+        if (context.get("lane") != "H86G"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or hv.get("runnable") is not False
+                or hv.get("holdout_dti") is not None
+                or uq.get("registry_unique") is not False):
+            raise ValueError("H86G collar-emphasis archive must remain unvalidated, non-unique and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Catalogue-distance collar-emphasis Poisson-disc export; no hide-and-recover evaluation, no leakage canary",
+                "caveat": ("No HOLDOUT-DTI exists (generating session had no training features). Its own card records "
+                           "registry_unique=false with a 0.8941 3-px overlap firing vs GEMSDOE81 within only 25 local "
+                           "rasters — a duplicate under protocol Rule 1 — yet the file was serialised and published "
+                           "unregistered (PR #180). Registered at merge solely as a negative audit archive. DO NOT SUBMIT.")}
     if kind == "blindgeothermal_candidate":
         if context.get("evidence_class") != "RUN-CARD":
             raise ValueError("Archived blind-geothermal candidate lacks its original run-card evidence class")
@@ -435,6 +457,9 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86M-SLCQ lane result; the run card is the authoritative experiment receipt. Under strict footprint-median (ym=936, xm=1504) 12-px eroded-domain 4-fold LOQO + 5-fold (80/20 hide-matched) component PU, adaptive 2D Salem dip-migration pullback x 8-azimuth Log-Cauchy step-vs-dike quadrature + OOF Cordell-Bouguer BMR + up-head GDR-1391 geothermal walls + 6-ring survival Dinkelbach-CELF at 37,654 dots achieves HOLDOUT-DTI 0.1527 [0.1364, 0.1679] (pure-blind E2 = 0.0755 [0.0620, 0.0888], pixel-local no-pullback no-CELF ablation E3 = 0.1377 [0.1215, 0.1530], paired delta +0.0150 [+0.0009, +0.0282] > 0) and SGMC-PROXY-DTI 0.0967 (blind E2 = 0.1131 vs GEMSDOE32 H33 0.0937 and E3 0.0743), with 0/702 Spearman rho > 0.90 firings (max 0.5751), 0/460 discrete <=90k-dot firings > 0.70 (max 0.6632; 0.2999 vs GEMSDOE32 H33), and 0/8 firings vs concurrent H86M/H86N TIFFs, while full 704-entry v2 literal/completeness/high-density-archive gates fail closed; DO NOT SUBMIT; 0 slots used."}
+    # H86P-PFA (2026-10-26 session 5620a35f) stopped before serialisation
+    # (registry Rule-1 firings), so it registered NO artifact and needs no
+    # branch here; its receipt is docs/evidence/h86p-pfa-run-card.json.
     raise ValueError(f"Unsupported holdout schema: {kind}")
 
 

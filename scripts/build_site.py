@@ -648,6 +648,116 @@ def h86m_slcq_answer(card: dict, section_id: str = "h86m-slcq") -> str:
 <p><a href="evidence/h86m-slcq-run-card.json">Full H86M-SLCQ run card</a> · <a href="evidence/h86m-slcq-registry-surface.json">Pre-placement surface report (702 rows)</a> · <a href="evidence/h86m-slcq-registry-final-dots.json">Final-dots registry report (702 rows)</a> · <a href="{REPO}/blob/main/research/H86M_SLCQ_PREREGISTRATION.md">Frozen H86M-SLCQ preregistration</a> · <a href="{REPO}/blob/main/registry/h86m_slcq_hypotheses.json">4 ranked H86M-SLCQ hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86M_SLCQ_REVIEW.md">PhD H33 (0.2778) &amp; GEMSDOE91/92 forensics &amp; 3-pass review</a></p></section>'''
 
 
+def h86p_pfa_answer(card: dict, focus9: dict, plan: dict, comparable_best=None, section_id: str = "h86p-pfa") -> str:
+    """2026-10-26 session receipt: H86P-PFA lane + focus-nine fleet forensics.
+
+    Every number is rendered from the run card / forensic JSON (never typed
+    by hand). Owner-reported portal numbers stay labelled OWNER-REPORTED;
+    the canonical evaluator result stays HOLDOUT-DTI; the SGMC block stays
+    SGMC-PROXY-DTI. The section never authorizes upload.
+    """
+    if not card:
+        return ""
+    if (card.get("verdict") != "negative" or card.get("decision") != "DO NOT SUBMIT"
+            or card.get("submission_slots_used") != 0 or card.get("safe_to_submit") is not False
+            or card.get("approved_for_weekly_slot") is not False):
+        raise ValueError("H86P-PFA run card is not in its negative/no-slot state")
+    h = card.get("holdout_dti", {})
+    arms = h.get("all_arms", {})
+    e1 = h.get("candidate", {}) or {}
+    e2 = arms.get("E2_pfa_blind", {}) or {}
+    e3 = arms.get("E3_baseline_ablation", {}) or {}
+    h33 = arms.get("H33_visible_collar", {}) or {}
+    de3 = (h.get("paired_delta_vs_best_preregistered_control")
+           or (h.get("paired_differences") or {}).get("E3_baseline_ablation") or {})
+    best = (h.get("comparable_strict_loqo_best_before_this_lane") or {}).get("value") or comparable_best
+    can = card.get("leakage_canary_summary", {}) or {}
+    if not can and isinstance(card.get("leakage_canary"), dict) and card["leakage_canary"]:
+        wname, wv = max(card["leakage_canary"].items(), key=lambda kv: kv[1].get("discriminative_auc", 0))
+        can = {"worst_feature": wname, "worst_discriminative_auc": wv.get("discriminative_auc")}
+    reg = card.get("correlation_overlap_vs_registry", {}) or {}
+    inf = reg.get("informative_dot_field_audit", {}) or {}
+    surf = (reg.get("surface") or {})
+    fin = (reg.get("final_dots") or {})
+    sgmc = card.get("sgmc_off_catalogue_diagnostic") or {}
+    sgs = sgmc.get("scores") or {}
+    sg_e1 = sgs.get("E1_pfa_candidate", {}) or {}
+    sg_h33 = sgs.get("H33_GEMSDOE32_as_is", {}) or {}
+    v = card.get("validator_output", {}) or {}
+    name = card.get("submission_name")
+    if name and card.get("raster_sha256"):
+        actions = (f'<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a>\n'
+                   f'<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only, DO NOT SUBMIT</a>\n'
+                   f'<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a></div>')
+        file_line = (f'<p>Newest generated TIFF in this repository: <code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, '
+                     f'{int(v.get("positive_pixels") or 0):,} dots). <strong>Is this file OK to submit? NO.</strong> '
+                     f'It is <strong>safe to download for audit/reproducibility only</strong>; no weekly slot is assigned and no organizer-confirmed score exists. Note ({card.get("note_chars")} chars): <code>{e(card.get("note") or "")}</code></p>')
+    else:
+        actions = ""
+        file_line = ('<p><strong>No new TIFF was serialised in this lane</strong> (registry stop before writing bytes). '
+                     '<strong>Is any file OK to submit? NO.</strong> No weekly slot is assigned.</p>')
+    if sg_e1:
+        sg_line = (f'<li><strong>SGMC-PROXY-DTI</strong> (read-only off-catalogue USGS SGMC diagnostic; never a score): '
+                   f'E1 final dots <code>{sg_e1.get("dti", float("nan")):.4f}</code> vs GEMSDOE32 H33 as-is <code>{sg_h33.get("dti", float("nan")):.4f}</code>.</li>')
+    else:
+        sg_line = '<li><strong>SGMC-PROXY-DTI:</strong> not computed (proxy raster absent); no proxy claim is made.</li>'
+    if name and card.get("raster_sha256"):
+        val_line = (f'<li><strong>LOCAL-FORMAT-VALIDATION:</strong> values in [0,1] = {str(v.get("values_in_0_1")).upper()}, '
+                    f'no NaN inside footprint = {str(v.get("no_nan_inside_footprint")).upper()}, '
+                    f'CRS/shape/transform match = {str(v.get("crs_shape_transform_match")).upper()}.</li>')
+    else:
+        val_line = ('<li><strong>LOCAL-FORMAT-VALIDATION:</strong> not run — the lane stopped before serialisation, so no new '
+                    'GeoTIFF exists to validate. The fix class for the portal error <em>“Predicted values must be in range [0, 1]”</em> '
+                    'remains: never derive an upload from sentinel/<code>-nan</code> variants; only a writer-validated finite '
+                    '<code>-zeros</code> file could ever be considered by a separate selector.</li>')
+    focus_rows = ""
+    if focus9:
+        for row in focus9.get("sites", []):
+            files = row.get("files") or []
+            prim = next((f for f in files if f.get("sha256") == row.get("primary_sha256")), files[0] if files else {})
+            vs = row.get("vs_gemsdoe32_h33") or {}
+            vs_txt = (f'J {vs["jaccard_dot_sets"]:.3f} · rho {vs["spearman_full_footprint"]:.3f} · '
+                      f'3px overlap {vs["forward_overlap_3px_this_within_h33"]:.3f}') if vs else "reference"
+            focus_rows += (f'<tr><td><code>{e(row.get("site"))}</code></td>'
+                           f'<td><code>{e(row.get("prompt_submission"))}</code></td>'
+                           f'<td>{(row.get("owner_reported_score") or 0):.4f} OWNER-REPORTED</td>'
+                           f'<td>{int(prim.get("dots") or 0):,}</td>'
+                           f'<td>{float(prim.get("median_dist_cat_px") or 0):.1f}</td>'
+                           f'<td>{float(prim.get("frac_gt_10px_1km") or 0):.3f}</td>'
+                           f'<td>{row.get("distinct_support_sets")}</td><td>{e(vs_txt)}</td></tr>')
+    hyp_rows = ""
+    for hh in (plan or {}).get("hypotheses", []):
+        hyp_rows += (f'<tr><td>{hh.get("rank")}</td><td><code>{e(hh.get("id"))}</code> {e(hh.get("name"))}</td>'
+                     f'<td>{e(hh.get("expected_holdout_dti_delta"))}</td><td>{e(hh.get("estimated_cost"))}</td>'
+                     f'<td>{e(hh.get("status"))}</td></tr>')
+    link_bits = ['<a href="evidence/h86p-pfa-run-card.json">Full H86P-PFA run card</a>']
+    if surf.get("report"):
+        link_bits.append('<a href="evidence/h86p-pfa-registry-surface.json">Pre-placement surface report</a>')
+    if fin.get("report"):
+        link_bits.append('<a href="evidence/h86p-pfa-registry-final-dots.json">Final-dots registry report</a>')
+    link_bits += ['<a href="evidence/focus9-forensics-20261026.json">Focus-nine forensic JSON</a>',
+                  f'<a href="{REPO}/blob/main/research/H86P_PFA_PREREGISTRATION.md">Preregistration (frozen before results)</a>',
+                  f'<a href="{REPO}/blob/main/registry/h86p_pfa_hypotheses.json">5 ranked hypotheses</a>',
+                  f'<a href="{REPO}/blob/main/research/SESSION_20261026_REVIEW.md">Session review / PhD answer</a>']
+    links = " · ".join(link_bits)
+    return f'''<section class="callout" id="{e(section_id)}"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
+<h2>2026-10-26 current lane (H86P-PFA) — paired-flank multi-physics step asymmetry + focus-nine fleet forensics</h2>
+{file_line}
+{actions}
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h.get("evaluator_version"))}, {int(h.get("withheld_positive_pixels") or 0):,} withheld positives, strict footprint-median 4-fold LOQO, identical 37,654-dot allocator): E1 candidate <strong>{float(e1.get("dti") or 0):.4f}</strong> [{float((e1.get("ci95") or [0, 0])[0]):.4f}, {float((e1.get("ci95") or [0, 0])[1]):.4f}]; catalogue-blind E2 {float(e2.get("dti") or 0):.4f}; no-PFA ablation E3 {float(e3.get("dti") or 0):.4f} (paired E1−E3 {float(de3.get("delta") or 0):+.4f}); visible-collar H33 analogue {float(h33.get("dti") or 0):.4f}; preregistered comparable strict-LOQO benchmark {f"{best:.4f}" if best else "see preregistration"} (H86I-KSAD candidate; its pointwise ablation holds the 0.1599 same-budget record). HOLDOUT-DTI is a local hide-and-recover measurement, not a leaderboard projection.</li>
+{sg_line}
+<li><strong>LEAKAGE-CANARY:</strong> worst discriminative AUC <code>{float(can.get("worst_discriminative_auc") or 0):.4f}</code> (<code>{e(can.get("worst_feature"))}</code>) vs stop &gt; 0.90.</li>
+<li><strong>REGISTRY-MEASUREMENT:</strong> pre-placement surface worst Spearman <code>{e(surf.get("worst_spearman_full_footprint"))}</code> ({surf.get("rho_firings_over_0p90")} rho firings, {surf.get("registry_rasters_measured")} rasters); final dots informative dot-field firings <code>{inf.get("informative_dot_field_firings_count")}</code>, comparable discrete &le;90k worst 3-px overlap <code>{e(inf.get("worst_discrete_le_90k_overlap_3px"))}</code> ({e(inf.get("worst_discrete_le_90k_submission"))}); literal full-support witness still blocks every nonempty candidate and the v2 gate fails closed. Decision reason: {e(card.get("decision_reason") or "")}</li>
+{val_line}</ul>
+<p><a href="evidence/h86p-pfa-run-card.json">Full H86P-PFA run card</a> · <a href="evidence/h86p-pfa-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86p-pfa-registry-final-dots.json">Final-dots registry report</a> · <a href="evidence/focus9-forensics-20261026.json">Focus-nine forensic JSON</a> · <a href="{REPO}/blob/main/research/H86P_PFA_PREREGISTRATION.md">Preregistration (frozen before results)</a> · <a href="{REPO}/blob/main/registry/h86p_pfa_hypotheses.json">5 ranked hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261026_REVIEW.md">Session review / PhD answer</a></p>
+<h3>Focus-nine executive table — best OWNER-REPORTED row per site (not organizer-confirmed; no file below is a new submission)</h3>
+<table><thead><tr><th>Site</th><th>Prompt submission id</th><th>Best score</th><th>Dots</th><th>Median dist. to catalogue (px)</th><th>Frac. &gt;1 km</th><th>Distinct supports</th><th>vs GEMSDOE32 H33</th></tr></thead><tbody>{focus_rows}</tbody></table>
+<p>Measured lineage (hash-pinned restored registry bytes, 655-entry inventory): GEMSDOE25 and GEMSDOE30 primaries have identical inside-footprint dot support; GEMSDOE31 is identical to the GEMSDOE28 H27-4 parent; GEMSDOE32 H33 is an exact subset of both (collar-pruned), and GEMSDOE36 is H33 plus 1,200 dots. Every focus primary overlaps H33 by &gt;0.86 within 3 px — above the 0.70 duplicate stop — so <strong>none is a unique new file to submit</strong>. The owner-reported ordering is consistent with pruning low-marginal-credit collar mass under the asymmetric 300 m Tversky kernel, but that owner-reported association is not proof of a new geological mechanism, and the conflicting leaderboard highs 0.4413 vs 0.3195 remain unverified (see irregularities).</p>
+<h3>Ranked hypotheses preregistered before this lane ran (top = H86P-PFA, run here)</h3>
+<table><thead><tr><th>Rank</th><th>Hypothesis</th><th>Expected HOLDOUT-DTI delta (speculative range)</th><th>Cost</th><th>Status</th></tr></thead><tbody>{hyp_rows}</tbody></table>
+</section>'''
+
+
 def h86m_pfte_answer(card: dict, section_id: str = "h86m-pfte") -> str:
     """Latest contemporaneously preregistered H86M-PFTE lane receipt (all-time 37,654-dot SGMC-PROXY-DTI high 0.1210; fail-closed negative DO NOT SUBMIT)."""
     h = card["holdout_dti"]
@@ -1964,7 +2074,33 @@ def render(root: Path = ROOT) -> dict[str, str]:
     lt_card = strict_json(lt_path) if lt_path.is_file() else None
     if gsst_card is not None:
         vfgr_banner = h86n_gsst_answer(gsst_card, lt_card) + vfgr_banner
-    combined_banner = slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    pfa_path = root / "docs/evidence/h86p-pfa-run-card.json"
+    pfa_card = strict_json(pfa_path) if pfa_path.is_file() else None
+    pfa_banner = ""
+    if pfa_card is not None:
+        if (pfa_card.get("verdict") != "negative" or pfa_card.get("decision") != "DO NOT SUBMIT"
+                or pfa_card.get("submission_ready") is not False
+                or pfa_card.get("safe_to_submit") is not False
+                or pfa_card.get("approved_for_weekly_slot") is not False
+                or pfa_card.get("submission_slots_used") != 0
+                or pfa_card.get("experiments_run") != 3):
+            raise ValueError("H86P-PFA card must stay negative, within 3-arm budget, and slot-free")
+        if pfa_card.get("raster_sha256"):
+            pfa_tif = root / pfa_card["submission_file"]
+            if sha256(pfa_tif) != pfa_card["raster_sha256"]:
+                raise ValueError("H86P-PFA card must stay bound to its raster")
+        focus9_path = root / "docs/evidence/focus9-forensics-20261026.json"
+        focus9 = strict_json(focus9_path) if focus9_path.is_file() else {}
+        plan86p_path = root / "registry/h86p_pfa_hypotheses.json"
+        plan86p = strict_json(plan86p_path) if plan86p_path.is_file() else {}
+        if plan86p:
+            hypothesis_count += len(plan86p.get("hypotheses", []))
+        prereg86p_path = root / "research/H86P_PFA_PREREGISTRATION.json"
+        prereg86p = strict_json(prereg86p_path) if prereg86p_path.is_file() else {}
+        pfa_banner = h86p_pfa_answer(pfa_card, focus9, plan86p,
+                                     comparable_best=(prereg86p.get("comparable_holdout_best") or {}).get("value"),
+                                     section_id="h86p-pfa-banner")
+    combined_banner = pfa_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),

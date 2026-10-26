@@ -288,6 +288,13 @@
       "context": "docs/evidence/h86m-slcq-run-card.json",
       "holdout_kind": "h86m_slcq",
       "stem": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros"
+    },
+    {
+      "lane": "H86G intermediate-collar emphasis (PR #180; unvalidated archive registered at merge 2026-10-26; no HOLDOUT-DTI, registry_unique=false per its own card; DO NOT SUBMIT)",
+      "card": null,
+      "context": "docs/evidence/h86g-collar-emphasis-run-card.json",
+      "holdout_kind": "h86g_collar_unvalidated",
+      "stem": "gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros"
     }
   ]
 }
