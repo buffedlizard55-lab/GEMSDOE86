@@ -79,11 +79,20 @@ def inspect(root: Path = ROOT) -> dict:
         invalid = any(row['status'] == 'INVALID' for row in copies)
         native.append(dict(name=name, copies=copies, usable=valid and not invalid))
 
-    manifest_path = root / 'data/prepared_manifest.json'
+    # `data/prepared_manifest.json` is a frozen historical receipt pinned by
+    # the generated site. Prefer the current ignored cache manifest when one
+    # exists; never fall back to the historical receipt if that live receipt is
+    # malformed, because doing so could hide a failed current preparation.
+    live_manifest_rel = '.cache/gems_work/prepared_manifest.json'
+    historical_manifest_rel = 'data/prepared_manifest.json'
+    live_manifest_candidate = root / live_manifest_rel
+    manifest_rel = live_manifest_rel if live_manifest_candidate.exists() else historical_manifest_rel
     prepared = dict(status='MISSING_MANIFEST', arrays=[], native_bands_available=False,
-                    shared_template_feature_stack=False)
+                    shared_template_feature_stack=False, manifest_file=None)
     try:
+        manifest_path = local_path(root, manifest_rel)
         if manifest_path.is_file():
+            prepared['manifest_file'] = manifest_rel
             manifest = json.loads(manifest_path.read_text())
             records = manifest.get('prepared_arrays')
             if not isinstance(records, list) or not records:

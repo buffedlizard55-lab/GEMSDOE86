@@ -16,13 +16,14 @@ def write(root, name, payload=b'fixture'):
     return dict(file=name, sha256=hashlib.sha256(payload).hexdigest(), bytes=len(payload))
 
 
-def prepared(root, *, features=True):
+def prepared(root, *, features=True, live=False):
     names = ['_footprint.npy', '_labels.npy']
     if features:
         names += [f'{i:02d}_{name}.npy' for i, name in BANDS.items()]
     records = [write(root, f'.cache/gems_work/bands/{name}') for name in names]
     manifest = dict(counts=dict(has_features=features), prepared_arrays=records)
-    write(root, 'data/prepared_manifest.json', json.dumps(manifest).encode())
+    path = '.cache/gems_work/prepared_manifest.json' if live else 'data/prepared_manifest.json'
+    write(root, path, json.dumps(manifest).encode())
     return manifest
 
 
@@ -44,10 +45,30 @@ def test_live_bytes_override_historical_has_features_receipt(tmp_path):
     assert not result['preparation']['native_bands_available']
 
 
+def test_live_cache_manifest_is_preferred_over_frozen_historical_receipt(tmp_path):
+    prepared(tmp_path)
+    (tmp_path / 'data/prepared_manifest.json').write_text('{invalid historical placeholder')
+    prepared(tmp_path, live=True)
+    result = audit.inspect(tmp_path)
+    assert result['preparation']['manifest_file'] == '.cache/gems_work/prepared_manifest.json'
+    assert result['preparation']['native_bands_available']
+    assert result['preparation']['status'] == 'BYTES_VERIFIED_NOT_SHARED_CACHE'
+
+
+def test_invalid_live_cache_manifest_does_not_fall_back_to_history(tmp_path):
+    prepared(tmp_path)
+    write(tmp_path, '.cache/gems_work/prepared_manifest.json', b'{invalid live receipt')
+    result = audit.inspect(tmp_path)
+    assert result['preparation']['manifest_file'] == '.cache/gems_work/prepared_manifest.json'
+    assert result['preparation']['status'] == 'INVALID_MANIFEST'
+    assert not result['preparation']['native_bands_available']
+
+
 def test_complete_native_array_set_is_not_shared_cache(tmp_path):
     prepared(tmp_path)
     result = audit.inspect(tmp_path)
     assert result['preparation']['native_bands_available']
+    assert result['preparation']['manifest_file'] == 'data/prepared_manifest.json'
     assert not result['preparation']['shared_template_feature_stack']
     assert not result['shared_cache']['ready']
     assert not result['safe_to_submit']
