@@ -1,4 +1,4 @@
-# Session `6ac94866` — Focus-9 Rev-2 Forensics, PhD Proof of `GEMSDOE32` (`0.2778` `OWNER-REPORTED`), `H86Q-BFRA` Preregistered Experiment, and Three-Pass Audit (`2026-10-26`)
+# Session `6ac94866` — Focus-9 Rev-2 Forensics, PhD-Level Forensics of `GEMSDOE32` (`0.2778` `OWNER-REPORTED`), `H86Q-BFRA` Preregistered Experiment, and Three-Pass Audit (`2026-10-26`)
 
 - **Branch:** `arena/6ac94866-gemsdoe86` (branched from `4f746ce53759062772a25a7e1eb5fc722307ba85`)
 - **Date (UTC):** `2026-10-26`
@@ -31,42 +31,27 @@ Every Focus-9 repository was inspected directly via GitHub API (`https://api.git
 
 ---
 
-## 2. PhD-Level Forensic Analysis: Why & How `GEMSDOE32` Achieved `0.2778` (`OWNER-REPORTED`) vs `0.3195` / `0.4413`
+## 2. PhD-level forensic analysis of the reported H33 result (not causal proof)
 
-### 2.1 Exact Mathematical Decomposition of the DTI Metric (`vendor/gems57/metric.py`)
-Let $F \subset \{0,\dots,3729\} \times \{0,\dots,3291\}$ be the valid footprint ($|F| = 5{,}167{,}373$ pixels at $100\text{ m}$ resolution), $C \subset F$ be the public mapped fault catalogue (`existing_faults.tif`, $|C| = 148{,}811$), and $G^* \subset F \setminus C$ be the hidden organizer ground-truth fault network evaluated outside the organizer's known-fault mask $M_{\text{known}} \supseteq C$. Given a binary dot set $S \subset F \setminus M_{\text{known}}$ of cardinality $N = |S|$, the organizer's 6-ring piecewise-linear tolerance kernel (`OFF_DY`, `OFF_DX`, `OFF_K` in `vendor/gems57/metric.py`) assigns coverage at cell $x$:
-$$K(x; S) = \max_{s \in S,\, \|x - s\|_2 \le 3} k(\|x - s\|_2) \in \{0, \tfrac{1}{6}, \tfrac{2}{6}, \tfrac{3}{6}, \tfrac{4}{6}, \tfrac{5}{6}, 1\},$$
-with recall-weighted tolerance recall $\mathrm{TP}_{\text{gt}}(S) = \sum_{g \in G^*} K(g; S)$, precision-weighted self-hit count $\mathrm{TP}_{\text{pred}}(S) = \sum_{s \in S} K(s; G^*)$, false-positive mass $\mathrm{FP}(S) = N - \mathrm{TP}_{\text{pred}}(S)$, false-negative mass $\mathrm{FN}(S) = |G^*| - \mathrm{TP}_{\text{gt}}(S)$, and harmonic-like Distance-Tolerant Intersection:
-$$\mathrm{DTI}(S) = \frac{\mathrm{TP}_{\text{pred}}(S) + \mathrm{TP}_{\text{gt}}(S)}{2\,\mathrm{TP}_{\text{pred}}(S) + \mathrm{FP}(S) + \mathrm{FN}(S)} = \frac{\sum_{s \in S} K(s; G^*) + \sum_{g \in G^*} K(g; S)}{N + |G^*| + \sum_{s \in S} K(s; G^*) - \sum_{g \in G^*} K(g; S)}.$$
+### 2.1 What the metric rewards
 
-Three structural consequences follow immediately from this exact functional:
-1. **Discrete `2.8–3.0 px` Poisson/CELF Dotting vs Continuous Ribbons (`~3.4x` lift):** Continuous ribbons (`H19-5`, `0.072–0.105`) pay $N_{\text{ribbon}} \approx 5\text{–}9\times N_{\text{dotted}}$ in $\mathrm{FP}(S)$ while achieving identical $\max_{\|x-s\|\le 3} K(x; S)$ along a 1-px fault crest because $K$ is a *supremum* (`np.maximum`), not a sum. Decimating `H19-5` to `r = 2.8 px` (`44,090` dots in `GEMSDOE25/30 D28`) raised leaderboard DTI from `~0.08` to **`0.2600`**.
-2. **Exact Collar Pruning Eliminates Dead Denominator Mass (`0.2600 -> 0.2708 -> 0.2778`):**
-   - `GEMSDOE25/30 D28` (`44,090` dots, `min d_cat = 1.41 px`) scored **`0.2600`**.
-   - `GEMSDOE28/31 H27-4` pruned `3,891` low-rank dots (`40,199` dots, `min d_cat = 1.41 px`) -> **`0.2708`** (`+0.0108`).
-   - `GEMSDOE28 H36-1` pruned to `37,660` dots at `min d_cat = 1.41 px` -> **`0.2710`**.
-   - **`GEMSDOE32 H33-2-B2`** pruned the `2,545` near-catalogue collar dots in $1.41 \le d_{\text{cat}} \le 2.0\text{ px}$ (`37,654` dots, `min d_cat = 2.24 px`): because any hidden fault pixel within $3\text{ px}$ of $C$ is *already* either inside the organizer's known-fault mask $M_{\text{known}}$ or covered by dots at $d_{\text{cat}} \in (2.2, 3.5]\text{ px}$, removing those `2,545` inner-collar dots reduced $N$ by `6.3%` with near-zero loss in $\mathrm{TP}_{\text{gt}}$, lifting DTI from `0.2708` (`H27-4`) and `0.2710` (`H36-1`) to **`0.2778`** (`+0.0068` pure collar-efficiency gain at virtually identical `37,654` vs `37,660` dot count!). Adding unverified off-collar dots back on top of `H33` (`GEMSDOE36 Anderson-PINN` `+1,200`d -> `0.2750`; `GEMSDOE33 H33D` `+4,211`d -> `0.2632`; `GEMSDOE32 H32D` `46,090`d -> `0.2591`) monotonically diluted precision.
-3. **The Radial Far-Field (`> 1 km`) Allocation Law (`r = +0.994` across `37k–45k`-dot live runs):**
-   Why did every recent near-catalogue PU/supervised submission (`GEMSDOE25 h66 = 0.0742`, `GEMSDOE24 gvc1 = 0.0859`, `GEMSDOE30 MSDB1 = 0.1462`, `GEMSDOE91 = 0.1823`) collapse far below `GEMSDOE32 H33` (`0.2778`), while `GEMSDOE27 h29` (`0.2190`) recovered `60%` of the gap? Measuring the fraction of emitted dots at $d_{\text{cat}} > 10\text{ px}$ (`> 1 km` from `existing_faults.tif`) across all scored `37,654–44,090`-dot Focus-9 submissions reveals a near-linear law (**Pearson $r = +0.994$**):
-   - `GEMSDOE25 h66` (`37,654`d): **`24.3% > 1 km`** -> **`0.0742`**
-   - `GEMSDOE24 gvc1` (`37,654`d): **`25.7% > 1 km`** -> **`0.0859`**
-   - `GEMSDOE30 MSDB1` (`44,090`d): **`33.4% > 1 km`** -> **`0.1462`**
-   - `GEMSDOE27 h29` (`37,654`d, unique non-`H19-5`): **`61.8% > 1 km`** -> **`0.2190`**
-   - `GEMSDOE33 H33D` (`41,865`d): **`63.4% > 1 km`** -> **`0.2632`**
-   - `GEMSDOE28/31 H27-4` (`40,199`d): **`65.4% > 1 km`** -> **`0.2708`**
-   - `GEMSDOE28 H36-1` (`37,660`d): **`65.7% > 1 km`** -> **`0.2710`**
-   - `GEMSDOE36 Anderson-PINN` (`38,854`d): **`69.7% > 1 km`** -> **`0.2750`**
-   - **`GEMSDOE32 H33-2-B2` (`37,654`d): `69.8% > 1 km` (`median d_cat = 1,811.1 m`) -> `0.2778`**
+The locally pinned evaluator implements a 300 m (3-pixel) triangular tolerance kernel, `k(d)=max(1-d/3,0)`, and `DTI = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w)`. For each truth cell, prediction credit is the maximum nearby prediction credit, not a sum. Thus clustered/redundant predictions can add little marginal recall while still contributing prediction mass. This makes sparse, spatially efficient allocation a plausible strategy. The metric definition is checked in [`vendor/gems57/metric.py`](../vendor/gems57/metric.py); competition-facing source links are listed in §5.
 
-   **Physical reason for the `HOLDOUT-DTI` vs Leaderboard inversion:** Standard component-hide holdouts (`gems57-pooled-hide-v2`) withhold 20% of *already-mapped* USGS/INGENIOUS catalogue strands — which sit preferentially along exposed range-front horsts within `300–900 m` of adjacent mapped strands (`H33` scores `0.0036` on component-hide because `69.8%` of its dots hunt unmapped basin/piedmont faults `> 1 km` away!). Conversely, the organizer's hidden evaluation truth $G^*$ consists predominantly of **blind Quaternary basin-interior, piedmont-buried, and stepover faults `> 1 km` from `existing_faults.tif`** inferred from gravity, magnetics, MT, drilling, and 3DEP LiDAR.
+That mathematics does **not** tell us which pixels are hidden-truth faults or prove that H33's pruning caused its reported result. Only the organizer's private evaluation labels can establish those credits.
 
-### 2.2 Why `H33` Plateaus at `0.2778` and How to Bridge Toward `0.3195` / `0.4413` Without Copying
-`GEMSDOE32 H33` (`0.2778`) still suffers three physical ceilings that explain the gap to external leaderboard marks (`0.3195` / `0.4413`):
-1. **Isotropic surface-edge blindness under thicker alluvial cover:** `H19-5`/`H33` relies heavily on shallow topographic/potential-field ridges without solving for broken-plate basement flexural shear ($-\partial^3_{nnn} Z_b$), two-endmember piedmont regolith provenance unmixing, or oblique thermoremanent magnetic vector phase dislocations.
-2. **Apparent-dip lateral offset ($0.5\text{–}1.5\text{ km}$):** A $55^\circ$-dipping range-front normal fault imaged at $1.5\text{ km}$ basement depth projects $1.05\text{ km}$ (`10.5 px`) downdip of its sub-alluvial apex — completely outside the `300 m` (`3 px`) DTI tolerance kernel unless migrated up-dip (`Salem` tilt-depth pullback) or pinned by hanging-wall rollover concavity.
-3. **Greedy FIFO spacing vs fractional-programming Dinkelbach–CELF:** Isotropic `r = 2.8 px` FIFO decimation ignores the asymmetric $N + |G^*|$ denominator of DTI and places zig-zagging off-axis flank dots instead of 1-px tangent-aligned strand crests.
+### 2.2 What the available H33 evidence does and does not show
 
----
+- The supplied/site-transcribed score is **0.2778 (`OWNER-REPORTED`)** for GEMSDOE32 H33. The other Focus-9 scores used below are also **`OWNER-REPORTED`**, not submission-page receipts. See [`registry/prior_scores.csv`](../registry/prior_scores.csv) and the Focus-9 evidence record.
+- Local raster forensics report 37,654 positive cells for H33, 40,199 for H27-4, and 37,660 for H36-1. H33 is a related, collar-pruned prediction; its reported score is 0.2778 versus H27-4's 0.2708 and H36-1's 0.2710 (**all three scores: `OWNER-REPORTED`**). This is consistent with a better precision/recall tradeoff after removing low-value dots. It is not a controlled counterfactual: hidden truth is unavailable, so the alleged “near-zero loss in true-positive credit” and a collar-only causal effect were not measured. The lineages also differ in other raster values/encoding; see the forensic and irregularity records before interpreting the contrast.
+- The measured geometric statistic that 69.8% of H33's dots lie more than 1 km from the public catalogue describes the raster, not the hidden truth. It neither proves those dots identify blind faults nor proves distance from mapped faults causes a higher leaderboard score.
+- A prior exploratory Focus-9 table reported Pearson `r=0.994` between off-catalogue-dot fraction and reported score across nine selected entries. Treat this only as a small, non-independent, post-selection association: entries share a design lineage, their scores are owner-reported, and dot budget/feature recipe/other changes are confounded. It is not a geological law, validated score estimator, or proof that shifting dots farther from the catalogue improves performance. Do not use it to make a leaderboard projection.
+- H33's low `HOLDOUT-DTI` of 0.0036 on `gems57-pooled-hide-v2` is a different evidence class and a different target: that protocol withholds catalogue components. It does not verify how H33 performs against private competition labels. Nor does the mismatch establish that the private test set “consists predominantly” of basin-interior or other blind faults; that composition is not available in this checkout and remains unknown.
+
+### 2.3 Answer to “why H33 scored highest” and whether a higher unique score is supportable
+
+The defensible answer is bounded: among the supplied Focus-9 result claims, H33 is the largest reported value, and its relatively sparse, distributed dot pattern plus pruning of part of a related prediction's near-catalogue collar is a plausible explanation under a max-kernel metric. The available evidence supports **association and a mechanism to test**, not a causal attribution. Candidate mechanisms also include the exact hidden-label geometry, other changes between rasters, and evaluation variability.
+
+The supplied `0.3195` and `0.4413` marks conflict and have no organizer receipt in this repository; neither is treated as a verified current leaderboard value. This checkout cannot honestly state a predicted submission score above 0.2778. The previous fleet-regression outputs are **projections**, trained on a small, owner-reported and selected history, and are not a defensible probability of beating H33. A distinct higher-scoring TIF can only be claimed after a genuinely new candidate beats appropriate preregistered validation controls; holdout results themselves must not be relabeled as leaderboard scores. In this session's checkout, the training raster/cache is absent and the hard registry gate remains, so no such candidate is validated or authorized.
 
 ## 3. Four Preregistered Untried Geological Hypotheses (`registry/h86q_hypotheses_20261026.json`)
 
