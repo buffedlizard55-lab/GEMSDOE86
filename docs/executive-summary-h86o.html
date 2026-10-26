@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary — 9 Sites & New Submission · GEMSDOE86</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.exec-table {width:100%; border-collapse:collapse; font-size:0.9em}
+.exec-table th, .exec-table td {border:1px solid #ddd; padding:8px; text-align:left}
+.exec-table th {background:#f5f5f5}
+.callout {border-left:4px solid #e74c3c; padding:12px 16px; margin:16px 0; background:#fef9f9}
+.callout.ok {border-color:#27ae60; background:#f0faf4}
+.badge {display:inline-block; padding:4px 8px; border-radius:4px; font-size:0.85em; font-weight:bold}
+.badge.bad {background:#e74c3c; color:white}
+.badge.ok {background:#27ae60; color:white}
+</style>
+</head><body>
+<header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a>
+<a href="index.html">Downloads</a><a href="executive-summary.html">How to submit</a><a href="submit.html">Submission status</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
+<main id="main" style="max-width:900px; margin:auto; padding:20px">
+<p class="eyebrow">Executive summary · 2026-10-26 · H86O-RFGC lane</p>
+<h1>9-Site Leaderboard &amp; New Unique Submission</h1>
+<section class="callout ok">
+<span class="badge ok">NEW TIFF: FORMAT-VALID</span> <span class="badge bad">DO NOT SUBMIT TO WEEKLY SLOT</span>
+<h2>Can you download and submit this TIF to DrivenData?</h2>
+<p><strong>Download:</strong> YES — <a href="downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif" download>Download TIFF</a> · <a href="downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.zip" download>One-TIFF ZIP</a> (SHA256 <code>96b0b3fb9c99e967e1cd095a2e4da9bba60d87257400d9798154aae09f4e1d4a</code>, 37,654 dots, EPSG:32611 3730×3292)</p>
+<p><strong>Submit to DrivenData:</strong> <strong>NO — DO NOT SUBMIT</strong> (verdict <code>negative</code>, <code>safe_to_submit=false</code>). Format-valid (fixes "Predicted values must be in range [0, 1]" — 0 NaN, values in [0,1], 15/15 PASS) and byte-unique, but falsified on holdout (HOLDOUT-DTI 0.0000). Audit download only.</p>
+<ul>
+<li><strong>Leakage canary:</strong> max AUC 0.5912 ≤0.90 PASS</li>
+<li><strong>HOLDOUT-DTI (gems57-pooled-hide-v2, 11321 withheld, 155 clusters):</strong> H86O-RFGC 0.0000 vs all controls 0.0000 — NEGATIVE</li>
+<li><strong>Validator:</strong> 15/15 PASS — no NaN/Inf, [0,1], CRS/shape/transform, 0 outside mass, 0 catalogue dots</li>
+</ul>
+<p><a href="evidence/h86o-rfgc-run-card.json">Run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86O_RFGC_PREREGISTRATION.md">Preregistration</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/registry/h86o_rfgc_hypotheses.json">5 hypotheses</a></p>
+</section>
+<section>
+<h2>Executive Summary — 9 Requested Sites (GEMSDOE24,25,27,28,30,31,32,33,36)</h2>
+<p><strong>All 9 scores are OWNER-REPORTED (no receipt) — never ORGANIZER-CONFIRMED.</strong></p>
+<table class="exec-table">
+<thead><tr><th>Rank</th><th>Site</th><th>Artifact</th><th>OWNER-REPORTED</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><strong>GEMSDOE32</strong></td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</a> (37,654)</td><td><strong>0.2778</strong></td><td><strong>Highest but not independent — 100% identical to GEMSDOE28 after collar prune</strong></td></tr>
+<tr><td>2</td><td>GEMSDOE36</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</a> (38,854)</td><td>0.2750</td><td>100% of GEMSDOE28 R0 +1,200 dots (97.40% overlap)</td></tr>
+<tr><td>3</td><td>GEMSDOE28</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</a> (37,660)</td><td>0.2710</td><td>Same H19-5/D2.8 lineage</td></tr>
+<tr><td>4</td><td>GEMSDOE28</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan</a> (40,199)</td><td>0.2708</td><td>= GEMSDOE31 duplicate</td></tr>
+<tr><td>5</td><td>GEMSDOE31</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/docs/">h27-4-solo-d28-20261004-8acb75e1-nan</a> (40,199)</td><td>0.2708</td><td>Duplicate</td></tr>
+<tr><td>6</td><td>GEMSDOE28</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan</a></td><td>0.2649</td><td>Same lineage</td></tr>
+<tr><td>7</td><td>GEMSDOE33</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">h33d-analog-tip-stepover-r30-20261004-cb490425926e</a> (41,865)</td><td>0.2632</td><td>41k variant</td></tr>
+<tr><td>8</td><td>GEMSDOE25</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">dotted-h19-5-d2-8-20261002-e56ea318af89-nan</a></td><td>0.2600</td><td>= GEMSDOE30 same method</td></tr>
+<tr><td>9</td><td>GEMSDOE30</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</a> (44,090)</td><td>0.2600</td><td>Same as above</td></tr>
+<tr><td>—</td><td>GEMSDOE24</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</a></td><td>0.2477</td><td>Earlier lineage</td></tr>
+<tr><td>—</td><td>GEMSDOE27</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</a></td><td>0.2449</td><td>Topo gap closure lower</td></tr>
+</tbody></table>
+<p><strong>Bottom line:</strong> GEMSDOE32 H33 is highest (0.2778) but not independent — 0 differing cells after deleting 2,545 collar dots. All &gt;0.26 share one H19-5/D2.8 lineage (92–100% overlap). No ORGANIZER-CONFIRMED receipt. If you must submit one, use GEMSDOE32 -zeros twin and re-validate.</p>
+</section>
+<section>
+<h2>Why Did H33 Get 0.2778? Can We Beat It?</h2>
+<ol>
+<li><strong>Metric:</strong> 300m DTI alpha0.2/beta0.8 — TP max over 3px disk, FP sum per dot. Spacing ~2.8px reduces FP overlap but disks still overlap &lt;6px.</li>
+<li><strong>Lineage:</strong> H19-5 (~0.1922) → D2.8 dotted (~0.26) → GEMSDOE28 R0 40,199 (0.2708) → GEMSDOE32 pruned 2,545 collar dots to 37,654 = +0.0070 to 0.2778.</li>
+<li><strong>Collar nuance:</strong> Dots 1–2px from faults often FP, so pruning helps, but collar dots can still hit hidden truth (only mapped pixels masked).</li>
+<li><strong>Beating it:</strong> Density alone cannot — 44k lower (0.26), 38k 97.4% H33. Need new geology, not re-spacing H19-5. GEMSDOE86 holdout for H33-family ~0.10–0.13 CI crossing zero.</li>
+<li><strong>Leaderboard 0.3195/0.4413 are OWNER-REPORTED unverified — no projection from holdout valid.</strong></li>
+</ol>
+</section>
+<section>
+<h2>5 Ranked Hypotheses</h2>
+<table class="exec-table">
+<thead><tr><th>Rank</th><th>ID</th><th>Layers</th><th>Signature</th><th>Why off-catalogue</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>H86O-RFGC</td><td>B5×19×15(0.2–1.2km)×8</td><td>Norm coincidence depth-gated ReLU(B8)</td><td>Low-throw piedmont scarplets buried</td><td><span class="badge bad">NEGATIVE 0.0000</span></td></tr>
+<tr><td>2</td><td>H86O-MDCT</td><td>B2+9+17+8</td><td>Negative RTP trough flanked by cond walls</td><td>Hydrothermal demag</td><td>QUEUED</td></tr>
+<tr><td>3</td><td>H86O-CEST</td><td>B4/7/8+5</td><td>Finsler Riedel geodesics</td><td>Conjugate meshes</td><td>QUEUED</td></tr>
+<tr><td>4</td><td>H86O-LIDM</td><td>3DEP 1-m DEM (external)</td><td>5–25m curvature across ≥3 divides</td><td>0.3m scarps at 1-m</td><td>MISSING_DATA — 3DEP mirror needed</td></tr>
+<tr><td>5</td><td>H86O-OPIS</td><td>OPERA InSAR (external)</td><td>30-m LOS steps</td><td>GPS 15km cannot resolve 100m</td><td>MISSING_DATA — OPERA mirror needed</td></tr>
+</tbody></table>
+<p>All new vs GEMSDOE86. Queue: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/registry/h86o_rfgc_hypotheses.json">h86o_rfgc_hypotheses.json</a> · prereg: <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86O_RFGC_PREREGISTRATION.md">H86O_RFGC_PREREGISTRATION.md</a>. External: <a href="https://apps.nationalmap.gov/lidar-explorer/">USGS 3DEP</a>, <a href="https://asf.alaska.edu/datasets/daac/opera/">NASA OPERA</a>.</p>
+</section>
+<section class="callout">
+<h3>How to Submit (future POSITIVE only)</h3>
+<ol>
+<li><strong>Download</strong> the <code>.tif</code> — ensure <code>-zeros.tif</code> (all-finite)</li>
+<li><strong>Validate:</strong> <code>python -m gems57.validate docs/downloads/&lt;file&gt;.tif</code> → all_checks_passed true</li>
+<li><strong>Uniqueness:</strong> <code>python scripts/pa86_chance_overlap.py</code> → 0 informative firings</li>
+<li><strong>Portal:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS</a> → New submission → .tif or one-TIFF .zip → paste name/note (≤140 chars)</li>
+<li><strong>Never submit NEGATIVE</strong> — wait for promote verdict.</li>
+</ol>
+<p><strong>Current file:</strong> <code>gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros</code> — note <code>H86O-RFGC ridge-flexure 37654d 2.8px HOLDOUT in card; zeros; DO NOT SUBMIT until selector</code> (101 chars) — <strong>DO NOT SUBMIT</strong>.</p>
+</section>
+<p><a href="index.html">← Back to downloads</a> · <a href="evidence/h86o-rfgc-run-card.json">Run card JSON</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/EXECUTIVE_SUMMARY_9SITES.md">Markdown</a></p>
+</main>
+<footer style="text-align:center; padding:20px; color:#666"><strong>Local validation ≠ organizer acceptance.</strong> No file authorized.<br><a href="evidence.html">Validation</a> · <a href="sources.html">Sources</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86">Source</a></footer>
+</body></html>

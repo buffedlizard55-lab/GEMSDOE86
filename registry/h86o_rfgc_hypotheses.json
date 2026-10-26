@@ -1,0 +1,180 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86O",
+  "lane_id": "H86O-RFGC",
+  "frozen_utc": "2026-10-26T00:30:00Z",
+  "git_branch": "arena/9182dcd2-gemsdoe86",
+  "protocol_compliance": {
+    "frozen_before_implementation": true,
+    "max_experiments": 3,
+    "max_hours": 2,
+    "leakage_canary_auc_limit": 0.9,
+    "surface_spearman_limit": 0.9,
+    "dot_overlap_3px_limit": 0.7,
+    "evaluator": "vendor/template66/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "writer": "vendor/template66/gems57/submission_writer.py"
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86O-RFGC",
+      "name": "Ridge-Flexure Geothermal Concordance \u2014 detrended-slope \u00d7 gravity-gradient coincidence at shallow basin margins gated by active dilatation",
+      "status": "SELECTED_FOR_VALIDATION",
+      "layers": [
+        {
+          "band": 5,
+          "name": "iso_grav_anom_slope",
+          "verified_physics": "Scalar 2-D horizontal isostatic gravity gradient magnitude (r=+0.946995 vs hypot(B11,B18))"
+        },
+        {
+          "band": 19,
+          "name": "det_elev_slope",
+          "verified_physics": "Scalar detrended topographic slope magnitude (r=+0.950603 vs |grad(B12)|)"
+        },
+        {
+          "band": 15,
+          "name": "depth_to_base_surf",
+          "verified_physics": "Depth to pre-Tertiary basement / basin-fill thickness"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate",
+          "verified_physics": "Geodetic dilatation rate \u2014 crustal extension / fracture-opening rate"
+        },
+        {
+          "band": 12,
+          "name": "det_elev",
+          "verified_physics": "Detrended elevation \u2014 local scarp / range-front relief"
+        }
+      ],
+      "external_data_required": false,
+      "physical_signature": "Normalized coincidence S = norm(Band5) \u00d7 norm(Band19) filtered to 0.2km < Band15 < 1.2km depth window (shallow pediment/relay-ramp margins, avoiding deep basin centers and exposed bedrock), modulated by ReLU(geod_dilaterate) to favor actively extending crust. Ridge extraction via non-maximum suppression along Band5/Band19 gradient azimuths, then multi-scale (3px,6px) cross-strike curvature sign test to suppress compact volcanic plugs (which show high radial curvature) vs fault steps (low along-strike curvature). Output is a continuous [0,1] evidence surface thresholded via Poisson-disc sampling at 2.8px spacing to 37654 dots.",
+      "why_off_catalogue": "USGS QFaults/INGENIOUS compilation relies on aerial-photo scarps and 10-30m DEM range-front mapping \u2014 systematically missing low-throw (0.3-1.5m) piedmont/relay-ramp scarplets buried by Quaternary alluvium. These manifest as weak Band19 slope lineaments (detected only at 100m as 2-5\u00b0 breaks) coinciding with Band5 gravity steps from 0.3-1.2km basement offset, but individually below photogeologic mapping thresholds. The catalogue favors high-relief (>50m) range fronts; this lane targets low-relief concordant pairs at basin margins.",
+      "non_fault_mimic": "Pleistocene Lake Lahontan shoreline terraces (~1205m, ~1330m) and fluvial terrace risers produce coincident topographic + density steps without active dilatation; gated out via dilatation + detrended elevation window. Tertiary volcanic flow margins produce Band5 but lack Band19 slope concordance.",
+      "differs_from_repo": "No prior GEMSDOE86 lane combined Band5 \u00d7 Band19 coincidence: H86N-GSST used Band5/11/13/18 gravity-only morphology (no topography); H86K-PSC used Hessian saddle-ridge topology on Bands 12/13; H86M-BMGS used BMR gravity residual vs RTP magnetics; GDSC used dilatation alone; FVMB used tri-regime thresholds. This is first depth-gated topographic-gravity concordance with dilatation modulation and curvature shape test.",
+      "expected_holdout_potential": "Medium; suppresses deep-basin and high-range false positives; paired holdout vs Band5-alone and Band19-alone controls tests the concordance hypothesis. No score projection.",
+      "implementation_cost": "Low (O(N) Gaussian/gradient operators, no ML fitting; ~5 min CPU)",
+      "falsifier": "Paired 95% block-bootstrap HOLDOUT-DTI difference vs Band5-alone (E1) and Band19-alone (E2) and depth-uniform (E3) controls fails to exclude zero \u2014 or single-feature leakage AUC >0.90."
+    },
+    {
+      "rank": 2,
+      "id": "H86O-MDCT",
+      "name": "Magnetite-Destruction Conductance Tube \u2014 band-pass RTP trough bounded by conductance walls in dilatant corridors",
+      "status": "QUEUED_NOT_RUN",
+      "layers": [
+        {
+          "band": 2,
+          "name": "rtp"
+        },
+        {
+          "band": 9,
+          "name": "tmi_vg"
+        },
+        {
+          "band": 17,
+          "name": "cond_surf"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        }
+      ],
+      "external_data_required": false,
+      "physical_signature": "Band-pass (sigma 12px - sigma 30px) negative RTP residual isolating 1-2km hydrothermal demagnetization troughs from regional pluton fields, required to be flanked within \u00b14px by steep Band17 conductance gradients (|grad cond|) under positive Band8 dilatation. Cross-strike profile extracts trough-to-wall amplitude ratio.",
+      "why_off_catalogue": "Active blind geothermal conduits along basin-interior fault damage zones alter magnetite to pyrite/clays (demag trough) and precipitate conductive smectite (wall), without surface scarp.",
+      "non_fault_mimic": "Non-magnetic felsic intrusives, caldera margins, saline playa brines",
+      "differs_from_repo": "H86I-RKSC used positive high-frequency magnetic gradients; no lane targeted negative band-pass trough + flanking walls",
+      "expected_holdout_potential": "Low-medium; hydrothermal subset only",
+      "implementation_cost": "Medium",
+      "falsifier": "Trough-wall score trails unsigned RTP gradient control"
+    },
+    {
+      "rank": 3,
+      "id": "H86O-CEST",
+      "name": "Conjugate Riedel-Shear Finsler Transport \u2014 geodetic strain-rate anisotropic shortest-path relay breaching",
+      "status": "QUEUED_NOT_RUN",
+      "layers": [
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
+        },
+        {
+          "band": 7,
+          "name": "geod_shearrate"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        },
+        {
+          "band": 5,
+          "name": "iso_grav_anom_slope"
+        }
+      ],
+      "external_data_required": false,
+      "physical_signature": "Derives local principal strain axes from geodetic invariants (Bands 4,7,8) to build orthorhombic Finsler metric favoring Riedel R/R' (\u00b1(45\u00b0-\u03c6/2), \u03c6=30\u00b0) and tension fractures; solves anisotropic eikonal for minimum-energy geodesic corridors bridging high-curvature Band5 terminations across accommodation zones.",
+      "why_off_catalogue": "Strain transfer between NNE Basin-Range normals and NW Walker Lane dextral faults via conjugate meshes lacks single-scarp continuity",
+      "non_fault_mimic": "Conjugate jointing in welded tuffs without throw",
+      "differs_from_repo": "H86I-KSAD evaluated pointwise Kostrov tendency at fixed azimuth; this solves non-local Finsler paths on spatially varying axes",
+      "expected_holdout_potential": "Low-medium; geodetic smoothing limits 300m precision",
+      "implementation_cost": "High (anisotropic Fast Marching)",
+      "falsifier": "Geodesic corridor fails to beat isotropic gravity-slope control"
+    },
+    {
+      "rank": 4,
+      "id": "H86O-LIDM",
+      "name": "LiDAR Micro-Scarp Persistence \u2014 watershed-crossing 1-m 3DEP curvature continuity",
+      "status": "QUEUED_NOT_RUN_MISSING_DATA",
+      "layers": [
+        {
+          "name": "USGS 3DEP 1-m bare-earth DEM tiles (competition 1m_DEM_links.csv)"
+        },
+        {
+          "band": 12,
+          "name": "det_elev"
+        },
+        {
+          "band": 19,
+          "name": "det_elev_slope"
+        }
+      ],
+      "external_data_required": true,
+      "external_source": "Official free USGS 3DEP 1-m LidarExplorer (https://apps.nationalmap.gov/lidar-explorer/), free public-domain, obtainable on unrestricted workstation; NOT in sandbox due to egress allowlist. Mirror must be pinned before execution.",
+      "physical_signature": "Signed 5-25m cross-strike profile curvature steps on native 1-m DEMs retaining polarity across >=3 drainage divides, vetoing channels/shorelines/roads.",
+      "why_off_catalogue": "0.3-1.5m piedmont scarps smoothed below noise in 30-100m DEMs, invisible in pre-LiDAR airphotos, persist at 1-m",
+      "non_fault_mimic": "Lake Lahontan benches, terrace risers, highway grades",
+      "differs_from_repo": "Zero lanes ingest native 1-m tiles; prior used quantized 100m summary bands only",
+      "expected_holdout_potential": "Medium-high if data obtained; high cost",
+      "implementation_cost": "Very high (native terrain + divides)",
+      "falsifier": "Native relocation shows no displacement-conditioned gain over random 2px SNAP control"
+    },
+    {
+      "rank": 5,
+      "id": "H86O-OPIS",
+      "name": "OPERA InSAR Seasonal Phase-Jump \u2014 Sentinel-1 LOS velocity step detector",
+      "status": "QUEUED_NOT_RUN_MISSING_DATA",
+      "layers": [
+        {
+          "name": "NASA/JPL OPERA DISP-S1 Sentinel-1 LOS velocity (DOI 10.5066/P9TWT2LU companion)"
+        },
+        {
+          "band": 4,
+          "name": "geod_2ndinv"
+        },
+        {
+          "band": 8,
+          "name": "geod_dilaterate"
+        }
+      ],
+      "external_data_required": true,
+      "external_source": "Official free NASA/JPL OPERA L3 DISP-S1 via ASF DAAC (https://asf.alaska.edu/datasets/daac/opera/), free public-domain; NOT in sandbox (egress allowlist). Requires workstation download + EPSG:32611 warp.",
+      "physical_signature": "30-m InSAR LOS velocity steps and seasonal aquitard-head phase jumps marking fault-core hydraulic compartmentalization, validated against sparse GPS invariants.",
+      "why_off_catalogue": "Bands 4/7/8 are 15-30km smoothed GPS grids incapable of resolving 100-m fault-core hydrology",
+      "non_fault_mimic": "Stratigraphic clay pinch-outs, agricultural pumping, mine dewatering",
+      "differs_from_repo": "No lane ingests 30-m InSAR; native strain grids are 100x coarser",
+      "expected_holdout_potential": "High if data obtained; currently impossible in sandbox",
+      "implementation_cost": "Very high (external tiling + mosaicking)",
+      "falsifier": "InSAR steps correlate with stratigraphy not fault traces"
+    }
+  ]
+}

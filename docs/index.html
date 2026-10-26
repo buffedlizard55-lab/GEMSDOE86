@@ -14,6 +14,18 @@
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>2026-10-25T20:04:03.868571+00:00</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
 </section>
+
+<section class="callout ok" id="h86o-rfgc-new">
+<div class="section-head"><span class="badge ok">NEW 2026-10-26: FORMAT-VALID & UNIQUE</span><span class="badge bad">DO NOT SUBMIT TO WEEKLY SLOT — NEGATIVE</span></div>
+<h2>New unique TIFF: H86O-RFGC Ridge-Flexure Concordance — fixes the portal [0,1] error, but falsified on holdout</h2>
+<p><code>gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif</code> — SHA-256 <code>96b0b3fb9c99e967e1cd095a2e4da9bba60d87257400d9798154aae09f4e1d4a</code>, 37,654 dots at 2.8px, <code>EPSG:32611</code> 3730×3292, <code>0</code> NaN/Inf, values in <code>[0,1]</code>, <code>15/15</code> validator PASS — the <strong>portal error class "Predicted values must be in range [0, 1]" is excluded</strong> (no clipping/repair; on-disk bytes validated).</p>
+<ul>
+<li><strong>Is it OK to download?</strong> YES — safe for audit download.</li>
+<li><strong>Is it OK to submit to DrivenData weekly slot?</strong> <strong>NO — DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>). HOLDOUT-DTI <code>0.0000 [0.0000,0.0000]</code> (11321 withheld) vs all controls 0.0000 — falsified; worse than random. Leakage canary PASS (max AUC 0.5912 ≤0.90).</li>
+<li><strong>What does this prove?</strong> A byte-unique, format-valid TIFF <em>can</em> be generated that passes the portal's [0,1] gate. The next hypothesis must beat holdout, not just format.</li>
+</ul>
+<p><a class="btn" href="downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif" download>Download TIFF — audit only, DO NOT SUBMIT</a> <a class="btn secondary" href="downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.zip" download>One-TIFF ZIP — audit only</a> <a href="downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.json">Writer receipt</a> · <a href="evidence/h86o-rfgc-run-card.json">Run card</a> · <a href="executive-summary-h86o.html">9-site executive summary &amp; H33 forensics →</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H86O_RFGC_PREREGISTRATION.md">Preregistration</a></p>
+</section>
 <section class="callout" id="h86l-fmc"><h2>H86L-FMC — audit download only, DO NOT SUBMIT</h2>
 <p>The inherited fleet-minority candidate is now included in the automated download inventory and release audit below. Its archived holdout is <strong>leakage-suspect</strong>: the source fleet used the full catalogue, so this is not fold-safe hide-and-recover evidence. It also failed the archived overlap gate. Registration repairs publication integrity; it does not make the file scientifically unique or authorize upload.</p>
 <p><a href="#downloads">Audited TIFF and ZIP downloads</a> · <a href="evidence/h86l-fmc-run-card.json">Original negative run card</a></p></section>

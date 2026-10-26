@@ -288,6 +288,13 @@
       "context": "docs/evidence/h86m-slcq-run-card.json",
       "holdout_kind": "h86m_slcq",
       "stem": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros"
+    },
+    {
+      "lane": "H86O-RFGC ridge-flexure concordance (NEGATIVE: HOLDOUT-DTI 0.0000 [0.0000, 0.0000] vs all controls 0.0000; leakage canary PASS max AUC 0.5912; validator 15/15 PASS; DO NOT SUBMIT, 2026-10-26)",
+      "card": "docs/evidence/h86o-rfgc-run-card.json",
+      "context": "docs/evidence/h86o-rfgc-run-card.json",
+      "holdout_kind": "h86o_rfgc",
+      "stem": "gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros"
     }
   ]
 }

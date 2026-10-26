@@ -246,6 +246,12 @@
       "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif",
+      "sha256": "96b0b3fb9c99e967e1cd095a2e4da9bba60d87257400d9798154aae09f4e1d4a",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

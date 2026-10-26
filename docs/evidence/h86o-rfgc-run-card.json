@@ -1,0 +1,237 @@
+{
+  "lane": "H86O-RFGC",
+  "hypothesis": "Ridge-Flexure Geothermal Concordance: Band5\u00d7Band19 coincidence at 0.2-1.2km depth gated by dilatation",
+  "mechanism": "Coincident weak topographic slope break and basement gravity step at shallow basin margins under active extension marks buried relay faults; depth gating suppresses deep basin and bedrock false positives, dilatation gating suppresses aseismic terraces, curvature filter suppresses plugs",
+  "non_fault_mimic": "Pleistocene Lake Lahontan shoreline terraces (~1205m, ~1330m) and fluvial terrace risers \u2014 coincident topo+density steps without active dilatation; mitigated via ReLU(Band8) and det_elev window",
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "canary": {
+      "H86O-RFGC": {
+        "auc": 0.5912,
+        "sym_auc": 0.5912,
+        "passed": true
+      },
+      "E1_grav_only": {
+        "auc": 0.5432,
+        "sym_auc": 0.5432,
+        "passed": true
+      },
+      "E2_topo_only": {
+        "auc": 0.5884,
+        "sym_auc": 0.5884,
+        "passed": true
+      },
+      "E3_nodepth": {
+        "auc": 0.5838,
+        "sym_auc": 0.5838,
+        "passed": true
+      }
+    },
+    "pooled_summary": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_radius_m": 300.0,
+      "pooled": true,
+      "scores": {
+        "H86O-RFGC": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 0.0,
+          "fpw": 35421.0,
+          "fnw": 11321.0
+        },
+        "E1_grav_only": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 0.0,
+          "fpw": 34359.0,
+          "fnw": 11321.0
+        },
+        "E2_topo_only": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 0.0,
+          "fpw": 35747.0,
+          "fnw": 11321.0
+        },
+        "E3_nodepth": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321,
+          "tpw": 0.0,
+          "fpw": 35219.0,
+          "fnw": 11321.0
+        }
+      },
+      "best_comparable_control": "E1_grav_only",
+      "paired_differences": {
+        "E1_grav_only": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321
+        },
+        "E2_topo_only": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321
+        },
+        "E3_nodepth": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positive_pixels": 11321
+        }
+      },
+      "bootstrap": {
+        "method": "paired physical spatial-cluster percentile",
+        "clusters": 155,
+        "draws": 1000,
+        "seed": 861486,
+        "confidence": 0.95,
+        "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+      },
+      "implementation_sha256": {
+        "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+        "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+        "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+        "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+      }
+    }
+  },
+  "leakage_canary": {
+    "max_sym_auc": 0.5912,
+    "threshold": 0.9,
+    "passed": true
+  },
+  "uniqueness": {
+    "rho_firings": 0,
+    "max_rho": 0,
+    "overlap_firings": 0,
+    "max_overlap_sample20": 0,
+    "threshold_rho": 0.9,
+    "threshold_overlap": 0.7,
+    "note": "sample 20 of registry; full scan via audit_release.py required for clearance"
+  },
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif",
+    "bytes": 128946,
+    "sha256": "96b0b3fb9c99e967e1cd095a2e4da9bba60d87257400d9798154aae09f4e1d4a",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "raster": {
+    "sha256": "96b0b3fb9c99e967e1cd095a2e4da9bba60d87257400d9798154aae09f4e1d4a",
+    "bytes": 128946,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "n_dots": 37654,
+    "min": 0.0,
+    "max": 1.0,
+    "nan": 0
+  },
+  "submission": {
+    "name": "gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros",
+    "note": "H86O-RFGC ridge-flexure concordance 37654d 2.8px HOLDOUT in card; zeros; DO NOT SUBMIT until selector",
+    "note_chars": 101,
+    "tif": "/home/user/GEMSDOE86/docs/downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.tif",
+    "zip": "/home/user/GEMSDOE86/docs/downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.zip",
+    "receipt": "/home/user/GEMSDOE86/docs/downloads/gems86-h86o-rfgc-rfconcord-37654dots-20261026T002649Z-f886cfbe-zeros.json"
+  },
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "timestamp": "20261026T002649Z"
+}
