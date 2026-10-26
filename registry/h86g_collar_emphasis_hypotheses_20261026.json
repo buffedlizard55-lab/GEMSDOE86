@@ -1,0 +1,91 @@
+{
+  "lane": "H86G",
+  "lane_name": "intermediate-collar geothermal fault emphasis",
+  "generated_utc": "2026-10-26T00:28:19Z",
+  "description": "GEMSDOE32 H33 scored 0.2778 (OWNER-REPORTED, not organizer-confirmed) by PRUNING dots at 1<d_cat<=2px from catalogue faults. This lane EMPHASIZES the intermediate collar zone (2-8 px = 200-800 m) where structural relay zones and dilational jogs form around mapped faults -- prime locations for geothermal-related blind faults absent from the USGS/INGENIOUS catalogue. Combined with Poisson-disc spacing (2.8 px) for emission uniqueness.",
+  "hypotheses": [
+    {
+      "id": "H86G-1",
+      "name": "intermediate-collar relay-zone emphasis",
+      "mechanism": "Unmapped geothermal-related faults cluster at 2-8 px (200-800 m) from catalogue faults where relay zones, dilational jogs, and secondary fractures form around mapped Quaternary faults. These blind faults are absent from the catalogue because USGS mapping focuses on through-going Quaternary traces.",
+      "expected_dti_improvement": "+0.03 to +0.08 over H33 collar-pruning baseline",
+      "cost": "LOW -- uses only existing_faults.tif + sample_submission.tif (no external data, no training)",
+      "novelty": "HIGH -- no lane in repo history has emphasized (vs pruned) the intermediate collar zone; H33 pruned 1<d_cat<=2px dots",
+      "rank": 1,
+      "status": "implemented_as_H86G_collar_emphasis_TIF",
+      "tif": "gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
+      "holdout_validated": false,
+      "holdout_reason": "training_features.tif and labels.tif absent from checkout; no HOLDOUT-DTI computable",
+      "registry_unique_vs_scored_fleet": false,
+      "registry_note": "1 overlap firing vs GEMSDOE81 (0.8941 > 0.70); both target near-catalogue areas by construction",
+      "submission_authorized": false,
+      "submission_reason": "No HOLDOUT-DTI (no training data); literal full-support witness blocks all nonempty candidates; no organizer receipt",
+      "safe_to_download": true,
+      "ok_to_submit": false
+    },
+    {
+      "id": "H86G-2",
+      "name": "geothermal-surface-expression + structural-lineament intersection",
+      "mechanism": "Geothermal surface expressions (sinter/travertine mounds, hydrothermal alteration, paleo-sinter hills) mark blind faults not in the catalogue. Intersecting DOE GDR #1391 paleo-geothermal deposits (726 sinter/tufa mounds) with structural lineaments from gravity-magnetic cross-gradient coherence targets faults missing from USGS/INGENIOUS.",
+      "expected_dti_improvement": "+0.05 to +0.12 over catalogue-only baselines",
+      "cost": "MEDIUM -- requires DOE GDR #1391 paleo-geothermal data (free, official, DOI-registered) + gravity/mag structural features (absent from checkout)",
+      "novelty": "HIGH -- not yet implemented in any GEMSDOE lane; GDR 1391 is free official external data",
+      "data_source": "https://gdr.openei.org/submissions/1391 (DOE Geothermal Data Repository #1391, free)",
+      "obtainability": "CHECKED -- GDR #1391 landing page accessible; data files require manual download (no automated scraping)",
+      "rank": 2,
+      "status": "untried -- needs external data",
+      "holdout_validated": false,
+      "submission_authorized": false
+    },
+    {
+      "id": "H86G-3",
+      "name": "3D MT conductance x heat-flow conduction corridor",
+      "mechanism": "Geothermal systems require both high electrical conductance (MT) and high heat flow. Intersecting USGS MT conductivity models with heat-flow anomalies identifies deep conductive thermal anomalies that drive blind faulting. The GDR #1391 shallow probes and paleo-geothermal data provide ground truth.",
+      "expected_dti_improvement": "+0.04 to +0.10 over geophysics-only baselines",
+      "cost": "MEDIUM-HIGH -- requires MT models (USGS, free) + heat-flow data (SMU/NGDS, free)",
+      "novelty": "MEDIUM -- MT+heat-flow intersection is described in repo hypotheses but not implemented",
+      "data_source": "USGS MT models + SMU National Geothermal Data System (both free, official)",
+      "obtainability": "UNVERIFIED -- need to confirm file availability and download mechanism",
+      "rank": 3,
+      "status": "untried -- needs external data",
+      "holdout_validated": false,
+      "submission_authorized": false
+    },
+    {
+      "id": "H86G-4",
+      "name": "1-m 3DEP LiDAR watershed-crossing scarp density",
+      "mechanism": "Fault scarps crossing watershed boundaries create distinctive 1-m LiDAR topography. High scarp density at watershed crossings indicates active faulting not yet mapped. 3DEP 1-m LiDAR is free official USGS data.",
+      "expected_dti_improvement": "+0.02 to +0.06 over LiDAR-free baselines",
+      "cost": "LOW-MEDIUM -- 3DEP 1-m LiDAR is free but large tiles require processing",
+      "novelty": "MEDIUM -- LiDAR scarps used in H86I-RLMS but watershed-crossing density is new",
+      "data_source": "USGS 3DEP 1-m LiDAR (https://www.usgs.gov/3dep, free)",
+      "obtainability": "CHECKED -- 3DEP data is free and publicly available",
+      "rank": 4,
+      "status": "untried -- needs external data + processing",
+      "holdout_validated": false,
+      "submission_authorized": false
+    },
+    {
+      "id": "H86G-5",
+      "name": "hydrothermal-magnetite-destruction + vent-alignment corridor",
+      "mechanism": "Hydrothermal alteration destroys magnetite, creating magnetic lows aligned with vent conduits. Combining RTP magnetic lows with thermal-spring alignments (GDR #1391) targets blind hydrothermal fault conduits.",
+      "expected_dti_improvement": "+0.03 to +0.07 over magnetic-only baselines",
+      "cost": "LOW-MEDIUM -- uses GDR #1391 thermal springs + existing magnetic data",
+      "novelty": "MEDIUM -- similar to H86I-HVFD but with magnetite-destruction emphasis",
+      "data_source": "DOE GDR #1391 thermal springs + USGS magnetic data",
+      "obtainability": "CHECKED -- GDR #1391 accessible",
+      "rank": 5,
+      "status": "untried -- needs external data",
+      "holdout_validated": false,
+      "submission_authorized": false
+    }
+  ],
+  "ranking_criteria": "Expected DTI improvement (primary), implementation cost (secondary), data obtainability (tertiary). All hypotheses are unvalidated -- no HOLDOUT-DTI computable without training_features.tif and labels.tif.",
+  "protocol_notes": [
+    "No training_features.tif or labels.tif in checkout → no HOLDOUT-DTI possible → no submission authorization",
+    "Literal full-support witness (17GEMSDOE) blocks all nonempty candidates at 100% forward overlap > 0.70",
+    "PA-86-01 like-for-like reading requires full registry completeness; local scored_fleet has 25 rasters only",
+    "No file in repo is authorized for DrivenData upload; submission_slots_used = 0",
+    "All scores above are OWNER-REPORTED, not organizer-confirmed; no leaderboard projection is made"
+  ]
+}

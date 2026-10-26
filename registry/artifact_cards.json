@@ -288,6 +288,20 @@
       "context": "docs/evidence/h86m-slcq-run-card.json",
       "holdout_kind": "h86m_slcq",
       "stem": "gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros"
+    },
+    {
+      "lane": "H86G intermediate-collar (2-8 px) Poisson-disc relay emphasis (unvalidated archive without feature stack; 0.8941 overlap vs GEMSDOE81; DO NOT SUBMIT, 2026-10-26)",
+      "card": "docs/evidence/h86g-collar-emphasis-run-card.json",
+      "context": "docs/evidence/h86g-collar-emphasis-run-card.json",
+      "holdout_kind": "h86g_collar_unvalidated",
+      "stem": "gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros"
+    },
+    {
+      "lane": "H86P-TCWB downslope TC wash-blanket asymmetry x vector-gravity-signed basement hinge kink + lateral clay-cap fault-seal termination + seismicity-dilatancy gate + Aitchison CLR radiometric Jacobian + 4.5 px stress-shadow eroded footprint-median 4-fold LOQO + 6-ring survival Dinkelbach-CELF (NEW STRICT-LOQO RECORD HOLDOUT-DTI 0.1727 [0.1560, 0.1894] beating E3 0.1565 by +0.0162 [+0.0040, +0.0286], H86I-KSAD 0.1671, H86M-SLCQ 0.1527, & H86C-KSLB 0.1241; blind E2 SGMC-PROXY-DTI 0.0954 beating GEMSDOE32 H33 0.0937; fail-closed DO NOT SUBMIT, 2026-10-26)",
+      "card": "docs/evidence/h86p-tcwb-run-card.json",
+      "context": "docs/evidence/h86p-tcwb-run-card.json",
+      "holdout_kind": "h86p_tcwb",
+      "stem": "gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros"
     }
   ]
 }

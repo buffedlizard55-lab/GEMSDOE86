@@ -6,6 +6,7 @@
   "reviewer": "automated (no human intervention)",
   "passes": 3,
   "verdict": "negative",
+  "submission_ready": false,
   "safe_to_submit": false,
   "approved_for_weekly_slot": false,
   "submission_slots_used": 0,
@@ -16,6 +17,7 @@
   "tif_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
   "zip_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.zip",
   "receipt_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.json",
+  "raster_sha256": "8e12a0ffa5d930dad99a3c107ccf7a85938deda6e3b4170535cd400414e24dbd",
   "tif_sha256": "8e12a0ffa5d930dad99a3c107ccf7a85938deda6e3b4170535cd400414e24dbd",
   "zip_sha256": "aa7b763f480b4339cf138a8224279170910acfba67197fc02d7dd57e7b5b08ff",
   "format_validation": {

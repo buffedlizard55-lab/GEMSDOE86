@@ -138,7 +138,7 @@ def restore_repo_codeload_and_git(
                     data = fobj.read()
                     got = hashlib.sha256(data).hexdigest()
                     for rec in by_relpath[rel]:
-                        if rec["sha256"] == got and len(data) == rec["bytes"]:
+                        if rec["sha256"] == got and len(data) == rec["bytes"] and got not in found_shas:
                             dest = out_dir / f"{got}.tif"
                             part = dest.with_suffix(".partial")
                             part.write_bytes(data)

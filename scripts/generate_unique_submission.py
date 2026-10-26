@@ -40,6 +40,7 @@ import numpy as np
 import rasterio
 
 REPO = Path(__file__).resolve().parents[1]
+ROOT = REPO
 sys.path.insert(0, str(REPO / "vendor"))
 
 import gems57
@@ -173,7 +174,7 @@ def make_name_note(dots_count, sha8):
     return name, note
 
 
-def main():
+def _run_collar_emphasis():
     prediction, footprint, catalogue, dist, dots = build_prediction()
 
     # Unique hash from decoded pixels
@@ -289,5 +290,14 @@ def main():
         print(f"  {flag:4s} {r['file']:70s} ov={r.get('overlap','--')} rho={r.get('spearman','--')}{err}")
 
 
+def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
+    _run_collar_emphasis()
+    return 0
+
+
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

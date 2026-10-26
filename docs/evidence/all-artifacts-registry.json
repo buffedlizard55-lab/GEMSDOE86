@@ -1,7 +1,7 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-25T20:04:03.868571+00:00",
+  "measured_utc": "2026-10-26T03:41:46.723502+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
   "proof_sha256": "6ee41d58fc7095612c831c9828ce77a516beefade69d96cab719456e5d25cc96",
@@ -376,6 +376,24 @@
       "file": "docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif",
       "sha256": "c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d",
       "spearman_full_footprint": 0.06603668892856109,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
+      "sha256": "8e12a0ffa5d930dad99a3c107ccf7a85938deda6e3b4170535cd400414e24dbd",
+      "spearman_full_footprint": 0.08244765556138232,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros.tif",
+      "sha256": "8c8951653dcb4ac8c175136953dcb0a138147ab216327a461d430ce2698ab159",
+      "spearman_full_footprint": 0.07736769978960924,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,
