@@ -128,6 +128,22 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "design": "Catalogue-distance 2-8 px Poisson-disc geometry; no buffered hide-and-recover evaluation",
                 "caveat": "Merged PR #180 H86G collar-emphasis archive; training_features.tif was absent in that session so no HOLDOUT-DTI was computed and 3-px dot overlap fired at 0.8941 vs GEMSDOE81. DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86q_basinridge_unvalidated":
+        holdout = context.get("holdout_dti", {})
+        uniqueness = context.get("correlation_overlap_vs_registry", {})
+        if (context.get("lane") != "H86Q-BASINRIDGE"
+                or context.get("verdict") != "negative"
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or context.get("submission_slots_used") != 0
+                or holdout.get("status") != "NOT_RUN_MISSING_SHARED_FEATURE_STACK_AND_FOLD_SAFE_EXPERIMENT"
+                or any(holdout.get(k) is not None for k in ("value", "ci95", "withheld_positives"))
+                or uniqueness.get("preplacement_surface") != "NOT_MEASURED"
+                or uniqueness.get("literal_pinned_witness_final_dot_overlap") != 1.0):
+            raise ValueError("H86Q must remain an unvalidated, literal-overlap-blocked, unauthorized archive")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Catalogue-distance (>10 px) ridge weighting and Poisson-disc emission; no fold-safe hide-and-recover evaluation",
+                "caveat": "H86Q-BASINRIDGE writer and partial-local-uniqueness receipts do not include HOLDOUT-DTI, a pre-placement surface scan, or complete registry clearance. The pinned full-support witness yields 1.0 forward overlap for every nonempty candidate. DO NOT SUBMIT."}
     if kind == "h86m_lt_unvalidated":
         if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
                 or context.get("verdict") != "negative"

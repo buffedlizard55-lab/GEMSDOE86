@@ -302,6 +302,13 @@
       "context": "docs/evidence/h86p-tcwb-run-card.json",
       "holdout_kind": "h86p_tcwb",
       "stem": "gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros"
+    },
+    {
+      "lane": "H86Q basin-center distance-transform ridge export (no HOLDOUT-DTI, partial local uniqueness only; literal witness stop; DO NOT SUBMIT)",
+      "card": "docs/evidence/h86q-basinridge-run-card.json",
+      "context": "docs/evidence/h86q-basinridge-run-card.json",
+      "holdout_kind": "h86q_basinridge_unvalidated",
+      "stem": "gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros"
     }
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane": "H86Q-BASINRIDGE",
+  "hypothesis": "Distance-transform ridges in the catalogue-far basin interior may be spatial proxies for concealed basin-center faults.",
+  "mechanism": "Threshold the existing-faults distance transform at >10 pixels, emphasize local distance ridges, then allocate 37,654 binary points with Poisson-disc spacing. This is catalogue-geometry-only and does not use the shared cached feature stack.",
+  "named_non_fault_process": "Unfaulted basin-floor depositional margins, paleolake shorelines, and alluvial-fan toes can create geomorphic distance ridges that mimic structural lineaments.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN_MISSING_SHARED_FEATURE_STACK_AND_FOLD_SAFE_EXPERIMENT",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "preplacement_surface": "NOT_MEASURED",
+    "partial_local_report": {
+      "rasters_checked": 71,
+      "worst_spearman_rho": 0.3786296248425835,
+      "worst_forward_3px_dot_overlap": 0.4279226642587773,
+      "source": "docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.uniqueness.json",
+      "scope_complete": false
+    },
+    "literal_pinned_witness_final_dot_overlap": 1.0,
+    "status": "NEGATIVE: full registry clearance is false; the literal full-support witness yields 100% forward overlap for any nonempty candidate."
+  },
+  "raster_sha256": "7afcca44dc4c2411af4cad97ca9beb15117ed94b78b77b13ce1462c4ad49a6f4",
+  "validator": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "single_band_float32": true,
+    "epsg": 32611,
+    "shape": [3730, 3292],
+    "positive_pixels": 37654,
+    "note_chars": 139,
+    "source": "docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.json"
+  },
+  "submission_name": "gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros",
+  "note": "H86Q basin-center distance-ridge 37654d; far-field dcat>10px (ridge+smooth); blind basin-interior faults; Poisson-disc 2.8px; DO NOT SUBMIT",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "decision": "DO NOT SUBMIT — audit download only",
+  "irregularities": [
+    "No HOLDOUT-DTI or per-feature leakage canary was run for this export.",
+    "The pre-existing uniqueness sidecar describes only 71 local rasters; this is not a complete registry scan and is not a uniqueness clearance.",
+    "The literal pinned full-support witness fails the >0.70 overlap rule for every nonempty candidate.",
+    "The candidate was generated from the catalogue geometry, not the required shared cached feature stack."
+  ],
+  "experiments_run": 0,
+  "scope": "Artifact forensic record only. No new experiment, holdout score, leaderboard projection, or selector decision."
+}
