@@ -135,4 +135,4 @@ def test_earlier_full_request_bytes_are_frozen_and_current_scores_remain_claims(
     with (ROOT / "registry/prior_scores.csv").open(newline="") as stream:
         rows = list(csv.DictReader(stream))
     assert all((name, value) in {(r["submission"], r["score"]) for r in rows} for name, value in scores)
-    assert "REQUEST_20261025.md" in (ROOT / "PROMPT.md").read_text()
+    assert "REQUEST_20261026.md" in (ROOT / "PROMPT.md").read_text()

@@ -27,8 +27,9 @@ def test_homepage_states_the_no_file_decision():
     home = (ROOT / "docs/index.html").read_text(encoding="utf-8")
     assert "NO FILE AUTHORIZED · DO NOT SUBMIT" in home
     assert 'id="h86l-vfgr"' in home
-    assert "This session wrote no TIFF." in home
-    assert "Can this session be submitted? No." in home
-    assert "OK to submit to DrivenData: NO." in home
+    assert "This review generated no new candidate TIFF" in home
+    assert "Is it OK to submit to DrivenData? NO" in home
+    assert "DO NOT SUBMIT" in home
+    assert "0 weekly slots used" in home
     executive = (ROOT / "docs/executive-summary.html").read_text(encoding="utf-8")
     assert executive.index('id="h86l-vfgr"') < executive.index("Future submission steps")

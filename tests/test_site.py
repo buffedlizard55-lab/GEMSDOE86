@@ -70,3 +70,32 @@ def test_promoted_lane_does_not_authorize_upload_in_any_published_guide():
                        "submit this file", "OK to download and submit",
                        "One file is OK to submit", "SUBMIT ONLY H86G-EDTI"):
             assert unsafe not in html
+
+
+def test_hypothesis_page_labels_h86p_inputs_as_historical_and_current_queue_as_unrun():
+    """Do not let preregistration-time cache claims masquerade as current availability."""
+    html = (DOCS / "hypotheses.html").read_text()
+    assert "Current 2026-10-26 re-audit (not the historical pre-run environment)" in html
+    assert "native feature TIFF, prepared arrays and shared feature cache are absent" in html
+    assert "three remaining hypotheses (BCSF, RCSD, USMT) are unrun" in html
+    assert "literal registry witness blocks every nonempty candidate" in html
+    assert "current-workspace-input-audit-20261026.json" in html
+    assert "SESSION_20261026_H86P_TCWB_REVIEW.md" in html
+
+
+def test_current_h86p_decision_precedes_historical_session_banners():
+    """Keep the newest file and its negative release decision ahead of stale lanes."""
+    name = "gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros.tif"
+    for guide in ("index.html", "executive-summary.html"):
+        html = (DOCS / guide).read_text()
+        current = html.index('id="h86p-tcwb-banner"')
+        historical_h86n = html.index('id="h86n-gsst"')
+        historical_h86l = html.index('id="h86l-vfgr"')
+        assert current < historical_h86n < historical_h86l
+        decision_text = ("NO FILE AUTHORIZED · DO NOT SUBMIT" if guide == "index.html"
+                         else "CURRENT DECISION: DO NOT SUBMIT ANY FILE")
+        assert html.index(decision_text) < historical_h86n
+        assert name in html
+        assert "Download safety: SAFE FOR RESEARCH/AUDIT ONLY" in html
+        assert "Submission safety: NOT APPROVED — DO NOT SUBMIT" in html
+        assert "This session wrote no TIFF." not in html

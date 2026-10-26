@@ -1,256 +1,30 @@
-# Standing project prompt (condensed historical archive)
+# GEMSDOE86 — standing project runbook (reviewed 2026-10-26)
 
-**Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** Session `96fc6d48` (2026-10-25) then repaired the pinned-data layout bug breaking `protocol_preflight.measure()` in fresh checkouts (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, and re-measured all registered artifacts; see `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`. The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
-**Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first (supplemented by `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
-a replacement for that archive. Preserve `REQUEST_20261024.md`,
-`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
+## Read at the start of every session
 
-The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
-Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
-The named fleet remains 92 projects. The current request adds owner claims
-`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
-They were unscored in the 2026-10-24 archive; that historical record is not
-retroactively changed. Current release remeasurement is
-`docs/evidence/latest-review-run-card.json`.
+1. [`AGENTS.md`](AGENTS.md) — repository workflow, mandatory preflights and publication rules.
+2. [`README.md`](README.md) — current status, evidence links and the complete owner request preserved verbatim under **“Complete current owner prompt archive — 2026-10-26.”**
+3. [`research/REQUEST_20261026.md`](research/REQUEST_20261026.md) — companion owner-input archive. Its leaderboard figures and external-project claims are requests/claims, not verified evidence.
+4. The latest relevant preregistration, run card and review. For the inherited H86P lane these are [`research/H86P_TCWB_PREREGISTRATION.md`](research/H86P_TCWB_PREREGISTRATION.md), [`docs/evidence/h86p-tcwb-run-card.json`](docs/evidence/h86p-tcwb-run-card.json), and [`research/SESSION_20261026_H86P_TCWB_REVIEW.md`](research/SESSION_20261026_H86P_TCWB_REVIEW.md).
 
-The native 19-band TIFF was restored and prepared, but this is **not** restoration
-of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
-there is no assigned method paragraph in the current request. The immutable
-full-positive witness still makes the literal overlap rule unsatisfiable for
-every nonempty candidate. Stop before fitting or placement. Do not bypass the
-gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
-or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
-CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
-model cards, download status, evaluator/writer pins and slot separation remain
-binding. Scores and access claims in request archives are user input, not
-verified evidence.
+## Current release and download state
 
----
+**No file in this checkout is authorized for a competition upload or weekly slot.** The previously generated H86P-TCWB TIFF is a valid research/audit download only; its existence, format pass, pixel uniqueness or historical holdout result does not clear it for submission. This review has generated no new candidate TIFF and used no slot. The current release and protocol audits are fail-closed.
 
-Review the repo.
+- H86P-TCWB historical evidence: **HOLDOUT-DTI = 0.1727007956**, 95% CI **[0.1560010, 0.1893807]**, evaluator `gems57-pooled-hide-v2`, **11,321 withheld positives**. Its paired change against the preregistered E3 ablation is **+0.0161572**, 95% CI **[+0.0040447, +0.0286042]**. These are spatial-holdout measurements, not leaderboard results, and were not rerun in this review.
+- GEMSDOE32 H33 **0.2778 is OWNER-REPORTED**, not organizer-confirmed. The raster lineage describes which pixels changed; it does not establish why private organizer truth rewarded the change. Other leaderboard figures in request archives are also unverified unless supported by a submission-page receipt.
+- The pinned historical `17GEMSDOE` full-support witness measures positive at every allowed footprint cell. Under the unchanged literal overlap rule, every nonempty allowed candidate has 100% direct overlap with that witness, exceeding the 70% stop. Do not bypass, amend, or reinterpret this gate.
+- The current local input audit found `training_features.tif`, prepared native feature arrays and a verifiable shared feature cache missing. A small integrity-pinned bridge pair and the separately pinned registry witness do not supply the scientific stack. Therefore no new holdout experiment is reproducible from the current checkout.
 
-THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
+## Binding scientific and submission protocol
 
-MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION
-UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE
-OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+- Read the full owner request in `README.md`; follow the one-assigned-method-lane rule. Do not silently choose a lane or use a private copy of shared tools.
+- Reuse the shared cached feature stack, `evaluate_holdout.py` and `submission_writer.py`. Hold out whole fault segments with a buffer; derive catalogue features only from visible faults; mask visible faults pixel-exactly; evaluate pooled DTI with `alpha=0.2`, `beta=0.8` and the 300 m triangular kernel. Test each feature alone; AUC above 0.90 is a stop until explained.
+- Check rank-correlation before placement and dot overlap after placement against the registry. Stop and log a duplicate for correlation above 0.90 or more than 70% of dots within 3 px of a registry raster. Missing or incomplete registry evidence is not a pass.
+- Label measured scores as **HOLDOUT-DTI** with evaluator, withheld-positive count and 95% CI, or **ORGANIZER-CONFIRMED** with a submission receipt. State explicitly when a number is a preregistered projection; projections are not scores and must not be presented as leaderboard results.
+- Finish an authorized experiment with its required JSON card, including hypothesis, mechanism, named non-fault mimic, holdout result and interval, registry measurements, raster SHA-256, validator output, submission name/note and verdict. Negative results count. Stop after three experiments or two hours. Never select a live submission slot; promotion is a separate selector step.
+- Before proposing a new lane, rank 3–5 distinct geological hypotheses by evidence, expected holdout change and implementation cost; name layers, the target physical signature, why the target could reveal faults missing from the catalogue, how it differs from prior repo work, and whether necessary free official data is obtainable. Validate a viable top hypothesis on the spatial holdout before any slot.
 
-There should be an easy to download submission tif file as described by the prompt. Read the entire
-prompt. A lot of sites mention inspection only and a human inspector, but the inspection needs to be
-done through the project and needs to be validated for submission without human intervention.
+## Work ethic and limitations
 
-PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt.
-
-1. LANE. Your lane is the single method paragraph below. Stay inside it. If your raster's
-   rank-correlation with any registry raster exceeds [0.90], or more than [70%] of your dots fall
-   within 3 px of one registry raster's dots, you have drifted into another lane: log it as a
-   duplicate and stop. Check this on the surface before placement AND on the final dots.
-2. REUSE, DON'T REBUILD. Use the template's cached feature stack, evaluate_holdout.py and
-   submission_writer.py. Holdout = hide-and-recover: withhold whole fault segments with a buffer,
-   derive every catalogue-based feature only from the visible faults, mask visible faults
-   pixel-exactly, score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). If a shared tool
-   is wrong, fix it once in the template and report it; never keep a private fork.
-3. LABEL EVERY NUMBER as HOLDOUT-DTI (evaluator version, number of withheld positives, 95% CI) or
-   ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written as a
-   score.
-4. LEAKAGE CANARY. Test each feature alone on the holdout before trusting any result. AUC above
-   [0.90] means leakage until proven otherwise.
-5. RUN CARD. End with one JSON card: hypothesis; mechanism; the named non-fault process that could
-   mimic it; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output (no
-   NaN inside the footprint, values in [0,1], CRS/shape/transform match); submission name + note of
-   at most 140 characters; verdict promote / negative. Negative results are deliverables.
-6. BUDGET. Stop after [3] experiments or [2] hours. Do not pick submissions: promotion to a real
-   slot is a separate selector step, within the weekly cap shown on the submission page.
-
-The following sites should serve as a starting point for understanding how to generate TIF
-submissions. These websites are researched, and tested and have generated TIF submissions. But we
-need to generate high scoring submissions.
-
-[... prior-submission ledger per site: see registry/prior_scores.csv, transcribed from this prompt ...]
-
-I think it makes sense that in order for a submission to be validated that it needs to pass certain
-high scoring validation gates before confirming whether a file is unique and can be submitted for
-scoring.
-
-The following is the leaderboard for the competition:
-https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-
-See below for more links and information related to the competition:
-- https://github.com/drivendataorg/gems-prize-reference-solution
-- https://www.usgs.gov/centers/gggsc/science/geodawn-geoscience-data-acquisition-western-nevada *(note: returns USGS HTTP 404; working official USGS GeoDAWN release is https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and / DOI https://doi.org/10.5066/P93LGLVQ)*
-- https://gbcge.org/current-projects/ingenious/
-- https://epsg.io/32611
-- https://en.wikipedia.org/wiki/Tversky_index
-
-We need to quickly look at the results and results from the GEMSDOE websites above.
-
-Before implementing, generate 3–5 candidate geological hypotheses we haven't tried yet, each naming:
-the specific layer(s) involved, the physical signature being targeted (e.g., an edge-detection or
-curvature transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather
-than one already in it, and how it differs from anything already implemented in this repo. Rank them
-by expected DTI improvement and implementation cost. Validate the top candidate on our
-spatially-blocked holdout set before touching a weekly submission slot — do not spend a submission
-slot on an idea that hasn't beaten the current holdout best.
-
-Work line by line verifying from official verified trusted sources, provide links for manual review.
-There should be no manual input, work on your own to complete tasks. Flag any irregularities for
-review. No hallucinations. Verify no hallucinations.
-
-The goal of this project is to get a full list that follow our requirements. No hallucinations.
-Verify line by line.
-
-We have a good understanding of how our hypothesis, methodology, calculations, analysis are done so
-we should be able to figure out a way to score higher on the leaderboard using previous results and
-scoring that we have across the sites listed above. We need to come up with distinct and unique
-strategies to score higher in this competition leaderboard. We need to start doing heavy and deep
-research into the part of the project that matters the most, which is the scientific discovery of
-geothermal vents. We should store all of our information and knowledge that we can gather from
-official verified sources. This will serve as a starting point for other projects as well. We need
-to think outside the box but still be grounded in proper scientific research, we are ultimately
-aiming for a top prize that many others are competing for. So it's important to be contrarian but be
-smart about it. We need to find sources of data that others are over looking or areas of the project
-when it comes to geothermal vents. We need to do deep research and critical thinking and come up with
-new hypothesis to test.
-
-0.3195 is the highest score right now so we need to design a new strategy, research, testing,
-analyzing, and generating submission system than the current website. It should be unique, take
-unique approaches to generating a submission that can score higher than 0.3195.
-
-Put this prompt into the repo readme and read it every time we work on the project as a starting
-point to make sure we are building what we are aiming for and have a strong base to continue
-building and improving on making something useful for everyday use. It should solve the problem of
-having to manually check everything ourselves and have an up to date current feed.
-
-Review the repo.
-
-The following is taken from the Arena AI team and I think it makes a good point on building a
-successful project, so let's keep the Core Values and Own the Outcome as a focal point when building,
-developing, researching, suggesting upgrades, and implementing the work.
-
-Our Core Values
-
-Maximize P(Win)
-"Our decision making framework. In every decision, we weigh tradeoffs, assess risk, and choose the
-path that maximizes the probability that Arena succeeds. We set aside our emotions and make tough
-decisions in order to maximize P(Win). Maximize P(Win) frees us from constraints and clarifies that we
-must put Arena first."
-
-Own the Outcome
-"We own results end to end — not just our individual slice of the work. When problems arise and we
-have the means to act, we do so without waiting for permission or assignment. We treat failure and
-success as signals and use them to improve. At Arena, we stay accountable to the final outcome."
-
-Work line by line verifying from official verified trusted sources, provide links for manual review.
-There should be no manual input, work on your own to complete tasks. Flag any irregularities for
-review. No hallucinations. Verify no hallucinations.
-
-The goal of this project is to get a full list that follow our requirements. No hallucinations.
-Verify line by line.
-
-We need to focus on being able to generate a submission into the competition.
-
-The site should be able to generate a TIF file that is required for submission. It should be as easy
-as download to click a File to submit into the competition. This needs to be in the executive summary
-or the very beginning of the site. It should be obvious when you visit the site.
-
-I tried to submit the document that I downloaded from the site but it returned this error on the
-submission form:
-
-"Predicted values must be in range [0, 1]"
-
-Also we need to give it a unique name and a short comment to help you or your team tell submissions
-apart later e.g., clustering with k=25
-
-Here is the submission page when I click submit file:
-
-  New submission
-  File to submit  [No file chosen]
-  You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF,
-  with your predictions. It must match the submission format's CRS, shape, and geotransform. You
-  may wish to review the competition rules first.
-  Note (optional)
-  A short comment to help you or your team tell submissions apart later e.g., clustering with k=25
-
-Create an executive summary subpage that explains exactly how to make a submission into the contest.
-
-Work on the next steps from the previous sessions first.
-
-The goal of this project is to place top of the leaderboard in this competition. The following is the
-competition: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-
-We need to create a project that can compete and place top of the leaderboard. We need to understand
-the problem, collect all the data and organize it into a clean easily auditable table with official
-verified links for manual verification.
-
-This is the guidelines we need to follow: https://www.drivendata.org/competitions/306/competition-doe-gems/
-
-Get familiar with the problem through the overview and problem description,
-https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/. You might also want to
-reference additional resources available on the about page,
-https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/.
-
-Download the data from the data tab,
-https://www.drivendata.org/competitions/306/competition-doe-gems/data/.
-
-Create and train your own model. This reference solution,
-https://github.com/drivendataorg/gems-prize-reference-solution implements a simple approach.
-
-Use your model to generate predictions that match the submission format.
-
-Tell me what are you limitations and what you need access to during this project. We will need to find
-free publicly available sources and data from official and verified sources if we are to use 3rd
-party or external data.
-
-This pdf outlines how submissions must be entered into the competition:
-https://docs.nlr.gov/docs/fy26osti/96647.pdf
-
-You must be able to do your own research, deep research, scientific literature research and organize
-the knowledge so that we can critically think through the problem and generate a solution through
-scientific and free publicly available information. This must be done autonomously and must be
-constantly reviewed and improved upon. Provide suggestions and improvements and implement them.
-
-[X] No DrivenData auth -> cannot auto-download training_features.tif, labels.tif, sample_submission.tif,
-    1m_DEM_links.csv from the data page (verified redirect to login).
-
-Competition data links mirrored by the owner repositories (verified hashes in
-evidence/data_restore_receipt.json): see scripts/restore_data.py.
-
-Work line by line verifying from official verified trusted sources, provide links for manual review.
-There should be no manual input, work on your own to complete tasks. Flag any irregularities for
-review. No hallucinations. Verify no hallucinations.
-
-Site creation: create a GitHub page for this repo that has clean UI, user friendly, simple and easy
-to use. It should be organized and clean. It should include all relevant information in an easy to
-read format with official verified links as sources for review. Work line by line verify everything
-no hallucinations.
-
-**The single remaining blocker to training is data placement**: run
-`bash scripts/download_competition_data.sh` on any unrestricted machine into `data/`, then
-`python scripts/prepare_data.py` — after that the full train→inference→validate pipeline is ready to
-run (GPU needed for training; metric/losses/validation all verified working here on CPU).
-
-You need to complete the above task by yourself. Work line by line verifying from official verified
-trusted sources, provide links for manual review. There should be no manual input, work on your own to
-complete tasks. Flag any irregularities for review. No hallucinations. Verify no hallucinations.
-
-The goal of this project is to get a full list that follow our requirements. No hallucinations.
-Verify line by line.
-
-Run this task through multiple passes.
-
-Pass 1: Implement the task completely and verify the result.
-Pass 2: Review your work for bugs, missing requirements, incorrect assumptions, and edge cases. Fix
-everything you find.
-Pass 3: Re-check the entire implementation against the original request. Improve accuracy,
-reliability, completeness, and code quality. Fix any remaining issues.
-
-Do not stop after the first pass. Each pass must build on the previous one. Before finishing, verify
-that the final result fully satisfies the original request. Work line by line verify everything no
-hallucinations.
-
-Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for
-what work still needs to be done and any limitations that is in the way of a successful project. It
-should be worked on in this next session or the next session. Work line by line verify everything no
-hallucinations.
+Keep **Maximize P(Win)** and **Own the Outcome** central: verify claims, preserve negative results, correct stale or overstated interpretations, and make download safety and submission readiness unmistakable. Do not automate DrivenData scraping. A mirror hash establishes byte identity, not organizer provenance; a local format audit establishes neither geological validity nor a live score. Current limitations are the literal registry-overlap stop, missing native feature stack/shared cache, and lack of organizer submission receipts. No weekly slot has been selected.
