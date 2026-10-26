@@ -1738,3 +1738,26 @@ fields, so feature novelty alone does not buy dot-field uniqueness.
 Evidence: `docs/evidence/h86p-pfa-run-card.json`,
 `docs/evidence/h86p-pfa-registry-final-dots.json`,
 `research/SESSION_20261026_REVIEW.md` §3.
+
+## IR-86-5620-PR180-UNREGISTERED — 2026-10-26
+
+PR #180 (parallel session `4c5e12aa`, merged to main as `4fc8ef5` during this
+session) published `gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif`
+(SHA-256 `8e12a0ff...`) into `docs/downloads/` **without registering it** in
+`docs/evidence/download-inventory.json` or `registry/artifact_cards.json`, and
+hand-edited the generated `docs/executive-summary.html` (including relative
+links escaping `docs/`, which fail `check_site`). The lane ran no
+HOLDOUT-DTI and no leakage canary (`training_features.tif` absent from that
+checkout — the restore path used by this session works), checked uniqueness
+against only 25 local rasters, and serialised despite recording
+`registry_unique=false` with a `0.8941` 3-px overlap firing vs GEMSDOE81
+(a Rule-1 duplicate). Its card is nevertheless an honest negative
+(`verdict="negative"`, `safe_to_submit=false`, 0 slots). Repair at merge
+(PR #181, following the H86M-LT/DAMAGERING precedent): registered in both
+indexes as `h86g_collar_unvalidated` with an explicit audit caveat, raster
+bytes untouched, site regenerated from `build_site.py` (the hand-edited HTML
+block was superseded by the audited downloads listing; the session's
+narrative remains in `research/SESSION_20261026_H86G_REVIEW.md` and README).
+Post-repair: `audit_release --measure-registry` 42/42 valid,
+`audit_downloads` PASS, `check_site` PASS. Decision unchanged:
+`DO NOT SUBMIT` any file.

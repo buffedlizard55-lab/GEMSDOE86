@@ -309,3 +309,20 @@ competition 306 — https://www.drivendata.org/competitions/306/competition-doe-
 https://github.com/drivendataorg/gems-prize-reference-solution; CRS
 https://epsg.io/32611. Input bytes used here are hash-pinned mirrors restored
 from the repository manifest, not organizer-authenticated downloads.
+
+## 9. Merge addendum (PR #181, 2026-10-26)
+
+While this session ran, parallel session `4c5e12aa` merged PR #180 to main,
+publishing an `H86G` collar-emphasis TIFF (SHA-256 `8e12a0ff…`) that was
+unregistered in the release indexes, had no HOLDOUT-DTI or canary, and was
+serialised despite its own card recording `registry_unique = false`
+(0.8941 overlap vs GEMSDOE81 over 25 local rasters). Sections 1–8 above were
+measured against the then-current 41-artifact inventory and are unchanged.
+At merge, this session registered that file as a negative unvalidated
+archive (`h86g_collar_unvalidated`; bytes untouched; LT/DAMAGERING repair
+precedent), regenerated the site and audits (42/42 valid), and logged
+`IR-86-5620-PR180-UNREGISTERED`. That file's hypothesis (emphasise the
+2–8 px collar H33 pruned) remains untested by any holdout; this session's
+focus-nine measurement (§1) and the marginal-credit algebra predict, but do
+not prove, that collar emphasis moves mass the wrong way. No slot was used
+by either session; the repository decision remains **DO NOT SUBMIT**.

@@ -144,6 +144,28 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     if kind == "unvalidated_variant":
         return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
                 "caveat": "The archived GMC HOLDOUT-DTI belongs to the catalogue-following configuration, not this off-catalogue export."}
+    if kind == "h86g_collar_unvalidated":
+        # PR #180 (session 4c5e12aa) published this TIFF on main without
+        # registering it in the release indexes; registered here at merge
+        # time (session 5620a35f) following the H86M-LT/DAMAGERING repair
+        # precedent. Registration restores publication integrity only.
+        hv = context.get("holdout_validation", {})
+        uq = context.get("uniqueness_vs_scored_fleet", {})
+        if (context.get("lane") != "H86G"
+                or context.get("verdict") != "negative"
+                or context.get("submission_slots_used") != 0
+                or context.get("safe_to_submit") is not False
+                or context.get("approved_for_weekly_slot") is not False
+                or hv.get("runnable") is not False
+                or hv.get("holdout_dti") is not None
+                or uq.get("registry_unique") is not False):
+            raise ValueError("H86G collar-emphasis archive must remain unvalidated, non-unique and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Catalogue-distance collar-emphasis Poisson-disc export; no hide-and-recover evaluation, no leakage canary",
+                "caveat": ("No HOLDOUT-DTI exists (generating session had no training features). Its own card records "
+                           "registry_unique=false with a 0.8941 3-px overlap firing vs GEMSDOE81 within only 25 local "
+                           "rasters — a duplicate under protocol Rule 1 — yet the file was serialised and published "
+                           "unregistered (PR #180). Registered at merge solely as a negative audit archive. DO NOT SUBMIT.")}
     if kind == "blindgeothermal_candidate":
         if context.get("evidence_class") != "RUN-CARD":
             raise ValueError("Archived blind-geothermal candidate lacks its original run-card evidence class")

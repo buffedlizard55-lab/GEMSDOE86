@@ -8,10 +8,13 @@ unique new submission), then ran one preregistered lane `H86P-PFA` (paired-flank
 multi-physics step asymmetry, 3 frozen arms): HOLDOUT-DTI `0.1433` vs ablation
 `0.1417` (paired CI crosses zero), SGMC-PROXY-DTI `0.0656` vs H33 `0.0937`, and
 the final dots hit the registry duplicate stop (`0.7722` vs GEMSDOE53), so the
-lane **stopped before serialisation — no new TIFF exists**, 0 slots used
-(`docs/evidence/h86p-pfa-run-card.json`). The literal full-support witness proof
-was re-measured 2026-10-26 (coverage `1.0`); all 41 published research TIFFs
-remain audit-only and measure `1.0` forward 3-px overlap against that witness,
+lane **stopped before serialisation — no new TIFF exists from this lane**, 0 slots used
+(`docs/evidence/h86p-pfa-run-card.json`). In parallel, PR #180 (session
+`4c5e12aa`) published an `H86G` collar-emphasis TIFF unregistered and with no
+HOLDOUT-DTI; at merge it was registered as a negative unvalidated archive
+(`h86g_collar_unvalidated`, `IR-86-5620-PR180-UNREGISTERED`). The literal
+full-support witness proof was re-measured 2026-10-26 (coverage `1.0`); all
+42 published research TIFFs remain audit-only and measure `1.0` forward 3-px overlap against that witness,
 above the unchanged 0.70 stop. Latest review:
 `research/SESSION_20261026_REVIEW.md`; latest request archive:
 `research/REQUEST_20261026_5620A35F.md`.
