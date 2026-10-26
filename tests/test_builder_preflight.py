@@ -171,6 +171,9 @@ def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     output = result.stdout + result.stderr
     assert result.returncode != 0
     assert "training_features.tif" not in output
+    # Fresh CI checkouts do not carry the gitignored witness. A missing pinned
+    # witness is an equally fail-closed preflight outcome; do not require a
+    # restored local copy merely to test that builders stop before feature IO.
     assert any(
         tok in output
         for tok in (
