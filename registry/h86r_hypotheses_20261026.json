@@ -1,0 +1,88 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86R",
+  "date_utc": "2026-10-26",
+  "branch": "arena/9c9712ca-gemsdoe86",
+  "prior_session_next_steps_reviewed": [
+    "H86Q-BFRA next step 1 (prior-weighted quadrant calibration): NOT selected this session - it is a BFRA-internal repair requiring a full 32-plane BFRA cache rebuild, and BFRA's coupled arm already stopped as a lane duplicate (0.7755 vs H86P-TCWB). Recorded, not dropped.",
+    "H86Q-BFRA next step 2 proposed H86Q-2_PCPD (Baranov pseudogravity) as untried. VERIFIED FALSE on 2026-10-26: src/gems86_pfte/features.py:394 baranov_pseudogravity_decoupling() already implements Baranov (1957) FFT pseudogravity decoupling (lane H86M-PFTE). PCPD is therefore REJECTED below as a duplicate, not executed. See IR-86R-PCPD-ALREADY-IMPLEMENTED-20261026.",
+    "H86J-SCO (catalogue-strike-gated oriented scarps, research/H86J_LSI_PREREGISTRATION.md rank 2, queued 2026-10-25, never executed - no src/gems86_sco, no run script) IS selected and upgraded to a full-footprint strike-field gate (H86R-1_SFG)."
+  ],
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86R-1_SFG",
+      "name": "Catalogue Strike-Field Gated Blind Potential-Field Edge Fusion (executes queued H86J-SCO at full-footprint scale)",
+      "selected_for_validation": true,
+      "layers": [
+        "Native Band 5 iso_grav_anom_slope (pixel-verified = hypot(B11,B18)), Bands 11/18 signed gravity gradient vector, Band 13 iso_grav_anom",
+        "Native Band 3 tmi_hg, Band 2 rtp (gradient magnitude, sigma=1.5 px)",
+        "Native Band 15 depth_to_base_surf (gradient magnitude), Band 19 det_elev_slope",
+        "data/bridge/existing_faults.tif catalogue used ONLY to build a smoothed double-angle strike-orientation tensor field (visible-only inside holdout folds) and the >3.0 px emission collar"
+      ],
+      "physical_signature": "Basin-and-Range normal-fault populations are strongly oriented sets (NNE-SSW range-front grain, NW Walker Lane shear). A blind edge detector fires equally on fault steps and on strike-discordant non-fault edges (caldera ring margins, Lahontan shoreline benches, dike swarms, survey seams). Build a continuous strike field theta_C(x) by double-angle tensor smoothing (sigma 5 km) of the visible catalogue orientation; compute the local potential-field edge strike theta_E(x) from the verified gravity gradient vector (B18,-B11); gate a 5-plane multiline-corroborated edge fusion E (2nd-highest of grav/mag/rtp/basement/elev edge ranks, averaged with the rank mean) by spin-2 alignment A=cos^2(theta_E-theta_C): S = E*(0.35+0.65*A). Soft floor 0.35 keeps perpendicular accommodation/transfer faults reachable. Emit 37,654 dots, score-ordered Poisson-disk spacing 2.8 px, catalogue collar >3.0 px (H33 lineage emission fingerprint).",
+      "why_unmapped": "Unmapped strands of an oriented fault population share the population strike even where buried under piedmont/basin cover with no scarp; 69.8% of the winning H33 dots sit >1 km from the catalogue, i.e. far-field parallel strands are exactly the live-scoring population, and an orientation prior (unlike tip/distance elastic kernels) does not decay with distance from the catalogue.",
+      "difference_from_repo": "Every prior catalogue-context lane in this repo used distance-decaying near-field kernels (KSAD elastic lobes, tip cones, halo priors - all dead beyond ~1 km) or was purely blind. H86J-SCO proposed a local 5 km strike-tensor gate in prose but was never implemented; no shipped lane conditions a blind edge surface on a global interpolated catalogue strike FIELD. Verification 2026-10-26: no src/gems86_sco* and no scripts/run_*sco* exists; nearest relatives are data-only structure-tensor lanes (55GEMSDOE/59GEMSDOE tensor, H86K-STC coherence) which never read catalogue orientation.",
+      "non_fault_mimic": "Strike-parallel unfaulted lithologic contacts / depositional strike valleys along range fronts share the grain and will pass the gate; and genuine perpendicular transfer faults are down-weighted by the soft floor. Both are named failure modes measured by the E2 ungated ablation and per-fold holdout.",
+      "expected_dti_gain": "Rank 1: +0.005 to +0.020 HOLDOUT-DTI over the ungated edge-fusion ablation (E2) on gems57-pooled-hide-v2; SGMC-PROXY-DTI at or above GEMSDOE32 H33's same-instrument 0.0937. Live projection is NOT claimed from this table; it is computed by the fleet regression estimator in the run card.",
+      "implementation_cost": "Low (~10 min CPU: 5 native-band edge planes + 2 tensor smoothings at 3730x3292 float32 + greedy emission; no ML training, no external downloads beyond the hash-pinned restore already verified).",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX_NOW - training_features.tif restored and SHA-256 verified this session (4371c82e...23bc5, owner mirror of the DrivenData file, NOT organizer-authenticated); catalogue/sample are the committed bridge files."
+    },
+    {
+      "rank": 2,
+      "id": "H86R-2_DWPU",
+      "name": "Detectability-Weighted PU Learning (negatives trusted only where mapping completeness is high)",
+      "selected_for_validation": false,
+      "layers": ["Native Bands 2,3,5,11,13,15,18,19 + Band 6 TC + GeoDAWN K/Th/U (ext_geodawn_rad_u8, restored+verified c22420f7...)"],
+      "physical_signature": "HistGradientBoosting PU classifier where negative sample weights scale with a visibility/completeness surface c(x) from basement depth (B15) and slope (B19): bedrock range fronts (c->1) supply trusted absences, deep covered basins (c->0) supply almost no negative evidence, directly attacking the documented PU failure mode (GEMSDOE91 S17-LFTG: 68.5% of dots crowded <1 km from catalogue because PU learned survey-exposure propensity).",
+      "why_unmapped": "Covered-basin faults are unmapped because they are undetectable at the surface, not absent; standard PU treats their habitat as negative evidence and suppresses exactly those predictions.",
+      "difference_from_repo": "KSAD computed a completeness surface as a fusion weight; no lane used completeness as the TRAINING sample-weight mechanism for negatives. Ranked below SFG: higher cost (LOQO HGB training in 3 GB RAM sandbox), and the fleet's PU/HGB lanes have the worst live track record (0.0286-0.19 OWNER-REPORTED).",
+      "non_fault_mimic": "Playa/playette basins with genuinely no faults receive inflated scores once negative evidence is discounted.",
+      "expected_dti_gain": "Rank 2: uncertain sign on catalogue-hide holdout (holdout truth is catalogue-like, favouring propensity learning); potentially + on SGMC far-field. Not run this session (budget: 3 experiments).",
+      "implementation_cost": "Medium (~30-45 min CPU, sampling-based HGB under 4-fold LOQO).",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX_NOW (all inputs restored+verified this session)."
+    },
+    {
+      "rank": 3,
+      "id": "H86R-3_KNDS",
+      "name": "Transient Fluvial Iso-Chi Knickzone Back-Projection (queued H86Q-3, carried forward unchanged)",
+      "selected_for_validation": false,
+      "layers": ["USGS 3DEP dem10_chi_100m_i16.tif + topo_10m_derived_100m_u8.tif (https://www.usgs.gov/3d-elevation-program)", "Native Bands 12, 15, 19"],
+      "physical_signature": "Iso-chi knickzones aligned across >=3 adjacent footwall catchments back-projected down-channel to the B15 bedrock-alluvium step, reconstructing buried range-front strands (Perron & Royden 2013). Prior lanes used chi pixelwise at the knickpoint, 0.5-3 km upslope of the fault.",
+      "why_unmapped": "Slow-slipping range-front scarps are erased by sheetflood aggradation in 20-50 kyr while footwall chi signals persist >0.5 Myr.",
+      "difference_from_repo": "No lane performs catchment-graph down-channel projection. Not run this session: dem10_chi is NOT in research/upstream/data_manifest.json (verified 2026-10-26); it must first be pin-restored from the GEMSDOE24-family mirror (BFRA input pin 8897ba9c...) with a new manifest entry - obtainable in principle, not yet hash-pinned here.",
+      "non_fault_mimic": "Resistant welded-tuff/carbonate ledges produce lithologic knickpoints in unfaulted canyons.",
+      "expected_dti_gain": "Rank 3: +0.003 to +0.009 HOLDOUT-DTI (queued estimate, unvalidated).",
+      "implementation_cost": "Medium (~25 min CPU for D8 catchment graph) + restore work.",
+      "official_data_obtainability": "NOT_YET_PINNED - free official source exists (USGS 3DEP) and a family mirror hash exists (8897ba9c...), but no manifest entry in this repo; do not propose as immediately viable until pinned."
+    },
+    {
+      "rank": 4,
+      "id": "H86R-4_VENT_RANSAC",
+      "name": "Geothermal Manifestation Point-Alignment Corridors (RANSAC lines through GDR springs/wells/vents)",
+      "selected_for_validation": false,
+      "layers": ["DOE GDR submission 1391 gdr_wellspring_in_footprint.csv + gdr_volcanic_vents_in_footprint.csv (https://gdr.openei.org/submissions/1391; dist_known_fault_px strictly unread)", "Native Band 17 cond_surf as corridor corroboration"],
+      "physical_signature": "Hydrothermal upflow localizes on permeable fault intersections; alignments of >=3 springs/warm wells/vents within a 300 m corridor over >=2 km trace blind permeable strands. Score = alignment density x conductivity rank.",
+      "why_unmapped": "Blind geothermal systems by definition lack surface fault expression but leak fluids/heat along the buried structure (the INGENIOUS play concept).",
+      "difference_from_repo": "Vents/springs entered prior lanes as pixel covariates (vent_corridor blur); no lane fit explicit point-alignment geometry as the primary surface. Ranked 4: point density inside the footprint is low, so recall at 37,654-dot budget is implausible as a standalone.",
+      "non_fault_mimic": "Well/spring siting follows roads, ranches and range-front water access, producing cultural alignments.",
+      "expected_dti_gain": "Rank 4: high precision / very low recall; expected standalone HOLDOUT-DTI near zero at full budget.",
+      "implementation_cost": "Low-Medium (~15 min).",
+      "official_data_obtainability": "OBTAINABLE - CSVs are in research/upstream/data_manifest.json (ext_gdr_wellspring_in_footprint, ext_gdr_volcanic_vents_in_footprint) but were not restored this session."
+    },
+    {
+      "rank": 5,
+      "id": "H86R-5_PCPD_REJECTED",
+      "name": "Baranov Pseudogravity Cross-Product (H86Q-2_PCPD) - REJECTED AS ALREADY IMPLEMENTED",
+      "selected_for_validation": false,
+      "layers": ["Native Bands 2, 11, 13, 18"],
+      "physical_signature": "Baranov (1957) FFT pseudogravity vs Bouguer gradient cross-product for accommodation zones.",
+      "why_unmapped": "n/a - rejected before validation.",
+      "difference_from_repo": "NONE - src/gems86_pfte/features.py:394 already implements baranov_pseudogravity_decoupling (lane H86M-PFTE, 2026-10-25). registry/h86q_hypotheses_20261026.json rank-2 claim 'no lane ... has computed Baranov FFT pseudogravity' is factually wrong (IR-86R-PCPD-ALREADY-IMPLEMENTED-20261026). Executing it would be a duplicate lane.",
+      "non_fault_mimic": "n/a",
+      "expected_dti_gain": "n/a (PFTE already harvested this signal: SGMC-PROXY-DTI 0.1210 per scripts/audit_release.py lane note).",
+      "implementation_cost": "n/a",
+      "official_data_obtainability": "n/a"
+    }
+  ]
+}
