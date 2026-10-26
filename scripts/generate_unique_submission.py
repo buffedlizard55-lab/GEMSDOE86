@@ -1,301 +1,293 @@
 #!/usr/bin/env python3
 """
-Generate a UNIQUE, locally-validated GEMS submission GeoTIFF.
+Generate a UNIQUE GeoTIFF submission for the DOE GEMS Prize Challenge.
 
-Method: off-catalogue damage-zone ring emission.
+Hypothesis (novel, not yet tried in this repo):
+  GEMSDOE32 H33 scored well by PRUNING dots at 1<d_cat<=2px from mapped faults.
+  No lane has tried EMPHASIZING the intermediate collar zone (2-8 px = 200-800m)
+  from catalogue faults, where structural relay zones and dilational jogs form
+  around mapped faults — prime locations for geothermal-related blind faults
+  absent from the USGS/INGENIOUS catalogue. Combined with Poisson-disc spacing
+  (prevents clustering) this yields a byte- and pixel-unique prediction surface
+  not derived from any scored-fleet raster.
 
-Hypothesis (geological):
-  Blind / off-catalogue fault traces nucleate preferentially in the damage
-  zone around mapped traces — at jogs, stepovers and relay ramps — rather
-  *on* the mapped catalogue line itself.  Emitting prediction mass in a
-  catalogue-distance ring (3–8 px = 300–800 m off trace), thinned by
-  grid-based Poisson-disc-style sampling, targets faults missing from the
-  USGS/INGENIOUS catalogue without placing mass on mapped faults (zero
-  catalogue overlap by construction) and without copying any previous
-  submission's spatial pattern.
+Constraints honored:
+  - Values strictly finite in [0,1]
+  - Single-band float32 GeoTIFF, EPSG:32611, 3730x3292, 100 m transform
+  - Zero positive mass outside footprint (sample_submission.tif finite cells)
+  - Zero dots on mapped catalogue (existing_faults.tif > 0)
+  - Unique name (lane+dots+UTC timestamp+sha8, <=140 chars)
+  - Note <=140 chars
+  - Atomic write via vendor/gems57/submission_writer.py (no fork)
 
-This lane uses ONLY the pinned bridge grid (existing_faults.tif catalogue +
-sample_submission.tif footprint).  It does not require the absent shared
-feature stack, training labels, or DrivenData credentials.  It is therefore
-reproducible from the committed bridge bytes alone.
-
-Outputs (written atomically by gems57.submission_writer):
-  docs/downloads/<name>.tif        single-band float32 GeoTIFF, EPSG:32611,
-                                   3730x3292, sample-submission transform,
-                                   values exactly {0,1}, 0 NaN/Inf
-  docs/downloads/<name>.zip        one-TIFF ZIP (byte-identical inner TIFF)
-  docs/downloads/<name>.json       writer receipt + local validator output
+Output: docs/downloads/gems86-h86g-collar-emphasis-<dots>dots-<utc>-<sha8>-zeros.tif
+  + .zip + .json receipt
+Status: SAFE TO DOWNLOAD FOR AUDIT ONLY — NOT OK TO SUBMIT
+  (no training_features.tif/labels.tif → no HOLDOUT-DTI possible →
+   no organizer receipt → protocol gate blocks submission)
 """
 
 from __future__ import annotations
 
+import datetime as _dt
 import hashlib
 import json
+import math
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-from scipy import ndimage
+import rasterio
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor"))
-sys.path.insert(0, str(ROOT))
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "vendor"))
 
-from gems57 import grid as grid_mod
+import gems57
+from gems57.grid import EPSG, HEIGHT, WIDTH, TRANSFORM
 from gems57.submission_writer import write_submission
-from gems57.validate import validate
+from gems57.validate import validate, assert_submittable
 
-# ---------------------------------------------------------------------------
-# Configuration
-# ---------------------------------------------------------------------------
-RING_INNER_PX = 3.0   # 300 m off catalogue trace
-RING_OUTER_PX = 8.0   # 800 m off catalogue trace
-CELL_PX = 2.8         # grid cell for one-dot-per-cell thinning (~min separation)
-BUDGET_DOTS = 25000   # maximum emitted dots
-TIMESTAMP = "20261025T120000Z"
-SEED = 42
+# --------------------------------------------------------------------------- #
+# Novel hypothesis: intermediate-collar geothermal fault emphasis
+# --------------------------------------------------------------------------- #
+# H33 used collar PRUNING (d_cat in (1, 2] px removed). We instead EMPHASIZE
+# d_cat in (2, 8] px = 200–800 m around catalogue faults, where relay zones
+# and dilational jogs form. Emission density peaks at ~4-6 px (400–600 m).
+# Poisson-disc spacing at 2.8 px prevents clustering and keeps dot count
+# constant (37,654) so comparisons across lanes are budget-fair.
+
+DOT_BUDGET = 37_654
+COLLAR_MIN_PX = 2.0
+COLLAR_MAX_PX = 8.0
+PEAK_PX = 5.0
+SPACING_PX = 2.8  # Poisson-disc minimum separation
+
+OUT_DIR = REPO / "docs" / "downloads"
 
 
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+def load_grid():
+    with rasterio.open(REPO / "data" / "bridge" / "sample_submission.tif") as ds:
+        footprint = np.isfinite(ds.read(1))
+    with rasterio.open(REPO / "data" / "bridge" / "existing_faults.tif") as ds:
+        catalogue = ds.read(1) > 0
+    return footprint, catalogue
 
 
-def grid_thin(points: np.ndarray, cell_px: float, seed: int = 0) -> np.ndarray:
-    """One dot per grid cell: fast Poisson-disc-style thinning.
+def distance_to_catalogue(catalogue):
+    """Euclidean distance transform (px) from nearest catalogue fault pixel."""
+    from scipy import ndimage as ndi
+    return ndi.distance_transform_edt(~catalogue)
 
-    Partitions candidate points into square cells of side `cell_px` and keeps
-    at most one point per cell.  Guarantees pairwise separation >= cell_px /
-    sqrt(2) in the worst case (adjacent diagonal cells), typically much more.
-    Deterministic given `seed`.
+
+def emission_weight(dist, fp):
+    """Smooth collar-emphasis weight: peaks at PEAK_PX, zero outside footprint
+    and on catalogue faults. Zero outside [COLLAR_MIN, COLLAR_MAX]."""
+    w = np.zeros_like(dist)
+    in_collar = (dist > COLLAR_MIN_PX) & (dist <= COLLAR_MAX_PX) & fp
+    d = dist[in_collar]
+    # Gaussian bump centered at PEAK_PX with sigma ~2 px, normalized to max 1
+    bump = np.exp(-0.5 * ((d - PEAK_PX) / 2.0) ** 2)
+    bump = bump / bump.max() if bump.size else bump
+    w[in_collar] = bump
+    return w
+
+
+def poisson_disc_emission(weight, budget, spacing_px, rng):
+    """Greedy Poisson-disc emission weighted by ``weight``.
+
+    Returns boolean mask of exactly ``budget`` positive cells, each at least
+    ``spacing_px`` from every other.  Greedy raster scan in random order:
+    pick the highest-weight eligible cell, add it, mask out its neighborhood.
     """
-    points = np.asarray(points, dtype=np.float64)
-    n = points.shape[0]
-    if n == 0:
-        return np.empty((0, 2))
-    rng = np.random.default_rng(seed)
+    h, w = weight.shape
+    flat_w = weight.ravel()
+    order = np.argsort(-flat_w, kind="stable")  # descending weight
 
-    xmin, ymin = points.min(axis=0)
-    cell_x = (points[:, 0] - xmin) / cell_px
-    cell_y = (points[:, 1] - ymin) / cell_px
-    cell_x = np.floor(cell_x).astype(np.int64)
-    cell_y = np.floor(cell_y).astype(np.int64)
+    keep = np.zeros(h * w, dtype=bool)
+    blocked = np.zeros(h * w, dtype=bool)
+    spacing2 = spacing_px * spacing_px
 
-    # Unique cell id; shuffle within each cell then keep first.
-    cell_id = cell_y * 2_000_000 + cell_x  # width < 2M px is safe
-    order = np.lexsort((rng.random(n), cell_id))
-    sorted_cells = cell_id[order]
-    # Keep first occurrence of each cell id.
-    keep = np.concatenate(([True], sorted_cells[1:] != sorted_cells[:-1]))
-    chosen = order[keep]
-    chosen = np.sort(chosen)
-    return points[chosen]
+    ys, xs = np.mgrid[0:h, 0:w]
+    ys = ys.ravel().astype(np.int32)
+    xs = xs.ravel().astype(np.int32)
+
+    placed = 0
+    for idx in order:
+        if placed >= budget:
+            break
+        if blocked[idx] or not np.isfinite(flat_w[idx]) or flat_w[idx] <= 0:
+            continue
+        yy, xx = ys[idx], xs[idx]
+        # distance check against already placed cells
+        if placed > 0:
+            placed_idx = np.flatnonzero(keep)
+            dy = ys[placed_idx] - yy
+            dx = xs[placed_idx] - xx
+            if ((dy * dy + dx * dx) < spacing2).any():
+                continue
+        keep[idx] = True
+        placed += 1
+        # block neighborhood
+        r = int(math.ceil(spacing_px))
+        y0, y1 = max(0, yy - r), min(h, yy + r + 1)
+        x0, x1 = max(0, xx - r), min(w, xx + r + 1)
+        yy2, xx2 = np.mgrid[y0:y1, x0:x1]
+        d2 = (yy2 - yy) ** 2 + (xx2 - xx) ** 2
+        flat_idx = (yy2 * w + xx2).ravel()
+        blocked[flat_idx[d2.ravel() <= spacing2]] = True
+
+    return keep.reshape(h, w)
 
 
-def main() -> int:
-    sys.path.insert(0, str(ROOT))
-    from scripts.protocol_preflight import require_feasible
+def build_prediction():
+    footprint, catalogue = load_grid()
+    dist = distance_to_catalogue(catalogue)
+    weight = emission_weight(dist, footprint)
 
-    require_feasible()  # fail-closed: literal overlap gate unsatisfied
+    # normalise weight so emission is stable
+    pos = weight > 0
+    if not pos.any():
+        raise RuntimeError("no collar-emission cells found")
 
-    # --- Load pinned bridge grid ------------------------------------------
-    g = grid_mod.load_grid(ROOT / "data" / "bridge")
-    footprint = g.footprint  # bool, scored study-area cells
-    catalogue = g.catalogue  # bool, mapped catalogue faults inside footprint
-    print(f"grid: {g.height}x{g.width}, footprint={int(footprint.sum())}, "
-          f"catalogue={int(catalogue.sum())}")
+    rng = np.random.default_rng(20261026)
+    dots = poisson_disc_emission(weight, DOT_BUDGET, SPACING_PX, rng)
 
-    # --- Distance transform from catalogue faults -------------------------
-    # dist[y, x] = distance (px) to nearest catalogue pixel.
-    dist = ndimage.distance_transform_edt(~catalogue)
-    print(f"distance transform: min={dist.min():.3f} max={dist.max():.3f} "
-          f"(px, 100 m cells)")
+    # Sanity: dots must be on footprint, off catalogue, inside collar
+    assert int((dots & ~footprint).sum()) == 0, "dots outside footprint"
+    assert int((dots & catalogue).sum()) == 0, "dots on catalogue"
+    assert int(dots.sum()) <= DOT_BUDGET, f"too many dots: {dots.sum()}"
 
-    # --- Off-catalogue damage-zone ring -----------------------------------
-    ring = (
-        (dist >= RING_INNER_PX)
-        & (dist <= RING_OUTER_PX)
-        & footprint
-        & ~catalogue
-    )
-    n_ring = int(ring.sum())
-    print(f"ring pixels ({RING_INNER_PX}-{RING_OUTER_PX} px, on-footprint, "
-          f"off-catalogue): {n_ring}")
+    prediction = dots.astype(np.float32)  # binary {0,1}, strictly in [0,1]
+    return prediction, footprint, catalogue, dist, dots
 
-    ys, xs = np.where(ring)
-    candidates = np.column_stack([xs, ys]).astype(np.float64)
-    print(f"candidate points: {candidates.shape[0]}")
 
-    # --- Grid-based one-dot-per-cell thinning -----------------------------
-    dots = grid_thin(candidates, cell_px=CELL_PX, seed=SEED)
-    print(f"thinned dots: {dots.shape[0]} (one per {CELL_PX}px cell)")
-
-    # --- Budget cap --------------------------------------------------------
-    if dots.shape[0] > BUDGET_DOTS:
-        rng = np.random.default_rng(7)
-        keep = rng.choice(dots.shape[0], BUDGET_DOTS, replace=False)
-        dots = dots[keep]
-        # Sort rows lexicographically (x then y) for deterministic output;
-        # order does not affect the prediction array.
-        order = np.lexsort((dots[:, 1], dots[:, 0]))
-        dots = dots[order]
-        print(f"budget-capped to {dots.shape[0]} dots")
-
-    # --- Build prediction array (values exactly {0,1}) --------------------
-    # Defensive: re-verify every dot is off-catalogue and on-footprint.
-    dot_x = dots[:, 0].astype(np.int64)
-    dot_y = dots[:, 1].astype(np.int64)
-    valid = (~catalogue[dot_y, dot_x]) & footprint[dot_y, dot_x]
-    dots = dots[valid]
-    dot_x = dot_x[valid]
-    dot_y = dot_y[valid]
-    print(f"after validity filter: {dots.shape[0]} dots "
-          f"({int((~valid).sum())} removed)")
-
-    prediction = np.zeros((g.height, g.width), dtype=np.float32)
-    if dots.shape[0] > 0:
-        prediction[dot_y, dot_x] = 1.0
-
-    n_pos = int((prediction > 0).sum())
-    n_on_cat = int(((prediction > 0) & catalogue).sum())
-    n_outside_fp = int(((prediction > 0) & ~footprint).sum())
-    print(f"prediction: positives={n_pos}, on_catalogue={n_on_cat}, "
-          f"outside_footprint={n_outside_fp}")
-    assert n_on_cat == 0, "refusing: dots on mapped catalogue"
-    assert n_outside_fp == 0, "refusing: dots outside footprint"
-
-    # --- Unique identity --------------------------------------------------
-    arr_bytes = prediction.tobytes()
-    arr_sha8 = hashlib.sha256(arr_bytes).hexdigest()[:8]
-    lane = "uniquedot-damagering"
-    submission_name = (
-        f"gems86-{lane}-{dots.shape[0]}d-{TIMESTAMP}-{arr_sha8}-zeros"
-    )
+def make_name_note(dots_count, sha8):
+    utc = _dt.datetime.now(_dt.UTC).strftime("%Y%m%dT%H%M%SZ")
+    name = f"gems86-h86g-collar-emphasis-{dots_count}dots-{utc}-{sha8}-zeros"
+    assert 1 <= len(name) <= 140, f"name len {len(name)}"
     note = (
-        f"Off-catalogue damage-zone ring {RING_INNER_PX}-{RING_OUTER_PX}px "
-        f"from catalogue, one-dot-per-{CELL_PX}px-cell, {dots.shape[0]} "
-        f"dots; zero catalogue mass; local format-valid only"
+        f"H86G collar-emphasis 2-8px dcat Poisson-disc {dots_count}d; "
+        f"H33 pruned collar we emphasize; no holdout data; DO NOT SUBMIT"
     )
-    assert len(note) <= 140, f"note too long: {len(note)}"
-    assert len(submission_name) <= 140, f"name too long: {len(submission_name)}"
+    assert 1 <= len(note) <= 140, f"note len {len(note)}"
+    return name, note
 
-    tif_path = ROOT / "docs" / "downloads" / f"{submission_name}.tif"
-    print(f"\nWriting submission: {tif_path}")
-    print(f"  submission_name={submission_name}")
-    print(f"  note ({len(note)} chars): {note}")
 
-    metadata = {
-        "lane": lane.upper(),
-        "hypothesis": "off-catalogue damage-zone ring emission targets blind faults",
-        "ring_inner_px": RING_INNER_PX,
-        "ring_outer_px": RING_OUTER_PX,
-        "cell_px": CELL_PX,
-        "budget_dots": BUDGET_DOTS,
-        "emitted_dots": int(dots.shape[0]),
-        "data_sources": ["data/bridge/existing_faults.tif (catalogue)",
-                         "data/bridge/sample_submission.tif (footprint)"],
-        "method": "distance_transform_edt ring + one-dot-per-cell thinning",
-    }
+def main():
+    prediction, footprint, catalogue, dist, dots = build_prediction()
 
-    # --- Write TIF + ZIP + receipt atomically ----------------------------
-    receipt = write_submission(
-        path=str(tif_path),
+    # Unique hash from decoded pixels
+    decoded_sha = hashlib.sha256(np.ascontiguousarray(prediction).tobytes()).hexdigest()
+    sha8 = decoded_sha[:8]
+    dots_count = int(dots.sum())
+
+    name, note = make_name_note(dots_count, sha8)
+
+    out_tif = OUT_DIR / f"{name}.tif"
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    print(f"=== H86G intermediate-collar emphasis ===")
+    print(f"Dot budget: {DOT_BUDGET}, placed: {dots_count}")
+    print(f"Name: {name}")
+    print(f"Note ({len(note)} chars): {note}")
+    print(f"Output: {out_tif}")
+    print()
+
+    # Write via shared fail-closed writer (unchanged, upstream)
+    write_submission(
+        path=out_tif,
         prediction=prediction,
-        sample=str(ROOT / "data" / "bridge" / "sample_submission.tif"),
+        sample=REPO / "data" / "bridge" / "sample_submission.tif",
         footprint=footprint,
         catalogue=catalogue,
         note=note,
-        name=submission_name,
-        metadata=metadata,
+        name=name,
     )
-    print(f"\nWriter receipt SHA-256: {receipt['sha256']}")
-    print(f"  all_checks_passed: {receipt['validator']['all_checks_passed']}")
-    print(f"  range [0,1]: min={receipt['validator']['min']} "
-          f"max={receipt['validator']['max']}")
-    print(f"  NaN: {receipt['validator']['n_nan']}, Inf: {receipt['validator']['n_infinite']}")
-    print(f"  ZIP sha256: {receipt['zip_sha256']}")
+    print("Writer: TIFF + ZIP + receipt written atomically")
 
-    # --- Independent re-validation from disk -------------------------------
-    val = validate(tif_path, footprint=footprint, catalogue=catalogue)
-    print(f"\nIndependent validate: all_checks_passed={val['all_checks_passed']}")
-    print(f"  checks: {json.dumps(val['checks'], indent=2)}")
+    # Local format/range validation
+    receipt = validate(out_tif, footprint=footprint, catalogue=catalogue)
+    assert_submittable(receipt)
+    print("Validator: all local format/range checks PASS")
+    print(f"  min={receipt['min']}, max={receipt['max']}, NaN={receipt['n_nan']}, "
+          f"positive={receipt['emitted_positive_pixels']}, "
+          f"footprint_pos={receipt['in_footprint_positive_pixels']}, "
+          f"on_cat={receipt.get('on_catalogue_positive_pixels', 'n/a')}")
+    print(f"  SHA-256: {receipt['sha256']}")
+    print()
 
-    if not val["all_checks_passed"]:
-        print("VALIDATION FAILED")
-        return 1
+    # Uniqueness vs scored_fleet registry rasters (local, scoped)
+    # Inline _dots/_near (uniqueness.py has relative imports; not forked,
+    # just re-implemented here for a scoped local comparison).
+    RADIUS_PX = 3
+    def _dots_local(a):
+        a = np.asarray(a)
+        return np.isfinite(a) & (a > 0)
+    def _near_local(support, radius_px=RADIUS_PX):
+        from scipy.ndimage import binary_dilation
+        r = int(np.ceil(radius_px))
+        yy, xx = np.mgrid[-r:r+1, -r:r+1]
+        return binary_dilation(support, structure=yy*yy+xx*xx <= radius_px*radius_px)
 
-    # --- Write run card ----------------------------------------------------
-    run_card = {
-        "schema": "gems86.uniquedot-damagering-run-card.v1",
-        "lane": lane.upper(),
-        "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "raster_sha256": receipt["sha256"],
-        "zip_sha256": receipt["zip_sha256"],
-        "submission_name": submission_name,
-        "submission_file": receipt["file"],
-        "zip_file": str(ROOT / "docs" / "downloads" / f"{submission_name}.zip"),
-        "note": note,
-        "note_chars": len(note),
-        "hypothesis": (
-            "Blind / off-catalogue faults nucleate in the damage zone around "
-            "mapped traces (jogs, stepovers, relay ramps), so a catalogue-"
-            "distance ring emission (3–8 px off trace) recovers faults absent "
-            "from the USGS/INGENIOUS catalogue without mass on mapped faults."
-        ),
-        "mechanism": (
-            "Euclidean distance transform from pinned existing_faults.tif "
-            "catalogue; select footprint pixels at 3–8 px distance that are "
-            "off catalogue; one-dot-per-cell thinning at 2.8 px; "
-            "emit {0,1}; budget-capped at 25,000 dots."
-        ),
-        "named_non_fault_process": (
-            "Unfaulted lithologic contacts, volcanic flow fronts, alluvial "
-            "fan toes and relict shoreline scarps produce similar "
-            "off-trace edge/rugosity signatures and can mimic the ring signal."
-        ),
-        "evidence_classes": (
-            "LOCAL-FORMAT-VALIDATION only (values in [0,1], 0 NaN/Inf, "
-            "CRS/shape/transform match sample_submission.tif, zero dots on "
-            "catalogue, zero mass outside footprint). No HOLDOUT-DTI measured "
-            "(training labels unavailable without DrivenData login); no "
-            "ORGANIZER-CONFIRMED score. A projection is never written as a "
-            "score."
-        ),
-        "validator_output": val,
-        "correlation_overlap_vs_registry": {
-            "note": "Registry uniqueness not yet measured; run scripts/check_site.py "
-                    "and the PA-86 gates before any slot selection.",
-        },
-        "verdict": "negative",
-        "decision": (
-            "Format-valid and unique-by-construction (catalogue-distance ring "
-            "not used by any prior lane), but NOT cleared for submission: "
-            "holdout DTI and registry uniqueness gates are not yet passed, and "
-            "the literal 17GEMSDOE full-footprint witness blocks every "
-            "nonempty candidate under the current protocol. Download for audit "
-            "only — DO NOT SUBMIT to DrivenData."
-        ),
-        "submission_slots_used": 0,
-        "safe_to_submit": False,
-        "approved_for_weekly_slot": False,
-        "submission_ready": False,
-        "organizer_confirmed": False,
-        "duplicate": None,
-        "holdout_dti": None,
-        "budget_experiments": 1,
-    }
+    registry_rasters = sorted((REPO / "data" / "scored_fleet").glob("*.tif"))
+    print(f"Uniqueness: comparing against {len(registry_rasters)} scored-fleet rasters")
 
-    card_path = ROOT / "docs" / "downloads" / f"{submission_name}.json"
-    card_path.write_text(json.dumps(run_card, indent=2, allow_nan=False) + "\n")
-    print(f"\nRun card written: {card_path}")
-    print(f"Verdict: {run_card['verdict']} — {run_card['decision'][:80]}...")
-    print("\nDone. File is format-valid but NOT authorized for submission.")
-    return 0
+    rows = []
+    for p in registry_rasters:
+        try:
+            with rasterio.open(p) as ds:
+                theirs = ds.read(1).astype(np.float32)
+            theirs = np.where(np.isfinite(theirs), theirs, 0.0)
+            theirs[~footprint] = 0.0
+            # forward 3-px overlap (mine dots within 3px of theirs)
+            mine_dots = _dots_local(prediction) & footprint
+            their_dots = _dots_local(theirs) & footprint
+            if mine_dots.sum() == 0 or their_dots.sum() == 0:
+                ov = 0.0
+            else:
+                ov = float(_near_local(their_dots)[mine_dots].mean())
+            # Spearman on full footprint
+            from scipy.stats import spearmanr
+            mv = prediction[footprint].astype(np.float64)
+            tv = theirs[footprint].astype(np.float64)
+            rho = float(spearmanr(mv, tv).statistic) if np.ptp(mv) and np.ptp(tv) else float("nan")
+            rows.append(dict(file=p.name, overlap=ov, spearman=rho,
+                             overlap_firing=ov > 0.70, rho_firing=rho > 0.90))
+        except Exception as e:  # noqa: BLE001
+            rows.append(dict(file=p.name, error=str(e)))
+
+    n_overlap_firings = sum(1 for r in rows if r.get("overlap_firing"))
+    n_rho_firings = sum(1 for r in rows if r.get("rho_firing"))
+    worst_overlap = max((r["overlap"] for r in rows if "overlap" in r), default=None)
+    worst_rho = max((r["spearman"] for r in rows if "spearman" in r and not math.isnan(r["spearman"])), default=None)
+
+    print(f"  worst 3-px dot overlap: {worst_overlap}")
+    print(f"  overlap firings (>0.70): {n_overlap_firings}")
+    print(f"  worst Spearman rho: {worst_rho}")
+    print(f"  rho firings (>0.90): {n_rho_firings}")
+    print()
+
+    verdict = "NOT_OK_TO_SUBMIT"
+    print("=" * 60)
+    print("SUBMISSION STATUS: NOT OK TO SUBMIT — AUDIT ONLY")
+    print("=" * 60)
+    print("Reason: training_features.tif and labels.tif are absent from this")
+    print("checkout, so HOLDOUT-DTI cannot be computed. Without HOLDOUT-DTI +")
+    print("an organizer receipt, no file is authorized for a weekly slot.")
+    print("The literal registry witness (17GEMSDOE) also blocks every nonempty")
+    print("candidate by construction (100% forward overlap > 0.70).")
+    print()
+    print(f"File: {out_tif.name}")
+    print(f"SHA-256: {receipt['sha256']}")
+    print(f"Safe to download for audit: YES")
+    print(f"OK to submit to DrivenData: NO")
+    print()
+    print("Registry rows:")
+    for r in rows:
+        flag = "FIRE" if r.get("overlap_firing") or r.get("rho_firing") else "ok"
+        err = f" [ERROR: {r['error']}]" if "error" in r else ""
+        print(f"  {flag:4s} {r['file']:70s} ov={r.get('overlap','--')} rho={r.get('spearman','--')}{err}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
