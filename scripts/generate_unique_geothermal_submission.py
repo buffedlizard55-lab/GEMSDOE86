@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate a UNIQUE GeoTIFF submission for the DOE GEMS Prize Challenge.
+Generate a GeoTIFF research candidate for DOE GEMS; do not treat it as submission-ready.
 
 Novel hypothesis (not tried in any lane of this repo):
   "Basin-center blind-fault via distance-transform ridge emphasis"
@@ -14,7 +14,7 @@ interior would not appear on surface geologic maps.  Emphasizing dots along
 these distance-transform ridges at d_cat > 10 px (> 1 km) targets concealed
 basin-interior faults that no catalogue-proximal method can reach.
 
-Why this is unique vs every prior lane:
+Partial local distinctness only (not full-registry uniqueness clearance):
   - GEMSDOE32 H33 (0.2778 OWNER-REPORTED): 69.8% far-field but still
     30.2% within 1 km of catalogue; dots spread across collar + far field,
     not ridge-concentrated.
@@ -36,7 +36,7 @@ Constraints honored:
   - Note <=140 chars
   - Atomic write via vendor/gems57/submission_writer.py (shared tool, not forked)
 
-Output: docs/downloads/gems86-h86q-basinridge-<dots>dots-<utc>-<sha8>-zeros.tif
+Output: audit-only candidate at docs/downloads/gems86-h86q-basinridge-<dots>dots-<utc>-<sha8>-zeros.tif
   + .zip + .json + .uniqueness.json receipt
 
 Status: SAFE TO DOWNLOAD FOR AUDIT ONLY — NOT OK TO SUBMIT

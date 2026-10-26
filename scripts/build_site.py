@@ -1113,12 +1113,57 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
+def focus9_summary() -> str:
+    """Display the user-nominated cohort, preserving score provenance and safety."""
+    rows = [
+        ("GEMSDOE24", "0.2477", "h25-1-dotted-h19-5-d1-5", "Over-packed 1.5 px emission"),
+        ("GEMSDOE25", "0.2600", "dotted-h19-5-d2-8", "D28 root / parent lineage"),
+        ("GEMSDOE27", "0.2449", "topo-gap-closure-t-v2-on-d1-5", "Topology gap-closure ancestor"),
+        ("GEMSDOE28", "0.2708", "h27-4-r1-solo-d2-8", "H27-4 collar-pruned D28 descendant"),
+        ("GEMSDOE30", "0.2600", "d28-poisson300m-offcat-44090", "Support clone of GEMSDOE25 D28"),
+        ("GEMSDOE31", "0.2708", "h27-4-solo-d28", "Cross-site H27-4 duplicate"),
+        ("GEMSDOE32", "0.2778", "h33-h33-2-b2", "Best of Focus-9; 2,545 collar-dot prune"),
+        ("GEMSDOE33", "0.2632", "h33d-analog-tip-stepover-r30", "H33 plus analog tip-stepover dots"),
+        ("GEMSDOE36", "0.2750", "anderson-geothermal-pinn-38854", "H33 superset with 1,200 PINN dots"),
+    ]
+    body = "".join(
+        f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{site}/">{site}</a></th>'
+        f'<td><code>{name}</code></td><td><strong>{score}</strong> OWNER-REPORTED</td>'
+        f'<td>{interpretation}</td><td>DO NOT SUBMIT — site HEAD is audit-only</td></tr>'
+        for site, score, name, interpretation in rows
+    )
+    return f'''<section class="card" id="focus9-summary"><h2>Focus-9 executive summary — best score by site</h2>
+<p>Scores below are <strong>OWNER-REPORTED</strong> claims from the supplied site records, not organizer receipts. The highest reported Focus-9 entry is <strong>GEMSDOE32 H33 at 0.2778</strong>. That answers which historical result leads this cohort; it is not an upload recommendation. The nine sites currently mark published artifacts audit-only, and their historical winning rasters are not eligible to copy or resubmit.</p>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Best named entry</th><th>Reported result</th><th>Forensic interpretation</th><th>Current action</th></tr></thead><tbody>{body}</tbody></table></div>
+<p>H33's reported lead follows the D28 → H27-4 lineage and removes 2,545 redundant 1–2 px catalogue-collar dots while retaining the far-field component. That is a plausible precision/coverage mechanism under the 300 m DTI kernel, not a causal proof from controlled trials. Pixel-forensic details, caveats and source links are in <a href="{REPO}/blob/main/research/SESSION_20261026_H86P_TCWB_REVIEW.md">the Focus-9 review</a>.</p></section>'''
+
+
+def h86q_summary() -> str:
+    """Surface H86Q as an audit artifact with explicit missing science gates."""
+    card = strict_json(ROOT / "docs/evidence/h86q-basinridge-run-card.json")
+    receipt = strict_json(ROOT / "docs/downloads" / f"{card['submission_name']}.json")
+    filename = f"{card['submission_name']}.tif"
+    zipname = f"{card['submission_name']}.zip"
+    return f'''<section class="callout" id="h86q-basinridge"><div class="section-head"><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span><span class="badge bad">NOT APPROVED FOR SUBMISSION</span></div>
+<h2>Newest generated GeoTIFF candidate — H86Q basin-center distance ridge</h2>
+<p><strong>Hypothesis:</strong> distance-transform ridges far from mapped faults may indicate concealed basin-interior structure. This geometry-only candidate does not establish a fault, geothermal vent, or predictive skill. <strong>Named non-fault mimic:</strong> paleolake shorelines, alluvial-fan toes and basin-floor depositional margins.</p>
+<ul><li><strong>Local format validation:</strong> all 15 checks pass; single-band float32, EPSG:32611, 3730×3292, finite values in [0,1], exact sample transform; {receipt['validator']['emitted_positive_pixels']:,} positive pixels.</li>
+<li><strong>HOLDOUT-DTI:</strong> NOT RUN; no fold-safe experiment or shared feature stack was used.</li>
+<li><strong>Registry:</strong> pre-placement surface was not measured. The sidecar covers only {card['correlation_overlap_vs_registry']['partial_local_report']['rasters_checked']} local rasters; its partial overlap figures are not full-registry clearance. Literal pinned-witness overlap is 1.0, so the candidate fails the current rule.</li>
+<li><strong>Verdict:</strong> negative, audit-only; no selector approval and no weekly slot used. The repository’s format validation does not establish organizer acceptance.</li></ul>
+<p><strong>Submission name (identity only):</strong> <code>{e(card['submission_name'])}</code><br><strong>Note ({len(card['note'])} characters):</strong> <code>{e(card['note'])}</code><br><strong>SHA-256:</strong> <code>{card['raster_sha256']}</code></p>
+<div class="actions"><a class="btn" href="downloads/{e(filename)}" download>Download GeoTIFF — audit only</a><a class="btn secondary" href="downloads/{e(zipname)}" download>Download one-TIFF ZIP — audit only</a><a class="text-link" href="evidence/h86q-basinridge-run-card.json">Run card</a><a class="text-link" href="downloads/{e(card['submission_name'])}.uniqueness.json">Partial uniqueness receipt</a></div>
+<p><strong>Do not upload this file.</strong> Its partial local comparison does not meet the protocol’s full registry gate; the pre-existing full-support witness alone is a hard stop. See the <a href="{REPO}/blob/main/research/SESSION_20261026_ARENA_REVIEW.md">current H86Q audit review</a> for limitations and next steps.</p></section>'''
+
+
 def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "", vfgr_banner: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>{e(a["status"])}</strong></td></tr>' for a in report["artifacts"])
     n_valid = report["locally_valid_artifacts"]
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{h86q_summary()}
+{focus9_summary()}
 {vfgr_banner}
 {h86g_html}
 <div class="callout"><span class="badge bad">CURRENT DECISION: DO NOT SUBMIT ANY FILE</span><p>Technical validation is automatic; there is no human-inspection gate hiding a release decision. All {n_total} artifacts pass local format/range checks ({n_valid}/{n_total}) and fail the mandatory <em>literal</em> registry reading (a continuous full-support witness blocks every nonempty candidate by construction). The historical <strong>H86G-EDTI</strong> research promotion used a 43-file subset; a later full-registry audit found dot-field duplicate firings. Neither the amended reading nor the literal reading currently clears it for upload. The card explicitly records safe_to_submit=false and approved_for_weekly_slot=false; this audit spent no weekly slot.</p>
