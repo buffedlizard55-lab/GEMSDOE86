@@ -302,6 +302,13 @@
       "context": "docs/evidence/h86p-tcwb-run-card.json",
       "holdout_kind": "h86p_tcwb",
       "stem": "gems86-h86p-tcwb-dcelf-37654dots-20261026T024250Z-78c17eb0-zeros"
+    },
+    {
+      "lane": "H86Q-BFRA zero-catalogue broken-plate elastic basement flexural shear + hanging-wall listric rollover + piedmont K*U/Th^2 regolith & hydrothermal K/Th metasomatic unmixing + oblique TMI-vs-RTP remanence dislocation + quadrant-repaired eroded 4-fold LOQO + 1D strand-sharpened 6-ring Dinkelbach-CELF at 37,654 dots (68.48% >1 km matching GEMSDOE32 H33 69.8%; blind E2 SGMC-PROXY-DTI 0.0967 beating GEMSDOE32 H33 0.0937 & H86P-TCWB 0.0809/0.0954; blind E2 HOLDOUT-DTI 0.0734 curing NW 0.0000 -> 0.0843 & NE 0.0236 -> 0.0613; coupled E1 0.1556 [0.1393, 0.1705] vs E3 0.1584 halted pre-serialization by Rule 1 0.7755 vs H86P-TCWB; fail-closed DO NOT SUBMIT, 2026-10-26)",
+      "card": "docs/evidence/h86q-bfra-run-card.json",
+      "context": "docs/evidence/h86q-bfra-run-card.json",
+      "holdout_kind": "h86q_bfra",
+      "stem": "gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros"
     }
   ]
 }

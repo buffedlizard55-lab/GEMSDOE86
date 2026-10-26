@@ -223,12 +223,18 @@ def test_h86i_rlms_run_card_artifact_and_registry_evidence_are_honest_and_bound(
 
 
 def test_run_h86i_rlms_cli_stops_at_protocol_preflight(monkeypatch):
-    # Pinned grid/witness live under data/bridge/ (witness gitignored, restored
+    # Pinned grid/witness live under data/bridge/ or data/ (witness gitignored, restored
     # per-session). Present -> protocol STOP; absent inputs fail closed, never pass.
-    pinned = [(ROOT / "data/bridge/sample_submission.tif"),
-              (ROOT / "data/bridge/existing_faults.tif"),
-              (ROOT / "data/bridge/registry/dense-witness.tif")]
-    if all(p.is_file() for p in pinned):
+    witness_present = (
+        (ROOT / "data/bridge/registry/dense-witness.tif").is_file()
+        or (ROOT / "data/registry/dense-witness.tif").is_file()
+    )
+    pinned_present = (
+        (ROOT / "data/bridge/sample_submission.tif").is_file()
+        and (ROOT / "data/bridge/existing_faults.tif").is_file()
+        and witness_present
+    )
+    if pinned_present:
         with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
             run_h86i_rlms.main([])
     else:

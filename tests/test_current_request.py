@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
+    current26_rev2 = readme.split("<!-- CURRENT_REQUEST_20261026_REV2_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261026_REV2_END -->", 1)[0]
+    assert current26_rev2.strip() == (ROOT / "research/REQUEST_20261026_REV2.md").read_text().strip()
     current26 = readme.split("<!-- CURRENT_REQUEST_20261026_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261026_END -->", 1)[0]
     assert current26.strip() == (ROOT / "research/REQUEST_20261026.md").read_text().strip()
     current25_rev2 = readme.split("<!-- CURRENT_REQUEST_20261025_REV2_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261025_REV2_END -->", 1)[0]
@@ -40,7 +42,7 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 119  # 113 + 2 (89/90) + 3 (91x2/92) + 1 (2026-10-26 91 cwpc-e3) owner claims, never a retroactive archive edit
+    assert sum(1 for r in ledger if r["score"]) == 124  # 119 + 5 (2026-10-26 rev2 Focus-9 owner claims), never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
@@ -48,7 +50,7 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
         "gems90-cnc-35000dots-20261024T084324Z",
     }
     # They were unscored in this immutable archive; subsequent 2026-10-25/26 requests
-    # supplied owner-reported numbers for 89/90 and then 91/92.
+    # supplied owner-reported numbers for 89/90, 91/92, and the 5 Focus-9 2026-10-25 runs.
     updated = {"gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros": "0.0301",
                "gems90-cnc-35000dots-20261024T084324Z": "0.0749"}
     rev2_updated = {
@@ -58,6 +60,13 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     }
     req26_updated = {
         "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros": "0.1367",
+    }
+    req26_rev2_focus9 = {
+        "gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros": "0.0859",
+        "h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros": "0.0742",
+        "h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite": "0.2190",
+        "s18-mxtp-20261025-3e95505c011a-allfinite": "0.0217",
+        "MSDB1-edge44090-20261025-e7856ec3f14a": "0.1462",
     }
     for row in ledger:
         if row["submission"] in unscored_named:
@@ -69,6 +78,12 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
         if row["submission"] in req26_updated:
             assert row["score"] == req26_updated[row["submission"]]
             assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-26 request")
+        if row["submission"] in req26_rev2_focus9:
+            assert row["score"] == req26_rev2_focus9[row["submission"]]
+            assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-26 rev2 Focus-9 request")
+    req26_rev2_text = (ROOT / "research/REQUEST_20261026_REV2.md").read_text()
+    req26_rev2_scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", req26_rev2_text, re.M)
+    assert all((name, value) in registered for name, value in req26_rev2_scores)
     with (ROOT / "ledger/submissions.csv").open(newline="") as stream:
         canonical_ledger = list(csv.DictReader(stream))
     canonical_by_name = {r["name"]: r for r in canonical_ledger}

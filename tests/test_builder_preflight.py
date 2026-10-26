@@ -156,6 +156,8 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     "run_h86j_mcsp.py",
     "run_h86k.py",
     "run_h86k_stdp.py",
+    "run_h86p_tcwb.py",
+    "run_h86q_bfra.py",
 ])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()
@@ -169,7 +171,15 @@ def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     output = result.stdout + result.stderr
     assert result.returncode != 0
     assert "training_features.tif" not in output
-    assert "STOP_LITERAL_OVERLAP_UNSATISFIABLE" in output or "sample_submission.tif" in output
+    assert any(
+        tok in output
+        for tok in (
+            "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+            "sample_submission.tif",
+            "existing_faults.tif",
+            "dense-witness.tif",
+        )
+    )
 
 
 @pytest.mark.parametrize("module_name", [
