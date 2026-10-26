@@ -10,7 +10,7 @@
 
 ## Focus-9 answer and H33 interpretation
 
-The existing Focus-9 summary already covers GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, and 36. Its best named result is GEMSDOE32 H33 (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`) at **0.2778 OWNER-REPORTED**; no submission-page receipt in this repository makes that score ORGANIZER-CONFIRMED. See the [Focus-9 comparison and H33 forensic analysis](SESSION_20261026_H86R_SFG_REVIEW.md) and the [executive summary page](../docs/executive-summary.html#focus9-summary).
+The existing Focus-9 summary already covers GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, and 36. Its best named result is GEMSDOE32 H33 (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`) at **0.2778 OWNER-REPORTED**; no submission-page receipt in this repository makes that score ORGANIZER-CONFIRMED. See the [Focus-9 comparison and corrected H33 forensic analysis](SESSION_20261026_H86Q_BFRA_REVIEW.md) and the [executive summary page](../docs/executive-summary.html#focus9-summary).
 
 The prior pixel analysis describes H33 as a D28/H27-4 lineage refinement: it retained a sparse far-field dot population while pruning 2,545 low-marginal-credit near-catalogue collar dots. Under the supplied metric description, unnecessary predictions cost false-positive mass, so a collar prune can plausibly improve precision while retaining useful coverage. This is a mechanism-based explanation, **not a causal identification**: the historical submissions are not controlled experiments, and the supplied 0.2778 claim has not been independently confirmed from a DrivenData receipt. The user-supplied 0.3195 and 0.4413 leaderboard marks conflict and are unverified here. Do not present either as current official leaderboard truth or promise that a unique candidate will beat H33.
 

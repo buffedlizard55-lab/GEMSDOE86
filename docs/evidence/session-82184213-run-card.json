@@ -1,0 +1,58 @@
+{
+  "schema": "gems86.session_run_card.v1",
+  "session": "arena/82184213-gemsdoe86",
+  "measured_utc": "2026-10-26T21:39:07.737415+00:00",
+  "hypothesis": "No new geological hypothesis was tested in this review. The prior H86R-SFG lane was already evaluated and falsified against its ungated ablation; current checkout review is operational/evidence validation only.",
+  "mechanism": "Not applicable: no candidate surface or dots were constructed. The prior H33 explanation is treated as a plausible sparse-allocation mechanism, not established causality.",
+  "named_non_fault_process": "Not applicable to this review; no new geophysical feature or candidate was evaluated. For H33 interpretation, non-fault lithologic edges and geomorphic lineaments remain plausible mimics, but were not tested in this review.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_THIS_SESSION",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null,
+    "note": "No new experiment or candidate; do not substitute a historical metric or projection. Prior lane results remain in their own run cards."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "registry_snapshot_rasters_measured": 1,
+    "registry_snapshot_complete": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_support_allowed_fraction": 1.0,
+    "literal_forward_overlap_for_each_nonempty_inherited_artifact": 1.0,
+    "interpretation": "The immutable full-support witness produces a literal hard stop, not registry uniqueness clearance. No new candidate was tested; the full registry is not claimed complete."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate_generated": false,
+    "new_candidate_validated": false,
+    "inherited_release_audit": "PASS",
+    "inherited_artifacts_validated": 46,
+    "inherited_artifact_count": 46,
+    "in_footprint_no_nan_for_inherited_artifacts": true,
+    "inherited_values_in_0_1": true,
+    "inherited_crs_shape_transform_match": true,
+    "note": "These are local byte/format checks on historical research downloads only; they do not establish submission approval."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "safe_to_download_for_audit": true,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "blockers": [
+    "training_features.tif is missing in this checkout",
+    "prepared feature arrays are missing from ignored .cache",
+    "the shared template feature-cache identity contract is not established",
+    "full-registry uniqueness is not measured; the immutable full-support witness triggers the literal overlap stop",
+    "no organizer submission-page receipt or current weekly quota receipt is present"
+  ],
+  "organizer_confirmed_score": null,
+  "score_projection": null
+}

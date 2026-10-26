@@ -63,7 +63,7 @@
     "docs/evidence/h86q-basinridge-run-card.json": "c729af6b7a17aaaf723ca0aff28f64ab1b3b879ce43c4ef79998947c16f81b40",
     "docs/evidence/h86q-bfra-run-card.json": "9ff36c0ba21abf808538eef338ddc014dd0951dfd1685eba41c443597b83cf55",
     "docs/evidence/h86r-sfg-run-card.json": "bea0efd1a419df9c48d154352951dd664b8b5d393f7f656369b774b8f3274904",
-    "docs/evidence/all-artifacts-registry.json": "e65f93bb79f6c700051adb39582dec64b669540b9f431fb0c427d68f9d07b9d1"
+    "docs/evidence/all-artifacts-registry.json": "aba3376698a10a004f8789d466c47110dfac21405e3dc1e496024161c0f44f2c"
   },
   "all_final_artifacts_remeasured": true,
   "registry_scope": "One historical witness is sufficient for a negative, never for clearance. No new pre-placement surface was constructed.",
