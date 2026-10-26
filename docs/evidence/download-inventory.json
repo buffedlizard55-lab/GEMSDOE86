@@ -264,6 +264,12 @@
       "sha256": "7afcca44dc4c2411af4cad97ca9beb15117ed94b78b77b13ce1462c4ad49a6f4",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+      "sha256": "b9cd35e51880fa0f9b4c47962b4544e93b7c2929e269a8d7595bfbbd444c54a9",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

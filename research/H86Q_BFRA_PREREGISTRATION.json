@@ -1,0 +1,97 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86Q-BFRA",
+  "frozen_utc": "2026-10-26T05:30:00Z",
+  "branch": "arena/6ac94866-gemsdoe86",
+  "hypothesis_queue_ref": "registry/h86q_hypotheses_20261026.json",
+  "selected_hypothesis_id": "H86Q-1_BFRA",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "weekly_submission_slots_authorized": 0,
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0
+  },
+  "static_features": [
+    "bfra_flexural_shear_d3zb",
+    "bfra_flexural_shear_pullback",
+    "bfra_rollover_concavity_pullback",
+    "bfra_regolith_felsic_unmix_jump",
+    "bfra_hydro_k_over_th_metasom",
+    "bfra_tmi_rtp_remanence_disloc",
+    "tc_downslope_wash_asym",
+    "tc_crossbreak_contrast",
+    "basement_hinge_signed_kink",
+    "basement_hinge_updip_pullback",
+    "claycap_fault_seal_term",
+    "seismo_dilatancy_conduit_gate",
+    "aitchison_clr_rad_juxtaposition",
+    "salem_grav_sharp_z150",
+    "salem_rtp_sharp_z150",
+    "salem_grav_dip_migration",
+    "salem_rtp_dip_migration",
+    "pullback_grav_odd_step_nodike",
+    "pullback_rtp_odd_step_nodike",
+    "pullback_garland_poisson_jump",
+    "pullback_laplace_gzz_step",
+    "tmi_up150_wavenumber_si",
+    "hydro_magnetite_destruction",
+    "kostrov_dilation_tendency",
+    "kostrov_riedel_slip_tendency",
+    "aseismic_creep_deficit",
+    "uphead_geotherm_diseq",
+    "probe2m_uphead_thermal_wall",
+    "paleo_sinter_vent_corridor",
+    "lidar1m_scarp_swath_debiased",
+    "topo10_piedmont_curv_break",
+    "chi10_drainage_knick_step"
+  ],
+  "fold_visible_elastic_features": [
+    "kostrov_wing_crack_lobe",
+    "collinear_tip_cone_short",
+    "collinear_tip_cone_long",
+    "releasing_stepover_bridge",
+    "strike_anisotropic_corridor",
+    "broadside_stress_shadow"
+  ],
+  "ablation_control_features": [
+    "local_rtp_gradmag_s2",
+    "local_grav_slope_b5",
+    "local_depth_gradmag_s3",
+    "local_elev_slope_b19",
+    "local_lidar_step_debiased",
+    "local_topo10_slope_p90",
+    "local_strain_2ndinv_hp",
+    "local_geotherm_iso_blur"
+  ],
+  "arms": [
+    {
+      "id": "E1_bfra_coupled_tworegime_dcelf",
+      "role": "primary_candidate",
+      "description": "32 static BFRA+TCWB planes (adding broken-plate basement flexural shear -d^3_{nnn} Z_b, hanging-wall listric rollover concavity -d^2_{nn} Z_b, two-endmember piedmont regolith/metasomatic log-ratio unmixing, and TMI-vs-RTP remanence phase dislocation on Bands 1/2/14) + 6 fold-visible Kostrov-Pollard fracture planes trained under strict 4-fold eroded-LOQO (quad != q eroded 12 px) + nested cross-component PU with 4.5 px stress-shadow negative buffer and Elkan (2001) Bayes recalibration, fused via quadrant-repaired two-regime radial far-field (>1 km) Noisy-OR with the pure-blind BFRA specialist, sharpened along 1-D Spin-2 fault tangents, and decoded at 37,654 dots (d_min=2.8 px, d_cat>3.0 px) via Exact 6-Ring Bernoulli Survival Dinkelbach-CELF."
+    },
+    {
+      "id": "E2_bfra_blind_subsurface_piedmont_dcelf",
+      "role": "blind_specialist",
+      "description": "Zero-catalogue-feature blind BFRA subsurface/piedmont/remanence specialist (32 translation-invariant static planes + BFRA corroboration prior; 0 fold-visible elastic features at inference; quadrant-repaired calibration fixing IR-86Q-TCWB-SWAPPED-ARGS-20261026) decoded via 1-D tangent-sharp Exact 6-Ring Bernoulli Survival Dinkelbach-CELF at 37,654 dots."
+    },
+    {
+      "id": "E3_local_unpulled_staticek_ablation",
+      "role": "ablation_control",
+      "description": "8 pixel-local unpulled gradient/blur planes + isotropic tip halo without BFRA flexural shear/rollover, regolith unmixing, remanence dislocation, TC wash asymmetry, up-dip pullback, Elkan-Bayes recalibration, 1-D tangent sharpening, or Dinkelbach-CELF, decoded via static expected-kernel Poisson-disc thinning at identical 37,654 dots (d_min=2.8 px, d_cat>3.0 px)."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_discriminative_auc": 0.90,
+    "surface_spearman_max_abs_rho": 0.90,
+    "final_dot_3px_overlap_max": 0.70,
+    "holdout_evaluator": "gems57-pooled-hide-v2",
+    "holdout_seed": 20,
+    "holdout_hide_frac": 0.20,
+    "holdout_buffer_px": 3,
+    "holdout_erode_px": 12,
+    "bootstrap_draws": 1000,
+    "bootstrap_block_m": 20000.0
+  }
+}

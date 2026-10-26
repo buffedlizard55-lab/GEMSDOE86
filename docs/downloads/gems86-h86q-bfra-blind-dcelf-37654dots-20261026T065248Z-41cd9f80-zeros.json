@@ -1,0 +1,130 @@
+{
+  "file": "gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+  "sha256": "b9cd35e51880fa0f9b4c47962b4544e93b7c2929e269a8d7595bfbbd444c54a9",
+  "bytes": 139837,
+  "submission_name": "gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros",
+  "note": "H86Q-BFRA BLIND-DCELF FlexShear+Regolith+Remanence LOQO (HOLD 0.0734, SGMC 0.0967); v2 fail-closed; DO NOT SUBMIT",
+  "note_chars": 113,
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+    "bytes": 139837,
+    "sha256": "b9cd35e51880fa0f9b4c47962b4544e93b7c2929e269a8d7595bfbbd444c54a9",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+    "bytes": 139837,
+    "sha256": "b9cd35e51880fa0f9b4c47962b4544e93b7c2929e269a8d7595bfbbd444c54a9",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.zip",
+  "zip_sha256": "4435a9c930e2dedbc73921e3f778fb081a38faa98bfb09cd57ea97d9ec083098",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane_id": "H86Q-BFRA",
+    "serialized_arm": "E2_bfra_blind_subsurface_piedmont_dcelf",
+    "preregistration": "research/H86Q_BFRA_PREREGISTRATION.json",
+    "static_feature_sha256": "896b0ad3aac797ff43ae86dc382fbd407d4d0d583b7f2b97f903f4b586d4fa93",
+    "surface_sha256": "af0264b075694348ef59a7640a0b297f1638f9d17a055c555a4d1f1b873cbb53",
+    "dots_sha256": "6685cae0f59f7386b0e49c4d3d57ef98d9baea9f0527172641da4d755e5e0828",
+    "registry_surface_evidence": "docs/evidence/h86q-bfra-e2-registry-surface.json",
+    "registry_final_evidence": "docs/evidence/h86q-bfra-e2-registry-final-dots.json",
+    "chance_overlap_evidence": "FAILED_CLOSED_NO_REPORT (see run card)"
+  }
+}

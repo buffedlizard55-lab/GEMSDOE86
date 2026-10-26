@@ -156,6 +156,8 @@ def test_gated_builder_docstring_does_not_claim_a_preflight_bypass(name):
     "run_h86j_mcsp.py",
     "run_h86k.py",
     "run_h86k_stdp.py",
+    "run_h86p_tcwb.py",
+    "run_h86q_bfra.py",
 ])
 def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     env = os.environ.copy()
@@ -172,10 +174,14 @@ def test_concurrent_candidate_builders_fail_before_any_feature_load(name):
     # Fresh CI checkouts do not carry the gitignored witness. A missing pinned
     # witness is an equally fail-closed preflight outcome; do not require a
     # restored local copy merely to test that builders stop before feature IO.
-    assert (
-        "STOP_LITERAL_OVERLAP_UNSATISFIABLE" in output
-        or "sample_submission.tif" in output
-        or "dense-witness.tif" in output
+    assert any(
+        tok in output
+        for tok in (
+            "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+            "sample_submission.tif",
+            "existing_faults.tif",
+            "dense-witness.tif",
+        )
     )
 
 

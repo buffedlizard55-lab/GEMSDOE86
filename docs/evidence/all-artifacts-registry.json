@@ -1,7 +1,7 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-26T05:31:41.900808+00:00",
+  "measured_utc": "2026-10-26T07:33:17.007419+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
   "proof_sha256": "6ee41d58fc7095612c831c9828ce77a516beefade69d96cab719456e5d25cc96",
@@ -403,6 +403,15 @@
       "file": "docs/downloads/gems86-h86q-basinridge-37654dots-20261026T044757Z-6d59ba15-zeros.tif",
       "sha256": "7afcca44dc4c2411af4cad97ca9beb15117ed94b78b77b13ce1462c4ad49a6f4",
       "spearman_full_footprint": -0.06313514699251475,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86q-bfra-blind-dcelf-37654dots-20261026T065248Z-41cd9f80-zeros.tif",
+      "sha256": "b9cd35e51880fa0f9b4c47962b4544e93b7c2929e269a8d7595bfbbd444c54a9",
+      "spearman_full_footprint": 0.03718224584478068,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

@@ -2,7 +2,7 @@
 
 **Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** Session `96fc6d48` (2026-10-25) then repaired the pinned-data layout bug breaking `protocol_preflight.measure()` in fresh checkouts (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, and re-measured all registered artifacts; see `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`. The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
 **Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261025.md` first (supplemented by `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
+`research/REQUEST_20261026_REV2.md` first (alongside `research/REQUEST_20261026.md`, `research/REQUEST_20261025.md`, and `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
 a replacement for that archive. Preserve `REQUEST_20261024.md`,
 `REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
 
