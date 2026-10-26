@@ -1,0 +1,100 @@
+{
+  "lane": "H86G",
+  "lane_name": "intermediate-collar geothermal fault emphasis",
+  "session": "arena/4c5e12aa-gemsdoe86",
+  "generated_utc": "2026-10-26T00:28:19Z",
+  "reviewer": "automated (no human intervention)",
+  "passes": 3,
+  "verdict": "negative",
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "submission_name": "gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros",
+  "note": "H86G collar-emphasis 2-8px dcat Poisson-disc 37654d; H33 pruned collar we emphasize; no holdout data; DO NOT SUBMIT",
+  "note_chars": 115,
+  "name_chars": 82,
+  "tif_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
+  "zip_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.zip",
+  "receipt_file": "downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.json",
+  "raster_sha256": "8e12a0ffa5d930dad99a3c107ccf7a85938deda6e3b4170535cd400414e24dbd",
+  "tif_sha256": "8e12a0ffa5d930dad99a3c107ccf7a85938deda6e3b4170535cd400414e24dbd",
+  "zip_sha256": "aa7b763f480b4339cf138a8224279170910acfba67197fc02d7dd57e7b5b08ff",
+  "format_validation": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions": [3730, 3292],
+    "crs": "EPSG:32611",
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "no_nan": true,
+    "no_inf": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true,
+    "emitted_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169,
+    "all_checks_passed": true
+  },
+  "hypothesis_tested": "H86G-1 intermediate-collar relay-zone emphasis",
+  "hypothesis_description": "GEMSDOE32 H33 scored 0.2778 (OWNER-REPORTED) by PRUNING dots at 1<d_cat<=2px from catalogue faults. This lane EMPHASIZES the intermediate collar zone (2-8 px = 200-800 m) where structural relay zones and dilational jogs form around mapped faults. Combined with Poisson-disc spacing (2.8 px) for emission uniqueness.",
+  "construction": {
+    "weight": "inverse-distance-to-catalogue with Gaussian bump centered at 5 px, truncated to (2, 8] px",
+    "mask": "footprint AND off-catalogue",
+    "emission": "greedy Poisson-disc, 2.8 px minimum separation, highest-weight-first",
+    "dot_budget": 37654,
+    "dots_placed": 37654
+  },
+  "holdout_validation": {
+    "runnable": false,
+    "reason": "training_features.tif and labels.tif absent from checkout; shared feature stack not regenerated",
+    "holdout_dti": null,
+    "holdout_ci": null
+  },
+  "leakage_canary": {
+    "runnable": false,
+    "reason": "no training data → no feature planes to audit"
+  },
+  "uniqueness_vs_scored_fleet": {
+    "rasters_checked": 25,
+    "worst_3px_dot_overlap": 0.8941413926807245,
+    "worst_overlap_submission": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+    "overlap_firings_over_070": 1,
+    "worst_spearman_rho": 0.06347362589297822,
+    "rho_firings_over_090": 0,
+    "registry_unique": false,
+    "note": "1 overlap firing vs GEMSDOE81; both target near-catalogue areas by construction. Local scored_fleet has 25 rasters only; complete registry uniqueness not established."
+  },
+  "protocol_gates": {
+    "literal_full_support_witness": "17GEMSDOE covers 100% of allowed pixels → 100% forward overlap > 0.70 for any nonempty candidate → stop_required",
+    "pa86_01_like_for_like": "requires complete registry completeness; local scored_fleet has 25 rasters only; not established",
+    "submission_authorized": false,
+    "authorization_reason": "No HOLDOUT-DTI (no training data); no organizer receipt; literal witness blocks all nonempty candidates"
+  },
+  "key_results": {
+    "gemsdoe32_h33_owner_reported": 0.2778,
+    "gemsdoe32_h33_mechanism": "D28 parent (40,199 dots) minus 2,545 collar dots (1<d_cat<=2px); coverage-efficient dotted emission, not a new geological layer",
+    "can_beat_0_2778": "unknown — no HOLDOUT-DTI computable without training data",
+    "all_scores_owner_reported": true,
+    "no_organizer_receipts": true
+  },
+  "blockers": [
+    "training_features.tif absent → no model training, no HOLDOUT-DTI",
+    "labels.tif absent → no holdout positives to withhold",
+    "literal full-support witness (17GEMSDOE) blocks all nonempty candidates at 100% forward overlap > 0.70",
+    "PA-86-01 like-for-like requires complete registry (700+ rasters); local scored_fleet has 25",
+    "no file in repo authorized for DrivenData upload; submission_slots_used = 0"
+  ],
+  "next_session_recommendations": [
+    "Run bash scripts/download_competition_data.sh on unrestricted machine to restore training_features.tif and labels.tif into data/",
+    "Run python scripts/prepare_data.py to prepare feature stack",
+    "Assign method lane, freeze hypotheses, run holdout validation with buffered folds",
+    "Clear protocol conflict (literal witness satisfiability) before slot selection",
+    "Only then use a weekly slot for submission with organizer receipt"
+  ]
+}

@@ -118,6 +118,16 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
     base = dict(evidence_class="HOLDOUT-DTI", status="ARCHIVED_NOT_RECOMPUTED",
                 source=config["context"], evaluator_version="gems57-pooled-hide-v2",
                 withheld_positives=None, value=None, ci95=None)
+    if kind == "h86g_collar_unvalidated":
+        if (context.get("lane") != "H86G"
+                or context.get("verdict") != "negative"
+                or not explicit_no_authorization(context)
+                or context.get("submission_slots_used") != 0
+                or "holdout_dti" in context):
+            raise ValueError("H86G collar-emphasis archive must remain unvalidated and unauthorized")
+        return {**base, "status": "NOT_VALIDATED_FOR_THIS_VARIANT",
+                "design": "Catalogue-distance 2-8 px Poisson-disc geometry; no buffered hide-and-recover evaluation",
+                "caveat": "Merged PR #180 H86G collar-emphasis archive; training_features.tif was absent in that session so no HOLDOUT-DTI was computed and 3-px dot overlap fired at 0.8941 vs GEMSDOE81. DO NOT SUBMIT; 0 slots used."}
     if kind == "h86m_lt_unvalidated":
         if (context.get("lane") != "H86M-LT leaderboard tomography + DTI-optimal emission"
                 or context.get("verdict") != "negative"
