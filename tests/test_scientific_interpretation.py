@@ -72,3 +72,14 @@ def test_exact_pruning_condition_uses_total_truth_count_not_false_negatives():
         rhs = a * (F + 4 * K + 5 * EPS)
         if not np.isclose(lhs, rhs, atol=1e-10, rtol=1e-12):
             assert (after['dti'] > before['dti']) == (lhs > rhs)
+
+
+def test_prominent_summary_does_not_reintroduce_causal_correlation_claim():
+    from scripts import build_site
+    pages = build_site.render(build_site.ROOT)
+    for name in ('docs/index.html', 'docs/executive-summary.html'):
+        html = pages[name]
+        assert 'Forensic mechanism of 0.2778:' not in html
+        assert 'Descriptive association, not a causal explanation' in html
+        assert 'No leaderboard estimate follows from this correlation.' in html
+        assert 'to eliminate redundant <code>K_3</code>-overlapping halo dots' not in html
