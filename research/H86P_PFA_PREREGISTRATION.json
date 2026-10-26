@@ -1,0 +1,98 @@
+{
+  "lane_id": "H86P-PFA",
+  "session": "arena/5620a35f-gemsdoe86",
+  "created_date_utc": "2026-10-26",
+  "hypotheses_file": "registry/h86p_pfa_hypotheses.json",
+  "preregistration_md": "research/H86P_PFA_PREREGISTRATION.md",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "dots": 37654,
+    "spacing_px": 2.8,
+    "collar_px": 3.0
+  },
+  "arms": [
+    "E1_pfa_candidate",
+    "E2_pfa_blind",
+    "E3_baseline_ablation"
+  ],
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "holdout": {
+    "fn": "holdout.buffered_component_draw",
+    "seed": 20,
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_m": 300,
+    "bootstrap_draws": 1000
+  },
+  "model": {
+    "type": "HistGradientBoostingClassifier",
+    "max_iter": 250,
+    "learning_rate": 0.06,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 40,
+    "l2_regularization": 0.1,
+    "early_stopping": false,
+    "n_neg": 160000,
+    "neg_buffer_px": 8.0,
+    "seed": 865620
+  },
+  "pfa": {
+    "fields": [
+      "tc",
+      "cond_surf",
+      "depth_to_base_surf",
+      "iso_grav_anom",
+      "rtp"
+    ],
+    "offsets_px": [
+      4,
+      7
+    ],
+    "axes": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    "smooth_sigma_px": 1.5,
+    "dispersion_sigma_px": 5.0,
+    "concordance_cut_z": 1.0,
+    "cross_offset_aggregation": "per-axis min(score_4px, score_7px) (Amendment A1, synthetic oracle, pre-data)"
+  },
+  "canary_stop_auc": 0.9,
+  "rho_limit": 0.9,
+  "overlap_limit": 0.7,
+  "comparable_holdout_best": {
+    "lane": "H86I-KSAD",
+    "value": 0.1552747731985283,
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld": 11321,
+    "note": "Strict LOQO; EWCS 0.1723 excluded as in-quadrant (IR-86-EWCS-INQUADRANT-20261025); SLCQ 0.1527 strict LOQO second."
+  },
+  "slots_used": 0,
+  "amendments": [
+    {
+      "id": "A1",
+      "date": "2026-10-26",
+      "stage": "before any real-data H86P run",
+      "change": "max-over-offsets -> cross-offset persistence min; dike-edge single-offset mimic falsified by tests/test_h86p_pfa.py"
+    }
+  ]
+}

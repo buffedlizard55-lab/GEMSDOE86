@@ -1668,3 +1668,73 @@ Full evidence: [`research/SESSION_20261025_H86M_BMGS_REVIEW.md`](research/SESSIO
 ## IR-86M-SLCQ-01 — `H86M-SLCQ` generated a unique `15/15` validated GeoTIFF (`HOLDOUT-DTI = 0.1527`, paired `E1 - E3 = +0.0150 [+0.0009, +0.0282]`, `SGMC = 0.0967` / blind `0.1131`) and failed closed `DO NOT SUBMIT` (2026-10-25)
 
 `scripts/run_h86m_slcq.py` executed `research/H86M_SLCQ_PREREGISTRATION.json` (`registry/h86m_slcq_hypotheses.json`) and wrote [`docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif`](docs/downloads/gems86-h86m-slcq-dcelf-37654dots-20261025T185217Z-944322f2-zeros.tif) (`sha256: c285c17932647c03bc6815c0ba2f0ef2d21b42a3e6f79e9af510257de6619f5d`, `37,654` unit dots, `15/15` format checks PASS, `43/43` leakage canaries PASS with `max AUC = 0.7943 <= 0.90`, `0/702` surface Spearman `rho > 0.90` firings, `0/460` comparable `<=90k`-dot discrete 3-px overlap firings `> 0.70`, and `0/8` firings vs concurrent `H86M`/`H86N` TIFFs). Automatically set `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, `0` weekly slots used under literal `17GEMSDOE` (`1.0000`), space-filling/dense archive ribbons, and `2` off-grid rows (`14GEMSDOE`, `7GEMSDOE`). See [`research/SESSION_20261025_H86M_SLCQ_REVIEW.md`](research/SESSION_20261025_H86M_SLCQ_REVIEW.md) and [`docs/evidence/h86m-slcq-run-card.json`](docs/evidence/h86m-slcq-run-card.json).
+
+## IR-86-5620-LEADERBOARD-CONFLICT — 2026-10-26 (open, owner receipt needed)
+
+The 2026-10-26 request cites two different "current leaderboard high" values
+(`0.4413` and `0.3195`) with no date, split, or organizer receipt, alongside the
+fleet-high `GEMSDOE32 h33-h33-2-b2 = 0.2778`. All three numbers remain
+`OWNER-REPORTED` (`registry/prior_scores.csv` is explicitly unverified; no
+`ORGANIZER-CONFIRMED` receipt exists in this repository). No target above
+`0.2778` can be certified from in-repo evidence, and no projection in this
+session treats either value as a score. Archived verbatim in
+`research/REQUEST_20261026_5620A35F.md`; full analysis in
+`research/SESSION_20261026_REVIEW.md` §1.
+
+## IR-86-5620-FOCUS9-DUPLICATE-SUPPORTS — 2026-10-26
+
+Pixel forensics on hash-pinned restored registry bytes
+(`docs/evidence/focus9-forensics-20261026.json`, `scripts/measure_focus9.py`)
+show the prompt's nine "focus sites" are not nine independent submissions:
+GEMSDOE25 and GEMSDOE30 primaries have the **identical** inside-footprint dot
+support; GEMSDOE31 is pixel-identical to the GEMSDOE28 H27-4 parent (40,199
+dots); GEMSDOE32 H33 (37,654) is an exact subset of both (deletions = the
+parents' <=2 px catalogue-collar counts, 6,436 and 2,545); GEMSDOE36 is H33
+plus exactly 1,200 dots. Every focus primary has >0.86 forward 3-px overlap
+with H33 (above the 0.70 duplicate stop). Any per-site "best submission"
+presentation that treats these as independent candidates is misleading; the
+generated executive summary now shows the lineage explicitly.
+
+## IR-86-5620-WITNESS-RESTORE-PATH — 2026-10-26 (variant of IR-86-96FC6D48-PREFLIGHT-LAYOUT)
+
+`scripts/restore_protocol_data.restore_registry_witness()` writes the pinned
+dense witness to `data/registry/dense-witness.tif`, while
+`protocol_preflight.measure()` (default `data/bridge`), `session_preflight.py`,
+and `audit_release.py` read `data/bridge/registry/dense-witness.tif`. A fresh
+`restore_data.py --protocol-only` followed by `protocol_preflight.py` therefore
+raises `FileNotFoundError` even though the SHA-verified witness bytes
+(`ab0a0a62...`) are present. This session copied the hash-verified file to the
+bridge path (gitignored runtime layout only; no shared or vendored code
+modified, thresholds and witness identity unchanged). A one-place fix in the
+restore destination is recommended for a future maintenance pass.
+
+## IR-86-5620-H86P-CARD-NOTECHARS — 2026-10-26
+
+The H86P-PFA stop receipt `docs/evidence/h86p-pfa-run-card.json` stores
+`note_chars = 45` for the 52-character note
+`"H86P-PFA stopped before serialisation; DO NOT SUBMIT"` (a hard-coded constant
+in the runner's stop-card path). No TIFF was serialised and no measurement,
+hash, or gate value is affected. The runner now computes `len(note)`; the
+shipped receipt is preserved byte-for-byte rather than silently repaired,
+consistent with prior archive practice. The generated site does not display
+the field for this lane.
+
+## IR-86-5620-H86P-RIDGE-CONVERGENCE — 2026-10-26
+
+Lane `H86P-PFA` (`research/H86P_PFA_PREREGISTRATION.json`, 3 frozen arms)
+reached `HOLDOUT-DTI = 0.1433 [0.1283, 0.1587]` vs no-PFA ablation `0.1417`
+(paired delta `+0.0016 [-0.0006, +0.0040]`, crossing zero) and
+`SGMC-PROXY-DTI = 0.0656` vs GEMSDOE32 H33 `0.0937` (paired `-0.0281`,
+CI excluding zero). Its pre-placement surface was clean (worst Spearman
+`0.5061`, 0 firings vs 711 measured rasters), but the final 37,654 dots fired
+the protocol Rule-1 stop against three discrete <=90k-dot registry rasters
+(GEMSDOE53 `gems53-h1-thin` `0.7722`; `h8-tiprelay` twins `0.7493`) and sit
+`0.9598` inside the in-repo 90,568-dot GMC line-posterior halo — independently
+recomputed exactly in Pass 2 (ours vs SLCQ is only `0.4992`). The runner
+stopped before serialisation with zero retuning; verdict `negative`,
+`DO NOT SUBMIT`, 0 slots. Structural lesson: gradient/elastic allocators
+converge onto a shared ridge network already covered by denser historical
+fields, so feature novelty alone does not buy dot-field uniqueness.
+Evidence: `docs/evidence/h86p-pfa-run-card.json`,
+`docs/evidence/h86p-pfa-registry-final-dots.json`,
+`research/SESSION_20261026_REVIEW.md` §3.
