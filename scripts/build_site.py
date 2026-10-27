@@ -1231,28 +1231,65 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 
 
 def focus9_summary() -> str:
-    """Display the user-nominated cohort, preserving score provenance and safety."""
-    rows = [
-        ("GEMSDOE24", "0.2477", "h25-1-dotted-h19-5-d1-5", "Over-packed 1.5 px emission"),
-        ("GEMSDOE25", "0.2600", "dotted-h19-5-d2-8", "D28 root / parent lineage"),
-        ("GEMSDOE27", "0.2449", "topo-gap-closure-t-v2-on-d1-5", "Topology gap-closure ancestor"),
-        ("GEMSDOE28", "0.2708", "h27-4-r1-solo-d2-8", "H27-4 collar-pruned D28 descendant"),
-        ("GEMSDOE30", "0.2600", "d28-poisson300m-offcat-44090", "Support clone of GEMSDOE25 D28"),
-        ("GEMSDOE31", "0.2708", "h27-4-solo-d28", "Cross-site H27-4 duplicate"),
-        ("GEMSDOE32", "0.2778", "h33-h33-2-b2", "Best of Focus-9; 2,545 collar-dot prune"),
-        ("GEMSDOE33", "0.2632", "h33d-analog-tip-stepover-r30", "H33 plus analog tip-stepover dots"),
-        ("GEMSDOE36", "0.2750", "anderson-geothermal-pinn-38854", "H33 superset with 1,200 PINN dots"),
-    ]
-    body = "".join(
-        f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{site}/">{site}</a></th>'
-        f'<td><code>{name}</code></td><td><strong>{score}</strong> OWNER-REPORTED</td>'
-        f'<td>{interpretation}</td><td>DO NOT SUBMIT — site HEAD is audit-only</td></tr>'
-        for site, score, name, interpretation in rows
+    """Render the nominated cohort from score claims and measured raster evidence."""
+    sites = (
+        "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+        "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36",
     )
-    return f'''<section class="card" id="focus9-summary"><h2>Focus-9 executive summary — best score by site</h2>
-<p>Scores below are <strong>OWNER-REPORTED</strong> claims from the supplied site records, not organizer receipts. The highest reported Focus-9 entry is <strong>GEMSDOE32 H33 at 0.2778</strong>. That answers which historical result leads this cohort; it is not an upload recommendation. The nine sites currently mark published artifacts audit-only, and their historical winning rasters are not eligible to copy or resubmit.</p>
-<div class="table-wrap"><table><thead><tr><th>Site</th><th>Best named entry</th><th>Reported result</th><th>Forensic interpretation</th><th>Current action</th></tr></thead><tbody>{body}</tbody></table></div>
-<p>H33's reported lead follows the D28 → H27-4 lineage and removes 2,545 redundant 1–2 px catalogue-collar dots while retaining the far-field component. That is a plausible precision/coverage mechanism under the 300 m DTI kernel, not a causal proof from controlled trials. Pixel-forensic details, caveats and source links are in <a href="{REPO}/blob/main/research/SESSION_20261026_H86Q_BFRA_REVIEW.md#2-phd-level-forensic-analysis-of-the-reported-h33-result-not-causal-proof">the corrected Focus-9 forensic review</a>.</p></section>'''
+    # Names identify the corresponding scored raster; all score values and file
+    # measurements are loaded from their ledgers rather than duplicated here.
+    evidence_keys = {
+        "GEMSDOE24": "h25-1-dotted-h19-5-d1-5",
+        "GEMSDOE25": "dotted-h19-5-d2-8",
+        "GEMSDOE27": "topo-gap-closure-t-v2-on-d1-5",
+        "GEMSDOE28": "h36-1-rung30-blind-r1",
+        "GEMSDOE30": "d28-poisson300m-offcat-44090",
+        "GEMSDOE31": "h27-4-solo-d28",
+        "GEMSDOE32": "h33-h33-2-b2",
+        "GEMSDOE33": "h33d-analog-tip-stepover-r30",
+        "GEMSDOE36": "anderson-geothermal-pinn-38854",
+    }
+    interpretations = {
+        "GEMSDOE24": "Over-packed 1.5 px emission; near-clone of H33 lineage",
+        "GEMSDOE25": "D28 root / parent lineage",
+        "GEMSDOE27": "Topology gap-closure ancestor",
+        "GEMSDOE28": "Highest-scoring GEMSDOE28 entry (H36-1); same crowded lineage",
+        "GEMSDOE30": "Support clone of GEMSDOE25 D28",
+        "GEMSDOE31": "Cross-site H27-4 duplicate of GEMSDOE28",
+        "GEMSDOE32": "Focus-9 leader; 2,545 collar-dot prune from H27-4 lineage",
+        "GEMSDOE33": "H33 plus analog tip-stepover dots",
+        "GEMSDOE36": "H33 superset with 1,200 PINN dots",
+    }
+    with (ROOT / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
+        score_rows = list(csv.DictReader(stream))
+    forensic = strict_json(ROOT / "docs/evidence/focus9-forensics-20261026-rev2.json")
+    measured = forensic["rasters"]
+    best_rows = []
+    for site in sites:
+        claims = [r for r in score_rows if r["site"] == site and r["score"].strip()]
+        if not claims:
+            raise ValueError(f"Focus-9 score ledger has no numeric claim for {site}")
+        best = max(claims, key=lambda r: float(r["score"]))
+        key = evidence_keys[site].lower()
+        matches = [r for r in measured if r["file"].lower().startswith(site.lower() + "__") and key in r["file"].lower()]
+        overlaps = {float(r["overlap_3px_vs_H33"]) for r in matches}
+        if not matches or len(overlaps) != 1:
+            raise ValueError(f"Focus-9 measured overlap is missing or ambiguous for {site}/{key}")
+        overlap = overlaps.pop()
+        best_rows.append((site, best["submission"], float(best["score"]), overlap))
+
+    body = "".join(
+        f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{e(site)}/">{e(site)}</a></th>'
+        f'<td><code>{e(name)}</code></td><td><strong>{score:.4f}</strong> OWNER-REPORTED</td>'
+        f'<td>{overlap:.1%} within 3 px of GEMSDOE32 H33</td>'
+        f'<td><strong>NO</strong> — exceeds the 70% overlap stop</td>'
+        f'<td>{e(interpretations[site])}; DO NOT RESUBMIT</td></tr>'
+        for site, name, score, overlap in best_rows
+    )
+    return f'''<section class="card" id="focus9-summary"><h2>Focus-9 executive summary — highest reported entry by site</h2>
+<p>Scores below are <strong>OWNER-REPORTED</strong> claims from <code>registry/prior_scores.csv</code>, not organizer receipts. The highest reported Focus-9 entry is <strong>GEMSDOE32 H33 at 0.2778</strong>. The 3-pixel overlap values are <strong>REGISTRY-MEASUREMENT</strong> from the dated 30-raster forensic evidence, using H33 as the common reference; they are a conservative duplicate screen, not proof of identical raster pixels. Every listed best exceeds the protocol's 70% overlap stop against H33 (H33 itself is the already-submitted reference). These rows are historical comparisons, not recommendations to copy or resubmit.</p>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest-scoring named entry</th><th>Reported result</th><th>Measured overlap</th><th>Unique under 70% rule?</th><th>Forensic interpretation / action</th></tr></thead><tbody>{body}</tbody></table></div>
+<p>H33's reported lead follows the D28 → H27-4 lineage and removes 2,545 redundant 1–2 px catalogue-collar dots while retaining the far-field component. That is a plausible precision/coverage mechanism under the 300 m DTI kernel, not a causal proof from controlled trials. The H33 0.2778 claim is not independently confirmed here, and the conflicting 0.3195/0.4413 leaderboard marks remain unverified. Pixel-forensic details, caveats and source links are in <a href="{REPO}/blob/main/research/SESSION_20261026_H86Q_BFRA_REVIEW.md#2-phd-level-forensic-analysis-of-the-reported-h33-result-not-causal-proof">the corrected Focus-9 forensic review</a>. Current-checkout limitations, ranked unrun hypotheses, and the three-pass audit are in the <a href="{REPO}/blob/main/research/SESSION_20261027_REVIEW.md">2026-10-27 review</a>.</p></section>'''
 
 
 def h86q_summary() -> str:
