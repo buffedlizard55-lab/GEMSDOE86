@@ -66,7 +66,7 @@ def registry_paths() -> list[Path]:
     return paths
 
 
-def main() -> int:
+def run_pa86_lane() -> int:
     t0 = time.time()
     prereg = json.loads(PREREG.read_text())
     assert prereg["lane_id"] == "H86S-DWPU" and len(prereg["arms"]) == 3
@@ -371,6 +371,14 @@ def main() -> int:
     log(f"DONE verdict={verdict} scoped_candidate={scoped_candidate} gates={gates}")
     log(f"name={name} sha={card['raster_sha256']}")
     return 0
+
+
+def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
+    return run_pa86_lane()
 
 
 if __name__ == "__main__":

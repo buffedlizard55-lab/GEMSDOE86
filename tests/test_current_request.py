@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_full_current_request_is_embedded_without_changing_earlier_archive():
     readme = (ROOT / "README.md").read_text()
+    current27 = readme.split("<!-- CURRENT_REQUEST_20261027_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261027_END -->", 1)[0]
+    assert current27.strip() == (ROOT / "research/REQUEST_20261027.md").read_text().strip()
     current26_rev2 = readme.split("<!-- CURRENT_REQUEST_20261026_REV2_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261026_REV2_END -->", 1)[0]
     assert current26_rev2.strip() == (ROOT / "research/REQUEST_20261026_REV2.md").read_text().strip()
     current26 = readme.split("<!-- CURRENT_REQUEST_20261026_START -->", 1)[1].split("<!-- CURRENT_REQUEST_20261026_END -->", 1)[0]
@@ -42,15 +44,15 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 124  # 119 + 5 (2026-10-26 rev2 Focus-9 owner claims), never a retroactive archive edit
+    assert sum(1 for r in ledger if r["score"]) == 129  # 124 + 5 (2026-10-27 owner claims), never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {
         "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
         "gems90-cnc-35000dots-20261024T084324Z",
     }
-    # They were unscored in this immutable archive; subsequent 2026-10-25/26 requests
-    # supplied owner-reported numbers for 89/90, 91/92, and the 5 Focus-9 2026-10-25 runs.
+    # They were unscored in this immutable archive; subsequent 2026-10-25/26/27 requests
+    # supplied owner-reported numbers for 89/90, 91/92, and the Focus-9 2026-10-25/26 runs.
     updated = {"gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros": "0.0301",
                "gems90-cnc-35000dots-20261024T084324Z": "0.0749"}
     rev2_updated = {
@@ -68,6 +70,13 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
         "s18-mxtp-20261025-3e95505c011a-allfinite": "0.0217",
         "MSDB1-edge44090-20261025-e7856ec3f14a": "0.1462",
     }
+    req27_updated = {
+        "gems91-s22-omtj-e1-20261026-a99b8923f0-zeros": "0.0298",
+        "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite": "0.2250",
+        "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite": "0.0206",
+        "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros": "0.0963",
+        "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros": "0.1647",
+    }
     for row in ledger:
         if row["submission"] in unscored_named:
             assert row["score"] == updated[row["submission"]]
@@ -81,6 +90,11 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
         if row["submission"] in req26_rev2_focus9:
             assert row["score"] == req26_rev2_focus9[row["submission"]]
             assert row["evidence_class"].startswith("OWNER-REPORTED (2026-10-26 rev2 Focus-9 request")
+        if row["submission"] in req27_updated:
+            assert row["score"] == req27_updated[row["submission"]]
+            assert "2026-10-27" in row["evidence_class"] and row["evidence_class"].startswith("OWNER-REPORTED")
+    assert all((k, v) in registered for k, v in req27_updated.items())
+    assert ("gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT", "") in registered
     req26_rev2_text = (ROOT / "research/REQUEST_20261026_REV2.md").read_text()
     req26_rev2_scores = re.findall(r"^([^\n:]+):[ \t]*(0\.\d+)[ \t]*$", req26_rev2_text, re.M)
     assert all((name, value) in registered for name, value in req26_rev2_scores)
@@ -115,6 +129,9 @@ def test_current_review_and_readme_deliverable_links_exist():
     review24 = (ROOT / "research/SESSION_20261024_REVIEW.md").read_text()
     assert "No new unique competition GeoTIFF is cleared" in review24
     assert "Pass 1" in review24 and "Pass 2" in review24 and "Pass 3" in review24
+    review27 = (ROOT / "research/SESSION_20261027_H86S_DWAD_REVIEW.md").read_text()
+    assert "DO NOT SUBMIT" in review27
+    assert "Pass 1" in review27 and "Pass 2" in review27 and "Pass 3" in review27
 
 
 def test_current_session_card_is_complete_negative_and_not_presented_as_a_download():

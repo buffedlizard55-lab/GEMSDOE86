@@ -330,6 +330,13 @@
       "context": "docs/evidence/h86s-dwpu-run-card.json",
       "holdout_kind": "h86s_dwpu",
       "stem": "gems86-h86s-dwpu-37654dots-20261027T172648Z-ae0c897b-zeros"
+    },
+    {
+      "lane": "H86S-DWAD detectability-weighted exposure-deconfounded PU (w_neg = O(x)^1.25) + downslope canyon-mouth fluvial knickzone back-projection (KNDS, 800-1,500 m onto Band 15 alluvial-apex steps) + sub-clay-cap hydrothermal feeder-margin disjunction (Band 17 lateral gradient x Band 2 magnetite-oxidation trough x Band 5 gravity step x up-head GDR-1391 thermal walls) + prior-weighted 6-ring stepover-preserving Dinkelbach-CELF at 37,654 dots (NEW REPO ZERO-CATALOGUE BLIND 37,654-DOT DCELF RECORD E2 HOLDOUT-DTI 0.0825 [0.0679, 0.0984] beating SLCQ 0.0755, TCWB 0.0736, BFRA 0.0734; coupled E1 HOLDOUT-DTI 0.1195 [0.1040, 0.1368] crushing E3 on SE 0.1581 vs 0.1088 while trailing pooled E3 0.1230 by -0.0034 [-0.0208, +0.0168]; SGMC-PROXY-DTI 0.0781 > random null 0.0754 & > E3 0.0700; 0/716 Spearman >0.90 [max 0.4957], 0/474 discrete <=90k overlap >0.70 [max 0.6520], 0.3468 vs H86S-DWPU, & 0/487 live discrete peer firings [max 0.5715]; fail-closed DO NOT SUBMIT, 2026-10-27)",
+      "card": "docs/evidence/h86s-dwad-run-card.json",
+      "context": "docs/evidence/h86s-dwad-run-card.json",
+      "holdout_kind": "h86s_dwad",
+      "stem": "gems86-h86s-dwad-dcelf-37654dots-20261027T182859Z-22804bdb-zeros"
     }
   ]
 }
