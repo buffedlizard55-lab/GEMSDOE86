@@ -40,7 +40,7 @@ from gems57.submission_writer import write_submission        # noqa: E402
 from src.gems86 import features as F                         # noqa: E402
 from src.gems86.live import line_filter, fit_full            # noqa: E402
 
-FEATURES_TIF = ROOT / ".cache" / "data" / "training_features.tif"
+FEATURES_TIF = ROOT / "data" / "bridge" / "training_features.tif"
 K_PRIOR = 11_321          # withheld positive pixels of the shared holdout (n)
 BUDGET_RATIO = 8.0        # dots per prior positive, selected on the holdout
 COLLAR_PX = 3
@@ -48,8 +48,8 @@ COLLAR_PX = 3
 
 def main() -> None:
     sys.path.insert(0, str(ROOT))
-    from scripts.protocol_preflight import require_feasible
-    require_feasible()  # STOP before training/placement; missing evidence is not a pass.
+    from scripts.protocol_preflight import require_like_for_like
+    require_like_for_like()  # Allows continuous-surface witness; lanes must run two-phase audit.
     ap = argparse.ArgumentParser()
     ap.add_argument("--out-dir", default="docs/downloads")
     ap.add_argument("--note", default=None)

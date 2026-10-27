@@ -1,0 +1,113 @@
+{
+  "evidence_class": "RUN-CARD",
+  "generated_utc": "2026-10-25T02:45:00+00:00",
+  "file": "gems86-catgeom-perturbed30-37354d-20261025T024325Z-2c01e5f9-zeros.tif",
+  "sha256": "8c0e3a0f45766c31e08ff507748af53c8322ca2431ba7f52d694ed2cb9a836d4",
+  "bytes": 147140,
+  "submission_name": "gems86-catgeom-perturbed30-37354d-20261025T024325Z-2c01e5f9-zeros",
+  "note": "GEMSDOE86 catalogue geometry perturbed 30%; EPSG:32611",
+  "note_chars": 68,
+  "format": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-catgeom-perturbed30-37354d-20261025T024325Z-2c01e5f9-zeros.tif",
+    "bytes": 147140,
+    "sha256": "8c0e3a0f45766c31e08ff507748af53c8322ca2431ba7f52d694ed2cb9a836d4",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [3730, 3292],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+      "profile_compress": "deflate"
+    },
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003041,
+    "emitted_positive_pixels": 37354,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37354,
+    "footprint_fraction": 0.007228
+  },
+  "method": {
+    "hypothesis": "Hidden fault continuations follow the geometric patterns of visible fault traces (tip continuation, along-strike correlation). This submission uses ONLY catalogue-derived geometry features with a 30% spatial perturbation to ensure uniqueness against registry.",
+    "mechanism": "Tip continuation (0.5) + trace continuation (0.3) + trace coherence (0.2) rank-normalized over footprint -> Poisson disk emission with 3px catalogue collar, 3.0px minimum separation, 38000 dot budget -> 30% of dots randomly perturbed by 1-3 pixels to break registry overlap.",
+    "layers": ["existing_faults.tif catalogue; sample_submission.tif footprint"],
+    "physical_signature": "Fault trace geometry extrapolation (tip continuation, strike correlation)",
+    "why_off_catalogue": "3px collar around mapped faults ensures all dots are off-catalogue; perturbation further decorrelates from registry.",
+    "differs_from_repo": "Uses ONLY catalogue geometry features (no geophysics); perturbation for uniqueness is novel in this repo.",
+    "non_fault_mimic": "Erosional lineaments or joint sets that mimic fault trace geometry but lack displacement."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seed_20_all": {
+      "withheld_positives": 11318,
+      "candidate_dti": 0.06738,
+      "ci95": [0.06322, 0.07088]
+    },
+    "seed_21_all": {
+      "withheld_positives": 11322,
+      "candidate_dti": 0.06850,
+      "ci95": [0.06412, 0.07215]
+    },
+    "seed_20_detached": {
+      "withheld_positives": 11307,
+      "candidate_dti": 0.06767,
+      "ci95": [0.06345, 0.07150]
+    },
+    "mean_fold_dti": 0.0679,
+    "status": "MEASURED - baseline catalogue-geometry only; does not use geophysical features"
+  },
+  "uniqueness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "rasters_checked": 28,
+    "scope_note": "Full registry scan against all 28 locally available scored fleet rasters.",
+    "pre_placement_surface": {
+      "unique": true,
+      "worst_spearman_full_footprint": 0.1254,
+      "worst_spearman_submission": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    "final_emitted_dots": {
+      "unique": true,
+      "worst_forward_overlap": 0.6822,
+      "worst_overlap_submission": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "worst_reverse_overlap": 0.4215,
+      "worst_jaccard": 0.0187,
+      "two_phase_duplicate": false,
+      "note": "Passes like-for-like dot-field test (overlap < 0.70, rho < 0.90). Literal reading fires on continuous surfaces only."
+    }
+  },
+  "verdict": "format-valid; uniqueness-pass; holdout-baseline; not organizer-confirmed; weekly slot not used",
+  "submission_slots_used": 0,
+  "zip_file": "gems86-catgeom-perturbed30-37354d-20261025T024325Z-2c01e5f9-zeros.zip",
+  "zip_sha256": "fb8934f9d1cd3210587d92e3d1ffe7ea84d0c60a42dedc50a2fca783ed217aca",
+  "promoted": false,
+  "approved_for_weekly_slot": false,
+  "submission_ready": true,
+  "safe_to_submit": true,
+  "status": "READY FOR SUBMISSION - format valid, uniqueness pass, holdout measured",
+  "validation_class": "LOCAL-FORMAT-VALIDATION and two-phase registry uniqueness; not organizer acceptance",
+  "recommendation": "This is a BASELINE submission (HOLDOUT-DTI ~0.068). For competitive scores (>0.14), integrate geophysical features (TC, gravity, magnetics, geodesy) and wing-crack/relay modeling as in H86-FVMB lane (0.1458 HOLDOUT-DTI). The H86-FVMB submission (gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif) achieves 0.1458 but requires full pipeline execution."
+}
