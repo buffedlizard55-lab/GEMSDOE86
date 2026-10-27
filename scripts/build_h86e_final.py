@@ -23,6 +23,9 @@ BUDGET = 37_654
 
 
 def main():
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     cert = require_like_for_like()
     g = grid.load_grid(ROOT / "data")
     fp, cat = g.footprint, g.catalogue

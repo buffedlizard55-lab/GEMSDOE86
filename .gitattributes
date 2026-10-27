@@ -1,0 +1,2 @@
+# The canonical ledger generator intentionally emits RFC 4180 CRLF records.
+ledger/submissions.csv whitespace=cr-at-eol

@@ -1,0 +1,11 @@
+# 2026-10-27 request context — reconstructed, not a verbatim transcript
+
+The complete original 2026-10-27 user message was not available in this checkout at review time. This is a reconstruction from the session handoff, **not a complete or verbatim archive**. Earlier standing instructions and the archived prior request remain in [`PROMPT.md`](../PROMPT.md), [`AGENTS.md`](../AGENTS.md), and [`REQUEST_20261026_REV2.md`](REQUEST_20261026_REV2.md). Do not treat this summary as overriding them.
+
+- Review GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, and 36; make the best known files, claimed results, and uniqueness obvious in an executive summary and table. Investigate the owner-reported H33 0.2778 and the possibility of beating it.
+- If protocol permits, independently build and validate a genuinely new contest GeoTIFF, with a unique filename, a note of at most 140 characters, a direct download, and unmistakable submission status. Fix the reported “[0, 1]” class of rejection; do not claim the exact cause without the rejected file or organizer acceptance without a receipt.
+- Research and rank 3–5 different scientific hypotheses from verified sources; validate the leading one against a comparable spatially blocked holdout before spending a slot. Follow prior-session next steps and document limitations.
+- Reuse the shared features/evaluator/writer and enforce the single-method lane, both registry stops, fold-safe catalogue features, leakage canary, literal thresholds, maximum three experiments/two hours and separate slot selector. Record a negative result rather than bypassing a gate.
+- Publish a clean GitHub Pages executive guide and keep the README standing prompt/core values. Provide sources for manual review without automated DrivenData scraping. Perform implementation, bug/edge-case, and original-request review passes. Create a PR and merge if feasible; never fabricate data, clearance, or results.
+
+The user-supplied 0.3195 and 0.4413 claims for the current leader conflict; neither is independently verified. User-reported project scores are not organizer-confirmed without a submission-page receipt. [The current review](SESSION_20261027_RESEARCH_AND_REVIEW.md) records what was and was not delivered under these constraints.

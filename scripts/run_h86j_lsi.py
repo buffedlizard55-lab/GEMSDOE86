@@ -710,6 +710,9 @@ def stage_e3(g, folds, stack, names, e1, e2, preflight, started):
 
 
 def main(argv=None) -> int:
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("stage", choices=("fetch", "e1", "e2", "e3", "all"))
     a = ap.parse_args(argv)

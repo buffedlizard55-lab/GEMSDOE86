@@ -136,11 +136,14 @@ def test_sha8_ignores_date_stamps():
     assert ledger.sha8_of("2314b599") == "2314b599"
 
 
-def test_fill_suffix_twins_collapse():
-    a = ledger.fingerprint("r7-nms3-dem10-scarp_0c9199f14e62")
-    b = ledger.fingerprint("r7-nms3-dem10-scarp_0c9199f14e62_allfinite")
-    assert a == b
+def test_legacy_fingerprint_is_not_used_to_merge_distinct_claims():
+    # The historical token heuristic still exists for old analyses, but it is
+    # not reliable enough to group score claims or bind raster bytes.
     assert ledger.fingerprint("x-20261020-849a0f04-nan") == ledger.fingerprint("x-20261020-849a0f04-zeros")
+    rows = [dict(site="GEMSDOE24", submission="x-20261020-849a0f04-nan", score="0.20"),
+            dict(site="GEMSDOE24", submission="x-20261020-849a0f04-zeros", score="0.21"),
+            dict(site="GEMSDOE25", submission="x-20261020-849a0f04-nan", score="0.20")]
+    assert len(ledger.group_prior_rows(rows)) == 3
 
 
 def test_ledger_never_claims_a_receipt():

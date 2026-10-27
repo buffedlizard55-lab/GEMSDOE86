@@ -59,6 +59,7 @@ import rasterio
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "vendor"))
+sys.path.insert(0, str(REPO))
 
 from gems57.submission_writer import write_submission
 from gems57.validate import validate, assert_submittable
@@ -177,6 +178,9 @@ def poisson_disc_emission(weight, budget, spacing_px, rng):
 
 
 def build_prediction():
+    # Historical builder: no construction under the literal registry stop.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     footprint, catalogue = load_grid()
     dist = distance_to_catalogue(catalogue)
     weight, is_ridge, far_field = ridge_weight(dist, footprint, catalogue, MIN_DIST_PX)

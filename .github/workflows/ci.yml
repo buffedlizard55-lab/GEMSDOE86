@@ -10,7 +10,17 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements-lock.txt
       - name: unit tests (bridge rasters tracked; feature stack not needed)
-        run: python -m pytest -q
+        run: |
+          set +e
+          python -m pytest -q --tb=short 2>&1 | tee "$RUNNER_TEMP/pytest.log"
+          statuses=("${PIPESTATUS[@]}")
+          status=${statuses[0]}
+          if [ "$status" -eq 0 ] && [ "${statuses[1]}" -ne 0 ]; then status=${statuses[1]}; fi
+          set -e
+          if [ "$status" -ne 0 ]; then
+            python -c 'import pathlib,sys; text=pathlib.Path(sys.argv[1]).read_text(errors="replace")[-20000:]; print("::error title=Pytest failure output::" + text.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A"))' "$RUNNER_TEMP/pytest.log"
+          fi
+          exit "$status"
       - name: static site integrity (read-only)
         run: |
           python scripts/build_review_card.py --check

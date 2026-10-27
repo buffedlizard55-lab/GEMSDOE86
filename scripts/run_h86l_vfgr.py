@@ -166,6 +166,9 @@ def emit(surface: np.ndarray, allowed: np.ndarray, known: np.ndarray, valid: np.
 
 
 def main() -> None:
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     started = time.time()
     certificate = require_like_for_like()
     print("preflight", certificate["status"], flush=True)

@@ -190,6 +190,9 @@ def test_builder_stops_before_placement_on_failed_surface(audit, tmp_path, monke
     (tmp_path / "docs/evidence").mkdir(parents=True)
     np.save(tmp_path / "data/work/h86e_features.npy", np.zeros((1, 30, 30)))
     monkeypatch.setattr(builder, "ROOT", tmp_path)
+    # Isolate the surface gate after the separate literal preflight.
+    from scripts import protocol_preflight
+    monkeypatch.setattr(protocol_preflight, "require_feasible", lambda: {})
     monkeypatch.setattr(builder, "require_like_for_like", lambda: {})
     monkeypatch.setattr(builder.grid, "load_grid", lambda _: g)
     monkeypatch.setattr(builder.P, "sample_training", lambda *a, **kw: (None, np.array([0, 1])))

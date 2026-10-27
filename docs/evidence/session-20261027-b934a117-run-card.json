@@ -1,0 +1,47 @@
+{
+  "schema": "gems86.session-run-card.v1",
+  "date_utc": "2026-10-27",
+  "hypothesis": "Proposed for a future assigned lane, NOT RUN: cover-detectability-weighted positive-unlabeled learning may reduce suppression of buried faults.",
+  "mechanism": "Use a bounded basement-depth and surface-relief detectability proxy to downweight unlabeled examples in covered basins; compare with an identically sampled unit-weight control. The proxy is not calibrated mapping probability.",
+  "named_non_fault_mimic": "An unfaulted playa or alluvial basin can have deep cover and low relief without a buried fault.",
+  "status": "NOT_RUN_NO_ASSIGNED_LANE_SHARED_CACHE_NOT_ESTABLISHED_LITERAL_REGISTRY_BLOCKER",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "candidate_comparisons_status": "NOT_RUN_NO_CANDIDATE",
+    "full_registry_scan_complete": false,
+    "pinned_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_support_fraction_of_allowed_cells": 1.0,
+    "implied_forward_overlap_for_any_nonempty_allowed_dot_set": 1.0,
+    "allowed_forward_overlap_maximum": 0.7,
+    "evidence": "docs/evidence/all-artifacts-registry.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_status": "NOT_RUN_NO_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_research_tiffs_locally_valid": 46,
+    "inherited_research_tiffs_checked": 46,
+    "inherited_validation_evidence": "docs/evidence/release-readiness.json",
+    "organizer_acceptance": "UNKNOWN"
+  },
+  "submission_name": null,
+  "submission_note_le_140_characters": null,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "authenticated_remaining_quota": null,
+  "safe_to_submit": false,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT"
+}

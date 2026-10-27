@@ -69,6 +69,10 @@ def registry_paths() -> list[Path]:
 
 
 def main() -> int:
+    # This is a historical builder, not a read-only audit. The literal guard
+    # must run before feature construction, holdout arms, or TIFF placement.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     if not PREREG.is_file():
         raise RuntimeError("missing frozen preregistration")
@@ -209,43 +213,15 @@ def main() -> int:
     ov_h33 = next(r["forward_overlap_3px"] for r in dot_rows if "GEMSDOE32" in r["file"] and "h33-h33-2" in r["file"])
     log(f"  discrete<=100k: {len(discrete)} rasters, worst overlap={worst_ov['forward_overlap_3px']} vs {worst_ov['file']}; ovH33={ov_h33}")
 
-    import csv as _csv, re as _re
-    scores = {}
-    for row in _csv.DictReader(open(ROOT / "registry/prior_scores.csv")):
-        try:
-            scores[row["submission"].lower()] = float(row["score"])
-        except Exception:
-            pass
+    # Historical filename hash tokens are not identity evidence. Associate
+    # only an unambiguous full same-site stem; historic estimates remain frozen.
+    import csv as _csv
+    from scripts.score_identity import owner_score_for_path
+    with (ROOT / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
+        score_records = list(_csv.DictReader(stream))
 
     def match_score(rel: str):
-        # STRICT matching only (IR-86R-ESTIMATOR-MISMATCH-20261026): normalized
-        # stem containment, or a shared hex hash token (>=8 hex chars incl. a
-        # letter). Pure-digit/date/dot-count tokens must never match: the v1
-        # loose tokenizer false-labelled 5/28 rows incl. a DO-NOT-SUBMIT file.
-        base = Path(rel).stem.lower()
-        for _p in ("gemsdoe32__", "gemsdoe36__", "gemsdoe33__", "gemsdoe28__",
-                   "gemsdoe49__", "gemsdoe63__", "gemsdoe66__", "gemsdoe70__",
-                   "gemsdoe73__", "gemsdoe75__", "gemsdoe76__", "gemsdoe78__",
-                   "gemsdoe80__", "gemsdoe81__", "gemsdoe82__", "gemsdoe83__",
-                   "gemsdoe85__", "gemsdoe88__"):
-            base = base.replace(_p, "")
-        for _p in ("gemsdoe32-", "gemsdoe36-", "gemsdoe33-", "gems28-", "gems-", "gems"):
-            if base.startswith(_p):
-                base = base[len(_p):]
-        for suf in ("-allfinite", "-zeros", "-nan", "-zero"):
-            base = base.replace(suf, "")
-        for s, sc in scores.items():
-            ss = s
-            for suf in ("-allfinite", "-zeros", "-nan", "-zero"):
-                ss = ss.replace(suf, "")
-            if ss and (ss in base or base in ss):
-                return sc
-        toks = [t for t in _re.split(r"[-_]", base)
-                if _re.fullmatch(r"[0-9a-f]{8,}", t) and any(c.isalpha() for c in t)]
-        for s, sc in scores.items():
-            if any(t in s for t in toks):
-                return sc
-        return None
+        return owner_score_for_path(rel, score_records)
 
     near_h33 = uniqueness._near(h33)
     est_rows, seen = [], set()
