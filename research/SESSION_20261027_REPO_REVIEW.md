@@ -1,5 +1,7 @@
 # GEMSDOE86 repository review — 2026-10-27
 
+> **Historical point-in-time snapshot; superseded for current artifact count and page ordering by [the current review](SESSION_20261027_ARENA_SITE_REVIEW.md).** This review counted 46 inherited TIFFs before H86S-DWPU was included. Its statement that *this review itself* produced no experiment/TIFF remains true; the current release inventory is 47/47 local format-valid artifacts, all still DO NOT SUBMIT.
+
 ## Decision
 
 **DO NOT SUBMIT. This review produced no new model experiment, candidate surface, TIFF, or submission-slot use.** The checkout's machine release decision is negative. This is a scoped repository/software review, not a competition score report.
