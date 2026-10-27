@@ -1,0 +1,86 @@
+{
+  "schema": "gems86.hypothesis_queue.v1",
+  "lane_series": "H86S",
+  "date_utc": "2026-10-27",
+  "branch": "arena/df922739-gemsdoe86",
+  "prior_session_next_steps_reviewed": [
+    "H86R-SFG (2026-10-26) falsified its strike-field gate (E1 HOLDOUT-DTI 0.0450 < E2 ungated 0.0512; SGMC 0.0596 < random null 0.0754). Its queue ranked DWPU #2 and explicitly recorded: 'KSAD computed a completeness surface as a fusion weight; no lane used completeness as the TRAINING sample-weight mechanism for negatives.' Verified 2026-10-27: grep -ri dwpu/detectability in src/ scripts/ returns no implementation.",
+    "H86R-3_KNDS / H86Q-3_KNDS (iso-chi back-projection) carried forward twice un-run; dem10_chi pin 8897ba9c exists in scripts/restore_data.py EXTERNAL_PINS but the catchment-graph projection is medium-high cost and RLMS already used pixelwise chi (chi10_knickpoint_halo) - back-projection remains distinct but is Rank 2 here on cost.",
+    "H86Q-2_PCPD Baranov pseudogravity REJECTED already-implemented (src/gems86_pfte/features.py:394, IR-86R-PCPD-ALREADY-IMPLEMENTED-20261026). Not re-proposed."
+  ],
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86S-1_DWPU",
+      "name": "Detectability-Weighted PU Learning (negatives trusted only where mapping completeness is high)",
+      "selected_for_validation": true,
+      "layers": [
+        "Native Bands 2 rtp, 3 tmi_hg, 5 iso_grav_anom_slope, 6 tc, 11 iso_grav_anom_vg (verified signed southward derivative), 13 iso_grav_anom, 15 depth_to_base_surf, 18 iso_grav_anom_hg (verified signed eastward derivative), 19 det_elev_slope (src/gems86/io.py BANDS + BAND_PHYSICS_VERIFIED)",
+        "Completeness surface c(x) from Band 15 (shallow basement = mapped-complete) and Band 19 (high slope bedrock exposure = complete), percentile ranks over footprint"
+      ],
+      "physical_signature": "HistGradientBoosting PU classifier (positives = catalogue pixels, negatives = sampled background) where each negative's sample_weight = 0.05 + 0.95*c(x): bedrock range fronts (c->1) supply trusted absences, deep covered basins (c->0) supply almost no negative evidence. Features are catalogue-free geophysics only (no distance-to-catalogue, no coordinates), so the surface can fire far from any mapped fault.",
+      "why_unmapped": "Covered-basin faults are unmapped because they are undetectable at the surface, not absent; standard PU treats their habitat as negative evidence and suppresses exactly those predictions (documented fleet failure: GEMSDOE91 S17-LFTG 68.5% of dots <1 km from catalogue).",
+      "difference_from_repo": "Every prior PU/HGB lane (GEMSDOE 6GEMSDOE 0.0286, GEMSDOE91 S17, KSAD) used uniform negative weights; KSAD used completeness only as a post-hoc fusion weight, never as the training sample-weight. No src/gems86_dwpu existed before this session (verified by grep).",
+      "non_fault_mimic": "Playa/playette basins with genuinely no faults receive inflated scores once negative evidence is discounted; saline playa conductivity (Band 6 TC / radiometric response) can mimic hydrothermal alteration in deep basins.",
+      "expected_dti_gain": "Rank 1: uncertain sign on catalogue-hide holdout (holdout truth is catalogue-like, favouring propensity learning - a named bias, measured by the E2 unweighted ablation); potential + on SGMC far-field. Frozen gates require E1 > E2 paired and SGMC >= H33 before any download-candidate label.",
+      "implementation_cost": "Low-Medium (~20 min CPU: sampled HGB training x2 (visible/full) x3 arms + chunked full-grid prediction at 3730x3292).",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX_NOW - training_features.tif restored + SHA-256 verified 2026-10-27 (4371c82e...23bc5, owner mirror via github.com, NOT organizer-authenticated); catalogue/sample are committed bridge files. No new external data."
+    },
+    {
+      "rank": 2,
+      "id": "H86S-2_KNDS",
+      "name": "Transient Fluvial Iso-Chi Knickzone Back-Projection (queued H86Q-3/H86R-3, carried forward)",
+      "selected_for_validation": false,
+      "layers": ["USGS 3DEP dem10_chi_100m_i16.tif (https://www.usgs.gov/3d-elevation-program)", "Native Bands 12, 15, 19"],
+      "physical_signature": "Iso-chi knickzones aligned across >=3 adjacent footwall catchments back-projected down-channel to the B15 bedrock-alluvium step (Perron & Royden 2013), reconstructing buried range-front strands.",
+      "why_unmapped": "Slow-slipping range-front scarps erased by sheetflood aggradation in 20-50 kyr while footwall chi signals persist >0.5 Myr.",
+      "difference_from_repo": "RLMS used chi pixelwise at the knickpoint (0.5-3 km upslope of the fault); no lane performs catchment-graph down-channel projection. Not run: medium cost (D8 catchment graph) and dem10_chi must be re-pinned in-session.",
+      "non_fault_mimic": "Resistant welded-tuff/carbonate ledges produce lithologic knickpoints in unfaulted canyons.",
+      "expected_dti_gain": "Rank 2: +0.003 to +0.009 HOLDOUT-DTI (queued estimate, unvalidated).",
+      "implementation_cost": "Medium (~25 min CPU) + restore/pin work.",
+      "official_data_obtainability": "OBTAINABLE - free official USGS 3DEP source; family mirror hash 8897ba9c30ef... exists in scripts/restore_data.py EXTERNAL_PINS, fetchable via github.com mirrors in-sandbox."
+    },
+    {
+      "rank": 3,
+      "id": "H86S-3_VENT_RANSAC",
+      "name": "Geothermal Manifestation Point-Alignment Corridors (RANSAC lines through GDR springs/wells/vents)",
+      "selected_for_validation": false,
+      "layers": ["DOE GDR submission 1391 wells/springs/vents CSVs (https://gdr.openei.org/submissions/1391; dist_known_fault unread)", "Native Band 17 cond_surf"],
+      "physical_signature": "Alignments of >=3 springs/warm wells/vents within a 300 m corridor over >=2 km trace blind permeable strands; score = alignment density x conductivity rank.",
+      "why_unmapped": "Blind geothermal systems lack surface fault expression but leak fluids/heat along buried structure (INGENIOUS play concept, https://gbcge.org/current-projects/ingenious/).",
+      "difference_from_repo": "Vents entered prior lanes as pixel covariates; no lane fit explicit point-alignment geometry as the primary surface. Ranked 3: in-footprint point density is low, standalone recall at 37,654 dots implausible.",
+      "non_fault_mimic": "Well/spring siting follows roads/ranches/range-front water access - cultural alignments.",
+      "expected_dti_gain": "Rank 3: high precision / very low recall; near-zero standalone HOLDOUT-DTI at full budget.",
+      "implementation_cost": "Low-Medium (~15 min).",
+      "official_data_obtainability": "OBTAINABLE - CSVs listed in research/upstream/data_manifest.json (ext_gdr_wellspring_in_footprint), github-mirrored."
+    },
+    {
+      "rank": 4,
+      "id": "H86S-4_RCSD",
+      "name": "Radiometric Provenance-Step Unmixing (GeoDAWN K/Th/U log-ratio steps)",
+      "selected_for_validation": false,
+      "layers": ["USGS GeoDAWN airborne radiometrics K/eTh/eU/TC (https://doi.org/10.5066/P93LGLVQ; ext_geodawn_rad_u8 restored c22420f7...)", "Native Band 19 slope mask"],
+      "physical_signature": "Directional jump in ln((K*U)/Th^2) across low-slope piedmont aprons (felsic-gravel vs playa-clay provenance step at a buried scarp) gated by basement/potential-field corroboration.",
+      "why_unmapped": "Buried piedmont faults juxtapose sediment provenance without topographic scarp; radiometric contrast survives burial under thin cover.",
+      "difference_from_repo": "GeoDAWN bands entered PFTE/BFRA as covariates/fusion planes; no lane used an explicit two-endmember log-ratio STEP as the primary detector. Ranked 4: shoreline/playa provenance steps are a strong mimic and Lahontan bench suppression is unbuilt.",
+      "non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches (~1330 m / ~1205 m) and fan-toe facies changes.",
+      "expected_dti_gain": "Rank 4: unknown; queued for a future lane with explicit hypsometric suppression.",
+      "implementation_cost": "Medium.",
+      "official_data_obtainability": "VIABLE_IN_SANDBOX_NOW - ext_geodawn_rad_u8.tif restored + SHA verified 2026-10-27."
+    },
+    {
+      "rank": 5,
+      "id": "H86S-5_SENT1_USMT_DEFERRED",
+      "name": "Sentinel-1 InSAR creep gradient x USMT3D phase-tensor skew",
+      "selected_for_validation": false,
+      "layers": ["NASA ASF Sentinel-1 GUNW (https://asf.alaska.edu/datasets/daac/aria-sentinel-1-gunw/)", "EarthScope USMT3D (https://ds.iris.edu/ds/products/emc-usmt3d/)", "Native Bands 7, 8, 17"],
+      "physical_signature": "90-m InSAR LOS velocity steps across creeping blind strands gated by MT phase-tensor skew |beta|>3 deg imaging deep fault feeders under conductive playas.",
+      "why_unmapped": "Aseismic creep partitions onto blind basin-floor strands invisible to 20 km GPS spacing.",
+      "difference_from_repo": "No lane has ingested InSAR or long-period MT tensors.",
+      "non_fault_mimic": "Groundwater-pumping subsidence bowls (Fallon, Mason/Diamond Valley).",
+      "expected_dti_gain": "Rank 5 (deferred): potentially high, 0.0000 in-session.",
+      "implementation_cost": "Blocked in sandbox.",
+      "official_data_obtainability": "BLOCKED_SANDBOX_EGRESS - free official US sources named above, but sandbox egress is restricted to github.com/codeload/api.github/pypi/files.pythonhosted/registry.npmjs; NOT viable this session, not proposed as viable."
+    }
+  ]
+}

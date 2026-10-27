@@ -323,6 +323,13 @@
       "context": "docs/evidence/h86r-sfg-run-card.json",
       "holdout_kind": "h86r_sfg",
       "stem": "gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros"
+    },
+    {
+      "lane": "H86S-DWPU detectability-weighted PU",
+      "card": "docs/evidence/h86s-dwpu-run-card.json",
+      "context": "docs/evidence/h86s-dwpu-run-card.json",
+      "holdout_kind": "h86s_dwpu",
+      "stem": "gems86-h86s-dwpu-37654dots-20261027T172648Z-ae0c897b-zeros"
     }
   ]
 }
