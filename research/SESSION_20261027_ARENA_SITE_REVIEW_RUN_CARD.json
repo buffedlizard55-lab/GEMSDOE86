@@ -1,0 +1,84 @@
+{
+  "schema": "gems86.site-review-run-card.v1",
+  "session": "20261027-arena-site-review",
+  "review_scope": "Documentation and generated-site ordering only. No model experiment, new raster, registry candidate or submission selector was run in this review.",
+  "hypothesis": "Previously executed H86S-DWPU posited that weighting pseudo-negative samples by fault detectability would improve blind-fault prediction. The hypothesis was falsified by its preregistered unweighted ablation; this review did not retest it.",
+  "mechanism": "The prior lane used native geophysical/terrain features and weighted negative training examples using a completeness surface derived from Bands 15 and 19. See the frozen H86S run card for exact implementation, arms, masks, canaries and evaluator provenance.",
+  "named_non_fault_process": "Unfaulted playa/playette basins can be promoted when negative evidence is down-weighted; saline playa conductivity and radiometric response may mimic hydrothermal/fault-related signals.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "PRIOR_H86S_EXPERIMENT_NOT_RERUN_IN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "value": 0.08698099974560952,
+    "ci95": [0.07074152869090211, 0.10372861475494365],
+    "control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "name": "E2_pu_unweighted_ablation",
+      "value": 0.1039,
+      "paired_delta_E1_minus_E2": -0.0169,
+      "paired_delta_ci95": [-0.0278, -0.0062]
+    },
+    "source": "../docs/evidence/h86s-dwpu-run-card.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "INHERITED_H86S_RESULTS_PLUS_CURRENT_RELEASE_AUDIT; NOT A COMPLETE REGISTRY CLEARANCE",
+    "scoped_surface_max_sampled_abs_spearman": 0.1213,
+    "scoped_worst_discrete_le_100k_dot_overlap_3px": 0.5213,
+    "overlap_vs_GEMSDOE32_H33_3px": 0.2703,
+    "literal_full_support_witness_forward_overlap_3px": 1.0,
+    "literal_threshold": 0.7,
+    "literal_rule_pass": false,
+    "complete_accessible_registry": false,
+    "source": "../docs/evidence/release-readiness.json"
+  },
+  "raster": {
+    "file": "../docs/downloads/gems86-h86s-dwpu-37654dots-20261027T172648Z-ae0c897b-zeros.tif",
+    "sha256": "123938217b733a959124578a5218c0d513e0842f2bbb4025f023ae2b829c70c9",
+    "dots": 37654
+  },
+  "validator_output": {
+    "evidence_class": "FORMAT-VALIDATION",
+    "source": "../docs/evidence/release-readiness.json",
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform_matches_sample_submission": true,
+    "footprint_no_nan": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "min": 0.0,
+    "max": 1.0,
+    "values_in_0_1": true,
+    "outside_footprint_zero": true,
+    "locally_format_valid": true,
+    "organizer_acceptance_established": false
+  },
+  "submission_name": "gems86-h86s-dwpu-37654dots-20261027T172648Z-ae0c897b-zeros",
+  "note": "H86S-DWPU detect-weighted PU 37654d HOLD 0.0870 SGMC 0.0559 ovH33 0.270; audit, selector decides",
+  "note_characters": 96,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT — H86S result falsified by ablation and literal registry overlap is 1.0",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run_in_this_review": 0,
+  "prior_h86s_experiments_run": 3,
+  "submission_slots_used": 0,
+  "site_change": {
+    "executive_page_leads_with_latest_h86s_decision": true,
+    "older_h86n_and_vfgr_labeled_historical": true,
+    "range_statement_limited_to_local_format_validation": true,
+    "all_downloads_remain_audit_only": true
+  },
+  "verification": {
+    "workspace_inputs_native_ready": false,
+    "shared_template_feature_cache_established": false,
+    "build_site": "PASS",
+    "build_site_check": "PASS",
+    "check_site": "PASS",
+    "audit_downloads": "PASS; 47 TIFFs/receipts revalidated; no scientific or slot decision",
+    "pytest": "PASS; 1108 passed, 24 skipped, 58 subtests; 48 Rasterio pending-deprecation warnings",
+    "git_diff_check": "PASS"
+  }
+}

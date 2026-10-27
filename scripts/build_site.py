@@ -42,7 +42,7 @@ def page(title: str, active: str, body: str) -> str:
 <header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a>{navigation}</nav></header>
 <main id="main">{body}</main>
 <footer><strong>Local validation ≠ organizer acceptance.</strong> No candidate authorized for a weekly slot.
-<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}/blob/main/research/SESSION_679D92E7_REVIEW.md">Live-input review &amp; next steps</a> · <a href="{REPO}">Source code</a> ·
+<a href="irregularities.html">Limitations &amp; irregularities</a> · <a href="{REPO}/blob/main/research/SESSION_20261027_ARENA_SITE_REVIEW.md">Current three-pass review &amp; next steps</a> · <a href="{REPO}">Source code</a> ·
 <a href="evidence/release-readiness.json">Machine-readable decision</a></footer></body></html>
 '''
 
@@ -667,7 +667,7 @@ def h86s_dwpu_answer(card: dict, estimator: dict, section_id: str = "h86s-dwpu")
         for k, v in card["gates"].items())
     return f'''<section id="{e(section_id)}" class="card">
 <h2>2026-10-27 NEWEST LANE (H86S-DWPU): Detectability-Weighted PU Learning — hypothesis FALSIFIED by its own ablation; automated download decision below</h2>
-<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {fp_["dots"]:,} dots, min d<sub>cat</sub> = {fp_["min_dcat_px"]:.2f} px &gt; 3.0 px, {fp_["frac_gt_1km"] * 100:.1f}% &gt; 1 km off-catalogue, format checks pass, values in [0, 1], 0 NaN/Inf — so the reported <em>“Predicted values must be in range [0, 1]”</em> portal rejection cannot occur from this file). <strong>Decision: DO NOT SUBMIT</strong> — detectability weighting lost to uniform PU weighting on both instruments (below). Safe to download for audit/reproducibility only; 0 weekly slots used.</p>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {fp_["dots"]:,} dots, min d<sub>cat</sub> = {fp_["min_dcat_px"]:.2f} px &gt; 3.0 px, {fp_["frac_gt_1km"] * 100:.1f}% &gt; 1 km off-catalogue, format checks pass, values in [0, 1], 0 NaN/Inf — the serialized raster satisfies the local [0, 1] range check, which does not establish organizer acceptance). <strong>Decision: DO NOT SUBMIT</strong> — detectability weighting lost to uniform PU weighting on both instruments (below). Safe to download for audit/reproducibility only; 0 weekly slots used.</p>
 <div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download H86S-DWPU TIFF — audit only, DO NOT SUBMIT</a>
 <a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a></div>
 <ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld): weighted E1 = <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> &lt; unweighted ablation E2 = {e2["dti"]:.4f} (paired Δ −0.0169 [−0.0278, −0.0062]) → mechanism falsified as preregistered.</li>
@@ -679,7 +679,7 @@ def h86s_dwpu_answer(card: dict, estimator: dict, section_id: str = "h86s-dwpu")
 <h3>Download-decision table — file, estimated score, uniqueness (the obvious answer)</h3>
 <div class="table-wrap"><table><thead><tr><th>File to download (audit)</th><th>Estimated / reported score</th><th>Unique vs Focus-9 lineage?</th><th>OK to submit?</th></tr></thead><tbody>
 <tr><td><code>data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (best scored overall)</td><td>0.2778 OWNER-REPORTED (past submission, not a projection)</td><td>No — it IS the reference; already submitted</td><td><strong>NO — exact duplicate if re-uploaded</strong></td></tr>
-<tr><td><code>{e(name)}.tif</code> (new this session)</td><td>Projection {proj.get("projection", 0):.3f} [{proj.get("interval_approx", [0, 0])[0]:.3f}, {proj.get("interval_approx", [0, 0])[1]:.3f}] (not a score)</td><td>Yes (scoped): ovH33 {card["uniqueness_scoped"]["overlap_vs_H33"]:.3f} &le; 0.70</td><td><strong>NO — DO NOT SUBMIT (G3/G4 FAIL)</strong></td></tr>
+<tr><td><code>{e(name)}.tif</code> (new this session)</td><td>Projection {proj.get("projection", 0):.3f} [{proj.get("interval_approx", [0, 0])[0]:.3f}, {proj.get("interval_approx", [0, 0])[1]:.3f}] (not a score)</td><td>Only scoped: ovH33 {card["uniqueness_scoped"]["overlap_vs_H33"]:.3f} &le; 0.70; full registry not cleared; literal witness overlap = 1.0</td><td><strong>NO — DO NOT SUBMIT (G3/G4 and literal uniqueness stop)</strong></td></tr>
 </tbody></table></div>
 <p><a href="evidence/h86s-dwpu-run-card.json">Full H86S-DWPU run card</a> · <a href="evidence/h86s-dwpu-fleet-estimator-20261027.json">Fleet estimator (strict matching)</a> · <a href="{REPO}/blob/main/research/SESSION_20261027_H86S_DWPU_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, hypothesis queue</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
 
@@ -1097,7 +1097,7 @@ def h86n_gsst_answer(card: dict, lt_card: dict | None = None) -> str:
             f'<a href="h86m-lt.html">Lane status</a> · <a href="evidence/h86m-lt-run-card.json">H86M-LT run card</a>.</li>'
         )
     return f'''<section class="callout" id="h86n-gsst"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: NEGATIVE)</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
-<h2>2026-10-25 Current Session (H86N-GSST): unique GeoTIFF generated &amp; machine-validated; hypothesis falsified on holdout</h2>
+<h2>2026-10-25 historical lane (H86N-GSST): research GeoTIFF generated &amp; machine-validated; hypothesis falsified on holdout</h2>
 <p><code>{e(stem)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {card["dots"]:,} binary dots in <code>{{0.0, 1.0}}</code>, <code>0</code> NaN/Inf, <code>EPSG:32611</code>, <code>3730×3292</code> @ <code>100 m</code>, <code>0</code> mapped-catalogue dots) was generated and machine-validated with zero human intervention. <strong>OK to submit: NO — DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, <code>approved_for_weekly_slot=false</code>, <code>submission_slots_used=0</code>).</p>
 <ul>
 <li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {cand["withheld_positive_pixels"]:,} withheld positives, 1,000 physical-block bootstrap draws): candidate <code>H86N_GSST</code> = <strong>{cand["dti"]:.4f} [{cand["ci95"][0]:.4f}, {cand["ci95"][1]:.4f}]</strong> vs raw gravity-slope control <code>E0_raw_grav_slope</code> = <strong>{e0["dti"]:.4f} [{e0["ci95"][0]:.4f}, {e0["ci95"][1]:.4f}]</strong> (paired Δ = <strong>{d0["delta"]:+.4f} [{d0["ci95"][0]:+.4f}, {d0["ci95"][1]:+.4f}]</strong>) and compact-curvature control <code>E2_compact_curv</code> = <strong>{e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]</strong> (paired Δ = <strong>{d2["delta"]:+.4f} [{d2["ci95"][0]:+.4f}, {d2["ci95"][1]:+.4f}]</strong>).</li>
@@ -1170,7 +1170,7 @@ def h86l_vfgr_answer(card: dict) -> str:
         f"chance halo {hit['halo_coverage']:.4f} · their dots {hit['their_dots']:,}</li>"
         for hit in hits
     )
-    return f'''<section class="callout" id="h86l-vfgr"><span class="badge bad">CURRENT SESSION: NO TIFF · DO NOT SUBMIT</span>
+    return f'''<section class="callout" id="h86l-vfgr"><span class="badge bad">HISTORICAL LANE: NO TIFF · DO NOT SUBMIT</span>
 <h2>Can this session be submitted? No.</h2>
 <p><strong>OK to submit to DrivenData: NO.</strong> No new GeoTIFF was written. <code>safe_to_submit</code> is false, <code>approved_for_weekly_slot</code> is false, and <code>submission_slots_used</code> is 0. There is no authorized filename and no note to paste.</p>
 <p>The frozen visible-fault edge residual was tested before any file was placed. Its own raw-edge control beat it. The final 37,654 dots also landed inside the 3-pixel halo of an earlier corroborated-edge raster often enough to trip the informative-overlap stop. Both facts independently forbid a submission file.</p>
@@ -1310,12 +1310,13 @@ def h86q_summary() -> str:
 <p><strong>Do not upload this file.</strong> Its partial local comparison does not meet the protocol’s full registry gate; the pre-existing full-support witness alone is a hard stop. See the <a href="{REPO}/blob/main/research/SESSION_20261026_ARENA_REVIEW.md">H86Q-BASINRIDGE audit review</a> for limitations and next steps.</p></section>'''
 
 
-def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "", vfgr_banner: str = "") -> str:
+def executive(report: dict, sources: dict, answer: str = "", review_notice: str = "", h86g_html: str = "", sacd_banner: str = "", vfgr_banner: str = "", latest_banner: str = "") -> str:
     audit_rows = "".join(f'<tr><th scope="row">{e(a["lane"])}</th><td><a href="{e(link(a["file"]))}" download>{e(Path(a["file"]).name)}</a><br><code>{e(a["sha256"])}</code></td><td>{a["bytes"]:,} bytes<br><strong>{e(a["status"])}</strong></td></tr>' for a in report["artifacts"])
     n_valid = report["locally_valid_artifacts"]
     n_total = len(report["artifacts"])
     return page("Executive summary", "executive-summary.html", f'''
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+{latest_banner}
 {vfgr_banner}
 {h86q_summary()}
 {focus9_summary()}
@@ -2350,10 +2351,11 @@ def render(root: Path = ROOT) -> dict[str, str]:
             raise ValueError("H86S-DWPU card must stay negative, falsified, slot-free, and bound to its raster")
         dwpu_est = strict_json(root / "docs/evidence/h86s-dwpu-fleet-estimator-20261027.json")
         dwpu_banner = h86s_dwpu_answer(dwpu_card, dwpu_est, section_id="h86s-dwpu-banner")
-    combined_banner = dwpu_banner + sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    historical_lane_banners = sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    combined_banner = dwpu_banner + historical_lane_banners
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
-        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
+        "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, historical_lane_banners, vfgr_banner, latest_banner=dwpu_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
         "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner, plan86m=plan86m, pfte_card=pfte_card, plan86m_bmgs=plan86m_bmgs, bmgs_card=bmgs_card, plan86m_slcq=plan86m_slcq, slcq_card=slcq_card, plan86p_tcwb=plan86p_tcwb, tcwb_card=tcwb_card, plan86q_bfra=plan86q_bfra, bfra_card=bfra_card),
