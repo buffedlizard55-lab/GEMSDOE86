@@ -475,6 +475,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86R-SFG lane result; the run card is the authoritative experiment receipt. The preregistered catalogue strike-field gate (executing queued H86J-SCO) was falsified by its own ungated ablation on the identical split (HOLDOUT-DTI E1 0.0450 [0.0342, 0.0574] < E2 0.0512; paired delta -0.0062 [-0.0167, +0.0041]) and scored SGMC-PROXY-DTI 0.0596, below GEMSDOE32 H33 (0.0937, replicated) and below this session's seeded uniform-random null (0.0754). Scoped local uniqueness passed (worst discrete <=100k overlap 0.67, ovH33 0.2387, worst sampled surface rho 0.0718) but the full upstream registry was not restored and the literal full-support witness gate still fails for every nonempty candidate. The fleet-regression projection (0.162, approx interval [0.087, 0.236], v2 strict-matched n=23 OWNER-REPORTED scores; v1's loose filename matching contaminated 5/28 labels, IR-86R-ESTIMATOR-MISMATCH-20261026) is not a score. DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86s_dwpu":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86S-DWPU lane result; the run card is the authoritative experiment receipt. Detectability-weighted PU (negatives weighted 0.05+0.95*completeness from B15/B19) was falsified by its own unweighted ablation on the identical split (HOLDOUT-DTI E1 0.0870 [0.0707, 0.1037] < E2 0.1039 [0.0877, 0.1217], paired delta -0.0169 [-0.0278, -0.0062], n=11,321) and scored SGMC-PROXY-DTI 0.0559, below GEMSDOE32 H33 (0.0937, replicated) and below the seeded uniform-random null (0.0754). Scoped local uniqueness passed (worst discrete <=100k overlap 0.5213, ovH33 0.2703, worst sampled surface rho 0.1213) but the full upstream registry was not restored and the literal full-support witness gate still fails for every nonempty candidate. The fleet-regression projection (0.130 [0.050, 0.211], strict-matched n=20 OWNER-REPORTED scores) is not a score. DO NOT SUBMIT; 0 slots used."}
     if kind == "h86q_bfra":
         e2_sc = h["all_arms"]["E2_bfra_blind_subsurface_piedmont_dcelf"]
         return {**base, "status": "CURRENT_LANE_NEGATIVE",

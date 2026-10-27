@@ -276,6 +276,12 @@
       "sha256": "b4e985310bd4b5a7ac73e56b376d4d62ea1692f8512a2f15a6d489469171c158",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-h86s-dwpu-37654dots-20261027T172648Z-ae0c897b-zeros.tif",
+      "sha256": "123938217b733a959124578a5218c0d513e0842f2bbb4025f023ae2b829c70c9",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

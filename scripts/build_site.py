@@ -654,6 +654,36 @@ def h86r_sfg_answer(card: dict, selector: dict, estimator_v2: dict, section_id: 
 <p><a href="evidence/h86r-sfg-run-card.json">Full H86R-SFG run card</a> · <a href="evidence/h86r-fleet-estimator-20261026-v2.json">Fleet estimator v2 (strict matching)</a> · <a href="evidence/h86r-selector-table-20261026.json">Selector table (77 rasters)</a> · <a href="{REPO}/blob/main/research/SESSION_20261026_H86R_SFG_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, 3-pass audit</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
 
 
+def h86s_dwpu_answer(card: dict, estimator: dict, section_id: str = "h86s-dwpu") -> str:
+    """Newest lane (H86S-DWPU): detectability-weighted PU falsified by its ablation."""
+    h = card["holdout_dti"]
+    e1, e2 = h["candidate"], h["all_arms"]["E2_pu_unweighted_ablation"]
+    sg = card["sgmc_proxy"]["scores"]
+    fp_ = card["fingerprint"]
+    name = card["submission_name"]
+    proj = estimator.get("candidate") or {}
+    gates_rows = "".join(
+        f'<tr><td><code>{e(k)}</code></td><td><strong>{"PASS" if v else "FAIL"}</strong></td></tr>'
+        for k, v in card["gates"].items())
+    return f'''<section id="{e(section_id)}" class="card">
+<h2>2026-10-27 NEWEST LANE (H86S-DWPU): Detectability-Weighted PU Learning — hypothesis FALSIFIED by its own ablation; automated download decision below</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {fp_["dots"]:,} dots, min d<sub>cat</sub> = {fp_["min_dcat_px"]:.2f} px &gt; 3.0 px, {fp_["frac_gt_1km"] * 100:.1f}% &gt; 1 km off-catalogue, format checks pass, values in [0, 1], 0 NaN/Inf — so the reported <em>“Predicted values must be in range [0, 1]”</em> portal rejection cannot occur from this file). <strong>Decision: DO NOT SUBMIT</strong> — detectability weighting lost to uniform PU weighting on both instruments (below). Safe to download for audit/reproducibility only; 0 weekly slots used.</p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download H86S-DWPU TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld): weighted E1 = <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> &lt; unweighted ablation E2 = {e2["dti"]:.4f} (paired Δ −0.0169 [−0.0278, −0.0062]) → mechanism falsified as preregistered.</li>
+<li><strong>SGMC-PROXY-DTI</strong>: E1 = {sg["E1_dwpu_weighted"]["dti"]:.4f} &lt; GEMSDOE32 H33 = {sg["GEMSDOE32_H33"]["dti"]:.4f} and &lt; seeded uniform-random null = {sg["RANDOM_NULL_seed861726"]["dti"]:.4f}.</li>
+<li><strong>Estimated live score</strong> (FLEET-REGRESSION-PROJECTION from {estimator.get("n", 0)} OWNER-REPORTED fleet scores, LOO-RMSE = {estimator.get("loo_rmse", 0):.4f}; <em>not a score</em>, never ORGANIZER-CONFIRMED): <strong>{proj.get("projection", 0):.4f} [{proj.get("interval_approx", [0, 0])[0]:.3f}, {proj.get("interval_approx", [0, 0])[1]:.3f}]</strong>. No unique candidate in this fleet is honestly projected at or above 0.2778.</li>
+<li><strong>Uniqueness (scoped, local registry)</strong>: worst discrete &le;100k-dot 3-px overlap = {card["uniqueness_scoped"]["final_dots_worst_discrete"]["forward_overlap_3px"]:.4f} &le; 0.70; overlap vs H33 = {card["uniqueness_scoped"]["overlap_vs_H33"]:.4f}; worst sampled surface Spearman = {card["uniqueness_scoped"]["surface_worst_sampled_rho"]["sampled_spearman"]:.4f} &le; 0.90. Full upstream registry not restored this session; literal full-support witness gate still fails for every nonempty raster.</li></ul>
+<h3>Automated gate table (frozen pre-run; no human inspection)</h3>
+<div class="table-wrap"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>{gates_rows}</tbody></table></div>
+<h3>Download-decision table — file, estimated score, uniqueness (the obvious answer)</h3>
+<div class="table-wrap"><table><thead><tr><th>File to download (audit)</th><th>Estimated / reported score</th><th>Unique vs Focus-9 lineage?</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><code>data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (best scored overall)</td><td>0.2778 OWNER-REPORTED (past submission, not a projection)</td><td>No — it IS the reference; already submitted</td><td><strong>NO — exact duplicate if re-uploaded</strong></td></tr>
+<tr><td><code>{e(name)}.tif</code> (new this session)</td><td>Projection {proj.get("projection", 0):.3f} [{proj.get("interval_approx", [0, 0])[0]:.3f}, {proj.get("interval_approx", [0, 0])[1]:.3f}] (not a score)</td><td>Yes (scoped): ovH33 {card["uniqueness_scoped"]["overlap_vs_H33"]:.3f} &le; 0.70</td><td><strong>NO — DO NOT SUBMIT (G3/G4 FAIL)</strong></td></tr>
+</tbody></table></div>
+<p><a href="evidence/h86s-dwpu-run-card.json">Full H86S-DWPU run card</a> · <a href="evidence/h86s-dwpu-fleet-estimator-20261027.json">Fleet estimator (strict matching)</a> · <a href="{REPO}/blob/main/research/SESSION_20261027_H86S_DWPU_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, hypothesis queue</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
+
+
 def h86q_bfra_answer(card: dict, section_id: str = "h86q-bfra") -> str:
     """Contemporaneously preregistered H86Q-BFRA lane receipt + Rev-2 Focus-9 Executive Summary."""
     h = card["holdout_dti"]
@@ -1161,7 +1191,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> This session wrote no TIFF. It used no competition slot. The newest scientific candidate is H86R-SFG: its strike-field gate lost to its ungated holdout ablation, and its TIFF is audit-only. The current release audit validates 46/46 inherited TIFFs for local format/integrity but the immutable full-support registry witness remains a hard stop; the registry scan is not complete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/research/SESSION_20261026_ARENA82184213_REVIEW.md">Current independent review</a> · <a href="#h86r-sfg-banner">H86R-SFG evidence</a>.</p>
+<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> The newest unique TIFF is H86S-DWPU (2026-10-27): detectability-weighted PU lost to its unweighted ablation (HOLDOUT-DTI 0.0870 vs 0.1039, paired CI excludes 0), so its TIFF is audit-only and no slot was used. The current release audit validates 47/47 TIFFs for local format/integrity but the immutable full-support registry witness remains a hard stop; the registry scan is not complete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/research/SESSION_20261027_H86S_DWPU_REVIEW.md">Current session review</a> · <a href="#h86s-dwpu-banner">H86S-DWPU evidence &amp; download-decision table</a>.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
 <p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
@@ -2304,7 +2334,23 @@ def render(root: Path = ROOT) -> dict[str, str]:
         selector = strict_json(root / "docs/evidence/h86r-selector-table-20261026.json")
         estimator_v2 = strict_json(root / "docs/evidence/h86r-fleet-estimator-20261026-v2.json")
         sfg_banner = h86r_sfg_answer(sfg_card, selector, estimator_v2, section_id="h86r-sfg-banner")
-    combined_banner = sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    dwpu_path = root / "docs/evidence/h86s-dwpu-run-card.json"
+    dwpu_card = strict_json(dwpu_path) if dwpu_path.is_file() else None
+    dwpu_banner = ""
+    if dwpu_card is not None:
+        dwpu_tif = root / dwpu_card["submission_file"]
+        if (dwpu_card["verdict"] != "negative" or dwpu_card["decision"] != "DO NOT SUBMIT"
+                or dwpu_card["submission_ready"] is not False
+                or dwpu_card["safe_to_submit"] is not False
+                or dwpu_card["approved_for_weekly_slot"] is not False
+                or dwpu_card["submission_slots_used"] != 0
+                or dwpu_card["experiments_run"] != 3
+                or dwpu_card["scoped_download_candidate"] is not False
+                or sha256(dwpu_tif) != dwpu_card["raster_sha256"]):
+            raise ValueError("H86S-DWPU card must stay negative, falsified, slot-free, and bound to its raster")
+        dwpu_est = strict_json(root / "docs/evidence/h86s-dwpu-fleet-estimator-20261027.json")
+        dwpu_banner = h86s_dwpu_answer(dwpu_card, dwpu_est, section_id="h86s-dwpu-banner")
+    combined_banner = dwpu_banner + sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
