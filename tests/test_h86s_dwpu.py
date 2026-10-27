@@ -62,3 +62,35 @@ def test_run_card_is_negative_unique_and_format_bound():
     assert card["uniqueness_scoped"]["overlap_vs_H33"] <= 0.70
     v = card["validator_output"]
     assert v["all_checks_passed"] and v["min"] >= 0.0 and v["max"] <= 1.0
+
+
+def test_latest_h86s_decision_precedes_stale_historical_lanes_on_executive_page():
+    from scripts import build_site
+
+    executive = build_site.render(ROOT)["docs/executive-summary.html"]
+    latest = executive.index('id="h86s-dwpu-banner"')
+    old_vfgr = executive.index('id="h86l-vfgr"')
+    old_gsst = executive.index('id="h86n-gsst"')
+    assert latest < old_gsst < old_vfgr
+    assert "DO NOT SUBMIT" in executive[latest:old_gsst]
+    assert "full registry not cleared" in executive[latest:old_gsst]
+    assert "literal witness overlap = 1.0" in executive[latest:old_gsst]
+    assert "does not establish organizer acceptance" in executive[latest:old_gsst]
+    assert "historical lane (H86N-GSST)" in executive[old_gsst:old_vfgr]
+    assert "HISTORICAL LANE: NO TIFF" in executive[old_vfgr:]
+
+
+def test_site_review_run_card_is_bound_to_negative_h86s_artifact():
+    card = json.loads((ROOT / "research/SESSION_20261027_ARENA_SITE_REVIEW_RUN_CARD.json").read_text())
+    lane_card = json.loads((ROOT / "docs/evidence/h86s-dwpu-run-card.json").read_text())
+    assert card["experiments_run_in_this_review"] == 0
+    assert card["prior_h86s_experiments_run"] == 3
+    assert card["verdict"] == "negative" and card["safe_to_submit"] is False
+    assert card["submission_slots_used"] == 0
+    assert card["raster"]["sha256"] == lane_card["raster_sha256"]
+    assert card["holdout_dti"]["evaluator_version"] == lane_card["holdout_dti"]["evaluator_version"]
+    assert card["holdout_dti"]["withheld_positives"] == lane_card["holdout_dti"]["withheld_positive_pixels"]
+    assert len(card["note"]) == card["note_characters"] <= 140
+    assert card["correlation_overlap_vs_registry"]["literal_full_support_witness_forward_overlap_3px"] == 1.0
+    assert card["validator_output"]["values_in_0_1"] is True
+    assert card["validator_output"]["organizer_acceptance_established"] is False
