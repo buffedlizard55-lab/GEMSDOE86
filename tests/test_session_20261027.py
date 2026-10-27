@@ -223,7 +223,7 @@ def test_featured_candidate_and_run_card_are_negative_not_authorization():
     table = focus9_summary(focus9.rows(ROOT))
     assert table.count("Historical TIFF — audit only") == 9
     assert "0.2710" in table and "not a complete registry scan" in table
-    card = strict_json(ROOT / "docs/evidence/session-20261027-run-card.json")
+    card = strict_json(ROOT / "docs/evidence/session-20261027-b934a117-run-card.json")
     assert card["verdict"] == "negative" and card["safe_to_submit"] is False
     assert card["raster_sha256"] is card["submission_name"] is None
     assert card["holdout_dti"]["value"] is card["holdout_dti"]["ci95"] is None
