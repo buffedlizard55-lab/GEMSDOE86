@@ -1,0 +1,52 @@
+{
+  "schema": "gems86.session-review.v1",
+  "session": "20261027-repo-review",
+  "date_utc": "2026-10-27",
+  "hypothesis": "No new experiment was authorized or run in this repository review. H86R-2_DWPU, H86R-3_KNDS, and H86R-4_VENT_RANSAC remain unexecuted registered follow-ups; the immediately preceding H86R-SFG lane was negative and had already consumed its three-arm budget.",
+  "mechanism": "Review only. Ranked follow-ups target observability-weighted PU negatives, catchment-graph knickzone back-projection, and robust geometric alignment of geothermal manifestations; no candidate surface was constructed.",
+  "named_non_fault_process": "For the top queued follow-up (detectability-weighted PU), unfaulted playa/playette basins may be falsely promoted when pseudo-negative evidence is down-weighted.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_CANDIDATE_AND_CURRENT_INPUTS_UNAVAILABLE",
+    "evaluator_version": "gems57-pooled-hide-v2 (planned only)",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "status": "NO_NEW_CANDIDATE_MEASURED",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "registry_complete": false,
+    "inherited_full_support_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "inherited_literal_forward_overlap_for_any_nonempty_candidate": 1.0,
+    "scope": "Inherited pinned witness evidence only; not a candidate measurement and not full-registry uniqueness clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "release_audit": "46/46 inherited artifacts passed local integrity/format checks; global decision remains DO NOT SUBMIT"
+  },
+  "submission_name": null,
+  "note": "Review only; no candidate TIFF or slot authorization. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "software_verification": {
+    "pytest_passed": 1101,
+    "pytest_skipped": 24,
+    "subtests_passed": 58,
+    "warnings": 48,
+    "audit_release": "PASS integrity only; DO NOT SUBMIT",
+    "build_site_check": "PASS",
+    "check_site": "PASS",
+    "audit_downloads": "PASS, 46 TIFFs/receipts revalidated",
+    "audit_workspace_inputs": "PASS inspection; native training raster and shared feature cache unavailable"
+  }
+}
