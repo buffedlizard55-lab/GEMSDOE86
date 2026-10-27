@@ -1,0 +1,101 @@
+{
+  "schema": "gems86.hypothesis-register.v1",
+  "lane": "h86t",
+  "generated_utc": "2026-10-27T00:00:00+00:00",
+  "prompt_scope_sites": ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"],
+  "best_cohort_to_beat": {
+    "site": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "reported_score": 0.2778,
+    "evidence_class": "OWNER-REPORTED (no organizer receipt located)",
+    "dots": 37654,
+    "far_field_share_gt_1km": 0.698
+  },
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86T-01",
+      "name": "Stepover/relay-zone distance-transform saddle emission",
+      "layers": ["existing_faults.tif catalogue geometry only (distance-transform saddle field)"],
+      "physical_signature": "Blind normal faults nucleate at stepovers/relay ramps between mapped catalogue fault segments. These appear as saddle points in the Euclidean distance-to-catalogue transform: high distance to any mapped trace (concealed, >1 km off catalogue) but with fault segments approaching from multiple azimuths (a stepover between two parallel segments). Weight = dist^k * (number of quadrants containing catalogue faults within a 150 m window).",
+      "why_catches_uncatalogued": "Targets concealed cross-faults and relay structures in the interiors of fault-bounded basins that no surface geologic map or USGS/INGENIOUS catalogue trace records. H33 and the D28/H27-4 lineage place dots across the catalogue collar + far field but do not specifically concentrate on multi-azimuth stepover saddles; H86Q basin-center ridges target single-direction equidistance (basin center), not the multi-segment stepover geometry.",
+      "differs_from_repo": "Differs from H86Q (basin-center distance RIDGES, single equidistance direction, d_cat > 10 px) by targeting multi-azimuth stepover SADDLES between catalogue segments. Differs from all collar-prune (PRUNE), density (CONCENTRATION), relief (RELIEF), spacing (SPACING), and trace-bridge (TRACKB) lanes which use 19-band features or catalogue-proximal rules. Uses only catalogue geometry like H86Q but a different structural position.",
+      "expected_dti_improvement": "Qualitative only — no holdout possible (training_features.tif/labels.tif absent). No numeric projection claimed.",
+      "implementation_cost": "Low — catalogue geometry only, ~100 lines, no 19-band stack, no GPU.",
+      "data_needed": "existing_faults.tif + sample_submission.tif (both present in data/bridge/). No external data required.",
+      "status": "proposed_unvalidated"
+    },
+    {
+      "rank": 2,
+      "id": "H86T-02",
+      "name": "Far-field catalogue-collar exclusion with adaptive Poisson-disc at kernel-gap scale",
+      "layers": ["existing_faults.tif catalogue geometry only"],
+      "physical_signature": "Under the 300 m DTI kernel (alpha=0.2, beta=0.8), FP_w sums every positive pixel while TP_w takes a max over each 3-px disk. Dots within 1-3 px of the catalogue (collar) contribute FP without new TP. H33 removed 2,545 collar dots at 1<d_cat<=2 px. This lane extends exclusion to d_cat <= 3 px and re-places the mass at the largest kernel gaps (>300 m from any other dot) in the far field, using adaptive Poisson-disc spacing equal to the kernel diameter.",
+      "why_catches_uncatalogued": "Places all mass >3 px off catalogue (>300 m), concentrating on unmapped ground far from catalogue traces where concealed faults live. The H33 lineage still retains ~30% of dots within 1 km; this lane pushes to ~70-75% far-field while preserving kernel coverage.",
+      "differs_from_repo": "Extends PRUNE's collar prune (1-2 px) to a hard 3 px exclusion with kernel-gap re-placement; differs from CONCENTRATION density redistribution (which keeps mass on H19-5 support) and from H86Q ridge emission (ridge-positioned, not gap-positioned).",
+      "expected_dti_improvement": "Qualitative only — no holdout possible.",
+      "implementation_cost": "Low — catalogue geometry only.",
+      "data_needed": "existing_faults.tif + sample_submission.tif (present).",
+      "status": "proposed_unvalidated"
+    },
+    {
+      "rank": 3,
+      "id": "H86T-03",
+      "name": "Multi-scale curvature proxy from DEM-derived smoothed elevation (band 12 det_elev + band 19 det_elev_slope) if feature stack restored",
+      "layers": ["Band 12 det_elev", "Band 19 det_elev_slope", "existing_faults.tif catalogue"],
+      "physical_signature": "Fault scarps produce local curvature sign changes (convex ridge / concave swale) at the 100 m DEM scale. A curvature proxy = Laplacian of smoothed det_elev combined with det_elev_slope sign, masked to off-catalogue pixels. Targets blind scarps with no mapped trace.",
+      "why_catches_uncatalogued": "Catches subtle scarps of blind faults that lack surface expression sufficient for catalogue mapping but leave a 100 m DEM curvature signature.",
+      "differs_from_repo": "Requires the 19-band training stack (absent in this checkout). Not yet implemented in any lane. Differs from relief (RELIEF) which uses tercile regime masking, not curvature sign.",
+      "expected_dti_improvement": "Qualitative only — blocked by absent feature stack.",
+      "implementation_cost": "Medium — requires shared template feature cache / training_features.tif restore (currently absent).",
+      "data_needed": "training_features.tif (bands 12, 19) — NOT present; requires scripts/download_competition_data.sh on an unrestricted machine + prepare_data.py. Blocker.",
+      "status": "blocked_absent_feature_stack"
+    },
+    {
+      "rank": 4,
+      "id": "H86T-04",
+      "name": "Total-count wash-blanket depletion asymmetry across piedmont breaks (Band 6 tc downslope one-sided)",
+      "layers": ["Band 6 tc (total count radiometrics)", "Band 12 det_elev (flow direction)"],
+      "physical_signature": "Hydrothermal alteration and fault-related clay reduce potassium/total count radiometrics. A one-sided downslope total-count depletion gradient across subtle piedmont breaks marks concealed fault-controlled alteration halos with no surface trace.",
+      "why_catches_uncatalogued": "Targets concealed alteration-bounded faults buried under piedmont alluvium — invisible to surface mapping but radiometrically expressive.",
+      "differs_from_repo": "Differs from TCWB (which used total count wash) by adding a one-sided downslope asymmetry and piedmont-break mask. Requires 19-band stack (absent).",
+      "expected_dti_improvement": "Qualitative only — blocked by absent feature stack.",
+      "implementation_cost": "Medium — requires feature stack.",
+      "data_needed": "training_features.tif (bands 6, 12) — NOT present. Blocker.",
+      "status": "blocked_absent_feature_stack"
+    },
+    {
+      "rank": 5,
+      "id": "H86T-05",
+      "name": "Vector-gravity signed basement-depth footwall hinge kink (Band 15 depth_to_base_surf x Bands 11/18 gravity)",
+      "layers": ["Band 15 depth_to_base_surf", "Band 11 iso_grav_anom_vg", "Band 18 iso_grav_anom_hg"],
+      "physical_signature": "Listric normal faults roll over at depth, creating a footwall hinge kink in basement depth. The vector-gravity-signed cross-strike derivative of depth_to_base_surf, pulled up-dip by adaptive cot(dip), targets concealed listric fault tips missing from the catalogue.",
+      "why_catches_uncatalogued": "Targets blind listric fault tips at depth with no surface rupture — structurally distinct from mapped range-front traces.",
+      "differs_from_repo": "Differs from TCWB basement kink by using vector gravity (vg + hg) admittance and cot(dip) pullback. Requires 19-band stack (absent).",
+      "expected_dti_improvement": "Qualitative only — blocked by absent feature stack.",
+      "implementation_cost": "Medium — requires feature stack.",
+      "data_needed": "training_features.tif (bands 11, 15, 18) — NOT present. Blocker.",
+      "status": "blocked_absent_feature_stack"
+    }
+  ],
+  "top_candidate": "H86T-01 (stepover/relay-zone distance-transform saddle)",
+  "validation_plan": "Validate H86T-01 on the spatially-blocked holdout BEFORE touching any weekly submission slot. Blocker: training_features.tif and labels.tif are absent from this checkout (behind DrivenData login), so HOLDOUT-DTI cannot be computed here. If the feature stack is restored on an unrestricted machine, run gems57-pooled-hide-v2 (11,321 withheld positives) with paired 95% CI, leakage canary (max AUC <= 0.90), and full-registry like-for-like uniqueness (rho <= 0.90, overlap <= 0.70).",
+  "limitations": [
+    "No DrivenData auth -> training_features.tif, labels.tif, sample_submission ground truth unavailable (verified redirect to login).",
+    "HOLDOUT-DTI cannot be computed without labels; all DTI figures in this register are qualitative, not measured.",
+    "No organizer receipt exists for any score; 0.2778 is OWNER-REPORTED, not ORGANIZER-CONFIRMED.",
+    "The literal full-support witness (17GEMSDOE) blocks every nonempty candidate under the current protocol rule (STOP_LITERAL_OVERLAP_UNSATISFIABLE).",
+    "No file in this repo is currently approved_for_weekly_slot (safe_to_submit=false, submission_slots_used=0)."
+  ],
+  "official_sources": {
+    "competition": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "leaderboard": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "rules_pdf": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "ingenious": "https://gbcge.org/current-projects/ingenious/",
+    "epsg_32611": "https://epsg.io/32611",
+    "tversky_index": "https://en.wikipedia.org/wiki/Tversky_index",
+    "gdr_openei": "https://gdr.openei.org/submissions/1391"
+  }
+}
