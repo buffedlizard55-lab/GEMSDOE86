@@ -1,6 +1,6 @@
 {
   "schema": "gems86.current-review.v1",
-  "date_utc": "2026-10-26",
+  "date_utc": "2026-10-27",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
   "hypothesis": "No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
   "mechanism": "None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
@@ -34,8 +34,8 @@
     "crs_shape_transform_match": null
   },
   "inherited_artifacts": {
-    "checked": 46,
-    "local_format_pass": 46,
+    "checked": 47,
+    "local_format_pass": 47,
     "inventory_is_live": true,
     "inventory_basis": "Re-derived from the live release report at each audit run; may contain artifacts created after date_utc. A later-dated file here is expected provenance, not a mutation of the archived 2026-10-23 outcome.",
     "files": [
@@ -268,6 +268,11 @@
         "file": "docs/downloads/gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif",
         "sha256": "b4e985310bd4b5a7ac73e56b376d4d62ea1692f8512a2f15a6d489469171c158",
         "verdict": "negative"
+      },
+      {
+        "file": "docs/downloads/gems86-h86s-dwad-dcelf-37654dots-20261027T182859Z-22804bdb-zeros.tif",
+        "sha256": "cb66bc028b149d5f895453c0573fea63ec3729d8ca25c3f5ce9b5fb215af4b0d",
+        "verdict": "negative"
       }
     ],
     "evidence": "docs/evidence/release-readiness.json",
@@ -282,8 +287,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-26T22:51:48.137024+00:00",
+  "registry_measured_utc": "2026-10-27T18:46:28.838974+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "79799c0f5f2803dab29cb665054c96ddd31fa5f2db71c926bde0577f870b1ffe",
-  "registry_measurement_sha256": "aba3376698a10a004f8789d466c47110dfac21405e3dc1e496024161c0f44f2c"
+  "release_report_sha256": "9962c32e444dc4c1d71033e9709cdcaf1c0917af0118fa15336710ab15cb0dfb",
+  "registry_measurement_sha256": "dc0a07b2da17b255dd6f51323a17a8e8bdf294b372e256630b19320f26c240f8"
 }

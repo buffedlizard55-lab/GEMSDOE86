@@ -1,0 +1,27 @@
+# H86S-DWAD Preregistration (2026-10-27)
+
+- **Lane ID:** `H86S-DWAD` (`H86S-1_DWAD` in `registry/h86s_dwad_hypotheses_20261027.json`)
+- **Timestamp (UTC):** `2026-10-27T18:10:00Z` (frozen prior to model training and holdout evaluation)
+- **Branch:** `arena/8074001e-gemsdoe86`
+- **Budget:** Strictly `<= 3` experiments (`E1`, `E2`, `E3`) and `<= 2.0` hours wall-clock; zero post-holdout tuning; `0` DrivenData submission slots spent.
+
+## 1. Scientific Motivation & Prior-Session Continuity
+
+1. **Observability-Weighted Exposure Deconfounding (`DWPU`, queued in `SESSION_20261026_H86R_SFG_REVIEW.md` §5):** Live 2026-10-27 pixel forensics on `GEMSDOE28` `s21-puhgb` (`0.0206` `OWNER-REPORTED`) proved that naive Selected-At-Random PU-HGB places `89.6%` of its `37,654` dots within `1 km` (`median d_cat = 412 m`) of already-mapped range-front faults because unmapped thick-alluvium playas are treated as high-confidence negatives. Weighting unlabeled background pixels by survey observability $w_{\text{neg}}(x) = O(x)^{1.25} \in [0.15^{1.25}, 1.0]$ built from shallow basement exposure $\exp(-Z_b^+ / 250\text{ m})$ (`depth_to_base_surf`, Band 15), topographic relief (`det_elev_slope`, Band 19), and 1-m 3DEP LiDAR swath coverage (`lidar_scarp_features_u8` `valid`) stops playette/valley-fill suppression while preserving exposed-scarp discrimination.
+2. **Downslope Canyon-Mouth Fluvial Knickzone Back-Projection (`KNDS`, queued in `SESSION_20261026_H86R_SFG_REVIEW.md` §5 & `H86Q-3_KNDS`):** Using SHA-256-verified `dem10_chi_100m_i16.tif` (`ksn_max_m0.9`, `log10_area_m2_x1000`, `zmean_m`), drainage-area-deconfounded bedrock channel steepness excess is advected `8 px` (`800 m`) and `15 px` (`1,500 m`) downslope along $-\nabla z_{\text{mean}} / \|\nabla z_{\text{mean}}\|$ onto the piedmont fan apex where `depth_to_base_surf (Band 15)` deepens basinward.
+3. **Sub-Clay-Cap Hydrothermal Feeder Disjunction:** Targets the lateral gradient margin of `cond_surf (Band 17)` ($\|\nabla \ln(1 + \text{Band 17}^+)\|$) corroborated by hydrothermal magnetite-oxidation troughs (`-laplacian` of `rtp`, Band 2), basement vector-gravity steps (`Bands 5, 11, 18`), and up-hydraulic-head DOE GDR `#1391` shallow 2-m temperature probes, silica/cation geothermometers (`dist_known_fault_px` strictly unread), and paleo-sinter/travertine vents.
+4. **Prior-Weighted Quadrant Calibration & Stepover-Preserving 6-Ring Dinkelbach-CELF (queued in `SESSION_20261026_H86Q_BFRA_REVIEW.md` §6):** Replaces forced equal-share `rank01_per_quadrant` (`25%` per quadrant, which starved Walker Lane `SW` in `H86Q-BFRA E1`) and uncalibrated raw pooling (which starved `NE` to `2.0%` in `GEMSDOE33 s33-seisdil = 0.0963`) with pooled-plus-quadrant geometric rank blending ($\alpha = 0.62$) and preserves 2-D dot survival inside positive geodetic dilatation zones (`geod_dilaterate`, Band 8 `> 0`), while capping near-tip dominance (`dual_regime_blind_floor_weight = 0.52`) so `E1` remains unique (`<= 0.70` 3-px overlap) against all discrete registry submissions.
+
+## 2. Frozen Three-Arm Experimental Design
+
+- **`E1_dwad_deconfounded_dualregime_dcelf` (Primary Candidate):** Full 24-plane zero-catalogue `DWAD` stack + observability-weighted (`gamma = 1.25`) eroded 4-fold LOQO PU-HGB + moderate-range anisotropic wing-crack/stepover continuation (`blind_floor_weight = 0.52`) + prior-weighted quadrant calibration + 2-D stepover-preserving 6-ring Bernoulli Dinkelbach-CELF (`37,654` dots, `d_min = 2.8 px`, `d_cat > 3.0 px`).
+- **`E2_dwad_zero_catalogue_blind_dcelf` (Zero-Catalogue Blind Arm & Pre-Declared Fallback Serialization Arm):** Identical 24-plane `DWAD` stack + observability-weighted PU-HGB + prior-weighted quadrant calibration + 6-ring Dinkelbach-CELF (`37,654` dots) with **zero** catalogue geometry features at inference. Serialized automatically only if `E1` trips Parallel-Run Protocol Rule 1 (`> 0.90` surface Spearman or `> 0.70` discrete `<= 90k`-dot 3-px overlap).
+- **`E3_unweighted_unadvected_local_ablation` (Matched Ablation Control):** Unweighted negatives (`gamma = 0.0`), un-advected point-local features (`chi_ksn`, raw `cond_surf`, raw `iso_grav_anom_slope`, raw `tmi_hg`, raw `det_elev_slope`, raw `tc`, plus isotropic Euclidean tip decay), and equal-share quadrant static-$E[k]$ greedy `2.8 px` spacing at `37,654` dots.
+
+## 3. Binding Validation & Governance Gates
+
+1. Single-feature symmetric leakage canary `max(AUC, 1 - AUC) <= 0.90` across every static, ablation, and fold-visible plane (`dist_known_fault_px` unread).
+2. Pre-placement continuous surface Spearman `|rho| <= 0.90` across all restored registry + Focus-9 + sibling org rasters BEFORE dot placement.
+3. Final `37,654`-dot 3-px forward overlap `<= 0.70` across all comparable discrete `<= 90k`-dot submissions in the restored 92-repo universe + Focus-9 + sibling orgs.
+4. `E1` beats matched ablation `E3` on `gems57-pooled-hide-v2` (`11,321` withheld positives) with paired bootstrap 95% CI lower bound `> 0.0`, and beats random uniform spacing null (`0.0754`) on read-only `SGMC-PROXY-DTI`.
+5. Under `AGENTS.md` Rule 5 & `IR-86-SPT-02`, the literal full-support continuous witness `17GEMSDOE` (`100%` footprint support) remains an active fail-closed repo-wide gate, so even when all scientific and discrete-uniqueness gates pass, the run card records `verdict = "negative"`, `decision = "DO NOT SUBMIT"`, `safe_to_submit = false`, and `approved_for_weekly_slot = false`.

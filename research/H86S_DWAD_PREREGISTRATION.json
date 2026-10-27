@@ -1,0 +1,59 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86S-DWAD",
+  "title": "Detectability-Weighted Exposure-Deconfounded PU + Downslope Canyon-Mouth Fluvial Knickzone Back-Projection + Sub-Clay-Cap Geothermal Feeder-Margin Disjunction + Dual-Regime Stepover-Preserving 6-Ring Dinkelbach-CELF",
+  "preregistered_utc": "2026-10-27T18:10:00Z",
+  "branch": "arena/8074001e-gemsdoe86",
+  "hypothesis_register": "registry/h86s_dwad_hypotheses_20261027.json",
+  "selected_hypothesis_id": "H86S-1_DWAD",
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_wallclock_hours": 2.0,
+    "planned_arms": [
+      {
+        "arm_id": "E1_dwad_deconfounded_dualregime_dcelf",
+        "role": "Primary candidate: 24-plane zero-catalogue DWAD physics stack + observability-weighted (gamma=1.25) eroded 4-fold LOQO PU-HGB + moderate-range anisotropic wing-crack/stepover continuation + structural-prior quadrant calibration + 2-D stepover-preserving 6-ring Bernoulli Dinkelbach-CELF at 37,654 dots (d_min=2.8 px, d_cat>3.0 px)."
+      },
+      {
+        "arm_id": "E2_dwad_zero_catalogue_blind_dcelf",
+        "role": "Pure zero-catalogue blind arm (and pre-declared fallback serialization arm if E1 triggers Rule-1 >0.70 discrete overlap): identical 24-plane DWAD physics stack + observability-weighted (gamma=1.25) eroded 4-fold LOQO PU-HGB + structural-prior quadrant calibration + 2-D stepover-preserving 6-ring Bernoulli Dinkelbach-CELF at 37,654 dots with ZERO catalogue geometry features at inference."
+      },
+      {
+        "arm_id": "E3_unweighted_unadvected_local_ablation",
+        "role": "Matched ablation control: removes observability weighting (gamma=0.0), replaces downslope-advected canyon-mouth KNDS + sub-clay-cap feeder disjunction + up-dip Salem pullback + Mohr-Coulomb conjugate slip tendency with un-advected point-local features and isotropic tip decay, and replaces prior-weighted 6-ring Dinkelbach-CELF with uniform equal-share quadrant static-E[k] greedy 2.8 px spacing at 37,654 dots."
+      }
+    ],
+    "post_holdout_tuning_prohibited": true
+  },
+  "frozen_parameters": {
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "catalogue_collar_px": 3.0,
+    "spatial_cv_erosion_px": 12,
+    "observability_gamma": 1.25,
+    "observability_floor": 0.15,
+    "knds_advection_steps_px": [8.0, 15.0],
+    "hgb_max_depth": 4,
+    "hgb_max_iter": 140,
+    "hgb_learning_rate": 0.055,
+    "hgb_min_samples_leaf": 120,
+    "hgb_l2_regularization": 8.0,
+    "dual_regime_blind_floor_weight": 0.52,
+    "quadrant_pooled_blend_alpha": 0.62,
+    "dinkelbach_outer_iters": 4
+  },
+  "shared_infrastructure": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300 m linear kernel, 11,321 withheld positive pixels)",
+    "writer": "vendor/gems57/submission_writer.py (-zeros mode, float32 in [0, 1], 0 NaN anywhere)",
+    "uniqueness": "vendor/gems57/uniqueness.py + scripts/check_h86e_registry.py"
+  },
+  "frozen_gates": {
+    "format_15_of_15_and_unit_interval": true,
+    "leakage_canary_max_sym_auc_le_0p90": true,
+    "surface_spearman_vs_registry_le_0p90": true,
+    "discrete_le_90k_3px_overlap_le_0p70": true,
+    "e1_beats_e3_paired_ci95_low_gt_0": true,
+    "sgmc_proxy_beats_random_null_0p0754": true,
+    "literal_full_support_witness_17gemsdoe_le_0p70": "EXPECTED_FAIL_CLOSED_UNDER_REPO_GOVERNANCE"
+  }
+}

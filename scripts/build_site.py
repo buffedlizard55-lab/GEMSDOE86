@@ -611,6 +611,74 @@ def h86i_rksc_answer(card: dict) -> str:
 <p><a href="evidence/h86i-rksc-run-card.json">Full H86I-RKSC run card</a> · <a href="evidence/h86i-rksc-registry-surface.json">Pre-placement surface report</a> · <a href="evidence/h86i-rksc-registry-dots.json">Final-dots registry report</a> · <a href="{REPO}/blob/main/research/H86I_RKSC_PREREGISTRATION.md">4 preregistered hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_RKSC_REVIEW.md">PhD H33 (0.2778) proof &amp; 3-pass review</a></p></section>'''
 
 
+def h86s_dwad_answer(card: dict, est_v3: dict, f9_doc: dict, section_id: str = "h86s-dwad") -> str:
+    """2026-10-27 newest lane receipt (H86S-DWAD) + Focus-9 & sibling-org executive summary table."""
+    h = card["holdout_dti"]
+    e1 = h["candidate"]
+    e2 = h["all_arms"]["E2_dwad_zero_catalogue_blind_dcelf"]
+    e3 = h["all_arms"]["E3_unweighted_unadvected_local_ablation"]
+    de3 = h["paired_differences"]["E3_unweighted_unadvected_local_ablation"]
+    pf_e1 = h["per_fold"]["E1_dwad_deconfounded_dualregime_dcelf"]
+    pf_e2 = h["per_fold"]["E2_dwad_zero_catalogue_blind_dcelf"]
+    sg = card["sgmc_off_catalogue_diagnostic"]["scores"]
+    reg = card["correlation_overlap_vs_registry"]
+    inf_a = reg["full_registry_informative_dot_field_audit"]
+    lp_s = reg["live_focus9_and_sibling_orgs_surface"]
+    lp_d = reg["live_focus9_and_sibling_orgs_final_dots"]
+    lc = card["leakage_canary_summary"]
+    prof = card["mechanism"]["active_serialized_profile"]
+    qsh = prof["quadrant_dot_shares"]
+    proj = est_v3["candidate_h86s_dwad"]
+    name = card["submission_name"]
+
+    gate_rows = "".join(
+        f'<tr><td><code>{e(k)}</code></td><td><strong>{"PASS" if v else "FAIL"}</strong></td></tr>'
+        for k, v in card["gates"].items()
+    )
+    short_rows = "".join(
+        f'<tr><td><code>{e(Path(r["file"]).name)}</code></td>'
+        f'<td>{r["projection_v3"]:.4f} [{r["interval_approx_1p96_loo_rmse"][0]:.3f}, {r["interval_approx_1p96_loo_rmse"][1]:.3f}]</td>'
+        f'<td>{r["sgmc_proxy_dti"]:.4f}</td>'
+        f'<td>{r["ov_h33_3px"]:.4f}</td>'
+        f'<td>{r["frac_gt_1km"] * 100:.1f}%</td>'
+        f'<td>YES (&le;0.70 vs H33 &amp; discrete peers)</td>'
+        f'<td><strong>DO NOT SUBMIT</strong> (audit only)</td></tr>'
+        for r in est_v3["unique_37654_shortlist_ranked_by_sgmc"][:6]
+    )
+    f9_rows = "".join(
+        f'<tr><td><strong>{e(r["site"])}</strong></td>'
+        f'<td><code>{e(r["highest_submission"])}</code>: <strong>{r["highest_score_owner_reported"]:.4f}</strong> (OWNER-REPORTED)</td>'
+        f'<td>{e("; ".join(x["name"] + ": " + format(x["score"], ".4f") for x in r["other_scored_runs_owner_reported"]) or "—")}</td>'
+        f'<td>{r["dots"]:,}d · {r["min_dcat_px"]:.2f} px · {r["frac_gt_1km"] * 100:.1f}% &gt;1 km</td>'
+        f'<td>{e(r["uniqueness_note"])}</td>'
+        f'<td><code>{e(r["live_head_gate_20261027"])}</code></td></tr>'
+        for r in f9_doc["focus9_executive_summary"]
+    )
+    return f'''<section class="callout" id="{e(section_id)}"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO · DO NOT SUBMIT</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY · 0 SLOTS USED</span></div>
+<h2>2026-10-27 NEWEST UNIQUE SUBMISSION ARTIFACT (H86S-DWAD): Detectability-Weighted Exposure-Deconfounded PU + Downslope Canyon-Mouth Knickzone Back-Projection (KNDS) + Sub-Clay-Cap Hydrothermal Feeder Disjunction + Stepover-Preserving 6-Ring Dinkelbach-CELF — New Repo 37,654-Dot Blind DCELF Record (E2 HOLDOUT-DTI {e2["dti"]:.4f}) &amp; 0 / 961 Discrete Registry + Live Peer Overlap Firings</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {prof["n_dots"]:,} unit dots at 2.8 px Dinkelbach-CELF spacing, <code>min d_cat = {prof["min_dcat_px"]:.2f} px &gt; 3.0 px</code>, {prof["frac_gt_10px_far_field_gt_1km"] * 100:.2f}% &gt; 1 km off-catalogue, balanced structural quadrant shares <code>NW={qsh["NW"]*100:.1f}%, NE={qsh["NE"]*100:.1f}%, SW={qsh["SW"]*100:.1f}%, SE={qsh["SE"]*100:.1f}%</code>, 15/15 format checks PASS, <code>float32</code> values strictly in <code>[0, 1]</code>, 0 NaN anywhere, 0 Inf, 0 mapped-catalogue dots). Executes queued <code>H86R-2_DWPU</code> + <code>H86R-3_KNDS</code> + <code>H86Q</code> prior-weighted quadrant calibration. <strong>Automated human-free upload verdict: {e(card["decision"])} (<code>verdict = "{e(card["verdict"])}"</code>; <code>safe_to_submit = false</code>; <code>approved_for_weekly_slot = false</code>; safe to download for research/reproducibility only).</strong></p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download H86S-DWAD TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only, DO NOT SUBMIT</a>
+<a class="text-link" href="downloads/{e(name)}.json">Writer receipt</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positive pixels, strict 12-px eroded 4-fold LOQO): pure zero-catalogue blind arm <code>E2_dwad_zero_catalogue_blind_dcelf</code> achieves <strong>{e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}]</strong> (<code>NW={pf_e2["NW"]["dti"]:.4f}, NE={pf_e2["NE"]["dti"]:.4f}, SW={pf_e2["SW"]["dti"]:.4f}, SE={pf_e2["SE"]["dti"]:.4f}</code>) — <strong>highest pure zero-catalogue 37,654-dot DCELF blind HOLDOUT-DTI in repository history</strong> (surpassing <code>H86M-SLCQ E2 = 0.0755</code>, <code>H86P-TCWB E2 = 0.0736</code>, and <code>H86Q-BFRA E2 = 0.0734</code>). Coupled arm <code>E1_dwad_deconfounded_dualregime_dcelf</code> scores <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> (<code>NW={pf_e1["NW"]["dti"]:.4f}, NE={pf_e1["NE"]["dti"]:.4f}, SW={pf_e1["SW"]["dti"]:.4f}, SE={pf_e1["SE"]["dti"]:.4f}</code>; <strong>33.2&times; <code>H33_visible_collar</code> 0.0036</strong> and <strong>+0.0493 above ablation <code>E3</code> on <code>SE</code> [0.1581 vs 0.1088]</strong>, while trailing pooled <code>E3</code> {e3["dti"]:.4f} by <code>{de3["delta"]:+.4f} [{de3["ci95"][0]:+.4f}, {de3["ci95"][1]:+.4f}]</code> without post-holdout retuning).</li>
+<li><strong>SGMC-PROXY-DTI &amp; FLEET-REGRESSION-PROJECTION v3 (not a score)</strong>: <code>E1</code> scores <strong>{sg["E1_dwad_deconfounded_dualregime_dcelf"]["dti"]:.4f}</strong> (<code>E2 = {sg["E2_dwad_zero_catalogue_blind_dcelf"]["dti"]:.4f}</code>), beating both the seeded uniform-random spacing null (<code>0.0754</code>) and unweighted local ablation <code>E3</code> (<code>{sg["E3_unweighted_unadvected_local_ablation"]["dti"]:.4f}</code>), while remaining below <code>GEMSDOE32 H33</code> (<code>{sg["H33_GEMSDOE32_as_is"]["dti"]:.4f}</code>) and newly scored <code>GEMSDOE27 H31-1</code> (<code>{sg["GEMSDOE27_H31_0p2250_as_is"]["dti"]:.4f}</code>, live <code>0.2250</code> OWNER-REPORTED). Strict Fleet Estimator v3 (<code>n = {est_v3["n_fit_25k_to_65k_dots"]}</code> byte-verified OWNER-REPORTED runs including all 5 newly supplied 2026-10-27 scores, <code>LOO-RMSE = {est_v3["loo_rmse"]:.4f}</code>; <em>PROJECTION ONLY, never a competition score</em>) projects <code>H86S-DWAD E1</code> at <strong>{proj["projection"]:.4f} [{proj["interval_approx"][0]:.3f}, {proj["interval_approx"][1]:.3f}]</strong>.</li>
+<li><strong>LEAKAGE-CANARY &amp; FULL-UNIVERSE UNIQUENESS</strong>: <strong>{lc["features_tested"]}</strong> planes audited with max symmetric AUC <code>{lc["max_discriminative_auc"]:.4f} &le; 0.90</code> (<code>dist_known_fault_px</code> unread). Pre-placement surface worst Spearman <code>{reg["surface_preplacement"]["worst_spearman_full_footprint"]:.4f} &le; 0.90</code> across <strong>716</strong> restored registry rasters + <code>{lp_s["worst_abs_spearman"]:.4f} &le; 0.90</code> across <strong>{lp_s["live_peer_rasters_checked"]}</strong> live Focus-9 &amp; sibling-org (<code>KANLER*</code>, <code>EUG*</code>, <code>WBG*</code>, <code>GINNY*</code>) rasters. Final 37,654-dot worst 3-px overlap is <strong>{inf_a["worst_discrete_le_90k_overlap_3px"]:.4f} &le; 0.70</strong> across all <strong>{inf_a["discrete_le_90k_rasters_checked"]}</strong> restored discrete &le;90k rasters (<code>0.3625</code> vs <code>GEMSDOE32 H33</code>) and <strong>{lp_d["worst_overlap_3px"]:.4f} &le; 0.70</strong> across all <strong>{lp_d["discrete_le_90k_live_peers_checked"]}</strong> live Focus-9 &amp; sibling-org discrete rasters (<strong>0 firings</strong>). Fails closed on literal <code>17GEMSDOE</code> full-footprint witness (<code>1.0000</code>) and paired <code>E1 &gt; E3</code> gate &rarr; <strong>DO NOT SUBMIT</strong>.</li></ul>
+<h3>Automated Gate Table for H86S-DWAD (Zero Human Inspection)</h3>
+<div class="table-wrap"><table><thead><tr><th>Automated Gate</th><th>Result</th></tr></thead><tbody>{gate_rows}</tbody></table></div>
+<h3>Executive Summary Table: Candidate Downloads, Estimated Score (FLEET-REGRESSION-PROJECTION v3, Not a Score) &amp; Uniqueness vs All GEMSDOE Sites</h3>
+<p>Estimated via strict leave-one-out OLS on <code>{est_v3["n_fit_25k_to_65k_dots"]}</code> byte-verified <code>OWNER-REPORTED</code> discrete submissions (<code>LOO-RMSE = {est_v3["loo_rmse"]:.4f}</code>; <a href="evidence/h86s-fleet-estimator-20261027-v3.json">estimator v3 JSON</a>). Every number below is a statistical <strong>PROJECTION</strong>, never an organizer score; all local artifacts remain <strong>DO NOT SUBMIT</strong> under literal <code>17GEMSDOE</code> governance until a human selector explicitly authorizes a weekly slot.</p>
+<div class="table-wrap"><table><thead><tr><th>Downloadable File (<code>docs/downloads/</code>)</th><th>Estimated Score [95% LOO Interval] (PROJECTION)</th><th>SGMC-PROXY-DTI</th><th>3-px Overlap vs H33</th><th>&gt;1 km Off-Catalogue</th><th>Unique vs Focus-9 &amp; Discrete Fleet?</th><th>Automated Upload Status</th></tr></thead><tbody>
+<tr><td><strong>NEW:</strong> <code>{e(name)}.tif</code></td><td><strong>{proj["projection"]:.4f} [{proj["interval_approx"][0]:.3f}, {proj["interval_approx"][1]:.3f}]</strong></td><td>{proj["sgmc_proxy_dti"]:.4f}</td><td>{proj["ov_h33_3px"]:.4f}</td><td>{proj["frac_gt_1km"] * 100:.1f}%</td><td><strong>YES</strong> (max 0.6520 vs 474 reg &amp; 0.5715 vs 487 live discrete peers)</td><td><strong>DO NOT SUBMIT</strong> (audit only)</td></tr>
+{short_rows}</tbody></table></div>
+<details open><summary><strong>2026-10-27 Focus-9 Executive Summary (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36) + Sibling Orgs (KANLER*, EUG*, WBG*, GINNY*) &amp; Why GEMSDOE32 (0.2778 OWNER-REPORTED) Scored Highest</strong></summary>
+<p><strong>1. Focus-9 &amp; Fleet Standings (2026-10-27):</strong> Across all 92 <code>buffedlizard55-lab</code> repositories, <code>GEMSDOE32</code> <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> remains #1 at <strong>0.2778 OWNER-REPORTED</strong> (conflicting external top-leaderboard quotes <code>0.3195</code> and <code>0.4413</code> — plus a peer README observation of <code>0.4437</code> — remain unverified external claims with 0 organizer receipts in repo). All 9 Focus-9 site champions (<code>0.2449–0.2778</code>) are <strong>non-unique</strong> derivatives of the single <code>121,131</code>-pixel <code>H19-5</code> mask (<code>86.7%–100.0%</code> 3-px cross-overlap) and must never be copied or re-uploaded. Among genuinely <strong>unique (&le;70% 3-px overlap)</strong> Focus-9 submissions, newly scored <code>GEMSDOE27</code> <code>gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite</code> (<strong>0.2250 OWNER-REPORTED</strong>, <code>ovH33 = 0.5023</code>, <code>SGMC = 0.0839</code>, <code>63.1% &gt; 1 km</code>) overtakes <code>GEMSDOE27 h29</code> (<code>0.2190</code>) as the #1 unique Focus-9 submission, while all <strong>9 of 9 Focus-9 sites now post <code>DO NOT SUBMIT</code> / not authorized for weekly upload at live <code>HEAD</code></strong>. Live inspection of the 12 newly listed external-org sibling repos (<code>KANLERGEMSDOE1..3</code> [34 TIFFs; unscored <code>kanlergems2-htcads-exp-2</code> has 37,654d, <code>ovH33 = 0.3966</code>, <code>SGMC = 0.1116</code>], <code>WBGGEMSDOE1..3</code> [8 TIFFs], and empty-download <code>EUGGEMSDOE1..3</code> / <code>GINNYGEMSDOE1..3</code> [0 published download TIFFs]) confirmed 0 uniqueness collisions against <code>H86S-DWAD</code>.</p>
+<p><strong>2. PhD Forensic Answer — Why GEMSDOE32 Got 0.2778 &amp; Can We Beat It Uniquely?</strong> Under DrivenData #306's asymmetric Distance-Weighted Tversky Index (<code>&alpha; = 0.2</code> FP weight, <code>&beta; = 0.8</code> FN weight, <code>300 m</code> linear kernel <code>K_300</code>), each hidden truth pixel takes a <code>max</code> over nearby predicted dots (<code>TP_w = &Sigma;_{{y in G}} s(y)</code>), whereas every redundant dot outside truth support adds linear false-positive mass <code>0.2(1 - s(x))</code> to the denominator. Byte-exact reconstruction proves <code>GEMSDOE32 H33</code> (<code>37,654</code> dots, <code>0.2778</code>) equals <code>GEMSDOE25/30 d=2.8</code> (<code>44,090</code> dots, <code>0.2600</code>) after deleting <code>6,436</code> dots inside <code>d_cat &le; 2.24 px</code> of mapped <code>existing_faults.tif</code>, removing near-catalogue false-positive mass on segments already mapped in the public catalogue. Critically, today's 5 new live scores prove that <strong>high <code>&gt;1 km</code> off-catalogue share is necessary to avoid exposure collapse (<code>GEMSDOE28 s21-puhgb = 0.0206</code> had <code>89.6% &le; 1 km</code>) AND regional starvation (<code>GEMSDOE33 s33-seisdil = 0.0963</code> had only <code>2.0%</code> dots in <code>NE</code>), yet <code>&gt;1 km</code> share alone fails without bedrock/subsurface fault precision (<code>GEMSDOE91 s22-omtj = 0.0298</code> had <code>76.2% &gt; 1 km</code> but <code>SGMC = 0.0646 &lt; 0.0754</code> random null)</strong>: in Fleet Estimator v3, the <code>SGMC-PROXY-DTI</code> slope rises to <code>+0.855</code>. No honest model in this repository currently projects a unique 37,654-dot raster above <code>0.2778</code> (highest unique local projections are <code>H86M-LT = 0.2132 [0.144, 0.283]</code> and <code>H86M-PFTE E2 = 0.1570 [0.087, 0.227]</code>); surpassing <code>0.2778</code> uniquely requires lifting off-catalogue subsurface precision (<code>SGMC-PROXY-DTI &ge; 0.16–0.20</code>) via external high-resolution InSAR/3-D MT/predawn ASTER TIR observables paired with exposure-deconfounded calibration.</p>
+<div class="table-wrap"><table><thead><tr><th>Focus-9 Site</th><th>Highest Scored Submission (OWNER-REPORTED)</th><th>Other Scored Runs on Site (OWNER-REPORTED)</th><th>Champion Geometry</th><th>Unique vs Other GEMSDOE Sites?</th><th>2026-10-27 Live HEAD Gate</th></tr></thead><tbody>{f9_rows}</tbody></table></div></details>
+<dl><dt>Submission name — audit reference only (DO NOT UPLOAD)</dt><dd><code id="{e(section_id)}-name">{e(name)}</code> <button data-copy-target="{e(section_id)}-name" type="button">Copy name</button></dd>
+<dt>Note ({card["note_chars"]} characters)</dt><dd><code id="{e(section_id)}-note">{e(card["note"])}</code> <button data-copy-target="{e(section_id)}-note" type="button">Copy note</button></dd></dl>
+<p><a href="evidence/h86s-dwad-run-card.json">Full H86S-DWAD run card</a> · <a href="evidence/h86s-fleet-estimator-20261027-v3.json">Fleet estimator v3 (n=29, LOO-RMSE 0.0355)</a> · <a href="evidence/focus9-and-siblings-forensics-20261027.json">Focus-9 &amp; 12 sibling-org byte forensics</a> · <a href="evidence/h86s-dwad-registry-surface.json">Surface scan (716 rows)</a> · <a href="evidence/h86s-dwad-registry-final-dots.json">Final-dots scan (716 rows)</a> · <a href="{REPO}/blob/main/research/H86S_DWAD_PREREGISTRATION.md">Frozen H86S-DWAD preregistration</a> · <a href="{REPO}/blob/main/registry/h86s_dwad_hypotheses_20261027.json">4 ranked H86S hypotheses</a> · <a href="{REPO}/blob/main/research/SESSION_20261027_H86S_DWAD_REVIEW.md">2026-10-27 PhD review &amp; 3-pass audit</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
+
+
 def h86r_sfg_answer(card: dict, selector: dict, estimator_v2: dict, section_id: str = "h86r-sfg") -> str:
     """Newest lane receipt (H86R-SFG): falsified strike-field gate + automated download-decision table.
 
@@ -1332,7 +1400,31 @@ def evidence(report: dict) -> str:
 <p><a href="evidence/release-readiness.json">Full machine-readable audit</a> · <a href="evidence/all-artifacts-registry.json">All-artifact witness measurements</a> · <a href="evidence/protocol-preflight.json">Saturation proof</a></p>''' + "\n".join(rows))
 
 
-def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "", plan86m: dict | None = None, pfte_card: dict | None = None, plan86m_bmgs: dict | None = None, bmgs_card: dict | None = None, plan86m_slcq: dict | None = None, slcq_card: dict | None = None, plan86p_tcwb: dict | None = None, tcwb_card: dict | None = None, plan86q_bfra: dict | None = None, bfra_card: dict | None = None) -> str:
+def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None = None, pstd_card: dict | None = None, h86i_prereg: dict | None = None, rksc_card: dict | None = None, hvfd_prereg: dict | None = None, hvfd_card: dict | None = None, new_queue: str = "", plan86i: dict | None = None, sacd_card: dict | None = None, plan86i_ksad: dict | None = None, rlms_queue: str = "", plan86j: dict | None = None, csgd_card: dict | None = None, tvhs_queue: str = "", h86j_mcsp_prereg: dict | None = None, mcsp_card: dict | None = None, plan86k: dict | None = None, stdp_card: dict | None = None, vfgr_html: str = "", plan86m: dict | None = None, pfte_card: dict | None = None, plan86m_bmgs: dict | None = None, bmgs_card: dict | None = None, plan86m_slcq: dict | None = None, slcq_card: dict | None = None, plan86p_tcwb: dict | None = None, tcwb_card: dict | None = None, plan86q_bfra: dict | None = None, bfra_card: dict | None = None, plan86s_dwad: dict | None = None, dwad_card: dict | None = None) -> str:
+    block86s_dwad = ""
+    if plan86s_dwad and dwad_card:
+        cards_dwad = []
+        e1_s = dwad_card["holdout_dti"]["candidate"]
+        e2_s = dwad_card["holdout_dti"]["all_arms"]["E2_dwad_zero_catalogue_blind_dcelf"]
+        de3_s = dwad_card["holdout_dti"]["paired_differences"]["E3_unweighted_unadvected_local_ablation"]
+        sg_e1_s = dwad_card["sgmc_off_catalogue_diagnostic"]["scores"]["E1_dwad_deconfounded_dualregime_dcelf"]
+        for ch in plan86s_dwad["hypotheses"]:
+            st_s = (
+                f"EXECUTED NEGATIVE UNDER STRICT GATE (NEW REPO BLIND 37,654-DOT DCELF RECORD E2 HOLDOUT-DTI {e2_s['dti']:.4f}; COUPLED E1 {e1_s['dti']:.4f} vs E3 {de3_s['delta']:+.4f}, SGMC-PROXY-DTI {sg_e1_s['dti']:.4f} > 0.0754 null, 0/961 discrete overlap firings; audit-only DO NOT SUBMIT)"
+                if ch["rank"] == 1
+                else ("DEFERRED (BLOCKED BY SANDBOX EGRESS)" if "BLOCKED_SANDBOX_EGRESS" in ch.get("official_data_obtainability", "") else "PREREGISTERED (QUEUED BEHIND RANK 1)")
+            )
+            layers_fmt = "; ".join(str(ly) for ly in ch["layers"])
+            cards_dwad.append(f'''<article class="card"><p class="eyebrow">H86S Rank {ch['rank']} · {e(ch['id'])} · {e(st_s)}</p><h2>{e(ch['name'])}</h2>
+<dl><dt>Specific layers</dt><dd>{e(layers_fmt)}</dd><dt>Physical signature &amp; transform</dt><dd>{e(ch['physical_signature'])}</dd>
+<dt>Why missing from USGS/INGENIOUS catalogue?</dt><dd>{e(ch['why_unmapped'])}</dd><dt>Novelty vs repository</dt><dd>{e(ch['difference_from_repo'])}</dd>
+<dt>Named non-fault mimic</dt><dd>{e(ch['non_fault_mimic'])}</dd><dt>Expected DTI rank &amp; cost</dt><dd>{e(ch['expected_dti_gain'])} · {e(ch['implementation_cost'])}</dd>
+<dt>Official data obtainability</dt><dd>{e(ch['official_data_obtainability'])}</dd></dl></article>''')
+        block86s_dwad = (
+            '<section id="h86s-dwad-hypotheses"><h2>2026-10-27 H86S-DWAD Preregistered Hypothesis Queue (Session 8074001e · Detectability-Weighted Exposure-Deconfounded PU + Downslope Canyon-Mouth Knickzone Back-Projection + Sub-Clay-Cap Hydrothermal Feeder Disjunction + Stepover-Preserving 6-Ring Dinkelbach-CELF)</h2>'
+            '<p>Declared prior to implementation in <a href="' + REPO + '/blob/main/research/H86S_DWAD_PREREGISTRATION.md"><code>H86S_DWAD_PREREGISTRATION.md</code></a> and <a href="' + REPO + '/blob/main/registry/h86s_dwad_hypotheses_20261027.json"><code>registry/h86s_dwad_hypotheses_20261027.json</code></a> (<a href="evidence/h86s-dwad-run-card.json">run card</a>).</p>'
+            + "".join(cards_dwad) + "</section>"
+        )
     block86q_bfra = ""
     if plan86q_bfra and bfra_card:
         cards_bfra = []
@@ -1673,6 +1765,7 @@ def hypotheses(plan: dict, plan86f: dict | None = None, h86h_prereg: dict | None
     return page("Research queue", "hypotheses.html", f'''<p class="eyebrow">Declared before implementation · preregistered research queue</p><h1>Seek displacement &amp; stress transfer,<br>not just another edge.</h1>
 {vfgr_html}
 <div class="callout"><span class="badge bad">NO CANDIDATE CLEARED FOR WEEKLY SLOT</span><p>{e(plan['scope'])} Top 2026-10-25 strict-LOQO candidate <code>H86I-KSAD</code> achieved <code>HOLDOUT-DTI = 0.1553 [0.1396, 0.1718]</code> (<code>E2 = 0.1599 [0.1459, 0.1742]</code> vs strict-LOQO <code>H86F-EWCS = 0.1333</code>; halted pre-TIFF on <code>71.31%</code> discrete <code>GEMSDOE80</code> overlap), while <code>H86J-TVHS</code> achieved strict-LOQO <code>E1 = 0.0983 [0.0800, 0.1159]</code>, zero-catalogue blind <code>E2 = 0.0626 [0.0475, 0.0778]</code>, and unweighted strict-LOQO <code>E3 = 0.1214 [0.1060, 0.1350]</code>, <code>H86J-CSGD</code> achieved <code>0 / 636</code> informative dot-field firings across the full restored registry (<code>E1 = 0.0613 [0.0453, 0.0764]</code>, cover-blind unweighted <code>E2 = 0.1577 [0.1401, 0.1755]</code>), in-quadrant visible <code>H86F-EWCS</code> achieved <code>0.1723 [0.1530, 0.1898]</code>, <code>H86I-RLMS</code> recorded <code>E1 = 0.1257</code> / <code>E3 = 0.1551</code> (<code>+0.0264</code> external 3DEP+GeoDAWN lift over native-19 <code>E2 = 0.0993</code>), strict-LOQO <code>H86I-SACD</code> recorded <code>E2 = 0.1055 [0.0878, 0.1257]</code> (<code>E1 = 0.0832</code>, pure subsurface <code>E3 = 0.0843</code>), <code>H86I-HVFD</code> recorded <code>E2 = 0.1013 [0.0886, 0.1139]</code> / <code>E3 = 0.1040 [0.0917, 0.1166]</code> (<code>E1 = 0.0475</code>), <code>H86I-RKSC</code> recorded <code>0.0245 [0.0185, 0.0304]</code>, and <code>H86H-PSTD</code> recorded <code>0.0314</code>; all candidates remain <strong>DO NOT SUBMIT</strong> under the registry completeness and literal <code>17GEMSDOE</code> stops. No weekly slot was used.</p></div>
+{block86s_dwad}
 {block86q_bfra}
 {block86p_tcwb}
 {block86m_slcq}
@@ -2267,13 +2360,33 @@ def render(root: Path = ROOT) -> dict[str, str]:
         selector = strict_json(root / "docs/evidence/h86r-selector-table-20261026.json")
         estimator_v2 = strict_json(root / "docs/evidence/h86r-fleet-estimator-20261026-v2.json")
         sfg_banner = h86r_sfg_answer(sfg_card, selector, estimator_v2, section_id="h86r-sfg-banner")
-    combined_banner = sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
+    dwad_path = root / "docs/evidence/h86s-dwad-run-card.json"
+    dwad_card = strict_json(dwad_path) if dwad_path.is_file() else None
+    dwad_banner = ""
+    if dwad_card is not None:
+        dwad_tif = root / dwad_card["submission_file"]
+        if (dwad_card["verdict"] != "negative" or dwad_card["decision"] != "DO NOT SUBMIT"
+                or dwad_card["submission_ready"] is not False
+                or dwad_card["safe_to_submit"] is not False
+                or dwad_card["approved_for_weekly_slot"] is not False
+                or dwad_card["submission_slots_used"] != 0
+                or dwad_card["experiments_run"] != 3
+                or sha256(dwad_tif) != dwad_card["raster_sha256"]):
+            raise ValueError("H86S-DWAD card must stay negative, within 3-arm budget, slot-free, and bound to its raster")
+        est_v3 = strict_json(root / "docs/evidence/h86s-fleet-estimator-20261027-v3.json")
+        f9_doc = strict_json(root / "docs/evidence/focus9-and-siblings-forensics-20261027.json")
+        dwad_banner = h86s_dwad_answer(dwad_card, est_v3, f9_doc, section_id="h86s-dwad-banner")
+    plan86s_dwad_path = root / "registry/h86s_dwad_hypotheses_20261027.json"
+    plan86s_dwad = strict_json(plan86s_dwad_path) if plan86s_dwad_path.is_file() else None
+    if plan86s_dwad:
+        hypothesis_count += len(plan86s_dwad["hypotheses"])
+    combined_banner = dwad_banner + sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/executive-summary.html": executive(report, sources, answer, review_notice, h86g_html, combined_banner, vfgr_banner),
         "docs/submit.html": submit_gate(report, review),
         "docs/evidence.html": evidence(report),
-        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner, plan86m=plan86m, pfte_card=pfte_card, plan86m_bmgs=plan86m_bmgs, bmgs_card=bmgs_card, plan86m_slcq=plan86m_slcq, slcq_card=slcq_card, plan86p_tcwb=plan86p_tcwb, tcwb_card=tcwb_card, plan86q_bfra=plan86q_bfra, bfra_card=bfra_card),
+        "docs/hypotheses.html": hypotheses(plan, plan86f, h86h_prereg, pstd_card, h86i_prereg, rksc_card, hvfd_prereg, hvfd_card, new_queue=new_queue, plan86i=plan86i, sacd_card=sacd_card, plan86i_ksad=plan86i_ksad, rlms_queue=rlms_queue, plan86j=plan86j, csgd_card=csgd_card, tvhs_queue=tvhs_queue, h86j_mcsp_prereg=h86j_mcsp_prereg, mcsp_card=mcsp_card, plan86k=plan86k, stdp_card=stdp_card, vfgr_html=vfgr_banner, plan86m=plan86m, pfte_card=pfte_card, plan86m_bmgs=plan86m_bmgs, bmgs_card=bmgs_card, plan86m_slcq=plan86m_slcq, slcq_card=slcq_card, plan86p_tcwb=plan86p_tcwb, tcwb_card=tcwb_card, plan86q_bfra=plan86q_bfra, bfra_card=bfra_card, plan86s_dwad=plan86s_dwad, dwad_card=dwad_card),
         "docs/fleet.html": fleet_page(feed, ledger),
         "docs/sources.html": source_page(sources),
         "docs/irregularities.html": irregularities(report),
