@@ -482,6 +482,13 @@ def _normalize_archived_holdout(config: dict, context: dict) -> dict:
                 "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
                 "design": h["design"],
                 "caveat": "Current H86S-DWPU lane result; the run card is the authoritative experiment receipt. Detectability-weighted PU (negatives weighted 0.05+0.95*completeness from B15/B19) was falsified by its own unweighted ablation on the identical split (HOLDOUT-DTI E1 0.0870 [0.0707, 0.1037] < E2 0.1039 [0.0877, 0.1217], paired delta -0.0169 [-0.0278, -0.0062], n=11,321) and scored SGMC-PROXY-DTI 0.0559, below GEMSDOE32 H33 (0.0937, replicated) and below the seeded uniform-random null (0.0754). Scoped local uniqueness passed (worst discrete <=100k overlap 0.5213, ovH33 0.2703, worst sampled surface rho 0.1213) but the full upstream registry was not restored and the literal full-support witness gate still fails for every nonempty candidate. The fleet-regression projection (0.130 [0.050, 0.211], strict-matched n=20 OWNER-REPORTED scores) is not a score. DO NOT SUBMIT; 0 slots used."}
+    if kind == "h86t_knds":
+        return {**base, "status": "CURRENT_LANE_NEGATIVE",
+                "evaluator_version": h["evaluator_version"],
+                "withheld_positives": h["withheld_positive_pixels"],
+                "value": h["candidate"]["dti"], "ci95": h["candidate"]["ci95"],
+                "design": h["design"],
+                "caveat": "Current H86T-KNDS lane result; the run card is the authoritative experiment receipt. Transient fluvial iso-chi knickzone downslope back-projection (executing queued H86S-2_KNDS on SHA-pinned dem10_chi_100m_i16.tif + topo_10m_derived_100m_u8.tif + Native Bands 12, 15, 18, 19 under 4-fold 12-px eroded LOQO) beat the zero-chi native baseline E3 on HOLDOUT-DTI (E1 0.0861 [0.0705, 0.1017] vs E3 0.0721 [0.0583, 0.0857], paired delta +0.0140 [-0.0027, +0.0300]), but was falsified by its own unprojected local-chi ablation E2 on both HOLDOUT-DTI (E2 0.0935 [0.0810, 0.1057], paired delta E1-E2 = -0.0074 [-0.0196, +0.0050], n=11,321) and SGMC-PROXY-DTI (E1 0.0691 vs E2 0.0904 and GEMSDOE32 H33 0.0937). Scoped local uniqueness passed (worst discrete <=100k overlap 0.5544, ovH33 0.3749, worst sampled surface rho 0.1453 across 75 rasters) while the literal full-support witness gate (17GEMSDOE) fails for every nonempty candidate. The fleet-regression projection (0.1472 [0.0667, 0.2276], strict-matched n=20 OWNER-REPORTED scores) is not a score. DO NOT SUBMIT; 0 slots used."}
     if kind == "h86q_bfra":
         e2_sc = h["all_arms"]["E2_bfra_blind_subsurface_piedmont_dcelf"]
         return {**base, "status": "CURRENT_LANE_NEGATIVE",

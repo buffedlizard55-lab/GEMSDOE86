@@ -722,6 +722,36 @@ def h86r_sfg_answer(card: dict, selector: dict, estimator_v2: dict, section_id: 
 <p><a href="evidence/h86r-sfg-run-card.json">Full H86R-SFG run card</a> · <a href="evidence/h86r-fleet-estimator-20261026-v2.json">Fleet estimator v2 (strict matching)</a> · <a href="evidence/h86r-selector-table-20261026.json">Selector table (77 rasters)</a> · <a href="{REPO}/blob/main/research/SESSION_20261026_H86R_SFG_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, 3-pass audit</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
 
 
+def h86t_knds_answer(card: dict, estimator: dict, section_id: str = "h86t-knds") -> str:
+    """Newest lane (H86T-KNDS): transient fluvial iso-chi knickzone downslope back-projection falsified by unprojected local-chi ablation."""
+    h = card["holdout_dti"]
+    e1 = h["candidate"]
+    e2 = h["all_arms"]["E2_local_chi_unprojected_ablation"]
+    e3 = h["all_arms"]["E3_native_no_chi_ablation"]
+    de2 = h["paired_differences"]["E2_local_chi_unprojected_ablation"]
+    de3 = h["paired_differences"]["E3_native_no_chi_ablation"]
+    sg = card["sgmc_proxy"]["scores"]
+    fp_ = card["fingerprint"]
+    name = card["submission_name"]
+    proj = estimator.get("candidate") or {}
+    gates_rows = "".join(
+        f'<tr><td><code>{e(k)}</code></td><td><strong>{"PASS" if v else "FAIL"}</strong></td></tr>'
+        for k, v in card["gates"].items()
+    )
+    return f'''<section id="{e(section_id)}" class="card">
+<h2>2026-10-27 NEWEST LANE (H86T-KNDS): Transient Fluvial Iso-Chi Knickzone Downslope Back-Projection — beats zero-chi native baseline (+0.0140), FALSIFIED by unprojected local-chi ablation; automated download decision below</h2>
+<p><code>{e(name)}.tif</code> (SHA-256 <code>{e(card["raster_sha256"])}</code>, {fp_["dots"]:,} dots, min d<sub>cat</sub> = {fp_["min_dcat_px"]:.2f} px &gt; 3.0 px, {fp_["frac_gt_1km"] * 100:.1f}% &gt; 1 km off-catalogue, format checks pass, values in [0, 1], 0 NaN/Inf — so the reported <em>“Predicted values must be in range [0, 1]”</em> portal rejection cannot occur from this file). <strong>Decision: DO NOT SUBMIT</strong> — while 10 m DEM fluvial &chi; physics beat the native zero-&chi; baseline E3, downslope back-projection along &minus;&nabla;z<sub>mean</sub> trailed unprojected local-&chi; ablation E2 on both instruments (below). Safe to download for audit/reproducibility only; 0 weekly slots used.</p>
+<div class="actions"><a class="btn" href="downloads/{e(name)}.tif" download>Download H86T-KNDS TIFF — audit only, DO NOT SUBMIT</a>
+<a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a></div>
+<ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld): back-projected E1 = <strong>{e1["dti"]:.4f} [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}]</strong> &gt; zero-&chi; native baseline E3 = {e3["dti"]:.4f} (paired &Delta; {de3["delta"]:+.4f} [{de3["ci95"][0]:+.4f}, {de3["ci95"][1]:+.4f}]), but &lt; unprojected local-&chi; ablation E2 = {e2["dti"]:.4f} [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}] (paired &Delta; {de2["delta"]:+.4f} [{de2["ci95"][0]:+.4f}, {de2["ci95"][1]:+.4f}]) &rarr; downslope back-projection falsified as preregistered.</li>
+<li><strong>SGMC-PROXY-DTI</strong> (62,122 off-catalogue SGMC pixels): E1 = {sg["E1_knds_backprojected_loqo"]["dti"]:.4f} vs unprojected local-&chi; E2 = <strong>{sg["E2_local_chi_unprojected_ablation"]["dti"]:.4f}</strong> (96.5% of GEMSDOE32 H33 = {sg["GEMSDOE32_H33"]["dti"]:.4f}) and native E3 = {sg["E3_native_no_chi_ablation"]["dti"]:.4f}.</li>
+<li><strong>Estimated live score</strong> (FLEET-REGRESSION-PROJECTION from {estimator.get("n", 0)} OWNER-REPORTED fleet scores, LOO-RMSE = {estimator.get("loo_rmse", 0):.4f}; <em>not a score</em>, never ORGANIZER-CONFIRMED): <strong>{proj.get("projection", 0):.4f} [{proj.get("interval_approx", [0, 0])[0]:.3f}, {proj.get("interval_approx", [0, 0])[1]:.3f}]</strong>.</li>
+<li><strong>Uniqueness (scoped, local registry, 75 rasters)</strong>: worst discrete &le;100k-dot 3-px overlap = {card["uniqueness_scoped"]["final_dots_worst_discrete"]["forward_overlap_3px"]:.4f} &le; 0.70; overlap vs H33 = {card["uniqueness_scoped"]["overlap_vs_H33"]:.4f}; worst sampled surface Spearman = {card["uniqueness_scoped"]["surface_worst_sampled_rho"]["sampled_spearman"]:.4f} &le; 0.90. Literal full-support witness gate (17GEMSDOE) still fails for every nonempty raster.</li></ul>
+<h3>Automated gate table (frozen pre-run; no human inspection)</h3>
+<div class="table-wrap"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>{gates_rows}</tbody></table></div>
+<p><a href="evidence/h86t-knds-run-card.json">Full H86T-KNDS run card</a> · <a href="evidence/h86t-knds-fleet-estimator-20261027.json">Fleet estimator</a> · <a href="{REPO}/blob/main/research/SESSION_20261027_H86T_KNDS_REVIEW.md">Session review: Focus-9 executive summary, why 0.2778 happened, 4 ranked hypotheses &amp; H86T-KNDS results</a> · <a href="{REPO}/blob/main/registry/h86t_hypotheses_20261027.json">H86T hypothesis queue</a> · <a href="executive-summary.html">How to submit on DrivenData</a></p></section>'''
+
+
 def h86s_dwpu_answer(card: dict, estimator: dict, section_id: str = "h86s-dwpu") -> str:
     """Newest lane (H86S-DWPU): detectability-weighted PU falsified by its ablation."""
     h = card["holdout_dti"]
@@ -1259,7 +1289,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> The newest unique TIFF is H86S-DWPU (2026-10-27): detectability-weighted PU lost to its unweighted ablation (HOLDOUT-DTI 0.0870 vs 0.1039, paired CI excludes 0), so its TIFF is audit-only and no slot was used. The current release audit validates 47/47 TIFFs for local format/integrity but the immutable full-support registry witness remains a hard stop; the registry scan is not complete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/research/SESSION_20261027_H86S_DWPU_REVIEW.md">Current session review</a> · <a href="#h86s-dwpu-banner">H86S-DWPU evidence &amp; download-decision table</a>.</p>
+<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> The newest unique TIFFs are H86T-KNDS (2026-10-27, transient fluvial iso-&chi; knickzone downslope back-projection: HOLDOUT-DTI 0.0861 vs unprojected local-&chi; ablation 0.0935 and zero-&chi; native baseline 0.0721) and H86S-DWPU (2026-10-27, detectability-weighted PU: HOLDOUT-DTI 0.0870 vs unweighted 0.1039); both are audit-only and no slot was used. The current release audit validates {report['locally_valid_artifacts']}/{n} TIFFs for local format/integrity but the immutable full-support registry witness remains a hard stop; the registry scan is not complete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/research/SESSION_20261027_H86T_KNDS_REVIEW.md">Current session review (H86T-KNDS)</a> · <a href="#h86t-knds-banner">H86T-KNDS evidence</a> · <a href="#h86s-dwpu-banner">H86S-DWPU evidence &amp; download-decision table</a>.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
 <p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
@@ -2464,8 +2494,28 @@ def render(root: Path = ROOT) -> dict[str, str]:
     plan86s_dwad = strict_json(plan86s_dwad_path) if plan86s_dwad_path.is_file() else None
     if plan86s_dwad:
         hypothesis_count += len(plan86s_dwad["hypotheses"])
+    knds_path = root / "docs/evidence/h86t-knds-run-card.json"
+    knds_card = strict_json(knds_path) if knds_path.is_file() else None
+    knds_banner = ""
+    if knds_card is not None:
+        knds_tif = root / knds_card["submission_file"]
+        if (knds_card["verdict"] != "negative" or knds_card["decision"] != "DO NOT SUBMIT"
+                or knds_card["submission_ready"] is not False
+                or knds_card["safe_to_submit"] is not False
+                or knds_card["approved_for_weekly_slot"] is not False
+                or knds_card["submission_slots_used"] != 0
+                or knds_card["experiments_run"] != 3
+                or knds_card["scoped_download_candidate"] is not False
+                or sha256(knds_tif) != knds_card["raster_sha256"]):
+            raise ValueError("H86T-KNDS card must stay negative, falsified, slot-free, and bound to its raster")
+        knds_est = strict_json(root / "docs/evidence/h86t-knds-fleet-estimator-20261027.json")
+        knds_banner = h86t_knds_answer(knds_card, knds_est, section_id="h86t-knds-banner")
+    plan86t_path = root / "registry/h86t_hypotheses_20261027.json"
+    plan86t = strict_json(plan86t_path) if plan86t_path.is_file() else None
+    if plan86t:
+        hypothesis_count += len(plan86t["hypotheses"])
     historical_lane_banners = sfg_banner + bfra_banner + tcwb_banner + slcq_banner + bmgs_banner + pfte_banner + stdp_banner + mcsp_banner + tvhs_banner + csgd_banner + sacd_banner
-    latest_combined = dwad_banner + dwpu_banner
+    latest_combined = knds_banner + dwad_banner + dwpu_banner
     combined_banner = latest_combined + historical_lane_banners
     return {
         "docs/index.html": home(report, feed, registry, review, hypothesis_count, answer, review_notice, h86g_html, combined_banner, vfgr_banner),

@@ -337,6 +337,13 @@
       "context": "docs/evidence/h86s-dwad-run-card.json",
       "holdout_kind": "h86s_dwad",
       "stem": "gems86-h86s-dwad-dcelf-37654dots-20261027T182859Z-22804bdb-zeros"
+    },
+    {
+      "lane": "H86T-KNDS transient fluvial iso-chi knickzone downslope back-projection & piedmont hinge reception",
+      "card": "docs/evidence/h86t-knds-run-card.json",
+      "context": "docs/evidence/h86t-knds-run-card.json",
+      "holdout_kind": "h86t_knds",
+      "stem": "gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros"
     }
   ]
 }

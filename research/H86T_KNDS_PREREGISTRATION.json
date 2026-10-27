@@ -1,0 +1,70 @@
+{
+  "schema": "gems86.h86t.preregistration.v1",
+  "lane_id": "H86T-KNDS",
+  "frozen_utc": "2026-10-27T19:03:30Z",
+  "session_branch": "arena/70644855-gemsdoe86",
+  "hypothesis_id": "H86T-1_KNDS",
+  "title": "Transient Fluvial Iso-Chi Knickzone Downslope Back-Projection & Piedmont Hinge Reception (H86T-KNDS)",
+  "mechanism": "Under Perron & Royden (2013) integral stream-power theory, a range-front normal fault slip increment produces a transient channel-steepness knickzone (elevated ksn_max_m0.9 and positive chi-step step_max_x1000 - step_min_x1000) that migrates upstream into the footwall at equal chi across parallel canyons of differing drainage area A, sitting at staggered Euclidean distances L(A) ~ A^(m/n) upstream of the actual buried range-front fault. H86T-KNDS applies a Pleistocene Lake Lahontan highstand hypsometric notch (1315-1355 m) and symmetric-Bouguer sill veto, projects footwall knickzone intensity downslope along the unit canyon gradient -grad(zmean_m)/||grad(zmean_m)|| across multi-scale area-weighted shifts s in {4, 8, 14, 22} px onto the piedmont basement-hinge reception zone (50 m < Z_b < 800 m, gated by horizontal gravity gradient Band 18), and filters for cross-canyon along-strike iso-chi coherence.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shorelines (~1330 m highstand bench) and resistant Tertiary basalt/welded-tuff caprock ledges (suppressed via the 1315-1355 m Lahontan hypsometric notch filter and symmetric Bouguer gravity ridge veto).",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "collar_px": 3.0,
+    "random_seed": 20
+  },
+  "inputs": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "dem10_chi_100m_i16.tif": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+    "topo_10m_derived_100m_u8.tif": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+    "derived_sgmc_faults_100m_u8.tif_diagnostic_only": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+  },
+  "knds_backprojected_features": [
+    "knds_deconfounded_knick",
+    "knds_piedmont_hinge_gate",
+    "knds_backproj_piedmont",
+    "knds_isochi_strike_coh"
+  ],
+  "local_chi_features": [
+    "chi_ksn_norm",
+    "chi_step_pos",
+    "chi_log_area",
+    "topo10_slope_aspect_coh"
+  ],
+  "native_baseline_features": [
+    "tmi_hg",
+    "grav_hg",
+    "elev_relief",
+    "dem_slope",
+    "rtp_tilt_grad",
+    "mt_2km_edge",
+    "sed_grad",
+    "vis_d_norm",
+    "vis_strike_align"
+  ],
+  "arms": [
+    {
+      "id": "E1_knds_backprojected_loqo",
+      "role": "Primary candidate: 4-fold 12-px eroded LOQO two-regime HGB PU using all 17 features (4 KNDS back-projected iso-chi features + 4 local chi/10m-topo features + 9 native/fold-visible baseline features), 37,654 dots at 2.8 px Poisson-disk outside >3.0 px collar."
+    },
+    {
+      "id": "E2_local_chi_unprojected_ablation",
+      "role": "Unprojected local-chi ablation control: identical 4-fold eroded LOQO two-regime HGB PU with the 4 downslope back-projected KNDS features removed (13 features: 4 local chi/10m-topo + 9 native/fold-visible baseline), 37,654 dots at 2.8 px Poisson-disk outside >3.0 px collar."
+    },
+    {
+      "id": "E3_native_no_chi_ablation",
+      "role": "Zero-chi native baseline control: identical 4-fold eroded LOQO two-regime HGB PU using only the 9 native/fold-visible baseline features (zero external chi/10m-DEM features), 37,654 dots at 2.8 px Poisson-disk outside >3.0 px collar."
+    }
+  ],
+  "promotion_gates": {
+    "G1_leakage_canary": "max single-feature discriminative AUC = max(AUC, 1-AUC) <= 0.90 across all 17 features on withheld positives.",
+    "G2_uniqueness_scoped": "surface Spearman |rho| <= 0.90 and discrete <=100k-dot 3-px forward overlap <= 0.70 across all locally restored registry rasters.",
+    "G3_holdout_paired_vs_E2": "E1 HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld) > E2 with 1,000-draw 20 km block-bootstrap 95% paired CI strictly > 0, AND E1 > 0.1727 (repo strict-LOQO record H86P-TCWB).",
+    "G4_sgmc_proxy_dti": "E1 SGMC-PROXY-DTI (62,122 off-catalogue SGMC pixels) > H33 (0.0937) and > E2.",
+    "G5_literal_witness_gate": "Full-support continuous witness 17GEMSDOE forward overlap <= 0.70 (known structural blocker: 1.0000 > 0.70 forces safe_to_submit=false and verdict='negative' even if G1-G4 pass)."
+  }
+}

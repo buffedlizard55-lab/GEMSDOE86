@@ -1,0 +1,76 @@
+{
+  "schema": "gems86.h86t.hypotheses.v1",
+  "created_utc": "2026-10-27T19:03:00Z",
+  "session_branch": "arena/70644855-gemsdoe86",
+  "evidence_boundary": "Preregistered candidate hypotheses ranked before executing H86T-KNDS. Expected DTI gains are qualitative/bounded priors, never measured scores. Every holdout result is recorded only after execution in docs/evidence/h86t-knds-run-card.json.",
+  "experiments_run_at_registration": 0,
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H86T-1_KNDS",
+      "title": "Transient Fluvial Iso-Chi Knickzone Downslope Back-Projection & Piedmont Hinge Reception (H86T-KNDS)",
+      "status": "SELECTED_FOR_EXECUTION_THIS_SESSION",
+      "layers_involved": [
+        "External SHA-pinned .cache/external/dem10_chi_100m_i16.tif (sha256 8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5: Band 1 step_max_x1000, Band 2 step_min_x1000, Band 3 ksn_max_m0.9, Band 4 log10_area_m2_x1000, Band 5 zmean_m)",
+        "External SHA-pinned .cache/external/topo_10m_derived_100m_u8.tif (sha256 a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4: Band 1 slope_p90, Band 7 aspect_coherence)",
+        "Native Band 12 (gravity_bouguer), Band 15 (gravity_depth_to_basement), Band 18 (gravity_hg), Band 19 (dem_slope)",
+        "Native corroboration baseline: Band 2 (magnetic_rtp), Band 3 (magnetic_tmi_hg), Band 5 (dem_elevation_rel), Band 16 (mt_resistivity_2km)"
+      ],
+      "physical_signature": "Under Perron & Royden (2013) integral stream-power theory, a range-front normal fault slip pulse creates a transient channel-steepness knickzone (elevated ksn_max_m0.9 and positive chi-step step_max_x1000 - step_min_x1000) that migrates upstream into the footwall at equal chi across parallel canyons of differing drainage area A, sitting at staggered Euclidean distances L(A) ~ A^(m/n) upstream of the actual range-front fault. H86T-KNDS applies a Lahontan shoreline hypsometric notch (suppressing 1315-1355 m highstand wave-cut benches) and a symmetric-Bouguer sill veto, then projects footwall knickzone intensity downslope along the unit canyon gradient -grad(zmean_m)/||grad(zmean_m)|| across multi-scale area-weighted shifts s in {4, 8, 14, 22} px onto the piedmont basement-hinge reception zone (50 m < Z_b < 800 m, gated by horizontal gravity gradient Band 18) and filters for along-strike iso-chi coherence across adjacent canyons.",
+      "why_unmapped_in_catalogue": "USGS QFFD and INGENIOUS aerial-photo mapping trace continuous Euclidean scarps at the range front. Where Holocene alluvial fan progradation buries the active range-front piedmont fault trace, the surface scarp disappears, while the tectonic slip signal survives 0.4-2.2 km upstream inside bedrock footwall canyons at area-staggered Euclidean positions that look non-collinear in map view.",
+      "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shorelines (~1330 m highstand bench) and resistant Tertiary basalt/welded-tuff caprock ledges (suppressed via the 1315-1355 m Lahontan hypsometric notch filter and symmetric Bouguer gravity ridge veto).",
+      "difference_from_repo": "H86C-KSLB, H86I-KSAD, and H86I-RLMS evaluated ksn_max_m0.9 locally at pixel (y, x), placing anomaly mass inside footwall canyons 0.5-2 km upslope of the actual range-front fault trace (outside the 300 m DTI kernel). H86T-KNDS is the first lane in GEMSDOE86 to back-project footwall chi/ksn knickzones down-canyon along -grad(zmean_m) by drainage-area-scaled distances onto the piedmont gravity-hinge reception zone, tested directly against an unprojected local-chi ablation (E2) and a zero-chi native baseline (E3).",
+      "expected_dti_improvement_qualitative": "Highest among low-cost untried geologic mechanisms: directly bridges the 0.4-2.2 km geometric offset between upstream footwall fluvial knickpoints and buried piedmont range-front faults within the 300 m DTI tolerance cone.",
+      "implementation_cost": "Low (~25s CPU runtime; all required USGS 3DEP 10 m chi and native bands are local and SHA-256 verified)."
+    },
+    {
+      "rank": 2,
+      "id": "H86T-2_VENT_RANSAC",
+      "title": "Geothermal Manifestation Multi-Point Azimuthal Corridor Graph (VENT-RANSAC)",
+      "status": "NOT_RUN_QUEUED_RANK_2",
+      "layers_involved": [
+        "External SHA-pinned GDR #1391 gdr_wellspring_in_footprint.csv (sha256 122718e6..., dist_known_fault_px strictly excluded), gdr_volcanic_vents_in_footprint.csv (sha256 f91bafba...), paleo_geothermal_regional.zip (sha256 faffcf69...), 2m_temperature_probe_INGENIOUS_regional_data.zip (sha256 1301f70d...)",
+        "External SHA-pinned tiger_road_distance_m.tif (sha256 e5350423..., road-sampling bias control)",
+        "Native Band 2 (magnetic_rtp), Band 16 (mt_resistivity_2km), Band 17 (heatflow), Band 18 (gravity_hg)"
+      ],
+      "physical_signature": "Constructs an oriented collinearity graph over thermal springs/wells (T > 35 C), 2-m temperature probe anomalies, paleo-sinter/tufa mounds, and Quaternary volcanic vents: triplets of thermal manifestations within 15 km that are collinear within +/-8 deg AND aligned within +/-12 deg of local potential-field/MT structural strike project a narrow 300 m corridor connecting the vents across unmapped step-overs.",
+      "why_unmapped_in_catalogue": "Blind geothermal upwelling systems in sediment-filled basins (e.g., Carson Sink, Dixie Valley, Humboldt structural zone) lack surface fault scarps but leak热 fluids and deposit travertine/sinter beads along unmapped dilatational fault strands.",
+      "named_non_fault_mimic": "Topographic-low playa-margin artesian spring lines and US-highway/railroad drill-access corridors (suppressed via TIGER road-parallelism veto and iso-elevation contour veto).",
+      "difference_from_repo": "H86I-HVFD and H86K-STDP rasterized radial Gaussian halos or up-hydraulic-head shifts around individual GDR-1391 points; no lane in GEMSDOE86 has built a multi-point azimuthal collinearity corridor graph linking triplets of thermal manifestations along geophysical strike.",
+      "expected_dti_improvement_qualitative": "Medium: high precision on blind geothermal basin step-overs, but spatially sparse outside known thermal districts.",
+      "implementation_cost": "Low-Medium (~30s CPU runtime; all GDR-1391 CSV/ZIP pins are local and SHA-256 verified)."
+    },
+    {
+      "rank": 3,
+      "id": "H86T-3_RCSD",
+      "title": "Radiometric Provenance-Step & Alluvial Fan Apex Dislocation (RCSD)",
+      "status": "NOT_RUN_QUEUED_RANK_3",
+      "layers_involved": [
+        "External SHA-pinned USGS GeoDAWN geodawn_rad_u8.tif (sha256 c22420f7...: K, eTh, eU, TC) and geodawn_extensions_u8.tif (sha256 a35a9c6d...)",
+        "External SHA-pinned acquisition_block_id_100m.tif (sha256 2c0785c4..., survey-seam mask)",
+        "Native Band 5 (dem_elevation_rel), Band 6 (radiometric_tc), Band 15 (gravity_depth_to_basement), Band 19 (dem_slope)"
+      ],
+      "physical_signature": "Directional step-filter applied to Aitchison log-ratios ln(K/eTh) and ln(eU/eTh) specifically perpendicular to the downslope alluvial fan transport vector grad(DEM), isolating sharp cross-fan geochemical provenance steps and fault-controlled potassic/illite alteration halos while subtracting along-fan gravitational sorting trends.",
+      "why_unmapped_in_catalogue": "Active intrabasin and piedmont strike-slip/oblique faults offset alluvial fan lobes derived from contrasting footwall lithologies (e.g., Mesozoic granodiorite vs Cenozoic rhyolite/andesite) without preserving a topographic scarp.",
+      "named_non_fault_mimic": "Non-tectonic depositional contact between adjacent drainage fan lobes and USGS GeoDAWN airborne survey flight-block boundaries (controlled via acquisition_block_id_100m.tif seam veto and watershed confluence boundary suppression).",
+      "difference_from_repo": "RMRB-86, H86I-RKSC, H86P-TCWB, and H86Q-BFRA used isotropic radiometric gradients, total-count downslope wash asymmetry, or pointwise K*U/Th^2 ratios; none decomposed the radiometric log-ratio gradient into orthogonal vs parallel components relative to the downslope fan transport vector.",
+      "expected_dti_improvement_qualitative": "Medium: targets unmapped intrabasin piedmont faults in GeoDAWN coverage, bounded by shallow regolith mixing.",
+      "implementation_cost": "Low (~25s CPU runtime; GeoDAWN radiometric grids and seam masks are local and SHA-256 verified)."
+    },
+    {
+      "rank": 4,
+      "id": "H86T-4_SISM_COULOMB",
+      "title": "Off-Catalogue Microseismic Shear-Dilatancy & Crustal Conductivity-Wall Conjunction (SISM-COULOMB)",
+      "status": "NOT_RUN_QUEUED_RANK_4",
+      "layers_involved": [
+        "Native Band 4 (geod_2ndinv), Band 7 (earthquake_density), Band 8 (geod_dilaterate), Band 10 (geod_maxshear), Band 16 (mt_resistivity_2km), Band 18 (gravity_hg)"
+      ],
+      "physical_signature": "Anisotropic ridge of the log-product of microseismic catalog density (Band 7) and transtensional shear-dilatancy partitioning (Band 10 * relu(Band 8)) projected onto the steep lateral gradient of 2 km magnetotelluric resistivity (|grad(Band 16)|) and horizontal gravity gradient (Band 18).",
+      "why_unmapped_in_catalogue": "Incipient or distributed Walker Lane and Central Nevada Seismic Belt strike-slip/transtensional transfer zones accommodate active seismic swarm release and crustal fluid ascent along deep MT resistivity walls before coalescing into a mapped through-going Quaternary surface scarp.",
+      "named_non_fault_mimic": "Geothermal injection/production microseismic clusters and coarse 50 km GPS interpolation radial bullseyes (controlled via Hessian aspect-ratio anisotropy filter requiring L1/L2 > 3.0).",
+      "difference_from_repo": "GDSC (PR #145) used geod_2ndinv * dilaterate without seismicity or MT walls; H86N-EQL (PR #168) tested standalone earthquake-density Hessian anisotropy without geodetic strain or MT resistivity walls; H86M-CNT (PR #157) tested MT conductivity necks without microseismic or gravity-wall localization.",
+      "expected_dti_improvement_qualitative": "Low-Medium:Band 7 and Band 8 have coarse native kernel smoothing (~5-20 km), requiring sharp Band 18/Band 16 structural localization to resolve within the 300 m DTI kernel.",
+      "implementation_cost": "Low (~20s CPU runtime; 100% native bands)."
+    }
+  ]
+}
