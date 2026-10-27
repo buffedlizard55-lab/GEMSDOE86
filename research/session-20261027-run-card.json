@@ -1,0 +1,60 @@
+{
+  "schema": "gems86.session-run-card.v1",
+  "date_utc": "2026-10-27",
+  "branch": "arena/47135c6b-gemsdoe86",
+  "hypothesis": "No method was selected or tested. Three unrun candidates were ranked in research/SESSION_20261027_REVIEW.md; no single method paragraph was assigned.",
+  "mechanism": "No candidate surface was constructed. Review-only ranking covers detectability-weighted PU, cross-catchment chi-knickzone alignment, and geothermal manifestation point-alignment with conductance corroboration.",
+  "named_non_fault_process": "No process tested; candidate-specific mimics are listed in the review. No experiment was run.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED_AND_SHARED_CACHE_MISSING",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NO_NEW_CANDIDATE_SURFACE_OR_DOTS",
+    "preplacement_rank_correlation": null,
+    "final_dot_overlap": null,
+    "historical_witness_direct_support_overlap": 1.0,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "literal_limit": 0.70,
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "scope": "Inherited full-support witness from docs/evidence/latest-review-run-card.json; a negative stop, not a new-candidate measurement or complete-registry uniqueness clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": "No candidate file was created; no file is authorized to submit.",
+  "submission_note_characters": 58,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "new_candidate_score_estimate": null,
+  "owner_reported_h33_score": {
+    "value": 0.2778,
+    "evidence_class": "OWNER-REPORTED",
+    "source": "registry/prior_scores.csv",
+    "organizer_confirmed": false
+  },
+  "current_input_audit": {
+    "training_features_tif": "MISSING",
+    "native_prepared_bands": "MISSING",
+    "shared_template_feature_stack": "MISSING",
+    "existing_faults_tif": "HASH_VERIFIED",
+    "sample_submission_tif": "HASH_VERIFIED"
+  },
+  "validation_commands": {
+    "audit_workspace_inputs": "PASS - blockers reported",
+    "audit_release": "PASS - 46 artifacts format/integrity valid, release decision DO NOT SUBMIT",
+    "pytest": "PASS - 1102 passed, 24 skipped, 48 warnings, 58 subtests"
+  }
+}

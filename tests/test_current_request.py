@@ -105,6 +105,18 @@ def test_default_pipeline_audits_all_artifacts_without_selecting_latest_or_train
     assert "build_submission.py" not in workflow
 
 
+def test_focus9_summary_corrects_gemsdoe28_best_and_marks_historical_rows_not_submit_ready():
+    page = (ROOT / "docs/executive-summary.html").read_text()
+    assert "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif" in page
+    assert "<strong>0.2710</strong>" in page
+    assert "Best scored GEMSDOE28 row; H27-4 is 0.2708" in page
+    assert "Unique vs Focus-9 / H33?" in page
+    assert "measured 3-px overlap with H33" in page
+    assert "Not estimable: no new eligible raster" in page
+    assert "NO FILE IS CLEARED TO DOWNLOAD AND SUBMIT" in page
+    assert "OWNER-REPORTED" in page
+
+
 def test_current_review_and_readme_deliverable_links_exist():
     readme = (ROOT / "README.md").read_text().split("<!-- CURRENT_REQUEST_20261024_START -->", 1)[0]
     for relative in re.findall(r"\]\(([^():#\s]+)(?:#[^)]*)?\)", readme):
