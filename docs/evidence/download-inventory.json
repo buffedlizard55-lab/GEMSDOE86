@@ -276,6 +276,12 @@
       "sha256": "b4e985310bd4b5a7ac73e56b376d4d62ea1692f8512a2f15a6d489469171c158",
       "status": "DO NOT SUBMIT",
       "approved_for_weekly_slot": false
+    },
+    {
+      "file": "docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.tif",
+      "sha256": "c80f777c3a7880e9f0054d99a68f4ed1967ffb174e60f3d06c6e2637926c47c1",
+      "status": "DO NOT SUBMIT",
+      "approved_for_weekly_slot": false
     }
   ]
 }

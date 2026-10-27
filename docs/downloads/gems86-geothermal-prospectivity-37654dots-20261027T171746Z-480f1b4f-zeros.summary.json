@@ -1,0 +1,209 @@
+{
+  "schema": "gems86.geothermal-prospectivity-submission.v1",
+  "name": "gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros",
+  "note": "H86 geothermal prospectivity (grav-grad x radiometric TC) 2-8px collar 37654d; audit-only, holdout not computed",
+  "note_chars": 111,
+  "file": "/home/user/GEMSDOE86/docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.tif",
+  "sha256": "c80f777c3a7880e9f0054d99a68f4ed1967ffb174e60f3d06c6e2637926c47c1",
+  "bytes": 132010,
+  "dots": 37654,
+  "budget": 37654,
+  "collar_min_px": 2.0,
+  "collar_max_px": 8.0,
+  "spacing_px": 2.8,
+  "format_checks_passed": true,
+  "min": 0.0,
+  "max": 1.0,
+  "n_nan": 0,
+  "positive_pixels": 37654,
+  "on_catalogue_pixels": 0,
+  "holdout_dti": null,
+  "holdout_dti_note": "not computable: protocol require_feasible blocked; organizer holdout labels absent; no organizer receipt",
+  "ok_to_submit": false,
+  "safe_to_download": true,
+  "verdict": "FORMAT_VALID_AUDIT_ONLY_NOT_OK_TO_SUBMIT",
+  "uniqueness": {
+    "n_rasters": 25,
+    "worst_overlap": 0.602804482923461,
+    "worst_spearman": 0.09486523617655651,
+    "overlap_firings": 0,
+    "rho_firings": 0,
+    "rows": [
+      {
+        "file": "GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "overlap": 0.19063047750570988,
+        "spearman": 0.0023586831978854054,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "overlap": 0.18675306740319753,
+        "spearman": 0.0008981803601074501,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+        "overlap": 0.19171933924682635,
+        "spearman": 0.0010703808588248703,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+        "overlap": 0.2257661868592978,
+        "spearman": 0.0021332261402437474,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "overlap": 0.17068571732086896,
+        "spearman": 0.002932614535134754,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "overlap": 0.20141286450310725,
+        "spearman": 0.0019273712816102425,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "overlap": 0.17336803526849737,
+        "spearman": 0.0027886896375719588,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+        "overlap": 0.15066128432570244,
+        "spearman": -0.0012585131344253675,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+        "overlap": 0.2990386147554045,
+        "spearman": 0.007064386830642797,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+        "overlap": 0.24855261061241835,
+        "spearman": 0.010102296834694064,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+        "overlap": 0.2166303712752961,
+        "spearman": 0.01451646690718393,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+        "overlap": 0.23243214532320602,
+        "spearman": 0.019171409892718365,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+        "overlap": 0.2691613108833059,
+        "spearman": 0.005380479042507966,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+        "overlap": 0.2664524353322356,
+        "spearman": 0.009266244050849418,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+        "overlap": 0.1665958463908217,
+        "spearman": 0.003414160361224594,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+        "overlap": 0.35279120412174003,
+        "spearman": 0.00860415426463687,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+        "overlap": 0.46141180219896955,
+        "spearman": 0.016681306003773044,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+        "overlap": 0.36689329154937056,
+        "spearman": 0.012580087396049879,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+        "overlap": 0.39692994104212037,
+        "spearman": 0.016706429729337124,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+        "overlap": 0.602804482923461,
+        "spearman": 0.09486523617655651,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+        "overlap": 0.28937164710256547,
+        "spearman": 0.01173420213422069,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+        "overlap": 0.4883146544855792,
+        "spearman": 0.017512752047297922,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "overlap": 0.4685026823179476,
+        "spearman": 0.0009597726375620097,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+        "overlap": 0.3561374621554151,
+        "spearman": 0.032547682839657394,
+        "overlap_firing": false,
+        "rho_firing": false
+      },
+      {
+        "file": "GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+        "overlap": 0.16295745471928613,
+        "spearman": 0.007881835525502277,
+        "overlap_firing": false,
+        "rho_firing": false
+      }
+    ]
+  }
+}

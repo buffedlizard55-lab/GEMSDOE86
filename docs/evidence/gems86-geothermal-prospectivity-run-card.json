@@ -1,0 +1,72 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane": "H86-GEOTHERMAL-PROSPECTIVITY",
+  "generated_utc": "2026-10-27T17:17:46Z",
+  "hypothesis": "Gravity-gradient magnitude (training_features Band 5) x airborne radiometric Total Count (Band 6), restricted to the intermediate 2-8 px (200-800 m) collar of catalogue faults, Poisson-disc placed at 2.8 px spacing (37,654 dots), targets blind geothermal upflow in relay zones / dilational jogs / stepovers ABSENT from the USGS/INGENIOUS catalogue. This inverts GEMSDOE32 H33's collar-pruning rule (1-2 px removal) into a collar emphasis and is the first radiometric-TC x gravity-gradient dot field in this repo.",
+  "mechanism": "Robust-scale Band 5 (iso_grav_anom_slope, r=+0.946995 vs hypot(B11,B18)) and Band 6 (tc, GeoDAWN radiometric Total Count, r=+0.997140 vs geodawn_rad_u8 TC); multiply them; zero outside footprint, zero on catalogue, zero outside the 2-8 px collar; greedy Poisson-disc emission weighted by the product (2.8 px minimum separation); budget 37,654 binary dots.",
+  "named_non_fault_process": "Isometric volcanic plugs / calderas / unfaulted pluton cupolas (no sharp contact-saddle gravity signature) and diffuse down-gradient alluvial thermal outflow plumes (suppressed by requiring co-located gradient and radiometric signal inside the collar).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "note": "Not computable in this checkout: scripts/protocol_preflight.require_feasible() is blocked by the pinned full-support registry witness (100% forward overlap for any nonempty candidate), organizer holdout labels are absent, and the full upstream registry (690 rasters) was not restored. A projection is never written as a score."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT (scoped, local only)",
+    "preplacement_surface": "NOT_MEASURED",
+    "partial_local_report": {
+      "rasters_checked": 25,
+      "scope": "data/scored_fleet/*.tif (locally available scored-fleet subset; NOT the complete organizer registry)",
+      "scope_complete": false,
+      "worst_spearman_rho": 0.09486523617655651,
+      "worst_forward_3px_dot_overlap": 0.602804482923461,
+      "overlap_firings_gt_0p70": 0,
+      "rho_firings_gt_0p90": 0,
+      "source": "docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.summary.json"
+    },
+    "literal_pinned_witness_final_dot_overlap": 1.0,
+    "status": "NEGATIVE: scoped local check passes (0 firings) but is not a complete registry scan; the literal pinned full-support witness fails the >0.70 overlap rule for every nonempty candidate."
+  },
+  "raster_sha256": "c80f777c3a7880e9f0054d99a68f4ed1967ffb174e60f3d06c6e2637926c47c1",
+  "raster_bytes": 132010,
+  "validator": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION (zero human intervention)",
+    "single_band_float32": true,
+    "shape": [3730, 3292],
+    "epsg": 32611,
+    "crs_shape_transform_match": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 1.0,
+    "unique_values": [0.0, 1.0],
+    "positive_pixels": 37654,
+    "positive_pixels_on_catalogue": 0,
+    "positive_pixels_outside_footprint": 0,
+    "note_chars": 111,
+    "all_local_checks_passed": true,
+    "source": "docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.json",
+    "note": "This local format pass directly excludes the portal's \"Predicted values must be in range [0, 1]\" error class. It is NOT organizer acceptance and NOT a uniqueness clearance."
+  },
+  "submission_name": "gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros",
+  "note": "H86 geothermal prospectivity (grav-grad x radiometric TC) 2-8px collar 37654d; audit-only, holdout not computed",
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "decision": "DO NOT SUBMIT — audit download only. Authorize a weekly slot only after (i) HOLDOUT-DTI beats the Focus-9 best (GEMSDOE32 H33, owner-reported 0.2778) on a spatially-blocked holdout and (ii) an organizer submission-page receipt confirms acceptance.",
+  "irregularities": [
+    "No HOLDOUT-DTI or per-feature leakage canary (AUC <= 0.90) was run; protocol require_feasible() is blocked.",
+    "Uniqueness was checked against 25 locally available scored-fleet rasters only; the complete registry scan (690 rasters) was not performed and is not a uniqueness clearance.",
+    "The candidate was generated from catalogue geometry + public feature bands, not from the required shared cached feature stack (stack absent from this checkout).",
+    "All Focus-9 scores are OWNER-REPORTED with no organizer receipt; none is ORGANIZER-CONFIRMED."
+  ],
+  "experiments_run": 1,
+  "budget_remaining": "2 experiments / up to 2 hours per the standing parallel-run protocol",
+  "scope": "Artifact forensic record only. No new experiment, holdout score, leaderboard projection, or selector decision. Negative results are deliverables."
+}

@@ -13,11 +13,40 @@
 >
 > **Core Values:** Maximize P(Win) · Own the Outcome.
 
+---
+
+## 📋 CURRENT SESSION PROMPT (2026-10-27) — read at the start of every session
+
+**Highest urgency — MUST be followed:** Generate a **unique TIF submission** for the DOE GEMS Prize competition. Do **not** copy a previous submission except for learning/education. A unique TIF must be generated, and it must be **obvious whether it is OK to download and submit** the generated TIF.
+
+**Focus cohort (9 sites — highest scoring submissions):** GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
+- Executive summary **per site** that makes it clear and obvious which submission is best.
+- Table listing, for each site: **file to download** | **estimate score** | **whether it is a unique submission** unlike any of the other GEMSDOE sites.
+- All Focus-9 scores are **OWNER-REPORTED** (no organizer receipt); none is ORGANIZER-CONFIRMED, none is a score, none is a legal new upload.
+
+**Best of cohort (owner-reported):** GEMSDOE32 **0.2778** (`h33-h33-2-b2-...-zeros`, H33 collar-prune) — the target to beat. GEMSDOE36 0.2750 · GEMSDOE28 0.2710 · GEMSDOE31 0.2708 · GEMSDOE33 0.2632 · GEMSDOE25 0.2600 · GEMSDOE30 0.2600 · GEMSDOE24 0.2477 · GEMSDOE27 0.2449.
+
+**Competition:** https://www.drivendata.org/competitions/306/competition-doe-gems/
+**Leaderboard:** https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/leaderboard/ (owner-reported targets 0.3195 and 0.4413 conflict; unverified)
+**Reference solution:** https://github.com/drivendataorg/gems-prize-reference-solution
+**Rules (PDF):** https://docs.nlr.gov/docs/fy26osti/96647.pdf
+**Official data sources:** USGS GeoDAWN (DOI 10.5066/P93LGLVQ), USGS 3DEP, USGS ScienceBase heat flow (DOI 10.5066/P9BZPVUC), DOE GDR #1391 INGENIOUS (DOI 10.15121/1881483), EPSG:32611 (https://epsg.io/32611).
+
+**Generated unique TIF (this session):** `docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.tif` (SHA-256 `c80f777c...`), 37,654 binary dots, format-valid (`15/15`: float32, EPSG:32611, 3730×3292, exact sample-submission transform, values in [0,1], 0 NaN/Inf, 0 dots on catalogue), **0 uniqueness firings vs 25 scored-fleet rasters** (worst overlap 0.6028 ≤ 0.70, worst |Spearman| 0.0949 ≤ 0.90).
+- **OK to download: YES** (prominent download buttons on `docs/executive-summary.html#gems86-geothermal-prospectivity-banner` and `docs/index.html`).
+- **OK to submit: NO — not yet authorized.** No HOLDOUT-DTI computable (protocol `require_feasible()` blocked by the pinned full-support witness; organizer holdout labels absent); no organizer submission-page receipt. Authorize a weekly slot only after HOLDOUT-DTI beats GEMSDOE32 H33 0.2778 on a spatially-blocked holdout AND an organizer receipt confirms acceptance. **A format pass is not upload permission; a projection is never a score.**
+
+**Required outputs:** (1) executive summary subpage (`docs/executive-summary.html`) explaining exactly how to submit; (2) easy-to-download unique submission TIF; (3) 3–5 untried candidate hypotheses (`research/GEMSDOE86_candidate_hypotheses.md`, ranked by expected DTI gain vs cost, naming layers / physical signature / off-catalogue rationale / difference from repo); (4) run card (`docs/evidence/gems86-geothermal-prospectivity-run-card.json`); (5) no hallucinations — verify line by line from official verified sources.
+
+**Parallel-run protocol (lane / reuse / evidence class / leakage canary / run card / budget ≤ 3 experiments / ≤ 2 hours) remains binding; see AGENTS.md.**
+
+**Core Values:** Maximize P(Win) · Own the Outcome.
+
 ## ⛔ NEWEST EXECUTED LANE (2026-10-26, `H86R-SFG`, session `9c9712ca`): **NEGATIVE — DO NOT SUBMIT** (Strike-Field Gate Falsified vs Own Ablation; Fleet Estimator v2; Focus-9 Executive Summary + 77-Raster Selector Table; `0` Slots Spent)
 
 - **IS ANY FILE IN THIS REPOSITORY APPROVED TO UPLOAD TO A LIVE WEEKLY COMPETITION SLOT? NO — `DO NOT SUBMIT`** (`verdict = "negative"`, `safe_to_submit = false`, `approved_for_weekly_slot = false`, `submission_slots_used = 0`; 46/46 downloadable artifacts are research/audit only).
 - **Focus-9 executive summary (best scored file per site, all `OWNER-REPORTED`):** `GEMSDOE32` **0.2778** (`h33-h33-2-b2-...-zeros`, 37,654 dots) · `GEMSDOE36` 0.2750 · `GEMSDOE28` 0.2710 · `GEMSDOE31` 0.2708 (clone of a GEMSDOE28 file) · `GEMSDOE33` 0.2632 · `GEMSDOE25` 0.2600 · `GEMSDOE30` 0.2600 · `GEMSDOE24` 0.2477 · `GEMSDOE27` 0.2449. All nine "bests" are 0.87–1.00 3-px overlaps of H33 (re-measured this session) and were already submitted — **none is a legal new upload**. Full table, the bounded H33 DTI forensics, and the download-decision table: [`research/SESSION_20261026_H86R_SFG_REVIEW.md`](research/SESSION_20261026_H86R_SFG_REVIEW.md).
-- **New unique GeoTIFF generated (`15/15` format & `[0,1]` checks PASS, audit download only):** [`gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif`](docs/downloads/gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif) (`sha256 b4e985310bd4b5a7ac73e56b376d4d62ea1692f8512a2f15a6d489469171c158`). All **46** published research TIFFs in `docs/downloads/` pass automated local format & integrity validation (`46/46`) and remain audit-only (`DO NOT SUBMIT`). Estimated live score: **FLEET-REGRESSION-PROJECTION 0.162 [0.087, 0.236]** (v2 estimator, n=23 — a projection, never a score). Unique vs all 76 locally measured registry rasters (worst discrete 3-px overlap 0.670 ≤ 0.70; overlap vs H33 = 0.239; worst sampled surface ρ = 0.072 ≤ 0.90) — scoped-local scope, not the full upstream registry.
+- **New unique GeoTIFF generated (`15/15` format & `[0,1]` checks PASS, audit download only):** [`gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif`](docs/downloads/gems86-h86r-sfg-strikegate-37654dots-20261026T162637Z-ee3f1551-zeros.tif) (`sha256 b4e985310bd4b5a7ac73e56b376d4d62ea1692f8512a2f15a6d489469171c158`). All **47** published research TIFFs in `docs/downloads/` pass automated local format & integrity validation (`47/47`) and remain audit-only (`DO NOT SUBMIT`). Estimated live score: **FLEET-REGRESSION-PROJECTION 0.162 [0.087, 0.236]** (v2 estimator, n=23 — a projection, never a score). Unique vs all 76 locally measured registry rasters (worst discrete 3-px overlap 0.670 ≤ 0.70; overlap vs H33 = 0.239; worst sampled surface ρ = 0.072 ≤ 0.90) — scoped-local scope, not the full upstream registry.
 - **Result: hypothesis falsified.** Gated `E1` HOLDOUT-DTI = 0.0450 [0.034, 0.057] < ungated ablation `E2` 0.0512 (paired Δ = −0.0062 [−0.017, +0.004]); SGMC-PROXY-DTI 0.0596 < H33 0.0937 and below the seeded uniform-random null 0.0754 (new instrument fact, `IR-86R-INSTRUMENT-FLOORS-20261026`). Frozen gates G3/G4 FAIL; no post-hoc retuning; 3-experiment budget spent.
 - **Selector ranking (automated, existing downloads, 37,654-dot class):** best in-support unique candidate remains `H86M-PFTE-blind` (SGMC 0.1210; projection 0.167 [0.093, 0.241]) then `H86Q-BFRA-blind` (0.0967; 0.172 [0.098, 0.247]) — **both still `DO NOT SUBMIT`**; no unique file in this repo honestly projects above 0.2778 (estimator: live ≈ −0.039 + 0.156·ovH33 + 0.115·SGMC + 0.215·frac>1km; anything obeying ovH33 ≤ 0.70 projects ≤ ~0.24).
 - **Corrections logged:** `IR-86R-PCPD-ALREADY-IMPLEMENTED-20261026` (queued PCPD already exists in PFTE), `IR-86R-ESTIMATOR-MISMATCH-20261026` (5/28 v1 estimator rows + 38 selector live labels were false filename matches; strict v2 supersedes, tests pin it), `IR-86R-INSTRUMENT-FLOORS-20261026` (SGMC chance floor 0.0754; SGMC blind to collar edits; >3 px-collar rasters score exactly 0 as-is on catalogue-hide). Hypotheses queue + preregistration: [`registry/h86r_hypotheses_20261026.json`](registry/h86r_hypotheses_20261026.json) · [`research/H86R_SFG_PREREGISTRATION.json`](research/H86R_SFG_PREREGISTRATION.json) · Run card: [`docs/evidence/h86r-sfg-run-card.json`](docs/evidence/h86r-sfg-run-card.json) · Selector: [`docs/evidence/h86r-selector-table-20261026.json`](docs/evidence/h86r-selector-table-20261026.json).

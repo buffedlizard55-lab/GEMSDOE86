@@ -425,6 +425,15 @@
       "unique": false,
       "stop_required": true,
       "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-geothermal-prospectivity-37654dots-20261027T171746Z-480f1b4f-zeros.tif",
+      "sha256": "c80f777c3a7880e9f0054d99a68f4ed1967ffb174e60f3d06c6e2637926c47c1",
+      "spearman_full_footprint": 0.0,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
     }
   ],
   "scope": "Rechecks all inherited final TIFFs against one immutable witness, not the full registry. Sufficient to reject, never to clear or rank candidates."
