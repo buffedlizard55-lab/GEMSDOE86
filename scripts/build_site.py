@@ -1225,8 +1225,10 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
 
 
-def focus9_summary(rows: list[dict]) -> str:
+def focus9_summary(rows: list[dict] | None = None) -> str:
     """Render all ties from the ledger, with cryptographically bound audit links."""
+    if rows is None:
+        rows = focus9_rows(ROOT)
     body = []
     for row in rows:
         site, claim, witness = row["site"], row["claim"], row["witness"]
@@ -1242,6 +1244,7 @@ def focus9_summary(rows: list[dict]) -> str:
                      f'<code>{e(claim["submission"])}</code><br><small>Exact TIFF link not verified</small>')
         overlap = row.get("overlap_3px_vs_h33")
         detail = (f' Archived forward 3-px overlap vs H33: {overlap:.2%}.'
+                  + (' Exceeds the 70% overlap stop.' if overlap > 0.70 else '')
                   if overlap is not None else ' Full-registry uniqueness not established.')
         body.append(f'<tr><th scope="row"><a href="{e(site_url)}">{e(site)}</a></th>'
                     f'<td>{file_link}</td><td><strong>{e(claim["score"])}</strong><br>'
