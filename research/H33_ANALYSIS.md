@@ -7,9 +7,9 @@
 
 ## 1. What changed in H33 — pixel-exact forensic comparison
 
-The pinned `GEMSDOE28` parent (`40,199` dots; owner-reported 0.2708) and `GEMSDOE32` `h33-h33-2-b2` (`37,654` dots; owner-reported 0.2778) rasters differ in **0 cells across all 12,279,160 grid pixels** after deleting the 2,545 dots in the 1.0 < d_cat ≤ 2.0 mapped-fault collar.
+A fresh [pixel-audit receipt](../docs/evidence/h33-identity-20261027.json) binds both files and the catalogue by SHA-256. **Inside the 5,167,373-pixel footprint**, the pinned `GEMSDOE28` parent (`40,199` dots; owner-reported 0.2708) and `GEMSDOE32` `h33-h33-2-b2` (`37,654` dots; owner-reported 0.2778) have zero differences after deleting the 2,545 dots in the 1.0 < d_cat ≤ 2.0 mapped-fault collar. Zero dots were added.
 
-In other words, H33 = GEMSDOE28 minus its 2-pixel catalogue collar, with all other dots held identical. The owner-reported values differ by +0.0070, but the absence of an organizer receipt or a controlled replay means the raster edit cannot be causally assigned the score change. The 2,545 removed dots were outside the exact mapped pixels and could still have covered hidden faults.
+The earlier full-grid identity statement was wrong: all 7,111,787 outside-footprint cells are NaN in the parent and zero in H33. The identity is footprint-masked, not raw full-grid equality. The owner-reported values differ by +0.0070, but the absence of an organizer receipt or a controlled replay means the raster edit cannot be causally assigned the score change. The 2,545 removed dots were outside the exact mapped pixels and could still have covered hidden faults.
 
 ## 2. Mechanism: coverage-efficient emission, not a new geological discovery
 

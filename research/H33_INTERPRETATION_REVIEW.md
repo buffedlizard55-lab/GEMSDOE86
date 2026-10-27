@@ -6,6 +6,8 @@
 
 ## What the H33 evidence does and does not establish
 
+**2026-10-27 correction:** The remeasured [pinned pixel audit](../docs/evidence/h33-identity-20261027.json) proves the 2,545-dot deletion only within the footprint. All 7,111,787 outside-footprint cells differ in encoding (parent NaN versus H33 zero). Earlier historical reviews claiming full-grid numerical identity or claiming that the deleted points had zero hidden-truth credit are superseded by this correction.
+
 The user-reported H33 result is **OWNER-REPORTED 0.2778**, not ORGANIZER-CONFIRMED. The prompt also gives conflicting current leaderboard claims (OWNER-REPORTED 0.3195 and 0.4413). Neither is a verified target here. The archived pixel identity explains *what changed* between the parent and H33, not *why hidden organizer truth rewarded it*. An organizer receipt and controlled same-support evaluation would be needed for the stronger conclusion.
 
 Corrections applied to the generated homepage and earlier session report:

@@ -7,7 +7,7 @@ GEMSDOE32 H33, frac>1km from catalogue, point SGMC-PROXY-DTI (same
 off-catalogue SGMC definition as evaluate_sgmc_proxy, point estimate only),
 the seeded random-null SGMC floor, and the frozen fleet-regression projection
 (coefficients read from docs/evidence/h86r-fleet-estimator-20261026.json;
-never refitted here). Live scores, where matched, are OWNER-REPORTED rows of
+never refitted here). Historical results, where conservatively matched, are OWNER-REPORTED rows of
 registry/prior_scores.csv. Nothing here is an organizer score.
 """
 from __future__ import annotations
@@ -39,39 +39,15 @@ known_collar = cat | (d_cat <= COLLAR_PX)
 fold_proxy = {"region": fp, "visible": known_collar, "masked_known": known_collar,
               "truth": sgmc & fp & ~known_collar}
 
-scores = {}
-for row in csv.DictReader(open(ROOT / "registry/prior_scores.csv")):
-    try:
-        scores[row["submission"].lower()] = float(row["score"])
-    except Exception:
-        pass
+from scripts.score_identity import owner_score_for_path  # noqa: E402
+
+with (ROOT / "registry/prior_scores.csv").open(newline="", encoding="utf-8") as stream:
+    score_records = list(csv.DictReader(stream))
+
 
 def match_score(rel: str):
-    """Strict only (IR-86R-ESTIMATOR-MISMATCH-20261026): normalized-stem
-    containment or shared hex hash token; never date/dot-count tokens."""
-    base = Path(rel).stem.lower()
-    for pfx in ("gemsdoe32__", "gemsdoe36__", "gemsdoe33__", "gemsdoe28__", "gemsdoe49__",
-                "gemsdoe63__", "gemsdoe66__", "gemsdoe70__", "gemsdoe73__", "gemsdoe75__",
-                "gemsdoe76__", "gemsdoe78__", "gemsdoe80__", "gemsdoe81__", "gemsdoe82__",
-                "gemsdoe83__", "gemsdoe85__", "gemsdoe88__"):
-        base = base.replace(pfx, "")
-    for pfx in ("gemsdoe32-", "gemsdoe36-", "gemsdoe33-", "gems28-", "gems-", "gems"):
-        if base.startswith(pfx):
-            base = base[len(pfx):]
-    for suf in ("-allfinite", "-zeros", "-nan", "-zero"):
-        base = base.replace(suf, "")
-    for s, sc in scores.items():
-        ss = s
-        for suf in ("-allfinite", "-zeros", "-nan", "-zero"):
-            ss = ss.replace(suf, "")
-        if ss and (ss in base or base in ss):
-            return sc
-    toks = [t for t in re.split(r"[-_]", base)
-            if re.fullmatch(r"[0-9a-f]{8,}", t) and any(c.isalpha() for c in t)]
-    for s, sc in scores.items():
-        if any(t in s for t in toks):
-            return sc
-    return None
+    """Same-site exact stem only; unknown/ambiguous matches are not scores."""
+    return owner_score_for_path(rel, score_records)
 
 rows = []
 paths = sorted((ROOT / "docs/downloads").glob("*.tif")) + sorted((ROOT / "data/scored_fleet").glob("*.tif")) + sorted((ROOT / "data/scored").glob("*.tif"))

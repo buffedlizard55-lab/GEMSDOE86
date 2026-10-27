@@ -21,6 +21,10 @@ sys.path.insert(0, str(ROOT / "vendor"))
 sys.path.insert(0, str(ROOT))
 from gems57 import metric, submission_writer  # noqa: E402
 
+# Historical module performs model work at import; stop before it can run.
+from scripts.protocol_preflight import require_feasible
+require_feasible()
+
 CACHE = ROOT / ".cache/h86m"; CACHE.mkdir(parents=True, exist_ok=True)
 OUT_DIR = ROOT / "docs/downloads"; EV_DIR = ROOT / "docs/evidence"
 

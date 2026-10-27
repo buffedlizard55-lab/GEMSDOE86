@@ -109,7 +109,8 @@ def test_site_puts_decision_and_download_access_before_long_historical_receipts(
     for html in (home, executive):
         assert "The requested new, uniqueness-cleared TIFF was not generated in this review." in html
         assert "DATA-MEASUREMENT (historical receipt dated 2026-10-25T02:15:47Z)" in html
-        assert "training_features.tif" in html and "absent from this checkout" in html
+        assert "training_features.tif" in html and "was absent from that checkout" in html
+        assert "historical receipt" in html and "does not prove current workspace availability" in html
         assert "Fresh independent recheck" in html
         assert "GZZD/PCC audit gap is now closed" in html
         expected = load("docs/evidence/registry-input-grid-review-20261025.json")["indexed_rasters_expected"]

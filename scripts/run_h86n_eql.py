@@ -65,6 +65,9 @@ def clean(a, fp):
     return a
 
 def main():
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     cert = require_like_for_like()
     print(f"preflight: {cert['status']} witness_rep={cert['witness_representation']}", flush=True)

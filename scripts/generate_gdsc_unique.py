@@ -38,7 +38,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from vendor.gems57.grid import load_grid, write_submission, HEIGHT, WIDTH, TRANSFORM, EPSG
 from vendor.gems57.validate import validate, sha256
 
-# Must call like-for-like preflight, not feasible (dense witness is continuous surface)
+# The historical representation-aware preflight is retained for provenance; the literal guard runs first.
 from scripts.protocol_preflight import require_like_for_like
 
 BANDS = {4: "geod_2ndinv", 7: "geod_shearrate", 8: "geod_dilaterate", 19: "det_elev_slope"}
@@ -67,8 +67,11 @@ def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-np.clip(x, -10, 10)))
 
 def main():
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     print("GDSC unique submission generator")
-    # 1. Like-for-like preflight (dense witness is continuous_surface, so literal block is informational)
+    # Historic representation-aware diagnostics do not override the literal stop.
     cert = require_like_for_like()
     print(f"Preflight status: {cert['status']}")
     print(f"  witness representation: {cert['witness_representation']}")

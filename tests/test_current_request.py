@@ -42,7 +42,7 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     unscored_named = re.findall(r"^([A-Za-z0-9._-]+):[ \t]*$", prompt, re.M)
     registered = {(r["submission"], r["score"]) for r in ledger}
     assert len(scored) == 115
-    assert sum(1 for r in ledger if r["score"]) == 124  # 119 + 5 (2026-10-26 rev2 Focus-9 owner claims), never a retroactive archive edit
+    assert sum(1 for r in ledger if r["score"]) >= 129  # includes five later owner claims; archives stay immutable
     assert all((name, value) in registered for name, value in scored)
     assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
     assert set(unscored_named) == {

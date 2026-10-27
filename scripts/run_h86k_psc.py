@@ -21,6 +21,9 @@ BUDGET = 37654
 def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 def main():
+    # Historical builder: the literal stop precedes all candidate work.
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0=time.time()
     grid = G.load_grid(ROOT/"data/bridge")
     fp, cat = grid.footprint, grid.catalogue

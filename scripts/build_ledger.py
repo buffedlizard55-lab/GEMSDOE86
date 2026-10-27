@@ -15,16 +15,15 @@ generator so the file cannot drift; it reproduces the schema introduced by
 It never invents a receipt.  A score becomes ``RECEIPT`` only when a human
 pastes a submission-page receipt into ``receipt_score`` / ``date``.
 
-Dedupe rules (explicit, and the only ones applied)
---------------------------------------------------
-1. A content digest (``sha8``, or the full ``sha256`` when the file is local)
-   identifies a file byte-for-byte.
-2. The ``-nan`` / ``-zeros`` / ``-allfinite`` / ``-zero`` suffix only changes the
-   out-of-footprint fill, which scores identically (brief §3), so names that
-   differ only by it collapse.
-3. Names identical after (1)+(2) collapse.
-Collapsed groups keep the highest reported number; ``triples`` counts how many
-source rows were merged so nothing is silently dropped (``ledger/DEDUPE.md``).
+Identity and evidence rules
+---------------------------
+Only exact same-site, full submission stems can be grouped. Distinct names,
+fill suffixes and sites remain separate even when they share a hex-like token.
+The old ``fingerprint`` helper is retained only for archived analyses; tokens
+are not proof of bytes or of a score. Local raster SHA-256/dot measurements are
+attached only when one same-site full-stem file matches; that still does not
+prove it is the actual organizer-submitted byte stream. Duplicate identical
+claims collapse, while conflicting claims on the same identity fail closed.
 
 Usage
 -----
@@ -40,6 +39,7 @@ import io
 import json
 import re
 import sys
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 import numpy as np
@@ -48,6 +48,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "registry" / "prior_scores.csv"
 LEDGER = ROOT / "ledger"
 FLEET = ROOT / "data" / "scored_fleet"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.score_identity import submission_stem_matches  # noqa: E402
 
 FILL_SUFFIX = re.compile(r"-(?:nan|zeros|allfinite|zero)$", re.IGNORECASE)
 # Hex tokens of length 8.  All-digit tokens are date/time stamps (20261004,
@@ -86,7 +89,7 @@ def sha8_of(name: str) -> str:
 
 
 def fingerprint(name: str) -> str:
-    """Stable identity key for one submission name (rules 1-3 above)."""
+    """Legacy heuristic only; do not use it for a ledger identity or score."""
     base = FILL_SUFFIX.sub("", name.strip())
     return sha8_of(base) or base.lower()
 
@@ -108,14 +111,54 @@ def measured_dots(path: Path) -> int | None:
         return int((np.asarray(src.read(1)) > 0).sum())
 
 
-def fleet_index() -> dict[str, Path]:
-    """Map fingerprint -> local raster, for the rows we actually hold."""
-    out: dict[str, Path] = {}
+def fleet_index() -> dict[str, list[Path]]:
+    """Index local files by explicit source namespace, never by hex token."""
+    out: dict[str, list[Path]] = {}
     if not FLEET.is_dir():
         return out
-    for p in sorted(FLEET.glob("*.tif")):
-        out.setdefault(fingerprint(p.stem.split("__", 1)[-1]), p)
+    for path in sorted(FLEET.glob("*.tif")):
+        if "__" not in path.name:
+            continue
+        site, _ = path.name.split("__", 1)
+        out.setdefault(site.casefold(), []).append(path)
     return out
+
+
+def matching_local_file(site: str, submission: str, index: dict[str, list[Path]]) -> Path | None:
+    """One exact name is an association, not an organizer receipt."""
+    files = []
+    for path in index.get(site.casefold(), []):
+        filename = path.name.split("__", 1)[1]
+        if submission_stem_matches(site, submission, filename):
+            files.append(path)
+    return files[0] if len(files) == 1 else None
+
+
+def group_prior_rows(source_rows: list[dict]) -> list[list[dict]]:
+    """Group only identical names from the same site; refuse score conflicts."""
+    groups: dict[tuple[str, str], list[dict]] = {}
+    for row in source_rows:
+        site = (row.get("site") or "").strip()
+        name = (row.get("submission") or "").strip()
+        if not site:
+            raise ValueError("A ledger claim has no source site")
+        groups.setdefault((site.casefold(), name.casefold()), []).append(row)
+    for (site, name), group in groups.items():
+        scores = set()
+        for row in group:
+            raw = (row.get("score") or "").strip()
+            if not raw:
+                continue
+            try:
+                value = Decimal(raw)
+            except InvalidOperation as exc:
+                raise ValueError(f"Invalid claimed score for {site}/{name}") from exc
+            if not value.is_finite() or not Decimal(0) <= value <= Decimal(1):
+                raise ValueError(f"Invalid claimed score for {site}/{name}")
+            scores.add(value)
+        if len(scores) > 1:
+            raise ValueError(f"Conflicting claimed scores for {site}/{name}")
+    return list(groups.values())
 
 
 def variant_rows() -> list[dict]:
@@ -174,26 +217,15 @@ def build_rows() -> list[dict]:
     if not source_rows:
         raise SystemExit(f"{SOURCE} has no rows")
 
-    groups: dict[str, list[dict]] = {}
-    order: list[str] = []
-    for row in source_rows:
-        name = (row.get("submission") or "").strip()
-        # e.g. GEMSDOE84..88: a site with no named artifact. Keep it visible so
-        # the ledger is not mistaken for a complete inventory.
-        key = fingerprint(name) if name else "site:" + (row.get("site") or "").lower()
-        if key not in groups:
-            groups[key] = []
-            order.append(key)
-        groups[key].append(row)
-
+    groups = group_prior_rows(source_rows)
     local = fleet_index()
     out: list[dict] = []
-    for key in order:
-        rows = groups[key]
+    for rows in groups:
         scored = [r for r in rows if (r.get("score") or "").strip()]
-        chosen = max(scored, key=lambda r: float(r["score"])) if scored else rows[0]
+        chosen = scored[0] if scored else rows[0]
         name = (chosen.get("submission") or "").strip()
-        path = local.get(key)
+        site = (chosen.get("site") or "").strip()
+        path = matching_local_file(site, name, local) if name else None
         sha = sha256_file(path) if path else ""
         is_r0 = bool(sha) and sha == R0_SHA256
         score = (chosen.get("score") or "").strip()
@@ -203,7 +235,7 @@ def build_rows() -> list[dict]:
             "score": score,
             "encoding": encoding_of(name) if name else "",
             "n_dots": "" if path is None or measured_dots(path) is None else str(measured_dots(path)),
-            "sha8": (sha[:8] if sha else sha8_of(name)),
+            "sha8": sha[:8] if sha else "",
             "parent": R0_PARENT_LABEL if is_r0 else "",
             "receipt": "N",
             "id": "",
@@ -231,23 +263,22 @@ def render(rows: list[dict]) -> str:
 
 
 def dedupe_note() -> str:
-    """Human-readable record of what the collapse did (brief §3 repeats)."""
+    """Explain the conservative grouping and its evidence limitations."""
     with SOURCE.open(newline="", encoding="utf-8") as fh:
-        src = list(csv.DictReader(fh))
-    groups: dict[str, list[str]] = {}
-    for row in src:
-        name = (row.get("submission") or "").strip()
-        key = fingerprint(name) if name else "site:" + (row.get("site") or "").lower()
-        groups.setdefault(key, []).append(name or f"site:{row.get('site', '')}")
-    lines = ["# Ledger dedupe record", "",
-             f"Source: `registry/prior_scores.csv` ({len(src)} rows). "
-             f"Collapsed to {len(groups)} groups by the rules in `scripts/build_ledger.py`.",
-             "", "| kept | merged rows |", "|---|---|"]
-    for key, names in groups.items():
-        if len(names) > 1:
-            lines.append(f"| `{names[0]}` | {len(names)} |")
-    lines += ["", "Fill-only twins (`-nan` / `-zeros` / `-allfinite`) collapse because they score",
-              "identically (brief §3); exact content digests collapse because they are the same file.", ""]
+        source = list(csv.DictReader(fh))
+    groups = group_prior_rows(source)
+    lines = ["# Ledger identity record", "",
+             f"Source: `registry/prior_scores.csv` ({len(source)} rows). "
+             f"Grouped into {len(groups)} exact same-site name groups.", "",
+             "Different names, fill suffixes and sites are never collapsed merely because",
+             "they share a filename token. Local SHA-256 is attached only to an exact",
+             "same-site filename association; it is not an organizer receipt or proof of",
+             "what bytes were uploaded. Conflicting same-name scores stop generation.", "",
+             "| name | duplicate identical claims |", "|---|---|"]
+    for group in groups:
+        if len(group) > 1:
+            lines.append(f"| `{group[0].get('submission') or group[0]['site']}` | {len(group)} |")
+    lines.append("")
     return "\n".join(lines)
 
 
