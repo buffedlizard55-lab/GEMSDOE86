@@ -251,6 +251,9 @@ def test_primary_pages_have_unique_ids_and_copy_buttons_target_one_element():
         assert len(parsed.ids) == len(set(parsed.ids))
         assert all(parsed.ids.count(target) == 1 for target in parsed.targets)
         assert {"h86i-sacd-name", "h86i-rksc-name"} <= set(parsed.ids)
+        if page == "docs/index.html":
+            # Preserve the established archive anchor while giving the newer panel its own ID.
+            assert {"h86l-fmc", "h86l-fmc-answer"} <= set(parsed.ids)
 
 
 @pytest.mark.parametrize("module,entry,args", [
