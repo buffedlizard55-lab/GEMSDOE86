@@ -3,7 +3,7 @@
 - **Branch:** `arena/70644855-gemsdoe86`
 - **Date (UTC):** `2026-10-27`
 - **Current Repository Upload Decision:** **`DO NOT SUBMIT`** (`safe_to_submit: false`, `approved_for_weekly_slot: false`, `submission_slots_used: 0`)
-- **Newest Research GeoTIFF (#48):** `docs/downloads/gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros.tif` (`136,641` bytes, SHA-256 `c6870a5708e5ff8222e84281d942d9d6afd1b9feac73c27a1508937e441d18c2`, ZIP SHA-256 `d925fba286f531ee6fcfa830156671a5e3a083dacd2395d3f976541746b30c7c`, `37,654` binary dots in `{0.0, 1.0}`, `0` NaN/Inf, `EPSG:32611`, `3730×3292` @ `100 m`, `min d_cat = 3.1623 px > 3.0 px`, `55.25% > 1 km` off-catalogue, `verdict: "negative"`).
+- **Newest Research GeoTIFF (#49, `49/49` locally valid):** `docs/downloads/gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros.tif` (`136,641` bytes, SHA-256 `c6870a5708e5ff8222e84281d942d9d6afd1b9feac73c27a1508937e441d18c2`, ZIP SHA-256 `d925fba286f531ee6fcfa830156671a5e3a083dacd2395d3f976541746b30c7c`, `37,654` binary dots in `{0.0, 1.0}`, `0` NaN/Inf, `EPSG:32611`, `3730×3292` @ `100 m`, `min d_cat = 3.1623 px > 3.0 px`, `55.25% > 1 km` off-catalogue, `verdict: "negative"`).
 
 ---
 
