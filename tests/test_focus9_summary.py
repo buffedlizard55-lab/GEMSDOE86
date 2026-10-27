@@ -19,3 +19,55 @@ def test_focus9_highest_score_per_site_and_measured_uniqueness():
     assert html.count("<strong>NO</strong> — exceeds the 70% overlap stop") == 9
     assert "ORGANIZER-CONFIRMED" not in html
     assert "DO NOT RESUBMIT" in html
+
+
+def test_table_explicitly_separates_estimates_from_historical_claims():
+    html = focus9_summary()
+    assert "Estimated leaderboard score" in html
+    assert "File to download for submission" in html
+    assert html.count("Not estimated — no organizer-calibrated estimate") == 9
+    assert html.count("NONE approved;") == 9
+
+
+def _isolated_inputs(tmp_path, monkeypatch):
+    import csv
+    import shutil
+    import scripts.build_site as builder
+    (tmp_path / "registry").mkdir()
+    (tmp_path / "docs/evidence").mkdir(parents=True)
+    for rel in ("registry/prior_scores.csv", "docs/evidence/focus9-forensics-20261026-rev2.json"):
+        shutil.copyfile(ROOT / rel, tmp_path / rel)
+    monkeypatch.setattr(builder, "ROOT", tmp_path)
+    path = tmp_path / "registry/prior_scores.csv"
+    with path.open() as stream:
+        rows = list(csv.DictReader(stream))
+    return builder, path, rows
+
+
+def test_changed_champion_cannot_inherit_old_overlap(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
+    row = next(r for r in rows if r["site"] == "GEMSDOE24")
+    row["submission"] = "new-unmeasured-geological-method"
+    row["score"] = "0.9999"
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="champion changed"):
+        builder.focus9_summary()
+
+
+def test_same_method_different_identity_cannot_inherit_overlap(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
+    row = next(r for r in rows if r["site"] == "GEMSDOE32")
+    row["submission"] = row["submission"].replace("e5eb6e7e", "deadbeef")
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="overlap is missing or ambiguous"):
+        builder.focus9_summary()

@@ -297,8 +297,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-27T20:29:21.469964+00:00",
+  "registry_measured_utc": "2026-10-27T23:37:34.501056+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "f5e8b613d56792fa2a597cd094e45fc377e123772be88766fd25be1b707dd5b1",
-  "registry_measurement_sha256": "4305384995e92cf5214bc2287ee6fdc64265f3425a3e25623376a6f81a535235"
+  "release_report_sha256": "b83f411bb06d387434d511e02fa72d4ee82f5000888868c8982e22b9574865c5",
+  "registry_measurement_sha256": "261ecaf004666618c7b973152600bb02d9711286d6230d7aec76aede3a846faa"
 }
