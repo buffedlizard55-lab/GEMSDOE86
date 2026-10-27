@@ -1760,3 +1760,8 @@ All three were measured this session on the shared vendor evaluator with histori
 - **Observed (2026-10-27):** `registry/h86s_hypotheses_20261027.json` H86S-4 (`H86S-4_RCSD`) proposed a radiometric provenance log-ratio step and represented it as distinct from prior work. A repository-wide source search found the same mechanism already in `src/gems86_bfra/operators.py::regolith_and_metasomatic_unmixing`, which computes the K/U/Th log-ratio coordinate and cross-slope provenance contrast; `src/gems86_bfra/features.py` exposes the related BFRA feature. The hypothesis-register novelty claim is therefore false as written.
 - **Disposition:** Excluded RCSD from the next untried-candidate shortlist. Do not execute or claim it as new without a materially distinct, preregistered operator and ablation. The frozen historical hypothesis register and prior run receipts are not edited.
 - **Verification:** inspected the BFRA function and feature declarations; `grep -RniE 'provenance.step|log.ratio' src scripts` found the implementation. Full current review: [`research/SESSION_20261027_ARENA_SITE_REVIEW.md`](research/SESSION_20261027_ARENA_SITE_REVIEW.md).
+
+
+## IR-86-55A5BFA4-BAND-ATTRIBUTION (2026-10-27)
+
+Independent review found H86T `features.py` names band 5 elevation relief, band 16 MT, and band 12 a Bouguer sill input despite the authoritative native band map. No artifact bytes or archived metrics changed. Scientific interpretation must be revalidated with corrected inputs in a fresh lane. See `research/SESSION_20261027_55A5BFA4_REVIEW.md`. Literal full-support uniqueness stop remains binding; zero experiments and zero slots used.
