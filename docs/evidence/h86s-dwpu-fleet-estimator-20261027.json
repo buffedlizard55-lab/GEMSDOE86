@@ -1,0 +1,190 @@
+{
+  "evidence_class": "FLEET-REGRESSION-PROJECTION (not a score)",
+  "n": 20,
+  "features": [
+    "1",
+    "ov_h33",
+    "sgmc_proxy_dti",
+    "frac_gt_1km"
+  ],
+  "coefficients": [
+    -0.03847242224710793,
+    0.14652338256155611,
+    0.09331075357089169,
+    0.22489158780444624
+  ],
+  "loo_rmse": 0.04104001427175857,
+  "rows": [
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "dots": 40199,
+      "live_owner_reported": 0.2708,
+      "ov_h33": 0.9539043259782581,
+      "frac_gt_1km": 0.6540958730316675,
+      "sgmc_proxy_dti": 0.09369415658974162
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "dots": 37660,
+      "live_owner_reported": 0.271,
+      "ov_h33": 0.9547265002655337,
+      "frac_gt_1km": 0.6565055762081784,
+      "sgmc_proxy_dti": 0.09153925843009784
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "dots": 37860,
+      "live_owner_reported": 0.2707,
+      "ov_h33": 0.9501320655044903,
+      "frac_gt_1km": 0.6544109878499735,
+      "sgmc_proxy_dti": 0.0917853611535578
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.2778,
+      "ov_h33": 1.0,
+      "frac_gt_1km": 0.698305624900409,
+      "sgmc_proxy_dti": 0.09369415658974162
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "dots": 41865,
+      "live_owner_reported": 0.2632,
+      "ov_h33": 0.9264301922847247,
+      "frac_gt_1km": 0.633584139495999,
+      "sgmc_proxy_dti": 0.09452927761952408
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "dots": 38854,
+      "live_owner_reported": 0.275,
+      "ov_h33": 0.9740309878004839,
+      "frac_gt_1km": 0.6967365007463839,
+      "sgmc_proxy_dti": 0.09511100583567593
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+      "dots": 40000,
+      "live_owner_reported": 0.2376,
+      "ov_h33": 0.433875,
+      "frac_gt_1km": 0.68605,
+      "sgmc_proxy_dti": 0.13337421827246584
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+      "dots": 54864,
+      "live_owner_reported": 0.2303,
+      "ov_h33": 0.5503973461650628,
+      "frac_gt_1km": 0.6764180519101779,
+      "sgmc_proxy_dti": 0.12728797391554406
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.1152,
+      "ov_h33": 0.274871195623307,
+      "frac_gt_1km": 0.6237053168322091,
+      "sgmc_proxy_dti": 0.065050679190665
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.1917,
+      "ov_h33": 0.4859510277792532,
+      "frac_gt_1km": 0.6102671694906252,
+      "sgmc_proxy_dti": 0.07846662221382134
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+      "dots": 36800,
+      "live_owner_reported": 0.1627,
+      "ov_h33": 0.4561141304347826,
+      "frac_gt_1km": 0.606875,
+      "sgmc_proxy_dti": 0.11817653018933943
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+      "dots": 39200,
+      "live_owner_reported": 0.2343,
+      "ov_h33": 0.5799234693877551,
+      "frac_gt_1km": 0.4889540816326531,
+      "sgmc_proxy_dti": 0.08592039326742681
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.1555,
+      "ov_h33": 0.5220428108567483,
+      "frac_gt_1km": 0.660009560737239,
+      "sgmc_proxy_dti": 0.08466415234646374
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "dots": 51667,
+      "live_owner_reported": 0.0943,
+      "ov_h33": 0.3770298256140283,
+      "frac_gt_1km": 0.3806104476745311,
+      "sgmc_proxy_dti": 0.08196577404211787
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+      "dots": 44090,
+      "live_owner_reported": 0.0041,
+      "ov_h33": 0.19367203447493764,
+      "frac_gt_1km": 0.0,
+      "sgmc_proxy_dti": 0.019546465147669723
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.1886,
+      "ov_h33": 0.5258936633558188,
+      "frac_gt_1km": 0.45636585754501513,
+      "sgmc_proxy_dti": 0.09043354732517571
+    },
+    {
+      "file": "data/scored_fleet/GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "dots": 37654,
+      "live_owner_reported": 0.0573,
+      "ov_h33": 0.3182928772507569,
+      "frac_gt_1km": 0.36771657725606843,
+      "sgmc_proxy_dti": 0.09061188000292172
+    },
+    {
+      "file": "data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "dots": 123939,
+      "live_owner_reported": 0.1855,
+      "ov_h33": 0.8374603635659478,
+      "frac_gt_1km": 0.5921945473176321,
+      "sgmc_proxy_dti": 0.11634767494818528
+    },
+    {
+      "file": "data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "dots": 123779,
+      "live_owner_reported": 0.1894,
+      "ov_h33": 0.8703818903044943,
+      "frac_gt_1km": 0.5907060163678814,
+      "sgmc_proxy_dti": 0.10983414773121712
+    },
+    {
+      "file": "data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "dots": 121131,
+      "live_owner_reported": 0.1922,
+      "ov_h33": 0.8924635312182678,
+      "frac_gt_1km": 0.5893206528469178,
+      "sgmc_proxy_dti": 0.10340643567272075
+    }
+  ],
+  "candidate": {
+    "ov_h33": 0.2703,
+    "sgmc_proxy_dti": 0.05591796521548089,
+    "frac_gt_1km": 0.5511765018324747,
+    "projection": 0.13030555418929363,
+    "interval_approx": [
+      0.04986712621664684,
+      0.2107439821619404
+    ]
+  },
+  "caveat": "Fitted only on OWNER-REPORTED live scores; never ORGANIZER-CONFIRMED; cannot credit genuinely new truth mass."
+}

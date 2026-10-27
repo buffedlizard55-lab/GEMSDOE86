@@ -1,0 +1,44 @@
+{
+  "schema": "gems86.preregistration.v1",
+  "lane_id": "H86S-DWPU",
+  "frozen_utc": "2026-10-27T17:20:00Z",
+  "branch": "arena/df922739-gemsdoe86",
+  "hypothesis_queue_ref": "registry/h86s_hypotheses_20261027.json",
+  "selected_hypothesis_id": "H86S-1_DWPU",
+  "budget": {"max_experiments": 3, "max_hours": 2.0, "weekly_submission_slots_authorized": 0, "dot_budget": 37654, "min_spacing_px": 2.8, "catalogue_collar_px": 3.0},
+  "features_frozen": ["dwpu_rtp_b2", "dwpu_tmi_hg_b3_abs", "dwpu_grav_slope_b5", "dwpu_tc_b6", "dwpu_grav_south_b11", "dwpu_grav_b13", "dwpu_basement_b15", "dwpu_grav_east_b18", "dwpu_slope_b19", "dwpu_rtp_gradmag", "dwpu_basement_gradmag"],
+  "method_frozen": {
+    "clean": "sentinel -3.4028235e38 / non-finite -> 0 after per-feature robust standardization (median/IQR estimated on the training sample only)",
+    "completeness_c": "c = clip(0.6*(1-rank01(B15 over footprint)) + 0.4*rank01(B19 over footprint), 0, 1); shallow basement + steep exposed slope = complete (c->1)",
+    "negative_weight": "w_neg = 0.05 + 0.95*c(x); positive weight = 1.0",
+    "training_sample": "positives = all label pixels in footprint; negatives = 250,000 pixels drawn rng(20261027) from footprint & ~dilate(label,3px); E1 labels = visible catalogue only (holdout) / full catalogue (final); E2 identical with w_neg=1; E3 identical to E1 but features exclude B15,B19 (weights still from B15/B19)",
+    "model": "sklearn HistGradientBoostingClassifier(max_iter=200, learning_rate=0.06, max_leaf_nodes=31, min_samples_leaf=50, l2_regularization=0.1, random_state=20261027); no coordinates, no distance-to-catalogue features",
+    "prediction": "predict_proba class-1 on all footprint pixels in row chunks; 0 outside footprint",
+    "emission": "gems86_sfg.features.emit_poisson_disk unchanged: score-descending, 2.8 px spacing, eligible = footprint & d_cat(reference)>3.0 px, exactly 37,654 dots",
+    "holdout": "vendor gems57 holdout.buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12); ONE visible-trained surface per arm; vendor evaluate_holdout (gems57-pooled-hide-v2, alpha=0.2, beta=0.8, 300m triangular kernel); pooled 1,000 paired bootstrap draws seed 861726",
+    "sgmc_proxy": "scripts.run_h86k_stdp.evaluate_sgmc_proxy unchanged (read-only; never in features/tuning)",
+    "canary": "every feature plane + visible surfaces via prepare_canary_indices/score_canary_array; hard stop if discriminative AUC > 0.90",
+    "comparators_not_arms": ["GEMSDOE32 H33 re-scored identical holdout+SGMC calls", "GEMSDOE28 H27-4 re-scored identically", "seeded uniform-random null (seed 861726) SGMC only"]
+  },
+  "arms": [
+    {"id": "E1_dwpu_weighted", "role": "primary_candidate", "surface": "DWPU HGB probability (detectability-weighted negatives, all 11 features)"},
+    {"id": "E2_pu_unweighted_ablation", "role": "ablation_control", "surface": "Identical HGB with uniform negative weights"},
+    {"id": "E3_dwpu_nocover_features", "role": "mechanism_isolation", "surface": "DWPU weights, features exclude B15/B19"}
+  ],
+  "gates_frozen_before_run": {
+    "G1_format": "vendor submission_writer validation: single-band float32, 3730x3292, EPSG:32611, exact sample transform, no NaN/Inf, values in [0,1], zeros outside footprint, zero dots on catalogue - fixes the user-reported 'Predicted values must be in range [0, 1]' rejection class",
+    "G2_canary": "every plane discriminative AUC <= 0.90",
+    "G3_holdout": "E1 pooled HOLDOUT-DTI > E2 point; paired CI excluding 0 = strong pass",
+    "G4_sgmc": "E1 SGMC-PROXY-DTI >= H33 recomputed identical call",
+    "G5_uniqueness_scoped": "forward 3px overlap <=0.70 AND sampled surface Spearman <=0.90 vs every locally restored discrete raster (data/scored_fleet + data/scored + docs/downloads); literal full-support witness disclosed separately, never hidden",
+    "G6_fingerprint": "exactly 37,654 dots, min d_cat > 3.0 px",
+    "verdict_rule": "promote (scoped download candidate) iff G1,G2,G4,G5,G6 pass and G3 strong pass; else negative. Governance always: safe_to_submit=false, approved_for_weekly_slot=false, submission_slots_used=0 until a separate selector step + organizer receipt. Projection is never a score."
+  },
+  "estimator_frozen": "Strict-match fleet OLS (IR-86R-ESTIMATOR-MISMATCH-20261026 method): OWNER-REPORTED live ~ [1, ovH33, SGMC, frac>1km], LOO-RMSE interval; labelled FLEET-REGRESSION-PROJECTION",
+  "inputs_sha256_verified": {
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "derived_sgmc_faults_100m_u8.tif": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+  }
+}
