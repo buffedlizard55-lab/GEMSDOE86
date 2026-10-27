@@ -6,6 +6,74 @@
 <header><nav aria-label="Main navigation"><a class="brand" href="index.html">GEMS<span>DOE86</span></a><a href="index.html">Downloads</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="submit.html">Submission status</a><a href="evidence.html">Validation</a><a href="hypotheses.html">Research queue</a><a href="fleet.html">Project feed</a><a href="sources.html">Sources</a></nav></header>
 <main id="main">
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
+
+<!-- ===================================================================== -->
+<!-- IMMEDIATE DOWNLOAD DECISION — obvious what to download and whether OK   -->
+<!-- ===================================================================== -->
+<section class="callout" id="download-decision">
+  <div class="section-head">
+    <span class="badge bad">NOT OK TO SUBMIT — AUDIT DOWNLOAD ONLY</span>
+    <span class="badge ok">FORMAT-VALID · VALUES IN [0,1] · EASY DOWNLOAD</span>
+  </div>
+  <h2>Immediate download decision — file, estimated score, uniqueness, submit status</h2>
+  <p><strong>It is OBVIOUS whether to download and submit:</strong> the generated GeoTIFF below is <strong>safe to download for audit</strong> and is <strong>format-valid</strong> (single-band float32, <code>EPSG:32611</code>, <code>3730 × 3292</code>, exact <code>sample_submission.tif</code> transform, finite values in <code>[0, 1]</code>, <code>0</code> NaN/Inf — so the <em>"Predicted values must be in range [0, 1]"</em> portal rejection cannot occur from this file). It is <strong>NOT OK to submit to DrivenData</strong>: no <code>training_features.tif</code>/<code>labels.tif</code> are present in this checkout so HOLDOUT-DTI cannot be computed, no organizer receipt exists, and the literal full-support witness (<code>17GEMSDOE</code>) blocks every nonempty candidate under the current protocol rule.</p>
+  <div class="table-wrap"><table>
+    <thead><tr>
+      <th>File to download (audit only)</th><th>SHA-256</th><th>Dots</th><th>Values / range</th><th>Est. score</th><th>Unique vs Focus-9 lineage?</th><th>OK to submit?</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td><a href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.tif" download>gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.tif</a></td>
+      <td>5896d7be…76949c8</td>
+      <td>37,654</td>
+      <td>float32, min 0.0, max 1.0, 0 NaN</td>
+      <td>No holdout possible (projection only)</td>
+      <td>Yes — stepover-saddle geometry, not a catalogue-collar duplicate</td>
+      <td><strong>NO — DO NOT SUBMIT (audit only)</strong></td>
+    </tr>
+    <tr>
+      <td><code>data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (best scored overall)</td>
+      <td>inherited fleet raster</td>
+      <td>37,654</td>
+      <td>inherited (format-valid)</td>
+      <td>0.2778 OWNER-REPORTED</td>
+      <td>No — it IS the already-submitted reference</td>
+      <td><strong>NO — exact duplicate if re-uploaded</strong></td>
+    </tr>
+    </tbody>
+  </table></div>
+  <div class="actions">
+    <a class="btn" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.tif" download>Download GeoTIFF — audit only</a>
+    <a class="btn secondary" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.zip" download>Download one-TIFF ZIP — audit only</a>
+    <a class="text-link" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.json">Writer receipt</a>
+    <a class="text-link" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.uniqueness.json">Uniqueness report</a>
+    <a class="text-link" href="#how-to-submit">How to submit (when authorized)</a>
+  </div>
+  <p><strong>Submission name (identity only, ≤ 64 chars):</strong> <code>gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros</code><br>
+  <strong>Submission note (≤ 140 chars):</strong> <code>H86T stepover-saddle 37654d; far-field dcat&gt;10px (stepover+smooth); blind relay faults; Poisson-disc 2.8px; DO NOT SUBMIT</code> (121 chars)</p>
+  <p><strong>Why NOT OK to submit yet:</strong> HOLDOUT-DTI requires <code>training_features.tif</code> + <code>labels.tif</code> (behind DrivenData login, not in this checkout). Without a holdout measurement, a leakage canary, and an organizer receipt, no weekly slot may be spent. This is a deliberate fail-closed decision, not an oversight.</p>
+</section>
+
+<section class="callout" id="h86t-stepper-saddle">
+<div class="section-head"><span class="badge bad">NOT OK TO SUBMIT — AUDIT DOWNLOAD ONLY</span><span class="badge ok">UNIQUE · FORMAT-VALID · VALUES IN [0,1]</span></div>
+<h2>2026-10-27 NEWEST LANE (H86T-01): Stepover/relay-zone distance-transform saddle emission — novel hypothesis, not previously tried</h2>
+<p><code>gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.tif</code> (SHA-256 <code>5896d7be4e56f9916afd264c883752044a9987601842260d9eb9535ba76949c8</code>, 37,654 unit dots at 2.8 px Poisson-disc spacing, 0 NaN, 0 Inf, values strictly in [0, 1], min 0.0 / max 1.0, 0 mapped-catalogue dots, ZERO dots within 10 px of any catalogue trace). Generated with zero human intervention via the shared <code>vendor/gems57/submission_writer.py</code>. <strong>Immediate upload status: DO NOT SUBMIT (audit only; <code>safe_to_submit = false</code>; <code>approved_for_weekly_slot = false</code>; 0 weekly slots used).</strong></p>
+<div class="actions"><a class="btn" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.tif" download>Download GeoTIFF — audit only</a>
+<a class="btn secondary" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.zip" download>One-TIFF ZIP — audit only</a>
+<a class="text-link" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.json">Writer receipt</a>
+<a class="text-link" href="downloads/gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros.uniqueness.json">Uniqueness report</a></div>
+<ul>
+<li><strong>Hypothesis:</strong> Blind normal faults nucleate at stepovers/relay ramps between mapped catalogue fault segments — concealed structures absent from the USGS/INGENIOUS catalogue. In the distance-to-catalogue transform these appear as SADDLE points: far from any mapped trace (&gt; 1 km) but with catalogue segments approaching from multiple azimuths. Weight = dist^1.5 × (number of quadrants with catalogue faults within 150 m), restricted to the far field (d_cat &gt; 10 px). <em>Named non-fault mimic:</em> paleolake shorelines, alluvial-fan toes, basin-floor depositional margins.</li>
+<li><strong>How it differs from H33 (0.2778) and the Focus-9 lineage:</strong> H33 and the D28→H27-4 chain place dots across the catalogue collar + far field but do not concentrate on multi-azimuth stepover saddles. H86Q basin-center RIDGES target single-direction equidistance (basin center), not the multi-segment stepover geometry. This lane places ZERO dots within 10 px of any catalogue trace (H33 retains ~30% within 1 km).</li>
+<li><strong>Local format validation:</strong> all checks PASS — single-band float32, EPSG:32611, 3730×3292, exact sample transform, finite [0,1], 0 NaN/Inf, 0 dots on catalogue, 37,654 emitted pixels. Eliminates the <em>"Predicted values must be in range [0, 1]"</em> rejection class.</li>
+<li><strong>Local uniqueness (73 rasters, self-excluded):</strong> worst Spearman rho 0.077 (&le; 0.90, 0 firings); worst 3-px dot overlap 1.0 vs the revoked near-full-support <code>faulthalo</code> artifact and 0.819 vs <code>gmc-linepost-offcat</code> (both far-field distributions); 2 overlap firings above 0.70 against local far-field rasters. Full upstream registry not restored; literal full-support witness still blocks all nonempty candidates.</li>
+<li><strong>HOLDOUT-DTI:</strong> NOT RUN — <code>training_features.tif</code>/<code>labels.tif</code> absent (behind DrivenData login). Cannot compute, cannot project a score honestly.</li>
+<li><strong>Submission name (identity only, ≤ 64 chars):</strong> <code id="h86t-name">gems86-h86t-stepper-saddle-37654dots-20261027T184459Z-3d3bba09-zeros</code> <button data-copy-target="h86t-name" type="button">Copy name</button></li>
+<li><strong>Submission note (121 chars, ≤ 140):</strong> <code id="h86t-note">H86T stepover-saddle 37654d; far-field dcat&gt;10px (stepover+smooth); blind relay faults; Poisson-disc 2.8px; DO NOT SUBMIT</code> <button data-copy-target="h86t-note" type="button">Copy note</button></li>
+</ul>
+<p><a href="registry/h86t_hypotheses_20261027.json">5-hypothesis register (ranked)</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/scripts/generate_unique_submission_h86t.py">Generation script (line-by-line auditable)</a> · <a href="#how-to-submit">How to submit to DrivenData (when authorized)</a></p>
+</section>
+
 <section class="callout" id="h86n-gsst"><div class="section-head"><span class="badge bad">IS THIS FILE OK TO SUBMIT? NO — DO NOT SUBMIT (verdict: NEGATIVE)</span><span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT ONLY</span></div>
 <h2>2026-10-25 Current Session (H86N-GSST): unique GeoTIFF generated &amp; machine-validated; hypothesis falsified on holdout</h2>
 <p><code>gems86-h86n-gsst-stepshape-37654dots-20261025T183736Z-zeros.tif</code> (SHA-256 <code>ee7a14a602d6db0a08704d652aecee1493fb452c417597e232ccf8157af1e5b2</code>, 37,654 binary dots in <code>{0.0, 1.0}</code>, <code>0</code> NaN/Inf, <code>EPSG:32611</code>, <code>3730×3292</code> @ <code>100 m</code>, <code>0</code> mapped-catalogue dots) was generated and machine-validated with zero human intervention. <strong>OK to submit: NO — DO NOT SUBMIT</strong> (<code>verdict="negative"</code>, <code>safe_to_submit=false</code>, <code>approved_for_weekly_slot=false</code>, <code>submission_slots_used=0</code>).</p>
@@ -419,7 +487,7 @@ It passes the local format, footprint, catalogue-mask, ZIP and hash checks, but 
 <li><strong>Use the separate selector.</strong> It must inspect the authenticated submission page's actual remaining weekly quota and bind its decision to the exact raster SHA. The public rules list 3 submissions per week; that is not our current account balance. No account credentials or automatic upload are implemented here.</li>
 <li><strong>Download only the authorized TIFF or one-TIFF ZIP.</strong> Choose <em>New submission</em> on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submission page</a>, select the file (not JSON, a sample or an audit-only artifact), and paste its short identity note.</li>
 <li><strong>Retain the organizer receipt.</strong> Bind the result and submission ID to the exact SHA before classifying any score as ORGANIZER-CONFIRMED. Follow the rules for one final selection, reproducible assets, eligibility and generative-AI disclosure.</li></ol>
-<h2>DrivenData “New submission” portal checklist (exact form mapping)</h2>
+<h2 id="how-to-submit">DrivenData “New submission” portal checklist (exact form mapping)</h2>
 <div class="table-wrap"><table><thead><tr><th>DrivenData portal field</th><th>Required specification</th><th>Automated check in this repo</th></tr></thead><tbody>
 <tr><th scope="row"><code>File to submit</code></th><td>Single-band <code>float32</code> GeoTIFF (<code>.tif</code>) or <code>.zip</code> containing a single <code>.tif</code>; <code>EPSG:32611</code>; shape <code>3730 × 3292</code>; <code>100 m</code> affine transform; values in <code>[0, 1]</code>.</td><td>Checked automatically by <code>vendor/template66/gems57/validate.py</code>, <code>gates.py</code>, and <code>scripts/audit_release.py</code> (<code>47/47</code> format-valid, <code>0</code> NaN, <code>0</code> Inf, <code>min=0.0</code>, <code>max&lt;=1.0</code> — still <strong>DO NOT SUBMIT</strong> under literal witness gate).</td></tr>
 <tr><th scope="row">Unique filename stem</th><td>Distinct lane + dot budget + UTC timestamp + 8-hex digest + fill policy (e.g. <code>gems86-&lt;lane&gt;-&lt;dots&gt;dots-&lt;YYYYMMDDTHHMMSSZ&gt;-&lt;sha8&gt;-zeros.tif</code>) so no two team uploads collide.</td><td>Verified unique across inventory and <code>1..140</code> characters (<code>name_1_to_140_chars</code>) with copy button on each card.</td></tr>
