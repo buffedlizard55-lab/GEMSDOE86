@@ -443,6 +443,10 @@ def summarize_registry_v2(report: dict, returncode: int) -> dict:
 
 def run_lane(*, allow_audit_placement: bool = True) -> dict:
     """Execute the frozen 3-arm H86J-TVHS lane end-to-end."""
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     from scripts.protocol_preflight import require_like_for_like
 
     t0 = time.time()

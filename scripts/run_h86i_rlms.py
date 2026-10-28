@@ -350,6 +350,10 @@ def fit_rlms_ensemble(
     X: np.ndarray, y: np.ndarray, sample_weight: np.ndarray, seed: int
 ) -> list[HistGradientBoostingClassifier]:
     """2-seed variance-reduced HistGradientBoosting ensemble with NaN routing."""
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     models: list[HistGradientBoostingClassifier] = []
     for offset, max_leaf, lr in ((0, 63, 0.06), (101, 47, 0.065)):
         clf = HistGradientBoostingClassifier(
@@ -366,6 +370,10 @@ def fit_rlms_ensemble(
 
 
 def fit_single_hgb(X: np.ndarray, y: np.ndarray, seed: int) -> HistGradientBoostingClassifier:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     clf = HistGradientBoostingClassifier(
         max_iter=200,
         learning_rate=0.07,
@@ -583,6 +591,10 @@ def run_chance_check(registry_report: Path, candidate_path: Path, output: Path) 
 def write_candidate(
     dots: np.ndarray, g: grid.Grid, name: str, note: str, metadata: dict
 ) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"

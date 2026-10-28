@@ -213,6 +213,10 @@ def sample_strict_loqo_pu(
 def fit_hgb(
     X: np.ndarray, y: np.ndarray, sample_weight: np.ndarray | None, seed: int
 ) -> HistGradientBoostingClassifier:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     clf = HistGradientBoostingClassifier(
         max_iter=220,
         learning_rate=0.06,
@@ -342,6 +346,10 @@ def load_binary_tif(path: Path) -> np.ndarray:
 def write_candidate(
     dots: np.ndarray, g: grid.Grid, name: str, note: str, metadata: dict
 ) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     pred = np.where((dots > 0) & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"

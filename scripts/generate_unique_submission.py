@@ -141,6 +141,10 @@ def poisson_disc_emission(weight, budget, spacing_px, rng):
 
 
 def build_prediction():
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     footprint, catalogue = load_grid()
     dist = distance_to_catalogue(catalogue)
     weight = emission_weight(dist, footprint)
@@ -175,6 +179,10 @@ def make_name_note(dots_count, sha8):
 
 
 def _run_collar_emphasis():
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     prediction, footprint, catalogue, dist, dots = build_prediction()
 
     # Unique hash from decoded pixels

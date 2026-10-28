@@ -174,6 +174,10 @@ def run_chance_check(registry_report: Path, candidate_path: Path, output: Path) 
 
 
 def write_candidate(dots: np.ndarray, g, name: str, note: str, metadata: dict) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"
     receipt = submission_writer.write_submission(

@@ -4,6 +4,7 @@ This is deliberately a negative-state publication guard, not a slot selector.
 An inventory entry cannot authorize a submission by changing a boolean.
 """
 from html.parser import HTMLParser
+from collections import Counter
 import hashlib
 import json
 import re
@@ -18,11 +19,17 @@ class Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.urls = []
+        self.ids = []
+        self.copy_targets = []
 
     def handle_starttag(self, tag, attrs):
         for key, value in attrs:
             if key in {'href', 'src'} and value:
                 self.urls.append(value)
+            elif key == 'id' and value:
+                self.ids.append(value)
+            elif key == 'data-copy-target' and value:
+                self.copy_targets.append(value)
 
 
 def load_inventory(root):
@@ -66,6 +73,13 @@ def check(root=ROOT):
     htmls = [root / 'index.html', *sorted((root / 'docs').rglob('*.html'))]
     for path in htmls:
         parser = Links(); parser.feed(path.read_text())
+        counts = Counter(parser.ids)
+        for ident, count in counts.items():
+            if count > 1:
+                errors.append(f'{path.relative_to(root)}: duplicate HTML id {ident}')
+        for target in parser.copy_targets:
+            if counts[target] != 1:
+                errors.append(f'{path.relative_to(root)}: copy target must identify exactly one element: {target}')
         for url in parser.urls:
             parts = urlsplit(url)
             if parts.scheme or parts.netloc or not parts.path:

@@ -1,0 +1,142 @@
+{
+  "schema": "gems86.session-negative-run-card.v1",
+  "date_utc": "2026-10-27",
+  "branch": "arena/0a171468-gemsdoe86",
+  "basis_commit": "acff97ac9df403705b05e1b57a6a4b2585df34e9",
+  "hypothesis": "Catchment-network knickzone consensus (qualitative rank 1, unassigned and NOT RUN)",
+  "mechanism": "Group tributary knickzones by drainage connectivity, seek coherent chi responses across adjacent catchments, and trace them down actual channels toward a basement/alluvium hinge.",
+  "named_non_fault_process": "Resistant volcanic or carbonate beds can align knickpoints; drainage capture and erosion thresholds can also mimic the signal.",
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap": null,
+    "candidate_surface_measured": false,
+    "candidate_final_dots_measured": false,
+    "universal_forward_overlap": 1.0,
+    "limit": 0.7,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "registry_rasters_measured": 1,
+    "registry_complete": false,
+    "proof": "docs/evidence/protocol-preflight.json",
+    "measurement": "docs/evidence/all-artifacts-registry.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "finite_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_tiffs_checked": 49,
+    "inherited_tiffs_local_format_pass": 49,
+    "inherited_tiffs_upload_authorized": 0
+  },
+  "submission_name": null,
+  "note": null,
+  "note_max_characters": 140,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "selector_run": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "blockers": [
+    "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "SHARED_FEATURE_CACHE_NOT_ESTABLISHED"
+  ],
+  "native_inputs": {
+    "status": "HASH_VERIFIED_OWNER_MIRRORS_NOT_ORGANIZER_AUTHENTICATED",
+    "prepared_arrays_verified": 21,
+    "shared_feature_stack_ready": false,
+    "first_preparation_discrepancy": "Two array receipt hashes differed; early unexpected array values; cause unknown. Fresh isolated rebuild and input audit succeeded."
+  },
+  "forensics": {
+    "h86t_archive_commit": "acff97ac9df403705b05e1b57a6a4b2585df34e9",
+    "h86t_original_features_sha256": "b00b0832b1d6f1dc56574437086254a62abeef096a094b1920c9461e5d4da69d",
+    "h86t_original_runner_sha256": "38b228c77adde01e966f90a4d02d81c87f3e9436c05000e08b888316aebf324b",
+    "h86t_zero_ties": 4404851,
+    "h86t_footprint_pixels": 5167373,
+    "h86t_score_impact": "NOT_MEASURED",
+    "focus9_historical_git_bytes_verified": 9,
+    "organizer_receipts_obtained": 0,
+    "fleet_repositories_snapshotted": 92,
+    "entrypoint_guard_coverage": "16 callable orchestrators, 11 legacy mains, two basin-ridge entry points, 39 direct model/writer entry points, and one import-time script; representation-aware preflight cannot waive literal stop.",
+    "h86s_archived_gate_discrepancy": "Frozen format gate false although its validator and latest release audit pass local format; cause unknown."
+  },
+  "final_quality_checks": "PENDING",
+  "scope": "Negative review only. One dense witness establishes a stop but is not a complete registry; no future result, score, raster or selector approval is implied.",
+  "historical_evidence_sha256_at_review": {
+    "research/H86T_KNDS_PREREGISTRATION.json": "4a7ed8516fa512e234a5f5ed8ba17c389ebc713cb80195c7a8b2328e34f3ae09",
+    "registry/h86t_hypotheses_20261027.json": "c0c7e6c3efbbab43fdb098a8c2e1b049084fca0b9cd4924e280516b3f539992a",
+    "docs/evidence/h86t-knds-run-card.json": "4d5162ca30e7dc1e8158e6deec646244d1a9db4b54fee225b34ceae1521ca4ff",
+    "docs/downloads/gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros.tif": "c6870a5708e5ff8222e84281d942d9d6afd1b9feac73c27a1508937e441d18c2",
+    "docs/evidence/h86t-input-provenance-20261027.json": "24ef80777ee7b1f5679ae6fd657eec0ef4ebedf1267a26850412225e9f825094",
+    "registry/review_hypotheses_20261027_0a171468.json": "d9a932e2ba5385f0fcabbc06af9230630bcfe3a135b19f59a94829ccc40a39ea",
+    "docs/evidence/focus9-download-proof-20261027.json": "fe4e7d8a6c1947aef88e2ab68d70f1042516113e9937c3b9396709133ae806ae",
+    "docs/evidence/all-artifacts-registry.json": "a534498a28c78ff175981cf02adbc2965967be77a2ebef395ba81fc2ac4ac59e",
+    "docs/evidence/release-readiness.json": "52a49b412a2dbf68f6ae7ff5cf13b145cfcf8e1c76b0a81c76adf5cab5f6f27d",
+    "docs/evidence/fleet-feed.json": "8947aacd8eab8d47914a75cccc88a6a86ebec5f47948dda08bba18b4b04ae6e8"
+  },
+  "historical_evidence_scope": "SHA-256 of bytes observed during this review; the ongoing fleet/release reports are refreshable, not permanently pinned by this historical card.",
+  "input_source_hashes": {
+    "training_features.tif": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "dem10_chi_100m_i16.tif": {
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+      "bytes": 12777098,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "gdr_volcanic_vents_in_footprint.csv": {
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+      "bytes": 672,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "gdr_wellspring_in_footprint.csv": {
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "geodawn_extensions_u8.tif": {
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "bytes": 27132925,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "geodawn_rad_u8.tif": {
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "lidar_scarp_features_u8.tif": {
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    },
+    "topo_10m_derived_100m_u8.tif": {
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "bytes": 32523329,
+      "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
+    }
+  },
+  "input_source_scope": "Local owner-mirror bytes only. GDR CSV fault-distance fields must be excluded; raw 3DEP tiles, independent official file identity, eligibility and exact GNSS series were not verified."
+}

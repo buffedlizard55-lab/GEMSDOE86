@@ -1,0 +1,92 @@
+{
+  "schema": "gems86.h86t-posthoc-input-provenance.v1",
+  "measured_utc": "2026-10-27T23:47:51.232028+00:00",
+  "evidence_class": "INPUT_AND_CODE_FORENSICS_NOT_HOLDOUT",
+  "archive_commit": "acff97ac9df403705b05e1b57a6a4b2585df34e9",
+  "archived_feature_source_sha256": "b00b0832b1d6f1dc56574437086254a62abeef096a094b1920c9461e5d4da69d",
+  "archived_feature_source_url": "https://github.com/buffedlizard55-lab/GEMSDOE86/blob/acff97ac9df403705b05e1b57a6a4b2585df34e9/src/gems86_knds/features.py",
+  "native_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "chi_sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "native_band_descriptions": [
+    "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+    "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+    "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+    "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+    "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+    "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+    "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+    "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+    "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+    "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+    "det_elev - Detrended elevation - topography with regional trends removed",
+    "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+    "tmi - Total magnetic intensity - total strength of magnetic field",
+    "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+    "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+    "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+    "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+    "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+  ],
+  "legacy_bindings": [
+    {
+      "legacy_feature": "elev_relief",
+      "band": 5,
+      "actual_identifier": "iso_grav_anom_slope",
+      "qualification": "Prior pixel audit identifies a gravity-gradient magnitude proxy, not elevation."
+    },
+    {
+      "legacy_feature": "mt_2km_edge",
+      "band": 16,
+      "actual_identifier": "ieq_n100a15",
+      "qualification": "Earthquake intensity/density identifier, not 2-km magnetotelluric resistivity."
+    },
+    {
+      "legacy_feature": "Bouguer sill veto",
+      "band": 12,
+      "actual_identifier": "det_elev",
+      "qualification": "Detrended elevation Laplacian, not Bouguer gravity."
+    },
+    {
+      "legacy_feature": "grav_hg",
+      "band": 18,
+      "actual_identifier": "iso_grav_anom_hg",
+      "qualification": "Prior pixel audit identifies an eastward signed gravity derivative; abs() is not its full 2-D magnitude."
+    },
+    {
+      "legacy_feature": "rtp_tilt_grad",
+      "band": 2,
+      "actual_identifier": "rtp",
+      "qualification": "Gradient magnitude of smoothed RTP, not a computed magnetic tilt."
+    }
+  ],
+  "chi_ksn_zero_tie": {
+    "footprint_pixels": 5167373,
+    "input_zero_ties": 4404851,
+    "input_zero_tie_fraction": 0.8524352703007892,
+    "legacy_first_zero_rank": 0.0,
+    "legacy_last_zero_rank": 0.8524352417437723,
+    "corrected_all_zero_tie_rank": 0.0
+  },
+  "conclusion": "The historical stable-argsort rank assigned unequal row-order ranks to tied zero inputs. This post-hoc defect and misnamed inputs qualify the geological interpretation; the recorded holdout numbers are not rerun or replaced. Impact on the score is unmeasured.",
+  "physical_override_evidence": "docs/evidence/band-physics-verification-20261024.json",
+  "historical_run_card": "docs/evidence/h86t-knds-run-card.json",
+  "new_model_experiments": 0,
+  "new_candidate_generated": false,
+  "submission_slots_used": 0
+}

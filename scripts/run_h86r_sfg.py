@@ -69,6 +69,10 @@ def registry_paths() -> list[Path]:
 
 
 def run_pa86_lane() -> int:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     t0 = time.time()
     if not PREREG.is_file():
         raise RuntimeError("missing frozen preregistration")

@@ -23,6 +23,11 @@ BUDGET = 37_654
 
 
 def main():
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     cert = require_like_for_like()
     g = grid.load_grid(ROOT / "data")
     fp, cat = g.footprint, g.catalogue

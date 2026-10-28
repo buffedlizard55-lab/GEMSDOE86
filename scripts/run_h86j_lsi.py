@@ -254,6 +254,10 @@ def feature_full(stack, names, fp, lv, cat_in_force):
 
 # ---------------------------------------------------------------- E1
 def stage_e1(g, folds, stack, names):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     WORK.mkdir(parents=True, exist_ok=True)
     out = WORK / "e1.json"
     if out.is_file() and (WORK / "e1_ops.npz").is_file():
@@ -346,6 +350,10 @@ def load_ops():
 
 # ---------------------------------------------------------------- E2
 def stage_e2(e1):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     out = WORK / "e2.json"
     if out.is_file():
         return json.loads(out.read_text())
@@ -514,6 +522,10 @@ def registry_files(exclude: set[Path] = frozenset()):
 
 
 def stage_e3(g, folds, stack, names, e1, e2, preflight, started):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     fp, cat = g.footprint, g.catalogue
     active = fp & ~cat
     lv = lidar_valid(g)
@@ -710,6 +722,11 @@ def stage_e3(g, folds, stack, names, e1, e2, preflight, started):
 
 
 def main(argv=None) -> int:
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("stage", choices=("fetch", "e1", "e2", "e3", "all"))
     a = ap.parse_args(argv)

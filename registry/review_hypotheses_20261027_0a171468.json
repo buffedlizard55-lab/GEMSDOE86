@@ -1,0 +1,159 @@
+{
+  "schema": "gems86.review-hypotheses.v1",
+  "review_date_utc": "2026-10-27",
+  "status": "NOT_RUN_NO_LANE_OR_PROTOCOL_CLEARANCE",
+  "ranking_basis": "Qualitative expected information gain and practical risk, not numerical leaderboard or holdout predictions. Novelty is limited to targeted searches of this checkout, not the whole registry.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "catchment_graph_knickzone",
+      "title": "Catchment-network knickzone consensus",
+      "native_bands": [
+        {
+          "index": 12,
+          "name": "det_elev",
+          "physical_label": "det_elev"
+        },
+        {
+          "index": 15,
+          "name": "depth_to_base_surf",
+          "physical_label": "depth_to_base_surf"
+        },
+        {
+          "index": 19,
+          "name": "det_elev_slope",
+          "physical_label": "det_elev_slope"
+        }
+      ],
+      "external_layers": "USGS 3DEP elevation tiles and reproducibly derived flow directions, stream topology, and chi. A 5-band chi raster is restored from a hash-pinned owner mirror; the underlying tiles and a channel graph are not.",
+      "mechanism": "Group tributary knickzones by drainage connectivity, seek coherent chi responses across adjacent catchments, and trace them down actual channels toward a basement/alluvium hinge.",
+      "off_catalogue_rationale": "A buried range-front scarp could leave a distributed upstream drainage response even where surface mapping misses the fault.",
+      "named_non_fault_mimic": "Resistant volcanic or carbonate beds can align knickpoints; drainage capture and erosion thresholds can also mimic the signal.",
+      "falsifier_and_novelty": "Compare with local-chi and pixel-shift H86T/H86S ablations at matched budget; do not claim graph-level novelty beyond the searched checkout. Mask lithologic contacts and test null catchments. H86T tested pixel-gradient shifts, not a validated stream-network graph.",
+      "expected_improvement_rank": "1 — potentially broad, but unknown; no numeric gain or score forecast",
+      "implementation_cost": "Medium-high: tile/graph preparation, physical review and spatial holdout; runtime unmeasured.",
+      "availability": "USGS metadata describes free 3DEP products. The owner-derived 5-band chi raster and 10-m terrain grid were hash- and grid-verified in this review, but exact source tiles, graph, processing and coverage remain unverified.",
+      "sources": [
+        "https://www.usgs.gov/3d-elevation-program",
+        "https://data.usgs.gov/datacatalog/data/USGS:3a81321b-c153-416f-98b7-cc8e5f0e17c3"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "thermal_manifestation_alignment",
+      "title": "Robust thermal-manifestation corridor graph",
+      "native_bands": [
+        {
+          "index": 2,
+          "name": "rtp",
+          "physical_label": "rtp"
+        },
+        {
+          "index": 5,
+          "name": "iso_grav_anom_slope",
+          "physical_label": "gravity_gradient_magnitude_proxy"
+        },
+        {
+          "index": 17,
+          "name": "cond_surf",
+          "physical_label": "cond_surf"
+        }
+      ],
+      "external_layers": "Hash-verified owner mirrors of GDR 1391 spring/well and volcanic-vent CSVs; additional temperature or paleo-sinter records and a separately sourced road-access control. Exclude dist_known_fault_px and any other fault-derived fields from BOTH CSVs.",
+      "mechanism": "Test whether several spatially separated, independently sourced thermal-fluid observations form robust line corridors corroborated by magnetic, gravity or surface conductivity edges.",
+      "off_catalogue_rationale": "A permeable subsurface structure may be obscured by basin fill even where some fluid manifestations exist; truly blind systems can have none, limiting recall.",
+      "named_non_fault_mimic": "Road access, exploration siting, playa-margin groundwater and range-front topography can align wells or springs without a fault.",
+      "falsifier_and_novelty": "Ablate corridor fitting against point-distance features and access-matched random alignments; split by whole districts and source provenance. RANSAC alignment was queued but not located as an executed primary operator in targeted source search.",
+      "expected_improvement_rank": "2 — potentially high precision but sparse; no numeric gain or score forecast",
+      "implementation_cost": "Medium: data cleaning, source deduplication, access-bias controls and leakage-safe spatial validation; runtime unmeasured.",
+      "availability": "During this review, owner-mirror spring/well and vent CSVs were hash-verified (27,092 and 21 rows respectively); these counts do not establish coordinate accuracy, deduplication, eligibility or official-source identity. Temperature, paleo-sinter and road-control inputs were not restored or validated.",
+      "sources": [
+        "https://gdr.openei.org/submissions/1391",
+        "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "geodetic_seismic_concordance",
+      "title": "Geodetic–seismic concordance at gravity edges",
+      "native_bands": [
+        {
+          "index": 5,
+          "name": "iso_grav_anom_slope",
+          "physical_label": "gravity_gradient_magnitude_proxy"
+        },
+        {
+          "index": 7,
+          "name": "geod_shearrate",
+          "physical_label": "geod_shearrate"
+        },
+        {
+          "index": 8,
+          "name": "geod_dilaterate",
+          "physical_label": "geod_dilaterate"
+        },
+        {
+          "index": 10,
+          "name": "deq_n100a15",
+          "physical_label": "deq_n100a15"
+        },
+        {
+          "index": 16,
+          "name": "ieq_n100a15",
+          "physical_label": "ieq_n100a15"
+        },
+        {
+          "index": 17,
+          "name": "cond_surf",
+          "physical_label": "cond_surf"
+        }
+      ],
+      "external_layers": "None initially beyond native competition bands; independent earthquake source metadata and observation dates must be established before interpreting Bands 10/16.",
+      "mechanism": "Seek coincident anisotropic geodetic shear/dilation and earthquake-distance/intensity patterns near a sharp gravity edge, optionally conditioning on surface conductivity without assuming a 2-km MT layer.",
+      "off_catalogue_rationale": "A diffuse or buried deformation zone may express geodetic and seismic activity without a mapped through-going surface trace.",
+      "named_non_fault_mimic": "Induced seismicity, spatially varying detection, interpolation artifacts and nonfault lithologic contacts can produce apparent concordance.",
+      "falsifier_and_novelty": "Ablate each data group and compare with existing standalone earthquake-lineation and geodetic models; preserve event/district holdouts. The H86T queued label mapping was wrong; this corrected combination has not been verified as executed by the targeted search.",
+      "expected_improvement_rank": "3 — coarse observations may not localize the 300-m metric; no numeric gain or score forecast",
+      "implementation_cost": "Low-medium if data semantics are independently established; validation and source-epoch work dominate. Runtime unmeasured.",
+      "availability": "Native 19-band owner mirror was hash-verified during this review, but the required shared feature-cache identity is unresolved; TIFF headers alone do not validate earthquake semantics.",
+      "sources": [
+        "https://gdr.openei.org/submissions/1391",
+        "https://pubs.usgs.gov/publication/70271418"
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "gnss_temporal_changepoint",
+      "title": "GNSS transient strain-change mapping",
+      "native_bands": [
+        {
+          "index": 7,
+          "name": "geod_shearrate",
+          "physical_label": "geod_shearrate"
+        },
+        {
+          "index": 8,
+          "name": "geod_dilaterate",
+          "physical_label": "geod_dilaterate"
+        },
+        {
+          "index": 17,
+          "name": "cond_surf",
+          "physical_label": "cond_surf"
+        }
+      ],
+      "external_layers": "Nevada Geodetic Laboratory daily GNSS station positions and metadata, with reference-frame, common-mode and instrument-step corrections.",
+      "mechanism": "Locate spatially coherent, quality-controlled displacement or strain-rate changes and test whether they align with independent subsurface contrasts.",
+      "off_catalogue_rationale": "An episodically slipping or pressure-responsive structure could be absent from a static surface-fault map.",
+      "named_non_fault_mimic": "Groundwater extraction, seasonal loading, equipment changes, common-mode noise and geothermal operations can all imitate transient deformation.",
+      "falsifier_and_novelty": "Control for known station offsets, seasonal loading and operations; compare static GNSS and leave-station-out baselines. No daily-time-series changepoint ingestion was found in targeted source search.",
+      "expected_improvement_rank": "4 — station sparsity and temporal mismatch create high uncertainty; no numeric gain or score forecast",
+      "implementation_cost": "High: station selection, time-series quality control and spatial/temporal validation; runtime unmeasured.",
+      "availability": "NGL publicly lists daily station products, but exact stations, dates, terms and bytes have not been downloaded or verified in this environment.",
+      "sources": [
+        "https://geodesy.unr.edu/PlugNPlayPortal.php",
+        "https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa"
+      ]
+    }
+  ]
+}

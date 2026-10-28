@@ -1,7 +1,9 @@
 """H86T-KNDS feature operators and 4-fold eroded LOQO PU model.
 
-All parameters and feature names are frozen in research/H86T_KNDS_PREREGISTRATION.json.
-Memory-optimized for <1.2 GB peak RSS on 3.9 GB sandboxes.
+Legacy feature keys are retained to interpret the frozen preregistration, but
+several keys misdescribe their input bands. See the post-hoc 2026-10-27 review.
+The tie-ranking repair below changes numerical behavior; archived H86T results
+were not rerun and must not be treated as results of the repaired code.
 """
 from __future__ import annotations
 
@@ -10,6 +12,7 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from scipy import ndimage as ndi
+from scipy.stats import rankdata
 from sklearn.ensemble import HistGradientBoostingClassifier
 
 SENTINEL = -3.4028234663852886e38
@@ -66,14 +69,23 @@ def clean(band: np.ndarray, fp: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
 
 def rank01(values: np.ndarray, ok: np.ndarray) -> np.ndarray:
+    """Min-rank values without inventing spatial variation for equal inputs.
+
+    Identical values get identical ranks, including constant/zero backgrounds.
+    Non-finite selected inputs fail closed instead of becoming high ranks.
+    """
+    values = np.asarray(values)
+    ok = np.asarray(ok, dtype=bool)
+    if values.shape != ok.shape:
+        raise ValueError("values and mask must have matching shapes")
     out = np.zeros(values.shape, np.float32)
     v = values[ok]
     if v.size == 0:
         return out
-    order = np.argsort(v, kind="mergesort")
-    ranks = np.empty(v.size, np.float32)
-    ranks[order] = np.arange(v.size, dtype=np.float32)
-    out[ok] = ranks / max(v.size - 1, 1)
+    if not np.isfinite(v).all():
+        raise ValueError("selected rank inputs must be finite")
+    ranks = rankdata(v, method="min") - 1.0
+    out[ok] = (ranks / max(v.size - 1, 1)).astype(np.float32)
     return out
 
 
@@ -139,6 +151,7 @@ def build_static_knds_stack(
     planes["grav_hg"] = rank01(np.abs(b18), fp)
     del b18
 
+    # Legacy key: Band 5 is gravity-gradient magnitude, not elevation relief.
     b5, _ = clean(read_band(5), fp)
     planes["elev_relief"] = rank01(b5, fp)
     del b5
@@ -153,6 +166,7 @@ def build_static_knds_stack(
     planes["rtp_tilt_grad"] = rank01(_gradmag(rtp_sm), fp)
     del rtp_sm
 
+    # Legacy key/variable: Band 16 is earthquake intensity, not 2-km MT.
     b16, _ = clean(read_band(16), fp)
     mt_sm = ndi.gaussian_filter(np.log10(np.clip(b16, 1.0, 1e6)), 1.5, mode="nearest")
     del b16
@@ -229,6 +243,7 @@ def build_static_knds_stack(
     w_lahontan = 1.0 - 0.65 * lahontan_band * small_catchment
     del lahontan_band, small_catchment
 
+    # The legacy "sill veto" uses detrended elevation, not Bouguer gravity.
     b12, _ = clean(read_band(12), fp)
     g12_sm = ndi.gaussian_filter(b12, 2.0, mode="nearest")
     del b12

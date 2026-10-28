@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pytest
 import rasterio
 from rasterio.transform import Affine
 
@@ -24,6 +25,46 @@ from src.gems86_knds.features import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_rank01_ties_constant_fields_and_permutation_are_not_spatial_ramps():
+    mask = np.ones((3, 4), dtype=bool)
+    np.testing.assert_array_equal(rank01(np.ones((3, 4), np.float32), mask), 0)
+    values = np.array([[0, 0, 4], [2, 4, 0]], dtype=np.float32)
+    mask = np.ones_like(values, dtype=bool)
+    result = rank01(values, mask)
+    assert np.all(result[values == 0] == 0)
+    assert np.all(result[values == 4] == result[values == 4][0])
+    permutation = np.array([5, 3, 0, 4, 2, 1])
+    permuted = values.ravel()[permutation]
+    np.testing.assert_allclose(
+        rank01(permuted, np.ones_like(permuted, dtype=bool)),
+        result.ravel()[permutation],
+    )
+    assert rank01(values, np.zeros_like(mask)).sum() == 0
+
+
+def test_rank01_rejects_nonfinite_selected_values_and_shape_mismatch():
+    for bad in (np.nan, np.inf, -np.inf):
+        with pytest.raises(ValueError, match="finite"):
+            rank01(np.array([0.0, bad]), np.array([True, True]))
+    with pytest.raises(ValueError, match="matching shapes"):
+        rank01(np.zeros((2, 2)), np.ones((2, 1), dtype=bool))
+    # Masked invalid values are not ranked.
+    np.testing.assert_array_equal(
+        rank01(np.array([3.0, np.nan]), np.array([True, False])), [0, 0]
+    )
+
+
+def test_archived_h86t_runner_refuses_to_overwrite_history_even_if_feasible(monkeypatch):
+    from scripts import protocol_preflight, run_h86t_knds
+
+    card = ROOT / "docs/evidence/h86t-knds-run-card.json"
+    before = card.read_bytes()
+    monkeypatch.setattr(protocol_preflight, "require_feasible", lambda: None)
+    with pytest.raises(FileExistsError, match="archived"):
+        run_h86t_knds.run_pa86_lane()
+    assert card.read_bytes() == before
 
 
 def test_h86t_preregistration_and_hypothesis_queue_contracts():

@@ -99,6 +99,15 @@ def registry_paths() -> list[Path]:
 
 
 def run_pa86_lane() -> int:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
+    if (EV / "h86t-knds-run-card.json").exists():
+        raise FileExistsError(
+            "H86T is archived; repaired code needs a newly preregistered lane "
+            "and must not overwrite the historical run card or artifacts"
+        )
     t0 = time.time()
     from scripts import protocol_preflight
 
@@ -438,11 +447,8 @@ def run_pa86_lane() -> int:
         ),
     }
 
-    # Remove any prior h86t-knds artifacts before writing fresh candidate
-    for old_p in list((ROOT / "docs/downloads").glob("gems86-h86t-knds-*")) + list(
-        (ROOT / "submission").glob("gems86-h86t-knds-*")
-    ):
-        old_p.unlink()
+    # Historical TIFFs and receipts are immutable. The shared writer rejects
+    # collisions; never delete earlier artifacts to make room for another run.
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     dots_hash = hashlib.sha256(fin[ARM_E1].tobytes()).hexdigest()[:8]

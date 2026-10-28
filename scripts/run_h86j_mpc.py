@@ -146,6 +146,10 @@ def h33_forensics(g):
 
 
 def stage_e1(g, folds, mpc, grad):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     WORK.mkdir(parents=True, exist_ok=True)
     out, terms_path = WORK / "e1.json", WORK / "e1_control_terms.npz"
     if out.is_file() and terms_path.is_file():
@@ -237,6 +241,10 @@ def surface_registry_check(surfs, fp):
 
 
 def stage_e2(g, folds, surfs):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     out = WORK / "e2.json"
     if out.is_file():
         return json.loads(out.read_text())
@@ -260,6 +268,10 @@ def stage_e2(g, folds, surfs):
 
 
 def stage_e3(g, folds, surfs):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     out = WORK / "e3.json"
     if out.is_file():
         return json.loads(out.read_text())
@@ -275,6 +287,10 @@ def stage_e3(g, folds, surfs):
 
 # ---------------------------------------------------------------- final
 def stage_final(g, folds, surfs, e1, e2, e3, preflight, started):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     fp, cat = g.footprint, g.catalogue
     arm = e2["_selection"]["best_arm"]
     if arm is None:
@@ -430,6 +446,11 @@ def stage_final(g, folds, surfs, e1, e2, e3, preflight, started):
 
 
 def main(argv=None) -> int:
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("stage", choices=("features", "e1", "e2", "e3", "final", "all"))
     a = ap.parse_args(argv)

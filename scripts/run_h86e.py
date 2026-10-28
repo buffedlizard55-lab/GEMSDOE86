@@ -261,6 +261,10 @@ def _assemble(static_mm, ctx_arrays, flat_idx, rows):
 
 def train_predict(static_mm, ctx_arrays, flat_idx, train_rows_pos, train_rows_neg,
                   predict_rows, seed=0):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     from sklearn.ensemble import HistGradientBoostingClassifier
 
     X = np.vstack([

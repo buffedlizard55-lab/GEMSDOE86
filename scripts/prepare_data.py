@@ -78,8 +78,34 @@ def audit_input_grid(src, name: str, *, count: int) -> dict:
         raise ValueError(f"{name}: geotransform mismatch: {transform} != {EXPECTED_TRANSFORM}")
     if src.count != count:
         raise ValueError(f"{name}: expected {count} bands, got {src.count}")
-    return {"epsg": epsg, "shape": list(src.shape), "transform": list(transform),
-            "bands": src.count, "crs_shape_transform_match": True}
+    result = {"epsg": epsg, "shape": list(src.shape), "transform": list(transform),
+              "bands": src.count, "crs_shape_transform_match": True}
+    if name == "training_features":
+        # The short identifier in the supplied TIFF is checked separately from
+        # its free-text description: some descriptions misstate the physics.
+        observed = [d.split(" - ", 1)[0].strip() if d else None for d in src.descriptions]
+        expected = [BANDS[i] for i in range(1, len(BANDS) + 1)]
+        if observed != expected:
+            raise ValueError(f"{name}: band identifiers missing or out of order")
+        result["band_identifiers_verified"] = True
+        result["physical_interpretation"] = (
+            "Identifiers are not independent physics; see BAND_PHYSICS_VERIFIED "
+            "and docs/evidence/band-physics-verification-20261024.json"
+        )
+    return result
+
+
+def save_checked_array(path: Path, values: np.ndarray) -> str:
+    """Verify actual serialized values, then pin them before any later work."""
+    np.save(path, values)
+    written = np.load(path, mmap_mode="r", allow_pickle=False)
+    try:
+        if (written.shape != values.shape or written.dtype != values.dtype
+                or not np.array_equal(written, values, equal_nan=True)):
+            raise ValueError(f"Prepared array readback mismatch: {path.name}")
+    finally:
+        del written
+    return sha256_file(path)
 
 
 def publish_native_cache(stage: Path, bands_dir: Path, manifest_path: Path, manifest: dict) -> None:
@@ -117,6 +143,11 @@ def publish_native_cache(stage: Path, bands_dir: Path, manifest_path: Path, mani
                     backed_up = True
                 os.replace(stage, bands_dir)
                 published = True
+                for record in manifest["prepared_arrays"]:
+                    array_path = bands_dir / Path(record["file"]).name
+                    if (array_path.stat().st_size != record["bytes"]
+                            or sha256_file(array_path) != record["sha256"]):
+                        raise ValueError(f"Prepared array changed during publication: {array_path.name}")
                 os.replace(temporary_manifest, manifest_path)
             except BaseException:
                 if published:
@@ -215,8 +246,10 @@ def prepare(
     work_dir.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".native-bands-", dir=work_dir) as staged:
         stage = Path(staged)
-        np.save(stage / "_footprint.npy", foot)
-        np.save(stage / "_labels.npy", lab)
+        early_pins = {
+            "_footprint.npy": save_checked_array(stage / "_footprint.npy", foot),
+            "_labels.npy": save_checked_array(stage / "_labels.npy", lab),
+        }
 
         band_stats = []
         total_sentinel_in_foot = 0
@@ -237,7 +270,8 @@ def prepare(
 
                     arr[is_sentinel] = np.nan
                     arr[~foot] = np.nan
-                    np.save(stage / f"{idx:02d}_{bname}.npy", arr)
+                    filename = f"{idx:02d}_{bname}.npy"
+                    early_pins[filename] = save_checked_array(stage / filename, arr)
 
                     valid_vals = arr[foot & np.isfinite(arr)]
                     band_stats.append({
@@ -293,9 +327,16 @@ def prepare(
         }
 
         out_path = Path(manifest_path) if manifest_path is not None else (ROOT / "data" / "prepared_manifest.json")
+        paths = sorted(stage.glob("*.npy"))
+        if {path.name for path in paths} != set(early_pins):
+            raise ValueError("Prepared staged array set changed before publication")
+        for path in paths:
+            if sha256_file(path) != early_pins[path.name]:
+                raise ValueError(f"Prepared array changed during staging: {path.name}")
         manifest["prepared_arrays"] = [dict(file=_rel_or_str(bands_dir / path.name),
-            sha256=sha256_file(path), bytes=path.stat().st_size) for path in sorted(stage.glob("*.npy"))]
+            sha256=early_pins[path.name], bytes=path.stat().st_size) for path in paths]
         manifest["publication"] = dict(complete_array_set_staged=True, rollback_on_exception=True,
+            array_value_readback_verified=True, array_pins_rechecked_during_publication=True,
             local_preparers_serialized=True, crash_atomic_across_cache_and_manifest=False,
             scope="Native bands only; not the actual shared template cached feature stack")
         publish_native_cache(stage, bands_dir, out_path, manifest)

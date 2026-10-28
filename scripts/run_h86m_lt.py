@@ -19,6 +19,10 @@ from scipy.optimize import least_squares
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 sys.path.insert(0, str(ROOT))
+# This legacy script performs model work at import time. Stop before any cache
+# creation or input reads; importing it is not a way around the literal gate.
+from scripts.protocol_preflight import require_feasible  # noqa: E402
+require_feasible()
 from gems57 import metric, submission_writer  # noqa: E402
 
 CACHE = ROOT / ".cache/h86m"; CACHE.mkdir(parents=True, exist_ok=True)

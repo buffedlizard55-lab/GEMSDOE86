@@ -334,6 +334,10 @@ def registry_summary(report: dict, returncode: int) -> dict:
 
 
 def write_candidate(dots: np.ndarray, g, name: str, note: str, metadata: dict) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"
     receipt = submission_writer.write_submission(
@@ -360,6 +364,10 @@ def write_candidate(dots: np.ndarray, g, name: str, note: str, metadata: dict) -
 
 
 def run_lane() -> dict:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     started = time.time()
     preregistration = require_preregistration()
     preflight = require_like_for_like()

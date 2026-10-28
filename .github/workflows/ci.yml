@@ -14,6 +14,8 @@ jobs:
       - name: static site integrity (read-only)
         run: |
           python scripts/build_review_card.py --check
+          python scripts/check_hypothesis_bands.py
+          python scripts/verify_focus9_downloads.py
           python scripts/build_site.py --check
           python scripts/check_site.py
           python scripts/audit_downloads.py

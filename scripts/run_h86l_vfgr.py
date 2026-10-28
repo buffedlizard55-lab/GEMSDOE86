@@ -166,6 +166,11 @@ def emit(surface: np.ndarray, allowed: np.ndarray, known: np.ndarray, valid: np.
 
 
 def main() -> None:
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     started = time.time()
     certificate = require_like_for_like()
     print("preflight", certificate["status"], flush=True)
