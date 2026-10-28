@@ -1,0 +1,28 @@
+{
+  "schema": "gems86.review-run-card.v1",
+  "hypothesis": null,
+  "mechanism": "No assigned single method lane; review and registry counterexample only.",
+  "named_non_fault_process_that_could_mimic_it": null,
+  "holdout_dti": null,
+  "holdout_note": "No experiment; no holdout DTI, evaluator version, withheld positives, or CI measured in this session.",
+  "correlation_overlap_vs_registry": {
+    "candidate_surface": null,
+    "candidate_dots": null,
+    "witness": "SESSION_20261028_AEF925EA_WITNESS.json",
+    "meaning": "Full allowed-domain support of one pinned historical raster makes forward dot overlap 1.0 for any nonempty allowed-domain candidate; not a full registry scan."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_created": false,
+    "nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}
