@@ -2,7 +2,7 @@
   "schema": "gems86.focus9-hypothesis-proposal.v1",
   "created_utc": "2026-10-28T12:01:39Z",
   "session_branch": "arena/92a8169e-gemsdoe86",
-  "purpose": "Three genuinely unexecuted, repository-screened geological hypotheses for a future explicitly assigned lane. This proposal is not a lane assignment, experiment preregistration, DTI score, candidate TIFF, or submission authorization.",
+  "purpose": "Three genuinely unexecuted, repository-screened geological hypotheses for a future explicitly assigned lane. Two later appended drafts were reviewed but not counted: one requires a field/schema correction and a focused novelty rescreen; the other repeats a previously queued vegetation/phreatophyte concept. This proposal is not a lane assignment, experiment preregistration, DTI score, candidate TIFF, or submission authorization.",
   "lane_assignment": null,
   "selected_for_execution": null,
   "execution_authorized": false,
@@ -31,6 +31,10 @@
       {
         "concept": "ASTER alteration, multi-depth MT/heat flow, radiometric K/Th/U provenance, point-manifestation RANSAC, and static seismic-density fusion",
         "reason": "These recur in earlier H86C/H86K/H86S/H86T queues or executed feature modules. They are excluded from this fresh proposal set."
+      },
+      {
+        "concept": "Groundwater-spring / phreatophyte vegetation alignment (later draft F9N-5)",
+        "reason": "Repeats the already-proposed Landsat NDVI/phreatophyte lineament idea in research/H86J_LSI_REVIEW.md; not counted as a genuinely untried additional hypothesis."
       }
     ],
     "known_band_contract": "Native indices follow src/gems86/io.py BANDS. No historical band labels are reused where physical identity is disputed; the proposed raw ComCat catalog is separate from native event-count bands."
@@ -115,61 +119,26 @@
         }
       ],
       "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: no attributed geologic-unit polygons or verified product coverage are present; do not treat the fault-only derivative as the required layer."
-    },
-    {
-      "rank": 4,
-      "id": "F9N-4_STEPPED_SCarp_GEOMORPHIC_INDEX",
-      "name": "Stepped range-front fault-scarp geomorphic index (high-resolution DEM) as a direct displacement surface",
-      "status": "PROPOSED_NOT_RUN",
-      "expected_dti_improvement": "Speculative and unquantified: no scarp-index operator has measured holdout-DTI on Focus-9 sites; at most a conditional, segment-local signal, not a demonstrated gain over H33's 0.2778.",
-      "implementation_cost": "A narrow strike-coherent strip of elevated scarp index or stepped bench relief coinciding with a mapped but uncharacterized fault segment.",
-      "layers": [
-        "USGS 3D Elevation Program (3DEP) 1 m bare-earth DEM tiles (official public source; raw elevations; a 100 m derivative is not an adequate substitute)",
-        "USGS National Geologic Map Database (NGMDB) mapped Quaternary fault traces for segment control and negative controls"
-      ],
-      "targeted_physical_signature": "A scarp index can highlight candidate displacement where young fault traces lack catalogue entries; age-matched geomorphic surfaces preserve displacement longer than fresh scarps.",
-      "why_it_may_find_uncatalogued_faults": "Landslide scarps, alluvial fan heads, glacial/periglacial terraces, and differential erosion of non-fault stratigraphy.",
-      "named_non_fault_mimic": "Repository work treats scarps mainly as context/mimic material; no pinned scarp-index operator or holdout DTI comparison was found for these sites.",
-      "difference_from_repository_methods": [
-        {
-          "name": "USGS 3D Elevation Program (3DEP)",
-          "url": "https://www.usgs.gov/3d-elevation-program",
-          "availability_check": "Official public source identified; raw 1 m DEM tiles not present in this checkout and direct agency download is outside sandbox egress."
-        }
-      ],
-      "official_free_sources": "High: pin DEM tiles, derive local relief/rugosity and scarp-height-to-slope ratio, align to mapped segments, fit scarp degradation, preregister controls before holdout evaluation.",
-      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: required external datasets (DEM derivatives, spring/vegetation or InSAR products) are absent from this checkout and direct agency access is outside sandbox egress; no bytes, implementation, holdout evaluation, DTI, CI, or DTI comparison exists for these hypotheses."
-    },
-    {
-      "rank": 5,
-      "id": "F9N-5_GROUNDWATER_SPRING_VEGETATION_ALIGNMENT_INDEX",
-      "name": "Groundwater-spring and phreatophyte vegetation alignment index along fault-controlled discharge zones",
-      "status": "PROPOSED_NOT_RUN",
-      "expected_dti_improvement": "Speculative and unquantified: no spring/vegetation alignment operator has measured holdout-DTI on Focus-9 sites; any gain would be indirect and segment-local.",
-      "implementation_cost": "Linear spring/vent clusters and aligned moisture- or stress-vegetation anomalies tracking fault traces where faults act as permeability conduits or barriers.",
-      "layers": [
-        "USGS National Geologic Map Database (NGMDB) spring/well and geologic-unit inventories",
-        "USGS Landsat 8/9 Collection 2 surface-reflectance imagery and USGS EarthExplorer access record (vegetation stress/greenness anomaly proxy)",
-        "Native Band 12 det_elev and Band 19 det_elev_slope for topographic context"
-      ],
-      "targeted_physical_signature": "Faults can localize discharge; persistent spring lines or vegetation alignments may mark concealed or young faults missing from the catalogue.",
-      "why_it_may_find_uncatalogued_faults": "Irrigation, canals, riparian corridors, wetlands, and roadside drainage unrelated to faulting.",
-      "named_non_fault_mimic": "Repository work does not appear to include a pinned spring/vegetation alignment operator with holdout DTI on these sites.",
-      "difference_from_repository_methods": [
-        {
-          "name": "USGS National Geologic Map Database (NGMDB)",
-          "url": "https://ngmdb.usgs.gov/",
-          "availability_check": "Official public source identified; spring/well inventories not present in this checkout and direct agency access is outside sandbox egress."
-        },
-        {
-          "name": "USGS Landsat 8/9 Collection 2",
-          "url": "https://www.usgs.gov/landsat-missions/landsat-8-9",
-          "availability_check": "Official public source identified; imagery not present in this checkout and direct agency access is outside sandbox egress."
-        }
-      ],
-      "official_free_sources": "High: obtain NGMDB spring/well points and Landsat 8/9 surface-reflectance time series, align anomalies to fault segments, preregister irrigation/riparian negative controls before holdout evaluation.",
-      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: required external datasets (DEM derivatives, spring/vegetation or InSAR products) are absent from this checkout and direct agency access is outside sandbox egress; no bytes, implementation, holdout evaluation, DTI, CI, or DTI comparison exists for these hypotheses."
     }
   ],
-  "execution_gate": "No lane is assigned. The native training_features.tif, prepared arrays and actual shared .cache/h86_features/static60_fp.f16 cache are missing. A freshly remeasured hash-pinned full-support witness has 0 uncovered allowed pixels and triggers the binding literal overlap stop for every nonempty prediction. Do not run an experiment, generate a candidate TIFF, claim a holdout score, or use a weekly slot until the owner resolves the stop, assigns a lane, restores the exact shared cache and required data, and authorizes a complete like-for-like registry workflow."
+  "execution_gate": "No lane is assigned. The native training_features.tif, prepared arrays and actual shared .cache/h86_features/static60_fp.f16 cache are missing. A freshly remeasured hash-pinned full-support witness has 0 uncovered allowed pixels and triggers the binding literal overlap stop for every nonempty prediction. Do not run an experiment, generate a candidate TIFF, claim a holdout score, or use a weekly slot until the owner resolves the stop, assigns a lane, restores the exact shared cache and required data, and authorizes a complete like-for-like registry workflow.",
+  "review_disposition": {
+    "counted_ranked_hypotheses": 3,
+    "unranked_drafts_not_counted": [
+      {
+        "id": "F9N-4_STEPPED_SCarp_GEOMORPHIC_INDEX",
+        "former_rank": 4,
+        "status": "REQUIRES_SCHEMA_CORRECTION_AND_NOVELTY_RESCREEN",
+        "reason": "The appended draft assigned its implementation_cost, targeted_physical_signature, why_it_may_find_uncatalogued_faults, named_non_fault_mimic, difference_from_repository_methods, and official_free_sources content to the wrong fields. Its claimed separation from existing scarp/relief work also needs a focused source/operator audit. It is not counted as a verified untried hypothesis."
+      },
+      {
+        "id": "F9N-5_GROUNDWATER_SPRING_VEGETATION_ALIGNMENT_INDEX",
+        "former_rank": 5,
+        "status": "EXCLUDED_AS_REPEAT",
+        "reason": "The draft repeats the Landsat NDVI/phreatophyte lineament concept already identified in the repository novelty screen as previously proposed; its field values are also shifted across implementation/signature/mimic/source labels."
+      }
+    ],
+    "scope": "Only ranks 1-3 are the current fully specified proposal set; all remain PROPOSED_NOT_RUN, qualitative, data-blocked, and unauthorized.",
+    "reviewed_in_branch": "arena/27fef6bb-gemsdoe86"
+  }
 }
