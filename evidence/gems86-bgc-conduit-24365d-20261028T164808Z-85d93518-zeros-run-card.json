@@ -1,0 +1,182 @@
+{
+  "schema": "gems86.run-card.v1",
+  "lane": "gems86-bgc-blind-geothermal-conduit",
+  "hypothesis": "Off-catalogue dots gated by a geothermal-anomaly surface (radiometric TC, conductivity, gravity gradient) recover withheld fault segments and target blind geothermal conduits missing from the USGS/INGENIOUS catalogue.",
+  "mechanism": "Rank-normalized catalogue-proximity credit (triangular 300 m kernel, 1-7 px off-catalogue annulus) blended with rank-normalized Band 6 tc / Band 17 cond_surf / Band 5 gravity-gradient surface; tile-maximized sparse dots; visible faults masked pixel-exactly from scoring.",
+  "named_non_fault_mimic": "Radiometric/conductivity anomalies from alteration, lithology or cover unrelated to faults; gravity gradients from density contacts without displacement.",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "holdout_dti": 0.20973056641340854,
+  "holdout_ci95": [
+    0.20700518962349934,
+    0.21196942885527287
+  ],
+  "withheld_positives": 22641,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "leakage_canary": {
+    "tc": 0.44374676015488124,
+    "cond": 0.49676320164009247,
+    "grav": 0.53174163935633
+  },
+  "leakage_flag": false,
+  "surface_sha256": "ba47b876cfc105946916c53eef322f08ba828574e868b800030a049fbe7a9284",
+  "dots_sha256": "85d935182e7126e977ac000bc743fafa4e3d30c6008c1c6fc9084fa119addc67",
+  "raster_sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+  "n_dots": 24365,
+  "registry": {
+    "surface": {
+      "exit": 1,
+      "out": "/home/user/GEMSDOE86/docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.surface.registry.json",
+      "stdout": "{\n  \"surface_gate_pass\": false,\n  \"literal_gate_pass\": false,\n  \"registry_complete_for_index\": false\n}\n",
+      "stderr": ""
+    },
+    "final_dots": {
+      "exit": 1,
+      "out": "/home/user/GEMSDOE86/docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.final_dots.registry.json",
+      "stdout": "{\n  \"final_dots_gate_pass\": false,\n  \"literal_gate_pass\": false,\n  \"registry_complete_for_index\": false\n}\n",
+      "stderr": ""
+    }
+  },
+  "validator": {
+    "file": "/home/user/GEMSDOE86/docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.tif",
+    "bytes": 115721,
+    "sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0019842563197016716,
+    "emitted_positive_pixels": 24365,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 24365,
+    "footprint_fraction": 0.004715161843358318
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE86/docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.tif",
+    "bytes": 115721,
+    "sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0019842563197016716,
+    "n_nonzero": 24365,
+    "mass": 24365.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "submission_name": "gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros",
+  "note": "BGC dots off faults; prox+TC/cond/gravity surface; 24365 dots; holdout DTI 0.2097 [0.2070,0.2120]; values [0,1]; not organizer-approved",
+  "note_chars": 135,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "generated_utc": "2026-10-28T17:03:12.163188+00:00",
+  "verdict": "negative",
+  "duplicate": true,
+  "duplicate_firings": {
+    "dot_field_firings_over_0p70": 67,
+    "worst_overlap": 0.9999179150420685,
+    "worst_overlap_vs": "13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif (206,895 dots)",
+    "other_firings": {
+      "11GEMSDOE gems-structural-area06-v1": 0.9194,
+      "12GEMSDOE r7-nms3-dem10-scarp": 0.7203,
+      "13GEMSDOE r14-union-tips10-lat6": 0.7995,
+      "15GEMSDOE gems-cleanup-a curv_scarp": 0.89,
+      "18GEMSDOE H19-C": 0.9235,
+      "5GEMSDOE candidate_s5_dilational_top50k": 0.9233,
+      "GEMSDOE10 h28-dotted-ridge": 0.7219,
+      "GEMSDOE22 h23-b-dti-optimal-emission-10pct": 0.7549
+    },
+    "continuous_surface_firings_chance_level": [
+      "17GEMSDOE E-proba-multiscale (ov 1.0)",
+      "5GEMSDOE context_detector_prob (ov 1.0)"
+    ],
+    "worst_non_self_rho": 0.17087873284651064,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "registry_scan": "720/722 measured; 2 rows errored (14GEMSDOE CRS/transform mismatch; 7GEMSDOE qfaults grid/band mismatch) -> incomplete scan",
+    "self_comparison_artifact": "rho=1.0 vs own TIF present in docs/downloads at check time; excluded from the duplicate finding"
+  },
+  "duplicate_reason": "More than 70% of this candidate's dots fall within 3 px of multiple registry dot-field rasters (67 firings; worst 0.9999 vs 13GEMSDOE lattice), so per protocol rule 1 it drifted into the existing near-catalogue dotted-field lane: duplicate, log and stop. Safe to download for audit only; NOT OK to submit.",
+  "holdout_tension_note": "The hide-and-recover holdout scores catalogue-proximal dots (within the 300 m / 3 px kernel of withheld catalogue segments); those same pixels are densely covered by existing registry dot fields, so a high holdout DTI and the 0.70 / 3-px uniqueness gate are in tension for this proxy. A raster unique by that gate places dots >3 px from all existing dots, i.e. beyond kernel reach of withheld truth, and scores ~0 holdout DTI.",
+  "verdict_detail": "duplicate lane per protocol rule 1 (67 dot-field overlap firings >0.70; worst 0.9999 vs 13GEMSDOE lattice); log and stop; DO NOT SUBMIT"
+}
