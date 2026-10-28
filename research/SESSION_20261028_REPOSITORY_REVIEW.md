@@ -44,7 +44,7 @@ Commands and observed outcomes in this checkout:
 
 | Check | Result | Interpretation |
 |---|---|---|
-| `.venv/bin/pytest -q` | **PASS** — 1,141 passed, 24 skipped, 58 subtests passed; 48 warnings | Regression suite passes. Warnings are rasterio `PendingDeprecationWarning`s for affine `*` multiplication. |
+| `.venv/bin/pytest -q` | **PASS** — first-pass review: 1,141 passed, 24 skipped, 58 subtests; after merging the independent nine-site truthfulness corrections: 1,143 passed, 24 skipped, 58 subtests; 48 warnings | Regression suite passes on the final merged tree. Warnings are rasterio `PendingDeprecationWarning`s for affine `*` multiplication. |
 | `scripts/audit_release.py` | **PASS** — `audit_ok=true`, 49 artifacts remeasured, 49 locally valid, decision `DO NOT SUBMIT` | Local format/integrity only; release audit explicitly does not authorize upload. |
 | `scripts/build_site.py --check` | **PASS** | Generated site matches evidence inputs. |
 | `scripts/check_site.py` | **PASS** | Link and registered TIFF/ZIP integrity/safety checks pass; not scientific clearance. |
