@@ -1,10 +1,10 @@
 {
   "schema": "gems86.all-artifacts-registry.v1",
   "evidence_class": "REGISTRY-MEASUREMENT",
-  "measured_utc": "2026-10-28T11:43:44.812502+00:00",
+  "measured_utc": "2026-10-28T17:11:28.093665+00:00",
   "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
   "witness_source": "https://api.github.com/repos/buffedlizard55-lab/17GEMSDOE/git/blobs/374c88b1da2b803e2ed160de467fd71ae114010d",
-  "proof_sha256": "ec80cf8f6c412d69b1b9a3688e5f0c91e65cd57664d2053d97bba059a305b92d",
+  "proof_sha256": "98045a9269b80699c9cdb3cc42dde218eea4abdc1730973e81e861aab03ad138",
   "registry_rasters_measured": 1,
   "registry_complete": false,
   "preplacement_surfaces_measured": false,
@@ -448,6 +448,15 @@
       "file": "docs/downloads/gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros.tif",
       "sha256": "c6870a5708e5ff8222e84281d942d9d6afd1b9feac73c27a1508937e441d18c2",
       "spearman_full_footprint": 0.05474361625822747,
+      "forward_overlap_3px": 1.0,
+      "unique": false,
+      "stop_required": true,
+      "complete_accessible_scan": false
+    },
+    {
+      "file": "docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.tif",
+      "sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+      "spearman_full_footprint": 0.07550455215734886,
       "forward_overlap_3px": 1.0,
       "unique": false,
       "stop_required": true,

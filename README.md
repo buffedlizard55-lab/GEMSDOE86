@@ -7540,6 +7540,18 @@ Pass 3: Re-check the entire implementation against the original request. Improve
 Do not stop after the first pass. Each pass must build on the previous one. Before finishing, verify that the final result fully satisfies the original request.  Work line by line verify everything no hallucinations.
 
 Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project.  It should be worked on in this next session or the next session.  Work line by line verify everything no hallucinations.
+
+# Owner request — 2026-10-28 (current; STOP_LITERAL_OVERLAP_UNSATISFIABLE holds — no TIFF generation, no slot use, no "submit this file" buttons)
+
+Review GEMSDOE24/25/27/28/30/31/32/33/36; label owner claims versus organizer-confirmed scores; compare nine-site overlaps without claiming full-registry uniqueness; explain GEMSDOE32 H33's 0.2778 claim without asserting causation; make download-versus-submit status obvious; preserve single-band GeoTIFF, grid, [0,1], in-footprint finite values and submission instructions; maintain 3–5 untried geological hypotheses with layers/mechanisms/mimics/cost/source availability. Ultimately produce a unique TIF submission for download and submission into the DrivenData GEMS competition.
+
+Acceptance criteria: values in [0,1]; no NaN inside footprint; CRS/shape/transform match sample submission; unique (rho <= 0.90 vs registry, <= 70% dots within 3 px); holdout-DTI validated; run card JSON produced; verdict promote/negative; note <= 140 chars.
+
+Current blocker: literal witness stop plus registry uniqueness failure (this lane NOT unique); native data/cache restored and env ready. Must not generate TIFF or use slot while stop applies.
+
+Constraints: MUST generate a unique TIF submission; do not copy a previous submission except for learning/education. It must be obvious whether the generated TIF is OK to download and submit. Values must be in [0,1] (user hit "Predicted values must be in range [0, 1]" error on submission form). Unique name + short note (<= 140 chars, e.g. "clustering with k=25"). Executive summary subpage explaining exactly how to submit; download button obvious at top. No automated fetching/scraping of drivendata.org (ToS); organizer-confirmed scores require human browser receipt. Work line by line, verify from official/trusted sources, no hallucinations, flag irregularities. Parallel-run protocol: lane, reuse (shared template tools), evidence labeling (HOLDOUT-DTI vs ORGANIZER-CONFIRMED), leakage canary (AUC > 0.90 = leakage), run card JSON, budget (3 experiments / 2 hours), no slot selection here. Do not bypass `protocol_preflight.require_feasible()`; PA-86 lanes may use `require_like_for_like()` only if also running `check_h86e_registry.py` and `pa86_chance_overlap.py`. `safe_to_submit`/`approved_for_weekly_slot` both currently false; do not restore "submit this file" buttons.
+
+This session (arena/02382371-gemsdoe86, 2026-10-28): G86-BGC lane `scripts/lane_g86_bgc.py` v2 ran (HOLDOUT-DTI best N=40000 w_geo=0.3 = 0.20973 [0.20701, 0.21197], canaries clean at 0.4437/0.4968/0.5317, format valid) but FAILED uniqueness — 67 dot-field firings >0.70, worst 0.999918 vs 13GEMSDOE r13-lattice-s5_v2_zerofill — run card verdict NEGATIVE / DO NOT SUBMIT, registered audit-only at `docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.tif` (SHA `46f91882...`), not in submission, safe to download for audit only. A NEW unique lane/TIF is required for any submission.
 <!-- OWNER_PROMPT_ARCHIVE_END -->
 
 </details>

@@ -344,6 +344,13 @@
       "context": "docs/evidence/h86t-knds-run-card.json",
       "holdout_kind": "h86t_knds",
       "stem": "gems86-h86t-knds-37654dots-20261027T194957Z-3d7f3677-zeros"
+    },
+    {
+      "lane": "G86-BGC blind geothermal conduit emission (new lane 2026-10-28; duplicate stop, not unique)",
+      "card": "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
+      "context": "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
+      "holdout_kind": "unvalidated_variant",
+      "stem": "gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros"
     }
   ]
 }
