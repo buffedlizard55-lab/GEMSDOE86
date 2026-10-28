@@ -89,6 +89,11 @@ def greedy(support: np.ndarray, eligible: np.ndarray, budget: int, spacing: floa
 
 
 def main() -> None:
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     t0 = time.time()
     cert = require_like_for_like()
     print(f"preflight: {cert['status']} witness_rep={cert['witness_representation']}", flush=True)

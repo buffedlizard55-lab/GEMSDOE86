@@ -35,7 +35,8 @@ def _isolated_inputs(tmp_path, monkeypatch):
     import scripts.build_site as builder
     (tmp_path / "registry").mkdir()
     (tmp_path / "docs/evidence").mkdir(parents=True)
-    for rel in ("registry/prior_scores.csv", "docs/evidence/focus9-forensics-20261026-rev2.json"):
+    for rel in ("registry/prior_scores.csv", "docs/evidence/focus9-forensics-20261026-rev2.json",
+                "docs/evidence/focus9-download-proof-20261027.json", "docs/evidence/fleet-feed.json"):
         shutil.copyfile(ROOT / rel, tmp_path / rel)
     monkeypatch.setattr(builder, "ROOT", tmp_path)
     path = tmp_path / "registry/prior_scores.csv"
@@ -55,7 +56,7 @@ def test_changed_champion_cannot_inherit_old_overlap(tmp_path, monkeypatch):
         writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    with pytest.raises(ValueError, match="champion changed"):
+    with pytest.raises(ValueError, match="champion changed|unbound Focus-9 proof"):
         builder.focus9_summary()
 
 
@@ -69,5 +70,19 @@ def test_same_method_different_identity_cannot_inherit_overlap(tmp_path, monkeyp
         writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    with pytest.raises(ValueError, match="overlap is missing or ambiguous"):
+    with pytest.raises(ValueError, match="overlap is missing or ambiguous|unbound Focus-9 proof"):
+        builder.focus9_summary()
+
+
+def test_invalid_source_url_cannot_be_rendered_as_a_link(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
+    row = next(r for r in rows if r["site"] == "GEMSDOE32")
+    row["source_url"] = "javascript:alert(1)"
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="Unsafe Focus-9 source URL"):
         builder.focus9_summary()

@@ -168,6 +168,11 @@ def classify_overlap_rows(rows, my_dots, footprint):
 
 
 def main() -> int:
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     ap = argparse.ArgumentParser()
     ap.add_argument("--ring-inner", type=float, default=RING_INNER_PX)
     ap.add_argument("--ring-outer", type=float, default=RING_OUTER_PX)

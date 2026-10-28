@@ -49,6 +49,10 @@ def line_response(a, sigma, valid):
     small=np.where(np.abs(l1)>=np.abs(l2),l2,l1); return (-small).astype(np.float32)
 
 def build_surface():
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     cache = ROOT/"data/cache/h86_components.npz"
     if cache.exists():
         z=np.load(cache); return {k:z[k] for k in z.files}

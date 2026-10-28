@@ -170,6 +170,10 @@ def fit_and_predict_p_phys(
     strictly_visible: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray, dict]:
     """Train 4 spatially blocked LOQO ensembles + 2-seed full-catalogue ensemble."""
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     cache_path = data_dir / "cache" / "h86c_p_phys_oof.npz"
     if cache_path.is_file():
         z = np.load(cache_path)

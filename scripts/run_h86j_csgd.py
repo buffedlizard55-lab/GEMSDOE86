@@ -307,6 +307,10 @@ def sample_nested_pu(
 
 
 def fit_hgb(X: np.ndarray, y: np.ndarray, seed: int) -> HistGradientBoostingClassifier:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     clf = HistGradientBoostingClassifier(
         max_iter=200,
         learning_rate=0.07,
@@ -456,6 +460,10 @@ def run_chance_check(registry_report: Path, candidate_path: Path, output: Path) 
 def write_candidate(
     dots: np.ndarray, g: grid.Grid, name: str, note: str, metadata: dict
 ) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"
@@ -581,6 +589,10 @@ def compute_informative_overlap_summaries(
 
 
 def _execute_pipeline() -> int:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     t0 = time.time()
     prereg = require_preregistration()
     preflight = require_like_for_like()

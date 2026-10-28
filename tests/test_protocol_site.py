@@ -20,6 +20,17 @@ class SiteTests(unittest.TestCase):
     def test_real_site(self):
         self.assertEqual(check(), [])
 
+    def test_duplicate_ids_and_missing_copy_targets_fail(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); self.fixture(root)
+            (root / 'docs/index.html').write_text(
+                '<code id="same">first</code><code id="same">second</code>'
+                '<button data-copy-target="missing">Copy</button>'
+            )
+            errors = check(root)
+            self.assertTrue(any('duplicate HTML id same' in error for error in errors))
+            self.assertTrue(any('copy target' in error and 'missing' in error for error in errors))
+
     def test_missing_link_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); self.fixture(root)

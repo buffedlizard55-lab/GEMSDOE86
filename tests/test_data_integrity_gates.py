@@ -26,6 +26,9 @@ def write_tif(path, values, *, crs="EPSG:32611", transform=TRANSFORM):
     with rasterio.open(path, "w", driver="GTiff", height=values.shape[1], width=values.shape[2],
                        count=len(values), dtype="float32", crs=crs, transform=transform) as dst:
         dst.write(values)
+        if path.name == "training_features.tif" and len(values) == len(prepare.BANDS):
+            for index, band_name in prepare.BANDS.items():
+                dst.set_band_description(index, f"{band_name} - synthetic fixture")
 
 
 @pytest.fixture
@@ -73,6 +76,26 @@ def test_all_input_grids_are_checked_before_any_cache_output(tiny_data, name, de
         run_prepare(tiny_data)
     assert not work.exists()
     assert not manifest.exists()
+
+
+@pytest.mark.parametrize("descriptions", ["swapped", "missing", "mislabeled"])
+def test_band_names_must_match_native_schema_before_preparation(tiny_data, monkeypatch, descriptions):
+    data, work, manifest = tiny_data
+    path = data / "training_features.tif"
+    with rasterio.open(path, "r+") as dst:
+        if descriptions == "swapped":
+            fifth, twelfth = dst.descriptions[4], dst.descriptions[11]
+            dst.set_band_description(5, twelfth)
+            dst.set_band_description(12, fifth)
+        elif descriptions == "missing":
+            dst.set_band_description(16, "")
+        else:
+            dst.set_band_description(16, "mt_resistivity_2km - misleading label")
+    # Repin the synthetic fixture so this specifically tests the schema gate.
+    monkeypatch.setitem(prepare.PINS, "training_features.tif", hashlib.sha256(path.read_bytes()).hexdigest())
+    with pytest.raises(ValueError, match="band identifiers"):
+        run_prepare(tiny_data)
+    assert not work.exists() and not manifest.exists()
 
 
 def test_pin_mismatch_is_not_a_successful_manifest_with_a_false_flag(tiny_data):
@@ -244,3 +267,50 @@ def test_later_grid_only_preparation_does_not_leave_stale_native_feature_arrays(
     assert result["bands"] == []
     assert {p.name for p in (tiny_data[1] / "bands").iterdir()} == {"_labels.npy", "_footprint.npy"}
     assert len(result["prepared_arrays"]) == 2
+
+
+@pytest.mark.parametrize("failure", ["bad_serialization", "staging_mutation", "publication_mutation"])
+def test_prepared_array_content_or_pin_mismatch_rolls_back(tiny_data, monkeypatch, failure):
+    data, work, manifest = tiny_data
+    run_prepare(tiny_data)
+    before = {p.name: p.read_bytes() for p in (work / "bands").glob("*")}
+    before_manifest = manifest.read_bytes()
+    original_save = prepare.np.save
+    original_replace = prepare.os.replace
+    injected = False
+
+    def save(path, values):
+        nonlocal injected
+        if not injected and failure == "bad_serialization" and Path(path).name == "01_mag_anom.npy":
+            bad = np.array(values, copy=True)
+            bad[0, 0] += 1
+            original_save(path, bad)
+            injected = True
+        else:
+            original_save(path, values)
+            if not injected and failure == "staging_mutation" and Path(path).name == "02_rtp.npy":
+                prior = Path(path).parent / "01_mag_anom.npy"
+                array = np.load(prior, mmap_mode="r+")
+                array[0, 0] += 1
+                array.flush()
+                del array
+                injected = True
+
+    def replace(src, dst):
+        nonlocal injected
+        result = original_replace(src, dst)
+        if not injected and failure == "publication_mutation" and Path(dst) == work / "bands":
+            array = np.load(Path(dst) / "01_mag_anom.npy", mmap_mode="r+")
+            array[0, 0] += 1
+            array.flush()
+            del array
+            injected = True
+        return result
+
+    monkeypatch.setattr(prepare.np, "save", save)
+    monkeypatch.setattr(prepare.os, "replace", replace)
+    with pytest.raises(ValueError, match="readback mismatch|changed during staging|changed during publication"):
+        run_prepare(tiny_data)
+    assert injected
+    assert {p.name: p.read_bytes() for p in (work / "bands").glob("*")} == before
+    assert manifest.read_bytes() == before_manifest

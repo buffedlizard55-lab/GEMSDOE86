@@ -177,6 +177,11 @@ def poisson_disc_emission(weight, budget, spacing_px, rng):
 
 
 def build_prediction():
+    # This helper creates a complete candidate; importing it must not bypass the stop.
+    sys.path.insert(0, str(REPO))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     footprint, catalogue = load_grid()
     dist = distance_to_catalogue(catalogue)
     weight, is_ridge, far_field = ridge_weight(dist, footprint, catalogue, MIN_DIST_PX)
@@ -305,6 +310,10 @@ def local_uniqueness_check(prediction, footprint):
 
 
 def _run():
+    sys.path.insert(0, str(REPO))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     prediction, footprint, catalogue, dist, weight, dots, is_ridge, far_field = build_prediction()
     dots_count = int(dots.sum())
 

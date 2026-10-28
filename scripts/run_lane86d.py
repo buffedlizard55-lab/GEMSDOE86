@@ -290,6 +290,10 @@ def eval_cell_terms(cell: H.Cell, ctx: H.HoldoutContext, dots_full: np.ndarray) 
 
 
 def fit_e1_pure_physics_loqo(grid: G.Grid, static_planes: list[np.ndarray]) -> tuple[np.ndarray, np.ndarray]:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     PROB_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     p_oof_f = PROB_CACHE_DIR / "e1_phys_oof.npy"
     p_live_f = PROB_CACHE_DIR / "e1_phys_live.npy"
@@ -364,6 +368,10 @@ def fit_mech_loqo_for_draw(
     drop_indices: set[int] | None = None,
     live_eval_planes: list[np.ndarray] | None = None,
 ) -> tuple[np.ndarray, np.ndarray | None]:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     PROB_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     if cache_name is not None:
         c_oof = PROB_CACHE_DIR / f"mech_{cache_name}.npy"

@@ -23,7 +23,7 @@ Signature:
 Leakage: 3 catalogue-blind bands → single-feature AUC expected <0.60.
 
 Produces one finite-valued [0,1] GeoTIFF with zeros outside footprint and
-zero mass on catalogue, suitable for DrivenData portal upload.
+zero mass on catalogue. Archived research only; never upload without all current gates.
 """
 from pathlib import Path
 import json, hashlib, datetime, sys
@@ -38,7 +38,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from vendor.gems57.grid import load_grid, write_submission, HEIGHT, WIDTH, TRANSFORM, EPSG
 from vendor.gems57.validate import validate, sha256
 
-# Must call like-for-like preflight, not feasible (dense witness is continuous surface)
+# Representation-aware diagnostics do not waive the binding literal preflight.
 from scripts.protocol_preflight import require_like_for_like
 
 BANDS = {4: "geod_2ndinv", 7: "geod_shearrate", 8: "geod_dilaterate", 19: "det_elev_slope"}
@@ -67,8 +67,13 @@ def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-np.clip(x, -10, 10)))
 
 def main():
+    # Imported and command-line entry points obey the literal stop before work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     print("GDSC unique submission generator")
-    # 1. Like-for-like preflight (dense witness is continuous_surface, so literal block is informational)
+    # Diagnostic only after the literal preflight; never an exemption.
     cert = require_like_for_like()
     print(f"Preflight status: {cert['status']}")
     print(f"  witness representation: {cert['witness_representation']}")

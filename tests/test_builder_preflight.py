@@ -17,12 +17,12 @@ from scripts import protocol_preflight
 ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = """
 build_axis_variants build_concentration5_axis build_concentration_sign
-build_gems86_gapres build_gems86_swcon build_h86e_features build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
+build_gems86_gapres build_gems86_swcon build_h86e_features build_h86e_final build_mass_axis build_mass_econ build_r0_prune build_r0_snap build_r0_spacing
 build_r0_trackb build_snap_variants build_spt build_submission build_xfleet
-experiment finalize_h86e gen_tip_final generate_unique_submission build_unique_submission h86b_features h86c_features h86d_features
+experiment finalize_h86e gen_tip_final generate_unique_submission generate_gdsc_unique generate_h86m_damagering build_unique_submission h86b_features h86c_features h86d_features
 prepare_h86_fvmb_data prune_collar run_concentration_10km run_concentration_5km
 run_concentration_dose run_concentration_dose_rungs run_concentration_pediment run_h86k
-run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline
+run_concentration_surfext run_experiment run_h86 run_h86_fvmb_pipeline run_h86j_lsi run_h86j_mpc run_h86k_psc run_h86l_vfgr run_h86m_bmr run_h86m_cnt run_h86n_eql run_h86n_gsst
 run_h86_wvb run_h86e run_h86e_mmt run_h86e_ridf run_h86f_ewcs run_h86f_gzzd run_h86f_pcc run_h86g_edti run_h86h_pstd run_h86i_hvfd run_h86i_ksad run_h86i_rksc run_h86i_rlms run_h86i_sacd run_h86j_csgd run_h86j_mcsp run_h86j_tvhs run_h86k_stdp run_h86l_fmc run_h86m_bmgs run_h86m_pfte run_h86m_slcq run_h86p_tcwb run_h86q_bfra run_h86r_sfg run_h86s_dwad run_h86s_dwpu run_h86t_knds run_lane run_lane86 run_lane86b run_lane86c run_lane86d
 run_prune_ladder run_relief_axis run_relief_source run_snap_axis
 run_spacing_axis run_trackb_axis write_h86e_tif
@@ -36,6 +36,19 @@ IMPORTED_ORCHESTRATORS = [
     ("run_h86", "run_holdout", (38000, "test")),
     ("run_h86", "stage_sgmc", ()),
     ("run_h86", "stage_final", (38000, "test")),
+    ("generate_unique_geothermal_submission", "_run", ()),
+    ("generate_unique_geothermal_submission", "build_prediction", ()),
+    # A CLI guard alone is not enough: these lane orchestrators are importable.
+    *[(name, "run_pa86_lane", ()) for name in (
+        "run_h86j_mcsp", "run_h86k_stdp", "run_h86m_bmgs", "run_h86m_pfte",
+        "run_h86m_slcq", "run_h86p_tcwb", "run_h86q_bfra", "run_h86r_sfg",
+        "run_h86s_dwad", "run_h86s_dwpu", "run_h86t_knds",
+    )],
+    ("run_h86i_ksad", "_execute_pa86_lane", ()),
+    ("run_h86j_csgd", "_execute_pipeline", ()),
+    ("run_h86h_pstd", "run_lane", ()),
+    ("run_h86i_hvfd", "run_lane", ()),
+    ("run_h86j_tvhs", "run_lane", ()),
 ]
 
 
@@ -199,3 +212,94 @@ def test_diagnostic_scripts_do_not_execute_io_on_import(module_name):
     module = importlib.import_module("scripts." + module_name)
     assert callable(getattr(module, "main", None))
 
+
+
+def test_representation_diagnostic_cannot_waive_literal_witness(monkeypatch):
+    cert = {"universal_overlap_blocker": True, "positive_pixels": 1000, "footprint_pixels": 1000}
+    monkeypatch.setattr(protocol_preflight, "measure", lambda: cert.copy())
+    with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+        protocol_preflight.require_like_for_like()
+
+
+def test_representation_diagnostic_after_nonblocking_witness_is_not_clearance(monkeypatch):
+    cert = {"universal_overlap_blocker": False, "positive_pixels": 4, "footprint_pixels": 1000}
+    monkeypatch.setattr(protocol_preflight, "measure", lambda: cert.copy())
+    result = protocol_preflight.require_like_for_like()
+    assert result["literal_reading_blocked"] is False
+    assert result["status"] == "NO_UNIVERSAL_BLOCKER_LIKE_FOR_LIKE_GATES_REQUIRED"
+    assert "complete" in result["obligations"][-1]
+
+
+def test_import_time_legacy_script_stops_before_any_cache_or_raster_work(monkeypatch):
+    def stop():
+        raise RuntimeError("STOP_LITERAL_OVERLAP_UNSATISFIABLE")
+    monkeypatch.setattr(protocol_preflight, "require_feasible", stop)
+    with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+        importlib.import_module("scripts.run_h86m_lt")
+
+
+# Imported fit/stage/writer entry points are not allowed to bypass a guarded main.
+DIRECT_WORK_ENTRYPOINTS = [
+    ('generate_unique_submission', 'build_prediction'),
+    ('generate_unique_submission', '_run_collar_emphasis'),
+    ('run_h86_wvb', 'build_static_physics_matrix'),
+    ('run_h86_wvb', 'fit_loqo_oof_probabilities'),
+    ('run_h86e', 'train_predict'),
+    ('run_h86e_mmt', 'write_candidate'),
+    ('run_h86f_ewcs', 'fit_hgb'),
+    ('run_h86f_ewcs', 'write_candidate'),
+    ('run_h86f_pcc', 'write_candidate'),
+    ('run_h86g_edti', 'stage_e1'),
+    ('run_h86g_edti', 'stage_e2'),
+    ('run_h86g_edti', 'stage_e3'),
+    ('run_h86g_edti', 'stage_final'),
+    ('run_h86i_hvfd', 'write_candidate'),
+    ('run_h86i_ksad', 'fit_hgb_model'),
+    ('run_h86i_ksad', 'write_candidate'),
+    ('run_h86i_rlms', 'fit_rlms_ensemble'),
+    ('run_h86i_rlms', 'fit_single_hgb'),
+    ('run_h86i_rlms', 'write_candidate'),
+    ('run_h86i_sacd', 'fit_hgb'),
+    ('run_h86i_sacd', 'write_candidate'),
+    ('run_h86j_csgd', 'fit_hgb'),
+    ('run_h86j_csgd', 'write_candidate'),
+    ('run_h86j_lsi', 'stage_e1'),
+    ('run_h86j_lsi', 'stage_e2'),
+    ('run_h86j_lsi', 'stage_e3'),
+    ('run_h86j_mcsp', 'write_candidate'),
+    ('run_h86j_mpc', 'stage_e1'),
+    ('run_h86j_mpc', 'stage_e2'),
+    ('run_h86j_mpc', 'stage_e3'),
+    ('run_h86j_mpc', 'stage_final'),
+    ('run_h86k_stdp', 'write_candidate'),
+    ('run_h86m_bmgs', 'write_candidate'),
+    ('run_h86m_pfte', 'write_candidate'),
+    ('run_lane86', 'build_surface'),
+    ('run_lane86b', 'fit_and_predict_p_phys'),
+    ('run_lane86c', 'fit_and_predict_p_phys'),
+    ('run_lane86d', 'fit_e1_pure_physics_loqo'),
+    ('run_lane86d', 'fit_mech_loqo_for_draw'),
+]
+
+
+@pytest.mark.parametrize("module_name,function", DIRECT_WORK_ENTRYPOINTS)
+def test_direct_model_and_writer_entrypoints_stop_before_work(monkeypatch, module_name, function):
+    import inspect
+
+    calls = []
+    def stop():
+        calls.append("preflight")
+        raise RuntimeError("STOP_LITERAL_OVERLAP_UNSATISFIABLE")
+    monkeypatch.setattr(protocol_preflight, "require_feasible", stop)
+    fn = getattr(importlib.import_module("scripts." + module_name), function)
+    args, kwargs = [], {}
+    for parameter in inspect.signature(fn).parameters.values():
+        if parameter.default is not inspect.Parameter.empty:
+            continue
+        if parameter.kind in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD):
+            args.append(None)
+        elif parameter.kind == inspect.Parameter.KEYWORD_ONLY:
+            kwargs[parameter.name] = None
+    with pytest.raises(RuntimeError, match="STOP_LITERAL_OVERLAP_UNSATISFIABLE"):
+        fn(*args, **kwargs)
+    assert calls == ["preflight"]

@@ -222,6 +222,10 @@ def _eval_fold_predictions(
 
 
 def run_lane(*, allow_stop: bool = True) -> dict[str, Any]:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     t0 = time.monotonic()
     prereg = require_preregistration()
     preflight = protocol_preflight.require_like_for_like()

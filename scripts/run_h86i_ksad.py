@@ -265,6 +265,10 @@ def fit_hgb_model(
     max_iter: int = 230,
     l2_reg: float = 2.5,
 ) -> HistGradientBoostingClassifier:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     clf = HistGradientBoostingClassifier(
         max_iter=max_iter,
         learning_rate=0.06,
@@ -502,6 +506,10 @@ def discrete_non_saturation_overlap_firings(
 def write_candidate(
     dots: np.ndarray, g: grid.Grid, name: str, note: str, metadata: dict
 ) -> dict:
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     pred = np.where(dots & g.footprint, 1.0, 0.0).astype(np.float32)
     path = OUT_DIR / f"{name}.tif"
@@ -564,6 +572,10 @@ def registry_summary(report: dict, report_path: Path, returncode: int) -> dict:
 
 
 def _execute_pa86_lane() -> int:
+    # Imported callers must obey the same literal stop as the CLI.
+    from scripts.protocol_preflight import require_feasible
+
+    require_feasible()
     t0 = time.time()
     preflight = protocol_preflight.require_like_for_like()
 

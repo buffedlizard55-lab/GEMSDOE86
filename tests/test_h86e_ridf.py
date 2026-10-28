@@ -51,10 +51,11 @@ def test_space_filling_lattice_vs_sparse_line():
     assert 0.06 < c_line < 0.08             # 7 of 100 rows lie within 3 px
 
 
-def test_like_for_like_gate_is_not_the_legacy_gate():
+def test_like_for_like_diagnostic_retains_the_literal_gate():
     import scripts.protocol_preflight as pp
     assert hasattr(pp, "require_feasible") and hasattr(pp, "require_like_for_like")
     src = Path(pp.__file__).read_text()
-    # the legacy stop must remain unchanged for historical builders
+    # Neither a dense surface nor a dot-field witness may waive the current stop.
     assert "STOP_LITERAL_OVERLAP_UNSATISFIABLE: no new model experiment" in src
-    assert "saturating witness is a dot field" in src
+    diagnostic = src[src.index("def require_like_for_like():"):]
+    assert "certificate = require_feasible()" in diagnostic

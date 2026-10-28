@@ -147,6 +147,10 @@ def relabel(obj, old="HOLDOUT-DTI", new="SGMC-PROXY-DTI"):
 
 # ---------------------------------------------------------------- E1
 def stage_e1(g, folds, stack, names):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     WORK.mkdir(parents=True, exist_ok=True)
     out = WORK / "e1.json"
     terms_path = WORK / "e1_control_terms.npz"
@@ -316,6 +320,10 @@ def budget_curve(g, folds, surfaces, oof_surfaces, collar_px=3.0, tag_prefix="e2
 
 # ---------------------------------------------------------------- E2/E3
 def stage_e2(g, folds, stack, names):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     out = WORK / "e2.json"
     if out.is_file():
         return json.loads(out.read_text())
@@ -371,6 +379,10 @@ def stage_e2(g, folds, stack, names):
 
 
 def stage_e3(g, folds, stack, names, e2):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     out = WORK / "e3.json"
     if out.is_file():
         return json.loads(out.read_text())
@@ -480,6 +492,10 @@ def uniqueness_report(surface, dots, fp, exclude: Path | None = None):
 
 # ---------------------------------------------------------------- final
 def stage_final(g, folds, stack, names, e1, e2, e3, preflight, started):
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     fp, cat = g.footprint, g.catalogue
     sel = e2["_selection"]
     arm, budget = sel["best_arm"], int(sel["best_budget"])

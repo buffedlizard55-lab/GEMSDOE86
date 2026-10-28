@@ -166,6 +166,10 @@ def _collinear_chain_score(ridge: np.ndarray, length_px: int = 9) -> np.ndarray:
 
 def build_static_physics_matrix(grid: GRID.Grid) -> tuple[np.ndarray, list[str], dict]:
     """Construct 24 zero-catalogue physical, geothermometric, and sub-pixel scarp channels."""
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     t0 = time.time()
     fp = grid.footprint
     H_px, W_px = grid.shape
@@ -686,6 +690,10 @@ def fit_loqo_oof_probabilities(
     Assembles `[X_fp, extra_fp]` only on sampled training rows and per-quadrant
     test slices so a full 5.17M x 37 copy (~765 MB) is never allocated.
     """
+    # Direct imported calls must stop before model or candidate work.
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_feasible
+    require_feasible()
     n_fp = X_fp.shape[0]
     oof_cal = np.zeros(n_fp, dtype=np.float32)
     models: list[HistGradientBoostingClassifier] = []
