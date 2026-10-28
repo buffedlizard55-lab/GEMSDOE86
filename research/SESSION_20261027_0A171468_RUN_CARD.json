@@ -56,7 +56,20 @@
     "status": "HASH_VERIFIED_OWNER_MIRRORS_NOT_ORGANIZER_AUTHENTICATED",
     "prepared_arrays_verified": 21,
     "shared_feature_stack_ready": false,
-    "first_preparation_discrepancy": "Two array receipt hashes differed; early unexpected array values; cause unknown. Fresh isolated rebuild and input audit succeeded."
+    "first_preparation_discrepancy": "Two array receipt hashes differed; early unexpected array values; cause unknown. Fresh isolated rebuild and input audit succeeded.",
+    "first_preparation_discrepancy_details": {
+      "status": "OBSERVED_CAUSE_UNKNOWN_REBUILD_REPLACED_LOCAL_ARRAYS",
+      "band10_expected_receipt_sha256": "82bfb707064d7bab4f7a5827724484756286738fea11d9a4300ff018483df743",
+      "band10_actual_sha256": "c15397a52886c8bc257d6cc3cbce65bdc7f145cd7f0c874013f5b1fba6360540",
+      "band11_expected_receipt_sha256": "8d804a9d5f23d6a1d5219eccf07af51d83b0f52623482e568c7d062e8f7272c3",
+      "band11_actual_sha256": "97e23136a008cd3cca877b4ca7cb0f9e8b3bd9bf8f88c0a326716310b8969b51",
+      "compared_to_native_decoding_mismatches": {
+        "band1": 992,
+        "band10": 992,
+        "band11": 992
+      },
+      "subsequent_isolated_readback_and_21_array_audit": "PASS"
+    }
   },
   "forensics": {
     "h86t_archive_commit": "acff97ac9df403705b05e1b57a6a4b2585df34e9",
@@ -71,7 +84,24 @@
     "entrypoint_guard_coverage": "16 callable orchestrators, 11 legacy mains, two basin-ridge entry points, 39 direct model/writer entry points, and one import-time script; representation-aware preflight cannot waive literal stop.",
     "h86s_archived_gate_discrepancy": "Frozen format gate false although its validator and latest release audit pass local format; cause unknown."
   },
-  "final_quality_checks": "PENDING",
+  "final_quality_checks": {
+    "full_pytest": {
+      "passed": 1287,
+      "skipped": 24,
+      "subtests_passed": 58,
+      "warnings": 48,
+      "result": "PASS"
+    },
+    "audit_release_measure_registry": "PASS_FORMAT_AND_INTEGRITY__DO_NOT_SUBMIT",
+    "build_site_and_check": "PASS",
+    "check_site": "PASS",
+    "audit_downloads": "PASS_49_AUDIT_ONLY",
+    "build_review_card_check": "PASS",
+    "hypothesis_bands": "PASS",
+    "focus9_download_proof": "PASS_9_IDENTITIES_ONLY",
+    "github_pr_checks_at_code_commit": "PASS_VERIFY_PROOF_AND_TESTS",
+    "initial_suite": "2 obsolete expectations fixed before final full rerun"
+  },
   "scope": "Negative review only. One dense witness establishes a stop but is not a complete registry; no future result, score, raster or selector approval is implied.",
   "historical_evidence_sha256_at_review": {
     "research/H86T_KNDS_PREREGISTRATION.json": "4a7ed8516fa512e234a5f5ed8ba17c389ebc713cb80195c7a8b2328e34f3ae09",
@@ -138,5 +168,10 @@
       "evidence_class": "HASH_VERIFIED_OWNER_MIRROR_NOT_AUTHENTICATED_OFFICIAL_SOURCE"
     }
   },
-  "input_source_scope": "Local owner-mirror bytes only. GDR CSV fault-distance fields must be excluded; raw 3DEP tiles, independent official file identity, eligibility and exact GNSS series were not verified."
+  "input_source_scope": "Local owner-mirror bytes only. GDR CSV fault-distance fields must be excluded; raw 3DEP tiles, independent official file identity, eligibility and exact GNSS series were not verified.",
+  "three_passes": [
+    "Implementation: data/source inventory, negative gate proof, historical bytes, ranked unrun proposals and site.",
+    "Bug review: preflight bypasses, H86T attribution/ties, cache integrity, historical claims and site IDs.",
+    "Final quality: reconcile parallel PR 203, rebuild and inspect guide, focused and full automated checks; no model or slot."
+  ]
 }
