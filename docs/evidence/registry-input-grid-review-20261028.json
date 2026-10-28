@@ -1,8 +1,8 @@
 {
   "schema": "gems86.registry-input-grid-review.v1",
   "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
-  "measured_utc": "2026-10-28T16:39:38+00:00",
-  "registry_index_sha256": "64146e43417d6d767b3dd76ada0ffdb764460b92b78148136ea2ba3a72816d4e",
+  "measured_utc": "2026-10-28T17:40:01+00:00",
+  "registry_index_sha256": "c563b7e0ed45fbb517ab894420ba912a990563f522b4d7be01388e73b3437aa4",
   "inventory_rasters_missing": [
     "6292a7916c83d371fc650b0f0c6a090702b9890eaa6e6546d50f104eea2fadc3",
     "06ca61e5c6a3e55eaf40228d97054a35af1187be9c98e0ef95d996f9919efc6b",
@@ -660,15 +660,51 @@
     "b430615afe94c317d147122f274c85d2d96f2f35369b25ee1116c12c79a3efd8",
     "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22"
   ],
-  "indexed_rasters_expected": 729,
-  "indexed_rasters_present": 74,
-  "byte_verified_rasters": 74,
+  "indexed_rasters_expected": 730,
+  "indexed_rasters_present": 75,
+  "byte_verified_rasters": 75,
   "byte_coverage_complete": false,
-  "grid_compatible_rasters": 74,
+  "grid_compatible_rasters": 75,
   "grid_incompatible_or_invalid_rasters": 0,
   "all_grids_compatible": false,
   "incompatible_or_invalid_records": [],
   "records": [
+    {
+      "sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+      "sources": [
+        "GEMSDOE86-local:docs/downloads/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros.tif"
+      ],
+      "repo": "GEMSDOE86-local",
+      "expected_bytes": 115721,
+      "bytes_verified": true,
+      "grid_compatible": true,
+      "probability_values_checked": false,
+      "measured_sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+      "measured_bytes": 115721,
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1
+      },
+      "grid_checks": {
+        "shape": true,
+        "crs": true,
+        "transform": true,
+        "single_band": true
+      },
+      "status": "GRID_COMPATIBLE_VALUES_NOT_AUDITED"
+    },
     {
       "sha256": "94591f4c9564bbead5518cdcc097522be910c7f272f892ff83cc704841683cc5",
       "sources": [

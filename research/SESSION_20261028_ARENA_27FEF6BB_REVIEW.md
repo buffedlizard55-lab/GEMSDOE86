@@ -9,9 +9,10 @@ This is the branch-specific continuation of [`SESSION_20261028_REVIEW.md`](SESSI
 - **Top Focus-9 claim:** GEMSDOE32 H33 `0.2778` **OWNER-REPORTED**. The 2026-10-28 92-repository GitHub feed refresh found **0 organizer receipts**. No score listed here is **ORGANIZER-CONFIRMED**. The contradictory `0.3195`, `0.4413`, and `0.4437` claims remain unverified; the Focus-9 table does not establish a current global leaderboard rank.
 - **Focus-9 comparison:** the dated byte audit contains **72 directed 3-px comparisons**, ranging **86.7190%–100.0000%**. Each site-best file exceeds the **70%** overlap stop against at least one of the other eight. This is cohort-only `REGISTRY-MEASUREMENT`, not full-registry clearance.
 - **Binding full-support stop:** pinned witness SHA-256 `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`. It covers **5,106,385/5,106,385 allowed pixels** (`0` uncovered); under the unchanged literal finite-prediction `>0` support rule, any nonempty candidate has forward overlap **1.0**, greater than **0.70**. Preflight status is `STOP_LITERAL_OVERLAP_UNSATISFIABLE`. This single witness is sufficient to block a candidate but is **not** a uniqueness pass.
-- **Registry completeness:** protocol preflight indexes **655** records and measures **1** raster (`registry_complete=false`). The separate input-grid audit indexes **729** records, verifies bytes/grid metadata for **74**, and audits **no probability values** (`byte_coverage_complete=false`, `uniqueness_clearance=false`). These are distinct inventories.
-- **Inputs / lane:** native `training_features.tif`, prepared arrays, and the actual shared feature cache are missing; no method lane is assigned. Do not run an experiment, generate a TIFF, alter thresholds, bypass `protocol_preflight.require_feasible()`, or use a slot while the stop applies.
-- **Existing artifacts:** the read-only release audit measured **49/49** existing TIFFs locally format/integrity-valid and still returns **DO NOT SUBMIT**. They remain audit downloads only; local format validity is not organizer acceptance, scientific improvement, uniqueness, or upload permission.
+- **Registry completeness:** protocol preflight indexes **655** records and measures **1** raster (`registry_complete=false`). The separate input-grid audit indexes **730** records, verifies bytes/grid metadata for **75**, and audits **no probability values** (`byte_coverage_complete=false`, `uniqueness_clearance=false`). These are distinct inventories.
+- **Inputs / Focus-9 lane:** native `training_features.tif`, prepared arrays, and the actual shared feature cache are missing for this review; no Focus-9 method lane is assigned. Do not run another Focus-9 experiment, generate a new Focus-9 TIFF, alter thresholds, bypass `protocol_preflight.require_feasible()`, or use a slot while the stop applies.
+- **Existing artifacts:** the read-only release audit measured **50/50** existing TIFFs locally format/integrity-valid and still returns **DO NOT SUBMIT**. They remain audit downloads only; local format validity is not organizer acceptance, scientific improvement, uniqueness, or upload permission.
+- **Inherited mainline experiment (not part of this Focus-9 review):** merged PR #212 added the G86-BGC TIFF. Its **HOLDOUT-DTI** is `0.2097 [0.2070, 0.2120]` (`gems57-pooled-hide-v2`, **22,641** withheld positives), but the card records **67** dot-overlap firings above 0.70 (worst **0.9999**) in an incomplete **720/722** scan, `duplicate=true`, **DO NOT SUBMIT**, and 0 slots. The TIFF is audit-only and is included in the 50-file inventory; this review did not produce or rerun it.
 
 ## Focus-9 highest reported entries and status
 
@@ -41,7 +42,9 @@ The `zeros` suffix describes a finite outside-footprint fill and may address a *
 
 ## Three genuinely unexecuted, repository-screened hypotheses
 
-These are qualitative ranked proposals from the dated registry, not a lane assignment, global novelty claims, numerical score projections, or implemented experiments. The source/operator screen was scoped to `src/`, `scripts/`, `registry/*hypotheses*.json`, and `research/`; repeated groundwater-head, NDVI/phreatophyte, chi/ksn, ASTER/MT, static seismic-density, and other already-queued ideas were excluded. Exact official data products/coverage remain unverified and absent locally.
+These are the three currently counted qualitative ranked proposals from the dated registry, not a lane assignment, global novelty claims, numerical score projections, or implemented experiments. The source/operator screen was scoped to `src/`, `scripts/`, `registry/*hypotheses*.json`, and `research/`; repeated groundwater-head, NDVI/phreatophyte, chi/ksn, ASTER/MT, static seismic-density, and other already-queued ideas were excluded. Exact official data products/coverage remain unverified and absent locally.
+
+**Inherited registry-draft audit:** merged PR #212 had appended two additional records. The former rank 4 (scarp index) assigned its cost, target signature, uncatalogued-fault rationale, mimic, method distinction, and source content to mismatched fields; its claim of novelty also needs a focused rescreen against existing scarp/relief work. The former rank 5 (spring/phreatophyte alignment) repeats the Landsat NDVI/phreatophyte idea already marked as previously proposed in `research/H86J_LSI_REVIEW.md`, and its fields were also shifted. These are recorded as `unranked_drafts_not_counted` in the hypothesis register. The first three remain the only three fully specified proposals counted here.
 
 ### Rank 1 — Pleistocene Lake Lahontan shoreline displacement as an independent paleogeodetic datum (`F9N-1_LAHONTAN_SHORELINE_OFFSETS`)
 
@@ -79,23 +82,23 @@ Official source URLs are listed in the hypothesis register: [DrivenData problem 
 
 ## Three-pass review and code changes
 
-1. **Evidence pass:** reconciled the Focus-9 score ledger with the dated snapshot and 9-file audit; checked the refreshed GitHub tree metadata (92/92) for the audited file paths; kept owner-reported scores separate from receipts; remeasured and recorded the pinned witness and separate 729-record input-grid audit. No official receipt or score was added.
-2. **Scientific/protocol pass:** reviewed the DTI equations and H33 pixel-forensic explanation; identified collar-pruning as a plausible mechanism only, not a cause. Preserved the literal overlap threshold, no-lane stop, missing-feature/cache blockers, three-experiment/two-hour ceiling, visible-only catalogue features, leakage canary, and separate selector.
-3. **Site/regression pass:** removed the stale “All 12 Scored Runs Verified” and “Best submission across all 92” Focus-9 blocks from generated pages; moved the evidence-bound no-submit status and per-site summary to the top; made H33's owner-claim/causal caveat explicit; corrected the Nine Sites active-nav item. Added tests for stale wording, evidence classes, branch card invariants, the 74/729 vs 655/1 scope distinction, and active navigation.
+1. **Evidence pass:** reconciled the Focus-9 score ledger with the dated snapshot and 9-file audit; checked the refreshed GitHub tree metadata (92/92) for the audited file paths; kept owner-reported scores separate from receipts; remeasured the pinned witness and distinct 730-record input-grid audit; revalidated all 50 inherited TIFFs. No official receipt or score was added.
+2. **Scientific/protocol pass:** reviewed the DTI equations and H33 pixel-forensic explanation; identified collar-pruning as a plausible mechanism only, not a cause. Preserved the literal overlap threshold, no Focus-9 lane stop, missing-feature/cache blockers, three-experiment/two-hour ceiling, visible-only catalogue features, leakage canary, and separate selector. Reconciled the inherited mainline G86-BGC record without treating its HOLDOUT-DTI as a leaderboard score or submission approval.
+3. **Site/regression pass:** removed the stale “All 12 Scored Runs Verified” and “Best submission across all 92” Focus-9 blocks from generated pages; moved the evidence-bound no-submit status and per-site summary to the top; made H33's owner-claim/causal caveat explicit; corrected the Nine Sites active-nav item; added the inherited G86-BGC negative status; and rejected two malformed/repeated hypothesis drafts from the counted proposal set. Added tests for stale wording, evidence classes, branch card invariants, the 75/730 vs 655/1 scope distinction, active navigation, and hypothesis-register schema/disposition.
 
 ### Final verification
 
-- Site generation: **PASS**; all downloads remain research-only.
-- `scripts/build_site.py --check`: **PASS**; generated pages match their evidence inputs.
+- Site generation: **PASS**; all existing artifacts remain audit-only.
+- `scripts/build_site.py --check`: **PASS**; generated pages match current evidence inputs.
 - `scripts/check_site.py`: **PASS**; page links, registered TIFF/ZIP integrity, and negative-state safety verified (not scientific clearance).
-- `scripts/audit_downloads.py`: **PASS**; 49 research TIFFs and receipts revalidated.
-- `scripts/build_review_card.py --check`: **PASS**; frozen review remains **DO NOT SUBMIT**.
-- Focus-9/site/scientific targeted tests: **27 passed**.
-- Full `.venv/bin/python -m pytest -q`: **PASS — 1,152 passed, 24 skipped, 48 warnings, 58 subtests passed in 711.30 s**. Warnings are Rasterio `PendingDeprecationWarning`s for affine `*` multiplication.
-- `git diff --check`: **PASS**.
-- `scripts/audit_registry_inputs.py`: **74/729** byte-verified and grid-compatible; expected exit `1` because the index is incomplete. This does not audit probability values or grant clearance.
+- `scripts/audit_downloads.py`: **PASS**; all **50** research TIFFs and receipts revalidated.
+- `scripts/build_review_card.py --check`: **PASS**; frozen release review remains **DO NOT SUBMIT**.
+- Post-rebase full `.venv/bin/python -m pytest -q`: **PASS — 1,154 passed, 24 skipped, 48 warnings, 58 subtests passed in 727.36 s**. Warnings are Rasterio `PendingDeprecationWarning`s for affine `*` multiplication.
+- Targeted Focus-9/site/scientific/request/card suite: **29 passed**; post-rebase README/home/release-audit repair group: **30 passed**.
+- `git diff --check` and both branch JSON-card / hypothesis-register parses: **PASS**.
+- Latest `scripts/audit_registry_inputs.py`: **75/730** byte-verified and grid-compatible; expected exit `1` because the index is incomplete. This does not audit probability values or grant clearance.
 
-The first full-suite attempt had one missing-file test failure because the README link was written before this branch-specific review file existed. The file was added, the same test passed in targeted checks, and the final full suite above passed.
+The first post-rebase full run reported 1,144 passed, 24 skipped, 48 warnings, 58 subtests, and 10 failures: README inventory wording, a stale homepage phrase, and release-audit fixtures missing the newly inherited root-level G86-BGC run-card context. The README/site wording and fixture were corrected; the affected targeted test group passed 30/30, and the final full suite above passed.
 
 ## Next steps / non-authorization
 
@@ -104,4 +107,4 @@ The first full-suite attempt had one missing-file test failure because the READM
 3. Only after a lane is assigned and the stop is resolved, preregister one proposal, test feature-by-feature leakage, and use the pinned whole-segment buffered hide-and-recover evaluator/writer unchanged.
 4. A future candidate must clear HOLDOUT-DTI with evaluator/version, withheld-positive count and 95% CI; pass pre-placement surface (`|rho| <= 0.90`) and final dot overlap (`<=0.70` within 3 px); validate finite in-footprint `[0,1]` values, CRS/shape/transform and no NaNs; carry a <=140-character note and run card. Promotion and weekly-slot selection remain separate; organizer confirmation requires the actual human submission-page receipt.
 
-**No candidate was created, no experiment was run, and no submission slot was used in this branch continuation.** The companion JSON card is the authoritative machine record; its holdout and candidate-validator fields are explicitly `null`/not applicable.
+**This Focus-9 review generated no new candidate, ran no Focus-9 experiment, and used no submission slot.** The rebased mainline separately contains the G86-BGC candidate from merged PR #212; it is a prior audit-only artifact, fails uniqueness, and remains **DO NOT SUBMIT**. The companion JSON card is the authoritative machine record; its Focus-9 holdout and candidate-validator fields are explicitly `null`/not applicable.

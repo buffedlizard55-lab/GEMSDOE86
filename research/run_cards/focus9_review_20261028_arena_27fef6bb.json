@@ -212,12 +212,12 @@
       "protocol_preflight_index_entries": 655,
       "protocol_preflight_rasters_measured": 1,
       "protocol_preflight_complete": false,
-      "separate_input_index_records": 729,
-      "input_index_byte_verified": 74,
-      "input_index_grid_compatible": 74,
+      "separate_input_index_records": 730,
+      "input_index_byte_verified": 75,
+      "input_index_grid_compatible": 75,
       "input_probability_values_audited": false,
       "input_index_complete": false,
-      "scope_note": "The 655-entry preflight snapshot and separate 729-record input index are distinct inventories and must not be conflated."
+      "scope_note": "The 655-entry preflight snapshot and separate 730-record input index are distinct inventories. The input index has 75 byte/grid-verified records; probability values are unaudited and coverage is incomplete."
     }
   },
   "raster_sha256": null,
@@ -234,8 +234,8 @@
     "note": "No new raster exists, so candidate validator fields are not applicable. Separate release audit re-read 49/49 existing artifacts for local format/integrity only."
   },
   "existing_release_inventory": {
-    "artifacts": 49,
-    "locally_valid": 49,
+    "artifacts": 50,
+    "locally_valid": 50,
     "all_final_artifacts_remeasured": true,
     "decision": "DO NOT SUBMIT",
     "upload_authorized": false
@@ -245,7 +245,7 @@
     "note": null,
     "note_length": null,
     "maximum_note_characters": 140,
-    "download_status": "Existing owner-hosted Focus-9 TIFFs are linked for forensic download only; no new TIFF download was generated.",
+    "download_status": "Existing owner-hosted Focus-9 TIFFs are forensic-download only. The separate inherited mainline G86-BGC TIFF is also audit-only; this Focus-9 review generated no new raster.",
     "submit": "NO",
     "upload_authorized": false,
     "approved_for_weekly_slot": false,
@@ -283,26 +283,49 @@
   ],
   "measurements": {
     "fleet_refresh_utc": "2026-10-28T16:31:35+00:00",
-    "protocol_preflight_utc": "2026-10-28T16:31:56.437009+00:00",
-    "registry_input_grid_audit_utc": "2026-10-28T16:39:38+00:00",
-    "release_registry_measurement_utc": "2026-10-28T16:32:00.447776+00:00",
-    "run_card_written_utc": "2026-10-28T17:35:44Z",
-    "run_card_updated_utc": "2026-10-28T17:35:44Z"
+    "protocol_preflight_utc": "2026-10-28T17:40:02.100666+00:00",
+    "registry_input_grid_audit_utc": "2026-10-28T17:40:01+00:00",
+    "release_registry_measurement_utc": "2026-10-28T17:40:06.472447+00:00",
+    "run_card_written_utc": "2026-10-28T18:22:18Z",
+    "run_card_updated_utc": "2026-10-28T18:22:18Z"
   },
   "review_checks": {
-    "targeted_focus9_and_truthfulness_tests": "27 passed",
-    "full_pytest": "PASS: 1152 passed, 24 skipped, 48 warnings, 58 subtests passed; 711.30 s",
-    "site_generation": "PASS: generated site rebuilt; all existing downloads remain research-only",
+    "targeted_focus9_and_truthfulness_tests": "PASS: 29 Focus-9/site/scientific/request/card tests; separate post-rebase README/home/release-audit repair group: 30 passed",
+    "full_pytest": "PASS: 1154 passed, 24 skipped, 48 warnings, 58 subtests passed; 727.36 s",
+    "site_generation": "PASS: rebuilt with current 50-artifact inventory and inherited G86-BGC explicitly audit-only",
     "site_generation_check": "PASS: scripts/build_site.py --check",
     "site_integrity_and_safety_check": "PASS: scripts/check_site.py (links, registered TIFF/ZIP integrity, negative-state safety; not scientific clearance)",
-    "download_audit": "PASS: 49 research TIFFs and receipts revalidated",
+    "download_audit": "PASS: 50 research TIFFs and receipts revalidated",
     "frozen_review_check": "PASS: scripts/build_review_card.py --check; DO NOT SUBMIT",
-    "initial_full_suite_note": "The first full-suite attempt had one missing-file failure because the README linked to this branch review before the file existed. The review was created; the same link test passed in targeted checks, and the final full suite passed: 1152 passed, 24 skipped, 48 warnings, 58 subtests.",
-    "git_diff_check": "PASS: git diff --check"
+    "initial_full_suite_note": "First post-rebase full run: 1144 passed, 24 skipped, 48 warnings, 58 subtests, 10 failed. Failures were README inventory wording, a stale homepage phrase, and release-audit fixtures that omitted the inherited G86-BGC run-card context. Wording and fixture were corrected; affected targeted group passed 30/30. Final post-rebase full suite passed: 1154 passed, 24 skipped, 48 warnings, 58 subtests.",
+    "git_diff_check": "PASS: git diff --check; both branch JSON files parse",
+    "post_rebase_repair_test_group": "PASS: 30 passed"
   },
   "verdict": "negative",
   "verdict_scope": "Repository release/readiness decision; not an experimental HOLDOUT-DTI result.",
   "decision": "DO_NOT_SUBMIT",
   "safe_to_submit": false,
-  "approved_for_weekly_slot": false
+  "approved_for_weekly_slot": false,
+  "inherited_mainline_context": {
+    "source": "Merged mainline PR #212; not generated or rerun by this Focus-9 review.",
+    "artifact": "gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros",
+    "raster_sha256": "46f91882efaad459c3fcd351a8573591bf12427547d23a518bd2772224324626",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": 22641,
+    "value": 0.20973056641340854,
+    "ci95": [
+      0.20700518962349934,
+      0.21196942885527287
+    ],
+    "local_format_validation": "PASS; not organizer acceptance or upload authorization",
+    "uniqueness_status": "FAIL_DUPLICATE",
+    "dot_overlap_firings_over_0_70": 67,
+    "worst_overlap": 0.9999179150420685,
+    "registry_scan": "720/722 measured; 2 grid errors; incomplete",
+    "decision": "DO NOT SUBMIT",
+    "safe_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "weekly_slots_used": 0
+  }
 }

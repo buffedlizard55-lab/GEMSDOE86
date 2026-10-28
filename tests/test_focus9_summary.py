@@ -62,11 +62,17 @@ def test_current_status_banner_fails_closed_and_names_scope():
     assert "No Focus-9 score is ORGANIZER-CONFIRMED" in html
     assert "5,106,385/5,106,385 allowed pixels" in html
     assert "1.0 &gt; 0.70" in html
-    assert "74/729" in html
+    assert "75/730" in html
     assert "probability values were not audited" in html
     assert "655 entries and only 1 measured raster" in html
     assert "72 directed 3-px measurements" in html
-    assert "no candidate, no upload, no experiments" in html
+    assert "no new Focus-9 candidate; no upload" in html
+    assert "G86-BGC" in html
+    assert "HOLDOUT-DTI" in html
+    assert "22,641 withheld positives" in html
+    assert "67 dot-overlap firings" in html
+    assert "not a Focus-9 score or this review's experiment" in html
+    assert "G86-BGC run card" in html
 
 
 def test_generated_site_promotes_current_focus9_status_not_stale_fleet_claims():
@@ -102,6 +108,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
 
     (tmp_path / "registry").mkdir()
     (tmp_path / "docs/evidence").mkdir(parents=True)
+    (tmp_path / "evidence").mkdir(parents=True)
     rels = (
         "registry/prior_scores.csv",
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
@@ -109,6 +116,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/fleet-feed.json",
         "docs/evidence/protocol-preflight.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
+        "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
     )
     for rel in rels:
         shutil.copyfile(ROOT / rel, tmp_path / rel)

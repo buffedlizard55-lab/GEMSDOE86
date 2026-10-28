@@ -20,7 +20,12 @@ def release_copy(tmp_path):
             ignore=shutil.ignore_patterns("__pycache__", "training_features.tif"),
         )
     (tmp_path / "research").mkdir()
-    for rel in ("research/template_pin.json", "research/registry_witness_pin.json", "evidence/run_card.json"):
+    for rel in (
+        "research/template_pin.json",
+        "research/registry_witness_pin.json",
+        "evidence/run_card.json",
+        "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
+    ):
         target = tmp_path / rel
         target.parent.mkdir(exist_ok=True)
         shutil.copyfile(ROOT / rel, target)

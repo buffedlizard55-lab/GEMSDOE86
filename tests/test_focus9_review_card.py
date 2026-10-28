@@ -41,7 +41,19 @@ def test_branch_review_card_is_unrun_and_bound_to_current_stop():
     assert witness["unchanged_overlap_limit"] == 0.70
     assert card["correlation_overlap_vs_registry"]["candidate_comparisons"] == "NOT RUN — no candidate exists"
     assert card["correlation_overlap_vs_registry"]["registry_completeness"]["input_index_byte_verified"] == input_audit["byte_verified_rasters"]
+    assert card["correlation_overlap_vs_registry"]["registry_completeness"]["separate_input_index_records"] == input_audit["indexed_rasters_expected"]
     assert card["correlation_overlap_vs_registry"]["registry_completeness"]["input_index_complete"] is False
+    assert card["existing_release_inventory"]["artifacts"] == card["existing_release_inventory"]["locally_valid"] == 50
+
+    inherited = card["inherited_mainline_context"]
+    assert inherited["evidence_class"] == "HOLDOUT-DTI"
+    assert inherited["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert inherited["withheld_positive_count"] == 22641
+    assert inherited["dot_overlap_firings_over_0_70"] == 67
+    assert inherited["uniqueness_status"] == "FAIL_DUPLICATE"
+    assert inherited["safe_to_submit"] is False
+    assert inherited["approved_for_weekly_slot"] is False
+    assert inherited["weekly_slots_used"] == 0
 
     assert len(card["ranked_unrun_hypotheses"]) == 3
     assert [h["rank"] for h in card["ranked_unrun_hypotheses"]] == [1, 2, 3]
