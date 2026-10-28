@@ -83,7 +83,7 @@ Relevant reproducible commands:
 .venv/bin/python -m pytest -q
 ```
 
-The final three-pass repository review (`scripts/review_repository.py --timeout 1200`) passed all checks. Full pytest: **1,145 passed, 24 skipped, 48 warnings, 58 subtests passed in 558.97 s**. Release audit: **49/49** local format/integrity passes, still **DO NOT SUBMIT**; site generation/check, page-link audit, download audit, frozen-evidence check and live-input audit all passed. The live-input audit still reports missing native features/prepared arrays/shared cache. An initial full run exposed two stale README/PROMPT contract assertions; those links/count summaries were corrected and the full review was rerun successfully. This review used **0 of the maximum 3 experiments**, **0 hours of experiment execution**, and **0 weekly slots**; no result is being promoted.
+After rebasing this review onto `origin/main` at `9dd60a2`, the final three-pass repository review (`scripts/review_repository.py --timeout 1200`) passed at **2026-10-28T13:14:21Z**. Full pytest: **1,147 passed, 24 skipped, 48 warnings, 58 subtests passed in 552.03 s**. Release audit: **49/49** local format/integrity passes, still **DO NOT SUBMIT**; site generation/check, page-link audit, download audit, frozen-evidence check and live-input audit all passed. The live-input audit still reports missing native features/prepared arrays/shared cache. This review used **0 of the maximum 3 experiments**, **0 hours of experiment execution**, and **0 weekly slots**; no result is being promoted.
 
 ## 7. Review run card (negative release disposition, not a new experiment)
 

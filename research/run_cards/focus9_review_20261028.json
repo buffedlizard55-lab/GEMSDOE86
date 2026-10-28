@@ -1,6 +1,6 @@
 {
   "schema": "gems86.review-run-card.v1",
-  "created_utc": "2026-10-28T12:55:53.035121Z",
+  "created_utc": "2026-10-28T13:14:21.776214Z",
   "session_branch": "arena/92a8169e-gemsdoe86",
   "review_scope": [
     "GEMSDOE24",
@@ -24,7 +24,7 @@
     "evaluator_version": null,
     "withheld_positive_count": null,
     "ci95": null,
-    "note": "No candidate or experiment was generated. Historical H87 evidence is separately recorded as HOLDOUT-DTI 0.2197 [0.2105, 0.2277], gems57-pooled-hide-v2, 45,260 withheld positives; this is not a live score."
+    "note": "Historical H87 evidence is separately recorded as HOLDOUT-DTI 0.2197, 95% cell-bootstrap CI [0.2105, 0.2277], evaluator gems57-pooled-hide-v2, 45,260 withheld positives. The interval is not the requested spatial-block CI, the holdout does not validate the exact historical full-catalogue raster, and this is not a live score."
   },
   "registry_comparisons": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -94,11 +94,13 @@
   },
   "review_checks": {
     "three_pass_review": "PASS",
-    "full_pytest": "1145 passed, 24 skipped, 48 warnings, 58 subtests passed in 558.97 s",
+    "full_pytest": "1147 passed, 24 skipped, 48 warnings, 58 subtests passed in 552.03 s",
     "site_generation_and_check": "PASS",
     "page_link_and_download_audit": "PASS",
     "frozen_evidence_check": "PASS",
-    "live_input_audit": "PASS_WITH_BLOCKERS: native features/prepared arrays/shared cache missing"
+    "live_input_audit": "PASS_WITH_BLOCKERS: native features/prepared arrays/shared cache missing",
+    "review_measured_utc": "2026-10-28T13:14:21.776214Z",
+    "review_base_commit": "9dd60a2"
   },
   "registry_input_grid_audit": {
     "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
