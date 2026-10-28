@@ -1,7 +1,7 @@
 {
   "schema": "gems86.registry-input-grid-review.v1",
   "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
-  "measured_utc": "2026-10-28T11:39:51+00:00",
+  "measured_utc": "2026-10-28T16:39:38+00:00",
   "registry_index_sha256": "64146e43417d6d767b3dd76ada0ffdb764460b92b78148136ea2ba3a72816d4e",
   "inventory_rasters_missing": [
     "6292a7916c83d371fc650b0f0c6a090702b9890eaa6e6546d50f104eea2fadc3",

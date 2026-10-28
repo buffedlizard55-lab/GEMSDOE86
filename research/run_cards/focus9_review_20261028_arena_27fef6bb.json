@@ -1,0 +1,308 @@
+{
+  "schema": "gems86.focus9-branch-review-run-card.v2",
+  "created_utc": "2026-10-28T17:07:50.550016Z",
+  "session_branch": "arena/27fef6bb-gemsdoe86",
+  "review_scope": [
+    "GEMSDOE24",
+    "GEMSDOE25",
+    "GEMSDOE27",
+    "GEMSDOE28",
+    "GEMSDOE30",
+    "GEMSDOE31",
+    "GEMSDOE32",
+    "GEMSDOE33",
+    "GEMSDOE36"
+  ],
+  "lane_assignment": null,
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_process_that_could_mimic_it": null,
+  "ranked_unrun_hypotheses": [
+    {
+      "rank": 1,
+      "id": "F9N-1_LAHONTAN_SHORELINE_OFFSETS",
+      "name": "Pleistocene Lake Lahontan shoreline displacement as an independent paleogeodetic datum",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_improvement_qualitative": "Moderate conditional potential: a demonstrable offset of a laterally continuous, age-matched shoreline can be a direct displacement signal where modern scarps are subdued. Transfer is uncertain because shoreline deformation may be older than the competition target faults.",
+      "implementation_cost": "High: obtain and pin high-resolution DEM tiles and mapped shoreline geometry; separate shoreline age/level, estimate local wave-cut surfaces, fit displacement/tilt across multiple segments, and preregister positive/negative controls before holdout evaluation.",
+      "targeted_signature": "Within a single mapped highstand shoreline level, estimate a locally detrended shoreline bench surface and detect a narrow, strike-coherent step or tilt that offsets the same-age bench across a corridor, repeats on adjacent shoreline segments, and is independently consistent with subsurface structure. The shoreline is a positive displacement marker, not a generic elevation contour or a fault label.",
+      "named_non_fault_mimic": "Wave-cut bench relief and variable shoreline facies, local lake-level/age miscorrelation, differential compaction of lacustrine sediment, erosional terrace risers, and volcanic-flow margins. Require multiple same-level segments, map-scale uncertainty, and independent controls.",
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: required raw 1 m DEM tiles and dated shoreline geometry are absent; direct USGS source access is outside the sandbox egress allowlist."
+    },
+    {
+      "rank": 2,
+      "id": "F9N-2_COMCAT_SEQUENCE_MIGRATION",
+      "name": "Time-ordered earthquake-sequence migration along blind fault planes",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_improvement_qualitative": "Low-to-moderate and highly uncertain: temporal migration could identify active concealed fault strands, but local event coverage, catalog completeness, and agreement between active sequences and the competition labels may be sparse.",
+      "implementation_cost": "Very high relative to a native-only raster method: retrieve and quality-filter event origin time, depth, location uncertainty and magnitude; decluster or separate swarms from aftershocks; fit migration/plane hypotheses; then evaluate with spatially buffered folds and negative controls.",
+      "targeted_signature": "Repeated, quality-filtered earthquake sequences whose hypocenters migrate coherently along a fitted buried plane or along-strike corridor through time, with sequence direction and depth evolution that persist under completeness thresholds and are not simply a static density hotspot.",
+      "named_non_fault_mimic": "Geothermal injection/production swarms, mining blasts, quarry sequences, volcanic or dike-intrusion swarms, aftershock migration on an already mapped fault, and apparent migration caused by changing network detection thresholds or hypocenter uncertainty.",
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: no local event time series; official endpoint cannot be queried from this sandbox; event completeness and coverage remain unknown."
+    },
+    {
+      "rank": 3,
+      "id": "F9N-3_STRATIGRAPHIC_CONTACT_DISPLACEMENT",
+      "name": "Age-tagged geologic-unit contact termination and offset graph",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_improvement_qualitative": "Low-to-moderate: potentially precise where several mapped contacts are exposed, but limited recall beneath continuous alluvium and vulnerable to geologic-map scale and compilation artifacts.",
+      "implementation_cost": "High: acquire vector-unit polygons and metadata, harmonize scale/age attributes, remove fault annotations from predictors, construct contact correspondences with map uncertainty, and run explicit offset/shuffled-contact controls.",
+      "targeted_signature": "A graph of age- and lithology-matched contact segments in which multiple independent bedrock contacts terminate, step, or show consistent lateral displacement across one candidate corridor, with a corresponding basement/potential-field break. Score displacement and correspondence, not the mere presence of a mapped contact or mapped fault line.",
+      "named_non_fault_mimic": "Primary intrusive or volcanic contacts, depositional facies changes, alluvial cover boundaries, map-sheet joins, generalized contacts, age-correlation errors, and georeferencing mismatch.",
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: no attributed geologic-unit polygons or verified product coverage are present; do not treat the fault-only derivative as the required layer."
+    }
+  ],
+  "hypothesis_disposition": {
+    "selected_for_execution": null,
+    "execution_authorized": false,
+    "reason": "No method lane is assigned; native training features, prepared arrays and the shared feature cache are missing; the unchanged literal witness gate is infeasible for any nonempty candidate."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED",
+    "evaluator_version_required": "gems57-pooled-hide-v2 (not invoked)",
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "note": "No holdout score was produced in this review. The owner-reported 0.2778 is not HOLDOUT-DTI or ORGANIZER-CONFIRMED."
+  },
+  "focus9_best_score_evidence": {
+    "top_site": "GEMSDOE32",
+    "top_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "top_score": 0.2778,
+    "evidence_class": "OWNER-REPORTED",
+    "organizer_confirmed": false,
+    "organizer_receipts_obtained_in_92_repo_refresh": 0,
+    "score_snapshot_observed_utc": "2026-10-27T18:30:00Z",
+    "scope": "Highest claim in the nine named Focus-9 sites; not verified as the current competition leaderboard or the all-fleet best."
+  },
+  "focus9_site_best_files": [
+    {
+      "site": "GEMSDOE32",
+      "best_reported_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "reported_score": 0.2778,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE32-main/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE36",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE36",
+      "best_reported_submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "reported_score": 0.275,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE36-main/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "max_directed_3px_overlap_vs_other_eight": 0.9757811293560509,
+      "max_overlap_comparator": "GEMSDOE27",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE28",
+      "best_reported_submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "reported_score": 0.271,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE28-main/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE30",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE31",
+      "best_reported_submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "reported_score": 0.2708,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE31-main/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE30",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE33",
+      "best_reported_submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "reported_score": 0.2632,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE33-main/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "max_directed_3px_overlap_vs_other_eight": 0.9970858712528365,
+      "max_overlap_comparator": "GEMSDOE27",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE25",
+      "best_reported_submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "reported_score": 0.26,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE25-main/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE30",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE30",
+      "best_reported_submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "reported_score": 0.26,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE30-main/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE27",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE27",
+      "best_reported_submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "reported_score": 0.2449,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE27-main/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "max_directed_3px_overlap_vs_other_eight": 0.9801884946517089,
+      "max_overlap_comparator": "GEMSDOE24",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE24",
+      "best_reported_submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "reported_score": 0.2477,
+      "score_evidence_class": "OWNER-REPORTED",
+      "organizer_receipt_found": false,
+      "audited_owner_file": "GEMSDOE24-main/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "max_directed_3px_overlap_vs_other_eight": 1.0,
+      "max_overlap_comparator": "GEMSDOE30",
+      "historical_download": "FORENSIC_ONLY",
+      "submit": "NO"
+    }
+  ],
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "focus9_site_best_files": 9,
+    "directed_pairwise_comparisons": 72,
+    "directed_3px_overlap_min": 0.8671895382207149,
+    "directed_3px_overlap_max": 1.0,
+    "overlap_stop": 0.7,
+    "all_nine_fail_at_least_one_within_cohort_comparison": true,
+    "full_registry_uniqueness_clearance": false,
+    "candidate_surface_max_spearman": null,
+    "candidate_final_dots_forward_overlap_3px": null,
+    "candidate_comparisons": "NOT RUN — no candidate exists",
+    "pinned_witness": {
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "literal_forward_overlap_lower_bound_for_any_nonempty_candidate": 1.0,
+      "unchanged_overlap_limit": 0.7,
+      "status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+      "scope": "One historical witness; sufficient for a negative stop, not full-registry uniqueness clearance."
+    },
+    "registry_completeness": {
+      "protocol_preflight_index_entries": 655,
+      "protocol_preflight_rasters_measured": 1,
+      "protocol_preflight_complete": false,
+      "separate_input_index_records": 729,
+      "input_index_byte_verified": 74,
+      "input_index_grid_compatible": 74,
+      "input_probability_values_audited": false,
+      "input_index_complete": false,
+      "scope_note": "The 655-entry preflight snapshot and separate 729-record input index are distinct inventories and must not be conflated."
+    }
+  },
+  "raster_sha256": null,
+  "candidate_raster": {
+    "generated": false,
+    "file": null,
+    "sha256": null,
+    "validation_status": "NOT_APPLICABLE_NO_CANDIDATE"
+  },
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "No new raster exists, so candidate validator fields are not applicable. Separate release audit re-read 49/49 existing artifacts for local format/integrity only."
+  },
+  "existing_release_inventory": {
+    "artifacts": 49,
+    "locally_valid": 49,
+    "all_final_artifacts_remeasured": true,
+    "decision": "DO NOT SUBMIT",
+    "upload_authorized": false
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_length": null,
+    "maximum_note_characters": 140,
+    "download_status": "Existing owner-hosted Focus-9 TIFFs are linked for forensic download only; no new TIFF download was generated.",
+    "submit": "NO",
+    "upload_authorized": false,
+    "approved_for_weekly_slot": false,
+    "weekly_slots_used": 0,
+    "selector_run": false
+  },
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "experiments_used": 0,
+    "maximum_hours": 2,
+    "experiment_hours_used": 0,
+    "promotion": "NOT_ELIGIBLE_NO_LANE"
+  },
+  "official_source_checks": [
+    {
+      "name": "DrivenData competition page 967",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "status": "Official URL retained in repository records; not freshly fetched in this continuation."
+    },
+    {
+      "name": "USGS 3DEP",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "status": "Official source identified; no AOI tiles in checkout; live product coverage not queried."
+    },
+    {
+      "name": "USGS National Geologic Map Database",
+      "url": "https://ngmdb.usgs.gov/",
+      "status": "Official catalog identified; exact shoreline or unit-polygon product not verified."
+    },
+    {
+      "name": "USGS ComCat FDSN Event Service",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "status": "Official endpoint identified; no local event time series; no live AOI query."
+    }
+  ],
+  "measurements": {
+    "fleet_refresh_utc": "2026-10-28T16:31:35+00:00",
+    "protocol_preflight_utc": "2026-10-28T16:31:56.437009+00:00",
+    "registry_input_grid_audit_utc": "2026-10-28T16:39:38+00:00",
+    "release_registry_measurement_utc": "2026-10-28T16:32:00.447776+00:00",
+    "run_card_written_utc": "2026-10-28T17:35:44Z",
+    "run_card_updated_utc": "2026-10-28T17:35:44Z"
+  },
+  "review_checks": {
+    "targeted_focus9_and_truthfulness_tests": "27 passed",
+    "full_pytest": "PASS: 1152 passed, 24 skipped, 48 warnings, 58 subtests passed; 711.30 s",
+    "site_generation": "PASS: generated site rebuilt; all existing downloads remain research-only",
+    "site_generation_check": "PASS: scripts/build_site.py --check",
+    "site_integrity_and_safety_check": "PASS: scripts/check_site.py (links, registered TIFF/ZIP integrity, negative-state safety; not scientific clearance)",
+    "download_audit": "PASS: 49 research TIFFs and receipts revalidated",
+    "frozen_review_check": "PASS: scripts/build_review_card.py --check; DO NOT SUBMIT",
+    "initial_full_suite_note": "The first full-suite attempt had one missing-file failure because the README linked to this branch review before the file existed. The review was created; the same link test passed in targeted checks, and the final full suite passed: 1152 passed, 24 skipped, 48 warnings, 58 subtests.",
+    "git_diff_check": "PASS: git diff --check"
+  },
+  "verdict": "negative",
+  "verdict_scope": "Repository release/readiness decision; not an experimental HOLDOUT-DTI result.",
+  "decision": "DO_NOT_SUBMIT",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false
+}

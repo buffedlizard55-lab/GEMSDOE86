@@ -4,7 +4,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.build_site import focus9_summary  # noqa: E402
+from scripts.build_site import focus9_current_status_banner, focus9_summary  # noqa: E402
 
 
 def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
@@ -54,16 +54,45 @@ def test_scores_download_status_and_h33_causality_are_labeled():
     assert "no upload authorized" in html
 
 
+def test_current_status_banner_fails_closed_and_names_scope():
+    html = focus9_current_status_banner(include_h33_explanation=True)
+    assert "FOCUS-9 EXECUTIVE SUMMARY · DO NOT SUBMIT" in html
+    assert "Descriptive association, not a causal explanation" in html
+    assert "0.2778 OWNER-REPORTED" in html
+    assert "No Focus-9 score is ORGANIZER-CONFIRMED" in html
+    assert "5,106,385/5,106,385 allowed pixels" in html
+    assert "1.0 &gt; 0.70" in html
+    assert "74/729" in html
+    assert "probability values were not audited" in html
+    assert "655 entries and only 1 measured raster" in html
+    assert "72 directed 3-px measurements" in html
+    assert "no candidate, no upload, no experiments" in html
+
+
+def test_generated_site_promotes_current_focus9_status_not_stale_fleet_claims():
+    for rel in ("docs/index.html", "docs/executive-summary.html"):
+        html = (ROOT / rel).read_text()
+        assert 'id="focus9-current-status"' in html
+        assert "FOCUS-9 EXECUTIVE SUMMARY · DO NOT SUBMIT" in html
+        assert "All 12 Scored Runs Verified" not in html
+        assert "Best submission across Focus-9 and all 92" not in html
+        assert "r = +0.994" not in html
+    executive = (ROOT / "docs/executive-summary.html").read_text()
+    assert 'id="focus9-summary"' in executive
+    assert executive.index('id="focus9-current-status"') < executive.index('id="focus9-summary"')
+
+
 def test_generated_executive_summary_links_current_hypotheses():
     html = (ROOT / "docs/executive-summary.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "three review-only ranked proposals" in html
+    assert "three unrun proposals" in html
 
 
 def test_home_links_the_current_review_and_hypothesis_register():
     html = (ROOT / "docs/index.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "SESSION_20261028_REVIEW.md" in html
+    assert "SESSION_20261028_ARENA_27FEF6BB_REVIEW.md" in html
+    assert "focus9_review_20261028_arena_27fef6bb.json" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
@@ -78,6 +107,8 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
         "docs/evidence/nine-site-audit-20261027.json",
         "docs/evidence/fleet-feed.json",
+        "docs/evidence/protocol-preflight.json",
+        "docs/evidence/registry-input-grid-review-20261028.json",
     )
     for rel in rels:
         shutil.copyfile(ROOT / rel, tmp_path / rel)

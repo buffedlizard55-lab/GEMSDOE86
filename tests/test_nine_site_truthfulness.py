@@ -35,3 +35,9 @@ def test_nine_site_threshold_is_strictly_greater_not_greater_or_equal():
     page = nine_sites_page(audit, cand, exp1, exp2)
     row = next(row for row in page.split('</tr>') if f'<td>{site}</td>' in row)
     assert 'yes: max 0.7000' in row
+
+
+def test_nine_sites_page_marks_its_own_navigation_item_active():
+    page = nine_sites_page(*inputs())
+    assert '<a href="nine-sites.html" aria-current="page">Nine sites</a>' in page
+    assert '<a href="executive-summary.html" aria-current="page">How to submit</a>' not in page
