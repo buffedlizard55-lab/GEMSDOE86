@@ -1369,24 +1369,37 @@ def focus9_summary() -> str:
             raise ValueError(f"Focus-9 score ledger has no numeric claim for {site}")
         best = max(claims, key=lambda r: float(r["score"]))
         key = evidence_keys[site].lower()
+        # A future ledger champion must not silently inherit the old champion's
+        # measurements or geological interpretation. Refresh the evidence map
+        # deliberately when the champion changes.
+        if key not in best["submission"].lower():
+            raise ValueError(f"Focus-9 champion changed without bound forensic evidence: {site}/{best['submission']}")
         matches = [r for r in measured if r["file"].lower().startswith(site.lower() + "__") and key in r["file"].lower()]
+        # Bind the claimed submission's exact suffix, including nan/zeros/date/
+        # identity token, rather than an arbitrary same-method sibling.
+        matches = [r for r in matches if r["file"].lower().endswith(best["submission"].lower() + ".tif")]
         overlaps = {float(r["overlap_3px_vs_H33"]) for r in matches}
         if not matches or len(overlaps) != 1:
             raise ValueError(f"Focus-9 measured overlap is missing or ambiguous for {site}/{key}")
         overlap = overlaps.pop()
-        best_rows.append((site, best["submission"], float(best["score"]), overlap))
+        if not all(0 <= float(r["overlap_3px_vs_H33"]) <= 1 for r in matches):
+            raise ValueError(f"Invalid Focus-9 overlap for {site}")
+        best_rows.append((site, best["submission"], float(best["score"]), overlap, best["source_url"]))
 
     body = "".join(
         f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{e(site)}/">{e(site)}</a></th>'
         f'<td><code>{e(name)}</code></td><td><strong>{score:.4f}</strong> OWNER-REPORTED</td>'
         f'<td>{overlap:.1%} within 3 px of GEMSDOE32 H33</td>'
         f'<td><strong>NO</strong> — exceeds the 70% overlap stop</td>'
+        f'<td>Not estimated — no organizer-calibrated estimate for this historical file</td>'
+        f'<td>NONE approved; <a href="{e(source_url)}">historical source / file identity</a></td>'
         f'<td>{e(interpretations[site])}; DO NOT RESUBMIT</td></tr>'
-        for site, name, score, overlap in best_rows
+        for site, name, score, overlap, source_url in best_rows
     )
     return f'''<section class="card" id="focus9-summary"><h2>Focus-9 executive summary — highest reported entry by site</h2>
 <p>Scores below are <strong>OWNER-REPORTED</strong> claims from <code>registry/prior_scores.csv</code>, not organizer receipts. The highest reported Focus-9 entry is <strong>GEMSDOE32 H33 at 0.2778</strong>. The 3-pixel overlap values are <strong>REGISTRY-MEASUREMENT</strong> from the dated 30-raster forensic evidence, using H33 as the common reference; they are a conservative duplicate screen, not proof of identical raster pixels. Every listed best exceeds the protocol's 70% overlap stop against H33 (H33 itself is the already-submitted reference). These rows are historical comparisons, not recommendations to copy or resubmit.</p>
-<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest-scoring named entry</th><th>Reported result</th><th>Measured overlap</th><th>Unique under 70% rule?</th><th>Forensic interpretation / action</th></tr></thead><tbody>{body}</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest-scoring named entry</th><th>Reported result</th><th>Measured overlap</th><th>Unique under 70% rule?</th><th>Estimated leaderboard score</th><th>File to download for submission</th><th>Forensic interpretation / action</th></tr></thead><tbody>{body}</tbody></table></div>
+<p class="callout"><strong>Independent review, 2026-10-27: no new candidate generated; no file authorized.</strong> Native feature inputs and the shared cached stack are absent in this checkout. H86T's physical-band attribution also conflicts with the native band map (bands 5, 12 and 16); its geological interpretation requires a fresh audit, not relabeling archived metrics. See the <a href="{REPO}/blob/main/research/SESSION_20261027_55A5BFA4_REVIEW.md">independent review and next steps</a> and <a href="evidence/session-55a5bfa4-inputs.json">current-input inspection</a>.</p>
 <p>H33's reported lead follows the D28 → H27-4 lineage and removes 2,545 redundant 1–2 px catalogue-collar dots while retaining the far-field component. That is a plausible precision/coverage mechanism under the 300 m DTI kernel, not a causal proof from controlled trials. The H33 0.2778 claim is not independently confirmed here, and the conflicting 0.3195/0.4413 leaderboard marks remain unverified. Pixel-forensic details, caveats and source links are in <a href="{REPO}/blob/main/research/SESSION_20261026_H86Q_BFRA_REVIEW.md#2-phd-level-forensic-analysis-of-the-reported-h33-result-not-causal-proof">the corrected Focus-9 forensic review</a>. Current-checkout limitations, ranked unrun hypotheses, and the three-pass audit are in the <a href="{REPO}/blob/main/research/SESSION_20261027_REVIEW.md">2026-10-27 review</a>.</p></section>'''
 
 

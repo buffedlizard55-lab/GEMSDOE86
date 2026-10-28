@@ -1784,3 +1784,9 @@ The owner registry names end in `-nan` (for example `h25-1-…-nan`, `h36-1-…-
 ## IR-FB68-PORTAL-RANGE-ERROR-STILL-UNREPRODUCED-20261027
 
 The user's portal error "Predicted values must be in range [0, 1]" is still not reproduced. None of the nine best files has NaN or out-of-range values. The rejected file was not in this checkout. Candidate causes remain: a NaN-outside file, or a file with the −1 sentinel (`existing_faults.tif`). The page `docs/executive-summary.html` documents the check and the safe form (all-finite, zeros outside footprint).
+
+
+## IR-86-55A5BFA4-BAND-ATTRIBUTION (2026-10-27)
+
+Independent review found H86T `features.py` names band 5 elevation relief, band 16 MT, and band 12 a Bouguer sill input despite the authoritative native band map. No artifact bytes or archived metrics changed. Scientific interpretation must be revalidated with corrected inputs in a fresh lane. See `research/SESSION_20261027_55A5BFA4_REVIEW.md`. Literal full-support uniqueness stop remains binding; zero experiments and zero slots used.
+
