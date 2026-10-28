@@ -1,0 +1,44 @@
+{
+  "lane": "H87-FCB",
+  "title": "Fair catalogue-distance band dot field (visible-trace only) vs uniform null, with a leakage-suspect legacy reference",
+  "registered_utc": "2026-10-27",
+  "session": "fb68389e",
+  "evaluator": {
+    "version": "gems57-pooled-hide-v2",
+    "module": "vendor/gems57/holdout.py (build_holdout, score_cell) + vendor/gems57/metric.py (ALPHA=0.2, BETA=0.8, RADIUS_PX=3)",
+    "folds": "NW, NE, SW, SE x seeds (20, 21) x modes (all, detached) = 16 cells",
+    "score": "pooled DTI over cells (sum tp, fp, fn); per-cell DTI reported alongside",
+    "ci": "cell-level bootstrap, 1000 draws, seed 520810, percentile 95%",
+    "label": "HOLDOUT-DTI (evaluator version, withheld positives, 95% CI)"
+  },
+  "hypothesis": "A dot field placed in a distance band from VISIBLE catalogue traces (the band is computed from visible traces only, never from withheld traces) recovers withheld fault pixels better than an equal-count uniform random field on the same fold.",
+  "mechanism": "Withheld segments are fault traces that lie near, and often parallel to, mapped traces that remain visible. Distance to the visible catalogue is therefore the only feature in this lane.",
+  "named_non_fault_mimic": "Mapping density and survey coverage: traces are mapped where field and LiDAR coverage is dense, so distance-to-trace may proxy for where surveyors looked rather than where faults are. This would inflate holdout scores and does not transfer to a leaderboard whose truth was labelled by the same experts.",
+  "arms": {
+    "N0_uniform_null": "Uniform random footprint pixels, count matched per cell to the B1 arm (seed 20). Null for the whole lane.",
+    "B1": "Band (1.0, 2.0] px from visible traces, thinned to min spacing 2.8284 px, nearest-first, budget = 0.6174 x visible footprint catalogue pixels in the cell (= 37,654 / 60,988, the full-grid dot-to-catalogue ratio of the reference 37,654-dot files).",
+    "B2": "Band (2.0, 3.0] px, same thinning and budget rule.",
+    "B3": "Band (3.0, 5.0] px, same thinning and budget rule.",
+    "O_oracle_sanity": "Truth pixels themselves (harness sanity; DTI should be near 1.0). Not a candidate.",
+    "L_legacy_leaky": "GEMSDOE32 h33-h33-2-b2 (0.2778 owner-reported) evaluated as-is on the same cells. It was built from the FULL catalogue, so it is LEAKAGE-SUSPECT and is reported only to quantify leakage."
+  },
+  "canary": {
+    "feature": "distance to visible traces, scored on active (scored, non-visible) pixels",
+    "metric": "AUC of -distance for truth vs non-truth on each cell; pooled across cells",
+    "rule": "AUC above 0.90 = leakage until proven otherwise (protocol rule 4)"
+  },
+  "experiment_budget": {
+    "experiment_1": "N0, B1, O_oracle_sanity, L_legacy_leaky, canary",
+    "experiment_2": "B2, B3 (band sweep, same instrument). Band selection rule below.",
+    "max_experiments": 3
+  },
+  "selection_rule": "The candidate band is the argmax of pooled HOLDOUT-DTI among B1, B2, B3 ONLY if its paired difference vs N0 has a 95% CI excluding 0. If none passes, the lane is NEGATIVE and no unique candidate is promoted from it.",
+  "uniqueness_rule": "Final dot field overlap (fraction of its dots within 3 px of a dot in each registry raster) must be at most 0.70 against every local reference raster (9 fleet files, published TIFFs in docs/downloads), and rank-correlation of the surface at most 0.90 (uniqueness.surface_rho).",
+  "format_rule": "Single-band float32 GeoTIFF, EPSG:32611, shape 3730x3292, transform (100,0,243350,0,-100,4508550), values finite and in [0,1] everywhere, zeros outside the footprint (-zeros form). NaN is not used in the candidate.",
+  "submission_rule": "Output is NOT cleared for upload by this lane. Upload approval requires the repo's literal full-support witness gate, which the README records as unsatisfied, plus an organizer receipt. This lane does not change any gate.",
+  "not_claimed": [
+    "No live leaderboard score is claimed for any file.",
+    "No holdout result is a leaderboard projection.",
+    "No legacy owner-reported score is verified."
+  ]
+}

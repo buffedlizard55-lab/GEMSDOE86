@@ -30,7 +30,7 @@ def link(path: str) -> str:
 
 def page(title: str, active: str, body: str) -> str:
     nav = (("index.html", "Downloads"), ("executive-summary.html", "How to submit"),
-           ("submit.html", "Submission status"), ("evidence.html", "Validation"),
+           ("nine-sites.html", "Nine sites"), ("submit.html", "Submission status"), ("evidence.html", "Validation"),
            ("hypotheses.html", "Research queue"), ("fleet.html", "Project feed"),
            ("sources.html", "Sources"))
     navigation = "".join(f'<a href="{url}"' + (' aria-current="page"' if url == active else '') + f'>{label}</a>' for url, label in nav)
@@ -1985,6 +1985,67 @@ def submit_gate(report: dict, review: dict) -> str:
 <p>All {report['artifact_count']} preserved historical research rasters remain available for audit-only inspection on <a href="index.html#downloads">Downloads</a>, and the exact DrivenData portal procedure (<code>[0, 1]</code> range check, unique name, and <code>&lt;= 140</code>-char note) is documented on <a href="executive-summary.html">How to submit</a>.</p>''')
 
 
+def nine_sites_page(audit: dict, cand: dict, exp1: dict, exp2: dict) -> str:
+    """Nine-site review: best owner-published file per site, estimate table, uniqueness, H87 candidate."""
+    if cand["safe_to_submit"] is not False or cand["approved_for_weekly_slot"] is not False or cand["submission_slots_used"] != 0:
+        raise ValueError("H87 candidate must stay slot-free and not safe to submit")
+    if cand["verdict"] != "negative-for-upload":
+        raise ValueError("H87 candidate verdict must be negative-for-upload")
+    if audit.get("schema") is None or len(audit["files"]) != 9:
+        raise ValueError("nine-site audit must list the nine sites")
+    thr = audit["threshold_overlap"]
+    rows = []
+    for f in sorted(audit["files"], key=lambda r: -r["owner_score"]):
+        site = f["site"]
+        name = f["file"].split("/")[-1]
+        repo_path = f["file"].split("/", 1)[1]
+        url = f"https://github.com/buffedlizard55-lab/{site}/blob/main/{repo_path}"
+        mx = audit["max_overlap_by_site"][site]
+        unique = mx["value"] < thr
+        twin = ("identical to repo-local copy" if f.get("identical_to_repo_local_copy") else "archive copy (not in repo)")
+        rows.append(
+            f'<tr><td>{e(site)}</td><td><a href="{e(url)}">{e(name)}</a><br><small>owner name: <code>{e(f["owner_name"])}</code></small></td>'
+            f'<td>{f["owner_score"]:.4f}<br><small>{e(f["owner_score_class"])}</small></td>'
+            f'<td>{f["dots_inside_footprint"]:,}</td><td>{f["nan_total"]}</td><td>{"yes" if f["in_range_gate_all_pixels"] else "NO"}</td>'
+            f'<td>{"NO" if not unique else "yes"}: max {mx["value"]:.4f} vs {e(mx["vs"])}</td>'
+            f'<td><code>{e(f["sha256"][:16])}…</code><br><small>{e(twin)}</small></td></tr>')
+    arms_rows = []
+    for label, d in (("Oracle O (sanity)", exp1["arms"]["O"]), ("Legacy H33 (leakage-suspect)", exp1["arms"]["L"]),
+                     ("Uniform null N0", exp1["arms"]["N0"]), ("B1 (1,2] px", exp1["arms"]["B1"]),
+                     ("B2 (2,3] px", exp2["arms"]["B2"]), ("B3 (3,5] px", exp2["arms"]["B3"])):
+        ci = d["ci"]["ci95"] if "ci" in d and "ci95" in d["ci"] else None
+        delta = d["vs_N0"]["paired_delta_ci95"] if "vs_N0" in d else None
+        arms_rows.append(
+            f'<tr><td>{e(label)}</td><td>{d["pooled"]["dti"]:.4f}</td><td>{"" if ci is None else f"[{ci[0]:.4f}, {ci[1]:.4f}]"}</td>'
+            f'<td>{"" if delta is None else f"[{delta[0]:+.4f}, {delta[1]:+.4f}]"}</td></tr>')
+    lu = cand["uniqueness_local"]
+    top = lu["max_overlap"]
+    return page("Nine sites · best files, estimates & uniqueness", "executive-summary.html", f"""<p class="eyebrow">Nine-site review · DO NOT SUBMIT · no organizer receipts</p>
+<h1>Nine GEMSDOE sites:<br>best owner-published file each, and what is unique.</h1>
+<p><strong>Decision: DO NOT SUBMIT.</strong> No file on this page has an ORGANIZER-CONFIRMED score. Owner scores are OWNER-REPORTED (unverified, <code>registry/prior_scores.csv</code>). The 0.2778 H33 figure, the 0.3195 and 0.4413 leaderboard claims are not in the registry and are not verified.</p>
+<h2>Per-site best file (ranked by owner-reported score)</h2>
+<p>Each row is the highest owner-published file on that site, byte-audited from the owner's public repository archive. "Unique" means the file's dot field overlaps every other listed site's best file by less than the repo threshold of {thr:.2f} (3-px overlap rule).</p>
+<table><thead><tr><th>Site</th><th>File (owner repo)</th><th>Estimated score (owner-reported)</th><th>Dots</th><th>NaN</th><th>Values in [0,1]</th><th>Unique vs listed sites?</th><th>SHA-256 / copy</th></tr></thead>
+<tbody>{''.join(rows)}</tbody></table>
+<p>Measured on all nine: {len(audit["pairs_over_threshold"])} of {len(audit["files"]) * (len(audit["files"]) - 1)} ordered pairs exceed the {thr:.2f} overlap threshold. The NaN-outside twins of these files carry the same dots, so the "-nan" and "-zeros" variants differ only in encoding.</p>
+<h2>Our candidate: H87-FCB band 3–5 px (preregistered)</h2>
+<p><code>{e(cand["name"])}.tif</code>, workspace <code>releases/</code> only, not published (SHA-256 <code>{e(cand["sha256"])}</code>, {cand["bytes"]:,} B, {cand["dots"]:,} dots). The band was selected by the preregistered holdout rule (B3 has the highest pooled HOLDOUT-DTI among bands whose paired gain over the uniform null excludes 0).</p>
+<ul>
+<li><strong>Format gate (local):</strong> {"PASS" if cand["format_gate_passed"] else "FAIL"} — EPSG:32611, 3730×3292, pinned transform, values in [0,1], no NaN/Inf, zero outside footprint, 0 dots on catalogue, min pair spacing {cand["min_pair_spacing_px"]:.1f} px.</li>
+<li><strong>Uniqueness (local, {lu["references_compared"]} references):</strong> {"PASS" if cand["like_for_like_local_pass"] else "FAIL"} — {lu["count_over_0_70"]} references overlap ≥0.70; {lu["count_excess_over_chance_over_0_30"]} exceed the 0.30 excess-over-chance limit. Highest measured overlap: {top["overlap_mine_in_ref"]:.4f} with <code>{e(top["reference"])}</code> (dense reference: chance halo {top["chance_halo_fraction"]:.2f}, so excess is only {top["excess_over_chance"]:.3f}).</li>
+<li><strong>Literal full-support witness gate:</strong> not re-measured in this session (the witness raster is not in the workspace). The repo record (IRREGULARITIES.md) gives literal overlap 1.0000 for any dot field, and PA-86-01 keeps this gate binding for upload.</li>
+<li><strong>Submission name and note (only if an owner decision ever authorizes upload):</strong> name <code>{e(cand["name"])}</code> ({cand["name_chars"]} chars); note <code>{e(cand["note"])}</code> ({cand["note_chars"]} chars, limit 140).</li>
+<li><strong>Holdout (HOLDOUT-DTI, gems57-pooled-hide-v2, 45,260 withheld positives):</strong> B3 {exp2["arms"]["B3"]["pooled"]["dti"]:.4f} [{exp2["arms"]["B3"]["ci"]["ci95"][0]:.4f}, {exp2["arms"]["B3"]["ci"]["ci95"][1]:.4f}]. This is a holdout score, not a live leaderboard score; the holdout's truth is catalogue-derived.</li>
+</ul>
+<p><strong>Download/submit answer for this file: NOT OK to submit.</strong> It passes the format range check, is not a byte copy of any listed file, but it fails the local uniqueness test and the literal witness gate. Upload needs an owner decision on the witness gate and an organizer receipt.</p>
+<h2>H87-FCB experiment results (HOLDOUT-DTI)</h2>
+<table><thead><tr><th>Arm</th><th>Pooled DTI</th><th>95% CI</th><th>Paired Δ vs N0</th></tr></thead><tbody>{''.join(arms_rows)}</tbody></table>
+<p>Canary AUC (distance to visible trace): {exp1["canary_auc_distance_to_visible_trace"]:.4f} against the 0.90 leakage rule. Legacy H33 (the collar-removed file built from the full catalogue) scores 0.0047, far below the null, so it is not a catalogue-leak winner on this holdout. The preregistration's "leaky" label for it was wrong; the measurement supersedes that label.</p>
+<h2>Files and links</h2>
+<p><a href="evidence/nine-site-audit-20261027.json">Nine-site audit JSON</a> · <a href="evidence/h87-fcb-candidate-receipt-20261027.json">Candidate receipt JSON</a> · <a href="evidence/h87-fcb-experiment1-20261027.json">H87 experiment 1</a> · <a href="evidence/h87-fcb-experiment2-20261027.json">H87 experiment 2</a> · Candidate TIFF: workspace <code>releases/{e(cand["name"])}.tif</code> (git-ignored, not published on this site) · <a href="executive-summary.html">How to submit</a></p>
+""")
+
+
 def render(root: Path = ROOT) -> dict[str, str]:
     import json
     report = build_report(root)
@@ -2528,6 +2589,11 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/irregularities.html": irregularities(report),
         "docs/research.html": scientific_context(),
         "docs/h86-fvmb-forensics.html": fvmb_archive(report),
+        "docs/nine-sites.html": nine_sites_page(
+            strict_json(root / "docs/evidence/nine-site-audit-20261027.json"),
+            strict_json(root / "docs/evidence/h87-fcb-candidate-receipt-20261027.json"),
+            strict_json(root / "docs/evidence/h87-fcb-experiment1-20261027.json"),
+            strict_json(root / "docs/evidence/h87-fcb-experiment2-20261027.json")),
         "docs/evidence/release-readiness.json": json.dumps(report, indent=2, allow_nan=False) + "\n",
         "docs/evidence/session-20261023-run-card.json": json.dumps(session_card(report, root), indent=2, allow_nan=False) + "\n",
         "docs/data/summary.json": json.dumps(summary, indent=2, allow_nan=False) + "\n",
