@@ -126,3 +126,31 @@ def test_scheduled_pages_fails_closed_and_refreshes_download_identities():
     ci = (ROOT / ".github/workflows/ci.yml").read_text()
     assert "scripts/check_hypothesis_bands.py" in ci
     assert "scripts/verify_focus9_downloads.py" in ci
+
+
+def test_historical_banners_are_collapsed_on_both_main_pages():
+    from html.parser import HTMLParser
+    from scripts import build_site
+
+    class Sections(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.details_depth = 0
+            self.section_depths = {}
+        def handle_starttag(self, tag, attrs):
+            if tag == "details":
+                self.details_depth += 1
+            if tag == "section" and dict(attrs).get("id"):
+                self.section_depths[dict(attrs)["id"]] = self.details_depth
+        def handle_endtag(self, tag):
+            if tag == "details":
+                self.details_depth -= 1
+                assert self.details_depth >= 0
+
+    rendered = build_site.render(ROOT)
+    for filename in ("docs/index.html", "docs/executive-summary.html"):
+        parser = Sections()
+        parser.feed(rendered[filename])
+        assert parser.details_depth == 0
+        assert parser.section_depths["h86t-knds-banner"] > 0
+        assert parser.section_depths["h86s-dwad-banner"] > 0

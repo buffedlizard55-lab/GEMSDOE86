@@ -72,3 +72,17 @@ def test_same_method_different_identity_cannot_inherit_overlap(tmp_path, monkeyp
         writer.writerows(rows)
     with pytest.raises(ValueError, match="overlap is missing or ambiguous|unbound Focus-9 proof"):
         builder.focus9_summary()
+
+
+def test_invalid_source_url_cannot_be_rendered_as_a_link(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
+    row = next(r for r in rows if r["site"] == "GEMSDOE32")
+    row["source_url"] = "javascript:alert(1)"
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="Unsafe Focus-9 source URL"):
+        builder.focus9_summary()
