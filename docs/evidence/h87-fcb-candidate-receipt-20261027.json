@@ -1,0 +1,173 @@
+{
+  "approved_for_weekly_slot": false,
+  "band_px": [
+    3.0,
+    5.0
+  ],
+  "band_selected_by_rule": "B3",
+  "budget": 37654,
+  "budget_ratio_reference": 0.6174001442906801,
+  "bytes": 825650,
+  "decision": "DO NOT SUBMIT: unique-by-local-check and format-valid, but the literal full-support witness gate is failed by the repo's binding rule. Upload needs an owner decision on that gate plus an organizer receipt.",
+  "dots": 37654,
+  "eligible_band_holdout_dti": {
+    "B1": 0.15371645491114946,
+    "B2": 0.192966365061471,
+    "B3": 0.21972271592346196
+  },
+  "file": "releases/gems86-h87-fcb-b3-3to5px-37654dots-20261027-zeros-out.tif",
+  "finished_utc": "2026-10-28T00:35:13+00:00",
+  "format_gate_passed": true,
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "label": "HOLDOUT-DTI (gems57-pooled-hide-v2, 45,260 withheld positives, cell-bootstrap 95% CI)",
+    "source": "docs/evidence/h87-fcb-experiment2-20261027.json (B3 arm; candidate is built from the full catalogue, the arm from visible traces only)"
+  },
+  "hypothesis": "A dot field in the band (3,5] px from VISIBLE traces, built only from visible traces, beats an equal-count uniform null on the hide-and-recover holdout.",
+  "leaderboard_score": "NONE: no live score is claimed. OWNER-REPORTED / ORGANIZER-CONFIRMED scores for this file: none.",
+  "like_for_like_local_pass": false,
+  "literal_submission_gate": "FAIL (repo record: 17GEMSDOE literal overlap 1.0000; PA-86-01 keeps the literal gate binding for upload)",
+  "mechanism": "Withheld fault traces lie a few pixels from visible mapped traces; the band captures near-parallel strands beyond the 3 px kernel.",
+  "min_pair_spacing_px": 3.0,
+  "name": "gems86-h87-fcb-b3-3to5px-37654dots-20261027-zeros-out",
+  "name_chars": 53,
+  "non_fault_mimic": "Mapping density: traces are mapped where survey coverage is dense, so distance-to-trace can proxy for where surveyors looked.",
+  "note": "H87-FCB band 3-5px from visible traces; holdout 0.2197 [0.2105,0.2277]; NOT cleared: literal witness gate",
+  "note_chars": 105,
+  "safe_to_submit": false,
+  "schema": "gems86.h87-fcb-candidate.v1",
+  "session": "fb68389e",
+  "sha256": "ddce5c07fdd97d356493757725e1d0aca35f79d9dc9c44824acd970dc248245d",
+  "spacing_px": 2.8284271247461903,
+  "started_utc": "2026-10-28T00:25:50+00:00",
+  "submission_slots_used": 0,
+  "uniqueness_local": {
+    "count_excess_over_chance_over_0_30": 81,
+    "count_over_0_70": 14,
+    "max_overlap": {
+      "chance_halo_fraction": 0.844645,
+      "excess_over_chance": 0.155355,
+      "overlap_mine_in_ref": 1.0,
+      "overlap_ref_in_mine": 0.176242,
+      "reference": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "reference_dots": 4210938,
+      "surface_rho_dot_union": null
+    },
+    "max_surface_rho": -0.6646249179486542,
+    "references_compared": 502,
+    "references_excluded_for_shape": 1,
+    "references_with_chance_halo_over_50pct": [
+      "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+    ],
+    "top10": [
+      {
+        "chance_halo_fraction": 0.844645,
+        "excess_over_chance": 0.155355,
+        "overlap_mine_in_ref": 1.0,
+        "overlap_ref_in_mine": 0.176242,
+        "reference": "docs/downloads/gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+        "reference_dots": 4210938,
+        "surface_rho_dot_union": null
+      },
+      {
+        "chance_halo_fraction": 0.148448,
+        "excess_over_chance": 0.851552,
+        "overlap_mine_in_ref": 1.0,
+        "overlap_ref_in_mine": 0.955275,
+        "reference": "fleet/GEMSDOE30-main/docs/downloads/GEMSDOE30-nearslay-annulus-d3-offcat-20261025T235837Z-662af003-nan.tif",
+        "reference_dots": 40000,
+        "surface_rho_dot_union": null
+      },
+      {
+        "chance_halo_fraction": 0.19608,
+        "excess_over_chance": 0.803654,
+        "overlap_mine_in_ref": 0.999734,
+        "overlap_ref_in_mine": 0.894576,
+        "reference": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+        "reference_dots": 90568,
+        "surface_rho_dot_union": -0.6646249179486542
+      },
+      {
+        "chance_halo_fraction": 0.139782,
+        "excess_over_chance": 0.83953,
+        "overlap_mine_in_ref": 0.979312,
+        "overlap_ref_in_mine": 0.998035,
+        "reference": "docs/downloads/gems86-h86g-collar-emphasis-37654dots-20261026T002819Z-5a611715-zeros.tif",
+        "reference_dots": 37654,
+        "surface_rho_dot_union": -0.9787804748499496
+      },
+      {
+        "chance_halo_fraction": 0.145224,
+        "excess_over_chance": 0.812045,
+        "overlap_mine_in_ref": 0.957269,
+        "overlap_ref_in_mine": 0.96548,
+        "reference": "data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+        "reference_dots": 44090,
+        "surface_rho_dot_union": -0.9912106891507138
+      },
+      {
+        "chance_halo_fraction": 0.110614,
+        "excess_over_chance": 0.653342,
+        "overlap_mine_in_ref": 0.763956,
+        "overlap_ref_in_mine": 0.730264,
+        "reference": "fleet/GEMSDOE24-main/docs/downloads/24gems-gapfill-near-fault-20261026T203338Z-1b2b4ccc37b0-zeros.tif",
+        "reference_dots": 37722,
+        "surface_rho_dot_union": -0.9999999999999998
+      },
+      {
+        "chance_halo_fraction": 0.1886,
+        "excess_over_chance": 0.526278,
+        "overlap_mine_in_ref": 0.714878,
+        "overlap_ref_in_mine": 0.5436,
+        "reference": "fleet/GEMSDOE25-main/docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+        "reference_dots": 54472,
+        "surface_rho_dot_union": -0.9482551126012382
+      },
+      {
+        "chance_halo_fraction": 0.1886,
+        "excess_over_chance": 0.526278,
+        "overlap_mine_in_ref": 0.714878,
+        "overlap_ref_in_mine": 0.5436,
+        "reference": "fleet/GEMSDOE25-main/docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-zeros.tif",
+        "reference_dots": 54472,
+        "surface_rho_dot_union": -0.9482551126012382
+      },
+      {
+        "chance_halo_fraction": 0.184765,
+        "excess_over_chance": 0.527563,
+        "overlap_mine_in_ref": 0.712328,
+        "overlap_ref_in_mine": 0.55607,
+        "reference": "fleet/GEMSDOE25-main/docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-nan.tif",
+        "reference_dots": 53522,
+        "surface_rho_dot_union": -0.9481782715625664
+      },
+      {
+        "chance_halo_fraction": 0.184765,
+        "excess_over_chance": 0.527563,
+        "overlap_mine_in_ref": 0.712328,
+        "overlap_ref_in_mine": 0.55607,
+        "reference": "fleet/GEMSDOE25-main/docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+        "reference_dots": 53522,
+        "surface_rho_dot_union": -0.9481782715625664
+      }
+    ]
+  },
+  "validator_checks": {
+    "crs_epsg_32611": true,
+    "in_0_1": true,
+    "min_pair_spacing_px_ge_parent_floor": true,
+    "no_nan_or_inf": true,
+    "outside_footprint_zero": true,
+    "shape_3730x3292": true,
+    "transform_pinned": true,
+    "validator_all_checks_passed": true,
+    "zero_dots_on_catalogue": true
+  },
+  "validator_receipt_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "verdict": "negative-for-upload",
+  "witness_literal": {
+    "name": "17GEMSDOE",
+    "repo_record": "IRREGULARITIES.md: continuous full-support witness, 5,106,385/5,106,385 = 100.0% allowed coverage; literal overlap 1.0000 for every dot field",
+    "status": "NOT_MEASURED_LOCALLY"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "arms": {
+    "B1": {
+      "ci": {
+        "ci95": [
+          0.14094364601976944,
+          0.16542201976230617
+        ]
+      },
+      "per_cell": {
+        "draw20_foldNE_all": 0.11362453485478655,
+        "draw20_foldNE_detached": 0.12047268743220448,
+        "draw20_foldNW_all": 0.13741781885339074,
+        "draw20_foldNW_detached": 0.12448008801205383,
+        "draw20_foldSE_all": 0.18603889960985426,
+        "draw20_foldSE_detached": 0.1610474510606548,
+        "draw20_foldSW_all": 0.16783182756034973,
+        "draw20_foldSW_detached": 0.16578076640022368,
+        "draw21_foldNE_all": 0.12225097385578955,
+        "draw21_foldNE_detached": 0.12837343497218637,
+        "draw21_foldNW_all": 0.13481798256789765,
+        "draw21_foldNW_detached": 0.12032804610538841,
+        "draw21_foldSE_all": 0.20006518019847738,
+        "draw21_foldSE_detached": 0.17313208238111585,
+        "draw21_foldSW_all": 0.1650655428911342,
+        "draw21_foldSW_detached": 0.1616921710155265
+      },
+      "pooled": {
+        "dti": 0.15371645491114946,
+        "fn": 36396.83067002398,
+        "fp": 98392.8798828125,
+        "tp": 8863.169329976028,
+        "withheld_positives": 45260
+      },
+      "vs_N0": {
+        "ci95": [
+          0.14094364601976944,
+          0.16542201976230617
+        ],
+        "paired_delta_ci95": [
+          0.09846881951378182,
+          0.12003483389620438
+        ],
+        "paired_delta_point": 0.10960450263622575
+      }
+    },
+    "L": {
+      "ci": {
+        "ci95": [
+          0.00429585458670929,
+          0.0051588148718438856
+        ]
+      },
+      "per_cell": {
+        "draw20_foldNE_all": 0.005721849025628992,
+        "draw20_foldNE_detached": 0.004978923243562035,
+        "draw20_foldNW_all": 0.005119234300348168,
+        "draw20_foldNW_detached": 0.005014688193299874,
+        "draw20_foldSE_all": 0.0034797123829621137,
+        "draw20_foldSE_detached": 0.005083238459760853,
+        "draw20_foldSW_all": 0.0036614968254688987,
+        "draw20_foldSW_detached": 0.004205780460762832,
+        "draw21_foldNE_all": 0.0058060526566376,
+        "draw21_foldNE_detached": 0.006190248529220478,
+        "draw21_foldNW_all": 0.0031000233064623294,
+        "draw21_foldNW_detached": 0.005410020062761232,
+        "draw21_foldSE_all": 0.004289063617143429,
+        "draw21_foldSE_detached": 0.004430084565265658,
+        "draw21_foldSW_all": 0.004172962032270323,
+        "draw21_foldSW_detached": 0.005495714256245373
+      },
+      "pooled": {
+        "dti": 0.004729038412082699,
+        "fn": 44954.98577708603,
+        "fp": 141145.7294921875,
+        "tp": 305.0142229139665,
+        "withheld_positives": 45260
+      }
+    },
+    "N0": {
+      "ci": {
+        "ci95": [
+          0.0413291967623453,
+          0.04664632537788431
+        ]
+      },
+      "per_cell": {
+        "draw20_foldNE_all": 0.04172305609010849,
+        "draw20_foldNE_detached": 0.033729033553868144,
+        "draw20_foldNW_all": 0.04332681076419347,
+        "draw20_foldNW_detached": 0.03774941124900366,
+        "draw20_foldSE_all": 0.04440027763590056,
+        "draw20_foldSE_detached": 0.04217922690411884,
+        "draw20_foldSW_all": 0.0556060852874659,
+        "draw20_foldSW_detached": 0.04905778937597806,
+        "draw21_foldNE_all": 0.03676428264336041,
+        "draw21_foldNE_detached": 0.041775897532116364,
+        "draw21_foldNW_all": 0.042824632510668946,
+        "draw21_foldNW_detached": 0.03977962378838334,
+        "draw21_foldSE_all": 0.0426679293199986,
+        "draw21_foldSE_detached": 0.045456834204589305,
+        "draw21_foldSW_all": 0.04844958993055706,
+        "draw21_foldSW_detached": 0.05049789351555926
+      },
+      "pooled": {
+        "dti": 0.04411195227492372,
+        "fn": 42463.21106071962,
+        "fp": 133173.54443359375,
+        "tp": 2796.7889392803763,
+        "withheld_positives": 45260
+      }
+    },
+    "O": {
+      "ci": {
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "per_cell": {
+        "draw20_foldNE_all": 0.9999999999999997,
+        "draw20_foldNE_detached": 0.9999999999999997,
+        "draw20_foldNW_all": 0.9999999999999996,
+        "draw20_foldNW_detached": 0.9999999999999996,
+        "draw20_foldSE_all": 0.9999999999999997,
+        "draw20_foldSE_detached": 0.9999999999999997,
+        "draw20_foldSW_all": 0.9999999999999998,
+        "draw20_foldSW_detached": 0.9999999999999998,
+        "draw21_foldNE_all": 0.9999999999999997,
+        "draw21_foldNE_detached": 0.9999999999999997,
+        "draw21_foldNW_all": 0.9999999999999996,
+        "draw21_foldNW_detached": 0.9999999999999996,
+        "draw21_foldSE_all": 0.9999999999999997,
+        "draw21_foldSE_detached": 0.9999999999999997,
+        "draw21_foldSW_all": 0.9999999999999998,
+        "draw21_foldSW_detached": 0.9999999999999998
+      },
+      "pooled": {
+        "dti": 1.0,
+        "fn": 0.0,
+        "fp": 0.0,
+        "tp": 45260.0,
+        "withheld_positives": 45260
+      }
+    }
+  },
+  "arms_run": [
+    "O",
+    "L",
+    "canary",
+    "N0",
+    "B1"
+  ],
+  "budgets_per_cell": {
+    "draw20_foldNE_all": 36197,
+    "draw20_foldNE_detached": 36196,
+    "draw20_foldNW_all": 36466,
+    "draw20_foldNW_detached": 36469,
+    "draw20_foldSE_all": 35646,
+    "draw20_foldSE_detached": 35648,
+    "draw20_foldSW_all": 35320,
+    "draw20_foldSW_detached": 35321,
+    "draw21_foldNE_all": 36194,
+    "draw21_foldNE_detached": 36198,
+    "draw21_foldNW_all": 36469,
+    "draw21_foldNW_detached": 36466,
+    "draw21_foldSE_all": 35646,
+    "draw21_foldSE_detached": 35648,
+    "draw21_foldSW_all": 35317,
+    "draw21_foldSW_detached": 35320
+  },
+  "canary_auc_distance_to_visible_trace": 0.8834882781084291,
+  "canary_rule": "AUC above 0.90 = leakage until proven otherwise",
+  "canary_status": "PASS (below 0.90)",
+  "emission_counts": {
+    "B1": null,
+    "L": null,
+    "N0": null,
+    "O": null
+  },
+  "evaluator": {
+    "implementation_hashes": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "n_cells": 16,
+    "version": "gems57-pooled-hide-v2",
+    "withheld_positives_total": 45260
+  },
+  "finished_utc": "2026-10-27T23:43:18+00:00",
+  "label": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+  "legacy_raster": {
+    "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "status": "LEAKAGE-SUSPECT (built from full catalogue)"
+  },
+  "started_utc": "2026-10-27T23:42:32+00:00"
+}

@@ -1761,7 +1761,32 @@ All three were measured this session on the shared vendor evaluator with histori
 - **Disposition:** Excluded RCSD from the next untried-candidate shortlist. Do not execute or claim it as new without a materially distinct, preregistered operator and ablation. The frozen historical hypothesis register and prior run receipts are not edited.
 - **Verification:** inspected the BFRA function and feature declarations; `grep -RniE 'provenance.step|log.ratio' src scripts` found the implementation. Full current review: [`research/SESSION_20261027_ARENA_SITE_REVIEW.md`](research/SESSION_20261027_ARENA_SITE_REVIEW.md).
 
+## IR-FB68-NINE-SITE-NONUNIQUE-20261027 — The nine best owner-published files are one dot family (not unique to each other)
+
+Measured on the bytes (`docs/evidence/nine-site-audit-20261027.json`, `docs/nine-sites.html`): all 72 ordered pairs among the nine per-site best files exceed the 0.70 three-pixel overlap threshold (minimum pair 0.867). Every file is format-valid (0 NaN, values in [0,1], shape/transform pinned). The NaN-outside twins carry identical dot sets, so "-nan" and "-zeros" variants differ only in encoding. **Consequence:** no owner-published file among the nine can be submitted as a unique file, and the owner-reported spread (0.2449–0.2778) is not evidence of distinct mechanisms.
+
+## IR-FB68-H87-HOLDOUT-CATALOGUE-DERIVED-20261027 — The catalogue-hide holdout ranks legacy H33 last and cannot judge the live leaderboard
+
+H87-FCB experiment 1 (`docs/evidence/h87-fcb-experiment1-20261027.json`): legacy H33 scores HOLDOUT-DTI 0.0047 [0.0043, 0.0052], below the uniform null 0.0441. Holdout truth is withheld catalogue segments; the live truth is catalogue-disjoint, and H33 is the owner-reported live leader (0.2778, unverified). The preregistration's "leaky" label for H33 was wrong: H33 removed the collar where holdout truth sits. The measurement supersedes that label. Consistent with AGENTS.md rule 12. Holdout scores are not live scores.
+
+## IR-FB68-H87-CANDIDATE-NOT-UNIQUE-20261027 — H87-FCB B3 3–5 px candidate is format-valid but fails local uniqueness
+
+`releases/gems86-h87-fcb-b3-3to5px-37654dots-20261027-zeros-out.tif` (SHA-256 `ddce5c07fdd97d356493757725e1d0aca35f79d9dc9c44824acd970dc248245d`, git-ignored): format gate PASS; local uniqueness FAIL: 14 of 502 locally available references overlap ≥0.70, and 81 exceed the 0.30 excess-over-chance limit (for example `GEMSDOE30-nearslay-annulus-d3-offcat` at 1.0000 overlap, excess 0.852; repo lane `h86g-collar-emphasis` at 0.9793). It is not a byte copy of any listed file. The literal full-support witness gate remains binding (PA-86-01). Download/submit answer: **NOT OK**. Not published under `docs/downloads/` because publication requires the full artifact-registration pipeline.
+
+## IR-FB68-JSON-NAN-20261027 — Two generated JSON files wrote non-finite tokens (fixed)
+
+`scripts/nine_site_audit.py` and `scripts/h87_build_candidate.py` wrote `NaN` for undefined surface Spearman values, which the repo's strict JSON loader rejects. Fixed to write `null` (`allow_nan=False`); the existing evidence files were rewritten with the same values.
+
+## IR-FB68-OWNER-NAME-TWIN-20261027 — Owner-registered names differ from the audited file for GEMSDOE24 and GEMSDOE28
+
+The owner registry names end in `-nan` (for example `h25-1-…-nan`, `h36-1-…-nan`), but the byte-audited files are the `-allfinite` twins. The two twins have identical dot sets (symmetric difference 0, `nan_twins` in the audit), so the owner-reported score is taken to apply to both; this is an inference, not an organizer-confirmed fact.
+
+## IR-FB68-PORTAL-RANGE-ERROR-STILL-UNREPRODUCED-20261027
+
+The user's portal error "Predicted values must be in range [0, 1]" is still not reproduced. None of the nine best files has NaN or out-of-range values. The rejected file was not in this checkout. Candidate causes remain: a NaN-outside file, or a file with the −1 sentinel (`existing_faults.tif`). The page `docs/executive-summary.html` documents the check and the safe form (all-finite, zeros outside footprint).
+
 
 ## IR-86-55A5BFA4-BAND-ATTRIBUTION (2026-10-27)
 
 Independent review found H86T `features.py` names band 5 elevation relief, band 16 MT, and band 12 a Bouguer sill input despite the authoritative native band map. No artifact bytes or archived metrics changed. Scientific interpretation must be revalidated with corrected inputs in a fresh lane. See `research/SESSION_20261027_55A5BFA4_REVIEW.md`. Literal full-support uniqueness stop remains binding; zero experiments and zero slots used.
+
