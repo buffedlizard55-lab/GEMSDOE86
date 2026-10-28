@@ -1373,7 +1373,7 @@ def focus9_summary() -> str:
         score_rows = list(csv.DictReader(stream))
     forensic = strict_json(ROOT / "docs/evidence/focus9-forensics-20261026-rev2.json")
     measured = forensic["rasters"]
-    proof = validate_proof(strict_json(ROOT / "docs/evidence/focus9-download-proof-20261027.json"))
+    proof = validate_proof(strict_json(ROOT / "docs/evidence/focus9-download-proof-20261027.json"), root=ROOT)
     proof_by_site = {row["site"]: row for row in proof["rows"]}
     feed = strict_json(ROOT / "docs/evidence/fleet-feed.json")
     feed_by_repo = {row["repository"]: row for row in feed["projects"]}
@@ -1384,11 +1384,19 @@ def focus9_summary() -> str:
             raise ValueError(f"Focus-9 score ledger has no numeric claim for {site}")
         best = max(claims, key=lambda r: float(r["score"]))
         key = evidence_keys[site].lower()
-        matches = [r for r in measured if r["file"].lower().startswith(site.lower() + "__") and key in r["file"].lower()]
+        # Do not lend an old champion's forensic measurements to a new score
+        # claim or a different file variant, even when their method names match.
+        if key not in best["submission"].lower():
+            raise ValueError(f"Focus-9 champion changed without bound forensic evidence: {site}/{best['submission']}")
+        matches = [r for r in measured
+                   if r["file"].lower().startswith(site.lower() + "__")
+                   and r["file"].lower().endswith(best["submission"].lower() + ".tif")]
         overlaps = {float(r["overlap_3px_vs_H33"]) for r in matches}
-        if not matches or len(overlaps) != 1:
+        if len(matches) != 1 or len(overlaps) != 1:
             raise ValueError(f"Focus-9 measured overlap is missing or ambiguous for {site}/{key}")
         overlap = overlaps.pop()
+        if not 0.0 <= overlap <= 1.0:
+            raise ValueError(f"Invalid Focus-9 overlap for {site}")
         verified = proof_by_site[site]
         if verified["submission"] != best["submission"] or verified["overlap_3px_vs_h33"] != overlap:
             raise ValueError(f"Focus-9 download proof is stale for {site}")
@@ -1398,7 +1406,7 @@ def focus9_summary() -> str:
                            for item in project.get("tif_git_objects", []))
         head_status = ("same blob in latest metadata feed" if head_matches
                        else "current-head blob not verified in latest metadata feed")
-        best_rows.append((site, best["submission"], float(best["score"]), overlap, verified, head_status))
+        best_rows.append((site, best["submission"], float(best["score"]), overlap, verified, head_status, best["source_url"]))
 
     body = "".join(
         f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{e(site)}/">{e(site)}</a></th>'
@@ -1407,12 +1415,14 @@ def focus9_summary() -> str:
         f'<td><strong>{score:.4f}</strong> OWNER-REPORTED</td>'
         f'<td>{overlap:.1%} within 3 px of GEMSDOE32 H33</td>'
         f'<td><strong>NO</strong> — exceeds the 70% overlap stop</td>'
+        f'<td>Not estimated — no organizer-calibrated estimate for this historical file</td>'
+        f'<td>NONE approved; <a href="{e(source_url)}">historical source</a></td>'
         f'<td>{e(interpretations[site])}; DO NOT RESUBMIT</td></tr>'
-        for site, name, score, overlap, proof_row, head_status in best_rows
+        for site, name, score, overlap, proof_row, head_status, source_url in best_rows
     )
     return f'''<section class="card" id="focus9-summary"><h2>Focus-9 executive summary — highest reported entry by site</h2>
 <p>Scores below are <strong>OWNER-REPORTED</strong> claims from <code>registry/prior_scores.csv</code>, not organizer receipts. The highest reported Focus-9 entry is <strong>GEMSDOE32 H33 at 0.2778</strong>. The 3-pixel overlap values are <strong>REGISTRY-MEASUREMENT</strong> from the dated 30-raster forensic evidence, using H33 as the common reference; they are a conservative duplicate screen, not proof of identical raster pixels. Every listed best exceeds the protocol's 70% overlap stop against H33 (H33 itself is the already-submitted reference). The commit-pinned links were downloaded in memory and matched to existing forensic SHA-256 records; they are historical audit links, not recommendations to copy or resubmit. Some historical files use NaN outside the footprint. No reliable estimate of a new candidate's organizer result is available. <a href="evidence/focus9-download-proof-20261027.json">Nine-file identity proof</a>.</p>
-<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest-scoring named entry</th><th>Reported result</th><th>Measured overlap</th><th>Unique under 70% rule?</th><th>Forensic interpretation / action</th></tr></thead><tbody>{body}</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest-scoring named entry and audit file</th><th>Reported result</th><th>Measured overlap</th><th>Unique under 70% rule?</th><th>Estimated leaderboard score</th><th>File to download for submission</th><th>Forensic interpretation / action</th></tr></thead><tbody>{body}</tbody></table></div>
 <p>H33's reported lead follows the D28 → H27-4 lineage and removes 2,545 1–2 px catalogue-collar dots while retaining the far-field component. That is a plausible precision/coverage mechanism under the 300 m DTI kernel, not a causal proof from controlled trials. The H33 0.2778 claim is not independently confirmed here, and the conflicting 0.3195/0.4413 leaderboard marks remain unverified. Pixel-forensic details, caveats and source links are in <a href="{REPO}/blob/main/research/SESSION_20261026_H86Q_BFRA_REVIEW.md#2-phd-level-forensic-analysis-of-the-reported-h33-result-not-causal-proof">the corrected Focus-9 forensic review</a>. Current-checkout limitations, ranked unrun hypotheses, and the three-pass audit are in the <a href="{REPO}/blob/main/research/SESSION_20261027_0A171468_REVIEW.md">2026-10-27 review</a>.</p></section>'''
 
 

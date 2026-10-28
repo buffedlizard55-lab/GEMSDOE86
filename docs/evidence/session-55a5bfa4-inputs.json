@@ -1,0 +1,219 @@
+{
+  "schema": "gems86.live-workspace-inputs.v1",
+  "measured_utc": "2026-10-27T23:41:06.804336+00:00",
+  "evidence_class": "INPUT-INTEGRITY-MEASUREMENT",
+  "native_inputs": [
+    {
+      "name": "training_features.tif",
+      "copies": [
+        {
+          "file": "data/training_features.tif",
+          "status": "MISSING",
+          "sha256": null,
+          "bytes": null
+        },
+        {
+          "file": "data/bridge/training_features.tif",
+          "status": "MISSING",
+          "sha256": null,
+          "bytes": null
+        }
+      ],
+      "usable": false
+    },
+    {
+      "name": "existing_faults.tif",
+      "copies": [
+        {
+          "file": "data/existing_faults.tif",
+          "status": "HASH_VERIFIED",
+          "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+          "bytes": 425830
+        },
+        {
+          "file": "data/bridge/existing_faults.tif",
+          "status": "HASH_VERIFIED",
+          "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+          "bytes": 425830
+        }
+      ],
+      "usable": true
+    },
+    {
+      "name": "sample_submission.tif",
+      "copies": [
+        {
+          "file": "data/sample_submission.tif",
+          "status": "HASH_VERIFIED",
+          "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+          "bytes": 1599597
+        },
+        {
+          "file": "data/bridge/sample_submission.tif",
+          "status": "HASH_VERIFIED",
+          "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+          "bytes": 1599597
+        }
+      ],
+      "usable": true
+    }
+  ],
+  "native_inputs_available": false,
+  "preparation": {
+    "status": "STALE_OR_INCOMPLETE_RECEIPT",
+    "arrays": [
+      {
+        "file": ".cache/gems_work/bands/01_mag_anom.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/02_rtp.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/03_tmi_hg.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/04_geod_2ndinv.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/05_iso_grav_anom_slope.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/06_tc.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/07_geod_shearrate.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/08_geod_dilaterate.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/09_tmi_vg.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/10_deq_n100a15.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/11_iso_grav_anom_vg.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/12_det_elev.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/13_iso_grav_anom.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/14_tmi.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/15_depth_to_base_surf.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/16_ieq_n100a15.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/17_cond_surf.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/18_iso_grav_anom_hg.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/19_det_elev_slope.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/_footprint.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      },
+      {
+        "file": ".cache/gems_work/bands/_labels.npy",
+        "status": "MISSING",
+        "sha256": null,
+        "bytes": null
+      }
+    ],
+    "native_bands_available": false,
+    "shared_template_feature_stack": false,
+    "manifest_file": "data/prepared_manifest.json"
+  },
+  "shared_cache": {
+    "status": "SHARED_CACHE_NOT_ESTABLISHED",
+    "ready": false,
+    "recorded_lane_cache": {
+      "file": ".cache/h86_features/static60_fp.f16",
+      "status": "MISSING",
+      "sha256": null,
+      "bytes": null
+    },
+    "reason": "Lane receipt lacks a verified shared-template feature/implementation/visible-mask identity contract."
+  },
+  "blockers": [
+    "NATIVE_INPUTS_MISSING_OR_INVALID",
+    "NATIVE_PREPARATION_NOT_AVAILABLE",
+    "SHARED_FEATURE_CACHE_NOT_ESTABLISHED"
+  ],
+  "inspection_completed": true,
+  "scope": "Current local bytes only. Integrity pins authenticate mirror identity, not organizer origin. No scientific or registry gate was evaluated.",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

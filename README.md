@@ -10,6 +10,8 @@
 
 **Start here:** [Executive submission guide](docs/executive-summary.html) · [Three-pass review](research/SESSION_20261027_0A171468_REVIEW.md) · [Negative run card](research/SESSION_20261027_0A171468_RUN_CARD.json) · [Current release audit](docs/evidence/release-readiness.json) · [Four unrun hypotheses](registry/review_hypotheses_20261027_0a171468.json) · [Complete owner prompt](research/REQUEST_20261027.md).
 
+An [independent parallel review](research/SESSION_20261027_55A5BFA4_REVIEW.md) also flagged H86T's band attribution and strengthened the Focus-9 identity join; its dated workspace-input snapshot predates the restoration documented above.
+
 The embedded historical snapshots and owner-request archives below are preserved as historical records; dated “current,” “newest,” causal, or upload-readiness language inside them is superseded by the decision above. H33's **OWNER-REPORTED** 0.2778 is not organizer-confirmed; no unmeasured projection is a score. Preserve **Maximize P(Win)** and **Own the Outcome** by reporting blockers and negative results rather than inventing clearance.
 
 <details><summary>Superseded early session snapshots — historical only</summary>

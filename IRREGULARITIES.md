@@ -1760,3 +1760,28 @@ All three were measured this session on the shared vendor evaluator with histori
 - **Observed (2026-10-27):** `registry/h86s_hypotheses_20261027.json` H86S-4 (`H86S-4_RCSD`) proposed a radiometric provenance log-ratio step and represented it as distinct from prior work. A repository-wide source search found the same mechanism already in `src/gems86_bfra/operators.py::regolith_and_metasomatic_unmixing`, which computes the K/U/Th log-ratio coordinate and cross-slope provenance contrast; `src/gems86_bfra/features.py` exposes the related BFRA feature. The hypothesis-register novelty claim is therefore false as written.
 - **Disposition:** Excluded RCSD from the next untried-candidate shortlist. Do not execute or claim it as new without a materially distinct, preregistered operator and ablation. The frozen historical hypothesis register and prior run receipts are not edited.
 - **Verification:** inspected the BFRA function and feature declarations; `grep -RniE 'provenance.step|log.ratio' src scripts` found the implementation. Full current review: [`research/SESSION_20261027_ARENA_SITE_REVIEW.md`](research/SESSION_20261027_ARENA_SITE_REVIEW.md).
+
+
+## IR-86-55A5BFA4-BAND-ATTRIBUTION (2026-10-27)
+
+Independent review found H86T `features.py` names band 5 elevation relief, band 16 MT, and band 12 a Bouguer sill input despite the authoritative native band map. No artifact bytes or archived metrics changed. Scientific interpretation must be revalidated with corrected inputs in a fresh lane. See `research/SESSION_20261027_55A5BFA4_REVIEW.md`. Literal full-support uniqueness stop remains binding; zero experiments and zero slots used.
+
+## IR-86-0A171468-H86T-RANK-AND-BAND-ATTRIBUTION (2026-10-27)
+
+- **Observed:** archived H86T mapped native Band 5 to `elev_relief`, Band 16 to `mt_2km_edge`, and Band 12 to a purported Bouguer sill veto; its Band 18 and RTP-gradient interpretations were also overstated. Its old stable-sort ranking split 4,404,851 equal zero χ-ksn footprint values into a row-order ramp. The [post-hoc forensic receipt](docs/evidence/h86t-input-provenance-20261027.json) identifies the input bytes and archived source revision.
+- **Disposition:** prospectively fixed the tie ranking and protected archived artifacts from overwrite; the historical result was **not rerun**, its score impact is unknown, and both reported paired intervals include zero. Preserve frozen preregistration, queue, TIFF and run card. A revised physical claim requires a new lane and all current gates.
+
+## IR-86-0A171468-PREFLIGHT-BYPASS (2026-10-27)
+
+- **Observed:** multiple callable orchestrators and direct fit/placement/writer functions lacked the literal preflight, some scripts used a representation-aware helper that returned even when the dense witness blocked every nonempty prediction, and one legacy script performed model work at import time.
+- **Disposition:** require the literal preflight on those paths and in the representation-aware entry point; missing inputs fail closed. Synthetic guard tests do not construct candidates. The literal thresholds, shared template and archival results are unchanged. Details: [review](research/SESSION_20261027_0A171468_REVIEW.md).
+
+## IR-86-0A171468-NATIVE-CACHE-INTEGRITY (2026-10-27)
+
+- **Observed:** a freshly prepared native cache had two array SHA-256 mismatches against its receipt and unexpected array values; the cause is not established. Native source TIFF hashes matched.
+- **Disposition:** preparation now verifies serialized values, immediately pins bytes, rechecks staged and published hashes, and rolls back failures. A subsequent isolated rebuild and audit verified all 21 arrays; three suspect/representative bands also matched native decoding. A prepared native cache remains **not** the required verified shared feature stack. Reinvestigate if the discrepancy recurs.
+
+## IR-86-0A171468-H86S-FORMAT-GATE (2026-10-27)
+
+- **Observed:** the archived H86S-DWAD gate `format_15_of_15_and_unit_interval` is false while its frozen validator reports all 15 checks passing and the current release audit reports a local format pass. The reason for the disagreement is unknown.
+- **Disposition:** show both records and preserve the frozen card; neither the local pass nor an archive discrepancy authorizes competition submission.
