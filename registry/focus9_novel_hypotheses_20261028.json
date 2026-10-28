@@ -1,0 +1,121 @@
+{
+  "schema": "gems86.focus9-hypothesis-proposal.v1",
+  "created_utc": "2026-10-28T12:01:39Z",
+  "session_branch": "arena/92a8169e-gemsdoe86",
+  "purpose": "Three genuinely unexecuted, repository-screened geological hypotheses for a future explicitly assigned lane. This proposal is not a lane assignment, experiment preregistration, DTI score, candidate TIFF, or submission authorization.",
+  "lane_assignment": null,
+  "selected_for_execution": null,
+  "execution_authorized": false,
+  "experiments_run_this_review": 0,
+  "evidence_boundary": "Ranks are qualitative prior judgments only. No candidate was built, no holdout was run, and no DTI improvement is estimated numerically. A local source/operator search found no exact implementation or registered hypothesis matching these three operators; this is repository-scoped novelty, not a claim of global scientific novelty.",
+  "novelty_screen": {
+    "searched": [
+      "src/",
+      "scripts/",
+      "registry/*hypotheses*.json",
+      "research/"
+    ],
+    "excluded_as_repeats_or_executed": [
+      {
+        "concept": "Groundwater-head seasonal compartment boundary",
+        "reason": "Already proposed in research/SESSION_20261027_REVIEW.md and related groundwater/flow proposals; not presented again as new."
+      },
+      {
+        "concept": "Landsat NDVI/phreatophyte lineaments",
+        "reason": "Already proposed in research/H86J_LSI_REVIEW.md."
+      },
+      {
+        "concept": "Fan-surface monocline, drainage-divide piracy, and chi/ksn knickpoints",
+        "reason": "Already queued in registry/h86i_hypotheses.json and tested in later geomorphic lanes; not rebranded as new."
+      },
+      {
+        "concept": "ASTER alteration, multi-depth MT/heat flow, radiometric K/Th/U provenance, point-manifestation RANSAC, and static seismic-density fusion",
+        "reason": "These recur in earlier H86C/H86K/H86S/H86T queues or executed feature modules. They are excluded from this fresh proposal set."
+      }
+    ],
+    "known_band_contract": "Native indices follow src/gems86/io.py BANDS. No historical band labels are reused where physical identity is disputed; the proposed raw ComCat catalog is separate from native event-count bands."
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "F9N-1_LAHONTAN_SHORELINE_OFFSETS",
+      "name": "Pleistocene Lake Lahontan shoreline displacement as an independent paleogeodetic datum",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_dti_improvement": "Moderate conditional potential: a demonstrable offset of a laterally continuous, age-matched shoreline can be a direct displacement signal where modern scarps are subdued. Transfer is uncertain because shoreline deformation may be older than the competition target faults.",
+      "implementation_cost": "High: obtain and pin high-resolution DEM tiles and mapped shoreline geometry; separate shoreline age/level, estimate local wave-cut surfaces, fit displacement/tilt across multiple segments, and preregister positive/negative controls before holdout evaluation.",
+      "layers": [
+        "Official USGS 3DEP 1 m bare-earth DEM tiles (raw elevations; a 100 m derivative is not an adequate substitute).",
+        "Age/level-tagged Lake Lahontan shoreline or lacustrine-unit geometry from the USGS National Geologic Map Database (NGMDB), after checking the specific map scale and attributes.",
+        "Native Band 12 det_elev and Band 19 det_elev_slope for broad geomorphic context; optional Band 15 depth_to_base_surf and Band 13 iso_grav_anom as independent structural context."
+      ],
+      "targeted_physical_signature": "Within a single mapped highstand shoreline level, estimate a locally detrended shoreline bench surface and detect a narrow, strike-coherent step or tilt that offsets the same-age bench across a corridor, repeats on adjacent shoreline segments, and is independently consistent with subsurface structure. The shoreline is a positive displacement marker, not a generic elevation contour or a fault label.",
+      "why_it_may_find_uncatalogued_faults": "An unmapped fault can displace a formerly near-level lacustrine bench while leaving little fresh topographic scarp; age-matched geomorphic surfaces provide a differential reference even where the modern fault trace is obscured.",
+      "named_non_fault_mimic": "Wave-cut bench relief and variable shoreline facies, local lake-level/age miscorrelation, differential compaction of lacustrine sediment, erosional terrace risers, and volcanic-flow margins. Require multiple same-level segments, map-scale uncertainty, and independent controls.",
+      "difference_from_repository_methods": "Repository searches show Lahontan shorelines are usually treated as a mimic to suppress or mask. No exact operator was found that uses a mapped same-age shoreline as a positive displacement datum and tests repeated cross-bench throw. Existing scarp and knickpoint detectors search for local edges or channel anomalies rather than correlated displacement of a dated shoreline surface.",
+      "official_free_sources": [
+        {
+          "name": "USGS 3D Elevation Program (3DEP)",
+          "url": "https://www.usgs.gov/3d-elevation-program",
+          "availability_check": "Official public source identified in repository source records; raw 1 m tiles are not present in the current checkout. This session could not query the USGS host, so AOI tile coverage and current retrieval were not independently verified. The pinned LiDAR scarp derivative is not raw DEM data."
+        },
+        {
+          "name": "USGS National Geologic Map Database",
+          "url": "https://ngmdb.usgs.gov/",
+          "availability_check": "Official map catalog; no shoreline/unit polygon layer or product-specific license, scale, or AOI coverage is verified in this checkout. Not currently viable until exact bytes and metadata are acquired and pinned."
+        }
+      ],
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: required raw 1 m DEM tiles and dated shoreline geometry are absent; direct USGS source access is outside the sandbox egress allowlist."
+    },
+    {
+      "rank": 2,
+      "id": "F9N-2_COMCAT_SEQUENCE_MIGRATION",
+      "name": "Time-ordered earthquake-sequence migration along blind fault planes",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_dti_improvement": "Low-to-moderate and highly uncertain: temporal migration could identify active concealed fault strands, but local event coverage, catalog completeness, and agreement between active sequences and the competition labels may be sparse.",
+      "implementation_cost": "Very high relative to a native-only raster method: retrieve and quality-filter event origin time, depth, location uncertainty and magnitude; decluster or separate swarms from aftershocks; fit migration/plane hypotheses; then evaluate with spatially buffered folds and negative controls.",
+      "layers": [
+        "USGS ComCat event catalog: origin time, hypocenter, magnitude, event type, and location uncertainty; do not infer timing from static native count bands.",
+        "Native Band 7 geod_shearrate and Band 8 geod_dilaterate only as independent spatial context after their physical identity and fold handling are checked.",
+        "Optional native Band 13 iso_grav_anom and Band 17 cond_surf as independent structural context, not labels."
+      ],
+      "targeted_physical_signature": "Repeated, quality-filtered earthquake sequences whose hypocenters migrate coherently along a fitted buried plane or along-strike corridor through time, with sequence direction and depth evolution that persist under completeness thresholds and are not simply a static density hotspot.",
+      "why_it_may_find_uncatalogued_faults": "A blind active fault can generate a migrating swarm or aftershock sequence before it expresses a mapped surface trace; ordered source motion can expose a connected structure that a coarse, static event-density raster smears out.",
+      "named_non_fault_mimic": "Geothermal injection/production swarms, mining blasts, quarry sequences, volcanic or dike-intrusion swarms, aftershock migration on an already mapped fault, and apparent migration caused by changing network detection thresholds or hypocenter uncertainty.",
+      "difference_from_repository_methods": "Executed repository features use static native earthquake-count/density fields and couple them to strain or conductivity. A spatial hypocenter-plane/RANSAC proposal also appears in an older review, so this proposal is deliberately narrower and different: no time-ordered event-migration operator or sequence-direction test was found in src/, scripts/, or hypothesis registries. It is not a claim that seismic clustering itself is new.",
+      "official_free_sources": [
+        {
+          "name": "USGS ComCat FDSN Event Web Service",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+          "availability_check": "Official public catalog endpoint identified in earlier repository research; the host is outside the current egress allowlist, no AOI query was run this session, and no event catalog is present locally. Prior dated records report access blockage; that is not a fresh service check."
+        }
+      ],
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: no local event time series; official endpoint cannot be queried from this sandbox; event completeness and coverage remain unknown."
+    },
+    {
+      "rank": 3,
+      "id": "F9N-3_STRATIGRAPHIC_CONTACT_DISPLACEMENT",
+      "name": "Age-tagged geologic-unit contact termination and offset graph",
+      "status": "PROPOSED_NOT_RUN",
+      "expected_dti_improvement": "Low-to-moderate: potentially precise where several mapped contacts are exposed, but limited recall beneath continuous alluvium and vulnerable to geologic-map scale and compilation artifacts.",
+      "implementation_cost": "High: acquire vector-unit polygons and metadata, harmonize scale/age attributes, remove fault annotations from predictors, construct contact correspondences with map uncertainty, and run explicit offset/shuffled-contact controls.",
+      "layers": [
+        "USGS NGMDB or an explicitly identified state geological survey map product with attributed lithostratigraphic unit polygons and map-scale/age metadata.",
+        "Native Band 15 depth_to_base_surf, Band 2 rtp, Band 13 iso_grav_anom, and Band 17 cond_surf for independent evidence at candidate contact terminations.",
+        "Any fault-line attributes or catalogue-derived distance columns in the geology product are excluded from predictors."
+      ],
+      "targeted_physical_signature": "A graph of age- and lithology-matched contact segments in which multiple independent bedrock contacts terminate, step, or show consistent lateral displacement across one candidate corridor, with a corresponding basement/potential-field break. Score displacement and correspondence, not the mere presence of a mapped contact or mapped fault line.",
+      "why_it_may_find_uncatalogued_faults": "Fault displacement may juxtapose or truncate stratigraphic contacts in areas where no Quaternary fault line was digitized; matching several contacts can provide a structural continuation clue across gaps in the surface-fault inventory.",
+      "named_non_fault_mimic": "Primary intrusive or volcanic contacts, depositional facies changes, alluvial cover boundaries, map-sheet joins, generalized contacts, age-correlation errors, and georeferencing mismatch.",
+      "difference_from_repository_methods": "The available derived SGMC layer is a fault-proxy raster; the inspected lanes use potential-field edges and fault-line priors, not an age-aware graph that matches and tests offset lithologic polygon boundaries. No mapped-unit contact-displacement graph was found in the current source or hypothesis search.",
+      "official_free_sources": [
+        {
+          "name": "USGS National Geologic Map Database",
+          "url": "https://ngmdb.usgs.gov/",
+          "availability_check": "Official catalog identified; the exact Nevada/GEMS-area product, vector availability, map scale, attributes and product-specific reuse terms were not checked because direct USGS access is outside sandbox egress. The only repository manifest item is a derived SGMC fault raster, not unit polygons."
+        }
+      ],
+      "availability_decision": "NOT_VIABLE_IN_CURRENT_CHECKOUT: no attributed geologic-unit polygons or verified product coverage are present; do not treat the fault-only derivative as the required layer."
+    }
+  ],
+  "execution_gate": "No lane is assigned. The native training_features.tif, prepared arrays and actual shared .cache/h86_features/static60_fp.f16 cache are missing. A freshly remeasured hash-pinned full-support witness has 0 uncovered allowed pixels and triggers the binding literal overlap stop for every nonempty prediction. Do not run an experiment, generate a candidate TIFF, claim a holdout score, or use a weekly slot until the owner resolves the stop, assigns a lane, restores the exact shared cache and required data, and authorizes a complete like-for-like registry workflow."
+}

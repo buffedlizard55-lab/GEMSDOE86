@@ -1,31 +1,14 @@
 # Standing project prompt (condensed historical archive)
 
-**Current decision (2026-10-25, session `92f9e0e8`): DO NOT SUBMIT ANY FILE.** Session `96fc6d48` (2026-10-25) then repaired the pinned-data layout bug breaking `protocol_preflight.measure()` in fresh checkouts (`IR-86-96FC6D48-PREFLIGHT-LAYOUT`), restored the pinned witness, and re-measured all registered artifacts; see `research/SESSION_20261025_96FC6D48_REVIEW.md` and `docs/evidence/session-96fc6d48-run-card.json`. The newest TIFF, H86N-EQL (earthquake-lineation anisotropy), is a preregistered measured negative (`docs/evidence/h86n-eql-run-card.json`); H86M-LT stands as a negative unvalidated archive per the merged PR #166 repair (`safe_to_submit=false`, 0 slots). The all-artifact audit (37 registered TIFFs) still measures 1.0 forward 3-px overlap against the pinned full-support witness for every registered TIFF, above the unchanged 0.70 stop. Latest review: `research/SESSION_20261025_92F9E0E8_REVIEW.md`; latest request archive: `research/REQUEST_20261025_92F9E0E8.md`.
-**Read the latest README decision and the COMPLETE current request in
-`research/REQUEST_20261027.md` first (`research/SESSION_20261027_H86S_DWAD_REVIEW.md`; alongside `research/REQUEST_20261026_REV2.md`, `research/REQUEST_20261026.md`, `research/REQUEST_20261025.md`, and `REQUEST_20261025_92F9E0E8.md`).** This condensed historical document is not
-a replacement for that archive. Preserve `REQUEST_20261024.md`,
-`REQUEST_20261023.md` and `OWNER_PROMPT.md` byte-for-byte.
+**CURRENT CONTINUATION STATE — 2026-10-28: DO NOT SUBMIT.** The latest review is [`research/SESSION_20261028_REVIEW.md`](research/SESSION_20261028_REVIEW.md), with machine run card [`research/run_cards/focus9_review_20261028.json`](research/run_cards/focus9_review_20261028.json). The 92/92 refreshed GitHub feed is metadata only. Nine best owner-file rasters have 72 directed pairwise 3-px measurements (0.8672–1.0000), and none clears the within-cohort 0.70 rule. The full cross-repository registry is incomplete. A SHA-256-pinned witness has positive support on all 5,106,385 allowed pixels, so every nonempty candidate has literal forward overlap 1.0 under the unchanged rule; `protocol_preflight.py` reports `STOP_LITERAL_OVERLAP_UNSATISFIABLE`. This negative stop is not uniqueness clearance.
 
-The latest independent review is `research/SESSION_20261025_CF73474C_REVIEW.md`.
-Concurrent main reviews/receipts for H86F-EWCS and H86H-PSTD are preserved;
-the combined inventory now contains 22 research TIFFs (0 currently authorized; H86G-EDTI historical promote only; 21 audit-only/negative including H86J-MPC and H86I-HVFD).
-The named fleet remains 92 projects. The current request adds owner claims
-`GEMSDOE89 = 0.0301` and `GEMSDOE90 = 0.0749`; neither has an organizer receipt.
-They were unscored in the 2026-10-24 archive; that historical record is not
-retroactively changed. Current release remeasurement is
-`docs/evidence/latest-review-run-card.json`.
+**No method lane is assigned. Do not generate a TIFF, run a candidate experiment, alter thresholds, bypass `protocol_preflight.require_feasible()`, or use a weekly slot while this stop applies.** Required native features, prepared arrays and the actual pinned shared feature cache are missing. The historical H87 TIFF is absent from this checkout; its receipt is not a download. No organizer receipts were found for the Focus-9 owner score claims, and no new candidate or slot was produced.
 
-The native 19-band TIFF was restored and prepared, but this is **not** restoration
-of the actual shared cached feature stack. New H86G proposals remain NOT RUN;
-there is no assigned method paragraph in the current request. The immutable
-full-positive witness still makes the literal overlap rule unsatisfiable for
-every nonempty candidate. Stop before fitting or placement. Do not bypass the
-gate, relabel old TIFFs as new, smuggle unregistered binaries into `submission/`,
-or claim the highest-priority unique-TIFF requirement was fulfilled. Scientific
-CLIs retain the standing AGENTS.md preflight and PA-86-01/02 rules. Historical
-model cards, download status, evaluator/writer pins and slot separation remain
-binding. Scores and access claims in request archives are user input, not
-verified evidence.
+**Active task:** review GEMSDOE24/25/27/28/30/31/32/33/36; label owner claims versus organizer-confirmed scores; compare the nine-site overlaps without claiming full-registry uniqueness; explain GEMSDOE32 H33's 0.2778 claim without asserting causation; make download-versus-submit status obvious; preserve the single-band GeoTIFF, grid, `[0,1]`, in-footprint finite-value and submission instructions; and maintain 3–5 genuinely untried future geological hypotheses with specific layers, mechanisms, mimics, implementation cost, and official/free source availability. The three proposals in [`registry/focus9_novel_hypotheses_20261028.json`](registry/focus9_novel_hypotheses_20261028.json) are qualitative, unrun, not yet data-viable, and not a lane assignment.
+
+Read [`AGENTS.md`](AGENTS.md), [`README.md`](README.md), and the archived [`research/REQUEST_20261027.md`](research/REQUEST_20261027.md) at the start of work. The earlier [`research/REQUEST_20261025.md`](research/REQUEST_20261025.md), `REQUEST_20261026.md`, and `REQUEST_20261026_REV2.md` remain historical score-claim archives. These requests are archives, not a lane assignment or authorization; preserve their historical contents. Use the shared pinned evaluator/writer, buffered whole-segment hide-and-recover, visible-only catalogue features, exact masking, per-feature leakage canaries, the prescribed DTI metric, run card, experiment budget, and separate promotion/slot selector only after the literal stop is resolved by an authorized protocol change and the missing inputs are restored. Maintain **Maximize P(Win)** and **Own the Outcome**; keep negative results and evidence boundaries explicit.
+
+The text after the separator is retained as a historical owner prompt. It is not permission to bypass the current stop or current repository instructions.
 
 ---
 
