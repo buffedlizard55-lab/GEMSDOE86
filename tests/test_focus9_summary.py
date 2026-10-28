@@ -1,4 +1,4 @@
-"""Focus-9 executive summary must use score and registry evidence, not stale prose."""
+"""Focus-9 rendering must bind dated owner claims to measured files and scope."""
 from pathlib import Path
 import sys
 
@@ -7,67 +7,151 @@ sys.path.insert(0, str(ROOT))
 from scripts.build_site import focus9_summary  # noqa: E402
 
 
-def test_focus9_highest_score_per_site_and_measured_uniqueness():
+def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
     html = focus9_summary()
-    # H36-1 (0.2710) is the highest GEMSDOE28 claim; the previous renderer
-    # incorrectly surfaced H27-4 (0.2708) in the per-site table.
+    assert "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros" in html
+    assert "0.2778</strong> OWNER-REPORTED" in html
+    assert "0.2750</strong> OWNER-REPORTED" in html
     assert "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan" in html
     assert "0.2710</strong> OWNER-REPORTED" in html
-    assert "0.2708</strong> OWNER-REPORTED" in html  # GEMSDOE31 remains H27-4
-    assert "95.5% within 3 px of GEMSDOE32 H33" in html
-    assert "Unique under 70% rule?" in html
-    assert html.count("<strong>NO</strong> — exceeds the 70% overlap stop") == 9
-    assert "ORGANIZER-CONFIRMED" not in html
-    assert "DO NOT RESUBMIT" in html
+    assert "0.2708</strong> OWNER-REPORTED" in html
+    assert "0.2449</strong> OWNER-REPORTED" in html
+    assert "72 directed pairwise 3-px overlaps" in html
+    assert "86.7%" in html and "100.0%" in html
+    assert "not a complete cross-repository registry scan" in html
+    assert "GEMSDOE27 H31" in html or "gems27-h31-drcg-wl-celf28" in html
+    assert "99.17%" in html
+    assert "MSDB1-edge44090" in html
+    expected_audited_files = {
+        "GEMSDOE24": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+        "GEMSDOE25": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+        "GEMSDOE27": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+        "GEMSDOE28": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+        "GEMSDOE30": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "GEMSDOE31": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+        "GEMSDOE32": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "GEMSDOE33": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "GEMSDOE36": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    }
+    for site, filename in expected_audited_files.items():
+        row_start = html.index(f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{site}/">')
+        row_end = html.index("</tr>", row_start)
+        assert filename in html[row_start:row_end]
 
 
-def test_table_explicitly_separates_estimates_from_historical_claims():
+def test_scores_download_status_and_h33_causality_are_labeled():
+
     html = focus9_summary()
-    assert "Estimated leaderboard score" in html
-    assert "File to download for submission" in html
-    assert html.count("Not estimated — no organizer-calibrated estimate") == 9
-    assert html.count("NONE approved;") == 9
+    assert "0 ORGANIZER-CONFIRMED receipts" in html
+    assert "DOWNLOAD FOR AUDIT ONLY" in html
+    assert "SUBMIT: NO" in html
+    assert "single-band GeoTIFF" in html
+    assert "values in [0,1]" in html
+    assert "no NaNs in the footprint" in html
+    assert "not proof of causation" in html
+    assert "not a controlled causal test" in html
+    assert "separate H32d run (0.2591" in html
+    assert "no upload authorized" in html
+
+
+def test_generated_executive_summary_links_current_hypotheses():
+    html = (ROOT / "docs/executive-summary.html").read_text()
+    assert "focus9_novel_hypotheses_20261028.json" in html
+    assert "three review-only ranked proposals" in html
+
+
+def test_home_links_the_current_review_and_hypothesis_register():
+    html = (ROOT / "docs/index.html").read_text()
+    assert "focus9_novel_hypotheses_20261028.json" in html
+    assert "SESSION_20261028_REVIEW.md" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
     import csv
     import shutil
     import scripts.build_site as builder
+
     (tmp_path / "registry").mkdir()
     (tmp_path / "docs/evidence").mkdir(parents=True)
-    for rel in ("registry/prior_scores.csv", "docs/evidence/focus9-forensics-20261026-rev2.json"):
+    rels = (
+        "registry/prior_scores.csv",
+        "docs/evidence/focus9-and-siblings-forensics-20261027.json",
+        "docs/evidence/nine-site-audit-20261027.json",
+        "docs/evidence/fleet-feed.json",
+    )
+    for rel in rels:
         shutil.copyfile(ROOT / rel, tmp_path / rel)
     monkeypatch.setattr(builder, "ROOT", tmp_path)
-    path = tmp_path / "registry/prior_scores.csv"
-    with path.open() as stream:
+    score_path = tmp_path / "registry/prior_scores.csv"
+    with score_path.open() as stream:
         rows = list(csv.DictReader(stream))
-    return builder, path, rows
+    snapshot_path = tmp_path / "docs/evidence/focus9-and-siblings-forensics-20261027.json"
+    audit_path = tmp_path / "docs/evidence/nine-site-audit-20261027.json"
+    fleet_path = tmp_path / "docs/evidence/fleet-feed.json"
+    return builder, score_path, rows, snapshot_path, audit_path, fleet_path
 
 
-def test_changed_champion_cannot_inherit_old_overlap(tmp_path, monkeypatch):
+def test_changed_score_claim_cannot_inherit_old_binary_measurement(tmp_path, monkeypatch):
     import csv
     import pytest
-    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
-    row = next(r for r in rows if r["site"] == "GEMSDOE24")
-    row["submission"] = "new-unmeasured-geological-method"
+
+    builder, score_path, rows, _, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    row = next(row for row in rows if row["site"] == "GEMSDOE24")
     row["score"] = "0.9999"
-    with path.open("w", newline="") as stream:
+    with score_path.open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    with pytest.raises(ValueError, match="champion changed"):
+    with pytest.raises(ValueError, match="score snapshot disagrees with the score ledger"):
         builder.focus9_summary()
 
 
-def test_same_method_different_identity_cannot_inherit_overlap(tmp_path, monkeypatch):
-    import csv
+def test_removed_owner_file_cannot_keep_a_download_link(tmp_path, monkeypatch):
+    import json
     import pytest
-    builder, path, rows = _isolated_inputs(tmp_path, monkeypatch)
-    row = next(r for r in rows if r["site"] == "GEMSDOE32")
-    row["submission"] = row["submission"].replace("e5eb6e7e", "deadbeef")
-    with path.open("w", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
-        writer.writeheader()
-        writer.writerows(rows)
-    with pytest.raises(ValueError, match="overlap is missing or ambiguous"):
+
+    builder, _, _, _, _, fleet_path = _isolated_inputs(tmp_path, monkeypatch)
+    feed = json.loads(fleet_path.read_text())
+    site = next(row for row in feed["projects"] if row["repository"].endswith("/GEMSDOE24"))
+    site["tif_git_objects"] = [
+        item for item in site["tif_git_objects"]
+        if "gems24-h25-1-dotted-h19-5-d1-5" not in item["path"]
+    ]
+    fleet_path.write_text(json.dumps(feed))
+    with pytest.raises(ValueError, match="no longer in the refreshed main tree"):
         builder.focus9_summary()
+
+
+def test_incomplete_nine_site_pairwise_audit_fails_closed(tmp_path, monkeypatch):
+    import json
+    import pytest
+
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["pairwise_overlap"].pop(next(iter(audit["pairwise_overlap"])))
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="Nine-site overlap audit is incomplete"):
+        builder.focus9_summary()
+
+
+def test_h87_page_does_not_present_missing_receipt_as_downloadable_tiff():
+    import json
+    import scripts.build_site as builder
+
+    def load(path):
+        return json.loads((ROOT / path).read_text())
+
+    html = builder.nine_sites_page(
+        load("docs/evidence/nine-site-audit-20261027.json"),
+        load("docs/evidence/h87-fcb-candidate-receipt-20261027.json"),
+        load("docs/evidence/h87-fcb-experiment1-20261027.json"),
+        load("docs/evidence/h87-fcb-experiment2-20261027.json"),
+    )
+    assert "UNAVAILABLE: the historical TIFF is absent from this checkout" in html
+    assert "receipt is not a TIFF download" in html
+    assert "ABSENT from this checkout; not downloadable" in html
+    assert "Download status: unavailable in this checkout; SUBMIT: NO" in html
+    assert "Current literal full-support witness gate" in html
+    assert "0 uncovered allowed pixels; 100.0% coverage" in html
+    assert "Historical owner-reported result (not an estimate)" in html
+    assert "Estimated score (owner-reported)" not in html

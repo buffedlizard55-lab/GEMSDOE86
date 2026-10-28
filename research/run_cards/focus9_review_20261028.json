@@ -1,0 +1,118 @@
+{
+  "schema": "gems86.review-run-card.v1",
+  "created_utc": "2026-10-28T13:14:21.776214Z",
+  "session_branch": "arena/92a8169e-gemsdoe86",
+  "review_scope": [
+    "GEMSDOE24",
+    "GEMSDOE25",
+    "GEMSDOE27",
+    "GEMSDOE28",
+    "GEMSDOE30",
+    "GEMSDOE31",
+    "GEMSDOE32",
+    "GEMSDOE33",
+    "GEMSDOE36"
+  ],
+  "lane_assignment": null,
+  "hypothesis": null,
+  "mechanism": null,
+  "plausible_non_fault_mimic": null,
+  "holdout": {
+    "status": "NOT_RUN",
+    "score_class": null,
+    "score": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "ci95": null,
+    "note": "Historical H87 evidence is separately recorded as HOLDOUT-DTI 0.2197, 95% cell-bootstrap CI [0.2105, 0.2277], evaluator gems57-pooled-hide-v2, 45,260 withheld positives. The interval is not the requested spatial-block CI, the holdout does not validate the exact historical full-catalogue raster, and this is not a live score."
+  },
+  "registry_comparisons": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "focus9_site_best_files": 9,
+    "directed_pairwise_comparisons": 72,
+    "directed_3px_overlap_min": 0.8671895382207149,
+    "directed_3px_overlap_max": 1.0,
+    "overlap_stop": 0.7,
+    "focus9_best_files_unique_within_cohort": false,
+    "full_registry_entries_in_snapshot": 655,
+    "full_registry_rasters_measured": 1,
+    "full_registry_complete": false,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_allowed_pixels": 5106385,
+    "witness_uncovered_allowed_pixels": 0,
+    "candidate_forward_overlap_lower_bound": 1.0,
+    "conclusion": "Negative stop only. A full-support witness triggers the unchanged literal gate for any nonempty candidate; no uniqueness clearance is established."
+  },
+  "candidate_raster": {
+    "generated": false,
+    "sha256": null,
+    "validation_result": "NOT_APPLICABLE_NO_CANDIDATE",
+    "historical_h87_tiff_present": false,
+    "historical_h87_receipt_sha256": "ddce5c07fdd97d356493757725e1d0aca35f79d9dc9c44824acd970dc248245d",
+    "historical_h87_receipt_records_format_pass": true,
+    "historical_h87_uniqueness_pass": false,
+    "current_witness_gate": "STOP_LITERAL_OVERLAP_UNSATISFIABLE"
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_length": null,
+    "download_status": "No new candidate download. Nine owner-hosted site-best TIFFs are linked for forensic download only.",
+    "upload_authorized": false,
+    "submission_slot_used": false,
+    "weekly_slots_used": 0
+  },
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "experiments_used": 0,
+    "maximum_hours": 2,
+    "experiment_hours_used": 0,
+    "promotion": "NOT_PROMOTED"
+  },
+  "review_disposition": {
+    "verdict": "negative",
+    "verdict_scope": "Release/readiness decision, not an experimental DTI result.",
+    "decision": "DO_NOT_SUBMIT",
+    "reason": "Binding literal full-support witness stop, incomplete full registry, missing native/shared feature cache, no authorized method lane, no candidate, and no organizer receipt."
+  },
+  "evidence_links": [
+    "docs/evidence/protocol-preflight.json",
+    "docs/evidence/nine-site-audit-20261027.json",
+    "docs/evidence/focus9-and-siblings-forensics-20261027.json",
+    "docs/evidence/fleet-feed.json",
+    "docs/evidence/h87-fcb-candidate-receipt-20261027.json",
+    "registry/focus9_novel_hypotheses_20261028.json",
+    "research/SESSION_20261028_REVIEW.md",
+    "docs/evidence/registry-input-grid-review-20261028.json"
+  ],
+  "existing_download_inventory": {
+    "published_tiffs": 49,
+    "locally_format_and_integrity_valid": 49,
+    "evidence_class": "LOCAL FORMAT/INTEGRITY AUDIT",
+    "download_policy": "research/audit only",
+    "upload_authorized": false
+  },
+  "review_checks": {
+    "three_pass_review": "PASS",
+    "full_pytest": "1147 passed, 24 skipped, 48 warnings, 58 subtests passed in 552.03 s",
+    "site_generation_and_check": "PASS",
+    "page_link_and_download_audit": "PASS",
+    "frozen_evidence_check": "PASS",
+    "live_input_audit": "PASS_WITH_BLOCKERS: native features/prepared arrays/shared cache missing",
+    "review_measured_utc": "2026-10-28T13:14:21.776214Z",
+    "review_base_commit": "9dd60a2"
+  },
+  "registry_input_grid_audit": {
+    "evidence_class": "REGISTRY-INPUT-MEASUREMENT",
+    "evidence_path": "docs/evidence/registry-input-grid-review-20261028.json",
+    "measured_utc": "2026-10-28T11:39:51+00:00",
+    "indexed_raster_records": 729,
+    "byte_verified_rasters": 74,
+    "grid_compatible_byte_verified_rasters": 74,
+    "raster_values_audited": false,
+    "candidate_comparisons_run": false,
+    "full_registry_coverage": false,
+    "full_registry_uniqueness_clearance": false,
+    "scope_note": "Separate inventory/index from protocol_preflight; do not conflate these 729 indexed input records with the 655-entry preflight snapshot or its one measured raster."
+  }
+}
