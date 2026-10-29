@@ -2167,6 +2167,7 @@ def nine_sites_page(audit: dict, cand: dict, exp1: dict, exp2: dict) -> str:
     return page("Nine sites · best files, estimates & uniqueness", "nine-sites.html", f"""<p class="eyebrow">Nine-site review · DO NOT SUBMIT · no organizer receipts</p>
 <h1>Nine GEMSDOE sites:<br>best owner-published file each, and what is unique.</h1>
 <p><strong>Decision: DO NOT SUBMIT.</strong> No file on this page has an ORGANIZER-CONFIRMED score. Owner scores are OWNER-REPORTED (unverified, <code>registry/prior_scores.csv</code>). The H33 result is recorded as an owner claim, not an organizer receipt; the conflicting 0.3195 and 0.4413 leaderboard claims are also unverified.</p>
+<p><strong>Current 2026-10-29 executive summary (download, estimate and uniqueness per site):</strong> <a href="nine-site-summary.html">nine-site-summary.html</a>.</p>
 <h2>Per-site best file (ranked by owner-reported score)</h2>
 <p>Each row pairs an owner-reported historical result with a locally audited representation from the public repository archive; the representations are not proven to be the exact submitted bytes. "Unique" here addresses only the nine recorded dot fields: forward 3-px overlap at or below {thr:.2f}. It is not a complete registry or rank-correlation check, and none is an approved new submission.</p>
 <table><thead><tr><th>Site</th><th>File (owner repo)</th><th>Historical owner-reported result (not an estimate)</th><th>Dots</th><th>NaN</th><th>Values in [0,1]</th><th>Unique vs listed sites?</th><th>SHA-256 / copy</th></tr></thead>
@@ -2188,6 +2189,94 @@ def nine_sites_page(audit: dict, cand: dict, exp1: dict, exp2: dict) -> str:
 <p>Canary AUC (distance to visible trace): {exp1["canary_auc_distance_to_visible_trace"]:.4f} against the 0.90 leakage rule. The historical as-is H33 reference is not a fold-refitted model; its low holdout result alone does not establish absence of leakage. The reported 95% intervals use cell bootstrap, not spatial blocks, and are not a valid substitute for the requested spatial-block uncertainty analysis.</p>
 <h2>Files and links</h2>
 <p><a href="evidence/nine-site-audit-20261027.json">Nine-site audit JSON</a> · <a href="evidence/h87-fcb-candidate-receipt-20261027.json">Candidate receipt JSON</a> · <a href="evidence/h87-fcb-experiment1-20261027.json">H87 experiment 1</a> · <a href="evidence/h87-fcb-experiment2-20261027.json">H87 experiment 2</a> · Candidate TIFF: <strong>{"present in this checkout (workspace-only)" if candidate_available else "ABSENT from this checkout; not downloadable"}</strong> · <a href="executive-summary.html">How to submit</a></p>
+""")
+
+
+NINE_SITE_LINEAGE = "docs/evidence/nine-site-lineage-20261029.json"
+NINE_SITE_UNIQUE_LIMIT = 0.70
+
+
+def nine_site_summary_page(lin: dict) -> str:
+    """Executive summary for the nine listed GEMSDOE sites (2026-10-29 evidence).
+
+    Every number is either measured from the byte-audited files (overlap, dots, hashes)
+    or labelled OWNER-REPORTED. No projected or holdout score is printed here.
+    """
+    if (lin.get("schema") != "gems86.nine-site-lineage.v1" or lin.get("decision") != "DO NOT SUBMIT"
+            or lin.get("safe_to_submit") is not False or lin.get("approved_for_weekly_slot") is not False
+            or lin.get("submission_slots_used") != 0 or lin.get("not_a_score") is not True):
+        raise ValueError("nine-site lineage evidence must stay DO NOT SUBMIT, slot-free and not a score")
+    files = lin["nine_site_files"]
+    expected = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+                "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}
+    if {f["site"] for f in files} != expected or len(files) != 9:
+        raise ValueError("lineage evidence must list exactly the nine requested sites")
+    if any(f["sha256_matches_audit"] is not True or f["nan_total"] != 0 or f["inf_total"] != 0 for f in files):
+        raise ValueError("every audited file must match its audit hash with no NaN/Inf")
+    order = lin["pairwise_overlap_rows_my_dots_near_column"]["order"]
+    matrix = lin["pairwise_overlap_rows_my_dots_near_column"]["matrix"]
+    index = {site: k for k, site in enumerate(order)}
+    summary = lin["pairwise_summary"]
+    if summary["ordered_pairs"] != 72 or summary["pairs_over_0_70"] != 72:
+        raise ValueError("lineage pairwise summary must show 72 of 72 pairs over the 0.70 rule")
+    rows = []
+    for rank, f in enumerate(sorted(files, key=lambda x: -x["owner_score"]), start=1):
+        i = index[f["site"]]
+        others = [(matrix[i][j], order[j]) for j in range(len(order)) if j != i]
+        worst_value, worst_site = max(others)
+        best_value, best_site = min(others)
+        over = sum(v > NINE_SITE_UNIQUE_LIMIT for v, _ in others)
+        name = f["file"].rsplit("/", 1)[-1]
+        rows.append(
+            f'<tr><td>{rank}</td><td><strong>{e(f["site"])}</strong></td>'
+            f'<td><a class="mono" href="{e(f["source_url"])}">{e(name)}</a>'
+            f'<br><span class="muted">audited file · sha256 {e(f["sha256"][:12])}… · {f["dots"]:,} dots</span></td>'
+            f'<td><span class="badge bad">NOT ESTIMATED</span><br>'
+            f'<span class="muted">No HOLDOUT-DTI run; no ORGANIZER-CONFIRMED receipt.</span><br>'
+            f'Owner-reported: <strong>{f["owner_score"]:.4f}</strong> (OWNER-REPORTED, unverified)</td>'
+            f'<td><span class="badge bad">NOT UNIQUE</span><br>'
+            f'{over} of 8 other sites exceed {NINE_SITE_UNIQUE_LIMIT:.2f}. '
+            f'Max {worst_value:.4f} vs {e(worst_site)}; min {best_value:.4f} vs {e(best_site)}.</td></tr>')
+    rows_html = "".join(rows)
+    h33 = lin["h33_lineage"]
+    removed = h33["removed_catalogue_distance_px"]
+    witness = lin["witness"]
+    return page("Nine-site executive summary · download, estimate, uniqueness", "nine-sites.html", f"""<p class="eyebrow">Executive summary · 2026-10-29 · DECISION: DO NOT SUBMIT</p>
+<h1>Nine GEMSDOE sites: which file to download, what it scores, and whether it is unique.</h1>
+<p class="lede">Short answer: <strong>no file is cleared for submission</strong>. Every one of the nine best files overlaps the other eight beyond the 0.70 uniqueness rule, no organizer receipt exists for any score, and no holdout estimate has been produced yet. The files below are downloadable for review only.</p>
+
+<section class="card callout" aria-labelledby="download-submit">
+<h2 id="download-submit">Download and submit path</h2>
+<ol class="steps">
+<li><strong>Download (review only).</strong> Use the file link in the table below. Each link opens the audited file in its owner's public repository (<code>docs/downloads/</code>).</li>
+<li><strong>Submit: not available today.</strong> Uploading any of these files now would be a non-unique submission. Do not upload.</li>
+<li><strong>What must happen first:</strong> (a) the owner decides how a continuous registry surface is compared under the 0.70 rule (<code>IR-86-20261029-01</code>); (b) a new GeoTIFF is generated with a unique name and short comment, values in [0, 1], EPSG:32611, shape 3730×3292 and the reference geotransform; (c) the file passes <code>scripts/verify_submission_tif.py</code> and the uniqueness gate against all nine sites; (d) it is scored on the spatially blocked holdout (HOLDOUT-DTI); (e) a separate selector step promotes it into one of the weekly slots on the submission page.</li>
+</ol>
+</section>
+
+<h2>Nine sites: file, estimate, uniqueness</h2>
+<p><strong>Estimated score rule:</strong> a value is shown as an estimate only when it is HOLDOUT-DTI (evaluator version, withheld positive count and 95% CI) or ORGANIZER-CONFIRMED (from a submission receipt). Neither exists for these files, so the column shows <span class="badge bad">NOT ESTIMATED</span> and the owner's number for reference only. Projections are never scores.</p>
+<div class="table-wrap"><table><thead><tr><th>Rank</th><th>Site</th><th>File to download</th><th>Estimated score</th><th>Uniqueness vs other GEMSDOE sites</th></tr></thead>
+<tbody>{rows_html}</tbody></table></div>
+<p class="muted">Uniqueness is the directed 3-px overlap computed by the repository uniqueness module (<code>vendor/gems57/uniqueness.py</code>): the share of this file's dots within 3 px of another site's dots. Threshold: above {NINE_SITE_UNIQUE_LIMIT:.2f} is a duplicate. Measured {summary["ordered_pairs"]} of {summary["ordered_pairs"]} ordered pairs exceed it (min {summary["min"]:.4f}, max {summary["max"]:.4f}).</p>
+
+<h2>Why the top file scores highest (measured and owner-reported)</h2>
+<ul>
+<li><strong>Lineage (measured):</strong> GEMSDOE32's H33 file ({h33["child_dots"]:,} dots) is a strict subset of GEMSDOE31's file ({h33["parent_dots"]:,} dots). It removes {h33["removed_dots"]:,} dots, all lying just off the catalogue fault pixels: {removed["1.4142"]:,} sit 1.41 px from the nearest catalogue pixel and {removed["2.0000"]:,} sit 2.00 px away. It adds {h33["added_dots"]} dots.</li>
+<li><strong>Owner-reported effect:</strong> 0.2708 → 0.2778 (+0.0070). The dot-count and score relation across the nine sites is correlational (Spearman −0.983, n = 9) and is not evidence of cause (<code>IR-86-20261029-06</code>).</li>
+<li><strong>Consequence:</strong> any further pruning of H33 remains a subset with overlap 1.000 and cannot be unique under the 0.70 rule (<code>IR-86-20261029-03</code>).</li>
+</ul>
+
+<h2>Why a new submission has not been generated</h2>
+<ul>
+<li><strong>Literal witness gate (protocol preflight):</strong> the pinned 17GEMSDOE witness (sha256 <code>{e(witness["sha256"][:12])}…</code>) is positive on all {witness["literal_positive_cells_in_footprint"]:,} footprint cells, so under the literal rule every nonempty candidate overlaps it at 1.0. This is <code>STOP_LITERAL_OVERLAP_UNSATISFIABLE</code>.</li>
+<li><strong>Diagnostic only:</strong> treating the witness's top-37,654 cells as its dot set yields forward overlaps of 0.04–0.05 for H33, GEMSDOE31 and GEMSDOE36. This is not a gate pass and has not been adopted.</li>
+<li><strong>Holdout:</strong> no HOLDOUT-DTI estimate is possible until the native training features are restored. The workspace audit reports NATIVE_INPUTS_MISSING_OR_INVALID.</li>
+</ul>
+
+<h2>Verification trail</h2>
+<p>Nine owner tarballs were re-fetched from <code>codeload.github.com</code> and matched to the recorded audit (9/9 SHA-256). <code>scripts/verify_nine_site_lineage.py</code> recomputes the overlap matrix, the lineage and the witness diagnostic. Its output is <a href="evidence/nine-site-lineage-20261029.json">the lineage evidence JSON</a>. Run card: <code>research/run_cards/nine_site_lineage_20261029.json</code>. Review: <code>research/SESSION_20261029_NINE_SITE_LINEAGE_REVIEW.md</code>. Irregularities: <a href="irregularities.html">IR-86-20261029-01 to 06</a>.</p>
+<p><strong>Source limits:</strong> the score values are owner-reported claims from the owners' public pages and repositories. DrivenData is not accessed by automated tools (AGENTS.md rule 9). The leaderboard maxima quoted in the brief (0.3195, 0.4413) are unverified and conflict with each other.</p>
 """)
 
 
@@ -2733,6 +2822,7 @@ def render(root: Path = ROOT) -> dict[str, str]:
         "docs/irregularities.html": irregularities(report),
         "docs/research.html": scientific_context(),
         "docs/h86-fvmb-forensics.html": fvmb_archive(report),
+        "docs/nine-site-summary.html": nine_site_summary_page(strict_json(root / NINE_SITE_LINEAGE)),
         "docs/nine-sites.html": nine_sites_page(
             strict_json(root / "docs/evidence/nine-site-audit-20261027.json"),
             strict_json(root / "docs/evidence/h87-fcb-candidate-receipt-20261027.json"),

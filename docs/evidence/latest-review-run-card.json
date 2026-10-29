@@ -1,6 +1,6 @@
 {
   "schema": "gems86.current-review.v1",
-  "date_utc": "2026-10-28",
+  "date_utc": "2026-10-29",
   "date_utc_basis": "Date of this registry remeasurement (registry_measured_utc). The artifact inventory below is live, not frozen to this date.",
   "hypothesis": "No new lane was selected or run: the current request did not assign a single method paragraph, and no candidate surface was constructed.",
   "mechanism": "None measured in this audit; it rechecked inherited TIFF bytes and their registry witness only.",
@@ -302,8 +302,8 @@
   "experiments_run": 0,
   "submission_slots_used": 0,
   "requirement_unmet": "No new unique submission TIFF can satisfy the supplied literal rule. Historical files are audit-only, not a substitute new submission.",
-  "registry_measured_utc": "2026-10-28T17:40:06.472447+00:00",
+  "registry_measured_utc": "2026-10-29T15:11:06.149406+00:00",
   "scope": "Fresh byte/format and final-artifact witness audit only. No new scientific experiment, surface, dots or submission.",
-  "release_report_sha256": "9cf8e7d717b415e5eb04a38c9ffcbb311dd9d5ba806172defcc5f165c15b6fff",
-  "registry_measurement_sha256": "f23d7b8cd499500655270ba3441ecb969f1a5a9e449379f2ad2b593cfc633006"
+  "release_report_sha256": "c020078ffd19e8a4db15dc6aac341316e68cb588d03e8c83b973832a8ac2d959",
+  "registry_measurement_sha256": "be0f5a3f839808f5d5c4a59e5b0166d6b6594a9ee00f5fc42c429ba1b0a873cb"
 }

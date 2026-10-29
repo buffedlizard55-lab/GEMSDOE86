@@ -1,6 +1,30 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
+## IR-86-20261029-01 — the literal witness stop is a representation choice, not a geographic fact (OWNER DECISION NEEDED)
+
+`docs/evidence/protocol-preflight.json` (2026-10-28) fails every candidate because the pinned 17GEMSDOE witness is positive on all 5,167,373 footprint cells, and the inherited rule counts every positive cell as a dot. A diagnostic that treats the witness's top-37,654 cells as its dot set gives forward overlaps of 0.0356–0.0495 for H33, GEMSDOE31 and GEMSDOE36 (`docs/evidence/nine-site-lineage-20261029.json`, `witness.topK_diagnostic`). **This is not a gate pass and not a clearance.** The literal rule is unchanged. The owner must decide the representation rule and write it down before any candidate is built (`research/SESSION_20261029_NINE_SITE_LINEAGE_REVIEW.md` §4).
+
+## IR-86-20261029-02 — owner-named `-nan` files differ from the audited `-allfinite` / `-zeros` files only by NaN outside the footprint
+
+For all nine listed best sites, a NaN-encoded sibling (`…-nan.tif` or `…-nanoutside.tif`) exists in the owner's tree and has the same dot field as the audited file (`variant_identity_checks`, 9/9 identical). The siblings hold 7,111,787 NaN cells outside the footprint; the audited forms hold zeros. For five sites (GEMSDOE24, 25, 27, 28, 31) the owner's submission name ends in `-nan` while the audited file is the `-allfinite` or `-zeros` form. For GEMSDOE32 and GEMSDOE36 the owner's name already matches the audited zeros file. The repository cannot tell which bytes the portal scored. The prompt's "Predicted values must be in range [0, 1]" error and the NaN-versus-zero encoding should be checked against the official rules before any upload. Dot content is not in question.
+
+## IR-86-20261029-03 — H33 (0.2778) is a pure collar subset of GEMSDOE31 (0.2708); any prune of it is non-unique by construction
+
+Measured: H33 has 37,654 dots, all inside GEMSDOE31's 40,199, with zero added and 2,545 removed. The removed dots sit at catalogue distance 1.4142 px (1,201) or 2.0000 px (1,344). The owner-reported difference is +0.0070. Any further subset of H33 has overlap 1.000 with H33 and cannot satisfy the 0.70 uniqueness rule. This does not validate or invalidate the owner's score.
+
+## IR-86-20261029-04 — conflicting leaderboard maxima and no verification route
+
+The prompt cites **0.3195** as the highest score and **0.4413** as the "current GEMSDOE high score". Neither is verified here. DrivenData is not accessed by automated tools (`AGENTS.md` rule 9). The owner `buffedlizard55-lab.github.io` pages are not on this sandbox's egress allowlist; repository trees on `github.com` and `codeload.github.com` were used. Owner scores remain OWNER-REPORTED.
+
+## IR-86-20261029-05 — owner repositories have advanced past the listed snapshot
+
+Several HEAD trees contain newer files with no owner score (for example GEMSDOE31 `gems31-h31cc-basement-step-37654d-20261028`, and many GEMSDOE24 files dated 2026-10-28). They were not ranked, because the prompt's list gives no score for them.
+
+## IR-86-20261029-06 — the dot-count/score relation is correlational and rests on unverified scores
+
+Across the nine owner-reported best files, Spearman ρ between dot count and owner-reported score is −0.983 (n = 9, p ≈ 2×10⁻⁶). It is consistent with the metric's penalty on zero-credit dots, but the sample is small, the sites use different generators, and the scores are unverified. It must not be used as a score predictor or as evidence of cause.
+
 ## IR-86S-RUN-H86R-SFG-MISSING-PREFLIGHT-20261027 — `scripts/run_h86r_sfg.py` lacked `require_feasible()` and omitted `run_h86q_bfra` / `run_h86r_sfg` from `test_builder_preflight.py` (fixed 2026-10-27)
 
 During Pass 2 audit on `2026-10-27`, `scripts/run_h86r_sfg.py` (merged in PR `#193`) was found to execute its pipeline directly inside `def main() -> int:` without calling `scripts.protocol_preflight.require_feasible()`, and neither `run_h86q_bfra` nor `run_h86r_sfg` was registered in `tests/test_builder_preflight.py::BUILDERS`. **Resolution:** Refactored `scripts/run_h86r_sfg.py` into `run_pa86_lane()` + `main()` calling `require_feasible()` before any I/O, and added `run_h86q_bfra`, `run_h86r_sfg`, and `run_h86s_dwad` to `tests/test_builder_preflight.py::BUILDERS` and `test_concurrent_candidate_builders_fail_before_any_feature_load`.
