@@ -1,7 +1,7 @@
 Only items that changed what a session did, or that a human must resolve before the next
 slot. Three Arena sessions worked the PRUNE axis on the same parent; all are recorded.
 
-## IR-86-20261029-01 — the literal witness stop is a representation choice, not a geographic fact (OWNER DECISION NEEDED)
+## IR-86-20261029-01 — the literal witness stop depends on a representation rule the owner has not chosen (OWNER DECISION NEEDED)
 
 `docs/evidence/protocol-preflight.json` (2026-10-28) fails every candidate because the pinned 17GEMSDOE witness is positive on all 5,167,373 footprint cells, and the inherited rule counts every positive cell as a dot. A diagnostic that treats the witness's top-37,654 cells as its dot set gives forward overlaps of 0.0356–0.0495 for H33, GEMSDOE31 and GEMSDOE36 (`docs/evidence/nine-site-lineage-20261029.json`, `witness.topK_diagnostic`). **This is not a gate pass and not a clearance.** The literal rule is unchanged. The owner must decide the representation rule and write it down before any candidate is built (`research/SESSION_20261029_NINE_SITE_LINEAGE_REVIEW.md` §4).
 

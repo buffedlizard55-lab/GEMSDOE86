@@ -138,7 +138,7 @@ Results of this session's final run (re-run to reproduce):
 
 | Check | Command | Result |
 |---|---|---|
-| Full test suite | `.venv/bin/python -m pytest -q -p no:cacheprovider` | 1165 passed, 24 skipped, 0 failed (10 min run) |
+| Full test suite | `.venv/bin/python -m pytest -q -p no:cacheprovider` | 1172 passed, 24 skipped, 0 failed (10 min run, after merging `origin/main` at 7937768 — PR #214 — into this branch) |
 | Release audit (re-measured registry) | `scripts/audit_release.py --measure-registry` | PASS: 50 of 50 artifacts valid; DO NOT SUBMIT; 0 experiments, 0 slots |
 | Site build | `scripts/build_site.py --check` | PASS |
 | Pages check | `scripts/check_site.py` | PASS |
