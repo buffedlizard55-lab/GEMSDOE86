@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def inputs():
     def load(name):
         return json.loads((ROOT / 'docs/evidence' / name).read_text())
-    return (load('nine-site-audit-20261027.json'),
+    return (load('nine-site-audit-20261029.json'),
             load('h87-fcb-candidate-receipt-20261027.json'),
             load('h87-fcb-experiment1-20261027.json'),
             load('h87-fcb-experiment2-20261027.json'))

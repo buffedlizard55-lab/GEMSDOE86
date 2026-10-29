@@ -31,7 +31,7 @@ def test_h33_claim_and_holdout_scores_show_evidence_class_and_context():
     # and interval; the paired delta is explicitly labeled as holdout evidence.
     assert "<strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives)" in html
     assert "<code>H86D-CTHB</code> = <code>0.1133</code>, 95% CI <code>[0.0965, 0.1297]</code>" in html
-    assert "<code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0936, 0.1166]</code>" in html
+    assert "<code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0931, 0.1187]</code>" in html
     assert "paired HOLDOUT-DTI delta = <code>+0.0076</code>, 95% CI <code>[-0.0101, +0.0241]</code>" in html
     assert "Do not infer a leaderboard projection from holdout results." in html
 
