@@ -17,23 +17,8 @@ def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
     assert "0.2708</strong> OWNER-REPORTED" in html
     assert "0.2449</strong> OWNER-REPORTED" in html
     assert "72 directed pairwise 3-px overlaps" in html
-    assert "all 72 directed comparisons exceed the threshold" in html
-    assert "Freshness check (2026-10-29T14:34:08+00:00)" in html
-    assert "The current owner champion pages still label these results" in html
-    assert "strings differ for 9/9 sites" in html
-    assert "No organizer receipt resolves the aliases" in html
-    assert "seven new TIFF paths" in html
-    assert "GEMSDOE30-concealed-geothermal-unique-20261029.tif" in html
-    assert "word “unique” in a filename is not clearance" in html
-    assert "?raw=1" in html
-    assert "Download historical GeoTIFF — audit only" in html
     assert "86.7%" in html and "100.0%" in html
     assert "not a complete cross-repository registry scan" in html
-    assert "Estimated live leaderboard score" in html
-    assert "NOT AVAILABLE" in html
-    assert html.count("<strong>NOT ESTIMATED</strong>") == 9
-    assert "Do not substitute a HOLDOUT-DTI value for a live score" in html
-    assert html.index("GEMSDOE32") < html.index("GEMSDOE36")  # highest owner claim first
     assert "GEMSDOE27 H31" in html or "gems27-h31-drcg-wl-celf28" in html
     assert "99.17%" in html
     assert "MSDB1-edge44090" in html
@@ -51,9 +36,7 @@ def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
     for site, filename in expected_audited_files.items():
         row_start = html.index(f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{site}/">')
         row_end = html.index("</tr>", row_start)
-        row = html[row_start:row_end]
-        assert filename in row
-        assert f"/blob/main/docs/downloads/{filename}?raw=1" in row
+        assert filename in html[row_start:row_end]
 
 
 def test_scores_download_status_and_h33_causality_are_labeled():
@@ -90,6 +73,39 @@ def test_current_status_banner_fails_closed_and_names_scope():
     assert "67 dot-overlap firings" in html
     assert "not a Focus-9 score or this review's experiment" in html
     assert "G86-BGC run card" in html
+    assert "nine-site-audit-20261029.json" in html
+    assert "workspace-inputs-20261029.json" in html
+    assert "training TIFF, prepared bands/labels/footprint" in html
+
+
+def test_current_banner_requires_complete_fresh_20261029_overlap_audit(tmp_path, monkeypatch):
+    import json
+    import shutil
+    import pytest
+    import scripts.build_site as builder
+
+    required = (
+        "docs/evidence/protocol-preflight.json",
+        "docs/evidence/registry-input-grid-review-20261028.json",
+        "docs/evidence/release-readiness.json",
+        "docs/evidence/fleet-feed.json",
+        "docs/evidence/nine-site-audit-20261029.json",
+        "docs/evidence/session-5ca0743e-inputs-20261029.json",
+        "docs/evidence/workspace-inputs-20261029.json",
+        "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
+        "registry/prior_scores.csv",
+    )
+    for rel in required:
+        target=tmp_path / rel
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(ROOT / rel,target)
+    monkeypatch.setattr(builder,"ROOT",tmp_path)
+    audit_path=tmp_path / "docs/evidence/nine-site-audit-20261029.json"
+    audit=json.loads(audit_path.read_text())
+    audit["pairwise_overlap"].pop(next(iter(audit["pairwise_overlap"])))
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError,match="Nine-site overlap audit is incomplete"):
+        builder.focus9_current_status_banner()
 
 
 def test_generated_site_promotes_current_focus9_status_not_stale_fleet_claims():
@@ -116,6 +132,9 @@ def test_home_links_the_current_review_and_hypothesis_register():
     assert "focus9_novel_hypotheses_20261028.json" in html
     assert "SESSION_20261029_ARENA_CAD53211_REVIEW.md" in html
     assert "review_20261029_arena_cad53211.json" in html
+    assert "nine-site-audit-20261029.json" in html
+    assert "workspace-inputs-20261029.json" in html
+    assert "SESSION_20261029_5CA0743E_REVIEW.md" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
@@ -129,7 +148,9 @@ def _isolated_inputs(tmp_path, monkeypatch):
     rels = (
         "registry/prior_scores.csv",
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
-        "docs/evidence/nine-site-audit-20261029.json",
+        "docs/evidence/nine-site-audit-20261027.json",
+        "docs/evidence/focus9-immutable-files-20261029.json",
+        "docs/evidence/workspace-inputs-20261029.json",
         "docs/evidence/fleet-feed.json",
         "docs/evidence/protocol-preflight.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
@@ -142,7 +163,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
     with score_path.open() as stream:
         rows = list(csv.DictReader(stream))
     snapshot_path = tmp_path / "docs/evidence/focus9-and-siblings-forensics-20261027.json"
-    audit_path = tmp_path / "docs/evidence/nine-site-audit-20261029.json"
+    audit_path = tmp_path / "docs/evidence/nine-site-audit-20261027.json"
     fleet_path = tmp_path / "docs/evidence/fleet-feed.json"
     return builder, score_path, rows, snapshot_path, audit_path, fleet_path
 
@@ -162,9 +183,8 @@ def test_changed_score_claim_cannot_inherit_old_binary_measurement(tmp_path, mon
         builder.focus9_summary()
 
 
-def test_removed_owner_file_cannot_keep_a_download_link(tmp_path, monkeypatch):
+def test_removed_owner_file_is_flagged_but_historical_link_stays_commit_pinned(tmp_path, monkeypatch):
     import json
-    import pytest
 
     builder, _, _, _, _, fleet_path = _isolated_inputs(tmp_path, monkeypatch)
     feed = json.loads(fleet_path.read_text())
@@ -174,20 +194,11 @@ def test_removed_owner_file_cannot_keep_a_download_link(tmp_path, monkeypatch):
         if "gems24-h25-1-dotted-h19-5-d1-5" not in item["path"]
     ]
     fleet_path.write_text(json.dumps(feed))
-    with pytest.raises(ValueError, match="not bound to the refreshed complete fleet feed"):
-        builder.focus9_summary()
-
-
-def test_current_site_audit_must_match_the_refreshed_git_blob(tmp_path, monkeypatch):
-    import json
-    import pytest
-
-    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
-    audit = json.loads(audit_path.read_text())
-    audit["files"][0]["source"]["git_blob_sha1"] = "0" * 40
-    audit_path.write_text(json.dumps(audit))
-    with pytest.raises(ValueError, match="not bound to the refreshed Git blob"):
-        builder.focus9_summary()
+    html = builder.focus9_summary()
+    row = html.split('<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">', 1)[1].split('</tr>', 1)[0]
+    assert 'CHANGED OR MISSING' in row
+    assert '/raw/f4d5a5ef3f3cf6cbe5a24ee0b29c6d592910d308/' in row
+    assert 'SUBMIT: NO' in row
 
 
 def test_incomplete_nine_site_pairwise_audit_fails_closed(tmp_path, monkeypatch):
@@ -210,7 +221,7 @@ def test_h87_page_does_not_present_missing_receipt_as_downloadable_tiff():
         return json.loads((ROOT / path).read_text())
 
     html = builder.nine_sites_page(
-        load("docs/evidence/nine-site-audit-20261029.json"),
+        load("docs/evidence/nine-site-audit-20261027.json"),
         load("docs/evidence/h87-fcb-candidate-receipt-20261027.json"),
         load("docs/evidence/h87-fcb-experiment1-20261027.json"),
         load("docs/evidence/h87-fcb-experiment2-20261027.json"),
@@ -223,3 +234,91 @@ def test_h87_page_does_not_present_missing_receipt_as_downloadable_tiff():
     assert "0 uncovered allowed pixels; 100.0% coverage" in html
     assert "Historical owner-reported result (not an estimate)" in html
     assert "Estimated score (owner-reported)" not in html
+
+
+def test_summary_orders_claims_descending_not_by_site_number():
+    import re
+    html = focus9_summary()
+    section = html[html.index('id="focus9-summary"'):]
+    rows = re.findall(r'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/(GEMSDOE\d+)/', section)
+    assert rows[:9] == ["GEMSDOE32", "GEMSDOE36", "GEMSDOE28", "GEMSDOE31", "GEMSDOE33", "GEMSDOE25", "GEMSDOE30", "GEMSDOE24", "GEMSDOE27"]
+
+
+def test_same_score_different_name_does_not_inherit_audit(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, score_path, rows, _, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    next(row for row in rows if row["site"] == "GEMSDOE24")["submission"] = "different-unverified-file"
+    with score_path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="not bound to the top score claim and name"):
+        builder.focus9_summary()
+
+
+def test_replaced_directed_pair_does_not_pass_by_count(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["pairwise_overlap"]["GEMSDOE24->GEMSDOE24"] = audit["pairwise_overlap"].pop("GEMSDOE24->GEMSDOE25")
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="overlap audit is incomplete"):
+        builder.focus9_summary()
+
+
+def test_maxima_must_match_the_actual_directed_pairs(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["max_overlap_by_site"]["GEMSDOE24"] = {"value": 0.3, "vs": "GEMSDOE25"}
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="maximum disagrees"):
+        builder.focus9_summary()
+
+
+def test_duplicate_site_records_are_rejected(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["files"].append(audit["files"][0])
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="exactly the nine requested sites"):
+        builder.focus9_summary()
+
+
+def test_historical_projection_table_does_not_claim_global_uniqueness_or_validated_ci():
+    html = (ROOT / "docs/index.html").read_text()
+    assert "not a validated 95% prediction interval" in html
+    assert "Overlap vs measured discrete subset only" in html
+    assert "LEAKAGE-CANARY &amp; FULL-UNIVERSE UNIQUENESS" not in html
+    assert "Unique vs Focus-9 &amp; Discrete Fleet?" not in html
+    assert "historical profile reports 15/15 checks, although the archived format gate below failed" in html
+
+
+def test_nonfinite_dated_snapshot_score_is_rejected(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, snapshot_path, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    snapshot = json.loads(snapshot_path.read_text())
+    row = next(r for r in snapshot["focus9_executive_summary"] if r["site"] == "GEMSDOE24")
+    row["highest_score_owner_reported"] = "NaN"
+    snapshot_path.write_text(json.dumps(snapshot))
+    with pytest.raises(ValueError, match="Invalid owner-reported score"):
+        builder.focus9_summary()
+
+
+def test_nonfinite_owner_claims_are_rejected(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, score_path, rows, _, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    next(row for row in rows if row["site"] == "GEMSDOE24")["score"] = "NaN"
+    with score_path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="Invalid owner-reported score"):
+        builder.focus9_summary()

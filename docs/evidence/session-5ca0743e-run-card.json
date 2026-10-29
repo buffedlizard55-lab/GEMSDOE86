@@ -1,0 +1,88 @@
+{
+  "schema": "gems86.session-5ca0743e-run-card.v1",
+  "created_utc": "2026-10-29T14:43:25+00:00",
+  "session_branch": "arena/5ca0743e-gemsdoe86",
+  "evidence_class": "RUN-CARD",
+  "hypothesis": "Rank 1 proposal only, NOT RUN: F9N-1_LAHONTAN_SHORELINE_OFFSETS \u2014 Pleistocene Lake Lahontan shoreline displacement as an independent paleogeodetic datum",
+  "mechanism": "Within a single mapped highstand shoreline level, estimate a locally detrended shoreline bench surface and detect a narrow, strike-coherent step or tilt that offsets the same-age bench across a corridor, repeats on adjacent shoreline segments, and is independently consistent with subsurface structure. The shoreline is a positive displacement marker, not a generic elevation contour or a fault label.",
+  "named_non_fault_mimic": "Wave-cut bench relief and variable shoreline facies, local lake-level/age miscorrelation, differential compaction of lacustrine sediment, erosional terrace risers, and volcanic-flow margins. Require multiple same-level segments, map-scale uncertainty, and independent controls.",
+  "lane_assignment": null,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PROTOCOL_STOP_AND_REQUIRED_SOURCE_DATA_ABSENT",
+    "evaluator_version": null,
+    "planned_evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES_BUILT",
+    "auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_allowed_pixels": 5106385,
+    "witness_direct_uncovered_allowed_pixels": 0,
+    "witness_implied_forward_overlap_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "registry_complete": false,
+    "scope": "Pinned historical witness is sufficient for a negative under the literal rule; not a candidate comparison or full-registry clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inherited_research_tiffs_locally_format_valid": 50,
+    "inherited_research_tiffs_audited": 50,
+    "scope": "Prior-file local format and integrity audit only; not acceptance or permission to submit."
+  },
+  "submission_name": null,
+  "note": "Blocked: no new candidate; witness overlap gate fails. DO NOT SUBMIT.",
+  "organizer_score_estimate": null,
+  "new_candidate_generated": false,
+  "unique_tiff_requirement_satisfied": false,
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "experiments_run": 0,
+  "verdict": "negative",
+  "decision": "DO NOT SUBMIT",
+  "input_status_at_measurement": {
+    "native_inputs_available": true,
+    "native_bands_prepared": true,
+    "shared_template_cache_established": false,
+    "measured_utc": "2026-10-29T14:38:33.763108+00:00",
+    "persistence": "Native TIFF and cache arrays are ignored/ephemeral, not part of a fresh checkout; hash pins do not authenticate organizer origin."
+  },
+  "focus9_forensic_file_bindings": {
+    "sites_verified": 9,
+    "evidence": "docs/evidence/focus9-immutable-files-20261029.json",
+    "scope": "Git blob, SHA-256 and size matched earlier audited owner files; not organizer submitted-file receipts."
+  },
+  "upstream_metric_prose_issue": {
+    "status": "CONFIRMED_SYNTHETIC_COUNTEREXAMPLE_NOT_FIXED_UPSTREAM",
+    "shared_tool_modified": false,
+    "issue_creation": "DENIED: GitHub integration reports Resource not accessible by integration (createIssue)",
+    "regression_test": "tests/test_metric.py::test_marginal_truth_credit_can_exceed_one_dot_self_credit"
+  },
+  "evidence_sha256": {
+    "docs/evidence/session-5ca0743e/witness-preflight.json": "408f247d22591d3854eb1755cbe5e7918bbab95a706e76a2f83282af5eed8059",
+    "docs/evidence/session-5ca0743e-inputs-20261029.json": "46dc139fc872f1ebe0c38a6b38622120beb858ef49b0122ba4fe52bdb7b6cae7",
+    "docs/evidence/focus9-immutable-files-20261029.json": "8ee88d33033c623fadd31711bdde047ba74b78f0362ecab0e1d25ad573585d2c",
+    "registry/focus9_novel_hypotheses_20261028.json": "14ab590725455be00fff294c92d65013b28180d8cb9f70b379ea732d0943f0f2"
+  },
+  "limitations": [
+    "No single method lane specified and literal uniqueness stop still holds.",
+    "The candidate geological proposal requires raw 1 m 3DEP DEM and age/level-tagged shoreline geometry not currently obtained.",
+    "Shared template feature stack provenance not established; restored native bands are not a substitute.",
+    "No complete registry clearance, fresh holdout, calibrated score forecast, organizer receipt, or quota available."
+  ]
+}

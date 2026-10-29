@@ -55,6 +55,15 @@
     "witness_coverage_fraction": 1.0,
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
   },
+  "current_mainline_integration": {
+    "branch_base_commit": "312c106",
+    "included_mainline_merges": [
+      214,
+      215
+    ],
+    "origin_main_sha": "8572653",
+    "scope": "Merged latest mainline into the assigned Arena branch; retained immutable-file provenance checks and tests."
+  },
   "current_owner_score_pages_checked": [
     {
       "bytes": 10609,
@@ -171,20 +180,22 @@
     "score_claims": "OWNER-REPORTED / UNVERIFIED"
   },
   "evidence_sha256": {
-    "PROMPT.md": "9fac174ed52c7fc37fdb8c3b8e24cd8b1616d93a696369d803dabe7cec467190",
-    "README.md": "c1cdfc16262550a63f273c139bdf7d79f6843701eaac1700e283fc581f84926a",
-    "docs/evidence/all-artifacts-registry.json": "0880a95abf60ebcc01de732676385a6061f54ce593948710a5c829e96d6310b8",
+    "PROMPT.md": "0a981be59ce50e1d23322d226c7c38013e401ae23458b08015c79dc1f3fe2474",
+    "README.md": "0a92fc80c8689b43497ff32d2d9ed952f2cbec5d70f4a35583f3d71b8a722dc9",
+    "docs/evidence/all-artifacts-registry.json": "6fdd98463962ba200708bc746dd0c1f86fefb94d065f98e4951e297d254fc6d6",
     "docs/evidence/fleet-feed.json": "78a4a4783c348172e4106d6e1e34d43cfe7b799593a9be4693827b43fa4db3a0",
     "docs/evidence/focus9-and-siblings-forensics-20261027.json": "9b924db0d81d8f7d4f6086b7e5733e35d3cbbe9cdbc31fa6365e5702671ac3bc",
-    "docs/evidence/latest-review-run-card.json": "e4ee3559c576f36b334b36a7a219d415efac7151e13aad8053409a73b778f8f1",
+    "docs/evidence/focus9-immutable-files-20261029.json": "8ee88d33033c623fadd31711bdde047ba74b78f0362ecab0e1d25ad573585d2c",
+    "docs/evidence/latest-review-run-card.json": "3f11c153f20f9b94214e7f1dccecfe44b7324b80b14d3607489392d94fad46f8",
     "docs/evidence/nine-site-audit-20261029.json": "027a77de87cc16207e907f33bbd5d78db83102e777fd071f5b43707b47779fcb",
     "docs/evidence/protocol-preflight.json": "dc9ae875afeeb136a9f4344c51eb644dbc736117cc1a9a887b6bc9fae68ba739",
-    "docs/evidence/release-readiness.json": "a31e894c7dab5b6a4e465b9ae22926fa1b7c84b8854637ea0f1363f592811040",
-    "docs/evidence/workspace-inputs-20261029.json": "142c38a454e518eba6e4fc301757edd1ce811dae0dfad249852bbab711a2a73c",
-    "docs/index.html": "fe7e449e9a00c4918c932feeecf3cc0ebcb351d61af8b019fcb5210e414e1ac4",
+    "docs/evidence/release-readiness.json": "6ba0e748ce5a8141bb2e0062e7fe0422607b18bd973444dbe5184e3da2391ac0",
+    "docs/evidence/workspace-inputs-20261029.json": "4e8c139706ad47d07cce0356be9062d5f4bbe66dae38a3e1d26c0b7001dca24e",
+    "docs/executive-summary.html": "e57b39206718f20443d8e0a762fbfc4b3bb41a8808e91c8c7b5215164a5cdce2",
+    "docs/index.html": "9022148374683b61cf70f7dd17e139cbc3843bf5eac562264fb5b4252af97504",
     "registry/focus9_novel_hypotheses_20261028.json": "14ab590725455be00fff294c92d65013b28180d8cb9f70b379ea732d0943f0f2",
     "registry/prior_scores.csv": "60d0a8dd229fc19fefd71690d1b4b2d16983905a01c78559a069ebf0d2531ec2",
-    "research/SESSION_20261029_ARENA_CAD53211_REVIEW.md": "ad33685ee6e3cd00b406a914b1573b98acef33193bd178e5d4c416a79b53a3a7"
+    "research/SESSION_20261029_ARENA_CAD53211_REVIEW.md": "01c1627ef0338ecf9550b6334cac336cbe4c719af15056350ba44b8c2120659f"
   },
   "execution": {
     "budget_experiments_max": 3,
@@ -300,8 +311,8 @@
       "NATIVE_PREPARATION_NOT_AVAILABLE",
       "SHARED_FEATURE_CACHE_NOT_ESTABLISHED"
     ],
-    "evidence_sha256": "142c38a454e518eba6e4fc301757edd1ce811dae0dfad249852bbab711a2a73c",
-    "measured_utc": "2026-10-29T15:36:45.469200+00:00",
+    "evidence_sha256": "4e8c139706ad47d07cce0356be9062d5f4bbe66dae38a3e1d26c0b7001dca24e",
+    "measured_utc": "2026-10-29T16:09:44.705198+00:00",
     "path": "docs/evidence/workspace-inputs-20261029.json",
     "prepared_band_arrays_available": false,
     "safe_to_submit": false,
@@ -309,8 +320,16 @@
     "shared_template_feature_stack": false,
     "training_features_available": false
   },
-  "measured_utc": "2026-10-29T15:36:45.504168+00:00",
+  "measured_utc": "2026-10-29T16:09:44.737896+00:00",
   "new_candidate_generated": false,
+  "post_merge_test_fixture_followup": {
+    "cause": "New focus9_summary UI read the live workspace-input receipt, but the isolated focus9_provenance_ui test fixture did not copy it.",
+    "failures": 4,
+    "first_review_pass2_status": "FAIL",
+    "first_review_utc": "2026-10-29T15:58:45.349180+00:00",
+    "repair": "Added docs/evidence/workspace-inputs-20261029.json to the isolated fixture inputs; no production-gate bypass or evidence relaxation.",
+    "targeted_rerun": "29 focused tests passed before final full rerun."
+  },
   "post_review_documentation_checks": {
     "generated_site_check": {
       "command": "python scripts/build_site.py --check",
@@ -336,13 +355,14 @@
     },
     "frozen_review_card": "PASS",
     "generated_site": "PASS",
+    "git_diff_cached_check": "PASS",
     "git_diff_check": "PASS",
-    "measured_utc": "2026-10-29T15:38:14+00:00",
-    "scope": "Follow-up after final report/run-card/live-input serialization; no code or site-source changes.",
+    "measured_utc": "2026-10-29T16:13:36+00:00",
+    "scope": "After final live-input receipt serialization and site rebuild; documentation/current-state follow-up.",
     "site_links_integrity_safety": "PASS",
     "status": "PASS",
-    "targeted_regressions": {
-      "passed": 2,
+    "targeted_tests": {
+      "passed": 29,
       "status": "PASS"
     }
   },
@@ -353,7 +373,7 @@
     "forward_overlap_3px_distribution": {
       "1.0": 50
     },
-    "measured_utc": "2026-10-29T15:22:24.182903+00:00",
+    "measured_utc": "2026-10-29T15:44:36.896118+00:00",
     "registry_complete": false,
     "registry_rasters_measured": 1,
     "scope": "Rechecks all inherited final TIFFs against one immutable witness, not the full registry. Sufficient to reject, never to clear or rank candidates.",
@@ -373,15 +393,15 @@
     "safe_to_submit": false,
     "universal_overlap_blocker": true
   },
-  "report_sha256": "ad33685ee6e3cd00b406a914b1573b98acef33193bd178e5d4c416a79b53a3a7",
+  "report_sha256": "01c1627ef0338ecf9550b6334cac336cbe4c719af15056350ba44b8c2120659f",
   "repository_review": {
     "check_count": 7,
     "checks_failed": 0,
     "checks_passed": 7,
     "live_input_check_status": "PASS; required training inputs/cache remain absent",
-    "measured_utc": "2026-10-29T15:36:45.504168+00:00",
-    "pytest_seconds": 551.52,
-    "pytest_summary": "1155 passed, 24 skipped, 48 warnings, 58 subtests passed in 551.52s (0:09:11)",
+    "measured_utc": "2026-10-29T16:09:44.737896+00:00",
+    "pytest_seconds": 553.59,
+    "pytest_summary": "1179 passed, 24 skipped, 48 warnings, 58 subtests passed in 553.59s (0:09:13)",
     "release_summary": {
       "all_final_artifacts_remeasured": true,
       "artifact_count": 50,
@@ -408,7 +428,7 @@
       "returncode": 0,
       "status": "PASS",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "0719dc0dd5bbff78a86fdb22f4500241ebbd5a54a4a351001fa0fa12ac563897"
+      "stdout_sha256": "e4f0ec3aaec33421c45eca2d817349a0c2f60abcaace5fd46b4952eafea59755"
     },
     {
       "name": "pass3-frozen-evidence",
@@ -443,7 +463,7 @@
       "returncode": 0,
       "status": "PASS",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "stdout_sha256": "9cd6a67b37c290e7a124e7694825e81408bfaf3f23e39067bed9c3f5caea8fe8"
+      "stdout_sha256": "1a79ff3aaaadb9478d599017e488c9e298fbfc234cb3cb77b514c041aa2d4cda"
     }
   ],
   "review_id": "review_20261029_arena_cad53211",
