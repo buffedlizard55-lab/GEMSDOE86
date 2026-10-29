@@ -10,12 +10,14 @@ from scripts.build_site import focus9_current_status_banner, focus9_summary  # n
 def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
     html = focus9_summary()
     assert "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros" in html
-    assert "0.2778</strong> OWNER-REPORTED" in html
-    assert "0.2750</strong> OWNER-REPORTED" in html
+    assert "0.2778</strong> OWNER-REPORTED / UNVERIFIED" in html
+    assert "0.2750</strong> OWNER-REPORTED / UNVERIFIED" in html
     assert "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan" in html
-    assert "0.2710</strong> OWNER-REPORTED" in html
-    assert "0.2708</strong> OWNER-REPORTED" in html
-    assert "0.2449</strong> OWNER-REPORTED" in html
+    assert "0.2710</strong> USER-REPORTED / UNVERIFIED" in html
+    assert "0.2708</strong> USER-REPORTED / UNVERIFIED" in html
+    assert "0.2632</strong> CROSS-REPOSITORY OWNER-REPORTED / UNVERIFIED" in html
+    assert "0.2449</strong> OWNER-REPORTED / UNVERIFIED" in html
+    assert "unsupported for GEMSDOE28" in html
     assert "72 directed pairwise 3-px overlaps" in html
     assert "86.7%" in html and "100.0%" in html
     assert "not a complete cross-repository registry scan" in html
@@ -73,6 +75,21 @@ def test_current_status_banner_fails_closed_and_names_scope():
     assert "67 dot-overlap firings" in html
     assert "not a Focus-9 score or this review's experiment" in html
     assert "G86-BGC run card" in html
+    assert "training_features.tif" in html
+    assert "21/21 prepared arrays/masks missing" in html
+    assert "earlier <code>5ca0743e</code> receipt recorded a temporary restoration and is not evidence of current availability" in html
+
+
+def test_focus9_new_upstream_paths_are_not_treated_as_validated_downloads_or_scores():
+    html = focus9_summary()
+    section = html.split("New paths in the refreshed upstream feed:", 1)[1].split("<div class=\"table-wrap\"><table><thead><tr><th>Site</th><th>Highest supplied claim / byte-audited historical owner file", 1)[0]
+    assert "9 TIFF path additions across 5 requested sites" in section
+    assert "score status is unknown (not zero)" in section
+    assert "gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif" in section
+    assert "gemsdoe31-h-steo-offcatalogue-stepper-20261029T164949Z-4bbba08696ed-allfinite.tif" in section
+    assert "NO HOLDOUT; DUPLICATE-STOP per own novelty receipt vs two geothermal-corridor rasters; NOT for download or submission" in section
+    assert "not authorized to submit" in section
+    assert 'download>' not in section
 
 
 def test_generated_site_promotes_current_focus9_status_not_stale_fleet_claims():
@@ -97,8 +114,10 @@ def test_generated_executive_summary_links_current_hypotheses():
 def test_home_links_the_current_review_and_hypothesis_register():
     html = (ROOT / "docs/index.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "SESSION_20261028_ARENA_27FEF6BB_REVIEW.md" in html
-    assert "focus9_review_20261028_arena_27fef6bb.json" in html
+    assert "SESSION_20261029_6AD5BDD2_REVIEW.md" in html
+    assert "session-6ad5bdd2-run-card.json" in html
+    assert "focus9-score-source-audit-20261029.json" in html
+    assert "focus9-feed-delta-20261029.json" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
@@ -115,6 +134,9 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/nine-site-audit-20261027.json",
         "docs/evidence/focus9-immutable-files-20261029.json",
         "docs/evidence/fleet-feed.json",
+        "docs/evidence/focus9-feed-delta-20261029.json",
+        "docs/evidence/focus9-score-source-audit-20261029.json",
+        "docs/evidence/session-6ad5bdd2-inputs-20261029.json",
         "docs/evidence/protocol-preflight.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
         "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
@@ -147,6 +169,7 @@ def test_changed_score_claim_cannot_inherit_old_binary_measurement(tmp_path, mon
 
 
 def test_removed_owner_file_is_flagged_but_historical_link_stays_commit_pinned(tmp_path, monkeypatch):
+    import hashlib
     import json
 
     builder, _, _, _, _, fleet_path = _isolated_inputs(tmp_path, monkeypatch)
@@ -157,6 +180,10 @@ def test_removed_owner_file_is_flagged_but_historical_link_stays_commit_pinned(t
         if "gems24-h25-1-dotted-h19-5-d1-5" not in item["path"]
     ]
     fleet_path.write_text(json.dumps(feed))
+    delta_path = tmp_path / "docs/evidence/focus9-feed-delta-20261029.json"
+    delta = json.loads(delta_path.read_text())
+    delta["current_feed_sha256"] = hashlib.sha256(fleet_path.read_bytes()).hexdigest()
+    delta_path.write_text(json.dumps(delta))
     html = builder.focus9_summary()
     row = html.split('<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">', 1)[1].split('</tr>', 1)[0]
     assert 'CHANGED OR MISSING' in row
@@ -216,7 +243,7 @@ def test_same_score_different_name_does_not_inherit_audit(tmp_path, monkeypatch)
         writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    with pytest.raises(ValueError, match="not bound to the top score claim and name"):
+    with pytest.raises(ValueError, match="Current score-source audit disagrees with the dated claim/file/feed"):
         builder.focus9_summary()
 
 

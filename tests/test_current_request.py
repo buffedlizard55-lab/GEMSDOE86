@@ -46,7 +46,22 @@ def test_every_named_current_project_and_reported_submission_is_traceable():
     assert len(scored) == 115
     assert sum(1 for r in ledger if r["score"]) == 129  # 124 + 5 (2026-10-27 owner claims), never a retroactive archive edit
     assert all((name, value) in registered for name, value in scored)
-    assert all(r["evidence_class"].startswith("OWNER-REPORTED") for r in ledger if r["score"])
+    scored_rows = [r for r in ledger if r["score"]]
+    exceptional = {
+        (r["site"], r["submission"]): r["evidence_class"]
+        for r in scored_rows
+        if not r["evidence_class"].startswith("OWNER-REPORTED")
+    }
+    assert exceptional == {
+        ("GEMSDOE31", "h27-4-solo-d28-20261004-8acb75e1-nan"):
+            "USER-REPORTED / UNVERIFIED (current owner register; no organizer receipt)",
+        ("GEMSDOE33", "h33d-analog-tip-stepover-r30-20261004-cb490425926e"):
+            "CROSS-REPOSITORY OWNER-REPORTED / UNVERIFIED (D33 feed retired; no exact-file receipt)",
+        ("GEMSDOE28", "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan"):
+            "UNSUPPORTED AS GEMSDOE28 SCORE (current GEMSDOE33 register; no organizer receipt)",
+        ("GEMSDOE28", "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan"):
+            "USER-REPORTED / UNVERIFIED (current owner table; no organizer receipt)",
+    }
     assert set(unscored_named) == {
         "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
         "gems90-cnc-35000dots-20261024T084324Z",

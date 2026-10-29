@@ -1,4 +1,5 @@
 """Fail-closed presentation of historical downloads under feed drift."""
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -16,7 +17,10 @@ def inputs(tmp_path, monkeypatch):
                  'docs/evidence/nine-site-audit-20261027.json',
                  'docs/evidence/protocol-preflight.json',
                  'docs/evidence/registry-input-grid-review-20261028.json',
-                 'docs/evidence/focus9-immutable-files-20261029.json', 'docs/evidence/fleet-feed.json'):
+                 'docs/evidence/focus9-immutable-files-20261029.json', 'docs/evidence/fleet-feed.json',
+                 'docs/evidence/focus9-feed-delta-20261029.json',
+                 'docs/evidence/focus9-score-source-audit-20261029.json',
+                 'docs/evidence/session-6ad5bdd2-inputs-20261029.json'):
         target = tmp_path / path
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / path, target)
@@ -28,6 +32,14 @@ def row(html, site):
     return html.split(f'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/{site}/">', 1)[1].split('</tr>', 1)[0]
 
 
+def sync_feed_delta(inputs):
+    feed_path = inputs / 'docs/evidence/fleet-feed.json'
+    delta_path = inputs / 'docs/evidence/focus9-feed-delta-20261029.json'
+    delta = json.loads(delta_path.read_text())
+    delta['current_feed_sha256'] = hashlib.sha256(feed_path.read_bytes()).hexdigest()
+    delta_path.write_text(json.dumps(delta))
+
+
 def test_truncated_or_failed_feed_explicitly_unknown_without_erasing_historical_link(inputs):
     path = inputs / 'docs/evidence/fleet-feed.json'
     feed = json.loads(path.read_text())
@@ -36,6 +48,7 @@ def test_truncated_or_failed_feed_explicitly_unknown_without_erasing_historical_
     project['tree_truncated'] = True
     feed['refresh_complete'] = False
     path.write_text(json.dumps(feed))
+    sync_feed_delta(inputs)
     html = build_site.focus9_summary()
     r = row(html, 'GEMSDOE32')
     assert 'UNKNOWN' in r and 'SUBMIT: NO' in r
@@ -51,6 +64,7 @@ def test_changed_blob_is_not_confused_with_historical_audited_bytes(inputs):
     item = next(x for x in project['tif_git_objects'] if x['path'] == audited_path)
     item['git_blob_sha1'] = '0' * 40
     path.write_text(json.dumps(feed))
+    sync_feed_delta(inputs)
     assert 'CHANGED' in row(build_site.focus9_summary(), 'GEMSDOE32')
 
 

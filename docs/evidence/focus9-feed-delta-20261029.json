@@ -1,0 +1,173 @@
+{
+  "schema": "gems86.focus9-github-tif-metadata-delta.v1",
+  "evidence_class": "REPOSITORY-METADATA-DELTA",
+  "measured_utc": "2026-10-29T18:03:48+00:00",
+  "base_commit_for_prior_snapshot": "c3d790daa1a544eb3895a9d51af8d2bf264796cf",
+  "prior_feed_sha256": "cd6ebeb07b936e5454de82a8575b4983f47dedd36675801ed9501a8817b5eb61",
+  "current_feed_file": "docs/evidence/fleet-feed.json",
+  "current_feed_sha256": "3d3bbe04092c7f38e6fea2e56f98a07e9b05919d3729f59a3ba979413470649f",
+  "prior_feed_observed_utc": "2026-10-29T14:32:06+00:00",
+  "current_feed_observed_utc": "2026-10-29T18:03:48+00:00",
+  "projects_requested": 92,
+  "projects_snapshotted": 92,
+  "refresh_complete": true,
+  "organizer_receipts_obtained": 0,
+  "focus9_sites_with_new_tif_paths": 5,
+  "new_tif_path_count": 9,
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "repository": "buffedlizard55-lab/GEMSDOE24",
+      "previous_commit_sha": "f4d5a5ef3f3cf6cbe5a24ee0b29c6d592910d308",
+      "current_commit_sha": "63d5885b68f73c19a7746052ccb3e5690f3271b5",
+      "previous_source_commit_date": "2026-10-29T14:23:03Z",
+      "current_source_commit_date": "2026-10-29T17:52:55Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-nan.tif",
+          "git_blob_sha1": "4d4a3f0e7a1ceaa86229a5d3dec87dcd974853e7",
+          "git_blob_bytes": 1746784,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif",
+          "git_blob_sha1": "7b395a49e6f7b74383b08b7ce4df19e24696d880",
+          "git_blob_bytes": 976554,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gems24-nine-complement-seghgb-20261029-zeros.tif",
+          "git_blob_sha1": "99afd757092383c09468d6194144b9cb9374756e",
+          "git_blob_bytes": 240039,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE25",
+      "repository": "buffedlizard55-lab/GEMSDOE25",
+      "previous_commit_sha": "889d93dcde5bbc5812b2d68c5de830a8d8dc61a1",
+      "current_commit_sha": "ef939fe87041b6a8315a5f5210cd8a8eee93b2c4",
+      "previous_source_commit_date": "2026-10-29T14:20:46Z",
+      "current_source_commit_date": "2026-10-29T16:56:39Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif",
+          "git_blob_sha1": "3a2346a879c51e7ea13e7a9aa5da3afb2b87862f",
+          "git_blob_bytes": 766922,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "repository": "buffedlizard55-lab/GEMSDOE28",
+      "previous_commit_sha": "425d92738532efaaae959db85e833ea1d1f23f1c",
+      "current_commit_sha": "424bf795ed2183000c643d6e30a12ce2d4bf401d",
+      "previous_source_commit_date": "2026-10-29T14:27:35Z",
+      "current_source_commit_date": "2026-10-29T17:22:38Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/candidates/gems29-s29-hole-k20000-20261029-b68117a828cc-nan.tif",
+          "git_blob_sha1": "e64b1323934d1c1a1305524f3065ea5161d521a4",
+          "git_blob_bytes": 1548464,
+          "path_class": "docs/candidates",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE30",
+      "repository": "buffedlizard55-lab/GEMSDOE30",
+      "previous_commit_sha": "48935645078d2363a6d8feccb7bd9323b7d88a2b",
+      "current_commit_sha": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+      "previous_source_commit_date": "2026-10-29T14:26:27Z",
+      "current_source_commit_date": "2026-10-29T17:22:38Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/GEMSDOE30-concealed-geothermal-unique-20261029.tif",
+          "git_blob_sha1": "c93375a2b8c6d7996d22b55d5303f0ac3594ca03",
+          "git_blob_bytes": 429810,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA",
+          "download_decision": "NOT_BYTE_AUDITED; NO SUBMISSION AUTHORIZATION"
+        },
+        {
+          "path": "docs/downloads/GEMSDOE30-geothermal-unique-20261029T165045Z-3995629e.tif",
+          "git_blob_sha1": "418f8feb6234648bf77c61b436522945bbe508a0",
+          "git_blob_bytes": 322118,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNSCORED_NO_HOLDOUT_OWNER_DUPLICATE_STOP",
+          "download_decision": "OWNER_MARKED_NOT_FOR_DOWNLOAD_OR_SUBMISSION",
+          "owner_disposition": {
+            "source_repository": "buffedlizard55-lab/GEMSDOE30",
+            "source_path": "docs/score-ledger.csv",
+            "source_commit_sha": "eaff218f81e89fadc605650bb2cd55dd4b58e18d",
+            "claim": "NO HOLDOUT; DUPLICATE-STOP per own novelty receipt vs two geothermal-corridor rasters; NOT for download or submission (IR-30-098).",
+            "evidence_class": "OWNER-REPORTED DISPOSITION; not an organizer receipt"
+          }
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE31",
+      "repository": "buffedlizard55-lab/GEMSDOE31",
+      "previous_commit_sha": "703fe7282d10596cedc8e54a68992ce86cc4dd43",
+      "current_commit_sha": "7233d8715bb873163ab7122bebeca635880d7905",
+      "previous_source_commit_date": "2026-10-29T14:29:33Z",
+      "current_source_commit_date": "2026-10-29T17:06:18Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/gemsdoe31-h-steo-offcatalogue-stepper-20261029T164949Z-4bbba08696ed-allfinite.tif",
+          "git_blob_sha1": "79c2516e98b2d497c09baf8aad2303658155f7b4",
+          "git_blob_bytes": 74185,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h-steo-offcatalogue-stepper-20261029T164949Z-4bbba08696ed-nan.tif",
+          "git_blob_sha1": "8e9fa4ebd5971da5831266acd0550139fc5126fb",
+          "git_blob_bytes": 116805,
+          "path_class": "docs/downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "A new path or Git blob SHA is repository metadata, not proof of a submission, score, public availability, format validity, raster-byte SHA-256, uniqueness, or organizer receipt.",
+    "The Focus-9 score table is a dated owner-claim snapshot; these later path additions are not scored by this metadata refresh. Their score status is unknown, not zero.",
+    "Do not replace historical best claims or select an upload from this delta. A matching dated owner score claim and receipt would require separate evidence.",
+    "For the D30 165045Z geothermal-unique TIFF, the current owner score ledger explicitly records no holdout, a duplicate stop, and not for download/submission; another same-date D30 path has no corresponding audit in this evidence and remains unknown."
+  ],
+  "not_a_score": true,
+  "not_a_submission_receipt": true,
+  "score_status": "UNKNOWN_FOR_NEW_PATHS",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}
