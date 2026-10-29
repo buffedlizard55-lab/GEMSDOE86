@@ -69,5 +69,5 @@ def test_replacing_pair_with_self_pair_is_not_a_complete_matrix(inputs):
     value = audit['pairwise_overlap'].pop('GEMSDOE24->GEMSDOE25')
     audit['pairwise_overlap']['GEMSDOE24->GEMSDOE24'] = value
     path.write_text(json.dumps(audit))
-    with pytest.raises(ValueError, match='incomplete or has invalid pairs'):
+    with pytest.raises(ValueError, match='overlap audit is incomplete'):
         build_site.focus9_summary()

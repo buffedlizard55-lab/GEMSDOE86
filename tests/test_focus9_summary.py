@@ -197,3 +197,91 @@ def test_h87_page_does_not_present_missing_receipt_as_downloadable_tiff():
     assert "0 uncovered allowed pixels; 100.0% coverage" in html
     assert "Historical owner-reported result (not an estimate)" in html
     assert "Estimated score (owner-reported)" not in html
+
+
+def test_summary_orders_claims_descending_not_by_site_number():
+    import re
+    html = focus9_summary()
+    section = html[html.index('id="focus9-summary"'):]
+    rows = re.findall(r'<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/(GEMSDOE\d+)/', section)
+    assert rows[:9] == ["GEMSDOE32", "GEMSDOE36", "GEMSDOE28", "GEMSDOE31", "GEMSDOE33", "GEMSDOE25", "GEMSDOE30", "GEMSDOE24", "GEMSDOE27"]
+
+
+def test_same_score_different_name_does_not_inherit_audit(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, score_path, rows, _, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    next(row for row in rows if row["site"] == "GEMSDOE24")["submission"] = "different-unverified-file"
+    with score_path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="not bound to the top score claim and name"):
+        builder.focus9_summary()
+
+
+def test_replaced_directed_pair_does_not_pass_by_count(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["pairwise_overlap"]["GEMSDOE24->GEMSDOE24"] = audit["pairwise_overlap"].pop("GEMSDOE24->GEMSDOE25")
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="overlap audit is incomplete"):
+        builder.focus9_summary()
+
+
+def test_maxima_must_match_the_actual_directed_pairs(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["max_overlap_by_site"]["GEMSDOE24"] = {"value": 0.3, "vs": "GEMSDOE25"}
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="maximum disagrees"):
+        builder.focus9_summary()
+
+
+def test_duplicate_site_records_are_rejected(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, _, audit_path, _ = _isolated_inputs(tmp_path, monkeypatch)
+    audit = json.loads(audit_path.read_text())
+    audit["files"].append(audit["files"][0])
+    audit_path.write_text(json.dumps(audit))
+    with pytest.raises(ValueError, match="exactly the nine requested sites"):
+        builder.focus9_summary()
+
+
+def test_historical_projection_table_does_not_claim_global_uniqueness_or_validated_ci():
+    html = (ROOT / "docs/index.html").read_text()
+    assert "not a validated 95% prediction interval" in html
+    assert "Overlap vs measured discrete subset only" in html
+    assert "LEAKAGE-CANARY &amp; FULL-UNIVERSE UNIQUENESS" not in html
+    assert "Unique vs Focus-9 &amp; Discrete Fleet?" not in html
+    assert "historical profile reports 15/15 checks, although the archived format gate below failed" in html
+
+
+def test_nonfinite_dated_snapshot_score_is_rejected(tmp_path, monkeypatch):
+    import json
+    import pytest
+    builder, _, _, snapshot_path, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    snapshot = json.loads(snapshot_path.read_text())
+    row = next(r for r in snapshot["focus9_executive_summary"] if r["site"] == "GEMSDOE24")
+    row["highest_score_owner_reported"] = "NaN"
+    snapshot_path.write_text(json.dumps(snapshot))
+    with pytest.raises(ValueError, match="Invalid owner-reported score"):
+        builder.focus9_summary()
+
+
+def test_nonfinite_owner_claims_are_rejected(tmp_path, monkeypatch):
+    import csv
+    import pytest
+    builder, score_path, rows, _, _, _ = _isolated_inputs(tmp_path, monkeypatch)
+    next(row for row in rows if row["site"] == "GEMSDOE24")["score"] = "NaN"
+    with score_path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+    with pytest.raises(ValueError, match="Invalid owner-reported score"):
+        builder.focus9_summary()
