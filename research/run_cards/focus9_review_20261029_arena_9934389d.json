@@ -300,7 +300,7 @@
       "selector_decision_made": false
     },
     "pytest": {
-      "passed": 1159,
+      "passed": 1166,
       "skipped": 24,
       "warnings": 48,
       "subtests_passed": 58

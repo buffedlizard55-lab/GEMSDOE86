@@ -63,7 +63,7 @@ def test_current_source_review_is_pinned_to_metadata_refresh_and_fails_closed():
     assert verification["download_audit"]["research_tiffs_revalidated"] == 50
     assert verification["download_audit"]["selector_decision_made"] is False
     assert verification["pytest"] == {
-        "passed": 1159, "skipped": 24, "warnings": 48, "subtests_passed": 58,
+        "passed": 1166, "skipped": 24, "warnings": 48, "subtests_passed": 58,
     }
 
 
