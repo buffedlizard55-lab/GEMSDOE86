@@ -1,0 +1,654 @@
+{
+  "artifact_receipt_irregularity": {
+    "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "classification_for_this_report": "OWNER-REPORTED / UNVERIFIED pending an artifact-bound submission-page receipt",
+    "feed_organizer_receipts_obtained": 0,
+    "note": "The owner field name alone does not meet the project receipt rule. The fleet feed is repository metadata and found no organizer receipts; local build/format receipts are not portal-score receipts.",
+    "owner_field": "organizer_confirmed_dti",
+    "owner_field_value": 0.275,
+    "path_record": "historical_archived_artifacts_do_not_submit[0]",
+    "receipt_reference_in_record": false,
+    "site": "GEMSDOE36",
+    "source": {
+      "commit_sha": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
+      "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/e280188adbbe762e6b7ac6f3b8e105e8e7915026/registry/submission_build.json",
+      "path": "registry/submission_build.json",
+      "repository": "buffedlizard55-lab/GEMSDOE36"
+    }
+  },
+  "binding_gate": {
+    "candidate_generated": false,
+    "decision": "No candidate-generation, experiment or upload action under the unchanged standing protocol.",
+    "evidence": "docs/evidence/protocol-preflight.json",
+    "experiments_run": 0,
+    "limit": 0.7,
+    "literal_forward_overlap_for_any_nonempty_candidate": 1.0,
+    "native_features_available": false,
+    "prepared_arrays_available": false,
+    "shared_feature_cache_available": false,
+    "slots_used": 0,
+    "status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "uncovered_allowed_pixels": 0,
+    "witness_allowed_pixels": 5106385
+  },
+  "cohort_uniqueness": {
+    "directed_3px_comparisons": 72,
+    "evidence": "docs/evidence/nine-site-audit-20261027.json",
+    "evidence_class": "MEASURED-FILE-AUDIT; cohort-only",
+    "overlap_range": [
+      0.86719,
+      1.0
+    ],
+    "scope": "The previously byte-audited nine historical site-best files only; it is not a current full-registry scan, not a statement about all recent unmeasured TIFFs, and not a global uniqueness clearance.",
+    "site_best_files_passing_against_other_eight": 0,
+    "threshold": 0.7
+  },
+  "current_file_byte_revalidation": {
+    "attempted_method": "Fetch the current-main Git blob for the first audited TIFF and compute SHA-256 locally.",
+    "failure": "GitHub API returned HTTP 403: API rate limit exceeded; no current-main TIFF bytes were obtained or rehashed. The failed request was not retried.",
+    "historical_audit_remains": "docs/evidence/nine-site-audit-20261027.json contains SHA-256s and measured overlaps for the older, pinned 2026-10-27 file snapshot.",
+    "independent_current_sha256_verified": false,
+    "scope_effect": "Current feed confirms the same historical paths remain in current main-tree metadata, but current blob metadata has not been proven byte-identical to the historical audited TIFFs. The report links the immutable historical source commits used by that prior audit and states this limitation.",
+    "status": "BLOCKED_BY_GITHUB_API_RATE_LIMIT"
+  },
+  "decision": "DO NOT SUBMIT",
+  "evidence_class": "GITHUB-REPOSITORY-METADATA-AND-OWNER-CLAIM-RECONCILIATION; not a DrivenData submission-page receipt",
+  "fleet_refresh": {
+    "evidence_class": "REPOSITORY-METADATA",
+    "metadata_scope_note": "Current main-branch Git trees of the explicit owner-named repositories, not all historical rasters. Git blob SHA-1 and byte length are NOT raster SHA-256, format validation, uniqueness, organizer authentication, or a live score. Failed requests remain explicit.",
+    "new_rasters_generated": 0,
+    "organizer_receipts_obtained": 0,
+    "path": "docs/evidence/fleet-feed.json",
+    "projects_requested": 92,
+    "projects_snapshotted": 92,
+    "refresh_complete": true,
+    "refreshed_utc": "2026-10-29T14:33:00+00:00",
+    "submission_slots_used": 0
+  },
+  "focus9_current_repository_snapshots": [
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+          "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+          "value": "0.2477"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-26 rev2 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+          "submission": "gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+          "value": "0.0859"
+        }
+      ],
+      "current_main_commit": "9df09cf718ad975935d7c23a89b45f1f34866ac4",
+      "current_tree_tif_count": 84,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 62,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE24",
+      "site": "GEMSDOE24",
+      "source_commit_date_utc": "2026-10-29T14:32:22Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 1586666,
+          "git_blob_sha1": "458ca1327e74638042899998db92600e1014ae39",
+          "path": "docs/downloads/24GEMSDOE-ventrad-blind-geothermal-20261028-34b558b554fb-nan.tif"
+        },
+        {
+          "git_blob_bytes": 823778,
+          "git_blob_sha1": "7c8058d106afd6ceb3b7ad0e0bd4786f3186739b",
+          "path": "docs/downloads/24GEMSDOE-ventrad-blind-geothermal-20261028-34b558b554fb-zero.tif"
+        },
+        {
+          "git_blob_bytes": 826638,
+          "git_blob_sha1": "7e97905a4f22799df4bfb56f3b3bcc6340c0e505",
+          "path": "docs/downloads/24gems-blind-upwell-conduit-20261028T190216Z-5b6e6af2ed3b-zeros.tif"
+        },
+        {
+          "git_blob_bytes": 1516262,
+          "git_blob_sha1": "46c309b58e2655515c282e9dcb1b2dda455a5b35",
+          "path": "docs/downloads/24gems-interior-offlattice-geothermal-20261028T164358Z-e5a3c34b27db-nan.tif"
+        },
+        {
+          "git_blob_bytes": 757156,
+          "git_blob_sha1": "f0bde1e1e8ac5a61a5dbb9e129f5409f96de3272",
+          "path": "docs/downloads/24gems-interior-offlattice-geothermal-20261028T164358Z-e5a3c34b27db-zeros.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+          "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+          "value": "0.2600"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-26 rev2 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+          "submission": "h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+          "value": "0.0742"
+        }
+      ],
+      "current_main_commit": "889d93dcde5bbc5812b2d68c5de830a8d8dc61a1",
+      "current_tree_tif_count": 61,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 61,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE25",
+      "site": "GEMSDOE25",
+      "source_commit_date_utc": "2026-10-29T14:20:46Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 1539050,
+          "git_blob_sha1": "b693ff91aa823b518041688d072b88620e9f397a",
+          "path": "docs/downloads/gems25-gems25-unique-latticegap-geothermal-20261028-20261028-aa0104874adb-nan.tif"
+        },
+        {
+          "git_blob_bytes": 769298,
+          "git_blob_sha1": "5180681899923db4105121efecff2648ddea1924",
+          "path": "docs/downloads/gems25-vent-blind-fault-probe-20261028-407834b1710a-zero.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+          "submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+          "value": "0.2449"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-26 rev2 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+          "submission": "h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+          "value": "0.2190"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-27 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+          "submission": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite",
+          "value": "0.2250"
+        }
+      ],
+      "current_main_commit": "8e4979ea0af2796e30d1947b1821ba170d365d9d",
+      "current_tree_tif_count": 42,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 42,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE27",
+      "site": "GEMSDOE27",
+      "source_commit_date_utc": "2026-10-29T14:25:17Z",
+      "tif_git_objects_named_2026_10_28_or_29": []
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+          "value": "0.2708"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+          "value": "0.2649"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+          "value": "0.2710"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+          "value": "0.2707"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-26 rev2 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "s18-mxtp-20261025-3e95505c011a-allfinite",
+          "value": "0.0217"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-27 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+          "submission": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite",
+          "value": "0.0206"
+        }
+      ],
+      "current_main_commit": "9b39c1adbaa7b28215afcedd02c25e4521828c75",
+      "current_tree_tif_count": 52,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 52,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE28",
+      "site": "GEMSDOE28",
+      "source_commit_date_utc": "2026-10-29T14:32:14Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 1580182,
+          "git_blob_sha1": "adb4c4ecf6bf83ef182ec67cf716a22bcf8d8635",
+          "path": "docs/downloads/gems28-s25-pcse-scarp-energy-k37654-20261028-4af5ddbb4b50-nan.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+          "submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+          "value": "0.2600"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-26 rev2 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+          "submission": "MSDB1-edge44090-20261025-e7856ec3f14a",
+          "value": "0.1462"
+        }
+      ],
+      "current_main_commit": "dcfd0a065cade1caf160508334969b355b9aa525",
+      "current_tree_tif_count": 40,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 33,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE30",
+      "site": "GEMSDOE30",
+      "source_commit_date_utc": "2026-10-29T14:32:11Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 429810,
+          "git_blob_sha1": "c93375a2b8c6d7996d22b55d5303f0ac3594ca03",
+          "path": "docs/downloads/GEMSDOE30-concealed-geothermal-unique-20261029.tif"
+        },
+        {
+          "git_blob_bytes": 275756,
+          "git_blob_sha1": "9b963827bc413403fd9c4af7448b2a4f1bfd5bdd",
+          "path": "docs/downloads/gems30-offlattice-geothermal-structural-20261028-s7.tif"
+        },
+        {
+          "git_blob_bytes": 275728,
+          "git_blob_sha1": "5b00743d3ff835100d6a6cc6097d3ff7e38574c7",
+          "path": "docs/downloads/gems30-unique-offlattice-structural-20261028-s8.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+          "submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+          "value": "0.2708"
+        }
+      ],
+      "current_main_commit": "703fe7282d10596cedc8e54a68992ce86cc4dd43",
+      "current_tree_tif_count": 62,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 62,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE31",
+      "site": "GEMSDOE31",
+      "source_commit_date_utc": "2026-10-29T14:29:33Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 157743,
+          "git_blob_sha1": "d1d2e736f9f1b3620d5a22e88618de0b5bf2f5af",
+          "path": "docs/downloads/gems31-h31cc-basement-step-37654d-20261028-nan.tif"
+        },
+        {
+          "git_blob_bytes": 116314,
+          "git_blob_sha1": "eb601da9a740cb473bbcfd6021a5aea2e6e1d351",
+          "path": "docs/downloads/gems31-h31cc-basement-step-37654d-20261028-zeros.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED (no submission-page receipt located)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+          "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+          "value": "0.2778"
+        }
+      ],
+      "current_main_commit": "22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea",
+      "current_tree_tif_count": 79,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 76,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "site": "GEMSDOE32",
+      "source_commit_date_utc": "2026-10-29T14:25:27Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 344765,
+          "git_blob_sha1": "893f9e6cf58429c814b44bf16a8100e9e01c7599",
+          "path": "docs/downloads/gemsdoe32-euler-e1-37654-20261028T000236Z-71f0a187-nan.tif"
+        },
+        {
+          "git_blob_bytes": 208815,
+          "git_blob_sha1": "c23db96677d4ae0928098403027ee2b795a77714",
+          "path": "docs/downloads/gemsdoe32-euler-e1-37654-20261028T000236Z-71f0a187-zeros.tif"
+        },
+        {
+          "git_blob_bytes": 345414,
+          "git_blob_sha1": "558d1289508211ac1753a15f46f20ac2f0449534",
+          "path": "docs/downloads/gemsdoe32-h51-ewsp-crack-poisson-axial28-37654-20261028T123000Z-bdf25d8c-nan.tif"
+        },
+        {
+          "git_blob_bytes": 211076,
+          "git_blob_sha1": "e574acc1ad92227b82f6404390fddf20da25312f",
+          "path": "docs/downloads/gemsdoe32-h51-ewsp-crack-poisson-axial28-37654-20261028T123000Z-bdf25d8c-zeros.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+          "submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+          "value": "0.2632"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-27 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+          "submission": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+          "value": "0.0963"
+        }
+      ],
+      "current_main_commit": "3eaf85efb49f364b84f8be04e8b084b12d0303b9",
+      "current_tree_tif_count": 44,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 42,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE33",
+      "site": "GEMSDOE33",
+      "source_commit_date_utc": "2026-10-28T16:45:06Z",
+      "tif_git_objects_named_2026_10_28_or_29": [
+        {
+          "git_blob_bytes": 1591446,
+          "git_blob_sha1": "9a04c8f03e852fd6a6043d45c78535b0a7c402f9",
+          "path": "docs/downloads/gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-nan.tif"
+        },
+        {
+          "git_blob_bytes": 826912,
+          "git_blob_sha1": "58f3c9729a48e1effbda5e11cce9edb52b7fd3a9",
+          "path": "docs/downloads/gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif"
+        },
+        {
+          "git_blob_bytes": 1590020,
+          "git_blob_sha1": "0b4e928997c65569f2c9162aac0ccac2dfe8c874",
+          "path": "docs/downloads/gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-nan.tif"
+        },
+        {
+          "git_blob_bytes": 824996,
+          "git_blob_sha1": "5c21e444fd3a26d4442e9684fc7ed776b2b9e471",
+          "path": "docs/downloads/gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-zeros.tif"
+        },
+        {
+          "git_blob_bytes": 1589698,
+          "git_blob_sha1": "002ff81b7ffc41cfe49f5728152b9af6042cff37",
+          "path": "docs/downloads/gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-nan.tif"
+        },
+        {
+          "git_blob_bytes": 824788,
+          "git_blob_sha1": "cc86fe31af101914eae73ce31001fff31fa8bbee",
+          "path": "docs/downloads/gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-zeros.tif"
+        }
+      ]
+    },
+    {
+      "current_feed_owner_reported_results": [
+        {
+          "evidence_class": "OWNER-REPORTED",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+          "submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+          "value": "0.2750"
+        },
+        {
+          "evidence_class": "OWNER-REPORTED (2026-10-27 Focus-9 request; no organizer receipt)",
+          "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+          "submission": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+          "value": "0.1647"
+        }
+      ],
+      "current_main_commit": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
+      "current_tree_tif_count": 23,
+      "interpretation": "GitHub tree metadata only; these objects were not downloaded, decoded, score-linked, or independently validated in this review.",
+      "organizer_score_verified": false,
+      "published_download_tif_count": 23,
+      "raster_bytes_verified": false,
+      "repository": "buffedlizard55-lab/GEMSDOE36",
+      "site": "GEMSDOE36",
+      "source_commit_date_utc": "2026-10-28T16:44:04Z",
+      "tif_git_objects_named_2026_10_28_or_29": []
+    }
+  ],
+  "focus9_current_repository_snapshots_note": "The refreshed current-main tree and extracted owner_reported_results fields are metadata/claims only. Recent TIFF Git paths are not byte-audited, and no claim that a new path supersedes a historical score is made.",
+  "h33_interpretation": {
+    "causality_asserted": false,
+    "collar_definition": "1 < d_cat <= 2 pixels",
+    "dot_count_h33": 37654,
+    "dot_count_parent": 40199,
+    "holdout_context": {
+      "ci95": [
+        0.08281755542060633,
+        0.10833633773445987
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "instrument": "buffered_whole_components_loqo; fold-fair H33-2-B2 control",
+      "not_comparable_as": "leaderboard score or causal estimate",
+      "source": "docs/evidence/h86b-gfco-run-card.json",
+      "value": 0.09608619416803546,
+      "withheld_positive_count": 11321
+    },
+    "mechanism_interpretation": "Pruning near-catalogue dots could reduce false-positive mass under the 300 m triangular distance-weighted Tversky objective (alpha=0.2, beta=0.8), while retaining far-field coverage. This is only a plausible metric mechanism; no controlled experiment establishes why the owner-reported score changed.",
+    "owner_reported_parent_score": 0.2708,
+    "owner_reported_public_score": 0.2778,
+    "parent": "GEMSDOE28 h27-4 / D28 lineage",
+    "removed_near_catalogue_collar_dots": 2545,
+    "score_delta_owner_claims": 0.007,
+    "submission": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros"
+  },
+  "hypotheses": {
+    "count": 3,
+    "official_free_data_note": "Official source links and local-availability caveats are recorded in the hypothesis register. The source hosts are outside current egress, so this review did not freshly verify live downloads, AOI coverage, or current product terms.",
+    "rank_1": "Age-matched Pleistocene Lake Lahontan shoreline displacement using 3DEP 1 m DEM + NGMDB age/level geometry; high cost; raw DEM and dated geometry absent; AOI coverage not currently verified.",
+    "rank_2": "Time-ordered ComCat earthquake-sequence migration along blind fault planes; very high cost; no local time series; event completeness and AOI coverage not currently verified.",
+    "rank_3": "Age-tagged geologic-unit contact termination/offset graph; high cost; no attributed polygons or verified product coverage locally.",
+    "register": "registry/focus9_novel_hypotheses_20261028.json",
+    "status": "PROPOSED_NOT_RUN"
+  },
+  "leaderboard_conflicts": [
+    {
+      "accepted_as_current_official_score": false,
+      "claim_role": "latest public-leaderboard value asserted in owner repository",
+      "label": "OWNER-REPORTED / UNVERIFIED; not a submission-page receipt",
+      "participant": "DARD",
+      "source": {
+        "commit_sha": "889d93dcde5bbc5812b2d68c5de830a8d8dc61a1",
+        "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/889d93dcde5bbc5812b2d68c5de830a8d8dc61a1/docs/data/live_scores.json",
+        "path": "docs/data/live_scores.json",
+        "repository": "buffedlizard55-lab/GEMSDOE25"
+      },
+      "source_generated_utc": "2026-10-27",
+      "source_record": "leaderboard_high_score_latest_claim.best_public_dti_latest_claim",
+      "source_status": "The same JSON explicitly says owner/user-reported and not independently verified via DrivenData; its earlier 0.3195 is said to be task-context data, not fetched from the official page.",
+      "value": 0.4413
+    },
+    {
+      "accepted_as_current_official_score": false,
+      "claim_role": "earlier user/owner-supplied snapshot value",
+      "label": "OWNER-REPORTED / UNVERIFIED; not a submission-page receipt",
+      "participant": "DARD / rank attribution varies by dated snapshot",
+      "source": {
+        "commit_sha": "889d93dcde5bbc5812b2d68c5de830a8d8dc61a1",
+        "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/889d93dcde5bbc5812b2d68c5de830a8d8dc61a1/docs/data/live_scores.json",
+        "path": "docs/data/live_scores.json",
+        "repository": "buffedlizard55-lab/GEMSDOE25"
+      },
+      "source_generated_utc": "2026-10-27",
+      "source_record": "leaderboard_snapshot.top10[0].best_public_dti",
+      "source_status": "The owner source says values were supplied in task context and the official page/receipt was not fetched or independently verified.",
+      "value": 0.3195
+    },
+    {
+      "accepted_as_current_official_score": false,
+      "claim_role": "top row in owner-repo-stored public-leaderboard snapshot",
+      "label": "OWNER-REPO-STORED SNAPSHOT CLAIM; not an artifact receipt and not verified in this review",
+      "participant": "xiaofanhu",
+      "source": {
+        "commit_sha": "22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea",
+        "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea/evidence/live_leaderboard_snapshot_20261028.json",
+        "path": "evidence/live_leaderboard_snapshot_20261028.json",
+        "repository": "buffedlizard55-lab/GEMSDOE32"
+      },
+      "source_observed_utc": "2026-10-28T12:15:00Z",
+      "source_record": "rows[0].score",
+      "source_status": "The JSON says verified_via Arena fetch_page. That automated retrieval conflicts with AGENTS.md Rule 9; record it as a provenance/policy irregularity only, not as an accepted official current score. Snapshot itself says it is not a receipt for this repository\u2019s files.",
+      "value": 0.4544
+    },
+    {
+      "accepted_as_current_official_score": false,
+      "claim_role": "earlier owner-repo-stored public-leaderboard snapshot row",
+      "label": "OWNER-REPO-STORED SNAPSHOT CLAIM; not verified in this review",
+      "participant": "xiaofanhu",
+      "source": {
+        "commit_sha": "22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea",
+        "github_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea/evidence/live_leaderboard_snapshot_20261026.json",
+        "path": "evidence/live_leaderboard_snapshot_20261026.json",
+        "repository": "buffedlizard55-lab/GEMSDOE32"
+      },
+      "source_observed_utc": "2026-10-26T04:32:28Z",
+      "source_record": "observed_rows[0].score",
+      "source_status": "The archived JSON attributes this to Arena fetch_page; this is not accepted as current or authorized verified evidence under AGENTS.md Rule 9.",
+      "value": 0.4437
+    }
+  ],
+  "new_tif_metadata": {
+    "date_token_filter": "20261028 or 20261029 in current main-tree TIFF path",
+    "note": "Includes encoding twins and GitHub blob metadata. Not a count of distinct predictions, not a score claim, and not validation of current TIFF bytes.",
+    "path_count": 23,
+    "path_count_is_raster_count": false,
+    "reconciliation": "The historical score table is the highest reported score claim currently preserved in the cited owner/user ledgers for each site. Newly listed TIFF Git objects do not become scored submissions without evidence linking a score receipt to exact bytes. Their score/identity remains unknown unless an artifact-bound source is provided."
+  },
+  "next_steps": [
+    "Obtain a human-browser capture/receipt of the current DrivenData public leaderboard plus the exact submission-page receipt for the GEMSDOE36 H36 artifact and any Focus-9 file to be classified ORGANIZER-CONFIRMED; do not use automated access.",
+    "Keep all 2026-10-28/29 TIFF Git objects unscored/unknown until exact bytes and score evidence are bound; download and byte-validate only if needed for forensic research after protocol authorization.",
+    "Resolve the full-support witness contradiction and obtain the authorized method-lane assignment plus native feature stack/prepared arrays/shared cache before proposing any new candidate or holdout.",
+    "After the above gates are met, carry the three unrun geological hypotheses through fresh official/free-source coverage checks and preregistered blocked holdout tests; no numeric projection is currently supportable."
+  ],
+  "reviewed_score_inputs": {
+    "current_claims_extracted_by_fleet_feed": "docs/evidence/fleet-feed.json::projects[].owner_reported_results",
+    "dated_score_and_claim_snapshot": "docs/evidence/focus9-and-siblings-forensics-20261027.json",
+    "estimate_status": "NOT ESTIMATED: no authorized current method lane or same-pipeline prospective evaluation; the historical leaderboard claims and holdout metrics are not a forecasting model.",
+    "highest_owner_reported_claims": [
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE24",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+        "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+        "value": 0.2477
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE25",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+        "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+        "value": 0.26
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE27",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+        "submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+        "value": 0.2449
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE28",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+        "submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+        "value": 0.271
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE30",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+        "submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+        "value": 0.26
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE31",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+        "submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+        "value": 0.2708
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE32",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+        "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+        "value": 0.2778
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE33",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+        "submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+        "value": 0.2632
+      },
+      {
+        "evidence_class": "OWNER-REPORTED / UNVERIFIED; no artifact-bound submission-page receipt",
+        "site": "GEMSDOE36",
+        "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+        "submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+        "value": 0.275
+      }
+    ],
+    "historical_binary_and_pairwise_audit": "docs/evidence/nine-site-audit-20261027.json",
+    "projection_or_prospective_score_estimate": null,
+    "score_class_rule": "OWNER-REPORTED unless an artifact-linked organizer submission-page receipt is available. No live public leaderboard value is used as the score of any Focus-9 TIFF.",
+    "site_best_score_ledger": "registry/prior_scores.csv"
+  },
+  "reviewed_utc": "2026-10-29T14:33:00Z",
+  "schema": "gems86.focus9-source-review.v1",
+  "scope": {
+    "focus9_sites": [
+      "GEMSDOE24",
+      "GEMSDOE25",
+      "GEMSDOE27",
+      "GEMSDOE28",
+      "GEMSDOE30",
+      "GEMSDOE31",
+      "GEMSDOE32",
+      "GEMSDOE33",
+      "GEMSDOE36"
+    ],
+    "no_hypothesis_lane_assigned": true,
+    "no_new_candidate_or_experiment_or_slot": true,
+    "official_drivendata_page_accessed_this_review": false,
+    "purpose": "Reconcile the previous nine-site owner-claim table against current pinned public repository trees and label competing leaderboard assertions without accessing DrivenData.",
+    "reason_not_accessed": "AGENTS.md Rule 9 prohibits automated access to drivendata.org; current score/quota status requires an authorized human-browser receipt."
+  },
+  "session_branch": "arena/9934389d-gemsdoe86"
+}

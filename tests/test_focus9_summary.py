@@ -42,7 +42,7 @@ def test_focus9_uses_latest_owner_claims_and_scoped_pairwise_measurements():
 def test_scores_download_status_and_h33_causality_are_labeled():
 
     html = focus9_summary()
-    assert "0 ORGANIZER-CONFIRMED receipts" in html
+    assert "0 organizer receipts" in html
     assert "DOWNLOAD FOR AUDIT ONLY" in html
     assert "SUBMIT: NO" in html
     assert "single-band GeoTIFF" in html
@@ -52,6 +52,12 @@ def test_scores_download_status_and_h33_causality_are_labeled():
     assert "not a controlled causal test" in html
     assert "separate H32d run (0.2591" in html
     assert "no upload authorized" in html
+    assert "Prospective estimate" in html and html.count("NOT ESTIMATED") == 9
+    assert "23 TIFF Git paths" in html and "HTTP 403 rate limiting" in html
+    assert "0.4544" in html and "0.4437" in html
+    assert "organizer_confirmed_dti" in html
+    assert "HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld positives) 0.0961 [0.0828, 0.1083]" in html
+    assert "/blob/1398109a23f04a2ace71c1bd2f527cfba87860b5/" in html
 
 
 def test_current_status_banner_fails_closed_and_names_scope():
@@ -97,8 +103,9 @@ def test_generated_executive_summary_links_current_hypotheses():
 def test_home_links_the_current_review_and_hypothesis_register():
     html = (ROOT / "docs/index.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "SESSION_20261028_ARENA_27FEF6BB_REVIEW.md" in html
-    assert "focus9_review_20261028_arena_27fef6bb.json" in html
+    assert "SESSION_20261029_ARENA_9934389D_REVIEW.md" in html
+    assert "focus9_review_20261029_arena_9934389d.json" in html
+    assert "focus9-source-review-20261029.json" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
@@ -114,6 +121,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
         "docs/evidence/nine-site-audit-20261027.json",
         "docs/evidence/fleet-feed.json",
+        "docs/evidence/focus9-source-review-20261029.json",
         "docs/evidence/protocol-preflight.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
         "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",

@@ -26,7 +26,9 @@ def test_h33_claim_and_holdout_scores_show_evidence_class_and_context():
     html = (DOCS / "index.html").read_text()
     # Fleet-page scores are owner claims, not organizer-confirmed results.
     assert "0.2778</code> OWNER-REPORTED; not organizer-confirmed" in html
-    assert "0.3195</code> and <code>0.4413</code> current-leaderboard values are OWNER-REPORTED and unverified" in html
+    assert "The owner/user claims <code>0.3195</code> and <code>0.4413</code> conflict with owner-repo-stored <code>0.4437</code>/<code>0.4544</code> leaderboard snapshots" in html
+    assert "No current global leader is verified here" in html
+    assert "not accepted under AGENTS.md Rule 9" in html
     # Every visible holdout score includes its evaluator, withheld-positive count,
     # and interval; the paired delta is explicitly labeled as holdout evidence.
     assert "<strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives)" in html
