@@ -1,5 +1,7 @@
 # GEMSDOE86 — auditable geothermal-fault research
 
+> **Current checkout review · 2026-10-29 · branch `arena/19aee8ac-gemsdoe86` · DO NOT SUBMIT.** Current live input audit found training features, prepared arrays, shared cache, and the protocol witness missing; no candidate or experiment was run. See [branch review](research/SESSION_20261029_ARENA_19AEE8AC_REVIEW.md) and [run card](research/run_cards/repo_review_20261029_arena_19aee8ac.json). Historical receipts are from other workspace/session contexts and do not prove these large ignored files exist now.
+
 ## START HERE — standing project prompt and executive summary
 
 > **Decision (2026-10-29): DO NOT SUBMIT.** No unique TIFF was generated this session. Every file below is for review only.
