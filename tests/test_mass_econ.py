@@ -118,6 +118,8 @@ def test_mass_bar_reproduces_the_two_thresholds():
     bar = ME.mass_bar(0.2778)
     assert bar["alpha_dti"] == pytest.approx(0.05556, abs=1e-5)
     assert bar["add_bar_nonredundant_dot"]["max_distance_px"] == pytest.approx(2.8333, abs=1e-3)
+    assert "special case dT == k" in bar["add_bar_nonredundant_dot"]["rule"]
+    assert "not a dot-to-dot separation rule" in bar["add_bar_nonredundant_dot"]["note"]
     assert bar["remove_bar"]["coefficient_on_fp_charge"] == pytest.approx(0.0588, abs=1e-3)
 
 

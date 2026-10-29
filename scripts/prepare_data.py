@@ -5,7 +5,9 @@ Reads training_features.tif (19 bands), labels.tif/existing_faults.tif, and
 sample_submission.tif from data_dir, audits CRS (EPSG:32611), shape (3730x3292),
 100 m geotransform, and sentinel pixels inside the 5,167,373-pixel footprint,
 writes per-band .npy arrays to work_dir/bands when training_features.tif is present,
-and saves the full audit receipt to data/prepared_manifest.json.
+and saves the live audit receipt next to the prepared arrays at
+.cache/gems_work/prepared_manifest.json by default. The tracked
+``data/prepared_manifest.json`` is a historical receipt, not a live cache.
 """
 from __future__ import annotations
 
@@ -148,6 +150,13 @@ def prepare(
         work_dir = Path(work_dir).resolve()
 
     bands_dir = work_dir / "bands"
+    # The repository's tracked manifest is frozen historical evidence used by
+    # the site and must never be replaced by a new workspace receipt, even if
+    # explicitly supplied or reached through a symlink.
+    out_path = (Path(manifest_path).resolve() if manifest_path is not None
+                else work_dir / "prepared_manifest.json")
+    if out_path.resolve() == (ROOT / "data/prepared_manifest.json").resolve():
+        raise ValueError("Cannot overwrite the frozen historical preparation manifest")
     # Do not publish arrays or a manifest until ALL input identities and grids
     # pass. A same-shape CRS/transform mismatch used to be silently accepted.
 
@@ -292,7 +301,6 @@ def prepare(
             "bands": band_stats,
         }
 
-        out_path = Path(manifest_path) if manifest_path is not None else (ROOT / "data" / "prepared_manifest.json")
         manifest["prepared_arrays"] = [dict(file=_rel_or_str(bands_dir / path.name),
             sha256=sha256_file(path), bytes=path.stat().st_size) for path in sorted(stage.glob("*.npy"))]
         manifest["publication"] = dict(complete_array_set_staged=True, rollback_on_exception=True,
@@ -306,7 +314,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", default=None, help="Directory containing competition TIFFs (data/ or data/bridge/)")
     parser.add_argument("--work-dir", default=None, help="Directory for band cache output (.cache/gems_work/)")
-    parser.add_argument("--manifest", default=None, help="Optional output path for prepared_manifest.json")
+    parser.add_argument("--manifest", default=None, help="Output path for live receipt (default: <work-dir>/prepared_manifest.json)")
     parser.add_argument("--fetch", action="store_true", help="Attempt to restore missing files via scripts/restore_data.py")
     args = parser.parse_args()
 

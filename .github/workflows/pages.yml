@@ -18,7 +18,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # The release remeasurement and full suite both run in this job; allow
+    # enough time for the daily feed to deploy instead of timing out mid-audit.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
