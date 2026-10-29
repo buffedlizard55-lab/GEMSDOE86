@@ -1,5 +1,7 @@
 # GEMSDOE86 — auditable geothermal-fault research
 
+> **Current checkout review · 2026-10-29 · branch `arena/19aee8ac-gemsdoe86` · DO NOT SUBMIT.** Current live input audit found training features, prepared arrays, shared cache, and the protocol witness missing; no candidate or experiment was run. See [branch review](research/SESSION_20261029_ARENA_19AEE8AC_REVIEW.md) and [run card](research/run_cards/repo_review_20261029_arena_19aee8ac.json). The following prior-session summary is historical evidence from a different workspace, not proof those ignored large files exist now.
+>
 > **SESSION 2026-10-29 · branch `arena/d744540f-gemsdoe86` · DECISION: DO NOT SUBMIT — no new TIFF was generated.**
 >
 > - **Download is not submit.** The nine listed best owner files are downloadable for review (table in [the 2026-10-29 review §1](research/SESSION_20261029_NINE_SITE_LINEAGE_REVIEW.md)). **None is OK to submit:** each is non-unique against the other eight (72 of 72 ordered pairs exceed the 0.70 rule; minimum 0.8672), none has an organizer receipt, and the literal uniqueness gate is unsatisfiable (`STOP_LITERAL_OVERLAP_UNSATISFIABLE`).

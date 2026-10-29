@@ -1,0 +1,66 @@
+{
+  "schema": "gems86.repository-review.v1",
+  "review_date_utc": "2026-10-29",
+  "branch": "arena/19aee8ac-gemsdoe86",
+  "hypothesis": "No new lane was selected or run; this review assesses repository readiness and historical Focus-9 evidence only.",
+  "mechanism": "N/A: no candidate experiment. A smaller submission may reduce false-positive cost under the asymmetric metric, but the historical H33 claim does not establish a causal effect.",
+  "named_non_fault_process": "N/A for an unrun method; relevant existing-proposal mimics include shoreline erosion/terraces, geothermal or quarry seismicity, and depositional/intrusive geologic contacts.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_NO_LANE_ASSIGNED",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null
+  },
+  "registry_comparison": {
+    "evidence_class": "REGISTRY-MEASUREMENT (historical cohort evidence only)",
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "scope": "The existing nine-site executive table contains archived pairwise comparisons. No candidate was generated and no current full-registry check was performed in this review.",
+    "status": "NOT_APPLICABLE_NO_CANDIDATE"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": "Repository review only; no candidate generated; DO NOT SUBMIT.",
+  "submission_note_characters": 62,
+  "verdict": "negative",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "blockers": [
+    "native training_features.tif missing in current workspace",
+    "21 prepared arrays absent",
+    "actual shared template feature cache absent / provenance not established",
+    "protocol preflight witness data/bridge/registry/dense-witness.tif missing",
+    "no lane assigned and no holdout run",
+    "no candidate exists for registry uniqueness or TIFF validation"
+  ],
+  "verification": {
+    "audit_workspace_inputs": "NATIVE_INPUTS_MISSING_OR_INVALID; NATIVE_PREPARATION_NOT_AVAILABLE; SHARED_FEATURE_CACHE_NOT_ESTABLISHED",
+    "protocol_preflight": "FAILED_CLOSED FileNotFoundError for pinned witness; no new measurement produced",
+    "audit_release": "PASS 50/50 local registered artifacts; DO NOT SUBMIT",
+    "build_site_check": "PASS",
+    "check_site": "PASS",
+    "pytest": "PASS 1189 passed, 24 skipped, 48 warnings, 58 subtests; 516.58s",
+    "git_diff_check": "PASS"
+  },
+  "score_claims": {
+    "highest_focus9_claim": {
+      "site": "GEMSDOE32",
+      "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "value": 0.2778,
+      "evidence_class": "OWNER-REPORTED",
+      "organizer_receipt": false
+    },
+    "organizer_confirmed_focus9_scores": 0,
+    "predicted_score": null
+  }
+}
