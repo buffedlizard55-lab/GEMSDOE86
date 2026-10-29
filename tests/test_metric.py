@@ -46,6 +46,48 @@ def test_perfect_prediction_is_one():
     assert r["dti"] > 0.999
 
 
+def test_marginal_truth_credit_can_exceed_one_dot_self_credit():
+    """Synthetic counterexample to the pinned shared metric's dT <= k prose.
+
+    One dot can credit several truth cells. This does not modify the pinned
+    evaluator or imply any competition or holdout score.
+    """
+    truth = np.zeros((9, 9), bool)
+    truth[4, 3:6] = True
+    before = np.zeros_like(truth)
+    after = before.copy()
+    after[4, 4] = True
+    r0 = metric.dti_binary(before, truth)
+    r1 = metric.dti_binary(after, truth)
+    d_t = r1["tp"] - r0["tp"]
+    k_self = 1.0 - (r1["fp"] - r0["fp"])
+    assert np.isclose(d_t, 1.0 + 2.0 * (2.0 / 3.0))
+    assert np.isclose(k_self, 1.0)
+    assert d_t > k_self
+    assert metric.marginal_accept(d_t, k_self, r0["tp"], 0.0, 0, truth.sum())
+    assert r1["dti"] > r0["dti"]
+
+
+def test_exact_marginal_accept_agrees_with_synthetic_additions():
+    rng = np.random.default_rng(20261029)
+    for _ in range(100):
+        truth = rng.random((9, 9)) < 0.15
+        dots = rng.random((9, 9)) < 0.08
+        empty = np.argwhere(~dots)
+        y, x = empty[rng.integers(len(empty))]
+        r0 = metric.dti_binary(dots, truth)
+        new_dots = dots.copy()
+        new_dots[y, x] = True
+        r1 = metric.dti_binary(new_dots, truth)
+        if abs(r1["dti"] - r0["dti"]) < 1e-12:
+            continue  # Float rounding at exact equality is not a strict improvement.
+        d_t = r1["tp"] - r0["tp"]
+        k_self = 1.0 - (r1["fp"] - r0["fp"])
+        n = int(dots.sum())
+        m = n - r0["fp"]
+        assert metric.marginal_accept(d_t, k_self, r0["tp"], m, n, int(truth.sum())) == (r1["dti"] > r0["dti"])
+
+
 def test_out_of_range_rejected():
     pred, truth = _toy()
     bad = pred.copy()

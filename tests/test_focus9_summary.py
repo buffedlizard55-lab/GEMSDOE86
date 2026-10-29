@@ -113,6 +113,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "registry/prior_scores.csv",
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
         "docs/evidence/nine-site-audit-20261027.json",
+        "docs/evidence/focus9-immutable-files-20261029.json",
         "docs/evidence/fleet-feed.json",
         "docs/evidence/protocol-preflight.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
@@ -145,9 +146,8 @@ def test_changed_score_claim_cannot_inherit_old_binary_measurement(tmp_path, mon
         builder.focus9_summary()
 
 
-def test_removed_owner_file_cannot_keep_a_download_link(tmp_path, monkeypatch):
+def test_removed_owner_file_is_flagged_but_historical_link_stays_commit_pinned(tmp_path, monkeypatch):
     import json
-    import pytest
 
     builder, _, _, _, _, fleet_path = _isolated_inputs(tmp_path, monkeypatch)
     feed = json.loads(fleet_path.read_text())
@@ -157,8 +157,11 @@ def test_removed_owner_file_cannot_keep_a_download_link(tmp_path, monkeypatch):
         if "gems24-h25-1-dotted-h19-5-d1-5" not in item["path"]
     ]
     fleet_path.write_text(json.dumps(feed))
-    with pytest.raises(ValueError, match="no longer in the refreshed main tree"):
-        builder.focus9_summary()
+    html = builder.focus9_summary()
+    row = html.split('<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">', 1)[1].split('</tr>', 1)[0]
+    assert 'CHANGED OR MISSING' in row
+    assert '/raw/f4d5a5ef3f3cf6cbe5a24ee0b29c6d592910d308/' in row
+    assert 'SUBMIT: NO' in row
 
 
 def test_incomplete_nine_site_pairwise_audit_fails_closed(tmp_path, monkeypatch):

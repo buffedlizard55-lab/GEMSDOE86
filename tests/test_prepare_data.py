@@ -42,6 +42,38 @@ class PrepareDataTests(unittest.TestCase):
         self.assertEqual(json.loads(tracked_manifest.read_text())["grid"]["transform"],
                          [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0])
 
+    def test_default_manifest_is_local_to_work_dir_and_preserves_history(self):
+        """Preparing native data must not rewrite the tracked, pinned historical receipt."""
+        import hashlib
+        import shutil
+        historical = ROOT / "data/prepared_manifest.json"
+        before = hashlib.sha256(historical.read_bytes()).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            inputs = tmp_path / "inputs"
+            inputs.mkdir()
+            for name in ("sample_submission.tif", "existing_faults.tif"):
+                shutil.copyfile(ROOT / "data/bridge" / name, inputs / name)
+            work = tmp_path / "work"
+            result = prepare_data.prepare(data_dir=inputs, work_dir=work)
+            live = work / "prepared_manifest.json"
+            self.assertTrue(live.is_file())
+            self.assertEqual(json.loads(live.read_text()), result)
+            self.assertFalse(result["counts"]["has_features"])
+        self.assertEqual(hashlib.sha256(historical.read_bytes()).hexdigest(), before)
+
+    def test_historical_manifest_cannot_be_targeted_even_explicitly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            work = Path(tmp) / "work"
+            with self.assertRaisesRegex(ValueError, "frozen historical"):
+                prepare_data.prepare(data_dir=Path(tmp), work_dir=work,
+                                     manifest_path=ROOT / "data/prepared_manifest.json")
+            # Resolve symlinks too; a different spelling must not bypass the gate.
+            link = Path(tmp) / "historical-link.json"
+            link.symlink_to(ROOT / "data/prepared_manifest.json")
+            with self.assertRaisesRegex(ValueError, "frozen historical"):
+                prepare_data.prepare(data_dir=Path(tmp), work_dir=work, manifest_path=link)
+
     def test_missing_files_raises_filenotfound(self):
         with tempfile.TemporaryDirectory() as empty_dir:
             with self.assertRaises(FileNotFoundError):

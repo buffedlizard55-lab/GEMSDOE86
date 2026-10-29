@@ -16,6 +16,10 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_release import build_report, strict_json, sha256, session_card  # noqa: E402
+from scripts.focus9_provenance import (  # noqa: E402
+    RECEIPT as FOCUS9_RECEIPT, _projects as focus9_projects, current_tree_status,
+    immutable_download_url, validate_receipt as validate_focus9_receipt,
+)
 
 REPO = "https://github.com/buffedlizard55-lab/GEMSDOE86"
 
@@ -566,14 +570,14 @@ def h86i_hvfd_answer(card: dict) -> str:
     name = card["submission_name"]
     note_str = card["note"]
     return f'''<section class="callout" id="h86i-hvfd"><span class="badge bad">CURRENT LANE H86I-HVFD: DO NOT SUBMIT · AUDIT DOWNLOAD ONLY</span>
-<h2>2026-10-25 latest lane (H86I-HVFD): unique Hydrothermal-Vent &amp; Basement-Flexure GeoTIFF generated (`HOLDOUT-DTI = {e2["dti"]:.4f}` beats fold-fair `R0 = {r0["dti"]:.4f}`, auto-rejected vs `E3 = {e3["dti"]:.4f}` &amp; `KSLB = {best["dti"]:.4f}`)</h2>
+<h2>2026-10-25 historical lane (H86I-HVFD): Hydrothermal-Vent &amp; Basement-Flexure research GeoTIFF (`HOLDOUT-DTI = {e2["dti"]:.4f}` beats fold-fair `R0 = {r0["dti"]:.4f}`, auto-rejected vs `E3 = {e3["dti"]:.4f}` &amp; `KSLB = {best["dti"]:.4f}`)</h2>
 <p><strong>Is this file OK to submit? NO — safe to download for audit only.</strong> <span class="badge ok">SAFE TO DOWNLOAD FOR AUDIT</span> <span class="badge bad">DO NOT SUBMIT TO DRIVENDATA</span> — <code>{e(name)}.tif</code> is a newly generated, byte- and pixel-unique single-band <code>float32</code> GeoTIFF
 (SHA-256 <code>{e(card["raster_sha256"])}</code>; ZIP SHA-256 <code>{e(card["zip_sha256"])}</code>; {card["validator_output"]["positive_pixels"]:,} unit dots at <code>1.0</code>, <code>0</code> catalogue dots, <code>15/15</code> format checks PASS; portal note <code>{e(note_str)}</code> [{len(note_str)} chars &lt;= 140]).
 <strong>Verdict: <code>{e(card["verdict"])}</code> (<code>{e(card["decision"])}</code>); <code>0</code> weekly slots used.</strong></p>
 <ul><li><strong>HOLDOUT-DTI</strong> ({e(h["evaluator_version"])}, {h["withheld_positive_pixels"]:,} withheld positives, 1,000-draw paired 20 km physical-block bootstrap):
 <ul><li><strong><code>E1_hvfd_blind_vent_conduit</code> (100% zero-catalogue blind hydrothermal-vent + Laplace-gravity + 3DEP/LiDAR conduit surface, 37,654 dots):</strong> <strong>{e1["dti"]:.4f}</strong> [{e1["ci95"][0]:.4f}, {e1["ci95"][1]:.4f}] — improves over all prior zero-catalogue algebraic lanes (<code>H86I-RKSC = 0.0245</code>, <code>H86E-MMT = 0.0290</code>, <code>H86F-GZZD = 0.0303</code>, <code>H86H-PSTD = 0.0314</code>, <code>H86F-PCC = 0.0327</code>) by <strong>+45% to +94%</strong> by replacing 3×3 block decimation with exact <code>r = 2.8 px</code> disc thinning and coupling DOE GDR-1391 thermal-spring walls + ASTER paleo-sinter hills + 1-m 3DEP LiDAR scarps.</li>
 <li><strong><code>E2_hvfd_foldfair_vent_relay_noisyor</code> (Candidate TIFF, 37,654 dots, <code>d_vis &gt; 2.0 px</code>):</strong> <strong>{e2["dti"]:.4f}</strong> [{e2["ci95"][0]:.4f}, {e2["ci95"][1]:.4f}] — <strong>beats fold-fair <code>R0_G25_foldfair_collar</code> ({r0["dti"]:.4f} [{r0["ci95"][0]:.4f}, {r0["ci95"][1]:.4f}], paired Δ {d_r0["delta"]:+.4f} [{d_r0["ci95"][0]:+.4f}, {d_r0["ci95"][1]:+.4f}])</strong>, <code>R0_D28_foldfair_collar</code> (<code>0.0286</code>), and <code>H33_foldfair_collar</code> (<code>0.0037</code>).</li>
-<li><strong><code>E3_hvfd_collar_ablation_44090</code> (Same <code>S_HVFD</code> surface with 44,090 dots &amp; <code>d_vis &gt; 1.5 px</code> collar):</strong> <strong>{e3["dti"]:.4f}</strong> [{e3["ci95"][0]:.4f}, {e3["ci95"][1]:.4f}] — paired <code>E2 - E3 = {d_e3["delta"]:+.4f}</code> [{d_e3["ci95"][0]:+.4f}, {d_e3["ci95"][1]:+.4f}], proving directly that while <code>H33-2-B2</code>'s <code>d &gt; 2.0 px</code> collar pruning helped unbuffered full-catalogue evaluation (<code>GEMSDOE28 0.2708 -&gt; GEMSDOE32 0.2778</code> OWNER-REPORTED), on <code>buffer_px=3</code> whole-component holdout the extra 6,436 dots land in distal relay/conduit corridors and increase holdout recovery. Both trail the 48-feature supervised GBDT archived same-split best <code>H86C-KSLB</code> ({best["dti"]:.4f} [{best["ci95"][0]:.4f}, {best["ci95"][1]:.4f}]).</li></ul></li>
+<li><strong><code>E3_hvfd_collar_ablation_44090</code> (Same <code>S_HVFD</code> surface with 44,090 dots &amp; <code>d_vis &gt; 1.5 px</code> collar):</strong> <strong>{e3["dti"]:.4f}</strong> [{e3["ci95"][0]:.4f}, {e3["ci95"][1]:.4f}] — paired <code>E2 - E3 = {d_e3["delta"]:+.4f}</code> [{d_e3["ci95"][0]:+.4f}, {d_e3["ci95"][1]:+.4f}], a comparison on this <code>buffer_px=3</code> whole-component holdout. It does not prove that H33 collar pruning caused the separate <code>GEMSDOE28 0.2708 -&gt; GEMSDOE32 0.2778</code> OWNER-REPORTED difference; these are distinct experiments and not organizer receipts. Both trail the 48-feature supervised GBDT archived same-split best <code>H86C-KSLB</code> ({best["dti"]:.4f} [{best["ci95"][0]:.4f}, {best["ci95"][1]:.4f}]).</li></ul></li>
 <li><strong>LEAKAGE-CANARY:</strong> <strong>PASS</strong> — all 18 features below <code>0.90</code> (max single-feature AUC = <code>{leakage:.4f}</code> on <code>trap_endpoint_cone</code>; max zero-catalogue static feature AUC = <code>0.6184</code> on <code>lidar_dem10_chi_scarp</code>).</li>
 <li><strong>REGISTRY-MEASUREMENT:</strong> across all {final["registry_rasters_measured"]} valid competition-grid rasters (<code>0</code> missing), <code>rho_firings = 0</code> on both pre-placement surface (<code>worst Spearman = {surface["worst_spearman_full_footprint"]:.4f}</code>) and final dots (<code>worst Spearman = {final["worst_spearman_full_footprint"]:.4f}</code>). Across all <code>468</code> sparse (<code>&lt;= 100k</code> dot) registry rasters, max 3-px forward overlap is <strong>0.5859 (&lt; 0.70)</strong>, and overlap vs <code>h33-2-b2</code> is <strong>21.20%</strong> (<code>rho = 0.0056</code>). Only dense/lattice witnesses <code>17GEMSDOE</code> (<code>1.0000</code>) and <code>13GEMSDOE</code> (<code>0.9995</code>, 206,895 dots; {like["forward_overlap_firings"]} dot-field firing among {like["dot_field_rasters"]} dot fields) exceed <code>0.70</code>, and <code>2</code> off-grid historical inventory rows keep <code>protocol_final_dots_gate_pass = FALSE</code> and PA-86-02 fail-closed (<code>{e(pa.get("status", "incomplete"))}</code>).</li></ul>
 <p><a class="btn" href="downloads/{e(name)}.tif" download>Download H86I-HVFD TIFF — audit only, DO NOT SUBMIT</a> <a class="btn secondary" href="downloads/{e(name)}.zip" download>One-TIFF ZIP — audit only</a> · <a href="downloads/{e(name)}.json">Writer JSON receipt</a> · <a href="evidence/h86i-hvfd-run-card.json">Full H86I-HVFD run card</a> · <a href="evidence/h86i-hvfd-registry-surface.json">Surface registry check</a> · <a href="evidence/h86i-hvfd-registry-final-dots.json">Final-dots registry check</a> · <a href="{REPO}/blob/main/research/H86I_HVFD_PREREGISTRATION.md">Frozen H86I preregistration</a> · <a href="{REPO}/blob/main/research/SESSION_20261025_H86I_HVFD_REVIEW.md">PhD review &amp; 3-pass audit</a></p></section>'''
@@ -1265,8 +1269,14 @@ def focus9_current_status_banner(*, include_h33_explanation: bool = False) -> st
     release = strict_json(ROOT / "docs/evidence/release-readiness.json")
     fleet = strict_json(ROOT / "docs/evidence/fleet-feed.json")
     site_audit = strict_json(ROOT / "docs/evidence/nine-site-audit-20261027.json")
+    workspace = strict_json(ROOT / "docs/evidence/session-5ca0743e-inputs-20261029.json")
     bgc = strict_json(ROOT / "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json")
 
+    if (workspace.get("native_inputs_available") is not True
+            or workspace.get("preparation", {}).get("native_bands_available") is not True
+            or workspace.get("shared_cache", {}).get("ready") is not False
+            or workspace.get("safe_to_submit") is not False):
+        raise ValueError("Dated workspace evidence does not support the restored-native-only statement")
     if (bgc.get("verdict") != "negative" or bgc.get("safe_to_submit") is not False
             or bgc.get("approved_for_weekly_slot") is not False
             or bgc.get("duplicate") is not True
@@ -1291,8 +1301,8 @@ def focus9_current_status_banner(*, include_h33_explanation: bool = False) -> st
             or release.get("experiments_run") != 0
             or release.get("submission_slots_used") != 0):
         raise ValueError("Release evidence contradicts the no-submit Focus-9 status")
-    if not fleet.get("refresh_complete"):
-        raise ValueError("Focus-9 status banner requires a completed metadata refresh")
+    if fleet.get("organizer_receipts_obtained") != 0:
+        raise ValueError("Git metadata cannot claim organizer receipts")
 
     focus9_sites = {
         "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
@@ -1328,10 +1338,11 @@ def focus9_current_status_banner(*, include_h33_explanation: bool = False) -> st
     return f'''<section class="callout" id="focus9-current-status">
 <div class="section-head"><span class="badge bad">FOCUS-9 EXECUTIVE SUMMARY · DO NOT SUBMIT</span><span class="badge ok">HISTORICAL FILES: FORENSIC DOWNLOAD ONLY</span></div>
 <h2>Current decision: no new Focus-9 candidate; no upload</h2>
-<p><strong>Highest supplied Focus-9 claim:</strong> <code>{e(best["site"])}</code>, <code>{e(best["submission"])}</code>, <strong>{float(best["score"]):.4f} OWNER-REPORTED</strong>. The refreshed repository feed records {fleet["organizer_receipts_obtained"]} organizer receipts. No Focus-9 score is ORGANIZER-CONFIRMED. Historical owner-hosted TIFFs can be downloaded for forensic review only; <strong>SUBMIT: NO</strong> for every file.</p>
+<p><strong>2026-10-29 continuation:</strong> restored the pinned native input mirror and prepared 19 bands in a temporary workspace; the shared cache and submission gates remain unresolved. Nine historical owner-file downloads are now byte-bound to immutable commits. No new TIFF or holdout result exists. <a href="{REPO}/blob/main/research/SESSION_20261029_5CA0743E_REVIEW.md">Three-pass review &amp; next steps</a> · <a href="evidence/session-5ca0743e-run-card.json">Session run card</a> · <a href="evidence/focus9-immutable-files-20261029.json">File binding receipt</a>.</p>
+<p><strong>Highest supplied Focus-9 claim:</strong> <code>{e(best["site"])}</code>, <code>{e(best["submission"])}</code>, <strong>{float(best["score"]):.4f} OWNER-REPORTED</strong>. The GitHub metadata feed does not query organizer receipts; none was supplied. No Focus-9 score is ORGANIZER-CONFIRMED. Historical owner-hosted TIFFs can be downloaded for forensic review only; <strong>SUBMIT: NO</strong> for every file. <strong>Estimated organizer score for a new candidate: unavailable</strong> (no eligible candidate or calibrated estimate). GitHub metadata feed: {fleet['projects_snapshotted']}/{fleet['projects_requested']} repositories, observed {e(fleet['refreshed_utc'])}; {"complete" if fleet.get('refresh_complete') else "partial — failed projects remain unknown"}.</p>
 {h33_explanation}
 <p><strong>Binding stop:</strong> the SHA-256-pinned witness covers {preflight["allowed_pixels"]:,}/{preflight["allowed_pixels"]:,} allowed pixels ({preflight["uncovered_allowed_pixels"]} uncovered). Under the unchanged literal support rule, every nonempty candidate has forward overlap <strong>1.0 &gt; {preflight["overlap_limit"]:.2f}</strong>. This is a negative feasibility stop from one witness, not uniqueness clearance; its separate preflight index has {preflight["registry_entries_in_snapshot"]} entries and only {preflight["registry_rasters_measured"]} measured raster.</p>
-<p><strong>Data and scope:</strong> the distinct input/grid audit verified bytes and grid metadata for {grid_audit["byte_verified_rasters"]}/{grid_audit["indexed_rasters_expected"]} indexed rasters; probability values were not audited and full-registry uniqueness was not established. Native training features, prepared arrays and the pinned shared cache are missing; no method lane was assigned for this Focus-9 review. This review generated no candidate, ran {release["experiments_run"]} experiments and used {release["submission_slots_used"]} weekly slots.</p>
+<p><strong>Data and scope:</strong> the distinct input/grid audit verified bytes and grid metadata for {grid_audit["byte_verified_rasters"]}/{grid_audit["indexed_rasters_expected"]} indexed rasters; probability values were not audited and full-registry uniqueness was not established. A later, dated workspace review restored hash-verified native inputs and prepared 19 bands temporarily; the required shared cached feature stack was not established. Those large workspace files are not part of a fresh checkout. No method lane was assigned. This review generated no candidate, ran {release["experiments_run"]} experiments and used {release["submission_slots_used"]} weekly slots. <a href="evidence/session-5ca0743e-inputs-20261029.json">Dated input inspection</a>.</p>
 {bgc_context}
 <p><strong>Scoped Focus-9 uniqueness:</strong> the dated nine-best-file comparison has {expected_pairs} directed 3-px measurements, range {minimum:.1%}–{maximum:.1%}; this cohort-only measurement does not establish full-registry uniqueness.</p>
 <p><a href="executive-summary.html#focus9-summary">Focus-9 Executive Summary &amp; per-site table →</a> · <a href="{REPO}/blob/{branch}/research/SESSION_20261028_ARENA_27FEF6BB_REVIEW.md">Branch-specific review</a> · <a href="{REPO}/blob/{branch}/research/run_cards/focus9_review_20261028_arena_27fef6bb.json">Branch-specific JSON run card</a> · <a href="evidence/protocol-preflight.json">Witness preflight</a> · <a href="evidence/registry-input-grid-review-20261028.json">Input/grid audit</a></p>
@@ -1344,13 +1355,18 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 <section class="hero"><p class="eyebrow">DOE GEMS Prize · fault-discovery research</p>
 <span class="badge bad">NO FILE AUTHORIZED · DO NOT SUBMIT</span>
 <h1>Download research TIFFs.<br><span class="subtle">No current file is authorized to submit.</span></h1>
-<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> The rebased mainline includes a separate G86-BGC lane artifact: HOLDOUT-DTI 0.2097 [0.2070, 0.2120] (gems57-pooled-hide-v2, 22,641 withheld positives), but 67 dot-overlap firings exceeded 0.70 and the scan is incomplete, so the file is audit-only; no slot was used. This is not a leaderboard score or a result of this Focus-9 review. Earlier H86T-KNDS and H86S-DWPU results are also historical audit-only records. The current release audit validates {report['locally_valid_artifacts']}/{n} TIFFs for local format/integrity, but the immutable full-support witness remains a hard stop and the registry scan is incomplete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json">G86-BGC run card</a> · <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/SESSION_20261028_ARENA_27FEF6BB_REVIEW.md">Current Focus-9 review</a> · <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/run_cards/focus9_review_20261028_arena_27fef6bb.json">Review JSON card</a> · <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/registry/focus9_novel_hypotheses_20261028.json">Three screened unrun proposals</a> · <a href="#h86t-knds-banner">H86T-KNDS evidence</a> · <a href="#h86s-dwpu-banner">H86S-DWPU evidence &amp; download-decision table</a>.</p>
+<p class="lede"><strong>OK to submit: NO — DO NOT SUBMIT.</strong> The rebased mainline includes a separate G86-BGC lane artifact: HOLDOUT-DTI 0.2097 [0.2070, 0.2120] (gems57-pooled-hide-v2, 22,641 withheld positives), but 67 dot-overlap firings exceeded 0.70 and the scan is incomplete, so the file is audit-only; no slot was used. This is not a leaderboard score or a result of this Focus-9 review. Earlier H86T-KNDS and H86S-DWPU results are also historical audit-only records. The current release audit validates {report['locally_valid_artifacts']}/{n} TIFFs for local format/integrity, but the immutable full-support witness remains a hard stop and the registry scan is incomplete. A local format pass does not establish scientific uniqueness or slot approval. <a href="{REPO}/blob/main/evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json">G86-BGC run card</a> · <a href="{REPO}/blob/main/research/SESSION_20261029_5CA0743E_REVIEW.md">2026-10-29 Focus-9 review</a> · <a href="evidence/session-5ca0743e-run-card.json">Session JSON card</a> · <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/registry/focus9_novel_hypotheses_20261028.json">Three screened unrun proposals</a> · <a href="#h86t-knds-banner">H86T-KNDS evidence</a> · <a href="#h86s-dwpu-banner">H86S-DWPU evidence &amp; download-decision table</a>.</p>
 <div class="actions"><a class="btn" href="#downloads">Open TIFF downloads ↓</a><a class="btn secondary" href="executive-summary.html">Executive summary &amp; portal steps →</a></div>
-<p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Latest lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
+<details><summary>Historical lane context (audit only)</summary>
+<p><strong>Historical H86G-EDTI lane verdict: PROMOTE under the archived amended-gate interpretation only; current decision: DO NOT SUBMIT.</strong> The exact artifact remains audit-only in the blocked panel below. <strong>Historical lanes H86I-SACD &amp; H86J-MPC (2026-10-25): NEGATIVE</strong> — H86I-SACD ran strict spatial LOQO spin-2 Coulomb concordance + 300 m submodular PU (0.0832 vs E2 0.1055) and H86J-MPC ran monogenic phase-congruency step (SGMC-PROXY-DTI 0.0658 vs amplitude falsifier 0.1089); both are audit-only downloads below and no slot was spent. <strong>Earlier concurrent lanes (2026-10-25):</strong> byte-distinct research GeoTIFFs H86I-HVFD, H86I-RKSC, H86F-GZZD, H86F-PCC and H86F-EWCS are audit-only downloads below (H86F-EWCS reports higher HOLDOUT-DTI but is also blocked; H86H-PSTD is a preregistration/registry-surface lane, negative, no published TIFF candidate), with the earlier H86E-MMT lane beneath them. The negative lanes are <strong>negative on HOLDOUT-DTI, not unique under the registry gate and not cleared for submission</strong> (parallel lanes: candidates were not all measured against each other contemporaneously; post-merge addenda are in the run cards). No human inspection decided this: the HOLDOUT-DTI, leakage canary, surface/final registry measurements, ZIP, SHA-256 and local-format gates are recorded in machine-readable evidence.</p>
 <p><span class="badge ok">SAFE TO DOWNLOAD</span> <strong>DO NOT SUBMIT any current file, including H86G-EDTI.</strong></p>
 <p class="muted">Latest automated remeasurement: <time>{e(review['registry_measured_utc'])}</time>. <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="submit.html">PR #60 SPT revocation notice (IR-86-SPT-02)</a> · <a href="{REPO}/blob/main/research/SESSION_20261024_REVIEW.md">Safety review and next steps</a>. Historical model results below were not rerun.</p>
+</details>
 </section>
 {focus9_current_status_banner(include_h33_explanation=True)}
+<section id="downloads"><p class="eyebrow">Immediate downloads · historical research artifacts</p><h2>TIFF + single-TIFF ZIP + identity receipt</h2>
+<p>Every download is safe only for audit/reproducibility; no file is selected, ranked, or authorized for a submission slot here.</p>
+{downloads(report['artifacts'])}</section>
 <section class="callout" id="h86l-fmc"><h2>H86L-FMC — audit download only, DO NOT SUBMIT</h2>
 <p>The inherited fleet-minority candidate is now included in the automated download inventory and release audit below. Its archived holdout is <strong>leakage-suspect</strong>: the source fleet used the full catalogue, so this is not fold-safe hide-and-recover evidence. It also failed the archived overlap gate. Registration repairs publication integrity; it does not make the file scientifically unique or authorize upload.</p>
 <p><a href="#downloads">Audited TIFF and ZIP downloads</a> · <a href="evidence/h86l-fmc-run-card.json">Original negative run card</a></p></section>
@@ -1358,7 +1374,7 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 {h86g_html}
 <div class="kpi"><div><span>Local format &amp; integrity</span><strong>{report['locally_valid_artifacts']} / {n}</strong><small>All serialized files re-read; names, notes, masks, SHA and ZIP payloads checked.</small></div>
 <div><span>Authorized submission files</span><strong>0</strong><small>H86G-EDTI retains its historical amended-gate promotion, not literal-rule clearance or slot approval. No portal operation was run here.</small></div>
-<div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This release audit does not fit a model, in any event, it isn't a discovery oracle. H86G-EDTI ran its 3 preregistered arms and promotes; the other lanes above are negative.</small></div></div>
+<div><span>Release-audit experiments / slots used</span><strong>{report['experiments_run']} / {report['submission_slots_used']}</strong><small>This release audit does not fit a model or discover faults. H86G-EDTI's archived amended-gate promotion is overridden by the current negative decision; the other lanes above are negative.</small></div></div>
 {sacd_banner}
 
 <section class="card" id="h86m"><h2>Inherited H86M research TIFFs (2026-10-25) — ⛔ DO NOT SUBMIT · ✅ OK TO DOWNLOAD FOR AUDIT</h2>
@@ -1371,14 +1387,11 @@ def home(report: dict, fleet: dict, registry: dict, review: dict, plan_count: in
 {review_notice}
 <section class="callout"><h2>Why a new submission cannot be cleared</h2><p>A hash-pinned historical registry raster (<code>17GEMSDOE</code>, <code>ab0a0a62...</code>) is positive at <strong>every allowed pixel</strong>. Under the unchanged literal rule, any nonempty dot set has forward overlap {report['witness_positive_support_allowed_fraction']:.0%}, above the {report['overlap_limit']:.0%} stop; moreover, a discrete binary stride-5 lattice witness (<code>13GEMSDOE</code>, <code>b4570b40...</code>, <code>206,895</code> dots) covers <code>99.8724%</code> of allowed pixels within 3 px, forcing <code>&gt;= 82.70%</code> overlap on any <code>37,654</code>-dot raster by pigeonhole. This is a rule-satisfiability failure, not evidence that every geological idea is identical.</p>
 <p>All {len(registry['artifacts'])} inherited final TIFFs were independently rechecked against this witness, and PR #60's <code>SPT</code> candidate remains quarantined outside <code>docs/</code> after also measuring 100% witness overlap and coin-flip canary AUC (<code>0.4947</code>). No dense-prior exemption was applied. <a href="evidence/all-artifacts-registry.json">Measured negative proof</a> · <a href="evidence/latest-review-run-card.json">Current negative run card</a> · <a href="evidence/spt-run-card.json">Revoked SPT card</a> · <a href="evidence/session-20261023-run-card.json">Archived 2026-10-23 card</a>.</p></section>
-<section id="downloads"><p class="eyebrow">Immediate downloads · historical research artifacts</p><h2>TIFF + single-TIFF ZIP + identity receipt</h2>
-<p>Files below include the concurrent H86F-GZZD and H86F-PCC artifacts, the H86E-MMT and blind-geothermal lane artifacts plus preserved historical lanes. Every download is safe only for audit/reproducibility; no file is selected, ranked, or authorized for a submission slot here.</p>
-{downloads(report['artifacts'])}</section>
 <details class="card"><summary>Earlier negative lane receipts and measured HOLDOUT-DTI context</summary>
 {answer}
 {pr92_candidate_notice(report)}
 </details>
-<section class="card"><h2>Why GEMSDOE32 (<code>0.2778</code> OWNER-REPORTED; not organizer-confirmed) led the fleet — and can we beat it?</h2><p>Footprint-masked pixel forensics compare the pinned <code>GEMSDOE28</code> H27-4 (<code>40,199</code> dots; <code>0.2708</code> OWNER-REPORTED) and <code>GEMSDOE32</code> H33 (<code>37,654</code> dots; <code>0.2778</code> OWNER-REPORTED) rasters: H33 removes <code>2,545</code> dots in the <code>1.0 &lt; d_cat &lt;= 2.0</code> catalogue collar. Their outside-footprint encodings differ (NaN versus zero), so they are <strong>not pixel-identical across the full grid</strong>. The observed score difference is consistent with a pruning hypothesis, but does not prove the removed dots had zero hidden-truth credit or establish causality. <code>GEMSDOE36</code> (<code>0.2750</code> OWNER-REPORTED) contains <code>100%</code> of <code>R0</code> verbatim plus <code>1,200</code> extra dots (<code>97.40%</code> 3-px overlap); all owner-reported fleet entries above <code>0.2600</code> in the supplied inventory lie in this <code>H19-5/D2.8</code> lineage (<code>92.64%–100%</code> overlap). Under asymmetric 300 m Tversky (<code>alpha=0.2, beta=0.8</code>), <code>~2.8 px</code> disk spacing near the <code>3 px</code> kernel radius can reduce redundant prediction mass, but does not prevent kernel overlap; collar pruning may remove low-credit mass, though proximity to a mapped fault alone does not prove zero hidden-truth credit. Cross-project score comparisons (e.g., <code>GEMSDOE81</code> <code>44,090</code> unit dots and <code>0.0041</code> OWNER-REPORTED vs <code>GEMSDOE76</code> <code>0.2343</code> OWNER-REPORTED / <code>GEMSDOE70</code> <code>0.2478</code> OWNER-REPORTED) are descriptive associations, not controlled causal proofs. <strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives): <code>H86D-CTHB</code> = <code>0.1133</code>, 95% CI <code>[0.0965, 0.1297]</code>; <code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0936, 0.1166]</code>; paired HOLDOUT-DTI delta = <code>+0.0076</code>, 95% CI <code>[-0.0101, +0.0241]</code>. The paired CI crosses zero. The prompt's conflicting <code>0.3195</code> and <code>0.4413</code> current-leaderboard values are OWNER-REPORTED and unverified here; exceeding any reported value is not established. <strong>Do not infer a leaderboard projection from holdout results.</strong> <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H33_INTERPRETATION_REVIEW.md">Metric counterexamples and limits of the explanation</a>.</p>
+<section class="card"><h2>Why GEMSDOE32 (<code>0.2778</code> OWNER-REPORTED; not organizer-confirmed) led the supplied Focus-9 claims — and can we beat it?</h2><p>Footprint-masked pixel forensics compare the pinned <code>GEMSDOE28</code> H27-4 (<code>40,199</code> dots; <code>0.2708</code> OWNER-REPORTED) and <code>GEMSDOE32</code> H33 (<code>37,654</code> dots; <code>0.2778</code> OWNER-REPORTED) rasters: H33 removes <code>2,545</code> dots in the <code>1.0 &lt; d_cat &lt;= 2.0</code> catalogue collar. Their outside-footprint encodings differ (NaN versus zero), so they are <strong>not pixel-identical across the full grid</strong>. The observed score difference is consistent with a pruning hypothesis, but does not prove the removed dots had zero hidden-truth credit or establish causality. <code>GEMSDOE36</code> (<code>0.2750</code> OWNER-REPORTED) contains <code>100%</code> of <code>R0</code> verbatim plus <code>1,200</code> extra dots (<code>97.40%</code> 3-px overlap); several high owner-reported Focus-9 entries share this <code>H19-5/D2.8</code> lineage; this does not establish a maximum across all repositories. The user supplied a separate higher GEMSDOE92 claim of <code>0.2784</code>, also unverified. Under asymmetric 300 m Tversky (<code>alpha=0.2, beta=0.8</code>), <code>~2.8 px</code> disk spacing near the <code>3 px</code> kernel radius can reduce redundant prediction mass, but does not prevent kernel overlap; collar pruning may remove low-credit mass, though proximity to a mapped fault alone does not prove zero hidden-truth credit. Cross-project score comparisons (e.g., <code>GEMSDOE81</code> <code>44,090</code> unit dots and <code>0.0041</code> OWNER-REPORTED vs <code>GEMSDOE76</code> <code>0.2343</code> OWNER-REPORTED / <code>GEMSDOE70</code> <code>0.2478</code> OWNER-REPORTED) are descriptive associations, not controlled causal proofs. <strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>22,893</code> withheld positives): <code>H86D-CTHB</code> = <code>0.1133</code>, 95% CI <code>[0.0965, 0.1297]</code>; <code>H33-2-B2</code> fold-fair control = <code>0.1056</code>, 95% CI <code>[0.0936, 0.1166]</code>; paired HOLDOUT-DTI delta = <code>+0.0076</code>, 95% CI <code>[-0.0101, +0.0241]</code>. The paired CI crosses zero. The prompt's conflicting <code>0.3195</code> and <code>0.4413</code> current-leaderboard values are OWNER-REPORTED and unverified here; exceeding any reported value is not established. <strong>Do not infer a leaderboard projection from holdout results.</strong> <a href="https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/research/H33_INTERPRETATION_REVIEW.md">Metric counterexamples and limits of the explanation</a>.</p>
 <p>No validated improvement is authorized for upload while the literal witness stop holds. The older queues linked here are historical and are not reclassified as untried by this review. The three current repository-screened, unexecuted proposals and source-availability limits are in the <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/registry/focus9_novel_hypotheses_20261028.json">Focus-9 hypothesis register</a> and the <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/SESSION_20261028_ARENA_27FEF6BB_REVIEW.md">current branch review</a>. <a href="hypotheses.html">{plan_count} historical hypotheses across dated queues →</a> · <a href="{REPO}/blob/main/research/GEOTHERMAL_VENT_DISCOVERY_SYNTHESIS.md">Geothermal vent synthesis →</a></p></section>
 <section class="card"><h2>An auditable, refreshable project feed</h2><p>{fleet['projects_snapshotted']} / {fleet['projects_requested']} named repositories snapshotted. Last GitHub inventory refresh: <time>{e(fleet['refreshed_utc'])}</time>. Final-artifact registry measurement: <time>{e(registry['measured_utc'])}</time>.</p>
 <p><a href="fleet.html">Browse the full project list</a>. This is repository metadata and local artifact validation, <strong>not a live DrivenData score or remaining-quota feed</strong>. Failed requests and the age of observations remain visible.</p></section>''')
@@ -1407,18 +1420,24 @@ def focus9_summary() -> str:
     snapshot_by_site = {row.get("site"): row for row in snapshot_rows}
     audit_files = site_audit.get("files", [])
     audit_by_site = {row.get("site"): row for row in audit_files}
-    if set(snapshot_by_site) != set(sites) or set(audit_by_site) != set(sites):
+    if (len(snapshot_rows) != len(sites) or len(audit_files) != len(sites)
+            or set(snapshot_by_site) != set(sites) or set(audit_by_site) != set(sites)):
         raise ValueError("Focus-9 snapshot or byte audit does not contain exactly the nine requested sites")
     pairwise = site_audit.get("pairwise_overlap", {})
-    expected_pairs = len(sites) * (len(sites) - 1)
-    if len(pairwise) != expected_pairs:
-        raise ValueError(f"Nine-site overlap audit is incomplete: expected {expected_pairs} directed pairs, got {len(pairwise)}")
+    expected_keys = {f"{a}->{b}" for a in sites for b in sites if a != b}
+    expected_pairs = len(expected_keys)
+    if set(pairwise) != expected_keys:
+        raise ValueError(f"Nine-site overlap audit is incomplete or has invalid pairs: expected {expected_pairs} directed pairs, got {len(pairwise)}")
     pair_values = [float(value) for value in pairwise.values()]
     if any(not 0 <= value <= 1 for value in pair_values):
         raise ValueError("Nine-site audit contains an invalid overlap value")
     min_pair, max_pair = min(pair_values), max(pair_values)
     threshold = float(site_audit["threshold_overlap"])
-    projects = {row.get("repository", "").split("/")[-1]: row for row in fleet.get("projects", [])}
+    if threshold != 0.70:
+        raise ValueError("Nine-site overlap threshold differs from the unchanged rule")
+    projects = focus9_projects(fleet)
+    bindings = validate_focus9_receipt(site_audit, strict_json(ROOT / FOCUS9_RECEIPT),
+                                       sha256(ROOT / "docs/evidence/nine-site-audit-20261027.json"))
 
     best_rows = []
     for site in sites:
@@ -1439,21 +1458,18 @@ def focus9_summary() -> str:
         owner_file = str(audited["file"])
         if not owner_file.startswith(site + "-main/"):
             raise ValueError(f"Unexpected owner repository path for {site}: {owner_file}")
-        repo_path = owner_file.split("/", 1)[1]
-        project = projects.get(site)
-        if not project or project.get("status") != "SNAPSHOT_OK":
-            raise ValueError(f"The refreshed GitHub feed does not have a complete current tree for {site}")
-        live_paths = {item["path"] for item in project.get("tif_git_objects", [])}
-        if repo_path not in live_paths:
-            raise ValueError(f"The audited owner file is no longer in the refreshed main tree: {site}/{repo_path}")
-        source_url = f"https://github.com/buffedlizard55-lab/{site}/blob/main/{repo_path}"
+        binding = bindings[site]
+        source_url = immutable_download_url(binding)
+        upstream = current_tree_status(binding, projects)
         worst = site_audit["max_overlap_by_site"][site]
-        if not 0 <= float(worst["value"]) <= 1:
-            raise ValueError(f"Invalid worst-pair overlap for {site}")
-        best_rows.append((site, best, snapshot, audited, source_url, worst))
+        if (worst.get("vs") not in sites or worst["vs"] == site
+                or float(worst["value"]) != max(float(pairwise[f"{site}->{peer}"]) for peer in sites if peer != site)
+                or float(worst["value"]) != float(pairwise[f"{site}->{worst['vs']}"])):
+            raise ValueError(f"Invalid or inconsistent worst-pair overlap for {site}")
+        best_rows.append((site, best, snapshot, audited, source_url, worst, upstream))
 
     body_rows = []
-    for site, best, snapshot, audited, source_url, worst in best_rows:
+    for site, best, snapshot, audited, source_url, worst, upstream in best_rows:
         audited_path = str(audited["file"]).split("/", 1)[1]
         alternatives = snapshot.get("other_scored_runs_owner_reported", [])
         if alternatives:
@@ -1473,7 +1489,8 @@ def focus9_summary() -> str:
         else:
             alt_html = "No lower-scoring run listed in the 2026-10-27 score snapshot."
         cell_status = (
-            f'<a href="{e(source_url)}">Owner-hosted historical TIFF — download for audit only</a>'
+            f'<a href="{e(source_url)}" download>Commit-pinned TIFF — download for audit only</a>'
+            f'<br><small>Feed at {e(fleet.get("refreshed_utc", "unknown"))}: {e(upstream)}</small>'
             f'<br><strong>SUBMIT: NO</strong> — top file fails the 0.70 pairwise stop; no upload authorized.'
         )
         body_rows.append(
@@ -1481,6 +1498,7 @@ def focus9_summary() -> str:
 f'<td><code>{e(best["submission"])}</code><br><small>audited repository representation (not receipt-bound): '
 f'<code>{e(Path(audited_path).name)}</code></small></td>'
             f'<td><strong>{float(best["score"]):.4f}</strong> OWNER-REPORTED<br><small>no organizer receipt</small></td>'
+            f'<td>Unavailable<br><small>no calibrated organizer-score estimate</small></td>'
             f'<td><strong>{"NO — exceeds" if float(worst["value"]) > threshold else "No firing in this subset"} '
             f'{threshold:.0%}</strong><br><small>max directed 3-px overlap {float(worst["value"]):.1%} '
             f'vs {e(worst["vs"])}; nine site-best files only</small></td>'
@@ -1491,11 +1509,11 @@ f'<code>{e(Path(audited_path).name)}</code></small></td>'
 
     return f'''<section class="card" id="focus9-summary"><div class="section-head"><span class="badge bad">FOCUS-9 EXECUTIVE SUMMARY · DO NOT SUBMIT</span><span class="badge ok">HISTORICAL FILES: DOWNLOAD FOR AUDIT ONLY</span></div>
 <h2>Focus-9 Executive Summary: highest reported entry per site</h2>
-<p class="callout"><strong>Current Focus-9 review decision (2026-10-28): DO NOT SUBMIT.</strong> The pinned witness covers {preflight["allowed_pixels"]:,}/{preflight["allowed_pixels"]:,} allowed pixels; every nonempty candidate triggers literal forward overlap 1.0 against the unchanged {preflight["overlap_limit"]:.2f} stop. Native features, prepared arrays and the shared cache are absent; no method lane was assigned for this Focus-9 review. This review generated no Focus-9 candidate or experiment and used no weekly slot. The separate input/grid audit covers only {input_grid["byte_verified_rasters"]}/{input_grid["indexed_rasters_expected"]} byte-verified records and audits no probability values. One witness suffices for this negative stop but is not full-registry uniqueness clearance. See the <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/SESSION_20261028_ARENA_27FEF6BB_REVIEW.md">branch review</a>, <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/run_cards/focus9_review_20261028_arena_27fef6bb.json">JSON run card</a>, <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/registry/focus9_novel_hypotheses_20261028.json">three unrun proposals</a>, <a href="evidence/protocol-preflight.json">witness measurement</a>, and <a href="evidence/registry-input-grid-review-20261028.json">input/grid audit</a>.</p>
-<p><strong>Score evidence:</strong> all nine best results are <strong>OWNER-REPORTED</strong> claims; the 2026-10-27 snapshot records <strong>0 ORGANIZER-CONFIRMED receipts</strong>. GEMSDOE32 H33 at <strong>0.2778</strong> is the highest supplied claim, not an independently verified score. The dated score snapshot was observed at <code>{e(score_snapshot["observed_utc"])}</code>; its boundary notes conflicting external leaderboard claims that remain unverified.</p>
+<p class="callout"><strong>Current Focus-9 review decision: DO NOT SUBMIT.</strong> The pinned witness covers {preflight["allowed_pixels"]:,}/{preflight["allowed_pixels"]:,} allowed pixels; every nonempty candidate triggers literal forward overlap 1.0 against the unchanged {preflight["overlap_limit"]:.2f} stop. A dated 2026-10-29 workspace audit found the native inputs and prepared bands temporarily present, but the required shared cached feature stack was not established and is not in a fresh checkout. No method lane was assigned. This review generated no Focus-9 candidate or experiment and used no weekly slot. The separate input/grid audit covers only {input_grid["byte_verified_rasters"]}/{input_grid["indexed_rasters_expected"]} byte-verified records and audits no probability values. One witness suffices for this negative stop but is not full-registry uniqueness clearance. See the <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/SESSION_20261028_ARENA_27FEF6BB_REVIEW.md">branch review</a>, <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/research/run_cards/focus9_review_20261028_arena_27fef6bb.json">JSON run card</a>, <a href="{REPO}/blob/arena/27fef6bb-gemsdoe86/registry/focus9_novel_hypotheses_20261028.json">three unrun proposals</a>, <a href="evidence/protocol-preflight.json">witness measurement</a>, and <a href="evidence/registry-input-grid-review-20261028.json">input/grid audit</a>.</p>
+<p><strong>Score evidence:</strong> all nine best results are <strong>OWNER-REPORTED</strong> claims; the 2026-10-27 snapshot records <strong>0 ORGANIZER-CONFIRMED receipts</strong>. GEMSDOE32 H33 at <strong>0.2778</strong> is the highest supplied Focus-9 claim, not an independently verified score or a demonstrated all-fleet maximum. The dated score snapshot was observed at <code>{e(score_snapshot["observed_utc"])}</code>; its boundary notes conflicting external leaderboard claims that remain unverified.</p>
 <p><strong>Scoped uniqueness measurement:</strong> the byte-audited nine-site best-file set has {expected_pairs} directed pairwise 3-px overlaps, ranging from <strong>{min_pair:.1%}</strong> to <strong>{max_pair:.1%}</strong> (threshold {threshold:.0%}); none of the nine best files is unique against the other eight. This is a <strong>REGISTRY-MEASUREMENT</strong> of the nine named sites only, not a complete cross-repository registry scan, not organizer authentication, and not uniqueness clearance. Lower-scoring alternatives are shown as owner claims; an overlap against H33 alone never establishes full-registry uniqueness.</p>
-<p><strong>Download vs submit:</strong> the linked owner-hosted TIFFs are historical forensic references and are labeled <strong>DOWNLOAD FOR AUDIT ONLY</strong>. <strong>SUBMIT: NO</strong> for every file. The existing <a href="submit.html">submission instructions and validation gates</a> remain binding: one single-band GeoTIFF on the supplied grid, finite values in [0,1], and no NaNs in the footprint, with independent scientific, registry, and selector approval.</p>
-<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest reported entry / audited owner file</th><th>Reported score</th><th>Measured uniqueness vs the other eight</th><th>Other reported runs and source notes</th><th>Download / submit status</th></tr></thead><tbody>{''.join(body_rows)}</tbody></table></div>
+<p><strong>Download vs submit:</strong> the linked owner-hosted TIFFs are historical forensic references and are labeled <strong>DOWNLOAD FOR AUDIT ONLY</strong>. Each link uses the immutable commit whose Git blob and SHA-256 matched the historical pixel audit (<a href="evidence/focus9-immutable-files-20261029.json">binding receipt</a>); GitHub availability is not guaranteed. The current-tree status is only metadata from the displayed feed timestamp, not a fresh score or new byte audit. <strong>SUBMIT: NO</strong> for every file. The existing <a href="submit.html">submission instructions and validation gates</a> remain binding: one single-band GeoTIFF on the supplied grid, finite values in [0,1], and no NaNs in the footprint, with independent scientific, registry, and selector approval.</p>
+<div class="table-wrap"><table><thead><tr><th>Site</th><th>Highest reported entry / audited owner file</th><th>Reported score claim</th><th>Estimated organizer score</th><th>Measured uniqueness vs the other eight</th><th>Other reported runs and source notes</th><th>Download / submit status</th></tr></thead><tbody>{''.join(body_rows)}</tbody></table></div>
 <p class="callout"><strong>Descriptive association, not a causal explanation of the OWNER-REPORTED H33 claim (0.2778).</strong> Pixel forensics record H33 as a 37,654-dot nested member of the H27-4/D28 lineage, with 2,545 near-catalogue collar dots removed while the far-field component was retained. That is a plausible coverage/precision mechanism under the asymmetric 300 m triangular DTI kernel (alpha=0.2, beta=0.8); it is not proof of causation and not a controlled causal test, and the score claim has no organizer receipt. No leaderboard estimate follows from this correlation. Distinguish H33 (0.2778) from the separate H32d run (0.2591, also OWNER-REPORTED). See the <a href="{REPO}/blob/main/research/SESSION_20261026_H86Q_BFRA_REVIEW.md#2-phd-level-forensic-analysis-of-the-reported-h33-result-not-causal-proof">pixel-forensic analysis and caveats</a>.</p>
 </section>'''
 
@@ -1526,6 +1544,8 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
 <p class="eyebrow">Executive summary</p><h1>Submission procedure,<br>with an automatic stop.</h1>
 {focus9_current_status_banner()}
 {focus9_summary()}
+<details class="card"><summary>Historical lane evidence and all audit-only downloads</summary>
+<p>Historical descriptions of “unique” mean byte distinction or a scoped earlier comparison, not current full-registry clearance. Every file fails the binding literal gate. Older model evidence was not rerun in this review.</p>
 {latest_banner}
 {vfgr_banner}
 {h86q_summary()}
@@ -1548,6 +1568,7 @@ def executive(report: dict, sources: dict, answer: str = "", review_notice: str 
 <details class="card"><summary>Earlier negative lane receipts and measured HOLDOUT-DTI context</summary>
 {answer}
 {pr92_candidate_notice(report)}
+</details>
 </details>
 <h2>What is checked without intervention?</h2><ul><li>Every published TIFF is decoded and checked by the pinned shared validator and template-format checker.</li>
 <li>CRS, shape, affine transform, float32 band count, valid footprint, finite values in range, outside-footprint zeros and mapped-fault masking are measured from disk.</li>
@@ -2138,17 +2159,18 @@ def nine_sites_page(audit: dict, cand: dict, exp1: dict, exp2: dict) -> str:
         "The receipt records a prior format pass, but the TIFF is missing and the experiment failed local uniqueness and the binding full-support witness gate. "
         "No upload is authorized; an organizer receipt can only exist after an upload.</p>"
     )
+    bindings = validate_focus9_receipt(audit, strict_json(ROOT / FOCUS9_RECEIPT),
+                                       sha256(ROOT / "docs/evidence/nine-site-audit-20261027.json"))
     rows = []
     for f in sorted(audit["files"], key=lambda r: -r["owner_score"]):
         site = f["site"]
         name = f["file"].split("/")[-1]
-        repo_path = f["file"].split("/", 1)[1]
-        url = f"https://github.com/buffedlizard55-lab/{site}/blob/main/{repo_path}"
+        url = immutable_download_url(bindings[site])
         mx = audit["max_overlap_by_site"][site]
         unique = mx["value"] <= thr
         twin = ("identical to repo-local copy" if f.get("identical_to_repo_local_copy") else "archive copy (not in repo)")
         rows.append(
-            f'<tr><td>{e(site)}</td><td><a href="{e(url)}">{e(name)}</a><br><small>owner name: <code>{e(f["owner_name"])}</code></small></td>'
+            f'<tr><td>{e(site)}</td><td><a href="{e(url)}" download>{e(name)}</a> — audit only<br><small>owner name: <code>{e(f["owner_name"])}</code></small></td>'
             f'<td>{f["owner_score"]:.4f}<br><small>{e(f["owner_score_class"])}</small></td>'
             f'<td>{f["dots_inside_footprint"]:,}</td><td>{f["nan_total"]}</td><td>{"yes" if f["in_range_gate_all_pixels"] else "NO"}</td>'
             f'<td>{"NO" if not unique else "yes"}: max {mx["value"]:.4f} vs {e(mx["vs"])}</td>'
