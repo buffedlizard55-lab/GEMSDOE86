@@ -6,8 +6,27 @@
 > - **Nine-site file identity and uniqueness:** the historical top file for each requested site is bound to an immutable owner commit and SHA-256, and passes local single-band/grid/range/footprint checks. All are downloadable for forensic audit only; **none is authorized to submit**. All 72 directed 3-pixel overlaps in the nine-site cohort exceed 0.70 (0.8672–1.0000); this is not a full-registry uniqueness clearance.
 > - **Fresh repository metadata:** a 92/92 GitHub feed refresh observed 9 new TIFF paths across GEMSDOE24/25/28/30/31. Metadata does not verify TIFF bytes, scores, receipts, or uniqueness; new-path scores are unknown (not zero). GEMSDOE30's 165045Z geothermal-unique TIFF is explicitly marked by its owner as no-holdout, duplicate-stop, and not for download/submission.
 > - **Current evidence:** [three-pass review](research/SESSION_20261029_6AD5BDD2_REVIEW.md) · [session run card](docs/evidence/session-6ad5bdd2-run-card.json) · [input audit](docs/evidence/session-6ad5bdd2-inputs-20261029.json) · [Focus-9 score-source reconciliation](docs/evidence/focus9-score-source-audit-20261029.json) · [new-path metadata delta](docs/evidence/focus9-feed-delta-20261029.json) · [executive summary](docs/executive-summary.html#focus9-summary).
+
+### Executive table — requested sites (historical files for forensic audit only)
+
+Owner/user numbers below are **claims, not verified competition scores**. No organizer receipt binds any claim to exact TIFF bytes; new-candidate score estimate is **not estimable**. Each linked historical file is commit-pinned and byte-audited, but every file fails the nine-site cohort overlap rule and is **not authorized for submission**.
+
+| Site | Historical file to download | Supplied claim and evidence class | Estimated organizer score | Max peer 3-px overlap | Unique? | OK to submit? |
+|---|---|---|---|---:|---|---|
+| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/f4d5a5ef3f3cf6cbe5a24ee0b29c6d592910d308/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif) — audit only | 0.2477 OWNER-REPORTED / UNVERIFIED (`h25-1-dotted-h19-5-d1-5-20261002-989f59505db1`) | not estimable | 1.0000 vs GEMSDOE30 | **NO** | **NO** |
+| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/889d93dcde5bbc5812b2d68c5de830a8d8dc61a1/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif) — audit only | 0.2600 OWNER-REPORTED / UNVERIFIED (`dotted-h19-5-d2-8-20261002-e56ea318af89`) | not estimable | 1.0000 vs GEMSDOE30 | **NO** | **NO** |
+| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/8e4979ea0af2796e30d1947b1821ba170d365d9d/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif) — audit only | 0.2449 OWNER-REPORTED / UNVERIFIED (`topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1`) | not estimable | 0.9802 vs GEMSDOE24 | **NO** | **NO** |
+| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/425d92738532efaaae959db85e833ea1d1f23f1c/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif) — audit only | 0.2710 USER-REPORTED / UNVERIFIED (`h36-1-rung30-blind-r1-20261003-b531dae0a36f`) | not estimable | 1.0000 vs GEMSDOE30 | **NO** | **NO** |
+| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/48935645078d2363a6d8feccb7bd9323b7d88a2b/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) — audit only | 0.2600 OWNER-REPORTED / UNVERIFIED (`d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca`) | not estimable | 1.0000 vs GEMSDOE27 | **NO** | **NO** |
+| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/blob/703fe7282d10596cedc8e54a68992ce86cc4dd43/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif) — audit only | 0.2708 USER-REPORTED / UNVERIFIED (`h27-4-solo-d28-20261004-8acb75e1`) | not estimable | 1.0000 vs GEMSDOE30 | **NO** | **NO** |
+| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/22d1d9efbebc0c0f2cf29d76cfd765edf61a19ea/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) — audit only | 0.2778 OWNER-REPORTED / UNVERIFIED (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`) | not estimable | 1.0000 vs GEMSDOE36 | **NO** | **NO** |
+| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/3eaf85efb49f364b84f8be04e8b084b12d0303b9/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) — audit only | 0.2632 CROSS-REPOSITORY OWNER-REPORTED / UNVERIFIED (`h33d-analog-tip-stepover-r30-20261004-cb490425926e`) | not estimable | 0.9971 vs GEMSDOE27 | **NO** | **NO** |
+| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/e280188adbbe762e6b7ac6f3b8e105e8e7915026/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) — audit only | 0.2750 OWNER-REPORTED / UNVERIFIED (`anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros`) | not estimable | 0.9758 vs GEMSDOE27 | **NO** | **NO** |
+
+**Download status:** these nine historical files are for forensic review only. New upstream paths are metadata-only and not vetted downloads; the GEMSDOE30 165045Z file is owner-marked not-for-download. See the [current three-pass review](research/SESSION_20261029_6AD5BDD2_REVIEW.md) and [full binding receipt](docs/evidence/focus9-immutable-files-20261029.json).
+
 >
-> **Read at the start of every session:** [standing prompt and parallel-run protocol](PROMPT.md) and [full archived owner request](research/REQUEST_20261027.md). Preserve the three-experiment/two-hour budget, per-feature leakage canaries, visible-only buffered holdout, unchanged uniqueness gates, shared evaluator/writer, and separate selector. Maximize P(Win) and Own the Outcome without presenting estimates as scores or format checks as upload permission.
+> **Read at the start of every session:** [standing prompt and parallel-run protocol](PROMPT.md) and [full archived owner request](research/REQUEST_20261029.md). Preserve the three-experiment/two-hour budget, per-feature leakage canaries, visible-only buffered holdout, unchanged uniqueness gates, shared evaluator/writer, and separate selector. Maximize P(Win) and Own the Outcome without presenting estimates as scores or format checks as upload permission.
 >
 > **Previously documented restoration is historical only.** The 2026-10-29 session `5ca0743e` temporarily restored and prepared native data, but the current checkout audit does not show those files; do not infer present availability from its receipt.
 
@@ -15,7 +34,7 @@
 
 The home and executive pages now surface the current no-submit decision, branch-specific evidence, and the inherited G86-BGC stop before older lane details. The Nine Sites page marks its own navigation item active. Final post-rebase verification passed: **1,154 tests passed, 24 skipped, 48 warnings, 58 subtests**; site build/check, link/integrity/safety, 50-file download audit, frozen-card check, and diff check passed. The review profiles three screened hypotheses and flags two inherited drafts that were excluded from the count.
 
-> **STANDING PROJECT BRIEF — preserve the archived request, obey the current stop.** Review GEMSDOE24/25/27/28/30/31/32/33/36; label owner claims versus organizer-confirmed scores; compare the nine-site overlaps without claiming full-registry uniqueness; explain GEMSDOE32 H33's 0.2778 claim without asserting causality; clearly separate forensic downloads from upload permission; preserve the single-band GeoTIFF/grid/`[0,1]`/footprint-validation and submission instructions; and propose 3–5 repository-screened, genuinely unexecuted geological hypotheses with layers, mechanisms, mimics, cost, and official/free source-availability checks. Do not generate a candidate, run an experiment, alter thresholds, or use a weekly slot while `STOP_LITERAL_OVERLAP_UNSATISFIABLE` holds. The latest review is **not a lane assignment**. Read [PROMPT.md](PROMPT.md), [AGENTS.md](AGENTS.md), and [the request archive](research/REQUEST_20261027.md); the archive is not authorization. Keep the feed current, retain negative findings, and preserve Arena's values: **Maximize P(Win)** · **Own the Outcome**.
+> **STANDING PROJECT BRIEF — preserve the archived request, obey the current stop.** Review GEMSDOE24/25/27/28/30/31/32/33/36; label owner claims versus organizer-confirmed scores; compare the nine-site overlaps without claiming full-registry uniqueness; explain GEMSDOE32 H33's 0.2778 claim without asserting causality; clearly separate forensic downloads from upload permission; preserve the single-band GeoTIFF/grid/`[0,1]`/footprint-validation and submission instructions; and propose 3–5 repository-screened, genuinely unexecuted geological hypotheses with layers, mechanisms, mimics, cost, and official/free source-availability checks. Do not generate a candidate, run an experiment, alter thresholds, or use a weekly slot while `STOP_LITERAL_OVERLAP_UNSATISFIABLE` holds. The latest review is **not a lane assignment**. Read [PROMPT.md](PROMPT.md), [AGENTS.md](AGENTS.md), and [the request archive](research/REQUEST_20261029.md); the archive is not authorization. Keep the feed current, retain negative findings, and preserve Arena's values: **Maximize P(Win)** · **Own the Outcome**.
 
 Historical sections below are retained as dated records; their older counts, availability statements and “newest” labels do not supersede the current review above.
 
@@ -36,6 +55,53 @@ Historical sections below are retained as dated records; their older counts, ava
 > **Earlier checkout-review snapshot (2026-10-27; superseded by the current review above): DO NOT SUBMIT.** This review ran no model experiment, wrote no candidate TIFF, and used no slot. At that snapshot the read-only release audit covered 46 inherited TIFFs. The present inventory has 47, including H86S-DWPU; the current native inputs/shared-cache status remains missing. Historical report: [three-pass repo review](research/SESSION_20261027_REPO_REVIEW.md) · [machine run card](research/SESSION_20261027_REPO_REVIEW_RUN_CARD.json). The report's own no-new-TIFF statement applies only to that review, not to the later H86S experiment.
 
 > **Earlier same-date checkout snapshot (2026-10-27; superseded): DO NOT SUBMIT.** This snapshot used 46 inherited TIFFs before the H86S-DWPU artifact was registered. Its native-data/shared-cache inspection still describes the present blocker, but its artifact count and "current review" links are historical. See the current three-pass review above and the retained [earlier review](research/SESSION_20261027_REVIEW.md) / [snapshot run card](docs/evidence/session-20261027-run-card.json).
+
+<details>
+<summary><strong>Owner request archive — 2026-10-29 (preserved verbatim; source records the ff849f98 branch)</strong></summary>
+
+<!-- CURRENT_REQUEST_20261029_START -->
+# Standing request — 2026-10-29 (branch `arena/ff849f98-gemsdoe86`)
+
+> **Transcription note.** This is a condensed record of the owner's pasted request. The original paste repeated several blocks (the GEMSDOE site list appeared two to three times, and the verification paragraph was repeated about ten times). Duplicates are removed here. Every requirement, named site, link, and rule is kept. The full list of owner-reported scores is in [`registry/prior_scores.csv`](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/registry/prior_scores.csv). Owner-reported scores stay `OWNER-REPORTED` unless an organizer receipt is logged in `ledger/submissions.csv`.
+
+## Highest-urgency requirement
+
+- Generate a **unique** single-band GeoTIFF for the DrivenData competition. It must not duplicate a prior submission except for learning or education.
+- It must be **obvious** whether the file is OK to download and submit. Each file needs a clear, unambiguous label.
+- The file must be easy to download from the site. It must pass validation without human intervention, and any inspection must run through the project's own validators.
+
+## Core deliverables
+
+1. **Executive summary per requested site** (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36). For each site, state the best submission, its file to download, an estimated score, and whether it is unique against the other listed GEMSDOE sites. Put these in one table at the top of the page.
+2. **Score estimate.** Estimate each candidate's score, or state plainly why it cannot be estimated. A projection must never be written as a score.
+3. **Why does GEMSDOE32 H33 score 0.2778, and can a submission beat it?** Give a technical answer, then test it.
+4. **Owner-supplied leaderboard values:** `0.4413` and `0.3195` are both quoted as the current GEMSDOE high. They conflict and are unverified (see `IR-86-20261029-04`).
+5. **Candidate hypotheses.** Propose 3–5 untried geological hypotheses. For each, name the layer(s), the physical signature, why it targets a fault missing from the USGS/INGENIOUS catalogue, and how it differs from existing repo methods. Rank by expected improvement and cost. Validate the top one on the spatially blocked holdout before spending a weekly slot.
+6. **Data.** Use only free, official, verifiable sources. Name any source that is needed but unavailable.
+7. **Submission page.** Explain exactly how to submit, step by step. The page must show the file, the unique name, and the short note. The site must address the error `Predicted values must be in range [0, 1]`.
+8. **Standing rules.** Maximize P(Win). Own the outcome. Work line by line from official sources, give manual-review links, flag irregularities, avoid hallucinations, and run multiple passes (implement, review, re-check against the request). Create a pull request and merge it to `main` when the work is complete. List remaining work and blockers.
+
+## Protocol references (binding)
+
+- [`PROMPT.md`](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/PROMPT.md) — parallel-run protocol: lane, reuse, evidence class, leakage canary, run card, budget.
+- [`AGENTS.md`](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/AGENTS.md) — repo rules, including: never fork the shared template; never scrape DrivenData automatically; `ORGANIZER-CONFIRMED` requires a submission-page receipt; the literal full-support 3-px witness stop is binding.
+- Competition page: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>
+- Data page (login required, human access only): <https://www.drivendata.org/competitions/306/competition-doe-gems/data/>
+- Leaderboard (human review): <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/>
+- Submission format PDF: <https://docs.nlr.gov/docs/fy26osti/96647.pdf>
+- Official reference solution: <https://github.com/drivendataorg/gems-prize-reference-solution>
+- USGS GeoDAWN release: <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and>
+- DOE GDR submission 1391: <https://gdr.openei.org/submissions/1391>
+- INGENIOUS project: <https://gbcge.org/current-projects/ingenious/>
+- EPSG:32611 (submission CRS): <https://epsg.io/32611>
+- Tversky index (scoring background): <https://en.wikipedia.org/wiki/Tversky_index>
+
+## Site lists
+
+The owner pasted 92 repository entries. Canonical list: [`registry/site_targets.json`](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/registry/site_targets.json). Owner-reported scores: [`registry/prior_scores.csv`](https://github.com/buffedlizard55-lab/GEMSDOE86/blob/main/registry/prior_scores.csv).
+<!-- CURRENT_REQUEST_20261029_END -->
+
+</details>
 
 > **STANDING PROJECT PROMPT — READ AT THE START OF EVERY SESSION**
 >

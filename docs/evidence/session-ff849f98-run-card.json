@@ -1,0 +1,82 @@
+{
+  "schema": "gems86.session-ff849f98-run-card.v1",
+  "created_utc": "2026-10-29T18:10:00+00:00",
+  "session_branch": "arena/ff849f98-gemsdoe86",
+  "evidence_class": "RUN-CARD",
+  "hypothesis": null,
+  "hypothesis_note": "No new hypothesis validated. Pre-existing untested register entries (not run): research/SESSION_20261029_FF849F98_REVIEW.md section 8.",
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "lane_assignment": null,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_TRAINING_FEATURES_ABSENT",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES",
+    "auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "scope": "Nine historical owner files only (not a new candidate). Forward 3-px overlap, gate 0.70.",
+    "measured_utc": "2026-10-29T18:00:00+00:00",
+    "source_file": "docs/evidence/session-ff849f98-nine-site-overlap.json",
+    "max_forward_overlap_vs_peers": {
+      "GEMSDOE24": 1.0,
+      "GEMSDOE25": 1.0,
+      "GEMSDOE27": 0.9802,
+      "GEMSDOE28": 1.0,
+      "GEMSDOE30": 1.0,
+      "GEMSDOE31": 1.0,
+      "GEMSDOE32": 1.0,
+      "GEMSDOE33": 0.9971,
+      "GEMSDOE36": 0.9758
+    },
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_allowed_pixels": 5106385,
+    "witness_direct_uncovered_allowed_pixels": 0,
+    "witness_implied_forward_overlap_for_any_nonempty_allowed_candidate": 1.0,
+    "preflight_status": "STOP_LITERAL_OVERLAP_UNSATISFIABLE",
+    "registry_complete": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "inspected_existing_local_copies": {
+      "scope": "Read-only format check of four historical local copies. Not acceptance.",
+      "files": ["GEMSDOE32 H33 zeros", "GEMSDOE28 H27-4 nan", "GEMSDOE33 H33-d", "GEMSDOE36 anderson zeros"],
+      "crs": "EPSG:32611",
+      "shape": [3730, 3292],
+      "values_observed": [0.0, 1.0],
+      "values_outside_0_1": 0
+    }
+  },
+  "submission_name": null,
+  "note": "No submission: literal 3-px gate unsatisfiable (witness covers all allowed px). H33 0.2778 unverified. DO NOT SUBMIT.",
+  "organizer_score_estimate": null,
+  "new_candidate_generated": false,
+  "unique_tiff_requirement_satisfied": false,
+  "submission_ready": false,
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "experiments_run": 0,
+  "experiment_budget": {"limit": 3, "used": 0},
+  "verdict": "negative",
+  "verdict_scope": "No-candidate stop. Not a hypothesis falsification.",
+  "decision": "DO NOT SUBMIT",
+  "owner_decisions_required": ["A: whether continuous probability surfaces count as dot fields under the 0.70 rule", "B: access to training_features.tif", "C: exact file name and link of the upload rejected with 'Predicted values must be in range [0, 1]'"],
+  "tool_changes": [
+    "scripts/focus9_overlap_matrix.py added (read-only measurement of nine immutable owner files)",
+    "docs/evidence/protocol-preflight.json restored from git after an unintended timestamp rewrite"
+  ]
+}
