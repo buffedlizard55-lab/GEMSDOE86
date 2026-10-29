@@ -37,10 +37,12 @@ gain from the metric code, not the shortcut"):
 
 ``mass_bar``
     The two-sided test from ``vendor/gems57/metric.py`` written as the two thresholds this axis
-    turns on: a dot pays iff ``dT > alpha * DTI * (dT + 1 - k)``, so at ``DTI = 0.2778`` any
-    non-redundant dot within 2.83 px of truth pays, and a *removal* pays only if the removed
-    dot's unique truth credit is below ``alpha * DTI / (1 - alpha * DTI)`` times its own
-    false-positive charge -- ``0.0589 * f`` at the incumbent's claimed score.
+    turns on: a dot pays iff ``dT > alpha * DTI * (dT + 1 - k)``.  Only in the special
+    case ``dT == k`` does this reduce to ``k > alpha * DTI``; marginal truth credit
+    can exceed one dot's self-credit because it sums over multiple truth cells.
+    This is a distance-to-truth condition, not a dot-to-dot spacing rule. A *removal*
+    pays only if the removed dot's unique truth credit is below
+    ``alpha * DTI / (1 - alpha * DTI)`` times its own false-positive charge.
 """
 from __future__ import annotations
 
@@ -219,11 +221,11 @@ def mass_bar(dti: float) -> dict:
         "dti_reference": dti,
         "alpha_dti": round(a_dti, 6),
         "add_bar_nonredundant_dot": {
-            "rule": "a non-redundant dot (dT == k) pays iff k > alpha*DTI with k = 1 - d/R, i.e. "
+            "rule": "in the special case dT == k, a dot pays iff k > alpha*DTI with k = 1 - d/R, i.e. "
                     "iff it is within R*(1 - alpha*DTI) of a truth pixel",
             "max_distance_px": round(R_PX * (1.0 - a_dti), 4),
-            "note": "2.83 px at the incumbent's claimed 0.2778, which is why the parent's 2.8 px "
-                    "thinning sits exactly at the metric's own marginal bar",
+            "note": "This is a hypothetical distance to hidden truth under the dT == k assumption, "
+                    "not a dot-to-dot separation rule or a reason to choose a thinning distance.",
         },
         "remove_bar": {
             "rule": "removing a dot pays iff its unique truth credit u < alpha*DTI*(u + f) with "
