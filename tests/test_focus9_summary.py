@@ -114,8 +114,8 @@ def test_generated_executive_summary_links_current_hypotheses():
 def test_home_links_the_current_review_and_hypothesis_register():
     html = (ROOT / "docs/index.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "SESSION_20261029_6AD5BDD2_REVIEW.md" in html
-    assert "session-6ad5bdd2-run-card.json" in html
+    assert "SESSION_20261030_ARENA_57A46EA2_REVIEW.md" in html
+    assert "session-57a46ea2-run-card.json" in html
     assert "focus9-score-source-audit-20261029.json" in html
     assert "focus9-feed-delta-20261029.json" in html
 
@@ -137,7 +137,9 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/focus9-feed-delta-20261029.json",
         "docs/evidence/focus9-score-source-audit-20261029.json",
         "docs/evidence/session-6ad5bdd2-inputs-20261029.json",
+        "docs/evidence/session-57a46ea2-inputs-20261030.json",
         "docs/evidence/protocol-preflight.json",
+        "docs/evidence/protocol-preflight-20261030.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
         "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
     )
