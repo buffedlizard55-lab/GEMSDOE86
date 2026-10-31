@@ -26,7 +26,7 @@ Measured witness facts: SHA-256 `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54
 - Frozen review card, generated site, local links/integrity/safety, and 50 downloads: all passed.
 - Live input audit: `training_features.tif` missing at both expected paths; `existing_faults.tif` and `sample_submission.tif` are hash-verified mirrors; 21/21 prepared arrays/masks are missing; the shared `.cache/h86_features/static60_fp.f16` cache is absent and its identity is not established.
 
-The official competition feature raster is login-walled, and no DrivenData auth is available in the repository. A mirrored input or small reference GeoTIFF does not substitute for the missing native raster or shared cached stack. The holdout cannot be rerun honestly with what is currently available.
+The official competition feature raster is login-walled, and no DrivenData auth is available in the repository. A separate concurrent `daf34cc5` review recorded a temporary hash-verified mirror restore, but a read-only input audit after merging concurrent mainline changes again found `training_features.tif` missing at both expected paths. Treat that as a time-scoped workspace discrepancy, not proof that the large raster or cache persisted. A mirrored input or small reference GeoTIFF does not substitute for the missing native raster or shared cached stack. The holdout cannot be rerun honestly with what is currently available.
 
 ## Pass 3 — re-check request, evidence classes, and current work decision
 

@@ -4,7 +4,7 @@
   "measured_utc": "2026-10-30T23:47:25Z",
   "protocol_preflight_sha256": "4c6c38b02a66f15ebabdd8dd2be4e2cb220957c2a7048e508e3001f33dcbe266",
   "current_input_audit_sha256": "688dbef920c587aa982779c8a95aec4ae7946dd7a239b2882c1cfc1fc3efffe3",
-  "all_artifacts_registry_sha256": "f22a04326a95e43c9152e98cf231c706cb5cd0667d192653e911623d36d45ed9",
+  "all_artifacts_registry_sha256": "df47a0761c6ba61e9dfd7544ae80e017ed0358d84278dbe935b33b4ae2831fd6",
   "hypothesis": "No lane assigned; repository verification only. No new scientific hypothesis was executed.",
   "mechanism": "No candidate constructed; no candidate mechanism tested.",
   "named_non_fault_process": "Not tested; no candidate constructed.",
