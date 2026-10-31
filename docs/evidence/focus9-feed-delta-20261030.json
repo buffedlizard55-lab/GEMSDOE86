@@ -1,0 +1,135 @@
+{
+  "schema": "gems86.focus9-github-tif-metadata-delta.v1",
+  "evidence_class": "REPOSITORY-METADATA-DELTA",
+  "measured_utc": "2026-10-30T23:13:42+00:00",
+  "base_commit_for_prior_snapshot": "55c5a3acad55257cb8b5b02e7db3266a136b9eab",
+  "prior_feed_sha256": "3d3bbe04092c7f38e6fea2e56f98a07e9b05919d3729f59a3ba979413470649f",
+  "current_feed_file": "docs/evidence/fleet-feed-current.json",
+  "current_feed_sha256": "a98d2a03fdd3f1a7a2d5813ce37e91e30c9d3d1063f5b7e3fa99c5435eacab1e",
+  "prior_feed_observed_utc": "2026-10-29T18:03:48+00:00",
+  "current_feed_observed_utc": "2026-10-30T23:13:42+00:00",
+  "projects_requested": 92,
+  "projects_snapshotted": 92,
+  "refresh_complete": true,
+  "organizer_receipts_obtained": 0,
+  "focus9_sites_with_new_tif_paths": 2,
+  "new_tif_path_count": 9,
+  "sites": [
+    {
+      "site": "GEMSDOE32",
+      "repository": "buffedlizard55-lab/GEMSDOE32",
+      "previous_commit_sha": "0ffda7162e76291df34359345488ff08b4115aac",
+      "current_commit_sha": "c8e560f1aae650b120dc31c9e7495ced6a587701",
+      "previous_source_commit_date": "2026-10-29T15:15:05Z",
+      "current_source_commit_date": "2026-10-30T11:29:40Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+          "git_blob_sha1": "901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+          "git_blob_bytes": 917544,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+          "git_blob_sha1": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+          "git_blob_bytes": 1632732,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+          "git_blob_sha1": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+          "git_blob_bytes": 1635084,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+          "git_blob_sha1": "d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+          "git_blob_bytes": 1590848,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+          "git_blob_sha1": "a59665a7fad659dcc6a45e5e7e71059586c3247a",
+          "git_blob_bytes": 806758,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+          "git_blob_sha1": "36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+          "git_blob_bytes": 199214,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+          "git_blob_sha1": "e79b7bdb633369c724628e30efba6de60c1d25d9",
+          "git_blob_bytes": 318190,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE33",
+      "repository": "buffedlizard55-lab/GEMSDOE33",
+      "previous_commit_sha": "005a71838e132a8a92f531ae28200f2df34890a5",
+      "current_commit_sha": "ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7",
+      "previous_source_commit_date": "2026-10-29T17:57:13Z",
+      "current_source_commit_date": "2026-10-29T18:38:47Z",
+      "added_tif_paths": [
+        {
+          "path": "docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-nan.tif",
+          "git_blob_sha1": "ef441274d6deccca21b7f94769fa50b9c46230b0",
+          "git_blob_bytes": 1591048,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif",
+          "git_blob_sha1": "e6a39d314b346cb2bd2c99070061cd5861a48a81",
+          "git_blob_bytes": 826070,
+          "path_class": "downloads",
+          "content_bytes_fetched_or_verified": false,
+          "score_or_submission_receipt_present_in_metadata": false,
+          "score_status": "UNKNOWN_NOT_INFERRED_FROM_GIT_METADATA"
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "A new path, Git blob SHA-1, byte length, or updated repository commit is metadata, not TIFF-byte validation, score evidence, uniqueness measurement, or organizer receipt.",
+    "Every newly observed path has unknown score status unless independently linked to a score receipt; no score was inferred as zero.",
+    "The GEMSDOE32 added paths include previously known cohort TIFFs newly incorporated into its current public tree; this is not evidence of new model performance.",
+    "The new GEMSDOE33 H34 TIFF paths are unscored by this metadata snapshot.",
+    "Do not select any file from metadata; the unchanged literal witness stop precludes any nonempty candidate under the current rule."
+  ],
+  "not_a_score": true,
+  "not_a_submission_receipt": true,
+  "score_status": "UNKNOWN_FOR_NEW_PATHS",
+  "safe_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "new_candidate_generated": false,
+  "experiments_run": 0,
+  "submission_slots_used": 0
+}

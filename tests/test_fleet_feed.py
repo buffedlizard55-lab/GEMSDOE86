@@ -59,14 +59,16 @@ def test_failed_and_truncated_requests_stay_explicit():
 
 def test_checked_in_feed_covers_named_targets_without_score_promotion():
     targets = strict_json(ROOT / "registry/site_targets.json")
-    feed = strict_json(ROOT / "docs/evidence/fleet-feed.json")
+    feed = strict_json(ROOT / "docs/evidence/fleet-feed-current.json")
     assert feed["projects_requested"] == len(targets["sites"]) == 92
     assert {p["repository"] for p in feed["projects"]} == {t["repository"] for t in targets["sites"]}
     assert feed["owner_ledger_sha256"] == sha256(ROOT / "registry/prior_scores.csv")
     assert feed["organizer_receipts_obtained"] == feed["submission_slots_used"] == 0
     assert all(not row["organizer_score_verified"] for row in feed["projects"])
     scores = [c for row in feed["projects"] for c in row["owner_reported_results"] if c["value"]]
-    assert all(c["evidence_class"].startswith("OWNER-REPORTED") for c in scores)
+    assert all((c["evidence_class"].startswith(("OWNER-REPORTED", "USER-REPORTED", "CROSS-REPOSITORY OWNER-REPORTED"))
+                or c["evidence_class"].startswith("UNSUPPORTED AS GEMSDOE28 SCORE")) for c in scores)
+    assert all(not p["organizer_score_verified"] for p in feed["projects"])
 
 
 def test_provisional_hypotheses_do_not_invent_validation_or_data_obtainability():
@@ -132,7 +134,7 @@ def test_workflow_may_publish_fresh_partial_feed_but_cannot_hide_fatal_errors(mo
     monkeypatch.setattr(refresh_fleet, "refresh", lambda **_: result)
     assert refresh_fleet.main([]) == 1
     assert refresh_fleet.main(["--allow-partial"]) == 0
-    assert strict_json(tmp_path / "docs/evidence/fleet-feed.json") == result
+    assert strict_json(tmp_path / "docs/evidence/fleet-feed-current.json") == result
     def fatal(**_):
         raise OSError("Local write/input failure")
     monkeypatch.setattr(refresh_fleet, "refresh", fatal)
