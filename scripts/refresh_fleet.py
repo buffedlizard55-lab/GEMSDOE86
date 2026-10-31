@@ -110,7 +110,7 @@ def main(argv=None) -> int:
                         help="publish an explicit fresh partial snapshot without treating a project failure as a workflow failure")
     args = parser.parse_args(argv)
     result = refresh(workers=args.workers)
-    write_json(ROOT / "docs/evidence/fleet-feed.json", result)
+    write_json(ROOT / "docs/evidence/fleet-feed-current.json", result)
     print(json.dumps({k: result[k] for k in ("projects_requested", "projects_snapshotted", "refresh_complete", "organizer_receipts_obtained", "submission_slots_used")}, indent=2))
     if any(r["status"] == "GITHUB_CONNECTION_NEEDS_ATTENTION" for r in result["projects"]):
         print("GitHub connection needs attention; reconnect GitHub in Arena.", file=sys.stderr)

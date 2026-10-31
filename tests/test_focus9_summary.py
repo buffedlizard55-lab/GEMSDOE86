@@ -83,11 +83,11 @@ def test_current_status_banner_fails_closed_and_names_scope():
 def test_focus9_new_upstream_paths_are_not_treated_as_validated_downloads_or_scores():
     html = focus9_summary()
     section = html.split("New paths in the refreshed upstream feed:", 1)[1].split("<div class=\"table-wrap\"><table><thead><tr><th>Site</th><th>Highest supplied claim / byte-audited historical owner file", 1)[0]
-    assert "9 TIFF path additions across 5 requested sites" in section
+    assert "9 TIFF path additions across 2 requested sites" in section
     assert "score status is unknown (not zero)" in section
-    assert "gems25-mag-rad-decoupling-20261029-8e2e136eddc8-zero.tif" in section
-    assert "gemsdoe31-h-steo-offcatalogue-stepper-20261029T164949Z-4bbba08696ed-allfinite.tif" in section
-    assert "NO HOLDOUT; DUPLICATE-STOP per own novelty receipt vs two geothermal-corridor rasters; NOT for download or submission" in section
+    assert "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" in section
+    assert "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-nan.tif" in section
+    assert "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif" in section
     assert "not authorized to submit" in section
     assert 'download>' not in section
 
@@ -114,10 +114,10 @@ def test_generated_executive_summary_links_current_hypotheses():
 def test_home_links_the_current_review_and_hypothesis_register():
     html = (ROOT / "docs/index.html").read_text()
     assert "focus9_novel_hypotheses_20261028.json" in html
-    assert "SESSION_20261030_ARENA_57A46EA2_REVIEW.md" in html
-    assert "session-57a46ea2-run-card.json" in html
+    assert "SESSION_20261030_ARENA_9B7CA9B8_REVIEW.md" in html
+    assert "session-9b7ca9b8-run-card.json" in html
     assert "focus9-score-source-audit-20261029.json" in html
-    assert "focus9-feed-delta-20261029.json" in html
+    assert "focus9-feed-delta-20261030.json" in html
 
 
 def _isolated_inputs(tmp_path, monkeypatch):
@@ -133,13 +133,11 @@ def _isolated_inputs(tmp_path, monkeypatch):
         "docs/evidence/focus9-and-siblings-forensics-20261027.json",
         "docs/evidence/nine-site-audit-20261027.json",
         "docs/evidence/focus9-immutable-files-20261029.json",
-        "docs/evidence/fleet-feed.json",
-        "docs/evidence/focus9-feed-delta-20261029.json",
+        "docs/evidence/fleet-feed-current.json",
+        "docs/evidence/focus9-feed-delta-20261030.json",
         "docs/evidence/focus9-score-source-audit-20261029.json",
-        "docs/evidence/session-6ad5bdd2-inputs-20261029.json",
-        "docs/evidence/session-57a46ea2-inputs-20261030.json",
+        "docs/evidence/session-9b7ca9b8-inputs-20261030.json",
         "docs/evidence/protocol-preflight.json",
-        "docs/evidence/protocol-preflight-20261030.json",
         "docs/evidence/registry-input-grid-review-20261028.json",
         "evidence/gems86-bgc-conduit-24365d-20261028T164808Z-85d93518-zeros-run-card.json",
     )
@@ -151,7 +149,7 @@ def _isolated_inputs(tmp_path, monkeypatch):
         rows = list(csv.DictReader(stream))
     snapshot_path = tmp_path / "docs/evidence/focus9-and-siblings-forensics-20261027.json"
     audit_path = tmp_path / "docs/evidence/nine-site-audit-20261027.json"
-    fleet_path = tmp_path / "docs/evidence/fleet-feed.json"
+    fleet_path = tmp_path / "docs/evidence/fleet-feed-current.json"
     return builder, score_path, rows, snapshot_path, audit_path, fleet_path
 
 
@@ -182,7 +180,7 @@ def test_removed_owner_file_is_flagged_but_historical_link_stays_commit_pinned(t
         if "gems24-h25-1-dotted-h19-5-d1-5" not in item["path"]
     ]
     fleet_path.write_text(json.dumps(feed))
-    delta_path = tmp_path / "docs/evidence/focus9-feed-delta-20261029.json"
+    delta_path = tmp_path / "docs/evidence/focus9-feed-delta-20261030.json"
     delta = json.loads(delta_path.read_text())
     delta["current_feed_sha256"] = hashlib.sha256(fleet_path.read_bytes()).hexdigest()
     delta_path.write_text(json.dumps(delta))
@@ -245,7 +243,7 @@ def test_same_score_different_name_does_not_inherit_audit(tmp_path, monkeypatch)
         writer = csv.DictWriter(stream, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    with pytest.raises(ValueError, match="Current score-source audit disagrees with the dated claim/file/feed"):
+    with pytest.raises(ValueError, match="Pinned score-source audit disagrees with the dated claim/file/current feed"):
         builder.focus9_summary()
 
 

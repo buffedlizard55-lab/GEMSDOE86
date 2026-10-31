@@ -23,7 +23,7 @@ from scripts.audit_release import sha256, strict_json, write_json  # noqa: E402
 from scripts.restore_protocol_data import write_blob  # noqa: E402
 
 AUDIT = 'docs/evidence/nine-site-audit-20261027.json'
-FEED = 'docs/evidence/fleet-feed.json'
+FEED = 'docs/evidence/fleet-feed-current.json'
 RECEIPT = 'docs/evidence/focus9-immutable-files-20261029.json'
 SITES = ('GEMSDOE24', 'GEMSDOE25', 'GEMSDOE27', 'GEMSDOE28', 'GEMSDOE30',
          'GEMSDOE31', 'GEMSDOE32', 'GEMSDOE33', 'GEMSDOE36')

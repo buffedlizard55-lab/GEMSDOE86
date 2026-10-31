@@ -30,7 +30,7 @@ def test_current_card_binds_the_fresh_registry_measurement_and_input_receipt():
     expected = {
         "protocol_preflight_sha256": "docs/evidence/protocol-preflight-20261030.json",
         "current_input_audit_sha256": "docs/evidence/session-57a46ea2-inputs-20261030.json",
-        "all_artifacts_registry_sha256": "docs/evidence/all-artifacts-registry.json",
+        "all_artifacts_registry_sha256": "docs/evidence/session-57a46ea2-archive/all-artifacts-registry.json",
     }
     for field, relative in expected.items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == card[field]

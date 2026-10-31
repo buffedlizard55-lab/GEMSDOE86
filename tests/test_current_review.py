@@ -131,7 +131,7 @@ def test_measurement_timestamp_requires_explicit_utc(timestamp):
 def test_site_rejects_stale_or_optimistic_current_review(tmp_path, monkeypatch, change):
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
-        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed-current.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.json",
@@ -170,7 +170,7 @@ def test_spt_candidate_with_full_witness_overlap_is_not_presented_as_downloadabl
 def test_site_rejects_spt_download_url(tmp_path, monkeypatch):
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
-        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed-current.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
@@ -192,7 +192,7 @@ def test_site_rejects_spt_download_url(tmp_path, monkeypatch):
 def test_site_rejects_optimistic_spt_witness_audit(tmp_path, monkeypatch):
     for rel in (
         "docs/evidence/release-readiness.json", "docs/evidence/all-artifacts-registry.json",
-        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed.json",
+        "docs/evidence/latest-review-run-card.json", "docs/evidence/fleet-feed-current.json",
         "docs/evidence/spt-full-support-witness-audit.json", "docs/evidence/spt-run-card.json",
         "registry/prior_scores.csv", "registry/site_targets.json",
         "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",

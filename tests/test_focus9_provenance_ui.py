@@ -19,10 +19,10 @@ def inputs(tmp_path, monkeypatch):
                  'docs/evidence/protocol-preflight-20261030.json',
                  'docs/evidence/session-57a46ea2-inputs-20261030.json',
                  'docs/evidence/registry-input-grid-review-20261028.json',
-                 'docs/evidence/focus9-immutable-files-20261029.json', 'docs/evidence/fleet-feed.json',
-                 'docs/evidence/focus9-feed-delta-20261029.json',
+                 'docs/evidence/focus9-immutable-files-20261029.json', 'docs/evidence/fleet-feed-current.json',
+                 'docs/evidence/focus9-feed-delta-20261030.json',
                  'docs/evidence/focus9-score-source-audit-20261029.json',
-                 'docs/evidence/session-6ad5bdd2-inputs-20261029.json'):
+                 'docs/evidence/session-9b7ca9b8-inputs-20261030.json'):
         target = tmp_path / path
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / path, target)
@@ -35,15 +35,15 @@ def row(html, site):
 
 
 def sync_feed_delta(inputs):
-    feed_path = inputs / 'docs/evidence/fleet-feed.json'
-    delta_path = inputs / 'docs/evidence/focus9-feed-delta-20261029.json'
+    feed_path = inputs / 'docs/evidence/fleet-feed-current.json'
+    delta_path = inputs / 'docs/evidence/focus9-feed-delta-20261030.json'
     delta = json.loads(delta_path.read_text())
     delta['current_feed_sha256'] = hashlib.sha256(feed_path.read_bytes()).hexdigest()
     delta_path.write_text(json.dumps(delta))
 
 
 def test_truncated_or_failed_feed_explicitly_unknown_without_erasing_historical_link(inputs):
-    path = inputs / 'docs/evidence/fleet-feed.json'
+    path = inputs / 'docs/evidence/fleet-feed-current.json'
     feed = json.loads(path.read_text())
     project = next(x for x in feed['projects'] if x['repository'].endswith('/GEMSDOE32'))
     project['status'] = 'FORBIDDEN_OR_RATE_LIMITED'
@@ -58,7 +58,7 @@ def test_truncated_or_failed_feed_explicitly_unknown_without_erasing_historical_
 
 
 def test_changed_blob_is_not_confused_with_historical_audited_bytes(inputs):
-    path = inputs / 'docs/evidence/fleet-feed.json'
+    path = inputs / 'docs/evidence/fleet-feed-current.json'
     feed = json.loads(path.read_text())
     project = next(x for x in feed['projects'] if x['repository'].endswith('/GEMSDOE32'))
     receipt = json.loads((inputs / 'docs/evidence/focus9-immutable-files-20261029.json').read_text())
