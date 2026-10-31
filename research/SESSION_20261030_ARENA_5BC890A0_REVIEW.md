@@ -1,7 +1,7 @@
 # Three-pass repository review — 2026-10-30 UTC
 
-**Branch:** `arena/5bc890a0-gemsdoe86`  
-**Decision:** **DO NOT SUBMIT. No new TIFF was generated.**  
+**Branch:** `arena/5bc890a0-gemsdoe86`
+**Decision:** **DO NOT SUBMIT. No new TIFF was generated.**
 **Why:** No single geological method paragraph was assigned for this lane; the current registry witness still blocks every nonempty candidate under the unchanged literal overlap rule; and the native training raster, prepared arrays, and verified shared feature cache are absent.
 
 This is a repository/workspace review, not a model experiment. It does not choose a candidate for a weekly slot, infer an organizer score, or authorize downloading a historical TIFF for submission. The latest machine-readable audit is [`docs/evidence/latest-review-run-card.json`](../docs/evidence/latest-review-run-card.json); its measurement date is bound to the fresh registry witness remeasurement. Current local input bytes are separately recorded in [`docs/evidence/session-5bc890a0-inputs-20261030.json`](../docs/evidence/session-5bc890a0-inputs-20261030.json). The witness receipt is [`docs/evidence/protocol-preflight.json`](../docs/evidence/protocol-preflight.json).

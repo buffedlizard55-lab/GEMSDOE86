@@ -16,6 +16,8 @@ def inputs(tmp_path, monkeypatch):
                  'docs/evidence/focus9-and-siblings-forensics-20261027.json',
                  'docs/evidence/nine-site-audit-20261027.json',
                  'docs/evidence/protocol-preflight.json',
+                 'docs/evidence/protocol-preflight-20261030.json',
+                 'docs/evidence/session-57a46ea2-inputs-20261030.json',
                  'docs/evidence/registry-input-grid-review-20261028.json',
                  'docs/evidence/focus9-immutable-files-20261029.json', 'docs/evidence/fleet-feed.json',
                  'docs/evidence/focus9-feed-delta-20261029.json',
